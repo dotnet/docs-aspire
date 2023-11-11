@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire components overview
 description: Explore the fundamental concepts of .NET Aspire components and learn how to integrate them into your apps.
-ms.date: 11/06/2023
+ms.date: 11/11/2023
 ms.topic: quickstart
 ms.prod: dotnet
 ---
@@ -148,11 +148,17 @@ For more information, see <xref:Microsoft.Extensions.DependencyInjection.FromKey
 
 ## Cloud-native features
 
-Cloud-native applications surface many unique requirements and concerns. The core features of .NET Aspire orchestration and components are designed to handle many cloud-native concerns for you with minimal configurations. Some .NET Aspire components also include more capabilities for specific services or platforms, which can be found in the component specific reference docs.
+Cloud-native applications surface many unique requirements and concerns. The core features of .NET Aspire orchestration and components are designed to handle many cloud-native concerns for you with minimal configurations. Some of the key features include:
+
+- [Orchestration](app-host-overview.md): A lightweight, extensible, and cross-platform app host for .NET Aspire apps. The app host provides a consistent configuration and dependency injection experience for .NET Aspire components.
+- [Service discovery](service-discovery/overview.md): A technique for locating services within a distributed application. Service discovery is a key component of microservice architectures.
+- [Service defaults](service-defaults.md): A set of default configurations intended for sharing amongst resources within .NET Aspire apps. These defaults are designed to work well in most scenarios and can be customized as needed.
+
+Some .NET Aspire components also include more capabilities for specific services or platforms, which can be found in the component specific reference docs.
 
 ### Observability and telemetry
 
-.NET Aspire components automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*.
+.NET Aspire components automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as _the pillars of observability_.
 
 - **[Logging](/dotnet/core/diagnostics/logging-tracing)**: A technique where code is instrumented to produce logs of interesting events that occurred while the program was running. A baseline set of log events are enabled for .NET Aspire components by default and more extensive logging can be enabled on-demand to diagnose particular problems.
 
