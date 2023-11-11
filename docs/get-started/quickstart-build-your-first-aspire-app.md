@@ -50,7 +50,7 @@ Consider the _Program.cs_ file of the _AspireSample.AppHost_ project:
 
 :::code source="snippets/quickstart/AspireSample/AspireSample.AppHost/Program.cs":::
 
-If you've used either the [.NET Generic Host](../../core/extensions/generic-host.md) or the [ASP.NET Core Web Host](/aspnet/core/fundamentals/host/web-host) before, the app host programming model and builder pattern should be familiar to you. The preceding code:
+If you've used either the [.NET Generic Host](/dotnet/core/extensions/generic-host.md) or the [ASP.NET Core Web Host](/aspnet/core/fundamentals/host/web-host) before, the app host programming model and builder pattern should be familiar to you. The preceding code:
 
 - Creates an `IDistributedApplicationBuilder` instance from calling `DistributedApplication.CreateBuilder(args)`.
 - Calls `AddRedisContainer` with the name `"cache"` to add a Redis container to the app, assigning the returned value to a variable named `cache`, which is of type `IResourceBuilder<RedisContainerResource>`.
@@ -104,7 +104,7 @@ In Visual Studio, set the **AspireSample.AppHost** project as the startup projec
 dotnet run --project AspireSample/AspireSample.AppHost
 ```
 
-For more information, see [dotnet run](../../core/tools/dotnet-run.md).
+For more information, see [dotnet run](/dotnet/core/tools/dotnet-run.md).
 
 ---
 

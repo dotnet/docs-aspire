@@ -57,7 +57,7 @@ The following table lists the .NET Aspire components currently available for use
 
     ---
 
-    For more information, see [dotnet add package](../core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](../core/tools/dependencies.md).
+    For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
 
 1. In the _Program.cs_ file of your project, call the `AddNpgsqlDataSource` extension method to register a `NpgsqlDataSource` for use via the dependency injection container. The method expects a connection name parameter.
 
@@ -123,7 +123,7 @@ public class ExampleService(NpgsqlDataSource npgContext)
 }
 ```
 
-For more information, see [.NET dependency injection](../core/extensions/dependency-injection.md).
+For more information, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection.md).
 
 ### Keyed services
 
@@ -191,4 +191,4 @@ If either of these operations fail, the health check also fails. For more inform
 
 - **Timeouts**: You can configure how long an .NET Aspire component waits for a request to finish before it times out. Timeout configurations can be useful for handling dependencies with variable response times.
 
-For more information, see [Build resilient HTTP apps](../core/resilience/http-resilience.md).
+For more information, see [Build resilient HTTP apps](/dotnet/core/resilience/http-resilience.md).

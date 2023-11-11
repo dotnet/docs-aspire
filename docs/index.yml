@@ -10,7 +10,7 @@ metadata:
   ms.topic: hub-page
   ms.prod: dotnet-cloud-native
   ms.service: dotnet-aspire
-  ms.date: 11/03/2023
+  ms.date: 11/11/2023
 
 highlightedContent:
   items:
@@ -155,9 +155,9 @@ additionalContent:
         - title: Resiliency
           links:
             - text: Introduction to resilient app dev
-              url: ../core/resilience/index.md
+              url: /dotnet/core/resilience
             - text: Build resilient HTTP apps
-              url: ../core/resilience/http-resilience.md
+              url: /dotnet/core/resilience/http-resilience
             - text: Implement resiliency in a cloud-native ASP.NET Core microservice
               url: /training/modules/microservices-resiliency-aspnet-core
         - title: Observability
