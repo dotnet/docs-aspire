@@ -1,0 +1,238 @@
+### YamlMime:Hub
+
+title: .NET Aspire documentation (Preview)
+summary: .NET Aspire is currently in preview. Learn about .NET Aspire, an opinionated, cloud ready stack for building observable, production ready, distributed applications. Browse API reference, sample code, tutorials, quickstarts, conceptual articles and more.
+brand: dotnet
+
+metadata:
+  title: .NET Aspire documentation (Preview)
+  description: Samples, tutorials, and education for .NET Aspire, your cloud-native app stack build around components that provide production-ready telemetry, health checks, configurability, and testability.
+  ms.topic: hub-page
+  ms.prod: dotnet-cloud-native
+  ms.service: dotnet-aspire
+  ms.date: 11/03/2023
+
+highlightedContent:
+  items:
+    - itemType: overview
+      title: What is .NET Aspire?
+      url: get-started/aspire-overview.md
+    - itemType: quickstart
+      title: Build your first .NET Aspire app
+      url: get-started/quickstart-build-your-first-aspire-app.md
+    - itemType: concept
+      title: Distributed app host
+      url: app-host-overview.md
+    - itemType: concept
+      title: .NET Aspire components
+      url: components-overview.md
+    - itemType: concept
+      title: Service discovery
+      url: service-discovery/overview.md
+    - itemType: how-to-guide
+      title: Service defaults
+      url: service-defaults.md
+    - itemType: deploy
+      title: Deploy a .NET Aspire app
+      url: deployment/overview.md
+    - itemType: reference
+      title: .NET Aspire FAQ
+      url: reference/aspire-faq.yml
+
+conceptualContent:
+  # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
+  items:
+    - title: Get Started
+      links:
+        - itemType: concept
+          text: .NET Aspire overview
+          url: get-started/aspire-overview.md
+        - itemType: concept
+          text: Build your first .NET Aspire app
+          url: get-started/quickstart-build-your-first-aspire-app.md
+        - itemType: how-to-guide
+          text: .NET Aspire setup and tooling
+          url: setup-tooling.md
+        - itemType: concept
+          text: .NET Aspire service discovery
+          url: service-discovery/overview.md
+        - itemType: reference
+          text: .NET Aspire service defaults
+          url: service-defaults.md
+        - itemType: reference
+          text: .NET Aspire dashboard
+          url: dashboard.md
+
+    - title: Storage
+      links:
+        - itemType: quickstart
+          text: Connect to storage with .NET Aspire
+          url: storage/quickstart-azure-storage.md
+        - itemType: how-to-guide
+          text: Azure Blob Storage
+          url: storage/azure-storage-blobs-component.md
+        - itemType: how-to-guide
+          text: Azure Storage Queues
+          url: storage/azure-storage-queues-component.md
+        - itemType: how-to-guide
+          text: Azure Table Storage
+          url: storage/azure-storage-tables-component.md
+
+    - title: Database
+      links:
+        - itemType: how-to-guide
+          text: PostgreSQL database
+          url: database/postgresql-component.md
+        - itemType: how-to-guide
+          text: PostgreSQL with Entity Framework Core
+          url: database/postgresql-entity-framework-component.md
+        - itemType: how-to-guide
+          text: Azure Cosmos DB
+          url: database/azure-cosmos-db-component.md
+        - itemType: how-to-guide
+          text: Azure Cosmos DB with Entity Framework Core
+          url: database/azure-cosmos-db-entity-framework-component.md
+        - itemType: how-to-guide
+          text: SQL Database
+          url: database/sql-server-component.md
+        - itemType: how-to-guide
+          text: SQL Database with Entity Framework Core
+          url: database/sql-server-entity-framework-component.md
+
+    - title: Messaging
+      links:
+        - itemType: quickstart
+          text: Implement Messaging with .NET Aspire
+          url: messaging/quickstart-messaging.md
+        - itemType: overview
+          text: Azure Service Bus
+          url: messaging/azure-service-bus-component.md
+        - itemType: how-to-guide
+          text: RabbitMQ client .NET Aspire component
+          url: messaging/rabbitmq-client-component.md
+
+    - title: Caching
+      links:
+        - itemType: quickstart
+          text: Improve app caching with .NET Aspire
+          url: caching/quickstart-caching.md
+        - itemType: how-to-guide
+          text: Redis caching
+          url: caching/stackexchange-redis-component.md
+        - itemType: how-to-guide
+          text: Redis output caching
+          url: caching/stackexchange-redis-output-caching-component.md
+        - itemType: how-to-guide
+          text: Redis distributed caching
+          url: caching/stackexchange-redis-distributed-caching-component.md
+
+    - title: Security
+      links:
+        - itemType: how-to-guide
+          text: Azure Key Vault
+          url: security/azure-security-key-vault-component.md
+
+additionalContent:
+  sections:
+    - title: .NET extensions
+      items:
+        - title: Fundamentals
+          links:
+            - text: Logging
+              url: /dotnet/core/extensions/logging
+            - text: Dependency injection
+              url: /dotnet/core/extensions/dependency-injection
+            - text: Configuration
+              url: /dotnet/core/extensions/configuration
+        - title: Telemetry
+          links:
+            - text: .NET observability with OpenTelemetry
+              url: /dotnet/core/diagnostics/observability-with-otel
+            - text: Networking telemetry
+              url: /dotnet/fundamentals/networking/networking-telemetry
+            - text: .NET SDK telemetry
+              url: /dotnet/core/tools/telemetry
+        - title: Resiliency
+          links:
+            - text: Introduction to resilient app dev
+              url: ../core/resilience/index.md
+            - text: Build resilient HTTP apps
+              url: ../core/resilience/http-resilience.md
+            - text: Implement resiliency in a cloud-native ASP.NET Core microservice
+              url: /training/modules/microservices-resiliency-aspnet-core
+        - title: Observability
+          links:
+            - text: .NET app health checks in C#
+              url: /dotnet/core/diagnostics/diagnostic-health-checks
+            - text: App health checks in ASP.NET Core
+              url: /aspnet/core/host-and-deploy/health-checks
+            - text: Diagnostic tools in .NET
+              url: /dotnet/core/diagnostics
+            - text: Diagnostic resource monitoring in .NET
+              url: /dotnet/core/diagnostics/diagnostic-resource-monitoring
+    - title: .NET community resources
+      items:
+        - title: .NET
+          links:
+            - text: .NET documentation
+              url: /dotnet
+            - text: ASP.NET documentation
+              url: /aspnet
+            - text: Azure documentation
+              url: /azure
+            - text: C# documentation
+              url: /dotnet/csharp
+        - title: Webcasts and shows
+          links:
+            - text: Azure Friday
+              url: https://azure.microsoft.com/resources/videos/azure-friday
+            - text: The Cloud Native Show
+              url: /shows/the-cloud-native-show
+            - text: On .NET
+              url: /shows/on-net
+            - text: On .NET Live
+              url: https://dotnet.microsoft.com/live/on-dotnet-live
+            - text: .NET Community Standup
+              url: https://dotnet.microsoft.com/platform/community/standup
+        - title: Open source
+          links:
+            - text: .NET Aspire
+              url: https://github.com/dotnet/aspire
+            - text: .NET Aspire samples
+              url: https://github.com/dotnet/aspire-samples
+            - text: .NET samples
+              url: https://github.com/dotnet/samples
+            - text: .NET Platform
+              url: https://github.com/dotnet
+            - text: .NET Runtime
+              url: https://github.com/dotnet/runtime
+            - text: ASP.NET Core
+              url: https://github.com/dotnet/aspnetcore
+        - title: Community
+          links:
+            - text: Follow @dotnet on 𝕏
+              url: https://x.com/intent/follow?screen_name=dotnet
+            - text: Follow @dotnet on Mastodon
+              url: https://dotnet.social/@dotnet
+            - text: .NET Foundation
+              url: https://dotnetfoundation.org
+            - text: We Are .NET
+              url: https://www.wearedotnet.io
+
+    - title: API and language reference
+      summary: Search the .NET API and language reference documentation.
+      items:
+        - title: ".NET Aspire API reference"
+          summary: API reference documentation for .NET Aspire
+          url: /api?view=dotnet-aspire-8.0&preserve-view=true
+        - title: ".NET Platform Extensions API reference"
+          summary: API reference documentation for .NET Platform Extensions
+          url: /api?view=dotnet-plat-ext-8.0&preserve-view=true
+        - title: ".NET API reference"
+          summary: API reference documentation for .NET
+          url: /api?view=net-8.0&preserve-view=true
+        - title: "ASP.NET Core API reference"
+          summary: API reference documentation for ASP.NET Core
+          url: /api?view=aspnetcore-8.0&preserve-view=true
+
+  footer: "Are you interested in contributing to the .NET docs? For more information, see our [contributor guide](/contribute/dotnet/dotnet-contribute)."

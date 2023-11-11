@@ -1,0 +1,62 @@
+### YamlMime:FAQ
+metadata:
+  title: Frequently asked questions about .NET Aspire
+  description: Answers to some of the most common questions and scenarios for .NET Aspire.
+  ms.topic: faq
+  ms.date: 11/08/2023
+title: Frequently asked questions about .NET Aspire
+summary: |
+  This article lists frequently asked questions about .NET Aspire. For a more comprehensive overview, see [.NET Aspire overview](../get-started/aspire-overview.md).
+
+sections:
+  - name: Frequently asked questions
+    questions:
+      - question: |
+          What's the difference between .NET Aspire and Microsoft Orleans?
+        answer: |
+          Microsoft Orleans and .NET Aspire are complementary technologies. Orleans is a distributed actor-based
+          framework. .NET Aspire is a cloud-ready stack for building observable, production ready, distributed
+          applications. It includes local orchestration capabilities to simplify the developer inner loop and
+          reusable opinionated components for integrating with commonly used application dependencies. An Orleans-based
+          solution will still have external dependencies such as data stores and caches for which .NET Aspire can be
+          used for orchestration purposes. We are planning to produce a sample for .NET Aspire that uses
+          Microsoft Orleans (see [GitHub issue](https://github.com/dotnet/aspire-samples/issues/20)).
+      - question: |
+          What's the difference between .NET Aspire and Dapr?
+        answer: |
+          Dapr and .NET Aspire are complementary technologies. Where Dapr abstracts some of the underlying cloud
+          platform, .NET Aspire provides opinionated configuration around the underlying cloud technolgies without
+          abstracting them. A .NET-based application that uses Dapr can use .NET Aspire to orchestrate the local
+          developer inner loop and streamline deployment. .NET Aspire includes extensions which support the launching
+          for Dapr side-car processes during the inner loop.
+      - question: |
+          What's the difference between .NET Aspire and Project Tye?
+        answer: |
+          Project Tye was an experiment which explored the launching and orchestration of micro-services and support
+          deployment into orchestrators such as Kubernetes. .NET Aspire is a superset of Tye which includes the
+          orchestration and deployment capabilities along with opinionated components for integrating common
+          cloud-native dependencies. .NET Aspire can be considered the the evolution of the Project Tye experiment.
+      - question: |
+          What's the relationship between .NET Aspire and the Azure SDK for .NET?
+        answer: |
+          .NET Aspire provides components that rely on the [Azure SDK for .NET](/dotnet/azure/intro), to expose common functionality for storage ([Azure Blog Storage](../storage/azure-storage-blobs-component.md), [Azure Storage Queues](../storage/azure-storage-queues-component.md), and [Azure Table Storage](../storage/azure-storage-tables-component.md)), databases ([Azure Cosmos DB](../database/azure-cosmos-db-component.md) and [Azure Cosmos DB with Entity Framework Core](../database/azure-cosmos-db-entity-framework-component.md)), [messaging](../messaging/azure-service-bus-component.md), and [security](../security/azure-security-key-vault-component.md).
+      - question: |
+          Are worker services supported in .NET Aspire?
+        answer: |
+          Due to a deployment related bug the preview 1 of .NET Aspire does not support deployment of worker
+          servers. As a work around consider deploying a web application as a worker which is not exposed
+          to the internet. We are currently tracking this issue and plan to have it resolved for preview 2 (see [GitHub issue](https://github.com/dotnet/aspire/issues/743)).
+      - question: |
+          Are Azure Functions supported in .NET Aspire?
+        answer: |
+          We have no specific support for Azure Functions in preview 1 of .NET Aspire however it is a target
+          execution environment for depoyment that we are planning to support in future previews.
+
+additionalContent: |
+
+  ## Next steps
+  To learn more about networking and functions:
+
+  * [.NET Aspire overview](../get-started/aspire-overview.md)
+  * [Build your first .NET Aspire app](../get-started/quickstart-build-your-first-aspire-app.md)
+  * [.NET Aspire components](../components-overview.md)
