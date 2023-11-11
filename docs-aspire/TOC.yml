@@ -1,2 +1,123 @@
-- name: Index
-  href: index.md
+items:
+  - name: .NET Aspire documentation
+    href: index.yml
+
+  - name: Get Started
+    expanded: true
+    items:
+      - name: What is .NET Aspire?
+        displayName: aspire overview,architecture,key concepts
+        href: get-started/aspire-overview.md
+      - name: Quickstart - Build your first .NET Aspire app
+        displayName: quickstart,first app,aspire app
+        href: get-started/quickstart-build-your-first-aspire-app.md
+      - name: Tutorial - Add .NET Aspire to an existing .NET 8 microservices app
+        href: get-started/add-aspire-existing-app.md
+      - name: Setup and tooling
+        href: setup-tooling.md
+
+  - name: Overview
+    expanded: true
+    items:
+    - name: Distributed app host (Orchestration)
+      displayName: orchestration,aspire apphost,aspire app
+      href: app-host-overview.md
+    - name: .NET Aspire dashboard
+      displayName: aspire dashboard,dashboard
+      href: dashboard.md
+    - name: Components
+      displayName: aspire components,components,nuget packages,packages
+      href: components-overview.md
+    - name: Service discovery
+      displayName: service discovery,service to service communication
+      href: service-discovery/overview.md
+    - name: Service defaults
+      href: service-defaults.md
+    - name: Health checks
+      href: health-checks.md
+    - name: Telemetry
+      href: telemetry.md
+
+  - name: Storage
+    items:
+      - name: Tutorial - Connect to storage
+        href: storage/quickstart-azure-storage.md
+      - name: Azure Blob Storage component
+        href: storage/azure-storage-blobs-component.md
+      - name: Azure Storage Queues component
+        href: storage/azure-storage-queues-component.md
+      - name: Azure Table Storage component
+        href: storage/azure-storage-tables-component.md
+
+  - name: Database
+    items:
+      - name: PostgreSQL Database component
+        href: database/postgresql-component.md
+      - name: PostgreSQL - Entity Framework Core component
+        href: database/postgresql-entity-framework-component.md
+      - name: SQL Database component
+        href: database/sql-server-component.md
+      - name: SQL Database - Entity Framework Core component
+        href: database/sql-server-entity-framework-component.md
+      - name: Azure Cosmos DB component
+        href: database/azure-cosmos-db-component.md
+      - name: Azure Cosmos DB - Entity Framework Core component
+        href: database/azure-cosmos-db-entity-framework-component.md
+
+  - name: Messaging
+    items:
+      - name: Tutorial - Messaging using .NET Aspire components
+        href: messaging/quickstart-messaging.md
+      - name: Azure Service Bus component
+        href: messaging/azure-service-bus-component.md
+      - name: RabbitMQ service broker component
+        href: messaging/rabbitmq-client-component.md
+
+  - name: Caching
+    items:
+      - name: Tutorial - Caching using Redis components
+        href: caching/quickstart-caching.md
+      - name: Redis Caching component
+        href: caching/stackexchange-redis-component.md
+      - name: Redis Output Caching component
+        href: caching/stackexchange-redis-output-caching-component.md
+      - name: Redis Distributed Cache component
+        href: caching/stackexchange-redis-distributed-caching-component.md
+
+  - name: Security
+    items:
+      - name: Azure Key Vault component
+        href: security/azure-security-key-vault-component.md
+
+  - name: Deployment
+    items:
+      - name: Overview
+        href: deployment/overview.md
+      - name: Azure
+        items:
+          - name: Tutorial - Azure Container Apps
+            href: deployment/azure/aca-deployment.md
+          - name: Use .NET Aspire with Application Insights
+            href: deployment/azure/application-insights.md
+      - name: Reference - Tool-builder manifest schemas
+        href: deployment/manifest-format.md
+
+  - name: Resources
+    items:
+      - name: .NET Aspire
+        href: https://github.com/dotnet/aspire
+      - name: .NET Aspire samples
+        href: https://github.com/dotnet/aspire-samples
+      - name: .NET Aspire samples browser
+        href: /samples/browse?expanded=dotnet&terms=aspire
+      - name: .NET Runtime
+        href: https://github.com/dotnet/runtime
+      - name: .NET Platform Extensions
+        href: https://github.com/dotnet/extensions
+      - name: ASP.NET Core
+        href: https://github.com/dotnet/aspnetcore
+
+  - name: Reference
+    items:
+      - name: .NET Aspire FAQ
+        href: reference/aspire-faq.yml
