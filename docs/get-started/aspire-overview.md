@@ -20,7 +20,7 @@ Orchestration refers to the coordination and management of various elements with
 
 .NET Aspire orchestration assists with the following concerns:
 
-- **App composition**: Specify the resources that make up the application, including .NET projects, containers, and executables.
+- **App composition**: Specify the resources that make up the application, including .NET projects, containers, executables, and cloud resources.
 - **Service discovery and connection string management**: The app host manages injecting the right connection strings and service discovery information to simplify the developer experience.
 
 For example, using .NET Aspire, the following code creates a local Redis container resource and configures the appropriate connection string in the `"frontend"` project with only two helper method calls:
