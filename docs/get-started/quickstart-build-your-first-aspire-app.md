@@ -85,7 +85,7 @@ The preceding code:
 - Calls `AddRedisOutputCache` with the same `connectionName` that was used when adding the Redis container `"cache"` to the application model. This configures the app to use Redis for output caching.
 - Calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> and configures the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> to be `"http://apiservice"`. This is the name that was used when adding the API project to the application model, and with service discovery configured, it will automatically resolve to the correct address to the API project.
 
-For more information, see [Make HTTP requests with the `HttpClient`](../../fundamentals/networking/http/httpclient.md) class.
+For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fundamentals/networking/http/httpclient.md) class.
 
 ## Test the app locally
 
