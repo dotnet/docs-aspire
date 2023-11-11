@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration.
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ms.topic: overview
 ms.prod: dotnet
 ---
