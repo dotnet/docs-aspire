@@ -1,0 +1,12 @@
+items:
+  - name: Learn
+    tocHref: /
+    topicHref: /
+    items:
+      - name: .NET
+        tocHref: /dotnet/
+        topicHref: /dotnet/index
+        items:
+          - name: .NET Aspire
+            tocHref: /dotnet/aspire/
+            topicHref: /dotnet/aspire/index
