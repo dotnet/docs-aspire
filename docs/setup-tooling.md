@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ---
 
 # .NET Aspire setup and tooling
@@ -124,7 +124,7 @@ You can add .NET Aspire orchestration projects to an existing app using the foll
 1. In Visual Studio, right click on an existing project and select **Add** > **.NET Aspire Orchestrator Support..**.
 1. A dialog window will open with a summary of the **.AppHost** and **.ServiceDefaults** projects that will be added to your solution.
 
-    :::image type="content" source="media/add-orchestrator-app.png" alt-text="A screenshot showing the Visual Studio add .NET ASpire orchestration summary.":::
+    :::image type="content" source="media/add-orchestrator-app.png" alt-text="A screenshot showing the Visual Studio add .NET Aspire orchestration summary.":::
 
 1. Select **OK** and the following changes will be applied:
 

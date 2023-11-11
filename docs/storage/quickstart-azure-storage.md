@@ -1,7 +1,7 @@
 ---
 title: Connect an ASP.NET Core app to .NET Aspire storage components
 description: Learn how to connect an ASP.NET Core app to .NET Aspire storage components.
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ms.topic: quickstart
 ms.prod: dotnet
 ---

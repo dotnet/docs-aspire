@@ -2,7 +2,7 @@
 title: .NET Aspire SqlServer Entity Framework Core component
 description: This article describes the .NET Aspire SQL Server Entity Framework Core component.
 ms.topic: how-to
-ms.date: 11/09/2023
+ms.date: 11/11/2023
 ---
 
 # .NET Aspire SqlServer Entity Framework Core component
@@ -170,39 +170,39 @@ By default, the .NET Aspire Sql Server Entity Framework Core component handles t
 
 The .NET Aspire SQL Server Entity Framework Core component uses the following Log categories:
 
-* Microsoft.EntityFrameworkCore.Infrastructure
-* Microsoft.EntityFrameworkCore.ChangeTracking
-* Microsoft.EntityFrameworkCore.Infrastructure
-* Microsoft.EntityFrameworkCore.Database.Command
-* Microsoft.EntityFrameworkCore.Query
-* Microsoft.EntityFrameworkCore.Database.Transaction
-* Microsoft.EntityFrameworkCore.Database.Connection
-* Microsoft.EntityFrameworkCore.Model
-* Microsoft.EntityFrameworkCore.Model.Validation
-* Microsoft.EntityFrameworkCore.Update
-* Microsoft.EntityFrameworkCore.Migrations
+- Microsoft.EntityFrameworkCore.Infrastructure
+- Microsoft.EntityFrameworkCore.ChangeTracking
+- Microsoft.EntityFrameworkCore.Infrastructure
+- Microsoft.EntityFrameworkCore.Database.Command
+- Microsoft.EntityFrameworkCore.Query
+- Microsoft.EntityFrameworkCore.Database.Transaction
+- Microsoft.EntityFrameworkCore.Database.Connection
+- Microsoft.EntityFrameworkCore.Model
+- Microsoft.EntityFrameworkCore.Model.Validation
+- Microsoft.EntityFrameworkCore.Update
+- Microsoft.EntityFrameworkCore.Migrations
 
 ### Tracing
 
 The .NET Aspire SQL Server Entity Framework Core component will emit the following Tracing activities using OpenTelemetry:
 
-* OpenTelemetry.Instrumentation.EntityFrameworkCore
+- OpenTelemetry.Instrumentation.EntityFrameworkCore
 
 ### Metrics
 
 The .NET Aspire SQL Server Entity Framework Core component will emit the following metrics using OpenTelemetry:
 
-* Microsoft.EntityFrameworkCore:
-  * ec_Microsoft_EntityFrameworkCore_active_db_contexts
-  * ec_Microsoft_EntityFrameworkCore_total_queries
-  * ec_Microsoft_EntityFrameworkCore_queries_per_second
-  * ec_Microsoft_EntityFrameworkCore_total_save_changes
-  * ec_Microsoft_EntityFrameworkCore_save_changes_per_second
-  * ec_Microsoft_EntityFrameworkCore_compiled_query_cache_hit_rate
-  * ec_Microsoft_Entity_total_execution_strategy_operation_failures
-  * ec_Microsoft_E_execution_strategy_operation_failures_per_second
-  * ec_Microsoft_EntityFramew_total_optimistic_concurrency_failures
-  * ec_Microsoft_EntityF_optimistic_concurrency_failures_per_second
+- Microsoft.EntityFrameworkCore:
+  - ec_Microsoft_EntityFrameworkCore_active_db_contexts
+  - ec_Microsoft_EntityFrameworkCore_total_queries
+  - ec_Microsoft_EntityFrameworkCore_queries_per_second
+  - ec_Microsoft_EntityFrameworkCore_total_save_changes
+  - ec_Microsoft_EntityFrameworkCore_save_changes_per_second
+  - ec_Microsoft_EntityFrameworkCore_compiled_query_cache_hit_rate
+  - ec_Microsoft_Entity_total_execution_strategy_operation_failures
+  - ec_Microsoft_E_execution_strategy_operation_failures_per_second
+  - ec_Microsoft_EntityFramew_total_optimistic_concurrency_failures
+  - ec_Microsoft_EntityF_optimistic_concurrency_failures_per_second
 
 - [Azure Database for PostgreSQL documentation](/azure/postgresql/)
 - [.NET Aspire components](../components-overview.md)

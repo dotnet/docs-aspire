@@ -2,7 +2,7 @@
 title: .NET Aspire RabbitMQ component
 description: Learn how to use the .NET Aspire RabbitMQ client message-broker component.
 ms.topic: how-to
-ms.date: 11/02/2023
+ms.date: 11/11/2023
 ---
 
 # .NET Aspire RabbitMQ component
@@ -139,7 +139,7 @@ The .NET Aspire RabbitMQ component uses the following log categories:
 
 The .NET Aspire RabbitMQ component will emit the following tracing activities using OpenTelemetry:
 
-* Aspire.RabbitMQ.Client
+- Aspire.RabbitMQ.Client
 
 ### Metrics
 

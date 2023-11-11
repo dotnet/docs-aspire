@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL component
 description: This article describes the .NET Aspire PostgreSQL component.
-ms.date: 11/09/2023
+ms.date: 11/11/2023
 ms.topic: how-to
 ---
 
@@ -114,8 +114,8 @@ builder.AddNpgsqlDataSource("postgresdb");
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
-* Adds the [`NpgSqlHealthCheck`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/blob/master/src/HealthChecks.NpgSql/NpgSqlHealthCheck.cs), which verifies that commands can be successfully executed against the underlying Postgres Database.
-* Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
+- Adds the [`NpgSqlHealthCheck`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/blob/master/src/HealthChecks.NpgSql/NpgSqlHealthCheck.cs), which verifies that commands can be successfully executed against the underlying Postgres Database.
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 
@@ -123,34 +123,34 @@ builder.AddNpgsqlDataSource("postgresdb");
 
 The .NET Aspire PostgreSQL component uses the following Log categories:
 
-* Npgsql.Connection
-* Npgsql.Command
-* Npgsql.Transaction
-* Npgsql.Copy
-* Npgsql.Replication
-* Npgsql.Exception
+- Npgsql.Connection
+- Npgsql.Command
+- Npgsql.Transaction
+- Npgsql.Copy
+- Npgsql.Replication
+- Npgsql.Exception
 
 ### Tracing
 
 The .NET Aspire PostgreSQL component will emit the following Tracing activities using OpenTelemetry:
 
-* Npgsql
+- Npgsql
 
 ### Metrics
 
 The .NET Aspire PostgreSQL component will emit the following metrics using OpenTelemetry:
 
-* Npgsql:
-  * `ec_Npgsql_bytes_written_per_second`
-  * `ec_Npgsql_bytes_read_per_second`
-  * `ec_Npgsql_commands_per_second`
-  * `ec_Npgsql_total_commands`
-  * `ec_Npgsql_current_commands`
-  * `ec_Npgsql_failed_commands`
-  * `ec_Npgsql_prepared_commands_ratio`
-  * `ec_Npgsql_connection_pools`
-  * `ec_Npgsql_multiplexing_average_commands_per_batch`
-  * `ec_Npgsql_multiplexing_average_write_time_per_batch`
+- Npgsql:
+  - `ec_Npgsql_bytes_written_per_second`
+  - `ec_Npgsql_bytes_read_per_second`
+  - `ec_Npgsql_commands_per_second`
+  - `ec_Npgsql_total_commands`
+  - `ec_Npgsql_current_commands`
+  - `ec_Npgsql_failed_commands`
+  - `ec_Npgsql_prepared_commands_ratio`
+  - `ec_Npgsql_connection_pools`
+  - `ec_Npgsql_multiplexing_average_commands_per_batch`
+  - `ec_Npgsql_multiplexing_average_write_time_per_batch`
 
 ## See also
 

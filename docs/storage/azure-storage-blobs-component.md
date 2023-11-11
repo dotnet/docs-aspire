@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Blob Storage component
 description: This article describes the .NET Aspire Azure Blob Storage component features and capabilities.
 ms.topic: how-to
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ---
 
 # .NET Aspire Azure Blob Storage component
@@ -150,8 +150,8 @@ builder.AddAzureBlobService("blobs");
 
 The .NET Aspire Azure Blob Storage component handles the following:
 
-* Adds the `AzureBlobStorageHealthCheck` health check, which attempts to connect to and query blob storage
-* Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
+- Adds the `AzureBlobStorageHealthCheck` health check, which attempts to connect to and query blob storage
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 
@@ -159,14 +159,14 @@ The .NET Aspire Azure Blob Storage component handles the following:
 
 The .NET Aspire Azure Blob Storage component uses the following log categories:
 
-* Azure.Core
-* Azure.Identity
+- Azure.Core
+- Azure.Identity
 
 ### Tracing
 
 The .NET Aspire Azure Blob Storage component will emit the following tracing activities using OpenTelemetry:
 
-* Azure.Storage.Blobs.BlobContainerClient
+- Azure.Storage.Blobs.BlobContainerClient
 
 ### Metrics
 

@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire overview
 description: Learn about .NET Aspire, an application stack designed to improve the experience of building cloud-native applications.
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ---
 
 # .NET Aspire overview

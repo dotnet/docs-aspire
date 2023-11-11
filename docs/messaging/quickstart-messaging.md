@@ -1,7 +1,7 @@
 ---
 title: Use .NET Aspire messaging components in ASP.NET Core
 description: Learn how to connect an ASP.NET Core app to messaging services using .NET Aspire Components.
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ms.topic: quickstart
 ms.prod: dotnet
 ---
@@ -22,11 +22,11 @@ Cloud-native apps often require scalable messaging solutions that provide capabi
 
 For this quickstart, you'll need access to an Azure Service Bus namespace with a topic and subscription configured. Use one of the following options to setup the require resources:
 
-* **Azure portal**: [Create a service bus account with a topic and subscription](/azure/service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal).
+- **Azure portal**: [Create a service bus account with a topic and subscription](/azure/service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal).
 
 Alternatively:
 
-* **Azure CLI**: Run the following commands in the Azure CLI or CloudShell to setup the required Azure Service Bus resources:
+- **Azure CLI**: Run the following commands in the Azure CLI or CloudShell to setup the required Azure Service Bus resources:
 
     ```azurecli-interactive
     az group create -n <your-resource-group-name> -location eastus

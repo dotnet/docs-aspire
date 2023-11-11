@@ -12,11 +12,11 @@ Visual Studio provides .NET Aspire project templates that handle some initial se
     :::image type="content" source="../media/aspire-templates.png" lightbox="../media/aspire-templates.png" alt-text="A screenshot of the .NET Aspire Starter Application template.":::
 
 1. On the **Configure your new project** screen:
-    * Enter a **Project Name** of *AspireSample*.
-    * Leave the rest of the values at their defaults and select **Next**.
+    - Enter a **Project Name** of *AspireSample*.
+    - Leave the rest of the values at their defaults and select **Next**.
 1. On the **Additional information** screen:
-    * Make sure **.NET 8.0 (Long Term Support)** is selected.
-    * Ensure that **Use Redis for caching (requires Docker)** is checked and select **Create**.
+    - Make sure **.NET 8.0 (Long Term Support)** is selected.
+    - Ensure that **Use Redis for caching (requires Docker)** is checked and select **Create**.
 
 Visual Studio creates a new solution that is structured to use .NET Aspire.
 

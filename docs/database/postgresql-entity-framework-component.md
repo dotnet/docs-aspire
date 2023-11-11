@@ -2,7 +2,7 @@
 title: .NET Aspire PostgreSQL Entity Framework Core component
 description: This article describes the .NET Aspire PostgreSQL Entity Framework Core component.
 ms.topic: how-to
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ---
 
 # .NET Aspire PostgreSQL Entity Framework Core component

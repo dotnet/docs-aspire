@@ -133,8 +133,8 @@ builder.AddRedisDistributedCache("cache");
 
 The .NET Aspire StackExchange Redis distributed caching component handles the following:
 
-* Adds the `StackExchange.Redis` health check, tries to open the connection and throws when it fails.
-* Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
+- Adds the `StackExchange.Redis` health check, tries to open the connection and throws when it fails.
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 
@@ -142,14 +142,14 @@ The .NET Aspire StackExchange Redis distributed caching component handles the fo
 
 The .NET Aspire StackExchange Redis Distributed Caching component uses the following Log categories:
 
-* Aspire.StackExchange.Redis
-* Microsoft.Extensions.Caching.StackExchangeRedis
+- Aspire.StackExchange.Redis
+- Microsoft.Extensions.Caching.StackExchangeRedis
 
 ### Tracing
 
 The .NET Aspire StackExchange Redis Distributed Caching component will emit the following Tracing activities using OpenTelemetry:
 
-* OpenTelemetry.Instrumentation.StackExchangeRedis
+- OpenTelemetry.Instrumentation.StackExchangeRedis
 
 ### Metrics
 

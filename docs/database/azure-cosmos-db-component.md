@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Cosmos DB component
 description: This article describes the .NET Aspire Azure Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 11/09/2023
+ms.date: 11/11/2023
 ---
 
 # .NET Aspire Azure Cosmos DB component
@@ -158,13 +158,13 @@ The .NET Aspire Azure Cosmos DB component currently doesn't implement health che
 
 The .NET Aspire Azure Cosmos DB component uses the following log categories:
 
-* Azure-Cosmos-Operation-Request-Diagnostics
+- Azure-Cosmos-Operation-Request-Diagnostics
 
 ### Tracing
 
 The .NET Aspire Azure Cosmos DB component will emit the following tracing activities using OpenTelemetry:
 
-* Azure.Cosmos.Operation
+- Azure.Cosmos.Operation
 
 ### Metrics
 

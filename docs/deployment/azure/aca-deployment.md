@@ -1,7 +1,7 @@
 ---
 title: Deploy .NET Aspire apps to Azure using Bicep
 description: Learn how to use Bicep and the Azure CLI to deploy .NET Aspire apps to Azure.
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 zone_pivot_groups: azure-development-tool
 ---
 

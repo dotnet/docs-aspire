@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire service discovery
 description: Understand essential service discovery concepts in .NET Aspire.
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ms.topic: quickstart
 ms.prod: dotnet
 ---

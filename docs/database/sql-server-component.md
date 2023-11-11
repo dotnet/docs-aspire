@@ -2,7 +2,7 @@
 title: .NET Aspire SqlServer component
 description: This article describes the .NET Aspire SqlServer component.
 ms.topic: how-to
-ms.date: 11/09/2023
+ms.date: 11/11/2023
 ---
 
 # .NET Aspire SqlServer component
