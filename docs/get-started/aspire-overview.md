@@ -22,7 +22,6 @@ Orchestration refers to the coordination and management of various elements with
 
 - **App composition**: Specify the resources that make up the application, including .NET projects, containers, and executables.
 - **Service discovery**: Decide what each part of an app exposes and how they discover and connect with other parts.
-- **Service configuration**: Set up OpenTelemetry, environment variables, health checks, and other common functionality.
 
 For example, using .NET Aspire, the following code creates a local Redis container resource and configures the appropriate connection string in the `"frontend"` project with only two helper method calls:
 
@@ -38,20 +37,6 @@ var cache = builder.AddRedisContainer("cache");
 builder.AddProject<Projects.MyFrontend>("frontend")
        .WithReference(cache);
 ```
-
-.NET Aspire templates also include boilerplate extension methods that handle common service configurations for you:
-
-```csharp
-builder.AddServiceDefaults();
-```
-
-For more information on what `AddServiceDefaults` does, see [.NET Aspire service defaults](../service-defaults.md).
-
-When added to your _Program.cs_ file, the preceding code handles the following concerns:
-
-- **OpenTelemetry**: Sets up formatted logging, runtime metrics, built-in meters, and tracing for ASP.NET Core, gRPC, and HTTP. For more information, see [.NET Aspire telemetry](../telemetry.md).
-- **Default health checks**: Adds default health check endpoints that tools can query to monitor your app. For more information, see [.NET app health checks in C#](/dotnet/core/diagnostics/diagnostic-health-checks).
-- **Service discovery configuration**: Enables [service discovery](../service-discovery/overview.md) for the app and configures <xref:System.Net.Http.HttpClient> accordingly.
 
 For more information, see [.NET Aspire orchestration overview](../app-host-overview.md).
 
@@ -89,6 +74,20 @@ There are currently two .NET Aspire starter templates available to help you get 
 - **.NET Aspire Starter Application**: This template includes the **AspireSample.AppHost** and **AspireSample.ServiceDefaults** projects, but also includes boilerplate UI and API projects. These projects are preconfigured with service discovery and other basic examples of common .NET Aspire functionality.
 
 For more information, see [.NET Aspire setup and tooling](../setup-tooling.md).
+
+.NET Aspire templates also include boilerplate extension methods that handle common service configurations for you:
+
+```csharp
+builder.AddServiceDefaults();
+```
+
+For more information on what `AddServiceDefaults` does, see [.NET Aspire service defaults](../service-defaults.md).
+
+When added to your _Program.cs_ file, the preceding code handles the following concerns:
+
+- **OpenTelemetry**: Sets up formatted logging, runtime metrics, built-in meters, and tracing for ASP.NET Core, gRPC, and HTTP. For more information, see [.NET Aspire telemetry](../telemetry.md).
+- **Default health checks**: Adds default health check endpoints that tools can query to monitor your app. For more information, see [.NET app health checks in C#](/dotnet/core/diagnostics/diagnostic-health-checks).
+- **Service discovery**: Enables [service discovery](../service-discovery/overview.md) for the app and configures <xref:System.Net.Http.HttpClient> accordingly.
 
 ## Next steps
 
