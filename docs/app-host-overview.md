@@ -15,7 +15,7 @@ Before continuing, consider some common terminology used in .NET Aspire:
 - **App model**: A collection of resources that make up your distributed application (`DistributedApplication`). For a more formal definition, see [App model](#app-model).
 - **App host/Orchestrator project**: The .NET project that orchestrates the _app model_, named with the _*.AppHost_ suffix (by convention).
 - **Resource**: A [resource](#built-in-resource-types) is a dependent part of your distributed application, such as a project, container, or an executable—all.
-- **Reference**: A reference defines a connection between resources. For more information, see [Reference a resource](#reference-a-resource).
+- **Reference**: A reference defines a connection between resources. For more information, see [Reference resources](#reference-resources).
 
 ## App model
 
@@ -75,7 +75,7 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
     .WithReference(cache);
 ```
 
-The "webfrontend" project resource uses `WithReference` to add a dependency on the "cache" container resource. These dependencies can represent connection strings or service discovery information. In the preceding example, an environment variable is injected into the "webfronend" resource with the name `ConnectionStrings__cache`. This enviroment variable contains
+The "webfrontend" project resource uses `WithReference` to add a dependency on the "cache" container resource. These dependencies can represent connection strings or service discovery information. In the preceding example, an environment variable is injected into the "webfronend" resource with the name `ConnectionStrings__cache`. This environment variable contains
 a connection string that the webfrontend can use to connect to redis via the .NET Aspire Redis component, for example, `ConnectionStrings__cache="localhost:6379"`.
 
 ### Connection string and endpoint references
@@ -97,7 +97,7 @@ Project-to-project references are handled differently than resources that have w
 | Method | Environment variable |
 |--|--|
 | `WithReference(cache)` | `ConnectionStrings__cache="localhost:6379"` |
-| `WithReference(apiservice)` | `services__apiservice__0="http://_http.localhost:8034"`<br />`services__apiservice__1="http://localhost:8034"` |
+| `WithReference(apiservice)` | `services__apiservice__0="http://_http.localhost:8034"` <br /> `services__apiservice__1="http://localhost:8034"` |
 
 Adding a reference to the "apiservice" project results in service discovery environment variables being added to the front-end. This is because typically, project to project communication occurs over HTTP/gRPC. For more information, see [.NET Aspire service discovery](service-discovery/overview.md).
 
