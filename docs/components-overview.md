@@ -2,7 +2,7 @@
 title: .NET Aspire components overview
 description: Explore the fundamental concepts of .NET Aspire components and learn how to integrate them into your apps.
 ms.date: 11/11/2023
-ms.topic: quickstart
+ms.topic: conceptual
 ms.prod: dotnet
 ---
 
