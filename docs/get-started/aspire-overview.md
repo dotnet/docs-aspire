@@ -10,9 +10,9 @@ ms.date: 11/11/2023
 
 .NET Aspire helps with:
 
-- [**Orchestration**](#orchestration): .NET Aspire provides features for configuring and connecting the parts of your app, including [service discovery](../service-discovery/overview.md) and [service defaults](../service-defaults.md).
+- [**Orchestration**](#orchestration): .NET Aspire provides features for running and connecting multi-project applications and their dependencies.
 - [**Components**](#net-aspire-components): .NET Aspire components are NuGet packages for commonly used services, such as Redis or Postgres, with standardized interfaces ensuring they connect consistently and seamlessly with your app.
-- [**Tooling**](#project-templates-and-tooling): .NET Aspire comes with project templates and other utilities for Visual Studio and the `dotnet` CLI help you create and manage .NET Aspire apps.
+- [**Tooling**](#project-templates-and-tooling): .NET Aspire comes with project templates and tooling experiences for Visual Studio and the `dotnet` CLI help you create and interact with .NET Aspire apps.
 
 ## Orchestration
 
