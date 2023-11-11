@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard overview
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 11/11/2023
+ms.date: 11/12/2023
 ms.topic: reference
 ms.prod: dotnet
 ---
