@@ -1,3 +1,4 @@
+name: Protect live branch
 on: [pull_request_target]
 
 jobs:
