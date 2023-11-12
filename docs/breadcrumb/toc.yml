@@ -13,6 +13,3 @@ items:
           - name: API browser
             tocHref: /dotnet/api/
             topicHref: /dotnet/api/index
-          - name: Fundamentals
-            tocHref: /dotnet/core/
-            topicHref: /dotnet/fundamentals/index
