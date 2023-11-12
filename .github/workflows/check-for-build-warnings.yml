@@ -1,4 +1,4 @@
-name: 'OPS status checker'
+name: OPS status checker
 
 on: 
   pull_request_target:

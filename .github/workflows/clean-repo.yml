@@ -1,4 +1,4 @@
-name: "clean repo"
+name: Run clean repo tool
 
 on:
   schedule:

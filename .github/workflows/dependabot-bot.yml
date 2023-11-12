@@ -1,5 +1,5 @@
 # The name used in the GitHub UI for the workflow
-name: "update dependabot.yml"
+name: Update dependabot.yml
 # When to run this action:
 # - Scheduled to run at 5 AM every Monday.
 # - Manually runnable from the GitHub UI with a reason
