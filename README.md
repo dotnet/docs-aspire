@@ -2,7 +2,8 @@
 
 This repository contains the conceptual documentation for .NET Aspire. The [.NET Aspire documentation site](https://learn.microsoft.com/dotnet/aspire).
 
-[![.NET Aspire](assets/dotnet-aspire.png)](https://learn.microsoft.com/dotnet/aspire)
+[![.NET Aspire](assets/dotnet-aspire.png#gh-light-mode-only)](https://learn.microsoft.com/dotnet/aspire)
+[![.NET Aspire](assets/dotnet-aspire-dark.png#gh-dark-mode-only)](https://learn.microsoft.com/dotnet/aspire)
 
 ## :purple_heart: Contribute
 
