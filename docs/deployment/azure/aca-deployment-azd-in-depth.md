@@ -241,7 +241,7 @@ The following diagram illustrates conceptually how AZD and .NET Aspire are integ
 
 ## Generating Bicep from .NET Aspire app model using AZD
 
-Although development teams are free to use `azd provision` and `azd deploy` commands for their deployments both for development and production
+Although development teams are free to use `azd up` (or `azd provision` and `azd deploy`) commands for their deployments both for development and production
 purposes, some teams may choose to generate Bicep files that they can review and manage as part of version control (this also allows these
 Bicep files to be referenced as part of a larger more complex Azure deployment).
 
@@ -372,6 +372,8 @@ output AZURE_CONTAINER_REGISTRY_MANAGED_IDENTITY_ID string = managedIdentity.id
 output AZURE_CONTAINER_APPS_ENVIRONMENT_ID string = containerAppEnvironment.id
 output AZURE_CONTAINER_APPS_ENVIRONMENT_DEFAULT_DOMAIN string = containerAppEnvironment.properties.defaultDomain
 ```
+
+For more information on using Bicep automate deployments to Azure see: [What is Bicep?](/azure/azure-resource-manager/bicep/overview?tabs=bicep)
 
 The definition of the container apps from the .NET service projects is contained within the `containerApp/tmpl.yaml`
 files in the `manifests` directory in each project respectively. Here is an example from the `webfrontend` project:
