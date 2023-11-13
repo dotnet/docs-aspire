@@ -128,7 +128,7 @@ conceptualContent:
 
     - title: Deployment
       links:
-        - itemType: concept
+        - itemType: overview
           text: Overview
           url: deployment/overview.md
         - itemType: how-to-guide
