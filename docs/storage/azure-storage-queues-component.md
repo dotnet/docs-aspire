@@ -87,7 +87,7 @@ The .NET Aspire Azure Queue Storage component provides multiple options to confi
 
 ### Use configuration providers
 
-The Service Bus component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureStorageQueuesSettings` and `QueueClientOptions` from configuration by using the `Aspire:Azure:Storage:Queues` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire Azure Queue Storage component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureStorageQueuesSettings` and `QueueClientOptions` from configuration by using the `Aspire:Azure:Storage:Queues` key. Example `appsettings.json` that configures some of the options:
 
 ```json
 {

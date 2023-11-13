@@ -56,11 +56,11 @@ public class ExampleService(TableServiceClient client)
 
 ## Configuration
 
-The .NET Aspire Service Bus component provides multiple options to configure the `TableServiceClient` based on the requirements and conventions of your project.
+The .NET Aspire Azure Table Storage component provides multiple options to configure the `TableServiceClient` based on the requirements and conventions of your project.
 
 ### Use configuration providers
 
-The Service Bus component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureDataTablesSettings` from _appsettings.json_ or other configuration files using `Aspire:Azure:Data:Tables` key.
+The .NET Aspire Azure Table Storage component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureDataTablesSettings` from _appsettings.json_ or other configuration files using `Aspire:Azure:Data:Tables` key.
 
 ```json
 {
@@ -145,7 +145,7 @@ The following configurable options are exposed through the `AzureDataTablesSetti
 
 ## Orchestration
 
-In your orchestrator project, register the Service Bus component and consume the service using the following methods:
+In your orchestrator project, register the Azure Table Storage component and consume the service using the following methods:
 
 ```csharp
 // Service registration 

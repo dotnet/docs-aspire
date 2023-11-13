@@ -49,7 +49,7 @@ public class ExampleService(BlobServiceClient client)
 
 ## Configuration
 
-The .NET Aspire Service Bus component provides multiple options to configure the `BlobServiceClient` based on the requirements and conventions of your project.
+The .NET Aspire Azure Blob Storage component provides multiple options to configure the `BlobServiceClient` based on the requirements and conventions of your project.
 
 ### Use a connection string
 
@@ -130,7 +130,7 @@ builder.AddAzureBlobService(
 
 ## Orchestration
 
-In your orchestrator project, register the Service Bus component and consume the service using the following methods:
+In your orchestrator project, register the Azure Blob Storage component and consume the service using the following methods:
 
 ```csharp
 var blobs = builder.AddAzureStorage("storage")
