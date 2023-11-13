@@ -1,12 +1,12 @@
 ---
-title: Deploy a .NET Aspire app to Azure Container Apps using AZD (in-depth guide)
-description: Learn how to use AZD to deploy .NET Aspire apps to Azure Container Apps.
+title: Deploy a .NET Aspire app to Azure Container Apps using `azd` (in-depth guide)
+description: Learn how to use `azd` to deploy .NET Aspire apps to Azure Container Apps.
 ms.date: 11/13/2023
 ---
 
-# Deploy a .NET Aspire app to Azure Container Apps using AZD (in-depth guide)
+# Deploy a .NET Aspire app to Azure Container Apps using`azd`(in-depth guide)
 
-The Azure Developer CLI (AZD) has been extended to support deploying .NET Aspire applications. Use this guide to walk through the process of creating and deploying a .NET Aspire application to Azure Container Apps using the Azure Developer CLI and learn the following concepts:
+The Azure Developer CLI (`azd`) has been extended to support deploying .NET Aspire applications. Use this guide to walk through the process of creating and deploying a .NET Aspire application to Azure Container Apps using the Azure Developer CLI and learn the following concepts:
 
 > [!div class="checklist"]
 >
@@ -32,13 +32,13 @@ brew tap azure/azd && brew install azd
 
 ---
 
-## How AZD integration works
+## How Azure Developer CLI integration works
 
-The `azd init` workflow provides customized supported for .NET Aspire projects. The following diagram illustrates conceptually how this flow works and how AZD and .NET Aspire are integrated:
+The `azd init` workflow provides customized supported for .NET Aspire projects. The following diagram illustrates how this flow works conceptually and how `azd` and .NET Aspire are integrated:
 
-![Illustration of internal processing of AZD when deploying .NET Aspire application](media/azd-internals.png)
+![Illustration of internal processing of `azd` when deploying .NET Aspire application](media/azd-internals.png)
 
-1. When AZD targets an .NET Aspire application it starts the AppHost with a special command (`dotnet run --project AppHost.csproj -- --publisher manifest`), which produces the Aspire [manifest file](../manifest-format.md).
+1. When `azd` targets an .NET Aspire application it starts the AppHost with a special command (`dotnet run --project AppHost.csproj -- --publisher manifest`), which produces the Aspire [manifest file](../manifest-format.md).
 1. The manifest file is interrogated by the `provision` sub-command logic to generate Bicep files in-memory only (by default).
 1. After generating the Bicep files, a deployment is triggered using Azure's ARM APIs targetting the subscription and resource group providied earlier.
 1. Once the underlying Azure resources are configured, the `deploy` sub-command logic is executed which uses the same Aspire manifest file.
@@ -67,7 +67,7 @@ The previous commands create a new .NET Aspire application based on the `aspire-
 
 ### Initialize AZD
 
-Before deploying a .NET Aspire application with `azd`, the repository/path containing the app needs to be initialized. 
+Before deploying a .NET Aspire application with `azd`, the repository/path containing the app needs to be initialized.
 
 1. Run the following command to initialize your project with `azd`:
 
@@ -75,33 +75,33 @@ Before deploying a .NET Aspire application with `azd`, the repository/path conta
     azd init
     ```
 
-1. AZD prompts you on whether you want to use code in the current directory or select a template, in this case select the "Use code in the current directory" option.
+1. `azd` prompts you on whether you want to use code in the current directory or select a template, in this case select the "Use code in the current directory" option.
 
-    ![Screenshot of AZD initially detecting the location of the .NET Aspire application](media/azd-prompt-init-path.png)
+    ![Screenshot of `azd` initially detecting the location of the .NET Aspire application](media/azd-prompt-init-path.png)
 
-1. After scanning, AZD prompts you to confirm that it found the correct .NET project, containing the .NET Aspire app's _AppHost_ code. After checking the path, select the "Confirm and continue initializing my app" option.
+1. After scanning, `azd` prompts you to confirm that it found the correct .NET project, containing the .NET Aspire app's _AppHost_ code. After checking the path, select the "Confirm and continue initializing my app" option.
 
-    ![Screenshot of AZD confirming the detected location of the .NET Aspire application](media/azd-prompt-confirm-path.png)
+    ![Screenshot of `azd` confirming the detected location of the .NET Aspire application](media/azd-prompt-confirm-path.png)
     
-    Once the path to the AppHost is confirmed AZD will analyze the .NET Aspire app model defined
+    Once the path to the AppHost is confirmed `azd` will analyze the .NET Aspire app model defined
     in the AppHost and prompt which of the projects referenced in the app model should be exposed
     via a public endpoint. For the starter application template only the `webfrontend` should be
     exposed on a public endpoint.
 
-    ![Screenshot of AZD prompting which .NET projects should have public endpoints](media/azd-prompt-select-endpoints.png)
+    ![Screenshot of `azd` prompting which .NET projects should have public endpoints](media/azd-prompt-select-endpoints.png)
 
-1. The final step in initializing AZD to work with the .NET Aspire code base is to select an
+1. The final step in initializing `azd` to work with the .NET Aspire code base is to select an
 environment name. The environment forms part of an Azure resource-group name when deploying
 the .NET Aspire application. For now select the name **aspireazddev**.
 
-    :::image type="content" source="media/azd-prompt-final.png" lightbox="media/azd-prompt-final.png" alt-text="A screenshot of the final AZD output after initialization.":::
+    :::image type="content" source="media/azd-prompt-final.png" lightbox="media/azd-prompt-final.png" alt-text="A screenshot of the final `azd` output after initialization.":::
 
 `azd` generates a number of files and places them into the working directory. These files are:
 
-- _azure.yaml_: Informs AZD where to find the .NET Aspire AppHost project.
-- _.azure/config.json_: Configuration file that informs AZD what the current active environment is.
+- _azure.yaml_: Informs `azd` where to find the .NET Aspire AppHost project.
+- _.azure/config.json_: Configuration file that informs `azd` what the current active environment is.
 - _.azure/aspireazddev/.env_: Contains environment specific overrides.
-- _.azure/aspireazddev/config.json_: Configuration file that informs AZD which services should have a public endpoint in this environment.
+- _.azure/aspireazddev/config.json_: Configuration file that informs `azd` which services should have a public endpoint in this environment.
 
 The _azure.yaml_ file has the following contents:
 
@@ -116,7 +116,7 @@ services:
     host: containerapp
 ```
 
-With the `project` field pointing to a .NET Aspire AppHost project, AZD activates its integration with .NET Aspire and derive the required infrastructure needed to host this application from the application model specified in the _Program.cs_ file of the .NET Aspire app.
+With the `project` field pointing to a .NET Aspire AppHost project, `azd` activates its integration with .NET Aspire and derive the required infrastructure needed to host this application from the application model specified in the _Program.cs_ file of the .NET Aspire app.
 
 The _.azure\aspireazddev\config.json_ file has the following contents:
 
@@ -134,11 +134,11 @@ The _.azure\aspireazddev\config.json_ file has the following contents:
 }
 ```
 
-This file is how AZD remembers (on a per environment basis) which services should be exposed with a public endpoint. AZD can be configured to support multiple environments
+This file is how `azd` remembers (on a per environment basis) which services should be exposed with a public endpoint. `azd` can be configured to support multiple environments
 
 ### Initial deployment
 
-1. In order to deploy the .NET Aspire application, authenticate to Azure AZD to call the Azure resource management APIs.
+1. In order to deploy the .NET Aspire application, authenticate to Azure `azd` to call the Azure resource management APIs.
 
     ```azurecli
     azd auth login
@@ -155,9 +155,9 @@ This file is how AZD remembers (on a per environment basis) which services shoul
 1. When prompted, select the subscription and location the resources should be deployed to. Once these options are selected the .NET Aspire application
 will be deployed.
 
-    ![Screenshot of AZD output after azd up command is executed](media/azd-up-final.png)
+    ![Screenshot of `azd` output after azd up command is executed](media/azd-up-final.png)
     
-    The final line of output from the AZD command is a link to the Azure Portal that shows
+    The final line of output from the `azd` command is a link to the Azure Portal that shows
     all of the Azure resources that were deployed:
     
     ![Screenshot of Azure Portal showing deployed resources](media/azd-azure-portal-deployed-resources.png)
@@ -168,7 +168,7 @@ Three containers are deployed within this application:
 - `apiservice`: Contains code from the API service project in the starter template.
 - `cache`: Running a Redis container image to supply a cache to the front-end.
 
-Just like in local development, the configuration of connection strings has been handled automatically. In this case, AZD was responsible for interpreting the application model and translating it to the appropriate deployment steps. As an example, consider the connection string and service discovery variables that are injected into the `webfrontend` container so that it knows how to connect to the Redis cache and `apiservice`.
+Just like in local development, the configuration of connection strings has been handled automatically. In this case, `azd` was responsible for interpreting the application model and translating it to the appropriate deployment steps. As an example, consider the connection string and service discovery variables that are injected into the `webfrontend` container so that it knows how to connect to the Redis cache and `apiservice`.
 
 :::image type="content" source="media/azd-aca-variables.png" lightbox="media/azd-aca-variables.png" alt-text="A screenshot of environment variables in the webfrontend container app.":::
 
@@ -179,15 +179,15 @@ For more information on how .NET Aspire apps handle connection strings and servi
 
 When the `azd up` command is executed the underlying Azure resources are _provisioned_ and a container image is built and _deployed_ to the container apps hosting the .NET Aspire app. Typically once development is underway and Azure resources are deployed it won't be necessary to provision Azure resources every time code is updated—this is especially true for the developer inner loop.
 
-To speed up deployment of code changes, AZD supports deploying code updates in the container image. This is done using the AZD deploy command:
+To speed up deployment of code changes, `azd` supports deploying code updates in the container image. This is done using the `azd` deploy command:
 
 ```azdeveloper
 azd deploy
 ```
 
-:::image type="content" source="media/azd-deploy-output.png" lightbox="media/azd-deploy-output.png" alt-text="A screenshot of the AZD deploy command output.":::
+:::image type="content" source="media/azd-deploy-output.png" lightbox="media/azd-deploy-output.png" alt-text="A screenshot of the `azd` deploy command output.":::
 
-It's not necessary to deploy all services each time. AZD understands the .NET Aspire app model, it's possible to deploy just one of the services specified using the following command:
+It's not necessary to deploy all services each time. `azd` understands the .NET Aspire app model, it's possible to deploy just one of the services specified using the following command:
 
 ```azdeveloper
 azd deploy webfrontend
@@ -197,7 +197,7 @@ For more information, see [Azure Developer CLI reference: azd deploy](/azure/dev
 
 ### Deploy infrastructure updates
 
-Whenever the dependency structure within a .NET Aspire app changes, AZD will need to re-provision the underlying Azure resources. The `azd provision` command is used to apply these changes to the infrastructure.
+Whenever the dependency structure within a .NET Aspire app changes, `azd` must re-provision the underlying Azure resources. The `azd provision` command is used to apply these changes to the infrastructure.
 
 To see this in action, update the _Program.cs_ file in the AppHost project to the following:
 
@@ -226,11 +226,11 @@ Save the file and issue the following command:
 azd provision
 ```
 
-The AZD provision command updates the infrastructure by creating a container app to host the Postgres database. The `azd provision` command didn't update the connection strings for the `apiservice` container. In order to have connection strings updated to point to the newly provisioned Postgres database the `azd deploy` command needs to be invoked again. When in doubt, use `azd up` to both provision and deploy.
+The `azd provision` command updates the infrastructure by creating a container app to host the Postgres database. The `azd provision` command didn't update the connection strings for the `apiservice` container. In order to have connection strings updated to point to the newly provisioned Postgres database the `azd deploy` command needs to be invoked again. When in doubt, use `azd up` to both provision and deploy.
 
 ### Clean up resources
 
-Remember to clean up the Azure resources that you've created during this walkthrough. Because AZD knows the resource group in which it created the resources it can be used to spin down the environment using the following command:
+Remember to clean up the Azure resources that you've created during this walkthrough. Because `azd knows the resource group in which it created the resources it can be used to spin down the environment using the following command:
 
 ```azdeveloper
 azd down
@@ -423,7 +423,7 @@ After executing the `azd infra synth` command, when `azd provision` and `azd dep
 
 ## Isolated environments for debugging
 
-Because AZD makes it easy to provision new environments, it's possible for each team member to have an isolated cloud-hosted environment for debugging code in a setting that closely matches production. When doing this each team member should create their own environment using the following command:
+Because `azd` makes it easy to provision new environments, it's possible for each team member to have an isolated cloud-hosted environment for debugging code in a setting that closely matches production. When doing this each team member should create their own environment using the following command:
 
 ```azdeveloper
 azd env new
