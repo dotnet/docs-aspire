@@ -1,4 +1,4 @@
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire components.
 builder.AddServiceDefaults();
@@ -18,6 +18,12 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
+    if (Random.Shared.NextDouble() < .25)
+    {
+        throw new Exception(
+            "Weather service is currently unavailable.");
+    }
+
     var forecast =  Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (

@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard overview
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 11/12/2023
+ms.date: 11/13/2023
 ms.topic: reference
 ms.prod: dotnet
 ---
@@ -110,6 +110,14 @@ Navigate to the **Project logs** page to view the output from the various loggin
 Consider the following example screenshot of project logs with the `apiservice` project selected:
 
 :::image type="content" source="media/dashboard/project-logs.png" lightbox="media/dashboard/project-logs.png" alt-text="A screenshot of the .NET Aspire dashboard Project logs page.":::
+
+When errors occur, they're styled in the logs such that they're easy to identify. Consider the following example screenshot of project logs with errors:
+
+:::image type="content" source="media/dashboard/project-logs-error.png" lightbox="media/dashboard/project-logs-error.png" alt-text="A screenshot of the .NET Aspire dashboard Project logs page, showing logs with errors.":::
+
+Using the project dropdown, you toggle between the different projects in your app. Consider the following example screenshot of project logs with the `webfrontend` project selected:
+
+:::image type="content" source="media/dashboard/project-logs-web.png" lightbox="media/dashboard/project-logs-web.png" alt-text="A screenshot of the .NET Aspire dashboard Project logs page, showing logs from the webfrontend project.":::
 
 ### Container logs page
 
