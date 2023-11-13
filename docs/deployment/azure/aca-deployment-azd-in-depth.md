@@ -245,7 +245,7 @@ Although development teams are free to use `azd up` (or `azd provision` and `azd
 purposes, some teams may choose to generate Bicep files that they can review and manage as part of version control (this also allows these
 Bicep files to be referenced as part of a larger more complex Azure deployment).
 
-AZD includes the ability to output the Bicep it uses for proviosning via following command:
+AZD includes the ability to output the Bicep it uses for provisioning via following command:
 
 ```azurecli
 azd config set alpha.infraSynth on
