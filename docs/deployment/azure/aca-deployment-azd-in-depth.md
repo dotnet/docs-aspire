@@ -48,7 +48,7 @@ Before deploying a .NET Aspire application with AZD, the repository/path contain
 
 1. AZD prompts you on whether you want to use code in the current directory or select a template, in this case select the "Use code in the current directory" option.
 
-    :::image type="content" source="media/azd-prompt-init-path.png" lightbox="media/azd-prompt-init-path.png" alt-text"A screenshot of AZD prompting whether to scan current directory or use a template.":::
+    ![Screenshot of AZD confirming the detected location of the .NET Aspire application](media/azd-prompt-init-path.png)
 
 1. After scanning, AZD prompts you to confirm that it found the correct .NET project, containing the .NET Aspire app's _AppHost_ code. After checking the path, select the "Confirm and continue initializing my app" option.
 
