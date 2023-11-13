@@ -41,7 +41,7 @@ in this case select the "Use code in the current directory" option.
 
 ![Screenshot of AZD prompting whether to scan current directory or use a template](../media/azd-prompt-init-path.png)
 
-After scanning AZD will prompt to confirm that it found the correct .NET project containing
+After scanning, AZD will prompt to confirm that it found the correct .NET project containing
 the .NET Aspire applications AppHost code. After checking the path select the "Confirm and
 continue initializing my app".
 
