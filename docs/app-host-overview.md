@@ -14,7 +14,7 @@ Before continuing, consider some common terminology used in .NET Aspire:
 
 - **App model**: A collection of resources that make up your distributed application (`DistributedApplication`). For a more formal definition, see [App model](#app-model).
 - **App host/Orchestrator project**: The .NET project that orchestrates the _app model_, named with the _*.AppHost_ suffix (by convention).
-- **Resource**: A [resource](#built-in-resource-types) is a dependent part of your distributed application, such as a project, container, or an executable—all.
+- **Resource**: A [resource](#built-in-resource-types) is a dependent part of your distributed application, such as a project, container, or an executable.
 - **Reference**: A reference defines a connection between resources. For more information, see [Reference resources](#reference-resources).
 
 ## App model
