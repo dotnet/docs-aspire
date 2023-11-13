@@ -1,3 +1,7 @@
+---
+ms.topic: include
+---
+
 [!INCLUDE [file-new-aspire](../../../includes/file-new-aspire.md)]
 
 [!INCLUDE [aca-bicep-cli-shared-steps](aca-bicep-cli-shared-steps.md)]

@@ -1,7 +1,7 @@
 ### YamlMime:Hub
 
 title: .NET Aspire documentation (Preview)
-summary: .NET Aspire is currently in preview. Learn about .NET Aspire, an opinionated, cloud ready stack for building observable, production ready, distributed applications. Browse API reference, sample code, tutorials, quickstarts, conceptual articles and more.
+summary: Learn about .NET Aspire, an opinionated, cloud ready stack for building observable, production ready, distributed applications. Browse API reference, sample code, tutorials, quickstarts, conceptual articles and more.
 brand: dotnet
 
 metadata:
@@ -10,7 +10,7 @@ metadata:
   ms.topic: hub-page
   ms.prod: dotnet-cloud-native
   ms.service: dotnet-aspire
-  ms.date: 11/11/2023
+  ms.date: 11/13/2023
 
 highlightedContent:
   items:
@@ -144,6 +144,8 @@ additionalContent:
               url: /dotnet/core/extensions/dependency-injection
             - text: Configuration
               url: /dotnet/core/extensions/configuration
+            - text: Make HTTP requests
+              url: /dotnet/fundamentals/networking/http/httpclient
         - title: Telemetry
           links:
             - text: .NET observability with OpenTelemetry

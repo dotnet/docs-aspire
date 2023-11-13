@@ -7,7 +7,7 @@ items:
         tocHref: /dotnet/
         topicHref: /dotnet/index
         items:
-          - name: .NET Aspire
+          - name: .NET Aspire (Preview)
             tocHref: /dotnet/aspire/
             topicHref: /dotnet/aspire/index
           - name: API browser

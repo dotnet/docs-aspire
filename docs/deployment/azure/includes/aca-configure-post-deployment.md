@@ -1,3 +1,7 @@
+---
+ms.topic: include
+---
+
 ## Configure the app for the deployed environment
 
 Now that the infrastructure has been provisioned, you need to set a few configuration settings in the Azure Container Apps before your code can be published into them from their new ACR repositories.
