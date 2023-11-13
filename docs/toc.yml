@@ -97,6 +97,8 @@ items:
         items:
           - name: Tutorial - Azure Container Apps
             href: deployment/azure/aca-deployment.md
+          - name: Tutorial - Azure Container Apps using AZD
+            href: deployment/azure/aca-deployment-azd-in-depth.md
           - name: Use .NET Aspire with Application Insights
             href: deployment/azure/application-insights.md
       - name: Reference - Tool-builder manifest schemas

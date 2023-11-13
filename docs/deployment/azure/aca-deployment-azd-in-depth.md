@@ -1,3 +1,10 @@
+---
+title: Deploying .NET Aspire apps using AZD (in depth guide)
+description: Learn how to use AZD to deploy .NET Aspire apps to Azure Container Apps.
+ms.date: 11/11/2023
+zone_pivot_groups: azure-development-tool
+---
+
 # Deploying .NET Aspire apps using AZD (in depth guide)
 
 The Azure Developer CLI (AZD) has been extended to support deploying .NET Aspire
