@@ -218,24 +218,211 @@ group and contained resources should be deleted.
 
 ![Screenshot showing results of azd down command](../media/azd-down-success.png)
 
-## How AZD integration works.
+## How AZD integration works
 
-TODO: Diagram showing how AZD integrates with AppHost to support manifest generation with links to manifest doc.
+The following diagram illustrates conceptually how AZD and .NET Aspire are integrated:
+
+![Illustration of internal processing of AZD when deploying .NET Aspire application](../media/azd-internals.png)
+
+1. When AZD targets an .NET Aspire application it starts the AppHost with a special command (`dotnet run --project AppHost.csproj -- --publisher manifest`), this produces the Aspire manifest file. For more information on the Aspire manifest file format see: [.NET Aspire manifest format for deployment tool builders](../manifest-format.md).
+1. The Aspire manifest file is interrogated by AZD's `provision`` sub-command logic to generate Bicep files (in memory).
+1. After generating the Bicep files, a deployment is triggered using Azure's ARM APIs targetting the subscription and resource group providied earlier.
+1. Once the underlying Azure resources are configured the `deploy` sub-command logic is executed which uses the same Aspire manifest file.
+1. As part of deployment AZD calls out to `dotnet publish` using .NET's built in container publishing support to generate container images.
+1. Once AZD has built the container images it pushes them to the ACR registry that was created during the provisioning phase.
+1. Finally, once the container image is in ACR, AZD updates the resource using ARM to start using the new version of the container image.
 
 ## Generating Bicep from .NET Aspire app model using AZD
 
+Although development teams are free to use `azd provision` and `azd deploy` commands for their deployments both for development and production
+purposes, some teams may choose to generate Bicep files that they can review and manage as part of version control (this also allows these
+Bicep files to be referenced as part of a larger more complex Azure deployment).
+
+AZD includes the ability to output the Bicep it uses for proviosning via following command:
+
 ```azurecli
+azd config set alpha.infraSynth on
 azd infra synth
 ```
 
+After this command is executed in the starter template example used in this guide, the following files are created:
+
+- `infra\main.bicep`; the main entry point for the deployment.
+- `infra\main.parameters.json`; parameters file for main Bicep (maps to environment variabes defined in `.azure` folder).
+- `infra\resoures.bicep`; defines the Azure resources required to support the .NET Aspire app model.
+- `AspireAzdWalkthrough.Web\manifests\containerApp.tmpl.yaml`; container app definition for `webfrontend`.
+- `AspireAzdWalkthrough.ApiService\manifests\containerApp.tmpl.yaml`; container app definition for `apiservice`.
+
+Notice that the `infra\resources.bicep` file does not contain any defintion of the container apps themselves (with the exception
+of container apps which are dependencies such as Redis and Postgres):
+
 ```bicep
-TODO: Insert and comment on Bicep (especially how names are generated)
+@description('The location used for all deployed resources')
+param location string = resourceGroup().location
+
+@description('Tags that will be applied to all resources')
+param tags object = {}
+
+var resourceToken = uniqueString(resourceGroup().id)
+
+resource managedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
+  name: 'mi-${resourceToken}'
+  location: location
+  tags: tags
+}
+
+resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-07-01' = {
+  name: replace('acr-${resourceToken}', '-', '')
+  location: location
+  sku: {
+    name: 'Basic'
+  }
+  tags: tags
+}
+
+resource caeMiRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(containerRegistry.id, managedIdentity.id, subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '7f951dda-4ed3-4680-a7ca-43fe172d538d'))
+  scope: containerRegistry
+  properties: {
+    principalId: managedIdentity.properties.principalId
+    principalType: 'ServicePrincipal'
+    roleDefinitionId:  subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '7f951dda-4ed3-4680-a7ca-43fe172d538d')
+  }
+}
+
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2022-10-01' = {
+  name: 'law-${resourceToken}'
+  location: location
+  properties: {
+    sku: {
+      name: 'PerGB2018'
+    }
+  }
+  tags: tags
+}
+
+resource containerAppEnvironment 'Microsoft.App/managedEnvironments@2023-05-01' = {
+  name: 'cae-${resourceToken}'
+  location: location
+  properties: {
+    appLogsConfiguration: {
+      destination: 'log-analytics'
+      logAnalyticsConfiguration: {
+        customerId: logAnalyticsWorkspace.properties.customerId
+        sharedKey: logAnalyticsWorkspace.listKeys().primarySharedKey
+      }
+    }
+  }
+  tags: tags
+}
+
+resource cache 'Microsoft.App/containerApps@2023-05-02-preview' = {
+  name: 'cache'
+  location: location
+  properties: {
+    environmentId: containerAppEnvironment.id
+    configuration: {
+      service: {
+        type: 'redis'
+      }
+    }
+    template: {
+      containers: [
+        {
+          image: 'redis'
+          name: 'redis'
+        }
+      ]
+    }
+  }
+  tags: union(tags, {'aspire-resource-name': 'cache'})
+}
+
+resource locations 'Microsoft.App/containerApps@2023-05-02-preview' = {
+  name: 'locations'
+  location: location
+  properties: {
+    environmentId: containerAppEnvironment.id
+    configuration: {
+      service: {
+        type: 'postgres'
+      }
+    }
+    template: {
+      containers: [
+        {
+          image: 'postgres'
+          name: 'postgres'
+        }
+      ]
+    }
+  }
+  tags: union(tags, {'aspire-resource-name': 'locations'})
+}
+output MANAGED_IDENTITY_CLIENT_ID string = managedIdentity.properties.clientId
+output AZURE_CONTAINER_REGISTRY_ENDPOINT string = containerRegistry.properties.loginServer
+output AZURE_CONTAINER_REGISTRY_MANAGED_IDENTITY_ID string = managedIdentity.id
+output AZURE_CONTAINER_APPS_ENVIRONMENT_ID string = containerAppEnvironment.id
+output AZURE_CONTAINER_APPS_ENVIRONMENT_DEFAULT_DOMAIN string = containerAppEnvironment.properties.defaultDomain
 ```
 
-## Resource compatability
+The definition of the container apps from the .NET service projects is contained within the `containerApp/tmpl.yaml`
+files in the `manifests` directory in each project respectively. Here is an example from the `webfrontend` project:
 
-TODO:
+```yml
+location: {{ .Env.AZURE_LOCATION }}
+identity:
+  type: UserAssigned
+  userAssignedIdentities:
+    ? "{{ .Env.AZURE_CONTAINER_REGISTRY_MANAGED_IDENTITY_ID }}"
+    : {}
+properties:
+  environmentId: {{ .Env.AZURE_CONTAINER_APPS_ENVIRONMENT_ID }}
+  configuration:
+    activeRevisionsMode: single
+    ingress:
+      external: true
+      targetPort: 8080
+      transport: http
+      allowInsecure: false
+    registries:
+    - server: {{ .Env.AZURE_CONTAINER_REGISTRY_ENDPOINT }}
+      identity: {{ .Env.AZURE_CONTAINER_REGISTRY_MANAGED_IDENTITY_ID }}
+  template:
+    containers:
+    - image: {{ .Env.SERVICE_WEBFRONTEND_IMAGE_NAME }}
+      name: webfrontend
+      env:
+      - name: AZURE_CLIENT_ID
+        value: {{ .Env.MANAGED_IDENTITY_CLIENT_ID }}
+      - name: ConnectionStrings__cache
+        value: {{ connectionString "cache" }}
+      - name: OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES
+        value: "true"
+      - name: OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES
+        value: "true"
+      - name: services__apiservice__0
+        value: http://apiservice.internal.{{ .Env.AZURE_CONTAINER_APPS_ENVIRONMENT_DEFAULT_DOMAIN }}
+      - name: services__apiservice__1
+        value: https://apiservice.internal.{{ .Env.AZURE_CONTAINER_APPS_ENVIRONMENT_DEFAULT_DOMAIN }}
+tags:
+  azd-service-name: webfrontend
+  aspire-resource-name: webfrontend
+```
+
+After executing the `azd infra synth` command, when `azd provision` and `azd deploy` are used it will
+use the Bicep and supporting files generated above.
 
 ## Working in teams
 
-azd init vs. azd up vs azd env new
+Because AZD makes it easy to provision new environments, it is possible for each team member to have an
+isolated cloud-hosted environment for debugging code in a setting that closely matches production. When
+doing this each team member should create their own environment using the following command:
+
+```azurecli
+azd env new
+```
+
+This will prompt the user for subscription and resource group information again and subsequent `azd up`,
+`azd provision`, and `azd deploy` invocations will use this new environment by default. The `--environment`
+switch can be applied to these commands to switch between environments.
