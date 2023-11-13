@@ -55,6 +55,10 @@ Selecting the error count badge navigates to the [Structured logs](#structured-l
 
 :::image type="content" source="media/dashboard/structured-logs-errors.png" lightbox="media/dashboard/structured-logs-errors.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a filter applied to show only the logs relevant to the project.":::
 
+To see the log entry in detail for the error, select the **View** button to open a modal dialog with the structured log entry details:
+
+:::image type="content" source="media/dashboard/structured-logs-errors-view.png" lightbox="media/dashboard/structured-logs-errors-view.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a modal dialog with the structured log entry details.":::
+
 For more information and examples of Structured logs, see the [Structured logs page](#structured-logs-page) section.
 
 ## Containers page
