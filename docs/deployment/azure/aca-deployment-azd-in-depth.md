@@ -38,7 +38,7 @@ The `azd init` workflow provides customized supported for .NET Aspire projects. 
 
 ![Illustration of internal processing of AZD when deploying .NET Aspire application](media/azd-internals.png)
 
-1. When AZD targets an .NET Aspire application it starts the AppHost with a special command (`dotnet run --project AppHost.csproj -- --publisher manifest`), which produces the Aspire [manifest file]((../manifest-format.md)).
+1. When AZD targets an .NET Aspire application it starts the AppHost with a special command (`dotnet run --project AppHost.csproj -- --publisher manifest`), which produces the Aspire [manifest file](../manifest-format.md).
 1. The manifest file is interrogated by the `provision` sub-command logic to generate Bicep files in-memory only (by default).
 1. After generating the Bicep files, a deployment is triggered using Azure's ARM APIs targetting the subscription and resource group providied earlier.
 1. Once the underlying Azure resources are configured, the `deploy` sub-command logic is executed which uses the same Aspire manifest file.
@@ -76,7 +76,7 @@ Before deploying a .NET Aspire application with `azd`, the repository/path conta
 
 1. AZD prompts you on whether you want to use code in the current directory or select a template, in this case select the "Use code in the current directory" option.
 
-    ![Screenshot of AZD confirming the detected location of the .NET Aspire application](media/azd-prompt-init-path.png)
+    ![Screenshot of AZD initially detecting the location of the .NET Aspire application](media/azd-prompt-init-path.png)
 
 1. After scanning, AZD prompts you to confirm that it found the correct .NET project, containing the .NET Aspire app's _AppHost_ code. After checking the path, select the "Confirm and continue initializing my app" option.
 
