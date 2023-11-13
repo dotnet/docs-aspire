@@ -1,0 +1,40 @@
+### YamlMime:ZonePivotGroups
+groups:
+- id: operating-systems-set-one
+  title: Operating System
+  prompt: Choose an operating system
+  pivots:
+  - id: os-windows
+    title: Windows
+  - id: os-linux
+    title: Linux
+  - id: os-macos
+    title: macOS
+- id: ide-set-one
+  title: IDE
+  prompt: Choose an IDE
+  pivots:
+    - id: vscode
+      title: Visual Studio Code
+    - id: visualstudio
+      title: Visual Studio
+- id: development-environment-one
+  title: Development environment
+  prompt: Choose a development environment
+  pivots:
+    - id: visualstudio
+      title: Visual Studio
+    - id: vscode
+      title: Visual Studio Code
+    - id: cli
+      title: Command line interface
+- id: azure-development-tool
+  title: Azure development tool
+  prompt: Choose an Azure development tool
+  pivots:
+    - id: azure-azd
+      title: Azure Developer CLI
+    - id: azure-cli
+      title: Azure CLI
+    - id: azure-bicep
+      title: Azure Bicep
