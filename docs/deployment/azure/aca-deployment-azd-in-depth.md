@@ -30,6 +30,12 @@ winget install microsoft.azd
 brew tap azure/azd && brew install azd
 ```
 
+# [Linux](#tab/linux)
+
+```bash
+curl -fsSL https://aka.ms/install-azd.sh | bash
+```
+
 ---
 
 ## How Azure Developer CLI integration works
@@ -40,7 +46,7 @@ The `azd init` workflow provides customized supported for .NET Aspire projects. 
 
 1. When `azd` targets a .NET Aspire application it starts the AppHost with a special command (`dotnet run --project AppHost.csproj -- --publisher manifest`), which produces the Aspire [manifest file](../manifest-format.md).
 1. The manifest file is interrogated by the `azd provision` sub-command logic to generate Bicep files in-memory only (by default).
-1. After generating the Bicep files, a deployment is triggered using Azure's ARM APIs targetting the subscription and resource group provided earlier.
+1. After generating the Bicep files, a deployment is triggered using Azure's ARM APIs targeting the subscription and resource group provided earlier.
 1. Once the underlying Azure resources are configured, the `azd deploy` sub-command logic is executed which uses the same Aspire manifest file.
 1. As part of deployment `azd` makes a call to `dotnet publish` using .NET's built in container publishing support to generate container images.
 1. Once `azd` has built the container images it pushes them to the ACR registry that was created during the provisioning phase.
@@ -134,7 +140,7 @@ The _.azure\aspireazddev\config.json_ file has the following contents:
 }
 ```
 
-This file is how `azd` remembers (on a per environment basis) which services should be exposed with a public endpoint. `azd` can be configured to support multiple environments
+This file is how `azd` remembers (on a per environment basis) which services should be exposed with a public endpoint. `azd` can be configured to support multiple environments.
 
 ### Initial deployment
 
