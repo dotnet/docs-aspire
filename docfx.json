@@ -16,6 +16,8 @@
           "**/*.md",
           "**/*.yml"
         ],
+        "src": "docs",
+        "dest": ".",
         "exclude": [
           "**/obj/**",
           "**/includes/**",
@@ -24,6 +26,7 @@
           "**/docfx.json",
           "_repo.en-us/**",
           "README.md",
+          "CODE_OF_CONDUCT.md",
           "LICENSE",
           "LICENSE-CODE",
           "ThirdPartyNotices.md",
@@ -34,9 +37,13 @@
     "resource": [
       {
         "files": [
+          "images/**",
           "**/*.png",
-          "**/*.jpg"
-        ],
+          "**/*.svg",
+          "**/*.jpg",
+          "**/*.gif",
+          "**/*.bmp"
+      ],
         "exclude": [
           "**/obj/**",
           "**/includes/**",
