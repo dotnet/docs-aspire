@@ -7,13 +7,13 @@ zone_pivot_groups: azure-development-tool
 
 # Deploy a .NET Aspire app to Azure Container Apps
 
-.NET Aspire apps are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. This article will walk you through creating a new .NET Aspire solution and deploying it to Microsoft Azure Container Apps using Bicep and the Azure CLI. You'll learn how to complete the following tasks:
+.NET Aspire apps are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. This article will walk you through creating a new .NET Aspire solution and deploying it to Microsoft Azure Container Apps using the Azure Developer CLI (`azd`), the Azure CLI, or Bicep. You'll learn how to complete the following tasks:
 
 > [!div class="checklist"]
 >
-> - Provision an Azure resource group and Container Registry using Bicep and the Azure CLI
+> - Provision an Azure resource group and Container Registry
 > - Publish the .NET Aspire projects as container images in Azure Container Registry
-> - Provision a Redis container in Azure using Bicep and the Azure CLI
+> - Provision a Redis container in Azure
 > - Deploy the apps to an Azure Container Apps environment
 > - View application console logs to troubleshoot application issues
 
