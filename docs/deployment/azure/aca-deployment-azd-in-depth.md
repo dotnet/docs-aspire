@@ -4,7 +4,7 @@ description: Learn how to use `azd` to deploy .NET Aspire apps to Azure Containe
 ms.date: 11/13/2023
 ---
 
-# Deploy a .NET Aspire app to Azure Container Apps using`azd`(in-depth guide)
+# Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)
 
 The Azure Developer CLI (`azd`) has been extended to support deploying .NET Aspire applications. Use this guide to walk through the process of creating and deploying a .NET Aspire application to Azure Container Apps using the Azure Developer CLI and learn the following concepts:
 
