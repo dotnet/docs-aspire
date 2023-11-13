@@ -1,3 +1,7 @@
+---
+ms.topic: include
+---
+
 1. Install the latest [Azure CLI](/cli/azure/install-azure-cli) & [sign in](/cli/azure/authenticate-azure-cli)
 
     # [Windows](#tab/install-az-windows)
