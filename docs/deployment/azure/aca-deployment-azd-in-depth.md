@@ -420,7 +420,8 @@ tags:
 ```
 
 After executing the `azd infra synth` command, when `azd provision` and `azd deploy` are used it will
-use the Bicep and supporting files generated above.
+use the Bicep and supporting files generated above. Note that if `azd infra synth` is executed again
+it will replace any modified files with freshly generated ones (with a confirmation prompt).
 
 ## Working in teams
 
