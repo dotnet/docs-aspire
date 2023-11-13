@@ -30,7 +30,7 @@ verifies that everything is working correctly.
 ## Initialzing AZD
 
 Before deploying a .NET Aspire application with AZD, the repository/path containing the app
-needs to be initialized. To download AZD refer to: [Install or update the Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd).
+needs to be initialized. To download AZD refer to: [Install or update the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
 
 ```azurecli
 azd init
