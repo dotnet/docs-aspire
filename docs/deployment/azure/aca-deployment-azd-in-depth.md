@@ -36,7 +36,7 @@ brew tap azure/azd && brew install azd
 
 The `azd init` workflow provides customized supported for .NET Aspire projects. The following diagram illustrates how this flow works conceptually and how `azd` and .NET Aspire are integrated:
 
-![Illustration of internal processing of `azd` when deploying .NET Aspire application](media/azd-internals.png)
+:::image type="content" source="media/azd-internals.png" alt-text="Illustration of internal processing of `azd` when deploying .NET Aspire application.":::
 
 1. When `azd` targets a .NET Aspire application it starts the AppHost with a special command (`dotnet run --project AppHost.csproj -- --publisher manifest`), which produces the Aspire [manifest file](../manifest-format.md).
 1. The manifest file is interrogated by the `azd provision` sub-command logic to generate Bicep files in-memory only (by default).
@@ -77,18 +77,18 @@ Before deploying a .NET Aspire application with `azd`, the repository/path conta
 
 1. `azd` prompts you on whether you want to use code in the current directory or select a template. Select the "Use code in the current directory" option.
 
-    ![Screenshot of `azd` initially detecting the location of the .NET Aspire application](media/azd-prompt-init-path.png)
+    :::image type="content" source="media/azd-prompt-init-path.png" alt-text="Screenshot of `azd` initially detecting the location of the .NET Aspire application.":::
 
 1. After scanning, `azd` prompts you to confirm that it found the correct .NET project containing the .NET Aspire app's _AppHost_ code. After checking the path, select the "Confirm and continue initializing my app" option.
 
-    ![Screenshot of `azd` confirming the detected location of the .NET Aspire application](media/azd-prompt-confirm-path.png)
+    :::image type="content" source="media/azd-prompt-confirm-path.png" alt-text="Screenshot of `azd` confirming the detected location of the .NET Aspire application.":::
     
     Once the path to the AppHost is confirmed `azd` will analyze the .NET Aspire app model defined
     in the AppHost and prompt which of the projects referenced in the app model should be exposed
     via a public endpoint. For the starter application template only the `webfrontend` should be
     exposed on a public endpoint.
 
-    ![Screenshot of `azd` prompting which .NET projects should have public endpoints](media/azd-prompt-select-endpoints.png)
+    :::image type="content" source="media/azd-prompt-select-endpoints.png" alt-text="Screenshot of `azd` prompting which .NET projects should have public endpoints.":::
 
 1. The final step in initializing `azd` to work with the .NET Aspire code base is to select an
 environment name. The environment forms part of an Azure resource-group name when deploying
@@ -155,12 +155,12 @@ This file is how `azd` remembers (on a per environment basis) which services sho
 1. When prompted, select the subscription and location the resources should be deployed to. Once these options are selected the .NET Aspire application
 will be deployed.
 
-    ![Screenshot of `azd` output after azd up command is executed](media/azd-up-final.png)
-    
+    :::image type="content" source="media/azd-up-final.png" alt-text="Screenshot of `azd` output after azd up command is executed.":::
+
     The final line of output from the `azd` command is a link to the Azure Portal that shows
     all of the Azure resources that were deployed:
-    
-    ![Screenshot of Azure Portal showing deployed resources](media/azd-azure-portal-deployed-resources.png)
+
+    :::image type="content" source="media/azd-azure-portal-deployed-resources.png" alt-text="Screenshot of Azure Portal showing deployed resources.":::
 
 Three containers are deployed within this application:
 
