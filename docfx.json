@@ -57,6 +57,12 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
+      "apiPlatform": "dotnet",
+      "author": "IEvangelist",
+      "ms.author": "dapine",
+      "ms.devlang": "dotnet",
+      "ms.prod": "dotnet-aspire",
+      "ms.topic": "conceptual",
       "breadcrumb_path": "/dotnet/aspire/breadcrumb/toc.json",
       "feedback_system": "GitHub",
       "feedback_github_repo": "dotnet/docs-aspire",
@@ -85,7 +91,7 @@
         "docs/**/**.*": "https://learn.microsoft.com/contribute/content/dotnet/dotnet-contribute"
       },
       "open_source_feedback_issueUrl": {
-        "docs/**.*": "https://github.com/dotnet/docs/issues/new?template=customer-feedback.yml"
+        "docs/**.*": "https://github.com/dotnet/docs-aspire/issues/new?template=customer-feedback.yml"
       },
       "open_source_feedback_productName": {
         "docs/**.*": ".NET Aspire feedback"
