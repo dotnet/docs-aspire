@@ -24,7 +24,7 @@ You will also need to have the Azure Developer CLI [installed locally](/azure/de
 winget install microsoft.azd
 ```
 
-# [Mac](#tab/mac)
+# [macOS](#tab/macos)
 
 ```bash
 brew tap azure/azd && brew install azd
@@ -71,7 +71,7 @@ Before deploying a .NET Aspire application with `azd`, the repository/path conta
 
 1. Run the following command to initialize your project with `azd`:
 
-    ```azurecli
+    ```azdeveloper
     azd init
     ```
 
@@ -140,7 +140,7 @@ This file is how `azd` remembers (on a per environment basis) which services sho
 
 1. In order to deploy the .NET Aspire application, authenticate to Azure AD` to call the Azure resource management APIs.
 
-    ```azurecli
+    ```azdeveloper
     azd auth login
     ```
 
@@ -148,7 +148,7 @@ This file is how `azd` remembers (on a per environment basis) which services sho
 
 1. Once authenticated, use the following command to provision and deploy the application.
 
-    ```dotnetcli
+    ```azdeveloper
     azd up
     ```
 
