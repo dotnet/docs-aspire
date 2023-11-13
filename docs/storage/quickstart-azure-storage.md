@@ -61,7 +61,7 @@ Visual Studio creates a new ASP.NET Core solution that is structured to use .NET
 
 - **AspireStorage** - A Blazor project with default .NET Aspire service configurations.
 - **AspireStorage.AppHost** - An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
-- **AspireStorage.Shared** - A shared class library to hold configurations that can be reused across the projects in your solution.
+- **AspireStorage.ServiceDefaults** - A shared class library to hold configurations that can be reused across the projects in your solution.
 
 ### Add the Worker Service project
 
