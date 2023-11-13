@@ -232,7 +232,7 @@ The following diagram illustrates conceptually how AZD and .NET Aspire are integ
 ![Illustration of internal processing of AZD when deploying .NET Aspire application](../media/azd-internals.png)
 
 1. When AZD targets an .NET Aspire application it starts the AppHost with a special command (`dotnet run --project AppHost.csproj -- --publisher manifest`), this produces the Aspire manifest file. For more information on the Aspire manifest file format see: [.NET Aspire manifest format for deployment tool builders](../manifest-format.md).
-1. The Aspire manifest file is interrogated by AZD's `provision`` sub-command logic to generate Bicep files (in memory).
+1. The Aspire manifest file is interrogated by AZD's `provision` sub-command logic to generate Bicep files (in memory).
 1. After generating the Bicep files, a deployment is triggered using Azure's ARM APIs targetting the subscription and resource group providied earlier.
 1. Once the underlying Azure resources are configured the `deploy` sub-command logic is executed which uses the same Aspire manifest file.
 1. As part of deployment AZD calls out to `dotnet publish` using .NET's built in container publishing support to generate container images.
