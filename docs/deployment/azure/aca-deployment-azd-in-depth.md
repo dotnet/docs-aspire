@@ -208,7 +208,7 @@ This command will update the infrastructure by creating a container app to host 
 Postgres database. Note that the `azd provsion` command did not update the connection
 strings for the `apiservice` container. In order to have connection strings updated
 to point to the newly provisioned Postgres database the `azd deploy` command should
-be invoked again.
+be invoked again. When in doubt use `azd up` to both provision and deploy.
 
 ## Cleaning up
 
