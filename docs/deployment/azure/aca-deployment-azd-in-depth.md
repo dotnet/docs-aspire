@@ -46,11 +46,12 @@ The `azd init` workflow provides customized supported for .NET Aspire projects. 
 1. Once `azd` has built the container images it pushes them to the ACR registry that was created during the provisioning phase.
 1. Finally, once the container image is in ACR, `azd` updates the resource using ARM to start using the new version of the container image.
 
-`azd` also enables you to output the generated Bicep to an `infra` folder in your project, which you can read more about in the [Generating Bicep from .NET Aspire app model](/dotnet/aspire/deployment/azure/aca-deployment-azd-in-depth?branch=main#generate-bicep-from-net-aspire-app-model) section.
+> [!NOTE]
+> `azd` also enables you to output the generated Bicep to an `infra` folder in your project, which you can read more about in the [Generating Bicep from .NET Aspire app model](/dotnet/aspire/deployment/azure/aca-deployment-azd-in-depth?branch=main#generate-bicep-from-net-aspire-app-model) section.
 
 ## Provision and deploy a .NET Aspire starter app
 
-The steps ahead demonstrate how to create a .NET Aspire start app and handle provisioning and deploying the app resources to Azure.
+The steps in this section demonstrate how to create a .NET Aspire start app and handle provisioning and deploying the app resources to Azure using `azd`.
 
 ### Create the .NET Aspire starter app
 
@@ -93,7 +94,7 @@ Before deploying a .NET Aspire application with `azd`, the repository/path conta
 environment name. The environment forms part of an Azure resource-group name when deploying
 the .NET Aspire application. For now select the name **aspireazddev**.
 
-:::image type="content" source="media/azd-prompt-final.png" lightbox="media/azd-prompt-final.png" alt-text="A screenshot of the final AZD output after initialization.":::
+    :::image type="content" source="media/azd-prompt-final.png" lightbox="media/azd-prompt-final.png" alt-text="A screenshot of the final AZD output after initialization.":::
 
 `azd` generates a number of files and places them into the working directory. These files are:
 
@@ -143,7 +144,7 @@ This file is how AZD remembers (on a per environment basis) which services shoul
     azd auth login
     ```
 
-The previous command will launch a browser to authenticate the command-line session. 
+    The previous command will launch a browser to authenticate the command-line session. 
 
 1. Once authenticated use the following command to provision and deploy the application.
 
