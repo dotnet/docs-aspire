@@ -24,7 +24,7 @@ The previous commands create a new .NET Aspire application based on the `aspire-
 
 Before deploying a .NET Aspire application with AZD, the repository/path containing the app needs to be initialized. To download AZD, see [Install or update the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd). To initialize AZD run the following command:
 
-```azurecli
+```azdeveloper
 azd init
 ```
 
@@ -91,13 +91,13 @@ This file is how AZD remembers (on a per environment basis) which services shoul
 
 To deploy the .NET Aspire app, AZD needs to get authorization to call the Azure resource management APIs. Run the following command to log in to Azure:
 
-```azurecli
+```azdeveloper
 azd auth login
 ```
 
 The previous command launches a browser to authenticate the command-line session. Once authenticated, use the following command to provision and deploy the app:
 
-```azurecli
+```azdeveloper
 azd up
 ```
 
@@ -128,7 +128,7 @@ When the `azd up` command is executed the underlying Azure resources are _provis
 
 To speed up deployment of code changes, AZD supports deploying code updates in the container image. This is done using the AZD deploy command:
 
-```azurecli
+```azdeveloper
 azd deploy
 ```
 
@@ -136,7 +136,7 @@ azd deploy
 
 It's not necessary to deploy all services each time. AZD understands the .NET Aspire app model, it's possible to deploy just one of the services specified using the following command:
 
-```azurecli
+```azdeveloper
 azd deploy webfrontend
 ```
 
@@ -169,7 +169,7 @@ builder.Build().Run();
 
 Save the file and issue the following command:
 
-```azurecli
+```azdeveloper
 azd provision
 ```
 
@@ -179,7 +179,7 @@ The AZD provision command updates the infrastructure by creating a container app
 
 Remember to clean up the Azure resources that you've created during this walkthrough. Because AZD knows the resource group in which it created the resources it can be used to spin down the environment using the following command:
 
-```azurecli
+```azdeveloper
 azd down
 ```
 
@@ -207,7 +207,7 @@ Although development teams are free to use `azd up` (or `azd provision` and `azd
 
 AZD includes the ability to output the Bicep it uses for provisioning via following command:
 
-```azurecli
+```azdeveloper
 azd config set alpha.infraSynth on
 azd infra synth
 ```
@@ -386,7 +386,7 @@ After executing the `azd infra synth` command, when `azd provision` and `azd dep
 
 Because AZD makes it easy to provision new environments, it's possible for each team member to have an isolated cloud-hosted environment for debugging code in a setting that closely matches production. When doing this each team member should create their own environment using the following command:
 
-```azurecli
+```azdeveloper
 azd env new
 ```
 

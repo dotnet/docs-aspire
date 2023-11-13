@@ -10,7 +10,7 @@ With .NET Aspire and Azure Container Apps (ACA), you have a great hosting scenar
 
 ## Install the Azure Developer CLI
 
-The process for installing AZD varies based on your operating system, but it is widely available via `winget`, `brew`, `apt`, or directly via `curl`. Learn how to install AZD [here](/azure/developer/azure-developer-cli/install-azd).
+The process for installing AZD varies based on your operating system, but it is widely available via `winget`, `brew`, `apt`, or directly via `curl`. To install AZD, see [Install Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
 
 ## Create a new AZD environment
 
@@ -26,7 +26,7 @@ Next, AZD will present each of the projects in the .NET Aspire solution and prov
 
 :::image type="content" source="../media/aspire-azd-03.png" lightbox="../media/aspire-azd-03.png" alt-text="Specifying the containers that are publicly available to the Internet":::
 
-The final step in the `init` phase is setting the environment name. This is helpful when you want to have multiple environments, like `dev` and `prod`, or one-off test environments you plan on deleting momentarilly. Provide the name of the environment, then allow AZD to continue.
+The final step in the `init` phase is setting the environment name. This is helpful when you want to have multiple environments, like `dev` and `prod`, or one-off test environments you plan on deleting momentarily. Provide the name of the environment, then allow AZD to continue.
 
 :::image type="content" source="../media/aspire-azd-04.png" lightbox="../media/aspire-azd-04.png" alt-text="Providing the name of the AZD environment to be created":::
 

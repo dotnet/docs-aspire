@@ -44,7 +44,8 @@ Now, you'll create two new files - `infra\provision.bicep` and `infra\provision.
     var helloWorldContainerImage = 'mcr.microsoft.com/azuredocs/containerapps-helloworld:latest'
 
     // common environment variables used by each of the apps
-    var env = [ {
+    var env = [
+        {
             name: 'ASPNETCORE_ENVIRONMENT'
             value: 'Development'
         }
@@ -63,13 +64,14 @@ Now, you'll create two new files - `infra\provision.bicep` and `infra\provision.
         {
             name: 'ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS'
             value: 'true'
-        } ]
+        }
+    ]
     ```
 
 1. Add the following Bicep code to `infra\provision.bicep`. When you execute this Bicep template against your Azure subscription, these nodes of the file will produce the ACA Environment and the prerequisite Log Analytics instance in the resource group you created earlier.
 
     ```bicep
-    // log analytics 
+    // log analytics
     resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2021-12-01-preview' = {
         name: 'logs${resourceToken}'
         location: location
@@ -192,7 +194,7 @@ Now, you'll create two new files - `infra\provision.bicep` and `infra\provision.
     }
     ```
 
-1. The final code you'll add to `infra\provision.bicep` will provision containers for the front-end, back-end and the Redis Azure Container App add-on your front-end will use to facilitate output caching.
+1. The final code you'll add to _infra/provision.bicep_ will provision containers for the front-end, back-end and the Redis Azure Container App add-on your front-end will use to facilitate output caching.
 
     ```bicep
     // apiservice - the app's back-end
@@ -312,7 +314,7 @@ Now, you'll create two new files - `infra\provision.bicep` and `infra\provision.
     }
     ```
 
-1. Create a second file in the `infra` folder named `provision.parms.bicepparam` and paste this code into it.
+1. Create a second file in the _infra_ folder named _provision.parms.bicepparam_ and paste this code into it.
 
     # [PowerShell](#tab/powershell)
 
@@ -380,7 +382,9 @@ Now, you'll create two new files - `infra\provision.bicep` and `infra\provision.
 1. .NET's `publish` command supports the `ContainerRegistry` parameter. Setting this results in the output of the `dotnet publish` command being packaged into a container and pushed directly into your ACR instance in the cloud. Publish the solution projects to ACR using the `dotnet publish` command in the solution directory:
 
     ```dotnetcli
-    dotnet publish -r linux-x64 -p:PublishProfile=DefaultContainer -p:ContainerRegistry=$loginServer
+    dotnet publish -r linux-x64 `
+        -p:PublishProfile=DefaultContainer `
+        -p:ContainerRegistry=$loginServer
     ```
 
 [!INCLUDE [aca-configure-post-deployment](aca-configure-post-deployment.md)]
