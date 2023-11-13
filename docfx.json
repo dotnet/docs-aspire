@@ -61,7 +61,7 @@
       "author": "IEvangelist",
       "ms.author": "dapine",
       "ms.devlang": "dotnet",
-      "ms.prod": "dotnet-aspire",
+      "ms.prod": "dotnet",
       "ms.topic": "conceptual",
       "breadcrumb_path": "/dotnet/aspire/breadcrumb/toc.json",
       "feedback_system": "GitHub",
@@ -115,7 +115,7 @@
         "docs/**/*.*": "https://github.com/dotnet/aspire"
       },
       "ms.prod": {
-        "docs/**/*.*": "dotnet-aspire"
+        "docs/**/*.*": "dotnet"
       },
       "ms.topic": {
         "docs/**/*.md": "conceptual"
