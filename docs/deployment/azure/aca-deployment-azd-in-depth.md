@@ -1,21 +1,16 @@
 ---
-title: Deploying .NET Aspire apps using AZD (in depth guide)
+title: Deploy a .NET Aspire app to Azure Container Apps using AZD (in-depth guide)
 description: Learn how to use AZD to deploy .NET Aspire apps to Azure Container Apps.
 ms.date: 11/11/2023
-zone_pivot_groups: azure-development-tool
 ---
 
-# Deploying .NET Aspire apps using AZD (in depth guide)
+# Deploy a .NET Aspire app to Azure Container Apps using AZD (in-depth guide)
 
-The Azure Developer CLI (AZD) has been extended to support deploying .NET Aspire
-applications. Use this guide to walk through the process of creating and deploying
-a .NET Aspire application to Azure Container Apps using the Azure Developer CLI.
+The Azure Developer CLI (AZD) has been extended to support deploying .NET Aspire applications. Use this guide to walk through the process of creating and deploying a .NET Aspire application to Azure Container Apps using the Azure Developer CLI.
 
-## Creating .NET Aspire application from starter template
+## Create .NET Aspire app from starter template
 
-The first step is to create a new .NET Aspire application. In this example the
-`dotnet new` command is being used, although you can create the project Visual
-Studio as well.
+The first step is to create a new .NET Aspire application. In this example the `dotnet new` command is being used, although you can create the project Visual Studio as well.
 
 ```dotnetcli
 dotnet new aspire-starter --use-redis-cache -o AspireAzdWalkthrough
@@ -23,27 +18,21 @@ cd AspireAzdWalkthrough
 dotnet run --project AspireAzdWalkthrough.AppHost\AspireAzdWalkthrough.AppHost.csproj
 ```
 
-The previous commands will create a new .NET Aspire application based on the `aspire-starter`
-template which includes a dependency on Redis cache. It then runs the Aspire project which
-verifies that everything is working correctly.
+The previous commands create a new .NET Aspire application based on the `aspire-starter` template which includes a dependency on Redis cache. It runs the .NET Aspire project which verifies that everything is working correctly.
 
-## Initialzing AZD
+## Initialize AZD
 
-Before deploying a .NET Aspire application with AZD, the repository/path containing the app
-needs to be initialized. To download AZD refer to: [Install or update the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
+Before deploying a .NET Aspire application with AZD, the repository/path containing the app needs to be initialized. To download AZD, see [Install or update the Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd). To initialize, run the following command:
 
 ```azurecli
 azd init
 ```
 
-AZD will prompt on whether you want to use code in the current directory or select a template,
-in this case select the "Use code in the current directory" option.
+AZD prompts you on whether you want to use code in the current directory or select a template, in this case select the "Use code in the current directory" option.
 
-![Screenshot of AZD prompting whether to scan current directory or use a template](../media/azd-prompt-init-path.png)
+:::image type="content" source="../media/azd-prompt-init-path.png" lightbox="../media/azd-prompt-init-path.png" alt-text"A screenshot of AZD prompting whether to scan current directory or use a template.":::
 
-After scanning, AZD will prompt to confirm that it found the correct .NET project containing
-the .NET Aspire applications AppHost code. After checking the path select the "Confirm and
-continue initializing my app".
+After scanning, AZD prompts you to confirm that it found the correct .NET project, containing the .NET Aspire app's _AppHost_ code. After checking the path, select the "Confirm and continue initializing my app" option.
 
 ![Screenshot of AZD confirming the detected location of the .NET Aspire application](../media/azd-prompt-confirm-path.png)
 
