@@ -22,6 +22,8 @@ ms.topic: include
     az acr create --resource-group $RESOURCE_GROUP --name $CONTAINER_REGISTRY --sku Basic
     ```
 
+    ---
+
 1. Execute the following command to create a user-assigned Azure identity. Each of your apps will run as this identity, which will be given access to the ACR instance so the Azure Container Apps hosting your code can securely access your ACR instance and pull containers as they're updated:
 
     # [PowerShell](#tab/powershell)
@@ -36,7 +38,7 @@ ms.topic: include
     az identity create -g $RESOURCE_GROUP -n $IDENTITY
     ```
 
-    - Allow acr pulls to that identity
+    ---
 
 ## Create an Azure Container app and containers
 
@@ -69,6 +71,8 @@ az containerapp up `
   --ingress external `
   --query properties.configuration.ingress.fqdn
 ```
+
+---
 
 ## Publish the app container images into a container registry
 
