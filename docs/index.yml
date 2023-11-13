@@ -126,11 +126,20 @@ conceptualContent:
           text: Redis distributed caching
           url: caching/stackexchange-redis-distributed-caching-component.md
 
-    - title: Security
+    - title: Deployment
       links:
+        - itemType: concept
+          text: Overview
+          url: deployment/overview.md
         - itemType: how-to-guide
-          text: Azure Key Vault
-          url: security/azure-security-key-vault-component.md
+          text: Deploy to Azure Container Apps
+          url: deployment/azure/aca-deployment.md
+        - itemType: how-to-guide
+          text: Deploy using the Azure Developer CLI
+          url: deployment/azure/aca-deployment-azd-in-depth.md
+        - itemType: how-to-guide
+          text: Integrate with Application Insights
+          url: deployment/azure/application-insights.md
 
 additionalContent:
   sections:
