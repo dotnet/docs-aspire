@@ -8,13 +8,13 @@ ms.date: 11/11/2023
 
 One of the primary objectives of .NET Aspire is to ensure that apps are straightforward to debug and diagnose. .NET Aspire components automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as the pillars of observability, using the [.NET OpenTelemetry SDK](https://github.com/open-telemetry/opentelemetry-dotnet).
 
-- **[Logging](/dotnet/core/diagnostics/logging-tracing)**: A technique where code is instrumented to produce logs of interesting events that occurred while the program was running. A baseline set of log events are enabled for .NET Aspire components by default and more extensive logging can be enabled on-demand to diagnose particular problems.
+- **[Logging](/dotnet/core/diagnostics/logging-tracing)**: Log events describe what's happening as an app runs. A baseline set is enabled for .NET Aspire components by default and more extensive logging can be enabled on-demand to diagnose particular problems.
 
-- **[Tracing](/dotnet/core/diagnostics/distributed-tracing)**: A specialized form of logging that helps you localize failures and performance issues within applications distributed across multiple machines or processes. This technique tracks requests through an application to correlate work done by different application components and separate it from other work the application may be doing for concurrent requests.
+- **[Tracing](/dotnet/core/diagnostics/distributed-tracing)**: Traces correlate log events that are part of the same logical activity (e.g. the handling of a single request), even if they're spread across multiple machines or processes.
 
-- **[Metrics](/dotnet/core/diagnostics/metrics)**: Numerical measurements recorded over time to monitor application performance and health. Metrics are often used to generate alerts when potential problems are detected. Metrics have low performance overhead and many services configure them as always-on telemetry.
+- **[Metrics](/dotnet/core/diagnostics/metrics)**: Metrics expose the performance and health characteristics of an app as simple numerical values. As a result, they have low performance overhead and many services configure them as always-on telemetry.  This also makes them suitable for triggering alerts when potential problems are detected.
 
-Together, these types of telemetry allow you to gain insights into your application's behavior and performance using various monitoring and analysis tools. Depending on the backing service, some components may only support some of these features. For example, some components support logging and tracing, but not metrics.
+Together, these types of telemetry allow you to gain insights into your application's behavior and performance using various monitoring and analysis tools. Depending on the backing service, some components may only support some of these features.
 
 ## .NET Aspire OpenTelemetry integration
 
