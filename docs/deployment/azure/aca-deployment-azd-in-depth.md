@@ -18,13 +18,13 @@ The Azure Developer CLI (AZD) has been extended to support deploying .NET Aspire
 
 You will also need to have the Azure Developer CLI [installed locally](/azure/developer/azure-developer-cli/install-azd). Common install options are as follows:
 
-# [Windows](#tab-windows)
+# [Windows](#tab/windows)
 
 ```powershell
 winget install microsoft.azd
 ```
 
-# [Mac](#tab-mac)
+# [Mac](#tab/mac)
 
 ```bash
 brew tap azure/azd && brew install azd
