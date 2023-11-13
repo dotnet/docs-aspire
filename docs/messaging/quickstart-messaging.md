@@ -12,7 +12,7 @@ Cloud-native apps often require scalable messaging solutions that provide capabi
 
 > [!div class="checklist"]
 >
-> - Create a basic .NET app that is setup to use .NET Aspire Components
+> - Create a basic .NET app that is set up to use .NET Aspire Components
 > - Add an .NET Aspire component to connect to Azure Service Bus
 > - Configure and use .NET Aspire component features to send and receive data
 
@@ -20,13 +20,13 @@ Cloud-native apps often require scalable messaging solutions that provide capabi
 
 ## Set up the Azure Service Bus account
 
-For this quickstart, you'll need access to an Azure Service Bus namespace with a topic and subscription configured. Use one of the following options to setup the require resources:
+For this quickstart, you'll need access to an Azure Service Bus namespace with a topic and subscription configured. Use one of the following options to set up the require resources:
 
 - **Azure portal**: [Create a service bus account with a topic and subscription](/azure/service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal).
 
 Alternatively:
 
-- **Azure CLI**: Run the following commands in the Azure CLI or CloudShell to setup the required Azure Service Bus resources:
+- **Azure CLI**: Run the following commands in the Azure CLI or CloudShell to set up the required Azure Service Bus resources:
 
     ```azurecli-interactive
     az group create -n <your-resource-group-name> -location eastus
@@ -61,7 +61,7 @@ Retrieve the connection string for your Service Bus namespace from the **Shared 
 
 ## Create the sample solution
 
-Visual Studio provides app templates to get started with .NET Aspire that handle some of the initial setup configurations for you. Complete the following steps to properly setup a project for this quickstart:
+Visual Studio provides app templates to get started with .NET Aspire that handle some of the initial setup configurations for you. Complete the following steps to properly set up a project for this quickstart:
 
 1. At the top of Visual Studio, navigate to **File** > **New** > **Project**.
 1. In the dialog window, search for *ASP.NET Core* and select **ASP.NET Core Web API**. Choose **Next**.

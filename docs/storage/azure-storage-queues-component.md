@@ -119,7 +119,7 @@ builder.AddAzureQueueService(
     settings => settings.HealthChecks = false);
 ```
 
-You can also setup the `QueueClientOptions` using `Action<IAzureClientBuilder<QueueServiceClient, QueueClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureQueueService` method. For example, to set the first part of user-agent headers for all requests issues by this client:
+You can also set up the `QueueClientOptions` using `Action<IAzureClientBuilder<QueueServiceClient, QueueClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureQueueService` method. For example, to set the first part of user-agent headers for all requests issues by this client:
 
 ```csharp
 builder.AddAzureQueueService(

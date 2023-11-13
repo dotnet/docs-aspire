@@ -12,7 +12,7 @@ Cloud-native apps often require scalable storage solutions that provide capabili
 
 > [!div class="checklist"]
 >
-> - Create a basic .NET app that is setup to use .NET Aspire Components
+> - Create a basic .NET app that is set up to use .NET Aspire Components
 > - Add .NET Aspire Components to connect to multiple storage services
 > - Configure and use .NET Aspire Component features to send and receive data
 
@@ -30,7 +30,7 @@ For this quickstart, you'll need data contributor access to an Azure Storage Acc
 
 # [Azure CLI script](#tab/cli)
 
-Run the following commands in the Azure CLI or CloudShell to setup the required Azure Storage resources:
+Run the following commands in the Azure CLI or CloudShell to set up the required Azure Storage resources:
 
 ```azurecli-interactive
 az group create --name aspirestorage --location eastus2

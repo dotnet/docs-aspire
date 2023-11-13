@@ -12,7 +12,7 @@ Cloud-native apps often require various types of scalable caching solutions to i
 
 > [!div class="checklist"]
 >
-> - Create a basic ASP.NET core app that is setup to use .NET Aspire.
+> - Create a basic ASP.NET core app that is set up to use .NET Aspire.
 > - Add .NET Aspire components to connect to Redis and implement caching.
 > - Configure the .NET Aspire components to meet specific requirements.
 

@@ -81,7 +81,7 @@ The .NET Aspire Azure Table Storage component supports <xref:Microsoft.Extension
 }
 ```
 
-If you have setup your configurations in the `Aspire:Azure:Data:Tables` section of your _appsettings.json_ file you can just call the method `AddAzureTableService` without passing any parameters.
+If you have set up your configurations in the `Aspire:Azure:Data:Tables` section of your _appsettings.json_ file you can just call the method `AddAzureTableService` without passing any parameters.
 
 ### Use inline delegates
 
@@ -92,7 +92,7 @@ builder.AddAzureTableService(
     static settings => settings.ServiceUri = new Uri("YOUR_SERVICEURI"));
 ```
 
-You can also setup the `TableClientOptions` using `Action<IAzureClientBuilder<TableServiceClient, TableClientOptions>>` delegate, the second parameter of the `AddAzureTableService` method. For example to set the `TableServiceClient` ID to identify the client:
+You can also set up the `TableClientOptions` using `Action<IAzureClientBuilder<TableServiceClient, TableClientOptions>>` delegate, the second parameter of the `AddAzureTableService` method. For example to set the `TableServiceClient` ID to identify the client:
 
 ```csharp
 builder.AddAzureTableService(
