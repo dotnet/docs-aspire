@@ -12,14 +12,14 @@ ms.prod: dotnet
 
 Before continuing, consider some common terminology used in .NET Aspire:
 
-- **App model**: A collection of resources that make up your distributed application (`DistributedApplication`). For a more formal definition, see [App model](#app-model).
+- **App model**: A collection of resources that make up your distributed application (`DistributedApplication`). For a more formal definition, see [Define the app model](#define-the-app-model).
 - **App host/Orchestrator project**: The .NET project that orchestrates the _app model_, named with the _*.AppHost_ suffix (by convention).
 - **Resource**: A [resource](#built-in-resource-types) represents a part of an application whether it be a .NET project, container, or executable, or some other resource like a database, cache, or cloud service (such as a storage service).
 - **Reference**: A reference defines a connection between resources, expressed as a dependency. For more information, see [Reference resources](#reference-resources).
 
-## App model
+## Define the app model
 
-.NET Aspire empowers you to seamlessly build, provision, deploy, configure, test, run, and observe your cloud application. This is achieved through the utilization of an _app model_ that outlines the resources in your app and their relationships. These resources encompass projects, executables, containers, as well as external services and cloud resources that your app depends on. Within every .NET Aspire app, there is a designated [AppHost project](#orchestration-project), where the app model is precisely defined using methods available on the `IDistributedApplicationBuilder`. This builder is obtained by invoking `DistributedApplication.CreateBuilder(args)`.
+.NET Aspire empowers you to seamlessly build, provision, deploy, configure, test, run, and observe your cloud application. This is achieved through the utilization of an _app model_ that outlines the resources in your app and their relationships. These resources encompass projects, executables, containers, as well as external services and cloud resources that your app depends on. Within every .NET Aspire app, there is a designated [App host project](#app-host-project), where the app model is precisely defined using methods available on the `IDistributedApplicationBuilder`. This builder is obtained by invoking `DistributedApplication.CreateBuilder(args)`.
 
 ## App host project
 
