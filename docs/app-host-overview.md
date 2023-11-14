@@ -8,7 +8,7 @@ ms.prod: dotnet
 
 # .NET Aspire orchestration overview
 
-.NET Aspire provides APIs for expressing resources and dependencies within your distributed application. In addition to these APIs, there's tooling that enables some compelling scenarios.
+.NET Aspire provides APIs for expressing resources and dependencies within your distributed application. In addition to these APIs, [there's tooling](setup-tooling.md#install-net-aspire) that enables some compelling scenarios.
 
 Before continuing, consider some common terminology used in .NET Aspire:
 
