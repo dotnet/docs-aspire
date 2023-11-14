@@ -7,13 +7,13 @@ ms.date: 11/11/2023
 
 # .NET Aspire deployments
 
-Once you're happy with your .NET Aspire application, it's time to deploy it - either to a cloud environment or to local hosting. .NET Aspire isn't tied to any particular cloud and the steps in, for example, [Deploy a .NET Aspire app to Azure Container Apps using the Azure CLI](azure/aca-deployment.md), are adaptable to other environments.
+.NET Aspire applications are built with cloud-agnostic principles, allowing deployment flexibility across various platforms supporting .NET and containers. Users can adapt the provided guidelines for deployment on other cloud environments or local hosting. The manual deployment process, while feasible, involves exhaustive steps prone to errors. We anticipate users will prefer leveraging CI/CD pipelines and cloud-specific tooling for a more streamlined deployment experience tailored to their chosen infrastructure.
 
 ## Deployment manifest
 
 To enable deployment tools from Microsoft and other cloud providers to understand the structure of .NET Aspire applications, specialized targets of the AppHost project can be executed to generate a manifest file describing the projects/services used by the app and the properties necessary for deployment, such as environment variables.
 
-For more details on the schema of the manifest file and how to run AppHost project targets, see the [Deployment manifest](manifest-format.md) topic.
+For more information on the schema of the manifest and how to run AppHost project targets, see [.NET Aspire manifest format for deployment tool builders](manifest-format.md).
 
 ## Deploy to Azure
 
