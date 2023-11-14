@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Key Vault component
 description: Lean about the .NET Aspire Azure Key Vault component.
 ms.topic: how-to
-ms.date: 11/09/2023
+ms.date: 11/11/2023
 ---
 
 # .NET Aspire Azure Key Vault component
@@ -28,7 +28,7 @@ dotnet add package Aspire.Azure.Security.KeyVault --prerelease
 
 ---
 
-For more information, see [dotnet add package](../../core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](../../core/tools/dependencies.md).
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
 
 ## Example usage
 
@@ -74,7 +74,7 @@ The .NET Aspire Azure Key Vault component supports <xref:Microsoft.Extensions.Co
 }
 ```
 
-If you have setup your configurations in the `Aspire:Azure:Security:KeyVault` section of your _appsettings.json_ file you can just call the method `AddAzureKeyVaultSecrets` without passing any parameters.
+If you have set up your configurations in the `Aspire:Azure:Security:KeyVault` section of your _appsettings.json_ file you can just call the method `AddAzureKeyVaultSecrets` without passing any parameters.
 
 ### Use inline delegates
 
@@ -85,7 +85,7 @@ builder.AddAzureKeyVaultSecrets(
     static settings => settings.ServiceUri = new Uri("YOUR_SERVICEURI"));
 ```
 
-You can also setup the <xref:Azure.Security.KeyVault.Secrets.SecretClientOptions> using `Action<IAzureClientBuilder<SecretClient, SecretClientOptions>>` delegate, the second parameter of the `AddAzureKeyVaultSecrets` method. For example to set the <xref:Azure.Security.KeyVault.Keys.KeyClientOptions.DisableChallengeResourceVerification?displayProperty=nameWithType> ID to identify the client:
+You can also set up the <xref:Azure.Security.KeyVault.Secrets.SecretClientOptions> using `Action<IAzureClientBuilder<SecretClient, SecretClientOptions>>` delegate, the second parameter of the `AddAzureKeyVaultSecrets` method. For example to set the <xref:Azure.Security.KeyVault.Keys.KeyClientOptions.DisableChallengeResourceVerification?displayProperty=nameWithType> ID to identify the client:
 
 ```csharp
 builder.AddAzureKeyVaultSecrets(
@@ -141,8 +141,8 @@ The following configurable options are exposed through the `SecretClientSettings
 
 The .NET Aspire Azure Key Vault component includes the following health checks:
 
-* Adds the `AzureKeyVaultSecretsHealthCheck` health check, which attempts to connect to and query the Key Vault
-* Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
+- Adds the `AzureKeyVaultSecretsHealthCheck` health check, which attempts to connect to and query the Key Vault
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 

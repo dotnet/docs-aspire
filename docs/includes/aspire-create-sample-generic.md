@@ -1,21 +1,21 @@
 ## Create the sample solution
 
-Visual Studio provides app templates to get started with Aspire that handle some of the initial setup configurations for you. Complete the following steps to properly setup a project for this quickstart:
+Visual Studio provides app templates to get started with Aspire that handle some of the initial setup configurations for you. Complete the following steps to properly set up a project for this quickstart:
 
 1. At the top of Visual Studio, navigate to **File** > **New** > **Project**.
 1. In the dialog window, search for *ASP.NET Core* and select **ASP.NET Core Web App**. Choose **Next**.
 1. On the **Configure your new project** screen:
-    * Enter a **Project Name** of **AspireSample**.
-    * Leave the rest of the values at their defaults and select **Next**.
+    - Enter a **Project Name** of **AspireSample**.
+    - Leave the rest of the values at their defaults and select **Next**.
 1. On the **Additional information** screen:
-    * Make sure **.NET 8.0** is selected.
-    * Ensure that **Enlist in Aspire orchestration** is checked and select **Next**.
+    - Make sure **.NET 8.0** is selected.
+    - Ensure that **Enlist in Aspire orchestration** is checked and select **Next**.
 
 Visual Studio will create a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:
 
-* **AspireSample** - A Razor Pages UI project with default .NET Aspire service configurations.
-* **AspireSample.AppHost** - An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
-* **AspireSample.Shared** - A shared class library to hold code that can be reused across the projects in your solution.
+- **AspireSample** - A Razor Pages UI project with default .NET Aspire service configurations.
+- **AspireSample.AppHost** - An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
+- **AspireSample.Shared** - A shared class library to hold code that can be reused across the projects in your solution.
 
 You also need to add a `WeatherForecast` class to the **AspireSample** app, which will be used later to hold data retrieved from the API.
 

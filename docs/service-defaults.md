@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire service defaults
 description: Learn about the .NET Aspire service defaults project.
-ms.date: 11/09/2023
+ms.date: 11/11/2023
 ms.topic: reference
 ms.prod: dotnet
 ---

@@ -1,7 +1,7 @@
 ---
 title: Add .NET Aspire to an existing .NET 8 microservices app
 description: Learn how to add .NET Aspire components, orchestration, and tooling to a microservices app that already exists.
-ms.date: 11/09/2023
+ms.date: 11/11/2023
 ms.topic: how-to
 ---
 
@@ -11,10 +11,10 @@ If you have already created a microservices .NET web app, you can use Visual Stu
 
 > [!div class="checklist"]
 >
-> * Understand the structure of the existing microservices app.
-> * Enroll existing projects in .NET Aspire orchestration.
-> * Understand the changes enrollment makes in the projects.
-> * Start the .NET Aspire app.
+> - Understand the structure of the existing microservices app.
+> - Enroll existing projects in .NET Aspire orchestration.
+> - Understand the changes enrollment makes in the projects.
+> - Start the .NET Aspire app.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
@@ -76,7 +76,7 @@ builder.AddProject<Projects.Store>("store");
 To add the **Products** project to .NET Aspire:
 
 1. In Visual Studio, in the **Solution Explorer**, right-click the **Products** project, select **Add**, and then select **.NET Aspire Orchestrator Support**.
-1. In the **Microsoft Visual Studio** dialog, select **OK**. 
+1. In the **Microsoft Visual Studio** dialog, select **OK**.
 1. In the **Add .NET Aspire Orchestrator Support** dialog, select **OK**.
 
 In the **eShopLite.AppHost** project, open the **Program.cs** file. Notice this line of code, which registers the **Products** project in the .NET Aspire orchestration:
@@ -96,9 +96,9 @@ Let's start the solution and examine the new behavior that .NET Aspire has added
 
 1. In Visual Studio, to start debugging, press <kbd>F5</kbd> Visual Studio builds the projects.
 1. If the **Start Docker Desktop** dialog appears, select **Yes**. Visual Studio starts the Docker engine and creates the necessary containers. When the deployment is complete, the .NET Aspire dashboard is displayed.
-1. In the dashboard, select the endpoint for the **products** project. A new browser tab appears and displays the product catalog in JSON format. 
+1. In the dashboard, select the endpoint for the **products** project. A new browser tab appears and displays the product catalog in JSON format.
 1. In the dashboard, select the endpoint for the **store** project. A new browser tab appears and displays the home page for the web app.
-1. In the menu on the left, select **Products**. The product catalog is displayed. 
+1. In the menu on the left, select **Products**. The product catalog is displayed.
 1. Close the browser to stop debugging.
 
 Congratulations! You have added .NET Aspire orchestration to your pre-existing web app. You can now add .NET Aspire components and use the .NET Aspire tooling to streamline your cloud-native web app development.

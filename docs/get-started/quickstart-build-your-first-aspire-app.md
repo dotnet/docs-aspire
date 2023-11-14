@@ -1,7 +1,7 @@
 ---
 title: Build your first .NET Aspire app
 description: Learn how to build your first .NET Aspire app using the .NET Aspire Started Application template.
-ms.date: 11/09/2023
+ms.date: 11/11/2023
 ms.topic: quickstart
 ms.prod: dotnet
 ---
@@ -14,7 +14,7 @@ In this quickstart, you explore the following tasks:
 
 > [!div class="checklist"]
 >
-> - Create a basic .NET app that is setup to use .NET Aspire.
+> - Create a basic .NET app that is set up to use .NET Aspire.
 > - Add and configure a .NET Aspire component to implement caching.
 > - Create an API and use service discovery to connect to it.
 > - Orchestrate communication between a front end UI, a back end API, and a local Redis cache.
@@ -50,7 +50,7 @@ Consider the _Program.cs_ file of the _AspireSample.AppHost_ project:
 
 :::code source="snippets/quickstart/AspireSample/AspireSample.AppHost/Program.cs":::
 
-If you've used either the [.NET Generic Host](../../core/extensions/generic-host.md) or the [ASP.NET Core Web Host](/aspnet/core/fundamentals/host/web-host) before, the app host programming model and builder pattern should be familiar to you. The preceding code:
+If you've used either the [.NET Generic Host](/dotnet/core/extensions/generic-host.md) or the [ASP.NET Core Web Host](/aspnet/core/fundamentals/host/web-host) before, the app host programming model and builder pattern should be familiar to you. The preceding code:
 
 - Creates an `IDistributedApplicationBuilder` instance from calling `DistributedApplication.CreateBuilder(args)`.
 - Calls `AddRedisContainer` with the name `"cache"` to add a Redis container to the app, assigning the returned value to a variable named `cache`, which is of type `IResourceBuilder<RedisContainerResource>`.
@@ -85,7 +85,7 @@ The preceding code:
 - Calls `AddRedisOutputCache` with the same `connectionName` that was used when adding the Redis container `"cache"` to the application model. This configures the app to use Redis for output caching.
 - Calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> and configures the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> to be `"http://apiservice"`. This is the name that was used when adding the API project to the application model, and with service discovery configured, it will automatically resolve to the correct address to the API project.
 
-For more information, see [Make HTTP requests with the `HttpClient`](../../fundamentals/networking/http/httpclient.md) class.
+For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fundamentals/networking/http/httpclient.md) class.
 
 ## Test the app locally
 
@@ -104,7 +104,7 @@ In Visual Studio, set the **AspireSample.AppHost** project as the startup projec
 dotnet run --project AspireSample/AspireSample.AppHost
 ```
 
-For more information, see [dotnet run](../../core/tools/dotnet-run.md).
+For more information, see [dotnet run](/dotnet/core/tools/dotnet-run.md).
 
 ---
 

@@ -2,7 +2,7 @@
 title: .NET Aspire RabbitMQ component
 description: Learn how to use the .NET Aspire RabbitMQ client message-broker component.
 ms.topic: how-to
-ms.date: 11/02/2023
+ms.date: 11/11/2023
 ---
 
 # .NET Aspire RabbitMQ component
@@ -28,7 +28,7 @@ dotnet add package Aspire.RabbitMQ.Client --prerelease
 
 ---
 
-For more information, see [dotnet add package](../../core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](../../core/tools/dependencies.md).
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
 
 ## Example usage
 
@@ -97,7 +97,7 @@ builder.AddRabbitMQ(
     static settings => settings.HealthChecks = false);
 ```
 
-You can also setup the [IConnectionFactory](https://rabbitmq.github.io/rabbitmq-dotnet-client/api/RabbitMQ.Client.IConnectionFactory.html) using the `Action<IConnectionFactory> configureConnectionFactory` delegate parameter of the `AddRabbitMQ` method. For example to set the client provided name for connections:
+You can also set up the [IConnectionFactory](https://rabbitmq.github.io/rabbitmq-dotnet-client/api/RabbitMQ.Client.IConnectionFactory.html) using the `Action<IConnectionFactory> configureConnectionFactory` delegate parameter of the `AddRabbitMQ` method. For example to set the client provided name for connections:
 
 ```csharp
 builder.AddRabbitMQ(
@@ -139,7 +139,7 @@ The .NET Aspire RabbitMQ component uses the following log categories:
 
 The .NET Aspire RabbitMQ component will emit the following tracing activities using OpenTelemetry:
 
-* Aspire.RabbitMQ.Client
+- Aspire.RabbitMQ.Client
 
 ### Metrics
 

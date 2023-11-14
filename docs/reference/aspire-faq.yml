@@ -3,7 +3,7 @@ metadata:
   title: Frequently asked questions about .NET Aspire
   description: Answers to some of the most common questions and scenarios for .NET Aspire.
   ms.topic: faq
-  ms.date: 11/08/2023
+  ms.date: 11/13/2023
 title: Frequently asked questions about .NET Aspire
 summary: |
   This article lists frequently asked questions about .NET Aspire. For a more comprehensive overview, see [.NET Aspire overview](../get-started/aspire-overview.md).
@@ -12,23 +12,23 @@ sections:
   - name: Frequently asked questions
     questions:
       - question: |
+          When will .NET Aspire be released?
+        answer: |
+          .NET Aspire is now in its preview release phase, with monthly updates expected until the product reaches general availability (GA). The official release is planned for the first half of 2024. Stay updated by checking the [official .NET Aspire repository](https://github.com/dotnet/aspire) for more information.
+      - question: |
           What's the difference between .NET Aspire and Microsoft Orleans?
         answer: |
-          Microsoft Orleans and .NET Aspire are complementary technologies. Orleans is a distributed actor-based
-          framework. .NET Aspire is a cloud-ready stack for building observable, production ready, distributed
-          applications. It includes local orchestration capabilities to simplify the developer inner loop and
-          reusable opinionated components for integrating with commonly used application dependencies. An Orleans-based
-          solution will still have external dependencies such as data stores and caches for which .NET Aspire can be
-          used for orchestration purposes. We are planning to produce a sample for .NET Aspire that uses
-          Microsoft Orleans (see [GitHub issue](https://github.com/dotnet/aspire-samples/issues/20)).
+          Microsoft Orleans and .NET Aspire are complementary technologies.
+
+          [Orleans](/dotnet/orleans) is a distributed actor-based framework. .NET Aspire is a cloud-ready stack for building observable, production ready, distributed applications. It includes local orchestration capabilities to simplify the developer inner loop and reusable opinionated components for integrating with commonly used application dependencies. An Orleans-based solution will still have external dependencies such as data stores and caches for which .NET Aspire can be used for orchestration purposes.
+
+          We are planning to produce a sample for .NET Aspire that uses Microsoft Orleans, see [GitHub issue](https://github.com/dotnet/aspire-samples/issues/20).
       - question: |
           What's the difference between .NET Aspire and Dapr?
         answer: |
-          Dapr and .NET Aspire are complementary technologies. Where Dapr abstracts some of the underlying cloud
-          platform, .NET Aspire provides opinionated configuration around the underlying cloud technolgies without
-          abstracting them. A .NET-based application that uses Dapr can use .NET Aspire to orchestrate the local
-          developer inner loop and streamline deployment. .NET Aspire includes extensions which support the launching
-          for Dapr side-car processes during the inner loop.
+          Dapr and .NET Aspire are complementary technologies.
+
+          Where Dapr abstracts some of the underlying cloud platform, .NET Aspire provides opinionated configuration around the underlying cloud technologies without abstracting them. A .NET-based application that uses Dapr can use .NET Aspire to orchestrate the local developer inner loop and streamline deployment. .NET Aspire includes extensions that support the launching for Dapr side-car processes during the inner loop.
       - question: |
           What's the difference between .NET Aspire and Project Tye?
         answer: |
@@ -43,14 +43,14 @@ sections:
       - question: |
           Are worker services supported in .NET Aspire?
         answer: |
-          Due to a deployment related bug the preview 1 of .NET Aspire does not support deployment of worker
-          servers. As a work around consider deploying a web application as a worker which is not exposed
-          to the internet. We are currently tracking this issue and plan to have it resolved for preview 2 (see [GitHub issue](https://github.com/dotnet/aspire/issues/743)).
+          Due to a deployment related bug, preview 1 of .NET Aspire doesn't support deployment of worker services.
+
+          As a work around consider deploying a web application as a worker which is not exposed to the internet. We are currently tracking this issue and plan to have it resolved for preview 2 (see [GitHub issue](https://github.com/dotnet/aspire/issues/743)).
       - question: |
           Are Azure Functions supported in .NET Aspire?
         answer: |
-          We have no specific support for Azure Functions in preview 1 of .NET Aspire however it is a target
-          execution environment for depoyment that we are planning to support in future previews.
+          We have no specific support for Azure Functions in preview 1 of .NET Aspire however it's a target
+          execution environment for deployment that we are planning to support in future previews.
 
 additionalContent: |
 

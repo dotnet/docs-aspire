@@ -28,7 +28,7 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching
 
 ---
 
-For more information, see [dotnet add package](../../core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](../../core/tools/dependencies.md).
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
 
 ## Example usage
 
@@ -141,8 +141,8 @@ builder.AddRedisOutputCache("messaging");
 
 The .NET Aspire StackExchange Redis output caching component handles the following:
 
-* Adds the `StackExchange.Redis` health check, tries to open the connection and throws when it fails.
-* Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
+- Adds the `StackExchange.Redis` health check, tries to open the connection and throws when it fails.
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 
@@ -150,14 +150,14 @@ The .NET Aspire StackExchange Redis output caching component handles the followi
 
 The .NET Aspire StackExchange Redis output caching component uses the following Log categories:
 
-* Aspire.StackExchange.Redis
-* Microsoft.AspNetCore.OutputCaching.StackExchangeRedis
+- Aspire.StackExchange.Redis
+- Microsoft.AspNetCore.OutputCaching.StackExchangeRedis
 
 ### Tracing
 
 The .NET Aspire StackExchange Redis output caching component will emit the following Tracing activities using OpenTelemetry:
 
-* OpenTelemetry.Instrumentation.StackExchangeRedis
+- OpenTelemetry.Instrumentation.StackExchangeRedis
 
 ### Metrics
 

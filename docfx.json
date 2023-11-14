@@ -1,0 +1,139 @@
+{
+  "build": {
+    "markdownEngineName": "markdig",
+    "markdownEngineProperties": {
+      "markdigExtensions": [
+        "abbreviations",
+        "definitionlists",
+        "tasklists",
+        "footnotes",
+        "diagrams"
+      ]
+    },
+    "content": [
+      {
+        "files": [
+          "**/*.md",
+          "**/*.yml"
+        ],
+        "src": "docs",
+        "dest": ".",
+        "exclude": [
+          "**/obj/**",
+          "**/includes/**",
+          "_themes/**",
+          "_themes.pdf/**",
+          "**/docfx.json",
+          "_repo.en-us/**",
+          "README.md",
+          "CODE_OF_CONDUCT.md",
+          "LICENSE",
+          "LICENSE-CODE",
+          "ThirdPartyNotices.md",
+          "SECURITY.md"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**",
+          "**/*.png",
+          "**/*.svg",
+          "**/*.jpg",
+          "**/*.gif",
+          "**/*.bmp"
+      ],
+        "exclude": [
+          "**/obj/**",
+          "**/includes/**",
+          "_themes/**",
+          "_themes.pdf/**",
+          "**/docfx.json",
+          "_repo.en-us/**"
+        ]
+      }
+    ],
+    "overwrite": [],
+    "externalReference": [],
+    "globalMetadata": {
+      "apiPlatform": "dotnet",
+      "author": "IEvangelist",
+      "ms.author": "dapine",
+      "ms.devlang": "dotnet",
+      "ms.prod": "dotnet",
+      "ms.topic": "conceptual",
+      "breadcrumb_path": "/dotnet/aspire/breadcrumb/toc.json",
+      "feedback_system": "GitHub",
+      "feedback_github_repo": "dotnet/docs-aspire",
+      "feedback_product_url": "https://aka.ms/feedback/report?space=61",
+      "permissioned-type": "public",
+      "dev_langs": [
+        "csharp"
+      ],
+      "featureFlags": [
+        "enable_uhf_ppe"
+      ],
+      "searchScope": [
+        ".NET"
+      ],
+      "show_latex": true,
+      "uhfHeaderId": "MSDocsHeader-DotNet",
+      "_displayLangs": [
+        "csharp"
+      ]
+    },
+    "fileMetadata": {
+      "feedback_system": {
+        "docs/**.*": "OpenSource"
+      },
+      "open_source_feedback_contributorGuideUrl": {
+        "docs/**/**.*": "https://learn.microsoft.com/contribute/content/dotnet/dotnet-contribute"
+      },
+      "open_source_feedback_issueUrl": {
+        "docs/**.*": "https://github.com/dotnet/docs-aspire/issues/new?template=customer-feedback.yml"
+      },
+      "open_source_feedback_productName": {
+        "docs/**.*": ".NET Aspire feedback"
+      },
+      "open_source_feedback_productDescription": {
+        "docs/**.*": "The .NET Aspire documentation is open source. Provide feedback here."
+      },
+      "open_source_feedback_issueTitle": {
+        "docs/**.*": ""
+      },
+      "open_source_feedback_productLogoLightUrl": {
+        "docs/**.*": "https://learn.microsoft.com/media/logos/logo_net.svg"
+      },
+      "open_source_feedback_productLogoDarkUrl": {
+        "docs/**.*": "https://learn.microsoft.com/media/logos/logo_net.svg"
+      },
+      "social_image_url": {
+        "docs/**/*.*": "/dotnet/aspire/media/dotnet-aspire-logo.png"
+      },
+      "feedback_product_url": {
+        "docs/**/*.*": "https://github.com/dotnet/aspire"
+      },
+      "ms.prod": {
+        "docs/**/*.*": "dotnet"
+      },
+      "ms.topic": {
+        "docs/**/*.md": "conceptual"
+      },
+      "ms.devlang": {
+        "docs/**/*.*": "csharp"
+      },
+      "author": {
+        "docs/**/*.*": "IEvangelist"
+      },
+      "ms.author": {
+        "docs/**/*.*": "dapine"
+      },
+      "titleSuffix": {
+        "docs/**/**.md": ".NET Aspire"
+      }
+    },
+    "template": [],
+    "dest": "dotnet-aspire-docs"
+  }
+}

@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ---
 
 # .NET Aspire setup and tooling
@@ -38,7 +38,7 @@ To install the .NET Aspire workload in Visual Studio 2022, use the Visual Studio
 1. On the **Installation details** panel, select **.NET Aspire**.
 1. Select **Modify** to install the .NET Aspire component.
 
-:::image type="content" source="media/install-aspire-workload-visual-studio.png" alt-text="A screenshot showing how to install the .NET Aspire workload with the Visual Studio installer.":::
+:::image type="content" source="media/install-aspire-workload-visual-studio.png" lightbox="media/install-aspire-workload-visual-studio.png" alt-text="A screenshot showing how to install the .NET Aspire workload with the Visual Studio installer.":::
 
 # [.NET CLI](#tab/dotnet-cli)
 
@@ -52,7 +52,7 @@ dotnet workload install aspire
 
 ## .NET Aspire project templates
 
-The .NET Aspire workload makes available .NET Aspire project templates. These project templates allow you to create new apps preconfigured with the .NET Aspire project structure and default settings. These projects also provide a unified debugging experience across the different resources of your app.
+The .NET Aspire workload makes available .NET Aspire project templates. These project templates allow you to create new apps pre-configured with the .NET Aspire project structure and default settings. These projects also provide a unified debugging experience across the different resources of your app.
 
 There are currently two project templates available:
 
@@ -74,7 +74,7 @@ Use Visual Studio or the .NET CLI to create new apps using these project templat
 
 To create a .NET Aspire project using Visual Studio, search for *Aspire* in the Visual Studio new project window and select your desired template.
 
-:::image type="content" source="media/aspire-templates.png" alt-text="The .NET Aspire project templates in VIsual Studio.":::
+:::image type="content" source="media/aspire-templates.png" lightbox="media/aspire-templates.png" alt-text="The .NET Aspire project templates in VIsual Studio.":::
 
 # [.NET CLI](#tab/dotnet-cli)
 
@@ -104,7 +104,7 @@ The .NET Aspire dashboard is only visible while the app is running and starts au
 
 The left navigation provides links to the different parts of the dashboard, each of which you'll explore in the following sections.
 
-:::image type="content" source="media/dashboard/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Projects page.":::
+:::image type="content" source="media/dashboard/projects.png" lightbox="media/dashboard/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Projects page.":::
 
 ## Visual Studio tooling
 
@@ -115,7 +115,7 @@ Visual Studio provides additional features for working with .NET Aspire componen
 You can add .NET Aspire components to your app like any other NuGet package using Visual Studio. However, Visual Studio also provides UI options to add .NET Aspire components directly.
 
 1. In Visual Studio, right click on the project you want to add an .NET Aspire component to and select **Add** > **.NET Aspire Component...**.
-1. The package manager will open with search results preconfigured for .NET Aspire components, allowing you to easily browse and select the desired component.
+1. The package manager will open with search results pre-configured for .NET Aspire components, allowing you to easily browse and select the desired component.
 
 ### Add orchestration projects
 
@@ -124,7 +124,7 @@ You can add .NET Aspire orchestration projects to an existing app using the foll
 1. In Visual Studio, right click on an existing project and select **Add** > **.NET Aspire Orchestrator Support..**.
 1. A dialog window will open with a summary of the **.AppHost** and **.ServiceDefaults** projects that will be added to your solution.
 
-    :::image type="content" source="media/add-orchestrator-app.png" alt-text="A screenshot showing the Visual Studio add .NET ASpire orchestration summary.":::
+    :::image type="content" source="media/add-orchestrator-app.png" alt-text="A screenshot showing the Visual Studio add .NET Aspire orchestration summary.":::
 
 1. Select **OK** and the following changes will be applied:
 
@@ -136,4 +136,4 @@ You can add .NET Aspire orchestration projects to an existing app using the foll
 
 Visual Studio provides the option to **Enlist in Aspire orchestration** during the new project workflow. Select this option to have Visual Studio create **.AppHost** and **.ServiceDefault** projects alongside your selected project template.
 
-:::image type="content" source="media/aspire-enlist-orchestration.png" alt-text="A screenshot showing how to enlist in .NET Aspire orchestration.":::
+:::image type="content" source="media/aspire-enlist-orchestration.png" lightbox="media/aspire-enlist-orchestration.png" alt-text="A screenshot showing how to enlist in .NET Aspire orchestration.":::

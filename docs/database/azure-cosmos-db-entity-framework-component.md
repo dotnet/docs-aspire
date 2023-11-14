@@ -2,7 +2,7 @@
 title: .NET Aspire Microsoft Entity Framework Core Cosmos DB component
 description: This article describes the .NET Aspire Microsoft Entity Framework Core Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 11/09/2023
+ms.date: 11/11/2023
 ---
 
 # .NET Aspire Microsoft Entity Framework Core Cosmos DB component
@@ -28,7 +28,7 @@ dotnet add package Aspire.Microsoft.EntityFrameworkCore.Cosmos --prerelease
 
 ---
 
-For more information, see [dotnet add package](../../core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](../../core/tools/dependencies.md).
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
 
 ## Example usage
 
@@ -132,34 +132,34 @@ The .NET Aspire Microsoft Entity Framework Core Cosmos DB component currently do
 
 The .NET Aspire Microsoft Entity Framework Core Cosmos DB component uses the following log categories:
 
-* Azure-Cosmos-Operation-Request-Diagnostics
-* Microsoft.EntityFrameworkCore.ChangeTracking
-* Microsoft.EntityFrameworkCore.Database.Command
-* Microsoft.EntityFrameworkCore.Infrastructure
-* Microsoft.EntityFrameworkCore.Query
+- Azure-Cosmos-Operation-Request-Diagnostics
+- Microsoft.EntityFrameworkCore.ChangeTracking
+- Microsoft.EntityFrameworkCore.Database.Command
+- Microsoft.EntityFrameworkCore.Infrastructure
+- Microsoft.EntityFrameworkCore.Query
 
 ### Tracing
 
 The .NET Aspire Microsoft Entity Framework Core Cosmos DB component will emit the following tracing activities using OpenTelemetry:
 
-* Azure.Cosmos.Operation
-* OpenTelemetry.Instrumentation.EntityFrameworkCore
+- Azure.Cosmos.Operation
+- OpenTelemetry.Instrumentation.EntityFrameworkCore
 
 ### Metrics
 
 The .NET Aspire Microsoft Entity Framework Core Cosmos DB component currently supports the following metrics:
 
-* Microsoft.EntityFrameworkCore"
-  * ec_Microsoft_EntityFrameworkCore_active_db_contexts
-  * ec_Microsoft_EntityFrameworkCore_total_queries
-  * ec_Microsoft_EntityFrameworkCore_queries_per_second
-  * ec_Microsoft_EntityFrameworkCore_total_save_changes
-  * ec_Microsoft_EntityFrameworkCore_save_changes_per_second
-  * ec_Microsoft_EntityFrameworkCore_compiled_query_cache_hit_rate
-  * ec_Microsoft_Entity_total_execution_strategy_operation_failures
-  * ec_Microsoft_E_execution_strategy_operation_failures_per_second
-  * ec_Microsoft_EntityFramew_total_optimistic_concurrency_failures
-  * ec_Microsoft_EntityF_optimistic_concurrency_failures_per_second
+- Microsoft.EntityFrameworkCore"
+  - ec_Microsoft_EntityFrameworkCore_active_db_contexts
+  - ec_Microsoft_EntityFrameworkCore_total_queries
+  - ec_Microsoft_EntityFrameworkCore_queries_per_second
+  - ec_Microsoft_EntityFrameworkCore_total_save_changes
+  - ec_Microsoft_EntityFrameworkCore_save_changes_per_second
+  - ec_Microsoft_EntityFrameworkCore_compiled_query_cache_hit_rate
+  - ec_Microsoft_Entity_total_execution_strategy_operation_failures
+  - ec_Microsoft_E_execution_strategy_operation_failures_per_second
+  - ec_Microsoft_EntityFramew_total_optimistic_concurrency_failures
+  - ec_Microsoft_EntityF_optimistic_concurrency_failures_per_second
 
 ## See also
 

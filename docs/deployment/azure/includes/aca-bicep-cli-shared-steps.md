@@ -1,8 +1,12 @@
+---
+ms.topic: include
+---
+
 1. Install the latest [Azure CLI](/cli/azure/install-azure-cli) & [sign in](/cli/azure/authenticate-azure-cli)
 
     # [Windows](#tab/install-az-windows)
 
-    ```PowerShell
+    ```powershell
     winget install -e --id Microsoft.AzureCLI
     # Restart the terminal session after installing the az CLI before running the next command
     az login
@@ -18,7 +22,7 @@
 
     # [Linux](#tab/linux)
 
-    ```shell
+    ```bash
     curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
     # Restart the terminal session after installing the az CLI before running the next command
     az login

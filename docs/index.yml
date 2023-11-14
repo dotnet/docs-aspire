@@ -1,7 +1,7 @@
 ### YamlMime:Hub
 
 title: .NET Aspire documentation (Preview)
-summary: .NET Aspire is currently in preview. Learn about .NET Aspire, an opinionated, cloud ready stack for building observable, production ready, distributed applications. Browse API reference, sample code, tutorials, quickstarts, conceptual articles and more.
+summary: Learn about .NET Aspire, an opinionated, cloud ready stack for building observable, production ready, distributed applications. Browse API reference, sample code, tutorials, quickstarts, conceptual articles and more.
 brand: dotnet
 
 metadata:
@@ -10,7 +10,7 @@ metadata:
   ms.topic: hub-page
   ms.prod: dotnet-cloud-native
   ms.service: dotnet-aspire
-  ms.date: 11/03/2023
+  ms.date: 11/13/2023
 
 highlightedContent:
   items:
@@ -126,11 +126,20 @@ conceptualContent:
           text: Redis distributed caching
           url: caching/stackexchange-redis-distributed-caching-component.md
 
-    - title: Security
+    - title: Deployment
       links:
+        - itemType: overview
+          text: Overview
+          url: deployment/overview.md
         - itemType: how-to-guide
-          text: Azure Key Vault
-          url: security/azure-security-key-vault-component.md
+          text: Deploy to Azure Container Apps
+          url: deployment/azure/aca-deployment.md
+        - itemType: how-to-guide
+          text: Deploy using the Azure Developer CLI
+          url: deployment/azure/aca-deployment-azd-in-depth.md
+        - itemType: how-to-guide
+          text: Integrate with Application Insights
+          url: deployment/azure/application-insights.md
 
 additionalContent:
   sections:
@@ -144,6 +153,8 @@ additionalContent:
               url: /dotnet/core/extensions/dependency-injection
             - text: Configuration
               url: /dotnet/core/extensions/configuration
+            - text: Make HTTP requests
+              url: /dotnet/fundamentals/networking/http/httpclient
         - title: Telemetry
           links:
             - text: .NET observability with OpenTelemetry
@@ -155,9 +166,9 @@ additionalContent:
         - title: Resiliency
           links:
             - text: Introduction to resilient app dev
-              url: ../core/resilience/index.md
+              url: /dotnet/core/resilience
             - text: Build resilient HTTP apps
-              url: ../core/resilience/http-resilience.md
+              url: /dotnet/core/resilience/http-resilience
             - text: Implement resiliency in a cloud-native ASP.NET Core microservice
               url: /training/modules/microservices-resiliency-aspnet-core
         - title: Observability

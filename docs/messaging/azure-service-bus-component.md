@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Service Bus component
 description: This article describes the .NET Aspire Azure Service Bus component features and capabilities
 ms.topic: how-to
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ---
 
 # .NET Aspire Azure Service Bus component
@@ -36,7 +36,7 @@ dotnet add package Aspire.Azure.Messaging.ServiceBus --prerelease
 
 ---
 
-For more information, see [dotnet add package](../../core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](../../core/tools/dependencies.md).
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
 
 ## Example usage
 
@@ -74,7 +74,7 @@ The Service Bus component supports <xref:Microsoft.Extensions.Configuration?disp
 }
 ```
 
-If you have setup your configurations in the `Aspire.Azure.Messaging.ServiceBus` section of your _appsettings.json_ file you can just call the method `AddAzureServiceBus` without passing any parameters.
+If you have set up your configurations in the `Aspire.Azure.Messaging.ServiceBus` section of your _appsettings.json_ file you can just call the method `AddAzureServiceBus` without passing any parameters.
 
 ### Use inline delegates
 
@@ -85,7 +85,7 @@ builder.AddAzureServiceBus(
     static settings => settings.Namespace = "YOUR_SERVICE_BUS_NAMESPACE");
 ```
 
-You can also setup the [ServiceBusClientOptions](/dotnet/api/azure.messaging.servicebus.servicebusclientoptions) using `Action<IAzureClientBuilder<ServiceBusClient, ServiceBusClientOptions>>` delegate, the second parameter of the `AddAzureServiceBus` method. For example to set the `ServiceBusClient` ID to identify the client:
+You can also set up the [ServiceBusClientOptions](/dotnet/api/azure.messaging.servicebus.servicebusclientoptions) using `Action<IAzureClientBuilder<ServiceBusClient, ServiceBusClientOptions>>` delegate, the second parameter of the `AddAzureServiceBus` method. For example to set the `ServiceBusClient` ID to identify the client:
 
 ```csharp
 builder.AddAzureServiceBus(

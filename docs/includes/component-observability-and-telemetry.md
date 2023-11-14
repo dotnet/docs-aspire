@@ -2,7 +2,7 @@
 title: .NET Aspire components observability and telemetry
 description: Learn how to use the observability and telemetry features of .NET Aspire components.
 ms.topic: include
-ms.date: 11/02/2023
+ms.date: 11/11/2023
 ---
 
 ## Observability and telemetry

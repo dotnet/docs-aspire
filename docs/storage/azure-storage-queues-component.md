@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Queue Storage component
 description: This article describes the .NET Aspire Azure Queue Storage component features and capabilities
 ms.topic: how-to
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ---
 
 # .NET Aspire Azure Queue Storage component
@@ -28,7 +28,7 @@ dotnet add package Aspire.Azure.Storage.Queues --prerelease
 
 ---
 
-For more information, see [dotnet add package](../../core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](../../core/tools/dependencies.md).
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
 
 ## Example usage
 
@@ -87,7 +87,7 @@ The .NET Aspire Azure Queue Storage component provides multiple options to confi
 
 ### Use configuration providers
 
-The Service Bus component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureStorageQueuesSettings` and `QueueClientOptions` from configuration by using the `Aspire:Azure:Storage:Queues` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire Azure Queue Storage component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureStorageQueuesSettings` and `QueueClientOptions` from configuration by using the `Aspire:Azure:Storage:Queues` key. Example `appsettings.json` that configures some of the options:
 
 ```json
 {
@@ -119,7 +119,7 @@ builder.AddAzureQueueService(
     settings => settings.HealthChecks = false);
 ```
 
-You can also setup the `QueueClientOptions` using `Action<IAzureClientBuilder<QueueServiceClient, QueueClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureQueueService` method. For example, to set the first part of user-agent headers for all requests issues by this client:
+You can also set up the `QueueClientOptions` using `Action<IAzureClientBuilder<QueueServiceClient, QueueClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureQueueService` method. For example, to set the first part of user-agent headers for all requests issues by this client:
 
 ```csharp
 builder.AddAzureQueueService(
@@ -151,8 +151,8 @@ builder.AddAzureQueueService("queue");
 
 The .NET Aspire Azure Queue Storage component handles the following:
 
-* Adds the `AzureQueueStorageHealthCheck` health check, which attempts to connect to and query the storage queue
-* Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
+- Adds the `AzureQueueStorageHealthCheck` health check, which attempts to connect to and query the storage queue
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 
@@ -160,14 +160,14 @@ The .NET Aspire Azure Queue Storage component handles the following:
 
 The .NET Aspire Azure Queue Storage component uses the following log categories:
 
-* Azure.Core
-* Azure.Identity
+- Azure.Core
+- Azure.Identity
 
 ### Tracing
 
 The .NET Aspire Azure Queue Storage component will emit the following tracing activities using OpenTelemetry:
 
-* Azure.Storage.Queues.QueueClient
+- Azure.Storage.Queues.QueueClient
 
 ### Metrics
 

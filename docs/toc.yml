@@ -11,7 +11,7 @@ items:
       - name: Quickstart - Build your first .NET Aspire app
         displayName: quickstart,first app,aspire app
         href: get-started/quickstart-build-your-first-aspire-app.md
-      - name: Tutorial - Add .NET Aspire to an existing .NET 8 microservices app
+      - name: Tutorial - Add .NET Aspire to an existing app
         href: get-started/add-aspire-existing-app.md
       - name: Setup and tooling
         href: setup-tooling.md
@@ -97,6 +97,8 @@ items:
         items:
           - name: Tutorial - Azure Container Apps
             href: deployment/azure/aca-deployment.md
+          - name: Azure Container Apps with AZD (In-depth)
+            href: deployment/azure/aca-deployment-azd-in-depth.md
           - name: Use .NET Aspire with Application Insights
             href: deployment/azure/application-insights.md
       - name: Reference - Tool-builder manifest schemas

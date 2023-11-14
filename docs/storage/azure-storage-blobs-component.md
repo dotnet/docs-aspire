@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Blob Storage component
 description: This article describes the .NET Aspire Azure Blob Storage component features and capabilities.
 ms.topic: how-to
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ---
 
 # .NET Aspire Azure Blob Storage component
@@ -28,7 +28,7 @@ dotnet add package Aspire.Azure.Storage.Blobs --prerelease
 
 ---
 
-For more information, see [dotnet add package](../../core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](../../core/tools/dependencies.md).
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
 
 ## Example usage
 
@@ -49,7 +49,7 @@ public class ExampleService(BlobServiceClient client)
 
 ## Configuration
 
-The .NET Aspire Service Bus component provides multiple options to configure the `BlobServiceClient` based on the requirements and conventions of your project.
+The .NET Aspire Azure Blob Storage component provides multiple options to configure the `BlobServiceClient` based on the requirements and conventions of your project.
 
 ### Use a connection string
 
@@ -119,7 +119,7 @@ builder.AddAzureBlobService(
     settings => settings.HealthChecks = false);
 ```
 
-You can also setup the `BlobClientOptions` using `Action<IAzureClientBuilder<BlobServiceClient, BlobClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureBlobService` method. For example, to set the first part of user-agent headers for all requests issues by this client:
+You can also set up the `BlobClientOptions` using `Action<IAzureClientBuilder<BlobServiceClient, BlobClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureBlobService` method. For example, to set the first part of user-agent headers for all requests issues by this client:
 
 ```csharp
 builder.AddAzureBlobService(
@@ -130,7 +130,7 @@ builder.AddAzureBlobService(
 
 ## Orchestration
 
-In your orchestrator project, register the Service Bus component and consume the service using the following methods:
+In your orchestrator project, register the Azure Blob Storage component and consume the service using the following methods:
 
 ```csharp
 var blobs = builder.AddAzureStorage("storage")
@@ -150,8 +150,8 @@ builder.AddAzureBlobService("blobs");
 
 The .NET Aspire Azure Blob Storage component handles the following:
 
-* Adds the `AzureBlobStorageHealthCheck` health check, which attempts to connect to and query blob storage
-* Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
+- Adds the `AzureBlobStorageHealthCheck` health check, which attempts to connect to and query blob storage
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 
@@ -159,14 +159,14 @@ The .NET Aspire Azure Blob Storage component handles the following:
 
 The .NET Aspire Azure Blob Storage component uses the following log categories:
 
-* Azure.Core
-* Azure.Identity
+- Azure.Core
+- Azure.Identity
 
 ### Tracing
 
 The .NET Aspire Azure Blob Storage component will emit the following tracing activities using OpenTelemetry:
 
-* Azure.Storage.Blobs.BlobContainerClient
+- Azure.Storage.Blobs.BlobContainerClient
 
 ### Metrics
 

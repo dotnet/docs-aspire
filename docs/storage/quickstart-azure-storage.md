@@ -1,7 +1,7 @@
 ---
 title: Connect an ASP.NET Core app to .NET Aspire storage components
 description: Learn how to connect an ASP.NET Core app to .NET Aspire storage components.
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ms.topic: quickstart
 ms.prod: dotnet
 ---
@@ -12,7 +12,7 @@ Cloud-native apps often require scalable storage solutions that provide capabili
 
 > [!div class="checklist"]
 >
-> - Create a basic .NET app that is setup to use .NET Aspire Components
+> - Create a basic .NET app that is set up to use .NET Aspire Components
 > - Add .NET Aspire Components to connect to multiple storage services
 > - Configure and use .NET Aspire Component features to send and receive data
 
@@ -30,7 +30,7 @@ For this quickstart, you'll need data contributor access to an Azure Storage Acc
 
 # [Azure CLI script](#tab/cli)
 
-Run the following commands in the Azure CLI or CloudShell to setup the required Azure Storage resources:
+Run the following commands in the Azure CLI or CloudShell to set up the required Azure Storage resources:
 
 ```azurecli-interactive
 az group create --name aspirestorage --location eastus2
@@ -61,7 +61,7 @@ Visual Studio creates a new ASP.NET Core solution that is structured to use .NET
 
 - **AspireStorage** - A Blazor project with default .NET Aspire service configurations.
 - **AspireStorage.AppHost** - An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
-- **AspireStorage.Shared** - A shared class library to hold configurations that can be reused across the projects in your solution.
+- **AspireStorage.ServiceDefaults** - A shared class library to hold configurations that can be reused across the projects in your solution.
 
 ### Add the Worker Service project
 

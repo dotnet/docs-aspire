@@ -2,7 +2,7 @@
 title: .NET Aspire components health checks
 description: Learn how to use health checks with .NET Aspire components.
 ms.topic: include
-ms.date: 11/02/2023
+ms.date: 11/11/2023
 ---
 
 ## Health checks

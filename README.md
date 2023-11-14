@@ -2,6 +2,9 @@
 
 This repository contains the conceptual documentation for .NET Aspire. The [.NET Aspire documentation site](https://learn.microsoft.com/dotnet/aspire).
 
+![.NET Aspire](assets/dotnet-aspire.png#gh-light-mode-only)
+![.NET Aspire](assets/dotnet-aspire-dark.png#gh-dark-mode-only)
+
 ## :purple_heart: Contribute
 
 We welcome contributions to help us improve and complete the .NET docs. This is a very large repo, covering a large area. If this is your first visit, see our [labels and projects roadmap](https://learn.microsoft.com/contribute/content/dotnet/labels-projects) for help navigating the issues and projects in this repository. If your contribution includes third-party dependencies, see our guidance on using [third-party dependencies :link:](https://github.com/dotnet/docs/blob/main/styleguide/3rdPartyDependencies.md).

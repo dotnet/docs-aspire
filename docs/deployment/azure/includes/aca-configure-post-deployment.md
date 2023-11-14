@@ -1,3 +1,7 @@
+---
+ms.topic: include
+---
+
 ## Configure the app for the deployed environment
 
 Now that the infrastructure has been provisioned, you need to set a few configuration settings in the Azure Container Apps before your code can be published into them from their new ACR repositories.
@@ -49,7 +53,8 @@ Configure the front end with the correct Redis connection configuration:
 
 1. Then, update the target ports for the `web` and `apiservice` Container Apps as the default "Hello World" app and our app have different target ports:
 
-    > Note: The string `aspiretoaca` is associated with the name of the .NET Aspire solution, in lowercase form. If, when you created the .NET Aspire solution with a different name, you'll need to tweak this string in the code below. For example, if you created an app in a directory named `MyNewAspireApp`, you'd swap the string `aspiretoaca` with `mynewaspireapp` or the command will fail.
+    > [!NOTE]
+    > The string `aspiretoaca` is associated with the name of the .NET Aspire solution, in lowercase form. If, when you created the .NET Aspire solution with a different name, you'll need to tweak this string in the code below. For example, if you created an app in a directory named `MyNewAspireApp`, you'd swap the string `aspiretoaca` with `mynewaspireapp` or the command will fail.
 
     # [PowerShell](#tab/powershell)
 

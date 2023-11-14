@@ -35,7 +35,7 @@ dotnet add package Aspire.Azure.Data.Tables --prerelease
 
 ---
 
-For more information, see [dotnet add package](../../core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](../../core/tools/dependencies.md).
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
 
 ## Example usage
 
@@ -56,11 +56,11 @@ public class ExampleService(TableServiceClient client)
 
 ## Configuration
 
-The .NET Aspire Service Bus component provides multiple options to configure the `TableServiceClient` based on the requirements and conventions of your project.
+The .NET Aspire Azure Table Storage component provides multiple options to configure the `TableServiceClient` based on the requirements and conventions of your project.
 
 ### Use configuration providers
 
-The Service Bus component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureDataTablesSettings` from _appsettings.json_ or other configuration files using `Aspire:Azure:Data:Tables` key.
+The .NET Aspire Azure Table Storage component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureDataTablesSettings` from _appsettings.json_ or other configuration files using `Aspire:Azure:Data:Tables` key.
 
 ```json
 {
@@ -81,7 +81,7 @@ The Service Bus component supports <xref:Microsoft.Extensions.Configuration?disp
 }
 ```
 
-If you have setup your configurations in the `Aspire:Azure:Data:Tables` section of your _appsettings.json_ file you can just call the method `AddAzureTableService` without passing any parameters.
+If you have set up your configurations in the `Aspire:Azure:Data:Tables` section of your _appsettings.json_ file you can just call the method `AddAzureTableService` without passing any parameters.
 
 ### Use inline delegates
 
@@ -92,7 +92,7 @@ builder.AddAzureTableService(
     static settings => settings.ServiceUri = new Uri("YOUR_SERVICEURI"));
 ```
 
-You can also setup the `TableClientOptions` using `Action<IAzureClientBuilder<TableServiceClient, TableClientOptions>>` delegate, the second parameter of the `AddAzureTableService` method. For example to set the `TableServiceClient` ID to identify the client:
+You can also set up the `TableClientOptions` using `Action<IAzureClientBuilder<TableServiceClient, TableClientOptions>>` delegate, the second parameter of the `AddAzureTableService` method. For example to set the `TableServiceClient` ID to identify the client:
 
 ```csharp
 builder.AddAzureTableService(
@@ -145,7 +145,7 @@ The following configurable options are exposed through the `AzureDataTablesSetti
 
 ## Orchestration
 
-In your orchestrator project, register the Service Bus component and consume the service using the following methods:
+In your orchestrator project, register the Azure Table Storage component and consume the service using the following methods:
 
 ```csharp
 // Service registration 

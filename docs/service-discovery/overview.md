@@ -1,14 +1,14 @@
 ---
 title: .NET Aspire service discovery
 description: Understand essential service discovery concepts in .NET Aspire.
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ms.topic: quickstart
 ms.prod: dotnet
 ---
 
 # .NET Aspire service discovery
 
-In this article, you learn how service discovery works within a .NET Aspire app. .NET Aspire includes functionality for configuring service discovery at development and testing time. Service discovery functionality works by providing configuration in the format expected by the _configuration-based endpoint resolver_ from the .NET Aspire AppHost project to the individual service projects added to the application model. For more information, see [Service discovery in .NET](../../core/extensions/service-discovery.md).
+In this article, you learn how service discovery works within a .NET Aspire app. .NET Aspire includes functionality for configuring service discovery at development and testing time. Service discovery functionality works by providing configuration in the format expected by the _configuration-based endpoint resolver_ from the .NET Aspire AppHost project to the individual service projects added to the application model. For more information, see [Service discovery in .NET](/dotnet/core/extensions/service-discovery).
 
 ## Implicit service discovery by reference
 
@@ -123,6 +123,6 @@ builder.Services.AddHttpClient<BasketServiceDashboardClient>(
 
 ## See also
 
-- [Service discovery in .NET](../../core/extensions/service-discovery.md)
-- [Make HTTP requests with the HttpClient class](../../fundamentals/networking/http/httpclient.md)
-- [IHttpClientFactory with .NET](../../core/extensions/httpclient-factory.md)
+- [Service discovery in .NET](/dotnet/core/extensions/service-discovery)
+- [Make HTTP requests with the HttpClient class](/dotnet/fundamentals/networking/http/httpclient.md)
+- [IHttpClientFactory with .NET](/dotnet/core/extensions/httpclient-factory.md)

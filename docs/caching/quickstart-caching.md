@@ -1,7 +1,7 @@
 ---
 title: Implement caching with .NET Aspire components
 description: Learn how to connect to Redis and cache data using .NET Aspire components.
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ms.topic: quickstart
 ms.prod: dotnet
 ---
@@ -12,7 +12,7 @@ Cloud-native apps often require various types of scalable caching solutions to i
 
 > [!div class="checklist"]
 >
-> - Create a basic ASP.NET core app that is setup to use .NET Aspire.
+> - Create a basic ASP.NET core app that is set up to use .NET Aspire.
 > - Add .NET Aspire components to connect to Redis and implement caching.
 > - Configure the .NET Aspire components to meet specific requirements.
 
@@ -28,19 +28,19 @@ This quickstart explores how to use two different types of ASP.NET Core caching 
 1. At the top of Visual Studio, navigate to **File** > **New** > **Project...**.
 1. In the dialog window, enter **.NET Aspire** into the project template search box and select **.NET Aspire Starter Application**. Choose **Next**.
 1. On the **Configure your new project** screen:
-    * Enter a **Project name** of **AspireRedis**.
-    * Leave the rest of the values at their defaults and select **Next**.
+    - Enter a **Project name** of **AspireRedis**.
+    - Leave the rest of the values at their defaults and select **Next**.
 1. On the **Additional information** screen:
-    * Make sure **.NET 8.0** is selected.
-    * Uncheck **Use Redis for caching**. You will implement your own caching setup.
-    * Select **Create**.
+    - Make sure **.NET 8.0** is selected.
+    - Uncheck **Use Redis for caching**. You will implement your own caching setup.
+    - Select **Create**.
 
 Visual Studio creates a new .NET Aspire solution that consists of the following projects:
 
-* **AspireRedis.Web** - A Blazor UI project with default .NET Aspire configurations.
-* **AspireRedis.ApiService** - A Minimal API with default .NET Aspire configurations that provides the frontend with data.
-* **AspireRedis.AppHost** - An orchestrator project designed to connect and configure the different projects and services of your app.
-* **AspireRedis.ServiceDefaults** - A .NET Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../telemetry.md).
+- **AspireRedis.Web** - A Blazor UI project with default .NET Aspire configurations.
+- **AspireRedis.ApiService** - A Minimal API with default .NET Aspire configurations that provides the frontend with data.
+- **AspireRedis.AppHost** - An orchestrator project designed to connect and configure the different projects and services of your app.
+- **AspireRedis.ServiceDefaults** - A .NET Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../telemetry.md).
 
 ## Configure the UI with output caching
 
@@ -58,10 +58,10 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
 
     This method accomplishes the following tasks:
 
-    * Configures ASP.NET Core output caching to use a Redis instance with the specified connection name.
-    * Automatically enables corresponding health checks, logging, and telemetry.
+    - Configures ASP.NET Core output caching to use a Redis instance with the specified connection name.
+    - Automatically enables corresponding health checks, logging, and telemetry.
 
-1.  In the _appsettings.json file of the `AspireRedis.Web` project, add the corresponding connection string information:
+1. In the _appsettings.json file of the `AspireRedis.Web` project, add the corresponding connection string information:
 
     ```json
     "ConnectionStrings": {
@@ -98,7 +98,7 @@ dotnet add package Aspire.StackExchange.Redis.DistributedCaching --prerelease
     builder.AddRedisDistributedCache("cache");
     ```
 
-1.  In the _appsettings.json file of the `AspireRedis.ApiService` project, add the corresponding connection string information:
+1. In the _appsettings.json file of the `AspireRedis.ApiService` project, add the corresponding connection string information:
 
     ```json
     "ConnectionStrings": {

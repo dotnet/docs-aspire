@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire manifest format for deployment tool builders
 description: Learn about the .NET Aspire manifest format in this comprehensive deployment tool builder guide.
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ms.topic: reference
 ---
 
@@ -31,7 +31,7 @@ dotnet run --project AspireApp.AppHost\AspireApp.AppHost.csproj `
     --output-path aspire-manifest.json
 ```
 
-For more information, see [dotnet build](../../core/tools/dotnet-build.md). The previous command produces the following output:
+For more information, see [dotnet build](/dotnet/core/tools/dotnet-build.md). The previous command produces the following output:
 
 ```Output
 Building...
@@ -171,7 +171,7 @@ utility in deployment scenarios.
 
 The `env` field type is a basic key/value mapping where the values might contain [_placeholder strings_](#placeholder-string-structure).
 
-Bindings are specified in the `bindings` field with each binding contained within its own field under the `bindings` JSON object. The fields committed by the .NET aspire include:
+Bindings are specified in the `bindings` field with each binding contained within its own field under the `bindings` JSON object. The fields committed by the .NET Aspire include:
 
 - `scheme`: One of the following values `tcp`, `udp`, `http`, or `https`.
 - `protocol`: One of the following values `tcp` or `udp`

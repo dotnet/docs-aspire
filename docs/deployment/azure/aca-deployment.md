@@ -1,41 +1,41 @@
 ---
 title: Deploy .NET Aspire apps to Azure using Bicep
 description: Learn how to use Bicep and the Azure CLI to deploy .NET Aspire apps to Azure.
-ms.date: 11/10/2023
+ms.date: 11/13/2023
 zone_pivot_groups: azure-development-tool
 ---
 
 # Deploy a .NET Aspire app to Azure Container Apps
 
-.NET Aspire apps are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. This article will walk you through creating a new .NET Aspire solution and deploying it to Microsoft Azure Container Apps using Bicep and the Azure CLI. You'll learn how to complete the following tasks:
+.NET Aspire apps are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. This article will walk you through creating a new .NET Aspire solution and deploying it to Microsoft Azure Container Apps using the Azure Developer CLI (`azd`), the Azure CLI, or Bicep. You'll learn how to complete the following tasks:
 
 > [!div class="checklist"]
 >
-> - Provision an Azure resource group and Container Registry using Bicep and the Azure CLI
+> - Provision an Azure resource group and Container Registry
 > - Publish the .NET Aspire projects as container images in Azure Container Registry
-> - Provision a Redis container in Azure using Bicep and the Azure CLI
+> - Provision a Redis container in Azure
 > - Deploy the apps to an Azure Container Apps environment
 > - View application console logs to troubleshoot application issues
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
-::: zone pivot="azure-azd"
+:::zone pivot="azure-azd"
+
+As an alternative to this tutorial and for a more in-depth guide, see [Deploy a .NET Aspire app to Azure Container Apps using AZD (in-depth guide)](aca-deployment-azd-in-depth.md).
 
 [!INCLUDE [aca-deployment-azd](includes/aca-deployment-azd.md)]
 
-::: zone-end
-
-::: zone pivot="azure-cli"
+:::zone-end
+:::zone pivot="azure-cli"
 
 [!INCLUDE [aca-deployment-cli](includes/aca-deployment-cli.md)]
 
-::: zone-end
-
-::: zone pivot="azure-bicep"
+:::zone-end
+:::zone pivot="azure-bicep"
 
 [!INCLUDE [aca-deployment-bicep](includes/aca-deployment-bicep.md)]
 
-::: zone-end
+:::zone-end
 
 ## Test the deployed app
 

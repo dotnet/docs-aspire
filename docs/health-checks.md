@@ -1,9 +1,7 @@
 ---
 title: .NET Aspire health checks
 description: Explore .NET Aspire health checks
-author: alexwolfmsft
-ms.author: alexwolf
-ms.date: 11/02/2023
+ms.date: 11/11/2023
 ms.topic: quickstart
 ms.prod: dotnet
 ---
@@ -28,7 +26,7 @@ Health checks provide availability and state information about an app. Health ch
 
     The `/health` endpoint returns an HTTP status code 200 and a `text/plain` value of <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy> when the app is _healthy_.
 
-- The `/alive` indicates if an app is running or has crashed and must be restarted. Only health checks tagged with the *live* tag must pass for app to be considered alive.
+- The `/alive` indicates if an app is running or has crashed and must be restarted. Only health checks tagged with the _live_ tag must pass for app to be considered alive.
 
     ```http
     GET /alive

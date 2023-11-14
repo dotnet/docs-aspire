@@ -1,7 +1,7 @@
 ---
 title: Use .NET Aspire with Application Insights
 description: Learn how to send .NET Aspire telemetry to Application Insights.
-ms.date: 11/10/2023
+ms.date: 11/11/2023
 ms.topic: how-to
 ---
 
