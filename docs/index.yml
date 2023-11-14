@@ -235,15 +235,15 @@ additionalContent:
       items:
         - title: ".NET Aspire API reference"
           summary: API reference documentation for .NET Aspire
-          url: /api?view=dotnet-aspire-8.0&preserve-view=true
+          url: /dotnet/api/aspire.hosting?view=dotnet-aspire-8.0&preserve-view=true
         - title: ".NET Platform Extensions API reference"
           summary: API reference documentation for .NET Platform Extensions
-          url: /api?view=dotnet-plat-ext-8.0&preserve-view=true
+          url: /dotnet/api?view=dotnet-plat-ext-8.0&preserve-view=true
         - title: ".NET API reference"
           summary: API reference documentation for .NET
-          url: /api?view=net-8.0&preserve-view=true
+          url: /dotnet/api?view=net-8.0&preserve-view=true
         - title: "ASP.NET Core API reference"
           summary: API reference documentation for ASP.NET Core
-          url: /api?view=aspnetcore-8.0&preserve-view=true
+          url: /dotnet/api?view=aspnetcore-8.0&preserve-view=true
 
   footer: "Are you interested in contributing to the .NET docs? For more information, see our [contributor guide](/contribute/dotnet/dotnet-contribute)."
