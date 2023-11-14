@@ -66,7 +66,7 @@ The .NET Aspire PostgreSQL Entity Framework Core component provides multiple con
 
 ### Use configuration providers
 
-The .NET Aspire PostgreSQL Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `NpgsqlEntityFrameworkCorePostgreSQLSettings` from configuration files such as _appsettings.json_ by using the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` key. If you have setup your configurations in the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` section you can just call the method without passing any parameter.
+The .NET Aspire PostgreSQL Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `NpgsqlEntityFrameworkCorePostgreSQLSettings` from configuration files such as _appsettings.json_ by using the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` key. If you have set up your configurations in the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` section you can just call the method without passing any parameter.
 
 The following example shows an _appsettings.json_ file that configures some of the available options:
 

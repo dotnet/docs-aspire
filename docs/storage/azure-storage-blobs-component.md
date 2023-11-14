@@ -119,7 +119,7 @@ builder.AddAzureBlobService(
     settings => settings.HealthChecks = false);
 ```
 
-You can also setup the `BlobClientOptions` using `Action<IAzureClientBuilder<BlobServiceClient, BlobClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureBlobService` method. For example, to set the first part of user-agent headers for all requests issues by this client:
+You can also set up the `BlobClientOptions` using `Action<IAzureClientBuilder<BlobServiceClient, BlobClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureBlobService` method. For example, to set the first part of user-agent headers for all requests issues by this client:
 
 ```csharp
 builder.AddAzureBlobService(

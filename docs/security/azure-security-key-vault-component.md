@@ -74,7 +74,7 @@ The .NET Aspire Azure Key Vault component supports <xref:Microsoft.Extensions.Co
 }
 ```
 
-If you have setup your configurations in the `Aspire:Azure:Security:KeyVault` section of your _appsettings.json_ file you can just call the method `AddAzureKeyVaultSecrets` without passing any parameters.
+If you have set up your configurations in the `Aspire:Azure:Security:KeyVault` section of your _appsettings.json_ file you can just call the method `AddAzureKeyVaultSecrets` without passing any parameters.
 
 ### Use inline delegates
 
@@ -85,7 +85,7 @@ builder.AddAzureKeyVaultSecrets(
     static settings => settings.ServiceUri = new Uri("YOUR_SERVICEURI"));
 ```
 
-You can also setup the <xref:Azure.Security.KeyVault.Secrets.SecretClientOptions> using `Action<IAzureClientBuilder<SecretClient, SecretClientOptions>>` delegate, the second parameter of the `AddAzureKeyVaultSecrets` method. For example to set the <xref:Azure.Security.KeyVault.Keys.KeyClientOptions.DisableChallengeResourceVerification?displayProperty=nameWithType> ID to identify the client:
+You can also set up the <xref:Azure.Security.KeyVault.Secrets.SecretClientOptions> using `Action<IAzureClientBuilder<SecretClient, SecretClientOptions>>` delegate, the second parameter of the `AddAzureKeyVaultSecrets` method. For example to set the <xref:Azure.Security.KeyVault.Keys.KeyClientOptions.DisableChallengeResourceVerification?displayProperty=nameWithType> ID to identify the client:
 
 ```csharp
 builder.AddAzureKeyVaultSecrets(
