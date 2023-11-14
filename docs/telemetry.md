@@ -12,7 +12,7 @@ One of the primary objectives of .NET Aspire is to ensure that apps are straight
 
 - **[Tracing](/dotnet/core/diagnostics/distributed-tracing)**: Traces correlate log events that are part of the same logical activity (e.g. the handling of a single request), even if they're spread across multiple machines or processes.
 
-- **[Metrics](/dotnet/core/diagnostics/metrics)**: Metrics expose the performance and health characteristics of an app as simple numerical values. As a result, they have low performance overhead and many services configure them as always-on telemetry.  This also makes them suitable for triggering alerts when potential problems are detected.
+- **[Metrics](/dotnet/core/diagnostics/metrics)**: Metrics expose the performance and health characteristics of an app as simple numerical values. As a result, they have low performance overhead and many services configure them as always-on telemetry. This also makes them suitable for triggering alerts when potential problems are detected.
 
 Together, these types of telemetry allow you to gain insights into your application's behavior and performance using various monitoring and analysis tools. Depending on the backing service, some components may only support some of these features.
 
