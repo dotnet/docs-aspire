@@ -37,6 +37,7 @@ jobs:
         env:
           ImportOptions__ApiKeys__GitHubToken: ${{ secrets.GITHUB_TOKEN }}
           ImportOptions__ApiKeys__OSPOKey: ${{ secrets.OSPO_KEY }}
+          ImportOptions__ApiKeys__QuestKey: ${{ secrets.QUEST_KEY }}
         with:
           org: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
@@ -50,6 +51,7 @@ jobs:
         env:
           ImportOptions__ApiKeys__GitHubToken: ${{ secrets.GITHUB_TOKEN }}
           ImportOptions__ApiKeys__OSPOKey: ${{ secrets.OSPO_KEY }}
+          ImportOptions__ApiKeys__QuestKey: ${{ secrets.QUEST_KEY }}
         with:
           org: ${{ github.repository_owner }}
           repo: ${{ github.repository }}
