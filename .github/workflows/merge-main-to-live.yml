@@ -6,7 +6,7 @@ on:
       reason:
         description: "The reason for running the workflow"
         required: true
-        default: "Update that can't wait for the scheduled daily run."
+        default: "Need to update live now, before daily scheduled run."
   schedule:
     # Run at midnight every day
     - cron: "0 0 * * *"
