@@ -1,0 +1,45 @@
+name: go-live
+
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "The reason for running the workflow"
+        required: true
+        default: "Manual run"
+  schedule:
+    # Run at midnight every day
+    - cron: "0 0 * * *"
+
+jobs:
+  go-live:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Create pull request
+        uses: actions/github-script@e69ef5462fd455e02edcaf4dd7708eda96b9eda0
+        with:
+          script: |
+            // Get the octokit client
+            const { octokit } = github;
+
+            // Get the owner and repo from the context
+            const { owner, repo } = context.repo;
+
+            // Create a pull request from main to live
+            await octokit.pulls.create({
+                owner,
+                repo,
+                head: 'main',
+                base: 'live',
+                title: 'Merge `main` into `live`',
+                body: '🤖 Please don\'t squash-merge this PR.',
+            });
