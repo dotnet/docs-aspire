@@ -88,7 +88,7 @@ Before deploying a .NET Aspire application with `azd`, the repository/path conta
 1. After scanning, `azd` prompts you to confirm that it found the correct .NET project containing the .NET Aspire app's _AppHost_ code. After checking the path, select the "Confirm and continue initializing my app" option.
 
     :::image type="content" source="media/azd-prompt-confirm-path.png" alt-text="Screenshot of `azd` confirming the detected location of the .NET Aspire application.":::
-    
+
     Once the path to the AppHost is confirmed `azd` will analyze the .NET Aspire app model defined
     in the AppHost and prompt which of the projects referenced in the app model should be exposed
     via a public endpoint. For the starter application template only the `webfrontend` should be

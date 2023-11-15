@@ -9,6 +9,7 @@
         },
         // Disabled as word wrapping can cause many diffs
         "MD013": false,
+        "MD023": false,
         // Currently broken with custom tab solution
         "MD024": false,
         // Currently broken with custom tab solution
@@ -65,6 +66,12 @@
         "MD051": false
     },
     "ignores": [
-        ".github/"
+        ".github/",
+        "LICENSE*",
+        "README.md",
+        "CODE_OF_CONDUCT.md",
+        "CONTRIBUTING.md",
+        "SECURITY.md",
+        "ThirdPartyNotices.md"
     ]
 }
