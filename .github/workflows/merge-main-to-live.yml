@@ -6,7 +6,7 @@ on:
       reason:
         description: "The reason for running the workflow"
         required: true
-        default: "Manual run"
+        default: "Update that can't wait for the scheduled daily run."
   schedule:
     # Run at midnight every day
     - cron: "0 0 * * *"
@@ -24,18 +24,21 @@ jobs:
         with:
           ref: main
 
+      - name: "Print manual run reason"
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          echo 'Reason: ${{ github.event.inputs.reason }}'
+
       - name: Create pull request
         uses: actions/github-script@e69ef5462fd455e02edcaf4dd7708eda96b9eda0
         with:
+          retries: 3
           script: |
-            // Get the octokit client
-            const { octokit } = github;
-
             // Get the owner and repo from the context
             const { owner, repo } = context.repo;
 
             // Create a pull request from main to live
-            await octokit.pulls.create({
+            await github.rest.pulls.create({
                 owner,
                 repo,
                 head: 'main',
