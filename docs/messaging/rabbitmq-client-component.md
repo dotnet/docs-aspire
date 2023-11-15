@@ -2,7 +2,7 @@
 title: .NET Aspire RabbitMQ component
 description: Learn how to use the .NET Aspire RabbitMQ client message-broker component.
 ms.topic: how-to
-ms.date: 11/11/2023
+ms.date: 11/15/2023
 ---
 
 # .NET Aspire RabbitMQ component
@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the `AddRabbitMQ` extension method to register an `IConnection` for use via the dependency injection container. The method takes a connection name parameter.
+In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddRabbitMQ%2A> extension method to register an `IConnection` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddRabbitMQ("messaging");
@@ -107,7 +107,7 @@ builder.AddRabbitMQ(
 
 ## Orchestration
 
-In your orchestrator project, register a RabbitMQ container and consume the connection using the following methods:
+In your orchestrator project, register a RabbitMQ container and consume the connection using the following methods, such as <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQContainer%2A>:
 
 ```csharp
 // Service registration
@@ -118,13 +118,13 @@ builder.AddProject<Projects.ExampleProject>()
     .WithReference(messaging);
 ```
 
-The `WithReference` method configures a connection in the `ExampleProject` project named `messaging`.
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `messaging`.
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
 The .NET Aspire RabbitMQ component handles the following:
 
-- Adds the health check when `RabbitMQClientSettings.HealthChecks` is `true`, which attempts to connect to and create a channel on the RabbitMQ server.
+- Adds the health check when <xref:Aspire.RabbitMQ.Client.RabbitMQClientSettings.HealthChecks?displayProperty=nameWithType> is `true`, which attempts to connect to and create a channel on the RabbitMQ server.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]

@@ -2,12 +2,12 @@
 title: .NET Aspire StackExchange Redis distributed caching component
 description: This article describes the .NET Aspire StackExchange Redis distributed caching component features and capabilities
 ms.topic: how-to
-ms.date: 11/10/2023
+ms.date: 11/15/2023
 ---
 
 # .NET Aspire StackExchange Redis distributed caching component
 
-In this article, you learn how to use the .NET Aspire StackExchange Redis distributed caching component. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache]<https://stackexchange.github.io/StackExchange.Redis/Basics>)provider for connecting to [Redis](https://redis.io/) server. It enables corresponding health checks, logging and telemetry.
+In this article, you learn how to use the .NET Aspire StackExchange Redis distributed caching component. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache]<https://stackexchange.github.io/StackExchange.Redis/Basics>) provider for connecting to [Redis](https://redis.io/) server. It enables corresponding health checks, logging and telemetry.
 
 ## Get started
 
@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the `AddRedisDistributedCache` extension to register the required services for distributed caching and add a <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use via the dependency injection container.
+In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddRedisDistributedCache%2A> extension to register the required services for distributed caching and add a <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use via the dependency injection container.
 
 ```csharp
 builder.AddRedisDistributedCache("cache");
@@ -73,7 +73,7 @@ For more information on how to format this connection string, see the [StackExch
 
 ### Use configuration providers
 
-The .NET Aspire StackExchange Redis distributed caching component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `StackExchangeRedisSettings` from configuration by using the `Aspire:StackExchange:Redis` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire StackExchange Redis distributed caching component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.StackExchange.Redis.StackExchangeRedisSettings> from configuration by using the `Aspire:StackExchange:Redis` key. Example `appsettings.json` that configures some of the options:
 
 ```json
 {
@@ -112,7 +112,7 @@ builder.AddRedisDistributedCache(
 
 ## Orchestration
 
-In your orchestrator project, register the .NET Aspire Stack Exchange Redis component and consume the service using the following methods:
+In your orchestrator project, register the .NET Aspire Stack Exchange Redis component and consume the service using the following methods, such as <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedisContainer%2A>:
 
 ```csharp
 // Service registration 
@@ -123,7 +123,7 @@ builder.AddProject<Projects.ExampleProject>()
     .WithReference(redis)
 ```
 
-The `WithReference` method configures a connection in the `ExampleProject` project named `redis`. In the _Program.cs_ file of `ExampleProject`, the Redis connection can be consumed using:
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `redis`. In the _Program.cs_ file of `ExampleProject`, the Redis connection can be consumed using:
 
 ```csharp
 builder.AddRedisDistributedCache("cache");

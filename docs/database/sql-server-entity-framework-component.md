@@ -2,14 +2,14 @@
 title: .NET Aspire SqlServer Entity Framework Core component
 description: This article describes the .NET Aspire SQL Server Entity Framework Core component.
 ms.topic: how-to
-ms.date: 11/11/2023
+ms.date: 11/15/2023
 ---
 
 # .NET Aspire SqlServer Entity Framework Core component
 
 In this article, you learn how to use the .NET Aspire SqlServer Entity Framework Core component. The `Aspire.Microsoft.EntityFrameworkCore.SqlServer` library is used to:
 
-- Registers [EntityFrameworkCore](/ef/core/) <xref:System.Data.Entity.DbContext> service for connecting to a SQL database.
+- Registers [EntityFrameworkCore](/ef/core/) <xref:Microsoft.EntityFrameworkCore.DbContext> service for connecting to a SQL database.
 - Automatically configures the following:
   - Connection pooling to efficiently managed HTTP requests and database connections
   - Health checks, logging and telemetry to improve app monitoring and diagnostics
@@ -41,10 +41,10 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the `AddSqlServerEntityFrameworkDBContext` extension to register a `DbContext` for use via the dependency injection container.
+In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension to register a `DbContext` for use via the dependency injection container.
 
 ```csharp
-builder.AddSqlServerEntityFrameworkDBContext<YourDbContext>();
+builder.AddSqlServerDbContext<YourDbContext>("sql");
 ```
 
 To retrieve `YourDbContext` object from a service:
@@ -62,7 +62,7 @@ The .NET Aspire SQL Server Entity Framework Core component provides multiple con
 
 ### Use configuration providers
 
-The .NET Aspire SQL Server Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `MicrosoftEntityFrameworkCoreSqlServerSettings` from configuration files such as _appsettings.json_ by using the `Aspire:SqlServer:EntityFrameworkCore:SqlClient` key. If you have set up your configurations in the `Aspire:SqlServer:EntityFrameworkCore:SqlClient` section you can just call the method without passing any parameter.
+The .NET Aspire SQL Server Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings> from configuration files such as _appsettings.json_ by using the `Aspire:SqlServer:EntityFrameworkCore:SqlClient` key. If you have set up your configurations in the `Aspire:SqlServer:EntityFrameworkCore:SqlClient` section you can just call the method without passing any parameter.
 
 The following is an example of an _appsettings.json_ file that configures some of the available options:
 
@@ -89,7 +89,8 @@ The following is an example of an _appsettings.json_ file that configures some o
 You can also pass the `Action<MicrosoftEntityFrameworkCoreSqlServerSettings>` delegate to set up some or all the options inline, for example to turn off the `Metrics`:
 
 ```csharp
-builder.AddSqlServerEntityFrameworkDBContext<YourDbContext>(
+builder.AddSqlServerDbContext<YourDbContext>(
+    "sql",
     static settings =>
         settings.ConnectionString = "YOUR_CONNECTIONSTRING");
 ```
@@ -120,10 +121,10 @@ If you want to register more than one `DbContext` with different configuration, 
 }
 ```
 
-Then calling the `AddSqlServerEntityFrameworkDBContext` method with `AnotherDbContext` type parameter would load the settings from `Aspire:Microsoft:EntityFrameworkCore:SqlServer:AnotherDbContext` section.
+Then calling the `AddSqlServerDbContext` method with `AnotherDbContext` type parameter would load the settings from `Aspire:Microsoft:EntityFrameworkCore:SqlServer:AnotherDbContext` section.
 
 ```csharp
-builder.AddSqlServerEntityFrameworkDBContext<AnotherDbContext>();
+builder.AddSqlServerDbContext<AnotherDbContext>("another-sql");
 ```
 
 ### Configuration options
@@ -142,7 +143,7 @@ Here are the configurable options with corresponding default values:
 
 ## Orchestration
 
-In your AppHost project, register a SqlServer container and consume the connection using the following methods:
+In your AppHost project, register a SqlServer container and consume the connection using the following methods, such as <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServerContainer%2A>:
 
 ```csharp
 var sql = builder.AddSqlServerContainer("sql").AddDatabase("sqldata");
@@ -151,7 +152,7 @@ var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(sql);
 ```
 
-The `WithReference` method configures a connection in the `MyService` project named `sqldata`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `MyService` project named `sqldata`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
 
 ```csharp
 builder.AddSqlServerDbContext<MyDbContext>("sqldata");
@@ -161,7 +162,7 @@ builder.AddSqlServerDbContext<MyDbContext>("sqldata");
 
 By default, the .NET Aspire Sql Server Entity Framework Core component handles the following:
 
-- Adds the [`DbContextHealthCheck`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/blob/master/src/HealthChecks.NpgSql/NpgSqlHealthCheck.cs), which calls EF Core's `CanConnectAsync` method. The name of the health check is the name of the `TContext` type.
+- Adds the [`DbContextHealthCheck`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/blob/master/src/HealthChecks.NpgSql/NpgSqlHealthCheck.cs), which calls EF Core's <xref:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.CanConnectAsync%2A> method. The name of the health check is the name of the `TContext` type.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]

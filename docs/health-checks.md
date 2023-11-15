@@ -3,7 +3,6 @@ title: .NET Aspire health checks
 description: Explore .NET Aspire health checks
 ms.date: 11/11/2023
 ms.topic: quickstart
-ms.prod: dotnet
 ---
 
 # Health checks in .NET Aspire

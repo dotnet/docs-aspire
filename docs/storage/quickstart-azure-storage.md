@@ -1,9 +1,8 @@
 ---
 title: Connect an ASP.NET Core app to .NET Aspire storage components
 description: Learn how to connect an ASP.NET Core app to .NET Aspire storage components.
-ms.date: 11/11/2023
+ms.date: 11/15/2023
 ms.topic: quickstart
-ms.prod: dotnet
 ---
 
 # Tutorial: Connect an ASP.NET Core app to .NET Aspire storage components
@@ -12,8 +11,8 @@ Cloud-native apps often require scalable storage solutions that provide capabili
 
 > [!div class="checklist"]
 >
-> - Create a basic .NET app that is set up to use .NET Aspire Components
-> - Add .NET Aspire Components to connect to multiple storage services
+> - Create a basic .NET app that is set up to use .NET Aspire components
+> - Add .NET Aspire components to connect to multiple storage services
 > - Configure and use .NET Aspire Component features to send and receive data
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
@@ -77,10 +76,10 @@ Next, add a Worker Service project to the solution to retrieve and process messa
 Visual Studio adds the project to your solution and updates the _Program.cs_ file of the `AspireStorage.AppHost` project with a new line of code:
 
 ```csharp
-builder.AddProject<AspireStorage.AppHost.Projects.AspireStorageWorker>();
+builder.AddProject<Projects.AspireStorageWorker>();
 ```
 
-Visual Studio tooling added this line of code to register your new project with the `CloudApplicationBuilder` object, which enables orchestration features you'll explore later.
+Visual Studio tooling added this line of code to register your new project with the <xref:Aspire.Hosting.IDistributedApplicationBuilder> object, which enables orchestration features you'll explore later.
 
 The completed solution structure should resemble the following:
 
@@ -88,14 +87,14 @@ The completed solution structure should resemble the following:
 
 ## Add the .NET Aspire components to the Blazor app
 
-Add the [Aspire Azure Blob Storage](/aspire/storage/aspire-azure-storage-blobs) and [Aspire Azure Queue Storage](/aspire/storage/aspire-azure-storage-queues) component packages to your `AspireStorage` app:
+Add the [.NET Aspire Azure Blob Storage component](azure-storage-blobs-component.md) and [.NET Aspire Azure Queue Storage component](azure-storage-queues-component.md) packages to your `AspireStorage` app:
 
 ```dotnetcli
 dotnet add package Aspire.Azure.Storage.Blobs --prerelease
 dotnet add package Aspire.Azure.Storage.Queues --prerelease
 ```
 
-In the _Program.cs_ file of the `AspireStorage` project, add calls to the `AddAzureBlobService` and `AddAzureQueueService` extension methods. Provide the name of your connection string as a parameter.
+In the _Program.cs_ file of the `AspireStorage` project, add calls to the <xref:Microsoft.Extensions.Hosting.AspireBlobStorageExtensions.AddAzureBlobService%2A> and <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueService%2A> extension methods. Provide the name of your connection string as a parameter.
 
 ```csharp
 builder.AddAzureBlobService("blobConnection");
@@ -118,13 +117,13 @@ In the _appsettings.json file of the `AspireStorage` project, add the correspond
 
 ## Add the .NET Aspire component to the Worker Service
 
-The worker service handles pulling messages off of the Azure Storage queue for processing. Add the [Aspire Azure Queue Storage](/aspire/storage/aspire-azure-storage-queues) component package to your `AspireStorage.Worker` app:
+The worker service handles pulling messages off of the Azure Storage queue for processing. Add the [.NET Aspire Azure Queue Storage component](azure-storage-queues-component.md) component package to your `AspireStorage.Worker` app:
 
 ```dotnetcli
 dotnet add package Aspire.Azure.Storage.Queues --prerelease
 ```
 
-In the _Program.cs_ file of the `AspireStorage.Worker` project, add a call to the `AddAzureQueueService` extension methods:
+In the _Program.cs_ file of the `AspireStorage.Worker` project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueService%2A> extension methods:
 
 ```csharp
 builder.AddAzureQueueService("queueConnection");
@@ -132,7 +131,7 @@ builder.AddAzureQueueService("queueConnection");
 
 This method handles the following tasks:
 
-- Register a `QueueServiceClient` with the DI container for connecting to Azure Storage Queues.
+- Register a <xref:Azure.Storage.Queues.QueueServiceClient> with the DI container for connecting to Azure Storage Queues.
 - Automatically enable corresponding health checks, logging, and telemetry for the respective services.
 
 In the _appsettings.json file of the `AspireStorage.Worker` project, add the corresponding connection string information:
@@ -181,9 +180,9 @@ Use following Razor and bootstrap markup to create a basic form:
 
 @code {
     [SupplyParameterFromForm(FormName = "Tickets")]
-    private SupportTicket Ticket { get; set; } = new SupportTicket();
+    private SupportTicket Ticket { get; set; } = new();
 
-    private async void HandleValidSubmit()
+    private async Task HandleValidSubmit()
     {
         var docsContainer = blobClient.GetBlobContainerClient("fileuploads");
 
@@ -209,7 +208,7 @@ Use following Razor and bootstrap markup to create a basic form:
 
 ## Process the items in the queue
 
-When a new message is placed on the `tickets` queue, the worker service should retrieve, process, and delete the message. Update the `Worker.cs` class to match the following code:
+When a new message is placed on the `tickets` queue, the worker service should retrieve, process, and delete the message. Update the _Worker.cs_ class to match the following code:
 
 ```csharp
 using Azure.Storage.Queues;
