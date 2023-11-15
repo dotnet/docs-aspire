@@ -185,6 +185,10 @@ indent_brace_style = Allman
 [*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,nativeproj,locproj}]
 indent_size = 2
 
+# YAML files
+[*.{yml,yaml}]
+indent_size = 2
+
 # Xml build files
 [*.builds]
 indent_size = 2

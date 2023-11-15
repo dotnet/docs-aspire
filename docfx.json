@@ -37,7 +37,8 @@
     "resource": [
       {
         "files": [
-          "images/**",
+          "docs/media/**",
+          "**/media/**",
           "**/*.png",
           "**/*.svg",
           "**/*.jpg",
@@ -97,7 +98,7 @@
         "docs/**.*": ".NET Aspire feedback"
       },
       "open_source_feedback_productDescription": {
-        "docs/**.*": "The .NET Aspire documentation is open source. Provide feedback here."
+        "docs/**.*": "The .NET Aspire documentation is open source and we love community feedback. Please provide feedback by posting an issue on GitHub, or product feedback here:"
       },
       "open_source_feedback_issueTitle": {
         "docs/**.*": ""

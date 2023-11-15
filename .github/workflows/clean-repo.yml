@@ -21,12 +21,12 @@ jobs:
         id: clean-repo-step
         uses: dotnet/docs-tools/cleanrepo/CleanRepo@main
         with:
-          docfx_directory: '.'
-          articles_directory: 'docs'
-          media_directory: 'docs'
-          snippets_directory: '.' # This includes the ./samples and ./docs directories, which both contain snippets.
-          includes_directory: 'includes'
-          url_base_path: '/dotnet'
+          docfx_directory: "."
+          articles_directory: "docs"
+          media_directory: "docs"
+          snippets_directory: "." # This includes the ./samples and ./docs directories, which both contain snippets.
+          includes_directory: "includes"
+          url_base_path: "/dotnet"
           delete: true
           orphaned_articles: true
           orphaned_images: true
@@ -36,12 +36,12 @@ jobs:
           replace_redirects: true
           relative_links: true
           remove_hops: true
-        
+
       # Create the PR for the work done by the "clean repo" tool
       - name: create-pull-request
         uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38
         with:
           branch: create-cleanrepo-pull-request/patch
           title: "Monthly chores: Automated repo cleanup"
-          commit-message: 'Bot 🤖 generated CleanRepo tool run'
+          commit-message: "Bot 🤖 generated CleanRepo tool run"
           body: "Find and delete orphaned articles, images, snippets, and include files. Remove redirection hops, update redirected links in articles, and replace site-relative links with file-relative links. Contributes to #..."
