@@ -70,7 +70,7 @@ var basket = builder.AddProject<Projects.BasketService>("basket")
 
 ### Named endpoints in Kubernetes using DNS SRV
 
-When deploying to Kubernetes, the DNS SRV service endpoint resolver can be used to resolve named endpoints. For example, the following resource definition will result in a DNS SRV record being created for an endpoint named "http" and an endpoint named "dashboard", both on the service named "basket".
+When deploying to Kubernetes, the DNS SRV service endpoint resolver can be used to resolve named endpoints. For example, the following resource definition will result in a DNS SRV record being created for an endpoint named "default" and an endpoint named "dashboard", both on the service named "basket".
 
 ```yml
 apiVersion: v1
@@ -82,7 +82,7 @@ spec:
     name: basket-service
   clusterIP: None
   ports:
-  - name: http
+  - name: default
     port: 8080
   - name: dashboard
     port: 8888
