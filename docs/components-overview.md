@@ -139,7 +139,7 @@ public class ExampleService(
 }
 ```
 
-For more information, see <xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute>.
+For more information, see [Dependency injection in .NET: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
 
 ## Cloud-native features
 
