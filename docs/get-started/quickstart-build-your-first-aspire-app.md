@@ -1,7 +1,7 @@
 ---
 title: Build your first .NET Aspire app
 description: Learn how to build your first .NET Aspire app using the .NET Aspire Started Application template.
-ms.date: 11/11/2023
+ms.date: 11/15/2023
 ms.topic: quickstart
 ms.prod: dotnet
 ---
@@ -52,12 +52,12 @@ Consider the _Program.cs_ file of the _AspireSample.AppHost_ project:
 
 If you've used either the [.NET Generic Host](/dotnet/core/extensions/generic-host.md) or the [ASP.NET Core Web Host](/aspnet/core/fundamentals/host/web-host) before, the app host programming model and builder pattern should be familiar to you. The preceding code:
 
-- Creates an `IDistributedApplicationBuilder` instance from calling `DistributedApplication.CreateBuilder(args)`.
-- Calls `AddRedisContainer` with the name `"cache"` to add a Redis container to the app, assigning the returned value to a variable named `cache`, which is of type `IResourceBuilder<RedisContainerResource>`.
-- Calls `AddProject` given the generic-type parameter with the project's `IServiceMetadata` details, adding the `AspireSample.ApiService` project to the application model. This is one of the fundamental building blocks of .NET Aspire, and it's used to configure service discovery and communication between the projects in your app. The name argument `"apiservice"` is used to identify the project in the application model, and used later by projects that want to communicate with it.
-- Calls `AddProject` again, this time adding the `AspireSample.Web` project to the application model. It also chains multiple calls to `WithReference` passing the `cache` and `apiservice` variables. The `WithReference` API is another fundamental API of .NET Aspire, which injects either service discovery information or connection string configuration into the project being added to the application model.
+- Creates an <xref:Aspire.Hosting.IDistributedApplicationBuilder> instance from calling <xref:Aspire.Hosting.DistributedApplication.CreateBuilder?displayProperty=nameWithType>.
+- Calls <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedisContainer%2A> with the name `"cache"` to add a Redis container to the app, assigning the returned value to a variable named `cache`, which is of type `IResourceBuilder<RedisContainerResource>`.
+- Calls <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> given the generic-type parameter with the project's <xref:Aspire.Hosting.IServiceMetadata> details, adding the `AspireSample.ApiService` project to the application model. This is one of the fundamental building blocks of .NET Aspire, and it's used to configure service discovery and communication between the projects in your app. The name argument `"apiservice"` is used to identify the project in the application model, and used later by projects that want to communicate with it.
+- Calls `AddProject` again, this time adding the `AspireSample.Web` project to the application model. It also chains multiple calls to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> passing the `cache` and `apiservice` variables. The `WithReference` API is another fundamental API of .NET Aspire, which injects either service discovery information or connection string configuration into the project being added to the application model.
 
-Finally, the app is built and run. The `Run` method is provided by the .NET Aspire SDK, and is responsible for starting the app and all of its dependencies. For more information, see [.NET Aspire orchestration overview](../app-host-overview.md).
+Finally, the app is built and run. The <xref:Aspire.Hosting.DistributedApplication.Run?displayProperty=nameWithType> method is provided by the .NET Aspire SDK, and is responsible for starting the app and all of its dependencies. For more information, see [.NET Aspire orchestration overview](../app-host-overview.md).
 
 ### .NET Aspire service defaults project
 
@@ -71,7 +71,7 @@ The service defaults project exposes an extension method on the <xref:Microsoft.
 
 .NET Aspire provides orchestration features to assist with configuring connections and communication between the different parts of your app. The _AspireSample.AppHost_ project added the _AspireSample.ApiService_ and _AspireSample.Web_ projects to the application model. It also declared their names as `"webfrontend"` for Blazor front end, `"apiservice"` for the API project reference. Additionally, a Redis container resource labelled `"redis"` was added. These names are used to configure service discovery and communication between the projects in your app.
 
-The front end app defines a typed `HttpClient` that's used to communicate with the API project.
+The front end app defines a typed <xref:System.Net.Http.HttpClient> that's used to communicate with the API project.
 
 :::code source="snippets/quickstart/AspireSample/AspireSample.Web/WeatherApiClient.cs":::
 
@@ -82,7 +82,7 @@ The `HttpClient` is configured to use service discovery, consider the following 
 The preceding code:
 
 - Calls `AddServiceDefaults`, configuring the shared defaults for the app.
-- Calls `AddRedisOutputCache` with the same `connectionName` that was used when adding the Redis container `"cache"` to the application model. This configures the app to use Redis for output caching.
+- Calls <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> with the same `connectionName` that was used when adding the Redis container `"cache"` to the application model. This configures the app to use Redis for output caching.
 - Calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> and configures the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> to be `"http://apiservice"`. This is the name that was used when adding the API project to the application model, and with service discovery configured, it will automatically resolve to the correct address to the API project.
 
 For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fundamentals/networking/http/httpclient.md) class.

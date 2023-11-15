@@ -3,7 +3,6 @@ title: .NET Aspire service discovery
 description: Understand essential service discovery concepts in .NET Aspire.
 ms.date: 11/15/2023
 ms.topic: quickstart
-ms.prod: dotnet
 ---
 
 # .NET Aspire service discovery
@@ -25,7 +24,7 @@ var frontend = builder.AddProject<Projects.MyFrontend>("frontend")
                       .WithReference(catalog);
 ```
 
-In the preceding example, the _frontend_ project references the _catalog_ project and the _basket_ project. The two `WithReference` calls instruct the .NET Aspire application to pass service discovery information for the referenced projects (_catalog_, and _basket_) into the _frontend_ project.
+In the preceding example, the _frontend_ project references the _catalog_ project and the _basket_ project. The two <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> calls instruct the .NET Aspire application to pass service discovery information for the referenced projects (_catalog_, and _basket_) into the _frontend_ project.
 
 ## Named endpoints
 
@@ -94,6 +93,8 @@ To configure a service to resolve the "dashboard" endpoint on the "basket" servi
 builder.Services.AddServiceDiscoveryCore();
 builder.Services.AddDnsSrvServiceEndPointResolver();
 ```
+
+For more information, see <xref:Microsoft.Extensions.Hosting.HostingExtensions.AddServiceDiscoveryCore%2A> and <xref:Microsoft.Extensions.Hosting.HostingExtensions.AddDnsSrvServiceEndPointResolver%2A>.
 
 The special port name "default" is used to specify the default endpoint, resolved using the URI `http://basket`.
 

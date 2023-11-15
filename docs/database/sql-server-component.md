@@ -2,7 +2,7 @@
 title: .NET Aspire SqlServer component
 description: This article describes the .NET Aspire SqlServer component.
 ms.topic: how-to
-ms.date: 11/11/2023
+ms.date: 11/15/2023
 ---
 
 # .NET Aspire SqlServer component
@@ -42,10 +42,10 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the `AddSqlServerSqlClientConfig` extension to register a <xref:System.Data.SqlClient.SqlConnection> for use via the dependency injection container.
+In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerSqlClientExtensions.AddSqlServerClient%2A> extension to register a <xref:System.Data.SqlClient.SqlConnection> for use via the dependency injection container.
 
 ```csharp
-builder.AddSqlServerSqlClientConfig();
+builder.AddSqlServerClient("sql");
 ```
 
 To retrieve your `SqlConnection` object an example service:

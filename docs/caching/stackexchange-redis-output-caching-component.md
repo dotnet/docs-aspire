@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis output caching Component
 description: This article describes the .NET Aspire StackExchange Redis output caching component features and capabilities
 ms.topic: how-to
-ms.date: 11/09/2023
+ms.date: 11/15/2023
 ---
 
 # .NET Aspire StackExchange Redis output caching component
@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the `AddRedisOutputCache` extension to register the required services for output caching.
+In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> extension to register the required services for output caching.
 
 ```csharp
 builder.AddRedisOutputCache();
@@ -81,7 +81,7 @@ For more information on how to format this connection string, see the [StackExch
 
 ### Use configuration providers
 
-The .NET Aspire StackExchange Redis output caching component supports <xref:Microsoft.Extensions.Configuration>. It loads the `StackExchangeRedisSettings` from configuration by using the `Aspire:StackExchange:Redis` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire StackExchange Redis output caching component supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.StackExchange.Redis.StackExchangeRedisSettings> from configuration by using the `Aspire:StackExchange:Redis` key. Example _appsettings.json_ that configures some of the options:
 
 ```json
 {
@@ -110,7 +110,7 @@ builder.AddRedisOutputCache(
     static settings => settings.HealthChecks = false);
 ```
 
-You can also set up the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration.html#configuration-options) using the `Action<ConfigurationOptions> configureOptions` delegate parameter of the `AddRedisOutputCache` method. For example to set the connection timeout:
+You can also set up the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration.html#configuration-options) using the `Action<ConfigurationOptions> configureOptions` delegate parameter of the <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> method. For example to set the connection timeout:
 
 ```csharp
 builder.AddRedisOutputCache(
@@ -131,7 +131,7 @@ var basket = builder.AddProject<Projects.ExampleProject>()
     .WithReference(redis)
 ```
 
-The `WithReference` method configures a connection in the `ExampleProject` project named `redis`. In the _Program.cs_ file of `ExampleProject`, the Redis connection can be consumed using:
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `redis`. In the _Program.cs_ file of `ExampleProject`, the Redis connection can be consumed using:
 
 ```csharp
 builder.AddRedisOutputCache("messaging");

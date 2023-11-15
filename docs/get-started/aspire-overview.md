@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire overview
 description: Learn about .NET Aspire, an application stack designed to improve the experience of building cloud-native applications.
-ms.date: 11/11/2023
+ms.date: 11/15/2023
 ---
 
 # .NET Aspire overview
@@ -12,7 +12,7 @@ ms.date: 11/11/2023
 
 - [**Orchestration**](#orchestration): .NET Aspire provides features for running and connecting multi-project applications and their dependencies.
 - [**Components**](#net-aspire-components): .NET Aspire components are NuGet packages for commonly used services, such as Redis or Postgres, with standardized interfaces ensuring they connect consistently and seamlessly with your app.
-- [**Tooling**](#project-templates-and-tooling): .NET Aspire comes with project templates and tooling experiences for Visual Studio and the `dotnet` CLI help you create and interact with .NET Aspire apps.
+- [**Tooling**](#project-templates-and-tooling): .NET Aspire comes with project templates and tooling experiences for Visual Studio and the [dotnet CLI](/dotnet/core/tools/) help you create and interact with .NET Aspire apps.
 
 ## Orchestration
 
@@ -52,7 +52,7 @@ For example, consider the following code using the .NET Aspire Service Bus compo
 builder.AddAzureServiceBus("servicebus");
 ```
 
-The `AddAzureServiceBus` method handles the following concerns:
+The <xref:Microsoft.Extensions.Hosting.AspireServiceBusExtensions.AddAzureServiceBus%2A> method handles the following concerns:
 
 - Registers a <xref:Azure.Messaging.ServiceBus.ServiceBusClient> as a singleton in the DI container for connecting to Azure Service Bus.
 - Applies `ServiceBusClient` configurations either inline through code or through configuration.
@@ -71,7 +71,7 @@ A full list of available components is detailed on the [.NET Aspire components](
 There are currently two .NET Aspire starter templates available to help you get started with this structure:
 
 - **.NET Aspire Application**: A basic starter template that only includes the **AspireSample.AppHost** and **AspireSample.ServiceDefaults** projects. This template is designed to only provide the essentials for you to build off of.
-- **.NET Aspire Starter Application**: This template includes the **AspireSample.AppHost** and **AspireSample.ServiceDefaults** projects, but also includes boilerplate UI and API projects. These projects are preconfigured with service discovery and other basic examples of common .NET Aspire functionality.
+- **.NET Aspire Starter Application**: This template includes the **AspireSample.AppHost** and **AspireSample.ServiceDefaults** projects, but also includes boilerplate UI and API projects. These projects are pre-configured with service discovery and other basic examples of common .NET Aspire functionality.
 
 For more information, see [.NET Aspire setup and tooling](../setup-tooling.md).
 

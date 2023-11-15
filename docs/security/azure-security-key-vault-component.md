@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Key Vault component
 description: Lean about the .NET Aspire Azure Key Vault component.
 ms.topic: how-to
-ms.date: 11/11/2023
+ms.date: 11/15/2023
 ---
 
 # .NET Aspire Azure Key Vault component
@@ -32,13 +32,13 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the `AddAzureKeyVaultSecrets` extension to register a `SecretClient` for use via the dependency injection container.
+In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireKeyVaultExtensions.AddAzureKeyVaultSecrets%2A> extension to register a `SecretClient` for use via the dependency injection container.
 
 ```csharp
-builder.AddAzureKeyVaultSecrets();
+builder.AddAzureKeyVaultSecrets("secrets");
 ```
 
-You can then retrieve the `SecretClient` instance using dependency injection. For example, to retrieve the client from a service:
+You can then retrieve the <xref:Azure.Security.KeyVault.Secrets.SecretClient> instance using dependency injection. For example, to retrieve the client from a service:
 
 ```csharp
 public class ExampleService(SecretClient client)
@@ -53,7 +53,7 @@ The .NET Aspire Azure Key Vault component provides multiple options to configure
 
 ### Use configuration providers
 
-The .NET Aspire Azure Key Vault component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureSecurityKeyVaultSettings` from _appsettings.json_ or other configuration files using `Aspire:Azure:Security:KeyVault` key.
+The .NET Aspire Azure Key Vault component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Security.KeyVault.AzureSecurityKeyVaultSettings> from _appsettings.json_ or other configuration files using `Aspire:Azure:Security:KeyVault` key.
 
 ```json
 {
@@ -78,10 +78,11 @@ If you have set up your configurations in the `Aspire:Azure:Security:KeyVault` s
 
 ### Use inline delegates
 
-You can also pass the `Action<AzureStorageBlobsSettings>` delegate to set up some or all the options inline, for example to set the `Namespace`:
+You can also pass the `Action<AzureSecurityKeyVaultSettings>` delegate to set up some or all the options inline, for example to set the `Namespace`:
 
 ```csharp
 builder.AddAzureKeyVaultSecrets(
+    "secrets",
     static settings => settings.ServiceUri = new Uri("YOUR_SERVICEURI"));
 ```
 
@@ -89,7 +90,7 @@ You can also set up the <xref:Azure.Security.KeyVault.Secrets.SecretClientOption
 
 ```csharp
 builder.AddAzureKeyVaultSecrets(
-    null, 
+    "secrets",
     static clientBuilder =>
         clientBuilder.ConfigureOptions(
             static options => options.DisableChallengeResourceVerification = true))
@@ -128,7 +129,7 @@ The corresponding configuration JSON is defined as follows:
 
 ### Configuration options
 
-The following configurable options are exposed through the `SecretClientSettings` class:
+The following configurable options are exposed through the <xref:Aspire.Azure.Security.KeyVault.AzureSecurityKeyVaultSettings> class:
 
 | Name | Description |
 |--|--|

@@ -37,8 +37,7 @@
     "resource": [
       {
         "files": [
-          "docs/media/**",
-          "**/media/**",
+          "**/docs/media/dotnet-aspire-logo.png",
           "**/*.png",
           "**/*.svg",
           "**/*.jpg",

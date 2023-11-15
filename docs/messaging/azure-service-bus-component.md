@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Service Bus component
 description: This article describes the .NET Aspire Azure Service Bus component features and capabilities
 ms.topic: how-to
-ms.date: 11/11/2023
+ms.date: 11/15/2023
 ---
 
 # .NET Aspire Azure Service Bus component
@@ -40,10 +40,10 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the `AddAzureServiceBus` extension to register a `ServiceBusClient` for use via the dependency injection container.
+In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireServiceBusExtensions.AddAzureServiceBus%2A> extension to register a `ServiceBusClient` for use via the dependency injection container.
 
 ```csharp
-builder.AddAzureServiceBus();
+builder.AddAzureServiceBus("messaging");
 ```
 
 To retrieve the configured <xref:Azure.Messaging.ServiceBus.ServiceBusClient> instance using dependency injection, require it as a constructor parameter. For example, to retrieve the client from an example service:
@@ -61,20 +61,27 @@ The .NET Aspire Service Bus component provides multiple options to configure the
 
 ### Use configuration providers
 
-The Service Bus component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureMessagingServiceBusSettings` from _appsettings.json_ or other configuration files using `Aspire.Azure.Messaging.ServiceBus` key.
+The Service Bus component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureMessagingServiceBusSettings` from _appsettings.json_ or other configuration files using `Aspire:Azure:Messaging:ServiceBus` key.
 
 ```json
 {
-  "Aspire.Azure.Messaging.ServiceBus": {
-    "Namespace": "YOUR_SERVICE_BUS_NAMESPACE",
-    "ClientOptions": {
-      "Identifier": "CLIENT_ID"
+  "Aspire": {
+    "Azure": {
+      "Messaging": {
+        "ServiceBus": {
+          "HealthChecks": false,
+          "Tracing": true,
+          "ClientOptions": {
+            "Identifier": "CLIENT_ID"
+          }
+        }
+      }
     }
   }
 }
 ```
 
-If you have set up your configurations in the `Aspire.Azure.Messaging.ServiceBus` section of your _appsettings.json_ file you can just call the method `AddAzureServiceBus` without passing any parameters.
+If you have set up your configurations in the `Aspire:Azure:Messaging:ServiceBus` section of your _appsettings.json_ file you can just call the method `AddAzureServiceBus` without passing any parameters.
 
 ### Use inline delegates
 
@@ -82,6 +89,7 @@ You can also pass the `Action<AzureMessagingServiceBusSettings>` delegate to set
 
 ```csharp
 builder.AddAzureServiceBus(
+    "messaging",
     static settings => settings.Namespace = "YOUR_SERVICE_BUS_NAMESPACE");
 ```
 
@@ -89,7 +97,7 @@ You can also set up the [ServiceBusClientOptions](/dotnet/api/azure.messaging.se
 
 ```csharp
 builder.AddAzureServiceBus(
-    null,
+    "messaging",
     static clientBuilder =>
         clientBuilder.ConfigureOptions(
             static options => options.Identifier = "CLIENT_ID"));
@@ -107,11 +115,15 @@ The corresponding configuration JSON is defined as follows:
 
 ```json
 {
-  "Aspire.Azure.Messaging.ServiceBus": {
-    "INSTANCE_NAME": {
-      "Namespace": "YOUR_SERVICE_BUS_NAMESPACE",
-      "ClientOptions": {
-        "Identifier": "CLIENT_ID"
+  "Aspire": {
+    "Azure": {
+      "Messaging": {
+        "INSTANCE_NAME": {
+          "Namespace": "YOUR_SERVICE_BUS_NAMESPACE",
+          "ClientOptions": {
+            "Identifier": "CLIENT_ID"
+          }
+        }
       }
     }
   }
@@ -120,7 +132,7 @@ The corresponding configuration JSON is defined as follows:
 
 ### Configuration options
 
-The following configurable options are exposed through the `AzureMessagingServiceBusSettings` class:
+The following configurable options are exposed through the <xref:Aspire.Azure.Messaging.ServiceBus.AzureMessagingServiceBusSettings> class:
 
 | Name               | Description                                                         |
 |--------------------|---------------------------------------------------------------------|

@@ -2,7 +2,7 @@
 title: .NET Aspire Microsoft Entity Framework Core Cosmos DB component
 description: This article describes the .NET Aspire Microsoft Entity Framework Core Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 11/11/2023
+ms.date: 11/15/2023
 ---
 
 # .NET Aspire Microsoft Entity Framework Core Cosmos DB component
@@ -32,13 +32,13 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the `AddCosmosDbContext` extension to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container.
+In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureEFCoreCosmosDBExtensions.AddCosmosDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container.
 
 ```csharp
 builder.AddCosmosDbContext<MyDbContext>("cosmosdb");
 ```
 
-You can then retrieve the `DbContext` instance using dependency injection. For example, to retrieve the client from a service:
+You can then retrieve the <xref:Microsoft.EntityFrameworkCore.DbContext> instance using dependency injection. For example, to retrieve the client from a service:
 
 ```csharp
 public class ExampleService(MyDbContext context)
@@ -55,7 +55,7 @@ The .NET Aspire Microsoft Entity Framework Core Cosmos DB component provides mul
 
 ### Use a connection string
 
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddAzureCosmosDB`:
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddCosmosDbContext`:
 
 ```csharp
 builder.AddCosmosDbContext<MyDbContext>("CosmosConnection");
@@ -75,7 +75,7 @@ For more information, see the [ConnectionString documentation](/azure/cosmos-db/
 
 ### Use configuration providers
 
-The .NET Aspire Microsoft Entity Framework Core Cosmos DB component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureCosmosDBSettings` from _appsettings.json_ or other configuration files using `Aspire:Microsoft:EntityFrameworkCore:Cosmos` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire Microsoft Entity Framework Core Cosmos DB component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.Azure.Cosmos.AzureCosmosDBSettings> from _appsettings.json_ or other configuration files using `Aspire:Microsoft:EntityFrameworkCore:Cosmos` key. Example `appsettings.json` that configures some of the options:
 
 ```json
 {
@@ -94,7 +94,7 @@ The .NET Aspire Microsoft Entity Framework Core Cosmos DB component supports <xr
 
 ### Use inline delegates
 
-You can also pass the `Action<EntityFrameworkCoreCosmosDBSettings> configureSettings` delegate to set up some or all the options inline, for example to disable tracing from code:
+You can also pass the `Action<EntityFrameworkCoreCosmosDBSettings> configureSettings` delegate to set up some or all the <xref:Aspire.Microsoft.EntityFrameworkCore.Cosmos.EntityFrameworkCoreCosmosDBSettings> options inline, for example to disable tracing from code:
 
 ```csharp
 builder.AddCosmosDbContext<MyDbContext>(
@@ -116,7 +116,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
     .WithReference(cosmosdbService);
 ```
 
-The `AddAzureCosmosDB` method will read connection information from the AppHost's configuration under the `ConnectionStrings:cosmosdb` config key. The `WithReference` method passes that connection information into a connection string named `cosmosdb` in the `ExampleProject` project. In the `Program.cs` file of `cosmosdbService`, the connection can be consumed using:
+The <xref:Microsoft.Extensions.Hosting.AspireAzureCosmosDBExtensions.AddAzureCosmosDB%2A> method will read connection information from the AppHost's configuration under the `ConnectionStrings:cosmosdb` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named `cosmosdb` in the `ExampleProject` project. In the _Program.cs_ file of `cosmosdbService`, the connection can be consumed using:
 
 ```csharp
 builder.AddAzureCosmosDB("cosmosdb");

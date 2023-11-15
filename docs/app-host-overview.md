@@ -1,9 +1,8 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs to express resource references.
-ms.date: 11/13/2023
+ms.date: 11/15/2023
 ms.topic: overview
-ms.prod: dotnet
 ---
 
 # .NET Aspire orchestration overview
@@ -19,7 +18,7 @@ Before continuing, consider some common terminology used in .NET Aspire:
 
 ## Define the app model
 
-.NET Aspire empowers you to seamlessly build, provision, deploy, configure, test, run, and observe your cloud application. This is achieved through the utilization of an _app model_ that outlines the resources in your app and their relationships. These resources encompass projects, executables, containers, as well as external services and cloud resources that your app depends on. Within every .NET Aspire app, there is a designated [App host project](#app-host-project), where the app model is precisely defined using methods available on the `IDistributedApplicationBuilder`. This builder is obtained by invoking `DistributedApplication.CreateBuilder(args)`.
+.NET Aspire empowers you to seamlessly build, provision, deploy, configure, test, run, and observe your cloud application. This is achieved through the utilization of an _app model_ that outlines the resources in your app and their relationships. These resources encompass projects, executables, containers, as well as external services and cloud resources that your app depends on. Within every .NET Aspire app, there is a designated [App host project](#app-host-project), where the app model is precisely defined using methods available on the <xref:Aspire.Hosting.IDistributedApplicationBuilder>. This builder is obtained by invoking <xref:Aspire.Hosting.DistributedApplication.CreateBuilder%2A?displayProperty=nameWithType>.
 
 ## App host project
 
@@ -51,13 +50,13 @@ Each resource must be uniquely named. This diagram shows each resource and the r
 
 | Method | Resource type | Description |
 |--|--|--|
-| `AddProject` | `ProjectResource` | A .NET project, for example ASP.NET Core web apps. |
-| `AddContainer` | `ContainerResource` | A container image, such as a Docker image. |
-| `AddExecutable` | `ExecutableResource` | An executable file. |
+| <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> | <xref:Aspire.Hosting.ApplicationModel.ProjectResource> | A .NET project, for example ASP.NET Core web apps. |
+| <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.ContainerResource> | A container image, such as a Docker image. |
+| <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> | <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> | An executable file. |
 
 Project resources are .NET projects that are part of the app model. When you add a project reference to the app host project, the app host generates a type in the `Projects` namespace for each referenced project.
 
-To add a project to the app model, use the `AddProject` method:
+To add a project to the app model, use the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> method:
 
 ```csharp
 // Adds the project "apiservice" of type "Projects.AspireApp_ApiService".
@@ -75,7 +74,7 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
     .WithReference(cache);
 ```
 
-The "webfrontend" project resource uses `WithReference` to add a dependency on the "cache" container resource. These dependencies can represent connection strings or service discovery information. In the preceding example, an environment variable is injected into the "webfronend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the webfrontend can use to connect to redis via the .NET Aspire Redis component, for example, `ConnectionStrings__cache="localhost:6379"`.
+The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a dependency on the "cache" container resource. These dependencies can represent connection strings or service discovery information. In the preceding example, an environment variable is injected into the "webfronend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the webfrontend can use to connect to redis via the .NET Aspire Redis component, for example, `ConnectionStrings__cache="localhost:6379"`.
 
 ### Connection string and endpoint references
 
@@ -100,7 +99,7 @@ Project-to-project references are handled differently than resources that have w
 
 Adding a reference to the "apiservice" project results in service discovery environment variables being added to the front-end. This is because typically, project to project communication occurs over HTTP/gRPC. For more information, see [.NET Aspire service discovery](service-discovery/overview.md).
 
-It's possible to get specific endpoints from a container or executable using the `GetEndpoint` method:
+It's possible to get specific endpoints from a container or executable using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithServiceBinding%2A> and calling the <xref:Aspire.Hosting.ApplicationModel.IResourceWithBindings.GetEndpoint%2A>:
 
 ```csharp
 var customContainer = builder.AddContainer("myapp", "mycustomcontainer")
@@ -118,34 +117,34 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 
 ### APIs for adding and expressing resources
 
-Beyond the base resource types, `ProjectResource`, `ContainerResource`, and `ExecutableResource`, .NET Aspire provides extension methods to add common resources to your app model. The following table lists the methods and their corresponding resource types:
+Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectResource>, <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, and <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, .NET Aspire provides extension methods to add common resources to your app model. The following table lists the methods and their corresponding resource types:
 
 **Cloud-agnostic resources available in the [📦 Aspire.Hosting](https://www.nuget.org/packages/Aspire.Hosting) NuGet package (available by default in .NET Aspire templates with the AppHost project):**
 
 | Method | Resource type | Description |
 |--|--|--|
-| `AddPostgresConnection` | `PostgresConnectionResource` | Adds a Postgres connection resource. |
-| `AddPostgresContainer` | `PostgresContainerResource` | Adds a Postgres container resource. |
-| `AddPostgresContainer(...).AddDatabase` | `PostgresDatabaseResource` | Adds a Postgres database resource. |
-| `AddRabbitMQConnection` | `RabbitMQConnectionResource` | Adds a RabbitMQ connection resource. |
-| `AddRabbitMQContainer` | `RabbitMQContainerResource` | Adds a RabbitMQ container resource. |
-| `AddRedisContainer` | `RedisContainerResource` | Adds a Redis container resource. |
-| `AddSqlServerConnection` | `SqlServerConnectionResource` | Adds a SQL Server connection resource. |
-| `AddSqlServerContainer` | `SqlServerContainerResource` | Adds a SQL Server container resource. |
-| `AddSqlServerContainer(...).AddDatabase` | `SqlServerDatabaseResource` | Adds a SQL Server database resource. |
+| <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresConnection%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresConnectionResource> | Adds a Postgres connection resource. |
+| <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresContainerResource> | Adds a Postgres container resource. |
+| `AddPostgresContainer(...).`<xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresDatabaseResource> | Adds a Postgres database resource. |
+| <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQConnection%2A> | <xref:Aspire.Hosting.ApplicationModel.RabbitMQConnectionResource> | Adds a RabbitMQ connection resource. |
+| <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.RabbitMQContainerResource> | Adds a RabbitMQ container resource. |
+| <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedisContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.RedisContainerResource> | Adds a Redis container resource. |
+| <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServerConnection%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerConnectionResource> | Adds a SQL Server connection resource. |
+| <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServerContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerContainerResource> | Adds a SQL Server container resource. |
+| `AddSqlServerContainer(...).`<xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource> | Adds a SQL Server database resource. |
 
 **Azure specific resources available in the [📦 Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure) NuGet package:**
 
 | Method | Resource type | Description |
 |--|--|--|
-| `AddAzureStorage` | `AzureStorageResource` | Adds an Azure Storage resource. |
-| `AddAzureStorage(...).AddBlobs` | `AzureBlobStorageResource` | Adds an Azure Blob Storage resource. |
-| `AddAzureStorage(...).AddQueues` | `AzureQueueStorageResource` | Adds an Azure Queue Storage resource. |
-| `AddAzureStorage(...).AddTables` | `AzureTableStorageResource` | Adds an Azure Table Storage resource. |
-| `AddAzureCosmosDB` | `AzureCosmosDBResource` | Adds an Azure Cosmos DB resource. |
-| `AddAzureKeyVault` | `AzureKeyVaultResource` | Adds an Azure Key Vault resource. |
-| `AddAzureRedisResource` | `AzureRedisResource` | Adds an Azure Redis resource. |
-| `AddAzureServiceBus` | `AzureServiceBusResource` | Adds an Azure Service Bus resource. |
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureStorage%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureStorageResource> | Adds an Azure Storage resource. |
+| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureResourceExtensions.AddBlobs%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureBlobStorageResource> | Adds an Azure Blob Storage resource. |
+| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureResourceExtensions.AddQueues%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureQueueStorageResource> | Adds an Azure Queue Storage resource. |
+| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureResourceExtensions.AddTables%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureTableStorageResource> | Adds an Azure Table Storage resource. |
+| <xref:Aspire.Hosting.AzureCosmosDBCloudApplicationBuilderExtensions.AddAzureCosmosDB%2A> | <xref:Aspire.Hosting.Azure.Data.Cosmos.AzureCosmosDBResource> | Adds an Azure Cosmos DB resource. |
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureKeyVault%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureKeyVaultResource> | Adds an Azure Key Vault resource. |
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureRedis%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureRedisResource> | Adds an Azure Redis resource. |
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureServiceBus%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureServiceBusResource> | Adds an Azure Service Bus resource. |
 
 ## See also
 
