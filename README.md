@@ -6,7 +6,6 @@
 [![GitHub issues-closed](https://img.shields.io/github/issues-closed/dotnet/docs-aspire.svg)](https://GitHub.com/dotnet/docs-aspire/issues?q=is%3Aissue+is%3Aclosed)
 [![GitHub pulls-opened](https://img.shields.io/github/issues-pr/dotnet/docs-aspire.svg)](https://GitHub.com/dotnet/docs-aspire/pulls?q=is%3Aissue+is%3Aopened)
 [![GitHub pulls-merged](https://img.shields.io/github/issues-search/dotnet/docs-aspire?label=merged%20pull%20requests&query=is%3Apr%20is%3Aclosed%20is%3Amerged&color=darkviolet)](https://github.com/dotnet/docs-aspire/pulls?q=is%3Apr+is%3Aclosed+is%3Amerged)
-[![GitHub pulls-unmerged](https://img.shields.io/github/issues-search/dotnet/docs-aspire?label=unmerged%20pull%20requests&query=is%3Apr%20is%3Aclosed%20is%3Aunmerged&color=red)](https://github.com/dotnet/docs-aspire/pulls?q=is%3Apr+is%3Aclosed+is%3Aunmerged)
 
 This repository contains the conceptual documentation for .NET Aspire. The [.NET Aspire documentation site](https://learn.microsoft.com/dotnet/aspire).
 
@@ -37,3 +36,5 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 - [![Snippets 5000](https://github.com/dotnet/docs-aspire/actions/workflows/snippets5000.yml/badge.svg)](https://github.com/dotnet/docs-aspire/actions/workflows/snippets5000.yml):  Custom .NET build validation, locates code impacted by a PR, and builds.
 - [![Target supported version](https://github.com/dotnet/docs-aspire/actions/workflows/version-sweep.yml/badge.svg)](https://github.com/dotnet/docs-aspire/actions/workflows/version-sweep.yml):  Runs monthly, creating issues on projects that target .NET versions that are out of support.
 - [![Update dependabot.yml](https://github.com/dotnet/docs-aspire/actions/workflows/dependabot-bot.yml/badge.svg)](https://github.com/dotnet/docs-aspire/actions/workflows/dependabot-bot.yml):  Automatically updates the `dependabot` configuration weekly, but only if required.
+- [![quest import](https://github.com/dotnet/docs-aspire/actions/workflows/quest.yml/badge.svg)](https://github.com/dotnet/docs-aspire/actions/workflows/quest.yml): Automatically synchronizes issues with Quest (Azure DevOps).
+- [![bulk quest import](https://github.com/dotnet/docs-aspire/actions/workflows/quest-bulk.yml/badge.svg)](https://github.com/dotnet/docs-aspire/actions/workflows/quest-bulk.yml): Manual bulk import of issues into Quest (Azure DevOps).
