@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire service discovery
 description: Understand essential service discovery concepts in .NET Aspire.
-ms.date: 11/11/2023
+ms.date: 11/15/2023
 ms.topic: quickstart
 ms.prod: dotnet
 ---
@@ -82,7 +82,7 @@ spec:
     name: basket-service
   clusterIP: None
   ports:
-  - name: default
+  - name: http
     port: 8080
   - name: dashboard
     port: 8888
