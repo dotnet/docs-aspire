@@ -7,7 +7,7 @@ ms.date: 11/15/2023
 
 # .NET Aspire PostgreSQL Entity Framework Core component
 
-In this article, you learn how to use the .NET Aspire PostgreSQL Entity Framework Core component. The `Aspire.Npgsql.EntityFrameworkCore.PostgreSQL` library is used to register a <xref:Microsoft.EntityFrameworkCore.DbContext> as a singleton in the DI container for connecting to Azure Cosmos DB. It also enables corresponding health checks, logging and telemetry.
+In this article, you learn how to use the .NET Aspire PostgreSQL Entity Framework Core component. The `Aspire.Npgsql.EntityFrameworkCore.PostgreSQL` library is used to register a <xref:Microsoft.EntityFrameworkCore.DbContext> service for connecting to a PostgreSQL database. It also enables corresponding health checks, logging and telemetry.
 
 PostgreSQL is a powerful, open source, object-relational database system. The .NET Aspire PostgreSQL Entity Framework component streamlines essential database context and connection configurations for you by handling the following concerns:
 
