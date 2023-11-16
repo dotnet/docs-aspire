@@ -69,9 +69,9 @@ The following is an example of an _appsettings.json_ file that configures some o
 ```json
 {
   "Aspire": {
-    "SqlServer": {
+    "Microsoft": {
       "EntityFrameworkCore": {
-        "SqlClient": {
+        "SqlServer": {
           "ConnectionString": "YOUR_CONNECTIONSTRING",
           "DbContextPooling": true,
           "HealthChecks": false,
@@ -102,14 +102,14 @@ If you want to register more than one `DbContext` with different configuration, 
 ```json
 {
   "Aspire": {
-    "SqlServer": {
+    "Microsoft": {
       "EntityFrameworkCore": {
-        "SqlClient": {
-          "ConnectionString": "YOUR_CONNECTIONSTRING",
-          "DbContextPooling": true,
-          "HealthChecks": false,
-          "Tracing": false,
-          "Metrics": true,
+          "SqlServer": {
+            "ConnectionString": "YOUR_CONNECTIONSTRING",
+            "DbContextPooling": true,
+            "HealthChecks": false,
+            "Tracing": false,
+            "Metrics": true,
           "AnotherDbContext": {
             "ConnectionString": "AnotherDbContext_CONNECTIONSTRING",
             "Tracing": true
