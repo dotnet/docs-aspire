@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Queue Storage component
 description: This article describes the .NET Aspire Azure Queue Storage component features and capabilities
 ms.topic: how-to
-ms.date: 11/11/2023
+ms.date: 11/15/2023
 ---
 
 # .NET Aspire Azure Queue Storage component
@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the `AddAzureQueueService` extension to register a `QueueServiceClient` for use via the dependency injection container.
+In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueService%2A> extension to register a `QueueServiceClient` for use via the dependency injection container.
 
 ```csharp
 builder.AddAzureQueueService("queue");
@@ -59,7 +59,7 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 
 #### Service URI
 
-The recommended approach is to use a `ServiceUri`, which works with the `AzureStorageQueuesSettings.Credential` property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential?displayProperty=fullName> is used.
+The recommended approach is to use a `ServiceUri`, which works with the <xref:Aspire.Azure.Storage.Queues.AzureStorageQueuesSettings.Credential?displayProperty=nameWithType> property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential?displayProperty=fullName> is used.
 
 ```json
 {
@@ -87,7 +87,7 @@ The .NET Aspire Azure Queue Storage component provides multiple options to confi
 
 ### Use configuration providers
 
-The .NET Aspire Azure Queue Storage component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureStorageQueuesSettings` and `QueueClientOptions` from configuration by using the `Aspire:Azure:Storage:Queues` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire Azure Queue Storage component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Storage.Queues.AzureStorageQueuesSettings> and <xref:Azure.Storage.Queues.QueueClientOptions> from configuration by using the `Aspire:Azure:Storage:Queues` key. Example _appsettings.json_ that configures some of the options:
 
 ```json
 {
@@ -119,7 +119,7 @@ builder.AddAzureQueueService(
     settings => settings.HealthChecks = false);
 ```
 
-You can also set up the `QueueClientOptions` using `Action<IAzureClientBuilder<QueueServiceClient, QueueClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureQueueService` method. For example, to set the first part of user-agent headers for all requests issues by this client:
+You can also set up the `QueueClientOptions` using `Action<IAzureClientBuilder<QueueServiceClient, QueueClientOptions>> configureClientBuilder` delegate, the second parameter of the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueService%2A> method. For example, to set the first part of user-agent headers for all requests issues by this client:
 
 ```csharp
 builder.AddAzureQueueService(
@@ -131,7 +131,7 @@ builder.AddAzureQueueService(
 
 ## Orchestration
 
-In your orchestrator project, add a Storage Queue connection and consume the connection using the following methods:
+In your orchestrator project, add a Storage Queue connection and consume the connection using the following methods, such as <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureStorage%2A>:
 
 ```csharp
 var queue = builder.AddAzureStorage("storage")
@@ -141,7 +141,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
     .WithReference(queue);
 ```
 
-The `AddQueues` method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:queue` config key. The `WithReference` method passes that connection information into a connection string named queue in the `ExampleProject` project. In the `Program.cs` file of `ExampleProject`, the connection can be consumed using:
+The <xref:Aspire.Hosting.AzureResourceExtensions.AddQueues%2A> method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:queue` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named queue in the `ExampleProject` project. In the _Program.cs_ file of `ExampleProject`, the connection can be consumed using:
 
 ```csharp
 builder.AddAzureQueueService("queue");

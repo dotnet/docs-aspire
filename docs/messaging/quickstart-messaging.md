@@ -1,18 +1,17 @@
 ---
 title: Use .NET Aspire messaging components in ASP.NET Core
-description: Learn how to connect an ASP.NET Core app to messaging services using .NET Aspire Components.
-ms.date: 11/11/2023
+description: Learn how to connect an ASP.NET Core app to messaging services using .NET Aspire components.
+ms.date: 11/15/2023
 ms.topic: quickstart
-ms.prod: dotnet
 ---
 
 # Tutorial: Use .NET Aspire messaging components in ASP.NET Core
 
-Cloud-native apps often require scalable messaging solutions that provide capabilities such as messaging queues and topics and subscriptions. .NET Aspire Components simplify the process of connecting to various messaging providers, such as Azure Service Bus. In this quickstart, you'll create an ASP.NET Core app that uses .NET Aspire Components to connect to Azure Service Bus to create a notification system. Submitted messages will be sent to a Service Bus topic for consumption by subscribers. You'll learn how to:
+Cloud-native apps often require scalable messaging solutions that provide capabilities such as messaging queues and topics and subscriptions. .NET Aspire components simplify the process of connecting to various messaging providers, such as Azure Service Bus. In this quickstart, you'll create an ASP.NET Core app that uses .NET Aspire components to connect to Azure Service Bus to create a notification system. Submitted messages will be sent to a Service Bus topic for consumption by subscribers. You'll learn how to:
 
 > [!div class="checklist"]
 >
-> - Create a basic .NET app that is set up to use .NET Aspire Components
+> - Create a basic .NET app that is set up to use .NET Aspire components
 > - Add an .NET Aspire component to connect to Azure Service Bus
 > - Configure and use .NET Aspire component features to send and receive data
 
@@ -95,7 +94,7 @@ Visual Studio adds the project to your solution and updates the _Program.cs_ fil
 builder.AddProject<Projects.AspireMessaging_WorkerService>("aspiremessaging.workerservice");
 ```
 
-Visual Studio tooling added this line of code to register your new project with the `DistributedApplicationBuilder` object, which enables orchestration features you'll explore later.
+Visual Studio tooling added this line of code to register your new project with the <xref:Aspire.Hosting.IDistributedApplicationBuilder> object, which enables orchestration features you'll explore later.
 
 The completed solution structure should resemble the following:
 
@@ -114,6 +113,8 @@ In the _Program.cs_ file of the `AspireMessaging` Razor Pages project, add a cal
 ```csharp
 builder.AddAzureServiceBus("serviceBusConnection");
 ```
+
+For more information, see <xref:Microsoft.Extensions.Hosting.AspireServiceBusExtensions.AddAzureServiceBus%2A>.
 
 This method accomplishes the following tasks:
 
@@ -157,7 +158,7 @@ app.MapPost("/notify", static async (ServiceBusClient client, string message) =>
 {
     var sender = client.CreateSender("notifications");
 
-    // create a batch 
+    // Create a batch
     using ServiceBusMessageBatch messageBatch =
         await sender.CreateMessageBatchAsync();
 
@@ -229,22 +230,15 @@ In the _appsettings.json file of the `AspireMessaging.Worker` project, add the c
 When a new message is placed on the `messages` queue, the worker service should retrieve, process, and delete the message. Update the _Worker.cs_ class to match the following code:
 
 ```csharp
-public class Worker : BackgroundService
+public class Worker(
+    ILogger<Worker> logger,
+    ServiceBusClient client) : BackgroundService
 {
-    private readonly ILogger<Worker> _logger;
-    private readonly ServiceBusClient _client;
-
-    public Worker(ILogger<Worker> logger, ServiceBusClient client)
-    {
-        _logger = logger;
-        _client = client;
-    }
-
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            var processor = _client.CreateProcessor(
+            var processor = client.CreateProcessor(
                 "notifications",
                 "mobile",
                 new ServiceBusProcessorOptions());
@@ -258,29 +252,30 @@ public class Worker : BackgroundService
             // start processing 
             await processor.StartProcessingAsync();
 
-            Console.WriteLine("Wait for a minute and then press any key to end the processing");
+            logger.LogInformation(
+                "Wait for a minute and then press any key to end the processing");
             Console.ReadKey();
 
-            // stop processing 
-            Console.WriteLine("\nStopping the receiver...");
+            // stop processing
+            logger.LogInformation("\nStopping the receiver...");
             await processor.StopProcessingAsync();
-            Console.WriteLine("Stopped receiving messages");
+            logger.LogInformation("Stopped receiving messages");
         }
     }
 
     async Task MessageHandler(ProcessMessageEventArgs args)
     {
         string body = args.Message.Body.ToString();
-        Console.WriteLine($"Received: {body} from subscription.");
+        logger.LogInformation("Received: {Body} from subscription.", body);
 
-        // complete the message. messages is deleted from the subscription. 
+        // complete the message. messages is deleted from the subscription.
         await args.CompleteMessageAsync(args.Message);
     }
 
     // handle any errors when receiving messages
     Task ErrorHandler(ProcessErrorEventArgs args)
     {
-        Console.WriteLine(args.Exception.ToString());
+        logger.LogError(args.Exception, args.Exception.Message);
         return Task.CompletedTask;
     }
 }

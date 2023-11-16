@@ -1,7 +1,7 @@
 ---
 title: Add .NET Aspire to an existing .NET 8 microservices app
 description: Learn how to add .NET Aspire components, orchestration, and tooling to a microservices app that already exists.
-ms.date: 11/11/2023
+ms.date: 11/15/2023
 ms.topic: how-to
 ---
 
@@ -67,11 +67,13 @@ Visual Studio add two new projects to the solution:
 - **eShopLite.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator is set as the _Startup project_, and it depends on the **eShopLite.Store** project.
 - **eShopLite.ServiceDefaults**: A .NET Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../telemetry.md).
 
-In the **eShopLite.AppHost** project, open the **Program.cs** file. Notice this line of code, which registers the **Store** project in the .NET Aspire orchestration:
+In the **eShopLite.AppHost** project, open the _Program.cs_ file. Notice this line of code, which registers the **Store** project in the .NET Aspire orchestration:
 
 ```csharp
 builder.AddProject<Projects.Store>("store");
 ```
+
+For more information, see <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>.
 
 To add the **Products** project to .NET Aspire:
 

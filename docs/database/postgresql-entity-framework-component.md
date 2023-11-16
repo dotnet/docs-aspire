@@ -2,12 +2,12 @@
 title: .NET Aspire PostgreSQL Entity Framework Core component
 description: This article describes the .NET Aspire PostgreSQL Entity Framework Core component.
 ms.topic: how-to
-ms.date: 11/11/2023
+ms.date: 11/15/2023
 ---
 
 # .NET Aspire PostgreSQL Entity Framework Core component
 
-In this article, you learn how to use the .NET Aspire PostgreSQL Entity Framework Core component. The `Aspire.Npgsql.EntityFrameworkCore.PostgreSQL` library is used to register a <xref:System.Data.Entity.DbContext>as a singleton in the DI container for connecting to Azure Cosmos DB. It also enables corresponding health checks, logging and telemetry.
+In this article, you learn how to use the .NET Aspire PostgreSQL Entity Framework Core component. The `Aspire.Npgsql.EntityFrameworkCore.PostgreSQL` library is used to register a <xref:Microsoft.EntityFrameworkCore.DbContext> as a singleton in the DI container for connecting to Azure Cosmos DB. It also enables corresponding health checks, logging and telemetry.
 
 PostgreSQL is a powerful, open source, object-relational database system. The .NET Aspire PostgreSQL Entity Framework component streamlines essential database context and connection configurations for you by handling the following concerns:
 
@@ -45,10 +45,10 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the `AddEntityFrameworkCorePostgreSQL` extension to register a <xref:System.Data.Entity.DbContext> for use via the dependency injection container.
+In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext> for use via the dependency injection container.
 
 ```csharp
-builder.AddEntityFrameworkCorePostgreSQL<YourDbContext>();
+builder.AddNpgsqlDbContext<YourDbContext>("db");
 ```
 
 You can then retrieve the `YourDbContext` instance using dependency injection. For example, to retrieve the client from a service:
@@ -66,7 +66,7 @@ The .NET Aspire PostgreSQL Entity Framework Core component provides multiple con
 
 ### Use configuration providers
 
-The .NET Aspire PostgreSQL Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `NpgsqlEntityFrameworkCorePostgreSQLSettings` from configuration files such as _appsettings.json_ by using the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` key. If you have set up your configurations in the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` section you can just call the method without passing any parameter.
+The .NET Aspire PostgreSQL Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Npgsql.EntityFrameworkCore.PostgreSQL.NpgsqlEntityFrameworkCorePostgreSQLSettings> from configuration files such as _appsettings.json_ by using the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` key. If you have set up your configurations in the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` section you can just call the method without passing any parameter.
 
 The following example shows an _appsettings.json_ file that configures some of the available options:
 
@@ -92,13 +92,14 @@ The following example shows an _appsettings.json_ file that configures some of t
 You can also pass the `Action<NpgsqlEntityFrameworkCorePostgreSQLSettings>` delegate to set up some or all the options inline, for example to set the `ConnectionString`:
 
 ```csharp
-builder.AddEntityFrameworkCorePostgreSQL<YourDbContext>(
+builder.AddNpgsqlDbContext<YourDbContext>(
+    "db",
     static settings => settings.ConnectionString = "YOUR_CONNECTIONSTRING");
 ```
 
 ### Configure multiple DBContext classes
 
-If you want to register more than one `DbContext` with different configuration, you can use `$"Aspire:Npgsql:EntityFrameworkCore:PostgreSQL:{typeof(TContext).Name}"` configuration section name. The json configuration would look like:
+If you want to register more than one <xref:Microsoft.EntityFrameworkCore.DbContext> with different configuration, you can use `$"Aspire:Npgsql:EntityFrameworkCore:PostgreSQL:{typeof(TContext).Name}"` configuration section name. The json configuration would look like:
 
 ```json
 {
@@ -121,10 +122,10 @@ If you want to register more than one `DbContext` with different configuration, 
 }
 ```
 
-Then calling the `AddEntityFrameworkCorePostgreSQL` method with `AnotherDbContext` type parameter would load the settings from `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL:AnotherDbContext` section.
+Then calling the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A> method with `AnotherDbContext` type parameter would load the settings from `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL:AnotherDbContext` section.
 
 ```csharp
-builder.AddEntityFrameworkCorePostgreSQL<AnotherDbContext>();
+builder.AddNpgsqlDbContext<AnotherDbContext>();
 ```
 
 ### Configuration options
@@ -156,7 +157,7 @@ var catalog = builder.AddProject<Projects.CatalogService>()
 
 By default, the .NET Aspire PostgreSQL Entity Framework Core components handles the following:
 
-- Adds the [`DbContextHealthCheck`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/blob/master/src/HealthChecks.NpgSql/NpgSqlHealthCheck.cs), which calls EF Core's `CanConnectAsync` method. The name of the health check is the name of the `TContext` type.
+- Adds the [`DbContextHealthCheck`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/blob/master/src/HealthChecks.NpgSql/NpgSqlHealthCheck.cs), which calls EF Core's <xref:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.CanConnectAsync%2A> method. The name of the health check is the name of the `TContext` type.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]

@@ -1,9 +1,8 @@
 ---
 title: .NET Aspire components overview
 description: Explore the fundamental concepts of .NET Aspire components and learn how to integrate them into your apps.
-ms.date: 11/11/2023
+ms.date: 11/15/2023
 ms.topic: conceptual
-ms.prod: dotnet
 ---
 
 # .NET Aspire components overview
@@ -55,7 +54,7 @@ The following table lists the .NET Aspire components currently available for use
 
     For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
 
-1. In the _Program.cs_ file of your project, call the `AddNpgsqlDataSource` extension method to register a `NpgsqlDataSource` for use via the dependency injection container. The method expects a connection name parameter.
+1. In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension method to register a `NpgsqlDataSource` for use via the dependency injection container. The method expects a connection name parameter.
 
     ```csharp
     builder.AddNpgsqlDataSource("PostgreSqlConnection");
@@ -77,7 +76,7 @@ The following table lists the .NET Aspire components currently available for use
 1. Inject the `NpgsqlDataSource` object into your controllers or service endpoints to run commands against the database:
 
     ```csharp
-    public class ExampleService(NpgsqlDataSource npgContext)
+    public class ExampleService(NpgsqlDataSource dataSource)
     {
     }
     ```
@@ -114,7 +113,7 @@ builder.AddNpgsqlDataSource(
 .NET Aspire components automatically register essential services with the .NET dependency container using the proper scope. This allows key component classes and services to be injected throughout your code. For example, the .NET Aspire PostgreSQL component makes available the `NpgsqlDataSource` to inject into your application layers and run commands against a database:
 
 ```csharp
-public class ExampleService(NpgsqlDataSource npgContext)
+public class ExampleService(NpgsqlDataSource dataSource)
 {
 }
 ```
@@ -131,7 +130,7 @@ builder.AddKeyedNpgsqlDataSource(
     static settings => settings.HealthChecks = false);
 ```
 
-You can then retrieve the registered service using the `FromKeyedServices` attribute:
+You can then retrieve the registered service using the <xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute>:
 
 ```csharp
 public class ExampleService(
@@ -140,7 +139,7 @@ public class ExampleService(
 }
 ```
 
-For more information, see <xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute>.
+For more information, see [Dependency injection in .NET: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
 
 ## Cloud-native features
 

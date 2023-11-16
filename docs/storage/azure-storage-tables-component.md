@@ -1,6 +1,7 @@
 ---
 title: .NET Aspire Azure Data Tables component
 description: This article describes the .NET Aspire Azure Data Tables component features and capabilities.
+ms.date: 11/15/2023
 ms.topic: how-to
 ---
 
@@ -39,10 +40,10 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the `AddAzureTableService` extension to register a `TableServiceClient` for use via the dependency injection container.
+In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireTablesExtensions.AddAzureTableService%2A> extension to register a `TableServiceClient` for use via the dependency injection container.
 
 ```csharp
-builder.AddAzureTableService();
+builder.AddAzureTableService("tables");
 ```
 
 To retrieve the `TableServiceClient` instance using dependency injection, define it as a constructor parameter. Consider the following example service:
@@ -60,7 +61,7 @@ The .NET Aspire Azure Table Storage component provides multiple options to confi
 
 ### Use configuration providers
 
-The .NET Aspire Azure Table Storage component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureDataTablesSettings` from _appsettings.json_ or other configuration files using `Aspire:Azure:Data:Tables` key.
+The .NET Aspire Azure Table Storage component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings> from _appsettings.json_ or other configuration files using `Aspire:Azure:Data:Tables` key.
 
 ```json
 {
@@ -89,14 +90,15 @@ You can also pass the `Action<AzureDataTablesSettings>` delegate to set up some 
 
 ```csharp
 builder.AddAzureTableService(
+    "tables",
     static settings => settings.ServiceUri = new Uri("YOUR_SERVICEURI"));
 ```
 
-You can also set up the `TableClientOptions` using `Action<IAzureClientBuilder<TableServiceClient, TableClientOptions>>` delegate, the second parameter of the `AddAzureTableService` method. For example to set the `TableServiceClient` ID to identify the client:
+You can also set up the <xref:Azure.Data.Tables.TableClientOptions> using `Action<IAzureClientBuilder<TableServiceClient, TableClientOptions>>` delegate, the second parameter of the <xref:Microsoft.Extensions.Hosting.AspireTablesExtensions.AddAzureTableService%2A> method. For example to set the `TableServiceClient` ID to identify the client:
 
 ```csharp
 builder.AddAzureTableService(
-    null,
+    "tables",
     static clientBuilder =>
         clientBuilder.ConfigureOptions(
             static options => options.EnableTenantDiscovery = true));
@@ -104,7 +106,7 @@ builder.AddAzureTableService(
 
 ### Named instances
 
-If you want to add more than one [TableServiceClient](/dotnet/api/azure.data.tables.tableserviceclient) you can use named instances. Load the named configuration section from the json config by calling the `AddAzureTableService` method and passing in the `INSTANCE_NAME`.
+If you want to add more than one <xref:Azure.Data.Tables.TableServiceClient> you can use named instances. Load the named configuration section from the json config by calling the `AddAzureTableService` method and passing in the `INSTANCE_NAME`.
 
 ```csharp
 builder.AddAzureTableService("INSTANCE_NAME");
@@ -134,7 +136,7 @@ The corresponding configuration JSON is defined as follows:
 
 ### Configuration options
 
-The following configurable options are exposed through the `AzureDataTablesSettings` class:
+The following configurable options are exposed through the <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings> class:
 
 | Name | Description |
 |--|--|
@@ -149,12 +151,14 @@ In your orchestrator project, register the Azure Table Storage component and con
 
 ```csharp
 // Service registration 
-var tableStorage = builder.AddAzureTableService("table");
+var tableStorage = builder.AddAzureTableService("tables");
 
 // Service consumption 
 Builder.AddProject<MyApp.ExampleProject>() 
-    .WithAzureTableStorage(tableStorage)
+    .WithReference(tableStorage)
 ```
+
+For more information, see <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A>.
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
