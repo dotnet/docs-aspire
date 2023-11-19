@@ -39,7 +39,7 @@ sections:
       - question: |
           What's the relationship between .NET Aspire and the Azure SDK for .NET?
         answer: |
-          .NET Aspire provides components that rely on the [Azure SDK for .NET](/dotnet/azure/intro), to expose common functionality for storage ([Azure Blog Storage](../storage/azure-storage-blobs-component.md), [Azure Storage Queues](../storage/azure-storage-queues-component.md), and [Azure Table Storage](../storage/azure-storage-tables-component.md)), databases ([Azure Cosmos DB](../database/azure-cosmos-db-component.md) and [Azure Cosmos DB with Entity Framework Core](../database/azure-cosmos-db-entity-framework-component.md)), [messaging](../messaging/azure-service-bus-component.md), and [security](../security/azure-security-key-vault-component.md).
+          .NET Aspire provides components that rely on the [Azure SDK for .NET](/dotnet/azure/intro), to expose common functionality for storage ([Azure Blob Storage](../storage/azure-storage-blobs-component.md), [Azure Storage Queues](../storage/azure-storage-queues-component.md), and [Azure Table Storage](../storage/azure-storage-tables-component.md)), databases ([Azure Cosmos DB](../database/azure-cosmos-db-component.md) and [Azure Cosmos DB with Entity Framework Core](../database/azure-cosmos-db-entity-framework-component.md)), [messaging](../messaging/azure-service-bus-component.md), and [security](../security/azure-security-key-vault-component.md).
       - question: |
           Are worker services supported in .NET Aspire?
         answer: |
