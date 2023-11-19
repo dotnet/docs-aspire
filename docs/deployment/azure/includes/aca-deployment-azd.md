@@ -14,7 +14,7 @@ The process for installing AZD varies based on your operating system, but it is 
 
 ## Create a new AZD environment
 
-Once you've created your .NET Aspire sample project, open your terminal window and `cd` into the root of the solution. Them, execute the command `azd init`. AZD will first inspect the local directory structure to determine the type of app being deployed.
+Once you've created your .NET Aspire sample project, open your terminal window and `cd` into the root of the solution. Then, execute the command `azd init`. AZD will first inspect the local directory structure to determine the type of app being deployed.
 
 :::image type="content" source="../media/aspire-azd-01.png" lightbox="../media/aspire-azd-01.png" alt-text="AZD inspecting the local source tree":::
 
