@@ -194,51 +194,9 @@ Now, you'll create two new files - `infra\provision.bicep` and `infra\provision.
     }
     ```
 
-1. The final code you'll add to _infra/provision.bicep_ will provision containers for the front-end, back-end and the Redis Azure Container App add-on your front-end will use to facilitate output caching.
+1. The final code you'll add to _infra/provision.bicep_ will provision containers for the front-end and the Redis Azure Container App add-on your front-end will use to facilitate output caching.
 
     ```bicep
-    // apiservice - the app's back-end
-    resource apiservice 'Microsoft.App/containerApps@2023-04-01-preview' = {
-        name: 'apiservice'
-        location: location
-        identity: {
-            type: 'UserAssigned'
-            userAssignedIdentities: { '${identity.id}' : {}}
-        }
-        properties: {
-            managedEnvironmentId: containerAppsEnvironment.id
-            configuration: {
-            activeRevisionsMode: 'Single'
-            ingress: {
-                external: true
-                targetPort: 80
-                transport: 'http'
-            }
-            dapr: { enabled: false }
-            registries: [ {
-                server: '${containerRegistryName}.azurecr.io'
-                identity: identity.id
-                } ]
-            }
-            template: {
-                scale: {
-                    minReplicas: 1
-                    maxReplicas: 1
-                }
-                serviceBinds: []
-                containers: [ {
-                    image: helloWorldContainerImage
-                    name: 'apiservice'
-                    env: env
-                    resources: {
-                        cpu: json(containerCpuCoreCount)
-                        memory: containerMemory
-                    }
-                } ]
-            }
-        }
-    }
-
     // web - the app's front end
     resource web 'Microsoft.App/containerApps@2023-04-01-preview' = {
         name: 'web'
