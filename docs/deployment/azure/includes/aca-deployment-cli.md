@@ -135,7 +135,7 @@ You can use the Azure CLI `containerapp up` command to create container apps for
 
 ## Connect the web containner app to the Redis cache
 
-1. Log into the Azure Portal and select **Resource groups** > **<Your resource group>** > **web**.
+1. Log into the Azure Portal and select **Resource groups** > **\<Your resource group\>** > **web**.
 1. In the menu on the left, select **Containers**.
 1. Select the **Bindings** tab, and then select **Edit and deploy**.
 1. Select the **Bindings** tab, select **Add**, and then select **Add-on binding**.
