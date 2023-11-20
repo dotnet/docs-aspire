@@ -41,6 +41,10 @@ sections:
         answer: |
           .NET Aspire provides components that rely on the [Azure SDK for .NET](/dotnet/azure/intro), to expose common functionality for storage ([Azure Blob Storage](../storage/azure-storage-blobs-component.md), [Azure Storage Queues](../storage/azure-storage-queues-component.md), and [Azure Table Storage](../storage/azure-storage-tables-component.md)), databases ([Azure Cosmos DB](../database/azure-cosmos-db-component.md) and [Azure Cosmos DB with Entity Framework Core](../database/azure-cosmos-db-entity-framework-component.md)), [messaging](../messaging/azure-service-bus-component.md), and [security](../security/azure-security-key-vault-component.md).
       - question: |
+          What's the relationship between .NET Aspire and Kubernetes?
+        answer: |
+          Aspire makes it easy to develop cloud-native applications that consist of microservices. Frequently, you deploy your microservices to Kubernetes because that makes them easy to scale. When you deploy an Aspire solution to a Kubernetes cluster, the app model in the [App host project](../app-host-overview.md) defines the relationship between the microservices. This is used to configure containers in Kubernetes. However, Aspire is much more that a container deployment tool. It also provide components that make it simple to use common services, such as Redis or PostgreSQL, and tooling including telemetry and project templates.
+      - question: |
           Are worker services supported in .NET Aspire?
         answer: |
           Due to a deployment related bug, preview 1 of .NET Aspire doesn't support deployment of worker services.
