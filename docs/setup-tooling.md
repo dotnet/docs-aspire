@@ -23,19 +23,19 @@ To work with .NET Aspire, you'll need the following installed locally:
 - [.NET Aspire workload](/dotnet/core/tools/dotnet-workload-install)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - Integrated Developer Environment (IDE) or code editor, such as:
-  - [Visual Studio 2022](https://www.visualstudio.microsoft.com) version 17.9 or higher (Optional)
+  - [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.9 or higher (Optional)
   - [Visual Studio Code](https://code.visualstudio.com/) (Optional)
 
 The .NET Aspire workload installs internal dependencies and makes available other tooling, such as project templates and Visual Studio features. There are two ways to install the .NET Aspire workload. If you prefer to use Visual Studio Code, following the .NET CLI instructions:
 
 # [Visual Studio](#tab/visual-studio)
 
-To install the .NET Aspire workload in Visual Studio 2022, use the Visual Studio installer.
+To install the .NET Aspire workload in Visual Studio 2022 Preview, use the Visual Studio installer.
 
-1. Open the Visual Studio installer.
-1. Select **Modify** next to Visual Studio 2022.
+1. Open the Visual Studio Installer.
+1. Select **Modify** next to Visual Studio 2022 Preview.
 1. Select the **ASP.NET and web development** workload.
-1. On the **Installation details** panel, select **.NET Aspire**.
+1. On the **Installation details** panel, select **.NET Aspire SDK (Preview)**.
 1. Select **Modify** to install the .NET Aspire component.
 
 :::image type="content" source="media/install-aspire-workload-visual-studio.png" lightbox="media/install-aspire-workload-visual-studio.png" alt-text="A screenshot showing how to install the .NET Aspire workload with the Visual Studio installer.":::
