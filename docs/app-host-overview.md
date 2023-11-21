@@ -38,7 +38,7 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
 builder.Build().Run();
 ```
 
-The help visualize the relationship between the app host project and the resources it describes, consider the following diagram:
+To help visualize the relationship between the app host project and the resources it describes, consider the following diagram:
 
 :::image type="content" source="media/app-host-resource-diagram.png" lightbox="media/app-host-resource-diagram.png" alt-text="The relationship between the projects in the .NET Aspire Starter Application template.":::
 
