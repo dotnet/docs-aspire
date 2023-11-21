@@ -10,85 +10,150 @@ ms.topic: include
 
 1. Execute the following command to provision the Azure Container Registry (ACR):
 
-    # [PowerShell](#tab/powershell)
+    ### [PowerShell](#tab/powershell)
 
     ```azurecli
-    az acr create --resource-group $env:RESOURCE_GROUP --name $env:CONTAINER_REGISTRY --sku Basic
+    az acr create --resource-group $env:RESOURCE_GROUP --name $env:CONTAINER_REGISTRY --sku Basic --admin-enabled true
     ```
 
-    # [Bash](#tab/bash)
+    ### [Bash](#tab/bash)
 
     ```azurecli
-    az acr create --resource-group $RESOURCE_GROUP --name $CONTAINER_REGISTRY --sku Basic
-    ```
-
-    ---
-
-1. Execute the following command to create a user-assigned Azure identity. Each of your apps will run as this identity, which will be given access to the ACR instance so the Azure Container Apps hosting your code can securely access your ACR instance and pull containers as they're updated:
-
-    # [PowerShell](#tab/powershell)
-
-    ```azurecli
-    az identity create -g $env:RESOURCE_GROUP -n $env:IDENTITY
-    ```
-
-    # [Bash](#tab/bash)
-
-    ```azurecli
-    az identity create -g $RESOURCE_GROUP -n $IDENTITY
+    az acr create --resource-group $RESOURCE_GROUP --name $CONTAINER_REGISTRY --sku Basic --admin-enabled true
     ```
 
     ---
+
+    > [!NOTE]
+    > Before the next step, ensure that the Docker Desktop engine is running on your local computer.
+
+1. Log into the new container registry:
+
+    ### [PowerShell](#tab/powershell)
+
+    ```azurecli
+    az acr login --name $env:CONTAINER_REGISTRY
+    ```
+
+    ### [Bash](#tab/bash)
+
+    ```azurecli
+    az acr login --name $CONTAINER_REGISTRY
+    ```
 
 ## Create an Azure Container app and containers
 
-You can use the Azure CLI `containerapp up` command to create the required Log Analytics workspace and the Container Apps environment:
+You can use the Azure CLI `containerapp up` command to create container apps for the application's API. This command also creates the required Log Analytics workspace and the Container Apps environment.
 
-# [PowerShell](#tab/powershell)
+1. Create the container app by running this command:
 
-```azurecli
-az containerapp up `
-  --name aspirecontainerapp `
-  --resource-group $env:RESOURCE_GROUP `
-  --location $env:LOCATION `
-  --environment $env:ENVIRONMENT `
-  --image mcr.microsoft.com/azuredocs/containerapps-helloworld:latest `
-  --target-port 80 `
-  --ingress external `
-  --query properties.configuration.ingress.fqdn
-```
+    ### [PowerShell](#tab/powershell)
 
-# [Bash](#tab/bash)
+    ```azurecli
+    az containerapp up `
+      --name apiservice `
+      --resource-group $env:RESOURCE_GROUP `
+      --location $env:LOCATION `
+      --environment $env:ENVIRONMENT `
+      --registry-server "$env:CONTAINER_REGISTRY.azurecr.io" `
+      --image mcr.microsoft.com/azuredocs/containerapps-helloworld:latest `
+      --target-port 80 `
+      --ingress external `
+      --query properties.configuration.ingress.fqdn
+    ```
 
-```azurecli
-az containerapp up `
-  --name aspirecontainerapp `
-  --resource-group $RESOURCE_GROUP `
-  --location $LOCATION `
-  --environment $ENVIRONMENT `
-  --image mcr.microsoft.com/azuredocs/containerapps-helloworld:latest `
-  --target-port 80 `
-  --ingress external `
-  --query properties.configuration.ingress.fqdn
-```
+    ### [Bash](#tab/bash)
 
----
+    ```azurecli
+    az containerapp up \
+      --name apiservice \
+      --resource-group $RESOURCE_GROUP \
+      --location $LOCATION \
+      --environment $ENVIRONMENT \
+      --registry-server "$CONTAINER_REGISTRY.azurecr.io" \
+      --image mcr.microsoft.com/azuredocs/containerapps-helloworld:latest \
+      --target-port 80 \
+      --ingress external \
+      --query properties.configuration.ingress.fqdn
+    ```
+
+    ---
+
+1. Now, let's create a Redis service for the front end web app to use:
+
+    ### [PowerShell](#tab/powershell)
+
+    ```azurecli
+    az containerapp add-on redis create `
+      --environment $env:ENVIRONMENT `
+      --name redisca `
+      --resource-group $env:RESOURCE_GROUP
+    ```
+
+    ### [Bash](#tab/bash)
+
+    ```azurecli
+    az containerapp add-on redis create \
+      --environment $ENVIRONMENT \
+      --name redisca \
+      --resource-group $RESOURCE_GROUP
+    ```
+
+    ---
+
+1. Next, create a container app for the web application's front end and configure it to use the Redis cache:
+
+    ### [PowerShell](#tab/powershell)
+
+    ```azurecli
+    az containerapp create `
+      --name web `
+      --resource-group $env:RESOURCE_GROUP `
+      --environment $env:ENVIRONMENT `
+      --registry-server "$env:CONTAINER_REGISTRY.azurecr.io" `
+      --image mcr.microsoft.com/azuredocs/containerapps-helloworld:latest `
+      --target-port 80 `
+      --ingress external `
+      --query properties.configuration.ingress.fqdn
+    ```
+
+    ### [Bash](#tab/bash)
+
+    ```azurecli
+    az containerapp create \
+      --name web \
+      --resource-group $RESOURCE_GROUP \
+      --environment $ENVIRONMENT \
+      --registry-server "$CONTAINER_REGISTRY.azurecr.io" \
+      --image mcr.microsoft.com/azuredocs/containerapps-helloworld:latest \
+      --target-port 80 \
+      --ingress external \
+      --query properties.configuration.ingress.fqdn
+    ```
+
+    ---
+
+## Connect the web containner app to the Redis cache
+
+1. Log into the Azure Portal and select **Resource groups** > **\<Your resource group\>** > **web**.
+1. In the menu on the left, select **Containers**.
+1. Select the **Bindings** tab, and then select **Edit and deploy**.
+1. Select the **Bindings** tab, select **Add**, and then select **Add-on binding**.
+1. In the **Add-on** drop-down list, select **redisca**, select **Connect**, and then select **Create**.
 
 ## Publish the app container images into a container registry
 
 1. Login to the ACR instance we'll be pushing the app container images to and get the server's FQDN into a parameter you'll use in a moment when you `dotnet build` the Aspire solution:
 
-    # [PowerShell](#tab/powershell)
+    ### [PowerShell](#tab/powershell)
 
     ```powershell
-    az acr login --name $env:CONTAINER_REGISTRY
     $loginServer = (az acr show --name $env:CONTAINER_REGISTRY --query loginServer --output tsv)
     ```
 
-    # [Bash](#tab/bash)
+    ### [Bash](#tab/bash)
 
     ```bash
-    az acr login --name $CONTAINER_REGISTRY
     $loginServer = (az acr show --name $CONTAINER_REGISTRY --query loginServer --output tsv)
     ```
 
