@@ -151,11 +151,12 @@ In your orchestrator project, register the Azure Table Storage component and con
 
 ```csharp
 // Service registration 
-var tableStorage = builder.AddAzureTableService("tables");
+var tables = builder.AddAzureStorage("storage")
+    .AddTables("tables");
 
 // Service consumption 
 Builder.AddProject<MyApp.ExampleProject>() 
-    .WithReference(tableStorage)
+    .WithReference(tables)
 ```
 
 For more information, see <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A>.
