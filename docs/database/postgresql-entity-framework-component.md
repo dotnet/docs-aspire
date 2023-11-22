@@ -41,7 +41,7 @@ dotnet add package Aspire.Npgsql.EntityFrameworkCore.PostgreSQL --prerelease
 
 ---
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
 ## Example usage
 

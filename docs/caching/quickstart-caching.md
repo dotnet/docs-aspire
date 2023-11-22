@@ -43,7 +43,7 @@ Visual Studio creates a new .NET Aspire solution that consists of the following 
 
 ## Configure the UI with output caching
 
-1. Add the [.NET Aspire StackExchange Redis output caching](/aspire/caching/stackexchange-redis-output-caching-component) component packages to your `AspireStorage` app:
+1. Add the [.NET Aspire StackExchange Redis output caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireStorage` app:
 
 ```dotnetcli
 dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
@@ -73,11 +73,11 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
     ```razor
     @page "/"
     @attribute [OutputCache(Duration = 10)]
-    
+
     <PageTitle>Home</PageTitle>
-    
+
     <h1>Hello, world!</h1>
-    
+
     Welcome to your new app on @DateTime.Now
     ```
 
@@ -85,7 +85,7 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
 
 ## Configure the API with distributed caching
 
-1. Add the [.NET Aspire StackExchange Redis distributed caching](/aspire/caching/stackexchange-redis-distributed-caching-component) component packages to your `AspireRedis` app:
+1. Add the [.NET Aspire StackExchange Redis distributed caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireRedis` app:
 
 ```dotnetcli
 dotnet add package Aspire.StackExchange.Redis.DistributedCaching --prerelease

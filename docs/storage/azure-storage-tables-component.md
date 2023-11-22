@@ -36,7 +36,7 @@ dotnet add package Aspire.Azure.Data.Tables --prerelease
 
 ---
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
 ## Example usage
 
@@ -65,8 +65,8 @@ The .NET Aspire Azure Table Storage component supports <xref:Microsoft.Extension
 
 ```json
 {
-  "Aspire":{ 
-    "Azure": { 
+  "Aspire":{
+    "Azure": {
       "Data": {
         "Tables": {
           "ServiceUri": "YOUR_URI",
@@ -116,8 +116,8 @@ The corresponding configuration JSON is defined as follows:
 
 ```json
 {
-  "Aspire":{ 
-    "Azure": { 
+  "Aspire":{
+    "Azure": {
       "Data": {
         "Tables": {
           "INSTANCE_NAME": {
@@ -150,11 +150,11 @@ The following configurable options are exposed through the <xref:Aspire.Azure.Da
 In your orchestrator project, register the Azure Table Storage component and consume the service using the following methods:
 
 ```csharp
-// Service registration 
+// Service registration
 var tableStorage = builder.AddAzureTableService("tables");
 
-// Service consumption 
-Builder.AddProject<MyApp.ExampleProject>() 
+// Service consumption
+Builder.AddProject<MyApp.ExampleProject>()
     .WithReference(tableStorage)
 ```
 

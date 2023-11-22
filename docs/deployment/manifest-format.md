@@ -31,7 +31,7 @@ dotnet run --project AspireApp.AppHost\AspireApp.AppHost.csproj `
     --output-path aspire-manifest.json
 ```
 
-For more information, see [dotnet build](/dotnet/core/tools/dotnet-build.md). The previous command produces the following output:
+For more information, see [dotnet build](/dotnet/core/tools/dotnet-build). The previous command produces the following output:
 
 ```Output
 Building...

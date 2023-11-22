@@ -28,7 +28,7 @@ dotnet add package Aspire.Azure.Storage.Blobs --prerelease
 
 ---
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
 ## Example usage
 
@@ -124,7 +124,7 @@ You can also set up the `BlobClientOptions` using `Action<IAzureClientBuilder<Bl
 ```csharp
 builder.AddAzureBlobService(
     "blobs",
-    configureClientBuilder: clientBuilder => 
+    configureClientBuilder: clientBuilder =>
         clientBuilder.ConfigureOptions(options => options.Diagnostics.ApplicationId = "myapp"));
 ```
 

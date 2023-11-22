@@ -102,7 +102,7 @@ The completed solution structure should resemble the following:
 
 ## Add the .NET Aspire component to the API
 
-Add the [.NET Aspire Azure Service Bus](/aspire/messaging/aspire-azure-service-bus) component to your `AspireMessaging` app:
+Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) component to your `AspireMessaging` app:
 
 ```dotnetcli
 dotnet add package Aspire.Azure.Messaging.ServiceBus --prerelease
@@ -170,7 +170,7 @@ app.MapPost("/notify", static async (ServiceBusClient client, string message) =>
             $"The message {message} is too large to fit in the batch.");
     }
 
-    // Use the producer client to send the batch of 
+    // Use the producer client to send the batch of
     // messages to the Service Bus topic.
     await sender.SendMessagesAsync(messageBatch);
 
@@ -180,7 +180,7 @@ app.MapPost("/notify", static async (ServiceBusClient client, string message) =>
 
 ## Add the .NET Aspire component to the Worker Service
 
-Add the [.NET Aspire Azure Service Bus](/aspire/messaging/aspire-azure-service-bus) component to your `AspireMessaging.Worker` app:
+Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) component to your `AspireMessaging.Worker` app:
 
 ```dotnetcli
 dotnet add package Aspire.Azure.Messaging.ServiceBus --prerelease
@@ -249,7 +249,7 @@ public class Worker(
             // add handler to process any errors
             processor.ProcessErrorAsync += ErrorHandler;
 
-            // start processing 
+            // start processing
             await processor.StartProcessingAsync();
 
             logger.LogInformation(

@@ -28,7 +28,7 @@ dotnet add package Aspire.StackExchange.Redis --prerelease
 
 ---
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
 ## Example usage
 
@@ -107,10 +107,10 @@ builder.AddRedis(
 In your orchestrator project, register the .NET Aspire Stack Exchange Redis component and consume the service using the following methods:
 
 ```csharp
-// Service registration 
+// Service registration
 var redis = builder.AddRedisContainer("redis");
 
-// Service consumption 
+// Service consumption
 builder.AddProject<Projects.ExampleProject>()
     .WithReference(redis)
 ```

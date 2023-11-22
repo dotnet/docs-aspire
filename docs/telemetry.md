@@ -34,7 +34,7 @@ OpenTelemetry has a [list of known environment variables](https://opentelemetry.
 
 - `OTEL_SERVICE_NAME` = myfrontend
 - `OTEL_RESOURCE_ATTRIBUTES` = service.instance.id=1a5f9c1e-e5ba-451b-95ee-ced1ee89c168
-- `OTEL_EXPORTER_OTLP_ENDPOINT` = <http://localhost:4318>
+- `OTEL_EXPORTER_OTLP_ENDPOINT` = `http://localhost:4318`
 
 The environment variables are automatically set in local development.
 
