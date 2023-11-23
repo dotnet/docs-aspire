@@ -69,7 +69,7 @@ The service defaults project exposes an extension method on the <xref:Microsoft.
 
 ## Orchestrate service communication
 
-.NET Aspire provides orchestration features to assist with configuring connections and communication between the different parts of your app. The _AspireSample.AppHost_ project added the _AspireSample.ApiService_ and _AspireSample.Web_ projects to the application model. It also declared their names as `"webfrontend"` for Blazor front end, `"apiservice"` for the API project reference. Additionally, a Redis container resource labelled `"redis"` was added. These names are used to configure service discovery and communication between the projects in your app.
+.NET Aspire provides orchestration features to assist with configuring connections and communication between the different parts of your app. The _AspireSample.AppHost_ project added the _AspireSample.ApiService_ and _AspireSample.Web_ projects to the application model. It also declared their names as `"webfrontend"` for Blazor front end, `"apiservice"` for the API project reference. Additionally, a Redis container resource labelled `"cache"` was added. These names are used to configure service discovery and communication between the projects in your app.
 
 The front end app defines a typed <xref:System.Net.Http.HttpClient> that's used to communicate with the API project.
 
