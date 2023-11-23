@@ -43,7 +43,7 @@ sections:
       - question: |
           What's the relationship between .NET Aspire and Kubernetes?
         answer: |
-          .NET Aspire makes it easy to develop cloud-native applications that consist of microservices and associated services. Each microservice is run in a container. Kubernetes is a technology that orchestrates and manages containers but you can't deploy directly from an Aspire Visual Studio solution to Kubernetes. However, when you build a .NET Aspire solution, it creates a manifest that tool authors could use to produce artifacts for deployment to Kubernetes.
+          .NET Aspire makes it easy to develop distributed applications that can be orchestrated on your local development environment as executables and containers. Kubernetes is a technology that orchestrates and manages containers across multiple machines. .NET Aspire applications can produce a manifest that tool authors can use to produce artifacts for deployment to Kubernetes. In essence, Kubernetes is a deployment target for aspire applications.
       - question: |
           Are worker services supported in .NET Aspire?
         answer: |
