@@ -20,7 +20,7 @@ In this article, you learn how to use the .NET Aspire SqlServer Entity Framework
 
 ## Get started
 
-To get started with the .NET Aspire PostgreSQL Entity Framework Core component, install the [Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) NuGet package.
+To get started with the .NET Aspire SQL Server Entity Framework Core component, install the [Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -205,6 +205,6 @@ The .NET Aspire SQL Server Entity Framework Core component will emit the followi
   - ec_Microsoft_EntityFramew_total_optimistic_concurrency_failures
   - ec_Microsoft_EntityF_optimistic_concurrency_failures_per_second
 
-- [Azure Database for PostgreSQL documentation](/azure/postgresql/)
+- [Azure SQL Database documentation](/azure/azure-sql/)
 - [.NET Aspire components](../components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
