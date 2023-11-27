@@ -2,7 +2,7 @@
 title: .NET Aspire PostgreSQL Entity Framework Core component
 description: This article describes the .NET Aspire PostgreSQL Entity Framework Core component.
 ms.topic: how-to
-ms.date: 11/15/2023
+ms.date: 11/27/2023
 ---
 
 # .NET Aspire PostgreSQL Entity Framework Core component
@@ -145,12 +145,11 @@ Here are the configurable options with corresponding default values:
 In your orchestrator project, register the PostgreSQL component and consume the `DbContext` using the following methods:
 
 ```csharp
-var postgres = builder.AddPostgres("postgres")
-                      .WithAzureDatabaseForPostgres();
+var postgresdb = builder.AddPostgresContainer("pg")
+                        .AddDatabase("postgresdb");
 
-var catalog = builder.AddProject<Projects.CatalogService>()
-                     .WithPostgresDatabase(postgres, databaseName: "catalog")
-                     .AsHttpService();
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(postgresdb);
 ```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
