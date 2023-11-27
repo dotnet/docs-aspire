@@ -13,7 +13,7 @@ ms.date: 11/27/2023
 
 ## Why .NET Aspire?
 
-.NET Aspire is designed to improve the experience of building .NET cloud-native apps. It provides a consistent, opinionated set of tools and patterns that help you build and run distributed apps. .NET Aspire is designed to help you:
+.NET Aspire is designed to improve the experience of building .NET cloud-native apps. It provides a consistent, opinionated set of tools and patterns that help you build and run distributed apps. .NET Aspire is designed to help you with:
 
 - [**Orchestration**](#orchestration): .NET Aspire provides features for running and connecting multi-project applications and their dependencies.
 - [**Components**](#net-aspire-components): .NET Aspire components are NuGet packages for commonly used services, such as Redis or Postgres, with standardized interfaces ensuring they connect consistently and seamlessly with your app.
