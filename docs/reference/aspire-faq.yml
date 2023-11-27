@@ -35,7 +35,7 @@ sections:
           Project Tye was an experiment which explored the launching and orchestration of micro-services and support
           deployment into orchestrators such as Kubernetes. .NET Aspire is a superset of Tye which includes the
           orchestration and deployment capabilities along with opinionated components for integrating common
-          cloud-native dependencies. .NET Aspire can be considered the the evolution of the Project Tye experiment.
+          cloud-native dependencies. .NET Aspire can be considered the evolution of the Project Tye experiment.
       - question: |
           What's the relationship between .NET Aspire and the Azure SDK for .NET?
         answer: |
