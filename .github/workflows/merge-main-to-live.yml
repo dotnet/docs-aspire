@@ -19,11 +19,6 @@ jobs:
       pull-requests: write
 
     steps:
-      - name: Checkout main branch
-        uses: actions/checkout@v4
-        with:
-          ref: main
-
       - name: "Print manual run reason"
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
@@ -37,12 +32,31 @@ jobs:
             // Get the owner and repo from the context
             const { owner, repo } = context.repo;
 
+            // Get the SHA of the latest commit on the main branch
+            const compare = await github.rest.repos.compareCommitsWithBasehead({
+                owner,
+                repo,
+                basehead: 'live...main',
+            });
+
+            core.startGroup('Resulting comparison');
+            core.info(compare);
+            core.endGroup();
+
+            // Only create a pull request if there are changes in main, not in live.
+            if (compare.data.status === 'identical') {
+                core.info('No changes in main, not creating a pull request.');
+                return;
+            } else {
+                core.info('Changes in main, creating a pull request.');
+            }
+
             // Create a pull request from main to live
             await github.rest.pulls.create({
                 owner,
                 repo,
                 head: 'main',
                 base: 'live',
-                title: 'Merge `main` into `live`',
-                body: '🤖 Please don\'t squash-merge this PR.',
+                title: '✅ Merge `main` into `live`',
+                body: '🤖 Queue merge when ready...',
             });
