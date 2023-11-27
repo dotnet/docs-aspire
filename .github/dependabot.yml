@@ -16,11 +16,6 @@ updates:
     open-pull-requests-limit: 5
   - package-ecosystem: "nuget"
     directory: "/docs/get-started/snippets/quickstart/AspireSample/AspireSample.ServiceDefaults" #AspireSample.ServiceDefaults.csproj
-    ignore:
-      - dependency-name: "Microsoft.Extensions.ServiceDiscovery"
-        versions: ["*"]
-      - dependency-name: "Microsoft.Extensions.Http.Resilience"
-        versions: ["*"]
     schedule:
       interval: "weekly"
       day: "wednesday"
