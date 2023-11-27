@@ -13,8 +13,6 @@ Now, you'll create two new files - `infra\provision.bicep` and `infra\provision.
 1. In `infra/provision.bicep`, add the following code to the top of the empty file. These lines of code represent the parameters you'll feed the Bicep file using the environment variables you set earlier. The `env` variable is an array that will be passed to both of the container apps hosting your Aspire project code, setting some conventional environment variables useful during development.
 
     ```bicep
-    targetScope = 'subscription'
-
     @minLength(1)
     @maxLength(64)
     @description('Name of the resource group that will contain all the resources')
