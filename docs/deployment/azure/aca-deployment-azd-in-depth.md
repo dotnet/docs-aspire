@@ -1,7 +1,7 @@
 ---
 title: Deploy a .NET Aspire app to Azure Container Apps using `azd` (in-depth guide)
 description: Learn how to use `azd` to deploy .NET Aspire apps to Azure Container Apps.
-ms.date: 11/13/2023
+ms.date: 11/27/2023
 ---
 
 # Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)
@@ -144,7 +144,7 @@ This file is how `azd` remembers (on a per environment basis) which services sho
 
 ### Initial deployment
 
-1. In order to deploy the .NET Aspire application, authenticate to Azure AD` to call the Azure resource management APIs.
+1. In order to deploy the .NET Aspire application, authenticate to Azure AD to call the Azure resource management APIs.
 
     ```azdeveloper
     azd auth login
@@ -158,10 +158,13 @@ This file is how `azd` remembers (on a per environment basis) which services sho
     azd up
     ```
 
+    > [!IMPORTANT]
+    > To push containers to an Azure Container Registry (ACR), you need to enable an **Admin user** on the registry. Open the Azure Portal, navigate to the ACR resource / Settings / Access keys, and then select the **Admin user** checkbox. For more information, see [Enable admin user](/azure/container-registry/container-registry-authentication#admin-account).
+
 1. When prompted, select the subscription and location the resources should be deployed to. Once these options are selected the .NET Aspire application
 will be deployed.
 
-    :::image type="content" source="media/azd-up-final.png" alt-text="Screenshot of `azd` output after azd up command is executed.":::
+    :::image type="content" source="media/azd-up-final.png" alt-text="Screenshot of `azd` output after `azd up` command is executed.":::
 
     The final line of output from the `azd` command is a link to the Azure Portal that shows
     all of the Azure resources that were deployed:
