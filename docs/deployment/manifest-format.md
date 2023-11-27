@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire manifest format for deployment tool builders
 description: Learn about the .NET Aspire manifest format in this comprehensive deployment tool builder guide.
-ms.date: 11/11/2023
+ms.date: 11/27/2023
 ms.topic: reference
 ---
 
@@ -189,17 +189,17 @@ These resources are available in the _Aspire.Hosting_ package.
 
 | App model usage | Manifest resource type | Heading link |
 |--|--|--|
-| `AddProject<T>(...)` | `project.v0` | [Project resource type](#project-resource-type) |
-| `AddContainer(...)` | `container.v0` | [Container resource type](#container-resource-type) |
-| `AddPostgresConnection(...)` | `postgres.connection.v0` | [Postgres resource types](#postgres-resource-types) |
-| `AddPostgresContainer(...)` | `postgres.server.v0` | [Postgres resource types](#postgres-resource-types) |
-| `AddPostgresContainer(...).AddDatabase(...)` | `postgres.database.v0` | [Postgres resource types](#postgres-resource-types) |
-| `AddRabbitMQConnection(...)` | `rabbitmq.connection.v0` | [RabbitMQ resource types](#rabbitmq-resource-types) |
-| `AddRabbitMQContainer(...)` | `rabbitmq.server.v0` | [RabbitMQ resource types](#rabbitmq-resource-types) |
-| `AddRedisConnection(...)`<br>`AddRedis(...)` | `redis.v0` | [Redis resource type](#redis-resource-type) |
-| `AddSqlServerConnection(...)` | `sqlserver.connection.v0` | [SQL Server resource types](#sql-server-resource-types) |
-| `AddSqlServerContainer(...)` | `sqlserver.server.v0` | [SQL Server resource types](#sql-server-resource-types) |
-| `AddSqlServerContainer(...).AddDatabase(...)` | `sqlserver.database.v0` | [SQL Server resource types](#sql-server-resource-types) |
+| <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> | `project.v0` | [Project resource type](#project-resource-type) |
+| <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> | `container.v0` | [Container resource type](#container-resource-type) |
+| <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresConnection%2A> | `postgres.connection.v0` | [Postgres resource types](#postgres-resource-types) |
+| <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresContainer%2A> | `postgres.server.v0` | [Postgres resource types](#postgres-resource-types) |
+| <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A> | `postgres.database.v0` | [Postgres resource types](#postgres-resource-types) |
+| <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQConnection%2A> | `rabbitmq.connection.v0` | [RabbitMQ resource types](#rabbitmq-resource-types) |
+| <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQContainer%2A> | `rabbitmq.server.v0` | [RabbitMQ resource types](#rabbitmq-resource-types) |
+| <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> | `redis.v0` | [Redis resource type](#redis-resource-type) |
+| <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServerConnection%2A> | `sqlserver.connection.v0` | [SQL Server resource types](#sql-server-resource-types) |
+| <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServerContainer%2A> | `sqlserver.server.v0` | [SQL Server resource types](#sql-server-resource-types) |
+| <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | `sqlserver.database.v0` | [SQL Server resource types](#sql-server-resource-types) |
 
 #### Project resource type
 
@@ -404,13 +404,13 @@ The following resources are available in the [Aspire.Hosting.Azure](https://www.
 
 | App Model usage | Manifest resource type | Heading link |
 |--|--|--|
-| `AddAzureKeyVault(...)` | `azure.keyvault.v0` | [Azure Key Vault resource type](#azure-key-vault-resource-type) |
-| `AddAzureServiceBus(...)` | `azure.servicebus.v0` | [Azure Service Bus resource type](#azure-service-bus-resource-type) |
-| `AddAzureStorage(...)` | `azure.storage.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
-| `AddAzureStorage(...).AddBlobs(...)` | `azure.storage.blob.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
-| `AddAzureStorage(...).AddTables(...)` | `azure.storage.table.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
-| `AddAzureStorage(...).AddQueues(...)` | `azure.storage.queue.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
-| `AddAzureRedis(...)` | `azure.redis.v0` | [Azure Redis resource types](#azure-redis-resource-type) |
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureKeyVault%2A> | `azure.keyvault.v0` | [Azure Key Vault resource type](#azure-key-vault-resource-type) |
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureServiceBus%2A> | `azure.servicebus.v0` | [Azure Service Bus resource type](#azure-service-bus-resource-type) |
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureStorage%2A> | `azure.storage.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddBlobs%2A> | `azure.storage.blob.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddTables%2A> | `azure.storage.table.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddQueues%2A> | `azure.storage.queue.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureRedis%2A> | `azure.redis.v0` | [Azure Redis resource types](#azure-redis-resource-type) |
 | `AddAzureAppConfiguration(...)` | `azure.appconfiguration.v0` | [Azure App Configuration resource types](#azure-app-configuration-resource-type) |
 | `AddAzureSqlServer(...)` | `azure.sql.v0` | [Azure SQL resource types](#azure-sql-resource-types) |
 | `AddAzureSqlServer(...).AddDatabase(...)` | `azure.sql.database.v0` | [Azure SQL resource types](#azure-sql-resource-types) |
