@@ -10,7 +10,7 @@ metadata:
   ms.topic: hub-page
   ms.prod: dotnet-cloud-native
   ms.service: dotnet-aspire
-  ms.date: 11/13/2023
+  ms.date: 11/27/2023
 
 highlightedContent:
   items:
@@ -235,7 +235,7 @@ additionalContent:
       items:
         - title: ".NET Aspire API reference"
           summary: API reference documentation for .NET Aspire
-          url: /dotnet/api/aspire.hosting?view=dotnet-aspire-8.0&preserve-view=true
+          url: /dotnet/api?view=dotnet-aspire-8.0&preserve-view=true
         - title: ".NET Platform Extensions API reference"
           summary: API reference documentation for .NET Platform Extensions
           url: /dotnet/api?view=dotnet-plat-ext-8.0&preserve-view=true
@@ -246,4 +246,4 @@ additionalContent:
           summary: API reference documentation for ASP.NET Core
           url: /dotnet/api?view=aspnetcore-8.0&preserve-view=true
 
-  footer: "Are you interested in contributing to the .NET docs? For more information, see our [contributor guide](/contribute/dotnet/dotnet-contribute)."
+  footer: "Are you interested in contributing to the .NET Aspire docs? For more information, see our [contributor guide](/contribute/dotnet/dotnet-contribute)."
