@@ -159,7 +159,7 @@ This file is how `azd` remembers (on a per environment basis) which services sho
     ```
 
     > [!IMPORTANT]
-    > To push containers to an Azure Container Registry, you need to enable an **Admin user** on the registry. For more information, see [Enable admin user](/azure/container-registry/container-registry-authentication#admin-account).
+    > To push containers to an Azure Container Registry (ACR), you need to enable an **Admin user** on the registry. Open the Azure Portal, navigate to the ACR resource / Settings / Access keys, and then select the **Admin user** checkbox. For more information, see [Enable admin user](/azure/container-registry/container-registry-authentication#admin-account).
 
 1. When prompted, select the subscription and location the resources should be deployed to. Once these options are selected the .NET Aspire application
 will be deployed.
