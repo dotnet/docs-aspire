@@ -42,7 +42,7 @@ To install the .NET Aspire workload in Visual Studio 2022 Preview, use the Visua
 
 # [.NET CLI](#tab/dotnet-cli)
 
-To install the .NET Aspire workload from the .NET CLI, use the [dotnet workload install](/dotnet-internal/core/tools/dotnet-workload-install) command:
+To install the .NET Aspire workload from the .NET CLI, use the [dotnet workload install](/dotnet/core/tools/dotnet-workload-install) command:
 
 ```dotnetcli
 dotnet workload install aspire

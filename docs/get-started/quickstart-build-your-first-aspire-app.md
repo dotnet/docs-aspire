@@ -50,7 +50,7 @@ Consider the _Program.cs_ file of the _AspireSample.AppHost_ project:
 
 :::code source="snippets/quickstart/AspireSample/AspireSample.AppHost/Program.cs":::
 
-If you've used either the [.NET Generic Host](/dotnet/core/extensions/generic-host.md) or the [ASP.NET Core Web Host](/aspnet/core/fundamentals/host/web-host) before, the app host programming model and builder pattern should be familiar to you. The preceding code:
+If you've used either the [.NET Generic Host](/dotnet/core/extensions/generic-host) or the [ASP.NET Core Web Host](/aspnet/core/fundamentals/host/web-host) before, the app host programming model and builder pattern should be familiar to you. The preceding code:
 
 - Creates an <xref:Aspire.Hosting.IDistributedApplicationBuilder> instance from calling <xref:Aspire.Hosting.DistributedApplication.CreateBuilder?displayProperty=nameWithType>.
 - Calls <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedisContainer%2A> with the name `"cache"` to add a Redis container to the app, assigning the returned value to a variable named `cache`, which is of type `IResourceBuilder<RedisContainerResource>`.
@@ -85,7 +85,7 @@ The preceding code:
 - Calls <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> with the same `connectionName` that was used when adding the Redis container `"cache"` to the application model. This configures the app to use Redis for output caching.
 - Calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> and configures the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> to be `"http://apiservice"`. This is the name that was used when adding the API project to the application model, and with service discovery configured, it will automatically resolve to the correct address to the API project.
 
-For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fundamentals/networking/http/httpclient.md) class.
+For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fundamentals/networking/http/httpclient) class.
 
 ## Test the app locally
 
@@ -104,7 +104,7 @@ In Visual Studio, set the **AspireSample.AppHost** project as the startup projec
 dotnet run --project AspireSample/AspireSample.AppHost
 ```
 
-For more information, see [dotnet run](/dotnet/core/tools/dotnet-run.md).
+For more information, see [dotnet run](/dotnet/core/tools/dotnet-run).
 
 ---
 

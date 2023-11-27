@@ -28,7 +28,7 @@ dotnet add package Aspire.Microsoft.Azure.Cosmos --prerelease
 
 ---
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
 ## Example usage
 
@@ -133,7 +133,7 @@ builder.AddAzureCosmosDB(
 In your orchestrator project, register the .NET Aspire Azure Cosmos DB component and consume the service using the following methods:
 
 ```csharp
-// Service registration 
+// Service registration
 var cosmosdb = builder.AddAzureCosmosDB("cdb")
     .AddDatabase("cosmosdb");
 

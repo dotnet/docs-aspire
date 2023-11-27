@@ -222,7 +222,7 @@ Consider the following example screenshot of the metrics page, with the `webfron
 
 :::image type="content" source="media/dashboard/metrics-view.png" lightbox="media/dashboard/metrics-view.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page.":::
 
-For more information about metrics, see [Built-in Metrics in .NET](/dotnet/core/diagnostics/built-in-metrics.md).
+For more information about metrics, see [Built-in Metrics in .NET](/dotnet/core/diagnostics/built-in-metrics).
 
 ## Theme selection
 

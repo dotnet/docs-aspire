@@ -125,5 +125,5 @@ builder.Services.AddHttpClient<BasketServiceDashboardClient>(
 ## See also
 
 - [Service discovery in .NET](/dotnet/core/extensions/service-discovery)
-- [Make HTTP requests with the HttpClient class](/dotnet/fundamentals/networking/http/httpclient.md)
-- [IHttpClientFactory with .NET](/dotnet/core/extensions/httpclient-factory.md)
+- [Make HTTP requests with the HttpClient class](/dotnet/fundamentals/networking/http/httpclient)
+- [IHttpClientFactory with .NET](/dotnet/core/extensions/httpclient-factory)

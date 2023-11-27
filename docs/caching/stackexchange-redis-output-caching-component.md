@@ -7,11 +7,11 @@ ms.date: 11/15/2023
 
 # .NET Aspire StackExchange Redis output caching component
 
-In this article, you learn how to use the .NET Aspire StackExchange Redis output caching component. The `Aspire.StackExchange.Redis.OutputCaching` library is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Redis](https://redis.io/) server. It enables corresponding health check, logging and telemetry.
+In this article, you learn how to use the .NET Aspire StackExchange Redis output caching component. The `Aspire.StackExchange.Redis.OutputCaching` library is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Redis](https://redis.io/) server. It enables corresponding health check, logging, and telemetry.
 
 ## Get started
 
-To get started with the .NET Aspire StackExchange Redis output caching component, install the [Aspire.StackExchange.Redis.OutputCache](https://www.nuget.org/packages/Aspire.StackExchange.Redis.OutputCache) NuGet package.
+To get started with the .NET Aspire StackExchange Redis output caching component, install the [Aspire.StackExchange.Redis.OutputCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.OutputCaching) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -28,7 +28,7 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching
 
 ---
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package.md) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies.md).
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
 ## Example usage
 
@@ -114,7 +114,7 @@ You can also set up the [ConfigurationOptions](https://stackexchange.github.io/S
 
 ```csharp
 builder.AddRedisOutputCache(
-    "cache", 
+    "cache",
     configureOptions: options => options.ConnectTimeout = 3000);
 ```
 
@@ -123,10 +123,10 @@ builder.AddRedisOutputCache(
 In your orchestrator project, register the .NET Aspire StackExchange Redis output caching component and consume the service using the following methods:
 
 ```csharp
-// Service registration 
+// Service registration
 var redis = builder.AddRedisContainer("redis");
 
-// Service consumption 
+// Service consumption
 var basket = builder.AddProject<Projects.ExampleProject>()
     .WithReference(redis)
 ```
