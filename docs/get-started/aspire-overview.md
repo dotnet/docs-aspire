@@ -8,6 +8,9 @@ ms.date: 11/15/2023
 
 .NET Aspire is an opinionated, cloud ready stack for building observable, production ready, distributed applications.​ .NET Aspire is delivered through a collection of NuGet packages that handle specific cloud-native concerns. Cloud-native apps often consist of small, interconnected pieces or microservices rather than a single, monolithic code base. Cloud-native apps generally consume a large number of services, such as databases, messaging, and caching.
 
+> [!NOTE]
+> A _distributed application_ is one that uses computational resources across multiple nodes, such as containers run on different hosts. Such nodes must communicate across the network to deliver responses to users. A cloud-native app is a specific type of distributed app that takes full advantage of the scalability, resilience, and manageability of cloud infrastructures.
+
 .NET Aspire helps with:
 
 - [**Orchestration**](#orchestration): .NET Aspire provides features for running and connecting multi-project applications and their dependencies.
