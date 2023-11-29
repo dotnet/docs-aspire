@@ -113,7 +113,7 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 
 | Method | Environment variable |
 |--|--|
-| `WithReference(endpoint)` | `services__myapp__0=http://_http.localhost:8034` |
+| `WithReference(endpoint)` | `services__myapp__0=http://_http.localhost:9043` |
 
 ### APIs for adding and expressing resources
 
