@@ -71,7 +71,7 @@ You also need to assign the following roles to the user account you are logged i
 
 Visual Studio creates a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:
 
-- **AspireStorage**: A Blazor projects' directory that contains the following projects:
+- **AspireStorage**: A Blazor project directory that contains the following projects:
 
   - **AspireStorage**: The Blazor project.
   - **AspireStorage.Client**: The Blazor WebAssembly client project.
