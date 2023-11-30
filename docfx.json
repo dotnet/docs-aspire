@@ -80,7 +80,7 @@
         ".NET",
         ".NET Aspire"
       ],
-      "zone_pivot_group_filename": "zones/zone-pivot-groups.json",
+      "zone_pivot_group_filename": "aspire/zones/zone-pivot-groups.json",
       "show_latex": true,
       "uhfHeaderId": "MSDocsHeader-DotNet",
       "_displayLangs": [
