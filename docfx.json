@@ -111,7 +111,7 @@
         "docs/**.*": "https://learn.microsoft.com/media/logos/logo_net.svg"
       },
       "social_image_url": {
-        "docs/**/*.*": "/dotnet/aspire/media/dotnet-aspire-logo.png"
+        "docs/**/*.*": "/dotnet/media/dotnet-aspire-logo.png"
       },
       "feedback_product_url": {
         "docs/**/*.*": "https://github.com/dotnet/aspire"
