@@ -194,7 +194,7 @@ Next, replace the contents of the _Program.cs_ file in the _AspireStorage.AppHos
 
 :::code source="snippets/tutorial/AspireStorage/AspireStorage.AppHost/Program.cs":::
 
-The preceding code adds Azure storage, blobs and queues, and when in development mode, it uses the emulator.
+The preceding code adds Azure storage, blobs, and queues, and when in development mode, it uses the emulator.
 
 :::zone-end
 
