@@ -26,7 +26,7 @@ For this quickstart, you'll need data contributor access to an Azure Storage acc
 
 If you don't have an Azure account, or don't want to provision Azure resources — you can use Azurite. Azurite is a free, open source, cross-platform Azure Storage API compatible server (emulator) that runs in a Docker container.
 
-To use the emulator you need [Install Azurite](/azure/storage/common/storage-use-azurite#install-azurite).
+To use the emulator you need to [install Azurite](/azure/storage/common/storage-use-azurite#install-azurite).
 
 :::zone-end
 :::zone pivot="azure-portal"
