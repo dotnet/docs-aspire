@@ -200,7 +200,7 @@ The preceding code adds Azure storage, blobs and queues, and when in development
 
 ## Process the items in the queue
 
-When a new message is placed on the `tickets` queue, the worker service should retrieve, process, and delete the message. Update the _Worker.cs_ class replacing the contents with the following code:
+When a new message is placed on the `tickets` queue, the worker service should retrieve, process, and delete the message. Update the _Worker.cs_ class, replacing the contents with the following code:
 
 :::zone pivot="azurite"
 
