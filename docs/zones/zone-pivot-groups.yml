@@ -1,0 +1,23 @@
+# YamlMime:ZonePivotGroups
+groups:
+# Owner: dapine
+- id: azure-development-tool
+  title: Azure development tool
+  prompt: Choose an Azure development tool
+  pivots:
+    - id: azure-azd
+      title: Azure Developer CLI
+    - id: azure-cli
+      title: Azure CLI
+    - id: azure-bicep
+      title: Azure Bicep
+- id: azure-storage-mechanism
+  title: Azure storage mechanism
+  prompt: Choose an Azure storage mechanism
+  pivots:
+    - id: azurite
+      title: Azurite (Emulator)
+    - id: azure-portal
+      title: Azure Portal
+    - id: azure-cli
+      title: Azure CLI
