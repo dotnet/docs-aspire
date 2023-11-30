@@ -139,7 +139,7 @@ When the _AspireStorage_ project starts, it will create a `fileuploads` containe
 
 :::zone-end
 
-In the _appsettings.json file of the _AspireStorage_ project, add the corresponding connection information:
+In the _appsettings.json_ file of the _AspireStorage_ project, add the corresponding connection information:
 
 ```json
 "ConnectionStrings": {
@@ -150,13 +150,13 @@ In the _appsettings.json file of the _AspireStorage_ project, add the correspond
 
 ## Add the .NET Aspire component to the Worker Service
 
-The worker service handles pulling messages off of the Azure Storage queue for processing. Add the [.NET Aspire Azure Queue Storage component](azure-storage-queues-component.md) component package to your `AspireStorage.Worker` app:
+The worker service handles pulling messages off of the Azure Storage queue for processing. Add the [.NET Aspire Azure Queue Storage component](azure-storage-queues-component.md) component package to your _AspireStorage.Worker_ app:
 
 ```dotnetcli
 dotnet add package Aspire.Azure.Storage.Queues --prerelease
 ```
 
-In the _Program.cs_ file of the `AspireStorage.Worker` project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueService%2A> extension method after the creation of the `builder` but before the call to `AddServiceDefaults`:
+In the _Program.cs_ file of the _AspireStorage.Worker_ project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueService%2A> extension method after the creation of the `builder` but before the call to `AddServiceDefaults`:
 
 :::code source="snippets/tutorial/AspireStorage/AspireStorage.Worker/Program.cs" highlight="5":::
 
@@ -165,7 +165,7 @@ This method handles the following tasks:
 - Register a <xref:Azure.Storage.Queues.QueueServiceClient> with the DI container for connecting to Azure Storage Queues.
 - Automatically enable corresponding health checks, logging, and telemetry for the respective services.
 
-In the _appsettings.json file of the `AspireStorage.Worker` project, add the corresponding connection string information:
+In the _appsettings.json_ file of the _AspireStorage.Worker_ project, add the corresponding connection string information:
 
 ```json
 "ConnectionStrings": {
@@ -188,6 +188,8 @@ When a new message is placed on the `tickets` queue, the worker service should r
 :::zone pivot="azurite"
 
 :::code source="snippets/tutorial/AspireStorage/AspireStorage.Worker/Worker.cs":::
+
+Before the worker service can process messages, it needs to be able to connect to the Azure Storage queue. With Azurite, you need to ensure that the queue is available before the worker service starts executing messaging queue processing.
 
 :::zone-end
 :::zone pivot="azure-portal,azure-cli"
