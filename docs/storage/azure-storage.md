@@ -181,6 +181,26 @@ Use the following Razor markup to create a basic form, replacing the contents of
 
 :::code language="razor" source="snippets/tutorial/AspireStorage/AspireStorage/AspireStorage/Components/Pages/Home.razor":::
 
+:::zone pivot="azurite"
+
+## Update the AppHost
+
+The _AspireStorage.AppHost_ project is the orchestrator for your app. It's responsible for connecting and configuring the different projects and services of your app. The orchestrator should be set as the startup project.
+
+Add the [Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure) NuGet package to your _AspireStorage.AppHost_ project:
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Azure --prerelease
+```
+
+Next, replace the contents of the _Program.cs_ file in the _AspireStorage.AppHost_ project with the following code:
+
+:::code source="snippets/tutorial/AspireStorage/AspireStorage.AppHost/Program.cs":::
+
+The preceding code adds Azure storage, blobs and queues, and when in development mode, it uses the emulator.
+
+:::zone-end
+
 ## Process the items in the queue
 
 When a new message is placed on the `tickets` queue, the worker service should retrieve, process, and delete the message. Update the _Worker.cs_ class replacing the contents with the following code:
