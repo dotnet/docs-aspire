@@ -1,13 +1,13 @@
 ---
-title: .NET Aspire SqlServer component
-description: This article describes the .NET Aspire SqlServer component.
+title: .NET Aspire SQL Server component
+description: This article describes the .NET Aspire SQL Server component.
 ms.topic: how-to
-ms.date: 11/15/2023
+ms.date: 12/01/2023
 ---
 
-# .NET Aspire SqlServer component
+# .NET Aspire SQL Server component
 
-In this article, you learn how to use the .NET Aspire SqlServer component. The `Aspire.Microsoft.Data.SqlClient` library:
+In this article, you learn how to use the .NET Aspire SQL Server component. The `Aspire.Microsoft.Data.SqlClient` library:
 
 - Registers a scoped <xref:Microsoft.Data.SqlClient.SqlConnection?displayProperty=fullName> factory in the DI container for connecting Azure SQL, MS SQL database.
 - Automatically configures the following:
@@ -21,7 +21,7 @@ In this article, you learn how to use the .NET Aspire SqlServer component. The `
 
 ## Get started
 
-To get started with the .NET Aspire SqlServer component, install the [Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) NuGet package.
+To get started with the .NET Aspire SQL Server component, install the [Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -65,7 +65,7 @@ The .NET Aspire SQL Server component provides multiple configuration approaches 
 
 ### Use configuration providers
 
-The .NET Aspire PostgreSQL component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `MicrosoftDataSqlClientSettings` from configuration files such as _appsettings.json_ by using the `Aspire:SqlServer:SqlClient` key. If you have set up your configurations in the `Aspire:SqlServer:SqlClient` section, you can just call the method without passing any parameter.
+The .NET Aspire SQL Server supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `MicrosoftDataSqlClientSettings` from configuration files such as _appsettings.json_ by using the `Aspire:SqlServer:SqlClient` key. If you have set up your configurations in the `Aspire:SqlServer:SqlClient` section, you can just call the method without passing any parameter.
 
 The following example shows an _appsettings.json_ file that configures some of the available options:
 
