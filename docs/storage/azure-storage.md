@@ -1,7 +1,7 @@
 ---
 title: Connect an ASP.NET Core app to .NET Aspire storage components
 description: Learn how to connect an ASP.NET Core app to .NET Aspire storage components.
-ms.date: 11/30/2023
+ms.date: 12/01/2023
 ms.topic: tutorial
 zone_pivot_groups: azure-storage-mechanism
 ---
@@ -75,13 +75,8 @@ You also need to assign the following roles to the user account you are logged i
 
 Visual Studio creates a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:
 
-- **AspireStorage**: A Blazor project directory that contains the following projects:
-
-  - **AspireStorage**: The Blazor project.
-  - **AspireStorage.Client**: The Blazor WebAssembly client project.
-
+- **AspireStorage**: A Blazor project that depends on service defaults.
 - **AspireStorage.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
-
 - **AspireStorage.ServiceDefaults**: A shared class library to hold configurations that can be reused across the projects in your solution.
 
 ### Add the Worker Service project
@@ -120,12 +115,12 @@ In the _Program.cs_ file of the _AspireStorage_ project, add calls to the <xref:
 
 :::zone pivot="azurite"
 
-:::code source="snippets/tutorial/AspireStorage/AspireStorage/AspireStorage/Program.cs" highlight="3-4,8-9,27-33":::
+:::code source="snippets/tutorial/AspireStorage/AspireStorage/Program.cs" highlight="2-3,7-8,30-39":::
 
 :::zone-end
 :::zone pivot="azure-portal,azure-cli"
 
-:::code source="snippets/tutorial/AspireStorage/AspireStorage/AspireStorage/Program.cs" range="1-25,34-52" highlight="3-4,8-9":::
+:::code source="snippets/tutorial/AspireStorage/AspireStorage/AspireStorage/Program.cs" range="1-27,41-50" highlight="2-3,7-8":::
 
 :::zone-end
 
@@ -176,17 +171,19 @@ In the _appsettings.json_ file of the _AspireStorage.Worker_ project, add the co
 
 ## Create the form
 
-The application requires a form for the user to be able to submit support ticket information and upload an attachment. The app uploads the attached file on the `Document` property to Azure Blob Storage using the injected <xref:Azure.Storage.Blobs.BlobServiceClient?displayProperty=fullName>. The <xref:Azure.Storage.Queues.QueueServiceClient?displayProperty=fullName> sends a message composed of the `Title` and `Description` to the Azure Storage Queue.
+The app requires a form for the user to be able to submit support ticket information and upload an attachment. The app uploads the attached file on the `Document` property to Azure Blob Storage using the injected <xref:Azure.Storage.Blobs.BlobServiceClient>. The <xref:Azure.Storage.Queues.QueueServiceClient> sends a message composed of the `Title` and `Description` to the Azure Storage Queue.
 
 Use the following Razor markup to create a basic form, replacing the contents of the _Home.razor_ file in the _AspireStorage/Components/Pages_ directory:
 
-:::code language="razor" source="snippets/tutorial/AspireStorage/AspireStorage/AspireStorage/Components/Pages/Home.razor":::
+:::code language="razor" source="snippets/tutorial/AspireStorage/AspireStorage/Components/Pages/Home.razor":::
 
-:::zone pivot="azurite"
+For more information about creating forms in Blazor, see [ASP.NET Core Blazor forms overview](/aspnet/core/blazor/forms).
 
 ## Update the AppHost
 
 The _AspireStorage.AppHost_ project is the orchestrator for your app. It's responsible for connecting and configuring the different projects and services of your app. The orchestrator should be set as the startup project.
+
+:::zone pivot="azurite"
 
 Add the [Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure) NuGet package to your _AspireStorage.AppHost_ project:
 
@@ -194,11 +191,22 @@ Add the [Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azu
 dotnet add package Aspire.Hosting.Azure --prerelease
 ```
 
-Next, replace the contents of the _Program.cs_ file in the _AspireStorage.AppHost_ project with the following code:
+:::zone-end
+
+Replace the contents of the _Program.cs_ file in the _AspireStorage.AppHost_ project with the following code:
+
+:::zone pivot="azurite"
 
 :::code source="snippets/tutorial/AspireStorage/AspireStorage.AppHost/Program.cs":::
 
-The preceding code adds Azure storage, blobs, and queues, and when in development mode, it uses the emulator.
+The preceding code adds Azure storage, blobs, and queues, and when in development mode, it uses the emulator. Each project defines references for these resources that they depend on.
+
+:::zone-end
+:::zone pivot="azure-portal,azure-cli"
+
+:::code source="snippets/tutorial/AspireStorage/AspireStorage.AppHost/Program.cs" range="1-5,11-23:::
+
+The preceding code adds Azure storage, blobs, and queues, and defines references for these resources within each project that depend on them.
 
 :::zone-end
 
@@ -210,21 +218,25 @@ When a new message is placed on the `tickets` queue, the worker service should r
 
 :::code source="snippets/tutorial/AspireStorage/AspireStorage.Worker/Worker.cs":::
 
-Before the worker service can process messages, it needs to be able to connect to the Azure Storage queue. With Azurite, you need to ensure that the queue is available before the worker service starts executing messaging queue processing.
+Before the worker service can process messages, it needs to be able to connect to the Azure Storage queue. With Azurite, you need to ensure that the queue is available before the worker service starts executing message queue processing.
 
 :::zone-end
 :::zone pivot="azure-portal,azure-cli"
 
 :::code source="snippets/tutorial/AspireStorage/AspireStorage.Worker/Worker.cs" range="1-11,15-37":::
 
+The worker service processes messages by connecting to the Azure Storage queue, and pulling messages off the queue.
+
 :::zone-end
+
+The worker service processes message in the queue and deletes them when they've been processed.
 
 ## Run and test the app locally
 
 The sample app is now ready for testing. Verify that the submitted form data is sent to Azure Blob Storage and Azure Queue Storage by completing the following steps:
 
 1. Press the run button at the top of Visual Studio to launch your .NET Aspire app dashboard in the browser.
-1. On the projects page, in the **asireweb** row, click the link in the **Endpoints** column to open the UI of your app.
+1. On the projects page, in the **aspirestorage** row, click the link in the **Endpoints** column to open the UI of your app.
 
     :::image type="content" source="../media/support-app.png" alt-text="A screenshot showing the home page of the .NET Aspire support application.":::
 
@@ -232,8 +244,21 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 1. Press submit, and the page should reload.
 1. In a separate browser tab, use the Azure portal to navigate to the **Storage browser** in your Azure Storage Account.
 1. Select **Containers** and then navigate into the **Documents** container to see the uploaded file.
-1. You can verify the message on the queue was processed by searching for the **Message Processed** log from the the worker service in the Visual Studio output window.
+1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../dashboard.md).
 
     :::image type="content" source="../media/queue-output.png" alt-text="A screenshot showing the console output of the Worker app.":::
 
-Congratulations! You created and configured an ASP.NET Core app app that connects to Azure Storage using .NET Aspire components.
+## Summary
+
+The example app that you built demonstrates persisting blobs from an ASP.NET Core Blazor Web App and processing queues in a [.NET Worker Service](/dotnet/core/extensions/workers). Your app connects to Azure Storage using .NET Aspire components. The app sends the support tickets to a queue for processing and uploads an attachment to storage.
+
+:::zone pivot="azurite"
+
+Since you choose to use Azurite, there's no need to clean up these resources when you're done testing them, as you created them locally in the context of an emulator. The emulator enabled you to test your app locally without incurring any costs, as no Azure resources were provisioned or created.
+
+:::zone-end
+:::zone pivot="azure-portal,azure-cli"
+
+Don't forget to clean up any Azure resources when you're done testing them.
+
+:::zone-end
