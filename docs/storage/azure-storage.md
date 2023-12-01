@@ -18,13 +18,17 @@ Cloud-native apps often require scalable storage solutions that provide capabili
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
-## Set up the Azure Storage account
+## Set up the Azure Storage resources
 
-For this quickstart, you'll need data contributor access to an Azure Storage account with a blob container and storage queue. Ensure you have the following resources and configurations available:
+:::zone pivot="azure-portal,azure-cli"
+
+For this article, you'll need data contributor access to an Azure Storage account with a blob container and storage queue. Ensure you have the following resources and configurations available:
+
+:::zone-end
 
 :::zone pivot="azurite"
 
-If you don't have an Azure account, or don't want to provision Azure resources — you can use Azurite. Azurite is a free, open source, cross-platform Azure Storage API compatible server (emulator) that runs in a Docker container.
+For this article, you'll need to create a blob container and storage queue resource in your local development environment using an emulator. To do so, use Azurite. Azurite is a free, open source, cross-platform Azure Storage API compatible server (emulator) that runs in a Docker container.
 
 To use the emulator you need to [install Azurite](/azure/storage/common/storage-use-azurite#install-azurite).
 
