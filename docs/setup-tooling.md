@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 11/11/2023
+ms.date: 12/01/2023
 ---
 
 # .NET Aspire setup and tooling
@@ -48,6 +48,12 @@ To install the .NET Aspire workload from the .NET CLI, use the [dotnet workload 
 dotnet workload install aspire
 ```
 
+If you've already installed the .NET Aspire workload, it's best to ensure that you're using the latest version. To ensure that you are, use the following [dotnet workload update](/dotnet/core/tools/dotnet-workload-update) command:
+
+```dotnetcli
+dotnet workload update aspire
+```
+
 ---
 
 ## .NET Aspire project templates
@@ -77,6 +83,23 @@ To create a .NET Aspire project using Visual Studio, search for *Aspire* in the 
 :::image type="content" source="media/aspire-templates.png" lightbox="media/aspire-templates.png" alt-text="The .NET Aspire project templates in VIsual Studio.":::
 
 # [.NET CLI](#tab/dotnet-cli)
+
+To see which .NET Aspire project templates are available, use the [dotnet new list](/dotnet/core/tools/dotnet-new-list) command, passing in the search term `aspire`:
+
+```dotnetcli
+dotnet new list aspire
+```
+
+When the .NET Aspire workload is installed, you'll see the following .NET Aspire templates:
+
+```Output
+These templates matched your input: 'aspire'
+
+Template Name                    Short Name      Language  Tags
+-------------------------------  --------------  --------  -------------------------------------------------------
+.NET Aspire Application          aspire          [C#]      Common/.NET Aspire/Cloud
+.NET Aspire Starter Application  aspire-starter  [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud
+```
 
 To create a .NET Aspire project using the .NET CLI, use the `dotnet new` command and specify which template you would like to create.
 
@@ -109,6 +132,14 @@ The left navigation provides links to the different parts of the dashboard, each
 ## Visual Studio tooling
 
 Visual Studio provides additional features for working with .NET Aspire components and the App Host orchestrator project. These features are currently not available in Visual Studio Code or through the CLI.
+
+### Enable .NET Aspire preview support
+
+In Visual Studio, you can enable preview support for .NET Aspire components and project templates. To enable preview support, select **Tools** > **Options** > and in the **Search Settings** textbox enter "aspire", then ensure that the **Enable .NET Aspire preview support** is checked:
+
+:::image type="content" source="media/visual-studio-tools-options-aspire.png" lightbox="media/visual-studio-tools-options-aspire.png" alt-text="Visual Studio 2022, enable .NET Aspire preview support.":::
+
+Likewise, you can disable preview support by unchecking the **Enable .NET Aspire preview support** option.
 
 ### Add a component
 
