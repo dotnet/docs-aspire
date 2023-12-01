@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AspireStorage.Worker\AspireStorage.Worker.csproj" />
-    <ProjectReference Include="..\AspireStorage\AspireStorage\AspireStorage.csproj" />
+    <ProjectReference Include="..\AspireStorage\AspireStorage.csproj" />
   </ItemGroup>
 
 </Project>
