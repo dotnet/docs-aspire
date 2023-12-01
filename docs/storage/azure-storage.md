@@ -120,7 +120,7 @@ In the _Program.cs_ file of the _AspireStorage_ project, add calls to the <xref:
 :::zone-end
 :::zone pivot="azure-portal,azure-cli"
 
-:::code source="snippets/tutorial/AspireStorage/AspireStorage/AspireStorage/Program.cs" range="1-27,41-50" highlight="2-3,7-8":::
+:::code source="snippets/tutorial/AspireStorage/AspireStorage/Program.cs" range="1-27,41-50" highlight="2-3,7-8":::
 
 :::zone-end
 
@@ -204,7 +204,7 @@ The preceding code adds Azure storage, blobs, and queues, and when in developmen
 :::zone-end
 :::zone pivot="azure-portal,azure-cli"
 
-:::code source="snippets/tutorial/AspireStorage/AspireStorage.AppHost/Program.cs" range="1-5,11-23:::
+:::code source="snippets/tutorial/AspireStorage/AspireStorage.AppHost/Program.cs" range="1-5,11-23":::
 
 The preceding code adds Azure storage, blobs, and queues, and defines references for these resources within each project that depend on them.
 
