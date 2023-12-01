@@ -54,6 +54,8 @@ If you've already installed the .NET Aspire workload, it's best to ensure that y
 dotnet workload update aspire
 ```
 
+---
+
 ## .NET Aspire project templates
 
 The .NET Aspire workload makes available .NET Aspire project templates. These project templates allow you to create new apps pre-configured with the .NET Aspire project structure and default settings. These projects also provide a unified debugging experience across the different resources of your app.
