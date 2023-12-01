@@ -100,7 +100,7 @@ Visual Studio tooling added this line of code to register your new project with 
 
 The completed solution structure should resemble the following:
 
-:::image type="content" source="../media/storage-project.png" alt-text="A screenshot showing the structure of the .NET Aspire storage sample solution.":::
+:::image type="content" source="media/storage-project.png" alt-text="A screenshot showing the structure of the .NET Aspire storage sample solution.":::
 
 ## Add the .NET Aspire components to the Blazor app
 
@@ -238,7 +238,7 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 1. Press the run button at the top of Visual Studio to launch your .NET Aspire app dashboard in the browser.
 1. On the projects page, in the **aspirestorage** row, click the link in the **Endpoints** column to open the UI of your app.
 
-    :::image type="content" source="../media/support-app.png" lightbox="../media/support-app.png" alt-text="A screenshot showing the home page of the .NET Aspire support application.":::
+    :::image type="content" source="media/support-app.png" lightbox="media/support-app.png" alt-text="A screenshot showing the home page of the .NET Aspire support application.":::
 
 1. Enter sample data into the `Title` and `Description` form fields and select a simple file to upload.
 1. Select the **Submit** button, and the form submits the support ticket for processing — and clears the form.
@@ -246,7 +246,7 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 1. Select **Containers** and then navigate into the **Documents** container to see the uploaded file.
 1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../dashboard.md), and selecting the **aspirestorage.worker** from the dropdown.
 
-    :::image type="content" source="../media/queue-output.png" lightbox="../media/queue-output.png"  alt-text="A screenshot showing the console output of the Worker app.":::
+    :::image type="content" source="media/queue-output.png" lightbox="media/queue-output.png"  alt-text="A screenshot showing the console output of the Worker app.":::
 
 ## Summary
 
