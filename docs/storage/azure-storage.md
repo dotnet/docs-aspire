@@ -138,12 +138,7 @@ When the _AspireStorage_ project starts, it will create a `fileuploads` containe
 
 In the _appsettings.json_ file of the _AspireStorage_ project, add the corresponding connection information:
 
-```json
-"ConnectionStrings": {
-  "BlobConnection": "https://{account_name}.blob.core.windows.net/",
-  "QueueConnection": "https://{account_name}.queue.core.windows.net/"
-}
-```
+:::code language="json" source="snippets/tutorial/AspireStorage/AspireStorage/appsettings.json" highlight="9-12":::
 
 ## Add the .NET Aspire component to the Worker Service
 
@@ -164,15 +159,11 @@ This method handles the following tasks:
 
 In the _appsettings.json_ file of the _AspireStorage.Worker_ project, add the corresponding connection string information:
 
-```json
-"ConnectionStrings": {
-  "QueueConnection": "https://{account_name}.queue.core.windows.net/"
-}
-```
+:::code language="json" source="snippets/tutorial/AspireStorage/AspireStorage.Worker/appsettings.json" highlight="8-10":::
 
 ## Create the form
 
-The app requires a form for the user to be able to submit support ticket information and upload an attachment. The app uploads the attached file on the `Document` property to Azure Blob Storage using the injected <xref:Azure.Storage.Blobs.BlobServiceClient>. The <xref:Azure.Storage.Queues.QueueServiceClient> sends a message composed of the `Title` and `Description` to the Azure Storage Queue.
+The app requires a form for the user to be able to submit support ticket information and upload an attachment. The app uploads the attached file on the `Document` (<xref:Microsoft.AspNetCore.Http.IFormFile>) property to Azure Blob Storage using the injected <xref:Azure.Storage.Blobs.BlobServiceClient>. The <xref:Azure.Storage.Queues.QueueServiceClient> sends a message composed of the `Title` and `Description` to the Azure Storage Queue.
 
 Use the following Razor markup to create a basic form, replacing the contents of the _Home.razor_ file in the _AspireStorage/Components/Pages_ directory:
 
