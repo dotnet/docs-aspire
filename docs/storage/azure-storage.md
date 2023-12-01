@@ -223,7 +223,7 @@ Before the worker service can process messages, it needs to be able to connect t
 :::zone-end
 :::zone pivot="azure-portal,azure-cli"
 
-:::code source="snippets/tutorial/AspireStorage/AspireStorage.Worker/Worker.cs" range="1-11,15-37":::
+:::code source="snippets/tutorial/AspireStorage/AspireStorage.Worker/Worker.cs" range="1-12,15-37":::
 
 The worker service processes messages by connecting to the Azure Storage queue, and pulling messages off the queue.
 
@@ -241,10 +241,10 @@ The sample app is now ready for testing. Verify that the submitted form data is 
     :::image type="content" source="../media/support-app.png" lightbox="../media/support-app.png" alt-text="A screenshot showing the home page of the .NET Aspire support application.":::
 
 1. Enter sample data into the `Title` and `Description` form fields and select a simple file to upload.
-1. Press submit, and the page should reload.
+1. Select the **Submit** button, and the form submits the support ticket for processing — and clears the form.
 1. In a separate browser tab, use the Azure portal to navigate to the **Storage browser** in your Azure Storage Account.
 1. Select **Containers** and then navigate into the **Documents** container to see the uploaded file.
-1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../dashboard.md).
+1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../dashboard.md), and selecting the **aspirestorage.worker** from the dropdown.
 
     :::image type="content" source="../media/queue-output.png" lightbox="../media/queue-output.png"  alt-text="A screenshot showing the console output of the Worker app.":::
 
