@@ -71,7 +71,8 @@ You also need to assign the following roles to the user account you are logged i
     - Leave the rest of the values at their defaults and select **Next**.
 1. On the **Additional information** screen:
     - Make sure **.NET 8.0** is selected.
-    - Make sure **Enlist in .NET Aspire orchestration** is checked and select **Create**.
+    - Ensure the **Interactive render mode** is set to **None**.
+    - Check the **Enlist in .NET Aspire orchestration** option and select **Create**.
 
 Visual Studio creates a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:
 
@@ -115,12 +116,12 @@ In the _Program.cs_ file of the _AspireStorage_ project, add calls to the <xref:
 
 :::zone pivot="azurite"
 
-:::code source="snippets/tutorial/AspireStorage/AspireStorage/Program.cs" highlight="2-3,7-8,30-39":::
+:::code source="snippets/tutorial/AspireStorage/AspireStorage/Program.cs" highlight="2-3,7-8,29-38":::
 
 :::zone-end
 :::zone pivot="azure-portal,azure-cli"
 
-:::code source="snippets/tutorial/AspireStorage/AspireStorage/Program.cs" range="1-27,41-50" highlight="2-3,7-8":::
+:::code source="snippets/tutorial/AspireStorage/AspireStorage/Program.cs" range="1-26,40-58" highlight="2-3,7-8":::
 
 :::zone-end
 

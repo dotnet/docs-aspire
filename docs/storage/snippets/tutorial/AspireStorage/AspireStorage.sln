@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireStorage.ServiceDefaul
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireStorage.Worker", "AspireStorage.Worker\AspireStorage.Worker.csproj", "{E9CE3EB7-E021-407A-ACA7-785E5A7D968C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireStorage", "AspireStorage\AspireStorage.csproj", "{6473DB2E-9BDA-439E-9AF4-99D165D9E315}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireStorage", "AspireStorage\AspireStorage.csproj", "{E323D2AB-6A80-47B8-8F55-BD3CBDFCD63D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{E9CE3EB7-E021-407A-ACA7-785E5A7D968C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9CE3EB7-E021-407A-ACA7-785E5A7D968C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9CE3EB7-E021-407A-ACA7-785E5A7D968C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6473DB2E-9BDA-439E-9AF4-99D165D9E315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6473DB2E-9BDA-439E-9AF4-99D165D9E315}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6473DB2E-9BDA-439E-9AF4-99D165D9E315}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6473DB2E-9BDA-439E-9AF4-99D165D9E315}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E323D2AB-6A80-47B8-8F55-BD3CBDFCD63D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E323D2AB-6A80-47B8-8F55-BD3CBDFCD63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E323D2AB-6A80-47B8-8F55-BD3CBDFCD63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E323D2AB-6A80-47B8-8F55-BD3CBDFCD63D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
