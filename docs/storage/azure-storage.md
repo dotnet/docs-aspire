@@ -114,7 +114,7 @@ dotnet add package Aspire.Azure.Storage.Queues --prerelease
 
 Your **AspireStorage** project is now set up to use .NET Aspire components. Here's the updated _AspireStorage.csproj_ file:
 
-:::code source="snippets/tutorial/AspireStorage/AspireStorage/AspireStorage.csproj" highlight="10-13":::
+:::code language="xml" source="snippets/tutorial/AspireStorage/AspireStorage/AspireStorage.csproj" highlight="10-13":::
 
 The next step is to add the components to the app.
 
