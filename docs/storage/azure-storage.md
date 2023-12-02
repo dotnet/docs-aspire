@@ -142,10 +142,6 @@ When the _AspireStorage_ project starts, it will create a `fileuploads` containe
 
 :::zone-end
 
-In the _appsettings.json_ file of the _AspireStorage_ project, add the corresponding connection information:
-
-:::code language="json" source="snippets/tutorial/AspireStorage/AspireStorage/appsettings.json" highlight="9-12":::
-
 ## Add the .NET Aspire component to the Worker Service
 
 The worker service handles pulling messages off of the Azure Storage queue for processing. Add the [.NET Aspire Azure Queue Storage component](azure-storage-queues-component.md) component package to your _AspireStorage.Worker_ app:
@@ -162,10 +158,6 @@ This method handles the following tasks:
 
 - Register a <xref:Azure.Storage.Queues.QueueServiceClient> with the DI container for connecting to Azure Storage Queues.
 - Automatically enable corresponding health checks, logging, and telemetry for the respective services.
-
-In the _appsettings.json_ file of the _AspireStorage.Worker_ project, add the corresponding connection string information:
-
-:::code language="json" source="snippets/tutorial/AspireStorage/AspireStorage.Worker/appsettings.json" highlight="8-10":::
 
 ## Create the form
 
