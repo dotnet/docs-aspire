@@ -112,6 +112,12 @@ dotnet add package Aspire.Azure.Storage.Blobs --prerelease
 dotnet add package Aspire.Azure.Storage.Queues --prerelease
 ```
 
+Your **AspireStorage** project is now set up to use .NET Aspire components. Here's the updated _AspireStorage.csproj_ file:
+
+:::code source="snippets/tutorial/AspireStorage/AspireStorage/AspireStorage.csproj" highlight="10-13":::
+
+The next step is to add the components to the app.
+
 In the _Program.cs_ file of the _AspireStorage_ project, add calls to the <xref:Microsoft.Extensions.Hosting.AspireBlobStorageExtensions.AddAzureBlobService%2A> and <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueService%2A> extension methods after the creation of the `builder` but before the call to `AddServiceDefaults`. For more information, see [.NET Aspire service defaults](../service-defaults.md). Provide the name of your connection string as a parameter.
 
 :::zone pivot="azurite"
