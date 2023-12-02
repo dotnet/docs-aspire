@@ -1,0 +1,68 @@
+﻿@page "/"
+
+@using System.ComponentModel.DataAnnotations
+@using Azure.Storage.Blobs
+@using Azure.Storage.Queues
+
+@inject BlobServiceClient BlobClient
+@inject QueueServiceClient QueueServiceClient
+
+<PageTitle>Home</PageTitle>
+
+<div class="text-center">
+    <h1 class="display-4">Request Support</h1>
+</div>
+
+<EditForm Model="@Ticket" FormName="Tickets" method="post"
+          OnValidSubmit="@HandleValidSubmit" enctype="multipart/form-data">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-4">
+        <label>Issue Title</label>
+        <InputText class="form-control" @bind-Value="@Ticket.Title" />
+        <ValidationMessage For="() => Ticket.Title" />
+    </div>
+    <div class="mb-4">
+        <label>Issue Description</label>
+        <InputText class="form-control" @bind-Value="@Ticket.Description" />
+        <ValidationMessage For="() => Ticket.Description" />
+    </div>
+    <div class="mb-4">
+        <label>Attachment</label>
+        <InputFile class="form-control" name="Ticket.Document" />
+        <ValidationMessage For="() => Ticket.Document" />
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+    <button class="btn btn-danger mx-2" type="reset" @onclick=@ClearForm>Clear</button>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm(FormName = "Tickets")]
+    private SupportTicket Ticket { get; set; } = new();
+
+    private async Task HandleValidSubmit()
+    {
+        var docsContainer = BlobClient.GetBlobContainerClient("fileuploads");
+
+        // Upload file to blob storage
+        await docsContainer.UploadBlobAsync(
+            Ticket.Document.FileName,
+            Ticket.Document.OpenReadStream());
+
+        // Send message to queue
+        var queueClient = QueueServiceClient.GetQueueClient("tickets");
+
+        await queueClient.SendMessageAsync(
+             $"{Ticket.Title} - {Ticket.Description}");
+    }
+
+    private void ClearForm() => Ticket = new();
+
+    private class SupportTicket()
+    {
+        [Required] public string Title { get; set; } = default!;
+        [Required] public string Description { get; set; } = default!;
+        [Required] public IFormFile Document { get; set; } = default!;
+    }
+}

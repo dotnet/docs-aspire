@@ -67,7 +67,7 @@ conceptualContent:
       links:
         - itemType: quickstart
           text: Connect to storage with .NET Aspire
-          url: storage/quickstart-azure-storage.md
+          url: storage/azure-storage.md
         - itemType: how-to-guide
           text: Azure Blob Storage
           url: storage/azure-storage-blobs-component.md

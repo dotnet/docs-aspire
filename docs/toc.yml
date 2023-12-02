@@ -41,7 +41,7 @@ items:
   - name: Storage
     items:
       - name: Tutorial - Connect to storage
-        href: storage/quickstart-azure-storage.md
+        href: storage/azure-storage.md
       - name: Azure Blob Storage component
         href: storage/azure-storage-blobs-component.md
       - name: Azure Storage Queues component

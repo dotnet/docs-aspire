@@ -37,14 +37,12 @@
     "resource": [
       {
         "files": [
-          "/docs/media/dotnet-aspire-logo.png",
-          "/media/dotnet-aspire-logo.png",
-          "**/dotnet-aspire-logo.png",
+          "**/*.bmp",
+          "**/*.gif",
+          "**/*.jpg",
           "**/*.png",
           "**/*.svg",
-          "**/*.jpg",
-          "**/*.gif",
-          "**/*.bmp"
+          "**/zone-pivot-groups.json"
       ],
         "exclude": [
           "**/obj/**",
@@ -65,6 +63,8 @@
       "ms.devlang": "dotnet",
       "ms.prod": "dotnet",
       "ms.topic": "conceptual",
+      "ROBOTS": "INDEX,FOLLOW",
+      "audience": "developer",
       "breadcrumb_path": "/dotnet/aspire/breadcrumb/toc.json",
       "feedback_system": "GitHub",
       "feedback_github_repo": "dotnet/docs-aspire",
@@ -77,8 +77,10 @@
         "enable_uhf_ppe"
       ],
       "searchScope": [
-        ".NET"
+        ".NET",
+        ".NET Aspire"
       ],
+      "zone_pivot_group_filename": "aspire/zones/zone-pivot-groups.json",
       "show_latex": true,
       "uhfHeaderId": "MSDocsHeader-DotNet",
       "_displayLangs": [
