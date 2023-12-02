@@ -121,7 +121,7 @@ This method accomplishes the following tasks:
 - Registers a <xref:Microsoft.Azure.Commands.ServiceBus.ServiceBusClient> with the DI container for connecting to Azure Service Bus.
 - Automatically enables corresponding health checks, logging, and telemetry for the respective services.
 
-In the _appsettings.json file of the `AspireMessaging` project, add the corresponding connection information:
+In the _appsettings.json_ file of the `AspireMessaging` project, add the corresponding connection information:
 
 # [Passwordless (Recommended)](#tab/passwordless)
 
@@ -197,7 +197,7 @@ This method accomplishes the following tasks:
 - Registers a <xref:Microsoft.Azure.Commands.ServiceBus.ServiceBusClient> with the DI container for connecting to Azure Service Bus.
 - Automatically enables corresponding health checks, logging, and telemetry for the respective services.
 
-In the _appsettings.json file of the `AspireMessaging.Worker` project, add the corresponding connection information:
+In the _appsettings.json_ file of the `AspireMessaging.Worker` project, add the corresponding connection information:
 
 # [Passwordless (Recommended)](#tab/passwordless)
 
