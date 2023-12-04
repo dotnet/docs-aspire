@@ -161,7 +161,7 @@ You can add .NET Aspire orchestration projects to an existing app using the foll
 
 1. In Visual Studio, right click on an existing project and select **Add** > **.NET Aspire Orchestrator Support..**.
 
-    :::image type="content" source="media/visual-studio-add-aspire-orchestrator.png" lightbox="media/visual-studio-add-aspire-orchestrator.png.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire Orchestrator Support option.":::
+    :::image type="content" source="media/visual-studio-add-aspire-orchestrator.png" lightbox="media/visual-studio-add-aspire-orchestrator.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire Orchestrator Support option.":::
 
 1. A dialog window will open with a summary of the **.AppHost** and **.ServiceDefaults** projects that will be added to your solution.
 
