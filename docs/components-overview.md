@@ -9,7 +9,7 @@ ms.topic: conceptual
 
 .NET Aspire components are a curated suite of NuGet packages specifically selected to facilitate the integration of cloud-native applications with prominent services and platforms, including but not limited to Redis and PostgreSQL. Each component furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns.
 
-For more information on Visual Studio tooling support, see [Visual Studio tooling](setup-tooling.md#visual-studio-tooling).
+For more information on working with .NET Aspire components in Visual Studio, see [Visual Studio tooling](setup-tooling.md#visual-studio-tooling).
 
 ## Available components
 
