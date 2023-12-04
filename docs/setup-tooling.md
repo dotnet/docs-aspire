@@ -26,7 +26,7 @@ To work with .NET Aspire, you'll need the following installed locally:
   - [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.9 or higher (Optional)
   - [Visual Studio Code](https://code.visualstudio.com/) (Optional)
 
-The .NET Aspire workload installs internal dependencies and makes available other tooling, such as project templates and Visual Studio features. There are two ways to install the .NET Aspire workload. If you prefer to use Visual Studio Code, following the .NET CLI instructions:
+The .NET Aspire workload installs internal dependencies and makes available other tooling, such as project templates and Visual Studio features. There are two ways to install the .NET Aspire workload. If you prefer to use Visual Studio Code, follow the .NET CLI instructions:
 
 # [Visual Studio](#tab/visual-studio)
 
