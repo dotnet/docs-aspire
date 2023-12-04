@@ -44,6 +44,6 @@ Once AZD has been initialized, the provisioning and deployment process can be ex
 
 Once `provision` is complete, `azd deploy` will take place. During this phase, the projects are pushed as containers into an Azure Container Registry instance, and then used to create new revisions of Azure Container Apps in which the code will be hosted.
 
-:::image type="content" source="../media/aspire-azd-06.png" lightbox="../media/aspire-azd-07.png" alt-text="AZD deploying the application code":::
+:::image type="content" source="../media/aspire-azd-07.png" lightbox="../media/aspire-azd-07.png" alt-text="AZD deploying the application code":::
 
 At this point the app has been deployed and configured, and you can open the Azure portal and explore the resources.
