@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 12/03/2023
+ms.date: 12/04/2023
 ---
 
 # .NET Aspire setup and tooling
@@ -146,7 +146,12 @@ Likewise, you can disable preview support by unchecking the **Enable .NET Aspire
 You add .NET Aspire components to your app like any other NuGet package using Visual Studio. However, Visual Studio also provides UI options to add .NET Aspire components directly. You need to first enable preview support for .NET Aspire components in Visual Studio. For information see, [Enable .NET Aspire preview support](#enable-net-aspire-preview-support).
 
 1. In Visual Studio, right click on the project you want to add an .NET Aspire component to and select **Add** > **.NET Aspire Component...**.
-1. The package manager will open with search results pre-configured for .NET Aspire components, allowing you to easily browse and select the desired component.
+
+    :::image type="content" source="media/visual-studio-add-aspire.png" lightbox="media/visual-studio-add-aspire.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire options.":::
+
+1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire components, allowing you to easily browse and select the desired component. The **Include prerelease** checkbox needs to be checked to see preview components.
+
+    :::image type="content" source="media/visual-studio-add-aspire-comp-nuget.png" lightbox="media/visual-studio-add-aspire-comp-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire options.":::
 
 For more information on .NET Aspire components, see [.NET Aspire components overview](components-overview.md).
 
