@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer"
-                                                  Version="8.0.0-preview.2.23604.7" />
+	  <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-preview.1.23557.2" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -16,8 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference
-      Include="..\AspireSQLEFCore.ServiceDefaults\AspireSQLEFCore.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\AspireSQLEFCore.ServiceDefaults\AspireSQLEFCore.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>
