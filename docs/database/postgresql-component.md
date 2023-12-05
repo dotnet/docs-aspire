@@ -107,7 +107,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
     .WithReference(postgresdb);
 ```
 
-The<xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `postgresdb`. In the _Program.cs_ file of the `ExampleService` project, the database connection can be consumed using:
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `postgresdb`. In the _Program.cs_ file of the `ExampleService` project, the database connection can be consumed using:
 
 ```csharp
 builder.AddNpgsqlDataSource("postgresdb");
