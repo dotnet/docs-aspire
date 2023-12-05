@@ -48,15 +48,14 @@ For more information on working with .NET Aspire components in Visual Studio, se
     # [PackageReference](#tab/package-reference)
 
     ```xml
-    <PackageReference Include="Aspire.Npgsql"
-                      Version="[SelectVersion]" />
+    <PackageReference Include="Aspire.Npgsql" Version="[SelectVersion]" />
     ```
 
     ---
 
     For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-1. In the _Program.cs_ file of your Worker Service project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension method to register a `NpgsqlDataSource` for use via the dependency injection container. The method expects a connection name parameter.
+1. In the _Program.cs_ file of your Worker Service project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension method to register `NpgsqlDataSource` as a service.
 
     :::code source="snippets/components/AspireApp/WorkerService/Program.cs" highlight="5":::
 
@@ -65,21 +64,19 @@ For more information on working with .NET Aspire components in Visual Studio, se
     > [!TIP]
     > Components that are designed to connect to Azure services also support passwordless authentication and authorization using [Azure RBAC](/azure/role-based-access-control/overview), which is the recommended approach for production apps.
 
-1. In your orchestrator project (the project with the _*.AppHost_ suffix), add a reference to the component consuming project. If you're using Visual Studio, you can use the **Add .NET Aspire Orchestrator Support** project context menu item to add the reference automatically. The following code snippet shows the project reference of the _AspireApp.AppHost.csproj_:
+1. In your orchestrator project (the project with the _*.AppHost_ suffix), add a reference to the Worker Service project. If you're using Visual Studio, you can use the [**Add .NET Aspire Orchestrator Support**](setup-tooling.md#add-orchestration-projects) project context menu item to add the reference automatically. The following code snippet shows the project reference of the _AspireApp.AppHost.csproj_:
 
     :::code language="xml" source="snippets/components/AspireApp/AspireApp.AppHost/AspireApp.AppHost.csproj" highlight="16":::
 
-    For more information about AppHost tooling features, see [Add .NET Aspire Orchestrator Support](setup-tooling.md#add-orchestration-projects).
-
-    After the project is referenced in the orchestrator project, the component consuming project has its _Program.cs_ file updated to call the `AddServiceDefaults`.
+    After the Worker Service project is referenced in the orchestrator project, the Worker Service project has its _Program.cs_ file updated to call the `AddServiceDefaults`. For more information on service defaults, see [Service defaults](service-defaults.md).
 
 1. In the orchestrator project, update the _Program.cs_ file with the following code:
 
     :::code source="snippets/components/AspireApp/AspireApp.AppHost/Program.cs" highlight="3-4,6,8-11":::
 
-    In the preceding code, the orchestrator project:
+    The preceding code:
 
-    - Calls <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresContainer%2A> and chains a call to <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A>, adding a PostgreSQL database container to the app host.
+    - Calls <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresContainer%2A> and chains a call to <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A>, adding a PostgreSQL database container to the app model.
     - Establishes a connection to the PostgreSQL database using the connection name `"PostgreSqlConnection"`, by calling <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresConnection%2A>.
     - Chains calls on the result of the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> from the Worker Service project:
       - Calls <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a reference to the `database`.
