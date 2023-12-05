@@ -1,15 +1,13 @@
 ---
 title: .NET Aspire components overview
 description: Explore the fundamental concepts of .NET Aspire components and learn how to integrate them into your apps.
-ms.date: 12/03/2023
+ms.date: 12/05/2023
 ms.topic: conceptual
 ---
 
 # .NET Aspire components overview
 
-.NET Aspire components are a curated suite of NuGet packages specifically selected to facilitate the integration of cloud-native applications with prominent services and platforms, including but not limited to Redis and PostgreSQL. Each component furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns.
-
-For more information on working with .NET Aspire components in Visual Studio, see [Visual Studio tooling](setup-tooling.md#visual-studio-tooling).
+.NET Aspire components are a curated suite of NuGet packages specifically selected to facilitate the integration of cloud-native applications with prominent services and platforms, including but not limited to Redis and PostgreSQL. Each component furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns. .NET Aspire components can be used without an orchestrator project, but they're designed to work best with the [.NET Aspire app host](app-host-overview.md).
 
 ## Available components
 
@@ -33,11 +31,13 @@ The following table lists the .NET Aspire components currently available for use
 | [SQL Server Entity Framework Core](database/sql-server-entity-framework-component.md) | [Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) | A library for accessing [SQL Server databases using Entity Framework Core](/ef/core/providers/sql-server/). |
 | [SQL Server](database/sql-server-component.md) | [Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) | A library for accessing [SQL Server](/sql/sql-server/) databases. |
 
+For more information on working with .NET Aspire components in Visual Studio, see [Visual Studio tooling](setup-tooling.md#visual-studio-tooling).
+
 ## Explore a sample component workflow
 
-.NET Aspire components streamline the process of consuming popular services and platforms. For example, you could use the .NET Aspire PostgreSQL component to connect to and utilize a PostgreSQL database. The database could be hosted on-prem or in a cloud service such as Azure, AWS, or GCP. The following steps demonstrate how to integrate this component into your app:
+.NET Aspire components streamline the process of consuming popular services and platforms. For example, consider the **.NET Aspire Application**  template. With this template, you get the [AppHost](app-host-overview.md) and [ServiceDefaults](service-defaults.md) projects. Imagine that you have a need for a worker service to perform some database processing. You could use the [.NET Aspire PostgreSQL component](database/postgresql-component.md) to connect to and utilize a PostgreSQL database. The database could be hosted on-prem or in a cloud service such as Azure, AWS, or GCP. The following steps demonstrate how to integrate this component into your app:
 
-1. Install the [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package.
+1. In the component consuming (worker service) project, install the [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package.
 
     # [.NET CLI](#tab/dotnet-cli)
 
@@ -48,42 +48,44 @@ The following table lists the .NET Aspire components currently available for use
     # [PackageReference](#tab/package-reference)
 
     ```xml
-    <PackageReference Include="Aspire.Npgsql"
-                      Version="[SelectVersion]" />
+    <PackageReference Include="Aspire.Npgsql" Version="[SelectVersion]" />
     ```
 
     ---
 
     For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-1. In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension method to register a `NpgsqlDataSource` for use via the dependency injection container. The method expects a connection name parameter.
+1. In the _Program.cs_ file of your worker service project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension method to register `NpgsqlDataSource` as a service.
 
-    ```csharp
-    builder.AddNpgsqlDataSource("PostgreSqlConnection");
-    ```
+    :::code source="snippets/components/AspireApp/WorkerService/Program.cs" highlight="5":::
 
-    > [!NOTE]
-    > Components that are designed to connect to Azure services also support passwordless authentication and authorization using Azure RBAC, which is the recommended approach for production apps.
+    The preceding code adds the `NpgsqlDataSource` to the dependency injection container with the connection name of `"customers"`. The connection name is later used by the orchestrator project, when expressing resource dependencies.
 
-1. Add a connection string with a matching name in your _appsettings.json_ file.
+    > [!TIP]
+    > Components that are designed to connect to Azure services also support passwordless authentication and authorization using [Azure RBAC](/azure/role-based-access-control/overview), which is the recommended approach for production apps.
 
-    ```json
-    {
-      "ConnectionStrings": {
-        "PostgreSqlConnection": "Host=myserver;Database=test"
-      }
-    }
-    ```
+1. In your orchestrator project (the project with the _*.AppHost_ suffix), add a reference to the worker service project. If you're using Visual Studio, you can use the [**Add .NET Aspire Orchestrator Support**](setup-tooling.md#add-orchestration-projects) project context menu item to add the reference automatically. The following code snippet shows the project reference of the _AspireApp.AppHost.csproj_:
 
-1. Inject the `NpgsqlDataSource` object into your controllers or service endpoints to run commands against the database:
+    :::code language="xml" source="snippets/components/AspireApp/AspireApp.AppHost/AspireApp.AppHost.csproj" highlight="16":::
 
-    ```csharp
-    public class ExampleService(NpgsqlDataSource dataSource)
-    {
-    }
-    ```
+    After the worker service is referenced by the orchestrator project, the worker service project has its _Program.cs_ file updated to call the `AddServiceDefaults` method. For more information on service defaults, see [Service defaults](service-defaults.md).
 
-After four steps, you now have a fully configured PostgreSQL database component integrated into your app. This component also configured health checks, logging, tracing, metrics, retries, and other useful capabilities for you behind the scenes. .NET Aspire components provide various options to configure each of these features.
+1. In the orchestrator project, update the _Program.cs_ file with the following code:
+
+    :::code source="snippets/components/AspireApp/AspireApp.AppHost/Program.cs" highlight="3-4,6-8":::
+
+    The preceding code:
+
+    - Calls <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresContainer%2A> and chains a call to <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A>, adding a PostgreSQL database container to the app model with a database named `"customers"`.
+    - Chains calls on the result of the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> from the worker service project:
+      - Calls <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a reference to the `database`.
+      - Calls <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithReplicas%2A> to set the number of replicas to `3`.
+
+1. Inject the `NpgsqlDataSource` object into the `Worker` to run commands against the database:
+
+    :::code source="snippets/components/AspireApp/WorkerService/Worker.cs" highlight="7,13":::
+
+You now have a fully configured PostgreSQL database component and corresponding container with connection integrated into your app! This component also configured health checks, logging, metrics, retries, and other useful capabilities for you behind the scenes. .NET Aspire components provide various options to configure each of these features.
 
 ## Configure .NET Aspire components
 
