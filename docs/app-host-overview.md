@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs to express resource references.
-ms.date: 11/15/2023
+ms.date: 12/05/2023
 ms.topic: overview
 ---
 
@@ -11,7 +11,7 @@ ms.topic: overview
 
 Before continuing, consider some common terminology used in .NET Aspire:
 
-- **App model**: A collection of resources that make up your distributed application (`DistributedApplication`). For a more formal definition, see [Define the app model](#define-the-app-model).
+- **App model**: A collection of resources that make up your distributed application (<xref:Aspire.Hosting.DistributedApplication>). For a more formal definition, see [Define the app model](#define-the-app-model).
 - **App host/Orchestrator project**: The .NET project that orchestrates the _app model_, named with the _*.AppHost_ suffix (by convention).
 - **Resource**: A [resource](#built-in-resource-types) represents a part of an application whether it be a .NET project, container, or executable, or some other resource like a database, cache, or cloud service (such as a storage service).
 - **Reference**: A reference defines a connection between resources, expressed as a dependency. For more information, see [Reference resources](#reference-resources).

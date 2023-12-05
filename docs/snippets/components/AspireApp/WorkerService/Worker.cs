@@ -12,7 +12,7 @@ public sealed class Worker(
         {
             // Use the dataSource
 
-            await Task.Delay(1_000, stoppingToken);
+            await Task.Delay(15_000, stoppingToken);
         }
     }
 }
