@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire components overview
 description: Explore the fundamental concepts of .NET Aspire components and learn how to integrate them into your apps.
-ms.date: 12/03/2023
+ms.date: 12/05/2023
 ms.topic: conceptual
 ---
 
@@ -35,7 +35,7 @@ The following table lists the .NET Aspire components currently available for use
 
 ## Explore a sample component workflow
 
-.NET Aspire components streamline the process of consuming popular services and platforms. For example, you could use the .NET Aspire PostgreSQL component to connect to and utilize a PostgreSQL database. The database could be hosted on-prem or in a cloud service such as Azure, AWS, or GCP. The following steps demonstrate how to integrate this component into your app:
+.NET Aspire components streamline the process of consuming popular services and platforms. For example, you could use the [.NET Aspire PostgreSQL component](database/postgresql-component.md) to connect to and utilize a PostgreSQL database. The database could be hosted on-prem or in a cloud service such as Azure, AWS, or GCP. The following steps demonstrate how to integrate this component into your app:
 
 1. Install the [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package.
 
@@ -56,14 +56,24 @@ The following table lists the .NET Aspire components currently available for use
 
     For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-1. In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension method to register a `NpgsqlDataSource` for use via the dependency injection container. The method expects a connection name parameter.
+1. In the _Program.cs_ file of your component consuming project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension method to register a `NpgsqlDataSource` for use via the dependency injection container. The method expects a connection name parameter. Consider the following [Worker Service](/dotnet/core/extensions/workers) example:
 
-    ```csharp
-    builder.AddNpgsqlDataSource("PostgreSqlConnection");
-    ```
+    :::code source="snippets/components/AspireApp/WorkerService/Program.cs" highlight="5":::
 
-    > [!NOTE]
-    > Components that are designed to connect to Azure services also support passwordless authentication and authorization using Azure RBAC, which is the recommended approach for production apps.
+    The preceding code adds the `NpgsqlDataSource` to the dependency injection container with the name `PostgreSqlConnection`.
+
+    > [!TIP]
+    > Components that are designed to connect to Azure services also support passwordless authentication and authorization using [Azure RBAC](/azure/role-based-access-control/overview), which is the recommended approach for production apps.
+
+1. In your orchestrator project (the project with the _*.AppHost_ suffix), add a reference to the component consuming project. If you're using Visual Studio, you can use the **Add .NET Aspire Orchestrator Support** project context menu item to add the reference automatically. The following code snippet shows the reference added to the _AspireApp.AppHost.csproj_ file:
+
+    :::code language="xml" source="snippets/components/AspireApp/AspireApp.AppHost/AspireApp.AppHost.csproj" highlight="16":::
+
+    For more information about AppHost tooling features, see [Add .NET Aspire Orchestrator Support](setup-tooling.md#add-orchestration-projects).
+
+    After the project is referenced in the orchestrator project, the component consuming project has its _Program.cs_ file updated to call the `AddServiceDefaults`. For more information about the service defaults project and its purpose, see [.NET Aspire service defaults](service-defaults.md).
+
+1. TODO: show the app host _Program.cs_ file
 
 1. Add a connection string with a matching name in your _appsettings.json_ file.
 
