@@ -88,6 +88,12 @@ For more information about creating forms in Blazor, see [ASP.NET Core Blazor fo
 
 The _AspireSQLEFCore.AppHost_ project is the orchestrator for your app. It's responsible for connecting and configuring the different projects and services of your app. The orchestrator should be set as the startup project.
 
+Add the [.NET Aspire Entity Framework Core Sql Server library](/dotnet/aspire/database/sql-server-entity-framework-component?tabs=dotnet-cli) package to your _AspireStorage.AppHost_ project:
+
+```dotnetcli
+dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer --prerelease
+```
+
 Replace the contents of the _Program.cs_ file in the _AspireSQLEFCore.AppHost_ project with the following code:
 
 :::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore.AppHost/Program.cs":::
