@@ -1,9 +1,5 @@
-using AspireSQL.Components;
-using AspireSQL.Data;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
-using Microsoft.AspNetCore.Builder;
+using AspireSQLEFCore;
+using AspireSQLEFCore.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AddSqlServerDbContext<TicketContext>("sqldata");

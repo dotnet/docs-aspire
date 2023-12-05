@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34308.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireSQL", "AspireSQL\AspireSQL.csproj", "{27667A42-D629-4B1A-81EE-AE302F40679C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireSQLEFCore", "AspireSQLEFCore\AspireSQLEFCore.csproj", "{27667A42-D629-4B1A-81EE-AE302F40679C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireSQL.AppHost", "AspireSQL.AppHost\AspireSQL.AppHost.csproj", "{0510325F-3687-49E2-B91D-474E6B12179D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireSQLEFCore.AppHost", "AspireSQLEFCore.AppHost\AspireSQLEFCore.AppHost.csproj", "{0510325F-3687-49E2-B91D-474E6B12179D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireSQL.ServiceDefaults", "AspireSQL.ServiceDefaults\AspireSQL.ServiceDefaults.csproj", "{ED32A3C9-E38B-4712-AD04-0547680EEE24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireSQLEFCore.ServiceDefaults", "AspireSQLEFCore.ServiceDefaults\AspireSQLEFCore.ServiceDefaults.csproj", "{ED32A3C9-E38B-4712-AD04-0547680EEE24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

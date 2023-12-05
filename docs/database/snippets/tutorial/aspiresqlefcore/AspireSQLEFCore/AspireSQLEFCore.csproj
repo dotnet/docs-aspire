@@ -8,16 +8,14 @@
 
   <ItemGroup>
 	  <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-preview.2.23604.7" />
-	  <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
 	    <PrivateAssets>all</PrivateAssets>
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AspireSQL.ServiceDefaults\AspireSQL.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\AspireSQL.ServiceDefaults\AspireSQLEFCore.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>

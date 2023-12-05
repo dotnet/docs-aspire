@@ -4,7 +4,7 @@ var sqlpassword = builder.Configuration["sqlpassword"];
 
 var sql = builder.AddSqlServerContainer("sql", sqlpassword).AddDatabase("sqldata");
 
-var myService = builder.AddProject<Projects.AspireSQL>("aspiresql")
+builder.AddProject<Projects.AspireSQLEFCore>("aspiresql")
                        .WithReference(sql);
 
 builder.Build().Run();
