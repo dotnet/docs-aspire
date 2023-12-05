@@ -39,11 +39,11 @@ Visual Studio creates a new ASP.NET Core solution that is structured to use .NET
 
 Add the following model class named `SupportTicket` at the root of the **AspireSQLEFCore** project.
 
-:::code language="xml" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/SupportTicket.cs":::
+:::code source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/SupportTicket.cs":::
 
 Add the following data context class named `TicketDbContext` at the root of the **AspireSQLEFCore** project. The class inherits <xref:System.Data.Entity.DbContext?displayProperty=fullName> to work with Entity Framework and represent your database.
 
-:::code language="xml" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/TicketContext.cs":::
+:::code source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/TicketContext.cs":::
 
 ## Add the .NET Aspire component to the Blazor app
 
@@ -55,13 +55,13 @@ dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer --prerelease
 
 Your **AspireSQLEFCore** project is now set up to use .NET Aspire components. Here's the updated _AspireSQLEFCore.csproj_ file:
 
-:::code language="xml" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/AspireSQLEFCore.csproj" highlight="10":::
+:::code source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/AspireSQLEFCore.csproj" highlight="10, 11":::
 
 The next step is to add the components to the app.
 
-In the _Program.cs_ file of the _AspireSQLEFCore_ project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireSQLEFCoreServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension method after the creation of the `builder` but before the call to `AddServiceDefaults`. For more information, see [.NET Aspire service defaults](../service-defaults.md). Provide the name of your connection string as a parameter.
+In the _Program.cs_ file of the _AspireSQLEFCore_ project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension method after the creation of the `builder` but before the call to `AddServiceDefaults`. For more information, see [.NET Aspire service defaults](../service-defaults.md). Provide the name of your connection string as a parameter.
 
-:::code source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/Program.cs" range="1-26,40-58" highlight="2-3,7-8":::
+:::code source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/Program.cs" range="1-14" highlight="5":::
 
 This method accomplishes the following tasks:
 
@@ -72,7 +72,7 @@ This method accomplishes the following tasks:
 
 While developing locally, you need to create a database inside the SQL Server container. Update the _Program.cs_ file with the following code to automatically run Entity Framework migrations during startup.
 
-:::code source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/Program.cs" range="1-30" highlight="16-29":::
+:::code source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/Program.cs" range="1-30" highlight="16-30":::
 
 ## Create the form
 
@@ -101,7 +101,7 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 1. Press the run button at the top of Visual Studio to launch your .NET Aspire app dashboard in the browser.
 1. On the projects page, in the **AspireSQLEFCore** row, click the link in the **Endpoints** column to open the UI of your app.
 
-    :::image type="content" source="media/support-app.png" lightbox="media/support-app.png" alt-text="A screenshot showing the home page of the .NET Aspire support application.":::
+    :::image type="content" source="media/app-home-screen.png" lightbox="media/app-home-screen.png" alt-text="A screenshot showing the home page of the .NET Aspire support application.":::
 
 1. Enter sample data into the `Title` and `Description` form fields.
 1. Select the **Submit** button, and the form submits the support ticket for processing — and clears the form.
