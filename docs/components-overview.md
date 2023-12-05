@@ -35,9 +35,9 @@ For more information on working with .NET Aspire components in Visual Studio, se
 
 ## Explore a sample component workflow
 
-.NET Aspire components streamline the process of consuming popular services and platforms. For example, consider the **.NET Aspire Application**  template. With this template, you get the [AppHost](app-host-overview.md) and [ServiceDefaults](service-defaults.md) projects. Imagine that you have a need for a Worker Service project to perform some database processing. You could use the [.NET Aspire PostgreSQL component](database/postgresql-component.md) to connect to and utilize a PostgreSQL database. The database could be hosted on-prem or in a cloud service such as Azure, AWS, or GCP. The following steps demonstrate how to integrate this component into your app:
+.NET Aspire components streamline the process of consuming popular services and platforms. For example, consider the **.NET Aspire Application**  template. With this template, you get the [AppHost](app-host-overview.md) and [ServiceDefaults](service-defaults.md) projects. Imagine that you have a need for a worker service to perform some database processing. You could use the [.NET Aspire PostgreSQL component](database/postgresql-component.md) to connect to and utilize a PostgreSQL database. The database could be hosted on-prem or in a cloud service such as Azure, AWS, or GCP. The following steps demonstrate how to integrate this component into your app:
 
-1. In the component consuming (Worker Service) project, install the [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package.
+1. In the component consuming (worker service) project, install the [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package.
 
     # [.NET CLI](#tab/dotnet-cli)
 
@@ -55,7 +55,7 @@ For more information on working with .NET Aspire components in Visual Studio, se
 
     For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-1. In the _Program.cs_ file of your Worker Service project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension method to register `NpgsqlDataSource` as a service.
+1. In the _Program.cs_ file of your worker service project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension method to register `NpgsqlDataSource` as a service.
 
     :::code source="snippets/components/AspireApp/WorkerService/Program.cs" highlight="5":::
 
@@ -64,11 +64,11 @@ For more information on working with .NET Aspire components in Visual Studio, se
     > [!TIP]
     > Components that are designed to connect to Azure services also support passwordless authentication and authorization using [Azure RBAC](/azure/role-based-access-control/overview), which is the recommended approach for production apps.
 
-1. In your orchestrator project (the project with the _*.AppHost_ suffix), add a reference to the Worker Service project. If you're using Visual Studio, you can use the [**Add .NET Aspire Orchestrator Support**](setup-tooling.md#add-orchestration-projects) project context menu item to add the reference automatically. The following code snippet shows the project reference of the _AspireApp.AppHost.csproj_:
+1. In your orchestrator project (the project with the _*.AppHost_ suffix), add a reference to the worker service project. If you're using Visual Studio, you can use the [**Add .NET Aspire Orchestrator Support**](setup-tooling.md#add-orchestration-projects) project context menu item to add the reference automatically. The following code snippet shows the project reference of the _AspireApp.AppHost.csproj_:
 
     :::code language="xml" source="snippets/components/AspireApp/AspireApp.AppHost/AspireApp.AppHost.csproj" highlight="16":::
 
-    After the Worker Service project is referenced in the orchestrator project, the Worker Service project has its _Program.cs_ file updated to call the `AddServiceDefaults`. For more information on service defaults, see [Service defaults](service-defaults.md).
+    After the worker service is referenced by the orchestrator project, the worker service project has its _Program.cs_ file updated to call the `AddServiceDefaults` method. For more information on service defaults, see [Service defaults](service-defaults.md).
 
 1. In the orchestrator project, update the _Program.cs_ file with the following code:
 
@@ -77,7 +77,7 @@ For more information on working with .NET Aspire components in Visual Studio, se
     The preceding code:
 
     - Calls <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresContainer%2A> and chains a call to <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A>, adding a PostgreSQL database container to the app model with a database named `"customers"`.
-    - Chains calls on the result of the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> from the Worker Service project:
+    - Chains calls on the result of the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> from the worker service project:
       - Calls <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a reference to the `database`.
       - Calls <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithReplicas%2A> to set the number of replicas to `3`.
 
@@ -85,7 +85,7 @@ For more information on working with .NET Aspire components in Visual Studio, se
 
     :::code source="snippets/components/AspireApp/WorkerService/Worker.cs" highlight="7,13":::
 
-After several steps, you now have a fully configured PostgreSQL database component and corresponding container with connection integrated into your app. This component also configured health checks, logging, tracing, metrics, retries, and other useful capabilities for you behind the scenes. .NET Aspire components provide various options to configure each of these features.
+You now have a fully configured PostgreSQL database component and corresponding container with connection integrated into your app! This component also configured health checks, logging, metrics, retries, and other useful capabilities for you behind the scenes. .NET Aspire components provide various options to configure each of these features.
 
 ## Configure .NET Aspire components
 
