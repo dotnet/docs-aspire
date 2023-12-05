@@ -59,7 +59,7 @@ For more information on working with .NET Aspire components in Visual Studio, se
 
     :::code source="snippets/components/AspireApp/WorkerService/Program.cs" highlight="5":::
 
-    The preceding code adds the `NpgsqlDataSource` to the dependency injection container with the connection name of `"PostgreSqlConnection"`. The connection name is later used by the orchestrator project, when expressing resource dependencies.
+    The preceding code adds the `NpgsqlDataSource` to the dependency injection container with the connection name of `"customers"`. The connection name is later used by the orchestrator project, when expressing resource dependencies.
 
     > [!TIP]
     > Components that are designed to connect to Azure services also support passwordless authentication and authorization using [Azure RBAC](/azure/role-based-access-control/overview), which is the recommended approach for production apps.
@@ -72,26 +72,14 @@ For more information on working with .NET Aspire components in Visual Studio, se
 
 1. In the orchestrator project, update the _Program.cs_ file with the following code:
 
-    :::code source="snippets/components/AspireApp/AspireApp.AppHost/Program.cs" highlight="3-4,6,8-11":::
+    :::code source="snippets/components/AspireApp/AspireApp.AppHost/Program.cs" highlight="3-4,6-8":::
 
     The preceding code:
 
-    - Calls <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresContainer%2A> and chains a call to <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A>, adding a PostgreSQL database container to the app model.
-    - Establishes a connection to the PostgreSQL database using the connection name `"PostgreSqlConnection"`, by calling <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresConnection%2A>.
+    - Calls <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresContainer%2A> and chains a call to <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A>, adding a PostgreSQL database container to the app model with a database named `"customers"`.
     - Chains calls on the result of the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> from the Worker Service project:
       - Calls <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a reference to the `database`.
-      - Calls <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a reference to the `databaseConnection`.
       - Calls <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithReplicas%2A> to set the number of replicas to `3`.
-
-1. Add a connection string with a matching name in your _appsettings.Development.json_ file of the orchestrator project.
-
-    ```json
-    {
-      "ConnectionStrings": {
-        "PostgreSqlConnection": "Host=myserver;Database=test"
-      }
-    }
-    ```
 
 1. Inject the `NpgsqlDataSource` object into the `Worker` to run commands against the database:
 
