@@ -37,11 +37,11 @@ Visual Studio creates a new ASP.NET Core solution that is structured to use .NET
 
 ## Create the database model and context classes
 
-Add the following model class named `SupportTicket` at the root of the **AspireSQLEFCore** project.
+Add the following `SupportTicket` model class at the root of the _AspireSQLEFCore_ project.
 
 :::code source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/SupportTicket.cs":::
 
-Add the following data context class named `TicketDbContext` at the root of the **AspireSQLEFCore** project. The class inherits <xref:System.Data.Entity.DbContext?displayProperty=fullName> to work with Entity Framework and represent your database.
+Add the following `TicketDbContext` data context class at the root of the **AspireSQLEFCore** project. The class inherits <xref:System.Data.Entity.DbContext?displayProperty=fullName> to work with Entity Framework and represent your database.
 
 :::code source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/TicketContext.cs":::
 
@@ -53,11 +53,11 @@ Add the [.NET Aspire Entity Framework Core Sql Server library](/dotnet/aspire/da
 dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer --prerelease
 ```
 
-Your **AspireSQLEFCore** project is now set up to use .NET Aspire components. Here's the updated _AspireSQLEFCore.csproj_ file:
+Your _AspireSQLEFCore_ project is now set up to use .NET Aspire components. Here's the updated _AspireSQLEFCore.csproj_ file:
 
 :::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/AspireSQLEFCore.csproj" highlight="10, 11":::
 
-The next step is to add the components to the app.
+## Configure the .NET Aspire component
 
 In the _Program.cs_ file of the _AspireSQLEFCore_ project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension method after the creation of the `builder` but before the call to `AddServiceDefaults`. For more information, see [.NET Aspire service defaults](../service-defaults.md). Provide the name of your connection string as a parameter.
 
@@ -96,7 +96,7 @@ The preceding code adds a SQL Server Container resource to your app and configur
 
 ## Run and test the app locally
 
-The sample app is now ready for testing. Verify that the submitted form data is sent to Azure Blob Storage and Azure Queue Storage by completing the following steps:
+The sample app is now ready for testing. Verify that the submitted form data is persisted to the database by completing the following steps:
 
 1. Press the run button at the top of Visual Studio to launch your .NET Aspire app dashboard in the browser.
 1. On the projects page, in the **AspireSQLEFCore** row, click the link in the **Endpoints** column to open the UI of your app.
