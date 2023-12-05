@@ -6,11 +6,13 @@ ms.date: 12/01/2023
 
 # Deploy .NET Aspire apps to Azure Kubernetes Service
 
-.NET Aspire helps you to create cloud-native apps that are divided into microservices. Each microservice is designed to run in a containerized environment. By deploying .NET Aspire apps to a Kubernetes cluster, you can benefit from Kubernetes' advanced container management features. This article will explain how to deploy a completed .NET Aspire solution to a Kubernetes cluster by using the Aspirate tool. You'll learn how to:
+.NET Aspire helps you to create cloud-native apps that are divided into microservices. Each microservice is designed to run in a containerized environment. By deploying .NET Aspire apps to a Kubernetes cluster, you can benefit from Kubernetes' advanced container management features. This article will explain how to deploy a completed .NET Aspire solution to a Kubernetes cluster by using the Aspirate tool. You'll learn:
 
 > [!div class="checklist"]
 >
-> - TODO: Complete this list at the end.
+> - How .NET Aspire and Kubernetes manifest files differ.
+> - How to install and initialize the Aspirate tool.
+> - How to create and manifests and containers and deploy them to a Kubernetes cluster.
 
 > [!NOTE]
 > In this article, you'll deploy an app to the Azure Kubernetes Service (AKS), which is a complete implementation of Kubernetes in the cloud and allows you to host a cluster in the cloud. If you want to deploy to an alternative location, such as an on-premises cluster, you can adapt these steps.
@@ -117,18 +119,7 @@ spec:
       terminationGracePeriodSeconds: 180
 ```
 
-You can use the Aspirate tool to create the Kubernetes manifest, based on the Aspire manifest, and deploy it to a cluster. 
-
-- THe sample video covers deploying to a local kubernetes cluster. Can we do it to a AKS cluster?
-- Role of the container registry
-- Explain the Aspirate commands
-  - init
-  - generate
-  - build
-  - apply
-  - destroy
-- Prereqs
-- Steps
+You can use the Aspirate tool to create the Kubernetes manifest and containers and deploy them to a cluster. 
 
 ## Install Aspirate
 
@@ -143,7 +134,7 @@ dotnet tool install -g aspirate --prerelease
 
 ## Initializing Aspirate
 
-Aspirate requires three settings in the project file for the Aspire AppHost project:
+Aspirate takes three settings from the project file for the Aspire AppHost project:
 
 - **ContainerRegistry.** This is the location of a Docker image registry. Aspirate will store the images it creates in this registry and deploy to the Kuberbetes cluster from there.
 - **ContainerTag.** This tag will be added to the Docker images Aspirate creates.
@@ -159,4 +150,29 @@ Aspirate leads you through the process of setting these values. They are persist
 
 ## Creating manifests
 
+You can use the `generate` command to create Kubernetes manifests for the projects in your solution. Before issue the command, change to the top level folder for your **AppHost** project:
 
+```bash
+cd AspireApp.AppHost
+aspirate generate
+```
+
+The `generate` command:
+
+- Creates Kubernetes manifest file for each component in the solution and stores them in the **aspirate-output** subfolder.
+- Prompts for you to select components to build.
+- Builds the projects you specify.
+- Pushes the built containers to the **ContainerRegistry** you specified in the `init` command.
+
+> [!NOTE]
+> The `aspirate build` command is similar to the `generate` command. It creates manifest files, builds projects, and pushes the containers to the registry by default. However, if you use the `--aspire-manifest` option, you can use an existing .NET Aspire manifest file.
+
+## Install containers in a Kubernetes cluster
+
+Once the containers are built and stored in your registry, you can use aspirate to run them on your Kubernetes cluster:
+
+```bash
+aspirate apply
+```
+
+The command runs the containers on the cluster specified in your **kubeconfig** file.
