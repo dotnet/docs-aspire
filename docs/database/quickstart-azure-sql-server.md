@@ -1,5 +1,5 @@
 ---
-title: Connect an ASP.NET Core app to .NET Aspire storage components
+title: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core
 description: Learn how to connect an ASP.NET Core app to .NET Aspire storage components.
 ms.date: 12/01/2023
 ms.topic: tutorial
@@ -47,7 +47,7 @@ Add the following data context class named `TicketDbContext` at the root of the 
 
 ## Add the .NET Aspire component to the Blazor app
 
-Add the [.NET Aspire Entity Framework Core Sql Server library](azure-storage-blobs-component.md) package to your _AspireSQLEFCore_ project:
+Add the [.NET Aspire Entity Framework Core Sql Server library](/dotnet/aspire/database/sql-server-entity-framework-component?tabs=dotnet-cli) package to your _AspireSQLEFCore_ project:
 
 ```dotnetcli
 dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer --prerelease
@@ -55,13 +55,13 @@ dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer --prerelease
 
 Your **AspireSQLEFCore** project is now set up to use .NET Aspire components. Here's the updated _AspireSQLEFCore.csproj_ file:
 
-:::code source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/AspireSQLEFCore.csproj" highlight="10, 11":::
+:::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/AspireSQLEFCore.csproj" highlight="10, 11":::
 
 The next step is to add the components to the app.
 
 In the _Program.cs_ file of the _AspireSQLEFCore_ project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension method after the creation of the `builder` but before the call to `AddServiceDefaults`. For more information, see [.NET Aspire service defaults](../service-defaults.md). Provide the name of your connection string as a parameter.
 
-:::code source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/Program.cs" range="1-14" highlight="5":::
+:::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/Program.cs" range="1-14" highlight="5":::
 
 This method accomplishes the following tasks:
 
@@ -72,7 +72,7 @@ This method accomplishes the following tasks:
 
 While developing locally, you need to create a database inside the SQL Server container. Update the _Program.cs_ file with the following code to automatically run Entity Framework migrations during startup.
 
-:::code source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/Program.cs" range="1-30" highlight="16-30":::
+:::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/Program.cs" range="1-30" highlight="16-30":::
 
 ## Create the form
 
@@ -90,7 +90,7 @@ The _AspireSQLEFCore.AppHost_ project is the orchestrator for your app. It's res
 
 Replace the contents of the _Program.cs_ file in the _AspireSQLEFCore.AppHost_ project with the following code:
 
-:::code source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore.AppHost/Program.cs":::
+:::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore.AppHost/Program.cs":::
 
 The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. The Entity Framework classes you configured earlier will automatically use this connection when migrating and connecting to the database.
 
