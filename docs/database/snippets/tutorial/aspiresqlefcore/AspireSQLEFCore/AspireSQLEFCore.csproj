@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AspireSQL.ServiceDefaults\AspireSQLEFCore.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\AspireSQLEFCore.ServiceDefaults\AspireSQLEFCore.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>

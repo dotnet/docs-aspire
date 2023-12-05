@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AspireSQL\AspireSQLEFCore.csproj" />
+    <ProjectReference Include="..\AspireSQLEFCore\AspireSQLEFCore.csproj" />
   </ItemGroup>
 
 </Project>
