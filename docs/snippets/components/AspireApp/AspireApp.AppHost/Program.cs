@@ -1,7 +1,7 @@
 ﻿var builder = DistributedApplication.CreateBuilder(args);
 
 var database = builder.AddPostgresContainer("postgresql")
-    .AddDatabase("PostgreSqlConnection");
+    .AddDatabase("customers");
 
 builder.AddProject<Projects.WorkerService>("workerservice")
     .WithReference(database)
