@@ -52,5 +52,6 @@
     {
         context.Tickets.Add(Ticket);
         await context.SaveChangesAsync();
+        Tickets = await context.Tickets.ToListAsync();
     }
 }
