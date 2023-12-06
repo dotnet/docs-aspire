@@ -51,6 +51,8 @@ items:
 
   - name: Database
     items:
+      - name: Tutorial - Connect to SQL Server with Entity Framework Core
+        href: database/quickstart-sql-server.md
       - name: PostgreSQL Database component
         href: database/postgresql-component.md
       - name: PostgreSQL - Entity Framework Core component
