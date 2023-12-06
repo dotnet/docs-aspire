@@ -1,6 +1,6 @@
 ﻿var builder = DistributedApplication.CreateBuilder(args);
 
-var sqlpassword = builder.Configuration["sqlpassword2"];
+var sqlpassword = builder.Configuration["sqlpassword"];
 
 var sql = builder.AddSqlServerContainer("sql", sqlpassword).AddDatabase("sqldata");
 
