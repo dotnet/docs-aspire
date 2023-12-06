@@ -1,32 +1,36 @@
 ---
-title: Deploy .NET Aspire apps to Azure Kubernetes Service
-description: Learn how to use the Aspirate tool to deploy .NET Aspire apps to the Azure Kubernetes Service.
-ms.date: 12/01/2023
+title: Deploy .NET Aspire apps to a Kubernetes cluster
+description: Learn how to use the Aspirate tool to deploy .NET Aspire apps to a Kubernetes cluster.
+ms.date: 12/06/2023
 ---
 
-# Deploy .NET Aspire apps to Azure Kubernetes Service
+# Deploy .NET Aspire apps to a Kubernetes cluster
 
 .NET Aspire helps you to create cloud-native apps that are divided into microservices. Each microservice is designed to run in a containerized environment. By deploying .NET Aspire apps to a Kubernetes cluster, you can benefit from Kubernetes' advanced container management features. This article will explain how to deploy a completed .NET Aspire solution to a Kubernetes cluster by using the Aspirate tool. You'll learn:
 
 > [!div class="checklist"]
 >
+> - The prerequisites that must be in placed for the Aspirate tool.
 > - How .NET Aspire and Kubernetes manifest files differ.
 > - How to install and initialize the Aspirate tool.
 > - How to create and manifests and containers and deploy them to a Kubernetes cluster.
 
-> [!NOTE]
-> In this article, you'll deploy an app to the Azure Kubernetes Service (AKS), which is a complete implementation of Kubernetes in the cloud and allows you to host a cluster in the cloud. If you want to deploy to an alternative location, such as an on-premises cluster, you can adapt these steps.
-
-> [!TODO]
-> Check the above statement - how would you adapt them?
-
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
+
+## Aspirate prerequisites
+
+The Aspirate tool needs the following prerequisites to be in place before you can use it to deploy a .NET Aspire app:
+
+- .NET 8 installed on the computer where you will run Aspirate. You use the `dotnet` CLI to install Aspirate and the .NET framework is required for the app to be built.
+- A container registry. You can either specify the location of the registry in the Aspire manifest file or configure it when you run Aspirate for the first time. After Aspirate builds the app, it uploads the resulting container images to this registry.
+- The Kuberbetes CLI tool, `kubectl`, installed on the complete where you will run Aspirate.
+- A Kubernetes cluster. The Kubernetes CLI tool must be configured to connect to this cluster in the **kubeconfig** file.
 
 ## Comparing manifest formats
 
-Manifest files are used in many application development and hosting platforms to describe the components of any app. Aspire can create manifest files that help tool developers to create  deployment code. Kubernetes also uses manifest files to describe how the system should create and manage resources in the cluster. However, these two types of manifest file have completely different formats and are not interchangeable. 
+Manifest files are used in many application development and hosting platforms to describe the components of an app. Aspire can create manifest files that help tool developers to create  deployment code. Kubernetes also uses manifest files to describe how the system should create and manage resources in the cluster. However, these two types of manifest file have completely different formats and are not interchangeable. 
 
-An Aspire manifest file is in JSON format and describes each project in the solution file, bindings to other projects, configuration values, and other properties:
+An Aspire manifest file is in JSON format and describes each project in the solution file, bindings to other projects, configuration values, and other properties. This example includes a web front end, a back end API service, and a Redis cache component:
 
 ```json
 {
@@ -82,7 +86,7 @@ An Aspire manifest file is in JSON format and describes each project in the solu
 ```
 
 > [!NOTE]
-> For more information about Aspire manifest files, see [.NET Aspire manifest format for deployment tool builders](../manifest-format.md)
+> For more information about Aspire manifest files, see [.NET Aspire manifest format for deployment tool builders](manifest-format.md)
 
 Kubernetes manifest files are in YAML format and describe the desired state for a cluster. Kubernetes automatically manages pods, containers, and services to meet the desired state:
 
@@ -119,7 +123,7 @@ spec:
       terminationGracePeriodSeconds: 180
 ```
 
-You can use the Aspirate tool to create the Kubernetes manifest and containers and deploy them to a cluster. 
+You can use the Aspirate tool to create the Kubernetes manifest files and containers and deploy them to a cluster. 
 
 ## Install Aspirate
 
@@ -150,7 +154,7 @@ Aspirate leads you through the process of setting these values. They are persist
 
 ## Creating manifests
 
-You can use the `generate` command to create Kubernetes manifests for the projects in your solution. Before issue the command, change to the top level folder for your **AppHost** project:
+You can use the `generate` command to create Kubernetes manifests for the projects in your solution. Before you issue the command, change to the top level folder for your **AppHost** project:
 
 ```bash
 cd AspireApp.AppHost
@@ -169,7 +173,7 @@ The `generate` command:
 
 ## Install containers in a Kubernetes cluster
 
-Once the containers are built and stored in your registry, you can use aspirate to run them on your Kubernetes cluster:
+Once the containers are built and stored in your registry, you can use Aspirate to run them on your Kubernetes cluster:
 
 ```bash
 aspirate apply
