@@ -6,7 +6,7 @@ ms.date: 12/06/2023
 
 # Deploy .NET Aspire apps to a Kubernetes cluster
 
-.NET Aspire helps you to create cloud-native apps that are divided into microservices. Each microservice is designed to run in a containerized environment. By deploying .NET Aspire apps to a Kubernetes cluster, you can benefit from Kubernetes' advanced container management features. This article will explain how to deploy a completed .NET Aspire solution to a Kubernetes cluster by using the Aspirate tool. You'll learn:
+.NET Aspire helps you to create cloud-native apps that are divided into microservices. Each microservice is designed to run in a containerized environment. By deploying .NET Aspire apps to a Kubernetes cluster, you can benefit from Kubernetes' advanced container management features. This article will explain how to deploy a completed .NET Aspire solution to a Kubernetes cluster by using the [Aspirate tool](https://www.nuget.org/packages/Aspirate). You'll learn:
 
 > [!div class="checklist"]
 >
