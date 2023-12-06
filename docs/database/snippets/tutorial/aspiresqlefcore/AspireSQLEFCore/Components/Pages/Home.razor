@@ -31,7 +31,6 @@
                     <td>@ticket.Title</td>
                     <td>@ticket.Description</td>
                 </tr>
-
             }
         </table>
     </div>
@@ -39,20 +38,19 @@
 
 @code {
     [SupplyParameterFromForm]
-    public SupportTicket Ticket { get; set; } = new();
-    private List<SupportTicket> Tickets = new();
+    private SupportTicket Ticket { get; set; } = new();
+    private List<SupportTicket> Tickets = [];
 
     private void ClearForm() => Ticket = new();
 
-    protected override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
-        Tickets = context.Tickets.ToList();
-        return base.OnInitializedAsync();
+        Tickets = await context.Tickets.ToList();
     }
 
-    private void HandleValidSubmit()
+    private async Task HandleValidSubmit()
     {
         context.Tickets.Add(Ticket);
-        context.SaveChanges();
+        await context.SaveChangesAsync();
     }
 }

@@ -1,13 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
 
-namespace AspireSQLEFCore
+namespace AspireSQLEFCore;
+
+public class TicketContext(DbContextOptions options) : DbContext(options)
 {
-    public class TicketContext : DbContext
-    {
-        public TicketContext(DbContextOptions options) : base(options) { }
-
-        public DbSet<SupportTicket> Tickets { get; set; }
-
-    }
+    public DbSet<SupportTicket> Tickets => Set<SupportTicket>():
 }

@@ -7,7 +7,7 @@ ms.topic: tutorial
 
 # Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core
 
-In this quickstart, you'll create an ASP.NET Core app that uses a .NET Aspire Entity Framework Core Sql Server component to connect to SQL Server to read and write support ticket data. [Entity Framework Core](/ef/core/) is a lightweight, extensible, open source object-relational mapper that enables .NET developers to work with databases using .NET objects. You'll learn how to:
+In this tutorial, you create an ASP.NET Core app that uses a .NET Aspire Entity Framework Core SQL Server component to connect to SQL Server to read and write support ticket data. [Entity Framework Core](/ef/core/) is a lightweight, extensible, open source object-relational mapper that enables .NET developers to work with databases using .NET objects. You'll learn how to:
 
 > [!div class="checklist"]
 >
@@ -37,7 +37,7 @@ Visual Studio creates a new ASP.NET Core solution that is structured to use .NET
 
 ## Create the database model and context classes
 
-Add the following `SupportTicket` model class at the root of the _AspireSQLEFCore_ project.
+To represent a user submitted support request, add the following `SupportTicket` model class at the root of the _AspireSQLEFCore_ project.
 
 :::code source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/SupportTicket.cs":::
 
@@ -104,7 +104,7 @@ The preceding code adds a SQL Server Container resource to your app and configur
 
 The sample app is now ready for testing. Verify that the submitted form data is persisted to the database by completing the following steps:
 
-1. Press the run button at the top of Visual Studio to launch your .NET Aspire app dashboard in the browser.
+1. Select the run button at the top of Visual Studio (or <kbd>F5</kbd>) to launch your .NET Aspire app dashboard in the browser.
 1. On the projects page, in the **AspireSQLEFCore** row, click the link in the **Endpoints** column to open the UI of your app.
 
     :::image type="content" source="media/app-home-screen.png" lightbox="media/app-home-screen.png" alt-text="A screenshot showing the home page of the .NET Aspire support application.":::
