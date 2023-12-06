@@ -51,7 +51,7 @@ items:
 
   - name: Database
     items:
-      - name: Tutorial - Entity Framework Core with SQL Server
+      - name: Tutorial - SQL Server with Entity Framework Core
         href: database/quickstart-sql-server.md
       - name: PostgreSQL Database component
         href: database/postgresql-component.md
