@@ -15,7 +15,7 @@ ms.date: 12/06/2023
 > - How to install and initialize the Aspirate tool.
 > - How to create and manifests and containers and deploy them to a Kubernetes cluster.
 
-[!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
+[!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
 ## Aspirate prerequisites
 
@@ -28,7 +28,7 @@ The Aspirate tool needs the following prerequisites to be in place before you ca
 
 ## Comparing manifest formats
 
-Manifest files are used in many application development and hosting platforms to describe the components of an app. Aspire can create manifest files that help tool developers to create  deployment code. Kubernetes also uses manifest files to describe how the system should create and manage resources in the cluster. However, these two types of manifest file have completely different formats and are not interchangeable. 
+Manifest files are used in many application development and hosting platforms to describe the components of an app. Aspire can create manifest files that help tool developers to create  deployment code. Kubernetes also uses manifest files to describe how the system should create and manage resources in the cluster. However, these two types of manifest file have completely different formats and are not interchangeable.
 
 An Aspire manifest file is in JSON format and describes each project in the solution file, bindings to other projects, configuration values, and other properties. This example includes a web front end, a back end API service, and a Redis cache component:
 
@@ -123,7 +123,7 @@ spec:
       terminationGracePeriodSeconds: 180
 ```
 
-You can use the Aspirate tool to create the Kubernetes manifest files and containers and deploy them to a cluster. 
+You can use the Aspirate tool to create the Kubernetes manifest files and containers and deploy them to a cluster.
 
 ## Install Aspirate
 
