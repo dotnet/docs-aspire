@@ -84,7 +84,7 @@ Use the following Razor markup to create a basic form, replacing the contents of
 
 For more information about creating forms in Blazor, see [ASP.NET Core Blazor forms overview](/aspnet/core/blazor/forms).
 
-## Update the AppHost
+## Configure the AppHost
 
 The _AspireSQLEFCore.AppHost_ project is the orchestrator for your app. It's responsible for connecting and configuring the different projects and services of your app. The orchestrator should be set as the startup project.
 
@@ -98,7 +98,13 @@ Replace the contents of the _Program.cs_ file in the _AspireSQLEFCore.AppHost_ p
 
 :::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore.AppHost/Program.cs":::
 
-The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. The Entity Framework classes you configured earlier will automatically use this connection when migrating and connecting to the database.
+The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. The Entity Framework classes you configured earlier will automatically use this connection when migrating and connecting to the database. The `sqlpassword` variable represents the password for the default database user in the SQL Server container.
+
+Set a `sqlpassword` key in the [user secrets](/aspnet/core/security/app-secrets?view=aspnetcore-8.0&tabs=windows) store of the _AspireSQLEFCore.AppHost_ project using the `dotnet user-secrets` command in the AppHost project directory. Passwords must meet the [Password Policy](/sql/relational-databases/security/password-policy?view=sql-server-ver16#password-complexity) complexity requirements.
+
+```dotnetcli
+dotnet user-secrets set sqlpassword <password>
+```
 
 ## Run and test the app locally
 
