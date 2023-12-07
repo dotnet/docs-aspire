@@ -1,0 +1,57 @@
+﻿@page "/"
+@inject TicketContext context
+
+<div class="row">
+    <div class="col-md-6">
+        <div>
+            <h1 class="display-4">Request Support</h1>
+        </div>
+        <EditForm Model="@Ticket" FormName="Tickets" method="post"
+                                OnValidSubmit="@HandleValidSubmit" class="mb-4">
+            <DataAnnotationsValidator />
+            <div class="mb-4">
+                <label>Issue Title</label>
+                <InputText class="form-control" @bind-Value="@Ticket.Title" />
+                <ValidationMessage For="() => Ticket.Title" />
+            </div>
+            <div class="mb-4">
+                <label>Issue Description</label>
+                <InputText class="form-control" @bind-Value="@Ticket.Description" />
+                <ValidationMessage For="() => Ticket.Description" />
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn btn-danger mx-2" type="reset" @onclick=@ClearForm>Clear</button>
+        </EditForm>
+
+        <table class="table table-striped">
+            @foreach (var ticket in Tickets)
+            {
+                <tr>
+                    <td>@ticket.Id</td>
+                    <td>@ticket.Title</td>
+                    <td>@ticket.Description</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private SupportTicket Ticket { get; set; } = new();
+    private List<SupportTicket> Tickets = [];
+
+    private void ClearForm() => Ticket = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Tickets = await context.Tickets.ToListAsync();
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        context.Tickets.Add(Ticket);
+        await context.SaveChangesAsync();
+        Tickets = await context.Tickets.ToListAsync();
+    }
+}

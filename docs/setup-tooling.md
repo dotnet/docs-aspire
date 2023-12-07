@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 12/01/2023
+ms.date: 12/04/2023
 ---
 
 # .NET Aspire setup and tooling
@@ -135,7 +135,7 @@ Visual Studio provides additional features for working with .NET Aspire componen
 
 ### Enable .NET Aspire preview support
 
-In Visual Studio, you can enable preview support for .NET Aspire components and project templates. To enable preview support, select **Tools** > **Options** > and in the **Search Settings** textbox enter "aspire", then ensure that the **Enable .NET Aspire preview support** is checked:
+In Visual Studio, you can enable preview support for .NET Aspire components and project templates. To enable preview support, select **Tools** > **Options** > and in the **Search Settings** textbox enter "aspire", then ensure that the **Enable support for .NET Aspire** is checked:
 
 :::image type="content" source="media/visual-studio-tools-options-aspire.png" lightbox="media/visual-studio-tools-options-aspire.png" alt-text="Visual Studio 2022, enable .NET Aspire preview support.":::
 
@@ -143,16 +143,26 @@ Likewise, you can disable preview support by unchecking the **Enable .NET Aspire
 
 ### Add a component
 
-You can add .NET Aspire components to your app like any other NuGet package using Visual Studio. However, Visual Studio also provides UI options to add .NET Aspire components directly.
+You add .NET Aspire components to your app like any other NuGet package using Visual Studio. However, Visual Studio also provides UI options to add .NET Aspire components directly. You need to first enable preview support for .NET Aspire components in Visual Studio. For information see, [Enable .NET Aspire preview support](#enable-net-aspire-preview-support).
 
 1. In Visual Studio, right click on the project you want to add an .NET Aspire component to and select **Add** > **.NET Aspire Component...**.
-1. The package manager will open with search results pre-configured for .NET Aspire components, allowing you to easily browse and select the desired component.
+
+    :::image type="content" source="media/visual-studio-add-aspire-component.png" lightbox="media/visual-studio-add-aspire-component.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire Component option.":::
+
+1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire components, allowing you to easily browse and select the desired component. The **Include prerelease** checkbox needs to be checked to see preview components.
+
+    :::image type="content" source="media/visual-studio-add-aspire-comp-nuget.png" lightbox="media/visual-studio-add-aspire-comp-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire options.":::
+
+For more information on .NET Aspire components, see [.NET Aspire components overview](components-overview.md).
 
 ### Add orchestration projects
 
 You can add .NET Aspire orchestration projects to an existing app using the following steps:
 
 1. In Visual Studio, right click on an existing project and select **Add** > **.NET Aspire Orchestrator Support..**.
+
+    :::image type="content" source="media/visual-studio-add-aspire-orchestrator.png" lightbox="media/visual-studio-add-aspire-orchestrator.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire Orchestrator Support option.":::
+
 1. A dialog window will open with a summary of the **.AppHost** and **.ServiceDefaults** projects that will be added to your solution.
 
     :::image type="content" source="media/add-orchestrator-app.png" alt-text="A screenshot showing the Visual Studio add .NET Aspire orchestration summary.":::
@@ -162,6 +172,8 @@ You can add .NET Aspire orchestration projects to an existing app using the foll
     - The **.AppHost** and **.ServiceDefault** orchestration projects will be added to your solution.
     - A call to `builder.AddServiceDefaults` will be added to the _Program.cs_ file of your original project.
     - A reference to your original project will be added to the _Program.cs_ file of the **.AppHost** project.
+
+For more information on .NET Aspire orchestration, see [.NET Aspire orchestration overview](app-host-overview.md).
 
 ### Enlist in orchestration
 

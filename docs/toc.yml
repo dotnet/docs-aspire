@@ -51,17 +51,19 @@ items:
 
   - name: Database
     items:
+      - name: Tutorial - Connect to SQL Server with EF Core
+        href: database/quickstart-sql-server.md
       - name: PostgreSQL Database component
         href: database/postgresql-component.md
-      - name: PostgreSQL - Entity Framework Core component
+      - name: PostgreSQL - EF Core component
         href: database/postgresql-entity-framework-component.md
       - name: SQL Database component
         href: database/sql-server-component.md
-      - name: SQL Database - Entity Framework Core component
+      - name: SQL Database - EF Core component
         href: database/sql-server-entity-framework-component.md
       - name: Azure Cosmos DB component
         href: database/azure-cosmos-db-component.md
-      - name: Azure Cosmos DB - Entity Framework Core component
+      - name: Azure Cosmos DB - EF Core component
         href: database/azure-cosmos-db-entity-framework-component.md
 
   - name: Messaging

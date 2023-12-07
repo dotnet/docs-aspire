@@ -58,7 +58,7 @@ With the configuration-based endpoint resolver, named endpoints can be specified
 In the preceding JSON:
 
 - The default endpoint, when resolving `http://basket` is `10.2.3.4:8080`.
-- The "dashboard" endpoint, resolved via `http://_dashboard.basket` is `_dashboard.10.2.3.4:9999`.
+- The "dashboard" endpoint, resolved via `http://_dashboard.basket` is `10.2.3.4:9999`.
 
 ### Named endpoints in .NET Aspire
 

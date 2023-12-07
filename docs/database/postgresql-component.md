@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL component
 description: This article describes the .NET Aspire PostgreSQL component.
-ms.date: 11/15/2023
+ms.date: 12/05/2023
 ms.topic: how-to
 ---
 
@@ -22,8 +22,7 @@ dotnet add package Aspire.Npgsql --prerelease
 ### [PackageReference](#tab/package-reference)
 
 ```xml
-<PackageReference Include="Aspire.Npgsql"
-                  Version="[SelectVersion]" />
+<PackageReference Include="Aspire.Npgsql" Version="[SelectVersion]" />
 ```
 
 ---
@@ -43,7 +42,7 @@ After adding `NpgsqlDataSource` to the builder, you can get the `NpgsqlDataSourc
 ```csharp
 public class ExampleService(NpgsqlDataSource dataSource)
 {
-    // Use datasource...
+    // Use dataSource...
 }
 ```
 
@@ -77,9 +76,11 @@ The following example shows an _appsettings.json_ file that configures some of t
 
 ```json
 {
-  "Aspire.PostgreSql.Npgsql": {
-      "ConnectionString": "YOUR_CONNECTIONSTRING",
-      "Metrics": false
+  "Aspire": {
+    "Npgsql": {
+      "HealthChecks": false,
+      "Tracing": false
+    }
   }
 }
 ```
@@ -106,7 +107,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
     .WithReference(postgresdb);
 ```
 
-The<xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `postgresdb`. In the _Program.cs_ file of the `ExampleService` project, the database connection can be consumed using:
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `postgresdb`. In the _Program.cs_ file of the `ExampleService` project, the database connection can be consumed using:
 
 ```csharp
 builder.AddNpgsqlDataSource("postgresdb");
