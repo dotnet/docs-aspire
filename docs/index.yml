@@ -65,7 +65,7 @@ conceptualContent:
 
     - title: Storage
       links:
-        - itemType: quickstart
+        - itemType: tutorial
           text: Tutorial - Connect to storage with .NET Aspire
           url: storage/azure-storage.md
         - itemType: how-to-guide
@@ -104,7 +104,7 @@ conceptualContent:
 
     - title: Messaging
       links:
-        - itemType: quickstart
+        - itemType: tutorial
           text: Tutorial - Implement Messaging with .NET Aspire
           url: messaging/quickstart-messaging.md
         - itemType: overview
@@ -116,7 +116,7 @@ conceptualContent:
 
     - title: Caching
       links:
-        - itemType: quickstart
+        - itemType: tutorial
           text: Tutorial - Improve app caching with .NET Aspire
           url: caching/quickstart-caching.md
         - itemType: how-to-guide
