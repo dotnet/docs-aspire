@@ -66,7 +66,7 @@ conceptualContent:
     - title: Storage
       links:
         - itemType: tutorial
-          text: Tutorial - Connect to storage with .NET Aspire
+          text: Connect to storage with .NET Aspire
           url: storage/azure-storage.md
         - itemType: how-to-guide
           text: Azure Blob Storage
@@ -81,7 +81,7 @@ conceptualContent:
     - title: Database
       links:
         - itemType: tutorial
-          text: Tutorial - Connect to SQL Server with EF Core
+          text: Connect to SQL Server with EF Core
           url: database/sql-server-components.md
         - itemType: how-to-guide
           text: PostgreSQL database
@@ -105,7 +105,7 @@ conceptualContent:
     - title: Messaging
       links:
         - itemType: tutorial
-          text: Tutorial - Implement Messaging with .NET Aspire
+          text: Implement Messaging with .NET Aspire
           url: messaging/messaging-components.md
         - itemType: overview
           text: Azure Service Bus
@@ -117,7 +117,7 @@ conceptualContent:
     - title: Caching
       links:
         - itemType: tutorial
-          text: Tutorial - Improve app caching with .NET Aspire
+          text: Improve app caching with .NET Aspire
           url: caching/caching-components.md
         - itemType: how-to-guide
           text: Redis caching
