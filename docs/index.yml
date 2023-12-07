@@ -15,7 +15,7 @@ metadata:
 highlightedContent:
   items:
     - itemType: overview
-      title: What is .NET Aspire?
+      title: .NET Aspire overview
       url: get-started/aspire-overview.md
     - itemType: quickstart
       title: Build your first .NET Aspire app

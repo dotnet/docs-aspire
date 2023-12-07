@@ -5,7 +5,7 @@ items:
   - name: Get Started
     expanded: true
     items:
-      - name: What is .NET Aspire?
+      - name: .NET Aspire overview
         displayName: aspire overview,architecture,key concepts
         href: get-started/aspire-overview.md
       - name: Quickstart - Build your first .NET Aspire app
