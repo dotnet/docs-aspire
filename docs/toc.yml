@@ -78,7 +78,7 @@ items:
   - name: Caching
     items:
       - name: Tutorial - Caching using Redis components
-        href: caching/caching.md
+        href: caching/caching-components.md
       - name: Redis Caching component
         href: caching/stackexchange-redis-component.md
       - name: Redis Output Caching component

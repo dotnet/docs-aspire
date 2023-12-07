@@ -1,7 +1,7 @@
 ---
 title: Implement caching with .NET Aspire components
 description: Learn how to connect to Redis and cache data using .NET Aspire components.
-ms.date: 11/15/2023
+ms.date: 12/07/2023
 ms.topic: quickstart
 ---
 

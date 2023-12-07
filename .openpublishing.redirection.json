@@ -15,6 +15,10 @@
         {
             "source_path_from_root": "/docs/messaging/quickstart-messaging.md",
             "redirect_url": "/dotnet/aspire/messaging/messaging-components"
+        },
+        {
+            "source_path_from_root": "/docs/caching/quickstart-caching.md",
+            "redirect_url": "/dotnet/aspire/caching/caching-components"
         }
     ]
 }

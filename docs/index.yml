@@ -118,7 +118,7 @@ conceptualContent:
       links:
         - itemType: tutorial
           text: Tutorial - Improve app caching with .NET Aspire
-          url: caching/caching.md
+          url: caching/caching-components.md
         - itemType: how-to-guide
           text: Redis caching
           url: caching/stackexchange-redis-component.md
