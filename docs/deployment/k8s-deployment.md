@@ -128,7 +128,7 @@ You can use the Aspirate tool to create the Kubernetes manifest files and contai
 
 To install Aspirate, use the `dotnet tool` command:
 
-```bash
+```dotnetcli
 dotnet tool install -g aspirate --prerelease
 ```
 
@@ -145,7 +145,7 @@ Aspirate takes three settings from the project file for the .NET Aspire AppHost 
 
 You can manually set these values in the project file, or issue this command:
 
-```bash
+```dotnetcli
 aspirate init
 ```
 
@@ -155,7 +155,7 @@ Aspirate leads you through the process of setting these values and persists them
 
 To create Kubernetes manifests for the projects in your solution, use the `generate` command. Before you issue the command, change to the top-level folder for your _*.AppHost_ project:
 
-```bash
+```dotnetcli
 cd AspireApp.AppHost
 aspirate generate
 ```
@@ -174,7 +174,7 @@ The `generate` command:
 
 Once the containers are built and stored in your registry, you can use Aspirate to run them on your Kubernetes cluster:
 
-```bash
+```dotnetcli
 aspirate apply
 ```
 
