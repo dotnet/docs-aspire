@@ -1,8 +1,8 @@
 ---
 title: Use .NET Aspire messaging components in ASP.NET Core
 description: Learn how to connect an ASP.NET Core app to messaging services using .NET Aspire components.
-ms.date: 11/15/2023
-ms.topic: quickstart
+ms.date: 12/07/2023
+ms.topic: tutorial
 ---
 
 # Tutorial: Use .NET Aspire messaging components in ASP.NET Core

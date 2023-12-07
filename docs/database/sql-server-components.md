@@ -1,7 +1,7 @@
 ---
 title: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core
 description: Learn how to connect an ASP.NET Core app to .NET Aspire storage components.
-ms.date: 12/01/2023
+ms.date: 12/07/2023
 ms.topic: tutorial
 ---
 

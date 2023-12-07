@@ -97,4 +97,4 @@ When added to your _Program.cs_ file, the preceding code handles the following c
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Quickstart: Build your first .NET Aspire app](quickstart-build-your-first-aspire-app.md)
+> [Quickstart: Build your first .NET Aspire app](build-your-first-aspire-app.md)
