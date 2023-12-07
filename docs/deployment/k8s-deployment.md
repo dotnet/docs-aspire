@@ -149,7 +149,7 @@ You can manually set these values in the project file, or issue this command:
 aspirate init
 ```
 
-Aspirate leads you through the process of setting these values. They are persisted in an _aspirate.json_ file.
+Aspirate leads you through the process of setting these values and persists them in an _aspirate.json_ file.
 
 ## Create manifests
 
