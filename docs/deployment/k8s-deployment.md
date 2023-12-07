@@ -19,18 +19,17 @@ ms.date: 12/06/2023
 
 ## Aspirate prerequisites
 
-The Aspirate tool needs the following prerequisites to be in place before you can use it to deploy a .NET Aspire app:
+In addition to the .NET Aspire prerequisites, the Aspirate tool needs the following to be in place before you can use it to deploy a .NET Aspire app:
 
-- .NET 8 installed on the computer where you will run Aspirate. You use the `dotnet` CLI to install Aspirate and the .NET framework is required for the app to be built.
-- A container registry. You can either specify the location of the registry in the Aspire manifest file or configure it when you run Aspirate for the first time. After Aspirate builds the app, it uploads the resulting container images to this registry.
-- The Kuberbetes CLI tool, `kubectl`, installed on the complete where you will run Aspirate.
+- A container registry. You can either specify the location of the registry in the .NET Aspire manifest file or configure it when you run Aspirate for the first time. After Aspirate builds the app, it uploads the resulting container images to this registry.
+- The [Kuberbetes CLI tool](https://kubernetes.io/docs/tasks/tools/), `kubectl`, installed on the computer where you will run Aspirate.
 - A Kubernetes cluster. The Kubernetes CLI tool must be configured to connect to this cluster in the **kubeconfig** file.
 
-## Comparing manifest formats
+## Compare manifest formats
 
-Manifest files are used in many application development and hosting platforms to describe the components of an app. Aspire can create manifest files that help tool developers to create  deployment code. Kubernetes also uses manifest files to describe how the system should create and manage resources in the cluster. However, these two types of manifest file have completely different formats and are not interchangeable.
+Manifest files are used in many application development and hosting platforms to describe the components of an app. .NET Aspire can create manifest files that help tool developers to create  deployment code. Kubernetes also uses manifest files to describe how the system should create and manage resources in the cluster. However, these two types of manifest file have completely different formats and are not interchangeable.
 
-An Aspire manifest file is in JSON format and describes each project in the solution file, bindings to other projects, configuration values, and other properties. This example includes a web front end, a back end API service, and a Redis cache component:
+A .NET Aspire manifest file is in JSON format and describes each project in the solution file, bindings to other projects, configuration values, and other properties. This example includes a web front end, a back end API service, and a Redis cache component:
 
 ```json
 {
@@ -86,7 +85,7 @@ An Aspire manifest file is in JSON format and describes each project in the solu
 ```
 
 > [!NOTE]
-> For more information about Aspire manifest files, see [.NET Aspire manifest format for deployment tool builders](manifest-format.md)
+> For more information about .NET Aspire manifest files, see [.NET Aspire manifest format for deployment tool builders](manifest-format.md)
 
 Kubernetes manifest files are in YAML format and describe the desired state for a cluster. Kubernetes automatically manages pods, containers, and services to meet the desired state:
 
@@ -127,7 +126,7 @@ You can use the Aspirate tool to create the Kubernetes manifest files and contai
 
 ## Install Aspirate
 
-You can use the `dotnet` command to install Aspirate from NuGet:
+To install Aspirate, use the `dotnet tool` command:
 
 ```bash
 dotnet tool install -g aspirate --prerelease
@@ -136,13 +135,13 @@ dotnet tool install -g aspirate --prerelease
 > [!NOTE]
 > At the time of writing, the Aspirate tool is in preview and the `--prerelease` option is required.
 
-## Initializing Aspirate
+## Initialize Aspirate
 
-Aspirate takes three settings from the project file for the Aspire AppHost project:
+Aspirate takes three settings from the project file for the .NET Aspire AppHost project:
 
-- **ContainerRegistry.** This is the location of a Docker image registry. Aspirate will store the images it creates in this registry and deploy to the Kuberbetes cluster from there.
-- **ContainerTag.** This tag will be added to the Docker images Aspirate creates.
-- **TemplatePath.** This value modifies the default path to Visual Studio template that wil be transformed into manifests.
+- **ContainerRegistry**: The location of a Docker image registry. Aspirate stores the images it creates in this registry and deploys to the Kubernetes cluster from there.
+- **ContainerTag**: Aspirate adds this tag to the Docker images it creates.
+- **TemplatePath**: Modifies the default path to Visual Studio template that Aspirate transforms into manifests.
 
 You can manually set these values in the project file, or issue this command:
 
@@ -150,11 +149,11 @@ You can manually set these values in the project file, or issue this command:
 aspirate init
 ```
 
-Aspirate leads you through the process of setting these values. They are persisted in an **aspirate.json** file.
+Aspirate leads you through the process of setting these values. They are persisted in an _aspirate.json_ file.
 
-## Creating manifests
+## Create manifests
 
-You can use the `generate` command to create Kubernetes manifests for the projects in your solution. Before you issue the command, change to the top level folder for your **AppHost** project:
+To create Kubernetes manifests for the projects in your solution, use the `generate` command. Before you issue the command, change to the top-level folder for your _*.AppHost_ project:
 
 ```bash
 cd AspireApp.AppHost
@@ -163,7 +162,7 @@ aspirate generate
 
 The `generate` command:
 
-- Creates Kubernetes manifest file for each component in the solution and stores them in the **aspirate-output** subfolder.
+- Creates Kubernetes manifest file for each component in the solution and stores them in the _aspirate-output_ subfolder.
 - Prompts for you to select components to build.
 - Builds the projects you specify.
 - Pushes the built containers to the **ContainerRegistry** you specified in the `init` command.
@@ -179,4 +178,4 @@ Once the containers are built and stored in your registry, you can use Aspirate 
 aspirate apply
 ```
 
-The command runs the containers on the cluster specified in your **kubeconfig** file.
+The command runs the containers on the cluster specified in your _kubeconfig_ file.
