@@ -5,6 +5,10 @@
             "redirect_url": "/dotnet/aspire/storage/azure-storage"
         },
         {
+            "source_path_from_root": "/docs/storage/azure-storage.md",
+            "redirect_url": "/dotnet/aspire/storage/azure-storage-components"
+        },
+        {
             "source_path_from_root": "/docs/database/quickstart-sql-server.md",
             "redirect_url": "/dotnet/aspire/database/sql-server-components"
         },
