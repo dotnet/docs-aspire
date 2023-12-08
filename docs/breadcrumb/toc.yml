@@ -12,7 +12,7 @@ items:
             topicHref: /dotnet/aspire/index
           - name: What's new
             tocHref: /dotnet/aspire/whats-new/
-            topicHref: /dotnet/aspire/whats-new/index
+            topicHref: /dotnet/aspire/whats-new
           - name: API browser
             tocHref: /dotnet/api/
             topicHref: /dotnet/api/index

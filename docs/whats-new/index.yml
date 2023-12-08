@@ -25,11 +25,11 @@ landingContent:
   - linkListType: whats-new
     links:
     - text: What's new in C#
-      url: /csharp/whats-new
+      url: /dotnet/csharp/whats-new
     - text: What's new in F#
-      url: /fsharp/whats-new
+      url: /dotnet/fsharp/whats-new
     - text: What's new for Visual Basic
-      url: /visual-basic/whats-new
+      url: /dotnet/visual-basic/whats-new
 - title: Get involved - contribute
   linkLists:
   - linkListType: overview
