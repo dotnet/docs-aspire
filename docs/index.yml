@@ -10,16 +10,16 @@ metadata:
   ms.topic: hub-page
   ms.prod: dotnet-cloud-native
   ms.service: dotnet-aspire
-  ms.date: 11/27/2023
+  ms.date: 12/07/2023
 
 highlightedContent:
   items:
     - itemType: overview
-      title: What is .NET Aspire?
+      title: .NET Aspire overview
       url: get-started/aspire-overview.md
     - itemType: quickstart
       title: Build your first .NET Aspire app
-      url: get-started/quickstart-build-your-first-aspire-app.md
+      url: get-started/build-your-first-aspire-app.md
     - itemType: concept
       title: Distributed app host
       url: app-host-overview.md
@@ -47,9 +47,9 @@ conceptualContent:
         - itemType: concept
           text: .NET Aspire overview
           url: get-started/aspire-overview.md
-        - itemType: concept
+        - itemType: quickstart
           text: Build your first .NET Aspire app
-          url: get-started/quickstart-build-your-first-aspire-app.md
+          url: get-started/build-your-first-aspire-app.md
         - itemType: how-to-guide
           text: .NET Aspire setup and tooling
           url: setup-tooling.md
@@ -66,8 +66,8 @@ conceptualContent:
     - title: Storage
       links:
         - itemType: tutorial
-          text: Tutorial - Connect to storage with .NET Aspire
-          url: storage/azure-storage.md
+          text: Connect to storage with .NET Aspire
+          url: storage/azure-storage-components.md
         - itemType: how-to-guide
           text: Azure Blob Storage
           url: storage/azure-storage-blobs-component.md
@@ -80,9 +80,9 @@ conceptualContent:
 
     - title: Database
       links:
-        - itemType: quickstart
-          text: Tutorial - Connect to SQL Server with EF Core
-          url: database/quickstart-sql-server.md
+        - itemType: tutorial
+          text: Connect to SQL Server with EF Core
+          url: database/sql-server-components.md
         - itemType: how-to-guide
           text: PostgreSQL database
           url: database/postgresql-component.md
@@ -105,8 +105,8 @@ conceptualContent:
     - title: Messaging
       links:
         - itemType: tutorial
-          text: Tutorial - Implement Messaging with .NET Aspire
-          url: messaging/quickstart-messaging.md
+          text: Implement Messaging with .NET Aspire
+          url: messaging/messaging-components.md
         - itemType: overview
           text: Azure Service Bus
           url: messaging/azure-service-bus-component.md
@@ -117,8 +117,8 @@ conceptualContent:
     - title: Caching
       links:
         - itemType: tutorial
-          text: Tutorial - Improve app caching with .NET Aspire
-          url: caching/quickstart-caching.md
+          text: Improve app caching with .NET Aspire
+          url: caching/caching-components.md
         - itemType: how-to-guide
           text: Redis caching
           url: caching/stackexchange-redis-component.md
@@ -143,6 +143,9 @@ conceptualContent:
         - itemType: how-to-guide
           text: Integrate with Application Insights
           url: deployment/azure/application-insights.md
+        - itemType: how-to-guide
+          text: Deploy to a Kubernetes cluster with Aspirate
+          url: deployment/k8s-deployment.md
 
 additionalContent:
   sections:

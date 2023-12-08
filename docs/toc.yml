@@ -5,12 +5,12 @@ items:
   - name: Get Started
     expanded: true
     items:
-      - name: What is .NET Aspire?
+      - name: .NET Aspire overview
         displayName: aspire overview,architecture,key concepts
         href: get-started/aspire-overview.md
       - name: Quickstart - Build your first .NET Aspire app
         displayName: quickstart,first app,aspire app
-        href: get-started/quickstart-build-your-first-aspire-app.md
+        href: get-started/build-your-first-aspire-app.md
       - name: Tutorial - Add .NET Aspire to an existing app
         href: get-started/add-aspire-existing-app.md
       - name: Setup and tooling
@@ -41,7 +41,7 @@ items:
   - name: Storage
     items:
       - name: Tutorial - Connect to storage
-        href: storage/azure-storage.md
+        href: storage/azure-storage-components.md
       - name: Azure Blob Storage component
         href: storage/azure-storage-blobs-component.md
       - name: Azure Storage Queues component
@@ -52,7 +52,7 @@ items:
   - name: Database
     items:
       - name: Tutorial - Connect to SQL Server with EF Core
-        href: database/quickstart-sql-server.md
+        href: database/sql-server-components.md
       - name: PostgreSQL Database component
         href: database/postgresql-component.md
       - name: PostgreSQL - EF Core component
@@ -69,7 +69,7 @@ items:
   - name: Messaging
     items:
       - name: Tutorial - Messaging using .NET Aspire components
-        href: messaging/quickstart-messaging.md
+        href: messaging/messaging-components.md
       - name: Azure Service Bus component
         href: messaging/azure-service-bus-component.md
       - name: RabbitMQ service broker component
@@ -78,7 +78,7 @@ items:
   - name: Caching
     items:
       - name: Tutorial - Caching using Redis components
-        href: caching/quickstart-caching.md
+        href: caching/caching-components.md
       - name: Redis Caching component
         href: caching/stackexchange-redis-component.md
       - name: Redis Output Caching component
@@ -99,14 +99,18 @@ items:
         items:
           - name: Tutorial - Azure Container Apps
             href: deployment/azure/aca-deployment.md
+            displayName: azure container apps,aca
           - name: Azure Container Apps with AZD (In-depth)
             href: deployment/azure/aca-deployment-azd-in-depth.md
+            displayName: azure container apps,aca,azd
           - name: Use .NET Aspire with Application Insights
             href: deployment/azure/application-insights.md
+            displayName: app insights
       - name: Kubernetes
         items:
         - name: Deploy .NET Aspire apps to a Kubernetes cluster
           href: deployment/k8s-deployment.md
+          displayName: kubernetes,aspire kubernetes,aspire k8s
       - name: Reference - Tool-builder manifest schemas
         href: deployment/manifest-format.md
 

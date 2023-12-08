@@ -1,7 +1,7 @@
 ---
 title: Deploy .NET Aspire apps to a Kubernetes cluster
 description: Learn how to use the Aspirate tool to deploy .NET Aspire apps to a Kubernetes cluster.
-ms.date: 12/06/2023
+ms.date: 12/07/2023
 ---
 
 # Deploy .NET Aspire apps to a Kubernetes cluster

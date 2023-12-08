@@ -1,11 +1,11 @@
 ---
 title: Implement caching with .NET Aspire components
 description: Learn how to connect to Redis and cache data using .NET Aspire components.
-ms.date: 11/15/2023
-ms.topic: quickstart
+ms.date: 12/07/2023
+ms.topic: tutorial
 ---
 
-# Quickstart: Implement caching with .NET Aspire components
+# Tutorial: Implement caching with .NET Aspire components
 
 Cloud-native apps often require various types of scalable caching solutions to improve performance. .NET Aspire components simplify the process of connecting to popular caching services such as Redis. In this quickstart, you'll learn how to:
 

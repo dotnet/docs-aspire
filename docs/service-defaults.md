@@ -11,7 +11,7 @@ Cloud-native applications often require extensive configurations to ensure they 
 
 ## Explore the service defaults project
 
-When you either [**Enlist in .NET Aspire orchestration**](setup-tooling.md#enlist-in-orchestration) or [create a new .NET Aspire project](get-started/quickstart-build-your-first-aspire-app.md), the _YourAppName.ServiceDefaults_ project is added to your solution. For example, when building an API, you call the `AddServiceDefaults` method in the _Program.cs_ file of your apps:
+When you either [**Enlist in .NET Aspire orchestration**](setup-tooling.md#enlist-in-orchestration) or [create a new .NET Aspire project](get-started/build-your-first-aspire-app.md), the _YourAppName.ServiceDefaults_ project is added to your solution. For example, when building an API, you call the `AddServiceDefaults` method in the _Program.cs_ file of your apps:
 
 ```csharp
 builder.AddServiceDefaults();

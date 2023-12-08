@@ -13,7 +13,7 @@ In the upcoming sections, you'll discover how to create a .NET Aspire app and em
 
 > [!div class="checklist"]
 >
-> - Investigate the dashboard's capabilities by using the app generated from the project template as explained in the [Quickstart: Build your first .NET Aspire app.](get-started/quickstart-build-your-first-aspire-app.md)
+> - Investigate the dashboard's capabilities by using the app generated from the project template as explained in the [Quickstart: Build your first .NET Aspire app.](get-started/build-your-first-aspire-app.md)
 >
 > - Delve into the features of the .NET Aspire dashboard app.
 
