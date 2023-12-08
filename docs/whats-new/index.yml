@@ -83,8 +83,6 @@ landingContent:
     - text: C# compiler (Roslyn) release notes
       url: https://github.com/dotnet/roslyn/tree/main/docs/ide
     - text: Visual Studio release notes
-      url: /visualstudio/releases/2019/release-notes
-    - text: Visual Studio for Mac release notes
-      url: /visualstudio/releasenotes/vs2019-mac-relnotes
+      url: /visualstudio/ide/whats-new-visual-studio-docs
     - text: Visual Studio Code release notes
       url: https://code.visualstudio.com/updates

@@ -10,7 +10,7 @@ items:
           - name: .NET Aspire (Preview)
             tocHref: /dotnet/aspire/
             topicHref: /dotnet/aspire/index
-          - name: What's new
+          - name: What's new in .NET Aspire
             tocHref: /dotnet/aspire/whats-new/
             topicHref: ../whats-new/index.yml
           - name: API browser
