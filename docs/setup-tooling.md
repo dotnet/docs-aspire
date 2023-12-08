@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 12/04/2023
+ms.date: 12/08/2023
 ---
 
 # .NET Aspire setup and tooling
@@ -51,7 +51,7 @@ dotnet workload install aspire
 If you've already installed the .NET Aspire workload, it's best to ensure that you're using the latest version. To ensure that you are, use the following [dotnet workload update](/dotnet/core/tools/dotnet-workload-update) command:
 
 ```dotnetcli
-dotnet workload update aspire
+dotnet workload update
 ```
 
 ---
