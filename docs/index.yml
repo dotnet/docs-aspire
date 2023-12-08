@@ -65,8 +65,8 @@ conceptualContent:
 
     - title: Storage
       links:
-        - itemType: quickstart
-          text: Connect to storage with .NET Aspire
+        - itemType: tutorial
+          text: Tutorial - Connect to storage with .NET Aspire
           url: storage/azure-storage.md
         - itemType: how-to-guide
           text: Azure Blob Storage
@@ -80,29 +80,32 @@ conceptualContent:
 
     - title: Database
       links:
+        - itemType: quickstart
+          text: Tutorial - Connect to SQL Server with EF Core
+          url: database/quickstart-sql-server.md
         - itemType: how-to-guide
           text: PostgreSQL database
           url: database/postgresql-component.md
         - itemType: how-to-guide
-          text: PostgreSQL with Entity Framework Core
+          text: PostgreSQL with EF Core
           url: database/postgresql-entity-framework-component.md
         - itemType: how-to-guide
           text: Azure Cosmos DB
           url: database/azure-cosmos-db-component.md
         - itemType: how-to-guide
-          text: Azure Cosmos DB with Entity Framework Core
+          text: Azure Cosmos DB with EF Core
           url: database/azure-cosmos-db-entity-framework-component.md
         - itemType: how-to-guide
           text: SQL Database
           url: database/sql-server-component.md
         - itemType: how-to-guide
-          text: SQL Database with Entity Framework Core
+          text: SQL Database with EF Core
           url: database/sql-server-entity-framework-component.md
 
     - title: Messaging
       links:
-        - itemType: quickstart
-          text: Implement Messaging with .NET Aspire
+        - itemType: tutorial
+          text: Tutorial - Implement Messaging with .NET Aspire
           url: messaging/quickstart-messaging.md
         - itemType: overview
           text: Azure Service Bus
@@ -113,8 +116,8 @@ conceptualContent:
 
     - title: Caching
       links:
-        - itemType: quickstart
-          text: Improve app caching with .NET Aspire
+        - itemType: tutorial
+          text: Tutorial - Improve app caching with .NET Aspire
           url: caching/quickstart-caching.md
         - itemType: how-to-guide
           text: Redis caching

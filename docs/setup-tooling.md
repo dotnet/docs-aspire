@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 12/04/2023
+ms.date: 12/08/2023
 ---
 
 # .NET Aspire setup and tooling
