@@ -173,5 +173,5 @@ The .NET Aspire Azure Cosmos DB component currently doesn't support metrics by d
 ## See also
 
 - [Azure Cosmos DB docs](/azure/cosmos-db/introduction)
-- [.NET Aspire components](../components-overview.md)
+- [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

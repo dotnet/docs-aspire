@@ -40,7 +40,7 @@ builder.Build().Run();
 
 To help visualize the relationship between the app host project and the resources it describes, consider the following diagram:
 
-:::image type="content" source="media/app-host-resource-diagram.png" lightbox="media/app-host-resource-diagram.png" alt-text="The relationship between the projects in the .NET Aspire Starter Application template.":::
+:::image type="content" source="../media/app-host-resource-diagram.png" lightbox="../media/app-host-resource-diagram.png" alt-text="The relationship between the projects in the .NET Aspire Starter Application template.":::
 
 Each resource must be uniquely named. This diagram shows each resource and the relationships between them. The container resource is named "cache" and the project resources are named "apiservice" and "webfrontend". The web frontend project references the cache and API service projects. By expressing a reference in this way, the web frontend project is saying that it depends on these two resources.
 
@@ -97,7 +97,7 @@ Project-to-project references are handled differently than resources that have w
 | `WithReference(cache)` | `ConnectionStrings__cache="localhost:6379"` |
 | `WithReference(apiservice)` | `services__apiservice__0="http://_http.localhost:8034"` <br /> `services__apiservice__1="http://localhost:8034"` |
 
-Adding a reference to the "apiservice" project results in service discovery environment variables being added to the front-end. This is because typically, project to project communication occurs over HTTP/gRPC. For more information, see [.NET Aspire service discovery](service-discovery/overview.md).
+Adding a reference to the "apiservice" project results in service discovery environment variables being added to the front-end. This is because typically, project to project communication occurs over HTTP/gRPC. For more information, see [.NET Aspire service discovery](../service-discovery/overview.md).
 
 It's possible to get specific endpoints from a container or executable using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithServiceBinding%2A> and calling the <xref:Aspire.Hosting.ApplicationModel.IResourceWithBindings.GetEndpoint%2A>:
 
@@ -149,5 +149,5 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 ## See also
 
 - [.NET Aspire components overview](components-overview.md)
-- [Service discovery in .NET Aspire](service-discovery/overview.md)
+- [Service discovery in .NET Aspire](../service-discovery/overview.md)
 - [.NET Aspire service defaults](service-defaults.md)

@@ -206,5 +206,5 @@ The .NET Aspire SQL Server Entity Framework Core component will emit the followi
   - ec_Microsoft_EntityF_optimistic_concurrency_failures_per_second
 
 - [Azure SQL Database documentation](/azure/azure-sql/)
-- [.NET Aspire components](../components-overview.md)
+- [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

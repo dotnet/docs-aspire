@@ -22,10 +22,10 @@ highlightedContent:
       url: get-started/build-your-first-aspire-app.md
     - itemType: concept
       title: Distributed app host
-      url: app-host-overview.md
+      url: fundamentals/app-host-overview.md
     - itemType: concept
       title: .NET Aspire components
-      url: components-overview.md
+      url: fundamentals/components-overview.md
     - itemType: concept
       title: Service discovery
       url: service-discovery/overview.md
@@ -52,16 +52,16 @@ conceptualContent:
           url: get-started/build-your-first-aspire-app.md
         - itemType: how-to-guide
           text: .NET Aspire setup and tooling
-          url: setup-tooling.md
+          url: fundamentals/setup-tooling.md
         - itemType: concept
           text: .NET Aspire service discovery
           url: service-discovery/overview.md
         - itemType: reference
           text: .NET Aspire service defaults
-          url: service-defaults.md
+          url: fundamentals/service-defaults.md
         - itemType: reference
           text: .NET Aspire dashboard
-          url: dashboard.md
+          url: fundamentals/dashboard.md
 
     - title: Storage
       links:

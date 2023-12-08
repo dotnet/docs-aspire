@@ -190,5 +190,5 @@ The .NET Aspire Azure Data Tables component currently does not support metrics b
 ## See also
 
 - [Azure Table Storage docs](/azure/storage/tables/)
-- [.NET Aspire components](../components-overview.md)
+- [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

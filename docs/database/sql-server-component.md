@@ -190,5 +190,5 @@ The .NET Aspire SQL Server component will emit the following metrics using OpenT
 
 - [Azure SQL Database](/azure/azure-sql/database)
 - [SQL Server](/sql/sql-server)
-- [.NET Aspire components](../components-overview.md)
+- [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
