@@ -1,0 +1,54 @@
+{
+    "$schema": "https://raw.githubusercontent.com/dotnet/docs-tools/main/WhatsNew.Infrastructure/Configuration/reposettings.schema.json",
+    "docSetProductName": ".NET Aspire",
+    "rootDirectory": "docs/",
+    "docLinkSettings": {
+        "linkFormat": "relative",
+        "relativeLinkPrefix": "../"
+    },
+    "navigationOptions": {
+        "maximumNumberOfArticles": 3,
+        "tocParentNode": "Latest documentation updates",
+        "repoTocFolder": "docs/whats-new",
+        "indexParentNode": "Latest documentation updates",
+        "repoIndexFolder": "docs/whats-new"
+    },
+    "areas": [
+        {
+            "names": [ "fundamentals" ],
+            "heading": ".NET Aspire fundamentals"
+        },
+        {
+            "names": [ "storage" ],
+            "heading": ".NET Aspire storage"
+        },
+        {
+            "names": [ "caching" ],
+            "heading": ".NET Aspire caching"
+        },
+        {
+            "names": [ "messaging" ],
+            "heading": ".NET Aspire messaging"
+        },
+        {
+            "names": [ "database" ],
+            "heading": ".NET Aspire database"
+        },
+        {
+            "names": [ "security" ],
+            "heading": ".NET Aspire security"
+        },
+        {
+            "names": [ "deployment" ],
+            "heading": ".NET Aspire deployment"
+        },
+        {
+            "names": [ "getting-started" ],
+            "heading": ".NET Aspire getting started"
+        },
+        {
+            "names": [ "reference" ],
+            "heading": ".NET Aspire reference"
+        }
+    ]
+}
