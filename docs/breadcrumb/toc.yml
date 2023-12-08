@@ -10,6 +10,9 @@ items:
           - name: .NET Aspire (Preview)
             tocHref: /dotnet/aspire/
             topicHref: /dotnet/aspire/index
+          - name: What's new
+            tocHref: /dotnet/aspire/whats-new/
+            topicHref: /dotnet/aspire/whats-new/index
           - name: API browser
             tocHref: /dotnet/api/
             topicHref: /dotnet/api/index

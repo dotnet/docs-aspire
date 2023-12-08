@@ -10,7 +10,7 @@ metadata:
   ms.topic: hub-page
   ms.prod: dotnet-cloud-native
   ms.service: dotnet-aspire
-  ms.date: 12/07/2023
+  ms.date: 12/08/2023
 
 highlightedContent:
   items:
@@ -29,15 +29,15 @@ highlightedContent:
     - itemType: concept
       title: Service discovery
       url: service-discovery/overview.md
-    - itemType: how-to-guide
-      title: Service defaults
-      url: service-defaults.md
     - itemType: deploy
       title: Deploy a .NET Aspire app
       url: deployment/overview.md
     - itemType: reference
       title: .NET Aspire FAQ
       url: reference/aspire-faq.yml
+    - itemType: whats-new
+      title: What's new in .NET Aspire
+      url: whats-new/index.md
 
 conceptualContent:
   # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
