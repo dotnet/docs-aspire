@@ -70,6 +70,8 @@ landingContent:
   linkLists:
   - linkListType: whats-new
     links:
+    - text: .NET docs updates
+      url: /dotnet/core/whats-new/
     - text: ASP.NET Core docs updates
       url: /aspnet/core/whats-new/
     - text: Xamarin docs updates
