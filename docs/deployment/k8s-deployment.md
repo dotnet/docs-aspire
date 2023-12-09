@@ -13,7 +13,7 @@ ms.date: 12/09/2023
 > - The prerequisites that must be in place for the Aspirate tool.
 > - How .NET Aspire and Kubernetes manifest files differ.
 > - How to install and initialize the Aspirate tool.
-> - How to create and manifests and containers and deploy them to a Kubernetes cluster.
+> - How to create manifests and containers and deploy them to a Kubernetes cluster.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
