@@ -15,40 +15,58 @@
     },
     "areas": [
         {
-            "names": [ "fundamentals" ],
-            "heading": ".NET Aspire fundamentals"
+            "names": [
+                "get-started"
+            ],
+            "heading": "Get started"
         },
         {
-            "names": [ "storage" ],
-            "heading": ".NET Aspire storage"
+            "names": [
+                "fundamentals"
+            ],
+            "heading": "Fundamentals"
         },
         {
-            "names": [ "caching" ],
-            "heading": ".NET Aspire caching"
+            "names": [
+                "storage"
+            ],
+            "heading": "Storage"
         },
         {
-            "names": [ "messaging" ],
-            "heading": ".NET Aspire messaging"
+            "names": [
+                "database"
+            ],
+            "heading": "Database"
         },
         {
-            "names": [ "database" ],
-            "heading": ".NET Aspire database"
+            "names": [
+                "messaging"
+            ],
+            "heading": "Messaging"
         },
         {
-            "names": [ "security" ],
-            "heading": ".NET Aspire security"
+            "names": [
+                "caching"
+            ],
+            "heading": "Caching"
         },
         {
-            "names": [ "deployment" ],
-            "heading": ".NET Aspire deployment"
+            "names": [
+                "security"
+            ],
+            "heading": "Security"
         },
         {
-            "names": [ "getting-started" ],
-            "heading": ".NET Aspire getting started"
+            "names": [
+                "deployment"
+            ],
+            "heading": "Deployment"
         },
         {
-            "names": [ "reference" ],
-            "heading": ".NET Aspire reference"
+            "names": [
+                "reference"
+            ],
+            "heading": "Reference"
         }
     ]
 }
