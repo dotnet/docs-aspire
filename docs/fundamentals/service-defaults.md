@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire service defaults
 description: Learn about the .NET Aspire service defaults project.
-ms.date: 11/11/2023
+ms.date: 12/08/2023
 ms.topic: reference
 ---
 
@@ -11,7 +11,7 @@ Cloud-native applications often require extensive configurations to ensure they 
 
 ## Explore the service defaults project
 
-When you either [**Enlist in .NET Aspire orchestration**](setup-tooling.md#enlist-in-orchestration) or [create a new .NET Aspire project](get-started/build-your-first-aspire-app.md), the _YourAppName.ServiceDefaults_ project is added to your solution. For example, when building an API, you call the `AddServiceDefaults` method in the _Program.cs_ file of your apps:
+When you either [**Enlist in .NET Aspire orchestration**](setup-tooling.md#enlist-in-orchestration) or [create a new .NET Aspire project](../get-started/build-your-first-aspire-app.md), the _YourAppName.ServiceDefaults_ project is added to your solution. For example, when building an API, you call the `AddServiceDefaults` method in the _Program.cs_ file of your apps:
 
 ```csharp
 builder.AddServiceDefaults();
@@ -56,7 +56,7 @@ The preceding code:
 
 - Configures OpenTelemetry metrics and tracing, by calling the `ConfigureOpenTelemetry` method.
 - Adds default health check endpoints, by calling the `AddDefaultHealthChecks` method.
-- Adds [service discovery](service-discovery/overview.md) functionality, by calling the `AddServiceDiscovery` method.
+- Adds [service discovery](../service-discovery/overview.md) functionality, by calling the `AddServiceDiscovery` method.
 - Configures <xref:System.Net.Http.HttpClient> defaults, by calling the `ConfigureHttpClientDefaults` method—which is based on [Build resilient HTTP apps: Key development patterns](/dotnet/core/resilience/http-resilience):
   - Adds the standard HTTP resilience handler, by calling the `AddStandardResilienceHandler` method.
   - Specifies that the <xref:Microsoft.Extensions.DependencyInjection.IHttpClientBuilder> should use service discovery, by calling the `UseServiceDiscovery` method.
@@ -115,7 +115,7 @@ For more information, see [.NET Aspire health checks](health-checks.md).
 
 This code is derived from the .NET Aspire Starter Application template and is intended as a starting point. You're free to modify this code however you deem necessary to meet your needs. It's important to know that service defaults project and its functionality are automatically applied to all project resources in a .NET Aspire solution.
 
-- [Service discovery in .NET Aspire](service-discovery/overview.md)
+- [Service discovery in .NET Aspire](../service-discovery/overview.md)
 - [Health checks in .NET Aspire](health-checks.md)
 - [.NET Aspire telemetry](telemetry.md)
 - [Build resilient HTTP apps: Key development patterns](/dotnet/core/resilience/http-resilience)

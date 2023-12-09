@@ -167,5 +167,5 @@ The .NET Aspire Azure Key Vault component currently does not support metrics by 
 ## See also
 
 - [Azure Key Vault docs](/azure/key-vault/general/)
-- [.NET Aspire components](../components-overview.md)
+- [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

@@ -8,7 +8,7 @@ zone_pivot_groups: azure-storage-mechanism
 
 # Tutorial: Connect an ASP.NET Core app to .NET Aspire storage components
 
-Cloud-native apps often require scalable storage solutions that provide capabilities like blob storage, queues, or semi-structured NoSQL databases. .NET Aspire components simplify connections to various storage services, such as Azure Blob Storage. In this quickstart, you'll create an ASP.NET Core app that uses .NET Aspire components to connect to Azure Blob Storage and Azure Queue Storage to submit support tickets. The app sends the tickets to a queue for processing and uploads an attachment to storage. You'll learn how to:
+Cloud-native apps often require scalable storage solutions that provide capabilities like blob storage, queues, or semi-structured NoSQL databases. .NET Aspire components simplify connections to various storage services, such as Azure Blob Storage. In this tutorial, you'll create an ASP.NET Core app that uses .NET Aspire components to connect to Azure Blob Storage and Azure Queue Storage to submit support tickets. The app sends the tickets to a queue for processing and uploads an attachment to storage. You'll learn how to:
 
 > [!div class="checklist"]
 >
@@ -97,7 +97,7 @@ Visual Studio adds the project to your solution and updates the _Program.cs_ fil
 builder.AddProject<Projects.AspireStorage_Worker>();
 ```
 
-Visual Studio tooling added this line of code to register your new project with the <xref:Aspire.Hosting.IDistributedApplicationBuilder> object, which enables orchestration features. For more information, see [.NET Aspire orchestration overview](../app-host-overview.md).
+Visual Studio tooling added this line of code to register your new project with the <xref:Aspire.Hosting.IDistributedApplicationBuilder> object, which enables orchestration features. For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
 
 The completed solution structure should resemble the following:
 
@@ -118,7 +118,7 @@ Your **AspireStorage** project is now set up to use .NET Aspire components. Here
 
 The next step is to add the components to the app.
 
-In the _Program.cs_ file of the _AspireStorage_ project, add calls to the <xref:Microsoft.Extensions.Hosting.AspireBlobStorageExtensions.AddAzureBlobService%2A> and <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueService%2A> extension methods after the creation of the `builder` but before the call to `AddServiceDefaults`. For more information, see [.NET Aspire service defaults](../service-defaults.md). Provide the name of your connection string as a parameter.
+In the _Program.cs_ file of the _AspireStorage_ project, add calls to the <xref:Microsoft.Extensions.Hosting.AspireBlobStorageExtensions.AddAzureBlobService%2A> and <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueService%2A> extension methods after the creation of the `builder` but before the call to `AddServiceDefaults`. For more information, see [.NET Aspire service defaults](../fundamentals/service-defaults.md). Provide the name of your connection string as a parameter.
 
 :::zone pivot="azurite"
 
@@ -234,7 +234,7 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 1. Select the **Submit** button, and the form submits the support ticket for processing — and clears the form.
 1. In a separate browser tab, use the Azure portal to navigate to the **Storage browser** in your Azure Storage Account.
 1. Select **Containers** and then navigate into the **Documents** container to see the uploaded file.
-1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../dashboard.md), and selecting the **aspirestorage.worker** from the dropdown.
+1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../fundamentals/dashboard.md), and selecting the **aspirestorage.worker** from the dropdown.
 
     :::image type="content" source="media/queue-output.png" lightbox="media/queue-output.png"  alt-text="A screenshot showing the console output of the Worker app.":::
 

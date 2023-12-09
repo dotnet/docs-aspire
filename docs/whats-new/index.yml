@@ -1,0 +1,88 @@
+### YamlMime:Landing
+
+title: .NET Aspire documentation — what's new?
+summary: Welcome to what's new in .NET Aspire docs. Use this page to quickly find the latest changes.
+metadata:
+  title: .NET Aspire documentation what's new?
+  description: Learn about new and updated content in .NET Aspire docs.
+  ms.date: 12/08/2023
+  ms.topic: landing-page
+landingContent:
+- title: .NET Aspire release updates
+  linkLists:
+  - linkListType: whats-new
+    links:
+    - text: .NET Aspire 8.0 preview 1
+      url: https://github.com/dotnet/aspire/releases/tag/v8.0.0-preview.1.23557.2
+- title: Latest documentation updates
+  linkLists:
+  - linkListType: whats-new
+    links:
+    - text: November 2023
+      url: https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-simplifying-cloud-native-development-with-dotnet-8
+- title: Find language updates
+  linkLists:
+  - linkListType: whats-new
+    links:
+    - text: What's new in C#
+      url: /dotnet/csharp/whats-new
+    - text: What's new in F#
+      url: /dotnet/fsharp/whats-new
+    - text: What's new for Visual Basic
+      url: /dotnet/visual-basic/whats-new
+- title: Get involved - contribute
+  linkLists:
+  - linkListType: overview
+    links:
+    - text: .NET Aspire docs repository
+      url: https://github.com/dotnet/docs-aspire/blob/main/README.md
+    - text: Project structure and labels for issues and pull requests
+      url: /contribute/dotnet/labels-projects
+    - text: .NET Foundation
+      url: https://dotnetfoundation.org/
+  - linkListType: concept
+    links:
+    - text: Microsoft docs contributor guide
+      url: /contribute
+    - text: .NET docs contributor guide
+      url: /contribute/dotnet/dotnet-contribute
+- title: .NET developers
+  linkLists:
+  - linkListType: download
+    links:
+    - text: Download the .NET SDK
+      url: https://dotnet.microsoft.com/download
+  - linkListType: sample
+    links:
+    - text: .NET samples browser
+      url: /samples/browse/?products=dotnet-aspire
+  - linkListType: get-started
+    links:
+    - text: .NET on Q&A
+      url: /answers/products/dotnet
+    - text: .NET tech community forums
+      url: https://techcommunity.microsoft.com/t5/net/ct-p/dotnet
+  - linkListType: whats-new
+    links:
+    - text: Community
+      url: https://dotnet.microsoft.com/platform/community
+- title: Related what's new pages
+  linkLists:
+  - linkListType: whats-new
+    links:
+    - text: .NET docs updates
+      url: /dotnet/core/whats-new/
+    - text: ASP.NET Core docs updates
+      url: /aspnet/core/whats-new/
+    - text: Xamarin docs updates
+      url: /xamarin/whats-new/
+    - text: .NET release notes
+      url: https://github.com/dotnet/core/blob/main/release-notes/README.md
+    - text: ASP.NET Core release notes
+      url: /aspnet/core/release-notes/aspnetcore-3.1
+    - text: C# compiler (Roslyn) release notes
+      url: https://github.com/dotnet/roslyn/tree/main/docs/ide
+    - text: Visual Studio release notes
+      url: /visualstudio/ide/whats-new-visual-studio-docs
+    - text: Visual Studio Code release notes
+      url: https://code.visualstudio.com/updates

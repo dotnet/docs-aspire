@@ -27,8 +27,8 @@ The solution consists of the following projects:
 
 - **AspireSample.ApiService**: An ASP.NET Core Minimal API project is used to provide data to the front end. This project depends on the shared **AspireSample.ServiceDefaults** project.
 - **AspireSample.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the _Startup project_, and it depends on the **AspireSample.ApiService** and **AspireSample.Web** projects.
-- **AspireSample.ServiceDefaults**: A .NET Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../telemetry.md).
-- **AspireSample.Web**: An ASP.NET Core Blazor App project with default .NET Aspire service configurations, this project depends on the **AspireSample.ServiceDefaults** project. For more information, see [.NET Aspire service defaults](../service-defaults.md).
+- **AspireSample.ServiceDefaults**: A .NET Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../fundamentals/telemetry.md).
+- **AspireSample.Web**: An ASP.NET Core Blazor App project with default .NET Aspire service configurations, this project depends on the **AspireSample.ServiceDefaults** project. For more information, see [.NET Aspire service defaults](../fundamentals/service-defaults.md).
 
 Your _AspireSample_ directory should resemble the following:
 
@@ -57,7 +57,7 @@ If you've used either the [.NET Generic Host](/dotnet/core/extensions/generic-ho
 - Calls <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> given the generic-type parameter with the project's <xref:Aspire.Hosting.IServiceMetadata> details, adding the `AspireSample.ApiService` project to the application model. This is one of the fundamental building blocks of .NET Aspire, and it's used to configure service discovery and communication between the projects in your app. The name argument `"apiservice"` is used to identify the project in the application model, and used later by projects that want to communicate with it.
 - Calls `AddProject` again, this time adding the `AspireSample.Web` project to the application model. It also chains multiple calls to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> passing the `cache` and `apiservice` variables. The `WithReference` API is another fundamental API of .NET Aspire, which injects either service discovery information or connection string configuration into the project being added to the application model.
 
-Finally, the app is built and run. The <xref:Aspire.Hosting.DistributedApplication.Run?displayProperty=nameWithType> method is provided by the .NET Aspire SDK, and is responsible for starting the app and all of its dependencies. For more information, see [.NET Aspire orchestration overview](../app-host-overview.md).
+Finally, the app is built and run. The <xref:Aspire.Hosting.DistributedApplication.Run?displayProperty=nameWithType> method is provided by the .NET Aspire SDK, and is responsible for starting the app and all of its dependencies. For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
 
 ### .NET Aspire service defaults project
 
@@ -65,7 +65,7 @@ The _*.ServiceDefaults_ project is a shared project that's used to manage config
 
 :::code language="xml" source="snippets/quickstart/AspireSample/AspireSample.ServiceDefaults/AspireSample.ServiceDefaults.csproj" highlight="8":::
 
-The service defaults project exposes an extension method on the <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> type, named `AddServiceDefaults`. The service defaults project from the template is a starting point, and you can customize it to meet your needs. For more information, see [.NET Aspire service defaults](../service-defaults.md).
+The service defaults project exposes an extension method on the <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> type, named `AddServiceDefaults`. The service defaults project from the template is a starting point, and you can customize it to meet your needs. For more information, see [.NET Aspire service defaults](../fundamentals/service-defaults.md).
 
 ## Orchestrate service communication
 
@@ -139,14 +139,14 @@ Visit each link on the left navigation to view different information about the .
 
     :::image type="content" source="media/aspire-dashboard-metrics.png" lightbox="media/aspire-dashboard-metrics.png" alt-text="A screenshot showing an Aspire dashboard metrics page for the webfrontend.":::
 
-For more information, see [.NET Aspire dashboard overview](../dashboard.md).
+For more information, see [.NET Aspire dashboard overview](../fundamentals/dashboard.md).
 
 🤓 Congratulations! You created your first .NET Aspire application.
 
 ## Next steps
 
-- [.NET Aspire components overview](../components-overview.md)
+- [.NET Aspire components overview](../fundamentals/components-overview.md)
 - [Service discovery in .NET Aspire](../service-discovery/overview.md)
-- [.NET Aspire service defaults](../service-defaults.md)
-- [Health checks in .NET Aspire](../health-checks.md)
-- [.NET Aspire telemetry](../telemetry.md)
+- [.NET Aspire service defaults](../fundamentals/service-defaults.md)
+- [Health checks in .NET Aspire](../fundamentals/health-checks.md)
+- [.NET Aspire telemetry](../fundamentals/telemetry.md)

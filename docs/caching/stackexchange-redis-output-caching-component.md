@@ -166,5 +166,5 @@ The .NET Aspire StackExchange Redis output caching component currently doesn't s
 ## See also
 
 - [StackExchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
-- [.NET Aspire components](../components-overview.md)
+- [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

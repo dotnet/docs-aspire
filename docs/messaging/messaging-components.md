@@ -7,7 +7,7 @@ ms.topic: tutorial
 
 # Tutorial: Use .NET Aspire messaging components in ASP.NET Core
 
-Cloud-native apps often require scalable messaging solutions that provide capabilities such as messaging queues and topics and subscriptions. .NET Aspire components simplify the process of connecting to various messaging providers, such as Azure Service Bus. In this quickstart, you'll create an ASP.NET Core app that uses .NET Aspire components to connect to Azure Service Bus to create a notification system. Submitted messages will be sent to a Service Bus topic for consumption by subscribers. You'll learn how to:
+Cloud-native apps often require scalable messaging solutions that provide capabilities such as messaging queues and topics and subscriptions. .NET Aspire components simplify the process of connecting to various messaging providers, such as Azure Service Bus. In this tutorial, you'll create an ASP.NET Core app that uses .NET Aspire components to connect to Azure Service Bus to create a notification system. Submitted messages will be sent to a Service Bus topic for consumption by subscribers. You'll learn how to:
 
 > [!div class="checklist"]
 >
@@ -19,7 +19,7 @@ Cloud-native apps often require scalable messaging solutions that provide capabi
 
 ## Set up the Azure Service Bus account
 
-For this quickstart, you'll need access to an Azure Service Bus namespace with a topic and subscription configured. Use one of the following options to set up the require resources:
+For this tutorial, you'll need access to an Azure Service Bus namespace with a topic and subscription configured. Use one of the following options to set up the require resources:
 
 - **Azure portal**: [Create a service bus account with a topic and subscription](/azure/service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal).
 
@@ -60,7 +60,7 @@ Retrieve the connection string for your Service Bus namespace from the **Shared 
 
 ## Create the sample solution
 
-Visual Studio provides app templates to get started with .NET Aspire that handle some of the initial setup configurations for you. Complete the following steps to properly set up a project for this quickstart:
+Visual Studio provides app templates to get started with .NET Aspire that handle some of the initial setup configurations for you. Complete the following steps to properly set up a project for this article:
 
 1. At the top of Visual Studio, navigate to **File** > **New** > **Project**.
 1. In the dialog window, search for *ASP.NET Core* and select **ASP.NET Core Web API**. Choose **Next**.

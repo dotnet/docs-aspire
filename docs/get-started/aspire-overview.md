@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire overview
 description: Learn about .NET Aspire, an application stack designed to improve the experience of building cloud-native applications.
-ms.date: 12/07/2023
+ms.date: 12/08/2023
 ---
 
 # .NET Aspire overview
@@ -42,11 +42,11 @@ builder.AddProject<Projects.MyFrontend>("frontend")
        .WithReference(cache);
 ```
 
-For more information, see [.NET Aspire orchestration overview](../app-host-overview.md).
+For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
 
 ## .NET Aspire components
 
-[.NET Aspire components](../components-overview.md) are NuGet packages designed to simplify connections to popular services and platforms, such as Redis or PostgreSQL. .NET Aspire components handle many cloud-native concerns for you through standardized configuration patterns, such as adding health checks and telemetry.
+[.NET Aspire components](../fundamentals/components-overview.md) are NuGet packages designed to simplify connections to popular services and platforms, such as Redis or PostgreSQL. .NET Aspire components handle many cloud-native concerns for you through standardized configuration patterns, such as adding health checks and telemetry.
 
 Each component is designed to work with .NET Aspire orchestration, and they're capable of flowing their configurations through dependencies based on .NET project and package references. In other words, if _Example.ServiceFoo_ references _Example.ServiceBar_, _Example.ServiceFoo_ inherits the component's required configurations to allow them to communicate with each other automatically.
 
@@ -62,7 +62,7 @@ The <xref:Microsoft.Extensions.Hosting.AspireServiceBusExtensions.AddAzureServic
 - Applies `ServiceBusClient` configurations either inline through code or through configuration.
 - Enables corresponding health checks, logging and telemetry specific to the Azure Service Bus usage.
 
-A full list of available components is detailed on the [.NET Aspire components](../components-overview.md) overview page.
+A full list of available components is detailed on the [.NET Aspire components](../fundamentals/components-overview.md) overview page.
 
 ## Project templates and tooling
 
@@ -77,7 +77,7 @@ There are currently two .NET Aspire starter templates available to help you get 
 - **.NET Aspire Application**: A basic starter template that only includes the **AspireSample.AppHost** and **AspireSample.ServiceDefaults** projects. This template is designed to only provide the essentials for you to build off of.
 - **.NET Aspire Starter Application**: This template includes the **AspireSample.AppHost** and **AspireSample.ServiceDefaults** projects, but also includes boilerplate UI and API projects. These projects are pre-configured with service discovery and other basic examples of common .NET Aspire functionality.
 
-For more information, see [.NET Aspire setup and tooling](../setup-tooling.md).
+For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
 
 .NET Aspire templates also include boilerplate extension methods that handle common service configurations for you:
 
@@ -85,11 +85,11 @@ For more information, see [.NET Aspire setup and tooling](../setup-tooling.md).
 builder.AddServiceDefaults();
 ```
 
-For more information on what `AddServiceDefaults` does, see [.NET Aspire service defaults](../service-defaults.md).
+For more information on what `AddServiceDefaults` does, see [.NET Aspire service defaults](../fundamentals/service-defaults.md).
 
 When added to your _Program.cs_ file, the preceding code handles the following concerns:
 
-- **OpenTelemetry**: Sets up formatted logging, runtime metrics, built-in meters, and tracing for ASP.NET Core, gRPC, and HTTP. For more information, see [.NET Aspire telemetry](../telemetry.md).
+- **OpenTelemetry**: Sets up formatted logging, runtime metrics, built-in meters, and tracing for ASP.NET Core, gRPC, and HTTP. For more information, see [.NET Aspire telemetry](../fundamentals/telemetry.md).
 - **Default health checks**: Adds default health check endpoints that tools can query to monitor your app. For more information, see [.NET app health checks in C#](/dotnet/core/diagnostics/diagnostic-health-checks).
 - **Service discovery**: Enables [service discovery](../service-discovery/overview.md) for the app and configures <xref:System.Net.Http.HttpClient> accordingly.
 

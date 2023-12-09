@@ -14,29 +14,31 @@ items:
       - name: Tutorial - Add .NET Aspire to an existing app
         href: get-started/add-aspire-existing-app.md
       - name: Setup and tooling
-        href: setup-tooling.md
+        href: fundamentals/setup-tooling.md
+      - name: What's new in .NET Aspire
+        href: whats-new/index.yml
 
   - name: Overview
     expanded: true
     items:
     - name: Distributed app host (Orchestration)
       displayName: orchestration,aspire apphost,aspire app
-      href: app-host-overview.md
+      href: fundamentals/app-host-overview.md
     - name: .NET Aspire dashboard
       displayName: aspire dashboard,dashboard
-      href: dashboard.md
+      href: fundamentals/dashboard.md
     - name: Components
       displayName: aspire components,components,nuget packages,packages
-      href: components-overview.md
+      href: fundamentals/components-overview.md
     - name: Service discovery
       displayName: service discovery,service to service communication
       href: service-discovery/overview.md
     - name: Service defaults
-      href: service-defaults.md
+      href: fundamentals/service-defaults.md
     - name: Health checks
-      href: health-checks.md
+      href: fundamentals/health-checks.md
     - name: Telemetry
-      href: telemetry.md
+      href: fundamentals/telemetry.md
 
   - name: Storage
     items:

@@ -1,13 +1,13 @@
 ---
 title: Implement caching with .NET Aspire components
 description: Learn how to connect to Redis and cache data using .NET Aspire components.
-ms.date: 12/07/2023
+ms.date: 12/09/2023
 ms.topic: tutorial
 ---
 
 # Tutorial: Implement caching with .NET Aspire components
 
-Cloud-native apps often require various types of scalable caching solutions to improve performance. .NET Aspire components simplify the process of connecting to popular caching services such as Redis. In this quickstart, you'll learn how to:
+Cloud-native apps often require various types of scalable caching solutions to improve performance. .NET Aspire components simplify the process of connecting to popular caching services such as Redis. In this article, you'll learn how to:
 
 > [!div class="checklist"]
 >
@@ -15,7 +15,7 @@ Cloud-native apps often require various types of scalable caching solutions to i
 > - Add .NET Aspire components to connect to Redis and implement caching.
 > - Configure the .NET Aspire components to meet specific requirements.
 
-This quickstart explores how to use two different types of ASP.NET Core caching using .NET Aspire and Redis:
+This article explores how to use two different types of ASP.NET Core caching using .NET Aspire and Redis:
 
 - **[Output caching](/aspnet/core/performance/caching/output)**: A configurable, extensible caching method for storing entire HTTP responses for future requests.
 - **[Distributed caching](/aspnet/core/performance/caching/distributed)**: A cache shared by multiple app servers that allows you to cache specific pieces of data. A distributed cache is typically maintained as an external service to the app servers that access it and can improve the performance and scalability of an ASP.NET Core app.

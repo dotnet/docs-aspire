@@ -23,6 +23,34 @@
         {
             "source_path_from_root": "/docs/caching/quickstart-caching.md",
             "redirect_url": "/dotnet/aspire/caching/caching-components"
+        },
+        {
+            "source_path_from_root": "/docs/app-host-overview.md",
+            "redirect_url": "/dotnet/aspire/fundamentals/app-host-overview"
+        },
+        {
+            "source_path_from_root": "/docs/components-overview.md",
+            "redirect_url": "/dotnet/aspire/fundamentals/components-overview"
+        },
+        {
+            "source_path_from_root": "/docs/dashboard.md",
+            "redirect_url": "/dotnet/aspire/fundamentals/dashboard"
+        },
+        {
+            "source_path_from_root": "/docs/health-checks.md",
+            "redirect_url": "/dotnet/aspire/fundamentals/health-checks"
+        },
+        {
+            "source_path_from_root": "/docs/service-defaults.md",
+            "redirect_url": "/dotnet/aspire/fundamentals/service-defaults"
+        },
+        {
+            "source_path_from_root": "/docs/setup-tooling.md",
+            "redirect_url": "/dotnet/aspire/fundamentals/setup-tooling"
+        },
+        {
+            "source_path_from_root": "/docs/telemetry.md",
+            "redirect_url": "/dotnet/aspire/fundamentals/telemetry"
         }
     ]
 }

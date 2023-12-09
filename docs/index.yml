@@ -8,9 +8,9 @@ metadata:
   title: .NET Aspire documentation (Preview)
   description: Samples, tutorials, and education for .NET Aspire, your cloud-native app stack build around components that provide production-ready telemetry, health checks, configurability, and testability.
   ms.topic: hub-page
-  ms.prod: dotnet-cloud-native
+  ms.prod: dotnet-aspire
   ms.service: dotnet-aspire
-  ms.date: 12/07/2023
+  ms.date: 12/08/2023
 
 highlightedContent:
   items:
@@ -22,22 +22,22 @@ highlightedContent:
       url: get-started/build-your-first-aspire-app.md
     - itemType: concept
       title: Distributed app host
-      url: app-host-overview.md
+      url: fundamentals/app-host-overview.md
     - itemType: concept
       title: .NET Aspire components
-      url: components-overview.md
+      url: fundamentals/components-overview.md
     - itemType: concept
       title: Service discovery
       url: service-discovery/overview.md
-    - itemType: how-to-guide
-      title: Service defaults
-      url: service-defaults.md
     - itemType: deploy
       title: Deploy a .NET Aspire app
       url: deployment/overview.md
     - itemType: reference
       title: .NET Aspire FAQ
       url: reference/aspire-faq.yml
+    - itemType: whats-new
+      title: What's new in .NET Aspire
+      url: whats-new/index.yml
 
 conceptualContent:
   # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
@@ -52,16 +52,16 @@ conceptualContent:
           url: get-started/build-your-first-aspire-app.md
         - itemType: how-to-guide
           text: .NET Aspire setup and tooling
-          url: setup-tooling.md
+          url: fundamentals/setup-tooling.md
         - itemType: concept
           text: .NET Aspire service discovery
           url: service-discovery/overview.md
         - itemType: reference
           text: .NET Aspire service defaults
-          url: service-defaults.md
+          url: fundamentals/service-defaults.md
         - itemType: reference
           text: .NET Aspire dashboard
-          url: dashboard.md
+          url: fundamentals/dashboard.md
 
     - title: Storage
       links:

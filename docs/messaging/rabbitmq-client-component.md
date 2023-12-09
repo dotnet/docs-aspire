@@ -148,5 +148,5 @@ The .NET Aspire RabbitMQ component currently doesn't support metrics by default.
 ## See also
 
 - [RabbitMQ .NET Client docs](https://rabbitmq.github.io/rabbitmq-dotnet-client)
-- [.NET Aspire components](../components-overview.md)
+- [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

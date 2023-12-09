@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire health checks
 description: Explore .NET Aspire health checks
-ms.date: 11/11/2023
+ms.date: 12/08/2023
 ms.topic: quickstart
 ---
 
