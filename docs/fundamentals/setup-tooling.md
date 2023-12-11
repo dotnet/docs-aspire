@@ -38,9 +38,28 @@ To install the .NET Aspire workload in Visual Studio 2022 Preview, use the Visua
 1. On the **Installation details** panel, select **.NET Aspire SDK (Preview)**.
 1. Select **Modify** to install the .NET Aspire component.
 
-:::image type="content" source="../media/install-aspire-workload-visual-studio.png" lightbox="../media/install-aspire-workload-visual-studio.png" alt-text="A screenshot showing how to install the .NET Aspire workload with the Visual Studio installer.":::
+   :::image type="content" source="../media/install-aspire-workload-visual-studio.png" lightbox="../media/install-aspire-workload-visual-studio.png" alt-text="A screenshot showing how to install the .NET Aspire workload with the Visual Studio installer.":::
+
+1. To ensure you install the latest version of .NET Aspire, run these commands:
+
+   ```dotnetcli
+   dotnet workload update
+   dotnet workload install aspire
+   ```
+
+1. To check your version of .NET Aspire, run this command:
+
+   ```dotnetcli
+   dotnet workload list
+   ```
 
 # [.NET CLI](#tab/dotnet-cli)
+
+To ensure that you install the latest version of the .NET Aspire workload, it's best to use the following [dotnet workload update](/dotnet/core/tools/dotnet-workload-update) command before you install .NET Aspire:
+
+```dotnetcli
+dotnet workload update
+```
 
 To install the .NET Aspire workload from the .NET CLI, use the [dotnet workload install](/dotnet/core/tools/dotnet-workload-install) command:
 
@@ -48,10 +67,10 @@ To install the .NET Aspire workload from the .NET CLI, use the [dotnet workload 
 dotnet workload install aspire
 ```
 
-If you've already installed the .NET Aspire workload, it's best to ensure that you're using the latest version. To ensure that you are, use the following [dotnet workload update](/dotnet/core/tools/dotnet-workload-update) command:
+To check your version of .NET Aspire, run this command:
 
 ```dotnetcli
-dotnet workload update
+dotnet workload list
 ```
 
 ---
@@ -80,7 +99,7 @@ Use Visual Studio or the .NET CLI to create new apps using these project templat
 
 To create a .NET Aspire project using Visual Studio, search for *Aspire* in the Visual Studio new project window and select your desired template.
 
-:::image type="content" source="../media/aspire-templates.png" lightbox="../media/aspire-templates.png" alt-text="The .NET Aspire project templates in VIsual Studio.":::
+:::image type="content" source="../media/aspire-templates.png" lightbox="../media/aspire-templates.png" alt-text="The .NET Aspire project templates in Visual Studio.":::
 
 # [.NET CLI](#tab/dotnet-cli)
 
