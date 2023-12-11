@@ -103,6 +103,10 @@ items:
             href: deployment/azure/aca-deployment-azd-in-depth.md
           - name: Use .NET Aspire with Application Insights
             href: deployment/azure/application-insights.md
+      - name: Kubernetes
+        items:
+        - name: Deploy .NET Aspire apps to a Kubernetes cluster
+          href: deployment/k8s-deployment.md
       - name: Reference - Tool-builder manifest schemas
         href: deployment/manifest-format.md
 
