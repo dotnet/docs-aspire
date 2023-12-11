@@ -134,8 +134,7 @@ In your orchestrator project, register the .NET Aspire Azure Cosmos DB component
 
 ```csharp
 // Service registration
-var cosmosdb = builder.AddAzureCosmosDB("cdb")
-    .AddDatabase("cosmosdb");
+var cosmosdb = builder.AddAzureCosmosDB("cdb");
 
 // Service consumption
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
