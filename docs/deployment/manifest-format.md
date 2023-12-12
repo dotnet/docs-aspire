@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire manifest format for deployment tool builders
 description: Learn about the .NET Aspire manifest format in this comprehensive deployment tool builder guide.
-ms.date: 11/27/2023
+ms.date: 12/12/2023
 ms.topic: reference
 ---
 
@@ -125,8 +125,8 @@ var cache = builder.AddRedisContainer("cache");
 var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice");
 
 builder.AddProject<Projects.AspireApp_Web>("webfrontend")
-    .WithReference(cache)
-    .WithReference(apiservice);
+       .WithReference(cache)
+       .WithReference(apiservice);
 
 builder.Build().Run();
 ```
@@ -282,7 +282,8 @@ builder.AddPostgresConnection(
     "postgres1",
     "Host=mypgserver;Port=5432;Database=inventory;Username=myUsername;Password=myPassword");
 
-builder.AddPostgresContainer("postgres2").AddDatabase("shipping");
+builder.AddPostgresContainer("postgres2")
+       .AddDatabase("shipping");
 ```
 
 Example manifest:
@@ -375,7 +376,8 @@ builder.AddSqlServerConnection(
     "sql1",
     "Server=myexistingserver;Database=inventory;Trusted_Connection=True;");
 
-builder.AddSqlServerContainer("sql2").AddDatabase("shipping");
+builder.AddSqlServerContainer("sql2")
+       .AddDatabase("shipping");
 ```
 
 Example manifest:
@@ -560,7 +562,8 @@ Example code:
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddAzureSqlServer("sql1").AddDatabase("inventory");
+builder.AddAzureSqlServer("sql1")
+       .AddDatabase("inventory");
 ```
 
 Example manifest:
