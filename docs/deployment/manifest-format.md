@@ -167,7 +167,7 @@ fields.
 
 > [!NOTE]
 > The `executable.v0` resource type isn't fully implemented in the manifest due to its lack of
-utility in deployment scenarios. For more information on containerizing executables, see [Dockerfile resource types](../fundamentals/containerizing-executables.md).
+utility in deployment scenarios. For more information on containerizing executables, see [Dockerfile resource types](#docker-resource-type).
 
 The `env` field type is a basic key/value mapping where the values might contain [_placeholder strings_](#placeholder-string-structure).
 
