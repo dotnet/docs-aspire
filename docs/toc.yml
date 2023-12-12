@@ -67,6 +67,8 @@ items:
         href: database/azure-cosmos-db-component.md
       - name: Azure Cosmos DB - EF Core component
         href: database/azure-cosmos-db-entity-framework-component.md
+      - name: MySQL Database component
+        href: database/mysql-component.md
 
   - name: Messaging
     items:
