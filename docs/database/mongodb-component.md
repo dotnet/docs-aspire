@@ -79,7 +79,7 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 }
 ```
 
-For more information on how to format this connection string, see [MongDB: ConnectionString documentation](https://www.mongodb.com/docs/v3.0/reference/connection-string).
+For more information on how to format this connection string, see [MongoDB: ConnectionString documentation](https://www.mongodb.com/docs/v3.0/reference/connection-string).
 
 ### Use configuration providers
 

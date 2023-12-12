@@ -124,8 +124,8 @@ You can also set up the `QueueClientOptions` using `Action<IAzureClientBuilder<Q
 ```csharp
 builder.AddAzureQueueService(
     "queue",
-    static configureClientBuilder:
-        clientBuilder => clientBuilder.ConfigureOptions(
+    configureClientBuilder:
+        static clientBuilder => clientBuilder.ConfigureOptions(
             static options =>
                 options.Diagnostics.ApplicationId = "myapp"));
 ```
