@@ -69,6 +69,8 @@ items:
         href: database/azure-cosmos-db-entity-framework-component.md
       - name: MySQL Database component
         href: database/mysql-component.md
+      - name: MongoDB component
+        href: database/mongodb-component.md
 
   - name: Messaging
     items:
