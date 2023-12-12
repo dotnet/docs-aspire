@@ -123,12 +123,12 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 
 | Method | Resource type | Description |
 |--|--|--|
-| `AddMongoDB(...)` | <xref:Aspire.Hosting.ApplicationModel.MongoDBServerResource> | Adds a MongoDB server resource. |
-| `AddMongoDBContainer(...).`<xref:Aspire.Hosting.MongoDBBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.MongoDBDatabaseResource> | Adds a MongoDB database resource. |
-| `AddMongoDBContainer(...)` | <xref:Aspire.Hosting.ApplicationModel.MongoDBContainerResource> | Adds a MongoDB container resource. |
-| `AddMySql(...)` | <xref:Aspire.Hosting.ApplicationModel.MySqlServerResource> | Adds a MySql server resource. |
-| `AddMySqlContainer(...).`<xref:Aspire.Hosting.MongoDBBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.MySqlDatabaseResource> | Adds a MySql database resource. |
-| `AddMySqlContainer(...)` | <xref:Aspire.Hosting.ApplicationModel.MySqlContainerResource> | Adds a MySql container resource. |
+| `AddMongoDB(...)` | `MongoDBServerResource` | Adds a MongoDB server resource. |
+| `AddMongoDBContainer(...).AddDatabase` | `MongoDBDatabaseResource` | Adds a MongoDB database resource. |
+| `AddMongoDBContainer(...)` | `MongoDBContainerResource` | Adds a MongoDB container resource. |
+| `AddMySql(...)` | `MySqlServerResource` | Adds a MySql server resource. |
+| `AddMySqlContainer(...).AddDatabase` | `MySqlDatabaseResource` | Adds a MySql database resource. |
+| `AddMySqlContainer(...)` | `MySqlContainerResource` | Adds a MySql container resource. |
 | `AddPostgresContainer(...).`<xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresDatabaseResource> | Adds a Postgres database resource. |
 | `AddSqlServerContainer(...).`<xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource> | Adds a SQL Server database resource. |
 | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresConnection%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresConnectionResource> | Adds a Postgres connection resource. |
