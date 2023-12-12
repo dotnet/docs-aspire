@@ -129,6 +129,8 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 | `AddMySql(...)` | `MySqlServerResource` | Adds a MySql server resource. |
 | `AddMySqlContainer(...).AddDatabase` | `MySqlDatabaseResource` | Adds a MySql database resource. |
 | `AddMySqlContainer(...)` | `MySqlContainerResource` | Adds a MySql container resource. |
+| `AddNodeApp(...)` | `NodeAppResource` | Adds a Node.js app resource. |
+| `AddNpmApp(...)` | `NodeAppResource` | Adds a Node.js app resource that wraps an [NPM](https://www.npmjs.com/) package. |
 | `AddPostgresContainer(...).`<xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresDatabaseResource> | Adds a Postgres database resource. |
 | `AddSqlServerContainer(...).`<xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource> | Adds a SQL Server database resource. |
 | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresConnection%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresConnectionResource> | Adds a Postgres connection resource. |
