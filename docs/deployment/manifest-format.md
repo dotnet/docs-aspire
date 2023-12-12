@@ -167,7 +167,7 @@ fields.
 
 > [!NOTE]
 > The `executable.v0` resource type isn't fully implemented in the manifest due to its lack of
-utility in deployment scenarios.
+utility in deployment scenarios. For more information on containerizing executables, see [Dockerfile resource types](../fundamentals/containerizing-executables.md).
 
 The `env` field type is a basic key/value mapping where the values might contain [_placeholder strings_](#placeholder-string-structure).
 
@@ -191,6 +191,7 @@ These resources are available in the _Aspire.Hosting_ package.
 |--|--|--|
 | <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> | `project.v0` | [Project resource type](#project-resource-type) |
 | <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> | `container.v0` | [Container resource type](#container-resource-type) |
+| `AddExecutable(...).AsDockerfileInManifest()` | `docker.v0` | [Docker resource type](#docker-resource-type) |
 | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresConnection%2A> | `postgres.connection.v0` | [Postgres resource types](#postgres-resource-types) |
 | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresContainer%2A> | `postgres.server.v0` | [Postgres resource types](#postgres-resource-types) |
 | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A> | `postgres.database.v0` | [Postgres resource types](#postgres-resource-types) |
@@ -268,6 +269,46 @@ Example manifest:
       }
     }
   }
+}
+```
+
+#### Docker resource type
+
+Example code:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+builder.AddNpmApp("nodeapp", "..\\nodeapp")
+       .WithServiceBinding(5555, scheme: "http", env: "PORT")
+       .AsDockerfileInManifest();
+```
+
+> [!TIP]
+> The `AsDockerfileInManifest()` call is required to generate the Docker resource type in the manifest, and this extension method is only available on the <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> type.
+
+Example manifest:
+
+```json
+{
+  "resources": {
+    "nodeapp": {
+      "type": "dockerfile.v0",
+      "path": "..\\nodeapp\\Dockerfile",
+      "context": "..\\nodeapp",
+      "env": {
+        "NODE_ENV": "development",
+        "PORT": "{bindings.http.port}"
+      },
+      "bindings": {
+        "http": {
+          "scheme": "http",
+          "protocol": "tcp",
+          "transport": "http",
+          "containerPort": 5555
+        }
+      }
+    }
 }
 ```
 
