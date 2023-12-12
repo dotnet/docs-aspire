@@ -623,6 +623,37 @@ Example manifest:
 }
 ```
 
+### Resource types supported in AZD
+
+The following table shows the resource types that are supported in the Azure Deployment (AZD) tool:
+
+|        | Resource type               | Supported in AZD |
+|--------|-----------------------------|------------------|
+| **✔️** | `azure.appconfiguration.v0` | Yes              |
+| **✔️** | `azure.keyvault.v0`         | Yes              |
+| **✔️** | `azure.redis.v0`            | Yes              |
+| **✔️** | `azure.servicebus.v0`       | Yes              |
+| **✔️** | `azure.sql.database.v0`     | Yes              |
+| **✔️** | `azure.sql.v0`              | Yes              |
+| **✔️** | `azure.storage.blob.v0`     | Yes              |
+| **✔️** | `azure.storage.queue.v0`    | Yes              |
+| **✔️** | `azure.storage.table.v0`    | Yes              |
+| **✔️** | `azure.storage.v0`          | Yes              |
+| **❌** | `container.v0`              | No               |
+| **❌** | `docker.v0`                 | No               |
+| **✔️** | `postgres.connection.v0`    | Yes              |
+| **✔️** | `postgres.database.v0`      | Yes              |
+| **✔️** | `postgres.server.v0`        | Yes              |
+| **✔️** | `project.v0`                | Yes              |
+| **✔️** | `rabbitmq.connection.v0`    | Yes              |
+| **❌** | `rabbitmq.server.v0`        | No               |
+| **✔️** | `redis.v0`                  | Yes              |
+| **❌** | `sqlserver.connection.v0`   | No               |
+| **❌** | `sqlserver.database.v0`     | No               |
+| **❌** | `sqlserver.server.v0`       | No               |
+
+For more information, see [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](azure/aca-deployment-azd-in-depth.md).
+
 ## See also
 
 - [.NET Aspire overview](../get-started/aspire-overview.md)
