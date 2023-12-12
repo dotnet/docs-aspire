@@ -2,7 +2,7 @@
 title: .NET Aspire RabbitMQ component
 description: Learn how to use the .NET Aspire RabbitMQ client message-broker component.
 ms.topic: how-to
-ms.date: 11/15/2023
+ms.date: 12/11/2023
 ---
 
 # .NET Aspire RabbitMQ component
@@ -102,7 +102,8 @@ You can also set up the [IConnectionFactory](https://rabbitmq.github.io/rabbitmq
 ```csharp
 builder.AddRabbitMQ(
     "messaging",
-    configureConnectionFactory: factory => factory.ClientProvidedName = "MyApp");
+    static configureConnectionFactory:
+        factory => factory.ClientProvidedName = "MyApp");
 ```
 
 ## Orchestration
@@ -115,7 +116,7 @@ var messaging = builder.AddRabbitMQContainer("messaging");
 
 // Service consumption
 builder.AddProject<Projects.ExampleProject>()
-    .WithReference(messaging);
+       .WithReference(messaging);
 ```
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `messaging`.
@@ -133,13 +134,13 @@ The .NET Aspire RabbitMQ component handles the following:
 
 The .NET Aspire RabbitMQ component uses the following log categories:
 
-- RabbitMQ.Client
+- `RabbitMQ.Client`
 
 ### Tracing
 
 The .NET Aspire RabbitMQ component will emit the following tracing activities using OpenTelemetry:
 
-- Aspire.RabbitMQ.Client
+- "Aspire.RabbitMQ.Client"
 
 ### Metrics
 

@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis component
 description: This article describes the .NET Aspire StackExchange Redis component features and capabilities
 ms.topic: how-to
-ms.date: 11/15/2023
+ms.date: 12/11/2023
 ---
 
 # .NET Aspire StackExchange Redis component
@@ -112,7 +112,7 @@ var redis = builder.AddRedisContainer("redis");
 
 // Service consumption
 builder.AddProject<Projects.ExampleProject>()
-    .WithReference(redis)
+       .WithReference(redis)
 ```
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `redis`. In the _Program.cs_ file of `ExampleProject`, the Redis connection can be consumed using:

@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Data Tables component
 description: This article describes the .NET Aspire Azure Data Tables component features and capabilities.
-ms.date: 11/15/2023
+ms.date: 12/11/2023
 ms.topic: how-to
 ---
 
@@ -138,12 +138,12 @@ The corresponding configuration JSON is defined as follows:
 
 The following configurable options are exposed through the <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings> class:
 
-| Name | Description |
-|--|--|
-| `ServiceUri` | A "Uri" referencing the Table service. |
-| `Credential` | The credential used to authenticate to the Table Storage. |
+| Name           | Description                                                                              |
+|----------------|------------------------------------------------------------------------------------------|
+| `ServiceUri`   | A "Uri" referencing the Table service.                                                   |
+| `Credential`   | The credential used to authenticate to the Table Storage.                                |
 | `HealthChecks` | A boolean value that indicates whether the Table Storage health check is enabled or not. |
-| `Tracing` | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not. |
+| `Tracing`      | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.      |
 
 ## Orchestration
 
@@ -152,11 +152,11 @@ In your orchestrator project, register the Azure Table Storage component and con
 ```csharp
 // Service registration
 var tables = builder.AddAzureStorage("storage")
-    .AddTables("tables");
+                    .AddTables("tables");
 
 // Service consumption
 Builder.AddProject<MyApp.ExampleProject>() 
-    .WithReference(tables)
+       .WithReference(tables)
 ```
 
 For more information, see <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A>.
@@ -174,14 +174,14 @@ By default, The .NET Aspire Azure Data Tables component handles the following:
 
 The .NET Aspire Azure Data Tables component uses the following log categories:
 
-- Azure.Core
-- Azure.Identity
+- `Azure.Core`
+- `Azure.Identity`
 
 ### Tracing
 
 The .NET Aspire Azure Data Tables component will emit the following tracing activities using OpenTelemetry:
 
-- Azure.Data.Tables.TableServiceClient
+- "Azure.Data.Tables.TableServiceClient"
 
 ### Metrics
 

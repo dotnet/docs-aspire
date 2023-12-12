@@ -111,19 +111,20 @@ builder.AddMySqlDataSource("mysql",
 
 Here are the configurable options with corresponding default values:
 
-| Name | Description |
-|--|--|
-| `ConnectionString` | The connection string of the MySQL database database to connect to. |
-| `HealthChecks` | A boolean value that indicates whether the database health check is enabled or not. |
-| `Tracing` | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not. |
-| `Metrics` | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not. |
+| Name               | Description                                                                          |
+|--------------------|--------------------------------------------------------------------------------------|
+| `ConnectionString` | The connection string of the MySQL database database to connect to.                  |
+| `HealthChecks`     | A boolean value that indicates whether the database health check is enabled or not.  |
+| `Tracing`          | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.  |
+| `Metrics`          | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not. |
 
 ## Orchestration
 
 In your AppHost project, register a SqlServer container and consume the connection using the following methods:
 
 ```csharp
-var mysqldb = builder.AddMySqlContainer("mysql").AddDatabase("mysqldb");
+var mysqldb = builder.AddMySqlContainer("mysql")
+                     .AddDatabase("mysqldb");
 
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(mysqldb);
@@ -146,7 +147,6 @@ By default, the .NET Aspire MySQL database component handles the following:
 
 ## See also
 
-- [Azure SQL Database](/azure/azure-sql/database)
 - [MySQL database](https://mysqlconnector.net/)
 - [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

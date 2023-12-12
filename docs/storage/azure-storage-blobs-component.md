@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Blob Storage component
 description: This article describes the .NET Aspire Azure Blob Storage component features and capabilities.
 ms.topic: how-to
-ms.date: 11/15/2023
+ms.date: 12/11/2023
 ---
 
 # .NET Aspire Azure Blob Storage component
@@ -116,7 +116,7 @@ You can also pass the `Action<AzureStorageBlobsSettings> configureSettings` dele
 ```csharp
 builder.AddAzureBlobService(
     "blobs",
-    settings => settings.HealthChecks = false);
+    static settings => settings.HealthChecks = false);
 ```
 
 You can also set up the `BlobClientOptions` using `Action<IAzureClientBuilder<BlobServiceClient, BlobClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureBlobService` method. For example, to set the first part of user-agent headers for all requests issues by this client:
@@ -124,8 +124,9 @@ You can also set up the `BlobClientOptions` using `Action<IAzureClientBuilder<Bl
 ```csharp
 builder.AddAzureBlobService(
     "blobs",
-    configureClientBuilder: clientBuilder =>
-        clientBuilder.ConfigureOptions(options => options.Diagnostics.ApplicationId = "myapp"));
+    static configureClientBuilder: clientBuilder =>
+        clientBuilder.ConfigureOptions(
+            static options => options.Diagnostics.ApplicationId = "myapp"));
 ```
 
 ## Orchestration
@@ -134,10 +135,10 @@ In your orchestrator project, register the Azure Blob Storage component and cons
 
 ```csharp
 var blobs = builder.AddAzureStorage("storage")
-    .AddBlobs("blobs");
+                   .AddBlobs("blobs");
 
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
-    .WithReference(blobs);
+                            .WithReference(blobs);
 ```
 
 The <xref:Aspire.Hosting.AzureResourceExtensions.AddBlobs%2A> method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:blobs` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named blobs in the `ExampleProject` project. In the _Program.cs_ file of `ExampleProject`, the connection can be consumed using:
@@ -159,14 +160,14 @@ The .NET Aspire Azure Blob Storage component handles the following:
 
 The .NET Aspire Azure Blob Storage component uses the following log categories:
 
-- Azure.Core
-- Azure.Identity
+- `Azure.Core`
+- `Azure.Identity`
 
 ### Tracing
 
 The .NET Aspire Azure Blob Storage component will emit the following tracing activities using OpenTelemetry:
 
-- Azure.Storage.Blobs.BlobContainerClient
+- "Azure.Storage.Blobs.BlobContainerClient"
 
 ### Metrics
 

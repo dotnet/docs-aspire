@@ -146,7 +146,8 @@ Here are the configurable options with corresponding default values:
 In your AppHost project, register a SqlServer container and consume the connection using the following methods, such as <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServerContainer%2A>:
 
 ```csharp
-var sql = builder.AddSqlServerContainer("sql").AddDatabase("sqldata");
+var sql = builder.AddSqlServerContainer("sql")
+                 .AddDatabase("sqldata");
 
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(sql);
