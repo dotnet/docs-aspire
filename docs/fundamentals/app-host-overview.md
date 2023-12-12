@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs to express resource references.
-ms.date: 12/05/2023
+ms.date: 12/11/2023
 ms.topic: overview
 ---
 
@@ -32,8 +32,8 @@ var cache = builder.AddRedisContainer("cache");
 var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice");
 
 builder.AddProject<Projects.AspireApp_Web>("webfrontend")
-    .WithReference(cache)
-    .WithReference(apiservice);
+       .WithReference(cache)
+       .WithReference(apiservice);
 
 builder.Build().Run();
 ```
@@ -71,7 +71,7 @@ A reference represents a dependency between resources. Consider the following:
 var cache = builder.AddRedisContainer("cache");
 
 builder.AddProject<Projects.AspireApp_Web>("webfrontend")
-    .WithReference(cache);
+       .WithReference(cache);
 ```
 
 The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a dependency on the "cache" container resource. These dependencies can represent connection strings or service discovery information. In the preceding example, an environment variable is injected into the "webfronend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the webfrontend can use to connect to redis via the .NET Aspire Redis component, for example, `ConnectionStrings__cache="localhost:6379"`.
@@ -86,7 +86,7 @@ var cache = builder.AddRedisContainer("cache");
 var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice");
 
 builder.AddProject<Projects.AspireApp_Web>("webfrontend")
-    .WithReference(cache)
+       .WithReference(cache)
     .WithReference(apiservice);
 ```
 
@@ -111,8 +111,8 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
                         .WithReference(endpoint);
 ```
 
-| Method | Environment variable |
-|--|--|
+| Method                    | Environment variable                             |
+|---------------------------|--------------------------------------------------|
 | `WithReference(endpoint)` | `services__myapp__0=http://_http.localhost:8034` |
 
 ### APIs for adding and expressing resources
@@ -123,15 +123,21 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 
 | Method | Resource type | Description |
 |--|--|--|
+| `AddMongoDB(...)` | <xref:Aspire.Hosting.ApplicationModel.MongoDBServerResource> | Adds a MongoDB server resource. |
+| `AddMongoDBContainer(...).`<xref:Aspire.Hosting.MongoDBBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.MongoDBDatabaseResource> | Adds a MongoDB database resource. |
+| `AddMongoDBContainer(...)` | <xref:Aspire.Hosting.ApplicationModel.MongoDBContainerResource> | Adds a MongoDB container resource. |
+| `AddMySql(...)` | <xref:Aspire.Hosting.ApplicationModel.MySqlServerResource> | Adds a MySql server resource. |
+| `AddMySqlContainer(...).`<xref:Aspire.Hosting.MongoDBBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.MySqlDatabaseResource> | Adds a MySql database resource. |
+| `AddMySqlContainer(...)` | <xref:Aspire.Hosting.ApplicationModel.MySqlContainerResource> | Adds a MySql container resource. |
+| `AddPostgresContainer(...).`<xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresDatabaseResource> | Adds a Postgres database resource. |
+| `AddSqlServerContainer(...).`<xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource> | Adds a SQL Server database resource. |
 | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresConnection%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresConnectionResource> | Adds a Postgres connection resource. |
 | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresContainerResource> | Adds a Postgres container resource. |
-| `AddPostgresContainer(...).`<xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresDatabaseResource> | Adds a Postgres database resource. |
 | <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQConnection%2A> | <xref:Aspire.Hosting.ApplicationModel.RabbitMQConnectionResource> | Adds a RabbitMQ connection resource. |
 | <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.RabbitMQContainerResource> | Adds a RabbitMQ container resource. |
 | <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedisContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.RedisContainerResource> | Adds a Redis container resource. |
 | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServerConnection%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerConnectionResource> | Adds a SQL Server connection resource. |
 | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServerContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerContainerResource> | Adds a SQL Server container resource. |
-| `AddSqlServerContainer(...).`<xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource> | Adds a SQL Server database resource. |
 
 **Azure specific resources available in the [📦 Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure) NuGet package:**
 
