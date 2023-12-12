@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis output caching Component
 description: This article describes the .NET Aspire StackExchange Redis output caching component features and capabilities
 ms.topic: how-to
-ms.date: 12/11/2023
+ms.date: 12/12/2023
 ---
 
 # .NET Aspire StackExchange Redis output caching component
@@ -149,14 +149,14 @@ The .NET Aspire StackExchange Redis output caching component handles the followi
 
 The .NET Aspire StackExchange Redis output caching component uses the following Log categories:
 
-- Aspire.StackExchange.Redis
-- Microsoft.AspNetCore.OutputCaching.StackExchangeRedis
+- `Aspire.StackExchange.Redis`
+- `Microsoft.AspNetCore.OutputCaching.StackExchangeRedis`
 
 ### Tracing
 
 The .NET Aspire StackExchange Redis output caching component will emit the following Tracing activities using OpenTelemetry:
 
-- OpenTelemetry.Instrumentation.StackExchangeRedis
+- "OpenTelemetry.Instrumentation.StackExchangeRedis"
 
 ### Metrics
 

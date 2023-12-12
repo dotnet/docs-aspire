@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis component
 description: This article describes the .NET Aspire StackExchange Redis component features and capabilities
 ms.topic: how-to
-ms.date: 12/11/2023
+ms.date: 12/12/2023
 ---
 
 # .NET Aspire StackExchange Redis component
@@ -134,13 +134,13 @@ The .NET Aspire StackExchange Redis component handles the following:
 
 The .NET Aspire StackExchange Redis component uses the following log categories:
 
-- Aspire.StackExchange.Redis
+- `Aspire.StackExchange.Redis`
 
 ### Tracing
 
 The .NET Aspire StackExchange Redis component will emit the following tracing activities using OpenTelemetry:
 
-- OpenTelemetry.Instrumentation.StackExchangeRedis
+- "OpenTelemetry.Instrumentation.StackExchangeRedis"
 
 ### Metrics
 

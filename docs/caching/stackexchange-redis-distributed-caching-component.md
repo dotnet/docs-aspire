@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis distributed caching component
 description: This article describes the .NET Aspire StackExchange Redis distributed caching component features and capabilities
 ms.topic: how-to
-ms.date: 12/11/2023
+ms.date: 12/12/2023
 ---
 
 # .NET Aspire StackExchange Redis distributed caching component
@@ -142,14 +142,14 @@ The .NET Aspire StackExchange Redis distributed caching component handles the fo
 
 The .NET Aspire StackExchange Redis Distributed Caching component uses the following Log categories:
 
-- Aspire.StackExchange.Redis
-- Microsoft.Extensions.Caching.StackExchangeRedis
+- `Aspire.StackExchange.Redis`
+- `Microsoft.Extensions.Caching.StackExchangeRedis`
 
 ### Tracing
 
 The .NET Aspire StackExchange Redis Distributed Caching component will emit the following Tracing activities using OpenTelemetry:
 
-- OpenTelemetry.Instrumentation.StackExchangeRedis
+- "OpenTelemetry.Instrumentation.StackExchangeRedis"
 
 ### Metrics
 

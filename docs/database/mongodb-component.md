@@ -79,11 +79,11 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 }
 ```
 
-See the [ConnectionString documentation](https://www.mongodb.com/docs/v3.0/reference/connection-string/) for more information on how to format this connection string.
+For more information on how to format this connection string, see [MongDB: ConnectionString documentation](https://www.mongodb.com/docs/v3.0/reference/connection-string).
 
 ### Use configuration providers
 
-The .NET Aspire MongoDB database supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `MySqlConnectorSettings` from configuration files such as _appsettings.json_ by using the `Aspire:MongoDB:Driver` key. If you have set up your configurations in the `Aspire:MongoDB:Driver` section, you can just call the method without passing any parameter.
+The .NET Aspire MongoDB database component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `MySqlConnectorSettings` from configuration files such as _appsettings.json_ by using the `Aspire:MongoDB:Driver` key. If you have set up your configurations in the `Aspire:MongoDB:Driver` section, you can just call the method without passing any parameter.
 
 The following example shows an _appsettings.json_ file that configures some of the available options:
 
