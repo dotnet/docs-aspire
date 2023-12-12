@@ -53,8 +53,6 @@ items:
 
   - name: Database
     items:
-      - name: Tutorial - Connect to SQL Server with EF Core
-        href: database/sql-server-components.md
       - name: PostgreSQL Database components
         items:
           - name: PostgreSQL Database component
@@ -63,6 +61,8 @@ items:
             href: database/postgresql-entity-framework-component.md
       - name: SQL Database components
         items:
+          - name: Tutorial - Connect to SQL Server with EF Core
+            href: database/sql-server-components.md
           - name: SQL Database component
             href: database/sql-server-component.md
           - name: SQL Database - EF Core component
