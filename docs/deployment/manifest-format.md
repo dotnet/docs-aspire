@@ -628,7 +628,7 @@ Example manifest:
 The [Azure Developer CLI](/azure/developer/azure-developer-cli/) (AZD) is a tool that can be used to deploy .NET Aspire applications to Azure Container Apps. The following table shows the resource types that are supported in AZD:
 
 | Name | Resource type | Supported in AZD |
-|--|--|--|
+|--|--|:--:|
 | Azure App Configuration | `azure.appconfiguration.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
 | Azure Key Vault | `azure.keyvault.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
 | Azure Redis | `azure.redis.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
