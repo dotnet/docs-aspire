@@ -623,34 +623,34 @@ Example manifest:
 }
 ```
 
-### Resource types supported in AZD
+### Resource types supported in the Azure Developer CLI
 
-The following table shows the resource types that are supported in the Azure Deployment (AZD) tool:
+The [Azure Developer CLI](/azure/developer/azure-developer-cli/) (AZD) is a tool that can be used to deploy .NET Aspire applications to Azure Container Apps. The following table shows the resource types that are supported in AZD:
 
-|        | Resource type               | Supported in AZD |
-|--------|-----------------------------|------------------|
-| **✔️** | `azure.appconfiguration.v0` | Yes              |
-| **✔️** | `azure.keyvault.v0`         | Yes              |
-| **✔️** | `azure.redis.v0`            | Yes              |
-| **✔️** | `azure.servicebus.v0`       | Yes              |
-| **✔️** | `azure.sql.database.v0`     | Yes              |
-| **✔️** | `azure.sql.v0`              | Yes              |
-| **✔️** | `azure.storage.blob.v0`     | Yes              |
-| **✔️** | `azure.storage.queue.v0`    | Yes              |
-| **✔️** | `azure.storage.table.v0`    | Yes              |
-| **✔️** | `azure.storage.v0`          | Yes              |
-| **❌** | `container.v0`              | No               |
-| **❌** | `docker.v0`                 | No               |
-| **✔️** | `postgres.connection.v0`    | Yes              |
-| **✔️** | `postgres.database.v0`      | Yes              |
-| **✔️** | `postgres.server.v0`        | Yes              |
-| **✔️** | `project.v0`                | Yes              |
-| **✔️** | `rabbitmq.connection.v0`    | Yes              |
-| **❌** | `rabbitmq.server.v0`        | No               |
-| **✔️** | `redis.v0`                  | Yes              |
-| **❌** | `sqlserver.connection.v0`   | No               |
-| **❌** | `sqlserver.database.v0`     | No               |
-| **❌** | `sqlserver.server.v0`       | No               |
+| Name | Resource type | Supported in AZD |
+|--|--|--|
+| Azure App Configuration | `azure.appconfiguration.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| Azure Key Vault | `azure.keyvault.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| Azure Redis | `azure.redis.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| Azure Service Bus | `azure.servicebus.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| Azure SQL Database | `azure.sql.database.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| Azure SQL | `azure.sql.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| Azure Storage Blobs | `azure.storage.blob.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| Azure Storage Queues | `azure.storage.queue.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| Azure Storage Tables | `azure.storage.table.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| Azure Storage | `azure.storage.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| Container | `container.v0` | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span> |
+| Dockerfile | `docker.v0` | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span> |
+| Postgres Connection | `postgres.connection.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| Postgres Database | `postgres.database.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| Postgres Server | `postgres.server.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| .NET Project | `project.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| RabbitMQ Connection | `rabbitmq.connection.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| RabbitMQ Server | `rabbitmq.server.v0` | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span> |
+| Redis | `redis.v0` | <span aria-hidden="true">✔️</span><span class="visually-hidden">Yes</span> |
+| SQL Server Connection | `sqlserver.connection.v0` | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span> |
+| SQL Server Database | `sqlserver.database.v0` | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span> |
+| SQL Server Server | `sqlserver.server.v0` | <span aria-hidden="true">❌</span><span class="visually-hidden">No</span> |
 
 For more information, see [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](azure/aca-deployment-azd-in-depth.md).
 
