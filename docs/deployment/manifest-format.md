@@ -521,11 +521,97 @@ Example manifest:
 
 #### MongoDB resource types
 
-TODO:
+Example code:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+builder.AddMongoDB("mongodb1");
+builder.AddMongoDBContainer("mongodb2").AddDatabase("shipping");
+```
+
+Example manifest:
+
+```json
+{
+  "resources": {
+    "mongodb1": {
+      "type": "mongodb.server.v0"
+    },
+    "mongodb2": {
+      "type": "container.v0",
+      "image": "mongo:latest",
+      "bindings": {
+        "tcp": {
+          "scheme": "tcp",
+          "protocol": "tcp",
+          "transport": "tcp",
+          "containerPort": 27017
+        }
+      },
+      "connectionString": "{mongodb2.bindings.tcp.host}:{mongodb2.bindings.tcp.port}"
+    },
+    "shipping": {
+      "type": "mongodb.database.v1",
+      "parent": "mongodb2"
+    }
+  }
+}
+```
 
 #### MySQL resource types
 
-TODO:
+Example code:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+builder.AddMySql("mysql1");
+builder.AddMySql("mysql2").AddDatabase("shipping");
+```
+
+Example manifest:
+
+```json
+{
+  "resources": {
+    "mysql1": {
+      "type": "mysql.server.v0"
+    },
+    "mysql2": {
+      "type": "container.v0",
+      "image": "mysql:latest",
+      "env": {
+        "MYSQL_ROOT_PASSWORD": "{mysql2.inputs.password}"
+      },
+      "bindings": {
+        "tcp": {
+          "scheme": "tcp",
+          "protocol": "tcp",
+          "transport": "tcp",
+          "containerPort": 3306
+        }
+      },
+      "connectionString": "Server={mysql2.bindings.tcp.host};Port={mysql2.bindings.tcp.port};User ID=root;Password={mysql2.inputs.password}",
+      "inputs": {
+        "password": {
+          "type": "string",
+          "secret": true,
+          "default": {
+            "generate": {
+              "minLength": 10
+            }
+          }
+        }
+      }
+    },
+    "shipping": {
+      "type": "mysql.database.v1",
+      "parent": "mysql2"
+    }
+  }
+}
+```
 
 ### Azure-specific resource types
 
