@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire manifest format for deployment tool builders
 description: Learn about the .NET Aspire manifest format in this comprehensive deployment tool builder guide.
-ms.date: 12/14/2023
+ms.date: 12/15/2023
 ms.topic: reference
 ---
 
@@ -467,7 +467,7 @@ Example manifest:
           "containerPort": 6379
         }
       },
-      "connectionString": "{rediscontainer.bindings.tcp.host}:{rediscontainer.bindings.tcp.port}"
+      "connectionString": "{redis2.bindings.tcp.host}:{redis2.bindings.tcp.port}}"
     }
   }
 }
@@ -509,7 +509,7 @@ Example manifest:
           "containerPort": 1433
         }
       },
-      "connectionString": "Server={sqlservercontainer.bindings.tcp.host},{sqlservercontainer.bindings.tcp.port};User ID=sa;Password={sqlservercontainer.inputs.password};TrustServerCertificate=true;",
+      "connectionString": "Server={sql2.bindings.tcp.host},{sql2.bindings.tcp.port};User ID=sa;Password={sql2.inputs.password};TrustServerCertificate=true;",
       "inputs": {
         "password": {
           "type": "string",
