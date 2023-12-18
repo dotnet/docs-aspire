@@ -15,7 +15,7 @@ The Azure Developer CLI (`azd`) enables you to deploy .NET Aspire applications u
 > - Add a GitHub actions workflow file to your .NET Aspire project
 > - Monitor and explore GitHub Actions workflow execution and Azure deployment
 
-[!INCLUDE [aspire-prereqs](includes/aspire-prereqs.md)]
+[!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
 You will also need to have the Azure Developer CLI [installed locally](/azure/developer/azure-developer-cli/install-azd). Common install options include the following:
 
@@ -39,17 +39,17 @@ curl -fsSL https://aka.ms/install-azd.sh | bash
 
 ---
 
-[!INCLUDE [file-new-aspire](includes/file-new-aspire.md)]
+[!INCLUDE [file-new-aspire](../../includes/file-new-aspire.md)]
 
 ## Initialize the template
 
 Open a new terminal window and `cd` into the root of the solution you created. Execute the `azd init` command to instruct `azd` to inspect the local directory structure and determine the type of app.
 
-:::image type="content" source="media/aspire-azd-01.png" lightbox="media/aspire-azd-01.png" alt-text="AZD inspecting the local source tree":::
+:::image type="content" source="media/aspire-azd-01.png" lightbox="media/aspire-azd-01.png" alt-text="A screenshot of azd inspecting the local directory structure.":::
 
 `azd` determines that this is a .NET Aspire app and locates the App Host project. It will then suggest a deployment to Azure Container Apps. Select the `Confirm and continue...` option to proceed.
 
-:::image type="content" source="media/aspire-azd-02.png" lightbox="media/aspire-azd-02.png" alt-text="Accepting the .NET app type and Azure Container Apps deployment target":::
+:::image type="content" source="media/aspire-azd-02.png" lightbox="media/aspire-azd-02.png" alt-text="A screenshot of accepting the .NET app type and Azure Container Apps deployment target":::
 
 `azd` presents each of the projects in the .NET Aspire solution and allows you to identify which project(s) will be deployed with HTTP ingress open publicly to all internet traffic. Since you'll want the API to be private only to the Azure Container Apps environment and *not* available publicly, select only the `webfrontend`.
 
