@@ -1,0 +1,123 @@
+revision: 3
+schema-version: 1
+owner-ms-alias: adegeo
+
+config:
+  DocMetadata:
+    Headers:
+      - ["---", "#### "]
+
+    ParserRegex: "^\\* (.*): (.*)$"
+
+    ContentUrlRegex:
+      - "### Page URL\n\n(.*)"
+
+issues:
+  unlabeled: "labeled"
+
+  labeled:
+    # Handle issues with /prod /tech labels from label bot
+    # Manages the Not Triaged label for issues missing/having an org category issue
+    - check:
+        - type: query
+          value: "length(Issue.labels[?contains(name, '/prod') || contains(name, '/tech')]) != `0`"
+      pass:
+        - check:
+            - type: query
+              value: "length(Issue.labels[?name == 'doc-enhancement' || name == 'product-question' || name == 'in-progress' || name == 'test-issue' || name == 'kudos' || name == 'loc' || name == 'doc-bug' || name == 'product-feedback' || name == 'code-of-conduct' || name == 'support-request' || name == 'duplicate' || name == 'resolved-by-customer' || name == 'docs-experience' || name == 'doc-provided' || name == 'doc-idea' || name == 'needs-more-info']) != `0`"
+          pass:
+            - labels-remove: [":watch: Not Triaged"]
+          fail:
+            - labels-add: [":watch: Not Triaged"]
+
+  opened:
+    # New issue opened, add Not Triaged
+    - labels-add: [":watch: Not Triaged"]
+
+    # Dependabot opened issue, label it
+    - check:
+        - type: query
+          value: "Issue.user.login == 'dependabot' || Issue.user.login == 'dependabot[bot]'"
+      pass:
+        - labels-add: ["dependencies"]
+
+    - check:
+        - type: metadata-exists
+
+      pass:
+        - prod_tech_labels: true
+
+  reopened:
+    # Remove won't fix label
+    - labels-remove: ["won't fix"]
+
+  closed:
+    # Issue closed, remove in-progress and not triaged labels
+    - labels-remove: ["in-progress", ":watch: Not Triaged"]
+
+    # Check if the issue was closed by the user who opened it
+    - check:
+        - type: query
+          value: "Issue.user.id == Issue.closed_by.id"
+      pass:
+        - labels-add: ["resolved-by-customer"]
+
+pull_request:
+  reopened: opened
+
+  opened:
+    # Set default sprint for new PRs
+    - milestone-set: "![sprint]"
+
+    - check:
+        - type: query
+          value: "PullRequest.base.ref != 'live'"
+      pass:
+        - files-changed:
+            # storage
+            - path: "(?i).*docs\/storage.*"
+              run:
+                - labels-add: ["storage"]
+
+            # caching
+            - path: "(?i).*docs\/caching.*"
+              run:
+                - labels-add: ["caching"]
+
+            # messaging
+            - path: "(?i).*docs\/messaging.*"
+              run:
+                - labels-add: ["messaging"]
+
+            # database
+            - path: "(?i).*docs\/database.*"
+              run:
+                - labels-add: ["database"]
+
+            # security
+            - path: "(?i).*docs\/security.*"
+              run:
+                - labels-add: ["security"]
+
+            # deployment
+            - path: "(?i).*docs\/deployment.*"
+              run:
+                - labels-add: ["deployment"]
+
+            # fundamentals
+            - path: "(?i).*docs\/fundamentals.*"
+              run:
+                - labels-add: ["fundamentals"]
+            - path: "(?i).*docs\/service-discovery.*"
+              run:
+                - labels-add: ["fundamentals"]
+
+            # getting started
+            - path: "(?i).*docs\/get-started.*"
+              run:
+                - labels-add: ["getting-started"]
+
+            # reference
+            - path: "(?i).*docs\/reference.*"
+              run:
+                - labels-add: ["reference"]

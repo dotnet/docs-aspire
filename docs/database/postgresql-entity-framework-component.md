@@ -214,5 +214,5 @@ The .NET Aspire PostgreSQL Entity Framework Core component will emit the followi
 ## See also
 
 - [Azure Database for PostgreSQL documentation](/azure/postgresql/)
-- [.NET Aspire components](../components-overview.md)
+- [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

@@ -1,0 +1,72 @@
+{
+    "$schema": "https://raw.githubusercontent.com/dotnet/docs-tools/main/WhatsNew.Infrastructure/Configuration/reposettings.schema.json",
+    "docSetProductName": ".NET Aspire",
+    "rootDirectory": "docs/",
+    "docLinkSettings": {
+        "linkFormat": "relative",
+        "relativeLinkPrefix": "../"
+    },
+    "navigationOptions": {
+        "maximumNumberOfArticles": 3,
+        "tocParentNode": "Latest documentation updates",
+        "repoTocFolder": "docs/whats-new",
+        "indexParentNode": "Latest documentation updates",
+        "repoIndexFolder": "docs/whats-new"
+    },
+    "areas": [
+        {
+            "names": [
+                "get-started"
+            ],
+            "heading": "Get started"
+        },
+        {
+            "names": [
+                "fundamentals"
+            ],
+            "heading": "Fundamentals"
+        },
+        {
+            "names": [
+                "storage"
+            ],
+            "heading": "Storage"
+        },
+        {
+            "names": [
+                "database"
+            ],
+            "heading": "Database"
+        },
+        {
+            "names": [
+                "messaging"
+            ],
+            "heading": "Messaging"
+        },
+        {
+            "names": [
+                "caching"
+            ],
+            "heading": "Caching"
+        },
+        {
+            "names": [
+                "security"
+            ],
+            "heading": "Security"
+        },
+        {
+            "names": [
+                "deployment"
+            ],
+            "heading": "Deployment"
+        },
+        {
+            "names": [
+                "reference"
+            ],
+            "heading": "Reference"
+        }
+    ]
+}

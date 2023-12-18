@@ -134,8 +134,7 @@ In your orchestrator project, register the .NET Aspire Azure Cosmos DB component
 
 ```csharp
 // Service registration
-var cosmosdb = builder.AddAzureCosmosDB("cdb")
-    .AddDatabase("cosmosdb");
+var cosmosdb = builder.AddAzureCosmosDB("cdb");
 
 // Service consumption
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
@@ -173,5 +172,5 @@ The .NET Aspire Azure Cosmos DB component currently doesn't support metrics by d
 ## See also
 
 - [Azure Cosmos DB docs](/azure/cosmos-db/introduction)
-- [.NET Aspire components](../components-overview.md)
+- [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

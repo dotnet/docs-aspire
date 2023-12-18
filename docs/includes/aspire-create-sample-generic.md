@@ -1,6 +1,6 @@
 ## Create the sample solution
 
-Visual Studio provides app templates to get started with Aspire that handle some of the initial setup configurations for you. Complete the following steps to properly set up a project for this quickstart:
+Visual Studio provides app templates to get started with Aspire that handle some of the initial setup configurations for you. Complete the following steps to properly set up a project for this article:
 
 1. At the top of Visual Studio, navigate to **File** > **New** > **Project**.
 1. In the dialog window, search for *ASP.NET Core* and select **ASP.NET Core Web App**. Choose **Next**.

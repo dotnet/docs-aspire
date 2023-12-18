@@ -175,5 +175,5 @@ The .NET Aspire Azure Blob Storage component currently does not support metrics 
 ## See also
 
 - [Azure Blob Storage docs](/azure/storage/blobs/)
-- [.NET Aspire components](../components-overview.md)
+- [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

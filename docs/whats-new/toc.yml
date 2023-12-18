@@ -1,0 +1,10 @@
+items:
+- name: What's new
+  href: index.yml
+  expanded: true
+  items:
+  - name: Latest documentation updates
+    expanded: true
+    items:
+    - name: November 2023
+      href: https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-simplifying-cloud-native-development-with-dotnet-8

@@ -182,5 +182,5 @@ The .NET Aspire Azure Service Bus component currently doesn't support metrics by
 ## See also
 
 - [Azure Service Bus](/azure/service-bus-messaging/)
-- [.NET Aspire components](../components-overview.md)
+- [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

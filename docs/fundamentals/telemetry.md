@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire telemetry
 description: Learn about essential telemetry concepts for .NET Aspire.
-ms.date: 11/11/2023
+ms.date: 12/08/2023
 ---
 
 # .NET Aspire telemetry
@@ -61,4 +61,4 @@ All of these steps happen internally, so in most cases the developer simply need
 
 .NET Aspire telemetry works best in environments that support OTLP. OTLP exporting is disabled if `OTEL_EXPORTER_OTLP_ENDPOINT` isn't configured.
 
-For more information, see [.NET Aspire deployments](deployment/overview.md).
+For more information, see [.NET Aspire deployments](../deployment/overview.md).

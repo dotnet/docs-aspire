@@ -1,7 +1,7 @@
 ---
 title: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core
-description: Learn how to connect an ASP.NET Core app to .NET Aspire storage components.
-ms.date: 12/01/2023
+description: Learn how to connect an ASP.NET Core app to to SQL Server using .NET Aspire and Entity Framework Core.
+ms.date: 12/07/2023
 ms.topic: tutorial
 ---
 
@@ -59,7 +59,7 @@ Your _AspireSQLEFCore_ project is now set up to use .NET Aspire components. Here
 
 ## Configure the .NET Aspire component
 
-In the _Program.cs_ file of the _AspireSQLEFCore_ project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension method after the creation of the `builder` but before the call to `AddServiceDefaults`. For more information, see [.NET Aspire service defaults](../service-defaults.md). Provide the name of your connection string as a parameter.
+In the _Program.cs_ file of the _AspireSQLEFCore_ project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension method after the creation of the `builder` but before the call to `AddServiceDefaults`. For more information, see [.NET Aspire service defaults](../fundamentals/service-defaults.md). Provide the name of your connection string as a parameter.
 
 :::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/Program.cs" range="1-14" highlight="5":::
 
@@ -100,7 +100,7 @@ Replace the contents of the _Program.cs_ file in the _AspireSQLEFCore.AppHost_ p
 
 The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. The Entity Framework classes you configured earlier will automatically use this connection when migrating and connecting to the database. The `sqlpassword` variable represents the password for the default database user in the SQL Server container.
 
-Set a `sqlpassword` key in the [user secrets](/aspnet/core/security/app-secrets?view=aspnetcore-8.0&tabs=windows) store of the _AspireSQLEFCore.AppHost_ project using the `dotnet user-secrets` command in the AppHost project directory. Passwords must meet the [Password Policy](/sql/relational-databases/security/password-policy?view=sql-server-ver16#password-complexity) complexity requirements.
+Set a `sqlpassword` key in the [user secrets](/aspnet/core/security/app-secrets) store of the _AspireSQLEFCore.AppHost_ project using the `dotnet user-secrets` command in the AppHost project directory. Passwords must meet the [Password Policy](/sql/relational-databases/security/password-policy#password-complexity) complexity requirements.
 
 ```dotnetcli
 dotnet user-secrets set sqlpassword <password>

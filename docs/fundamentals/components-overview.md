@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire components overview
 description: Explore the fundamental concepts of .NET Aspire components and learn how to integrate them into your apps.
-ms.date: 12/05/2023
+ms.date: 12/08/2023
 ms.topic: conceptual
 ---
 
@@ -15,27 +15,27 @@ The following table lists the .NET Aspire components currently available for use
 
 | Component | NuGet | Description |
 |--|--|--|
-| [Azure Blob Storage](storage/azure-storage-blobs-component.md) | [Aspire.Azure.Storage.Blobs](https://www.nuget.org/packages/Aspire.Azure.Storage.Blobs) | A library for accessing [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction). |
-| [Azure Cosmos DB Entity Framework Core](database/azure-cosmos-db-entity-framework-component.md) | [Aspire.Microsoft.EntityFrameworkCore.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.Cosmos) | A library for accessing Azure Cosmos DB databases with [Entity Framework Core](/ef/core/providers/cosmos/). |
-| [Azure Cosmos DB](database/azure-cosmos-db-component.md) | [Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) | A library for accessing [Azure Cosmos DB](/azure/cosmos-db/introduction) databases. |
-| [Azure Key Vault](security/azure-security-key-vault-component.md) | [Aspire.Azure.Security.KeyVault](https://www.nuget.org/packages/Aspire.Azure.Security.KeyVault) | A library for accessing [Azure Key Vault](/azure/key-vault/general/overview). |
-| [Azure Service Bus](messaging/azure-service-bus-component.md) | [Aspire.Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) | A library for accessing [Azure Service Bus](/azure/service-bus-messaging/service-bus-messaging-overview). |
-| [Azure Storage Queues](storage/azure-storage-queues-component.md) | [Aspire.Azure.Storage.Queues](https://www.nuget.org/packages/Aspire.Azure.Storage.Queues) | A library for accessing [Azure Storage Queues](/azure/storage/queues/storage-queues-introduction). |
-| [Azure Table Storage](storage//azure-storage-tables-component.md) | [Aspire.Azure.Data.Tables](https://www.nuget.org/packages/Aspire.Azure.Data.Tables) | A library for accessing the [Azure Table](/azure/storage/tables/table-storage-overview) service. |
-| [PostgreSQL Entity Framework Core](database/postgresql-entity-framework-component.md) | [Aspire.Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL) | A library for accessing PostgreSQL databases using [Entity Framework Core](https://www.npgsql.org/efcore/index.html). |
-| [PostgreSQL](database/postgresql-component.md) | [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) | A library for accessing [PostgreSQL](https://www.npgsql.org/doc/index.html) databases. |
-| [RabbitMQ](messaging/rabbitmq-client-component.md) | [Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) | A library for accessing [RabbitMQ](https://www.rabbitmq.com/dotnet.html). |
-| [Redis Distributed Caching](caching/stackexchange-redis-distributed-caching-component.md) | [Aspire.StackExchange.Redis.DistributedCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.DistributedCaching) | A library for accessing [Redis](https://stackexchange.github.io/StackExchange.Redis/) caches for [distributed caching](/aspnet/core/performance/caching/distributed). |
-| [Redis Output Caching](caching/stackexchange-redis-output-caching-component.md) | [Aspire.StackExchange.Redis.OutputCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.OutputCaching) | A library for accessing [Redis](https://stackexchange.github.io/StackExchange.Redis/) caches for [output caching](/aspnet/core/performance/caching/output). |
-| [Redis](caching/stackexchange-redis-component.md) | [Aspire.StackExchange.Redis](https://www.nuget.org/packages/Aspire.StackExchange.Redis) | A library for accessing [Redis](https://stackexchange.github.io/StackExchange.Redis/) caches. |
-| [SQL Server Entity Framework Core](database/sql-server-entity-framework-component.md) | [Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) | A library for accessing [SQL Server databases using Entity Framework Core](/ef/core/providers/sql-server/). |
-| [SQL Server](database/sql-server-component.md) | [Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) | A library for accessing [SQL Server](/sql/sql-server/) databases. |
+| [Azure Blob Storage](../storage/azure-storage-blobs-component.md) | [Aspire.Azure.Storage.Blobs](https://www.nuget.org/packages/Aspire.Azure.Storage.Blobs) | A library for accessing [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction). |
+| [Azure Cosmos DB Entity Framework Core](../database/azure-cosmos-db-entity-framework-component.md) | [Aspire.Microsoft.EntityFrameworkCore.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.Cosmos) | A library for accessing Azure Cosmos DB databases with [Entity Framework Core](/ef/core/providers/cosmos/). |
+| [Azure Cosmos DB](../database/azure-cosmos-db-component.md) | [Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) | A library for accessing [Azure Cosmos DB](/azure/cosmos-db/introduction) databases. |
+| [Azure Key Vault](../security/azure-security-key-vault-component.md) | [Aspire.Azure.Security.KeyVault](https://www.nuget.org/packages/Aspire.Azure.Security.KeyVault) | A library for accessing [Azure Key Vault](/azure/key-vault/general/overview). |
+| [Azure Service Bus](../messaging/azure-service-bus-component.md) | [Aspire.Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) | A library for accessing [Azure Service Bus](/azure/service-bus-messaging/service-bus-messaging-overview). |
+| [Azure Storage Queues](../storage/azure-storage-queues-component.md) | [Aspire.Azure.Storage.Queues](https://www.nuget.org/packages/Aspire.Azure.Storage.Queues) | A library for accessing [Azure Storage Queues](/azure/storage/queues/storage-queues-introduction). |
+| [Azure Table Storage](../storage//azure-storage-tables-component.md) | [Aspire.Azure.Data.Tables](https://www.nuget.org/packages/Aspire.Azure.Data.Tables) | A library for accessing the [Azure Table](/azure/storage/tables/table-storage-overview) service. |
+| [PostgreSQL Entity Framework Core](../database/postgresql-entity-framework-component.md) | [Aspire.Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL) | A library for accessing PostgreSQL databases using [Entity Framework Core](https://www.npgsql.org/efcore/index.html). |
+| [PostgreSQL](../database/postgresql-component.md) | [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) | A library for accessing [PostgreSQL](https://www.npgsql.org/doc/index.html) databases. |
+| [RabbitMQ](../messaging/rabbitmq-client-component.md) | [Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) | A library for accessing [RabbitMQ](https://www.rabbitmq.com/dotnet.html). |
+| [Redis Distributed Caching](../caching/stackexchange-redis-distributed-caching-component.md) | [Aspire.StackExchange.Redis.DistributedCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.DistributedCaching) | A library for accessing [Redis](https://stackexchange.github.io/StackExchange.Redis/) caches for [distributed caching](/aspnet/core/performance/caching/distributed). |
+| [Redis Output Caching](../caching/stackexchange-redis-output-caching-component.md) | [Aspire.StackExchange.Redis.OutputCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.OutputCaching) | A library for accessing [Redis](https://stackexchange.github.io/StackExchange.Redis/) caches for [output caching](/aspnet/core/performance/caching/output). |
+| [Redis](../caching/stackexchange-redis-component.md) | [Aspire.StackExchange.Redis](https://www.nuget.org/packages/Aspire.StackExchange.Redis) | A library for accessing [Redis](https://stackexchange.github.io/StackExchange.Redis/) caches. |
+| [SQL Server Entity Framework Core](../database/sql-server-entity-framework-component.md) | [Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) | A library for accessing [SQL Server databases using Entity Framework Core](/ef/core/providers/sql-server/). |
+| [SQL Server](../database/sql-server-component.md) | [Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) | A library for accessing [SQL Server](/sql/sql-server/) databases. |
 
 For more information on working with .NET Aspire components in Visual Studio, see [Visual Studio tooling](setup-tooling.md#visual-studio-tooling).
 
 ## Explore a sample component workflow
 
-.NET Aspire components streamline the process of consuming popular services and platforms. For example, consider the **.NET Aspire Application**  template. With this template, you get the [AppHost](app-host-overview.md) and [ServiceDefaults](service-defaults.md) projects. Imagine that you have a need for a worker service to perform some database processing. You could use the [.NET Aspire PostgreSQL component](database/postgresql-component.md) to connect to and utilize a PostgreSQL database. The database could be hosted on-prem or in a cloud service such as Azure, AWS, or GCP. The following steps demonstrate how to integrate this component into your app:
+.NET Aspire components streamline the process of consuming popular services and platforms. For example, consider the **.NET Aspire Application**  template. With this template, you get the [AppHost](app-host-overview.md) and [ServiceDefaults](service-defaults.md) projects. Imagine that you have a need for a worker service to perform some database processing. You could use the [.NET Aspire PostgreSQL component](../database/postgresql-component.md) to connect to and utilize a PostgreSQL database. The database could be hosted on-prem or in a cloud service such as Azure, AWS, or GCP. The following steps demonstrate how to integrate this component into your app:
 
 1. In the component consuming (worker service) project, install the [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package.
 
@@ -150,7 +150,7 @@ For more information, see [Dependency injection in .NET: Keyed services](/dotnet
 Cloud-native applications surface many unique requirements and concerns. The core features of .NET Aspire orchestration and components are designed to handle many cloud-native concerns for you with minimal configurations. Some of the key features include:
 
 - [Orchestration](app-host-overview.md): A lightweight, extensible, and cross-platform app host for .NET Aspire apps. The app host provides a consistent configuration and dependency injection experience for .NET Aspire components.
-- [Service discovery](service-discovery/overview.md): A technique for locating services within a distributed application. Service discovery is a key component of microservice architectures.
+- [Service discovery](../service-discovery/overview.md): A technique for locating services within a distributed application. Service discovery is a key component of microservice architectures.
 - [Service defaults](service-defaults.md): A set of default configurations intended for sharing amongst resources within .NET Aspire apps. These defaults are designed to work well in most scenarios and can be customized as needed.
 
 Some .NET Aspire components also include more capabilities for specific services or platforms, which can be found in the component specific reference docs.

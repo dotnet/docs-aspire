@@ -164,5 +164,5 @@ The .NET Aspire Microsoft Entity Framework Core Cosmos DB component currently su
 ## See also
 
 - [Azure Cosmos DB docs](/azure/cosmos-db/introduction)
-- [.NET Aspire components](../components-overview.md)
+- [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

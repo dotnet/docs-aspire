@@ -136,7 +136,7 @@ well know reference types such as Redis result in connection strings being injec
 
 :::image type="content" source="media/manifest-placeholder-strings.png" lightbox="media/manifest-placeholder-strings.png" alt-text="A diagram showing which resources contribute to which corresponding placeholder strings.":::
 
-For more information on how resources in the app model and references between them work, see, [.NET Aspire orchestration overview](../app-host-overview.md).
+For more information on how resources in the app model and references between them work, see, [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
 
 ### Placeholder string structure
 
@@ -582,6 +582,6 @@ Example manifest:
 ## See also
 
 - [.NET Aspire overview](../get-started/aspire-overview.md)
-- [.NET Aspire orchestration overview](../app-host-overview.md)
-- [.NET Aspire components overview](../components-overview.md)
+- [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)
+- [.NET Aspire components overview](../fundamentals/components-overview.md)
 - [Service discovery in .NET Aspire](../service-discovery/overview.md)
