@@ -1,10 +1,10 @@
 ---
-title: Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI and GitHub Actions
-description: Learn how to use `azd` and GitHub Actions to deploy .NET Aspire apps to Azure Container Apps.
+title: Deploy a .NET Aspire app using the Azure Developer CLI and GitHub Actions
+description: Learn how to use `azd` and GitHub Actions to deploy .NET Aspire apps.
 ms.date: 12/18/2023
 ---
 
-# Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI and GitHub Actions
+# Deploy a .NET Aspire app using the Azure Developer CLI and GitHub Actions
 
 The Azure Developer CLI (`azd`) enables you to deploy .NET Aspire applications using GitHub actions by automatically configuring the required Authentication and environment settings.  In this quickstart you'll walk through the process of creating and deploying a .NET Aspire application to Azure Container Apps using `azd` and GitHub actions. You'll learn the following concepts:
 
