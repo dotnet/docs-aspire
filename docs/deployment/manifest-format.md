@@ -167,7 +167,7 @@ fields.
 
 > [!NOTE]
 > The `executable.v0` resource type isn't fully implemented in the manifest due to its lack of
-utility in deployment scenarios. For more information on containerizing executables, see [Dockerfile resource types](#docker-resource-type).
+utility in deployment scenarios. For more information on containerizing executables, see [Dockerfile resource types](#dockerfile-resource-types).
 
 The `env` field type is a basic key/value mapping where the values might contain [_placeholder strings_](#placeholder-string-structure).
 
@@ -305,7 +305,7 @@ Example manifest:
 }
 ```
 
-#### Docker resource types
+#### Dockerfile resource types
 
 Example code:
 
@@ -318,7 +318,7 @@ builder.AddNodeApp("nodeapp", "../nodeapp/app.js")
 ```
 
 > [!TIP]
-> The `AsDockerfileInManifest()` call is required to generate the Docker resource type in the manifest, and this extension method is only available on the <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> type.
+> The <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AsDockerfileInManifest%2A> call is required to generate the Dockerfile resource type in the manifest, and this extension method is only available on the <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> type.
 
 Example manifest:
 
