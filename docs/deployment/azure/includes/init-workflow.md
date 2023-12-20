@@ -13,7 +13,7 @@
     :::image type="content" source="media/azd-prompt-confirm-path.png" alt-text="Screenshot of `azd` confirming the detected location of the .NET Aspire application.":::
 
 1. `azd` presents each of the projects in the .NET Aspire solution and allows you to identify which project(s) will be deployed with HTTP ingress open publicly to all internet traffic. Select only the `webfrontend`, since you want the API to be private to the Azure Container Apps environment and *not* available publicly.
-    
+
     :::image type="content" source="media/azd-prompt-select-endpoints.png" alt-text="Screenshot of `azd` prompting which .NET projects should have public endpoints.":::
 
 1. Finally, specify the the environment name, which is used for naming provisioned resources in Azure and managing different environments such as `dev` and `prod`.

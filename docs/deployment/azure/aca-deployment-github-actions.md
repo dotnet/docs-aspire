@@ -54,7 +54,7 @@ Although `azd` generated some essential template files for you, the project stil
 1. Add a new GitHub Actions workflow file into the new folder named `azure-dev.yaml`. The `azd` starter template provides a [Sample GitHub Actions workflow file](https://github.com/Azure-Samples/azd-starter-bicep/blob/main/.github/workflows/azure-dev.yml) that you can copy into your project as a starter template and modify as needed.
 
 1. Update the sample GitHub Actions workflow to include a step to install the .NET Aspire workload. This ensures the .NET Aspire tooling and commands are available to the job running your GitHub Actions. The completed workflow file should match the following:
-    
+
     ```yml
     on:
       workflow_dispatch:
