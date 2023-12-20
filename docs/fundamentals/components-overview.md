@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire components overview
 description: Explore the fundamental concepts of .NET Aspire components and learn how to integrate them into your apps.
-ms.date: 12/11/2023
+ms.date: 12/20/2023
 ms.topic: conceptual
 ---
 
@@ -31,8 +31,7 @@ The following table lists the .NET Aspire components currently available for use
 | [Redis Output Caching](../caching/stackexchange-redis-output-caching-component.md) | [Aspire.StackExchange.Redis.OutputCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.OutputCaching) | A library for accessing [Redis](https://stackexchange.github.io/StackExchange.Redis/) caches for [output caching](/aspnet/core/performance/caching/output). |
 | [Redis](../caching/stackexchange-redis-component.md) | [Aspire.StackExchange.Redis](https://www.nuget.org/packages/Aspire.StackExchange.Redis) | A library for accessing [Redis](https://stackexchange.github.io/StackExchange.Redis/) caches. |
 | [SQL Server Entity Framework Core](../database/sql-server-entity-framework-component.md) | [Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) | A library for accessing [SQL Server databases using Entity Framework Core](/ef/core/providers/sql-server/). |
-| [SQL Server](../database/sql-server-component.md) | [Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) | A
-library for accessing [SQL Server](/sql/sql-server/) databases. |
+| [SQL Server](../database/sql-server-component.md) | [Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) | A library for accessing [SQL Server](/sql/sql-server/) databases. |
 
 For more information on working with .NET Aspire components in Visual Studio, see [Visual Studio tooling](setup-tooling.md#visual-studio-tooling).
 
