@@ -101,6 +101,12 @@ conceptualContent:
         - itemType: how-to-guide
           text: SQL Database with EF Core
           url: database/sql-server-entity-framework-component.md
+        - itemType: how-to-guide
+          text: MySqlConnector Database
+          url: database/mysql-component.md
+        - itemType: how-to-guide
+          text: MongoDB Database
+          url: database/mongodb-component.md
 
     - title: Messaging
       links:

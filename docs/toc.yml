@@ -21,24 +21,24 @@ items:
   - name: Overview
     expanded: true
     items:
-    - name: Distributed app host (Orchestration)
-      displayName: orchestration,aspire apphost,aspire app
-      href: fundamentals/app-host-overview.md
-    - name: .NET Aspire dashboard
-      displayName: aspire dashboard,dashboard
-      href: fundamentals/dashboard.md
-    - name: Components
-      displayName: aspire components,components,nuget packages,packages
-      href: fundamentals/components-overview.md
-    - name: Service discovery
-      displayName: service discovery,service to service communication
-      href: service-discovery/overview.md
-    - name: Service defaults
-      href: fundamentals/service-defaults.md
-    - name: Health checks
-      href: fundamentals/health-checks.md
-    - name: Telemetry
-      href: fundamentals/telemetry.md
+      - name: Distributed app host (Orchestration)
+        displayName: orchestration,aspire apphost,aspire app
+        href: fundamentals/app-host-overview.md
+      - name: .NET Aspire dashboard
+        displayName: aspire dashboard,dashboard
+        href: fundamentals/dashboard.md
+      - name: Components
+        displayName: aspire components,components,nuget packages,packages
+        href: fundamentals/components-overview.md
+      - name: Service discovery
+        displayName: service discovery,service to service communication
+        href: service-discovery/overview.md
+      - name: Service defaults
+        href: fundamentals/service-defaults.md
+      - name: Health checks
+        href: fundamentals/health-checks.md
+      - name: Telemetry
+        href: fundamentals/telemetry.md
 
   - name: Storage
     items:
@@ -53,20 +53,30 @@ items:
 
   - name: Database
     items:
-      - name: Tutorial - Connect to SQL Server with EF Core
-        href: database/sql-server-components.md
-      - name: PostgreSQL Database component
-        href: database/postgresql-component.md
-      - name: PostgreSQL - EF Core component
-        href: database/postgresql-entity-framework-component.md
-      - name: SQL Database component
-        href: database/sql-server-component.md
-      - name: SQL Database - EF Core component
-        href: database/sql-server-entity-framework-component.md
-      - name: Azure Cosmos DB component
-        href: database/azure-cosmos-db-component.md
-      - name: Azure Cosmos DB - EF Core component
-        href: database/azure-cosmos-db-entity-framework-component.md
+      - name: PostgreSQL Database components
+        items:
+          - name: PostgreSQL Database component
+            href: database/postgresql-component.md
+          - name: PostgreSQL - EF Core component
+            href: database/postgresql-entity-framework-component.md
+      - name: SQL Database components
+        items:
+          - name: Tutorial - Connect to SQL Server with EF Core
+            href: database/sql-server-components.md
+          - name: SQL Database component
+            href: database/sql-server-component.md
+          - name: SQL Database - EF Core component
+            href: database/sql-server-entity-framework-component.md
+      - name: Azure Cosmos DB components
+        items:
+          - name: Azure Cosmos DB component
+            href: database/azure-cosmos-db-component.md
+          - name: Azure Cosmos DB - EF Core component
+            href: database/azure-cosmos-db-entity-framework-component.md
+      - name: MySQL Database component
+        href: database/mysql-component.md
+      - name: MongoDB component
+        href: database/mongodb-component.md
 
   - name: Messaging
     items:

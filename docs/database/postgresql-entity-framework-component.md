@@ -2,7 +2,7 @@
 title: .NET Aspire PostgreSQL Entity Framework Core component
 description: This article describes the .NET Aspire PostgreSQL Entity Framework Core component.
 ms.topic: how-to
-ms.date: 11/27/2023
+ms.date: 12/12/2023
 ---
 
 # .NET Aspire PostgreSQL Entity Framework Core component
@@ -132,13 +132,13 @@ builder.AddNpgsqlDbContext<AnotherDbContext>();
 
 Here are the configurable options with corresponding default values:
 
-| Name | Description |
-|--|--|
-| `ConnectionString` | The connection string of the SQL Server database to connect to. |
-| `MaxRetryCount` | The maximum number of retry attempts. Default value is 6, set it to 0 to disable the retry mechanism. |
-| `HealthChecks` | A boolean value that indicates whether the database health check is enabled or not. |
-| `Tracing` | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not. |
-| `Metrics` | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not. |
+| Name               | Description                                                                                           |
+|--------------------|-------------------------------------------------------------------------------------------------------|
+| `ConnectionString` | The connection string of the SQL Server database to connect to.                                       |
+| `MaxRetryCount`    | The maximum number of retry attempts. Default value is 6, set it to 0 to disable the retry mechanism. |
+| `HealthChecks`     | A boolean value that indicates whether the database health check is enabled or not.                   |
+| `Tracing`          | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.                   |
+| `Metrics`          | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not.                  |
 
 ## Orchestration
 
@@ -165,23 +165,23 @@ By default, the .NET Aspire PostgreSQL Entity Framework Core components handles 
 
 The .NET Aspire PostgreSQL Entity Framework Core component uses the following Log categories:
 
-- Microsoft.EntityFrameworkCore.ChangeTracking
-- Microsoft.EntityFrameworkCore.Database.Command
-- Microsoft.EntityFrameworkCore.Database.Connection
-- Microsoft.EntityFrameworkCore.Database.Transaction
-- Microsoft.EntityFrameworkCore.Infrastructure
-- Microsoft.EntityFrameworkCore.Infrastructure
-- Microsoft.EntityFrameworkCore.Migrations
-- Microsoft.EntityFrameworkCore.Model
-- Microsoft.EntityFrameworkCore.Model.Validation
-- Microsoft.EntityFrameworkCore.Query
-- Microsoft.EntityFrameworkCore.Update
+- `Microsoft.EntityFrameworkCore.ChangeTracking`
+- `Microsoft.EntityFrameworkCore.Database.Command`
+- `Microsoft.EntityFrameworkCore.Database.Connection`
+- `Microsoft.EntityFrameworkCore.Database.Transaction`
+- `Microsoft.EntityFrameworkCore.Infrastructure`
+- `Microsoft.EntityFrameworkCore.Infrastructure`
+- `Microsoft.EntityFrameworkCore.Migrations`
+- `Microsoft.EntityFrameworkCore.Model`
+- `Microsoft.EntityFrameworkCore.Model.Validation`
+- `Microsoft.EntityFrameworkCore.Query`
+- `Microsoft.EntityFrameworkCore.Update`
 
 ### Tracing
 
 The .NET Aspire PostgreSQL Entity Framework Core component will emit the following Tracing activities using OpenTelemetry:
 
-- Npgsql
+- "Npgsql"
 
 ### Metrics
 

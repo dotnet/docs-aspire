@@ -138,7 +138,7 @@ var cosmosdb = builder.AddAzureCosmosDB("cdb");
 
 // Service consumption
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
-    .WithReference(cosmosdb);
+                            .WithReference(cosmosdb);
 ```
 
 The <xref:Aspire.Hosting.AzureCosmosDBCloudApplicationBuilderExtensions.AddAzureCosmosDB%2A> method will read connection information from the AppHost's configuration under the `ConnectionStrings:cosmosdb` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named `cosmosdb` in the `ExampleProject` project. In the _Program.cs_ file of MyService, the connection can be consumed using:

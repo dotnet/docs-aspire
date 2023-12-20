@@ -109,11 +109,11 @@ In your orchestrator project, register the .NET Aspire Microsoft Entity Framewor
 ```csharp
 // Service registration
 var cosmosdbService = builder.AddAzureCosmosDB("cdb")
-    .AddDatabase("cosmosdb");
+                             .AddDatabase("cosmosdb");
 
 // Service consumption
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
-    .WithReference(cosmosdbService);
+                            .WithReference(cosmosdbService);
 ```
 
 The <xref:Microsoft.Extensions.Hosting.AspireAzureCosmosDBExtensions.AddAzureCosmosDB%2A> method will read connection information from the AppHost's configuration under the `ConnectionStrings:cosmosdb` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named `cosmosdb` in the `ExampleProject` project. In the _Program.cs_ file of `cosmosdbService`, the connection can be consumed using:

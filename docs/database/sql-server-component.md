@@ -2,7 +2,7 @@
 title: .NET Aspire SQL Server component
 description: This article describes the .NET Aspire SQL Server component.
 ms.topic: how-to
-ms.date: 12/01/2023
+ms.date: 12/12/2023
 ---
 
 # .NET Aspire SQL Server component
@@ -121,19 +121,20 @@ builder.AddSqlServerSqlClientConfig("INSTANCE_NAME");
 
 Here are the configurable options with corresponding default values:
 
-| Name | Description |
-|--|--|
-| `ConnectionString` | The connection string of the SQL Server database to connect to. |
-| `HealthChecks` | A boolean value that indicates whether the database health check is enabled or not. |
-| `Tracing` | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not. |
-| `Metrics` | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not. |
+| Name               | Description                                                                          |
+|--------------------|--------------------------------------------------------------------------------------|
+| `ConnectionString` | The connection string of the SQL Server database to connect to.                      |
+| `HealthChecks`     | A boolean value that indicates whether the database health check is enabled or not.  |
+| `Tracing`          | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.  |
+| `Metrics`          | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not. |
 
 ## Orchestration
 
 In your AppHost project, register a SqlServer container and consume the connection using the following methods:
 
 ```csharp
-var sql = builder.AddSqlServerContainer("sql").AddDatabase("sqldata");
+var sql = builder.AddSqlServerContainer("sql")
+                 .AddDatabase("sqldata");
 
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(sql);
@@ -162,29 +163,29 @@ The .NET Aspire SQL Server component currently doesn't enable logging by default
 
 The .NET Aspire SQL Server component will emit the following Tracing activities using OpenTelemetry:
 
-- OpenTelemetry.Instrumentation.SqlClient
+- "OpenTelemetry.Instrumentation.SqlClient"
 
 ### Metrics
 
 The .NET Aspire SQL Server component will emit the following metrics using OpenTelemetry:
 
 - Microsoft.Data.SqlClient.EventSource
-  - active-hard-connections
-  - hard-connects
-  - hard-disconnects
-  - active-soft-connects
-  - soft-connects
-  - soft-disconnects
-  - number-of-non-pooled-connections
-  - number-of-pooled-connections
-  - number-of-active-connection-pool-groups
-  - number-of-inactive-connection-pool-groups
-  - number-of-active-connection-pools
-  - number-of-inactive-connection-pools
-  - number-of-active-connections
-  - number-of-free-connections
-  - number-of-stasis-connections
-  - number-of-reclaimed-connections
+  - `active-hard-connections`
+  - `hard-connects`
+  - `hard-disconnects`
+  - `active-soft-connects`
+  - `soft-connects`
+  - `soft-disconnects`
+  - `number-of-non-pooled-connections`
+  - `number-of-pooled-connections`
+  - `number-of-active-connection-pool-groups`
+  - `number-of-inactive-connection-pool-groups`
+  - `number-of-active-connection-pools`
+  - `number-of-inactive-connection-pools`
+  - `number-of-active-connections`
+  - `number-of-free-connections`
+  - `number-of-stasis-connections`
+  - `number-of-reclaimed-connections`
 
 ## See also
 
