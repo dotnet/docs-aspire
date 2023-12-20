@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire manifest format for deployment tool builders
 description: Learn about the .NET Aspire manifest format in this comprehensive deployment tool builder guide.
-ms.date: 12/15/2023
+ms.date: 12/20/2023
 ms.topic: reference
 ---
 
@@ -215,25 +215,25 @@ These resources are available in the _Aspire.Hosting_ package.
 
 | App model usage | Manifest resource type | Heading link |
 |--|--|--|
-| <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> | `project.v0` | [Project resource type](#project-resource-type) |
 | <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> | `container.v0` | [Container resource type](#container-resource-type) |
-| <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AsDockerfileInManifest%2A> | `dockerfile.v0` | [Dockerfile resource type](#dockerfile-resource-types) |
+| <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AsDockerfileInManifest%2A> | `dockerfile.v0` | [Dockerfile resource types](#dockerfile-resource-types) |
+| <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddDatabase%2A> | `mongodb.database.v0` | [MongoDB Server resource types](#mongodb-resource-types) |
+| <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddMongoDB%2A> | `mongodb.server.v0` | [MongoDB resource types](#mongodb-resource-types) |
+| <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddMongoDBContainer%2A> | `container.v0` | [MongoDB Server resource types](#mongodb-resource-types) |
+| <xref:Aspire.Hosting.MySqlBuilderExtensions.AddDatabase%2A> | `mysql.database.v0` | [MySQL Server resource types](#mysql-resource-types) |
+| <xref:Aspire.Hosting.MySqlBuilderExtensions.AddMySql%2A> | `mysql.server.v0` | [MySQL resource types](#mysql-resource-types) |
+| <xref:Aspire.Hosting.MySqlBuilderExtensions.AddMySqlContainer%2A> | `container.v0` | [MySQL Server resource types](#mysql-resource-types) |
+| <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A> | `postgres.database.v0` | [Postgres resource types](#postgres-resource-types) |
 | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A> | `postgres.server.v0` | [Postgres resource types](#postgres-resource-types) |
 | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresContainer%2A> | `container.v0` | [Postgres resource types](#postgres-resource-types) |
-| <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A> | `postgres.database.v0` | [Postgres resource types](#postgres-resource-types) |
+| <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> | `project.v0` | [Project resource type](#project-resource-type) |
 | <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A> | `rabbitmq.server.v0` | [RabbitMQ resource types](#rabbitmq-resource-types) |
 | <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQContainer%2A> | `container.v0` | [RabbitMQ resource types](#rabbitmq-resource-types) |
 | <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> | `redis.v0` | [Redis resource type](#redis-resource-type) |
 | <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedisContainer%2A> | `container.v0` | [Redis resource type](#redis-resource-type) |
+| <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | `sqlserver.database.v0` | [SQL Server resource types](#sql-server-resource-types) |
 | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A> | `sqlserver.server.v0` | [SQL Server resource types](#sql-server-resource-types) |
 | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServerContainer%2A> | `container.v0` | [SQL Server resource types](#sql-server-resource-types) |
-| <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | `sqlserver.database.v0` | [SQL Server resource types](#sql-server-resource-types) |
-| <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddMongoDB%2A> | `mongodb.server.v0` | [MongoDB resource types](#mongodb-resource-types) |
-| <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddMongoDBContainer%2A> | `container.v0` | [MongoDB Server resource types](#mongodb-resource-types) |
-| <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddDatabase%2A> | `mongodb.database.v0` | [MongoDB Server resource types](#mongodb-resource-types) |
-| <xref:Aspire.Hosting.MySqlBuilderExtensions.AddMySql%2A> | `mysql.server.v0` | [MySQL resource types](#mysql-resource-types) |
-| <xref:Aspire.Hosting.MySqlBuilderExtensions.AddMySqlContainer%2A> | `container.v0` | [MySQL Server resource types](#mysql-resource-types) |
-| <xref:Aspire.Hosting.MySqlBuilderExtensions.AddDatabase%2A> | `mysql.database.v0` | [MySQL Server resource types](#mysql-resource-types) |
 
 #### Project resource type
 
@@ -305,7 +305,7 @@ Example manifest:
 }
 ```
 
-#### Docker resource type
+#### Docker resource types
 
 Example code:
 
@@ -406,7 +406,7 @@ Example manifest:
 
 #### RabbitMQ resource types
 
-RabbitMQ has two resource types, `rabbitmq.server.v0` and `rabbitmq.connectionv0`. The following
+RabbitMQ has two resource types, `rabbitmq.server.v0` and `rabbitmq.connection.v0`. The following
 sample shows how they're added to the app model.
 
 ```csharp
@@ -660,16 +660,16 @@ The following resources are available in the [Aspire.Hosting.Azure](https://www.
 
 | App Model usage | Manifest resource type | Heading link |
 |--|--|--|
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureAppConfiguration%2A> | `azure.appconfiguration.v0` | [Azure App Configuration resource types](#azure-app-configuration-resource-type) |
 | <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureKeyVault%2A> | `azure.keyvault.v0` | [Azure Key Vault resource type](#azure-key-vault-resource-type) |
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureRedis%2A> | `azure.redis.v0` | [Azure Redis resource types](#azure-redis-resource-type) |
 | <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureServiceBus%2A> | `azure.servicebus.v0` | [Azure Service Bus resource type](#azure-service-bus-resource-type) |
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureSqlServer%2A> | `azure.sql.v0` | [Azure SQL resource types](#azure-sql-resource-types) |
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureSqlServer%2A>`.AddDatabase(...)` | `azure.sql.database.v0` | [Azure SQL resource types](#azure-sql-resource-types) |
 | <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureStorage%2A> | `azure.storage.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
 | <xref:Aspire.Hosting.AzureResourceExtensions.AddBlobs%2A> | `azure.storage.blob.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
-| <xref:Aspire.Hosting.AzureResourceExtensions.AddTables%2A> | `azure.storage.table.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
 | <xref:Aspire.Hosting.AzureResourceExtensions.AddQueues%2A> | `azure.storage.queue.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
-| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureRedis%2A> | `azure.redis.v0` | [Azure Redis resource types](#azure-redis-resource-type) |
-| `AddAzureAppConfiguration(...)` | `azure.appconfiguration.v0` | [Azure App Configuration resource types](#azure-app-configuration-resource-type) |
-| `AddAzureSqlServer(...)` | `azure.sql.v0` | [Azure SQL resource types](#azure-sql-resource-types) |
-| `AddAzureSqlServer(...).AddDatabase(...)` | `azure.sql.database.v0` | [Azure SQL resource types](#azure-sql-resource-types) |
+| <xref:Aspire.Hosting.AzureResourceExtensions.AddTables%2A> | `azure.storage.table.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
 
 #### Azure Key Vault resource type
 
