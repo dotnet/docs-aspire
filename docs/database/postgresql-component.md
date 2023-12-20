@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL component
 description: This article describes the .NET Aspire PostgreSQL component.
-ms.date: 12/05/2023
+ms.date: 12/12/2023
 ms.topic: how-to
 ---
 
@@ -55,7 +55,7 @@ The .NET Aspire PostgreSQL component provides multiple configuration approaches 
 When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A>:
 
 ```csharp
-builder.AddNpgsqlDataSource("myConnection");
+builder.AddNpgsqlDataSource("NpgsqlConnection");
 ```
 
 And then the connection string will be retrieved from the `ConnectionStrings` configuration section:
@@ -63,7 +63,7 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 ```json
 {
   "ConnectionStrings": {
-    "myConnection": "Host=myserver;Database=test"
+    "NpgsqlConnection": "Host=myserver;Database=test"
   }
 }
 ```
@@ -101,10 +101,10 @@ In your orchestrator project, register and consume the PostgreSQL component usin
 
 ```csharp
 var postgresdb = builder.AddPostgresContainer("pg")
-    .AddDatabase("postgresdb");
+                        .AddDatabase("postgresdb");
 
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
-    .WithReference(postgresdb);
+                            .WithReference(postgresdb);
 ```
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `postgresdb`. In the _Program.cs_ file of the `ExampleService` project, the database connection can be consumed using:
@@ -124,18 +124,18 @@ builder.AddNpgsqlDataSource("postgresdb");
 
 The .NET Aspire PostgreSQL component uses the following Log categories:
 
-- Npgsql.Connection
-- Npgsql.Command
-- Npgsql.Transaction
-- Npgsql.Copy
-- Npgsql.Replication
-- Npgsql.Exception
+- `Npgsql.Connection`
+- `Npgsql.Command`
+- `Npgsql.Transaction`
+- `Npgsql.Copy`
+- `Npgsql.Replication`
+- `Npgsql.Exception`
 
 ### Tracing
 
 The .NET Aspire PostgreSQL component will emit the following Tracing activities using OpenTelemetry:
 
-- Npgsql
+- "Npgsql"
 
 ### Metrics
 

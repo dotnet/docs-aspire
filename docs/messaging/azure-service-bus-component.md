@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Service Bus component
 description: This article describes the .NET Aspire Azure Service Bus component features and capabilities
 ms.topic: how-to
-ms.date: 11/15/2023
+ms.date: 12/11/2023
 ---
 
 # .NET Aspire Azure Service Bus component
@@ -150,7 +150,7 @@ var serviceBus = builder.AddAzureServiceBus("messaging");
 
 // Service consumption
 builder.AddProject<Projects.ExampleProject>()
-    .WithReference(serviceBus)
+       .WithReference(serviceBus)
 ```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
@@ -166,14 +166,14 @@ The .NET Aspire Azure Service Bus component handles the following:
 
 The .NET Aspire Azure Service Bus component uses the following log categories:
 
-- Azure.Core
-- Azure.Identity
+- `Azure.Core`
+- `Azure.Identity`
 
 ### Tracing
 
 The .NET Aspire Azure Service Bus component will emit the following tracing activities using OpenTelemetry:
 
-- Azure.Data.Tables.TableServiceClient
+- "Azure.Data.Tables.TableServiceClient"
 
 ### Metrics
 

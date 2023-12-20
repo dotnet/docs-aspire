@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis output caching Component
 description: This article describes the .NET Aspire StackExchange Redis output caching component features and capabilities
 ms.topic: how-to
-ms.date: 11/15/2023
+ms.date: 12/12/2023
 ---
 
 # .NET Aspire StackExchange Redis output caching component
@@ -72,7 +72,6 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 {
   "ConnectionStrings": {
     "RedisConnection": "localhost:6379"
-
   }
 }
 ```
@@ -115,7 +114,7 @@ You can also set up the [ConfigurationOptions](https://stackexchange.github.io/S
 ```csharp
 builder.AddRedisOutputCache(
     "cache",
-    configureOptions: options => options.ConnectTimeout = 3000);
+    static configureOptions: options => options.ConnectTimeout = 3000);
 ```
 
 ## Orchestration
@@ -128,7 +127,7 @@ var redis = builder.AddRedisContainer("redis");
 
 // Service consumption
 var basket = builder.AddProject<Projects.ExampleProject>()
-    .WithReference(redis)
+                    .WithReference(redis)
 ```
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `redis`. In the _Program.cs_ file of `ExampleProject`, the Redis connection can be consumed using:
@@ -150,14 +149,14 @@ The .NET Aspire StackExchange Redis output caching component handles the followi
 
 The .NET Aspire StackExchange Redis output caching component uses the following Log categories:
 
-- Aspire.StackExchange.Redis
-- Microsoft.AspNetCore.OutputCaching.StackExchangeRedis
+- `Aspire.StackExchange.Redis`
+- `Microsoft.AspNetCore.OutputCaching.StackExchangeRedis`
 
 ### Tracing
 
 The .NET Aspire StackExchange Redis output caching component will emit the following Tracing activities using OpenTelemetry:
 
-- OpenTelemetry.Instrumentation.StackExchangeRedis
+- "OpenTelemetry.Instrumentation.StackExchangeRedis"
 
 ### Metrics
 
