@@ -41,27 +41,11 @@ curl -fsSL https://aka.ms/install-azd.sh | bash
 
 [!INCLUDE [file-new-aspire](../../includes/file-new-aspire.md)]
 
-## Initialize the template
-
-1. Open a new terminal window and `cd` into the root of the solution you created. Execute the `azd init` command to instruct `azd` to inspect the local directory structure and determine the type of app.
-
-    :::image type="content" source="media/aspire-azd-01.png" lightbox="media/aspire-azd-01.png" alt-text="A screenshot of azd inspecting the local directory structure.":::
-
-1. `azd` determines that this is a .NET Aspire app and suggests deploying to Azure Container Apps. Select the **Confirm and continue...** option to proceed.
-
-    :::image type="content" source="media/aspire-azd-02.png" lightbox="media/aspire-azd-02.png" alt-text="A screenshot of accepting the .NET app type and Azure Container Apps deployment target":::
-
-1. `azd` presents each of the projects in the .NET Aspire solution and allows you to identify which project(s) will be deployed with HTTP ingress open publicly to all internet traffic. Since you'll want the API to be private only to the Azure Container Apps environment and *not* available publicly, select only the `webfrontend`.
-
-    :::image type="content" source="media/aspire-azd-03.png" lightbox="media/aspire-azd-03.png" alt-text="Specifying the containers that are publicly available to the Internet":::
-
-1. Finally, specify the the environment name, which is used for naming provisioned resources in Azure and managing different environments such as `dev` and `prod`.
-
-    :::image type="content" source="media/aspire-azd-04.png" lightbox="media/aspire-azd-04.png" alt-text="Providing the name of the AZD environment to be created":::
+[!INCLUDE [init workflow](includes/init-workflow.md)]
 
 ## Add the GitHub Actions workflow file
 
-Complete the following steps to add CI/CD support in your template using GitHub actions:
+Although `azd` generated some essential template files for you, the project still needs a GitHub Actions workflow file to support provisioning and deployments using CI/CD.
 
 1. Create an empty `.github` folder at the root of your project. `azd` uses this directory by default to discover GitHub Actions workflow files.
 
