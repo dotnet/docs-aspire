@@ -9,15 +9,15 @@ ms.date: 12/01/2023
 
 In this article, you learn how to use the .NET Aspire SQL Server component. The `Aspire.Microsoft.Data.SqlClient` library:
 
--   Registers a scoped <xref:Microsoft.Data.SqlClient.SqlConnection?displayProperty=fullName> factory in the DI container for connecting Azure SQL, MS SQL database.
--   Automatically configures the following:
-    -   Connection pooling to efficiently managed HTTP requests and database connections
-    -   Automatic retries to increase app resiliency
-    -   Health checks, logging and telemetry to improve app monitoring and diagnostics
+- Registers a scoped <xref:Microsoft.Data.SqlClient.SqlConnection?displayProperty=fullName> factory in the DI container for connecting Azure SQL, MS SQL database.
+- Automatically configures the following:
+  - Connection pooling to efficiently managed HTTP requests and database connections
+  - Automatic retries to increase app resiliency
+  - Health checks, logging and telemetry to improve app monitoring and diagnostics
 
 ## Prerequisites
 
--   An [Azure SQL Database](/azure/azure-sql/database) or [SQL Server](/sql/sql-server) database and the connection string for accessing the database.
+- An [Azure SQL Database](/azure/azure-sql/database) or [SQL Server](/sql/sql-server) database and the connection string for accessing the database.
 
 ## Get started
 
@@ -149,8 +149,8 @@ builder.AddSqlServerClient("sqldata");
 
 By default, the .NET Aspire Sql Server component handles the following:
 
--   Adds the [`SqlServerHealthCheck`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/blob/master/src/HealthChecks.NpgSql/NpgSqlHealthCheck.cs), which verifies that a connection can be made commands can be run against the SQL Database.
--   Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
+- Adds the [`SqlServerHealthCheck`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/blob/master/src/HealthChecks.NpgSql/NpgSqlHealthCheck.cs), which verifies that a connection can be made commands can be run against the SQL Database.
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 
@@ -162,33 +162,33 @@ The .NET Aspire SQL Server component currently doesn't enable logging by default
 
 The .NET Aspire SQL Server component will emit the following Tracing activities using OpenTelemetry:
 
--   OpenTelemetry.Instrumentation.SqlClient
+- OpenTelemetry.Instrumentation.SqlClient
 
 ### Metrics
 
 The .NET Aspire SQL Server component will emit the following metrics using OpenTelemetry:
 
--   Microsoft.Data.SqlClient.EventSource
-    -   active-hard-connections
-    -   hard-connects
-    -   hard-disconnects
-    -   active-soft-connects
-    -   soft-connects
-    -   soft-disconnects
-    -   number-of-non-pooled-connections
-    -   number-of-pooled-connections
-    -   number-of-active-connection-pool-groups
-    -   number-of-inactive-connection-pool-groups
-    -   number-of-active-connection-pools
-    -   number-of-inactive-connection-pools
-    -   number-of-active-connections
-    -   number-of-free-connections
-    -   number-of-stasis-connections
-    -   number-of-reclaimed-connections
+- Microsoft.Data.SqlClient.EventSource
+  - active-hard-connections
+  - hard-connects
+  - hard-disconnects
+  - active-soft-connects
+  - soft-connects
+  - soft-disconnects
+  - number-of-non-pooled-connections
+  - number-of-pooled-connections
+  - number-of-active-connection-pool-groups
+  - number-of-inactive-connection-pool-groups
+  - number-of-active-connection-pools
+  - number-of-inactive-connection-pools
+  - number-of-active-connections
+  - number-of-free-connections
+  - number-of-stasis-connections
+  - number-of-reclaimed-connections
 
 ## See also
 
--   [Azure SQL Database](/azure/azure-sql/database)
--   [SQL Server](/sql/sql-server)
--   [.NET Aspire components](../fundamentals/components-overview.md)
--   [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Azure SQL Database](/azure/azure-sql/database)
+- [SQL Server](/sql/sql-server)
+- [.NET Aspire components](../fundamentals/components-overview.md)
+- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
