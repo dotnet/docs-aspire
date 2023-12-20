@@ -12,7 +12,7 @@ With .NET Aspire and Azure Container Apps (ACA), you have a great hosting scenar
 
 The process for installing AZD varies based on your operating system, but it is widely available via `winget`, `brew`, `apt`, or directly via `curl`. To install AZD, see [Install Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
 
-[!INCLUDE [init workflow](includes/init-workflow.md)]
+[!INCLUDE [init workflow](init-workflow.md)]
 
 ## Deploy the app
 
