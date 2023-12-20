@@ -143,9 +143,9 @@ conceptualContent:
         - itemType: how-to-guide
           text: Integrate with Application Insights
           url: deployment/azure/application-insights.md
-        - itemType: how-to-guide
-          text: Deploy to a Kubernetes cluster with Aspirate
-          url: deployment/k8s-deployment.md
+        - itemType: reference
+          text: .NET Aspire deployment manifest format
+          url: deployment/manifest-format.md
 
 additionalContent:
   sections:
