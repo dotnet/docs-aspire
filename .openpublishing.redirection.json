@@ -51,6 +51,10 @@
         {
             "source_path_from_root": "/docs/telemetry.md",
             "redirect_url": "/dotnet/aspire/fundamentals/telemetry"
+        },
+        {
+            "source_path_from_root": "/docs/deployment/k8s-deployment.md",
+            "redirect_url": "https://prom3theu5.github.io/aspirational-manifests/getting-started.html"
         }
     ]
 }
