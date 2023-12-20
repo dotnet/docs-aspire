@@ -40,7 +40,7 @@ jobs:
             });
 
             core.startGroup('Resulting comparison');
-            core.info(compare);
+            core.info(JSON.stringify(compare, null, 2));
             core.endGroup();
 
             // Only create a pull request if there are changes in main, not in live.
@@ -52,11 +52,20 @@ jobs:
             }
 
             // Create a pull request from main to live
-            await github.rest.pulls.create({
-                owner,
-                repo,
-                head: 'main',
-                base: 'live',
-                title: '✅ Merge `main` into `live`',
-                body: '🤖 Queue merge when ready...',
-            });
+            try {
+              await github.rest.pulls.create({
+                  owner,
+                  repo,
+                  head: 'main',
+                  base: 'live',
+                  title: '✅ Merge `main` into `live`',
+                  body: '🤖 Queue merge when ready...',
+              });
+            } catch (error) {
+              if (error.status === 422 && error.message.includes('No commits between live and main')) {
+                core.warning('No commits between live and main');
+                return;
+              } else {
+                throw error;
+              }
+            }

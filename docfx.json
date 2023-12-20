@@ -66,9 +66,17 @@
       "ROBOTS": "INDEX,FOLLOW",
       "audience": "developer",
       "breadcrumb_path": "/dotnet/aspire/breadcrumb/toc.json",
-      "feedback_system": "GitHub",
+      "feedback_system": "OpenSource",
       "feedback_github_repo": "dotnet/docs-aspire",
-      "feedback_product_url": "https://aka.ms/feedback/report?space=61",
+      "feedback_product_url": "https://github.com/dotnet/aspire",
+      "open_source_feedback_contributorGuideUrl": "https://learn.microsoft.com/contribute/content/dotnet/dotnet-contribute",
+      "open_source_feedback_issueTitle": "",
+      "open_source_feedback_productLogoLightUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
+      "open_source_feedback_productLogoDarkUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
+      "open_source_feedback_issueUrl": "https://github.com/dotnet/docs-aspire/issues/new?template=customer-feedback.yml",
+      "open_source_feedback_productName": ".NET Aspire",
+      "open_source_feedback_productDescription": "The .NET Aspire documentation is open source and we love community feedback. Please provide feedback by posting an issue on GitHub, or product feedback here:",
+      "social_image_url": "/dotnet/media/dotnet-aspire-logo.png",
       "permissioned-type": "public",
       "dev_langs": [
         "csharp"
@@ -88,38 +96,8 @@
       ]
     },
     "fileMetadata": {
-      "feedback_system": {
-        "docs/**.*": "OpenSource"
-      },
-      "open_source_feedback_contributorGuideUrl": {
-        "docs/**/**.*": "https://learn.microsoft.com/contribute/content/dotnet/dotnet-contribute"
-      },
-      "open_source_feedback_issueUrl": {
-        "docs/**.*": "https://github.com/dotnet/docs-aspire/issues/new?template=customer-feedback.yml"
-      },
-      "open_source_feedback_productName": {
-        "docs/**.*": ".NET Aspire feedback"
-      },
-      "open_source_feedback_productDescription": {
-        "docs/**.*": "The .NET Aspire documentation is open source and we love community feedback. Please provide feedback by posting an issue on GitHub, or product feedback here:"
-      },
-      "open_source_feedback_issueTitle": {
-        "docs/**.*": ""
-      },
-      "open_source_feedback_productLogoLightUrl": {
-        "docs/**.*": "https://learn.microsoft.com/media/logos/logo_net.svg"
-      },
-      "open_source_feedback_productLogoDarkUrl": {
-        "docs/**.*": "https://learn.microsoft.com/media/logos/logo_net.svg"
-      },
-      "social_image_url": {
-        "docs/**/*.*": "/dotnet/media/dotnet-aspire-logo.png"
-      },
-      "feedback_product_url": {
-        "docs/**/*.*": "https://github.com/dotnet/aspire"
-      },
       "ms.prod": {
-        "docs/**/*.*": "dotnet"
+        "docs/**/*.*": "dotnet-aspire"
       },
       "ms.topic": {
         "docs/**/*.md": "conceptual"
