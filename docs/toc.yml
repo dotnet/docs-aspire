@@ -118,11 +118,6 @@ items:
           - name: Use .NET Aspire with Application Insights
             href: deployment/azure/application-insights.md
             displayName: app insights
-      - name: Kubernetes
-        items:
-          - name: Deploy .NET Aspire apps to a Kubernetes cluster
-            href: deployment/k8s-deployment.md
-            displayName: kubernetes,aspire kubernetes,aspire k8s
       - name: Reference - Tool-builder manifest schemas
         href: deployment/manifest-format.md
 
