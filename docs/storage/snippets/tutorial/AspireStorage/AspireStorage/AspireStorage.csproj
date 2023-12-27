@@ -10,7 +10,7 @@
     <PackageReference Include="Aspire.Azure.Storage.Blobs" 
                       Version="8.0.0-preview.1.23557.2" />
     <PackageReference Include="Aspire.Azure.Storage.Queues" 
-                      Version="8.0.0-preview.1.23557.2" />
+                      Version="8.0.0-preview.2.23619.3" />
   </ItemGroup>
   
   <ItemGroup>
