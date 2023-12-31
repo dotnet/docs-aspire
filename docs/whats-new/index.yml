@@ -5,9 +5,8 @@ summary: Welcome to what's new in .NET Aspire docs. Use this page to quickly fin
 metadata:
   title: .NET Aspire documentation what's new?
   description: Learn about new and updated content in .NET Aspire docs.
-  ms.date: 12/20/2023
+  ms.date: 12/31/2023
   ms.topic: landing-page
-
 landingContent:
 - title: .NET Aspire release updates
   linkLists:
@@ -17,16 +16,16 @@ landingContent:
       url: https://github.com/dotnet/aspire/releases/tag/v8.0.0-preview.2.23619.3
     - text: .NET Aspire 8.0 preview 1
       url: https://github.com/dotnet/aspire/releases/tag/v8.0.0-preview.1.23557.2
-
 - title: Latest documentation updates
   linkLists:
   - linkListType: whats-new
     links:
+    - text: November 2023
+      url: dotnet-docs-aspire-mod2.md
     - text: December 2023 (preview 2)
       url: https://devblogs.microsoft.com/dotnet/announcing-dotnet-aspire-preview-2
     - text: November 2023 (preview 1)
       url: https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-simplifying-cloud-native-development-with-dotnet-8
-
 - title: Find language updates
   linkLists:
   - linkListType: whats-new
@@ -37,7 +36,6 @@ landingContent:
       url: /dotnet/fsharp/whats-new
     - text: What's new for Visual Basic
       url: /dotnet/visual-basic/whats-new
-
 - title: Get involved - contribute
   linkLists:
   - linkListType: overview
@@ -54,7 +52,6 @@ landingContent:
       url: /contribute
     - text: .NET docs contributor guide
       url: /contribute/dotnet/dotnet-contribute
-
 - title: .NET developers
   linkLists:
   - linkListType: download
@@ -75,7 +72,6 @@ landingContent:
     links:
     - text: Community
       url: https://dotnet.microsoft.com/platform/community
-
 - title: Related what's new pages
   linkLists:
   - linkListType: whats-new
