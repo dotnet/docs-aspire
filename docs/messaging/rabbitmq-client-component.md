@@ -108,11 +108,11 @@ builder.AddRabbitMQ(
 
 ## Orchestration
 
-In your orchestrator project, register a RabbitMQ container and consume the connection using the following methods, such as <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQContainer%2A>:
+In your orchestrator project, register a RabbitMQ server and consume the connection using the following methods, such as <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A>:
 
 ```csharp
 // Service registration
-var messaging = builder.AddRabbitMQContainer("messaging");
+var messaging = builder.AddRabbitMQ("messaging");
 
 // Service consumption
 builder.AddProject<Projects.ExampleProject>()

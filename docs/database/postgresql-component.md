@@ -97,10 +97,10 @@ builder.AddNpgsqlDataSource(
 
 ## Orchestration
 
-In your orchestrator project, register and consume the PostgreSQL component using the following methods, such as <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresContainer%2A>:
+In your orchestrator project, register and consume the PostgreSQL component using the following methods, such as <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A>:
 
 ```csharp
-var postgresdb = builder.AddPostgresContainer("pg")
+var postgresdb = builder.AddPostgres("pg")
                         .AddDatabase("postgresdb");
 
 var exampleProject = builder.AddProject<Projects.ExampleProject>()

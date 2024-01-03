@@ -1,6 +1,6 @@
 ﻿var builder = DistributedApplication.CreateBuilder(args);
 
-var database = builder.AddPostgresContainer("postgresql")
+var database = builder.AddPostgres("postgresql")
     .AddDatabase("customers");
 
 builder.AddProject<Projects.WorkerService>("workerservice")

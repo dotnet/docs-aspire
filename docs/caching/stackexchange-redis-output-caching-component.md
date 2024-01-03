@@ -123,7 +123,7 @@ In your orchestrator project, register the .NET Aspire StackExchange Redis outpu
 
 ```csharp
 // Service registration
-var redis = builder.AddRedisContainer("redis");
+var redis = builder.AddRedis("redis");
 
 // Service consumption
 var basket = builder.AddProject<Projects.ExampleProject>()

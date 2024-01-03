@@ -27,7 +27,7 @@ The app host project handles running all of the projects that are part of the .N
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var cache = builder.AddRedisContainer("cache");
+var cache = builder.AddRedis("cache");
 
 var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice");
 
@@ -68,7 +68,7 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 A reference represents a dependency between resources. Consider the following:
 
 ```csharp
-var cache = builder.AddRedisContainer("cache");
+var cache = builder.AddRedis("cache");
 
 builder.AddProject<Projects.AspireApp_Web>("webfrontend")
        .WithReference(cache);
@@ -81,13 +81,13 @@ The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExte
 It's also possible to have dependencies between project resources. Consider the following example code:
 
 ```csharp
-var cache = builder.AddRedisContainer("cache");
+var cache = builder.AddRedis("cache");
 
 var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice");
 
 builder.AddProject<Projects.AspireApp_Web>("webfrontend")
        .WithReference(cache)
-    .WithReference(apiservice);
+       .WithReference(apiservice);
 ```
 
 Project-to-project references are handled differently than resources that have well defined connection strings. Instead of connection string being injected into the "webfrontend" resource, environment variables to support service discovery are injected.

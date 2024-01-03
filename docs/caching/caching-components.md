@@ -144,7 +144,7 @@ Update the _Program.cs_ file of the `AspireRedis.AppHost` project to match the f
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var redis = builder.AddRedisContainer("cache");
+var redis = builder.AddRedis("cache");
 
 var apiservice = builder.AddProject<Projects.AspireRedis_ApiService>("apiservice")
     .WithReference(redis);

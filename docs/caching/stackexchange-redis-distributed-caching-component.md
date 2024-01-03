@@ -112,11 +112,11 @@ builder.AddRedisDistributedCache(
 
 ## Orchestration
 
-In your orchestrator project, register the .NET Aspire Stack Exchange Redis component and consume the service using the following methods, such as <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedisContainer%2A>:
+In your orchestrator project, register the .NET Aspire Stack Exchange Redis component and consume the service using the following methods, such as <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A>:
 
 ```csharp
 // Service registration
-var redis = builder.AddRedisContainer("redis");
+var redis = builder.AddRedis("redis");
 
 // Service consumption
 builder.AddProject<Projects.ExampleProject>()
