@@ -13,7 +13,7 @@ Welcome to what's new in the .NET Aspire docs for December 2023. This article li
 
 ### New articles
 
-- [Title not found in: #108](../storage/azure-storage.md)
+- [Tutorial: Connect an ASP.NET Core app to .NET Aspire storage components](../storage/azure-storage.md)
 
 ## Database
 
@@ -21,13 +21,9 @@ Welcome to what's new in the .NET Aspire docs for December 2023. This article li
 
 - [.NET Aspire MongoDB database component](../database/mongodb-component.md)
 - [.NET Aspire MySQL database component](../database/mysql-component.md)
-- [Title not found in: #131](../database/quickstart-sql-server.md)
+- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](../database/quickstart-sql-server.md)
 
 ## Deployment
-
-### New articles
-
-- [Title not found in: #134](../deployment/k8s-deployment.md)
 
 ### Updated articles
 
