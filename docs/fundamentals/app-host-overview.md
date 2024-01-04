@@ -27,7 +27,7 @@ The app host project handles running all of the projects that are part of the .N
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var cache = builder.AddRedisContainer("cache");
+var cache = builder.AddRedis("cache");
 
 var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice");
 
@@ -68,7 +68,7 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 A reference represents a dependency between resources. Consider the following:
 
 ```csharp
-var cache = builder.AddRedisContainer("cache");
+var cache = builder.AddRedis("cache");
 
 builder.AddProject<Projects.AspireApp_Web>("webfrontend")
        .WithReference(cache);
@@ -81,13 +81,13 @@ The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExte
 It's also possible to have dependencies between project resources. Consider the following example code:
 
 ```csharp
-var cache = builder.AddRedisContainer("cache");
+var cache = builder.AddRedis("cache");
 
 var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice");
 
 builder.AddProject<Projects.AspireApp_Web>("webfrontend")
        .WithReference(cache)
-    .WithReference(apiservice);
+       .WithReference(apiservice);
 ```
 
 Project-to-project references are handled differently than resources that have well defined connection strings. Instead of connection string being injected into the "webfrontend" resource, environment variables to support service discovery are injected.
@@ -133,12 +133,12 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 | `AddNpmApp(...)` | `NodeAppResource` | Adds a Node.js app resource that wraps an [NPM](https://www.npmjs.com/) package. |
 | `AddPostgresContainer(...).`<xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresDatabaseResource> | Adds a Postgres database resource. |
 | `AddSqlServerContainer(...).`<xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource> | Adds a SQL Server database resource. |
-| <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresConnection%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresConnectionResource> | Adds a Postgres connection resource. |
+| <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresServerResource> | Adds a Postgres server resource. |
 | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresContainerResource> | Adds a Postgres container resource. |
-| <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQConnection%2A> | <xref:Aspire.Hosting.ApplicationModel.RabbitMQConnectionResource> | Adds a RabbitMQ connection resource. |
+| <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A> | <xref:Aspire.Hosting.ApplicationModel.RabbitMQServerResource> | Adds a RabbitMQ server resource. |
 | <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.RabbitMQContainerResource> | Adds a RabbitMQ container resource. |
 | <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedisContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.RedisContainerResource> | Adds a Redis container resource. |
-| <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServerConnection%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerConnectionResource> | Adds a SQL Server connection resource. |
+| <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerServerResource> | Adds a SQL Server server resource. |
 | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServerContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerContainerResource> | Adds a SQL Server container resource. |
 
 **Azure specific resources available in the [📦 Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure) NuGet package:**

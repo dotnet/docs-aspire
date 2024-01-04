@@ -124,10 +124,10 @@ Here are the configurable options with corresponding default values:
 
 ## Orchestration
 
-In your AppHost project, register a MongoDB container and consume the connection using the following methods:
+In your AppHost project, register a MongoDB database and consume the connection using the following methods:
 
 ```csharp
-var mongodb = builder.AddMongoDBContainer("mongodb")
+var mongodb = builder.AddMongoDB("mongodb")
                      .AddDatabase("database");
 
 var myService = builder.AddProject<Projects.MyService>()
