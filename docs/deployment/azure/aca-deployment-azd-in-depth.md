@@ -213,10 +213,10 @@ To see this in action, update the _Program.cs_ file in the AppHost project to th
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var cache = builder.AddRedisContainer("cache");
+var cache = builder.AddRedis("cache");
 
 // Add the locations database.
-var locationsdb = builder.AddPostgresContainer("db").AddDatabase("locations");
+var locationsdb = builder.AddPostgres("db").AddDatabase("locations");
 
 // Add the locations database reference to the API service.
 var apiservice = builder.AddProject<Projects.AspireAzdWalkthrough_ApiService>("apiservice")

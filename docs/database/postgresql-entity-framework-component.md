@@ -145,7 +145,7 @@ Here are the configurable options with corresponding default values:
 In your orchestrator project, register the PostgreSQL component and consume the `DbContext` using the following methods:
 
 ```csharp
-var postgresdb = builder.AddPostgresContainer("pg")
+var postgresdb = builder.AddPostgres("pg")
                         .AddDatabase("postgresdb");
 
 var myService = builder.AddProject<Projects.MyService>()

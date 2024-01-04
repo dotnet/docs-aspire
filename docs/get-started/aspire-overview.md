@@ -33,11 +33,11 @@ For example, using .NET Aspire, the following code creates a local Redis contain
 // Create a distributed application builder given the command line arguments.
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Add a Redis container to the application.
-var cache = builder.AddRedisContainer("cache");
+// Add a Redis server to the application.
+var cache = builder.AddRedis("cache");
 
 // Add the frontend project to the application and configure it to use the 
-// Redis container, defined as a referenced dependency.
+// Redis server, defined as a referenced dependency.
 builder.AddProject<Projects.MyFrontend>("frontend")
        .WithReference(cache);
 ```

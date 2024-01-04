@@ -27,7 +27,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var appInsightsConnectionString =
     builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"];
 
-var cache = builder.AddRedisContainer("cache");
+var cache = builder.AddRedis("cache");
 
 var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
     .WithEnvironment(
