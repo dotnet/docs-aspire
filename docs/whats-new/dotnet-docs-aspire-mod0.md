@@ -115,7 +115,12 @@ Welcome to what's new in the .NET Aspire docs for December 2023. This article li
 
 The following people contributed to the .NET Aspire docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
+- [peteraritchie](https://github.com/peteraritchie) - Peter Ritchie ![4 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-4-green)
 - [alexwiese](https://github.com/alexwiese) - Alex Wiese ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [ericmutta](https://github.com/ericmutta) - Eric Mutta ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [peteraritchie](https://github.com/peteraritchie) - Peter Ritchie ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [georgiosd](https://github.com/georgiosd) - Georgios Diamantopoulos ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [HTSchoenfelder](https://github.com/HTSchoenfelder) - Henrik Schönfelder ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [jasond-s](https://github.com/jasond-s) - Jason Dryhurst-Smith ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [Roman-Blinkov](https://github.com/Roman-Blinkov) - Roman Blinkov ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [smargoli2](https://github.com/smargoli2) - Sora Teichman ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [ZieMcd](https://github.com/ZieMcd) - Zie Mcdowell ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
