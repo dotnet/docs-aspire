@@ -1,12 +1,12 @@
 ---
 title: .NET Aspire networking overview
 description: Learn how .NET Aspire handles networking and service bindings, and how you can use them in your app code.
-ms.date: 01/04/2024
+ms.date: 01/08/2024
 ---
 
 # Networking in .NET Aspire
 
-One of the advantages of developing with .NET Aspire is that it enables you to develop, test, and debug cloud-native apps locally. Networking is a key aspect of .NET Aspire, as it allows your apps to communicate with each other and with external services. In this article, you will learn how .NET Aspire handles networking in different scenarios and environments.
+One of the advantages of developing with .NET Aspire is that it enables you to develop, test, and debug cloud-native apps locally. Inner-loop networking is a key aspect of .NET Aspire, that allows your apps to communicate with each other in your development environment. In this article, you learn how .NET Aspire handles networking in different scenarios and environments.
 
 ## Networking in the inner loop
 
@@ -28,32 +28,129 @@ Your app, whether it is an executable, a project, or a container, will be assign
 
 For example, if your app is a project, .NET Aspire will automatically inject the `ASPNETCORE_URLS` environment variable to your app, which contains the URL that your app should listen on, such as `http://localhost:5000`. If your app is a container, .NET Aspire will randomly assign the ports using the magic of Docker, and you can use the `aspire service list` command or the .NET Aspire CLI to see the ports that are assigned to your container and the proxy. If your app is an executable, .NET Aspire will optionally inject an environment variable with the port assigned for each service binding, such as `ASPNETCORE_URLS_MyService=http://localhost:5001`. You can use this environment variable in your app code to figure out what port to bind to locally.
 
-## How .NET Aspire handles ports and proxies
+## Launch profiles
 
-When you create a service binding, either implicitly or explicitly, .NET Aspire will assign two ports to your service binding: a **host port** and a **service port**. The host port is the port that the clients of your service will connect to, and the service port is the port that your service will listen on.
+When you call <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, the app host looks for _Properties/launchSettings.json_ to determine the default set of service bindings. The app host selects a specific launch profile using the following rules:
 
-.NET Aspire will always launch a **proxy** on the host port that you specify for the service binding. The proxy is a lightweight and fast reverse proxy that handles the routing and load balancing of the requests from your clients to your service. The proxy is mostly an implementation detail from an Aspire perspective, and you don't need to worry about its configuration or management.
+1. An explicit <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithLaunchProfile%2A> call on the `IResourceBuilder<ProjectResource>`.
+1. The `DOTNET_LAUNCH_PROFILE` environment variable. For more information, see [.NET environment variables](/dotnet/core/tools/dotnet-environment-variables).
+1. Picking the first launch profile defined in _launchSettings.json_.
 
-Your service, whether it is an executable, a project, or a container, will be assigned another port by .NET Aspire, which is different from the host port that the proxy listens on. This is to avoid port conflicts and to enable multiple service bindings for your service. Depending on the type of your service, .NET Aspire will inject the appropriate environment variables to your service to indicate the port that it should listen on and the port that the proxy listens on.
+Consider the following profile:
 
-The following diagram illustrates how .NET Aspire handles ports and proxies for a service binding:
+```json
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:64225",
+      "sslPort": 44368
+    }
+  },
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:5066",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "https": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7239;http://localhost:5066",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
+```
 
-:::image type="content" source="media/networking/networking-proxies.png" lightbox="media/networking/networking-proxies.png" alt-text="A visual representation of a frontend, api, and redis resource, with their corresponding ports.":::
+### Example
 
-As you can see, the client connects to the host port 5066, which is handled by the proxy. The proxy then forwards the request to the service port 5000, which is listened by the service. The service can use the `ASPNETCORE_URLS` environment variable to get the URL that it should listen on, such as `http://localhost:5000`.
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
 
-If you specify multiple host ports or schemes for a service binding, .NET Aspire will launch multiple proxies for each port and scheme combination, and assign different service ports for each proxy. For example, if you specify a host port 5066 with the scheme `http`, and another host port 7239 with the scheme `https`, .NET Aspire will launch two proxies, one on port 5066 and another on port 7239, and assign two different service ports, such as 5000 and 5001, for each proxy.
+builder.AddProject<Projects.WebApplication>("frontend")
+       .WithLaunchProfile("https");
 
-If you specify multiple replicas for a service binding, .NET Aspire will launch multiple instances of your service, each with a different service port, and use the proxy to load balance the requests among the replicas. For example, if you specify two replicas for a service binding, .NET Aspire will launch two instances of your service, each with a different service port, such as 5000 and 5001, and use the proxy to distribute the requests between them.
+builder.Build().Run();
+```
 
-If you do not specify a host port for a service binding, .NET Aspire will generate a random port for both the host port and the service port. This can be useful if you want to create a service binding without exposing it to the clients, or if you want to avoid port conflicts with other services.
+This will select the **https** launch profile from _launchSettings.json_. The `applicationUrl` of that launch profile will be used to create a service binding for this project. This is the equivalent of:
 
-## Networking in the outer loop
+```csharp
+builder.AddProject<Projects.WebApplication>("frontend")
+       .WithServiceBinding(hostPort: 5066, scheme: "http")
+       .WithServiceBinding(hostPort: 7239, scheme: "https");
+```
 
-The outer loop is the process of deploying and running your app in a target environment, such as Azure, Kubernetes, or Docker. Networking in the outer loop is different from networking in the inner loop, as it involves different tools, platforms, and configurations. .NET Aspire provides several features and guidance to help you with the networking challenges and considerations in the outer loop, such as:
+## What happens if there's no launchSettings.json?
 
-- **Deployment profiles**: Deployment profiles are configuration files that specify how to deploy your app to a target environment. You can use deployment profiles to define the deployment settings, environment variables, and service bindings for your app. .NET Aspire automatically creates and updates deployment profiles for your app based on the target environment and the services you use.
-- **Service discovery**: Service discovery is the process of finding and connecting to the services that your app depends on in a target environment. Service discovery can be challenging in a dynamic and distributed environment, where the services may change their location, address, or port frequently. .NET Aspire provides several options and recommendations for service discovery in different target environments, such as using DNS, environment variables, or service meshes.
+If there's no _launchSettings.json_ or there's no launch profile there will be no bindings by default.
+
+## Ports and proxies
+
+When defining a service binding, the host port is *always* given to the proxy that sits in front of the service. This allows single or multiple replicas of a service to behave similarly.
+
+```csharp
+builder.AddProject<Projects.WebApplication>("frontend")
+       .WithServiceBinding(hostPort: 5066, scheme: "http")
+       .WithReplicas(2);
+```
+
+:::image type="content" source="media/networking/proxy-with-replicas.png" lightbox="media/networking/proxy-with-replicas.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and two replicas.":::
+
+```csharp
+builder.AddProject<Projects.WebApplication>("frontend")
+       .WithServiceBinding(hostPort: 5066, scheme: "http")
+```
+
+There will be 2 ports defined:
+
+- The proxy port 5066
+- The port that the underlying service will be bound to (a randomly chosen port)
+
+:::image type="content" source="media/networking/proxy-host-port-and-random-port.png" lightbox="media/networking/proxy-host-port-and-random-port.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and random port.":::
+
+The underlying service is fed this port via `ASPNETCORE_URLS` for project resources. Other resources can get access to this port by specifying an environment variable on the service binding:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+builder.AddNpmApp("frontend", "../NodeFrontend", "watch")
+       .WithServiceBinding(hostPort: 5067, scheme: "http", env: "PORT");
+
+builder.Build().Run();
+```
+
+The above code will make the random port available in the PORT env variable. The application can use this to listen to incoming connections from the proxy.
+
+:::image type="content" source="media/networking/proxy-with-env-var-port.png" lightbox="media/networking/proxy-with-env-var-port.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and environment variable port.":::
+
+## No host port
+
+No host port on a service binding will generate a random port for both the host port and the service port.
+
+```csharp
+builder.AddProject<Projects.WebApplication>("frontend")
+       .WithServiceBinding(scheme: "http");
+```
+
+:::image type="content" source="media/networking/proxy-with-random-ports.png" lightbox="media/networking/proxy-with-random-ports.png" alt-text=".NET Aspire frontend app networking diagram with random host port and proxy port.":::
 
 ## Summary
 
