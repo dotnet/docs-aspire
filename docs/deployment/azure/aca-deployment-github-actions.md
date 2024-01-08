@@ -17,7 +17,7 @@ The Azure Developer CLI (`azd`) enables you to deploy .NET Aspire applications u
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
-You also need to have the Azure Developer CLI [installed locally](/azure/developer/azure-developer-cli/install-azd). Common install options include the following:
+You also need to have the Azure Developer CLI [installed locally](/azure/developer/azure-developer-cli/install-azd) (version 1.5.1 or higher). Common install options include the following:
 
 # [Windows](#tab/windows)
 
