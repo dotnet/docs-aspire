@@ -8,7 +8,7 @@
     azd init
     ```
 
-1. Select **Use code in the current directory** when `azd` prompts you with two options to initialize your app.
+1. Select **Use code in the current directory** when `azd` prompts you with two app initialization options.
 
     :::image type="content" source="../media/azd-prompt-init-path.png" lightbox="../media/azd-prompt-init-path.png" alt-text="Screenshot of `azd` confirming how to initialize the project.":::
 
