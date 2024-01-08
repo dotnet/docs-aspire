@@ -6,7 +6,7 @@ ms.date: 12/18/2023
 
 # Tutorial: Deploy a .NET Aspire app using the Azure Developer CLI and GitHub Actions
 
-The Azure Developer CLI (`azd`) enables you to deploy .NET Aspire applications using GitHub actions by automatically configuring the required Authentication and environment settings.  In this quickstart you'll walk through the process of creating and deploying a .NET Aspire application to Azure Container Apps using `azd` and GitHub actions. You'll learn the following concepts:
+The Azure Developer CLI (`azd`) enables you to deploy .NET Aspire applications using GitHub actions by automatically configuring the required Authentication and environment settings.  This quickstart walks through the process of creating and deploying a .NET Aspire application to Azure Container Apps using `azd` and GitHub actions. You'll learn the following concepts:
 
 > [!div class="checklist"]
 >
@@ -17,7 +17,7 @@ The Azure Developer CLI (`azd`) enables you to deploy .NET Aspire applications u
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
-You will also need to have the Azure Developer CLI [installed locally](/azure/developer/azure-developer-cli/install-azd). Common install options include the following:
+You also need to have the Azure Developer CLI [installed locally](/azure/developer/azure-developer-cli/install-azd). Common install options include the following:
 
 # [Windows](#tab/windows)
 
@@ -51,7 +51,7 @@ Although `azd` generated some essential template files for you, the project stil
 
 1. Inside the new `.github` folder, create another folder called `workflows`.
 
-1. Add a new GitHub Actions workflow file into the new folder named `azure-dev.yaml`. The `azd` starter template provides a [Sample GitHub Actions workflow file](https://github.com/Azure-Samples/azd-starter-bicep/blob/main/.github/workflows/azure-dev.yml) that you can copy into your project as a starter template and modify as needed.
+1. Add a new GitHub Actions workflow file into the new folder named `azure-dev.yaml`. The `azd` starter template provides a [Sample GitHub Actions workflow file](https://github.com/Azure-Samples/azd-starter-bicep/blob/main/.github/workflows/azure-dev.yml) that you can copy into your project.
 
 1. Update the sample GitHub Actions workflow to include a step to install the .NET Aspire workload. This ensures the .NET Aspire tooling and commands are available to the job running your GitHub Actions. The completed workflow file should match the following:
 
@@ -128,7 +128,7 @@ Although `azd` generated some essential template files for you, the project stil
 
 ## Create the repository and pipeline
 
-The Azure Developer CLI enables you to automatically create CICd pipelines with the correct configurations and permissions to provision and deploy resources to Azure. `azd` can also help you create a GitHub repository for you app, if it doesn't exist already.
+The Azure Developer CLI enables you to automatically create CICD pipelines with the correct configurations and permissions to provision and deploy resources to Azure. `azd` can also help you create a GitHub repository for you app, if it doesn't exist already.
 
 1. Run the `azd pipeline config` command to configure your deployment pipeline and securely connect it to Azure:
 
@@ -144,7 +144,7 @@ The Azure Developer CLI enables you to automatically create CICd pipelines with 
 
 1. Select **Create a new private GitHub repository** to configure the git remote.
 
-1. Enter a name of your choice for the new GitHub repository or press enter to use the default name. `azd` will create a new repository in GitHub and configure it with the necessary secrets required to authenticate to Azure.
+1. Enter a name of your choice for the new GitHub repository or press enter to use the default name. `azd` creates a new repository in GitHub and configures it with the necessary secrets required to authenticate to Azure.
 
     :::image type="content" source="media/pipeline-configuration.png" alt-text="A screenshot showing the pipeline configuration steps.":::
 
@@ -152,7 +152,9 @@ The Azure Developer CLI enables you to automatically create CICd pipelines with 
 
 ## Explore the GitHub Actions workflow and deployment
 
-1. Navigate to your new repository in GitHub and select the **Actions** tab to view the repository workflows. You should see the new workflow either running or already completed. Select the workflow to view the details of the run. The job steps are visible in the logs of the run. For example, you can expand steps such as **Install .NET Aspire Workload** or **Deploy application** to see the details of the completed action.
+1. Navigate to your new GitHub repository using the link output by `azd`.
+
+1. Select the **Actions** tab to view the repository workflows. You should see the new workflow either running or already completed. Select the workflow to view the details of the run. The job steps are visible in the logs of the run. For example, you can expand steps such as **Install .NET Aspire Workload** or **Deploy application** to see the details of the completed action.
 
     :::image type="content" source="media/github-action.png" alt-text="A screenshot showing the GitHub Action workflow steps.":::
 

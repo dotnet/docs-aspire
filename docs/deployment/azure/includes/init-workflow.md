@@ -8,11 +8,15 @@
     azd init
     ```
 
-1. After scanning the directory, `azd` prompts you to confirm that it found the correct .NET Aspire __AppHost_ project. Select the **Confirm and continue initializing my app** option.
+1. Select **Use code in the current directory** when `azd` prompts you with two options to initialize your app.
+
+    :::image type="content" source="../media/azd-prompt-init-path.png" lightbox="../media/azd-prompt-init-path.png" alt-text="Screenshot of `azd` confirming how to initialize the project.":::
+
+1. After scanning the directory, `azd` prompts you to confirm that it found the correct .NET Aspire _AppHost_ project. Select the **Confirm and continue initializing my app** option.
 
     :::image type="content" source="../media/azd-prompt-confirm-path.png" lightbox="../media/azd-prompt-confirm-path.png" alt-text="Screenshot of `azd` confirming the detected location of the .NET Aspire application.":::
 
-1. `azd` presents each of the projects in the .NET Aspire solution and prompts you to identify which to deploy with HTTP ingress open publicly to all internet traffic. Select only the `webfrontend`, since you want the API to be private to the Azure Container Apps environment and *not* available publicly.
+1. `azd` presents each of the projects in the .NET Aspire solution and prompts you to identify which to deploy with HTTP ingress open publicly to all internet traffic. Select only the `webfrontend` (using the spacebar), since you want the API to be private to the Azure Container Apps environment and *not* available publicly.
 
     :::image type="content" source="../media/azd-prompt-select-endpoints.png" lightbox="../media/azd-prompt-select-endpoints.png" alt-text="Screenshot of `azd` prompting which .NET projects should have public endpoints.":::
 
