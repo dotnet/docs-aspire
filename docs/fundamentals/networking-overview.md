@@ -151,9 +151,3 @@ builder.AddProject<Projects.WebApplication>("frontend")
 ```
 
 :::image type="content" source="media/networking/proxy-with-random-ports.png" lightbox="media/networking/proxy-with-random-ports.png" alt-text=".NET Aspire frontend app networking diagram with random host port and proxy port.":::
-
-## Summary
-
-In this article, you learned how .NET Aspire handles networking and service bindings, and how you can use them in your app code. You learned how to create and manage service bindings, both implicitly and explicitly, and how .NET Aspire launches and manages the Proxies for your service bindings. You learned how to access service bindings from your app code using the standard .NET configuration APIs, and how .NET Aspire exposes the service bindings as configuration sources in your app. You also learned how .NET Aspire handles the networking and service bindings for you, both locally and in the cloud, and how you can deploy your app to different target environments using the `aspire deploy` command or the .NET Aspire CLI.
-
-Service bindings are a powerful and convenient feature of .NET Aspire that enable you to develop, test, and deploy cloud-native apps using .NET. By using service bindings, you can easily access the services and resources that your app depends on, without having to worry about the configuration details or the deployment environment. .NET Aspire takes care of the networking and service bindings for you, and lets you focus on your app logic and code.

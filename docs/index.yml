@@ -62,6 +62,9 @@ conceptualContent:
         - itemType: reference
           text: .NET Aspire dashboard
           url: fundamentals/dashboard.md
+        - itemType: overview
+          text: .NET Aspire local networking
+          url: fundamentals/networking-overview.md
 
     - title: Storage
       links:
