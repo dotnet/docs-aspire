@@ -1,6 +1,6 @@
 ## Prerequisites
 
-To work with .NET Aspire, you'll need the following installed locally:
+To work with .NET Aspire, you need the following installed locally:
 
 - [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0)
 - .NET Aspire workload:
