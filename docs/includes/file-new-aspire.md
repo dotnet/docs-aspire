@@ -1,6 +1,6 @@
-## Create the template solution
+## Create the .NET Aspire template
 
-To create a new .NET Aspire Starter Application template solution, you can use either Visual Studio or the .NET CLI.
+To create a new .NET Aspire Starter Application, you can use either Visual Studio or the .NET CLI.
 
 ### [Visual Studio](#tab/visual-studio)
 
