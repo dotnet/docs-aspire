@@ -1,8 +1,6 @@
-﻿namespace Networking.AppHost;
-
-public static partial class Program
+﻿public static partial class Program
 {
-    public static void WithLaunchProfile(DistributedApplicationBuilder builder)
+    public static void WithLaunchProfile(IDistributedApplicationBuilder builder)
     {
         // <withlaunchprofile>
         builder.AddProject<Projects.Networking_Frontend>("frontend")

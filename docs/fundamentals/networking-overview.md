@@ -40,13 +40,13 @@ Consider the following _launchSettings.json_ file:
 
 :::code language="json" source="snippets/networking/Networking.Frontend/Networking.Frontend/Properties/launchSettings.json":::
 
-For the remainder of this article, imagine that you've created a new <xref:Aspire.Hosting.DistributedApplicationBuilder> named `builder` from the <xref:Aspire.Hosting.DistributedApplication.CreateBuilder> API:
+For the remainder of this article, imagine that you've created an <xref:Aspire.Hosting.IDistributedApplicationBuilder> assigned to a variable named `builder` with the <xref:Aspire.Hosting.DistributedApplication.CreateBuilder> API:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 ```
 
-To specify that the **https** launch profile should be used, you call <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithLaunchProfile%2A>:
+To specify that the **https** launch profile should be used, call <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithLaunchProfile%2A>:
 
 :::code source="snippets/networking/Networking.AppHost/Program.WithLaunchProfile.cs" id="withlaunchprofile":::
 

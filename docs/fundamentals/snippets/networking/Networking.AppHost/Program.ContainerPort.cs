@@ -1,8 +1,6 @@
-﻿namespace Networking.AppHost;
-
-public static partial class Program
+﻿public static partial class Program
 {
-    public static void ContainerPort(DistributedApplicationBuilder builder)
+    public static void ContainerPort(IDistributedApplicationBuilder builder)
     {
         // <containerport>
         builder.AddContainer("frontend", "mcr.microsoft.com/dotnet/samples", "aspnetapp")

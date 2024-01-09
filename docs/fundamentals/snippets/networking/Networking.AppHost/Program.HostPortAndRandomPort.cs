@@ -1,8 +1,6 @@
-﻿namespace Networking.AppHost;
-
-public static partial class Program
+﻿public static partial class Program
 {
-    public static void HostPortWithRandomServicePort(DistributedApplicationBuilder builder)
+    public static void HostPortWithRandomServicePort(IDistributedApplicationBuilder builder)
     {
         // <hostport>
         builder.AddProject<Projects.Networking_Frontend>("frontend")
