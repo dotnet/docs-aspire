@@ -1,4 +1,4 @@
-## Create the Aspire template
+## Create the .NET Aspire template
 
 To create a new .NET Aspire Starter Application, you can use either Visual Studio or the .NET CLI.
 
