@@ -22,9 +22,11 @@ A service binding in .NET Aspire involves two components: a **service** represen
 
 .NET Aspire supports two service binding types: **implicit**, automatically created based on specified launch profiles defining app behavior in different environments, and **explicit**, manually created using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithServiceBinding%2A>.
 
-Upon creating a binding, whether implicit or explicit, .NET Aspire launches a lightweight reverse proxy on a specified port, handling routing and load balancing for requests from your app to the service. The proxy is an Aspire implementation detail, requiring no configuration or management concern.
+Upon creating a binding, whether implicit or explicit, .NET Aspire launches a lightweight reverse proxy on a specified port, handling routing and load balancing for requests from your app to the service. The proxy is a .NET Aspire implementation detail, requiring no configuration or management concern.
 
-Your app, whether executable, project, or container, receives a separate port assignment from .NET Aspire to avoid conflicts, indicating the port for listening and the proxy's port. Appropriate environment variables are injected to specify these ports based on the app type.
+To help visualize how service bindings work, consider the .NET Aspire starter templates inner loop networking diagram:
+
+:::image type="content" source="media/networking/networking-proxies.png" lightbox="media/networking/networking-proxies.png" alt-text=".NET Aspire Starter Application template inner loop networking diagram.":::
 
 ## Launch profiles
 
@@ -36,58 +38,19 @@ When you call <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2
 
 Consider the following _launchSettings.json_ file:
 
-```json
-{
-  "$schema": "http://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:64225",
-      "sslPort": 44368
-    }
-  },
-  "profiles": {
-    "http": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "http://localhost:5066",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "https": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:7239;http://localhost:5066",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    }
-  }
-}
-```
+:::code language="json" source="snippets/networking/Networking.Frontend/Networking.Frontend/Properties/launchSettings.json":::
 
-For the remainder of this article, imagine that we've created a new <xref:Aspire.Hosting.DistributedApplicationBuilder> named `builder` from the <xref:Aspire.Hosting.DistributedApplication.CreateBuilder> API:
+For the remainder of this article, imagine that you've created a new <xref:Aspire.Hosting.DistributedApplicationBuilder> named `builder` from the <xref:Aspire.Hosting.DistributedApplication.CreateBuilder> API:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 ```
 
-To specify that the **https** launch profile should be used, you can call <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithLaunchProfile%2A>:
+To specify that the **https** launch profile should be used, you call <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithLaunchProfile%2A>:
 
 :::code source="snippets/networking/Networking.AppHost/Program.WithLaunchProfile.cs" id="withlaunchprofile":::
 
-This will select the **https** launch profile from _launchSettings.json_. The `applicationUrl` of that launch profile will be used to create a service binding for this project. This is the equivalent of:
+This will select the **https** launch profile from _launchSettings.json_. The `applicationUrl` of that launch profile is used to create a service binding for this project. This is the equivalent of:
 
 :::code source="snippets/networking/Networking.AppHost/Program.WithLaunchProfile.cs" id="verbose":::
 
@@ -104,33 +67,75 @@ The preceding code results in the following networking diagram:
 
 :::image type="content" source="media/networking/proxy-with-replicas.png" lightbox="media/networking/proxy-with-replicas.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and two replicas.":::
 
+The preceding diagram depicts the following:
+
+- A web browser as an entry point to the app.
+- A host port of 5066.
+- The frontend proxy sitting between the web browser and the frontend service replicas, listening on port 5066.
+- The `frontend_0` frontend service replica listening on the randomly assigned port 65001.
+- The `frontend_1` frontend service replica listening on the randomly assigned port 65002.
+
+Without the call to `WithReplicas`, there's only one frontend service. The proxy will still be listening on port 5066, but the frontend service will be listening on a random port:
+
 :::code source="snippets/networking/Networking.AppHost/Program.HostPortAndRandomPort.cs" id="hostport":::
 
-There will be 2 ports defined:
+There are two ports defined:
 
-- The proxy port 5066
-- The port that the underlying service will be bound to (a randomly chosen port)
+- A host port of 5066.
+- A random proxy port that the underlying service will be bound to.
 
 :::image type="content" source="media/networking/proxy-host-port-and-random-port.png" lightbox="media/networking/proxy-host-port-and-random-port.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and random port.":::
 
-The underlying service is fed this port via `ASPNETCORE_URLS` for project resources. Other resources can get access to this port by specifying an environment variable on the service binding:
+The preceding diagram depicts the following:
+
+- A web browser as an entry point to the app.
+- A host port of 5066.
+- The frontend proxy sitting between the web browser and the frontend service, listening on port 5066.
+- The frontend service listening on random port of 65001.
+
+The underlying service is fed this port via `ASPNETCORE_URLS` for project resources. Other resources access to this port by specifying an environment variable on the service binding:
 
 :::code source="snippets/networking/Networking.AppHost/Program.EnvVarPort.cs" id="envvarport":::
 
-The above code will make the random port available in the PORT env variable. The application can use this to listen to incoming connections from the proxy.
+The above code will make the random port available in the `PORT` environment variable. The app uses this to listen to incoming connections from the proxy. Consider the following diagram:
 
 :::image type="content" source="media/networking/proxy-with-env-var-port.png" lightbox="media/networking/proxy-with-env-var-port.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and environment variable port.":::
 
+The preceding diagram depicts the following:
+
+- A web browser as an entry point to the app.
+- A host port of 5607.
+- The frontend proxy sitting between the web browser and the frontend service, listening on port 5607.
+- The frontend service listening on an environment 65001.
+
 ## Omit the host port
 
-When you omit the host port, .NET Aspire generates a random ports for both host and service port. This is useful when you want to avoid port conflicts and don't care about the host or service port.
+When you omit the host port, .NET Aspire generates a random port for both host and service port. This is useful when you want to avoid port conflicts and don't care about the host or service port. Consider the following code:
 
 :::code source="snippets/networking/Networking.AppHost/Program.OmitHostPort.cs" id="omithostport":::
 
+In this scenario, both the host and service ports are random, as shown in the following diagram:
+
 :::image type="content" source="media/networking/proxy-with-random-ports.png" lightbox="media/networking/proxy-with-random-ports.png" alt-text=".NET Aspire frontend app networking diagram with random host port and proxy port.":::
+
+The preceding diagram depicts the following:
+
+- A web browser as an entry point to the app.
+- A random host port of 65000.
+- The frontend proxy sitting between the web browser and the frontend service, listening on port 65000.
+- The frontend service listening on a random port of 65001.
 
 ## Container ports
 
 When you add a container resource, .NET Aspire will automatically assign a random port to the container. To specify a container port, configure the container resource with the desired port:
 
 :::code source="snippets/networking/Networking.AppHost/Program.ContainerPort.cs" id="containerport":::
+
+The preceding code:
+
+- Creates a container resource named `frontend`, from the `mcr.microsoft.com/dotnet/samples:aspnetapp` image.
+- Binds the host to port 8000 and the container port to 8080 with the `http` scheme.
+
+Consider the following diagram:
+
+:::image type="content" source="media/networking/proxy-with-docker-port-mapping.png" alt-text=".NET Aspire frontend app networking diagram with a docker host.":::
