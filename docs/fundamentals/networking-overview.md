@@ -26,7 +26,7 @@ Upon creating a binding, whether implicit or explicit, .NET Aspire launches a li
 
 To help visualize how service bindings work, consider the .NET Aspire starter templates inner loop networking diagram:
 
-:::image type="content" source="media/networking/networking-proxies.png" lightbox="media/networking/networking-proxies.png" alt-text=".NET Aspire Starter Application template inner loop networking diagram.":::
+:::image type="content" source="media/networking/networking-proxies-1x.png" lightbox="media/networking/networking-proxies.png" alt-text=".NET Aspire Starter Application template inner loop networking diagram.":::
 
 ## Launch profiles
 
@@ -65,7 +65,7 @@ When defining a service binding, the host port is *always* given to the proxy th
 
 The preceding code results in the following networking diagram:
 
-:::image type="content" source="media/networking/proxy-with-replicas.png" lightbox="media/networking/proxy-with-replicas.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and two replicas.":::
+:::image type="content" source="media/networking/proxy-with-replicas-1x.png" lightbox="media/networking/proxy-with-replicas.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and two replicas.":::
 
 The preceding diagram depicts the following:
 
@@ -84,7 +84,7 @@ There are two ports defined:
 - A host port of 5066.
 - A random proxy port that the underlying service will be bound to.
 
-:::image type="content" source="media/networking/proxy-host-port-and-random-port.png" lightbox="media/networking/proxy-host-port-and-random-port.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and random port.":::
+:::image type="content" source="media/networking/proxy-host-port-and-random-port-1x.png" lightbox="media/networking/proxy-host-port-and-random-port.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and random port.":::
 
 The preceding diagram depicts the following:
 
@@ -99,7 +99,7 @@ The underlying service is fed this port via `ASPNETCORE_URLS` for project resour
 
 The above code will make the random port available in the `PORT` environment variable. The app uses this to listen to incoming connections from the proxy. Consider the following diagram:
 
-:::image type="content" source="media/networking/proxy-with-env-var-port.png" lightbox="media/networking/proxy-with-env-var-port.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and environment variable port.":::
+:::image type="content" source="media/networking/proxy-with-env-var-port-1x.png" lightbox="media/networking/proxy-with-env-var-port.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and environment variable port.":::
 
 The preceding diagram depicts the following:
 
@@ -116,7 +116,7 @@ When you omit the host port, .NET Aspire generates a random port for both host a
 
 In this scenario, both the host and service ports are random, as shown in the following diagram:
 
-:::image type="content" source="media/networking/proxy-with-random-ports.png" lightbox="media/networking/proxy-with-random-ports.png" alt-text=".NET Aspire frontend app networking diagram with random host port and proxy port.":::
+:::image type="content" source="media/networking/proxy-with-random-ports-1x.png" lightbox="media/networking/proxy-with-random-ports.png" alt-text=".NET Aspire frontend app networking diagram with random host port and proxy port.":::
 
 The preceding diagram depicts the following:
 
@@ -138,4 +138,4 @@ The preceding code:
 
 Consider the following diagram:
 
-:::image type="content" source="media/networking/proxy-with-docker-port-mapping.png" alt-text=".NET Aspire frontend app networking diagram with a docker host.":::
+:::image type="content" source="media/networking/proxy-with-docker-port-mapping-1x.png" alt-text=".NET Aspire frontend app networking diagram with a docker host.":::
