@@ -16,7 +16,7 @@ The process for installing AZD varies based on your operating system, but it is 
 
 ## Deploy the app
 
-Once AZD has been initialized, the provisioning and deployment process can be executed as a single command, `azd up`. First, the projects will be packaged into containers during the `azd package`phase, followed by the `azd provision` phase during which all of the Azure resources the app will need are provisioned.
+Once AZD has been initialized, the provisioning and deployment process can be executed as a single command, `azd up`. First, the projects will be packaged into containers during the `azd package` phase, followed by the `azd provision` phase during which all of the Azure resources the app will need are provisioned.
 
 :::image type="content" source="../media/aspire-azd-06.png" lightbox="../media/aspire-azd-06.png" alt-text="AZD provisioning the Azure resources":::
 
