@@ -41,7 +41,6 @@ Visual Studio creates a new .NET Aspire solution that consists of the following 
 - **AspireRedis.AppHost** - An orchestrator project designed to connect and configure the different projects and services of your app.
 - **AspireRedis.ServiceDefaults** - A .NET Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../telemetry.md).
 
-
 ## Configure the App Host project
 
 Update the _Program.cs_ file of the `AspireRedis.AppHost` project to match the following code:
@@ -61,17 +60,19 @@ builder.AddProject<Projects.AspireRedis_Web>("webfrontend")
 builder.Build().Run();
 ```
 
-The preceding code creates a local Redis container instance and configures the UI and API to use the instance automatically for output and distributed caching. The code also configures communication between the frontend UI and the backend API using discovery. With .NET Aspire's Implicit Service Discovery, setting up and managing service connections becomes more streamlined. In the context of our tutorial, this feature simplifies how we connect to Redis.
+The preceding code creates a local Redis container instance and configures the UI and API to use the instance automatically for both output and distributed caching. The code also configures communication between the frontend UI and the backend API using service discovery. With .NET Aspire's implicit service discovery, setting up and managing service connections is streamlined for developer productivity. In the context of this tutorial, the feature simplifies how you connect to Redis.
 
-Traditionally, you would manually specify the Redis connection string in each project's appsettings.json file:
+Traditionally, you'd manually specify the Redis connection string in each project's _appsettings.json_ file:
 
 ```json
-"ConnectionStrings": {
+{
+  "ConnectionStrings": {
     "cache": "localhost:6379"
+  }
 }
 ```
 
-This method, while functional, requires duplicating the connection string across multiple projects, which can be cumbersome and error-prone.
+Configuring connection string with this method, while functional, requires duplicating the connection string across multiple projects, which can be cumbersome and error-prone.
 
 ## Configure the UI with output caching
 
@@ -91,8 +92,6 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
 
     - Configures ASP.NET Core output caching to use a Redis instance with the specified connection name.
     - Automatically enables corresponding health checks, logging, and telemetry.
-
-
 
 
 1. Replace the contents of the _Home.razor_ file of the `AspireRedis.Web` Blazor project with the following:
