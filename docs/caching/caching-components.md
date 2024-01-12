@@ -61,7 +61,17 @@ builder.AddProject<Projects.AspireRedis_Web>("webfrontend")
 builder.Build().Run();
 ```
 
-The preceding code creates a local Redis container instance and configures the UI and API to use the instance automatically for output and distributed caching. The code also configures communication between the frontend UI and the backend API using discovery.
+The preceding code creates a local Redis container instance and configures the UI and API to use the instance automatically for output and distributed caching. The code also configures communication between the frontend UI and the backend API using discovery. With .NET Aspire's Implicit Service Discovery, setting up and managing service connections becomes more streamlined. In the context of our tutorial, this feature simplifies how we connect to Redis.
+
+Traditionally, you would manually specify the Redis connection string in each project's appsettings.json file:
+
+```json
+"ConnectionStrings": {
+    "cache": "localhost:6379"
+}
+```
+
+This method, while functional, requires duplicating the connection string across multiple projects, which can be cumbersome and error-prone.
 
 ## Configure the UI with output caching
 
