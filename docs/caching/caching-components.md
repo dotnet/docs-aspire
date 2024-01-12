@@ -41,6 +41,39 @@ Visual Studio creates a new .NET Aspire solution that consists of the following 
 - **AspireRedis.AppHost** - An orchestrator project designed to connect and configure the different projects and services of your app.
 - **AspireRedis.ServiceDefaults** - A .NET Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../telemetry.md).
 
+## Configure the App Host project
+
+Update the _Program.cs_ file of the `AspireRedis.AppHost` project to match the following code:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var redis = builder.AddRedis("cache");
+
+var apiservice = builder.AddProject<Projects.AspireRedis_ApiService>("apiservice")
+    .WithReference(redis);
+
+builder.AddProject<Projects.AspireRedis_Web>("webfrontend")
+    .WithReference(apiservice)
+    .WithReference(redis);
+
+builder.Build().Run();
+```
+
+The preceding code creates a local Redis container instance and configures the UI and API to use the instance automatically for both output and distributed caching. The code also configures communication between the frontend UI and the backend API using service discovery. With .NET Aspire's implicit service discovery, setting up and managing service connections is streamlined for developer productivity. In the context of this tutorial, the feature simplifies how you connect to Redis.
+
+Traditionally, you'd manually specify the Redis connection string in each project's _appsettings.json_ file:
+
+```json
+{
+  "ConnectionStrings": {
+    "cache": "localhost:6379"
+  }
+}
+```
+
+Configuring connection string with this method, while functional, requires duplicating the connection string across multiple projects, which can be cumbersome and error-prone.
+
 ## Configure the UI with output caching
 
 1. Add the [.NET Aspire StackExchange Redis output caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireStorage` app:
@@ -59,14 +92,6 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
 
     - Configures ASP.NET Core output caching to use a Redis instance with the specified connection name.
     - Automatically enables corresponding health checks, logging, and telemetry.
-
-1. In the _appsettings.json file of the `AspireRedis.Web` project, add the corresponding connection string information:
-
-    ```json
-    "ConnectionStrings": {
-      "cache": "localhost:6379"
-    }
-    ```
 
 1. Replace the contents of the _Home.razor_ file of the `AspireRedis.Web` Blazor project with the following:
 
@@ -87,22 +112,14 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
 
 1. Add the [.NET Aspire StackExchange Redis distributed caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireRedis` app:
 
-```dotnetcli
-dotnet add package Aspire.StackExchange.Redis.DistributedCaching --prerelease
-```
+    ```dotnetcli
+    dotnet add package Aspire.StackExchange.Redis.DistributedCaching --prerelease
+    ```
 
 1. Towards the top of the _Program.cs_ file, add a call to <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddRedisDistributedCache%2A>:
 
     ```csharp
     builder.AddRedisDistributedCache("cache");
-    ```
-
-1. In the _appsettings.json file of the `AspireRedis.ApiService` project, add the corresponding connection string information:
-
-    ```json
-    "ConnectionStrings": {
-      "cache": "localhost:6379"
-    }
     ```
 
 1. In the _Program.cs_ file, replace the existing `/weatherforecast` endpoint code with the following:
@@ -136,27 +153,6 @@ dotnet add package Aspire.StackExchange.Redis.DistributedCaching --prerelease
     })
     .WithName("GetWeatherForecast");
     ```
-
-## Configure the App Host project
-
-Update the _Program.cs_ file of the `AspireRedis.AppHost` project to match the following code:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var redis = builder.AddRedis("cache");
-
-var apiservice = builder.AddProject<Projects.AspireRedis_ApiService>("apiservice")
-    .WithReference(redis);
-
-builder.AddProject<Projects.AspireRedis_Web>("webfrontend")
-    .WithReference(apiservice)
-    .WithReference(redis);
-
-builder.Build().Run();
-```
-
-The preceding code creates a local Redis container instance and configures the UI and API to use the instance automatically for output and distributed caching. The code also configures communication between the frontend UI and the backend API using discovery.
 
 ## Test the app locally
 
