@@ -18,7 +18,7 @@ items:
       - name: What's new in .NET Aspire
         href: whats-new/index.yml
 
-  - name: Overview
+  - name: Fundamentals
     expanded: true
     items:
       - name: Distributed app host (Orchestration)
@@ -30,6 +30,9 @@ items:
       - name: Components
         displayName: aspire components,components,nuget packages,packages
         href: fundamentals/components-overview.md
+      - name: Networking overview
+        displayName: inner loop,local networking
+        href: fundamentals/networking-overview.md
       - name: Service discovery
         displayName: service discovery,service to service communication
         href: service-discovery/overview.md
