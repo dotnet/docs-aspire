@@ -2,11 +2,12 @@
 title: .NET Aspire inner loop networking overview
 description: Learn how .NET Aspire handles networking and service bindings, and how you can use them in your app code.
 ms.date: 01/08/2024
+ms.topic: overview
 ---
 
-# .NET Aspire inner loop networking overview
+# .NET Aspire inner-loop networking overview
 
-One of the advantages of developing with .NET Aspire is that it enables you to develop, test, and debug cloud-native apps locally. Inner loop networking is a key aspect of .NET Aspire, that allows your apps to communicate with each other in your development environment. In this article, you learn how .NET Aspire handles various networking scenarios, with proxies, service bindings, endpoint configurations, and launch profiles.
+One of the advantages of developing with .NET Aspire is that it enables you to develop, test, and debug cloud-native apps locally. Inner-loop networking is a key aspect of .NET Aspire that allows your apps to communicate with each other in your development environment. In this article, you learn how .NET Aspire handles various networking scenarios with proxies, service bindings, endpoint configurations, and launch profiles.
 
 ## Networking in the inner loop
 
@@ -14,17 +15,17 @@ The inner loop is the process of developing and testing your app locally before 
 
 - **Launch profiles**: Launch profiles are configuration files that specify how to run your app locally. You can use launch profiles (such as the _launchSettings.json_ file) to define the service bindings, environment variables, and launch settings for your app.
 - **Service bindings/Endpoint configurations**: Service bindings are the connections between your app and the services it depends on, such as databases, message queues, or APIs. Service bindings provide information such as the service name, host port, scheme, and environment variable. You can add service bindings to your app either implicitly (via launch profiles) or explicitly by calling <xref:Aspire.Hosting.ResourceBuilderExtensions.WithServiceBinding%2A>.
-- **Proxies**: .NET Aspire automatically launches a proxy for each service binding you add to your app, and assigns a port for the proxy to listen on. The proxy then forwards the requests to the port that your app listens on, which may be different from the proxy port. This way, you can avoid port conflicts and access your app and services using consistent and predictable URLs.
+- **Proxies**: .NET Aspire automatically launches a proxy for each service binding you add to your app, and assigns a port for the proxy to listen on. The proxy then forwards the requests to the port that your app listens on, which might be different from the proxy port. This way, you can avoid port conflicts and access your app and services using consistent and predictable URLs.
 
 ## How service bindings work
 
-A service binding in .NET Aspire involves two components: a **service** representing an external resource your app requires (for example, a database, message queue, or API), and a **binding** establishing a connection between your app and the service, providing necessary information.
+A service binding in .NET Aspire involves two components: a **service** representing an external resource your app requires (for example, a database, message queue, or API), and a **binding** that establishes a connection between your app and the service and provides necessary information.
 
 .NET Aspire supports two service binding types: **implicit**, automatically created based on specified launch profiles defining app behavior in different environments, and **explicit**, manually created using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithServiceBinding%2A>.
 
 Upon creating a binding, whether implicit or explicit, .NET Aspire launches a lightweight reverse proxy on a specified port, handling routing and load balancing for requests from your app to the service. The proxy is a .NET Aspire implementation detail, requiring no configuration or management concern.
 
-To help visualize how service bindings work, consider the .NET Aspire starter templates inner loop networking diagram:
+To help visualize how service bindings work, consider the .NET Aspire starter templates inner-loop networking diagram:
 
 :::image type="content" source="media/networking/networking-proxies-1x.png" lightbox="media/networking/networking-proxies.png" alt-text=".NET Aspire Starter Application template inner loop networking diagram.":::
 
@@ -34,7 +35,7 @@ When you call <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2
 
 1. An explicit <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithLaunchProfile%2A> call on the `IResourceBuilder<ProjectResource>`.
 1. The `DOTNET_LAUNCH_PROFILE` environment variable. For more information, see [.NET environment variables](/dotnet/core/tools/dotnet-environment-variables).
-1. Picking the first launch profile defined in _launchSettings.json_.
+1. The first launch profile defined in _launchSettings.json_.
 
 Consider the following _launchSettings.json_ file:
 
@@ -55,7 +56,7 @@ This will select the **https** launch profile from _launchSettings.json_. The `a
 :::code source="snippets/networking/Networking.AppHost/Program.WithLaunchProfile.cs" id="verbose":::
 
 > [!IMPORTANT]
-> If there's no _launchSettings.json_ (or launch profile) there will be no bindings by default.
+> If there's no _launchSettings.json_ (or launch profile), there are no bindings by default.
 
 ## Ports and proxies
 
@@ -75,7 +76,7 @@ The preceding diagram depicts the following:
 - The `frontend_0` frontend service replica listening on the randomly assigned port 65001.
 - The `frontend_1` frontend service replica listening on the randomly assigned port 65002.
 
-Without the call to `WithReplicas`, there's only one frontend service. The proxy will still be listening on port 5066, but the frontend service will be listening on a random port:
+Without the call to `WithReplicas`, there's only one frontend service. The proxy still listens on port 5066, but the frontend service listens on a random port:
 
 :::code source="snippets/networking/Networking.AppHost/Program.HostPortAndRandomPort.cs" id="hostport":::
 
@@ -97,7 +98,7 @@ The underlying service is fed this port via `ASPNETCORE_URLS` for project resour
 
 :::code source="snippets/networking/Networking.AppHost/Program.EnvVarPort.cs" id="envvarport":::
 
-The above code will make the random port available in the `PORT` environment variable. The app uses this to listen to incoming connections from the proxy. Consider the following diagram:
+The previous code makes the random port available in the `PORT` environment variable. The app uses this port to listen to incoming connections from the proxy. Consider the following diagram:
 
 :::image type="content" source="media/networking/proxy-with-env-var-port-1x.png" lightbox="media/networking/proxy-with-env-var-port.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and environment variable port.":::
 
@@ -127,7 +128,7 @@ The preceding diagram depicts the following:
 
 ## Container ports
 
-When you add a container resource, .NET Aspire will automatically assign a random port to the container. To specify a container port, configure the container resource with the desired port:
+When you add a container resource, .NET Aspire automatically assigns a random port to the container. To specify a container port, configure the container resource with the desired port:
 
 :::code source="snippets/networking/Networking.AppHost/Program.ContainerPort.cs" id="containerport":::
 
