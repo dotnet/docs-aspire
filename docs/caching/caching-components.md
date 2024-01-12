@@ -113,9 +113,9 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
 
 1. Add the [.NET Aspire StackExchange Redis distributed caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireRedis` app:
 
-```dotnetcli
-dotnet add package Aspire.StackExchange.Redis.DistributedCaching --prerelease
-```
+    ```dotnetcli
+    dotnet add package Aspire.StackExchange.Redis.DistributedCaching --prerelease
+    ```
 
 1. Towards the top of the _Program.cs_ file, add a call to <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddRedisDistributedCache%2A>:
 
