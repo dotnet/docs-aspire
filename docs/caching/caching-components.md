@@ -93,7 +93,6 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
     - Configures ASP.NET Core output caching to use a Redis instance with the specified connection name.
     - Automatically enables corresponding health checks, logging, and telemetry.
 
-
 1. Replace the contents of the _Home.razor_ file of the `AspireRedis.Web` Blazor project with the following:
 
     ```razor
@@ -122,7 +121,6 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
     ```csharp
     builder.AddRedisDistributedCache("cache");
     ```
-
 
 1. In the _Program.cs_ file, replace the existing `/weatherforecast` endpoint code with the following:
 
