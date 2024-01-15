@@ -130,10 +130,10 @@ Here are the configurable options with corresponding default values:
 
 ## Orchestration
 
-In your AppHost project, register a SqlServer database and consume the connection using the following methods:
+In your AppHost project, register a SqlServer container and consume the connection using the following methods:
 
 ```csharp
-var sql = builder.AddSqlServer("sql")
+var sql = builder.AddSqlServerContainer("sql")
                  .AddDatabase("sqldata");
 
 var myService = builder.AddProject<Projects.MyService>()
