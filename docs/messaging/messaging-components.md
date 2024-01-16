@@ -83,7 +83,7 @@ Next, add a Worker Service project to the solution to retrieve and process messa
 
 1. In the solution explorer, right click on the top level `AspireMessaging` solution node and select **Add** > **New project**.
 1. Search for and select the **Worker Service** template and choose **Next**.
-1. For the **Project name**, enter *AspireMessaging.Worker* and select **Next**.
+1. For the **Project name**, enter *AspireMessaging.WorkerService* and select **Next**.
 1. On the **Additional information** screen:
     - Make sure **.NET 8.0** is selected.
     - Make sure **Enlist in .NET Aspire orchestration** is checked and select **Create**.
@@ -180,13 +180,13 @@ app.MapPost("/notify", static async (ServiceBusClient client, string message) =>
 
 ## Add the .NET Aspire component to the Worker Service
 
-Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) component to your `AspireMessaging.Worker` app:
+Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) component to your `AspireMessaging.WorkerService` app:
 
 ```dotnetcli
 dotnet add package Aspire.Azure.Messaging.ServiceBus --prerelease
 ```
 
-In the _Program.cs_ file of the `AspireMessaging.Worker` Razor Pages project, add a call to the `AddAzureServiceBus` extension methods:
+In the _Program.cs_ file of the `AspireMessaging.WorkerService` Razor Pages project, add a call to the `AddAzureServiceBus` extension methods:
 
 ```csharp
 builder.AddAzureServiceBus("serviceBusConnection");
@@ -197,7 +197,7 @@ This method accomplishes the following tasks:
 - Registers a <xref:Microsoft.Azure.Commands.ServiceBus.ServiceBusClient> with the DI container for connecting to Azure Service Bus.
 - Automatically enables corresponding health checks, logging, and telemetry for the respective services.
 
-In the _appsettings.json_ file of the `AspireMessaging.Worker` project, add the corresponding connection information:
+In the _appsettings.json_ file of the `AspireMessaging.WorkerService` project, add the corresponding connection information:
 
 # [Passwordless (Recommended)](#tab/passwordless)
 
