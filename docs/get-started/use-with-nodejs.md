@@ -90,7 +90,7 @@ The .NET Aspire dashboard launches in your default browser, and each client app 
 
 The app host code declares the client app resources using the `AddNpmApp` API.
 
-:::code source="~/samples/AspireWithJavaScript/AspireJavaScript.AppHost/Program.cs":::
+:::code source="~/../samples/AspireWithJavaScript/AspireJavaScript.AppHost/Program.cs":::
 
 The preceding code:
 
@@ -106,11 +106,11 @@ For more information on inner-loop networking, see [.NET Aspire inner-loop netwo
 
 <!-- Update package.json / start: ng server --port %PORT% -->
 
-:::code language="javascript" source="~/samples/AspireWithJavaScript/AspireJavaScript.Angular/proxy.conf.js":::
+:::code language="javascript" source="~/../samples/AspireWithJavaScript/AspireJavaScript.Angular/proxy.conf.js":::
 
-:::code language="json" source="~/samples/AspireWithJavaScript/AspireJavaScript.Angular/package.json":::
+:::code language="json" source="~/../samples/AspireWithJavaScript/AspireJavaScript.Angular/package.json":::
 
-:::code language="typescript" source="~/samples/AspireWithJavaScript/AspireJavaScript.Angular/src/app/app.component.ts":::
+:::code language="typescript" source="~/../samples/AspireWithJavaScript/AspireJavaScript.Angular/src/app/app.component.ts":::
 
 ### Angular app running
 
@@ -118,11 +118,11 @@ For more information on inner-loop networking, see [.NET Aspire inner-loop netwo
 
 ## Explore the React client
 
-:::code language="ini" source="~/samples/AspireWithJavaScript/AspireJavaScript.React/.env":::
+:::code language="ini" source="~/../samples/AspireWithJavaScript/AspireJavaScript.React/.env":::
 
-:::code language="javascript" source="~/samples/AspireWithJavaScript/AspireJavaScript.React/src/index.js":::
+:::code language="javascript" source="~/../samples/AspireWithJavaScript/AspireJavaScript.React/src/index.js":::
 
-:::code language="javascript" source="~/samples/AspireWithJavaScript/AspireJavaScript.React/src/App.js":::
+:::code language="javascript" source="~/../samples/AspireWithJavaScript/AspireJavaScript.React/src/App.js":::
 
 ### React app running
 
@@ -130,13 +130,13 @@ For more information on inner-loop networking, see [.NET Aspire inner-loop netwo
 
 ## Explore the Vue client
 
-:::code language="ini" source="~/samples/AspireWithJavaScript/AspireJavaScript.Vue/.env":::
+:::code language="ini" source="~/../samples/AspireWithJavaScript/AspireJavaScript.Vue/.env":::
 
 Environment type definitions are available in the _env.d.ts_ file. This file is referenced in the _tsconfig.json_ file, and is used to provide type information for the `process.env` object.
 
-:::code language="typescript" source="~/samples/AspireWithJavaScript/AspireJavaScript.Vue/env.d.ts":::
+:::code language="typescript" source="~/../samples/AspireWithJavaScript/AspireJavaScript.Vue/env.d.ts":::
 
-:::code language="javascript" source="~/samples/AspireWithJavaScript/AspireJavaScript.Vue/vite.config.js":::
+:::code language="javascript" source="~/../samples/AspireWithJavaScript/AspireJavaScript.Vue/vite.config.js":::
 
 ### Vue app running
 
