@@ -76,7 +76,7 @@ Configuring connection string with this method, while functional, requires dupli
 
 ## Configure the UI with output caching
 
-1. Add the [.NET Aspire StackExchange Redis output caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireStorage` app:
+1. Add the [.NET Aspire StackExchange Redis output caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireRedis.Web` app:
 
 ```dotnetcli
 dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
@@ -110,7 +110,7 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
 
 ## Configure the API with distributed caching
 
-1. Add the [.NET Aspire StackExchange Redis distributed caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireRedis` app:
+1. Add the [.NET Aspire StackExchange Redis distributed caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireRedis.ApiService` app:
 
     ```dotnetcli
     dotnet add package Aspire.StackExchange.Redis.DistributedCaching --prerelease
@@ -133,7 +133,7 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
         {
             var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
             var forecast = Enumerable.Range(1, 5).Select(index =>
-            new AspireRedis.WeatherForecast
+            new WeatherForecast
             (
                 DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                 Random.Shared.Next(-20, 55),
@@ -149,7 +149,7 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
             return forecast;
         }
 
-        return JsonSerializer.Deserialize<IEnumerable<AspireRedis.WeatherForecast>>(cachedForecast);
+        return JsonSerializer.Deserialize<IEnumerable<WeatherForecast>>(cachedForecast);
     })
     .WithName("GetWeatherForecast");
     ```
