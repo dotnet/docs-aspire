@@ -189,3 +189,7 @@ The final update from the template is made to the _TheWelcome.vue_ file. This fi
 To visualize the Vue client app, navigate to the "vue" endpoint in the .NET Aspire dashboard. The following image depicts the Vue client app:
 
 :::image type="content" source="media/vue-app.png" lightbox="media/vue-app.png" alt-text="Vue client app with fake forecast weather data displayed as a table.":::
+
+## Summary
+
+While there are several considerations that are beyond the scope of this article, you learned how to build .NET Aspire apps that use Node.js and Node Package Manager (`npm`). You also learned how to use the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A> APIs to host Node.js apps and apps that execute from a _package.json_ file, respectively. Finally, you learned how to use the `npm` CLI to create Angular, React, and Vue client apps, and how to configure them to run on different ports.
