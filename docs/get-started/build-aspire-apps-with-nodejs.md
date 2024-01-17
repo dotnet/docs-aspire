@@ -61,7 +61,7 @@ The sample app demonstrates how to use JavaScript client apps that are built ato
 
 To run the app, you first need to install the dependencies for each client. To do so, navigate to each client folder and run `npm install` (or the install alias `npm i`) commands:
 
-### Angular
+### Install Angular dependencies
 
 ```nodejs
 npm i ./AspireJavaScript.Angular/
@@ -69,7 +69,7 @@ npm i ./AspireJavaScript.Angular/
 
 For more information on the Angular app, see [Angular client](#explore-the-angular-client).
 
-### React
+### Install React dependencies
 
 ```nodejs
 npm i ./AspireJavaScript.React/
@@ -77,7 +77,7 @@ npm i ./AspireJavaScript.React/
 
 For more information on the React app, see [React client](#explore-the-react-client).
 
-### Vue
+### Install Vue dependencies
 
 ```nodejs
 npm i ./AspireJavaScript.Vue/
@@ -97,7 +97,7 @@ The .NET Aspire dashboard launches in your default browser, and each client app 
 
 :::image type="content" source="media/aspire-dashboard-with-nodejs.png" lightbox="media/aspire-dashboard-with-nodejs.png" alt-text=".NET Aspire dashboard with multiple JavaScript client apps.":::
 
-The `weatherapi` service endpoint resolves to a Swagger UI page that documents the HTTP API. This service is consumed by each client app to display the weather forecast data.
+The `weatherapi` service endpoint resolves to a Swagger UI page that documents the HTTP API. This service is consumed by each client app to display the weather forecast data. You can view each client app by navigating to the corresponding endpoint in the .NET Aspire dashboard. They're screenshots and the modifications made from the template starting point are detailed in the following sections.
 
 In the same terminal session that you used to run the app, press <kbd>Ctrl</kbd> + <kbd>C</kbd> to stop the app.
 
