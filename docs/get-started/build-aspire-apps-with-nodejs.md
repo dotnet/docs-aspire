@@ -8,6 +8,9 @@ ms.date: 01/16/2024
 
 In this article, you learn how to build .NET Aspire apps that use Node.js and Node Package Manager (`npm`). The sample app in this article demonstrates Angular, React, and Vue client experiences. Node support is available through the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNodeApp%2A> API, while `npm` is available with <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A>. The difference between these two APIs is that the former is used to host Node.js apps, while the latter is used to host apps that execute from a _package.json_ file.
 
+> [!TIP]
+> The sample source code for this article is available on [GitHub](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript), and details on the [Code Samples: .NET Aspire with Angular, React and Vue](/samples/dotnet/aspire-samples/aspire-angular-react-vue) page.
+
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
 Additionally, you need to install the [Node.js](https://nodejs.org/en/download/) on your machine.
@@ -88,9 +91,11 @@ The .NET Aspire dashboard launches in your default browser, and each client app 
 
 The `weatherapi` service endpoint resolves to a Swagger UI page that documents the HTTP API. This service is consumed by each client app to display the weather forecast data.
 
+In the same terminal session that you used to run the app, press <kbd>Ctrl</kbd> + <kbd>C</kbd> to stop the app.
+
 ## Explore the app host
 
-The app host code declares the client app resources using the `AddNpmApp` API.
+To help understand how each client app resource is orchestrated, look to the app host project. The app host code declares the client app resources using the `AddNpmApp` API.
 
 :::code source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.AppHost/Program.cs":::
 
