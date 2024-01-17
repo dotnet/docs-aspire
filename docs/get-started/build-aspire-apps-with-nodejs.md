@@ -6,24 +6,32 @@ ms.date: 01/16/2024
 
 # Build .NET Aspire apps with Node.js
 
-In this article, you learn how to build .NET Aspire apps that use Node.js and Node Package Manager (`npm`). The sample app in this article demonstrates Angular, React, and Vue client experiences. Node support is available through the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNodeApp%2A> API, while `npm` is available with <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A>. The difference between these two APIs is that the former is used to host Node.js apps, while the latter is used to host apps that execute from a _package.json_ file.
+In this article, you learn how to build .NET Aspire apps that use Node.js and Node Package Manager (`npm`). The sample app in this article demonstrates Angular, React, and Vue client experiences. Node.js support is available through the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNodeApp%2A> API, while [`npm` apps](https://docs.npmjs.com/cli/using-npm/scripts) are available with <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A>. The difference between these two APIs is that the former is used to host Node.js apps, while the latter is used to host apps that execute from a _package.json_ file's `scripts` section—and the corresponding `npm run <script-name>` command.
 
 > [!TIP]
-> The sample source code for this article is available on [GitHub](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript), and details on the [Code Samples: .NET Aspire with Angular, React and Vue](/samples/dotnet/aspire-samples/aspire-angular-react-vue) page.
+> The sample source code for this article is available on [GitHub](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript), and there are details available on the [Code Samples: .NET Aspire with Angular, React and Vue](/samples/dotnet/aspire-samples/aspire-angular-react-vue) page.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
-Additionally, you need to install the [Node.js](https://nodejs.org/en/download/) on your machine.
+Additionally, you need to install the [Node.js](https://nodejs.org/en/download/) on your machine. The sample app in this article was built with Node.js version 20.7.0, and npm version 9.7.2. To verify your Node.js and npm versions, run the following commands:
+
+```nodejs
+node --version
+```
+
+```nodejs
+npm --version
+```
 
 ## Clone sample source code
 
-The sample code for this article is available on [GitHub](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript). Clone the repository to your local machine:
+To clone the sample source code from [GitHub](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript), run the following command:
 
 ```bash
 git clone https://github.com/dotnet/aspire-samples.git
 ```
 
-After cloning the repository, navigate to the `samples/AspireWithJavaScript` folder:
+After cloning the repository, navigate to the _samples/AspireWithJavaScript_ folder:
 
 ```bash
 cd samples/AspireWithJavaScript
@@ -46,12 +54,12 @@ The sample app demonstrates how to use JavaScript client apps that are built ato
 |--------------------------------|------------------------------|--------------|
 | [Angular](https://angular.dev) | `npm create @angular@latest` | 4200         |
 | [React](https://react.dev)     | `npm create reactapp@latest` | 3000         |
-| [VueJS](https://vuejs.org)     | `npm create vue@latest`      | 5173         |
+| [Vue](https://vuejs.org)       | `npm create vue@latest`      | 5173         |
 
 > [!TIP]
-> You don't need to run any of these commands, since the sample app already includes the clients. Instead, this is a point of reference from which the clients were created.
+> You don't need to run any of these commands, since the sample app already includes the clients. Instead, this is a point of reference from which the clients were created. For more information, see [npm-init](https://docs.npmjs.com/cli/commands/npm-init).
 
-To run the app, you need to install the dependencies for the client apps first. To do so, navigate to each client folder and run `npm install` (or the install alias `npm i`) commands:
+To run the app, you first need to install the dependencies for each client. To do so, navigate to each client folder and run `npm install` (or the install alias `npm i`) commands:
 
 ### Angular
 
@@ -59,7 +67,7 @@ To run the app, you need to install the dependencies for the client apps first. 
 npm i ./AspireJavaScript.Angular/
 ```
 
-For more information, see [Angular client](#explore-the-angular-client).
+For more information on the Angular app, see [Angular client](#explore-the-angular-client).
 
 ### React
 
@@ -67,7 +75,7 @@ For more information, see [Angular client](#explore-the-angular-client).
 npm i ./AspireJavaScript.React/
 ```
 
-For more information, see [React client](#explore-the-react-client).
+For more information on the React app, see [React client](#explore-the-react-client).
 
 ### Vue
 
@@ -75,7 +83,7 @@ For more information, see [React client](#explore-the-react-client).
 npm i ./AspireJavaScript.Vue/
 ```
 
-For more information, see [Vue client](#explore-the-vue-client).
+For more information on the Vue app, see [Vue client](#explore-the-vue-client).
 
 ## Run the sample app
 
