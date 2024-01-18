@@ -97,7 +97,7 @@ builder.AddSqlServerDbContext<YourDbContext>(
 
 ### Configure multiple DbContext connections
 
-If you want to register more than one `DbContext` with different configuration, you can use `$"Aspire.SqlServer.EntityFrameworkCore.SqlClient:{typeof(TContext).Name}"` configuration section name. The json configuration would look like:
+If you want to register more than one `DbContext` with different configuration, you can use `$"Aspire.Microsoft.EntityFrameworkCore.SqlServer:{typeof(TContext).Name}"` configuration section name. The json configuration would look like:
 
 ```json
 {
