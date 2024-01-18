@@ -50,6 +50,9 @@ conceptualContent:
         - itemType: quickstart
           text: Build your first .NET Aspire app
           url: get-started/build-your-first-aspire-app.md
+        - itemType: sample
+          text: Build .NET Aspire app with Node.js
+          url: get-started/build-aspire-apps-with-nodejs.md
         - itemType: how-to-guide
           text: .NET Aspire setup and tooling
           url: fundamentals/setup-tooling.md

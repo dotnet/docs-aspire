@@ -13,6 +13,8 @@ items:
         href: get-started/build-your-first-aspire-app.md
       - name: Tutorial - Add .NET Aspire to an existing app
         href: get-started/add-aspire-existing-app.md
+      - name: Sample - .NET Aspire apps with Node.js
+        href: get-started/build-aspire-apps-with-nodejs.md
       - name: Setup and tooling
         href: fundamentals/setup-tooling.md
       - name: What's new in .NET Aspire
