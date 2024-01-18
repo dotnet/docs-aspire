@@ -13,7 +13,7 @@ In this article, you learn how to build .NET Aspire apps that use Node.js and No
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
-Additionally, you need to install the [Node.js](https://nodejs.org/en/download/) on your machine. The sample app in this article was built with Node.js version 20.7.0, and npm version 9.7.2. To verify your Node.js and npm versions, run the following commands:
+Additionally, you need to install [Node.js](https://nodejs.org/en/download/) on your machine. The sample app in this article was built with Node.js version 20.7.0 and npm version 9.7.2. To verify your Node.js and npm versions, run the following commands:
 
 ```nodejs
 node --version
@@ -48,7 +48,7 @@ From this directory, there are six child directories described in the following 
 
 ## Install client dependencies
 
-The sample app demonstrates how to use JavaScript client apps that are built atop Node.js. Each client app was initially based on a template created by the `npm` CLI. The following table lists the template commands used to create each client app, along with the default port:
+The sample app demonstrates how to use JavaScript client apps that are built on top of Node.js. Each client app was initially based on a template created by the `npm` CLI. The following table lists the template commands used to create each client app, along with the default port:
 
 | App type                       | Create template command      | Default port |
 |--------------------------------|------------------------------|--------------|
@@ -59,7 +59,7 @@ The sample app demonstrates how to use JavaScript client apps that are built ato
 > [!TIP]
 > You don't need to run any of these commands, since the sample app already includes the clients. Instead, this is a point of reference from which the clients were created. For more information, see [npm-init](https://docs.npmjs.com/cli/commands/npm-init).
 
-To run the app, you first need to install the dependencies for each client. To do so, navigate to each client folder and run `npm install` (or the install alias `npm i`) commands:
+To run the app, you first need to install the dependencies for each client. To do so, navigate to each client folder and run `npm install` (or the install alias `npm i`) commands.
 
 ### Install Angular dependencies
 
@@ -97,7 +97,7 @@ The .NET Aspire dashboard launches in your default browser, and each client app 
 
 :::image type="content" source="media/aspire-dashboard-with-nodejs.png" lightbox="media/aspire-dashboard-with-nodejs.png" alt-text=".NET Aspire dashboard with multiple JavaScript client apps.":::
 
-The `weatherapi` service endpoint resolves to a Swagger UI page that documents the HTTP API. This service is consumed by each client app to display the weather forecast data. You can view each client app by navigating to the corresponding endpoint in the .NET Aspire dashboard. They're screenshots and the modifications made from the template starting point are detailed in the following sections.
+The `weatherapi` service endpoint resolves to a Swagger UI page that documents the HTTP API. This service is consumed by each client app to display the weather forecast data. You can view each client app by navigating to the corresponding endpoint in the .NET Aspire dashboard. Their screenshots and the modifications made from the template starting point are detailed in the following sections.
 
 In the same terminal session that you used to run the app, press <kbd>Ctrl</kbd> + <kbd>C</kbd> to stop the app.
 
@@ -113,7 +113,7 @@ The preceding code:
 - Adds the "weatherapi" service as a project to the app host.
 - With a reference to the "weatherapi" service, adds the "angular", "react", and "vue" client apps as npm apps.
   - Each client app is configured to run on a different container port, and uses the `PORT` environment variable to determine the port.
-  - All client apps also rely on a _Dockerfile_ to build their container image, and are configured to express themselves in the publishing manifest as a container from the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AsDockerfileInManifest%2A>.
+  - All client apps also rely on a _Dockerfile_ to build their container image and are configured to express themselves in the publishing manifest as a container from the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AsDockerfileInManifest%2A>.
 
 For more information on inner-loop networking, see [.NET Aspire inner-loop networking overview](../fundamentals/networking-overview.md). For more information on deploying apps, see [.NET Aspire manifest format for deployment tool builders](../deployment/manifest-format.md).
 
@@ -123,7 +123,7 @@ There are several key modifications from the original Angular template. The firs
 
 :::code language="javascript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/proxy.conf.js":::
 
-The preceding configuration proxies HTTP requests that start with `/api` to target the URL within the `services__weatherapi__1` environment variable. This environment variable is set by the .NET Aspire app host, and is used to resolve the "weatherapi" service endpoint.
+The preceding configuration proxies HTTP requests that start with `/api` to target the URL within the `services__weatherapi__1` environment variable. This environment variable is set by the .NET Aspire app host and is used to resolve the "weatherapi" service endpoint.
 
 The second update is the to the _package.json_ file. This file is used to configure the Angular client to run on a different port than the default port. This is achieved by using the `PORT` environment variable, and the `run-script-os` npm package to set the port.
 
@@ -135,7 +135,7 @@ In order to make HTTP calls to the "weatherapi" service, the Angular client app 
 
 :::code language="typescript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/src/app/app.config.ts":::
 
-Finally, the Angular client app needs to be call the `/api/WeatherForecast` endpoint to retrieve the weather forecast data. There are several HTML, CSS, and TypeScript updates, all of which are made to the following files:
+Finally, the Angular client app needs to call the `/api/WeatherForecast` endpoint to retrieve the weather forecast data. There are several HTML, CSS, and TypeScript updates, all of which are made to the following files:
 
 - _app.component.css_: [Update the CSS to style the table.](https://github.com/dotnet/aspire-samples/blob/ef6868b0999c6eea3d42a10f2b20433c5ea93720/samples/AspireWithJavaScript/AspireJavaScript.Angular/src/app/app.component.css)
 - _app.component.html_: [Update the HTML to display the weather forecast data in a table.](https://github.com/dotnet/aspire-samples/blob/ef6868b0999c6eea3d42a10f2b20433c5ea93720/samples/AspireWithJavaScript/AspireJavaScript.Angular/src/app/app.component.html)
@@ -151,7 +151,7 @@ To visualize the Angular client app, navigate to the "angular" endpoint in the .
 
 ## Explore the React client
 
-There are several key modifications from the original React template. The first is the addition of an _.env_ file. This file is used to set two React specific environment variables:
+There are several key modifications from the original React template. The first is the addition of an _.env_ file. This file is used to set two React-specific environment variables:
 
 - `BROWSER=none`: This environment variable is used to prevent the React client app from launching a browser window.
 - `REACT_APP_WEATHERAPI_URL`: This environment variable is used to set the URL for the "weatherapi" service.
@@ -163,7 +163,7 @@ The preceding configuration sets the `REACT_APP_WEATHERAPI_URL` environment vari
 > [!IMPORTANT]
 > For custom environment variables to be available in the React client app, they must be prefixed with `REACT_APP_`. For more information, see [Adding custom environment variables](https://create-react-app.dev/docs/adding-custom-environment-variables/).
 
-In addition to the aforementioned environment variables, the React app will automatically pick up the `PORT` environment variable and use it to determine the port on which to run. With the environment variables configured, the React client app needs to be call the `/api/WeatherForecast` endpoint to retrieve the weather forecast data. The next update is to the _index.js_ file. The file passes the `REACT_APP_WEATHERAPI_URL` environment variable to the `App` component, as the `weatherApi` property.
+In addition to the aforementioned environment variables, the React app automatically picks up the `PORT` environment variable and uses it to determine the port on which to run. With the environment variables configured, the React client app needs to call the `/api/WeatherForecast` endpoint to retrieve the weather forecast data. The next update is to the _index.js_ file. The file passes the `REACT_APP_WEATHERAPI_URL` environment variable to the `App` component as the `weatherApi` property.
 
 :::code language="javascript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.React/src/index.js":::
 
@@ -180,7 +180,7 @@ To visualize the React client app, navigate to the "react" endpoint in the .NET 
 
 ## Explore the Vue client
 
-There are several key modifications from the original Vue template. The first is the addition of an _.env_ file. This file configures a `VITE_WEATHERAPI_URL` environment variable from the `services__weatherapi__1` environment variable. This environment variable is set by the .NET Aspire app host, and is used to resolve the "weatherapi" service endpoint.
+There are several key modifications from the original Vue template. The first is the addition of an _.env_ file. This file configures a `VITE_WEATHERAPI_URL` environment variable from the `services__weatherapi__1` environment variable. This environment variable is set by the .NET Aspire app host and is used to resolve the "weatherapi" service endpoint.
 
 :::code language="ini" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Vue/.env":::
 
