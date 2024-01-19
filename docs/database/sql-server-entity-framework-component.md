@@ -62,7 +62,7 @@ The .NET Aspire SQL Server Entity Framework Core component provides multiple con
 
 ### Use configuration providers
 
-The .NET Aspire SQL Server Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings> from configuration files such as _appsettings.json_ by using the `Aspire:SqlServer:EntityFrameworkCore:SqlClient` key. If you have set up your configurations in the `Aspire:SqlServer:EntityFrameworkCore:SqlClient` section you can just call the method without passing any parameter.
+The .NET Aspire SQL Server Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings> from configuration files such as _appsettings.json_ by using the `Aspire:Microsoft:EntityFrameworkCore:SqlServer` key. If you have set up your configurations in the `Aspire:Microsoft:EntityFrameworkCore:SqlServer` section you can just call the method without passing any parameter.
 
 The following is an example of an _appsettings.json_ file that configures some of the available options:
 
@@ -97,7 +97,7 @@ builder.AddSqlServerDbContext<YourDbContext>(
 
 ### Configure multiple DbContext connections
 
-If you want to register more than one `DbContext` with different configuration, you can use `$"Aspire.SqlServer.EntityFrameworkCore.SqlClient:{typeof(TContext).Name}"` configuration section name. The json configuration would look like:
+If you want to register more than one `DbContext` with different configuration, you can use `$"Aspire.Microsoft.EntityFrameworkCore.SqlServer:{typeof(TContext).Name}"` configuration section name. The json configuration would look like:
 
 ```json
 {
