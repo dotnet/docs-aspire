@@ -14,7 +14,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for solutions.
       dotnet:
         patterns:
@@ -25,7 +25,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for solutions.
       dotnet:
         patterns:
@@ -36,7 +36,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for solutions.
       dotnet:
         patterns:
@@ -47,7 +47,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for solutions.
       dotnet:
         patterns:
@@ -58,7 +58,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for projects.
       dotnet:
         patterns:
@@ -69,7 +69,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for projects.
       dotnet:
         patterns:
@@ -80,7 +80,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for projects.
       dotnet:
         patterns:
@@ -91,7 +91,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for projects.
       dotnet:
         patterns:
@@ -102,7 +102,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for projects.
       dotnet:
         patterns:
@@ -113,7 +113,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for projects.
       dotnet:
         patterns:
@@ -124,7 +124,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for projects.
       dotnet:
         patterns:
@@ -135,7 +135,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for projects.
       dotnet:
         patterns:
@@ -146,7 +146,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for projects.
       dotnet:
         patterns:
@@ -157,7 +157,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for projects.
       dotnet:
         patterns:
@@ -168,7 +168,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for projects.
       dotnet:
         patterns:
@@ -179,7 +179,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for projects.
       dotnet:
         patterns:
@@ -190,7 +190,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for projects.
       dotnet:
         patterns:
@@ -201,7 +201,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for projects.
       dotnet:
         patterns:
@@ -212,7 +212,7 @@ updates:
       interval: "weekly"
       day: "wednesday"
     open-pull-requests-limit: 5
-    group:
+    groups:
       # Group .NET updates together for projects.
       dotnet:
         patterns:
