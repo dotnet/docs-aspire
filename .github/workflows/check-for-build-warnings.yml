@@ -3,8 +3,6 @@ name: OPS status checker
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
-    paths-ignore:
-      - .github/**
 
 jobs:
   status_checker_job:
