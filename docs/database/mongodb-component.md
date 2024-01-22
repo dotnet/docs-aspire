@@ -40,7 +40,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component consuming project, call the `AddMongoDBClient` extension to register a `IMongoClient` for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the `AddMongoDBClient` extension to register a `IMongoClient` for use via the dependency injection container.
 
 ```csharp
 builder.AddMongoDBClient("IMongoClient");

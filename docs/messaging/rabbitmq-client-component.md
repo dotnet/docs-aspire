@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddRabbitMQ%2A> extension method to register an `IConnection` for use via the dependency injection container. The method takes a connection name parameter.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddRabbitMQ%2A> extension method to register an `IConnection` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddRabbitMQ("messaging");
