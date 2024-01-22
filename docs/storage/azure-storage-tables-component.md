@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Data Tables component
 description: This article describes the .NET Aspire Azure Data Tables component features and capabilities.
-ms.date: 12/11/2023
+ms.date: 01/22/2024
 ms.topic: how-to
 ---
 
@@ -54,6 +54,24 @@ public class ExampleService(TableServiceClient client)
     // Use client...
 }
 ```
+
+## Orchestration
+
+[!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
+
+In your orchestrator project, register the Azure Table Storage component and consume the service using the following methods:
+
+```csharp
+// Service registration
+var tables = builder.AddAzureStorage("storage")
+                    .AddTables("tables");
+
+// Service consumption
+Builder.AddProject<MyApp.ExampleProject>() 
+       .WithReference(tables)
+```
+
+For more information, see <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A>.
 
 ## Configuration
 
@@ -144,22 +162,6 @@ The following configurable options are exposed through the <xref:Aspire.Azure.Da
 | `Credential`   | The credential used to authenticate to the Table Storage.                                |
 | `HealthChecks` | A boolean value that indicates whether the Table Storage health check is enabled or not. |
 | `Tracing`      | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.      |
-
-## Orchestration
-
-In your orchestrator project, register the Azure Table Storage component and consume the service using the following methods:
-
-```csharp
-// Service registration
-var tables = builder.AddAzureStorage("storage")
-                    .AddTables("tables");
-
-// Service consumption
-Builder.AddProject<MyApp.ExampleProject>() 
-       .WithReference(tables)
-```
-
-For more information, see <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A>.
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 

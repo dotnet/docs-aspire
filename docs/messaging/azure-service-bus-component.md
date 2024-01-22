@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Service Bus component
 description: This article describes the .NET Aspire Azure Service Bus component features and capabilities
 ms.topic: how-to
-ms.date: 12/11/2023
+ms.date: 01/22/2024
 ---
 
 # .NET Aspire Azure Service Bus component
@@ -53,6 +53,21 @@ public class ExampleService(ServiceBusClient client)
 {
     // ...
 }
+```
+
+## Orchestration
+
+[!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
+
+In your orchestrator project, register the Service Bus component and consume the service using the following methods:
+
+```csharp
+// Service registration
+var serviceBus = builder.AddAzureServiceBus("messaging");
+
+// Service consumption
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(serviceBus)
 ```
 
 ## Configuration
@@ -139,19 +154,6 @@ The following configurable options are exposed through the <xref:Aspire.Azure.Me
 | `ConnectionString` | The connection string used to connect to the Service Bus namespace. |
 | `Credential`       | The credential used to authenticate to the Service Bus namespace.   |
 | `Namespace`        | The fully qualified Service Bus namespace.                          |
-
-## Orchestration
-
-In your orchestrator project, register the Service Bus component and consume the service using the following methods:
-
-```csharp
-// Service registration
-var serviceBus = builder.AddAzureServiceBus("messaging");
-
-// Service consumption
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(serviceBus)
-```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 

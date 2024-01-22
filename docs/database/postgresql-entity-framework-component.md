@@ -2,7 +2,7 @@
 title: .NET Aspire PostgreSQL Entity Framework Core component
 description: This article describes the .NET Aspire PostgreSQL Entity Framework Core component.
 ms.topic: how-to
-ms.date: 12/12/2023
+ms.date: 01/22/2024
 ---
 
 # .NET Aspire PostgreSQL Entity Framework Core component
@@ -58,6 +58,18 @@ public class ExampleService(YourDbContext context)
 {
     // Use context...
 }
+```
+
+## Orchestration
+
+In your orchestrator project, register the PostgreSQL component and consume the `DbContext` using the following methods:
+
+```csharp
+var postgresdb = builder.AddPostgres("pg")
+                        .AddDatabase("postgresdb");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(postgresdb);
 ```
 
 ## Configuration
@@ -139,18 +151,6 @@ Here are the configurable options with corresponding default values:
 | `HealthChecks`     | A boolean value that indicates whether the database health check is enabled or not.                   |
 | `Tracing`          | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.                   |
 | `Metrics`          | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not.                  |
-
-## Orchestration
-
-In your orchestrator project, register the PostgreSQL component and consume the `DbContext` using the following methods:
-
-```csharp
-var postgresdb = builder.AddPostgres("pg")
-                        .AddDatabase("postgresdb");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(postgresdb);
-```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
