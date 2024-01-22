@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureCosmosDBExtensions.AddAzureCosmosDB%2A> extension to register a <xref:Microsoft.Azure.Cosmos.CosmosClient?displayProperty=fullName> for use via the dependency injection container.
+In the _Program.cs_ file of your component consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureCosmosDBExtensions.AddAzureCosmosDB%2A> extension to register a <xref:Microsoft.Azure.Cosmos.CosmosClient?displayProperty=fullName> for use via the dependency injection container.
 
 ```csharp
 builder.AddAzureCosmosDB("cosmosConnectionName");
@@ -49,11 +49,11 @@ public class ExampleService(CosmosClient client)
 
 For more information on using the <xref:Microsoft.Azure.Cosmos.CosmosClient>, see the [Examples for Azure Cosmos DB for NoSQL SDK for .NET](/azure/cosmos-db/nosql/samples-dotnet).
 
-## Orchestration
+## App host usage
 
 [!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
 
-In your orchestrator project, register the .NET Aspire Azure Cosmos DB component and consume the service using the following methods:
+In your app host project, register the .NET Aspire Azure Cosmos DB component and consume the service using the following methods:
 
 ```csharp
 // Service registration

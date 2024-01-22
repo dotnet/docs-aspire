@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueService%2A> extension to register a `QueueServiceClient` for use via the dependency injection container.
+In the _Program.cs_ file of your component consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueService%2A> extension to register a `QueueServiceClient` for use via the dependency injection container.
 
 ```csharp
 builder.AddAzureQueueService("queue");
@@ -47,11 +47,11 @@ public class ExampleService(QueueServiceClient client)
 }
 ```
 
-## Orchestration
+## App host usage
 
 [!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
 
-In your orchestrator project, add a Storage Queue connection and consume the connection using the following methods, such as <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureStorage%2A>:
+In your app host project, add a Storage Queue connection and consume the connection using the following methods, such as <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureStorage%2A>:
 
 ```csharp
 var queues = builder.AddAzureStorage("storage")

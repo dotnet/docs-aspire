@@ -41,7 +41,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension to register a `DbContext` for use via the dependency injection container.
+In the _Program.cs_ file of your component consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension to register a `DbContext` for use via the dependency injection container.
 
 ```csharp
 builder.AddSqlServerDbContext<YourDbContext>("sql");
@@ -56,9 +56,9 @@ public class ExampleService(YourDbContext client)
 }
 ```
 
-## Orchestration
+## App host usage
 
-In your AppHost project, register a SqlServer database and consume the connection using the following methods, such as <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A>:
+In your app host project, register a SqlServer database and consume the connection using the following methods, such as <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A>:
 
 ```csharp
 var sql = builder.AddSqlServer("sql")

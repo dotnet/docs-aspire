@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddRedisDistributedCache%2A> extension to register the required services for distributed caching and add a <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use via the dependency injection container.
+In the _Program.cs_ file of your component consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddRedisDistributedCache%2A> extension to register the required services for distributed caching and add a <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use via the dependency injection container.
 
 ```csharp
 builder.AddRedisDistributedCache("cache");
@@ -47,9 +47,9 @@ public class ExampleService(IDistributedCache cache)
 }
 ```
 
-## Orchestration
+## App host usage
 
-In your orchestrator project, register the .NET Aspire Stack Exchange Redis component and consume the service using the following methods, such as <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A>:
+In your app host project, register the .NET Aspire Stack Exchange Redis component and consume the service using the following methods, such as <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A>:
 
 ```csharp
 // Service registration

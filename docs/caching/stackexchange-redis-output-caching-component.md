@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> extension to register the required services for output caching.
+In the _Program.cs_ file of your component consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> extension to register the required services for output caching.
 
 ```csharp
 builder.AddRedisOutputCache();
@@ -54,9 +54,9 @@ app.MapGet("/attribute", [OutputCache] () => { return "Hello world!"; });
 
 For apps with controllers, apply the `[OutputCache]` attribute to the action method. For Razor Pages apps, apply the attribute to the Razor page class.
 
-## Orchestration
+## App host usage
 
-In your orchestrator project, register the .NET Aspire StackExchange Redis output caching component and consume the service using the following methods:
+In your app host project, register the .NET Aspire StackExchange Redis output caching component and consume the service using the following methods:
 
 ```csharp
 // Service registration

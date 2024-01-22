@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddRabbitMQ%2A> extension method to register an `IConnection` for use via the dependency injection container. The method takes a connection name parameter.
+In the _Program.cs_ file of your component consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddRabbitMQ%2A> extension method to register an `IConnection` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddRabbitMQ("messaging");
@@ -47,9 +47,9 @@ public class ExampleService(IConnection connection)
 }
 ```
 
-## Orchestration
+## App host usage
 
-In your orchestrator project, register a RabbitMQ server and consume the connection using the following methods, such as <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A>:
+In your app host project, register a RabbitMQ server and consume the connection using the following methods, such as <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A>:
 
 ```csharp
 // Service registration

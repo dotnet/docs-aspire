@@ -40,7 +40,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the `AddMongoDBClient` extension to register a `IMongoClient` for use via the dependency injection container.
+In the _Program.cs_ file of your component consuming project, call the `AddMongoDBClient` extension to register a `IMongoClient` for use via the dependency injection container.
 
 ```csharp
 builder.AddMongoDBClient("IMongoClient");
@@ -57,9 +57,9 @@ public class ExampleService(IMongoClient mongoClient)
 
 After adding a `IMongoClient`, you can require the `IMongoClient` instance using DI.
 
-## Orchestration
+## App host usage
 
-In your AppHost project, register a MongoDB database and consume the connection using the following methods:
+In your app host project, register a MongoDB database and consume the connection using the following methods:
 
 ```csharp
 var mongodb = builder.AddMongoDB("mongodb")

@@ -18,7 +18,7 @@ A _distributed application_ is one that uses computational resources across mult
 - [**Components**](#net-aspire-components): .NET Aspire components are NuGet packages for commonly used services, such as Redis or Postgres, with standardized interfaces ensuring they connect consistently and seamlessly with your app.
 - [**Tooling**](#project-templates-and-tooling): .NET Aspire comes with project templates and tooling experiences for Visual Studio and the [dotnet CLI](/dotnet/core/tools/) help you create and interact with .NET Aspire apps.
 
-## Orchestration
+## App host usage
 
 Orchestration refers to the coordination and management of various elements within a cloud-native application. .NET Aspire streamlines the configuration and interconnection of different parts of your cloud-native app.  It provides useful abstractions for managing service discovery, environment variables, and container configurations without having to handle low level implementation details. These abstractions also provide consistent setup patterns across apps with many components and services.
 

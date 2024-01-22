@@ -45,7 +45,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext> for use via the dependency injection container.
+In the _Program.cs_ file of your component consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext> for use via the dependency injection container.
 
 ```csharp
 builder.AddNpgsqlDbContext<YourDbContext>("db");
@@ -60,9 +60,9 @@ public class ExampleService(YourDbContext context)
 }
 ```
 
-## Orchestration
+## App host usage
 
-In your orchestrator project, register the PostgreSQL component and consume the `DbContext` using the following methods:
+In your app host project, register the PostgreSQL component and consume the `DbContext` using the following methods:
 
 ```csharp
 var postgresdb = builder.AddPostgres("pg")

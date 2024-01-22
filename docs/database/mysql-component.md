@@ -40,7 +40,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the `AddMySqlDataSource` extension to register a `MySqlDataSource` for use via the dependency injection container.
+In the _Program.cs_ file of your component consuming project, call the `AddMySqlDataSource` extension to register a `MySqlDataSource` for use via the dependency injection container.
 
 ```csharp
 builder.AddMySqlDataSource("mysqldatasource");
@@ -57,9 +57,9 @@ public class ExampleService(MySqlDataSource dataSource)
 
 After adding a `MySqlDataSource`, you can require the `MySqlDataSource` instance using DI.
 
-## Orchestration
+## App host usage
 
-In your AppHost project, register a MySql database and consume the connection using the following methods:
+In your app host project, register a MySql database and consume the connection using the following methods:
 
 ```csharp
 var mysqldb = builder.AddMySql("mysql")

@@ -66,7 +66,7 @@ For more information on working with .NET Aspire components in Visual Studio, se
     > [!TIP]
     > Components that are designed to connect to Azure services also support passwordless authentication and authorization using [Azure RBAC](/azure/role-based-access-control/overview), which is the recommended approach for production apps.
 
-1. In your orchestrator project (the project with the _*.AppHost_ suffix), add a reference to the worker service project. If you're using Visual Studio, you can use the [**Add .NET Aspire Orchestrator Support**](setup-tooling.md#add-orchestration-projects) project context menu item to add the reference automatically. The following code snippet shows the project reference of the _AspireApp.AppHost.csproj_:
+1. In your app host project (the project with the _*.AppHost_ suffix), add a reference to the worker service project. If you're using Visual Studio, you can use the [**Add .NET Aspire Orchestrator Support**](setup-tooling.md#add-orchestration-projects) project context menu item to add the reference automatically. The following code snippet shows the project reference of the _AspireApp.AppHost.csproj_:
 
     :::code language="xml" source="snippets/components/AspireApp/AspireApp.AppHost/AspireApp.AppHost.csproj" highlight="16":::
 

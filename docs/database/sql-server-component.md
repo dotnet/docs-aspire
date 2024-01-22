@@ -42,7 +42,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerSqlClientExtensions.AddSqlServerClient%2A> extension to register a <xref:System.Data.SqlClient.SqlConnection> for use via the dependency injection container.
+In the _Program.cs_ file of your component consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerSqlClientExtensions.AddSqlServerClient%2A> extension to register a <xref:System.Data.SqlClient.SqlConnection> for use via the dependency injection container.
 
 ```csharp
 builder.AddSqlServerClient("sql");
@@ -59,9 +59,9 @@ public class ExampleService(SqlConnection client)
 
 After adding a `SqlConnection`, you can get the scoped [SqlConnection](/dotnet/api/microsoft.data.sqlclient.sqlconnection) instance using DI.
 
-## Orchestration
+## App host usage
 
-In your AppHost project, register a SqlServer container and consume the connection using the following methods:
+In your app host project, register a SqlServer container and consume the connection using the following methods:
 
 ```csharp
 var sql = builder.AddSqlServerContainer("sql")

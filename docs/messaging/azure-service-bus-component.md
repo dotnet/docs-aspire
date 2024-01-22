@@ -40,7 +40,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireServiceBusExtensions.AddAzureServiceBus%2A> extension to register a `ServiceBusClient` for use via the dependency injection container.
+In the _Program.cs_ file of your component consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireServiceBusExtensions.AddAzureServiceBus%2A> extension to register a `ServiceBusClient` for use via the dependency injection container.
 
 ```csharp
 builder.AddAzureServiceBus("messaging");
@@ -55,11 +55,11 @@ public class ExampleService(ServiceBusClient client)
 }
 ```
 
-## Orchestration
+## App host usage
 
 [!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
 
-In your orchestrator project, register the Service Bus component and consume the service using the following methods:
+In your app host project, register the Service Bus component and consume the service using the following methods:
 
 ```csharp
 // Service registration
