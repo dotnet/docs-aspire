@@ -2,7 +2,7 @@
 title: .NET Aspire MySQL database component
 description: This article describes the .NET Aspire MySQL database component.
 ms.topic: how-to
-ms.date: 12/11/2023
+ms.date: 01/22/2024
 ---
 
 # .NET Aspire MySQL database component
@@ -40,7 +40,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the `AddMySqlDataSource` extension to register a `MySqlDataSource` for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the `AddMySqlDataSource` extension to register a `MySqlDataSource` for use via the dependency injection container.
 
 ```csharp
 builder.AddMySqlDataSource("mysqldatasource");
@@ -56,6 +56,24 @@ public class ExampleService(MySqlDataSource dataSource)
 ```
 
 After adding a `MySqlDataSource`, you can require the `MySqlDataSource` instance using DI.
+
+## App host usage
+
+In your app host project, register a MySql database and consume the connection using the following methods:
+
+```csharp
+var mysqldb = builder.AddMySql("mysql")
+                     .AddDatabase("mysqldb");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(mysqldb);
+```
+
+The `WithReference` method configures a connection in the `MyService` project named `mysqldb`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
+
+```csharp
+builder.AddMySqlDataSource("mysqldb");
+```
 
 ## Configuration
 
@@ -117,24 +135,6 @@ Here are the configurable options with corresponding default values:
 | `HealthChecks`     | A boolean value that indicates whether the database health check is enabled or not.  |
 | `Tracing`          | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.  |
 | `Metrics`          | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not. |
-
-## Orchestration
-
-In your AppHost project, register a MySql database and consume the connection using the following methods:
-
-```csharp
-var mysqldb = builder.AddMySql("mysql")
-                     .AddDatabase("mysqldb");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(mysqldb);
-```
-
-The `WithReference` method configures a connection in the `MyService` project named `mysqldb`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
-
-```csharp
-builder.AddMySqlDataSource("mysqldb");
-```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 

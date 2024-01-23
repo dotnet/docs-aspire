@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis output caching Component
 description: This article describes the .NET Aspire StackExchange Redis output caching component features and capabilities
 ms.topic: how-to
-ms.date: 12/12/2023
+ms.date: 01/22/2024
 ---
 
 # .NET Aspire StackExchange Redis output caching component
@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> extension to register the required services for output caching.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> extension to register the required services for output caching.
 
 ```csharp
 builder.AddRedisOutputCache();
@@ -53,6 +53,25 @@ app.MapGet("/attribute", [OutputCache] () => { return "Hello world!"; });
 ```
 
 For apps with controllers, apply the `[OutputCache]` attribute to the action method. For Razor Pages apps, apply the attribute to the Razor page class.
+
+## App host usage
+
+In your app host project, register the .NET Aspire StackExchange Redis output caching component and consume the service using the following methods:
+
+```csharp
+// Service registration
+var redis = builder.AddRedis("redis");
+
+// Service consumption
+var basket = builder.AddProject<Projects.ExampleProject>()
+                    .WithReference(redis)
+```
+
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `redis`. In the _Program.cs_ file of `ExampleProject`, the Redis connection can be consumed using:
+
+```csharp
+builder.AddRedisOutputCache("messaging");
+```
 
 ## Configuration
 
@@ -115,25 +134,6 @@ You can also set up the [ConfigurationOptions](https://stackexchange.github.io/S
 builder.AddRedisOutputCache(
     "cache",
     static configureOptions: options => options.ConnectTimeout = 3000);
-```
-
-## Orchestration
-
-In your orchestrator project, register the .NET Aspire StackExchange Redis output caching component and consume the service using the following methods:
-
-```csharp
-// Service registration
-var redis = builder.AddRedis("redis");
-
-// Service consumption
-var basket = builder.AddProject<Projects.ExampleProject>()
-                    .WithReference(redis)
-```
-
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `redis`. In the _Program.cs_ file of `ExampleProject`, the Redis connection can be consumed using:
-
-```csharp
-builder.AddRedisOutputCache("messaging");
 ```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]

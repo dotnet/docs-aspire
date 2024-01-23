@@ -2,7 +2,7 @@
 title: .NET Aspire MongoDB database component
 description: This article describes the .NET Aspire MongoDB database component.
 ms.topic: how-to
-ms.date: 12/11/2023
+ms.date: 01/22/2024
 ---
 
 # .NET Aspire MongoDB database component
@@ -40,7 +40,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the `AddMongoDBClient` extension to register a `IMongoClient` for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the `AddMongoDBClient` extension to register a `IMongoClient` for use via the dependency injection container.
 
 ```csharp
 builder.AddMongoDBClient("IMongoClient");
@@ -56,6 +56,24 @@ public class ExampleService(IMongoClient mongoClient)
 ```
 
 After adding a `IMongoClient`, you can require the `IMongoClient` instance using DI.
+
+## App host usage
+
+In your app host project, register a MongoDB database and consume the connection using the following methods:
+
+```csharp
+var mongodb = builder.AddMongoDB("mongodb")
+                     .AddDatabase("database");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(mongodb);
+```
+
+The `WithReference` method configures a connection in the `MyService` project named `mongodb`. In the _Program.cs_ file of `MyService`, the database connection can be consumed using:
+
+```csharp
+builder.AddMongoDBClient("mongodb");
+```
 
 ## Configuration
 
@@ -121,24 +139,6 @@ Here are the configurable options with corresponding default values:
 | `HealthChecks`       | A boolean value that indicates whether the database health check is enabled or not. |
 | `HealthCheckTimeout` | An `int?` value that indicates the MongoDB health check timeout in milliseconds.    |
 | `Tracing`            | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not. |
-
-## Orchestration
-
-In your AppHost project, register a MongoDB database and consume the connection using the following methods:
-
-```csharp
-var mongodb = builder.AddMongoDB("mongodb")
-                     .AddDatabase("database");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(mongodb);
-```
-
-The `WithReference` method configures a connection in the `MyService` project named `mongodb`. In the _Program.cs_ file of `MyService`, the database connection can be consumed using:
-
-```csharp
-builder.AddMongoDBClient("mongodb");
-```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 

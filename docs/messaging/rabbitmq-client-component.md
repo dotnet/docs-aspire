@@ -2,7 +2,7 @@
 title: .NET Aspire RabbitMQ component
 description: Learn how to use the .NET Aspire RabbitMQ client message-broker component.
 ms.topic: how-to
-ms.date: 12/11/2023
+ms.date: 01/22/2024
 ---
 
 # .NET Aspire RabbitMQ component
@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddRabbitMQ%2A> extension method to register an `IConnection` for use via the dependency injection container. The method takes a connection name parameter.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddRabbitMQ%2A> extension method to register an `IConnection` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddRabbitMQ("messaging");
@@ -46,6 +46,21 @@ public class ExampleService(IConnection connection)
     // Use connection...
 }
 ```
+
+## App host usage
+
+In your app host project, register a RabbitMQ server and consume the connection using the following methods, such as <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A>:
+
+```csharp
+// Service registration
+var messaging = builder.AddRabbitMQ("messaging");
+
+// Service consumption
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(messaging);
+```
+
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `messaging`.
 
 ## Configuration
 
@@ -105,21 +120,6 @@ builder.AddRabbitMQ(
     static configureConnectionFactory:
         factory => factory.ClientProvidedName = "MyApp");
 ```
-
-## Orchestration
-
-In your orchestrator project, register a RabbitMQ server and consume the connection using the following methods, such as <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A>:
-
-```csharp
-// Service registration
-var messaging = builder.AddRabbitMQ("messaging");
-
-// Service consumption
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(messaging);
-```
-
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `messaging`.
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 

@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Key Vault component
 description: Lean about the .NET Aspire Azure Key Vault component.
 ms.topic: how-to
-ms.date: 12/11/2023
+ms.date: 01/22/2024
 ---
 
 # .NET Aspire Azure Key Vault component
@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireKeyVaultExtensions.AddAzureKeyVaultSecrets%2A> extension to register a `SecretClient` for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireKeyVaultExtensions.AddAzureKeyVaultSecrets%2A> extension to register a `SecretClient` for use via the dependency injection container.
 
 ```csharp
 builder.AddAzureKeyVaultSecrets("secrets");

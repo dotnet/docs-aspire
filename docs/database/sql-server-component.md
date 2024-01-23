@@ -2,7 +2,7 @@
 title: .NET Aspire SQL Server component
 description: This article describes the .NET Aspire SQL Server component.
 ms.topic: how-to
-ms.date: 12/12/2023
+ms.date: 01/22/2024
 ---
 
 # .NET Aspire SQL Server component
@@ -42,7 +42,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerSqlClientExtensions.AddSqlServerClient%2A> extension to register a <xref:System.Data.SqlClient.SqlConnection> for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerSqlClientExtensions.AddSqlServerClient%2A> extension to register a <xref:System.Data.SqlClient.SqlConnection> for use via the dependency injection container.
 
 ```csharp
 builder.AddSqlServerClient("sql");
@@ -58,6 +58,24 @@ public class ExampleService(SqlConnection client)
 ```
 
 After adding a `SqlConnection`, you can get the scoped [SqlConnection](/dotnet/api/microsoft.data.sqlclient.sqlconnection) instance using DI.
+
+## App host usage
+
+In your app host project, register a SqlServer container and consume the connection using the following methods:
+
+```csharp
+var sql = builder.AddSqlServerContainer("sql")
+                 .AddDatabase("sqldata");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(sql);
+```
+
+The `WithReference` method configures a connection in the `MyService` project named `sqldata`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
+
+```csharp
+builder.AddSqlServerClient("sqldata");
+```
 
 ## Configuration
 
@@ -127,24 +145,6 @@ Here are the configurable options with corresponding default values:
 | `HealthChecks`     | A boolean value that indicates whether the database health check is enabled or not.  |
 | `Tracing`          | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.  |
 | `Metrics`          | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not. |
-
-## Orchestration
-
-In your AppHost project, register a SqlServer container and consume the connection using the following methods:
-
-```csharp
-var sql = builder.AddSqlServerContainer("sql")
-                 .AddDatabase("sqldata");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(sql);
-```
-
-The `WithReference` method configures a connection in the `MyService` project named `sqldata`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
-
-```csharp
-builder.AddSqlServerClient("sqldata");
-```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 

@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL component
 description: This article describes the .NET Aspire PostgreSQL component.
-ms.date: 12/12/2023
+ms.date: 01/22/2024
 ms.topic: how-to
 ---
 
@@ -31,7 +31,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension to register an `NpgsqlDataSource` for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension to register an `NpgsqlDataSource` for use via the dependency injection container.
 
 ```csharp
 builder.AddNpgsqlDataSource("db");
@@ -44,6 +44,24 @@ public class ExampleService(NpgsqlDataSource dataSource)
 {
     // Use dataSource...
 }
+```
+
+## App host usage
+
+In your app host project, register and consume the PostgreSQL component using the following methods, such as <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A>:
+
+```csharp
+var postgresdb = builder.AddPostgres("pg")
+                        .AddDatabase("postgresdb");
+
+var exampleProject = builder.AddProject<Projects.ExampleProject>()
+                            .WithReference(postgresdb);
+```
+
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `postgresdb`. In the _Program.cs_ file of the `ExampleService` project, the database connection can be consumed using:
+
+```csharp
+builder.AddNpgsqlDataSource("postgresdb");
 ```
 
 ## Configuration
@@ -93,24 +111,6 @@ You can also pass the `Action<NpgsqlSettings> configureSettings` delegate to set
 builder.AddNpgsqlDataSource(
     "postgresdb",
      settings => settings.HealthChecks = false);
-```
-
-## Orchestration
-
-In your orchestrator project, register and consume the PostgreSQL component using the following methods, such as <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A>:
-
-```csharp
-var postgresdb = builder.AddPostgres("pg")
-                        .AddDatabase("postgresdb");
-
-var exampleProject = builder.AddProject<Projects.ExampleProject>()
-                            .WithReference(postgresdb);
-```
-
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `postgresdb`. In the _Program.cs_ file of the `ExampleService` project, the database connection can be consumed using:
-
-```csharp
-builder.AddNpgsqlDataSource("postgresdb");
 ```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]

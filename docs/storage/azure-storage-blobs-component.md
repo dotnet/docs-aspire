@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Blob Storage component
 description: This article describes the .NET Aspire Azure Blob Storage component features and capabilities.
 ms.topic: how-to
-ms.date: 12/11/2023
+ms.date: 01/22/2024
 ---
 
 # .NET Aspire Azure Blob Storage component
@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireBlobStorageExtensions.AddAzureBlobService%2A> extension to register a `BlobServiceClient` for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireBlobStorageExtensions.AddAzureBlobService%2A> extension to register a `BlobServiceClient` for use via the dependency injection container.
 
 ```csharp
 builder.AddAzureBlobService("blobs");
@@ -45,6 +45,26 @@ public class ExampleService(BlobServiceClient client)
 {
     // Use client...
 }
+```
+
+## App host usage
+
+[!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
+
+In your app host project, register the Azure Blob Storage component and consume the service using the following methods, such as <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureStorage%2A>:
+
+```csharp
+var blobs = builder.AddAzureStorage("storage")
+                   .AddBlobs("blobs");
+
+var exampleProject = builder.AddProject<Projects.ExampleProject>()
+                            .WithReference(blobs);
+```
+
+The <xref:Aspire.Hosting.AzureResourceExtensions.AddBlobs%2A> method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:blobs` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named blobs in the `ExampleProject` project. In the _Program.cs_ file of `ExampleProject`, the connection can be consumed using:
+
+```csharp
+builder.AddAzureBlobService("blobs");
 ```
 
 ## Configuration
@@ -127,24 +147,6 @@ builder.AddAzureBlobService(
     static configureClientBuilder: clientBuilder =>
         clientBuilder.ConfigureOptions(
             static options => options.Diagnostics.ApplicationId = "myapp"));
-```
-
-## Orchestration
-
-In your orchestrator project, register the Azure Blob Storage component and consume the service using the following methods, such as <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureStorage%2A>:
-
-```csharp
-var blobs = builder.AddAzureStorage("storage")
-                   .AddBlobs("blobs");
-
-var exampleProject = builder.AddProject<Projects.ExampleProject>()
-                            .WithReference(blobs);
-```
-
-The <xref:Aspire.Hosting.AzureResourceExtensions.AddBlobs%2A> method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:blobs` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named blobs in the `ExampleProject` project. In the _Program.cs_ file of `ExampleProject`, the connection can be consumed using:
-
-```csharp
-builder.AddAzureBlobService("blobs");
 ```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]

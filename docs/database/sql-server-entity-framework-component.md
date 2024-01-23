@@ -2,7 +2,7 @@
 title: .NET Aspire SqlServer Entity Framework Core component
 description: This article describes the .NET Aspire SQL Server Entity Framework Core component.
 ms.topic: how-to
-ms.date: 12/12/2023
+ms.date: 01/22/2024
 ---
 
 # .NET Aspire SqlServer Entity Framework Core component
@@ -41,7 +41,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension to register a `DbContext` for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension to register a `DbContext` for use via the dependency injection container.
 
 ```csharp
 builder.AddSqlServerDbContext<YourDbContext>("sql");
@@ -54,6 +54,24 @@ public class ExampleService(YourDbContext client)
 {
     // Use client...
 }
+```
+
+## App host usage
+
+In your app host project, register a SqlServer database and consume the connection using the following methods, such as <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A>:
+
+```csharp
+var sql = builder.AddSqlServer("sql")
+                 .AddDatabase("sqldata");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(sql);
+```
+
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `MyService` project named `sqldata`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
+
+```csharp
+builder.AddSqlServerDbContext<MyDbContext>("sqldata");
 ```
 
 ## Configuration
@@ -140,24 +158,6 @@ Here are the configurable options with corresponding default values:
 | `Tracing` | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not. |
 | `Metrics` | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not. |
 | `Timeout` | The time in seconds to wait for the command to execute. |
-
-## Orchestration
-
-In your AppHost project, register a SqlServer database and consume the connection using the following methods, such as <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A>:
-
-```csharp
-var sql = builder.AddSqlServer("sql")
-                 .AddDatabase("sqldata");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(sql);
-```
-
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `MyService` project named `sqldata`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
-
-```csharp
-builder.AddSqlServerDbContext<MyDbContext>("sqldata");
-```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
