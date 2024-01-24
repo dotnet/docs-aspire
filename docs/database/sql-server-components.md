@@ -98,13 +98,7 @@ Replace the contents of the _Program.cs_ file in the _AspireSQLEFCore.AppHost_ p
 
 :::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore.AppHost/Program.cs":::
 
-The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. The Entity Framework classes you configured earlier will automatically use this connection when migrating and connecting to the database. The `sqlpassword` variable represents the password for the default database user in the SQL Server container.
-
-Set a `sqlpassword` key in the [user secrets](/aspnet/core/security/app-secrets) store of the _AspireSQLEFCore.AppHost_ project using the `dotnet user-secrets` command in the AppHost project directory. Passwords must meet the [Password Policy](/sql/relational-databases/security/password-policy#password-complexity) complexity requirements.
-
-```dotnetcli
-dotnet user-secrets set sqlpassword <password>
-```
+The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. The Entity Framework classes you configured earlier will automatically use this connection when migrating and connecting to the database.
 
 ## Run and test the app locally
 
