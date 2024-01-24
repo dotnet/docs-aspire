@@ -3,7 +3,6 @@ title: Build your first .NET Aspire app
 description: Learn how to build your first .NET Aspire app using the .NET Aspire Started Application template.
 ms.date: 12/07/2023
 ms.topic: quickstart
-ms.prod: dotnet
 ---
 
 # Quickstart: Build your first .NET Aspire app

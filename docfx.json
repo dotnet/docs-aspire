@@ -57,11 +57,11 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
+      "ms.service": "dotnet",
       "apiPlatform": "dotnet",
       "author": "IEvangelist",
       "ms.author": "dapine",
       "ms.devlang": "dotnet",
-      "ms.prod": "dotnet",
       "ms.topic": "conceptual",
       "ROBOTS": "INDEX,FOLLOW",
       "audience": "developer",
