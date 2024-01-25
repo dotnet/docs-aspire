@@ -2,7 +2,7 @@
 title: .NET Aspire SqlServer Entity Framework Core component
 description: This article describes the .NET Aspire SQL Server Entity Framework Core component.
 ms.topic: how-to
-ms.date: 11/15/2023
+ms.date: 01/22/2024
 ---
 
 # .NET Aspire SqlServer Entity Framework Core component
@@ -41,7 +41,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension to register a `DbContext` for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension to register a `DbContext` for use via the dependency injection container.
 
 ```csharp
 builder.AddSqlServerDbContext<YourDbContext>("sql");
@@ -56,13 +56,31 @@ public class ExampleService(YourDbContext client)
 }
 ```
 
+## App host usage
+
+In your app host project, register a SqlServer database and consume the connection using the following methods, such as <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A>:
+
+```csharp
+var sql = builder.AddSqlServer("sql")
+                 .AddDatabase("sqldata");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(sql);
+```
+
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `MyService` project named `sqldata`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
+
+```csharp
+builder.AddSqlServerDbContext<MyDbContext>("sqldata");
+```
+
 ## Configuration
 
 The .NET Aspire SQL Server Entity Framework Core component provides multiple configuration approaches and options to meet the requirements and conventions of your project.
 
 ### Use configuration providers
 
-The .NET Aspire SQL Server Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings> from configuration files such as _appsettings.json_ by using the `Aspire:SqlServer:EntityFrameworkCore:SqlClient` key. If you have set up your configurations in the `Aspire:SqlServer:EntityFrameworkCore:SqlClient` section you can just call the method without passing any parameter.
+The .NET Aspire SQL Server Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings> from configuration files such as _appsettings.json_ by using the `Aspire:Microsoft:EntityFrameworkCore:SqlServer` key. If you have set up your configurations in the `Aspire:Microsoft:EntityFrameworkCore:SqlServer` section you can just call the method without passing any parameter.
 
 The following is an example of an _appsettings.json_ file that configures some of the available options:
 
@@ -97,7 +115,7 @@ builder.AddSqlServerDbContext<YourDbContext>(
 
 ### Configure multiple DbContext connections
 
-If you want to register more than one `DbContext` with different configuration, you can use `$"Aspire.SqlServer.EntityFrameworkCore.SqlClient:{typeof(TContext).Name}"` configuration section name. The json configuration would look like:
+If you want to register more than one `DbContext` with different configuration, you can use `$"Aspire.Microsoft.EntityFrameworkCore.SqlServer:{typeof(TContext).Name}"` configuration section name. The json configuration would look like:
 
 ```json
 {
@@ -141,23 +159,6 @@ Here are the configurable options with corresponding default values:
 | `Metrics` | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not. |
 | `Timeout` | The time in seconds to wait for the command to execute. |
 
-## Orchestration
-
-In your AppHost project, register a SqlServer container and consume the connection using the following methods, such as <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServerContainer%2A>:
-
-```csharp
-var sql = builder.AddSqlServerContainer("sql").AddDatabase("sqldata");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(sql);
-```
-
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `MyService` project named `sqldata`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
-
-```csharp
-builder.AddSqlServerDbContext<MyDbContext>("sqldata");
-```
-
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
 By default, the .NET Aspire Sql Server Entity Framework Core component handles the following:
@@ -171,39 +172,39 @@ By default, the .NET Aspire Sql Server Entity Framework Core component handles t
 
 The .NET Aspire SQL Server Entity Framework Core component uses the following Log categories:
 
-- Microsoft.EntityFrameworkCore.Infrastructure
-- Microsoft.EntityFrameworkCore.ChangeTracking
-- Microsoft.EntityFrameworkCore.Infrastructure
-- Microsoft.EntityFrameworkCore.Database.Command
-- Microsoft.EntityFrameworkCore.Query
-- Microsoft.EntityFrameworkCore.Database.Transaction
-- Microsoft.EntityFrameworkCore.Database.Connection
-- Microsoft.EntityFrameworkCore.Model
-- Microsoft.EntityFrameworkCore.Model.Validation
-- Microsoft.EntityFrameworkCore.Update
-- Microsoft.EntityFrameworkCore.Migrations
+- `Microsoft.EntityFrameworkCore.ChangeTracking`
+- `Microsoft.EntityFrameworkCore.Database.Command`
+- `Microsoft.EntityFrameworkCore.Database.Connection`
+- `Microsoft.EntityFrameworkCore.Database.Transaction`
+- `Microsoft.EntityFrameworkCore.Infrastructure`
+- `Microsoft.EntityFrameworkCore.Infrastructure`
+- `Microsoft.EntityFrameworkCore.Migrations`
+- `Microsoft.EntityFrameworkCore.Model`
+- `Microsoft.EntityFrameworkCore.Model.Validation`
+- `Microsoft.EntityFrameworkCore.Query`
+- `Microsoft.EntityFrameworkCore.Update`
 
 ### Tracing
 
 The .NET Aspire SQL Server Entity Framework Core component will emit the following Tracing activities using OpenTelemetry:
 
-- OpenTelemetry.Instrumentation.EntityFrameworkCore
+- "OpenTelemetry.Instrumentation.EntityFrameworkCore"
 
 ### Metrics
 
 The .NET Aspire SQL Server Entity Framework Core component will emit the following metrics using OpenTelemetry:
 
 - Microsoft.EntityFrameworkCore:
-  - ec_Microsoft_EntityFrameworkCore_active_db_contexts
-  - ec_Microsoft_EntityFrameworkCore_total_queries
-  - ec_Microsoft_EntityFrameworkCore_queries_per_second
-  - ec_Microsoft_EntityFrameworkCore_total_save_changes
-  - ec_Microsoft_EntityFrameworkCore_save_changes_per_second
-  - ec_Microsoft_EntityFrameworkCore_compiled_query_cache_hit_rate
-  - ec_Microsoft_Entity_total_execution_strategy_operation_failures
-  - ec_Microsoft_E_execution_strategy_operation_failures_per_second
-  - ec_Microsoft_EntityFramew_total_optimistic_concurrency_failures
-  - ec_Microsoft_EntityF_optimistic_concurrency_failures_per_second
+  - `ec_Microsoft_EntityFrameworkCore_active_db_contexts`
+  - `ec_Microsoft_EntityFrameworkCore_total_queries`
+  - `ec_Microsoft_EntityFrameworkCore_queries_per_second`
+  - `ec_Microsoft_EntityFrameworkCore_total_save_changes`
+  - `ec_Microsoft_EntityFrameworkCore_save_changes_per_second`
+  - `ec_Microsoft_EntityFrameworkCore_compiled_query_cache_hit_rate`
+  - `ec_Microsoft_Entity_total_execution_strategy_operation_failures`
+  - `ec_Microsoft_E_execution_strategy_operation_failures_per_second`
+  - `ec_Microsoft_EntityFramew_total_optimistic_concurrency_failures`
+  - `ec_Microsoft_EntityF_optimistic_concurrency_failures_per_second`
 
 - [Azure SQL Database documentation](/azure/azure-sql/)
 - [.NET Aspire components](../fundamentals/components-overview.md)

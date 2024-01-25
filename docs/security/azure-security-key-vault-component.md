@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Key Vault component
 description: Lean about the .NET Aspire Azure Key Vault component.
 ms.topic: how-to
-ms.date: 11/15/2023
+ms.date: 01/22/2024
 ---
 
 # .NET Aspire Azure Key Vault component
@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireKeyVaultExtensions.AddAzureKeyVaultSecrets%2A> extension to register a `SecretClient` for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireKeyVaultExtensions.AddAzureKeyVaultSecrets%2A> extension to register a `SecretClient` for use via the dependency injection container.
 
 ```csharp
 builder.AddAzureKeyVaultSecrets("secrets");
@@ -131,12 +131,12 @@ The corresponding configuration JSON is defined as follows:
 
 The following configurable options are exposed through the <xref:Aspire.Azure.Security.KeyVault.AzureSecurityKeyVaultSettings> class:
 
-| Name | Description |
-|--|--|
-| `VaultUri` | A URI to the vault on which the client operates. Appears as "DNS Name" in the Azure portal. |
-| `Credential` | The credential used to authenticate to the Azure Key Vault. |
-| `HealthChecks` | A boolean value that indicates whether the Key Vault health check is enabled or not. |
-| `Tracing` | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not. |
+| Name           | Description                                                                                 |
+|----------------|---------------------------------------------------------------------------------------------|
+| `VaultUri`     | A URI to the vault on which the client operates. Appears as "DNS Name" in the Azure portal. |
+| `Credential`   | The credential used to authenticate to the Azure Key Vault.                                 |
+| `HealthChecks` | A boolean value that indicates whether the Key Vault health check is enabled or not.        |
+| `Tracing`      | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.         |
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
@@ -151,14 +151,14 @@ The .NET Aspire Azure Key Vault component includes the following health checks:
 
 The .NET Aspire Azure Key Vault component uses the following log categories:
 
-- Azure.Core
-- Azure.Identity
+- `Azure.Core`
+- `Azure.Identity`
 
 ### Tracing
 
 The .NET Aspire Azure Key Vault component will emit the following tracing activities using OpenTelemetry:
 
-- Azure.Security.KeyVault.Secrets.SecretClient
+- "Azure.Security.KeyVault.Secrets.SecretClient"
 
 ### Metrics
 

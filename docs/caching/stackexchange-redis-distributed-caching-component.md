@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis distributed caching component
 description: This article describes the .NET Aspire StackExchange Redis distributed caching component features and capabilities
 ms.topic: how-to
-ms.date: 11/15/2023
+ms.date: 01/22/2024
 ---
 
 # .NET Aspire StackExchange Redis distributed caching component
@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddRedisDistributedCache%2A> extension to register the required services for distributed caching and add a <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddRedisDistributedCache%2A> extension to register the required services for distributed caching and add a <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use via the dependency injection container.
 
 ```csharp
 builder.AddRedisDistributedCache("cache");
@@ -45,6 +45,25 @@ public class ExampleService(IDistributedCache cache)
 {
     // Use cache...
 }
+```
+
+## App host usage
+
+In your app host project, register the .NET Aspire Stack Exchange Redis component and consume the service using the following methods, such as <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A>:
+
+```csharp
+// Service registration
+var redis = builder.AddRedis("redis");
+
+// Service consumption
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(redis)
+```
+
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `redis`. In the _Program.cs_ file of `ExampleProject`, the Redis connection can be consumed using:
+
+```csharp
+builder.AddRedisDistributedCache("cache");
 ```
 
 ## Configuration
@@ -110,25 +129,6 @@ builder.AddRedisDistributedCache(
     configureOptions: options => options.ConnectTimeout = 3000);
 ```
 
-## Orchestration
-
-In your orchestrator project, register the .NET Aspire Stack Exchange Redis component and consume the service using the following methods, such as <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedisContainer%2A>:
-
-```csharp
-// Service registration
-var redis = builder.AddRedisContainer("redis");
-
-// Service consumption
-builder.AddProject<Projects.ExampleProject>()
-    .WithReference(redis)
-```
-
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `redis`. In the _Program.cs_ file of `ExampleProject`, the Redis connection can be consumed using:
-
-```csharp
-builder.AddRedisDistributedCache("cache");
-```
-
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
 The .NET Aspire StackExchange Redis distributed caching component handles the following:
@@ -142,14 +142,14 @@ The .NET Aspire StackExchange Redis distributed caching component handles the fo
 
 The .NET Aspire StackExchange Redis Distributed Caching component uses the following Log categories:
 
-- Aspire.StackExchange.Redis
-- Microsoft.Extensions.Caching.StackExchangeRedis
+- `Aspire.StackExchange.Redis`
+- `Microsoft.Extensions.Caching.StackExchangeRedis`
 
 ### Tracing
 
 The .NET Aspire StackExchange Redis Distributed Caching component will emit the following Tracing activities using OpenTelemetry:
 
-- OpenTelemetry.Instrumentation.StackExchangeRedis
+- "OpenTelemetry.Instrumentation.StackExchangeRedis"
 
 ### Metrics
 

@@ -39,6 +39,12 @@
       "url": "https://github.com/Microsoft/templates.docs.msft.pdf",
       "branch": "main",
       "branch_mapping": {}
+    },
+    {
+      "path_to_root": "aspire-samples",
+      "url": "https://github.com/dotnet/aspire-samples",
+      "branch": "main",
+      "branch_mapping": {}
     }
   ],
   "branch_target_mapping": {

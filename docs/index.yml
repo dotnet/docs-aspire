@@ -50,6 +50,9 @@ conceptualContent:
         - itemType: quickstart
           text: Build your first .NET Aspire app
           url: get-started/build-your-first-aspire-app.md
+        - itemType: sample
+          text: Build .NET Aspire app with Node.js
+          url: get-started/build-aspire-apps-with-nodejs.md
         - itemType: how-to-guide
           text: .NET Aspire setup and tooling
           url: fundamentals/setup-tooling.md
@@ -62,6 +65,9 @@ conceptualContent:
         - itemType: reference
           text: .NET Aspire dashboard
           url: fundamentals/dashboard.md
+        - itemType: overview
+          text: .NET Aspire local networking
+          url: fundamentals/networking-overview.md
 
     - title: Storage
       links:
@@ -101,6 +107,12 @@ conceptualContent:
         - itemType: how-to-guide
           text: SQL Database with EF Core
           url: database/sql-server-entity-framework-component.md
+        - itemType: how-to-guide
+          text: MySqlConnector Database
+          url: database/mysql-component.md
+        - itemType: how-to-guide
+          text: MongoDB Database
+          url: database/mongodb-component.md
 
     - title: Messaging
       links:
@@ -143,9 +155,9 @@ conceptualContent:
         - itemType: how-to-guide
           text: Integrate with Application Insights
           url: deployment/azure/application-insights.md
-        - itemType: how-to-guide
-          text: Deploy to a Kubernetes cluster with Aspirate
-          url: deployment/k8s-deployment.md
+        - itemType: reference
+          text: .NET Aspire deployment manifest format
+          url: deployment/manifest-format.md
 
 additionalContent:
   sections:

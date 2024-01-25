@@ -2,7 +2,7 @@
 title: .NET Aspire SQL Server component
 description: This article describes the .NET Aspire SQL Server component.
 ms.topic: how-to
-ms.date: 12/01/2023
+ms.date: 01/22/2024
 ---
 
 # .NET Aspire SQL Server component
@@ -42,7 +42,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerSqlClientExtensions.AddSqlServerClient%2A> extension to register a <xref:System.Data.SqlClient.SqlConnection> for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerSqlClientExtensions.AddSqlServerClient%2A> extension to register a <xref:System.Data.SqlClient.SqlConnection> for use via the dependency injection container.
 
 ```csharp
 builder.AddSqlServerClient("sql");
@@ -58,6 +58,24 @@ public class ExampleService(SqlConnection client)
 ```
 
 After adding a `SqlConnection`, you can get the scoped [SqlConnection](/dotnet/api/microsoft.data.sqlclient.sqlconnection) instance using DI.
+
+## App host usage
+
+In your app host project, register a SqlServer container and consume the connection using the following methods:
+
+```csharp
+var sql = builder.AddSqlServerContainer("sql")
+                 .AddDatabase("sqldata");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(sql);
+```
+
+The `WithReference` method configures a connection in the `MyService` project named `sqldata`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
+
+```csharp
+builder.AddSqlServerClient("sqldata");
+```
 
 ## Configuration
 
@@ -121,29 +139,12 @@ builder.AddSqlServerSqlClientConfig("INSTANCE_NAME");
 
 Here are the configurable options with corresponding default values:
 
-| Name | Description |
-|--|--|
-| `ConnectionString` | The connection string of the SQL Server database to connect to. |
-| `HealthChecks` | A boolean value that indicates whether the database health check is enabled or not. |
-| `Tracing` | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not. |
-| `Metrics` | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not. |
-
-## Orchestration
-
-In your AppHost project, register a SqlServer container and consume the connection using the following methods:
-
-```csharp
-var sql = builder.AddSqlServerContainer("sql").AddDatabase("sqldata");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(sql);
-```
-
-The `WithReference` method configures a connection in the `MyService` project named `sqldata`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
-
-```csharp
-builder.AddSqlServerClient("sqldata");
-```
+| Name               | Description                                                                          |
+|--------------------|--------------------------------------------------------------------------------------|
+| `ConnectionString` | The connection string of the SQL Server database to connect to.                      |
+| `HealthChecks`     | A boolean value that indicates whether the database health check is enabled or not.  |
+| `Tracing`          | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.  |
+| `Metrics`          | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not. |
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
@@ -162,29 +163,29 @@ The .NET Aspire SQL Server component currently doesn't enable logging by default
 
 The .NET Aspire SQL Server component will emit the following Tracing activities using OpenTelemetry:
 
-- OpenTelemetry.Instrumentation.SqlClient
+- "OpenTelemetry.Instrumentation.SqlClient"
 
 ### Metrics
 
 The .NET Aspire SQL Server component will emit the following metrics using OpenTelemetry:
 
 - Microsoft.Data.SqlClient.EventSource
-  - active-hard-connections
-  - hard-connects
-  - hard-disconnects
-  - active-soft-connects
-  - soft-connects
-  - soft-disconnects
-  - number-of-non-pooled-connections
-  - number-of-pooled-connections
-  - number-of-active-connection-pool-groups
-  - number-of-inactive-connection-pool-groups
-  - number-of-active-connection-pools
-  - number-of-inactive-connection-pools
-  - number-of-active-connections
-  - number-of-free-connections
-  - number-of-stasis-connections
-  - number-of-reclaimed-connections
+  - `active-hard-connections`
+  - `hard-connects`
+  - `hard-disconnects`
+  - `active-soft-connects`
+  - `soft-connects`
+  - `soft-disconnects`
+  - `number-of-non-pooled-connections`
+  - `number-of-pooled-connections`
+  - `number-of-active-connection-pool-groups`
+  - `number-of-inactive-connection-pool-groups`
+  - `number-of-active-connection-pools`
+  - `number-of-inactive-connection-pools`
+  - `number-of-active-connections`
+  - `number-of-free-connections`
+  - `number-of-stasis-connections`
+  - `number-of-reclaimed-connections`
 
 ## See also
 

@@ -71,43 +71,7 @@ dotnet run --project AspireAzdWalkthrough.AppHost\AspireAzdWalkthrough.AppHost.c
 
 The previous commands create a new .NET Aspire application based on the `aspire-starter` template which includes a dependency on Redis cache. It runs the .NET Aspire project which verifies that everything is working correctly.
 
-### Initialize the project
-
-Before deploying a .NET Aspire application with `azd`, the repository/path containing the app needs to be initialized.
-
-1. Run the following command to initialize your project with `azd`:
-
-    ```azdeveloper
-    azd init
-    ```
-
-1. `azd` prompts you on whether you want to use code in the current directory or select a template. Select the "Use code in the current directory" option.
-
-    :::image type="content" source="media/azd-prompt-init-path.png" alt-text="Screenshot of `azd` initially detecting the location of the .NET Aspire application.":::
-
-1. After scanning, `azd` prompts you to confirm that it found the correct .NET project containing the .NET Aspire app's _AppHost_ code. After checking the path, select the "Confirm and continue initializing my app" option.
-
-    :::image type="content" source="media/azd-prompt-confirm-path.png" alt-text="Screenshot of `azd` confirming the detected location of the .NET Aspire application.":::
-
-    Once the path to the AppHost is confirmed `azd` will analyze the .NET Aspire app model defined
-    in the AppHost and prompt which of the projects referenced in the app model should be exposed
-    via a public endpoint. For the starter application template only the `webfrontend` should be
-    exposed on a public endpoint.
-
-    :::image type="content" source="media/azd-prompt-select-endpoints.png" alt-text="Screenshot of `azd` prompting which .NET projects should have public endpoints.":::
-
-1. The final step in initializing `azd` to work with the .NET Aspire code base is to select an
-environment name. The environment forms part of an Azure resource-group name when deploying
-the .NET Aspire application. For now select the name **aspireazddev**.
-
-    :::image type="content" source="media/azd-prompt-final.png" lightbox="media/azd-prompt-final.png" alt-text="A screenshot of the final `azd` output after initialization.":::
-
-`azd` generates a number of files and places them into the working directory. These files are:
-
-- _azure.yaml_: Informs `azd` where to find the .NET Aspire AppHost project.
-- _.azure/config.json_: Configuration file that informs `azd` what the current active environment is.
-- _.azure/aspireazddev/.env_: Contains environment specific overrides.
-- _.azure/aspireazddev/config.json_: Configuration file that informs `azd` which services should have a public endpoint in this environment.
+[!INCLUDE [init workflow](includes/init-workflow.md)]
 
 The _azure.yaml_ file has the following contents:
 
@@ -213,10 +177,10 @@ To see this in action, update the _Program.cs_ file in the AppHost project to th
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var cache = builder.AddRedisContainer("cache");
+var cache = builder.AddRedis("cache");
 
 // Add the locations database.
-var locationsdb = builder.AddPostgresContainer("db").AddDatabase("locations");
+var locationsdb = builder.AddPostgres("db").AddDatabase("locations");
 
 // Add the locations database reference to the API service.
 var apiservice = builder.AddProject<Projects.AspireAzdWalkthrough_ApiService>("apiservice")

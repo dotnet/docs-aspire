@@ -57,11 +57,11 @@
     "overwrite": [],
     "externalReference": [],
     "globalMetadata": {
+      "ms.service": "dotnet-aspire",
       "apiPlatform": "dotnet",
       "author": "IEvangelist",
       "ms.author": "dapine",
       "ms.devlang": "dotnet",
-      "ms.prod": "dotnet",
       "ms.topic": "conceptual",
       "ROBOTS": "INDEX,FOLLOW",
       "audience": "developer",
@@ -96,9 +96,6 @@
       ]
     },
     "fileMetadata": {
-      "ms.prod": {
-        "docs/**/*.*": "dotnet-aspire"
-      },
       "ms.topic": {
         "docs/**/*.md": "conceptual"
       },

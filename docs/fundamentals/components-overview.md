@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire components overview
 description: Explore the fundamental concepts of .NET Aspire components and learn how to integrate them into your apps.
-ms.date: 12/08/2023
+ms.date: 12/20/2023
 ms.topic: conceptual
 ---
 
@@ -22,6 +22,8 @@ The following table lists the .NET Aspire components currently available for use
 | [Azure Service Bus](../messaging/azure-service-bus-component.md) | [Aspire.Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) | A library for accessing [Azure Service Bus](/azure/service-bus-messaging/service-bus-messaging-overview). |
 | [Azure Storage Queues](../storage/azure-storage-queues-component.md) | [Aspire.Azure.Storage.Queues](https://www.nuget.org/packages/Aspire.Azure.Storage.Queues) | A library for accessing [Azure Storage Queues](/azure/storage/queues/storage-queues-introduction). |
 | [Azure Table Storage](../storage//azure-storage-tables-component.md) | [Aspire.Azure.Data.Tables](https://www.nuget.org/packages/Aspire.Azure.Data.Tables) | A library for accessing the [Azure Table](/azure/storage/tables/table-storage-overview) service. |
+| [MongoDB Driver](../database/mongodb-component.md) | [Aspire.MongoDB.Driver](https://www.nuget.org/packages/Aspire.MongoDB.Driver) | A library for accessing [MongoDB](/sql/sql-server/) databases. |
+| [MySqlConnector](../database/mysql-component.md) | [Aspire.MySqlConnector](https://www.nuget.org/packages/Aspire.MySqlConnector) | A library for accessing [MySqlConnector](https://mysqlconnector.net/) databases. |
 | [PostgreSQL Entity Framework Core](../database/postgresql-entity-framework-component.md) | [Aspire.Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL) | A library for accessing PostgreSQL databases using [Entity Framework Core](https://www.npgsql.org/efcore/index.html). |
 | [PostgreSQL](../database/postgresql-component.md) | [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) | A library for accessing [PostgreSQL](https://www.npgsql.org/doc/index.html) databases. |
 | [RabbitMQ](../messaging/rabbitmq-client-component.md) | [Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) | A library for accessing [RabbitMQ](https://www.rabbitmq.com/dotnet.html). |
@@ -64,7 +66,7 @@ For more information on working with .NET Aspire components in Visual Studio, se
     > [!TIP]
     > Components that are designed to connect to Azure services also support passwordless authentication and authorization using [Azure RBAC](/azure/role-based-access-control/overview), which is the recommended approach for production apps.
 
-1. In your orchestrator project (the project with the _*.AppHost_ suffix), add a reference to the worker service project. If you're using Visual Studio, you can use the [**Add .NET Aspire Orchestrator Support**](setup-tooling.md#add-orchestration-projects) project context menu item to add the reference automatically. The following code snippet shows the project reference of the _AspireApp.AppHost.csproj_:
+1. In your app host project (the project with the _*.AppHost_ suffix), add a reference to the worker service project. If you're using Visual Studio, you can use the [**Add .NET Aspire Orchestrator Support**](setup-tooling.md#add-orchestration-projects) project context menu item to add the reference automatically. The following code snippet shows the project reference of the _AspireApp.AppHost.csproj_:
 
     :::code language="xml" source="snippets/components/AspireApp/AspireApp.AppHost/AspireApp.AppHost.csproj" highlight="16":::
 
@@ -76,7 +78,7 @@ For more information on working with .NET Aspire components in Visual Studio, se
 
     The preceding code:
 
-    - Calls <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresContainer%2A> and chains a call to <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A>, adding a PostgreSQL database container to the app model with a database named `"customers"`.
+    - Calls <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A> and chains a call to <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A>, adding a PostgreSQL database container to the app model with a database named `"customers"`.
     - Chains calls on the result of the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> from the worker service project:
       - Calls <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a reference to the `database`.
       - Calls <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithReplicas%2A> to set the number of replicas to `3`.

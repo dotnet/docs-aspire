@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Data Tables component
 description: This article describes the .NET Aspire Azure Data Tables component features and capabilities.
-ms.date: 11/15/2023
+ms.date: 01/22/2024
 ms.topic: how-to
 ---
 
@@ -40,7 +40,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your project, call the <xref:Microsoft.Extensions.Hosting.AspireTablesExtensions.AddAzureTableService%2A> extension to register a `TableServiceClient` for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireTablesExtensions.AddAzureTableService%2A> extension to register a `TableServiceClient` for use via the dependency injection container.
 
 ```csharp
 builder.AddAzureTableService("tables");
@@ -54,6 +54,24 @@ public class ExampleService(TableServiceClient client)
     // Use client...
 }
 ```
+
+## App host usage
+
+[!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
+
+In your app host project, register the Azure Table Storage component and consume the service using the following methods:
+
+```csharp
+// Service registration
+var tables = builder.AddAzureStorage("storage")
+                    .AddTables("tables");
+
+// Service consumption
+Builder.AddProject<MyApp.ExampleProject>() 
+       .WithReference(tables)
+```
+
+For more information, see <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A>.
 
 ## Configuration
 
@@ -138,28 +156,12 @@ The corresponding configuration JSON is defined as follows:
 
 The following configurable options are exposed through the <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings> class:
 
-| Name | Description |
-|--|--|
-| `ServiceUri` | A "Uri" referencing the Table service. |
-| `Credential` | The credential used to authenticate to the Table Storage. |
+| Name           | Description                                                                              |
+|----------------|------------------------------------------------------------------------------------------|
+| `ServiceUri`   | A "Uri" referencing the Table service.                                                   |
+| `Credential`   | The credential used to authenticate to the Table Storage.                                |
 | `HealthChecks` | A boolean value that indicates whether the Table Storage health check is enabled or not. |
-| `Tracing` | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not. |
-
-## Orchestration
-
-In your orchestrator project, register the Azure Table Storage component and consume the service using the following methods:
-
-```csharp
-// Service registration
-var tables = builder.AddAzureStorage("storage")
-    .AddTables("tables");
-
-// Service consumption
-Builder.AddProject<MyApp.ExampleProject>() 
-    .WithReference(tables)
-```
-
-For more information, see <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A>.
+| `Tracing`      | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.      |
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
@@ -174,14 +176,14 @@ By default, The .NET Aspire Azure Data Tables component handles the following:
 
 The .NET Aspire Azure Data Tables component uses the following log categories:
 
-- Azure.Core
-- Azure.Identity
+- `Azure.Core`
+- `Azure.Identity`
 
 ### Tracing
 
 The .NET Aspire Azure Data Tables component will emit the following tracing activities using OpenTelemetry:
 
-- Azure.Data.Tables.TableServiceClient
+- "Azure.Data.Tables.TableServiceClient"
 
 ### Metrics
 

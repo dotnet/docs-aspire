@@ -6,5 +6,7 @@ items:
   - name: Latest documentation updates
     expanded: true
     items:
+    - name: December 2023
+      href: dotnet-docs-aspire-mod0.md
     - name: November 2023
       href: https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-simplifying-cloud-native-development-with-dotnet-8
