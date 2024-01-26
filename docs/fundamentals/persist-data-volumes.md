@@ -1,6 +1,6 @@
 ---
 title: Persist data with .NET Aspire using volume mounts
-description: Learn about the .NET Aspire service defaults project.
+description: Learn about .NET Aspire volume configurations.
 ms.date: 12/08/2023
 ms.topic: how-to
 ---
@@ -69,5 +69,5 @@ Volumes are configured in the _Program.cs_ file in the **.AppHost** project of y
 You can apply the volume concepts in the preceding code to a variety of services, including seeding a database with data that will persist across app launches. Try combining these techniques with the resource implementations demonstrated in the following tutorials:
 
 - [Tutorial: Connect an ASP.NET Core app to .NET Aspire storage components](../storage/azure-storage-components.md)
-- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](../database/sql-server-components.md.md)
+- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](../database/sql-server-components.md)
 - [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)
