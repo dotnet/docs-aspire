@@ -7,7 +7,7 @@ ms.topic: how-to
 
 # Persist .NET Aspire app data using volumes
 
-In this article, you learn how to configure .NET Aspire apps to persist data across app launches using volumes. A continuous set of data during local development is useful in many scenarios. Various .NET Aspire container types are able to leverage volume storage, such as PostreSQL, Redis and Azure Storage.
+In this article, you learn how to configure .NET Aspire apps to persist data across app launches using volumes. A continuous set of data during local development is useful in many scenarios. Various .NET Aspire resource container types are able to leverage volume storage, such as PostreSQL, Redis and Azure Storage.
 
 ## When to use volumes
 
@@ -45,22 +45,22 @@ In this example:
 
 ## Create a persistent password
 
-Named volumes require a consistent password between app launches. Use the following command to set a local password in your .NET user secrets:
+Named volumes require a consistent password between app launches. Run the following command in your project directory to set a local password in your .NET user secrets:
 
 ```dotnetcli
 dotnet user-secrets set samplepassword <password>
 ```
 
-You can retrieve this password in your app using the following code:
+Retrieve this password in your app using the following code:
 
 ```csharp
 // Retrieve the password you created from user secrets
 var password = builder.Configuration["samplepassword"];
 ```
 
-### Configure volumes using the AppHost
+## Configure volumes using the AppHost
 
-Add the following code to the _Program.cs_ file in your **AppHost** project to persist your desired data across app launches:
+Volumes are configured in the _Program.cs_ file in the **.AppHost** project of your .NET Aspire apps. The following code demonstrates how to configure a volume for various .NET Aspire resources:
 
 :::code source="~/aspire-samples/samples/VolumeMount/VolumeMount.AppHost/Program.cs":::
 
