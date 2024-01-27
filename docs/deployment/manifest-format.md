@@ -25,7 +25,7 @@ dotnet new aspire-starter --use-redis-cache `
 Manifest generation is achieved by running `dotnet build` with a special target:
 
 ```dotnetcli
-dotnet run --project AspireApp.AppHost\AspireApp.AppHost.csproj `
+dotnet build --project AspireApp.AppHost\AspireApp.AppHost.csproj `
     -- `
     --publisher manifest `
     --output-path aspire-manifest.json
