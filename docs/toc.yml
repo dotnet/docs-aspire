@@ -40,6 +40,8 @@ items:
         href: service-discovery/overview.md
       - name: Service defaults
         href: fundamentals/service-defaults.md
+      - name: Persist data using volumes
+        href: fundamentals/persist-data-volumes.md
       - name: Health checks
         href: fundamentals/health-checks.md
       - name: Telemetry
