@@ -38,7 +38,7 @@ sections:
       - question: |
           Why is there a need for a yet another framework to do what's already being done very well by everyone else? 
         answer: |
-          .NET Aspire isn't a framework. Perhaps the most controversial part of it are the `DistributedApplication` APIs that you can use to build up the orchestration model in any .NET-based language. While everything is possible today, it's not easy. Using the Unix philosophy, the entire cloud-native ecosystem is built around tying various pieces of CNCF software together to build a stack. .NET Aspire tries to do the same thing using learnings from the cloud-native space and picks some opinions (in ways that use the same building blocks). One novel thing about how .NET Aspire builds various pieces of the stack is that it's not a "walled garden". As people play with it more, they realize how composable and extensible it is.
+          .NET Aspire isn't a framework. Perhaps the most controversial part of it are the `DistributedApplication` APIs that you can use to build up the orchestration model in any .NET-based language. While everything is possible today, it's not easy. Using the Unix philosophy, the entire cloud-native ecosystem is built around tying various pieces of CNCF software together to build a stack. .NET Aspire tries to do the same thing using learnings from the cloud-native space and picks some opinions (in ways that use the same building blocks). One novel thing about how .NET Aspire builds various pieces of the stack is that it doesn't restrict the access or compatibility of other applications, frameworks, or services. As people play with it more, they realize how composable and extensible it is.
 
       - question: |
           When will .NET Aspire be released?
