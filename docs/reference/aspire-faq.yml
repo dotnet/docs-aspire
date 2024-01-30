@@ -3,7 +3,7 @@ metadata:
   title: Frequently asked questions about .NET Aspire
   description: Answers to some of the most common questions and scenarios for .NET Aspire.
   ms.topic: faq
-  ms.date: 11/13/2023
+  ms.date: 01/29/2024
 title: Frequently asked questions about .NET Aspire
 summary: |
   This article lists frequently asked questions about .NET Aspire. For a more comprehensive overview, see [.NET Aspire overview](../get-started/aspire-overview.md).
@@ -11,6 +11,33 @@ summary: |
 sections:
   - name: Frequently asked questions
     questions:
+      - question: |
+          Why use .NET Aspire for orchestration when I can use Docker Compose?
+        answer: |
+          Docker Compose is excellent but is unproductive when all you want to do is run several projects or executables. Docker Compose requires developers to build container images and to run apps inside of containers. That's a barrier when you just want to run your front end, back end, workers, and a database. With .NET Aspire, you don't need to learn anything beyond what you already know.
+
+          Configuration through declarative code is better than through YAML. Docker Compose gets complex once you attempt to do any form of abstraction or composition (for example, see the old [eshopOnContainers app](https://github.com/dotnet-architecture/eShopOnContainers/tree/dev/src)). In addition, there are environment variable replacements (and includes) and no types or IntelliSense, and it's hard to reason about what exactly is running. Debugging is also difficult. .NET Aspire produces a better experience that's easy to get started and scales up to an orchestrator like Compose using a real programming language.
+
+      - question: |
+          Why would I use .NET Aspire service discovery when Docker Compose has it built in and works with Kubernetes?
+        answer: |
+          .NET Aspire service discovery APIs are an abstraction that works with various providers (like Kubernetes and Consul). One of the big advantages is that it works locally and is backed by .NET's `IConfiguration` abstraction. This means you can implement service discovery across your compute fabric in a way that doesn't result in code changes. If you have multiple Kubernetes clusters or services on Azure App Service or Azure Functions, you don't have to fundamentally change your application code to make it work locally, either in a single cluster or across multiple clusters. That's the benefit of the abstraction.
+
+      - question: |
+           OpenTelemetry is something that can already be used in .NET. Why would I use .NET Aspire?
+        answer: |
+           .NET Aspire takes a big bet on .NET's integration with OpenTelemetry. The .NET Aspire dashboard is a standard OTLP server that visualizes various telemetry data. Leaning on these open standards makes it easy to build these things without breaking compatibility with the broader ecosystem.
+
+      - question: |
+          Observability such as Grafana, Jaeger, and Prometheus work with .NET. Why bother with .NET Aspire?
+        answer: |
+          .NET Aspire isn't a replacement for these tools, but rather a complementary technology. .NET Aspire is a set of libraries and tools that make it easy to build applications that are observable. For more information, see the [Metrics example in the .NET Aspire sample repository](https://github.com/dotnet/aspire-samples/tree/main/samples/Metrics) that shows Grafana and Prometheus.
+
+      - question: |
+          Why is there a need for a yet another framework to do what's already being done very well by everyone else? 
+        answer: |
+          .NET Aspire isn't a framework. Perhaps the most controversial part of it are the `DistributedApplication` APIs that you can use to build up the orchestration model in any .NET-based language. While everything is possible today, it's not easy. Using the Unix philosophy, the entire cloud-native ecosystem is built around tying various pieces of CNCF software together to build a stack. .NET Aspire tries to do the same thing using learnings from the cloud-native space and picks some opinions (in ways that use the same building blocks). One novel thing about how .NET Aspire builds various pieces of the stack is that it doesn't restrict the access or compatibility of other applications, frameworks, or services. As people play with it more, they realize how composable and extensible it is.
+
       - question: |
           When will .NET Aspire be released?
         answer: |
