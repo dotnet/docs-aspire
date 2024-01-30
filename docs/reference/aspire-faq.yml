@@ -14,11 +14,9 @@ sections:
       - question: |
           Why use .NET Aspire for orchestration when I can use Docker Compose?
         answer: |
-          Docker compose is excellent but is unproductive when all you want to do is run several projects or executables. Docker compose requires developers to build container images and to run apps inside of containers. That's a barrier when you just want to run your front end, back end, workers, and a database. With .NET Aspire, you don't need to learn anything else beyond what you already know.
+          Docker Compose is excellent but is unproductive when all you want to do is run several projects or executables. Docker Compose requires developers to build container images and to run apps inside of containers. That's a barrier when you just want to run your front end, back end, workers, and a database. With .NET Aspire, you don't need to learn anything beyond what you already know.
 
-          Imagine trying to call your back-end API from your front-end API (using a simple `http://backend` URL) and having to use Docker Compose to enable that&mdash;it's too much.
-
-          Configuration through declarative code is better than YAML. Docker Compose gets complex once you attempt to do any form of abstraction or composition (for example, see the old [eshopOnContainers app](https://github.com/dotnet-architecture/eShopOnContainers/tree/dev/src)). In addition, there are environment variable replacements (and includes), no types or IntelliSense, and it's hard to reason about what exactly is running. Debugging is also difficult. .NET Aspire produces a better experience that's easy to get started and scales up to an orchestrator like Compose using a real programming language.
+          Configuration through declarative code is better than through YAML. Docker Compose gets complex once you attempt to do any form of abstraction or composition (for example, see the old [eshopOnContainers app](https://github.com/dotnet-architecture/eShopOnContainers/tree/dev/src)). In addition, there are environment variable replacements (and includes) and no types or IntelliSense, and it's hard to reason about what exactly is running. Debugging is also difficult. .NET Aspire produces a better experience that's easy to get started and scales up to an orchestrator like Compose using a real programming language.
 
       - question: |
           Why would I use .NET Aspire service discovery when Docker Compose has it built in and works with Kubernetes?
