@@ -105,13 +105,13 @@ Azure Container Apps (ACA) is an ideal hosting platform for Aspire apps. You can
     # [PowerShell](#tab/powershell)
 
     ```powershell
-    az group create --location westus --name aspiretoacarg
+    az group create --location $env:LOCATION --name $env:RESOURCE_GROUP
     ```
 
     # [Bash](#tab/bash)
 
     ```bash
-    az group create --location westus --name aspiretoacarg
+    az group create --location $LOCATION --name $RESOURCE_GROUP
     ```
 
     ---
