@@ -144,7 +144,6 @@ The following people contributed to the .NET Aspire docs during this period. Tha
 - [MrXhh](https://github.com/MrXhh) - 小辉辉 ![2 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
 - [Banovvv](https://github.com/Banovvv) - Ivan Gechev ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [josephaw1022](https://github.com/josephaw1022) - Joe Whiteaker ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [learn-build-service-prod](https://github.com/learn-build-service-prod) -  ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [mountain65](https://github.com/mountain65) - Richard de Zwart ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [timdeschryver](https://github.com/timdeschryver) - Tim Deschryver ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [VahidFarahmandian](https://github.com/VahidFarahmandian) - Vahid Farahmandian ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
