@@ -6,6 +6,8 @@ items:
   - name: Latest documentation updates
     expanded: true
     items:
+    - name: January 2024
+      href: dotnet-docs-aspire-mod1.md
     - name: December 2023
       href: dotnet-docs-aspire-mod0.md
     - name: November 2023
