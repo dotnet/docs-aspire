@@ -50,7 +50,7 @@ The search bar in the upper right of the dashboard also provides the option to f
 
 :::image type="content" source="media/dashboard/select-resource-type.png" alt-text="A screenshot of the resource type selector list in the .NET Aspire dashboard Resources page.":::
 
-In this example, only containers are displayed in the list. For example, if you enable **Use Redis for caching** when creating a .NET Aspire project, you should see a Redis container listed.:
+In this example, only containers are displayed in the list. For example, if you enable **Use Redis for caching** when creating a .NET Aspire project, you should see a Redis container listed:
 
 :::image type="content" source="media/dashboard/resources-filtered-containers.png" lightbox="media/dashboard/resources-filtered-containers.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page filtered to show only containers.":::
 
@@ -96,7 +96,7 @@ If you select a container or executable, formatting is different from a project 
 
 .NET Aspire automatically configures your projects with logging using OpenTelemetry. Navigate to the **Structured logs** page to view the semantic logs for your .NET Aspire app. [Semantic, or structured logging](https://github.com/NLog/NLog/wiki/How-to-use-structured-logging) makes it easier to store and query log-events, as the log-event message-template and message-parameters are preserved, instead of just transforming them into a formatted message. You'll notice a clean structure for the different logs displayed on the page using columns:
 
-- **Resource**: The resourcece the log originated from.
+- **Resource**: The resource the log originated from.
 - **Level**: The log level of the entry, such as information, warning, or error.
 - **Timestamp**: The time that the log occurred.
 - **Message**: The details of the log.
