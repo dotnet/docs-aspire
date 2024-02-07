@@ -18,14 +18,14 @@ a .NET Aspire application using the `aspire-starter` .NET template:
 
 ```dotnetcli
 dotnet new aspire-starter --use-redis-cache `
-    -n AspireApp && `
+    -o AspireApp && `
     cd AspireApp
 ```
 
 Manifest generation is achieved by running `dotnet build` with a special target:
 
 ```dotnetcli
-dotnet build --project AspireApp.AppHost\AspireApp.AppHost.csproj `
+dotnet run --project AspireApp.AppHost\AspireApp.AppHost.csproj `
     -- `
     --publisher manifest `
     --output-path aspire-manifest.json
