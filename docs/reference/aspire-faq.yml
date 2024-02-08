@@ -56,6 +56,8 @@ sections:
           Dapr and .NET Aspire are complementary technologies.
 
           Where Dapr abstracts some of the underlying cloud platform, .NET Aspire provides opinionated configuration around the underlying cloud technologies without abstracting them. A .NET-based application that uses Dapr can use .NET Aspire to orchestrate the local developer inner loop and streamline deployment. .NET Aspire includes extensions that support the launching for Dapr side-car processes during the inner loop.
+
+          For more information, see the [.NET Aspire and Dapr sample app](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithDapr) in the .NET Aspire sample repository.
       - question: |
           What's the difference between .NET Aspire and Project Tye?
         answer: |
