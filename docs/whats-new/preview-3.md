@@ -219,15 +219,19 @@ For more information, see [GitHub: .NET Aspire.Pomelo.EntityFrameworkCore.MySql]
 
 ### Hosting support for CosmosDB
 
-As part of preview 3 we worked with the Azure Developer CLI team to introduce support for provisioning Cosmos DB resources. To use Cosmos DB in your App Host you can do the following:
+As part of preview 3 support for provisioning Cosmos DB resources was introduced. To use Cosmos DB in your app host you can do the following:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
-var db = builder.AddAzureCosmosDB("cosmos").UseEmulator().AddDatabase("db");
+
+var db = builder.AddAzureCosmosDB("cosmos")
+                .UseEmulator()
+                .AddDatabase("db");
+
 var app = builder.AddProject<Projects.MyApp("app");
 ```
 
-Inside the entrypoint for the application code you can wire up the Cosmos client using the following:
+Inside the entrypoint for the application code you can wire up the Cosmos DB client using the following:
 
 ```csharp
 builder.AddAzureCosmosDB("db", static settings =>
@@ -236,11 +240,9 @@ builder.AddAzureCosmosDB("db", static settings =>
 });
 ```
 
-Note: the `UseEmulator()` call `IgnoreEmulatorCertificate` property in the code samples above. This means that when this Aspire application is run we will launch the Cosmos emulator for you and automatically configure the Cosmos client to use the emulator.
+When using the Cosmos DB emulator, you can ignore the certificate validation by setting the `IgnoreEmulatorCertificate` property to `true`. We are currently working with the Cosmos team to remove the need to set `IgnoreEmulatorCertificate` so this customization for settings may not be required in the future.
 
-We are currently working with the Cosmos team to remove the need to set IgnoreEmulatorCertificate so this customization for settings may not be required in the future.
-
-When deployed, azd will automatically provision the Cosmos DB resource and create the database as defined in the Aspire application model.
+When deployed, `azd` will automatically provision the Cosmos DB resource and create the database as defined in the .NET Aspire application model.
 
 ### `StackExchange.Redis` now has logging
 
@@ -295,7 +297,7 @@ var catalogDb = builder.AddPostgresContainer("postgres")
 
 ### Model Dapr sidecar as an Aspire resource
 
-Previously Dapr sidecars were modeled as annotations on a parent resource, which indicated the need for a Dapr sidecar started for that resource. The App Model has been extended so that the Dapr sidecar is a _true_ resource, but one exposed _only_ through the existing AddDaprSidecar() API to avoid semantic errors; users cannot create an arbitrary Dapr sidecar resource, only configure the one associated with a given resource. The API allows the existing sidecar options (if any) to be specified, as well as use the existing resource annotation helpers, such as `WithEnvironment()`.
+Previously Dapr sidecars were modeled as annotations on a parent resource, which indicated the need for a Dapr sidecar started for that resource. The App Model has been extended so that the Dapr sidecar is a _true_ resource, but one exposed _only_ through the existing `AddDaprSidecar` API to avoid semantic errors; users cannot create an arbitrary Dapr sidecar resource, only configure the one associated with a given resource. The API allows the existing sidecar options (if any) to be specified, as well as use the existing resource annotation helpers, such as <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEnvironment%2A>.
 
 ```csharp
 builder.AddProject<Projects.DaprServiceA>("servicea")
@@ -323,7 +325,7 @@ builder.AddProject<Projects.DaprServiceB>("serviceb")
         });
 ```
 
-## Add support of Orleans in Aspire
+## Add support of Orleans in .NET Aspire
 
 [Orleans](/dotnet/orleans/overview) is a framework for building robust scalable distributed applications, using the "Actor Model" to seamlessly scaling grains across the available nodes. This preview supports Orleans backed by Azure tables for membership and Azure table and blobs for grain storage. Support for other storage will be added later.
 
@@ -357,9 +359,9 @@ builder.AddProject<Projects.FrontEnd>("frontend")
        .WithOrleansClient(orleans);
 ```
 
-## Samples
+## New .NET Aspire samples
 
-The Aspire samples are located in <https://github.com/dotnet/aspire-samples>, not the main Aspire repo. New samples for preview 3 include:
+The .NET Aspire samples are located in <https://github.com/dotnet/aspire-samples>, not the main Aspire repo. New samples for preview 3 include:
 
 - [AspireWithJavaScript](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript) demonstrates an approach for integrating several Node.js apps into a .NET Aspire application, including Angular, React, and Vue.
 - [ClientAppsIntegration](https://github.com/dotnet/aspire-samples/tree/main/samples/ClientAppsIntegration) demonstrates working with client apps such as WinForms, WPF, etc., in a .NET Aspire app, such that the client app is launched along with the AppHost project, can resolve services via service discovery, and logs, traces, and metrics via OpenTelemetry to the dashboard.
