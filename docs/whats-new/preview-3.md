@@ -35,15 +35,15 @@ After updating you can run `dotnet workload list` to see the updated version (no
 ```text
 Installed Workload Id    Manifest Version                   Installation Source
 -----------------------------------------------------------------------------------------
-aspire                   8.0.0-preview.3.XXXX.YY/8.0.100    SDK 8.0.100, VS 17.10.XXXX.YY
+aspire                   8.0.0-preview.3.24105.21/8.0.100    SDK 8.0.100, VS 17.10.XXXX.YY
 ```
 
 ### Update existing apps
 
-For existing .NET Aspire apps, after performing the above steps to get the latest workload, you'll want to change your package references for any Aspire components. Update **all Aspire package references (hosting and components)** to `8.0.0-preview.3.XXXXX.YY`, for example the hosting would change to:
+For existing .NET Aspire apps, after performing the above steps to get the latest workload, you'll want to change your package references for any Aspire components. Update **all Aspire package references (hosting and components)** to `8.0.0-preview.3.24105.21`, for example the hosting would change to:
 
 ```xml
-<PackageReference Include="Aspire.Hosting" Version="8.0.0-preview.3.XXXX.YY" />
+<PackageReference Include="Aspire.Hosting" Version="8.0.0-preview.3.24105.21" />
 ```
 
 All other packages being referenced should be updated to the preview 3 version as well. If using Visual Studio, you can also use NuGet Package Manager and update all packages being used via the IDE (be sure to check the pre-release checkbox in the UI).
@@ -286,7 +286,7 @@ Using `WithEntrypoint` enables the entrypoint to be specified for container base
 
 ### RedisCommander resource extension
 
-[Redis commander](https://github.com/joeferner/redis-commander) is a web management tool for viewing the contents of the Redis Cache. With this change you can use the `WithRedisCommander` extension to both IResourceBuilder<RedisResource> and IResourceBuilder<RedisContainerResource> which results in a container resource being added to the model (once) and a lifecycle hook which configures it for Redis Commander.
+[Redis commander](https://github.com/joeferner/redis-commander) is a web management tool for viewing the contents of the Redis Cache. With this change you can use the `WithRedisCommander` extension to both `IResourceBuilder<RedisResource>` and `IResourceBuilder<RedisContainerResource>` which results in a container resource being added to the model (once) and a lifecycle hook which configures it for Redis Commander.
 
 Once added, when run a pre-configured Redis Commander instance is spun up to interactively browse what is in the Redis Cache. It can be accessed via the Aspire Dashboard. For example:
 
