@@ -10,54 +10,25 @@ Today we're announcing the 3rd preview of .NET Aspire. While the goal is to have
 
 ## Get .NET Aspire preview 3
 
-To install or upgrade to .NET Aspire preview 3, perform the following steps:
-
-# [Visual Studio (Preview)](#tab/visual-studio-preview)
-
-Install/update to the latest [Visual Studio 2022 Preview](https://aka.ms/vspreview) release (17.10.0 Preview 1.0 at the time of writing). Ensure that the **.NET Aspire SDK (Preview)** component is selected under the **Individual components** tab of the Visual Studio installer.
-
-:::image type="content" source="media/preview-3/vs-aspire-sdk-component.png" lightbox="media/preview-3/vs-aspire-sdk-component.png" alt-text="Visual Studio Installer component selection screen with the ".NET Aspire SDK (Preview)" component highlighted":::
-
-**Note you must follow the remaining steps in these instructions to update to preview 3**
-
-# [Visual Studio](#tab/visual-studio)
-
-If you intend to only use .NET Aspire via the .NET CLI (`dotnet`), download and install the [.NET 8.0.100 SDK using the standalone installer](https://dotnet.microsoft.com/download/dotnet/thank-you/sdk-8.0.100-windows-x64-installer)
-
-# [.NET CLI](#tab/dotnet-cli)
-
-1. Download and install the [.NET 8.0.100 SDK](https://dotnet.microsoft.com/download/dotnet/8.0).
-1. From a terminal, run the following commands to update the .NET Aspire workload:
-
-    ```dotnetcli
-    dotnet workload update
-    dotnet workload install aspire
-    ```
-
-    > [!IMPORTANT]
-    > If you've previous preview versions of the .NET Aspire workload already installed, you may see messages informing you that the workload is already installed. These can be safely ignored.
-
----
-
-Refer to the docs for [detailed instructions on installing .NET Aspire](../fundamentals/setup-tooling.md)
-
-After updating you can run `dotnet workload list` to see the updated version (note: your version of Visual Studio may differ):
+The [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md) instructions have been updated to reflect preview 3. After updating you can run `dotnet workload list` to see the updated version (note: your version of Visual Studio may differ):
 
 ```text
-Installed Workload Id    Manifest Version                   Installation Source
------------------------------------------------------------------------------------------
+Installed Workload Id    Manifest Version                    Installation Source
+------------------------------------------------------------------------------------------
 aspire                   8.0.0-preview.3.24105.21/8.0.100    SDK 8.0.100, VS 17.10.XXXX.YY
 ```
 
 ### Update existing apps
 
-For existing .NET Aspire apps, after performing the above steps to get the latest workload, you'll want to change your package references for any Aspire components. Update **all Aspire package references (hosting and components)** to `8.0.0-preview.3.24105.21`, for example the hosting would change to:
+For existing .NET Aspire apps, after installing the latest workload, you'll want to update your package references for all .NET Aspire components. All Aspire NuGet packages should be updated to:
+
+- `8.0.0-preview.3.24105.21`
 
 ```xml
-<PackageReference Include="Aspire.Hosting" Version="8.0.0-preview.3.24105.21" />
+<PackageReference Include="Aspire.*" Version="8.0.0-preview.3.24105.21" />
 ```
 
-All other packages being referenced should be updated to the preview 3 version as well. If using Visual Studio, you can also use NuGet Package Manager and update all packages being used via the IDE (be sure to check the pre-release checkbox in the UI).
+If you're using Visual Studio, you can use the NuGet Package Manager and update all packages being used via the IDE (be sure to check the pre-release checkbox in the UI).
 
 ### API changes
 
@@ -97,11 +68,11 @@ The dashboard telemetry pages show off a number of improvements:
 
 ## Component updates
 
-[Aspire components](https://learn.microsoft.com/dotnet/aspire/fundamentals/components-overview) are a curated suite of NuGet packages specifically selected to facilitate the integration of cloud-native applications with prominent services and platforms. Each component furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns. .NET Aspire components can be used without an orchestrator project, but they're designed to work best with the .NET Aspire app host.
+[Aspire components](../fundamentals/components-overview.md) are a curated suite of NuGet packages specifically selected to facilitate the integration of cloud-native applications with prominent services and platforms. Each component furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns. .NET Aspire components can be used without an orchestrator project, but they're designed to work best with the .NET Aspire app host.
 
-### Azure OpenAI component
+### Azure AI OpenAI component
 
-This component enables integration of the Azure OpenAI or OpenAI services from an Aspire project. Assuming you already have an OpenAI service provisioned, you can use OpenAI from your projects.
+This component enables integration of the Azure AI OpenAI or OpenAI services from an Aspire project. Assuming you already have an OpenAI service provisioned, you can use OpenAI from your projects.
 
 ```csharp
 using Azure.AI.OpenAI;
@@ -407,19 +378,20 @@ In this release, we added a few new features to better support Aspire deployment
 var azSqlServer = builder.AddAzureSqlServer("azsql").AddDatabase("azsqldb");
 ```
 
-## Add templates for AppHost and ServiceDefaults projects
+## Add templates for _AppHost_ and _ServiceDefaults_ projects
 
-For those wishing to add Aspire functionality to an existing solution, we now have project templates for the AppHost and ServiceDefault projects. These are the same as what is included in the empty Aspire application template. They can be added through Visual Studio _Add New Project_ or via the command line using:
+For those wishing to add .NET Aspire functionality to an existing solution, you can use the new templates for the _AppHost_ and _ServiceDefault_ projects. These are the same projects included in the empty .NET Aspire application template. They can be added through Visual Studio _Add New Project_ or via the command line using:
 
 ```console
 dotnet new aspire-apphost
 dotnet new aspire-servicedefaults
 ```
 
-## What's next?
-
-We plan to release a new Aspire preview every month as we work towards a stable 8.0 release during the second quarter of 2024. Check back on the .NET blog for details of future releases or get involved over on the [Aspire project on GitHub](https://github.com/dotnet/aspire). Official samples are available in the [dotnet/aspire-samples repo](https://github.com/dotnet/aspire-samples).
+For more information on adding .NET Aspire to existing solutions, see [Tutorial: Add .NET Aspire to an existing .NET 8 microservices app](../get-started/add-aspire-existing-app.md).
 
 ## Summary
 
-Thanks again for your response to .NET Aspire. We're having a lot of fun working hard to make building distributed applications with .NET a great experience and would love for you to try out preview 3 and let us know what you think.
+A new .NET Aspire preview release is planned every month leading up to a stable release anticipated in the second quarter of 2024.
+
+- To get involved checkout the [.NET Aspire project on GitHub](https://github.com/dotnet/aspire).
+- Follow along with the official samples in the [dotnet/aspire-samples repo](https://github.com/dotnet/aspire-samples).

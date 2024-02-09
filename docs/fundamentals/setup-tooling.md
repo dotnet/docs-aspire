@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 12/08/2023
+ms.date: 02/09/2024
 ---
 
 # .NET Aspire setup and tooling
@@ -29,6 +29,14 @@ To work with .NET Aspire, you'll need the following installed locally:
 The .NET Aspire workload installs internal dependencies and makes available other tooling, such as project templates and Visual Studio features. There are two ways to install the .NET Aspire workload. If you prefer to use Visual Studio Code, follow the .NET CLI instructions:
 
 # [Visual Studio](#tab/visual-studio)
+
+Starting with Visual Studio 2022 17.10 Preview 1 includes the **.NET Aspire preview 3** workload by default. To verify that you have the .NET Aspire workload installed, run the following command:
+
+```dotnetcli
+dotnet workload list
+```
+
+If you have an earlier version of Visual Studio 2022 Preview, you can either upgrade to Visual Studio 2022 17.10 Preview 1 or you can install the .NET Aspire workload using the following steps:
 
 To install the .NET Aspire workload in Visual Studio 2022 Preview, use the Visual Studio installer.
 
