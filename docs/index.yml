@@ -8,7 +8,6 @@ metadata:
   title: .NET Aspire documentation (Preview)
   description: Samples, tutorials, and education for .NET Aspire, your cloud-native app stack build around components that provide production-ready telemetry, health checks, configurability, and testability.
   ms.topic: hub-page
-  ms.prod: dotnet-aspire
   ms.service: dotnet-aspire
   ms.date: 12/08/2023
 
