@@ -1,24 +1,32 @@
 ---
 title: .NET Aspire preview 3
 description: .NET Aspire preview 3 is now available and includes many improvements and new capabilities
-ms.date: 02/08/2024
+ms.date: 02/09/2024
 ---
 
 # .NET Aspire preview 3
 
-.NET Aspire **preview 3** is now available! This is the 3rd preview for .NET Aspire. While the goal is to have monthly releases, we skipped January due to the holidays, so we have a bumper release this month.
+Today we're announcing the 3rd preview of .NET Aspire. While the goal is to have monthly releases, we skipped January due to the holidays. .NET Aspire **preview 3** is now available!
 
-## Getting .NET Aspire preview 3
+## Get .NET Aspire preview 3
 
 To install or upgrade to .NET Aspire preview 3, perform the following steps:
 
-1. If on Windows and using Visual Studio to work with .NET Aspire, install/update to the latest [Visual Studio 2022 Preview](https://aka.ms/vspreview) release (17.10.0 Preview 1.0 at the time of writing)
-    - Ensure that the ".NET Aspire SDK (Preview)" component is selected under the "Individual components" tab of the Visual Studio installer:
+# [Visual Studio (Preview)](#tab/visual-studio-preview)
 
-        **Note you must follow the remaining steps in these instructions to update to preview 3**
-        ![Visual Studio Installer component selection screen with the ".NET Aspire SDK (Preview)" component highlighted](media/preview-3/VS-aspire-sdk-component.png)
-1. If on Windows and you have Visual Studio 2022 17.8.x installed but intend to only use .NET Aspire via the .NET CLI (`dotnet`), download and install the [.NET 8.0.100 SDK using the standalone installer](https://dotnet.microsoft.com/download/dotnet/thank-you/sdk-8.0.100-windows-x64-installer)
-1. If on macOS or Linux, download and install the [.NET 8.0.100 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+Install/update to the latest [Visual Studio 2022 Preview](https://aka.ms/vspreview) release (17.10.0 Preview 1.0 at the time of writing). Ensure that the **.NET Aspire SDK (Preview)** component is selected under the **Individual components** tab of the Visual Studio installer.
+
+:::image type="content" source="media/preview-3/vs-aspire-sdk-component.png" lightbox="media/preview-3/vs-aspire-sdk-component.png" alt-text="Visual Studio Installer component selection screen with the ".NET Aspire SDK (Preview)" component highlighted":::
+
+**Note you must follow the remaining steps in these instructions to update to preview 3**
+
+# [Visual Studio](#tab/visual-studio)
+
+If you intend to only use .NET Aspire via the .NET CLI (`dotnet`), download and install the [.NET 8.0.100 SDK using the standalone installer](https://dotnet.microsoft.com/download/dotnet/thank-you/sdk-8.0.100-windows-x64-installer)
+
+# [.NET CLI](#tab/dotnet-cli)
+
+1. Download and install the [.NET 8.0.100 SDK](https://dotnet.microsoft.com/download/dotnet/8.0).
 1. From a terminal, run the following commands to update the .NET Aspire workload:
 
     ```dotnetcli
@@ -26,9 +34,12 @@ To install or upgrade to .NET Aspire preview 3, perform the following steps:
     dotnet workload install aspire
     ```
 
-    *Note that if you had previous preview versions of the .NET Aspire workload already installed, you may see messages informing you that the workload is already installed. These can be safely ignored.*
+    > [!IMPORTANT]
+    > If you've previous preview versions of the .NET Aspire workload already installed, you may see messages informing you that the workload is already installed. These can be safely ignored.
 
-1. Refer to the docs for [detailed instructions on installing .NET Aspire](../fundamentals/setup-tooling.md)
+---
+
+Refer to the docs for [detailed instructions on installing .NET Aspire](../fundamentals/setup-tooling.md)
 
 After updating you can run `dotnet workload list` to see the updated version (note: your version of Visual Studio may differ):
 
@@ -84,7 +95,7 @@ The dashboard telemetry pages show off a number of improvements:
 - **Histogram metrics count**: There is a new option to view the count of items recorded to a histogram metric.
 - **Span events**: OpenTelemetry spans support events. For example, when was the first data received during a database call. Events are available in span details view.
 
-## Component updatea
+## Component updates
 
 [Aspire components](https://learn.microsoft.com/dotnet/aspire/fundamentals/components-overview) are a curated suite of NuGet packages specifically selected to facilitate the integration of cloud-native applications with prominent services and platforms. Each component furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns. .NET Aspire components can be used without an orchestrator project, but they're designed to work best with the .NET Aspire app host.
 
@@ -190,14 +201,14 @@ In addition, `Aspire.Hosting` support for Oracle resources has been added, makin
 var builder = DistributedApplication.CreateBuilder(args);
 
 var catalogDb = builder.AddOracleDatabase("oracledatabase")
-    .AddDatabase("catalog");
+                       .AddDatabase("catalog");
 ```
 
 For more information, see [GitHub: .NET Aspire.Oracle.EntityFrameworkCore](https://github.com/dotnet/aspire/tree/main/src/Components/Aspire.Oracle.EntityFrameworkCore).
 
 ### Component and hosting for MySql with EF
 
-Bradley Grainger ([@bgrainger](https://github.com/bgrainger)) has contributed an Aspire component for MySQL named `Aspire.Pomelo.EntityFrameworkCore.MySql`. This wraps the `Pomelo.EntityFrameworkCore.MySql` libray which is an Entity Framework Core provider for MySQL compatible databases. It supports EF Core up to its latest version and uses MySqlConnector for high-performance database server communication. The Aspire integration enables connection pooling, health check, logging and telemetry.
+Bradley Grainger ([@bgrainger](https://github.com/bgrainger)) has contributed an Aspire component for MySQL named `Aspire.Pomelo.EntityFrameworkCore.MySql`. This wraps the `Pomelo.EntityFrameworkCore.MySql` library which is an Entity Framework Core provider for MySQL compatible databases. It supports EF Core up to its latest version and uses MySqlConnector for high-performance database server communication. The Aspire integration enables connection pooling, health check, logging and telemetry.
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -224,7 +235,8 @@ You can use the existing `Aspire.Hosting` support for MySQL resources to spin up
 var builder = DistributedApplication.CreateBuilder(args);
 
 var catalogDb = builder.AddMySqlContainer("mysql")
-    // Mount the SQL scripts directory into the container so that the init scripts run.
+    // Mount the SQL scripts directory into the 
+    // container so that the init scripts run.
     .WithVolumeMount(
         source: "../DatabaseContainers.ApiService/data/mysql",
         target: "/docker-entrypoint-initdb.d",
@@ -259,11 +271,11 @@ We are currently working with the Cosmos team to remove the need to set IgnoreEm
 
 When deployed, azd will automatically provision the Cosmos DB resource and create the database as defined in the Aspire application model.
 
-### StackExchange.Redis now has logging
+### `StackExchange.Redis` now has logging
 
-We've updated the Aspire component to use the new feature in StackExchange.Redis which supports <xref:Microsoft.Extensions.Logging.ILogger>. Redis logs will now be shown in both the console and structured logs in the dashboard.
+We've updated the Aspire component to use the new feature in `StackExchange.Redis` which supports <xref:Microsoft.Extensions.Logging.ILogger>. Redis logs will now be shown in both the console and structured logs in the dashboard.
 
-## AppModel Changes
+## API changes
 
 ### `WithServiceBinding` has changed to `WithEndpoint`
 
@@ -399,7 +411,7 @@ var azSqlServer = builder.AddAzureSqlServer("azsql").AddDatabase("azsqldb");
 
 For those wishing to add Aspire functionality to an existing solution, we now have project templates for the AppHost and ServiceDefault projects. These are the same as what is included in the empty Aspire application template. They can be added through Visual Studio _Add New Project_ or via the command line using:
 
-``` console
+```console
 dotnet new aspire-apphost
 dotnet new aspire-servicedefaults
 ```
