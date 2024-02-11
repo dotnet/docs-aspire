@@ -325,38 +325,48 @@ builder.AddProject<Projects.DaprServiceB>("serviceb")
         });
 ```
 
-## Add support of Orleans in .NET Aspire
+## Add support for Orleans in .NET Aspire
 
-[Orleans](/dotnet/orleans/overview) is a framework for building robust scalable distributed applications, using the "Actor Model" to seamlessly scaling grains across the available nodes. This preview supports Orleans backed by Azure tables for membership and Azure table and blobs for grain storage. Support for other storage will be added later.
+This preview adds support for [Orleans](/dotnet/orleans/overview), allowing you to configure a cluster in your app host, specifying the resources the cluster uses. For example, you can specify that an Azure Table will be used for cluster membership, an Azure Redis resource will be used for the grain directory, and an Azure Blob Storage resource will be used to store grain state. The integration currently support Redis and Azure Table & Blob storage resources. Support for other resources will be added later.
 
-Use in the server and client are easy with:
-
-```csharp
-// server
-builder.AddAspireOrleansServer();
-
-// client
-builder.AddAspireOrleansClient();
-```
-
-In the app host project, Orleans is initialized with:
+In the app host project, an Orleans cluster can be declared using the `AddOrleans` method, and then configured with clustering, grain storage, grain directory, and other providers using methods on the returned builder:
 
 ```csharp
 var storage = builder.AddAzureStorage("storage");
 var clusteringTable = storage.AddTables("clustering");
-var grainStorage = storage.AddBlobs("grainstate");
+var defaultStorage = storage.AddBlobs("grainstate");
+var cartStorage = builder.AddRedis("redis-cart");
 
 var orleans = builder.AddOrleans("my-app")
                      .WithClustering(clusteringTable)
-                     .WithGrainStorage("Default", grainStorage);
+                     .WithGrainStorage("Default", grainStorage)
+                     .WithGrainStorage("cart", cartStorage);
 
 // Add a server project (also called "silo")
 builder.AddProject<Projects.OrleansServer>("silo")
-       .WithOrleansServer(orleans);
+       .WithReference(orleans);
 
 // Add a project with a reference to the Orleans client
 builder.AddProject<Projects.FrontEnd>("frontend")
-       .WithOrleansClient(orleans);
+       .WithReference(orleans);
+```
+
+In the client and server projects, add Orleans to the host builder as usual.
+
+```csharp
+// For an Orleans server:
+builder.UseOrleans();
+
+// Or, for an Orleans client:
+builder.UseOrleansClient();
+```
+
+Orleans will read configuration created by your Aspire app host project and configure the providers specified therein. To allow Orleans to access the configured resources, add them as keyed services using the corresponding Aspire component:
+
+```csharp
+builder.AddKeyedAzureTableService("clustering");
+builder.AddKeyedAzureBlobService("grainstate");
+builder.AddKeyedRedis("redis-cart");
 ```
 
 ## New .NET Aspire samples
