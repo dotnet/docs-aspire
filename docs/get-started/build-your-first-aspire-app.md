@@ -14,7 +14,7 @@ In this quickstart, you'll explore the following tasks:
 > [!div class="checklist"]
 >
 > - Create a basic .NET app that is set up to use .NET Aspire.
-> - Add and configure a .NET Aspire component to implement caching
+> - Add and configure a .NET Aspire component to implement caching at project creation time.
 > - Create an API and use service discovery to connect to it.
 > - Orchestrate communication between a front end UI, a back end API, and a local Redis cache.
 
