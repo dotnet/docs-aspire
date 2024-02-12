@@ -12,10 +12,12 @@ Today we're announcing the 3rd preview of .NET Aspire. While the goal is to have
 
 The [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md) instructions have been updated to reflect preview 3. After updating you can run `dotnet workload list` to see the updated version (note: your version of Visual Studio may differ):
 
-```text
+```dotnetcli
+dotnet workload list
+
 Installed Workload Id    Manifest Version                    Installation Source
-------------------------------------------------------------------------------------------
-aspire                   8.0.0-preview.3.24105.21/8.0.100    SDK 8.0.100, VS 17.10.XXXX.YY
+--------------------------------------------------------------------------------
+aspire                   8.0.0-preview.3.24105.21/8.0.100    VS 17.10.34608.216
 ```
 
 ### Update existing apps
