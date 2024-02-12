@@ -406,7 +406,7 @@ The .NET Aspire samples are located in <https://github.com/dotnet/aspire-samples
 
 ## Deployment to Azure using AZD
 
-The [Azure Developer CLI (azd)][/azure/developer/azure-developer-cli/) is an open-source tool that makes it easier to get your applications running in the cloud on Azure. We are working to ensure that `azd` enables the fastest and simplest way to get an Aspire app provisioned and deployed to Azure in minutes. In this release the focus has still been primarily targeting Azure Container Apps.
+The [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/) is an open-source tool that makes it easier to get your applications running in the cloud on Azure. We are working to ensure that `azd` enables the fastest and simplest way to get an Aspire app provisioned and deployed to Azure in minutes. In this release the focus has still been primarily targeting Azure Container Apps.
 
 In this release, new features to better support .NET Aspire deployments include:
 
