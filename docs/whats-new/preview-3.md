@@ -1,62 +1,85 @@
 ---
 title: .NET Aspire preview 3
 description: .NET Aspire preview 3 is now available and includes many improvements and new capabilities
-ms.date: 02/09/2024
+ms.date: 02/12/2024
 ---
 
 # .NET Aspire preview 3
 
-Today we're announcing the 3rd preview of .NET Aspire. While the goal is to have monthly releases, we skipped January due to the holidays. .NET Aspire **preview 3** is now available!
+This article covers the 3rd preview of .NET Aspire. While the goal is to have monthly releases, January was skipped due to the holidays. .NET Aspire **preview 3** is now available!
 
 ## Get .NET Aspire preview 3
 
-The [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md) instructions have been updated to reflect preview 3. After updating you can run `dotnet workload list` to see the updated version (note: your version of Visual Studio may differ):
+The complete set of [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md) instructions has been updated to reflect preview 3. The following are the key steps to get started with preview 3:
+
+1. If on Windows and using Visual Studio to work with .NET Aspire, install/update to the latest [Visual Studio 2022 Preview](https://aka.ms/vspreview) release (17.10.0 Preview 1.0 at the time of writing).
+
+    - Ensure that the **.NET Aspire SDK (Preview)** component is selected under the **Individual components** tab of the Visual Studio installer:
+
+    ![Visual Studio installer with .NET Aspire SDK (Preview) component selected](media/preview-3/vs-aspire-sdk-component.png)
+
+1. If on Windows and you have Visual Studio 2022 17.8.x installed but intend to only use .NET Aspire via the .NET CLI (`dotnet`), download and install the [.NET 8.0.100 SDK using the standalone installer](https://dotnet.microsoft.com/download/dotnet/8.0).
+
+1. If on macOS or Linux, download and install the [.NET 8.0.100 SDK](https://dotnet.microsoft.com/download/dotnet/8.0).
+
+1. From a terminal, run the following commands to update the .NET Aspire workload:
+
+    ```dotnetcli
+    dotnet workload update
+    dotnet workload install aspire
+    ```
+
+After updating you can run `dotnet workload list` to see the updated version (your version of Visual Studio may differ):
 
 ```dotnetcli
 dotnet workload list
 
 Installed Workload Id    Manifest Version                    Installation Source
---------------------------------------------------------------------------------
-aspire                   8.0.0-preview.3.24105.21/8.0.100    VS 17.10.34608.216
+--------------------------------------------------------------------------------------------
+aspire                   8.0.0-preview.3.24105.21/8.0.100    SDK 8.0.100, VS 17.10.34608.216
 ```
 
 ### Update existing apps
 
-For existing .NET Aspire apps, after installing the latest workload, you'll want to update your package references for all .NET Aspire components. All Aspire NuGet packages should be updated to:
+For existing .NET Aspire apps, after installing the latest workload, update all .NET Aspire package references to:
 
 - `8.0.0-preview.3.24105.21`
 
+For example, package references in your `.csproj` file for `Aspire.Hosting` should be updated to:
+
 ```xml
-<PackageReference Include="Aspire.*" Version="8.0.0-preview.3.24105.21" />
+<PackageReference Include="Aspire.Hosting" Version="8.0.0-preview.3.24105.21" />
 ```
 
-If you're using Visual Studio, you can use the NuGet Package Manager and update all packages being used via the IDE (be sure to check the pre-release checkbox in the UI).
+If you're using Visual Studio, use the NuGet Package Manager to update all packages for the solution. Ensure that the pre-release checkbox is checked.
 
 ### API changes
 
-Additionally we made some hosting API changes in preview 3.
+There are several hosting API changes in preview 3:
 
-- In existing code, `builder.WithServiceBinding(...)` should now be changed to `builder.WithEndpoint(...)` to retain the same behavior (there are similar changes for other resource types as well). The `WithServiceBinding` API has been obsoleted, so it will continue to work, but with a compile warning, and will be removed in the next preview.
+- In existing code, `builder.WithServiceBinding(...)` should now be changed to `builder.WithEndpoint(...)` to retain the same behavior (there are similar changes for other resource types as well). The `WithServiceBinding` API has been obsoleted, while it will continue to work with a compile warning, you should update it before it's removed in the next preview.
+
+For more information on API changes, see [Breaking changes and new APIs](#breaking-changes-and-new-apis).
 
 ## Dashboard updates and refactoring
 
-We've made a major refactoring of the Aspire Dashboard, splitting it out into its own independent component. The dashboard used to be run as part of the host project, and that caused version conflicts between the dashboard and project dependencies. The dashboard is now its own independent executable, that communicates via gRPC to an endpoint to retrieve information about the projects, containers, their status and logs.
+The [.NET Aspire Dashboard](../fundamentals/dashboard.md) has undergone a lot of refactoring, splitting it out into its own independent component. The dashboard used to be run as part of the host project, and that caused version conflicts between the dashboard and project dependencies. The dashboard is now its own independent executable, that communicates via gRPC to an endpoint to retrieve information about the projects, containers, their status and logs.
 
 This refactoring enables the dashboard to be more easily used for real-time runtime diagnostics after deployment, as hosts can implement the same gRPC contract/endpoint for project and dependency status.
 
-Refactoring should not require any changes to Aspire Projects as there have been no related API changes for the projects themselves. Using the dashboard is unchanged in your development environment.
+Refactoring shouldn't require any changes to .NET Aspire projects as there have been no related API changes for the projects themselves. Using the dashboard is unchanged in your development environment.
 
 ### Localization and accessibility
 
-We've made small changes across the dashboard to support localization and accessibility. Changes include improving color contrast, adding accessibility attributes, and moving UI text into resource files.
+Many small changes across the dashboard have been made to support localization and accessibility. These changes include improving color contrast, adding accessibility attributes, and moving UI text into resource files.
 
-An example of an improvement is how the dashboard indicates trace length. Previously there was a subtle color gradient on each row that didn't meet accessibility requirements. In preview 3 we've replaced the color gradient with a radial progress icon:
+An example of an improvement is how the dashboard indicates trace length. Previously there was a subtle color gradient on each row that didn't meet accessibility requirements. In preview 3 this was replaced with a radial progress icon:
 
-:::image type="content" source="media/preview-3/trace-duration.png" lightbox="media/preview-3/trace-duration.png" alt-text="Trace details page with new radial icon.":::
+:::image type="content" source="media/preview-3/trace-duration.png" lightbox="media/preview-3/trace-duration.png" alt-text="Trace details page with new radial icon used to quickly differentiate trace lengths.":::
 
 ### New resource details view
 
-The resources page grid was bursting at the seams with information. In preview 3 we've introduced a resource details view. The grid continues to display important information, and additional details, including all of a resources properties, are available in the details view.
+The resources page grid was bursting at the seams with information. In preview 3 there's now a resource details view. The grid continues to display important information, and additional details, including all of a resources properties, are available in the details view.
 
 :::image type="content" source="media/preview-3/resource-details-view.png" lightbox="media/preview-3/resource-details-view.png" alt-text="Resource details view.":::
 
@@ -70,24 +93,24 @@ The dashboard telemetry pages show off a number of improvements:
 
 ## Component updates
 
-[Aspire components](../fundamentals/components-overview.md) are a curated suite of NuGet packages specifically selected to facilitate the integration of cloud-native applications with prominent services and platforms. Each component furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns. .NET Aspire components can be used without an orchestrator project, but they're designed to work best with the .NET Aspire app host.
+[.NET Aspire components](../fundamentals/components-overview.md) are a curated suite of NuGet packages specifically selected to facilitate the integration of cloud-native applications with prominent services and platforms. Each component furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns. .NET Aspire components can be used without an orchestrator project, but they're designed to work best with the .NET Aspire app host.
 
 ### Azure AI OpenAI component
 
-This component enables integration of the Azure AI OpenAI or OpenAI services from an Aspire project. Assuming you already have an OpenAI service provisioned, you can use OpenAI from your projects.
+This component enables integration of the Azure AI OpenAI or OpenAI services from a .NET Aspire project. Assuming you already have an OpenAI service provisioned, you can use OpenAI from your projects.
 
 ```csharp
 using Azure.AI.OpenAI;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add service defaults & Aspire components.
+// Add service defaults and components.
 builder.AddServiceDefaults();
 builder.AddAzureOpenAI("OpenAI");
 
-ar app = builder.Build();
+var app = builder.Build();
 
-app.MapGet("/chat-complete", static async (string request, OpenAIClient client) =>
+app.MapGet("/chat", static async (string request, OpenAIClient client) =>
 {
     var options = new ChatCompletionsOptions(
         "gpt-35-turbo", [new ChatRequestUserMessage(request)]);
@@ -107,7 +130,7 @@ For more information, see [GitHub: .NET Aspire.Azure.AI.OpenAI](https://github.c
 
 ### Component and hosting for Apache Kafka
 
-Guillaume Delahaye ([@g7eg6e](https://github.com/g7ed6e)) has contributed a library that wraps `Confluent.Kafka` binaries for producing and consuming messages to an Apache Kafka broker. The Aspire integration enables corresponding health check, logging and metrics.
+[Guillaume Delahaye (@g7eg6e)](https://github.com/g7ed6e) has contributed a library that wraps `Confluent.Kafka` binaries for producing and consuming messages to an Apache Kafka broker. The .NET Aspire integration enables corresponding health checks, logging and metrics. Consider the following example:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -145,9 +168,9 @@ var messaging = builder.AddKafka("kafka");
 
 For more information, see [GitHub: .NET Aspire.Confluent.Kafka](https://github.com/dotnet/aspire/tree/main/src/Components/Aspire.Confluent.Kafka).
 
-### Component and component for Oracle with EF
+### Component for Oracle with EF
 
-A community contribution from Andre Vieira ([@andrevlins](https://github.com/andrevlins)), this provides integration of the Oracle Entity Framework provider into Aspire, enabling connection pooling, health check, logging and telemetry.
+A community contribution from [Andre Vieira (@andrevlins)](https://github.com/andrevlins), this provides integration of the Oracle Entity Framework provider into Aspire, enabling connection pooling, health check, logging and telemetry.
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -250,7 +273,9 @@ When deployed, `azd` will automatically provision the Cosmos DB resource and cre
 
 We've updated the Aspire component to use the new feature in `StackExchange.Redis` which supports <xref:Microsoft.Extensions.Logging.ILogger>. Redis logs will now be shown in both the console and structured logs in the dashboard.
 
-## API changes
+## Breaking changes and new APIs
+
+The following sections detail several breaking changes in preview 3. Additionally, several new APIs are introduced in this release.
 
 ### `WithServiceBinding` has changed to `WithEndpoint`
 
