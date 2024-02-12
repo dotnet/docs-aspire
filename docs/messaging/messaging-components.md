@@ -294,3 +294,5 @@ The sample app is now ready for testing. Verify that the data submitted to the A
 1. Switch back to the **AspireWorkerService** logs. You should see the test message printed in the output logs.
 
 Congratulations! You created and configured an ASP.NET Core API that connects to Azure Service Bus using Aspire components.
+
+[!INCLUDE [clean-up-resources](../includes/clean-up-resources.md)]
