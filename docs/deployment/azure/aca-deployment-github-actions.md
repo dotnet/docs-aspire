@@ -153,3 +153,5 @@ The Azure Developer CLI enables you to automatically create CICD pipelines with 
     :::image type="content" source="media/deployment-links.png" alt-text="A screenshot showing the deployed app links.":::
 
 Congratulations! You successfully deployed a .NET Aspire app using the Azure Developer CLI and GitHub Actions.
+
+[!INCLUDE [clean-up-resources](../../includes/clean-up-resources.md)]

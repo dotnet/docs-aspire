@@ -403,3 +403,5 @@ azd env new
 ```
 
 This will prompt the user for subscription and resource group information again and subsequent `azd up`, `azd provision`, and `azd deploy` invocations will use this new environment by default. The `--environment` switch can be applied to these commands to switch between environments.
+
+[!INCLUDE [clean-up-resources](../../includes/clean-up-resources.md)]
