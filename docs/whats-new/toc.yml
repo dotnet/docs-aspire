@@ -3,6 +3,11 @@ items:
   href: index.yml
   expanded: true
   items:
+  - name: Latest product updates
+    expanded: true
+    items:
+    - name: .NET Aspire preview 3
+      href: preview-3.md
   - name: Latest documentation updates
     expanded: true
     items:
