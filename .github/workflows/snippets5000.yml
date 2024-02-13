@@ -37,7 +37,6 @@ jobs:
         uses: actions/setup-dotnet@main
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
-          dotnet-quality: 'preview'
 
       # Print dotnet info
       - name: Display .NET info
