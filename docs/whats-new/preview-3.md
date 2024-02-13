@@ -79,7 +79,7 @@ An example of an improvement is how the dashboard indicates trace length. Previo
 
 ### New resource details view
 
-The resources page grid was bursting at the seams with information. In preview 3 there's now a resource details view. The grid continues to display important information, and additional details, including all of a resources properties, are available in the details view.
+The resources page grid previously displayed an overload of information. Preview 3 now includes a resource details view for improved readability. The grid continues to display important information, while the details view shows additional data, including all of the resource's properties.
 
 :::image type="content" source="media/preview-3/resource-details-view.png" lightbox="media/preview-3/resource-details-view.png" alt-text="Resource details view.":::
 
