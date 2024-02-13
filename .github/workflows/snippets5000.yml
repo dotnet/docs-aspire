@@ -41,7 +41,7 @@ jobs:
       # Install workload
       - name: Install .NET Aspire workload
         run: |
-          dotnet workload install aspire
+          dotnet workload install aspire -v d
 
       # Print dotnet info
       - name: Display .NET info
