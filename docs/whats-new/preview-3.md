@@ -29,7 +29,7 @@ The complete set of [.NET Aspire setup and tooling](../fundamentals/setup-toolin
     dotnet workload install aspire
     ```
 
-After updating you can run `dotnet workload list` to see the updated version (your version of Visual Studio may differ):
+After updating run `dotnet workload list` to see the updated version (your version of Visual Studio may differ):
 
 ```dotnetcli
 dotnet workload list
@@ -132,7 +132,7 @@ For more information, see [GitHub: .NET Aspire.Azure.AI.OpenAI](https://github.c
 
 ### Component and hosting for Apache Kafka
 
-[Guillaume Delahaye (@g7eg6e)](https://github.com/g7ed6e) has contributed a library that wraps `Confluent.Kafka` binaries for producing and consuming messages to an Apache Kafka broker. The .NET Aspire integration enables corresponding health checks, logging and metrics.
+[Guillaume Delahaye (@g7eg6e)](https://github.com/g7ed6e) contributed a library that wraps `Confluent.Kafka` binaries for producing and consuming messages to an Apache Kafka broker. The .NET Aspire integration enables corresponding health checks, logging and metrics.
 
 - [Aspire.Confluent.Kafka](https://www.nuget.org/packages/Aspire.Confluent.Kafka) NuGet 📦 package.
 
@@ -212,7 +212,7 @@ For more information, see [GitHub: .NET Aspire.Oracle.EntityFrameworkCore](https
 
 ### Component and hosting for MySql with EF
 
-Bradley Grainger ([@bgrainger](https://github.com/bgrainger)) has contributed an Aspire component for MySQL named `Aspire.Pomelo.EntityFrameworkCore.MySql`. This wraps the `Pomelo.EntityFrameworkCore.MySql` library which is an Entity Framework Core provider for MySQL compatible databases. It supports EF Core up to its latest version and uses MySqlConnector for high-performance database server communication. The Aspire integration enables connection pooling, health check, logging and telemetry.
+[Bradley Grainger (@bgrainger)](https://github.com/bgrainger) has contributed an Aspire component for MySQL named `Aspire.Pomelo.EntityFrameworkCore.MySql`. This wraps the `Pomelo.EntityFrameworkCore.MySql` library which is an Entity Framework Core provider for MySQL compatible databases. It supports EF Core up to its latest version and uses MySqlConnector for high-performance database server communication. The Aspire integration enables connection pooling, health check, logging and telemetry.
 
 - [Aspire.Pomelo.EntityFrameworkCore.MySql](https://www.nuget.org/packages/Aspire.Pomelo.EntityFrameworkCore.MySql) NuGet 📦 package.
 
@@ -322,7 +322,7 @@ builder.AddRedis("myredis2").WithRedisCommander();
 
 ### PostgreSQL PgAdmin resource extension
 
-Andre Vieira has also contributed a resource extension to make it easier to deploy the [pgAdmin](https://www.pgadmin.org/) container to manage your PostgreSQL database instances. Similar to the RedisCommander functionality above, this makes it easy to automatically deploy a pgadmin container when running an Aspire project.
+[Andre Vieira (@andrevlins)](https://github.com/andrevlins) has also contributed a resource extension to make it easier to deploy the [pgAdmin](https://www.pgadmin.org/) container to manage your PostgreSQL database instances. Similar to the RedisCommander functionality above, this makes it easy to automatically deploy a pgadmin container when running an Aspire project.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
