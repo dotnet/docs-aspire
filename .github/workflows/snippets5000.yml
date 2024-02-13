@@ -39,9 +39,14 @@ jobs:
         if: ${{ env.DOTNET_DO_INSTALL == 'true' }}
         run: |
           echo "Downloading dotnet-install.ps1"
-          Invoke-WebRequest https://raw.githubusercontent.com/dotnet/install-scripts/master/src/dotnet-install.ps1 -OutFile dotnet-install.ps1
+          Invoke-WebRequest https://raw.githubusercontent.com/dotnet/install-scripts/main/src/dotnet-install.ps1 -OutFile dotnet-install.ps1
           echo "Installing dotnet version ${{ env.DOTNET_INSTALLER_CHANNEL }}"
           .\dotnet-install.ps1 -InstallDir "c:\program files\dotnet" -Channel "${{ env.DOTNET_INSTALLER_CHANNEL }}" -Quality preview
+
+      # Install workload
+      - name: Install .NET Aspire workload
+        run: |
+          dotnet workload install aspire
 
       # Print dotnet info
       - name: Display .NET info
