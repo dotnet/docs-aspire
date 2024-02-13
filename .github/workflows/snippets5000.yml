@@ -37,11 +37,7 @@ jobs:
         uses: actions/setup-dotnet@main
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
-
-      # Print dotnet info
-      - name: Display .NET info
-        run: |
-          dotnet --info
+          dotnet-quality: 'preview'
 
       # Install workload
       - name: Install .NET Aspire workload
