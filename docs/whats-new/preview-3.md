@@ -364,7 +364,7 @@ builder.AddProject<Projects.DaprServiceB>("serviceb")
 
 ## Add support for Orleans in .NET Aspire
 
-Starting with preview 3, support for [Orleans](/dotnet/orleans/overview) was added, allowing you to configure a cluster in your app host, specifying the resources the cluster uses. For example, you can specify that an Azure Table will be used for cluster membership, an Azure Redis resource will be used for the grain directory, and an Azure Blob Storage resource will be used to store grain state. The integration currently support Redis and Azure Table & Blob storage resources. Support for other resources will be added later.
+Preview 3 adds support for [Orleans](/dotnet/orleans/overview) v8.1.0-preview1 or later, allowing you to configure a cluster in your app host, specifying the resources the cluster uses. For example, you can specify that an Azure Table will be used for cluster membership, an Azure Redis resource will be used for the grain directory, and an Azure Blob Storage resource will be used to store grain state. The integration currently support Redis and Azure Table & Blob storage resources. Support for other resources will be added later.
 
 In the app host project, an Orleans cluster can be declared using the `AddOrleans` method, and then configured with clustering, grain storage, grain directory, and other providers using methods on the returned builder:
 
