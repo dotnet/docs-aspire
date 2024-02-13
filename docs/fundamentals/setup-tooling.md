@@ -30,7 +30,7 @@ The .NET Aspire workload installs internal dependencies and makes available othe
 
 # [Visual Studio](#tab/visual-studio)
 
-Starting with Visual Studio 2022 17.10 Preview 1 includes the **.NET Aspire preview 3** workload by default. To verify that you have the .NET Aspire workload installed, run the following command:
+Visual Studio 2022 17.10 Preview 1 or higher includes the **.NET Aspire preview 3** workload by default. To verify that you have the .NET Aspire workload installed, run the following command:
 
 ```dotnetcli
 dotnet workload list
