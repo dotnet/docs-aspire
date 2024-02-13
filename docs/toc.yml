@@ -17,11 +17,13 @@ items:
         href: get-started/build-aspire-apps-with-nodejs.md
       - name: Setup and tooling
         href: fundamentals/setup-tooling.md
-      - name: What's new in .NET Aspire
-        href: whats-new/index.yml
+
+  - name: What's new in .NET Aspire
+    items:
+      - name: .NET Aspire preview 3
+        href: whats-new/preview-3.md
 
   - name: Fundamentals
-    expanded: true
     items:
       - name: Distributed app host (Orchestration)
         displayName: orchestration,aspire apphost,aspire app
