@@ -20,8 +20,12 @@ items:
       - name: What's new in .NET Aspire
         href: whats-new/index.yml
 
+  - name: What's new in .NET Aspire
+    items:
+      - name: .NET Aspire preview 3
+        href: whats-new/preview-3.md
+
   - name: Fundamentals
-    expanded: true
     items:
       - name: Distributed app host (Orchestration)
         displayName: orchestration,aspire apphost,aspire app
