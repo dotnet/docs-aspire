@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire preview 3
 description: .NET Aspire preview 3 is now available and includes many improvements and new capabilities
-ms.date: 02/12/2024
+ms.date: 02/13/2024
 ---
 
 # .NET Aspire preview 3
@@ -99,6 +99,8 @@ The dashboard telemetry pages show off a number of improvements:
 
 This component enables integration of the Azure AI OpenAI or OpenAI services from a .NET Aspire project. Assuming you already have an OpenAI service provisioned, you can use OpenAI from your projects.
 
+- [Aspire.Azure.AI.OpenAI](https://www.nuget.org/packages/Aspire.Azure.AI.OpenAI) NuGet 📦 package.
+
 ```csharp
 using Azure.AI.OpenAI;
 
@@ -130,7 +132,11 @@ For more information, see [GitHub: .NET Aspire.Azure.AI.OpenAI](https://github.c
 
 ### Component and hosting for Apache Kafka
 
-[Guillaume Delahaye (@g7eg6e)](https://github.com/g7ed6e) has contributed a library that wraps `Confluent.Kafka` binaries for producing and consuming messages to an Apache Kafka broker. The .NET Aspire integration enables corresponding health checks, logging and metrics. Consider the following example:
+[Guillaume Delahaye (@g7eg6e)](https://github.com/g7ed6e) has contributed a library that wraps `Confluent.Kafka` binaries for producing and consuming messages to an Apache Kafka broker. The .NET Aspire integration enables corresponding health checks, logging and metrics.
+
+- [Aspire.Confluent.Kafka](https://www.nuget.org/packages/Aspire.Confluent.Kafka) NuGet 📦 package.
+
+Consider the following example:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -172,6 +178,8 @@ For more information, see [GitHub: .NET Aspire.Confluent.Kafka](https://github.c
 
 A community contribution from [Andre Vieira (@andrevlins)](https://github.com/andrevlins), this provides integration of the Oracle Entity Framework provider into Aspire, enabling connection pooling, health check, logging and telemetry.
 
+- [Aspire.Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Aspire.Oracle.EntityFrameworkCore) NuGet 📦 package.
+
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
@@ -205,6 +213,8 @@ For more information, see [GitHub: .NET Aspire.Oracle.EntityFrameworkCore](https
 ### Component and hosting for MySql with EF
 
 Bradley Grainger ([@bgrainger](https://github.com/bgrainger)) has contributed an Aspire component for MySQL named `Aspire.Pomelo.EntityFrameworkCore.MySql`. This wraps the `Pomelo.EntityFrameworkCore.MySql` library which is an Entity Framework Core provider for MySQL compatible databases. It supports EF Core up to its latest version and uses MySqlConnector for high-performance database server communication. The Aspire integration enables connection pooling, health check, logging and telemetry.
+
+- [Aspire.Pomelo.EntityFrameworkCore.MySql](https://www.nuget.org/packages/Aspire.Pomelo.EntityFrameworkCore.MySql) NuGet 📦 package.
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -354,7 +364,7 @@ builder.AddProject<Projects.DaprServiceB>("serviceb")
 
 ## Add support for Orleans in .NET Aspire
 
-This preview adds support for [Orleans](/dotnet/orleans/overview), allowing you to configure a cluster in your app host, specifying the resources the cluster uses. For example, you can specify that an Azure Table will be used for cluster membership, an Azure Redis resource will be used for the grain directory, and an Azure Blob Storage resource will be used to store grain state. The integration currently support Redis and Azure Table & Blob storage resources. Support for other resources will be added later.
+Starting with preview 3, support for [Orleans](/dotnet/orleans/overview) was added, allowing you to configure a cluster in your app host, specifying the resources the cluster uses. For example, you can specify that an Azure Table will be used for cluster membership, an Azure Redis resource will be used for the grain directory, and an Azure Blob Storage resource will be used to store grain state. The integration currently support Redis and Azure Table & Blob storage resources. Support for other resources will be added later.
 
 In the app host project, an Orleans cluster can be declared using the `AddOrleans` method, and then configured with clustering, grain storage, grain directory, and other providers using methods on the returned builder:
 
