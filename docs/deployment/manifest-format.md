@@ -18,7 +18,7 @@ a .NET Aspire application using the `aspire-starter` .NET template:
 
 ```dotnetcli
 dotnet new aspire-starter --use-redis-cache `
-    -n AspireApp && `
+    -o AspireApp && `
     cd AspireApp
 ```
 

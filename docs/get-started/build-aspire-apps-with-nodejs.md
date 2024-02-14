@@ -131,7 +131,7 @@ The second update is the to the _package.json_ file. This file is used to config
 
 The `scripts` section of the _package.json_ file is used to define the `start` script. This script is used by the `npm start` command to start the Angular client app. The `start` script is configured to use the `run-script-os` package to set the port, which delegates to the `ng serve` command passing the appropriate `--port` switch based on the OS-appropriate syntax.
 
-In order to make HTTP calls to the "weatherapi" service, the Angular client app needs to be configured to provide the Angular `HttpClient` for dependency injection. This is achieved by importing the `HttpClientModule` in the _app.config.ts_ file.
+In order to make HTTP calls to the "weatherapi" service, the Angular client app needs to be configured to provide the Angular `HttpClient` for dependency injection. This is achieved by using the `provideHttpClient` helper function while configuring the application in the _app.config.ts_ file.
 
 :::code language="typescript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/src/app/app.config.ts":::
 

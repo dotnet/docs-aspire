@@ -284,6 +284,9 @@ The Azure Developer CLI enables you to automatically create CICD pipelines with 
 
     :::image type="content" source="media/deployment-links.png" alt-text="A screenshot showing the deployed app links.":::
 
+    > [!NOTE]
+    > You can also navigate directly to your new resource group by searching for it in the Azure Portal. Your resource group name will be the environment name you provided to `azd` prefixed with `rg-`.
+
 1. Select the **webfrontend** container app, which hosts the public facing portion of your site.
 
 1. On the **webfrontend** details page, select the **Application Url** link to open your site in the browser.
@@ -294,3 +297,5 @@ The Azure Developer CLI enables you to automatically create CICD pipelines with 
 Congratulations! You successfully deployed a .NET Aspire app using the Azure Developer CLI and Azure Pipelines.
 
 :::zone-end
+
+[!INCLUDE [clean-up-resources](../../includes/clean-up-resources.md)]

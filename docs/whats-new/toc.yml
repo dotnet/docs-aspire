@@ -3,9 +3,16 @@ items:
   href: index.yml
   expanded: true
   items:
+  - name: Latest product updates
+    expanded: true
+    items:
+    - name: .NET Aspire preview 3
+      href: preview-3.md
   - name: Latest documentation updates
     expanded: true
     items:
+    - name: January 2024
+      href: dotnet-docs-aspire-mod1.md
     - name: December 2023
       href: dotnet-docs-aspire-mod0.md
     - name: November 2023

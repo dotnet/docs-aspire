@@ -1,17 +1,25 @@
 ### YamlMime:Landing
 
-title: .NET Aspire documentation — what's new?
+title: .NET Aspire — what's new?
 summary: Welcome to what's new in .NET Aspire docs. Use this page to quickly find the latest changes.
 metadata:
-  title: .NET Aspire documentation what's new?
+  title: .NET Aspire what's new?
   description: Learn about new and updated content in .NET Aspire docs.
-  ms.date: 01/04/2024
+  ms.date: 02/08/2024
   ms.topic: landing-page
 landingContent:
-- title: .NET Aspire release updates
+- title: .NET Aspire preview documentation
   linkLists:
   - linkListType: whats-new
     links:
+    - text: .NET Aspire preview 3
+      url: preview-3.md
+- title: .NET Aspire GitHub release notes
+  linkLists:
+  - linkListType: whats-new
+    links:
+    - text: .NET Aspire 8.0 preview 3
+      url: https://github.com/dotnet/aspire/releases/tag/v8.0.0-preview.3.24105.21
     - text: .NET Aspire 8.0 preview 2
       url: https://github.com/dotnet/aspire/releases/tag/v8.0.0-preview.2.23619.3
     - text: .NET Aspire 8.0 preview 1
@@ -20,12 +28,12 @@ landingContent:
   linkLists:
   - linkListType: whats-new
     links:
+    - text: January 2024
+      url: dotnet-docs-aspire-mod1.md
     - text: December 2023
       url: dotnet-docs-aspire-mod0.md
     - text: December 2023 (preview 2)
       url: https://devblogs.microsoft.com/dotnet/announcing-dotnet-aspire-preview-2
-    - text: November 2023 (preview 1)
-      url: https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-simplifying-cloud-native-development-with-dotnet-8
 - title: Find language updates
   linkLists:
   - linkListType: whats-new

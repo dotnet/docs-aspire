@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 12/08/2023
+ms.date: 02/09/2024
 ---
 
 # .NET Aspire setup and tooling
@@ -29,6 +29,14 @@ To work with .NET Aspire, you'll need the following installed locally:
 The .NET Aspire workload installs internal dependencies and makes available other tooling, such as project templates and Visual Studio features. There are two ways to install the .NET Aspire workload. If you prefer to use Visual Studio Code, follow the .NET CLI instructions:
 
 # [Visual Studio](#tab/visual-studio)
+
+Visual Studio 2022 17.10 Preview 1 or higher includes the **.NET Aspire preview 3** workload by default. To verify that you have the .NET Aspire workload installed, run the following command:
+
+```dotnetcli
+dotnet workload list
+```
+
+If you have an earlier version of Visual Studio 2022 Preview, you can either upgrade to Visual Studio 2022 17.10 Preview 1 or you can install the .NET Aspire workload using the following steps:
 
 To install the .NET Aspire workload in Visual Studio 2022 Preview, use the Visual Studio installer.
 
@@ -76,6 +84,9 @@ dotnet workload list
 ---
 
 ## .NET Aspire project templates
+
+> [!NOTE]
+> The .NET 9.0 SDK causes issues with the .NET Aspire workloads ability to display templates, and create projects from the templates. If you're using .NET 9.0, know that your ability to create new .NET Aspire apps is currently limited. For more information, see [.NET Aspire preview-3 cannot create app when .NET 9 is installed](https://github.com/dotnet/aspire/issues/1951) and [.NET Aspire preview-3 installed with Visual Studio 17.10 doesn't show templates](https://github.com/dotnet/aspire/issues/2186).
 
 The .NET Aspire workload makes available .NET Aspire project templates. These project templates allow you to create new apps pre-configured with the .NET Aspire project structure and default settings. These projects also provide a unified debugging experience across the different resources of your app.
 
