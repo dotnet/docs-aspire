@@ -272,7 +272,7 @@ The Azure Developer CLI enables you to automatically create pipelines with the c
 
 1. Enter <kbd>y</kbd> to proceed when `azd` prompts you to commit and push your local changes to start the configured pipeline.
 
-## Explore the Azure Pipelines workflow and deployed app
+## Explore the pipeline and deployed app
 
 1. Navigate to your new Azure Pipeline using the status link output by `azd`.
 
