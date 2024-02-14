@@ -124,7 +124,7 @@ items:
           - name: Azure Container Apps with AZD (In-depth)
             href: deployment/azure/aca-deployment-azd-in-depth.md
             displayName: azure container apps,aca,azd
-          - name: Tutorial - Deploy using AZD and GitHub Actions
+          - name: Tutorial - Deploy using AZD and CICD
             href: deployment/azure/aca-deployment-github-actions.md
           - name: Use .NET Aspire with Application Insights
             href: deployment/azure/application-insights.md
