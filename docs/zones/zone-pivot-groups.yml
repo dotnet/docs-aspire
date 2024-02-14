@@ -21,3 +21,11 @@ groups:
       title: Azure Portal
     - id: azure-cli
       title: Azure CLI
+- id: deployment-platform
+  title: Azure deployment platform
+  prompt: Choose a deployment platform
+  pivots:
+    - id: github-actions
+      title: GitHub Actions
+    - id: azure-pipelines
+      title: Azure Pipelines
