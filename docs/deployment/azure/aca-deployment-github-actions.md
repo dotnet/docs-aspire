@@ -20,7 +20,15 @@ The Azure Developer CLI (`azd`) enables you to deploy .NET Aspire applications u
 
 :::zone pivot="azure-pipelines"
 
-- [Create an Azure DevOps organization](/azure/devops/organizations/accounts/create-organization) or choose an existing organization to work through the steps ahead.
+- [Create an Azure DevOps organization](/azure/devops/organizations/accounts/create-organization) or choose an existing organization
+- An Azure DevOps Personal Access Token (PAT). [Create a new Azure DevOps PAT](/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate#create-a-pat) configured with the following scopes:
+
+  - Agent Pools (read, manage)
+  - Build (read and execute)
+  - Code (full)
+  - Project and team (read, write and manage)
+  - Release (read, write, execute and manage)
+  - Service Connections (read, query and manage)
 
 :::zone-end
 
@@ -167,10 +175,7 @@ Congratulations! You successfully deployed a .NET Aspire app using the Azure Dev
 
 :::zone pivot="azure-pipelines"
 
-## Configure Azure DevOps and the workflow file
-
-> [!NOTE]
-> As mentioned in the prerequisites, you'll need a DevOps organization to work through the steps ahead. An organization enables you to connect and manage groups of related projects.
+## Configure the workflow file
 
 Although `azd` generated some essential template files for you, the project still needs an Azure Pipelines workflow file to support provisioning and deployments using CI/CD.
 
@@ -238,9 +243,12 @@ steps:
 
 ## Create the Azure DevOps repository and pipeline
 
+> [!IMPORTANT]
+> As mentioned in the prerequisites, you'll need to [create an Azure DevOps organization](/azure/devops/organizations/accounts/create-organization) or select an existing organization to complete the steps ahead. You will also need to [create a Personal Access Token (PAT)](/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate#create-a-pat) with the permissions listed in the prerequisites.
+
 The Azure Developer CLI enables you to automatically create CICD pipelines with the correct configurations and permissions to provision and deploy resources to Azure. `azd` can also create an Azure Pipelines repository for your app if it doesn't exist already.
 
-1. Run the `azd pipeline config` command to configure your deployment pipeline and securely connect it to Azure. Provide the `--provider azdo` option to use Azure Pipelines instead of the default GitHub Actions configuration.
+1. Run the `azd pipeline config` command to configure your deployment pipeline and securely connect it to Azure. Include the `--provider azdo` option to use Azure Pipelines instead of the default GitHub Actions configuration.
 
     ```azdeveloper
     azd pipeline config --provider azdo
@@ -258,7 +266,7 @@ The Azure Developer CLI enables you to automatically create CICD pipelines with 
 
 1. When prompted to configure the git remote, select **Create a new Azure DevOps Project**.
 
-1. Enter a unique name of your choice for the new repository, such as `azdaspire`. `azd` creates a new repository in Azure Repos and configures it with the necessary secrets required to authenticate to Azure.
+1. Enter a unique name of your choice for the new repository, such as `aspireazd`. `azd` creates a new repository in Azure Repos and configures it with the necessary secrets required to authenticate to Azure.
 
     :::image type="content" source="media/pipeline-configuration.png" alt-text="A screenshot showing the pipeline configuration steps.":::
 
