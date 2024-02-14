@@ -22,7 +22,7 @@ The Azure Developer CLI (`azd`) enables you to deploy .NET Aspire applications u
 
 - [Create an Azure DevOps organization](/azure/devops/organizations/accounts/create-organization) or choose an existing organization to work through the steps ahead.
 
-::zone-end
+:::zone-end
 
 You also need to have the Azure Developer CLI [installed locally](/azure/developer/azure-developer-cli/install-azd) (version 1.5.1 or higher). Common install options include the following:
 
@@ -125,7 +125,7 @@ Although `azd` generated some essential template files for you, the project stil
             run: azd deploy --no-prompt
     ```
 
-## Create the repository and pipeline
+## Create the GitHub repository and pipeline
 
 The Azure Developer CLI enables you to automatically create CICD pipelines with the correct configurations and permissions to provision and deploy resources to Azure. `azd` can also create a GitHub repository for your app if it doesn't exist already.
 
@@ -236,7 +236,7 @@ steps:
       AZURE_LOCATION: $(AZURE_LOCATION)
 ```
 
-## Create the repository and pipeline
+## Create the Azure DevOps repository and pipeline
 
 The Azure Developer CLI enables you to automatically create CICD pipelines with the correct configurations and permissions to provision and deploy resources to Azure. `azd` can also create an Azure Pipelines repository for your app if it doesn't exist already.
 
