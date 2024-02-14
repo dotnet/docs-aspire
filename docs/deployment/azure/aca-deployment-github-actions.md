@@ -268,7 +268,7 @@ The Azure Developer CLI enables you to automatically create pipelines with the c
 
 1. Enter a unique name of your choice for the new repository, such as `aspireazd`. `azd` creates a new repository in Azure Repos and configures it with the necessary secrets required to authenticate to Azure.
 
-    :::image type="content" source="media/pipeline-configuration.png" alt-text="A screenshot showing the pipeline configuration steps.":::
+    :::image type="content" source="media/pipeline-configuration.png" lightbox="media/pipeline-configuration.png" alt-text="A screenshot showing the pipeline configuration steps.":::
 
 1. Enter <kbd>y</kbd> to proceed when `azd` prompts you to commit and push your local changes to start the configured pipeline.
 
@@ -276,21 +276,21 @@ The Azure Developer CLI enables you to automatically create pipelines with the c
 
 1. Navigate to your new Azure Pipeline using the status link output by `azd`.
 
-    :::image type="content" source="media/azure-pipeline-run.png" alt-text="A screenshot showing the successful Azure Pipelines run.":::
+    :::image type="content" source="media/azure-pipeline-run.png" lightbox="media/azure-pipeline-run.png" alt-text="A screenshot showing the successful Azure Pipelines run.":::
 
 1. Select the completed pipeline run to view the summary.
 
-    :::image type="content" source="media/azure-pipeline-summary.png" alt-text="A screenshot showing the summary view of the Azure Pipelines run.":::
+    :::image type="content" source="media/azure-pipeline-summary.png" lightbox="media/azure-pipeline-summary.png" alt-text="A screenshot showing the summary view of the Azure Pipelines run.":::
 
 1. Select the job link at the bottom of the view to navigate to the job details.
 
-    :::image type="content" source="media/azure-pipeline-run-details.png" alt-text="A screenshot showing the detailed view of the Azure Pipelines run.":::
+    :::image type="content"  source="media/azure-pipeline-run-details.png" lightbox="media/azure-pipeline-run-details.png" alt-text="A screenshot showing the detailed view of the Azure Pipelines run." :::
 
 1. The job details page shows the status of all the individual stages. Select **Provision Infrastructure** to view the logs for that stage, which detail all of the provisioning steps completed by `azd`. At the bottom of the logs take note of the final status message and link to the provisioned Azure resouce group.
 
 1. Select the link at the bottom of the provisioning output logs to navigate to the new Azure resource group.
 
-    :::image type="content" source="media/deployment-links.png" alt-text="A screenshot showing the deployed app links.":::
+    :::image type="content" source="media/azure-pipeline-resource-group.png" lightbox="media/azure-pipeline-resource-group.png" alt-text="A screenshot showing the deployed Azure resources.":::
 
     > [!NOTE]
     > You can also navigate directly to your new resource group by searching for it in the Azure Portal. Your resource group name will be the environment name you provided to `azd` prefixed with `rg-`.
