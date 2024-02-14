@@ -170,7 +170,7 @@ Congratulations! You successfully deployed a .NET Aspire app using the Azure Dev
 ## Configure Azure DevOps and the workflow file
 
 > [!NOTE]
-> As mentioned in the prerequisites, you'll need a DevOps organization to work through the steps ahead. An organization enables you to connect and manage groups of related projects. 
+> As mentioned in the prerequisites, you'll need a DevOps organization to work through the steps ahead. An organization enables you to connect and manage groups of related projects.
 
 Although `azd` generated some essential template files for you, the project still needs an Azure Pipelines workflow file to support provisioning and deployments using CI/CD.
 
