@@ -4,7 +4,7 @@
     {
         // <hostport>
         builder.AddProject<Projects.Networking_Frontend>("frontend")
-               .WithServiceBinding(hostPort: 5066, scheme: "http");
+               .WithHttpEndpoint(hostPort: 5066);
         // </hostport>
     }
 }

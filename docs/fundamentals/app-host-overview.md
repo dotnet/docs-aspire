@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs to express resource references.
-ms.date: 12/11/2023
+ms.date: 02/14/2024
 ms.topic: overview
 ---
 
@@ -103,7 +103,7 @@ It's possible to get specific endpoints from a container or executable using the
 
 ```csharp
 var customContainer = builder.AddContainer("myapp", "mycustomcontainer")
-                             .WithServiceBinding(containerPort: 9043, name: "endpoint");
+                             .WithEndpoint(containerPort: 9043, name: "endpoint");
 
 var endpoint = customContainer.GetEndpoint("endpoint");
 

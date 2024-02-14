@@ -9,8 +9,8 @@
 
         // <verbose>
         builder.AddProject<Projects.Networking_Frontend>("frontend")
-               .WithServiceBinding(hostPort: 5066, scheme: "http")
-               .WithServiceBinding(hostPort: 7239, scheme: "https");
+               .WithHttpEndpoint(hostPort: 5066)
+               .WithHttpsEndpoint(hostPort: 7239);
         // </verbose>
     }
 }
