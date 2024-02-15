@@ -99,7 +99,7 @@ Project-to-project references are handled differently than resources that have w
 
 Adding a reference to the "apiservice" project results in service discovery environment variables being added to the front-end. This is because typically, project to project communication occurs over HTTP/gRPC. For more information, see [.NET Aspire service discovery](../service-discovery/overview.md).
 
-It's possible to get specific endpoints from a container or executable using the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> and calling the <xref:Aspire.Hosting.ApplicationModel.IResourceWithBindings.GetEndpoint%2A>:
+It's possible to get specific endpoints from a container or executable using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint%2A> and calling the <xref:Aspire.Hosting.ApplicationModel.IResourceWithEndpoints.GetEndpoint%2A>:
 
 ```csharp
 var customContainer = builder.AddContainer("myapp", "mycustomcontainer")
