@@ -1,17 +1,17 @@
 ---
-title: .NET Aspire Confluent Kafka component
-description: Learn how to use the .NET Aspire Confluent Kafka client message-broker component.
+title: .NET Aspire Apache Kafka component
+description: Learn how to use the .NET Aspire Apache Kafka client message-broker component.
 ms.topic: how-to
 ms.date: 02/12/2024
 ---
 
-# .NET Aspire Confluent Kafka component
+# .NET Aspire Apache Kafka component
 
-In this article, you learn how to use the .NET Aspire Confluent Kafka client message-broker. The `Aspire.Confluent.Kafka` library registers an [`IProducer<TKey, TValue>`](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.IProducer-2.html) and an [`IConsumer<TKey, TValue>`](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.IConsumer-2.html) in the dependency injection (DI) container for connecting to a Confluent Kafka server. It enables corresponding health check, logging and telemetry.
+In this article, you learn how to use the .NET Aspire Apache Kafka client message-broker. The `Aspire.Confluent.Kafka` library registers an [`IProducer<TKey, TValue>`](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.IProducer-2.html) and an [`IConsumer<TKey, TValue>`](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.IConsumer-2.html) in the dependency injection (DI) container for connecting to a Apache Kafka server. It enables corresponding health check, logging and telemetry.
 
 ## Get started
 
-To get started with the .NET Aspire Confluent Kafka component, install the [Aspire.Confluent.Kafka](https://www.nuget.org/packages/Aspire.Confluent.Kafka) NuGet package.
+To get started with the .NET Aspire Apache Kafka component, install the [Aspire.Confluent.Kafka](https://www.nuget.org/packages/Aspire.Confluent.Kafka) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -72,7 +72,7 @@ builder.AddKafkaConsumer<string, string>("messaging");
 
 ## Configuration
 
-The .NET Aspire Confluent Kafka component provides multiple options to configure the connection based on the requirements and conventions of your project.
+The .NET Aspire Apache Kafka component provides multiple options to configure the connection based on the requirements and conventions of your project.
 
 ### Use a connection string
 
@@ -94,10 +94,9 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 
 The value provided as connection string will be set to the `BootstrapServers`  property of the produced `IProducer<TKey, TValue>` or `IConsumer<TKey, TValue>` instance. Refer to [BootstrapServers](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.ClientConfig.html#Confluent_Kafka_ClientConfig_BootstrapServers) for more information.
 
-
 ### Use configuration providers
 
-The .NET Aspire Confluent Kafka component supports <xref:microsoft.extensions.configuration>. It loads the `KafkaProducerSettings` or `KafkaConsumerSettings` from configuration by respectively using the `Aspire:Confluent:Kafka:Producer` and `Aspire.Confluent:Kafka:Consumer` keys. This example `appsettings.json` configures some of the options:
+The .NET Aspire Apache Kafka component supports <xref:microsoft.extensions.configuration>. It loads the `KafkaProducerSettings` or `KafkaConsumerSettings` from configuration by respectively using the `Aspire:Confluent:Kafka:Producer` and `Aspire.Confluent:Kafka:Consumer` keys. This example `appsettings.json` configures some of the options:
 
 ```json
 {
@@ -150,7 +149,7 @@ Refer to [`ProducerBuilder<TKey, TValue>`](https://docs.confluent.io/platform/cu
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
-The .NET Aspire Confluent Kafka component handles the following:
+The .NET Aspire Apache Kafka component handles the following:
 
 - Adds the `Aspire.Confluent.Kafka.Producer` health check when <xref:Aspire.Confluent.Kafka.KafkaProducerSettings.HealthChecks?displayProperty=nameWithType> is `true`.
 - Adds the `Aspire.Confluent.Kafka.Consumer` health check when <xref:Aspire.Confluent.Kafka.KafkaConsumerSettings.HealthChecks?displayProperty=nameWithType> is `true`.
@@ -160,31 +159,33 @@ The .NET Aspire Confluent Kafka component handles the following:
 
 ### Logging
 
-The .NET Aspire Confluent Kafka component uses the following log categories:
+The .NET Aspire Apache Kafka component uses the following log categories:
 
 - `Aspire.Confluent.Kafka`
 
 ### Tracing
 
-The .NET Aspire Confluent Kafka component will emit the following tracing activities using OpenTelemetry:
+The .NET Aspire Apache Kafka component will emit the following tracing activities using OpenTelemetry:
 
 - `Aspire.Confluent.Kafka`
 
 ### Metrics
 
-The .NET Aspire Confluent Kafka component will emit the following metrics using OpenTelemetry:
+The .NET Aspire Apache Kafka component will emit the following metrics using OpenTelemetry:
 
--  messaging.kafka.network.tx
--  messaging.kafka.network.transmitted
--  messaging.kafka.network.rx
--  messaging.kafka.network.received
--  messaging.publish.messages
--  messaging.kafka.message.transmitted
--  messaging.receive.messages
--  messaging.kafka.message.received
+- messaging.kafka.network.tx
+- messaging.kafka.network.transmitted
+- messaging.kafka.network.rx
+- messaging.kafka.network.received
+- messaging.publish.messages
+- messaging.kafka.message.transmitted
+- messaging.receive.messages
+- messaging.kafka.message.received
 
 ## See also
 
-- [Kafka .NET API docs](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.html)
+- [Apache Kafka](https://kafka.apache.org/)
+- [Confluent](https://www.confluent.io/)
+- [Confluent Kafka .NET client docs](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.html)
 - [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
