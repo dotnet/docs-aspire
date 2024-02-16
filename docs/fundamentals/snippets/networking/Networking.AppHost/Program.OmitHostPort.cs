@@ -4,7 +4,7 @@
     {
         // <omithostport>
         builder.AddProject<Projects.Networking_Frontend>("frontend")
-               .WithServiceBinding(scheme: "http");
+               .WithHttpEndpoint();
         // </omithostport>
     }
 }
