@@ -49,6 +49,11 @@ items:
       - name: Telemetry
         href: fundamentals/telemetry.md
 
+  - name: OpenAI
+    items:
+      - name: Azure AI OpenAI component
+        href: openai/azureai-openai-component.md
+
   - name: Storage
     items:
       - name: Tutorial - Connect to storage
