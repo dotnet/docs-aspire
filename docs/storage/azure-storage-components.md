@@ -241,6 +241,6 @@ Since you choose to use Azurite, there's no need to clean up these resources whe
 :::zone-end
 :::zone pivot="azure-portal,azure-cli"
 
-Don't forget to clean up any Azure resources when you're done testing them.
+[!INCLUDE [clean-up-resources](../includes/clean-up-resources.md)]
 
 :::zone-end

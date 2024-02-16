@@ -4,7 +4,7 @@
     {
         // <envvarport>
         builder.AddNpmApp("frontend", "../NodeFrontend", "watch")
-               .WithServiceBinding(hostPort: 5067, scheme: "http", env: "PORT");
+               .WithHttpEndpoint(hostPort: 5067, env: "PORT");
         // </envvarport>
     }
 }
