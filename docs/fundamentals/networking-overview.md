@@ -14,14 +14,14 @@ One of the advantages of developing with .NET Aspire is that it enables you to d
 The inner loop is the process of developing and testing your app locally before deploying it to a target environment. .NET Aspire provides several tools and features to simplify and enhance the networking experience in the inner loop, such as:
 
 - **Launch profiles**: Launch profiles are configuration files that specify how to run your app locally. You can use launch profiles (such as the _launchSettings.json_ file) to define the service bindings, environment variables, and launch settings for your app.
-- **Service bindings/Endpoint configurations**: Service bindings are the connections between your app and the services it depends on, such as databases, message queues, or APIs. Service bindings provide information such as the service name, host port, scheme, and environment variable. You can add service bindings to your app either implicitly (via launch profiles) or explicitly by calling <xref:Aspire.Hosting.ResourceBuilderExtensions.WithServiceBinding%2A>.
+- **Service bindings/Endpoint configurations**: Service bindings are the connections between your app and the services it depends on, such as databases, message queues, or APIs. Service bindings provide information such as the service name, host port, scheme, and environment variable. You can add service bindings to your app either implicitly (via launch profiles) or explicitly by calling <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint%2A>.
 - **Proxies**: .NET Aspire automatically launches a proxy for each service binding you add to your app, and assigns a port for the proxy to listen on. The proxy then forwards the requests to the port that your app listens on, which might be different from the proxy port. This way, you can avoid port conflicts and access your app and services using consistent and predictable URLs.
 
 ## How service bindings work
 
 A service binding in .NET Aspire involves two components: a **service** representing an external resource your app requires (for example, a database, message queue, or API), and a **binding** that establishes a connection between your app and the service and provides necessary information.
 
-.NET Aspire supports two service binding types: **implicit**, automatically created based on specified launch profiles defining app behavior in different environments, and **explicit**, manually created using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithServiceBinding%2A>.
+.NET Aspire supports two service binding types: **implicit**, automatically created based on specified launch profiles defining app behavior in different environments, and **explicit**, manually created using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint%2A>.
 
 Upon creating a binding, whether implicit or explicit, .NET Aspire launches a lightweight reverse proxy on a specified port, handling routing and load balancing for requests from your app to the service. The proxy is a .NET Aspire implementation detail, requiring no configuration or management concern.
 
@@ -62,7 +62,7 @@ This will select the **https** launch profile from _launchSettings.json_. The `a
 
 When defining a service binding, the host port is *always* given to the proxy that sits in front of the service. This allows single or multiple replicas of a service to behave similarly. Additionally, all resource dependencies that use the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> API rely of the proxy endpoint from the environment variable.
 
-Consider the following method chain that calls <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, <xref:Aspire.Hosting.ResourceBuilderExtensions.WithServiceBinding%2A>, and then <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithReplicas%2A>:
+Consider the following method chain that calls <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpEndpoint%2A>, and then <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithReplicas%2A>:
 
 :::code source="snippets/networking/Networking.AppHost/Program.WithReplicas.cs" id="withreplicas":::
 
