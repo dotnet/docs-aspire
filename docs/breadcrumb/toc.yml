@@ -11,7 +11,7 @@ items:
             tocHref: /dotnet/aspire/
             topicHref: /dotnet/aspire/index
             items:
-              - name: What's new in .NET Aspire docs
+              - name: What's new in .NET Aspire
                 tocHref: /dotnet/aspire/whats-new/
                 topicHref: ../whats-new/index.yml
           - name: API browser

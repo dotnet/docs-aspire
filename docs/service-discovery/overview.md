@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire service discovery
 description: Understand essential service discovery concepts in .NET Aspire.
-ms.date: 12/08/2023
+ms.date: 02/14/2024
 ms.topic: quickstart
 ---
 
@@ -64,7 +64,7 @@ In the preceding JSON:
 
 ```csharp
 var basket = builder.AddProject<Projects.BasketService>("basket")
-    .WithServiceBinding(hostPort: 8888, scheme: "http", name: "dashboard");
+    .WithHttpEndpoint(hostPort: 8888, name: "dashboard");
 ```
 
 ### Named endpoints in Kubernetes using DNS SRV

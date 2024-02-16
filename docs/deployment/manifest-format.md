@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire manifest format for deployment tool builders
 description: Learn about the .NET Aspire manifest format in this comprehensive deployment tool builder guide.
-ms.date: 12/20/2023
+ms.date: 02/14/2024
 ms.topic: reference
 ---
 
@@ -278,7 +278,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddContainer("mycontainer", "myimage")
        .WithEnvironment("LOG_LEVEL", "WARN")
-       .WithServiceBinding(3000, scheme: "http");
+       .WithHttpEndpoint(3000);
 ```
 
 Example manifest:
@@ -313,7 +313,7 @@ Example code:
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddNodeApp("nodeapp", "../nodeapp/app.js")
-       .WithServiceBinding(hostPort: 5031, scheme: "http", env: "PORT")
+       .WithHttpEndpoint(hostPort: 5031, env: "PORT")
        .AsDockerfileInManifest();
 ```
 
