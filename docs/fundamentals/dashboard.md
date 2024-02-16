@@ -122,11 +122,13 @@ Navigate to the **Traces** page to view all of the traces for your app. .NET Asp
 - **Timestamp**: When the trace completed.
 - **Name**: The name of the trace, prefixed with the project name.
 - **Spans**: The resources involved in the request.
-- **Duration**: The time it took to complete the request.
+- **Duration**: The time it took to complete the request. This column includes a radial icon that illustrates the duration of the request in comparison with the others in the list.
+
+:::image type="content" source="media/dashboard/traces.png" lightbox="media/dashboard/traces.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page.":::
 
 #### Filter traces
 
-The traces page also provides a search bar to filter the traces by name or span. Apply a filter, and notice the trace results are updated immediately. Consider the following screenshot of traces with a filter applied to `SET` and notice how the search term is highlighted in the results:
+The traces page also provides a search bar to filter the traces by name or span. Apply a filter, and notice the trace results are updated immediately. Consider the following screenshot of traces with a filter applied to `weather` and notice how the search term is highlighted in the results:
 
 :::image type="content" source="media/dashboard/trace-view-filter.png" lightbox="media/dashboard/trace-view-filter.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page, showing a filter applied to show only traces with the term 'weather'.":::
 
