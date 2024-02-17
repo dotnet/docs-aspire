@@ -131,7 +131,7 @@ builder.AddKafkaProducer<string, string>("messaging", settings => settings.Healt
 
 You can configure inline a consumer from code:
 
-```c#
+```csharp
 builder.AddKafkaConsumer<string, string>("messaging", settings => settings.HealthChecks = false);
 ```
 
@@ -139,7 +139,7 @@ builder.AddKafkaConsumer<string, string>("messaging", settings => settings.Healt
 
 To configure `Confluent.Kafka` builders, pass an `Action<ProducerBuilder<TKey, TValue>>` (or `Action<ConsumerBuilder<TKey, TValue>>`):
 
-```c#
+```csharp
 builder.AddKafkaProducer<string, MyMessage>("messaging", producerBuilder => {
   producerBuilder.SetValueSerializer(new MyMessageSerializer());
 })
@@ -173,14 +173,14 @@ The .NET Aspire Apache Kafka component will emit the following tracing activitie
 
 The .NET Aspire Apache Kafka component will emit the following metrics using OpenTelemetry:
 
-- messaging.kafka.network.tx
-- messaging.kafka.network.transmitted
-- messaging.kafka.network.rx
-- messaging.kafka.network.received
-- messaging.publish.messages
-- messaging.kafka.message.transmitted
-- messaging.receive.messages
-- messaging.kafka.message.received
+- `messaging.kafka.network.tx`
+- `messaging.kafka.network.transmitted`
+- `messaging.kafka.network.rx`
+- `messaging.kafka.network.received`
+- `messaging.publish.messages`
+- `messaging.kafka.message.transmitted`
+- `messaging.receive.messages`
+- `messaging.kafka.message.received`
 
 ## See also
 
