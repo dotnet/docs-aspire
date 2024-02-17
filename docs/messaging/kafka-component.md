@@ -96,7 +96,7 @@ The value provided as connection string will be set to the `BootstrapServers`  p
 
 ### Use configuration providers
 
-The .NET Aspire Apache Kafka component supports <xref:microsoft.extensions.configuration>. It loads the `KafkaProducerSettings` or `KafkaConsumerSettings` from configuration by respectively using the `Aspire:Confluent:Kafka:Producer` and `Aspire.Confluent:Kafka:Consumer` keys. This example `appsettings.json` configures some of the options:
+The .NET Aspire Apache Kafka component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `KafkaProducerSettings` or `KafkaConsumerSettings` from configuration by respectively using the `Aspire:Confluent:Kafka:Producer` and `Aspire.Confluent:Kafka:Consumer` keys. This example `appsettings.json` configures some of the options:
 
 ```json
 {
