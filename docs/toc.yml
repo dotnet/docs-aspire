@@ -95,6 +95,8 @@ items:
         href: messaging/azure-service-bus-component.md
       - name: RabbitMQ service broker component
         href: messaging/rabbitmq-client-component.md
+      - name: Apache Kafka component
+        href: messaging/kafka-component.md
 
   - name: Caching
     items:
