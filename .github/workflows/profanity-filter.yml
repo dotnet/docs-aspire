@@ -17,10 +17,6 @@ jobs:
       pull-requests: write
 
     steps:
-    - name: Print actor
-      run: |
-        echo ${{ github.actor }}
-
     - name: Profanity filter
       if: ${{ github.actor != 'dependabot[bot]' && github.actor != 'github-actions[bot]'  }}
       uses: IEvangelist/profanity-filter@main
