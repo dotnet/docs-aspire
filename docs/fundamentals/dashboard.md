@@ -46,6 +46,10 @@ The dashboard also provides essential details about each resource:
 
 :::image type="content" source="media/dashboard/projects.png" lightbox="media/dashboard/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page.":::
 
+You can obtain full details about each resource by selecting the **View** link in the **Details** column:
+
+:::image type="content" source="media/dashboard/resource-details.png" lightbox="media/dashboard/resource-details.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page with the details of a selected resource displayed..":::
+
 The search bar in the upper right of the dashboard also provides the option to filter the list, which is useful for .NET Aspire apps with many resources. To select the types of resources that are displayed, drop down the arrow to the left of the filter textbox:
 
 :::image type="content" source="media/dashboard/select-resource-type.png" alt-text="A screenshot of the resource type selector list in the .NET Aspire dashboard Resources page.":::
@@ -82,11 +86,11 @@ When you open the Console logs page, you must select a source in the **Select a 
 
 If you select a project, the live logs are rendered with a stylized set of colors that correspond to the severity of the log; green for information as an example. Consider the following example screenshot of project logs with the `apiservice` project selected:
 
-:::image type="content" source="media/dashboard/project-logs.png" lightbox="media/dashboard/project-logs.png" alt-text="A screenshot of the .NET Aspire dashboard Console logs page with a project source selected.":::
+:::image type="content" source="media/dashboard/project-logs.png" lightbox="media/dashboard/project-logs.png" alt-text="A screenshot of the .NET Aspire dashboard Console Logs page with a source selected.":::
 
 When errors occur, they're styled in the logs such that they're easy to identify. Consider the following example screenshot of project logs with errors:
 
-:::image type="content" source="media/dashboard/project-logs-error.png" lightbox="media/dashboard/project-logs-error.png" alt-text="A screenshot of the .NET Aspire dashboard Project logs page, showing logs with errors.":::
+:::image type="content" source="media/dashboard/project-logs-error.png" lightbox="media/dashboard/project-logs-error.png" alt-text="A screenshot of the .NET Aspire dashboard Console Logs page, showing logs with errors.":::
 
 If you select a container or executable, formatting is different from a project but verbose behavior information is still available. Consider the following example screenshot of a container log with the `cache` container selected:
 
@@ -122,11 +126,13 @@ Navigate to the **Traces** page to view all of the traces for your app. .NET Asp
 - **Timestamp**: When the trace completed.
 - **Name**: The name of the trace, prefixed with the project name.
 - **Spans**: The resources involved in the request.
-- **Duration**: The time it took to complete the request.
+- **Duration**: The time it took to complete the request. This column includes a radial icon that illustrates the duration of the request in comparison with the others in the list.
+
+:::image type="content" source="media/dashboard/traces.png" lightbox="media/dashboard/traces.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page.":::
 
 #### Filter traces
 
-The traces page also provides a search bar to filter the traces by name or span. Apply a filter, and notice the trace results are updated immediately. Consider the following screenshot of traces with a filter applied to `SET` and notice how the search term is highlighted in the results:
+The traces page also provides a search bar to filter the traces by name or span. Apply a filter, and notice the trace results are updated immediately. Consider the following screenshot of traces with a filter applied to `weather` and notice how the search term is highlighted in the results:
 
 :::image type="content" source="media/dashboard/trace-view-filter.png" lightbox="media/dashboard/trace-view-filter.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page, showing a filter applied to show only traces with the term 'weather'.":::
 
@@ -140,7 +146,7 @@ The trace details page contains various details pertinent to the request, includ
 - **Depth**: The number of layers involved in the request.
 - **Total Spans**: The total number of spans involved in the request.
 
-Each span is represented as a row in the table, and contains a **Name**. Spans also display the error icon if an error occurred within that particular span of a the trace. Spans that have a type of client/consumer, but don't have a span on the server, show an arrow icon and then the destination address. This represents a client call to a system outside of the .NET Aspire application. For example, an HTTP request an external web API, or a database call.
+Each span is represented as a row in the table, and contains a **Name**. Spans also display the error icon if an error occurred within that particular span of the trace. Spans that have a type of client/consumer, but don't have a span on the server, show an arrow icon and then the destination address. This represents a client call to a system outside of the .NET Aspire application. For example, an HTTP request an external web API, or a database call.
 
 Within the trace details page, there's a **View Logs** button that takes you to the structured logs page with a filter applied to show only the logs relevant to the request. Consider an example screenshot depicting the structured logs page with a filter applied to show only the logs relevant to the trace:
 
@@ -150,13 +156,21 @@ The structured logs page is discussed in more detail in the [Structured logs pag
 
 #### Trace examples
 
-Each trace has a color, which is generated to help differentiate between spans—one color per resource. The colors are reflected in both the _traces page_ and the _trace detail view_. When traces depict an arrow icon, those icons are colorized as well to match the span of the target trace. Consider the following example screenshot of traces:
+Each trace has a color, which is generated to help differentiate between spans — one color for each resource. The colors are reflected in both the _traces page_ and the _trace detail view_. When traces depict an arrow icon, those icons are colorized as well to match the span of the target trace. Consider the following example screenshot of traces:
 
 :::image type="content" source="media/dashboard/traces.png" lightbox="media/dashboard/traces.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page.":::
 
 You can also select the **View** button to navigate to a detailed view of the request and the duration of time it spent traveling through each application layer. Consider an example selection of a trace to view its details:
 
 :::image type="content" source="media/dashboard/trace.png" lightbox="media/dashboard/trace.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page.":::
+
+For each span in the trace, select **View** to see more details:
+
+:::image type="content" source="media/dashboard/trace-span-details.png" lightbox="media/dashboard/trace-span-details.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page with the details of a span displayed.":::
+
+Scroll down in the span details pain to see full information. At the bottom of the span details pane, some span types, such as this call to a cache, show span event timings:
+
+:::image type="content" source="media/dashboard/trace-span-event-details.png" lightbox="media/dashboard/trace-span-event-details.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page with the event timings for a span displayed.":::
 
 When errors are present, the page renders an error icon next to the trace name. Consider an example screenshot of traces with errors:
 
@@ -175,6 +189,14 @@ Each metric-publishing project in your app will have its own metrics. The metric
 Consider the following example screenshot of the metrics page, with the `webfrontend` project selected and the `System.Net.Http` meter's `http.client.request.duration` metric selected:
 
 :::image type="content" source="media/dashboard/metrics-view.png" lightbox="media/dashboard/metrics-view.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page.":::
+
+Under the chart, there is a list of filters you can apply to focus on the data that interests you. For example, in the following screenshot, the **http.request.method** field has been filtered to show only **GET** requests:
+
+:::image type="content" source="media/dashboard/metrics-view-filtered.png" lightbox="media/dashboard/metrics-view-filtered.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with a filter applied to the chart.":::
+
+You can also choose to select the count of the displayed metric on the vertical access, instead of its values:
+
+:::image type="content" source="media/dashboard/metrics-view-count.png" lightbox="media/dashboard/metrics-view-count.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with the count option applied.":::
 
 For more information about metrics, see [Built-in Metrics in .NET](/dotnet/core/diagnostics/built-in-metrics).
 
