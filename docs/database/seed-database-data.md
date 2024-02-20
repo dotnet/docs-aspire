@@ -70,10 +70,81 @@ You can seed data in .NET Aspire apps by using database scripts that are configu
 
 ---
 
+## Seed data using Entity Framework Core
+
+You can also seed data in .NET Aspire apps using Entity Framework Core by explicitly running migrations during startup. Entity Framework Core handles underlying database connections and schema creation for you. These types of configurations should only be done during development, so make sure to add a conditional that checks your current environment context.
+
+Add the following code to the _Program.cs_ file of your **.AppHost** project.
+
+### [PostreSQL](#tab/postgresql)
+
+```csharp
+// Register DbContext class
+builder.AddNpgsqlDbContext<TicketContext>("sqldata");
+
+var app = builder.Build();
+
+app.MapDefaultEndpoints();
+
+if (app.Environment.IsDevelopment())
+{
+    // Retrieve an instance of the DbContext class and manually run migrations during startup
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<TicketContext>();
+        context.Database.EnsureCreated();
+    }
+}
+```
+
+### [SQL Server](#tab/sql-server)
+
+```csharp
+// Register DbContext class
+builder.AddSqlServerDbContext<TicketContext>("sqldata");
+
+var app = builder.Build();
+
+app.MapDefaultEndpoints();
+
+if (app.Environment.IsDevelopment())
+{
+    // Retrieve an instance of the DbContext class and manually run migrations during startup
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<TicketContext>();
+        context.Database.EnsureCreated();
+    }
+}
+```
+
+### [MySQL](#tab/mysql)
+
+```csharp
+// Register DbContext class
+builder.AddMySqlDataSource<TicketContext>("sqldata");
+
+var app = builder.Build();
+
+app.MapDefaultEndpoints();
+
+if (app.Environment.IsDevelopment())
+{
+    // Retrieve an instance of the DbContext class and manually run migrations during startup
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<TicketContext>();
+        context.Database.EnsureCreated();
+    }
+}
+```
+
+---
+
 ## Next steps
 
-You can apply the volume concepts in the preceding code to a variety of services, including seeding a database with data that will persist across app launches. Try combining these techniques with the resource implementations demonstrated in the following tutorials:
+Database seeding is useful in a variety of app development scenarios. Try combining these techniques with the resource implementations demonstrated in the following tutorials:
 
-- [Tutorial: Connect an ASP.NET Core app to .NET Aspire storage components](../storage/azure-storage-components.md)
 - [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](../database/sql-server-components.md)
+- [Tutorial: Connect an ASP.NET Core app to .NET Aspire storage components](../storage/azure-storage-components.md)
 - [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)
