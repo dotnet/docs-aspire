@@ -8,7 +8,7 @@ ms.topic: include
 
 ## Create the Azure Bicep provisioning files
 
-Now, you'll create two new files - `infra\provision.bicep` and `infra\provision.parms.bicepparam` - representing the Infrastructure-as-Code (IaC) layer in the app. The `provision.bicep` file is an [Azure Bicep](/azure/azure-resource-manager/bicep/overview?tabs=bicep) template that provisions all of the Azure resources the app will need to run.
+Now, you'll create two new files &mdash; `infra\provision.bicep` and `infra\provision.parms.bicepparam` - representing the Infrastructure-as-Code (IaC) layer in the app. The `provision.bicep` file is an [Azure Bicep](/azure/azure-resource-manager/bicep/overview?tabs=bicep) template that provisions all of the Azure resources the app will need to run.
 
 1. In `infra/provision.bicep`, add the following code to the top of the empty file. These lines of code represent the parameters you'll feed the Bicep file using the environment variables you set earlier. The `env` variable is an array that will be passed to both of the container apps hosting your Aspire project code, setting some conventional environment variables useful during development.
 

@@ -62,7 +62,8 @@ ms.topic: include
 
 Declare a set of environment variables to store commonly used values for the app deployment process. Setting these variables simplifies working with command-line parameters:
 
-> Note: You will need to customize the `SOLUTION` and `LOCATION` variables per your own needs. To get a list of the available Azure regions to which you can deploy, use the command `az account list-locations --output table`.
+> [!NOTE]
+> You will need to customize the `SOLUTION` and `LOCATION` variables per your own needs. To get a list of the available Azure regions to which you can deploy, use the command `az account list-locations --output table`.
 
 # [PowerShell](#tab/powershell)
 
@@ -92,7 +93,7 @@ ENVIRONMENT="${SOLUTION,,}cae"          # Azure Container Apps Environment name,
 
 ## Provision the Azure resources
 
-Azure Container Apps (ACA) is an ideal hosting platform for Aspire apps. You can use Bicep or the Azure CLI to create resources in Azure to host the .NET Aspire app code along with supporting services:
+Azure Container Apps (ACA) is an ideal hosting platform for .NET Aspire apps. You can use Bicep or the Azure CLI to create resources in Azure to host the .NET Aspire app code along with supporting services:
 
 - An Azure Container Apps Environment to host your code and tertiary containers
 - A pair of Azure Container Apps, hosting your code

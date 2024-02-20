@@ -38,7 +38,7 @@ In the _Program.cs_ file of your component-consuming project, call the <xref:Mic
 builder.AddAzureQueueService("queue");
 ```
 
-You can then retrieve the `QueueServiceClient` instance using dependency injection. For example, to retrieve the client from a Web API controller:
+You can then retrieve the `QueueServiceClient` instance using dependency injection. For example, to retrieve the client from an example service:
 
 ```csharp
 public class ExampleService(QueueServiceClient client)

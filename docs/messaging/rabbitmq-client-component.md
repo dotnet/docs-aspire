@@ -38,7 +38,7 @@ In the _Program.cs_ file of your component-consuming project, call the <xref:Mic
 builder.AddRabbitMQ("messaging");
 ```
 
-You can then retrieve the `IConnection` instance using dependency injection. For example, to retrieve the connection from a Web API controller:
+You can then retrieve the `IConnection` instance using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
 public class ExampleService(IConnection connection)
