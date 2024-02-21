@@ -91,6 +91,8 @@ items:
         href: database/mysql-component.md
       - name: MongoDB component
         href: database/mongodb-component.md
+      - name: Seed data in a database
+        href: database/seed-database-data.md
 
   - name: Messaging
     items:

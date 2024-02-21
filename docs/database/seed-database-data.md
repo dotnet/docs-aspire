@@ -41,7 +41,9 @@ Volumes are the recommended way to automatically seed containerized databases wh
 Consider the following volume configuration code from a _Program.cs_ file in a sample **AppHost** project:
 
 ```csharp
-var sql = builder.AddPostgresContainer("sql", sqlpassword)
+var todosDbName = "Todos";
+var todosDb = builder.AddPostgresContainer("postgres")
+    .WithEnvironment("POSTGRES_DB", todosDbName)
     .WithVolumeMount(
         "../DatabaseContainers.ApiService/data/postgres",
         "/docker-entrypoint-initdb.d",
@@ -49,7 +51,7 @@ var sql = builder.AddPostgresContainer("sql", sqlpassword)
     .AddDatabase(todosDbName);
 ```
 
-In this example:
+In this example, the `.WithVolumeMount` method parameters configure the following:
 
 - `../DatabaseContainers.ApiService/data/postgres` sets a path to the SQL script in your local project that you want to run in the container to seed data.
 - `/docker-entrypoint-initdb.d` sets the path to an entry point in the container so your script will be run during container startup.
