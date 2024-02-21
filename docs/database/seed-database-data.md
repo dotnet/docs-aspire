@@ -13,10 +13,10 @@ In this article, you learn how to configure .NET Aspire apps to seed data in a d
 
 Seeding data pre-populates database tables with rows of data so they're ready for testing via your app. You may want to seed data for the following scenarios:
 
-- Manually develop and test different features of your app against a meaningful set of data, such as a product catalog
-- Run test suites to verify that features behave a specific way with a given set of data
+- Manually develop and test different features of your app against a meaningful set of data, such as a product catalog or list of customers.
+- Run test suites to verify that features behave a specific way with a given set of data.
 
-Manually seeding data is tedious and time consuming and should be automated when possible. With .NET Aspire, these goals can all be accomplished using volumes to run database scripts during startup. You can also seed your database using tools like Entity Framework Core, which handle many underlying concerns for you.
+Manually seeding data is tedious and time consuming and should be automated when possible. With .NET Aspire, these goals can all be accomplished using volumes to run database scripts during startup. You can also seed your database using tools like Entity Framework Core, which handles many underlying concerns for you.
 
 ## Understand containerized databases
 
@@ -28,30 +28,33 @@ By default, .NET Aspire database components rely on containerized databases, whi
 
 .NET Aspire enables you to resolve these challenges using volumes and a few configurations to seed data effectively.
 
-## Seed data using volumes and scripts
+## Seed data using volumes and SQL scripts
 
 Volumes are the recommended way to automatically seed containerized databases when using SQL scripts. Volumes can store data for multiple containers at a time, offer high performance and are easy to back up or migrate. With .NET Aspire, you configure a volume for each resource container using the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithVolumeMount%2A?displayProperty=nameWithType> method, which accepts three parameters:
 
-- **Source**: The source path of the volume, which is the physical location on the host.
+- **Source**: The source path of the volume mount, which is the physical location on your host.
 - **Target**: The target path in the container of the data you want to persist.
 - **VolumeMountType**: There are two types of volume mounts available:
   - **Named mounts**: Storage managed by docker that your containers can use to persist data.
-  - **Bind mounts**: Files mounted from your host machine onto your container.
+  - **Bind mounts**: Files mounted from your host machine onto your container. Bind mounts are the approach used to seed data, since they allows you to map a script in your local app to the startup entry point in your container.
 
 Consider the following volume configuration code from a _Program.cs_ file in a sample **AppHost** project:
 
 ```csharp
 var sql = builder.AddPostgresContainer("sql", sqlpassword)
-    .WithVolumeMount("../DatabaseContainers.ApiService/data/postgres", "/docker-entrypoint-initdb.d", VolumeMountType.Bind)
+    .WithVolumeMount(
+        "../DatabaseContainers.ApiService/data/postgres",
+        "/docker-entrypoint-initdb.d",
+        VolumeMountType.Bind)
     .AddDatabase(todosDbName);
 ```
 
 In this example:
 
-- `../DatabaseContainers.ApiService/data/postgres` sets a path to the SQL script in your project that you want to run to seed data.
-- `/docker-entrypoint-initdb.d` sets the path to an entrypoint in the container so your script will be run during container startup.
+- `../DatabaseContainers.ApiService/data/postgres` sets a path to the SQL script in your local project that you want to run in the container to seed data.
+- `/docker-entrypoint-initdb.d` sets the path to an entry point in the container so your script will be run during container startup.
 
-The SQL script located at `../DatabaseContainers.ApiService/data/postgres` creates and seeds a `Todos` table:
+The referenced SQL script located at `../DatabaseContainers.ApiService/data/postgres` creates and seeds a `Todos` table:
 
 ```sql
 -- Postgres init script
@@ -73,9 +76,11 @@ VALUES
 ON CONFLICT DO NOTHING;
 ```
 
+The script runs during startup every time a new container instance is created.
+
 ## Database seeding examples
 
-The following examples demonstrate how to seed data using SQL scripts and configurations applied using the `.WithVolumeMount` method:
+The following examples demonstrate how to seed data using SQL scripts and configurations applied using the `.WithVolumeMount` method for different database technologies:
 
 ### [SQL Server](#tab/sql-server)
 
@@ -85,7 +90,7 @@ Configuration code in the **.AppHost** project:
 
 Corresponding SQL script included in the app:
 
-:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers/DatabaseContainers.ApiService/data/sqlserver/init.sql" :::
+:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.ApiService/data/sqlserver/init.sql" :::
 
 ### [PostreSQL](#tab/postgresql)
 
@@ -95,7 +100,7 @@ Configuration code in the **.AppHost** project:
 
 Corresponding SQL script included in the app:
 
-:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers/DatabaseContainers.ApiService/data/postgres/init.sql" :::
+:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.ApiService/data/postgres/init.sql" :::
 
 ### [MySQL](#tab/mysql)
 
@@ -105,13 +110,16 @@ Configuration code in the **.AppHost** project:
 
 Corresponding SQL script included in the app:
 
-:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers/DatabaseContainers.ApiService/data/mysql/init.sql" :::
+:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.ApiService/data/mysql/init.sql" :::
 
 ---
 
 ## Seed data using Entity Framework Core
 
-You can also seed data in .NET Aspire apps using Entity Framework Core by explicitly running migrations during startup. Entity Framework Core handles underlying database connections and schema creation for you, which eliminates the need to use volumes or run SQL scripts during container startup. These types of configurations should only be done during development, so make sure to add a conditional that checks your current environment context.
+You can also seed data in .NET Aspire apps using Entity Framework Core by explicitly running migrations during startup. Entity Framework Core handles underlying database connections and schema creation for you, which eliminates the need to use volumes or run SQL scripts during container startup. 
+
+> [!IMPORTANT]
+> These types of configurations should only be done during development, so make sure to add a conditional that checks your current environment context.
 
 Add the following code to the _Program.cs_ file of your **.AppHost** project.
 
