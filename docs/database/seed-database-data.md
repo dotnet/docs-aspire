@@ -123,11 +123,11 @@ You can also seed data in .NET Aspire apps using Entity Framework Core by explic
 
 Add the following code to the _Program.cs_ file of your **.AppHost** project.
 
-### [PostreSQL](#tab/postgresql)
+### [SQL Server](#tab/sql-server)
 
 ```csharp
 // Register DbContext class
-builder.AddNpgsqlDbContext<TicketContext>("sqldata");
+builder.AddSqlServerDbContext<TicketContext>("sqldata");
 
 var app = builder.Build();
 
@@ -144,11 +144,11 @@ if (app.Environment.IsDevelopment())
 }
 ```
 
-### [SQL Server](#tab/sql-server)
+### [PostreSQL](#tab/postgresql)
 
 ```csharp
 // Register DbContext class
-builder.AddSqlServerDbContext<TicketContext>("sqldata");
+builder.AddNpgsqlDbContext<TicketContext>("sqldata");
 
 var app = builder.Build();
 
