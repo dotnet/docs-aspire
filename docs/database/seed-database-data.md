@@ -16,15 +16,15 @@ Seeding data pre-populates database tables with rows of data so they're ready fo
 - Manually develop and test different features of your app against a meaningful set of data, such as a product catalog or list of customers.
 - Run test suites to verify that features behave a specific way with a given set of data.
 
-Manually seeding data is tedious and time consuming and should be automated when possible. With .NET Aspire, these goals can all be accomplished using volumes to run database scripts during startup. You can also seed your database using tools like Entity Framework Core, which handles many underlying concerns for you.
+Manually seeding data is tedious and time consuming, so you should automate the process when possible. Use volumes to run database scripts for .NET Aspire apps during startup. You can also seed your database using tools like Entity Framework Core, which handles many underlying concerns for you.
 
 ## Understand containerized databases
 
 By default, .NET Aspire database components rely on containerized databases, which create the following challenges when trying to seed data:
 
-- Containers are destroyed and recreated every time a .NET Aspire app restarts, which means by default you have to re-seed your database every time the app restarts.
+- .NET Aspire destroys and recreates containers every time the app restarts, which means by default you have to re-seed your database every time the app restarts.
 - Depending on your selected database technology, the new container instance may or may not create a default database, which means you might also have to create the database itself.
-- Even if a default database is created, it most likely will not have the desired name or schema for your specific app.
+- Even if a default database exists, it most likely will not have the desired name or schema for your specific app.
 
 .NET Aspire enables you to resolve these challenges using volumes and a few configurations to seed data effectively.
 
@@ -116,7 +116,7 @@ Corresponding SQL script included in the app:
 
 ## Seed data using Entity Framework Core
 
-You can also seed data in .NET Aspire apps using Entity Framework Core by explicitly running migrations during startup. Entity Framework Core handles underlying database connections and schema creation for you, which eliminates the need to use volumes or run SQL scripts during container startup. 
+You can also seed data in .NET Aspire apps using Entity Framework Core by explicitly running migrations during startup. Entity Framework Core handles underlying database connections and schema creation for you, which eliminates the need to use volumes or run SQL scripts during container startup.
 
 > [!IMPORTANT]
 > These types of configurations should only be done during development, so make sure to add a conditional that checks your current environment context.
