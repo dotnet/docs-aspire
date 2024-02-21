@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs to express resource references.
-ms.date: 02/15/2024
+ms.date: 02/20/2024
 ms.topic: overview
 ---
 
@@ -113,7 +113,9 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 
 | Method                    | Environment variable                             |
 |---------------------------|--------------------------------------------------|
-| `WithReference(endpoint)` | `services__myapp__0=http://_http.localhost:8034` |
+| `WithReference(endpoint)` | `services__myapp__0=endpoint://localhost:65256` |
+
+The `containerPort` parameter is the port that the container is listening on. For more information on container ports, see [Container ports](networking-overview.md#container-ports). For more information on service discovery, see [.NET Aspire service discovery](../service-discovery/overview.md).
 
 ### APIs for adding and expressing resources
 
