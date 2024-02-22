@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 02/09/2024
+ms.date: 02/22/2024
 ---
 
 # .NET Aspire setup and tooling
@@ -123,12 +123,12 @@ dotnet new list aspire
 When the .NET Aspire workload is installed, you'll see the following .NET Aspire templates:
 
 ```Output
-These templates matched your input: 'aspire'
-
-Template Name                    Short Name      Language  Tags
--------------------------------  --------------  --------  -------------------------------------------------------
-.NET Aspire Application          aspire          [C#]      Common/.NET Aspire/Cloud
-.NET Aspire Starter Application  aspire-starter  [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud
+Template Name                    Short Name              Language  Tags
+-------------------------------  ----------------------  --------  -------------------------------------------------------
+.NET Aspire App Host             aspire-apphost          [C#]      Common/.NET Aspire/Cloud
+.NET Aspire Application          aspire                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire Service Defaults     aspire-servicedefaults  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire Starter Application  aspire-starter          [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud
 ```
 
 To create a .NET Aspire project using the .NET CLI, use the `dotnet new` command and specify which template you would like to create.
