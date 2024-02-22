@@ -82,9 +82,7 @@ The [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) enables
     azd up
     ```
 
-1. When prompted, select the subscription and Azure region for the provisioned resources.
-
-    The template runs completes the following tasks for you:
+1. When prompted, select the subscription and Azure region for the provisioned resources. The template runs and completes the following tasks for you:
 
     - Creates an Azure Storage Account with blob and queue services enabled
     - Creates a blob storage container named `fileUploads`
@@ -95,7 +93,7 @@ The [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) enables
 
 After the operation completes successfully, you have two options moving forward:
 
-- Option 1: Run the .NET sample app in the `src` directory to experiment with the completed app.
+- Option 1: Run the .NET sample app in the template `src` directory to experiment with the completed app.
 - Option 2: Build the sample app step by step using the sections ahead and connect it to the Azure resources provisioned by `azd`.
 
 :::zone-end
