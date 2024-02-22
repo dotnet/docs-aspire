@@ -72,34 +72,31 @@ You also need to assign the following roles to the user account you are logged i
 
 :::zone pivot="azure-developer-cli"
 
-The [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) enables you to provision and deploy Azure resources using a template system. This tutorial provides a complete template that provisions the required Azure resources and includes the completed sample application code.
+The [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) enables you to provision and deploy Azure resources using a template system. This tutorial provides a [complete template](https://github.com/Azure-Samples/dotnet-aspire-connect-storage.git) that provisions the required Azure resources and includes the completed sample application code.
 
 1. Run the following commands to initialize and run the template:
 
-```azurecli
-azd auth login
-azd init --template dotnet-aspire-connect-storage
-azd up
-```
+    ```azurecli
+    azd auth login
+    azd init --template dotnet-aspire-connect-storage
+    azd up
+    ```
 
 1. When prompted, select the subscription and Azure region for the provisioned resources.
 
-The template completes the following tasks for you:
-
-- Creates an Azure Storage Account with blob and queue services enabled
-- Creates a blob storage container named `fileUploads`
-- Creates a queue named `tickets`
-- Assigns the following roles to the user account that ran the template.
-  - Storage Blob Data Contributor
-  - Storage Queue Data Contributor
+    The template runs completes the following tasks for you:
+    
+    - Creates an Azure Storage Account with blob and queue services enabled
+    - Creates a blob storage container named `fileUploads`
+    - Creates a queue named `tickets`
+    - Assigns the following roles to the user account that ran the template.
+      - Storage Blob Data Contributor
+      - Storage Queue Data Contributor
 
 After the operation completes successfully, you have two options moving forward:
 
-- Run the provided sample app in the `src` directory to experiment with the completed app.
-
-Or:
-
-- Recreate the app step by step using the sections ahead and still connect to the Azure resources provisioned by `azd`.
+- Option 1: Run the .NET sample app in the `src` directory to experiment with the completed app.
+- Option 2: Build the sample app step by step using the sections ahead and connect it to the Azure resources provisioned by `azd`.
 
 :::zone-end
 
