@@ -123,6 +123,8 @@ dotnet new list aspire
 When the .NET Aspire workload is installed, you'll see the following .NET Aspire templates:
 
 ```Output
+These templates matched your input: 'aspire'
+
 Template Name                    Short Name              Language  Tags
 -------------------------------  ----------------------  --------  -------------------------------------------------------
 .NET Aspire App Host             aspire-apphost          [C#]      Common/.NET Aspire/Cloud
