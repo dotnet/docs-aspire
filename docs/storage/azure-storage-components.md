@@ -85,7 +85,7 @@ The [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) enables
 1. When prompted, select the subscription and Azure region for the provisioned resources.
 
     The template runs completes the following tasks for you:
-    
+
     - Creates an Azure Storage Account with blob and queue services enabled
     - Creates a blob storage container named `fileUploads`
     - Creates a queue named `tickets`
