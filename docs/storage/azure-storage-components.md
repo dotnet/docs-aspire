@@ -18,6 +18,14 @@ Cloud-native apps often require scalable storage solutions that provide capabili
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
+## Explore the completed sample app
+
+A completed version of the sample app from this tutorial is available on GitHub. The project is also structured as a template for the [Azure Developer CLI](/azure/developer/azure-developer-cli/overview), meaning you can use the `azd up` command to automate Azure resource provisioning if you have the tool [installed](/azure/developer/azure-developer-cli/install-azd).
+
+```bash
+git clone https://github.com/Azure-Samples/dotnet-aspire-connect-storage.git
+```
+
 ## Set up the Azure Storage resources
 
 :::zone pivot="azure-portal,azure-cli"
@@ -59,6 +67,44 @@ You also need to assign the following roles to the user account you are logged i
 
 - Storage Blob Data Contributor - [Assign an Azure RBAC role](/azure/storage/queues/assign-azure-role-data-access?tabs=portal)
 - Storage Queue Data Contributor - [Assign an Azure RBAC role](/azure/storage/queues/assign-azure-role-data-access?tabs=portal)
+
+:::zone-end
+
+:::zone pivot="azure-developer-cli"
+
+The [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) enables you to provision and deploy Azure resources using a template system. This tutorial provides a [complete template](https://github.com/Azure-Samples/dotnet-aspire-connect-storage.git) that provisions the required Azure resources and includes the completed sample application code. Run the following commands to initialize and run the template:
+
+1. Run [`azd auth login`](/azure/developer/azure-developer-cli/reference#azd-auth) to sign-in to Azure:
+
+    ```azurecli
+    azd auth login
+    ```
+
+1. Run [`azd init`](/azure/developer/azure-developer-cli/reference#azd-init) to clone and initialize the sample template:
+
+    ```azurecli
+    azd init --template dotnet-aspire-connect-storage
+    ```
+
+1. Run [`azd up`](/azure/developer/azure-developer-cli/reference#azd-up) to provision the Azure resources:
+
+    ```azurecli
+    azd up
+    ```
+
+1. When prompted, select the subscription and Azure region for the provisioned resources. The template runs and completes the following tasks for you:
+
+    - Creates an Azure Storage Account with blob and queue services enabled
+    - Creates a blob storage container named `fileUploads`
+    - Creates a queue named `tickets`
+    - Assigns the following roles to the user account that ran the template.
+      - Storage Blob Data Contributor
+      - Storage Queue Data Contributor
+
+After the operation completes successfully, you have two options moving forward:
+
+- Option 1: Run the .NET sample app in the template `src` directory to experiment with the completed app.
+- Option 2: Build the sample app step by step using the sections ahead and connect it to the Azure resources provisioned by `azd`.
 
 :::zone-end
 
@@ -212,6 +258,31 @@ The worker service processes messages by connecting to the Azure Storage queue, 
 :::zone-end
 
 The worker service processes message in the queue and deletes them when they've been processed.
+
+:::zone pivot="azure-portal,azure-cli,azure-developer-cli"
+
+## Configure the connection strings
+
+The **AspireStorage** and **AspireStorage.Worker** projects must be configured to connect to the correct Azure Storage Account you created earlier. You can specify the endpoints for the blob and queue services in the storage account using the `appsettings.json` file in each project.
+
+1. In the **AspireStorage** project, add the following configuration to the `appsettings.Development.json` file:
+
+```json
+  "ConnectionStrings": {
+    "BlobConnection": "https://<your-storage-account-name>.blob.core.windows.net/",
+    "QueueConnection": "https://<your-storage-account-name>.queue.core.windows.net/"
+  }
+```
+
+1. In the **AspireStorage.Worker** project, add the following configuration to the `appsettings.Development.json` file:
+
+```json
+  "ConnectionStrings": {
+    "QueueConnection": "https://<your-storage-account-name>.queue.core.windows.net/"
+  }
+```
+
+:::zone-end
 
 ## Run and test the app locally
 
