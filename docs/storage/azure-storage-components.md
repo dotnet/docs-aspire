@@ -72,13 +72,23 @@ You also need to assign the following roles to the user account you are logged i
 
 :::zone pivot="azure-developer-cli"
 
-The [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) enables you to provision and deploy Azure resources using a template system. This tutorial provides a [complete template](https://github.com/Azure-Samples/dotnet-aspire-connect-storage.git) that provisions the required Azure resources and includes the completed sample application code.
+The [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) enables you to provision and deploy Azure resources using a template system. This tutorial provides a [complete template](https://github.com/Azure-Samples/dotnet-aspire-connect-storage.git) that provisions the required Azure resources and includes the completed sample application code. Run the following commands to initialize and run the template:
 
-1. Run the following commands to initialize and run the template:
+1. Run [`azd auth login`](/azure/developer/azure-developer-cli/reference#azd-auth) to sign-in to Azure:
 
     ```azurecli
     azd auth login
+    ```
+
+1. Run [`azd init`](/azure/developer/azure-developer-cli/reference#azd-init) to clone and initialize the sample template:
+
+    ```azurecli
     azd init --template dotnet-aspire-connect-storage
+    ```
+
+1. Run [`azd up`](/azure/developer/azure-developer-cli/reference#azd-up) to provision the Azure resources:
+
+    ```azurecli
     azd up
     ```
 
