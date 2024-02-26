@@ -2,7 +2,7 @@
 title: .NET Aspire deployments
 description: Learn about essential deployment concepts for .NET Aspire.
 ms.topic: overview
-ms.date: 11/11/2023
+ms.date: 02/26/2024
 ---
 
 # .NET Aspire deployments
@@ -17,7 +17,7 @@ For more information on the schema of the manifest and how to run AppHost projec
 
 ## Deploy to Azure
 
-With .NET Aspire, Preview 1 enables deployment to Azure Container Apps. We expect the number of environments Aspire can deploy to to grow over time.
+.NET Aspire enables deployment to Azure Container Apps. We expect the number of environments Aspire can deploy to to grow over time.
 
 ### Azure Container Apps
 
