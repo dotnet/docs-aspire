@@ -1,7 +1,7 @@
 ---
 title: Environments and parameters
 description: Learn about environments and parameters in software development.
-ms.date: 02/15/2024
+ms.date: 02/26/2024
 ---
 
 # Environments and parameters
