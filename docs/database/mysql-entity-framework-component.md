@@ -31,7 +31,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireMySQLEFCoreExtensions.AddMySqlDatabaseDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireEFMySqlExtensions.AddMySqlDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container.
 
 ```csharp
 builder.AddMySqlDbContext<MyDbContext>("mysqldb");
@@ -102,7 +102,7 @@ See the [MySqlConnector documentation](https://mysqlconnector.net/connection-opt
 
 ### Use configuration providers
 
-The .NET Aspire Pomelo MySQL Entity Framework Core component supports [Microsoft.Extensions.Configuration](https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration). It loads the `PomeloEntityFrameworkCoreSettings` from configuration by using the `Aspire:MySQL:EntityFrameworkCore` key.
+The .NET Aspire Pomelo MySQL Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `PomeloEntityFrameworkCoreMySqlSettings` from configuration by using the `Aspire:Pomelo:EntityFrameworkCore:MySql` key.
 
 The following example shows an _appsettings.json_ that configures some of the available options:
 
@@ -123,7 +123,7 @@ The following example shows an _appsettings.json_ that configures some of the av
 
 ### Use inline delegates
 
-You can also pass the `Action<PomeloEntityFrameworkCoreSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
+You can also pass the `Action<PomeloEntityFrameworkCoreMySqlSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
 
 ```csharp
 builder.AddMySqlDbContext<MyDbContext>(
