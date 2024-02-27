@@ -162,7 +162,6 @@ The The .NET Aspire Oracle EntityFrameworkCore component uses the following log 
 
 The The .NET Aspire Oracle EntityFrameworkCore component will emit the following tracing activities using OpenTelemetry:
 
-- Azure.Cosmos.Operation
 - OpenTelemetry.Instrumentation.EntityFrameworkCore
 
 ### Metrics
