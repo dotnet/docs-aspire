@@ -4,7 +4,7 @@ description: Oracle Entity Framework Component
 ms.date: 02/26/2024
 ---
 
-# .NET Aspire PostgreSQL component
+# .NET Aspire Oracle Entity Framework Component
 
 In this article, you learn how to use the The .NET Aspire Oracle EntityFrameworkCore component. The `Aspire.Oracle.EntityFrameworkCore` library is used to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> as a singleton in the DI container for connecting to Oracle databases. It also enables connection pooling, retries, health checks, logging and telemetry.
 
