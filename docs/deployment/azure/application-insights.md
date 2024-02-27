@@ -52,6 +52,43 @@ The preceding reads the connection string from configuration, as this is a secre
 }
 ```
 
+## Automatically provision Application Insights
+
+An alternative method is to provision Application Insights when running. 
+When publishing, [`azd` will handle provisioning](aca-deployment-azd-in-depth.md) Application Insights for your application if it's being used.
+
+Install the [Aspire.Hosting.Azure.Provisioning](https://www.nuget.org/packages/Aspire.Hosting.Azure.Provisioning) package to get access to the `AddAzureProvisioning()` method. This will take care of provisioning Azure resources that your app needs when running locally. You will need to also specify `"Azure:Location"` and `"Azure:SubscriptionId"` configuration values which can be set by right-clicking the AppHost project and selecting "Manage User Secrets":
+```json
+"Azure": {
+  "SubscriptionId": "12345678-1234-1234-1234-1234567890123",
+  "Location": "West US"
+}
+```
+
+Next we'll add the Application Insights resource to our app with `AddAzureApplicationInsights("appInsights")` and then add references to the resource for our projects that want to send telemetry to Application Insights by calling `WithReference(appInsightsResource)`.
+
+```csharp
+using Aspire.Hosting;
+
+var builder = DistributedApplication.CreateBuilder(args);
+
+builder.AddAzureProvisioning();
+
+var appInsights = builder.AddAzureApplicationInsights("appInsights");
+
+var cache = builder.AddRedis("cache");
+
+var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
+    .WithReference(appInsights);
+
+builder.AddProject<Projects.AspireApp_Web>("webfrontend")
+    .WithReference(cache)
+    .WithReference(apiservice)
+    .WithReference(appInsights);
+
+builder.Build().Run();
+```
+
 ## Use the Azure Monitor distro
 
 To make exporting to Azure Monitor simpler, this example uses the Azure Monitor Exporter Repo. This is a wrapper package around the Azure Monitor OpenTelemetry Exporter package that makes it easier to export to Azure Monitor with a set of defaults.
@@ -63,7 +100,7 @@ Add the following package to the `ServiceDefaults` project, so that it will be i
                   Version="[SelectVersion]" />
 ```
 
-Uncomment the line in `AddOpenTelemetryExporters` to use the Azure Monitor exporter:
+Uncomment the lines in `AddOpenTelemetryExporters` to use the Azure Monitor exporter:
 
 ```csharp
 private static IHostApplicationBuilder AddOpenTelemetryExporters(
@@ -72,8 +109,11 @@ private static IHostApplicationBuilder AddOpenTelemetryExporters(
     // Omitted for brevity...
 
     // Uncomment the following lines to enable the Azure Monitor exporter 
-    // (requires the Azure.Monitor.OpenTelemetry.Exporter package)
-    builder.Services.AddOpenTelemetry().UseAzureMonitor();
+    // (requires the Azure.Monitor.OpenTelemetry.AspNetCore package)
+    if (!string.IsNullOrEmpty(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]))
+    {
+        builder.Services.AddOpenTelemetry().UseAzureMonitor();
+    }
 
     return builder;
 }
