@@ -1,0 +1,184 @@
+---
+title: Oracle Entity Framework Component
+description: Oracle Entity Framework Component
+ms.date: 02/26/2024
+---
+
+# .NET Aspire PostgreSQL component
+
+In this article, you learn how to use the The .NET Aspire Oracle EntityFrameworkCore component. The `Aspire.Oracle.EntityFrameworkCore` library is used to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> as a singleton in the DI container for connecting to Oracle databases. It also enables connection pooling, retries, health checks, logging and telemetry.
+
+## Get started
+
+You need an Oracle database and connection string for accessing the database. To get started with the The .NET Aspire Oracle EntityFrameworkCore component, install the [Aspire.Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Aspire.Oracle.EntityFrameworkCore) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Oracle.EntityFrameworkCore --prerelease
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Oracle.EntityFrameworkCore"
+                  Version="[SelectVersion]" />
+```
+
+---
+
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+
+## Example usage
+
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireOracleEFCoreExtensions.AddOracleDatabaseDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container.
+
+```csharp
+builder.AddOracleDatabaseDbContext<DbContext>("oracle");
+```
+
+You can then retrieve the <xref:Microsoft.EntityFrameworkCore.DbContext> instance using dependency injection. For example, to retrieve the client from a service:
+
+```csharp
+public class ExampleService(DbContext context)
+{
+    // Use context...
+}
+```
+
+You might also need to configure specific options of Oracle database, or register a `DbContext` in other ways. In this case call the `EnrichOracleDatabaseDbContext` extension method, for example:
+
+```csharp
+var connectionString = builder.Configuration.GetConnectionString("catalogdb");
+
+builder.Services.AddDbContextPool<CatalogDbContext>(
+    dbContextOptionsBuilder => dbContextOptionsBuilder.UseOracle(connectionString));
+
+builder.EnrichOracleDatabaseDbContext<CatalogDbContext>();
+```
+
+## App host usage
+
+In your app host project, register an Oracle container and consume the connection using the following methods:
+
+```csharp
+var freepdb1 = builder.AddOracleDatabase("oracle")
+                      .AddDatabase("freepdb1");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(freepdb1);
+```
+
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `MyService` project named `freepdb1`. In the _Program.cs_ file of `MyService`, the database connection can be consumed using:
+
+```csharp
+builder.AddOracleDatabaseDbContext<MyDbContext>("freepdb1");
+```
+
+## Configuration
+
+The .NET Aspire Oracle EntityFrameworkCore component provides multiple options to configure the database connection based on the requirements and conventions of your project.
+
+### Use a connection string
+
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddOracleDatabaseDbContext<TContext>()`:
+
+```csharp
+builder.AddOracleDatabaseDbContext<MyDbContext>("myConnection");
+```
+
+And then the connection string will be retrieved from the `ConnectionStrings` configuration section:
+
+```json
+{
+  "ConnectionStrings": {
+    "myConnection": "Data Source=TORCL;User Id=myUsername;Password=myPassword;"
+  }
+}
+```
+
+The `EnrichOracleDatabaseDbContext` won't make use of the `ConnectionStrings` configuration section since it expects a `DbContext` to be registered at the point it is called.
+
+See the [ODP.NET documentation](https://www.oracle.com/database/technologies/appdev/dotnet/odp.html) for more information on how to format this connection string.
+
+### Use configuration providers
+
+The .NET Aspire Oracle EntityFrameworkCore component supports [Microsoft.Extensions.Configuration](https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration). It loads the `OracleEntityFrameworkCoreSettings` from configuration by using the `Aspire:Oracle:EntityFrameworkCore` key.
+
+The following example shows an _appsettings.json_ that configures some of the available options:
+
+```json
+{
+  "Aspire": {
+    "Oracle": {
+      "EntityFrameworkCore": {
+        "HealthChecks": false,
+        "Tracing": false,
+        "Metrics": true
+      }
+    }
+  }
+}
+```
+
+### Use inline delegates
+
+You can also pass the `Action<OracleEntityFrameworkCoreSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
+
+```csharp
+builder.AddOracleDatabaseDbContext<MyDbContext>(
+    "oracle",
+    static settings => settings.HealthChecks = false);
+```
+
+or
+
+```csharp
+builder.EnrichOracleDatabaseDbContext<MyDbContext>(
+    static settings => settings.HealthChecks = false);
+```
+
+[!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
+
+The The .NET Aspire Oracle EntityFrameworkCore component currently doesn't implement health checks, though this may change in future releases.
+
+[!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
+
+### Logging
+
+The The .NET Aspire Oracle EntityFrameworkCore component uses the following log categories:
+
+- Azure-Cosmos-Operation-Request-Diagnostics
+- Microsoft.EntityFrameworkCore.ChangeTracking
+- Microsoft.EntityFrameworkCore.Database.Command
+- Microsoft.EntityFrameworkCore.Infrastructure
+- Microsoft.EntityFrameworkCore.Query
+
+### Tracing
+
+The The .NET Aspire Oracle EntityFrameworkCore component will emit the following tracing activities using OpenTelemetry:
+
+- Azure.Cosmos.Operation
+- OpenTelemetry.Instrumentation.EntityFrameworkCore
+
+### Metrics
+
+The The .NET Aspire Oracle EntityFrameworkCore component currently supports the following metrics:
+
+- Microsoft.EntityFrameworkCore"
+  - ec_Microsoft_EntityFrameworkCore_active_db_contexts
+  - ec_Microsoft_EntityFrameworkCore_total_queries
+  - ec_Microsoft_EntityFrameworkCore_queries_per_second
+  - ec_Microsoft_EntityFrameworkCore_total_save_changes
+  - ec_Microsoft_EntityFrameworkCore_save_changes_per_second
+  - ec_Microsoft_EntityFrameworkCore_compiled_query_cache_hit_rate
+  - ec_Microsoft_Entity_total_execution_strategy_operation_failures
+  - ec_Microsoft_E_execution_strategy_operation_failures_per_second
+  - ec_Microsoft_EntityFramew_total_optimistic_concurrency_failures
+  - ec_Microsoft_EntityF_optimistic_concurrency_failures_per_second
+
+## See also
+
+- [Azure Cosmos DB docs](/azure/cosmos-db/introduction)
+- [.NET Aspire components](../fundamentals/components-overview.md)
+- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
