@@ -43,35 +43,23 @@ That will bring up a dashboard that you can use view logs, metrics, and traces f
 
 TODO: Sample pointing to the dashboard.  (@drewnoakes @JamesNK @kvenkatrajan)
 
-## Entity Framwork and Aspire
+## Entity Framework and Aspire
 
 TODO: Changes to EF based components (@sebastienros @eerhardt)
 
 TODO: Migration tooling guidance (@JamesNK)
 
-## New standalone project templates
-
-You can now create a .NET Aspire AppHost project and the ServiceDefaults projects. This lets you add either one to an existing project without having to use all of the features of .NET Aspire.
-
-**dotnet CLI**
-
-![New project templates CLI](https://github.com/dotnet/docs-aspire/assets/95136/7a6d7a54-1a41-417e-91b8-4d6fe32e06a8)
-
-**Visual Studio**
-
-![Visual Studio project templates](https://github.com/dotnet/docs-aspire/assets/95136/162cb0e8-bf0f-4deb-a420-fa47a6dd2a82)
-
 ## Changes to container resources
 
 In .NET Aspire preview 3 for container resources, we introduced `AddXX` and `AddXXContainer`. We've removed `AddXXContainer` and have a single method `AddXX` to add a container resource:
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var redis = builder.AddRedis("redis");
 
 builder.AddProject<Projects.WebApplication1>("api")
-    .WithReference(redis);
+       .WithReference(redis);
 
 builder.Build().Run();
 ```
@@ -80,7 +68,7 @@ These resources are always containers, they will run locally as containers and w
 
 The representation in the manifest for these resources is `container.v0`.
 
-```JSON
+```json
 {
   "resources": {
     "redis": {
@@ -106,24 +94,24 @@ This makes it easier for deployment tools to support a wide range of scenarios w
 
 Parameters express the ability to ask for an external value when running the application. Parameters can be used to provide values to the application when running locally, or to prompt for values when deploying. They can be used to model a wide range of scenarios including secrets, connection strings, and other configuration values that might vary between environments.
 
-### Parameter Values
+### Parameter values
 
-Parameter values are read from the "Parameters" section of the apphost's configuration and can be used to provide values to the application when running locally. When deploying the application, the value will be asked for the parameter value.
+Parameter values are read from the "Parameters" section of the app host's configuration and can be used to provide values to the application when running locally. When deploying the application, the value will be asked for the parameter value.
 
-**Program.cs**
+_Program.cs_
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var value = builder.AddParameter("value");
 
 builder.AddProject<Projects.WebApplication1>("api")
-    .WithEnvironment("SOME_VALUE", value);
+       .WithEnvironment("SOME_VALUE", value);
 ```
 
-**appsettings.json**
+_appsettings.json_
 
-```JSON
+```json
 {
     "Parameters": {
         "value": "local-value"
@@ -133,7 +121,7 @@ builder.AddProject<Projects.WebApplication1>("api")
 
 Parameters are represented in the manifest as a new primitive called `parameter.v0`.
 
-```JSON
+```json
 {
   "resources": {
     "value": {
@@ -153,22 +141,22 @@ Parameters are represented in the manifest as a new primitive called `parameter.
 
 Parameters can be used to model secrets. When a parameter is marked as a secret, this is a hint to the manifest that the value should be treated as a secret. When deploying, the value will be prompted for and stored in a secure location. When running locally, the value will be read from the "Parameters" section of the app host configuration.
 
-**Program.cs**
+_Program.cs_
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var secret = builder.AddParameter("secret", secret: true);
 
 builder.AddProject<Projects.WebApplication1>("api")
-    .WithEnvironment("SECRET", secret);
+       .WithEnvironment("SECRET", secret);
 
 builder.Build().Run();
 ```
 
-**appsettings.json**
+_appsettings.json_
 
-```JSON
+```json
 {
     "Parameters": {
         "secret": "local-secret"
@@ -178,7 +166,7 @@ builder.Build().Run();
 
 Manifest representation:
 
-```JSON
+```json
 {
   "resources": {
     "value": {
@@ -195,30 +183,29 @@ Manifest representation:
 }
 ```
 
-### Connection Strings
+### Connection strings
 
 Parameters can be used to model connection strings. When deploying, the value will be prompted for and stored in a secure location. When running locally, the value will be read from the "ConnectionStrings" section of the app host configuration.
 
-*NOTE: Connection strings are used to represent a wide range of connection information including database connections, message brokers, and other services. In Aspire nomenclature, we use the term "connection string" to represent any kind of connection information.*
+> [!NOTE]
+> Connection strings are used to represent a wide range of connection information including database connections, message brokers, and other services. In Aspire nomenclature, we use the term "connection string" to represent any kind of connection information.*
 
-**Program.cs**
+_Program.cs_
 
-```C#
-{
-    var builder = DistributedApplication.CreateBuilder(args);
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
 
-    var redis = builder.AddConnectionString("redis");
+var redis = builder.AddConnectionString("redis");
 
-    builder.AddProject<Projects.WebApplication1>("api")
-        .WithReference(redis);
+builder.AddProject<Projects.WebApplication1>("api")
+    .WithReference(redis);
 
-    builder.Build().Run();
-}
+builder.Build().Run();
 ```
 
 **appsettings.json**
 
-```JSON
+```json
 {
     "ConnectionStrings": {
         "redis": "local-connection-string"
@@ -228,7 +215,7 @@ Parameters can be used to model connection strings. When deploying, the value wi
 
 Manifest representation:
 
-```JSON
+```json
 {
   "resources": {
     "redis": {
@@ -246,15 +233,17 @@ Manifest representation:
 }
 ```
 
-## New Idioms
+## New idioms
 
-### DistributedApplicationExecutionContext
+The following section outlines several new idioms that have been introduced in .NET Aspire preview 4. These idioms are designed to make it easier to model common scenarios when building the application model.
+
+### The `DistributedApplicationExecutionContext`
 
 The `DistributedApplicationExecutionContext` is a new type that provides information about the current execution context. It can be used to determine if the application is being orchestrated running locally or if it is being use to published the manifest.
 
 This can be useful when building the application model. For example, you might want to use a different message broker when running locally than when deploying.
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 if (builder.ExecutionContext.IsPublishMode)
@@ -269,34 +258,32 @@ else
 
 The `DistributedApplicationExecutionContext` is also available in the DI container and can be used to determine the execution context when resolving services.
 
-### PublishAs/RunAs/As
+### `PublishAs`, `RunAs` and `As`
 
 .NET Aspire preview 4 introduces new idioms for describing common scenarios for modeling how resources are used when running locally and when deploying. While it's possible to model these scenarios using the `DistributedApplicationExecutionContext`, the new idioms make it easier to express these common scenarios.
 
-`RunAsXX` - Only affect the model when running locally.
-
-`PublishAsXX` - Only affect the model when publishing the manifest.
-
-`AsXX` - Affect the model when running locally and when publishing the manifest.
+- `RunAsXX`: Only affects the model when running locally.
+- `PublishAsXX`: Only affects the model when publishing the manifest.
+- `AsXX`: Affects the model both when running locally and when publishing the manifest.
 
 #### Examples
 
 The following logic will use a redis container locally and prompt for
 the connection string when deploying.
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var redis = builder.AddRedis("redis")
                    .PublishAsConnectionString();
 
 builder.AddProject<Projects.WebApplication1>("api")
-    .WithReference(redis);
+       .WithReference(redis);
 
 builder.Build().Run();
 ```
 
-## General Application Model Improvements
+## General application model improvements
 
 ### Changing container properties
 
@@ -304,7 +291,7 @@ We added some new methods to tweak container images, tags and volumes.
 
 Here's an example of using the redis image from Microsoft's container registry instead of the default image from DockerHub.
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var redis = builder.AddRedis("redis")
@@ -312,7 +299,7 @@ var redis = builder.AddRedis("redis")
                    .WithImageTag("6.2-cm2.0");
 
 builder.AddProject<Projects.WebApplication1>("api")
-.WithReference(redis);
+       .WithReference(redis);
 
 builder.Build().Run();
 ```
@@ -321,17 +308,19 @@ builder.Build().Run();
 
 Splitting bind mounts and volumes into separate methods. Bind mounts are used to mount a file or directory from the host into the container. Volumes are used to mount a volume from the host into the container. Splitting these into separate methods makes it easier to understand how the container is being used.
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var catalogDbName = "catalog"; // MySql database & table names are case-sensitive on non-Windows.
+// MySql database and table names are case-sensitive on non-Windows.
+var catalogDbName = "catalog";
+
 var catalogDb = builder.AddMySql("mysql")
     .WithEnvironment("MYSQL_DATABASE", catalogDbName)
     .WithBindMount("../MySql.ApiService/data", "/docker-entrypoint-initdb.d")
     .AddDatabase(catalogDbName);
 
 builder.AddProject<Projects.MySql_ApiService>("api")
-    .WithReference(catalogDb);
+       .WithReference(catalogDb);
 
 builder.Build().Run();
 ```
@@ -340,7 +329,7 @@ builder.Build().Run();
 
 .NET Aspire Preview 3 introduced the ability to manage postgres databases using pgAdmin and redis using redis commander. Preview 4 introduces the ability to manage MySql databases using phpMyAdmin, and MongoDB databases using mongo-express.
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var mongo = builder.AddMongoDB("mongo")
@@ -352,8 +341,8 @@ var mySql = builder.AddMySql("mysql")
                    .AddDatabase("catalog");
 
 builder.AddProject<Projects.WebApplication1>("api")
-    .WithReference(mongo)
-    .WithReference(mySql);
+       .WithReference(mongo)
+       .WithReference(mySql);
 
 builder.Build().Run();
 ```
@@ -362,9 +351,10 @@ builder.Build().Run();
 
 Sometimes you might want to ignore launch profiles when running the application. This can be useful when you want to define your own environment or endpoints when running the application.
 
-**NOTE: This will ignore the entire launch profile, including environment variables and other defaults.**
+> [!NOTE]
+> This will ignore the entire launch profile, including environment variables and other defaults.**
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddProject<Projects.WebApplication1>("api")
@@ -380,15 +370,15 @@ builder.Build().Run();
 Any resource with an endpoint today uses a tcp proxy to route traffic to the resource. This is useful for several reasons:
 
 1. The proxy can be used hold connection until the underlying resource is ready.
-2. The proxy can be used to route traffic between different replicas of a resource. This gives consumers a stable endpoint to connect to.
+1. The proxy can be used to route traffic between different replicas of a resource. This gives consumers a stable endpoint to connect to.
 
 Proxies may not always be desirable. If the application already has a port allocated that cannot be configured outside of the application then it's crucial to disable the proxy.
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddProject<Projects.WebApplication1>("api")
-    .WithEndpoint("http", e => e.IsProxied = false);
+       .WithEndpoint("http", e => e.IsProxied = false);
 
 builder.Build().Run();
 ```
@@ -399,13 +389,13 @@ The above example will disable the proxy for the http endpoint defined in the la
 
 This release saw an overhaul of the Azure resources shipped in .NET Aspire. We've introduced a new bicep resource that makes it easier to model a wide range of Azure services. These changes are encapsulated in the **Aspire.Hosting.Azure** package.
 
-### New Resources and Components
+### New resources and components
 
 We've added a few new Azure based resources:
 
-- [Azure SignalR](https://azure.microsoft.com/en-us/services/signalr-service/)
-- [Azure AI Search](https://azure.microsoft.com/en-us/services/search/)
-- [Azure Application Insights](https://azure.microsoft.com/en-us/products/monitor/) (@samsp-msft)
+- [Azure SignalR](/services/signalr-service/)
+- [Azure AI Search](/services/search/)
+- [Azure Application Insights](/products/monitor/) (@samsp-msft)
 
 TODO: Show sample usage of these resources.
 
@@ -415,52 +405,53 @@ Several services that are available as containers have fully managed Azure equiv
 
 We've enabled this for the following services:
 
-- Redis - [Azure Redis](https://azure.microsoft.com/en-us/products/cache/)
-- Postgres - [Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/services/postgresql/)
-- SQL Server - [Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/)
+- Redis - [Azure Redis](/products/cache/)
+- Postgres - [Azure Database for PostgreSQL](/services/postgresql/)
+- SQL Server - [Azure SQL Database](/services/sql-database/)
 
 We plan to add support for the following services in the future:
 
-- MySql - [Azure Database for MySQL](https://azure.microsoft.com/en-us/services/mysql/)
-- MongoDb - [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/)
-- Kafka - [Azure Event Hubs](https://azure.microsoft.com/en-us/services/event-hubs/)
+- MySql - [Azure Database for MySQL](/services/mysql/)
+- MongoDb - [Azure Cosmos DB](/services/cosmos-db/)
+- Kafka - [Azure Event Hubs](/services/event-hubs/)
 
 ***Example: Redis***
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var redis = builder.AddRedis("redis")
                    .PublishAsAzureRedis();
 
 builder.AddProject<Projects.WebApplication1>("api")
-    .WithReference(redis);
+       .WithReference(redis);
 
 builder.Build().Run();
 ```
 
-NOTE: It is possible to use an existing Azure resource by providing the connection string and using `AddConnectionString`. This assumes that the resource has already been provisioned, that the resource is accessible from the development environment:
+> [!IMPORTANT]
+> It's possible to use an existing Azure resource by providing the connection string and using `AddConnectionString`. This assumes that the resource has already been provisioned, that the resource is accessible from the development environment:
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var redis = builder.AddConnectionString("redis");
 
 builder.AddProject<Projects.WebApplication1>("api")
-    .WithReference(redis);
+       .WithReference(redis);
 
 builder.Build().Run();
 ```
 
-### Azure Bicep Resource
+### Azure Bicep resource
 
-We've introduced a new primitive to model Azure Bicep modules in the application model. This makes it easier to model any set of azure resources that can be modeled using bicep. We've rebuilt the azure resources to use the new bicep primitive. Bicep files can be expressed as literal strings, embedded resources or files on disk (relative to the apphost).
+We've introduced a new primitive to model Azure Bicep modules in the application model. This makes it easier to model any set of azure resources that can be modeled using bicep. We've rebuilt the azure resources to use the new bicep primitive. Bicep files can be expressed as literal strings, embedded resources or files on disk (relative to the app host).
 
 You can learn more about bicep [here](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview?tabs=bicep).
 
-**Program.cs**
+_Program.cs_
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var bicep = builder.AddBicepTemplateString("bicep", "test.bicep")
@@ -473,7 +464,7 @@ builder.AddProject<Projects.WebApplication1>("api")
 builder.Build().Run();
 ```
 
-**test.bicep**
+_test.bicep_
 
 ```bicep
 param param1 string
@@ -485,7 +476,7 @@ output both string = '${param1} ${param2}'
 
 Manifest representation:
 
-```JSON
+```json
 {
   "resources": {
     "bicep": {
@@ -529,12 +520,12 @@ In .NET Aspire preview 3, we introduced the ability to run emulators for various
 
 **Azurite: Azure storage emulator**
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var blobs = builder.AddAzureStorage("storage")
-                     .RunAsEmulator()
-                     .AddBlobs("blobs");
+                   .RunAsEmulator()
+                   .AddBlobs("blobs");
 
 builder.AddProject<Projects.Api>("api")
        .WithReference(blobs);
@@ -546,7 +537,7 @@ Each `RunAsEmulator` method has a callback that enables customization of the emu
 
 **Azure storage emulator (Azurite)**
 
-```C#
+```csharp
 var storage = builder.AddAzureStorage("storage").RunAsEmulator(container =>
 {
     container.UsePersistence();
@@ -555,7 +546,7 @@ var storage = builder.AddAzureStorage("storage").RunAsEmulator(container =>
 
 **CosmosDB emulator**
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var db = builder.AddAzureCosmosDB("cosmos")
@@ -572,19 +563,19 @@ builder.Build().Run();
 
 The aspire manifest has undergone a significant overhaul to support the new primitives and introduced in preview 4. The new manifest focuses on a few key primitives to enable a wide range of scenarios:
 
-| Resource Type | Description |
-| --- | --- |
-| project.v0 | .NET project files |
-| container.v0 | Container images |
-| dockerfile.v0 | Docker files |
-| parameter.v0 | External Parameters |
-| value.v0 | References to other resources (or a combination of resources) |
+| Resource type   | Description                                                   |
+|-----------------|---------------------------------------------------------------|
+| `project.v0`    | .NET project files                                            |
+| `container.v0`  | Container images                                              |
+| `dockerfile.v0` | Docker files                                                  |
+| `parameter.v0`  | External Parameters                                           |
+| `value.v0`      | References to other resources (or a combination of resources) |
 
-### Azure specific Resources
+### Azure specific resources
 
-| Resource Type | Description |
-| --- | --- |
-| azure.bicep.v0 | Azure Bicep templates |
+| Resource type    | Description           |
+|------------------|-----------------------|
+| `azure.bicep.v0` | Azure Bicep templates |
 
 Tool authors can support this very small set of resource types to model lots of different apps!
 
