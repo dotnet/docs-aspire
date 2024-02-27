@@ -18,7 +18,7 @@ Docker or Podman will be auto-detected; if both are present, Docker is preferred
 
 ### Dashboard face lift
 
-![Dashboard UI](https://github.com/dotnet/docs-aspire/assets/95136/e6bc64bd-b0c2-40ab-abd0-8925406cba38)
+:::image type="content" source="media/preview-4/dashboard-face-lift.png" lightbox="media/preview-4/dashboard-face-lift.png" alt-text=".NET Aspire Dashboard: Updates showing landing page.":::
 
 TODO: Words about the UI changes.
 
@@ -32,7 +32,7 @@ Here's the command you can run to start the dashboard:
 docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.4
 ```
 
-![Aspire dashboard running in Docker Desktop](https://github.com/dotnet/docs-aspire/assets/95136/084c5bdf-e749-41f8-bbfb-c2ca52060ac6)
+:::image type="content" source="media/preview-4/dashboard-as-container.png" lightbox="media/preview-4/dashboard-as-container.png" alt-text=".NET Aspire Dashboard: running in Docker Desktop.":::
 
 There are 2 ports that are exposed:
 
