@@ -153,10 +153,10 @@ The The .NET Aspire Oracle EntityFrameworkCore component registers a basic healt
 
 The The .NET Aspire Oracle EntityFrameworkCore component uses the following log categories:
 
-- "Microsoft.EntityFrameworkCore.Database.Command.CommandCreated";
-- "Microsoft.EntityFrameworkCore.Database.Command.CommandExecuting";
-- "Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted";
-- "Microsoft.EntityFrameworkCore.Database.Command.CommandError";
+- `Microsoft.EntityFrameworkCore.Database.Command.CommandCreated`
+- `Microsoft.EntityFrameworkCore.Database.Command.CommandExecuting`
+- `Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted`
+- `Microsoft.EntityFrameworkCore.Database.Command.CommandError`
 
 ### Tracing
 
