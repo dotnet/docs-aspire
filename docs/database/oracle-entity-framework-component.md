@@ -114,12 +114,17 @@ The following example shows an _appsettings.json_ that configures some of the av
       "EntityFrameworkCore": {
         "HealthChecks": false,
         "Tracing": false,
-        "Metrics": true
+        "Metrics": true,
+        "Retry": true,
+        "Timeout": 30
       }
     }
   }
 }
 ```
+
+> [!TIP]
+> The `Timeout` property is in seconds. When set as shown in the preceding example, the timeout is 30 seconds.
 
 ### Use inline delegates
 
@@ -140,7 +145,7 @@ builder.EnrichOracleDatabaseDbContext<MyDbContext>(
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
-The The .NET Aspire Oracle EntityFrameworkCore component currently doesn't implement health checks, though this may change in future releases.
+The The .NET Aspire Oracle EntityFrameworkCore component registers a basic health check that checks the database connection given a `TContext`. The health check is enabled by default and can be disabled using the `HealthChecks` property in the configuration.
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 
@@ -148,11 +153,10 @@ The The .NET Aspire Oracle EntityFrameworkCore component currently doesn't imple
 
 The The .NET Aspire Oracle EntityFrameworkCore component uses the following log categories:
 
-- Azure-Cosmos-Operation-Request-Diagnostics
-- Microsoft.EntityFrameworkCore.ChangeTracking
-- Microsoft.EntityFrameworkCore.Database.Command
-- Microsoft.EntityFrameworkCore.Infrastructure
-- Microsoft.EntityFrameworkCore.Query
+- "Microsoft.EntityFrameworkCore.Database.Command.CommandCreated";
+- "Microsoft.EntityFrameworkCore.Database.Command.CommandExecuting";
+- "Microsoft.EntityFrameworkCore.Database.Command.CommandExecuted";
+- "Microsoft.EntityFrameworkCore.Database.Command.CommandError";
 
 ### Tracing
 
@@ -165,20 +169,10 @@ The The .NET Aspire Oracle EntityFrameworkCore component will emit the following
 
 The The .NET Aspire Oracle EntityFrameworkCore component currently supports the following metrics:
 
-- Microsoft.EntityFrameworkCore"
-  - ec_Microsoft_EntityFrameworkCore_active_db_contexts
-  - ec_Microsoft_EntityFrameworkCore_total_queries
-  - ec_Microsoft_EntityFrameworkCore_queries_per_second
-  - ec_Microsoft_EntityFrameworkCore_total_save_changes
-  - ec_Microsoft_EntityFrameworkCore_save_changes_per_second
-  - ec_Microsoft_EntityFrameworkCore_compiled_query_cache_hit_rate
-  - ec_Microsoft_Entity_total_execution_strategy_operation_failures
-  - ec_Microsoft_E_execution_strategy_operation_failures_per_second
-  - ec_Microsoft_EntityFramew_total_optimistic_concurrency_failures
-  - ec_Microsoft_EntityF_optimistic_concurrency_failures_per_second
+- Microsoft.EntityFrameworkCore
 
 ## See also
 
-- [Azure Cosmos DB docs](/azure/cosmos-db/introduction)
+- [Entity Framework Core docs](/ef/core)
 - [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
