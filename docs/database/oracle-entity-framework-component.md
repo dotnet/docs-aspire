@@ -6,11 +6,11 @@ ms.date: 02/26/2024
 
 # .NET Aspire Oracle Entity Framework Component
 
-In this article, you learn how to use the The .NET Aspire Oracle EntityFrameworkCore component. The `Aspire.Oracle.EntityFrameworkCore` library is used to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> as a singleton in the DI container for connecting to Oracle databases. It also enables connection pooling, retries, health checks, logging and telemetry.
+In this article, you learn how to use the The .NET Aspire Oracle Entity Framework Core component. The `Aspire.Oracle.EntityFrameworkCore` library is used to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> as a singleton in the DI container for connecting to Oracle databases. It also enables connection pooling, retries, health checks, logging and telemetry.
 
 ## Get started
 
-You need an Oracle database and connection string for accessing the database. To get started with the The .NET Aspire Oracle EntityFrameworkCore component, install the [Aspire.Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Aspire.Oracle.EntityFrameworkCore) NuGet package.
+You need an Oracle database and connection string for accessing the database. To get started with the The .NET Aspire Oracle Entity Framework Core component, install the [Aspire.Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Aspire.Oracle.EntityFrameworkCore) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -77,7 +77,7 @@ builder.AddOracleDatabaseDbContext<MyDbContext>("freepdb1");
 
 ## Configuration
 
-The .NET Aspire Oracle EntityFrameworkCore component provides multiple options to configure the database connection based on the requirements and conventions of your project.
+The .NET Aspire Oracle Entity Framework Core component provides multiple options to configure the database connection based on the requirements and conventions of your project.
 
 ### Use a connection string
 
@@ -103,7 +103,7 @@ See the [ODP.NET documentation](https://www.oracle.com/database/technologies/app
 
 ### Use configuration providers
 
-The .NET Aspire Oracle EntityFrameworkCore component supports [Microsoft.Extensions.Configuration](https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration). It loads the `OracleEntityFrameworkCoreSettings` from configuration by using the `Aspire:Oracle:EntityFrameworkCore` key.
+The .NET Aspire Oracle Entity Framework Core component supports [Microsoft.Extensions.Configuration](https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration). It loads the `OracleEntityFrameworkCoreSettings` from configuration by using the `Aspire:Oracle:EntityFrameworkCore` key.
 
 The following example shows an _appsettings.json_ that configures some of the available options:
 
@@ -145,13 +145,13 @@ builder.EnrichOracleDatabaseDbContext<MyDbContext>(
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
-The The .NET Aspire Oracle EntityFrameworkCore component registers a basic health check that checks the database connection given a `TContext`. The health check is enabled by default and can be disabled using the `HealthChecks` property in the configuration.
+The The .NET Aspire Oracle Entity Framework Core component registers a basic health check that checks the database connection given a `TContext`. The health check is enabled by default and can be disabled using the `HealthChecks` property in the configuration.
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 
 ### Logging
 
-The The .NET Aspire Oracle EntityFrameworkCore component uses the following log categories:
+The The .NET Aspire Oracle Entity Framework Core component uses the following log categories:
 
 - `Microsoft.EntityFrameworkCore.Database.Command.CommandCreated`
 - `Microsoft.EntityFrameworkCore.Database.Command.CommandExecuting`
@@ -160,13 +160,13 @@ The The .NET Aspire Oracle EntityFrameworkCore component uses the following log 
 
 ### Tracing
 
-The The .NET Aspire Oracle EntityFrameworkCore component will emit the following tracing activities using OpenTelemetry:
+The The .NET Aspire Oracle Entity Framework Core component will emit the following tracing activities using OpenTelemetry:
 
 - OpenTelemetry.Instrumentation.EntityFrameworkCore
 
 ### Metrics
 
-The The .NET Aspire Oracle EntityFrameworkCore component currently supports the following metrics:
+The The .NET Aspire Oracle Entity Framework Core component currently supports the following metrics:
 
 - Microsoft.EntityFrameworkCore
 
