@@ -20,7 +20,7 @@ Docker or Podman will be auto-detected; if both are present, Docker is preferred
 
 :::image type="content" source="media/preview-4/dashboard-face-lift.png" lightbox="media/preview-4/dashboard-face-lift.png" alt-text=".NET Aspire Dashboard: Updates showing landing page.":::
 
-TODO: Words about the UI changes.
+The dashboard has been updated with a new look and feel. The new dashboard is designed to reduce the space used by the navigation tabs and to make it easier to navigate between logs, metrics, and traces.
 
 ### Running the Aspire dashboard standalone
 
