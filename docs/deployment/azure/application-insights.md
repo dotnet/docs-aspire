@@ -110,7 +110,7 @@ When running the Aspire application locally, the preceding code reads the connec
 
 #### Resource usage during deployment
 
-When deploying an Aspire application with Azure Developer CLI (AZD), it will recognize the connection string resource and prompt for a value. This enables a different resource to be used for the deployment from the value used for local development.
+When [deploying an Aspire application with Azure Developer CLI (AZD)](./aca-deployment-azd-in-depth.md), it will recognize the connection string resource and prompt for a value. This enables a different resource to be used for the deployment from the value used for local development.
 
 ### Mixed deployment
 
@@ -164,8 +164,10 @@ private static IHostApplicationBuilder AddOpenTelemetryExporters(
 
     // Uncomment the following lines to enable the Azure Monitor exporter 
     // (requires the Azure.Monitor.OpenTelemetry.Exporter package)
-    builder.Services.AddOpenTelemetry().UseAzureMonitor();
-
+    if (!string.IsNullOrEmpty(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]))
+    {
+        builder.Services.AddOpenTelemetry().UseAzureMonitor();
+    }
     return builder;
 }
 ```
