@@ -22,7 +22,6 @@ Docker or Podman will be auto-detected; if both are present, Docker is preferred
 
 The dashboard has been updated with a new look and feel. The new dashboard is designed to reduce the space used by the navigation tabs and to make it easier to navigate between logs, metrics, and traces.
 
-
 ### Running the Aspire dashboard standalone
 
 The Aspire dashboard can now be run as a standalone container image. This makes it easier to use the dashboard to manage applications that are running on a different machine or in a different environment. The dashboard can be used as an [OTLP](https://opentelemetry.io/docs/specs/otlp/) collector and viewer for applications that want to send and visualize telemetry data.
@@ -44,17 +43,17 @@ That will bring up a dashboard that you can use view logs, metrics, and traces f
 
 TODO: Sample pointing to the dashboard.  (@drewnoakes @JamesNK @kvenkatrajan)
 
-### Dashboard Shortcuts
+### Dashboard shortcuts
 
-The Aspire Dashboard now supports keyboard navigation via keyboard shortcuts. Click Shift + ? to display the list of available shortcuts 
-![image](https://github.com/dotnet/docs-aspire/assets/102772054/733c720c-8001-492a-95d2-3687344d4404)
+The Aspire Dashboard now supports keyboard navigation via keyboard shortcuts. Click <kbd>Shift</kbd>+<kbd>?</kbd> to display the list of available shortcuts:
 
-### Metrics Table View
+:::image type="content" source="media/preview-4/dashboard-shortcuts.png" lightbox="media/preview-4/dashboard-shortcuts.png" alt-text=".NET Aspire Dashboard shortcuts dialog.":::
 
-With preview 4, we have introduced a screen reader compatible table view for display of metrics data. This has similar options, as the graph, for filters and selecting the duration of time range for metrics display. The default data display is set to "Only show value updates" and can be toggled to display all data points. 
+### Metrics table view
+
+With preview 4, we have introduced a screen reader compatible table view for display of metrics data. This has similar options, as the graph, for filters and selecting the duration of time range for metrics display. The default data display is set to "Only show value updates" and can be toggled to display all data points.
 
 ![image](https://github.com/dotnet/docs-aspire/assets/102772054/4622cf3a-dcf2-4149-9636-d1bef8184c5c)
-
 
 ## Entity Framework and Aspire
 
@@ -211,7 +210,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var redis = builder.AddConnectionString("redis");
 
 builder.AddProject<Projects.WebApplication1>("api")
-    .WithReference(redis);
+       .WithReference(redis);
 
 builder.Build().Run();
 ```
