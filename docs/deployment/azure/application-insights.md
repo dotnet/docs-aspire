@@ -163,7 +163,7 @@ private static IHostApplicationBuilder AddOpenTelemetryExporters(
     // Omitted for brevity...
 
     // Uncomment the following lines to enable the Azure Monitor exporter 
-    // (requires the Azure.Monitor.OpenTelemetry.Exporter package)
+    // (requires the Azure.Monitor.OpenTelemetry.AspNetCore package)
     if (!string.IsNullOrEmpty(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]))
     {
         builder.Services.AddOpenTelemetry().UseAzureMonitor();
