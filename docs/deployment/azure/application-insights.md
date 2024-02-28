@@ -17,7 +17,7 @@ Aspire has the capability to deploy cloud resources as part of development or cl
 
 ### Automatically provisioning Application Insights during development
 
-With this option, an instance of Application Insights will be created for you the first time you debug an app with the Application Insights resource definition in the AppHost project. An instance of Application Insights will be created in a resource group based on the name of the AppHost project. Each different Aspire solution will create an independent Application Insights resource. 
+With this option, an instance of Application Insights will be created for you the first time you debug an app with the Application Insights resource definition in the AppHost project. An instance of Application Insights will be created in a resource group based on the name of the AppHost project. Each different Aspire solution will create an independent Application Insights resource.
 
 > Note: There is no automatic deletion of the Azure resources created this way, so you'll need to manually remove them when they are no longer needed.
 
@@ -65,7 +65,7 @@ The settings for the created Application Insights resource will be persisted in 
 
 ### Provisioning Application insights at deployment time
 
-Using the Application Insights resource above will cause an Application Insights resource to be provisioned when the application is deployed using the Azure Developer CLI (AZD). 
+Using the Application Insights resource above will cause an Application Insights resource to be provisioned when the application is deployed using the Azure Developer CLI (AZD).
 
 Follow the steps in [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](./aca-deployment-azd-in-depth.md) to deploy the application to Azure Container Apps. AZD will create an Application Insights resource as part of the same resource group, and configure the connection string for each container.
 
