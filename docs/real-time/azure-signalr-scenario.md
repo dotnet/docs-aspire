@@ -7,7 +7,7 @@ ms.date: 02/28/2024
 
 # .NET Aspire support for Azure SignalR Service
 
-In this article, you learn how to use .NET Aspire to model Azure SignalR Service resources.
+In this article, you learn how to use .NET Aspire to express an Azure SignalR Service resource. Like other Azure resources expressed within the .NET Aspire app model, you benefit from simple provisioning and deployment with `azd`.
 
 ## Get started
 
