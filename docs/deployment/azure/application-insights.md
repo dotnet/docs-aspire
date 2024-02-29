@@ -13,14 +13,14 @@ To use Application insights, you specify its configuration in the app host proje
 
 ## Choosing how Application Insights is provisioned
 
-.NET Aspire has the capability to provision cloud resources as part of development or cloud deployment, including Application Insights. In your .NET Aspire app, you can decide if you want .NET Aspire to provision an Application Insights resource at debug time, or when deploying to Azure. You can also select to use an existing Application Insights resource by providing its connection string. The connection information is managed by the resource configuration in the app host project.
+.NET Aspire has the capability to provision cloud resources as part of development and/or cloud deployment, including Application Insights. In your .NET Aspire app, you can decide if you want .NET Aspire to provision an Application Insights resource at debug time, or when deploying to Azure. You can also select to use an existing Application Insights resource by providing its connection string. The connection information is managed by the resource configuration in the app host project.
 
 ### Automatically provisioning Application Insights during development
 
-With this option, an instance of Application Insights will be created for you the first time you debug an app with the Application Insights resource definition in the AppHost project. An instance of Application Insights will be created in a resource group based on the name of the AppHost project. Each different Aspire solution will create an independent Application Insights resource.
+With this option, an instance of Application Insights will be created for you the first time you debug an app with the Application Insights resource definition in the AppHost project. The instance of Application Insights will be created in a resource group based on the name of the AppHost project. Each different .NET Aspire solution will create an independent Application Insights resource.
 
 > [!IMPORTANT]
-> Note: There is no automatic deletion of the Azure resources created this way, so you'll need to manually remove them when they are no longer needed.
+> There is no automatic deletion of the Azure resources created this way, so you'll need to manually remove them when they are no longer needed.
 
 To use automatic provisioning, you specify a dependency in the app host project, and reference it in each project/resource that needs to send telemetry to Application Insights. The steps include:
 
@@ -35,12 +35,11 @@ To use automatic provisioning, you specify a dependency in the app host project,
 }
 ```
 
-The possible values for the location can be found using `az account list-locations -o table`.
+The possible values for the location can be found using `az account list-locations -o table` on the command line.
 
 - Update the app host code to use the Application Insights resource, and reference it from each project:
 
 ``` csharp
-
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Required for Azure provisioning
@@ -60,13 +59,13 @@ builder.AddProject<Projects.Web>("webfrontend")
 builder.Build().Run();
 ```
 
-When you debug the application, .NET Aspire provisions the Application Insights resource the first time it sees the resource. The Application Insights resource will feed the connection information to each project that references it. This can be seen as an `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable in the details view for the resource in the .NET Aspire dashboard.
+When you debug the application, .NET Aspire provisions the Application Insights resource the first time it sees the app host resource definition. The Application Insights resource will feed the connection information to each project that references it. This can be seen as an `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable in the details view for the resource in the .NET Aspire dashboard.
 
 :::image type="content" source="../media/dashboard-with-connection-string.png" lightbox="../media/dashboard-with-connection-string.png" alt-text="Connection string environment variables in the .NET Aspire dashboard":::
 
 Settings for the provisioned Application Insights resource are persisted in the app secrets file.
 
-### Provisioning Application insights at deployment time
+### Provisioning Application insights during Azure deployment
 
 Using the Application Insights resource above will cause an Application Insights resource to be provisioned when the application is deployed using the Azure Developer CLI (AZD).
 
@@ -110,7 +109,7 @@ When running the .NET Aspire app locally, the preceding code reads the connectio
 ```
 
 > [!NOTE]
-> Note: The keyname specified in the AppHost code needs to match a key inside the `ConnectionStrings` section in the settings file.
+> The `name` specified in the app host code needs to match a key inside the `ConnectionStrings` section in the settings file.
 
 #### Resource usage during deployment
 
