@@ -11,7 +11,32 @@ In this article, you learn how to use .NET Aspire to express an Azure SignalR Se
 
 ## Hub host
 
-The hub host project is where you host your SignalR hub, the project that calls <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR> and <xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub%2A> for example. Whichever project you're using to host your <xref:Microsoft.AspNetCore.SignalR.Hub> is where you'll wire up your Azure SignalR Service resource. The following example demonstrates how to use the `AddNamedAzureSignalR` extension method which is chained on the `AddSignalR` method:
+The hub host project is where you host your SignalR hub, the project that calls <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR> and <xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub%2A> for example.
+
+### Install the NuGet package
+
+You need to install the [Microsoft.Azure.SignalR](https://www.nuget.org/packages/Microsoft.Azure.SignalR) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Microsoft.Azure.SignalR
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Microsoft.Azure.SignalR"
+                  Version="[SelectVersion]" />
+```
+
+---
+
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+
+### Express the resource
+
+Whichever project you're using to host your <xref:Microsoft.AspNetCore.SignalR.Hub> is where you'll wire up your Azure SignalR Service resource. The following example demonstrates how to use the `AddNamedAzureSignalR` extension method which is chained on the `AddSignalR` method:
 
 :::code language="csharp" source="snippets/signalr/SignalR.ApiService/Program.cs" highlight="7-8,14":::
 
@@ -28,6 +53,9 @@ In the preceding code:
 - The `AddAzureSignalR` method is called to express the `AzureSignalRResource`.
 - The `signalr` resource is referenced by the `Hub` host project, in this case known as `apiService`.
 - The `apiService` project resource is referenced by the `SignalR_Web` project.
+
+> [!TIP]
+> This example also relies on the [Aspire.Hosting.Azure.Provisioning](https://www.nuget.org/packages/Aspire.Hosting.Azure.Provisioning) NuGet package, as you may have been curious about the `AddAzureProvisioning` method. This functionality adds support for generating Azure resources dynamically during app startup.
 
 ## See also
 
