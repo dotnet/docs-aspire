@@ -1,7 +1,4 @@
-﻿using SignalR.Web;
-using SignalR.Web.Components;
-
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire components.
 builder.AddServiceDefaults();
@@ -11,6 +8,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddOutputCache();
+builder.Services.AddLocalStorageServices();
 
 var app = builder.Build();
 

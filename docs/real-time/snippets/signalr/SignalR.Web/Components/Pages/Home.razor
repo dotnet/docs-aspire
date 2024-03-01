@@ -28,7 +28,7 @@
                 <div class="d-flex">
                     <div class="input-group">
                         <span class="input-group-text">@@</span>
-                        <InputText @bind-Value="@_username" class="form-control me-2"
+                        <InputText @bind-Value="@_username" class="form-control me-2"                               
                                    placeholder="Username" aria-label="Username" />
                     </div>
                 </div>
@@ -38,27 +38,44 @@
 </header>
 
 <!-- List of message -->
-<div class="container">
-    @foreach (var message in _userMessages)
-    {
-        <span>@message.Message</span>
-    }
+<div class="container py-5">
+    <Messages UserMessages="@_userMessages" />
 </div>
 
 <!-- Send message form -->
 <footer class="footer fixed-bottom mt-auto py-3">
     <div class="container">
         <div class="row g-3 align-items-center">
-            <div class="col-10">
-                <label class="visually-hidden" for="inlineFormInputGroupUsername">Message</label>
+            <div class="col-11">
+                <label class="visually-hidden" for="msg">Message</label>
                 <div class="input-group">
-                    <InputText @bind-Value="@_message" class="form-control" placeholder="Message" />
+                    <input type="text" @bind-value="@_message" id="msg"
+                           @oninput="@InitiateDebounceUserIsTypingAsync"
+                           @onkeyup="@(args => OnKeyUpAsync(args))"
+                           class="form-control form-control-lg"
+                           autocomplete="off" placeholder="Message" />
                 </div>
             </div>
 
-            <div class="col-2">
-                <button @onclick="TryPostMessageAsync" class="btn btn-primary">Send</button>
+            <div class="col-1">
+                <button @onclick="TryPostMessageAsync" class="btn btn-lg btn-primary">Send</button>
             </div>
+        </div>
+        <div class="row">
+            @{
+                static string UsersTypingText(HashSet<string> usersTyping) => usersTyping.Count switch
+                {
+                    0 => "&nbsp;",
+                    1 => $"💬 <strong>{usersTyping.ElementAt(0)}</strong> is typing...",
+                    2 => $"💬 <strong>${usersTyping.ElementAt(0)}</strong> and <strong>${usersTyping.ElementAt(1)}</strong> are typing...",
+                    _ => "💬 Multiple people are typing..."
+                };
+
+                MarkupString isTypingMarkup = new(UsersTypingText(_usersTyping));
+                <span class="text-muted @(_usersTyping is { Count: > 0 } ? "flashing" : "")">
+                    @isTypingMarkup
+                </span>
+            }
         </div>
     </div>
 </footer>
