@@ -1,10 +1,10 @@
 ---
-title: Environments and parameters
+title: External parameters
 description: Learn how to express parameters such as secrets, connection strings, and other configuration values that might vary between environments.
 ms.date: 03/01/2024
 ---
 
-# Environments and parameters
+# External parameters
 
 Environments provide context for the application to run in. Parameters express the ability to ask for an external value when running the app. Parameters can be used to provide values to the app when running locally, or to prompt for values when deploying. They can be used to model a wide range of scenarios including secrets, connection strings, and other configuration values that might vary between environments.
 
