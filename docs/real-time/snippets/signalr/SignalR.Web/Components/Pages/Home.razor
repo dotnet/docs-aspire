@@ -2,31 +2,63 @@
 
 <PageTitle>Home</PageTitle>
 
-<div class="container">
-    <form>
-        <div class="form-group row">
-            <label for="text" class="col-2 col-form-label">Username</label>
-            <div class="col-10">
-                <div class="input-group">
-                    <input id="text" name="text" type="text" class="form-control" required="required">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <i class="fa fa-user"></i>
-                        </div>
+<!-- Connection status and username entry -->
+<header>
+    <nav class="navbar navbar-expand-md fixed-top">
+        <div class="container-fluid">
+            <span class="navbar-brand" href="#">SignalR 💜 .NET Aspire</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        @{
+                            var statusClass = _connectionStatus switch
+                            {
+                                ConnectionStatus.Connecting => "text-success-emphasis",
+                                ConnectionStatus.Connected => "text-success",
+                                ConnectionStatus.Disconnected => "text-danger-emphasis",
+                                _ => "text-warning-emphasis"
+                            };
+                        }
+                        <span class="@statusClass">@_connectionStatus.ToString()</span>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <div class="input-group">
+                        <span class="input-group-text">@@</span>
+                        <InputText @bind-Value="@_username" class="form-control me-2"
+                                   placeholder="Username" aria-label="Username" />
                     </div>
                 </div>
             </div>
         </div>
-        <div class="form-group row">
-            <label for="textarea" class="col-2 col-form-label">Message</label>
-            <div class="col-10">
-                <textarea id="textarea" name="textarea" cols="40" rows="3" class="form-control" required="required"></textarea>
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="offset-2 col-10">
-                <button name="submit" type="submit" class="btn btn-primary">Send Message</button>
-            </div>
-        </div>
-    </form>
+    </nav>
+</header>
+
+<!-- List of message -->
+<div class="container">
+    @foreach (var message in _userMessages)
+    {
+        <span>@message.Message</span>
+    }
 </div>
+
+<!-- Send message form -->
+<footer class="footer fixed-bottom mt-auto py-3">
+    <div class="container">
+        <div class="row g-3 align-items-center">
+            <div class="col-10">
+                <label class="visually-hidden" for="inlineFormInputGroupUsername">Message</label>
+                <div class="input-group">
+                    <InputText @bind-Value="@_message" class="form-control" placeholder="Message" />
+                </div>
+            </div>
+
+            <div class="col-2">
+                <button @onclick="TryPostMessageAsync" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+    </div>
+</footer>

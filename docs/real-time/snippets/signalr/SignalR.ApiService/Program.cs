@@ -13,7 +13,7 @@ var app = builder.Build();
 
 app.UseExceptionHandler();
 
-app.MapHub<ChatHub>(KnownChatHub.Endpoint);
+app.MapHub<ChatHub>(HubEndpoints.ChatHub);
 
 app.MapDefaultEndpoints();
 

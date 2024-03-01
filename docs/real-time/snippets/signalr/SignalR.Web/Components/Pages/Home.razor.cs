@@ -8,6 +8,12 @@ namespace SignalR.Web.Components.Pages;
 
 public sealed partial class Home : IAsyncDisposable
 {
+    private enum ConnectionStatus { Connecting, Connected, Disconnected, Reconnecting }
+
+    private ConnectionStatus _connectionStatus = ConnectionStatus.Connecting;
+    private string _username = Guid.NewGuid().ToString();
+    private string _message = string.Empty;
+
     private HubConnection? _hubConnection;
     private HashSet<UserMessage> _userMessages = [];
     private readonly HashSet<IDisposable> _hubRegistrations = [];
@@ -27,7 +33,7 @@ public sealed partial class Home : IAsyncDisposable
 
         var builder = new UriBuilder(api)
         {
-            Path = KnownChatHub.Endpoint
+            Path = HubEndpoints.ChatHub
         };
 
         _hubConnection = new HubConnectionBuilder()
@@ -35,12 +41,39 @@ public sealed partial class Home : IAsyncDisposable
             .WithAutomaticReconnect()
             .Build();
 
+        _hubConnection.Closed += OnHubConnectionClosedAsync;
+        _hubConnection.Reconnected += OnHubConnectionReconnectedAsync;
+        _hubConnection.Reconnecting += OnHubConnectionReconnectingAsync;
+
         _hubRegistrations.Add(
             _hubConnection.On<UserMessage>(
-                KnownChatHub.EventNames.MessageReceived, OnMessageReceivedAsync));
+                HubEventNames.MessageReceived, OnMessageReceivedAsync));
 
         await _hubConnection.StartAsync();
+
+        _connectionStatus = ConnectionStatus.Connected;
     }
+
+    private Task OnHubConnectionReconnectingAsync(Exception? arg) =>
+        InvokeAsync(() =>
+        {
+            _connectionStatus = ConnectionStatus.Reconnecting;
+            StateHasChanged();
+        });
+
+    private Task OnHubConnectionReconnectedAsync(string? arg) =>
+        InvokeAsync(() =>
+        {
+            _connectionStatus = ConnectionStatus.Connected;
+            StateHasChanged();
+        });
+
+    private Task OnHubConnectionClosedAsync(Exception? arg) =>
+        InvokeAsync(() =>
+        {
+            _connectionStatus = ConnectionStatus.Disconnected;
+            StateHasChanged();
+        });
 
     public Task OnMessageReceivedAsync(UserMessage userMessage) =>
         InvokeAsync(async () =>
@@ -51,6 +84,24 @@ public sealed partial class Home : IAsyncDisposable
 
             StateHasChanged();
         });
+
+    public async Task TryPostMessageAsync()
+    {
+        if (string.IsNullOrWhiteSpace(_username) ||
+            string.IsNullOrWhiteSpace(_message))
+        {
+            return;
+        }
+
+        if (_hubConnection is null)
+        {
+            return;
+        }
+
+        await _hubConnection.SendAsync(
+            HubClientMethodNames.PostMessage,
+            new UserMessage(_username, _message));
+    }
 
     public async ValueTask DisposeAsync()
     {
@@ -64,6 +115,10 @@ public sealed partial class Home : IAsyncDisposable
 
         if (_hubConnection is not null)
         {
+            _hubConnection.Closed -= OnHubConnectionClosedAsync;
+            _hubConnection.Reconnected -= OnHubConnectionReconnectedAsync;
+            _hubConnection.Reconnecting -= OnHubConnectionReconnectingAsync;
+
             await _hubConnection.DisposeAsync();
         }
     }
