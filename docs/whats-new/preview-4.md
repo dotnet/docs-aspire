@@ -323,6 +323,8 @@ TODO: Show sample usage of these resources.
 - [Azure AI Search](https://azure.microsoft.com/products/ai-services/ai-search)
 - [Azure Application Insights](https://azure.microsoft.com/products/monitor)
 
+TODO: Show sample usage of these resources.
+
 ### Containers with Azure Resource mappings
 
 Several services that are available as containers have fully managed Azure equivalents. We've added the ability to map a container to an Azure resource. This makes it possible to develop and test using a container and then deploy using a fully managed Azure resource that will be provisioned as part of the deployment process. These extensions are provided by the **Aspire.Hosting.Azure** package.
@@ -332,9 +334,15 @@ We've enabled this for the following services:
 - Redis - [Azure Redis](https://azure.microsoft.com/products/cache)
 - Postgres - [Azure Database for PostgreSQL](https://azure.microsoft.com/products/postgresql)
 - SQL Server - [Azure SQL Database](https://azure.microsoft.com/products/azure-sql/database)
+- Redis - [Azure Redis](https://azure.microsoft.com/products/cache)
+- Postgres - [Azure Database for PostgreSQL](https://azure.microsoft.com/products/postgresql)
+- SQL Server - [Azure SQL Database](https://azure.microsoft.com/products/azure-sql/database)
 
 We plan to add support for the following services in the future:
 
+- MySql - [Azure Database for MySQL](https://azure.microsoft.com/products/mysql)
+- MongoDb - [Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db)
+- Kafka - [Azure Event Hubs](https://azure.microsoft.com/products/event-hubs)
 - MySql - [Azure Database for MySQL](https://azure.microsoft.com/products/mysql)
 - MongoDb - [Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db)
 - Kafka - [Azure Event Hubs](https://azure.microsoft.com/products/event-hubs)
@@ -371,6 +379,7 @@ builder.Build().Run();
 
 We've introduced a new primitive to model Azure Bicep modules in the application model. This makes it easier to model any set of azure resources that can be modeled using bicep. We've rebuilt the azure resources to use the new bicep primitive. Bicep files can be expressed as literal strings, embedded resources or files on disk (relative to the app host).
 
+For more information, see [What is Bicep?](/azure/azure-resource-manager/bicep/overview?tabs=bicep)
 For more information, see [What is Bicep?](/azure/azure-resource-manager/bicep/overview?tabs=bicep)
 
 _Program.cs_
