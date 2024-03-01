@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire preview 4
 description: .NET Aspire preview 4 is now available and includes many improvements and new capabilities
-ms.date: 02/27/2024
+ms.date: 03/01/2024
 ---
 
 # .NET Aspire preview 4
@@ -16,28 +16,34 @@ Docker or Podman will be auto-detected; if both are present, Docker is preferred
 
 ## Dashboard
 
-### Dashboard face lift
+The [.NET Aspire dashboard](../fundamentals/dashboard.md) has been really well received by the developer community. With preview 4, we've made several improvements to the dashboard to make it easier to use and more accessible.
+
+### Dashboard user experience updates
 
 :::image type="content" source="media/preview-4/dashboard-face-lift.png" lightbox="media/preview-4/dashboard-face-lift.png" alt-text=".NET Aspire Dashboard: Updates showing landing page.":::
 
 The dashboard has been updated with a new look and feel. The new dashboard is designed to reduce the space used by the navigation tabs and to make it easier to navigate between logs, metrics, and traces.
 
-### Running the Aspire dashboard standalone
+### Run the .NET Aspire dashboard standalone
 
-The Aspire dashboard can now be run as a standalone container image. This makes it easier to use the dashboard to manage applications that are running on a different machine or in a different environment. The dashboard can be used as an [OTLP](https://opentelemetry.io/docs/specs/otlp/) collector and viewer for applications that want to send and visualize telemetry data.
+The .NET Aspire dashboard can now be run as a standalone container image. This makes it easier to use the dashboard to manage applications that are running on a different machine or in a different environment. The dashboard can be used as an [OTLP](https://opentelemetry.io/docs/specs/otlp/) collector and viewer for applications that want to send and visualize telemetry data.
 
 Here's the command you can run to start the dashboard:
 
-```bash
-docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.4
+```docker
+docker run --rm -it \
+  -p 18888:18888 \
+  -p 4317:18889 \
+  -d --name aspire-dashboard \
+  mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.4
 ```
 
 :::image type="content" source="media/preview-4/dashboard-as-container.png" lightbox="media/preview-4/dashboard-as-container.png" alt-text=".NET Aspire Dashboard: running in Docker Desktop.":::
 
-There are 2 ports that are exposed:
+There are two ports that are exposed:
 
-1. The port that serves the dashboard UI (18888)
-2. The port that serves the OTLP grpc endpoint (18889)
+1. 18888: The port that serves the dashboard UI.
+1. 18889: The port that serves the OTLP grpc endpoint.
 
 That will bring up a dashboard that you can use view logs, metrics, and traces from your applications. Here's a sample application that sends telemetry data to the dashboard.
 
@@ -45,7 +51,7 @@ TODO: Sample pointing to the dashboard.  (@drewnoakes @JamesNK @kvenkatrajan)
 
 ### Dashboard shortcuts
 
-The Aspire Dashboard now supports keyboard navigation via keyboard shortcuts. Click <kbd>Shift</kbd>+<kbd>?</kbd> to display the list of available shortcuts:
+The .NET Aspire dashboard now supports keyboard navigation via keyboard shortcuts. Click <kbd>Shift</kbd>+<kbd>?</kbd> to display the list of available shortcuts:
 
 :::image type="content" source="media/preview-4/dashboard-shortcuts.png" lightbox="media/preview-4/dashboard-shortcuts.png" alt-text=".NET Aspire Dashboard shortcuts dialog.":::
 
@@ -102,148 +108,11 @@ The representation in the manifest for these resources is `container.v0`.
 
 This makes it easier for deployment tools to support a wide range of scenarios without having to understand the nuances of different resource types.
 
-## Parameters
+## External parameters
 
-Parameters express the ability to ask for an external value when running the application. Parameters can be used to provide values to the application when running locally, or to prompt for values when deploying. They can be used to model a wide range of scenarios including secrets, connection strings, and other configuration values that might vary between environments.
+In .NET Aspire preview 4, we've introduced the ability to model external parameters. External parameters are used to model values that are not known at build time and can vary by environment. These values are prompted for when deploying the application.
 
-### Parameter values
-
-Parameter values are read from the "Parameters" section of the app host's configuration and can be used to provide values to the application when running locally. When deploying the application, the value will be asked for the parameter value.
-
-_Program.cs_
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var value = builder.AddParameter("value");
-
-builder.AddProject<Projects.WebApplication1>("api")
-       .WithEnvironment("SOME_VALUE", value);
-```
-
-_appsettings.json_
-
-```json
-{
-    "Parameters": {
-        "value": "local-value"
-    }
-}
-```
-
-Parameters are represented in the manifest as a new primitive called `parameter.v0`.
-
-```json
-{
-  "resources": {
-    "value": {
-      "type": "parameter.v0",
-      "value": "{value.inputs.value}",
-      "inputs": {
-        "value": {
-          "type": "string"
-        }
-      }
-    }
-  }
-}
-```
-
-### Secrets
-
-Parameters can be used to model secrets. When a parameter is marked as a secret, this is a hint to the manifest that the value should be treated as a secret. When deploying, the value will be prompted for and stored in a secure location. When running locally, the value will be read from the "Parameters" section of the app host configuration.
-
-_Program.cs_
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var secret = builder.AddParameter("secret", secret: true);
-
-builder.AddProject<Projects.WebApplication1>("api")
-       .WithEnvironment("SECRET", secret);
-
-builder.Build().Run();
-```
-
-_appsettings.json_
-
-```json
-{
-    "Parameters": {
-        "secret": "local-secret"
-    }
-}
-```
-
-Manifest representation:
-
-```json
-{
-  "resources": {
-    "value": {
-      "type": "parameter.v0",
-      "value": "{value.inputs.value}",
-      "inputs": {
-        "value": {
-          "type": "string",
-          "secret": true
-        }
-      }
-    }
-  }
-}
-```
-
-### Connection strings
-
-Parameters can be used to model connection strings. When deploying, the value will be prompted for and stored in a secure location. When running locally, the value will be read from the "ConnectionStrings" section of the app host configuration.
-
-> [!NOTE]
-> Connection strings are used to represent a wide range of connection information including database connections, message brokers, and other services. In Aspire nomenclature, we use the term "connection string" to represent any kind of connection information.*
-
-_Program.cs_
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var redis = builder.AddConnectionString("redis");
-
-builder.AddProject<Projects.WebApplication1>("api")
-       .WithReference(redis);
-
-builder.Build().Run();
-```
-
-**appsettings.json**
-
-```json
-{
-    "ConnectionStrings": {
-        "redis": "local-connection-string"
-    }
-}
-```
-
-Manifest representation:
-
-```json
-{
-  "resources": {
-    "redis": {
-      "type": "parameter.v0",
-      "connectionString": "{redis.value}",
-      "value": "{redis.inputs.value}",
-      "inputs": {
-        "value": {
-          "type": "string",
-          "secret": true
-        }
-      }
-    }
-  }
-}
-```
+For more information, see [External parameters](../fundamentals/external-parameters.md).
 
 ## New idioms
 
