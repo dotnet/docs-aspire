@@ -157,7 +157,7 @@ To express a parameter, consider the following example code:
 
 The following steps are performed:
 
-- Adds a SQL Server named `sql` and publishes it as a connection string.
+- Adds a SQL Server resource named `sql` and publishes it as a connection string.
 - Adds a database named `db`.
 - Adds a parameter named `insertionRows`.
 - Adds a project named `api` and associates it with the `Projects.Parameters_ApiService` project resource type-parameter.
@@ -175,3 +175,4 @@ The `Parameters_ApiService` project consumes the `insertionRows` parameter, cons
 ## See also
 
 - [.NET Aspire manifest format for deployment tool builders](../deployment/manifest-format.md)
+- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](../database/sql-server-components.md)
