@@ -98,6 +98,11 @@ items:
       - name: Seed data in a database
         href: database/seed-database-data.md
 
+  - name: Real-time communication
+    items:
+      - name: Azure SignalR Service scenario
+        href: real-time/azure-signalr-scenario.md
+
   - name: Messaging
     items:
       - name: Tutorial - Messaging using .NET Aspire components
