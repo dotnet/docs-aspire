@@ -274,9 +274,9 @@ This release saw an overhaul of the Azure resources shipped in .NET Aspire. We'v
 
 We've added a few new Azure based resources:
 
-- [Azure SignalR](/services/signalr-service/)
-- [Azure AI Search](/services/search/)
-- [Azure Application Insights](/products/monitor/) (@samsp-msft)
+- [Azure SignalR](https://azure.microsoft.com/products/signalr-service)
+- [Azure AI Search](https://azure.microsoft.com/products/ai-services/ai-search)
+- [Azure Application Insights](https://azure.microsoft.com/products/monitor)
 
 TODO: Show sample usage of these resources.
 
@@ -286,15 +286,15 @@ Several services that are available as containers have fully managed Azure equiv
 
 We've enabled this for the following services:
 
-- Redis - [Azure Redis](/products/cache/)
-- Postgres - [Azure Database for PostgreSQL](/services/postgresql/)
-- SQL Server - [Azure SQL Database](/services/sql-database/)
+- Redis - [Azure Redis](https://azure.microsoft.com/products/cache)
+- Postgres - [Azure Database for PostgreSQL](https://azure.microsoft.com/products/postgresql)
+- SQL Server - [Azure SQL Database](https://azure.microsoft.com/products/azure-sql/database)
 
 We plan to add support for the following services in the future:
 
-- MySql - [Azure Database for MySQL](/services/mysql/)
-- MongoDb - [Azure Cosmos DB](/services/cosmos-db/)
-- Kafka - [Azure Event Hubs](/services/event-hubs/)
+- MySql - [Azure Database for MySQL](https://azure.microsoft.com/products/mysql)
+- MongoDb - [Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db)
+- Kafka - [Azure Event Hubs](https://azure.microsoft.com/products/event-hubs)
 
 ***Example: Redis***
 
@@ -328,7 +328,7 @@ builder.Build().Run();
 
 We've introduced a new primitive to model Azure Bicep modules in the application model. This makes it easier to model any set of azure resources that can be modeled using bicep. We've rebuilt the azure resources to use the new bicep primitive. Bicep files can be expressed as literal strings, embedded resources or files on disk (relative to the app host).
 
-You can learn more about bicep [here](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview?tabs=bicep).
+For more information, see [What is Bicep?](/azure/azure-resource-manager/bicep/overview?tabs=bicep)
 
 _Program.cs_
 
