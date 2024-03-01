@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.SignalR;
-using SignalR.Shared;
-
-public sealed class ChatHub: Hub
+﻿public sealed class ChatHub: Hub
 {
     public Task PostMessage(UserMessage userMessage) =>
         Clients.All.SendAsync(

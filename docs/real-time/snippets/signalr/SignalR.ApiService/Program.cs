@@ -1,12 +1,10 @@
-﻿using SignalR.Shared;
-
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
 builder.Services.AddProblemDetails();
 
-builder.Services.AddSignalR(static o => o.EnableDetailedErrors = true)
+builder.Services.AddSignalR()
                 .AddNamedAzureSignalR("signalr");
 
 var app = builder.Build();
