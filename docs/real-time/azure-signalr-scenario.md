@@ -11,15 +11,15 @@ In this article, you learn how to use .NET Aspire to express an Azure SignalR Se
 
 ## Hub host
 
-Whichever project you're using to host your <xref:Microsoft.AspNetCore.SignalR.Hub> is where you'll wire up your Azure SignalR Service resource. The following example demonstrates how to use the `AddNamedAzureSignalR` extension method is chained on the <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR> method:
+The hub host project is where you host your SignalR hub, the project that calls <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR> and <xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub%2A> for example. Whichever project you're using to host your <xref:Microsoft.AspNetCore.SignalR.Hub> is where you'll wire up your Azure SignalR Service resource. The following example demonstrates how to use the `AddNamedAzureSignalR` extension method which is chained on the `AddSignalR` method:
 
-:::code language="csharp" source="snippets/signalr/SignalR.ApiService/Program.cs":::
+:::code language="csharp" source="snippets/signalr/SignalR.ApiService/Program.cs" highlight="7-8,14":::
 
 Calling `AddNamedAzureSignalR` adds Azure SignalR with the specified name, the connection string will be read from `ConnectionStrings_{name}`, the settings are loaded from `Azure:SignalR:{name}` section.
 
 ## App host
 
-In the app host project, you express an `AzureSignalRResource` with the `AddAzureSignalR` method. The following example demonstrates how the resource is referenced by the consuming project, in this case the `Hub` host project:
+In the [app host project](../fundamentals/app-host-overview.md#app-host-project), you express an `AzureSignalRResource` with the `AddAzureSignalR` method. The following example demonstrates how the resource is referenced by the consuming project, in this case the `Hub` host project:
 
 :::code language="csharp" source="snippets/signalr/SignalR.AppHost/Program.cs":::
 
