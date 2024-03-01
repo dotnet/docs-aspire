@@ -34,20 +34,3 @@ app.MapGet("/", async (MyDbContext context) =>
 });
 
 app.Run();
-
-public class MyDbContext(DbContextOptions<MyDbContext> options) : DbContext(options)
-{
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
-
-        modelBuilder.Entity<Entry>().HasKey(e => e.Id);
-    }
-
-    public DbSet<Entry> Entries { get; set; }
-}
-
-public class Entry
-{
-    public Guid Id { get; set; } = Guid.NewGuid();
-}
