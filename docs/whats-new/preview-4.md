@@ -39,9 +39,7 @@ There are 2 ports that are exposed:
 1. The port that serves the dashboard UI (18888)
 2. The port that serves the OTLP grpc endpoint (18889)
 
-That will bring up a dashboard that you can use view logs, metrics, and traces from your applications. Here's a sample application that sends telemetry data to the dashboard.
-
-TODO: Sample pointing to the dashboard.  (@drewnoakes @JamesNK @kvenkatrajan)
+That will bring up a dashboard that you can use view logs, metrics, and traces from your applications. Here's a [sample application](https://learn.microsoft.com/en-us/samples/dotnet/aspire-samples/aspire-standalone-dashboard/) that sends telemetry data to the dashboard.
 
 ### Dashboard shortcuts
 
@@ -55,11 +53,52 @@ With preview 4, we have introduced a screen reader compatible table view for dis
 
 ![image](https://github.com/dotnet/docs-aspire/assets/102772054/4622cf3a-dcf2-4149-9636-d1bef8184c5c)
 
-## Entity Framework and Aspire
+## Databases, EntityFramework and Aspire
 
-TODO: Changes to EF based components (@sebastienros @eerhardt)
+### New Enrich methods
+
+Preview 4 introduces new methods for configuring Entity Framework. The existing `Add[Provider]DbContext()` methods used to register and configure `DbContext` classes are not sufficient for advanced cases like using a different lifetime scope, using custom service types, or configuring the underlying data sources.
+
+To solve these advanced scenarios, new methods named `Enrich[Provider]DbContext()` have been added. These methods do not register the `DbContext` and expect you to do so before invoking them.
+
+Usage example:
+
+```csharp
+var connectionString = builder.Configuration.GetConnectionString("catalogdb");
+builder.Services.AddDbContextPool<CatalogDbContext>(dbContextOptionsBuilder => dbContextOptionsBuilder.UseSqlServer(connectionString));
+builder.EnrichSqlServerDbContext<CatalogDbContext>();
+```
+
+These methods will still configure command retries, health checks, logging and telemetry.
+
+### Changes to previously existing methods
+
+Since these new methods provide a simpler way to configure the `DbContext`, the already existing ones (`Add[Provider]DbContext()`) have been simplified.
+
+1- They don't provide a way to disable connection pooling through settings anymore. Instead register the `DbContext` with connection pooling disabled and call the corresponding `Enrich` method.
+2- The `int MaxRetryCount` settings were removed and replaced by a `bool Retry` flag that and uses the default settings. It is enabled by default. To change the command retries count to a custom value please configure the `DbContext` registration using the specific provider options and invoke the corresponding `Enrich` method.  
+
+### Entity Framework Migrations
 
 TODO: Migration tooling guidance (@JamesNK)
+
+### Changes to database servers resources
+
+With Preview 4 the `AddDatabase(string name)` method available on Database Servers resources has been improved such that the name of the resource (and as a consequence the connection name) that was registered can be different than the database name: `AddDatabase(string name, string databaseName = null)`
+
+Here is an example that defines a database named `customers` and registers it as `crm`:
+
+In your app host:
+
+```csharp
+builder.AddPostgres("postgres").AddDatabase("crm", "customers");
+```
+
+And in your application, resolve the component using the `crm` connection name:
+
+```csharp
+builder.AddNpgsqlDbContext<CustomerDbContext>("crm");
+```
 
 ## Changes to container resources
 
