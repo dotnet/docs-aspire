@@ -80,7 +80,7 @@ Since these new methods provide a simpler way to configure the `DbContext`, the 
 
 ### Entity Framework Migrations
 
-TODO: Migration tooling guidance (@JamesNK)
+TODO: Migration tooling guidance
 
 ### Changes to database servers resources
 
@@ -429,12 +429,13 @@ Proxies may not always be desirable. If the application already has a port alloc
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddProject<Projects.WebApplication1>("api")
-       .WithEndpoint("http", e => e.IsProxied = false);
+       .ExcludeLaunchProfile()
+       .WithEndpoint(scheme: "http", hostPort: 5000, isProxied: false);
 
 builder.Build().Run();
 ```
 
-The above example will disable the proxy for the http endpoint defined in the launch profile. This means that the application will be responsible for managing the port and ensuring that it is available when the application starts.
+The above example will disable the launch profile and add a proxy-less endpoint. The orchestrator will not create a proxy and the application's port will be the only port in use. In this mode, replicas are not supported.
 
 ## Azure
 
@@ -446,13 +447,11 @@ We've added a few new Azure based resources:
 
 - [Azure SignalR](/services/signalr-service/)
 - [Azure AI Search](/services/search/)
-- [Azure Application Insights](/products/monitor/) (@samsp-msft)
-
-TODO: Show sample usage of these resources.
+- [Azure Application Insights](/products/monitor/)
 
 ### Containers with Azure Resource mappings
 
-Several services that are available as containers have fully managed Azure equivalents. We've added the ability to map a container to an Azure resource. This makes it possible to develop and test using a container and then deploy using a fully managed Azure resource that will be provisioned as part of the deployment process.
+Several services that are available as containers have fully managed Azure equivalents. We've added the ability to map a container to an Azure resource. This makes it possible to develop and test using a container and then deploy using a fully managed Azure resource that will be provisioned as part of the deployment process. These extensions are provided by the **Aspire.Hosting.Azure** package.
 
 We've enabled this for the following services:
 
@@ -635,8 +634,6 @@ We've deprecated the abstract resource types that were supported in previous ver
 ### Visual Studio Publish to Azure
 
 This release we've enabled a Visual Studio publish experience for Aspire applications.
-
-TODO: Deployment to Azure via Visual Studio support (@bradygaster @timheuer)
 
 ## Azure Developer CLI
 
