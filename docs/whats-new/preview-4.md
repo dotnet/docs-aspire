@@ -403,7 +403,7 @@ builder.Build().Run();
 Sometimes you might want to ignore launch profiles when running the application. This can be useful when you want to define your own environment or endpoints when running the application.
 
 > [!NOTE]
-> This will ignore the entire launch profile, including environment variables and other defaults.**
+> This will ignore the entire launch profile, including environment variables and other defaults.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
