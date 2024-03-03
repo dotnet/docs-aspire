@@ -504,24 +504,78 @@ _Program.cs_
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var bicep = builder.AddBicepTemplateString("bicep", "test.bicep")
-    .WithParameter("param1", "value1")
-    .WithParameter("param2", "value2");
+var eventhub = builder.AddBicepTemplate("eventhubs", "eventhub.bicep")
+    .WithParameter("eventHubNamespaceName", "mynamespace")
+    .WithParameter("principalId")
+    .WithParameter("principalType")
+    .WithParameter("eventHubs", ["hub1"]);
 
 builder.AddProject<Projects.WebApplication1>("api")
-    .WithEnvironment("BICEP_OUTPUT", bicep.GetOutput("both"));
+    .WithEnvironment("EventHubsEndpoint", eventhub.GetOutput("eventHubsEndpoint"));
 
 builder.Build().Run();
 ```
 
-_test.bicep_
+_eventhub.bicep_
 
 ```bicep
-param param1 string
-param param2 string
-param location string
+@description('Specifies a project name that is used to generate the Event Hub name and the Namespace name.')
+@minLength(6)
+param eventHubNamespaceName string
 
-output both string = '${param1} ${param2}'
+param principalId string
+param principalType string
+
+param eventHubs array = []
+
+@description('Specifies the Azure location for all resources.')
+param location string = resourceGroup().location
+
+@description('Specifies the messaging tier for Event Hub Namespace.')
+@allowed([
+    'Basic'
+    'Standard'
+])
+param eventHubSku string = 'Basic'
+
+var resourceToken = uniqueString(resourceGroup().id)
+
+resource eventHubNamespace 'Microsoft.EventHub/namespaces@2023-01-01-preview' = {
+    name: '${eventHubNamespaceName}${resourceToken}'
+    location: location
+    sku: {
+        name: eventHubSku
+        tier: eventHubSku
+        capacity: 1
+    }
+    properties: {
+        isAutoInflateEnabled: false
+        maximumThroughputUnits: 0
+    }
+
+    resource hub 'eventhubs' = [for name in eventHubs: {
+        name: name
+        properties: {
+            messageRetentionInDays: 1
+            partitionCount: 1
+        }
+    }
+    ]
+}
+
+// https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#azure-event-hubs-data-owner
+
+resource eventHubRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+    name: guid(eventHubNamespace.id, principalId, subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'f526a384-b230-433a-b45c-95f59c4a2dec'))
+    scope: eventHubNamespace
+    properties: {
+        principalId: principalId
+        principalType: principalType
+        roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'f526a384-b230-433a-b45c-95f59c4a2dec')
+    }
+}
+
+output eventHubsEndpoint string = eventHubNamespace.properties.serviceBusEndpoint
 ```
 
 Manifest representation:
@@ -529,21 +583,23 @@ Manifest representation:
 ```json
 {
   "resources": {
-    "bicep": {
+    "eventhubs": {
       "type": "azure.bicep.v0",
-      "path": "test.bicep",
+      "path": "eventhub.bicep",
       "parameters": {
-        "param1": "value1",
-        "param2": "value2"
+        "eventHubNamespaceName": "mynamespace",
+        "principalId": "",
+        "principalType": "",
+        "eventHubs": ["hub1"]
       }
     },
     "api": {
       "type": "project.v0",
       "path": "../WebApplication1/WebApplication1.csproj",
       "env": {
-          "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES":   "true",
-          "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES":   "true",
-          "BICEP_OUTPUT": "{bicep.outputs.both}"
+          "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
+          "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
+          "EventHubsEndpoint": "{eventhubs.outputs.eventHubsEndpoint}"
       },
       "bindings": {
           "http": {
@@ -562,7 +618,7 @@ Manifest representation:
 }
 ```
 
-As you can see, the manifest captures both the parameters and the usage of the bicep output in the environment variables of the project.
+The manifest captures both the parameters and the usage of the bicep output in the environment variables of the project. The [Azure Developer CLI](#azure-developer-cli) has been updated to understand this new resource type (you can learn more below) and can be used to deploy this application to **Azure Container Apps**.
 
 ## Emulators
 
