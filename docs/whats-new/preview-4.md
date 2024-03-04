@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire preview 4
 description: .NET Aspire preview 4 is now available and includes many improvements and new capabilities
-ms.date: 03/01/2024
+ms.date: 03/04/2024
 ---
 
 # .NET Aspire preview 4
@@ -86,7 +86,7 @@ Since these new methods provide a simpler way to configure the `DbContext`, the 
 
 ### Entity Framework Migrations
 
-We've improved the process of using [EF Core tooling to create migrations](https://learn.microsoft.com/ef/core/managing-schemas/migrations/) within Aspire apps. Previously, EF Core tooling would fail, displaying an error that the database connection string is missing. This error occurred because EF Core tooling initiated the app, not Aspire hosting, resulting in a failure to inject a connection string into the app. In preview 4, Aspire detects whether a project is launched with EF Core tooling and disables connection string validation, allowing migrations to be successfully created.
+We've improved the process of using [EF Core tooling to create migrations](/ef/core/managing-schemas/migrations/) within Aspire apps. Previously, EF Core tooling would fail, displaying an error that the database connection string is missing. This error occurred because EF Core tooling initiated the app, not Aspire hosting, resulting in a failure to inject a connection string into the app. In preview 4, Aspire detects whether a project is launched with EF Core tooling and disables connection string validation, allowing migrations to be successfully created.
 
 Another challenge with EF Core migrations is applying them to a transient database that starts up with the app. An approach we've been exploring involves adding a .NET background worker resource to the Aspire solution. This worker executes migrations when the app host starts.
 
