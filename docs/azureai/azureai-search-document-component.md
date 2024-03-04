@@ -2,7 +2,7 @@
 title: NET Aspire Azure AI Search Documents component
 description: Learn how to use the NET Aspire Azure AI Search Documents component.
 ms.topic: how-to
-ms.date: 02/28/2024
+ms.date: 03/04/2024
 ---
 
 # NET Aspire Azure AI Search Documents component
@@ -71,7 +71,7 @@ public class ExampleService(SearchIndexClient indexClient)
 }
 ```
 
-For more information, see the [Azure AI Search client library for .NET](/api/overview/azure/search.documents-readme?view=azure-dotnet) for examples on using the `SearchIndexClient`.
+For more information, see the [Azure AI Search client library for .NET](dotnet/api/overview/azure/search.documents-readme?view=azure-dotnet) for examples on using the `SearchIndexClient`.
 
 ## App host usage
 
@@ -108,7 +108,7 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 
 #### Account endpoint
 
-The recommended approach is to use an `Endpoint`, which works with the `AzureSearchSettings.Credential` property to establish a connection. If no credential is configured, the [DefaultAzureCredential](https://learn.microsoft.com/dotnet/api/azure.identity.defaultazurecredential) is used.
+The recommended approach is to use an `Endpoint`, which works with the `AzureSearchSettings.Credential` property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used.
 
 ```json
 {
@@ -132,7 +132,7 @@ Alternatively, a custom connection string can be used.
 
 ### Use configuration providers
 
-The .NET Aspire Azure AI Search library supports [Microsoft.Extensions.Configuration](/api/microsoft.extensions.configuration). It loads the `AzureSearchSettings` and `SearchClientOptions` from configuration by using the `Aspire:Azure:Search:Documents` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire Azure AI Search library supports [Microsoft.Extensions.Configuration](xref:Microsoft.Extensions.Configuration). It loads the `AzureSearchSettings` and `SearchClientOptions` from configuration by using the `Aspire:Azure:Search:Documents` key. Example `appsettings.json` that configures some of the options:
 
 ```json
 {
