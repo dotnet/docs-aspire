@@ -80,7 +80,11 @@ Since these new methods provide a simpler way to configure the `DbContext`, the 
 
 ### Entity Framework Migrations
 
-TODO: Migration tooling guidance
+We've improved using [EF Core tooling to create migrations](https://learn.microsoft.com/ef/core/managing-schemas/migrations/) with Aspire apps. Before, EF Core tooling would fail with an error that the database connection string is missing. Aspire validates that a connection string is provided by the host when an app starts up. However, EF Core tooling launches the app directly so the connection string is missing.
+
+In preview 4, Aspire now detects whether a project is launched with EF Core tooling and disables connection string validation.
+
+Here's a [sample application](https://learn.microsoft.com/en-us/samples/dotnet/aspire-samples/aspire-efcore-migrations/) that shows to create and apply migrations in an Aspire solution.
 
 ### Changes to database servers resources
 
