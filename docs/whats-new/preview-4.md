@@ -327,22 +327,16 @@ TODO: Show sample usage of these resources.
 
 ### Containers with Azure Resource mappings
 
-Several services that are available as containers have fully managed Azure equivalents. We've added the ability to map a container to an Azure resource. This makes it possible to develop and test using a container and then deploy using a fully managed Azure resource that will be provisioned as part of the deployment process. These extensions are provided by the **Aspire.Hosting.Azure** package.
+Several services that are available as containers have fully managed Azure equivalents. We've added the ability to map a container to an Azure resource. This makes it possible to develop and test using a container and then deploy using a fully managed Azure resource that will be provisioned as part of the deployment process. These extensions are provided by the [Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure) NuGet package.
 
 We've enabled this for the following services:
 
 - Redis - [Azure Redis](https://azure.microsoft.com/products/cache)
 - Postgres - [Azure Database for PostgreSQL](https://azure.microsoft.com/products/postgresql)
 - SQL Server - [Azure SQL Database](https://azure.microsoft.com/products/azure-sql/database)
-- Redis - [Azure Redis](https://azure.microsoft.com/products/cache)
-- Postgres - [Azure Database for PostgreSQL](https://azure.microsoft.com/products/postgresql)
-- SQL Server - [Azure SQL Database](https://azure.microsoft.com/products/azure-sql/database)
 
 We plan to add support for the following services in the future:
 
-- MySql - [Azure Database for MySQL](https://azure.microsoft.com/products/mysql)
-- MongoDb - [Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db)
-- Kafka - [Azure Event Hubs](https://azure.microsoft.com/products/event-hubs)
 - MySql - [Azure Database for MySQL](https://azure.microsoft.com/products/mysql)
 - MongoDb - [Azure Cosmos DB](https://azure.microsoft.com/products/cosmos-db)
 - Kafka - [Azure Event Hubs](https://azure.microsoft.com/products/event-hubs)
