@@ -42,10 +42,10 @@ docker run --rm -it \
 
 There are two ports that are exposed:
 
-1. 18888: The port that serves the dashboard UI.
-1. 18889: The port that serves the OTLP grpc endpoint.
+1. `18888`: The port that serves the dashboard UI.
+1. `18889`: The port that serves the OTLP grpc endpoint.
 
-That will bring up a dashboard that you can use view logs, metrics, and traces from your applications. Here's a [sample application](https://learn.microsoft.com/en-us/samples/dotnet/aspire-samples/aspire-standalone-dashboard/) that sends telemetry data to the dashboard.
+That command brings up a dashboard that you can use view logs, metrics, and traces from your apps. For more information, see the [sample application](/samples/dotnet/aspire-samples/aspire-standalone-dashboard/) that sends telemetry data to the dashboard.
 
 ### Dashboard shortcuts
 
@@ -90,7 +90,7 @@ We've improved the process of using [EF Core tooling to create migrations](https
 
 Another challenge with EF Core migrations is applying them to a transient database that starts up with the app. An approach we've been exploring involves adding a .NET background worker resource to the Aspire solution. This worker executes migrations when the app host starts.
 
-Here's a [sample application](https://learn.microsoft.com/en-us/samples/dotnet/aspire-samples/aspire-efcore-migrations/) that shows to create and apply migrations in an Aspire solution.
+Here's a [sample application](/samples/dotnet/aspire-samples/aspire-efcore-migrations/) that shows to create and apply migrations in an Aspire solution.
 
 We're still exploring best practices for using Aspire with EF Core. We plan to publish guidance for using EF Core migrations and Aspire: [Write guidance for using Entity Framework migrations with Aspire solutions (#64)](https://github.com/dotnet/docs-aspire/issues/64).
 
@@ -379,7 +379,6 @@ builder.Build().Run();
 
 We've introduced a new primitive to model Azure Bicep modules in the application model. This makes it easier to model any set of azure resources that can be modeled using bicep. We've rebuilt the azure resources to use the new bicep primitive. Bicep files can be expressed as literal strings, embedded resources or files on disk (relative to the app host).
 
-For more information, see [What is Bicep?](/azure/azure-resource-manager/bicep/overview?tabs=bicep)
 For more information, see [What is Bicep?](/azure/azure-resource-manager/bicep/overview?tabs=bicep)
 
 _Program.cs_
