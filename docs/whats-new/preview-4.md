@@ -6,7 +6,9 @@ ms.date: 03/04/2024
 
 # .NET Aspire preview 4
 
-.NET Aspire Preview 4 introduces significant enhancements across various parts of the stack, including addressing highly requested features from the community. Notable focus areas include improvements EntityFramework components, Podman support, and changes to the application model to easily choose between using existing resources or provisioning new ones.
+.NET Aspire preview 4 introduces significant enhancements across various parts of the stack, including addressing highly requested features from the community. Notable focus areas include improvements Entity Framework components, Podman support, and changes to the application model to easily choose between using existing resources or provisioning new ones.
+
+The .NET Aspire preview 4 version is `8.0.0 preview.4.24129.7`.
 
 ## Podman support
 
@@ -57,11 +59,13 @@ The .NET Aspire dashboard now supports keyboard navigation via keyboard shortcut
 
 With preview 4, we have introduced a screen reader compatible table view for display of metrics data. This has similar options, as the graph, for filters and selecting the duration of time range for metrics display. The default data display is set to "Only show value updates" and can be toggled to display all data points.
 
-![image](https://github.com/dotnet/docs-aspire/assets/102772054/4622cf3a-dcf2-4149-9636-d1bef8184c5c)
+:::image type="content" source="media/preview-4/metrics-table.png" lightbox="media/preview-4/metrics-table.png" alt-text=".NET Aspire Dashboard metrics table.":::
 
-## Databases, EntityFramework and Aspire
+## Databases and Entity Framework improvements
 
-### New Enrich methods
+In addition to new APIs, the .NET Aspire preview 4 release includes several improvements to the Entity Framework components. These improvements are designed to make it easier to configure and use Entity Framework in .NET Aspire applications.
+
+### New `Enrich` methods
 
 Preview 4 introduces new methods for configuring Entity Framework. The existing `Add[Provider]DbContext()` methods used to register and configure `DbContext` classes are not sufficient for advanced cases like using a different lifetime scope, using custom service types, or configuring the underlying data sources.
 
@@ -70,8 +74,13 @@ To solve these advanced scenarios, new methods named `Enrich[Provider]DbContext(
 Usage example:
 
 ```csharp
-var connectionString = builder.Configuration.GetConnectionString("catalogdb");
-builder.Services.AddDbContextPool<CatalogDbContext>(dbContextOptionsBuilder => dbContextOptionsBuilder.UseSqlServer(connectionString));
+var connectionString = builder.Configuration
+                              .GetConnectionString("catalogdb");
+
+builder.Services.AddDbContextPool<CatalogDbContext>(
+    dbContextOptionsBuilder => 
+        dbContextOptionsBuilder.UseSqlServer(connectionString));
+
 builder.EnrichSqlServerDbContext<CatalogDbContext>();
 ```
 
@@ -81,18 +90,18 @@ These methods will still configure command retries, health checks, logging and t
 
 Since these new methods provide a simpler way to configure the `DbContext`, the already existing ones (`Add[Provider]DbContext()`) have been simplified.
 
-1- They don't provide a way to disable connection pooling through settings anymore. Instead register the `DbContext` with connection pooling disabled and call the corresponding `Enrich` method.
-2- The `int MaxRetryCount` settings were removed and replaced by a `bool Retry` flag that and uses the default settings. It is enabled by default. To change the command retries count to a custom value please configure the `DbContext` registration using the specific provider options and invoke the corresponding `Enrich` method.  
+1. They don't provide a way to disable connection pooling through settings anymore. Instead register the `DbContext` with connection pooling disabled and call the corresponding `Enrich` method.
+1. The `int MaxRetryCount` settings were removed and replaced by a `bool Retry` flag that and uses the default settings. It is enabled by default. To change the command retries count to a custom value please configure the `DbContext` registration using the specific provider options and invoke the corresponding `Enrich` method.
 
-### Entity Framework Migrations
+### Entity Framework migrations
 
-We've improved the process of using [EF Core tooling to create migrations](/ef/core/managing-schemas/migrations/) within Aspire apps. Previously, EF Core tooling would fail, displaying an error that the database connection string is missing. This error occurred because EF Core tooling initiated the app, not Aspire hosting, resulting in a failure to inject a connection string into the app. In preview 4, Aspire detects whether a project is launched with EF Core tooling and disables connection string validation, allowing migrations to be successfully created.
+We've improved the process of using [EF Core tooling to create migrations](/ef/core/managing-schemas/migrations/) within .NET Aspire apps. Previously, EF Core tooling would fail, displaying an error that the database connection string is missing. This error occurred because EF Core tooling initiated the app, not .NET Aspire hosting, resulting in a failure to inject a connection string into the app. In preview 4, .NET Aspire detects whether a project is launched with EF Core tooling and disables connection string validation, allowing migrations to be successfully created.
 
-Another challenge with EF Core migrations is applying them to a transient database that starts up with the app. An approach we've been exploring involves adding a .NET background worker resource to the Aspire solution. This worker executes migrations when the app host starts.
+Another challenge with EF Core migrations is applying them to a transient database that starts up with the app. An approach we've been exploring involves adding a .NET background worker resource to the .NET Aspire solution. This worker executes migrations when the app host starts.
 
-Here's a [sample application](/samples/dotnet/aspire-samples/aspire-efcore-migrations/) that shows to create and apply migrations in an Aspire solution.
+Here's a [sample application](/samples/dotnet/aspire-samples/aspire-efcore-migrations/) that shows to create and apply migrations in an .NET Aspire solution.
 
-We're still exploring best practices for using Aspire with EF Core. We plan to publish guidance for using EF Core migrations and Aspire: [Write guidance for using Entity Framework migrations with Aspire solutions (#64)](https://github.com/dotnet/docs-aspire/issues/64).
+We're still exploring best practices for using .NET Aspire with EF Core. We plan to publish guidance for using EF Core migrations and Aspire: [Write guidance for using Entity Framework migrations with .NET Aspire solutions (#64)](https://github.com/dotnet/docs-aspire/issues/64).
 
 ### Changes to database servers resources
 
@@ -157,7 +166,7 @@ This makes it easier for deployment tools to support a wide range of scenarios w
 
 In .NET Aspire preview 4, we've introduced the ability to model external parameters. External parameters are used to model values that are not known at build time and can vary by environment. These values are prompted for when deploying the application.
 
-For more information, see [External parameters](../fundamentals/external-parameters.md).
+For more information, see [.NET Aspire fundamentals: External parameters](../fundamentals/external-parameters.md).
 
 ## New idioms
 
@@ -211,6 +220,8 @@ builder.Build().Run();
 
 ## General application model improvements
 
+There are several general improvements to the application model that make it easier to model common scenarios.
+
 ### Changing container properties
 
 We added some new methods to tweak container images, tags and volumes.
@@ -229,7 +240,7 @@ builder.AddProject<Projects.WebApplication1>("api")
 builder.Build().Run();
 ```
 
-### Splitting bind mounts and volumes into separate methods
+### Split bind mounts and volumes into separate methods
 
 Splitting bind mounts and volumes into separate methods. Bind mounts are used to mount a file or directory from the host into the container. Volumes are used to mount a volume from the host into the container. Splitting these into separate methods makes it easier to understand how the container is being used.
 
@@ -313,19 +324,17 @@ The above example will disable the launch profile and add a proxy-less endpoint.
 
 ## Azure
 
-This release saw an overhaul of the Azure resources shipped in .NET Aspire. We've introduced a new bicep resource that makes it easier to model a wide range of Azure services. These changes are encapsulated in the **Aspire.Hosting.Azure** package.
+This release saw an overhaul of the Azure resources shipped in .NET Aspire. We've introduced a new bicep resource that makes it easier to model a wide range of Azure services. These changes are encapsulated in the [Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure) NuGet package.
 
 ### New resources and components
 
-TODO: Show sample usage of these resources.
+The following list outlines new components and their corresponding component articles:
 
-- [Azure SignalR](https://azure.microsoft.com/products/signalr-service)
-- [Azure AI Search](https://azure.microsoft.com/products/ai-services/ai-search)
-- [Azure Application Insights](https://azure.microsoft.com/products/monitor)
+- [Azure SignalR](https://azure.microsoft.com/products/signalr-service): [.NET Aspire support for Azure SignalR Service](../real-time/azure-signalr-scenario.md).
+- [Azure AI Search](https://azure.microsoft.com/products/ai-services/ai-search): [NET Aspire Azure AI Search Documents component](../azureai/azureai-search-document-component.md).
+- [Azure Application Insights](https://azure.microsoft.com/products/monitor): [Use Application Insights for .NET Aspire telemetry](../deployment/azure/application-insights.md).
 
-TODO: Show sample usage of these resources.
-
-### Containers with Azure Resource mappings
+### Containers with Azure resource mappings
 
 Several services that are available as containers have fully managed Azure equivalents. We've added the ability to map a container to an Azure resource. This makes it possible to develop and test using a container and then deploy using a fully managed Azure resource that will be provisioned as part of the deployment process. These extensions are provided by the [Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure) NuGet package.
 
@@ -373,9 +382,9 @@ builder.Build().Run();
 
 We've introduced a new primitive to model Azure Bicep modules in the application model. This makes it easier to model any set of azure resources that can be modeled using bicep. We've rebuilt the azure resources to use the new bicep primitive. Bicep files can be expressed as literal strings, embedded resources or files on disk (relative to the app host).
 
-For more information, see [What is Bicep?](/azure/azure-resource-manager/bicep/overview?tabs=bicep)
+For more information, see [What is Bicep?](/azure/azure-resource-manager/bicep/overview?tabs=bicep).
 
-_Program.cs_
+Consider the following example _Program.cs_ file:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -392,7 +401,7 @@ builder.AddProject<Projects.WebApplication1>("api")
 builder.Build().Run();
 ```
 
-_eventhub.bicep_
+Now consider the corresponding example _eventhub.bicep_ file:
 
 ```bicep
 @description('Specifies a project name that is used to generate the Event Hub name and the Namespace name.')
@@ -454,7 +463,7 @@ resource eventHubRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04
 output eventHubsEndpoint string = eventHubNamespace.properties.serviceBusEndpoint
 ```
 
-Manifest representation:
+Finally, the app host and the bicep file would result in the following manifest JSON representation:
 
 ```json
 {
@@ -565,7 +574,7 @@ We've deprecated the abstract resource types that were supported in previous ver
 
 ### Visual Studio Publish to Azure
 
-This release we've enabled a Visual Studio publish experience for Aspire applications.
+This release we've enabled a Visual Studio publish experience for .NET Aspire applications.
 
 ## Azure Developer CLI
 
