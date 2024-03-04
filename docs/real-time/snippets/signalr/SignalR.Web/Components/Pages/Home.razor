@@ -1,0 +1,81 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<!-- Connection status and username entry -->
+<header>
+    <nav class="navbar navbar-expand-md fixed-top">
+        <div class="container-fluid">
+            <span class="navbar-brand" href="#">SignalR 💜 .NET Aspire</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        @{
+                            var statusClass = _connectionStatus switch
+                            {
+                                ConnectionStatus.Connecting => "text-success-emphasis",
+                                ConnectionStatus.Connected => "text-success",
+                                ConnectionStatus.Disconnected => "text-danger-emphasis",
+                                _ => "text-warning-emphasis"
+                            };
+                        }
+                        <span class="@statusClass">@_connectionStatus.ToString()</span>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <div class="input-group">
+                        <span class="input-group-text">@@</span>
+                        <InputText @bind-Value="@_username" class="form-control me-2"                               
+                                   placeholder="Username" aria-label="Username" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- List of message -->
+<div class="container py-5">
+    <Messages UserMessages="@_userMessages" />
+</div>
+
+<!-- Send message form -->
+<footer class="footer fixed-bottom mt-auto py-3">
+    <div class="container">
+        <div class="row g-3 align-items-center">
+            <div class="col-11">
+                <label class="visually-hidden" for="msg">Message</label>
+                <div class="input-group">
+                    <input type="text" @bind-value="@_message" id="msg"
+                           @oninput="@InitiateDebounceUserIsTypingAsync"
+                           @onkeyup="@(args => OnKeyUpAsync(args))"
+                           class="form-control form-control-lg"
+                           autocomplete="off" placeholder="Message" />
+                </div>
+            </div>
+
+            <div class="col-1">
+                <button @onclick="TryPostMessageAsync" class="btn btn-lg btn-primary">Send</button>
+            </div>
+        </div>
+        <div class="row">
+            @{
+                static string UsersTypingText(HashSet<string> usersTyping) => usersTyping.Count switch
+                {
+                    0 => "&nbsp;",
+                    1 => $"💬 <strong>{usersTyping.ElementAt(0)}</strong> is typing...",
+                    2 => $"💬 <strong>${usersTyping.ElementAt(0)}</strong> and <strong>${usersTyping.ElementAt(1)}</strong> are typing...",
+                    _ => "💬 Multiple people are typing..."
+                };
+
+                MarkupString isTypingMarkup = new(UsersTypingText(_usersTyping));
+                <span class="text-muted @(_usersTyping is { Count: > 0 } ? "flashing" : "")">
+                    @isTypingMarkup
+                </span>
+            }
+        </div>
+    </div>
+</footer>

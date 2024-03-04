@@ -6,7 +6,7 @@ ms.date: 03/01/2024
 
 # .NET Aspire preview 4
 
-.NET Aspire preview 4 introduces lots of new improvements to various parts of the stack including addressing some of the most requested features from the community.
+.NET Aspire Preview 4 introduces significant enhancements across various parts of the stack, including addressing highly requested features from the community. Notable focus areas include improvements EntityFramework components, Podman support, and changes to the application model to easily choose between using existing resources or provisioning new ones.
 
 ## Podman support
 
@@ -45,9 +45,7 @@ There are two ports that are exposed:
 1. 18888: The port that serves the dashboard UI.
 1. 18889: The port that serves the OTLP grpc endpoint.
 
-That will bring up a dashboard that you can use view logs, metrics, and traces from your applications. Here's a sample application that sends telemetry data to the dashboard.
-
-TODO: Sample pointing to the dashboard.  (@drewnoakes @JamesNK @kvenkatrajan)
+That will bring up a dashboard that you can use view logs, metrics, and traces from your applications. Here's a [sample application](https://learn.microsoft.com/en-us/samples/dotnet/aspire-samples/aspire-standalone-dashboard/) that sends telemetry data to the dashboard.
 
 ### Dashboard shortcuts
 
@@ -61,11 +59,58 @@ With preview 4, we have introduced a screen reader compatible table view for dis
 
 ![image](https://github.com/dotnet/docs-aspire/assets/102772054/4622cf3a-dcf2-4149-9636-d1bef8184c5c)
 
-## Entity Framework and Aspire
+## Databases, EntityFramework and Aspire
 
-TODO: Changes to EF based components (@sebastienros @eerhardt)
+### New Enrich methods
 
-TODO: Migration tooling guidance (@JamesNK)
+Preview 4 introduces new methods for configuring Entity Framework. The existing `Add[Provider]DbContext()` methods used to register and configure `DbContext` classes are not sufficient for advanced cases like using a different lifetime scope, using custom service types, or configuring the underlying data sources.
+
+To solve these advanced scenarios, new methods named `Enrich[Provider]DbContext()` have been added. These methods do not register the `DbContext` and expect you to do so before invoking them.
+
+Usage example:
+
+```csharp
+var connectionString = builder.Configuration.GetConnectionString("catalogdb");
+builder.Services.AddDbContextPool<CatalogDbContext>(dbContextOptionsBuilder => dbContextOptionsBuilder.UseSqlServer(connectionString));
+builder.EnrichSqlServerDbContext<CatalogDbContext>();
+```
+
+These methods will still configure command retries, health checks, logging and telemetry.
+
+### Changes to previously existing methods
+
+Since these new methods provide a simpler way to configure the `DbContext`, the already existing ones (`Add[Provider]DbContext()`) have been simplified.
+
+1- They don't provide a way to disable connection pooling through settings anymore. Instead register the `DbContext` with connection pooling disabled and call the corresponding `Enrich` method.
+2- The `int MaxRetryCount` settings were removed and replaced by a `bool Retry` flag that and uses the default settings. It is enabled by default. To change the command retries count to a custom value please configure the `DbContext` registration using the specific provider options and invoke the corresponding `Enrich` method.  
+
+### Entity Framework Migrations
+
+We've improved the process of using [EF Core tooling to create migrations](https://learn.microsoft.com/ef/core/managing-schemas/migrations/) within Aspire apps. Previously, EF Core tooling would fail, displaying an error that the database connection string is missing. This error occurred because EF Core tooling initiated the app, not Aspire hosting, resulting in a failure to inject a connection string into the app. In preview 4, Aspire detects whether a project is launched with EF Core tooling and disables connection string validation, allowing migrations to be successfully created.
+
+Another challenge with EF Core migrations is applying them to a transient database that starts up with the app. An approach we've been exploring involves adding a .NET background worker resource to the Aspire solution. This worker executes migrations when the app host starts.
+
+Here's a [sample application](https://learn.microsoft.com/en-us/samples/dotnet/aspire-samples/aspire-efcore-migrations/) that shows to create and apply migrations in an Aspire solution.
+
+We're still exploring best practices for using Aspire with EF Core. We plan to publish guidance for using EF Core migrations and Aspire: [Write guidance for using Entity Framework migrations with Aspire solutions (#64)](https://github.com/dotnet/docs-aspire/issues/64).
+
+### Changes to database servers resources
+
+With Preview 4 the `AddDatabase(string name)` method available on Database Servers resources has been improved such that the name of the resource (and as a consequence the connection name) that was registered can be different than the database name: `AddDatabase(string name, string databaseName = null)`
+
+Here is an example that defines a database named `customers` and registers it as `crm`:
+
+In your app host:
+
+```csharp
+builder.AddPostgres("postgres").AddDatabase("crm", "customers");
+```
+
+And in your application, resolve the component using the `crm` connection name:
+
+```csharp
+builder.AddNpgsqlDbContext<CustomerDbContext>("crm");
+```
 
 ## Changes to container resources
 
@@ -170,14 +215,13 @@ builder.Build().Run();
 
 We added some new methods to tweak container images, tags and volumes.
 
-Here's an example of using the redis image from Microsoft's container registry instead of the default image from DockerHub.
+Here's an example of using the "latest" image tag for the [redis image from DockerHub](https://hub.docker.com/_/redis/).
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var redis = builder.AddRedis("redis")
-                   .WithImage("mcr.microsoft.com/cbl-mariner/base/redis")
-                   .WithImageTag("6.2-cm2.0");
+                   .WithImageTag("latest"); // Prefer the latest
 
 builder.AddProject<Projects.WebApplication1>("api")
        .WithReference(redis);
@@ -233,7 +277,7 @@ builder.Build().Run();
 Sometimes you might want to ignore launch profiles when running the application. This can be useful when you want to define your own environment or endpoints when running the application.
 
 > [!NOTE]
-> This will ignore the entire launch profile, including environment variables and other defaults.**
+> This will ignore the entire launch profile, including environment variables and other defaults.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -259,12 +303,13 @@ Proxies may not always be desirable. If the application already has a port alloc
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddProject<Projects.WebApplication1>("api")
-       .WithEndpoint("http", e => e.IsProxied = false);
+       .ExcludeLaunchProfile()
+       .WithEndpoint(scheme: "http", hostPort: 5000, isProxied: false);
 
 builder.Build().Run();
 ```
 
-The above example will disable the proxy for the http endpoint defined in the launch profile. This means that the application will be responsible for managing the port and ensuring that it is available when the application starts.
+The above example will disable the launch profile and add a proxy-less endpoint. The orchestrator will not create a proxy and the application's port will be the only port in use. In this mode, replicas are not supported.
 
 ## Azure
 
@@ -272,17 +317,15 @@ This release saw an overhaul of the Azure resources shipped in .NET Aspire. We'v
 
 ### New resources and components
 
-We've added a few new Azure based resources:
+TODO: Show sample usage of these resources.
 
 - [Azure SignalR](https://azure.microsoft.com/products/signalr-service)
 - [Azure AI Search](https://azure.microsoft.com/products/ai-services/ai-search)
 - [Azure Application Insights](https://azure.microsoft.com/products/monitor)
 
-TODO: Show sample usage of these resources.
-
 ### Containers with Azure Resource mappings
 
-Several services that are available as containers have fully managed Azure equivalents. We've added the ability to map a container to an Azure resource. This makes it possible to develop and test using a container and then deploy using a fully managed Azure resource that will be provisioned as part of the deployment process.
+Several services that are available as containers have fully managed Azure equivalents. We've added the ability to map a container to an Azure resource. This makes it possible to develop and test using a container and then deploy using a fully managed Azure resource that will be provisioned as part of the deployment process. These extensions are provided by the **Aspire.Hosting.Azure** package.
 
 We've enabled this for the following services:
 
@@ -335,24 +378,78 @@ _Program.cs_
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var bicep = builder.AddBicepTemplateString("bicep", "test.bicep")
-    .WithParameter("param1", "value1")
-    .WithParameter("param2", "value2");
+var eventhub = builder.AddBicepTemplate("eventhubs", "eventhub.bicep")
+    .WithParameter("eventHubNamespaceName", "mynamespace")
+    .WithParameter("principalId")
+    .WithParameter("principalType")
+    .WithParameter("eventHubs", ["hub1"]);
 
 builder.AddProject<Projects.WebApplication1>("api")
-    .WithEnvironment("BICEP_OUTPUT", bicep.GetOutput("both"));
+    .WithEnvironment("EventHubsEndpoint", eventhub.GetOutput("eventHubsEndpoint"));
 
 builder.Build().Run();
 ```
 
-_test.bicep_
+_eventhub.bicep_
 
 ```bicep
-param param1 string
-param param2 string
-param location string
+@description('Specifies a project name that is used to generate the Event Hub name and the Namespace name.')
+@minLength(6)
+param eventHubNamespaceName string
 
-output both string = '${param1} ${param2}'
+param principalId string
+param principalType string
+
+param eventHubs array = []
+
+@description('Specifies the Azure location for all resources.')
+param location string = resourceGroup().location
+
+@description('Specifies the messaging tier for Event Hub Namespace.')
+@allowed([
+    'Basic'
+    'Standard'
+])
+param eventHubSku string = 'Basic'
+
+var resourceToken = uniqueString(resourceGroup().id)
+
+resource eventHubNamespace 'Microsoft.EventHub/namespaces@2023-01-01-preview' = {
+    name: '${eventHubNamespaceName}${resourceToken}'
+    location: location
+    sku: {
+        name: eventHubSku
+        tier: eventHubSku
+        capacity: 1
+    }
+    properties: {
+        isAutoInflateEnabled: false
+        maximumThroughputUnits: 0
+    }
+
+    resource hub 'eventhubs' = [for name in eventHubs: {
+        name: name
+        properties: {
+            messageRetentionInDays: 1
+            partitionCount: 1
+        }
+    }
+    ]
+}
+
+// https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#azure-event-hubs-data-owner
+
+resource eventHubRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+    name: guid(eventHubNamespace.id, principalId, subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'f526a384-b230-433a-b45c-95f59c4a2dec'))
+    scope: eventHubNamespace
+    properties: {
+        principalId: principalId
+        principalType: principalType
+        roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'f526a384-b230-433a-b45c-95f59c4a2dec')
+    }
+}
+
+output eventHubsEndpoint string = eventHubNamespace.properties.serviceBusEndpoint
 ```
 
 Manifest representation:
@@ -360,21 +457,23 @@ Manifest representation:
 ```json
 {
   "resources": {
-    "bicep": {
+    "eventhubs": {
       "type": "azure.bicep.v0",
-      "path": "test.bicep",
+      "path": "eventhub.bicep",
       "parameters": {
-        "param1": "value1",
-        "param2": "value2"
+        "eventHubNamespaceName": "mynamespace",
+        "principalId": "",
+        "principalType": "",
+        "eventHubs": ["hub1"]
       }
     },
     "api": {
       "type": "project.v0",
       "path": "../WebApplication1/WebApplication1.csproj",
       "env": {
-          "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES":   "true",
-          "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES":   "true",
-          "BICEP_OUTPUT": "{bicep.outputs.both}"
+          "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
+          "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
+          "EventHubsEndpoint": "{eventhubs.outputs.eventHubsEndpoint}"
       },
       "bindings": {
           "http": {
@@ -393,7 +492,7 @@ Manifest representation:
 }
 ```
 
-As you can see, the manifest captures both the parameters and the usage of the bicep output in the environment variables of the project.
+The manifest captures both the parameters and the usage of the bicep output in the environment variables of the project. The [Azure Developer CLI](#azure-developer-cli) has been updated to understand this new resource type (you can learn more below) and can be used to deploy this application to **Azure Container Apps**.
 
 ## Emulators
 
@@ -465,8 +564,6 @@ We've deprecated the abstract resource types that were supported in previous ver
 ### Visual Studio Publish to Azure
 
 This release we've enabled a Visual Studio publish experience for Aspire applications.
-
-TODO: Deployment to Azure via Visual Studio support (@bradygaster @timheuer)
 
 ## Azure Developer CLI
 
