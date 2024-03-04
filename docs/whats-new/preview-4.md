@@ -6,7 +6,7 @@ ms.date: 02/27/2024
 
 # .NET Aspire preview 4
 
-.NET Aspire preview 4 introduces lots of new improvements to various parts of the stack including addressing some of the most requested features from the community.
+.NET Aspire Preview 4 introduces significant enhancements across various parts of the stack, including addressing highly requested features from the community. Notable focus areas include improvements EntityFramework components, Podman support, and changes to the application model to easily choose between using existing resources or provisioning new ones.
 
 ## Podman support
 
