@@ -340,14 +340,13 @@ builder.Build().Run();
 
 We added some new methods to tweak container images, tags and volumes.
 
-Here's an example of using the redis image from Microsoft's container registry instead of the default image from DockerHub.
+Here's an example of using the "latest" image tag for the [redis image from DockerHub](https://hub.docker.com/_/redis/).
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var redis = builder.AddRedis("redis")
-                   .WithImage("mcr.microsoft.com/cbl-mariner/base/redis")
-                   .WithImageTag("6.2-cm2.0");
+                   .WithImageTag("latest"); // Prefer the latest
 
 builder.AddProject<Projects.WebApplication1>("api")
        .WithReference(redis);
