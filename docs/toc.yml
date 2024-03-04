@@ -42,6 +42,8 @@ items:
         href: service-discovery/overview.md
       - name: Service defaults
         href: fundamentals/service-defaults.md
+      - name: External parameters
+        href: fundamentals/external-parameters.md
       - name: Persist data using volumes
         href: fundamentals/persist-data-volumes.md
       - name: Health checks
