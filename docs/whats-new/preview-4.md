@@ -80,9 +80,9 @@ Since these new methods provide a simpler way to configure the `DbContext`, the 
 
 ### Entity Framework Migrations
 
-We've improved using [EF Core tooling to create migrations](https://learn.microsoft.com/ef/core/managing-schemas/migrations/) with Aspire apps. Before, EF Core tooling would fail with an error that the database connection string is missing. Aspire validates that a connection string is provided by the host when an app starts up. However, EF Core tooling launches the app directly so the connection string was missing. In preview 4, Aspire detects whether a project is launched with EF Core tooling, disables connection string validation, and creating migrations succeed.
+We've improved the process of using [EF Core tooling to create migrations](https://learn.microsoft.com/ef/core/managing-schemas/migrations/) within Aspire apps. Previously, EF Core tooling would fail, displaying an error that the database connection string is missing. This error occurred because EF Core tooling initiated the app, not Aspire hosting, resulting in a failure to inject a connection string into the app. In preview 4, Aspire detects whether a project is launched with EF Core tooling and disables connection string validation, allowing migrations to be successfully created.
 
-Another challenge with EF Core migrations is applying them to the a transient database that starts up with the app. An apporach we've been exploring is adding a .NET background worker resource to the Aspire solution. The worker runs migrations when the app host starts.
+Another challenge with EF Core migrations is applying them to a transient database that starts up with the app. An approach we've been exploring involves adding a .NET background worker resource to the Aspire solution. This worker executes migrations when the app host starts.
 
 Here's a [sample application](https://learn.microsoft.com/en-us/samples/dotnet/aspire-samples/aspire-efcore-migrations/) that shows to create and apply migrations in an Aspire solution.
 
