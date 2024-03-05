@@ -9,7 +9,7 @@ ms.topic: reference
 
 In this article, you learn about the .NET Aspire manifest format. This article serves as a reference guide for deployment tool builders, aiding in the creation of tooling to deploy .NET Aspire applications on specific hosting platforms, whether on-premises or in the cloud.
 
-[.NET Aspire simplifies the local development](../fundamentals/networking-overview.md) experience by helping to manage interdependencies between application components. To help simplify the deployment of applications, .NET Aspire projects can generate a "manifest" of all the resources defined as a JSON formatted file.
+.NET Aspire [simplifies the local development experience](../fundamentals/networking-overview.md) by helping to manage interdependencies between application components. To help simplify the deployment of applications, .NET Aspire projects can generate a manifest of all the resources defined as a JSON formatted file.
 
 ## Generate a manifest
 
@@ -915,7 +915,7 @@ Example manifest:
 
 ### Resource types supported in the Azure Developer CLI
 
-The [Azure Developer CLI](/azure/developer/azure-developer-cli/) (AZD) is a tool that can be used to deploy .NET Aspire applications to Azure Container Apps. With the `azure.bicep.v0` resource type, cloud-agnostic resource container types can be mapped to Azure-specific resources. The following table lists the resource types that are supported in the Azure Developer CLI:
+The [Azure Developer CLI](/azure/developer/azure-developer-cli/) (azd) is a tool that can be used to deploy .NET Aspire applications to Azure Container Apps. With the `azure.bicep.v0` resource type, cloud-agnostic resource container types can be mapped to Azure-specific resources. The following table lists the resource types that are supported in the Azure Developer CLI:
 
 | Name | Cloud-agnostic API | Configure as Azure resource |
 | ---- | ---------------------------- | ---------------------------------- |
