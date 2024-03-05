@@ -578,8 +578,27 @@ This release we've enabled a Visual Studio publish experience for .NET Aspire ap
 
 ## Azure Developer CLI
 
-The Azure Developer CLI (azd) has been updated to support the new manifest types introduced in preview 4. Azd supports prompting for parameter resources, and supports the bicep resource which enables deploying any thing can be described using a bicep module.
+The [Azure Developer CLI](https://aka.ms/azd) (azd) has been updated to support the new manifest types introduced in preview 4. Azd supports prompting for parameter resources, and supports the bicep resource which enables deploying any thing. All Azure resources can be described using a bicep module.
 
 In addition to new features, azd will automatically create secrets in Azure Container Apps for any parameter marked as a secret, and any environment variable that references a secret or uses a connection string.
 
-TODO: Expand with images
+### Prompt for parameter
+
+When azd detects a parameter, it will prompt for a value. For example, having the next AppHost code:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var administratorLogin = builder.AddParameter("administratorLogin");
+var administratorLoginPassword = builder.AddParameter("administratorLoginPassword", secret: true);
+var pg = builder.AddPostgres("postgres")
+                .AsAzurePostgresFlexibleServer(administratorLogin, administratorLoginPassword)
+                .AddDatabase("db");
+
+builder.AddProject<Projects.BicepSample_ApiService>("api")
+       .WithReference(pg);
+```
+
+Two parameters are defined to set the Postgres flexible server administrator login. Then, azd will ask for both parameters.
+
+:::image type="content" source="media/preview-4/promptUser.gif" lightbox="media/preview-4/promptUser.gif" alt-text="azd parameters prompting":::
