@@ -602,6 +602,7 @@ builder.AddProject<Projects.BicepSample_ApiService>("api")
 Two parameters are defined to set the Postgres flexible server administrator login. Then, azd will ask for both parameters.
 
 :::image type="content" source="media/preview-4/promptUser.gif" lightbox="media/preview-4/promptUser.gif" alt-text="azd parameters prompting":::
+
 You can also set environment variables for each parameter to skip the interactive prompting. For a parameter like `administratorLogin`, azd will check if there is an environment variable with the name `AZURE_ADMINISTRATOR_LOGIN`. Note the prefix `AZURE_` followed by the name of the parameter, converted from camel case to upper-snake case. You can take a look to the parameter mapping by running `azd infra synth` and opening `main.parameters.json` file from the `/infra` folder.
 
 ```json
