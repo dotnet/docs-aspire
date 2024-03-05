@@ -552,7 +552,7 @@ builder.Build().Run();
 
 ## The deployment manifest
 
-The aspire manifest has undergone a significant overhaul to support the new primitives and introduced in preview 4. The new manifest focuses on a few key primitives to enable a wide range of scenarios:
+The [.NET Aspire manifest](../deployment/manifest-format.md) has undergone a significant overhaul to support the new primitives and introduced in preview 4. The new manifest focuses on a few key primitives to enable a wide range of scenarios:
 
 | Resource type   | Description                                                   |
 |-----------------|---------------------------------------------------------------|
