@@ -99,7 +99,6 @@ builder.AddAzureProvisioning();
 var insights = builder.ExecutionContext.IsPublishMode
     ? builder.AddAzureApplicationInsights("myInsightsResource")
     : builder.AddConnectionString("myInsightsResource", "APPLICATIONINSIGHTS_CONNECTION_STRING");
-    
 var apiService = builder.AddProject<Projects.ApiService>("apiservice")
     .WithReference(insights);
 
