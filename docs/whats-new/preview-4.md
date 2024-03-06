@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire preview 4
 description: .NET Aspire preview 4 is now available and includes many improvements and new capabilities
-ms.date: 03/04/2024
+ms.date: 03/06/2024
 ---
 
 # .NET Aspire preview 4
@@ -343,6 +343,8 @@ We've enabled this for the following services:
 - Redis - [Azure Redis](https://azure.microsoft.com/products/cache)
 - Postgres - [Azure Database for PostgreSQL](https://azure.microsoft.com/products/postgresql)
 - SQL Server - [Azure SQL Database](https://azure.microsoft.com/products/azure-sql/database)
+
+For more information, see [Azure-specific resource types](../deployment/manifest-format.md#azure-specific-resource-types).
 
 We plan to add support for the following services in the future:
 
