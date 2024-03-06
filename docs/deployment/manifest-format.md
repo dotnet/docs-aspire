@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire manifest format for deployment tool builders
 description: Learn about the .NET Aspire manifest format in this comprehensive deployment tool builder guide.
-ms.date: 03/05/2024
+ms.date: 03/06/2024
 ms.topic: reference
 ---
 
@@ -762,7 +762,7 @@ Example code:
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddRedis("azredis1")
-       .AsAzureRedis();
+       .PublishAsAzureRedis();
 ```
 
 Example manifest:
@@ -820,7 +820,7 @@ Example code:
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddSqlServer("sql1")
-       .AsAzureSqlDatabase()
+       .PublishAsAzureSqlDatabase()
        .AddDatabase("inventory");
 ```
 
@@ -862,7 +862,7 @@ var administratorLoginPassword = builder.AddParameter(
     "administratorLoginPassword", secret: true);
 
 var pg = builder.AddPostgres("postgres")
-                .AsAzurePostgresFlexibleServer(
+                .PublishAsAzurePostgresFlexibleServer(
                     administratorLogin, administratorLoginPassword)
                 .AddDatabase("db");
 ```
@@ -919,9 +919,9 @@ The [Azure Developer CLI](/azure/developer/azure-developer-cli/) (azd) is a tool
 
 | Name | Cloud-agnostic API | Configure as Azure resource |
 | ---- | ---------------------------- | ---------------------------------- |
-| Redis | <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> | `AsAzureRedis` |
-| Postgres | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A> | `AsAzurePostgresFlexibleServer` |
-| SQL Server | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A> | `AsAzureSqlDatabase` |
+| Redis | <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> | `PublishAsAzureRedis` |
+| Postgres | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A> | `PublishAsAzurePostgresFlexibleServer` |
+| SQL Server | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A> | `PublishAsAzureSqlDatabase` |
 
 When resources as configured as Azure resources, the `azure.bicep.v0` resource type is generated in the manifest. For more information, see [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](azure/aca-deployment-azd-in-depth.md).
 
