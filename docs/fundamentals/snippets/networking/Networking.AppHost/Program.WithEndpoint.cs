@@ -3,12 +3,14 @@
     public static void WithEndpoint(IDistributedApplicationBuilder builder)
     {
         // <withendpoint>
-        builder.AddProject<Projects.Networking_Frontend>("frontend")
+        builder.AddProject<Projects.Networking_ApiService>("apiService")
                .WithEndpoint(
-                    endpointName: "frontendEndpoint",
+                    endpointName: "FixedAndExternal",
                     callback: static endpoint =>
                {
-                   // Configure the endpoint instance directly
+                   endpoint.Port = 17003;
+                   endpoint.AsHttp2()
+                           .AsExternal();
                });
         // </withendpoint>
     }
