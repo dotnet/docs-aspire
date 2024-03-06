@@ -1,5 +1,6 @@
 ﻿var builder = DistributedApplication.CreateBuilder(args);
 
+WithEndpoint(builder);
 // ContainerPort(builder);
 // EnvVarPort(builder);
 // HostPortWithRandomServicePort(builder);
