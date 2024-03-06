@@ -28,10 +28,13 @@ Manifest generation is achieved by running `dotnet build` with a special target:
 dotnet run --project AspireApp.AppHost\AspireApp.AppHost.csproj `
     -- `
     --publisher manifest `
-    --output-path aspire-manifest.json
+    --output-path ../aspire-manifest.json
 ```
 
-For more information, see [dotnet build](/dotnet/core/tools/dotnet-build). The previous command produces the following output:
+> [!TIP]
+> The `--output-path` supports relative paths. The previous command uses `../aspire-manifest.json` to place the manifest file in the root of the project directory.
+
+For more information, see [dotnet run](/dotnet/core/tools/dotnet-run). The previous command produces the following output:
 
 ```Output
 Building...
