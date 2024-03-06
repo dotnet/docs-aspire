@@ -603,7 +603,7 @@ In the preceding code, two parameters are created to represent the admin login a
 
 :::image type="content" source="media/preview-4/promptUser.gif" lightbox="media/preview-4/promptUser.gif" alt-text="azd parameters prompting":::
 
-To skip interactive prompting, set an environment variable for each parameter. For the `administratorLogin` parameter, azd looks for an environment variable with the name `AZURE_ADMINISTRATOR_LOGIN`.
+To skip interactive prompting, users can set an environment variable for each parameter. For the `administratorLogin` parameter, azd looks for an environment variable with the name `AZURE_ADMINISTRATOR_LOGIN`.
 
 > [!TIP]
 > These environment variables should be prefixed with `AZURE_` and followed by the name of the parameter, converted from camel case to upper-snake case.
