@@ -584,7 +584,7 @@ In addition to new features, azd will automatically create secrets in Azure Cont
 
 ### Prompting for parameters
 
-When azd detects a parameter, it prompts for a value. For example, consider the following app host code:
+When azd detects a parameter.v0 resource in the manifest, it will prompt for a value. For example, consider the following code in the apphost project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
