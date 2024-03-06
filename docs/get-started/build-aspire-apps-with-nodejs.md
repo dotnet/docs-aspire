@@ -1,7 +1,7 @@
 ---
 title: Build .NET Aspire apps with Node.js
 description: Learn how to build .NET Aspire apps with Node.js.
-ms.date: 01/16/2024
+ms.date: 03/06/2024
 ---
 
 # Build .NET Aspire apps with Node.js
@@ -113,7 +113,7 @@ The preceding code:
 - Adds the "weatherapi" service as a project to the app host.
 - With a reference to the "weatherapi" service, adds the "angular", "react", and "vue" client apps as npm apps.
   - Each client app is configured to run on a different container port, and uses the `PORT` environment variable to determine the port.
-  - All client apps also rely on a _Dockerfile_ to build their container image and are configured to express themselves in the publishing manifest as a container from the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AsDockerfileInManifest%2A>.
+  - All client apps also rely on a _Dockerfile_ to build their container image and are configured to express themselves in the publishing manifest as a container from the `PublishAsDockerfile`.
 
 For more information on inner-loop networking, see [.NET Aspire inner-loop networking overview](../fundamentals/networking-overview.md). For more information on deploying apps, see [.NET Aspire manifest format for deployment tool builders](../deployment/manifest-format.md).
 
