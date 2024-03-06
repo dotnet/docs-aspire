@@ -582,7 +582,7 @@ The [Azure Developer CLI](https://aka.ms/azd) (azd) has been updated to support 
 
 In addition to new features, azd will automatically create secrets in Azure Container Apps for any parameter marked as a secret, and any environment variable that references a secret or uses a connection string.
 
-### Prompt for parameter
+### Prompting for parameters
 
 When azd detects a parameter, it prompts for a value. For example, consider the following app host code:
 
