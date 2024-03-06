@@ -45,7 +45,7 @@ docker run --rm -it \
 There are two ports that are exposed:
 
 1. `18888`: The port that serves the dashboard UI.
-1. `18889`: The port that serves the OTLP grpc endpoint.
+1. `4317`: The port that serves the OTLP grpc endpoint.
 
 That command brings up a dashboard that you can use view logs, metrics, and traces from your apps. For more information, see the [sample application](/samples/dotnet/aspire-samples/aspire-standalone-dashboard/) that sends telemetry data to the dashboard.
 
