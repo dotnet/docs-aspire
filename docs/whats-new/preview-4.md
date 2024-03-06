@@ -625,7 +625,7 @@ To see the parameter mapping, run `azd infra synth` and view the `main.parameter
 }
 ```
 
-### Find parameters after provision
+### Find parameters values after provisioning
 
 Azd sets the parameter values for a project as part of the [App Container configuration](/azure/container-apps/containers#configuration), using its environment. When the parameter is defined as `secret: true` (like `administratorLoginPassword` in the previous example), azd creates a secret for the App Container configuration and then links the environment to that secret:
 
