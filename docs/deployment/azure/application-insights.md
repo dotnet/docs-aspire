@@ -13,37 +13,20 @@ To use Application insights, you specify its configuration in the app host proje
 
 ## Choosing how Application Insights is provisioned
 
-.NET Aspire has the capability to provision cloud resources as part of development and/or cloud deployment, including Application Insights. In your .NET Aspire app, you can decide if you want .NET Aspire to provision an Application Insights resource at debug time, or when deploying to Azure. You can also select to use an existing Application Insights resource by providing its connection string. The connection information is managed by the resource configuration in the app host project.
+.NET Aspire has the capability to provision cloud resources as part of cloud deployment, including Application Insights. In your .NET Aspire app, you can decide if you want .NET Aspire to provision an Application Insights resource when deploying to Azure. You can also select to use an existing Application Insights resource by providing its connection string. The connection information is managed by the resource configuration in the app host project.
 
-### Automatically provisioning Application Insights during development
+### Provisioning Application insights during Azure deployment
 
-With this option, an instance of Application Insights will be created for you the first time you debug an app with the Application Insights resource definition in the AppHost project. The instance of Application Insights will be created in a resource group based on the name of the AppHost project. Each different .NET Aspire solution will create an independent Application Insights resource.
-
-> [!IMPORTANT]
-> There is no automatic deletion of the Azure resources created this way, so you'll need to manually remove them when they are no longer needed.
+With this option, an instance of Application Insights will be created for you when the application is deployed using the Azure Developer CLI (AZD).
 
 To use automatic provisioning, you specify a dependency in the app host project, and reference it in each project/resource that needs to send telemetry to Application Insights. The steps include:
 
-- Add a Nuget package reference to `Aspire.Hosting.Azure.Provisioning` in the app host project. This will also implicitly include the `Aspire.Hosting.Azure` package.
-
-- Add [app secrets](/aspnet/core/security/app-secrets) to tell it where to create the Application Insights Resource. If using Visual Studio, right click on the app host project and choose *Manage User Secrets* to create and open the secrets file. Add the following keys, replacing the values as applicable:
-
-``` json
-{
-  "Azure:Location": "WestUS",
-  "Azure:SubscriptionId": "__Replace with your subscription GUID__"
-}
-```
-
-The possible values for the location can be found using `az account list-locations -o table` on the command line.
+- Add a Nuget package reference to `Aspire.Hosting.Azure` in the app host project.
 
 - Update the app host code to use the Application Insights resource, and reference it from each project:
 
 ``` csharp
 var builder = DistributedApplication.CreateBuilder(args);
-
-// Required for Azure provisioning
-builder.AddAzureProvisioning();
 
 // Automatically provision an Application Insights resource
 var insights = builder.AddAzureApplicationInsights("MyApplicationInsights");
@@ -57,17 +40,6 @@ builder.AddProject<Projects.Web>("webfrontend")
     .WithReference(insights);
 
 builder.Build().Run();
-```
-
-When you debug the application, .NET Aspire provisions the Application Insights resource the first time it sees the app host resource definition. The Application Insights resource will feed the connection information to each project that references it. This can be seen as an `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable in the details view for the resource in the .NET Aspire dashboard.
-
-:::image type="content" source="../media/dashboard-with-connection-string.png" lightbox="../media/dashboard-with-connection-string.png" alt-text="Connection string environment variables in the .NET Aspire dashboard":::
-
-Settings for the provisioned Application Insights resource are persisted in the app secrets file.
-
-### Provisioning Application insights during Azure deployment
-
-Using the Application Insights resource above will cause an Application Insights resource to be provisioned when the application is deployed using the Azure Developer CLI (AZD).
 
 Follow the steps in [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](./aca-deployment-azd-in-depth.md) to deploy the application to Azure Container Apps. AZD will create an Application Insights resource as part of the same resource group, and configure the connection string for each container.
 
@@ -77,7 +49,7 @@ Application Insights uses a connection string to tell the OpenTelemetry exporter
 
 :::image type="content" source="../media/app-insights-connection-string.png" lightbox="../media/app-insights-connection-string.png" alt-text="Connection string placement in the Azure Application Insights portal UI.":::
 
-If you wish to use an instance of Application Insights that you have provisioned manually, then you should use the `AddConnectioString` API in the app host project to tell the projects/containers where to send the telemetry data. The Azure Monitor distro expects the environment variable to be `APPLICATIONINSIGHTS_CONNECTION_STRING`, so that needs to be explicitly set when defining the connection string.
+If you wish to use an instance of Application Insights that you have provisioned manually, then you should use the `AddConnectionString` API in the app host project to tell the projects/containers where to send the telemetry data. The Azure Monitor distro expects the environment variable to be `APPLICATIONINSIGHTS_CONNECTION_STRING`, so that needs to be explicitly set when defining the connection string.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -117,17 +89,16 @@ When [deploying an Aspire application with Azure Developer CLI (AZD)](./aca-depl
 
 ### Mixed deployment
 
-If you wish to use a different deployment mechanism per execution context, use the appropriate API conditionally. For example, the following code uses an automatically provisioned resource at development time, and a pre-supplied connection at deployment time.
+If you wish to use a different deployment mechanism per execution context, use the appropriate API conditionally. For example, the following code uses a pre-supplied connection at development time, and an automatically provisioned resource at deployment time.
 
-```
+``` csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddAzureProvisioning();
 
 var insights = builder.ExecutionContext.IsPublishMode
-    ? builder.AddConnectionString("ai", "APPLICATIONINSIGHTS_CONNECTION_STRING")
-    : builder.AddAzureApplicationInsights("ai");
-
+    ? builder.AddAzureApplicationInsights("myInsightsResource")
+    : builder.AddConnectionString("myInsightsResource", "APPLICATIONINSIGHTS_CONNECTION_STRING");
 var apiService = builder.AddProject<Projects.ApiService>("apiservice")
     .WithReference(insights);
 
@@ -139,7 +110,7 @@ builder.Build().Run();
 ```
 
 > [!TIP]
-> The preceding code requires you to supply the `Azure:Location` and `Azure:SubscriptionId` information in app secrets for development time usage, and will be prompted for the connection string by AZD at deployment time.
+> The preceding code requires you to supply the connection string information in app secrets for development time usage, and will be prompted for the connection string by AZD at deployment time.
 
 ## Use the Azure Monitor distro
 
@@ -176,4 +147,4 @@ private static IHostApplicationBuilder AddOpenTelemetryExporters(
 }
 ```
 
-It's possible to further customize the Azure Monitor exporter, including customizing the resource name and changing the sampling. For more information, see [Customize the Azure Monitor exporter](/azure/azure-monitor/app/opentelemetry-configuration?tabs=aspnetcore). Using the parameterless version of `UseAzureMonitor()`, will pickup the connection string from the `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable, we configured via the AppHost project.
+It's possible to further customize the Azure Monitor exporter, including customizing the resource name and changing the sampling. For more information, see [Customize the Azure Monitor exporter](/azure/azure-monitor/app/opentelemetry-configuration?tabs=aspnetcore). Using the parameterless version of `UseAzureMonitor()`, will pickup the connection string from the `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable, we configured via the app host project.
