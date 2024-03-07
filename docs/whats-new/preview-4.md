@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire preview 4
 description: .NET Aspire preview 4 is now available and includes many improvements and new capabilities
-ms.date: 03/06/2024
+ms.date: 03/07/2024
 ---
 
 # .NET Aspire preview 4
@@ -67,9 +67,9 @@ In addition to new APIs, the .NET Aspire preview 4 release includes several impr
 
 ### More database management tools
 
-Preview 4 introduces 2 new database management tools for managing MySQL and MongoDB databases, phpMyAdmin and mongo-express.
+.NET Aspire preview 4 introduces two new database management tools for managing MySQL and MongoDB databases, phpMyAdmin and mongo-express.
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var mysql = builder.AddMySql("mysql")
@@ -77,24 +77,23 @@ var mysql = builder.AddMySql("mysql")
                    .AddDatabase("mysql-db");
 
 var mongo = builder.AddMongoDB("mongo")
-                   .WithMongoExpress()     
+                   .WithMongoExpress()
                    .AddDatabase("mongo-db");
 
 builder.AddProject<Projects.Api>("api")
-    .WithReference(mysql)
-    .WithReference(mongo);
+       .WithReference(mysql)
+       .WithReference(mongo);
 
 builder.Build().Run();
 ```
 
-The above code will create a MySQL and MongoDB container with PhpMyAdmin and mongo-express configured.
+The preceding code creates a MySQL and MongoDB container with PhpMyAdmin and mongo-express configured.
 
-<img width="1200" alt="image" src="https://github.com/dotnet/docs-aspire/assets/95136/0d8c51b7-6fd5-446f-bfb8-f9d90e21f172">
+:::image type="content" source="media/preview-4/dashboard-resources-with-mysql-and-mongoex.png" lightbox="media/preview-4/dashboard-resources-with-mysql-and-mongoex.png" alt-text=".NET Aspire dashboard: Resources tab showing mongo, mongo-mongoexpress, mysql, mysql-phpmyadmin, and an API.":::
 
-#### Mongo express
+**Mongo express**
 
-<img width="851" alt="image" src="https://github.com/dotnet/docs-aspire/assets/95136/7448a4b7-154b-48c2-a80e-f76e2f723148">
-
+:::image type="content" source="media/preview-4/mongo-express.png" lightbox="media/preview-4/mongo-express.png" alt-text="Mongo Express database UX.":::
 
 ### New `Enrich` methods
 
