@@ -65,6 +65,37 @@ With preview 4, we have introduced a screen reader compatible table view for dis
 
 In addition to new APIs, the .NET Aspire preview 4 release includes several improvements to the Entity Framework components. These improvements are designed to make it easier to configure and use Entity Framework in .NET Aspire applications.
 
+### More database management tools
+
+Preview 4 introduces 2 new database management tools for managing MySQL and MongoDB databases, phpMyAdmin and mongo-express.
+
+```C#
+var builder = DistributedApplication.CreateBuilder(args);
+
+var mysql = builder.AddMySql("mysql")
+                   .WithPhpMyAdmin()
+                   .AddDatabase("mysql-db");
+
+var mongo = builder.AddMongoDB("mongo")
+                   .WithMongoExpress()     
+                   .AddDatabase("mongo-db");
+
+builder.AddProject<Projects.Api>("api")
+    .WithReference(mysql)
+    .WithReference(mongo);
+
+builder.Build().Run();
+```
+
+The above code will create a MySQL and MongoDB container with PhpMyAdmin and mongo-express configured.
+
+<img width="1200" alt="image" src="https://github.com/dotnet/docs-aspire/assets/95136/0d8c51b7-6fd5-446f-bfb8-f9d90e21f172">
+
+#### Mongo express
+
+<img width="851" alt="image" src="https://github.com/dotnet/docs-aspire/assets/95136/7448a4b7-154b-48c2-a80e-f76e2f723148">
+
+
 ### New `Enrich` methods
 
 Preview 4 introduces new methods for configuring Entity Framework. The existing `Add[Provider]DbContext()` methods used to register and configure `DbContext` classes are not sufficient for advanced cases like using a different lifetime scope, using custom service types, or configuring the underlying data sources.
