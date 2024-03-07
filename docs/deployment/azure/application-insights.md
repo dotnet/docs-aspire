@@ -40,6 +40,7 @@ builder.AddProject<Projects.Web>("webfrontend")
     .WithReference(insights);
 
 builder.Build().Run();
+```
 
 Follow the steps in [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](./aca-deployment-azd-in-depth.md) to deploy the application to Azure Container Apps. AZD will create an Application Insights resource as part of the same resource group, and configure the connection string for each container.
 
@@ -53,8 +54,6 @@ If you wish to use an instance of Application Insights that you have provisioned
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
-
-builder.AddAzureProvisioning();
 
 var insights = builder.AddConnectionString("myInsightsResource", "APPLICATIONINSIGHTS_CONNECTION_STRING");
 
