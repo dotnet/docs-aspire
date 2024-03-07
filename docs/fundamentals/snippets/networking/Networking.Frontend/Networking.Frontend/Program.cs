@@ -10,7 +10,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddHttpClient<WeatherApiClient>(
-    client => client.BaseAddress = new("http://external"));
+    client => client.BaseAddress = new("http://_admin.apiservice"));
 
 var app = builder.Build();
 

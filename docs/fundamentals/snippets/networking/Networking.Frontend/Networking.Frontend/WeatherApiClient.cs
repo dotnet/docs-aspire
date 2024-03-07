@@ -1,8 +1,8 @@
 ﻿public class WeatherApiClient(HttpClient httpClient)
 {
-    public async Task<WeatherForecast[]> GetWeatherAsync()
+    public IAsyncEnumerable<WeatherForecast?> GetWeatherAsync()
     {
-        return await httpClient.GetFromJsonAsync<WeatherForecast[]>("/weatherforecast") ?? [];
+        return httpClient.GetFromJsonAsAsyncEnumerable<WeatherForecast>("/weatherforecast");
     }
 }
 

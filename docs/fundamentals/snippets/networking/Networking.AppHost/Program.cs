@@ -1,11 +1,10 @@
 ﻿var builder = DistributedApplication.CreateBuilder(args);
 
 var apiService = builder.AddProject<Projects.Networking_ApiService>("apiService")
-    .WithEndpoint("external", static endpoint =>
+    .WithEndpoint("admin", static endpoint =>
     {
         endpoint.Port = 17003;
-        endpoint.IsExternal = true;
-        endpoint.AsHttp2();
+        endpoint.UriScheme = "http";
     });
 
 builder.AddProject<Projects.Networking_Frontend>("frontend")

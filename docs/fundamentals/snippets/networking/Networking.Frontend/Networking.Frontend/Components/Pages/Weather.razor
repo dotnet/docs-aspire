@@ -9,7 +9,7 @@
 
 <p>This component demonstrates showing data.</p>
 
-@if (forecasts == null)
+@if (forecasts is null or { Count: 0 })
 {
     <p><em>Loading...</em></p>
 }
@@ -39,10 +39,18 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private List<WeatherForecast> forecasts = [];
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await WeatherApi.GetWeatherAsync();
+        await foreach (var forecast in WeatherApi.GetWeatherAsync())
+        {
+            if (forecast is null)
+            {
+                continue;
+            }
+
+            forecasts.Add(forecast);
+        }
     }
 }

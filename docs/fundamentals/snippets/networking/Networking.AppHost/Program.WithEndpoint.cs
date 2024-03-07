@@ -5,12 +5,11 @@
         // <withendpoint>
         builder.AddProject<Projects.Networking_ApiService>("apiService")
                .WithEndpoint(
-                    endpointName: "FixedAndExternal",
+                    endpointName: "admin",
                     callback: static endpoint =>
                {
                    endpoint.Port = 17003;
-                   endpoint.AsHttp2()
-                           .AsExternal();
+                   endpoint.UriScheme = "http";
                });
         // </withendpoint>
     }

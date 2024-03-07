@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire inner loop networking overview
 description: Learn how .NET Aspire handles networking and service bindings, and how you can use them in your app code.
-ms.date: 03/05/2024
+ms.date: 03/07/2024
 ms.topic: overview
 ---
 
@@ -151,4 +151,11 @@ There's also an overload that allows you to specify a delegate to configure the 
 
 :::code source="snippets/networking/Networking.AppHost/Program.WithEndpoint.cs" id="withendpoint":::
 
-The preceding code provides a callback delegate to configure the endpoint.
+The preceding code provides a callback delegate to configure the endpoint. The endpoint is named `admin` and configured to use the `http` scheme, and 17003 host port. The consumer references this endpoint by name, consider the following `AddHttpClient` call:
+
+```
+builder.Services.AddHttpClient<WeatherApiClient>(
+    client => client.BaseAddress = new Uri("http://_admin.apiservice"));
+```
+
+The `Uri` is constructed using the `admin` endpoint name prefixed with the `_` sentinel. This is a convention to indicate that the `admin` segment is the endpoint name belonging to the `apiservice` service. For more information, see [.NET Aspire service discovery](../service-discovery/overview.md).
