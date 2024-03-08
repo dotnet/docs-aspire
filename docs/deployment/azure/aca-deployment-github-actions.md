@@ -3,6 +3,7 @@ title: Deploy a .NET Aspire app using the Azure Developer CLI and GitHub Actions
 description: Learn how to use `azd` and GitHub Actions to deploy .NET Aspire apps.
 ms.date: 12/18/2023
 zone_pivot_groups: deployment-platform
+ms.custom: devx-track-extended-azdevcli
 ---
 
 # Tutorial: Deploy a .NET Aspire app using the Azure Developer CLI and GitHub Actions

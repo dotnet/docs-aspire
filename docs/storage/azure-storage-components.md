@@ -4,6 +4,7 @@ description: Learn how to connect an ASP.NET Core app to .NET Aspire storage com
 ms.date: 01/22/2024
 ms.topic: tutorial
 zone_pivot_groups: azure-storage-mechanism
+ms.custom: devx-track-extended-azdevcli
 ---
 
 # Tutorial: Connect an ASP.NET Core app to .NET Aspire storage components
