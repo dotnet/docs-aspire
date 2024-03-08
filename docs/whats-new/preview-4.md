@@ -604,15 +604,21 @@ Tool authors can support this very small set of resource types to model lots of 
 
 We've deprecated the abstract resource types that were supported in previous versions. Deployment tools may still support those resource types, but they are no longer part of the core manifest schema.
 
-### Visual Studio Publish to Azure
-
-This release we've enabled a Visual Studio publish experience for .NET Aspire applications.
-
-## Azure Developer CLI
+## Azure Developer CLI (azd)
 
 The [Azure Developer CLI](https://aka.ms/azd) (azd) has been updated to support the new manifest types introduced in preview 4. Azd supports prompting for parameter resources, and supports the bicep resource which enables deploying any thing. All Azure resources can be described using a bicep module.
 
 In addition to new features, azd will automatically create secrets in Azure Container Apps for any parameter marked as a secret, and any environment variable that references a secret or uses a connection string.
+
+### Visual Studio Publish to Azure
+
+This release we've enabled a Visual Studio publish experience for .NET Aspire applications. This new deployment experience enables a single right-click-publish gesture that results in *all* of the nodes of your .NET Aspire project being published as individual Azure Container Apps in an Azure Container Apps Environment. We've chosen Azure Container Apps as the premier container PaaS destination for .NET Aspire apps as it enables orchestrated containerized deployments of multi-node microservice and distributed monolith applications. Even better - the publishing experience in Visual Studio uses `azd` under the hood, so you'll be able to publish .NET Aspire apps directly from Visual Studio to any `azd` environment you have running in Azure. 
+
+
+![.NET Aspire right-click publish in Visual Studio](media/preview-4/aspire-azd-publish.gif)
+
+
+With so many similarities between Container Apps' support for [add-on services](https://learn.microsoft.com/azure/container-apps/services) like PostgreSQL, Kafka, and Redis and the support offered by mirroring .NET Aspire components ([PostgreSQL](https://learn.microsoft.com/dotnet/aspire/database/postgresql-component?tabs=dotnet-cli), [Kafka](https://learn.microsoft.com/dotnet/aspire/messaging/kafka-component?tabs=dotnet-cli), and [Redis](https://learn.microsoft.com/dotnet/aspire/caching/stackexchange-redis-component?tabs=dotnet-cli), for example), targeting Azure Container Apps as our **first** publishing destination was an easy decision. You'll be able to use Azure Container Apps as your development publishing target out-of-the-box using Visual Studio Preview's upcoming 17.10 preview 3 release. 
 
 ### Prompting for parameters
 
