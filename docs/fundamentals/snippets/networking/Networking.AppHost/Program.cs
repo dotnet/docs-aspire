@@ -5,6 +5,7 @@ var apiService = builder.AddProject<Projects.Networking_ApiService>("apiService"
     {
         endpoint.Port = 17003;
         endpoint.UriScheme = "http";
+        endpoint.Transport = "http";
     });
 
 builder.AddProject<Projects.Networking_Frontend>("frontend")

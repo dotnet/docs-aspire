@@ -10,6 +10,7 @@
                {
                    endpoint.Port = 17003;
                    endpoint.UriScheme = "http";
+                   endpoint.Transport = "http";
                });
         // </withendpoint>
     }
