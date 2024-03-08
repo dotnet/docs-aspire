@@ -151,7 +151,7 @@ There's also an overload that allows you to specify a delegate to configure the 
 
 :::code source="snippets/networking/Networking.AppHost/Program.WithEndpoint.cs" id="withendpoint":::
 
-The preceding code provides a callback delegate to configure the endpoint. The endpoint is named `admin` and configured to use the `http` scheme, and 17003 host port. The consumer references this endpoint by name, consider the following `AddHttpClient` call:
+The preceding code provides a callback delegate to configure the endpoint. The endpoint is named `admin` and configured to use the `http` scheme and transport, as well as the 17003 host port. The consumer references this endpoint by name, consider the following `AddHttpClient` call:
 
 ```
 builder.Services.AddHttpClient<WeatherApiClient>(
