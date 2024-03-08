@@ -206,7 +206,7 @@ steps:
   # azd delegate auth to az to use service connection with AzureCLI@2
   - pwsh: |
       azd config set auth.useAzCliAuth "true"
-    displayName: Configure AZD to Use AZ CLI Authentication.
+    displayName: Configure `azd` to Use AZ CLI Authentication.
 
   - task: Install .NET Aspire workload
     inputs: 

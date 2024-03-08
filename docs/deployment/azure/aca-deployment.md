@@ -21,7 +21,7 @@ zone_pivot_groups: azure-development-tool
 
 :::zone pivot="azure-azd"
 
-As an alternative to this tutorial and for a more in-depth guide, see [Deploy a .NET Aspire app to Azure Container Apps using AZD (in-depth guide)](aca-deployment-azd-in-depth.md).
+As an alternative to this tutorial and for a more in-depth guide, see [Deploy a .NET Aspire app to Azure Container Apps using `azd` (in-depth guide)](aca-deployment-azd-in-depth.md).
 
 [!INCLUDE [aca-deployment-azd](includes/aca-deployment-azd.md)]
 

@@ -17,7 +17,7 @@ To use Application insights, you specify its configuration in the app host proje
 
 ### Provisioning Application insights during Azure deployment
 
-With this option, an instance of Application Insights will be created for you when the application is deployed using the Azure Developer CLI (AZD).
+With this option, an instance of Application Insights will be created for you when the application is deployed using the Azure Developer CLI (`azd`).
 
 To use automatic provisioning, you specify a dependency in the app host project, and reference it in each project/resource that needs to send telemetry to Application Insights. The steps include:
 
@@ -42,7 +42,7 @@ builder.AddProject<Projects.Web>("webfrontend")
 builder.Build().Run();
 ```
 
-Follow the steps in [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](./aca-deployment-azd-in-depth.md) to deploy the application to Azure Container Apps. AZD will create an Application Insights resource as part of the same resource group, and configure the connection string for each container.
+Follow the steps in [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](./aca-deployment-azd-in-depth.md) to deploy the application to Azure Container Apps. `azd` will create an Application Insights resource as part of the same resource group, and configure the connection string for each container.
 
 ### Manual provisioning of Application Insights resource
 
@@ -84,7 +84,7 @@ When running the .NET Aspire app locally, the preceding code reads the connectio
 
 #### Resource usage during deployment
 
-When [deploying an Aspire application with Azure Developer CLI (AZD)](./aca-deployment-azd-in-depth.md), it will recognize the connection string resource and prompt for a value. This enables a different resource to be used for the deployment from the value used for local development.
+When [deploying an Aspire application with Azure Developer CLI (`azd`)](./aca-deployment-azd-in-depth.md), it will recognize the connection string resource and prompt for a value. This enables a different resource to be used for the deployment from the value used for local development.
 
 ### Mixed deployment
 
@@ -107,7 +107,7 @@ builder.Build().Run();
 ```
 
 > [!TIP]
-> The preceding code requires you to supply the connection string information in app secrets for development time usage, and will be prompted for the connection string by AZD at deployment time.
+> The preceding code requires you to supply the connection string information in app secrets for development time usage, and will be prompted for the connection string by `azd` at deployment time.
 
 ## Use the Azure Monitor distro
 
