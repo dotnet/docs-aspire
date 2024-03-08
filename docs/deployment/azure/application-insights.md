@@ -93,8 +93,6 @@ If you wish to use a different deployment mechanism per execution context, use t
 ``` csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddAzureProvisioning();
-
 var insights = builder.ExecutionContext.IsPublishMode
     ? builder.AddAzureApplicationInsights("myInsightsResource")
     : builder.AddConnectionString("myInsightsResource", "APPLICATIONINSIGHTS_CONNECTION_STRING");
