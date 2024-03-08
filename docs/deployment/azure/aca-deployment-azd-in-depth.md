@@ -1,7 +1,7 @@
 ---
 title: Deploy a .NET Aspire app to Azure Container Apps using `azd` (in-depth guide)
 description: Learn how to use `azd` to deploy .NET Aspire apps to Azure Container Apps.
-ms.date: 11/27/2023
+ms.date: 03/08/2024
 ---
 
 # Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)
@@ -64,9 +64,9 @@ The steps in this section demonstrate how to create a .NET Aspire start app and 
 Create a new .NET Aspire application using the `dotnet new` command. You can also create the project using Visual Studio.
 
 ```dotnetcli
-dotnet new aspire-starter --use-redis-cache -o AspireAzdWalkthrough
-cd AspireAzdWalkthrough
-dotnet run --project AspireAzdWalkthrough.AppHost\AspireAzdWalkthrough.AppHost.csproj
+dotnet new aspire-starter --use-redis-cache -o AspireSample
+cd AspireSample
+dotnet run --project AspireSample.AppHost\AspireSample.AppHost.csproj
 ```
 
 The previous commands create a new .NET Aspire application based on the `aspire-starter` template which includes a dependency on Redis cache. It runs the .NET Aspire project which verifies that everything is working correctly.
@@ -78,11 +78,11 @@ The _azure.yaml_ file has the following contents:
 ```yml
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
 
-name: AspireAzdWalkthrough
+name: AspireSample
 services:
   app:
     language: dotnet
-    project: .\AspireAzdWalkthrough.AppHost\AspireAzdWalkthrough.AppHost.csproj
+    project: .\AspireSample.AppHost\AspireSample.AppHost.csproj
     host: containerapp
 ```
 
@@ -128,12 +128,55 @@ This file is how `azd` remembers (on a per environment basis) which services sho
 1. When prompted, select the subscription and location the resources should be deployed to. Once these options are selected the .NET Aspire application
 will be deployed.
 
-    :::image type="content" source="media/azd-up-final.png" alt-text="Screenshot of `azd` output after `azd up` command is executed.":::
+    ```Output
+    By default, a service can only be reached from inside the Azure Container Apps environment it is running in. Selecting a service here will also allow it to be reached from the Internet.
+    ? Select which services to expose to the Internet webfrontend
+    ? Select an Azure Subscription to use:  1. <YOUR SUBSCRIPTION>
+    ? Select an Azure location to use: 1. <YOUR LOCATION>
+    
+    Packaging services (azd package)
+
+    SUCCESS: Your application was packaged for Azure in less than a second.
+    
+    Provisioning Azure resources (azd provision)
+    Provisioning Azure resources can take some time.
+    
+    Subscription: <YOUR SUBSCRIPTION>
+    Location: <YOUR LOCATION>
+    
+      You can view detailed progress in the Azure Portal:
+    <LINK TO DEPLOYMENT>
+    
+      (✓) Done: Resource group: <YOUR RESOURCE GROUP>
+      (✓) Done: Container Registry: <ID>
+      (✓) Done: Log Analytics workspace: <ID>
+      (✓) Done: Container Apps Environment: <ID>
+      (✓) Done: Container App: <ID>
+    
+    SUCCESS: Your application was provisioned in Azure in 1 minute 13 seconds.
+    You can view the resources created under the resource group <YOUR RESOURCE GROUP> in Azure Portal:
+    <LINK TO RESOURCE GROUP OVERVIEW>
+    
+    Deploying services (azd deploy)
+    
+      (✓) Done: Deploying service apiservice
+      - Endpoint: <YOUR UNIQUE apiservice APP>.azurecontainerapps.io/
+    
+      (✓) Done: Deploying service webfrontend
+      - Endpoint: <YOUR UNIQUE webfrontend APP>.azurecontainerapps.io/
+    
+    
+    SUCCESS: Your application was deployed to Azure in 1 minute 39 seconds.
+    You can view the resources created under the resource group <YOUR RESOURCE GROUP> in Azure Portal:
+    <LINK TO RESOURCE GROUP OVERVIEW>
+    
+    SUCCESS: Your up workflow to provision and deploy to Azure completed in 3 minutes 50 seconds.
+    ```
 
     The final line of output from the `azd` command is a link to the Azure Portal that shows
     all of the Azure resources that were deployed:
 
-    :::image type="content" source="media/azd-azure-portal-deployed-resources.png" alt-text="Screenshot of Azure Portal showing deployed resources.":::
+    :::image type="content" source="media/azd-azure-portal-deployed-resources.png" lightbox="media/azd-azure-portal-deployed-resources.png" alt-text="Screenshot of Azure Portal showing deployed resources.":::
 
 Three containers are deployed within this application:
 
@@ -152,13 +195,13 @@ For more information on how .NET Aspire apps handle connection strings and servi
 
 When the `azd up` command is executed the underlying Azure resources are _provisioned_ and a container image is built and _deployed_ to the container apps hosting the .NET Aspire app. Typically once development is underway and Azure resources are deployed it won't be necessary to provision Azure resources every time code is updated—this is especially true for the developer inner loop.
 
-To speed up deployment of code changes, `azd` supports deploying code updates in the container image. This is done using the `azd` deploy command:
+To speed up deployment of code changes, `azd` supports deploying code updates in the container image. This is done using the `azd deploy` command:
 
 ```azdeveloper
 azd deploy
 ```
 
-:::image type="content" source="media/azd-deploy-output.png" lightbox="media/azd-deploy-output.png" alt-text="A screenshot of the `azd` deploy command output.":::
+[!INCLUDE [azd-deploy-output](includes/azd-deploy-output.md)]
 
 It's not necessary to deploy all services each time. `azd` understands the .NET Aspire app model, it's possible to deploy just one of the services specified using the following command:
 
@@ -183,10 +226,10 @@ var cache = builder.AddRedis("cache");
 var locationsdb = builder.AddPostgres("db").AddDatabase("locations");
 
 // Add the locations database reference to the API service.
-var apiservice = builder.AddProject<Projects.AspireAzdWalkthrough_ApiService>("apiservice")
+var apiservice = builder.AddProject<Projects.AspireSample_ApiService>("apiservice")
     .WithReference(locationsdb);
 
-builder.AddProject<Projects.AspireAzdWalkthrough_Web>("webfrontend")
+builder.AddProject<Projects.AspireSample_Web>("webfrontend")
     .WithReference(cache)
     .WithReference(apiservice);
 
@@ -211,7 +254,7 @@ azd down
 
 The previous command may take some time to execute, but when completed the resource group and all its resources should be deleted.
 
-:::image type="content" source="media/azd-down-success.png" lightbox="media/azd-down-success.png" alt-text="A screenshot showing the azd down command output.":::
+[!INCLUDE [azd-down-output](includes/azd-down-output.md)]
 
 ## Generate Bicep from .NET Aspire app model
 
@@ -229,8 +272,8 @@ After this command is executed in the starter template example used in this guid
 - _infra/main.bicep_: Represents the main entry point for the deployment.
 - _infra/main.parameters.json_: Used as the parameters for main Bicep (maps to environment variables defined in _.azure_ folder).
 - _infra/resoures.bicep_: Defines the Azure resources required to support the .NET Aspire app model.
-- _AspireAzdWalkthrough.Web/manifests/containerApp.tmpl.yaml_: The container app definition for `webfrontend`.
-- _AspireAzdWalkthrough.ApiService/manifests/containerApp.tmpl.yaml_: The container app definition for `apiservice`.
+- _AspireSample.Web/manifests/containerApp.tmpl.yaml_: The container app definition for `webfrontend`.
+- _AspireSample.ApiService/manifests/containerApp.tmpl.yaml_: The container app definition for `apiservice`.
 
 The _infra\resources.bicep_ file doesn't contain any definition of the container apps themselves (with the exception of container apps which are dependencies such as Redis and Postgres):
 
