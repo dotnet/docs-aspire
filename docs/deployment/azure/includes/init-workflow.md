@@ -10,19 +10,48 @@
 
 1. Select **Use code in the current directory** when `azd` prompts you with two app initialization options.
 
-    :::image type="content" source="../media/azd-prompt-init-path.png" lightbox="../media/azd-prompt-init-path.png" alt-text="Screenshot of `azd` confirming how to initialize the project.":::
+    ```Output
+    ? How do you want to initialize your app?  [Use arrows to move, type to filter]
+    > Use code in the current directory
+      Select a template
+    ```
 
 1. After scanning the directory, `azd` prompts you to confirm that it found the correct .NET Aspire _AppHost_ project. Select the **Confirm and continue initializing my app** option.
 
-    :::image type="content" source="../media/azd-prompt-confirm-path.png" lightbox="../media/azd-prompt-confirm-path.png" alt-text="Screenshot of `azd` confirming the detected location of the .NET Aspire application.":::
+    ```Output
+    Detected services:
+    
+      .NET (Aspire)
+      Detected in: D:\source\repos\AspireSample\AspireSample.AppHost\AspireSample.AppHost.csproj
+    
+    azd will generate the files necessary to host your app on Azure using Azure Container Apps.
+    
+    ? Select an option  [Use arrows to move, type to filter]
+    > Confirm and continue initializing my app
+      Cancel and exit
+    ```
 
-1. `azd` presents each of the projects in the .NET Aspire solution and prompts you to identify which to deploy with HTTP ingress open publicly to all internet traffic. Select only the `webfrontend` (using the spacebar), since you want the API to be private to the Azure Container Apps environment and *not* available publicly.
+1. `azd` presents each of the projects in the .NET Aspire solution and prompts you to identify which to deploy with HTTP ingress open publicly to all internet traffic. Select only the `webfrontend` (using the <kbd>↓</kbd> and <kbd>Space</kbd> keys), since you want the API to be private to the Azure Container Apps environment and *not* available publicly.
 
-    :::image type="content" source="../media/azd-prompt-select-endpoints.png" lightbox="../media/azd-prompt-select-endpoints.png" alt-text="Screenshot of `azd` prompting which .NET projects should have public endpoints.":::
+    ```Output
+    ? Select an option Confirm and continue initializing my app
+    By default, a service can only be reached from inside the Azure Container Apps environment it is running in. Selecting a service here will also allow it to be reached from the Internet.
+    ? Select which services to expose to the Internet  [Use arrows to move, space to select, <right> to all, <left> to none, type to filter]
+      [ ]  apiservice
+    > [x]  webfrontend
+    ```
 
 1. Finally, specify the the environment name, which is used to name provisioned resources in Azure and managing different environments such as `dev` and `prod`.
 
-    :::image type="content" source="../media/azd-prompt-final.png" lightbox="../media/azd-prompt-final.png" alt-text="A screenshot of the final `azd` output after initialization.":::
+    ```Output
+    Generating files to run your app on Azure:
+    
+      (✓) Done: Generating ./azure.yaml
+      (✓) Done: Generating ./next-steps.md
+    
+    SUCCESS: Your app is ready for the cloud!
+    You can provision and deploy your app to Azure by running the azd up command in this directory. For more information on configuring your app, see ./next-steps.md
+    ```
 
 `azd` generates a number of files and places them into the working directory. These files are:
 
