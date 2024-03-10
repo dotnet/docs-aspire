@@ -535,7 +535,7 @@ Finally, the app host and the bicep file would result in the following manifest 
 }
 ```
 
-The manifest captures both the parameters and the usage of the bicep output in the environment variables of the project. The [Azure Developer CLI](#azure-developer-cli) has been updated to understand this new resource type (you can learn more below) and can be used to deploy this application to **Azure Container Apps**.
+The manifest captures both the parameters and the usage of the bicep output in the environment variables of the project. The [Azure Developer CLI](#azure-developer-cli-azd) has been updated to understand this new resource type (you can learn more below) and can be used to deploy this application to **Azure Container Apps**.
 
 ## Emulators
 
