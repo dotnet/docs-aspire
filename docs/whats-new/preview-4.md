@@ -688,7 +688,7 @@ In addition to new features, azd will automatically create secrets in Azure Cont
 
 This release we've enabled a Visual Studio publish experience for .NET Aspire applications. This new deployment experience enables a single right-click-publish gesture that results in *all* of the nodes of your .NET Aspire project being published as individual Azure Container Apps in an Azure Container Apps Environment, ideal for dev/test scenarios. Even better - the publishing experience in Visual Studio uses `azd` under the hood, so you'll be able to publish .NET Aspire apps directly from Visual Studio to any `azd` environment you have running in Azure.
 
-![.NET Aspire right-click publish in Visual Studio](media/preview-4/aspire-azd-publish.gif)
+:::image type="content" source="media/preview-4/aspire-azd-publish.gif" lightbox="media/preview-4/aspire-azd-publish.gif" alt-text=".NET Aspire right-click publish in Visual Studio":::
 
 With so many similarities between Container Apps' support for [add-on services](https://learn.microsoft.com/azure/container-apps/services) like PostgreSQL, Kafka, and Redis and the support offered by mirroring .NET Aspire components ([PostgreSQL](https://learn.microsoft.com/dotnet/aspire/database/postgresql-component?tabs=dotnet-cli), [Kafka](https://learn.microsoft.com/dotnet/aspire/messaging/kafka-component?tabs=dotnet-cli), and [Redis](https://learn.microsoft.com/dotnet/aspire/caching/stackexchange-redis-component?tabs=dotnet-cli), for example), targeting Azure Container Apps as our **first** publishing destination was an easy decision. You'll be able to use Azure Container Apps as your development publishing target out-of-the-box using Visual Studio Preview's upcoming 17.10 preview 3 release.
 
