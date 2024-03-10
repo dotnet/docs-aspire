@@ -535,7 +535,7 @@ Finally, the app host and the bicep file would result in the following manifest 
 }
 ```
 
-The manifest captures both the parameters and the usage of the bicep output in the environment variables of the project. The [Azure Developer CLI](#azure-developer-cli) has been updated to understand this new resource type (you can learn more below) and can be used to deploy this application to **Azure Container Apps**.
+The manifest captures both the parameters and the usage of the bicep output in the environment variables of the project. The [Azure Developer CLI](#azure-developer-cli-azd) has been updated to understand this new resource type (you can learn more below) and can be used to deploy this application to **Azure Container Apps**.
 
 ## Emulators
 
@@ -603,16 +603,6 @@ The [.NET Aspire manifest](../deployment/manifest-format.md) has undergone a sig
 Tool authors can support this very small set of resource types to model lots of different apps!
 
 We've deprecated the abstract resource types that were supported in previous versions. Deployment tools may still support those resource types, but they are no longer part of the core manifest schema.
-
-### Visual Studio Publish to Azure
-
-This release we've enabled a Visual Studio publish experience for .NET Aspire applications.
-
-## Azure Developer CLI
-
-The [Azure Developer CLI](https://aka.ms/azd) (azd) has been updated to support the new manifest types introduced in preview 4. Azd supports prompting for parameter resources, and supports the bicep resource which enables deploying any thing. All Azure resources can be described using a bicep module.
-
-In addition to new features, azd will automatically create secrets in Azure Container Apps for any parameter marked as a secret, and any environment variable that references a secret or uses a connection string.
 
 ### Prompting for parameters
 
@@ -687,3 +677,23 @@ If the secret is referenced directly, the Container App secret will be a referen
 :::image type="content" source="media/preview-4/secretAndRefToSecret.png" lightbox="media/preview-4/secretAndRefToSecret.png" alt-text="azd secret and secret reference configuration":::
 
 The `connectionstring--server` holds the reference for the Key Vault secret. The secret is pulled by the Container App when it's used by the service project. On the other hand, the `connectionstring--db2` was created pulling the `connectionString` secret from Key Vault and adding the `Database=` configuration.
+
+## Azure Developer CLI (azd)
+
+The [Azure Developer CLI](https://aka.ms/azd) (azd) has been updated to support the new manifest types introduced in preview 4. Azd supports prompting for parameter resources, and supports the bicep resource which enables deploying any thing. All Azure resources can be described using a bicep module.
+
+In addition to new features, azd will automatically create secrets in Azure Container Apps for any parameter marked as a secret, and any environment variable that references a secret or uses a connection string.
+
+## Visual Studio Publish to Azure
+
+This release we've enabled a Visual Studio publish experience for .NET Aspire applications. This new deployment experience enables a single right-click-publish gesture that results in *all* of the nodes of your .NET Aspire project being published as individual Azure Container Apps in an Azure Container Apps Environment, ideal for dev/test scenarios. Even better - the publishing experience in Visual Studio uses `azd` under the hood, so you'll be able to publish .NET Aspire apps directly from Visual Studio to any `azd` environment you have running in Azure.
+
+:::image type="content" source="media/preview-4/aspire-azd-publish.gif" lightbox="media/preview-4/aspire-azd-publish.gif" alt-text=".NET Aspire right-click publish in Visual Studio":::
+
+With so many similarities between Container Apps' support for [add-on services](/azure/container-apps/services) like PostgreSQL, Kafka, and Redis and the support offered by mirroring .NET Aspire components ([PostgreSQL](/dotnet/aspire/database/postgresql-component?tabs=dotnet-cli), [Kafka](/dotnet/aspire/messaging/kafka-component?tabs=dotnet-cli), and [Redis](/dotnet/aspire/caching/stackexchange-redis-component?tabs=dotnet-cli), for example), targeting Azure Container Apps as our **first** publishing destination was an easy decision. You'll be able to use Azure Container Apps as your development publishing target out-of-the-box using Visual Studio Preview's upcoming 17.10 preview 3 release.
+
+### Considerations during Visual Studio 17.10 preview 3
+
+In this release, we have two important points you'll want to consider. The Visual Studio publish experience currently lacks support for parameter prompting. We'll add this in a subsequent release.
+
+The second, and more important thing to note, is that you'll need to perform an `azd auth login` before the Visual Studio publish features will work. Once you do the `azd auth login`, you'll be able to right-click publish to any Azure subscription you can access. We're working on this integration and plan to release an integrated auth flow experience from Visual Studio to `azd` prior to Visual Studio 17.10 preview 4. Once you do the `azd auth login`, you'll be good to go.
