@@ -704,7 +704,7 @@ Below are some known issues with .NET Aspire Preview 4.
 
 ### Console logs for a container do not show up when using Podman
 
-When using Podman, the console logs for a container do not show up in the Dashboard. See issues [aspire#2701](https://github.com/dotnet/aspire/issues/2701) and [aspire#2705](https://github.com/dotnet/aspire/issues/2705) for more details. This issue happens because some assumptions were made about the availability of Docker as mentioned [here](https://github.com/dotnet/aspire/issues/2701#issue-2173228010). 
+When using Podman, the console logs for a container do not show up in the Dashboard. See issues [aspire#2701](https://github.com/dotnet/aspire/issues/2701) and [aspire#2705](https://github.com/dotnet/aspire/issues/2705) for more details. This issue happens because some assumptions were made about the availability of Docker as mentioned [here](https://github.com/dotnet/aspire/issues/2701#issue-2173228010).
 
 **Workaround**: You can add a symlink from `docker` to `podman` as shown [here](https://github.com/dotnet/aspire/issues/2701#issuecomment-1987227953) or you can simply alias users can simply alias Docker to Podman (alias docker=podman) as mentioned [here](https://docs.podman.io/en/latest/index.html#what-is-podman).
 
@@ -722,5 +722,3 @@ If you have installed Aspire 8.0 Preview (either using .NET CLI or acquired thro
 
 - If you are using the CLI, you can use global.json to pin the SDK to the 8.0 version. See details in issue [aspire#1951](https://github.com/dotnet/aspire/issues/1951#issue-2105883589).
 - If you are using VS, you can set the `VS_TEMPLATELOCATOR_SDKVERSION` environment variable that will allow VS to discover the 8.0 version of the Aspire templates. See details in issue [aspire#2186](https://github.com/dotnet/aspire/issues/2186#issuecomment-1967502080).
-
-
