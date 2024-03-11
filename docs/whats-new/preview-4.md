@@ -698,7 +698,7 @@ In this release, we have two important points you'll want to consider. The Visua
 
 The second, and more important thing to note, is that you'll need to perform an `azd auth login` before the Visual Studio publish features will work. Once you do the `azd auth login`, you'll be able to right-click publish to any Azure subscription you can access. We're working on this integration and plan to release an integrated auth flow experience from Visual Studio to `azd` prior to Visual Studio 17.10 preview 4. Once you do the `azd auth login`, you'll be good to go.
 
-## Known Issues
+## Known issues
 
 Below are some known issues with .NET Aspire Preview 4.
 
