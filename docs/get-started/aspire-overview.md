@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire overview
 description: Learn about .NET Aspire, an application stack designed to improve the experience of building cloud-native applications.
-ms.date: 01/22/2024
+ms.date: 03/10/2024
 ---
 
 # .NET Aspire overview
@@ -14,13 +14,13 @@ A _distributed application_ is one that uses computational resources across mult
 
 .NET Aspire is designed to improve the experience of building .NET cloud-native apps. It provides a consistent, opinionated set of tools and patterns that help you build and run distributed apps. .NET Aspire is designed to help you with:
 
-- [**Orchestration**](#orchestration): .NET Aspire provides features for running and connecting multi-project applications and their dependencies.
+- [**Orchestration**](#orchestration): .NET Aspire provides features for running and connecting multi-project applications and their dependencies for local development environments.
 - [**Components**](#net-aspire-components): .NET Aspire components are NuGet packages for commonly used services, such as Redis or Postgres, with standardized interfaces ensuring they connect consistently and seamlessly with your app.
 - [**Tooling**](#project-templates-and-tooling): .NET Aspire comes with project templates and tooling experiences for Visual Studio and the [dotnet CLI](/dotnet/core/tools/) help you create and interact with .NET Aspire apps.
 
 ## Orchestration
 
-Orchestration refers to the coordination and management of various elements within a cloud-native application. .NET Aspire streamlines the configuration and interconnection of different parts of your cloud-native app.  It provides useful abstractions for managing service discovery, environment variables, and container configurations without having to handle low level implementation details. These abstractions also provide consistent setup patterns across apps with many components and services.
+In .NET Aspire, orchestration primarily focuses on enhancing the local development experience by simplifying the management of your cloud-native app's configuration and interconnections. It's important to note that .NET Aspire's orchestration is not intended to replace the robust systems used in production environments, such as Kubernetes. Instead, it provides a set of abstractions that streamline the setup of service discovery, environment variables, and container configurations, eliminating the need to deal with low-level implementation details. These abstractions ensure a consistent setup pattern across apps with numerous components and services, making it easier to manage complex applications during the development phase.
 
 .NET Aspire orchestration assists with the following concerns:
 
