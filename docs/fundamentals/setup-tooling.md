@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 02/22/2024
+ms.date: 03/11/2024
 ---
 
 # .NET Aspire setup and tooling
@@ -23,14 +23,14 @@ To work with .NET Aspire, you'll need the following installed locally:
 - [.NET Aspire workload](/dotnet/core/tools/dotnet-workload-install)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - Integrated Developer Environment (IDE) or code editor, such as:
-  - [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.9 or higher (Optional)
+  - [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.10 or higher (Optional)
   - [Visual Studio Code](https://code.visualstudio.com/) (Optional)
 
 The .NET Aspire workload installs internal dependencies and makes available other tooling, such as project templates and Visual Studio features. There are two ways to install the .NET Aspire workload. If you prefer to use Visual Studio Code, follow the .NET CLI instructions:
 
 # [Visual Studio](#tab/visual-studio)
 
-Visual Studio 2022 17.10 Preview 1 or higher includes the **.NET Aspire preview 3** workload by default. To verify that you have the .NET Aspire workload installed, run the following command:
+Visual Studio 2022 17.10 Preview 1 or higher includes the **.NET Aspire preview 4** workload by default. To verify that you have the .NET Aspire workload installed, run the following command:
 
 ```dotnetcli
 dotnet workload list
@@ -95,7 +95,7 @@ dotnet workload list
 
 The .NET Aspire workload makes available .NET Aspire project templates. These project templates allow you to create new apps pre-configured with the .NET Aspire project structure and default settings. These projects also provide a unified debugging experience across the different resources of your app.
 
-There are currently two project templates available:
+There are currently four project templates available:
 
 - **.NET Aspire Application**: A minimal .NET Aspire app that includes the following:
 
@@ -108,6 +108,10 @@ There are currently two project templates available:
   - **AspireSample.ApiService**: An ASP.NET Core Minimal API project is used to provide data to the frontend. This project depends on the shared **AspireSample.ServiceDefaults** project.
 
   - **AspireSample.Web**: An ASP.NET Core Blazor App project with default .NET Aspire service configurations, this project depends on the **AspireSample.ServiceDefaults** project.
+
+- **.NET Aspire App Host**: A standalone **.AppHost** project that can be used to orchestrate and manage the different projects and services of your app.
+
+- **.NET Aspire Service Defaults**: A standalone **.ServiceDefaults** project that can be used to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](./telemetry.md).
 
 Use Visual Studio or the .NET CLI to create new apps using these project templates. Explore additional .NET Aspire project templates in the [.NET Aspire samples](https://github.com/dotnet/aspire-samples) repository.
 
@@ -156,7 +160,7 @@ dotnet new aspire-starter
 
 ## .NET Aspire dashboard
 
-.NET Aspire project templates also include a useful [dashboard](dashboard.md) that can be used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
+.NET Aspire templates that expose the app host project also include a useful [dashboard](dashboard.md) that can be used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
 
 The .NET Aspire dashboard is only visible while the app is running and starts automatically when you start the **.AppHost** project. Visual Studio launches both your app and the .NET Aspire dashboard for you automatically in your browser. If you start the app using the .NET CLI, copy and paste the dashboard URL from the output into your browser.
 
