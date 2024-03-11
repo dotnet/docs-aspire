@@ -700,25 +700,25 @@ The second, and more important thing to note, is that you'll need to perform an 
 
 ## Known issues
 
-Below are some known issues with .NET Aspire Preview 4.
+The following are some known issues with .NET Aspire preview 4.
 
-### Console logs for a container do not show up when using Podman
+### Console logs for a container don't show up when using Podman
 
-When using Podman, the console logs for a container do not show up in the Dashboard. See issues [aspire#2701](https://github.com/dotnet/aspire/issues/2701) and [aspire#2705](https://github.com/dotnet/aspire/issues/2705) for more details. This issue happens because some assumptions were made about the availability of Docker as mentioned [here](https://github.com/dotnet/aspire/issues/2701#issue-2173228010).
+When using Podman, the console logs for a container don't show up in the .NET Aspire dashboard. For more information, see issues [aspire#2701](https://github.com/dotnet/aspire/issues/2701) and [aspire#2705](https://github.com/dotnet/aspire/issues/2705). This issue is because some assumptions were made about the availability of Docker, see GitHub Aspire repository [issue #2701 comment](https://github.com/dotnet/aspire/issues/2701#issue-2173228010).
 
-**Workaround**: You can add a symlink from `docker` to `podman` as shown [here](https://github.com/dotnet/aspire/issues/2701#issuecomment-1987227953) or you can simply alias users can simply alias Docker to Podman (alias docker=podman) as mentioned [here](https://docs.podman.io/en/latest/index.html#what-is-podman).
+**Workaround**: You can add a symlink from `docker` to `podman` as described in [issue comment](https://github.com/dotnet/aspire/issues/2701#issuecomment-1987227953) or you can simply alias Docker to Podman (`alias docker=podman`) as mentioned in [What is Podman](https://docs.podman.io/en/latest/index.html#what-is-podman).
 
-### When running Aspire application, we sometimes see KubeConfigException : kubeconfig file not found when the host is trying to start up
+### When running .NET Aspire app, we sometimes see `KubeConfigException : kubeconfig file not found when the host is trying to start up`
 
-As described in [issue 2542](https://github.com/dotnet/aspire/issues/2542), you might see a KubeConfigException sometimes when running the Aspire application. See [here](https://github.com/dotnet/aspire/issues/2542#issuecomment-1974253166) for a description of why this issue might likely happen.
+As described in [issue #2542](https://github.com/dotnet/aspire/issues/2542), you might see a `KubeConfigException` sometimes when running the Aspire application. For more information, see [issue #2542 comment](https://github.com/dotnet/aspire/issues/2542#issuecomment-1974253166) for a description of why this issue might likely happen.
 
-**Workaround**: You can close the VS debug console window, close and re-run the application again and that should work.
+**Workaround**: Close the Visual Studio debug console window, close and re-run the app again and that should work.
 
-### After .NET 9 SDK (Preview) is installed, you may find that the Aspire 8.0 workload and templates are not available anymore
+### After .NET 9 SDK (Preview) is installed, you may find that the .NET Aspire 8.0 workload and templates aren't available anymore
 
-If you have installed Aspire 8.0 Preview (either using .NET CLI or acquired through Visual Studio 2022 version 17.10 Preview) and then installed .NET 9 SDK (Preview), you may find that the Aspire 8.0 workload and templates are not available anymore. This is a known issue with the way workloads behave and we are working on improving the experience in future previews.
+If you've installed .NET Aspire 8.0 Preview (either using .NET CLI or acquired through Visual Studio 2022 version 17.10 Preview), and then installed .NET 9 SDK (Preview), you may find that the .NET Aspire 8.0 workload and templates are no longer available. This is a known issue with the way workloads behave and we're working on improving the experience in future previews.
 
 **Workaround**:
 
-- If you are using the CLI, you can use global.json to pin the SDK to the 8.0 version. See details in issue [aspire#1951](https://github.com/dotnet/aspire/issues/1951#issue-2105883589).
-- If you are using VS, you can set the `VS_TEMPLATELOCATOR_SDKVERSION` environment variable that will allow VS to discover the 8.0 version of the Aspire templates. See details in issue [aspire#2186](https://github.com/dotnet/aspire/issues/2186#issuecomment-1967502080).
+- If you're using the CLI, you can use a _global.json_ to pin the SDK to the version 8.0. For more information, see [issue #1951 comment](https://github.com/dotnet/aspire/issues/1951#issue-2105883589).
+- If you're using Visual Studio, set the `VS_TEMPLATELOCATOR_SDKVERSION` environment variable that allows Visual Studio to discover version 8.0 of the .NET Aspire templates. For more information, see [issue #2186 comment](https://github.com/dotnet/aspire/issues/2186#issuecomment-1967502080).
