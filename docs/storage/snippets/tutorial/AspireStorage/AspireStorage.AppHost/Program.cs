@@ -6,7 +6,7 @@ var storage = builder.AddAzureStorage("Storage");
 
 if (builder.Environment.IsDevelopment())
 {
-    storage.UseEmulator();
+    storage.RunAsEmulator();
 }
 
 var blobs = storage.AddBlobs("BlobConnection");

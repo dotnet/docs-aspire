@@ -47,6 +47,23 @@ public class ExampleService(SecretClient client)
 }
 ```
 
+## App host usage
+
+[!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
+
+In your app host project, register the Azure Key Vault component and consume the service using the following methods:
+
+```csharp
+// Service registration
+var secrets = builder.ExecutionContext.IsPublishMode
+    ? builder.AddAzureKeyVault("secrets")
+    : builder.AddConnectionString("secrets");
+
+// Service consumption
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(secrets)
+```
+
 ## Configuration
 
 The .NET Aspire Azure Key Vault component provides multiple options to configure the `SecretClient` based on the requirements and conventions of your project.

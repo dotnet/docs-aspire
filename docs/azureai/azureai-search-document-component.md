@@ -2,7 +2,7 @@
 title: NET Aspire Azure AI Search Documents component
 description: Learn how to use the NET Aspire Azure AI Search Documents component.
 ms.topic: how-to
-ms.date: 03/04/2024
+ms.date: 03/11/2024
 ---
 
 # NET Aspire Azure AI Search Documents component
@@ -71,7 +71,7 @@ public class ExampleService(SearchIndexClient indexClient)
 }
 ```
 
-For more information, see the [Azure AI Search client library for .NET](dotnet/api/overview/azure/search.documents-readme?view=azure-dotnet) for examples on using the `SearchIndexClient`.
+For more information, see the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search.documents-readme?view=azure-dotnet&preserve-view=true) for examples on using the `SearchIndexClient`.
 
 ## App host usage
 
@@ -80,7 +80,9 @@ For more information, see the [Azure AI Search client library for .NET](dotnet/a
 In the _Program.cs_ file of `AppHost`, add an Azure Search service and consume the connection using the following methods:
 
 ```csharp
-var search = builder.AddAzureSearch("search");
+var search = builder.ExecutionContext.IsPublishMode
+    ? builder.AddAzureSearch("search")
+    : builder.AddConnectionString("search");
 
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(search);

@@ -57,7 +57,9 @@ In your app host project, register the .NET Aspire Azure Cosmos DB component and
 
 ```csharp
 // Service registration
-var cosmosdb = builder.AddAzureCosmosDB("cdb");
+var cosmosdb = builder.ExecutionContext.IsPublishMode
+    ? builder.AddAzureCosmosDB("cdb")
+    : builder.AddConnectionString("cdb");
 
 // Service consumption
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
