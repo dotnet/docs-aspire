@@ -63,7 +63,9 @@ In your app host project, register the Service Bus component and consume the ser
 
 ```csharp
 // Service registration
-var serviceBus = builder.AddAzureServiceBus("messaging");
+var serviceBus = builder.ExecutionContext.IsPublishMode
+    ? builder.AddAzureServiceBus("messaging")
+    : builder.AddConnectionString("messaging");
 
 // Service consumption
 builder.AddProject<Projects.ExampleProject>()

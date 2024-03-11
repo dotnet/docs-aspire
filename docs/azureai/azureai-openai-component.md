@@ -60,7 +60,9 @@ In your app host project, register an Azure AI OpenAI resource using the followi
 
 ```csharp
 // Service registration
-var openai = builder.AddAzureOpenAI("openAiConnectionName");
+var openai = builder.ExecutionContext.IsPublishMode
+    ? builder.AddAzureOpenAI("openAiConnectionName")
+    : builder.AddConnectionString("openAiConnectionName");
 
 // Service consumption
 builder.AddProject<Projects.ExampleProject>()

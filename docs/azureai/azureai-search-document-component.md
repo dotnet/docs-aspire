@@ -80,7 +80,9 @@ For more information, see the [Azure AI Search client library for .NET](dotnet/a
 In the _Program.cs_ file of `AppHost`, add an Azure Search service and consume the connection using the following methods:
 
 ```csharp
-var search = builder.AddAzureSearch("search");
+var search = builder.ExecutionContext.IsPublishMode
+    ? builder.AddAzureSearch("search")
+    : builder.AddConnectionString("search");
 
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(search);
