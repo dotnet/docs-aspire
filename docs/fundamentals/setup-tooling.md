@@ -162,7 +162,7 @@ dotnet new aspire-starter
 
 .NET Aspire templates that expose the app host project also include a useful [dashboard](dashboard.md) that can be used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
 
-The .NET Aspire dashboard is only visible while the app is running and starts automatically when you start the **.AppHost** project. Visual Studio launches both your app and the .NET Aspire dashboard for you automatically in your browser. If you start the app using the .NET CLI, copy and paste the dashboard URL from the output into your browser.
+The .NET Aspire dashboard is only visible while the app is running and starts automatically when you start the **.AppHost** project. Visual Studio launches both your app and the .NET Aspire dashboard for you automatically in your browser. If you start the app using the .NET CLI, copy and paste the dashboard URL from the output into your browser, or hold <kbd>Ctrl</kbd> and select the link (if your terminal supports hyperlinks).
 
 :::image type="content" source="../media/run-dashboard-cli.png" alt-text="A screenshot showing how to launch the dashboard using the CLI.":::
 
@@ -173,14 +173,6 @@ The left navigation provides links to the different parts of the dashboard, each
 ## Visual Studio tooling
 
 Visual Studio provides additional features for working with .NET Aspire components and the App Host orchestrator project. These features are currently not available in Visual Studio Code or through the CLI.
-
-### Enable .NET Aspire preview support
-
-In Visual Studio, you can enable preview support for .NET Aspire components and project templates. To enable preview support, select **Tools** > **Options** > and in the **Search Settings** textbox enter "aspire", then ensure that the **Enable support for .NET Aspire** is checked:
-
-:::image type="content" source="../media/visual-studio-tools-options-aspire.png" lightbox="../media/visual-studio-tools-options-aspire.png" alt-text="Visual Studio 2022, enable .NET Aspire preview support.":::
-
-Likewise, you can disable preview support by unchecking the **Enable .NET Aspire preview support** option.
 
 ### Add a component
 
