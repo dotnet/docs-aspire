@@ -215,3 +215,7 @@ The following screenshot shows the theme selection dialog, with the default Syst
 If you prefer the Light theme, you can select it from the theme selection dialog:
 
 :::image type="content" source="media/dashboard/theme-selection-light.png" lightbox="media/dashboard/theme-selection-light.png" alt-text="The .NET Aspire dashboard Settings dialog, showing the Light theme selection.":::
+
+## Standalone mode
+
+The .NET Aspire dashboard is shipped as a docker image and can be used standalone, without the rest of .NET Aspire. There's a sample project that demonstrates how to use the dashboard in standalone mode. For more information, see the [Standalone .NET Aspire dashboard sample app](/samples/dotnet/aspire-samples/aspire-standalone-dashboard).
