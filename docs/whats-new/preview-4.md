@@ -1,14 +1,14 @@
 ---
 title: .NET Aspire preview 4
 description: .NET Aspire preview 4 is now available and includes many improvements and new capabilities
-ms.date: 03/07/2024
+ms.date: 03/11/2024
 ---
 
 # .NET Aspire preview 4
 
 .NET Aspire preview 4 introduces significant enhancements across various parts of the stack, including addressing highly requested features from the community. Notable focus areas include improvements Entity Framework components, Podman support, and changes to the application model to easily choose between using existing resources or provisioning new ones.
 
-The .NET Aspire preview 4 version is `8.0.0 preview.4.24129.7`.
+The .NET Aspire preview 4 version is `8.0.0-preview.4.24156.9`.
 
 ## Podman support
 
@@ -692,8 +692,33 @@ This release we've enabled a Visual Studio publish experience for .NET Aspire ap
 
 With so many similarities between Container Apps' support for [add-on services](/azure/container-apps/services) like PostgreSQL, Kafka, and Redis and the support offered by mirroring .NET Aspire components ([PostgreSQL](/dotnet/aspire/database/postgresql-component?tabs=dotnet-cli), [Kafka](/dotnet/aspire/messaging/kafka-component?tabs=dotnet-cli), and [Redis](/dotnet/aspire/caching/stackexchange-redis-component?tabs=dotnet-cli), for example), targeting Azure Container Apps as our **first** publishing destination was an easy decision. You'll be able to use Azure Container Apps as your development publishing target out-of-the-box using Visual Studio Preview's upcoming 17.10 preview 3 release.
 
-### Considerations during Visual Studio 17.10 preview 3
+### Considerations during Visual Studio 17.10 Preview 2
 
 In this release, we have two important points you'll want to consider. The Visual Studio publish experience currently lacks support for parameter prompting. We'll add this in a subsequent release.
 
 The second, and more important thing to note, is that you'll need to perform an `azd auth login` before the Visual Studio publish features will work. Once you do the `azd auth login`, you'll be able to right-click publish to any Azure subscription you can access. We're working on this integration and plan to release an integrated auth flow experience from Visual Studio to `azd` prior to Visual Studio 17.10 preview 4. Once you do the `azd auth login`, you'll be good to go.
+
+## Known issues
+
+The following are some known issues with .NET Aspire preview 4.
+
+### Console logs for a container don't show up when using Podman
+
+When using Podman, the console logs for a container don't show up in the .NET Aspire dashboard. For more information, see issues [aspire#2701](https://github.com/dotnet/aspire/issues/2701) and [aspire#2705](https://github.com/dotnet/aspire/issues/2705). This issue is because some assumptions were made about the availability of Docker, see GitHub Aspire repository [issue #2701 comment](https://github.com/dotnet/aspire/issues/2701#issue-2173228010).
+
+**Workaround**: You can add a symlink from `docker` to `podman` as described in [issue comment](https://github.com/dotnet/aspire/issues/2701#issuecomment-1987227953) or you can simply alias Docker to Podman (`alias docker=podman`) as mentioned in [What is Podman](https://docs.podman.io/en/latest/index.html#what-is-podman).
+
+### When running .NET Aspire app, we sometimes see `KubeConfigException : kubeconfig file not found when the host is trying to start up`
+
+As described in [issue #2542](https://github.com/dotnet/aspire/issues/2542), you might see a `KubeConfigException` sometimes when running the Aspire application. For more information, see [issue #2542 comment](https://github.com/dotnet/aspire/issues/2542#issuecomment-1974253166) for a description of why this issue might likely happen.
+
+**Workaround**: Close the Visual Studio debug console window, close and re-run the app again and that should work.
+
+### After .NET 9 SDK (Preview) is installed, you may find that the .NET Aspire 8.0 workload and templates aren't available anymore
+
+If you've installed .NET Aspire 8.0 Preview (either using .NET CLI or acquired through Visual Studio 2022 version 17.10 Preview), and then installed .NET 9 SDK (Preview), you may find that the .NET Aspire 8.0 workload and templates are no longer available. This is a known issue with the way workloads behave and we're working on improving the experience in future previews.
+
+**Workaround**:
+
+- If you're using the CLI, you can use a _global.json_ to pin the SDK to the version 8.0. For more information, see [issue #1951 comment](https://github.com/dotnet/aspire/issues/1951#issue-2105883589).
+- If you're using Visual Studio, set the `VS_TEMPLATELOCATOR_SDKVERSION` environment variable that allows Visual Studio to discover version 8.0 of the .NET Aspire templates. For more information, see [issue #2186 comment](https://github.com/dotnet/aspire/issues/2186#issuecomment-1967502080).
