@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard overview
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 12/08/2023
+ms.date: 03/11/2024
 ms.topic: reference
 ---
 
@@ -189,6 +189,10 @@ Each metric-publishing project in your app will have its own metrics. The metric
 Consider the following example screenshot of the metrics page, with the `webfrontend` project selected and the `System.Net.Http` meter's `http.client.request.duration` metric selected:
 
 :::image type="content" source="media/dashboard/metrics-view.png" lightbox="media/dashboard/metrics-view.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page.":::
+
+In addition to the metrics chart, the metrics page includes an option to view the data as a table instead. Consider the following screenshot of the metrics page with the table view selected:
+
+:::image type="content" source="media/dashboard/metrics-table-view.png" lightbox="media/dashboard/metrics-table-view.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with the table view selected.":::
 
 Under the chart, there is a list of filters you can apply to focus on the data that interests you. For example, in the following screenshot, the **http.request.method** field has been filtered to show only **GET** requests:
 
