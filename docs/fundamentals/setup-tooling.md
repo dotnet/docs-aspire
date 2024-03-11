@@ -176,7 +176,7 @@ Visual Studio provides additional features for working with .NET Aspire componen
 
 ### Add a component
 
-You add .NET Aspire components to your app like any other NuGet package using Visual Studio. However, Visual Studio also provides UI options to add .NET Aspire components directly. You need to first enable preview support for .NET Aspire components in Visual Studio. For information see, [Enable .NET Aspire preview support](#enable-net-aspire-preview-support).
+You add .NET Aspire components to your app like any other NuGet package using Visual Studio. However, Visual Studio also provides UI options to add .NET Aspire components directly.
 
 1. In Visual Studio, right click on the project you want to add an .NET Aspire component to and select **Add** > **.NET Aspire Component...**.
 
