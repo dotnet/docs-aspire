@@ -190,6 +190,10 @@ Consider the following example screenshot of the metrics page, with the `webfron
 
 :::image type="content" source="media/dashboard/metrics-view.png" lightbox="media/dashboard/metrics-view.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page.":::
 
+In addition to the metrics chart, the metrics page includes an option to view the data as a table instead. Consider the following screenshot of the metrics page with the table view selected:
+
+:::image type="content" source="media/dashboard/metrics-table-view.png" lightbox="media/dashboard/metrics-table-view.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with the table view selected.":::
+
 Under the chart, there is a list of filters you can apply to focus on the data that interests you. For example, in the following screenshot, the **http.request.method** field has been filtered to show only **GET** requests:
 
 :::image type="content" source="media/dashboard/metrics-view-filtered.png" lightbox="media/dashboard/metrics-view-filtered.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with a filter applied to the chart.":::
