@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire preview 4
 description: .NET Aspire preview 4 is now available and includes many improvements and new capabilities
-ms.date: 03/11/2024
+ms.date: 03/12/2024
 ---
 
 # .NET Aspire preview 4
@@ -313,6 +313,7 @@ builder.AddProject<Projects.WebApplication1>("api")
 builder.Build().Run();
 ```
 
+<!--
 ## Ability to ignore launch profiles
 
 Sometimes you might want to ignore launch profiles when running the application. This can be useful when you want to define your own environment or endpoints when running the application.
@@ -330,6 +331,7 @@ builder.AddProject<Projects.WebApplication1>("api")
 
 builder.Build().Run();
 ```
+-->
 
 ## Ability to disable endpoint proxies
 
