@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireSQLEFCore", "AspireSQ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireSQLEFCore.AppHost", "AspireSQLEFCore.AppHost\AspireSQLEFCore.AppHost.csproj", "{0510325F-3687-49E2-B91D-474E6B12179D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireSQLEFCore.ServiceDefaults", "AspireSQLEFCore.ServiceDefaults\AspireSQLEFCore.ServiceDefaults.csproj", "{ED32A3C9-E38B-4712-AD04-0547680EEE24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireSQLEFCore.ServiceDefaults", "AspireSQLEFCore.ServiceDefaults\AspireSQLEFCore.ServiceDefaults.csproj", "{65E30FBE-60A0-4804-920D-5BE70A215D0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{0510325F-3687-49E2-B91D-474E6B12179D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0510325F-3687-49E2-B91D-474E6B12179D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0510325F-3687-49E2-B91D-474E6B12179D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ED32A3C9-E38B-4712-AD04-0547680EEE24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ED32A3C9-E38B-4712-AD04-0547680EEE24}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ED32A3C9-E38B-4712-AD04-0547680EEE24}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ED32A3C9-E38B-4712-AD04-0547680EEE24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65E30FBE-60A0-4804-920D-5BE70A215D0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65E30FBE-60A0-4804-920D-5BE70A215D0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65E30FBE-60A0-4804-920D-5BE70A215D0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65E30FBE-60A0-4804-920D-5BE70A215D0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

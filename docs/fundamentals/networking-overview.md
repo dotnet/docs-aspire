@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire inner loop networking overview
 description: Learn how .NET Aspire handles networking and service bindings, and how you can use them in your app code.
-ms.date: 01/12/2024
+ms.date: 03/07/2024
 ms.topic: overview
 ---
 
@@ -142,3 +142,20 @@ The preceding code:
 Consider the following diagram:
 
 :::image type="content" source="media/networking/proxy-with-docker-port-mapping-1x.png" alt-text=".NET Aspire frontend app networking diagram with a docker host.":::
+
+## Endpoint extension methods
+
+Any resource that implements the `IResourceWithEndpoints` interface can use the `WithEndpoint` extension methods. There are several overloads of this extension, allowing you to specify the scheme, container port, host port, environment variable name, and whether the endpoint is proxied.
+
+There's also an overload that allows you to specify a delegate to configure the endpoint. This is useful when you need to configure the endpoint based on the environment or other factors. Consider the following code:
+
+:::code source="snippets/networking/Networking.AppHost/Program.WithEndpoint.cs" id="withendpoint":::
+
+The preceding code provides a callback delegate to configure the endpoint. The endpoint is named `admin` and configured to use the `http` scheme and transport, as well as the 17003 host port. The consumer references this endpoint by name, consider the following `AddHttpClient` call:
+
+```
+builder.Services.AddHttpClient<WeatherApiClient>(
+    client => client.BaseAddress = new Uri("http://_admin.apiservice"));
+```
+
+The `Uri` is constructed using the `admin` endpoint name prefixed with the `_` sentinel. This is a convention to indicate that the `admin` segment is the endpoint name belonging to the `apiservice` service. For more information, see [.NET Aspire service discovery](../service-discovery/overview.md).

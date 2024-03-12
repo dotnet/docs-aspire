@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-preview.4.24156.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Parameters.ServiceDefaults\Parameters.ServiceDefaults.csproj" />
+  </ItemGroup>
+
+</Project>

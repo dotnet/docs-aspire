@@ -135,7 +135,7 @@ Although `azd` generated some essential template files for you, the project stil
 
 ## Create the GitHub repository and pipeline
 
-The Azure Developer CLI enables you to automatically create CICD pipelines with the correct configurations and permissions to provision and deploy resources to Azure. `azd` can also create a GitHub repository for your app if it doesn't exist already.
+The Azure Developer CLI enables you to automatically create CI/CD pipelines with the correct configurations and permissions to provision and deploy resources to Azure. `azd` can also create a GitHub repository for your app if it doesn't exist already.
 
 1. Run the `azd pipeline config` command to configure your deployment pipeline and securely connect it to Azure:
 
@@ -207,7 +207,7 @@ steps:
   # azd delegate auth to az to use service connection with AzureCLI@2
   - pwsh: |
       azd config set auth.useAzCliAuth "true"
-    displayName: Configure AZD to Use AZ CLI Authentication.
+    displayName: Configure `azd` to Use AZ CLI Authentication.
 
   - task: Install .NET Aspire workload
     inputs: 

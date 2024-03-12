@@ -20,8 +20,8 @@ items:
 
   - name: What's new in .NET Aspire
     items:
-      - name: .NET Aspire preview 3
-        href: whats-new/preview-3.md
+      - name: .NET Aspire preview 4
+        href: whats-new/preview-4.md
 
   - name: Fundamentals
     items:
@@ -42,6 +42,8 @@ items:
         href: service-discovery/overview.md
       - name: Service defaults
         href: fundamentals/service-defaults.md
+      - name: External parameters
+        href: fundamentals/external-parameters.md
       - name: Persist data using volumes
         href: fundamentals/persist-data-volumes.md
       - name: Health checks
@@ -49,10 +51,12 @@ items:
       - name: Telemetry
         href: fundamentals/telemetry.md
 
-  - name: OpenAI
+  - name: Azure AI
     items:
       - name: Azure AI OpenAI component
-        href: openai/azureai-openai-component.md
+        href: azureai/azureai-openai-component.md
+      - name: Azure AI Search Documents component
+        href: azureai/azureai-search-document-component.md
 
   - name: Storage
     items:
@@ -96,6 +100,11 @@ items:
       - name: Seed data in a database
         href: database/seed-database-data.md
 
+  - name: Real-time communication
+    items:
+      - name: Azure SignalR Service scenario
+        href: real-time/azure-signalr-scenario.md
+
   - name: Messaging
     items:
       - name: Tutorial - Messaging using .NET Aspire components
@@ -132,10 +141,10 @@ items:
           - name: Tutorial - Azure Container Apps
             href: deployment/azure/aca-deployment.md
             displayName: azure container apps,aca
-          - name: Azure Container Apps with AZD (In-depth)
+          - name: Azure Container Apps with azd (In-depth)
             href: deployment/azure/aca-deployment-azd-in-depth.md
             displayName: azure container apps,aca,azd
-          - name: Tutorial - Deploy using AZD and CICD
+          - name: Tutorial - Deploy using azd and CI/CD
             href: deployment/azure/aca-deployment-github-actions.md
           - name: Use .NET Aspire with Application Insights
             href: deployment/azure/application-insights.md

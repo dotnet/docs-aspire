@@ -43,7 +43,13 @@ For more information, see [dotnet run](/dotnet/core/tools/dotnet-run).
 
 ---
 
-1. Navigate from the home page to the weather page in the browser. The page should load the weather data, make a mental note of some of the values represented in the forecast table.
+1. The app displays the .NET Aspire dashboard in the browser. We'll look at the dashboard in more detail later. For now, find the **webfrontend** project in the list of resources and select the project's **localhost** endpoint.
+
+    :::image type="content" source="media/aspire-dashboard-webfrontend.png" lightbox="media/aspire-dashboard-webfrontend.png" alt-text="A screenshot of the .NET Aspire Dashboard, highlighting the webfrontend project's localhost endpoint.":::
+
+    The home page of the **webfrontend** app displays "Hello, world!"
+
+1. Navigate from the home page to the weather page in the using the left side navigation. The weather page displays weather data. Make a mental note of some of the values represented in the forecast table.
 1. Continue occasionally refreshing the page for 10 seconds. Within 10 seconds, the cached data is returned. Eventually, a different set of weather data appears, since the data is randomly generated and the cache is updated.
 
 :::image type="content" source="media/weather-page.png" lightbox="media/weather-page.png" alt-text="The Weather page of the webfrontend app showing the weather data retrieved from the API.":::
@@ -52,22 +58,15 @@ For more information, see [dotnet run](/dotnet/core/tools/dotnet-run).
 
 ## Explore the .NET Aspire dashboard
 
-When you run a .NET Aspire app, a dashboard also launches that you use to monitor various parts of your app. The dashboard should resemble the following screenshot:
+When you run a .NET Aspire app, a dashboard launches that you use to monitor various parts of your app. The dashboard resembles the following screenshot:
 
 :::image type="content" source="media/aspire-dashboard.png" lightbox="media/aspire-dashboard.png" alt-text="A screenshot of the .NET Aspire Dashboard, depicting the Projects tab.":::
 
 Visit each link on the left navigation to view different information about the .NET Aspire app:
 
-- **Projects**: Lists basic information for all of the individual .NET projects in your .NET Aspire app, such as the app state, endpoint addresses, and the environment variables that were loaded in.
-- **Containers**: Lists basic information about your app containers, such as the state, image tag, and port number. You should see the Redis container you added for output caching with the name you provided.
-- **Executables**: Lists the running executables used by your app. The sample app doesn't include any executables, so it should display the message **No running executables found**.
-- **Logs**:
-
-  - **Project**: Displays the output logs for the projects in your app. Select which project you'd like to display logs for using the drop-down at the top of the page.
-  - **Container**: Displays logs from the containers in your app. You should see Redis logs from the container you configured as part of the template. If you have more than one container, you can select which to show logs from using the drop-down at the top of the page.
-  - **Executable**: Displays logs from the executables in your app. The sample app doesn't include any executables, so there's nothing to see here.
-  - **Structured**: Displays structured logs in table format. These logs support basic filtering, free-form search, and log level filtering as well. You should see logs from the `apiservice` and the `webfrontend`. You can expand the details of each log entry by selecting the **View** button on the right end of the row.
-
+- **Resources**: Lists basic information for all of the individual .NET projects in your .NET Aspire app, such as the app state, endpoint addresses, and the environment variables that were loaded in.
+- **Console**: Displays the console output from each of the projects in your app.
+- **Structured**: Displays structured logs in table format. These logs support basic filtering, free-form search, and log level filtering as well. You should see logs from the `apiservice` and the `webfrontend`. You can expand the details of each log entry by selecting the **View** button on the right end of the row.
 - **Traces**: Displays the traces for your application, which can track request paths through your apps. Locate a request for **/weather** and select **View** on the right side of the page. The dashboard should display the request in stages as it travels through the different parts of your app.
 
     :::image type="content" source="media/aspire-dashboard-trace.png" lightbox="media/aspire-dashboard-trace.png" alt-text="A screenshot showing an .NET Aspire dashboard trace for the webfrontend /weather route.":::
@@ -77,6 +76,8 @@ Visit each link on the left navigation to view different information about the .
     :::image type="content" source="media/aspire-dashboard-metrics.png" lightbox="media/aspire-dashboard-metrics.png" alt-text="A screenshot showing an Aspire dashboard metrics page for the webfrontend.":::
 
 For more information, see [.NET Aspire dashboard overview](../fundamentals/dashboard.md).
+
+## Understand the .NET Aspire solution structure
 
 The solution consists of the following projects:
 

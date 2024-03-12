@@ -12,12 +12,16 @@ landingContent:
   linkLists:
   - linkListType: whats-new
     links:
+    - text: .NET Aspire preview 4
+      url: preview-4.md
     - text: .NET Aspire preview 3
       url: preview-3.md
 - title: .NET Aspire GitHub release notes
   linkLists:
   - linkListType: whats-new
     links:
+    - text: .NET Aspire 8.0 preview 4
+      url: https://github.com/dotnet/aspire/releases/tag/v8.0.0-preview.4.24156.9
     - text: .NET Aspire 8.0 preview 3
       url: https://github.com/dotnet/aspire/releases/tag/v8.0.0-preview.3.24105.21
     - text: .NET Aspire 8.0 preview 2

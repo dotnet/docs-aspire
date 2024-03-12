@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="SignalR.Web.styles.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <HeadOutlet />
+</head>
+
+<body class="d-flex flex-column h-100">
+    <Routes @rendermode=RenderMode.InteractiveServer />
+    <script src="_framework/blazor.web.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

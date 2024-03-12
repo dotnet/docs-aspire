@@ -414,7 +414,7 @@ The .NET Aspire samples are located in <https://github.com/dotnet/aspire-samples
 - [ClientAppsIntegration](https://github.com/dotnet/aspire-samples/tree/main/samples/ClientAppsIntegration) demonstrates working with client apps such as WinForms, WPF, etc., in a .NET Aspire app, such that the client app is launched along with the AppHost project, can resolve services via service discovery, and logs, traces, and metrics via OpenTelemetry to the dashboard.
 - [Persistent Volume Mount](https://github.com/dotnet/aspire-samples/tree/main/samples/VolumeMount) demonstrates how to configure a SQL Server container to use a persistent volume mount in .NET Aspire, so that the data is persisted across app launches. This method can be used to persist data across instances of other container types configured in .NET Aspire apps too, e.g. PostgreSQL, Redis, etc.
 
-## Deployment to Azure using AZD
+## Deployment to Azure using `azd`
 
 The [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/) is an open-source tool that makes it easier to get your applications running in the cloud on Azure. We are working to ensure that `azd` enables the fastest and simplest way to get an Aspire app provisioned and deployed to Azure in minutes. In this release the focus has still been primarily targeting Azure Container Apps.
 

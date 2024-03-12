@@ -2,7 +2,7 @@
 title: .NET Aspire Azure AI OpenAI component
 description: Learn how to use the .NET Aspire Azure AI OpenAI component.
 ms.topic: how-to
-ms.date: 02/16/2024
+ms.date: 02/28/2024
 ---
 
 # .NET Aspire Azure AI OpenAI component
@@ -60,7 +60,9 @@ In your app host project, register an Azure AI OpenAI resource using the followi
 
 ```csharp
 // Service registration
-var openai = builder.AddAzureOpenAI("openAiConnectionName");
+var openai = builder.ExecutionContext.IsPublishMode
+    ? builder.AddAzureOpenAI("openAiConnectionName")
+    : builder.AddConnectionString("openAiConnectionName");
 
 // Service consumption
 builder.AddProject<Projects.ExampleProject>()
@@ -162,6 +164,6 @@ The .NET Aspire Azure AI OpenAI component uses the following log categories:
 
 ## See also
 
-- [RabbitMQ .NET Client docs](https://rabbitmq.github.io/rabbitmq-dotnet-client)
+- [Azure AI OpenAI docs](/azure/ai-services/openai/overview)
 - [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

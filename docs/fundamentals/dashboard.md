@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard overview
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 12/08/2023
+ms.date: 03/11/2024
 ms.topic: reference
 ---
 
@@ -190,6 +190,10 @@ Consider the following example screenshot of the metrics page, with the `webfron
 
 :::image type="content" source="media/dashboard/metrics-view.png" lightbox="media/dashboard/metrics-view.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page.":::
 
+In addition to the metrics chart, the metrics page includes an option to view the data as a table instead. Consider the following screenshot of the metrics page with the table view selected:
+
+:::image type="content" source="media/dashboard/metrics-table-view.png" lightbox="media/dashboard/metrics-table-view.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with the table view selected.":::
+
 Under the chart, there is a list of filters you can apply to focus on the data that interests you. For example, in the following screenshot, the **http.request.method** field has been filtered to show only **GET** requests:
 
 :::image type="content" source="media/dashboard/metrics-view-filtered.png" lightbox="media/dashboard/metrics-view-filtered.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with a filter applied to the chart.":::
@@ -211,3 +215,7 @@ The following screenshot shows the theme selection dialog, with the default Syst
 If you prefer the Light theme, you can select it from the theme selection dialog:
 
 :::image type="content" source="media/dashboard/theme-selection-light.png" lightbox="media/dashboard/theme-selection-light.png" alt-text="The .NET Aspire dashboard Settings dialog, showing the Light theme selection.":::
+
+## Standalone mode
+
+The .NET Aspire dashboard is shipped as a docker image and can be used standalone, without the rest of .NET Aspire. There's a sample project that demonstrates how to use the dashboard in standalone mode. For more information, see the [Standalone .NET Aspire dashboard sample app](/samples/dotnet/aspire-samples/aspire-standalone-dashboard).
