@@ -221,7 +221,7 @@ These resources are available in the [Aspire.Hosting](https://www.nuget.org/pack
 | App model usage | Manifest resource type | Heading link |
 |--|--|--|
 | <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> | `container.v0` | [Container resource type](#container-resource-type) |
-| <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.PublishAsDockerFile%2A> | `dockerfile.v0` | [Dockerfile resource types](#dockerfile-resource-types) |
+| `PublishAsDockerFile` | `dockerfile.v0` | [Dockerfile resource types](#dockerfile-resource-types) |
 | <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddDatabase%2A> | `value.v0` | [MongoDB Server resource types](#mongodb-resource-types) |
 | <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddMongoDB%2A> | `container.v0` | [MongoDB resource types](#mongodb-resource-types) |
 | <xref:Aspire.Hosting.MySqlBuilderExtensions.AddDatabase%2A> | `value.v0` | [MySQL Server resource types](#mysql-resource-types) |
@@ -318,7 +318,7 @@ builder.AddNodeApp("nodeapp", "../nodeapp/app.js")
 ```
 
 > [!TIP]
-> The <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.PublishAsDockerFile%2A> call is required to generate the Dockerfile resource type in the manifest, and this extension method is only available on the <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> type.
+> The `PublishAsDockerFile` call is required to generate the Dockerfile resource type in the manifest, and this extension method is only available on the <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> type.
 
 Example manifest:
 

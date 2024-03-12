@@ -71,7 +71,7 @@ public class ExampleService(SearchIndexClient indexClient)
 }
 ```
 
-For more information, see the [Azure AI Search client library for .NET](/dotnet/api/overview/azure/search.documents-readme?view=azure-dotnet&preserve-view=true) for examples on using the `SearchIndexClient`.
+For more information, see the [Azure AI Search client library for .NET](https://learn.microsoft.com/dotnet/api/overview/azure/search.documents-readme?view=azure-dotnet&preserve-view=true) for examples on using the `SearchIndexClient`.
 
 ## App host usage
 
