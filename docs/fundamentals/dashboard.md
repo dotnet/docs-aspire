@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard overview
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 03/11/2024
+ms.date: 03/13/2024
 ms.topic: reference
 ---
 
@@ -22,6 +22,31 @@ The screenshots featured in this article showcase the dark theme. For more detai
 ## Explore the .NET Aspire dashboard
 
 The .NET Aspire dashboard is only visible while the **AppHost** app is running and will launch automatically when you start the project. The left navigation provides links to the different parts of the dashboard, each of which you'll explore in the following sections. Additionally, the cog icon in the upper right of the dashboard provides access to the settings page, which allows you to configure your dashboard experience.
+
+## Dashboard shortcuts
+
+The .NET Aspire dashboard provides a variety of shortcuts to help you navigate the different parts of the dashboard. To display the keyboard shortcuts, press <kbd>Shift</kbd> + <kbd>?</kbd>. The following shortcuts are available:
+
+**Panels**:
+
+- <kbd>+</kbd>: Increase panel size.
+- <kbd>-</kbd>: Decrease panel size.
+- <kbd>Shift</kbd> + <kbd>r</kbd>: Reset panel size.
+- <kbd>Shift</kbd> + <kbd>t</kbd>: Toggle panel orientation.
+- <kbd>Shift</kbd> + <kbd>x</kbd>: Close panel.
+
+**Page navigation**:
+
+- <kbd>r</kbd>: Go to **Resources**.
+- <kbd>c</kbd>: Go to **Console Logs**.
+- <kbd>s</kbd>: Go to **Structured Logs**.
+- <kbd>t</kbd>: Go to **Traces**.
+- <kbd>m</kbd>: Go to **Metrics**.
+
+**Site-wide navigation**:
+
+- <kbd>?</kbd>: Got to **Help**.
+- <kbd>Shift</kbd> + <kbd>s</kbd>: Go to **Settings**.
 
 ## Resources page
 
