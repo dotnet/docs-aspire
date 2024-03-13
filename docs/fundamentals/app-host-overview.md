@@ -140,21 +140,21 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 | `AddSqlServerContainer(...).`<xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource> | Adds a SQL Server database resource. |
 | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresServerResource> | Adds a Postgres server resource. |
 | <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A> | <xref:Aspire.Hosting.ApplicationModel.RabbitMQServerResource> | Adds a RabbitMQ server resource. |
-| <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> | <xref:Aspire.Hosting.ApplicationModel.RedisContainerResource> | Adds a Redis container resource. |
+| <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> | <xref:Aspire.Hosting.ApplicationModel.RedisResource> | Adds a Redis container resource. |
 | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerServerResource> | Adds a SQL Server server resource. |
 
 **Azure specific resources available in the [📦 Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure) NuGet package:**
 
 | Method | Resource type | Description |
 |--|--|--|
-| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureStorageResource> | Adds an Azure Storage resource. |
-| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureStorageExtensions.AddBlobs%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureBlobStorageResource> | Adds an Azure Blob Storage resource. |
-| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureStorageExtensions.AddQueues%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureQueueStorageResource> | Adds an Azure Queue Storage resource. |
-| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureStorageExtensions.AddTables%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureTableStorageResource> | Adds an Azure Table Storage resource. |
-| <xref:Aspire.Hosting.AzureCosmosDBCloudApplicationBuilderExtensions.AddAzureCosmosDB%2A> | <xref:Aspire.Hosting.Azure.Data.Cosmos.AzureCosmosDBResource> | Adds an Azure Cosmos DB resource. |
-| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureKeyVault%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureKeyVaultResource> | Adds an Azure Key Vault resource. |
-| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureRedis%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureRedisResource> | Adds an Azure Redis resource. |
-| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureServiceBus%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureServiceBusResource> | Adds an Azure Service Bus resource. |
+| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A> | <xref:Aspire.Hosting.Azure.AzureStorageResource> | Adds an Azure Storage resource. |
+| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureStorageExtensions.AddBlobs%2A> | <xref:Aspire.Hosting.Azure.AzureBlobStorageResource> | Adds an Azure Blob Storage resource. |
+| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureStorageExtensions.AddQueues%2A> | <xref:Aspire.Hosting.Azure.AzureQueueStorageResource> | Adds an Azure Queue Storage resource. |
+| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureStorageExtensions.AddTables%2A> | <xref:Aspire.Hosting.Azure.AzureTableStorageResource> | Adds an Azure Table Storage resource. |
+| <xref:Aspire.Hosting.AzureCosmosExtensions.AddAzureCosmosDB%2A> | <xref:Aspire.Hosting.Azure.AzureCosmosDBResource> | Adds an Azure Cosmos DB resource. |
+| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureKeyVault%2A> | <xref:Aspire.Hosting.Azure.AzureKeyVaultResource> | Adds an Azure Key Vault resource. |
+| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureRedis%2A> | <xref:Aspire.Hosting.Azure.AzureRedisResource> | Adds an Azure Redis resource. |
+| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureServiceBus%2A> | <xref:Aspire.Hosting.Azure.AzureServiceBusResource> | Adds an Azure Service Bus resource. |
 
 ## See also
 

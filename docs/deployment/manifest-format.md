@@ -231,7 +231,6 @@ These resources are available in the [Aspire.Hosting](https://www.nuget.org/pack
 | <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> | `project.v0` | [Project resource type](#project-resource-type) |
 | <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A> | `container.v0` | [RabbitMQ resource types](#rabbitmq-resource-types) |
 | <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> | `container.v0` | [Redis resource type](#redis-resource-type) |
-| <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedisContainer%2A> | `container.v0` | [Redis resource type](#redis-resource-type) |
 | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | `value.v0` | [SQL Server resource types](#sql-server-resource-types) |
 | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A> | `container.v0` | [SQL Server resource types](#sql-server-resource-types) |
 
@@ -624,10 +623,10 @@ The following resources are available in the [Aspire.Hosting.Azure](https://www.
 
 | App Model usage | Manifest resource type | Heading link |
 |--|--|--|
-| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureAppConfiguration%2A> | `azure.bicep.v0` | [Azure App Configuration resource types](#azure-app-configuration-resource-type) |
-| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureKeyVault%2A> | `azure.bicep.v0` | [Azure Key Vault resource type](#azure-key-vault-resource-type) |
+| <xref:Aspire.Hosting.AzureAppConfigurationExtensions.AddAzureAppConfiguration%2A> | `azure.bicep.v0` | [Azure App Configuration resource types](#azure-app-configuration-resource-type) |
+| <xref:Aspire.Hosting.AzureKeyVaultResourceExtensions.AddAzureKeyVault%2A> | `azure.bicep.v0` | [Azure Key Vault resource type](#azure-key-vault-resource-type) |
 | <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A>`.AsAzureRedis()` | `azure.bicep.v0` | [Azure Redis resource types](#azure-redis-resource-type) |
-| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureServiceBus%2A> | `azure.bicep.v0` | [Azure Service Bus resource type](#azure-service-bus-resource-type) |
+| <xref:Aspire.Hosting.AzureServiceBusExtensions.AddAzureServiceBus%2A> | `azure.bicep.v0` | [Azure Service Bus resource type](#azure-service-bus-resource-type) |
 | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A>`.AsAzureSqlDatabase()` | `azure.bicep.v0` | [Azure SQL resource types](#azure-sql-resource-types) |
 | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A>`.AsAzureSqlDatabase().AddDatabase(...)` | `value.v0` | [Azure SQL resource types](#azure-sql-resource-types) |
 | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A>`.AsAzurePostgresFlexibleServer(...)` | `azure.bicep.v0` | [Azure Postgres resource types](#azure-postgres-resource-types) |
