@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs to express resource references.
-ms.date: 03/10/2024
+ms.date: 03/13/2024
 ms.topic: overview
 ---
 
@@ -139,25 +139,22 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 | `AddPostgresContainer(...).`<xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresDatabaseResource> | Adds a Postgres database resource. |
 | `AddSqlServerContainer(...).`<xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource> | Adds a SQL Server database resource. |
 | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresServerResource> | Adds a Postgres server resource. |
-| <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgresContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresContainerResource> | Adds a Postgres container resource. |
 | <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A> | <xref:Aspire.Hosting.ApplicationModel.RabbitMQServerResource> | Adds a RabbitMQ server resource. |
-| <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.RabbitMQContainerResource> | Adds a RabbitMQ container resource. |
-| <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedisContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.RedisContainerResource> | Adds a Redis container resource. |
+| <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> | <xref:Aspire.Hosting.ApplicationModel.RedisContainerResource> | Adds a Redis container resource. |
 | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerServerResource> | Adds a SQL Server server resource. |
-| <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServerContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerContainerResource> | Adds a SQL Server container resource. |
 
 **Azure specific resources available in the [📦 Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure) NuGet package:**
 
 | Method | Resource type | Description |
 |--|--|--|
-| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureStorage%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureStorageResource> | Adds an Azure Storage resource. |
-| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureResourceExtensions.AddBlobs%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureBlobStorageResource> | Adds an Azure Blob Storage resource. |
-| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureResourceExtensions.AddQueues%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureQueueStorageResource> | Adds an Azure Queue Storage resource. |
-| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureResourceExtensions.AddTables%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureTableStorageResource> | Adds an Azure Table Storage resource. |
+| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureStorageResource> | Adds an Azure Storage resource. |
+| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureStorageExtensions.AddBlobs%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureBlobStorageResource> | Adds an Azure Blob Storage resource. |
+| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureStorageExtensions.AddQueues%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureQueueStorageResource> | Adds an Azure Queue Storage resource. |
+| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureStorageExtensions.AddTables%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureTableStorageResource> | Adds an Azure Table Storage resource. |
 | <xref:Aspire.Hosting.AzureCosmosDBCloudApplicationBuilderExtensions.AddAzureCosmosDB%2A> | <xref:Aspire.Hosting.Azure.Data.Cosmos.AzureCosmosDBResource> | Adds an Azure Cosmos DB resource. |
-| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureKeyVault%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureKeyVaultResource> | Adds an Azure Key Vault resource. |
-| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureRedis%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureRedisResource> | Adds an Azure Redis resource. |
-| <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureServiceBus%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureServiceBusResource> | Adds an Azure Service Bus resource. |
+| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureKeyVault%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureKeyVaultResource> | Adds an Azure Key Vault resource. |
+| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureRedis%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureRedisResource> | Adds an Azure Redis resource. |
+| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureServiceBus%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureServiceBusResource> | Adds an Azure Service Bus resource. |
 
 ## See also
 
