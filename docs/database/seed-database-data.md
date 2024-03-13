@@ -42,7 +42,7 @@ Consider the following volume configuration code from a _Program.cs_ file in a s
 
 ```csharp
 var todosDbName = "Todos";
-var todosDb = builder.AddPostgresContainer("postgres")
+var todosDb = builder.AddPostgres("postgres")
     .WithEnvironment("POSTGRES_DB", todosDbName)
     .WithVolumeMount(
         "../DatabaseContainers.ApiService/data/postgres",

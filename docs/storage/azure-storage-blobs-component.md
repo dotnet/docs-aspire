@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Blob Storage component
 description: This article describes the .NET Aspire Azure Blob Storage component features and capabilities.
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 03/13/2024
 ---
 
 # .NET Aspire Azure Blob Storage component
@@ -51,7 +51,7 @@ public class ExampleService(BlobServiceClient client)
 
 [!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
 
-In your app host project, register the Azure Blob Storage component and consume the service using the following methods, such as <xref:Aspire.Hosting.AzureResourceExtensions.AddAzureStorage%2A>:
+In your app host project, register the Azure Blob Storage component and consume the service using the following methods, such as <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A>:
 
 ```csharp
 var blobs = builder.AddAzureStorage("storage")
@@ -61,7 +61,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(blobs);
 ```
 
-The <xref:Aspire.Hosting.AzureResourceExtensions.AddBlobs%2A> method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:blobs` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named blobs in the `ExampleProject` project. In the _Program.cs_ file of `ExampleProject`, the connection can be consumed using:
+The <xref:Aspire.Hosting.AzureStorageExtensions.AddBlobs%2A> method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:blobs` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named blobs in the `ExampleProject` project. In the _Program.cs_ file of `ExampleProject`, the connection can be consumed using:
 
 ```csharp
 builder.AddAzureBlobService("blobs");

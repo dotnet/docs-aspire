@@ -2,7 +2,7 @@
 title: .NET Aspire Azure AI OpenAI component
 description: Learn how to use the .NET Aspire Azure AI OpenAI component.
 ms.topic: how-to
-ms.date: 02/28/2024
+ms.date: 03/13/2024
 ---
 
 # .NET Aspire Azure AI OpenAI component

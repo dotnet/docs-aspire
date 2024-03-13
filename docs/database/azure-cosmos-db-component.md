@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Cosmos DB component
 description: This article describes the .NET Aspire Azure Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 03/13/2024
 ---
 
 # .NET Aspire Azure Cosmos DB component
@@ -66,7 +66,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(cosmosdb);
 ```
 
-The <xref:Aspire.Hosting.AzureCosmosDBCloudApplicationBuilderExtensions.AddAzureCosmosDB%2A> method will read connection information from the AppHost's configuration under the `ConnectionStrings:cosmosdb` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named `cosmosdb` in the `ExampleProject` project. In the _Program.cs_ file of MyService, the connection can be consumed using:
+The <xref:Aspire.Hosting.AzureCosmosExtensions.AddAzureCosmosDB%2A> method will read connection information from the AppHost's configuration under the `ConnectionStrings:cosmosdb` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named `cosmosdb` in the `ExampleProject` project. In the _Program.cs_ file of MyService, the connection can be consumed using:
 
 ```csharp
 builder.AddAzureCosmosDB("cosmosdb");
