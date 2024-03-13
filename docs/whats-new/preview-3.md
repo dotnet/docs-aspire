@@ -240,7 +240,7 @@ You can use the existing `Aspire.Hosting` support for MySQL resources to spin up
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var catalogDb = builder.AddMySqlContainer("mysql")
+var catalogDb = builder.AddMySql("mysql")
     // Mount the SQL scripts directory into the 
     // container so that the init scripts run.
     .WithVolumeMount(
@@ -327,7 +327,7 @@ builder.AddRedis("myredis2").WithRedisCommander();
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var catalogDb = builder.AddPostgresContainer("postgres")
+var catalogDb = builder.AddPostgres("postgres")
                        .WithPgAdmin()
                        .AddDatabase("catalogdb");
 ```
