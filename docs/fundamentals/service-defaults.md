@@ -73,7 +73,8 @@ The `ConfigureOpenTelemetry` method:
 - Adds [.NET Aspire telemetry](telemetry.md) logging to include formatted messages and scopes.
 - Adds OpenTelemetry metrics and tracing that include:
   - Runtime instrumentation metrics.
-  - Builtin meters.
+  - ASP.NET Core instrumentation metrics.
+  - HttpClient instrumentation metrics.
   - In a development environment, the `AlwaysOnSampler` is used to view all traces.
   - Tracing details for ASP.NET Core, gRPC and HTTP instrumentation.
 - Adds OpenTelemetry exporters, by calling `AddOpenTelemetryExporters`.
