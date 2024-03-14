@@ -67,33 +67,7 @@ In addition to new APIs, the .NET Aspire preview 4 release includes several impr
 
 ### More database management tools
 
-.NET Aspire preview 4 introduces two new database management tools for managing MySQL and MongoDB databases, phpMyAdmin and mongo-express.
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var mysql = builder.AddMySql("mysql")
-                   .WithPhpMyAdmin()
-                   .AddDatabase("mysql-db");
-
-var mongo = builder.AddMongoDB("mongo")
-                   .WithMongoExpress()
-                   .AddDatabase("mongo-db");
-
-builder.AddProject<Projects.Api>("api")
-       .WithReference(mysql)
-       .WithReference(mongo);
-
-builder.Build().Run();
-```
-
-The preceding code creates a MySQL and MongoDB container with PhpMyAdmin and mongo-express configured.
-
-:::image type="content" source="media/preview-4/dashboard-resources-with-mysql-and-mongoex.png" lightbox="media/preview-4/dashboard-resources-with-mysql-and-mongoex.png" alt-text=".NET Aspire dashboard: Resources tab showing mongo, mongo-mongoexpress, mysql, mysql-phpmyadmin, and an API.":::
-
-**Mongo express**
-
-:::image type="content" source="media/preview-4/mongo-express.png" lightbox="media/preview-4/mongo-express.png" alt-text="Mongo Express database UX.":::
+.NET Aspire preview 4 [introduces two new database management tools](#addition-of-more-database-admin-tools) for managing MySQL and MongoDB databases, phpMyAdmin and mongo-express.
 
 ### New `Enrich` methods
 
@@ -312,6 +286,14 @@ builder.AddProject<Projects.WebApplication1>("api")
 
 builder.Build().Run();
 ```
+
+The preceding code creates a MySQL and MongoDB container with PhpMyAdmin and mongo-express configured.
+
+:::image type="content" source="media/preview-4/dashboard-resources-with-mysql-and-mongoex.png" lightbox="media/preview-4/dashboard-resources-with-mysql-and-mongoex.png" alt-text=".NET Aspire dashboard: Resources tab showing mongo, mongo-mongoexpress, mysql, mysql-phpmyadmin, and an API.":::
+
+**Mongo express**
+
+:::image type="content" source="media/preview-4/mongo-express.png" lightbox="media/preview-4/mongo-express.png" alt-text="Mongo Express database UX.":::
 
 <!--
 ## Ability to ignore launch profiles
