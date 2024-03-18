@@ -15,6 +15,9 @@ In this tutorial, you deploy an ASP.NET Core app that uses a .NET Aspire SQL Ser
 > - Configure the ASP.NET Core app to create an Azure SQL Database when published
 > - Configure and use .NET Aspire Component features to read and write from the database
 
+> [!NOTE]
+> This document focuses specifically on .NET Aspire configurations to provision and deploy SQL Server resources in Azure. For in-depth guidance on deploying .NET Aspire apps, visit the [Azure Container Apps deployment]() tutorial.
+
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
 ## Create the sample solution
@@ -33,16 +36,16 @@ In this tutorial, you deploy an ASP.NET Core app that uses a .NET Aspire SQL Ser
 
 Visual Studio creates a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:
 
-- **AspireSQLEFCore**: A Blazor project that depends on service defaults.
-- **AspireSQLEFCore.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
-- **AspireSQLEFCore.ServiceDefaults**: A shared class library to hold configurations that can be reused across the projects in your solution.
+- **AspireSQL**: A Blazor project that depends on service defaults.
+- **AspireSQL.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
+- **AspireSQL.ServiceDefaults**: A shared class library to hold configurations that can be reused across the projects in your solution.
 
 ## [.NET CLI](#tab/cli)
 
 In an empty directory, run the following command to create a new .NET Aspire app:
 
 ```dotnetcli
-dotnet new aspire-starter --output AspireSql
+dotnet new aspire-sql --output AspireSql
 ```
 
 ---
@@ -55,12 +58,17 @@ Add the .NET Aspire Sql Server library package to your _AspireSQL.AppHost_ proje
 dotnet add package Aspire.Microsoft.Data.SqlClient --prerelease
 ```
 
-## Configure the AppHost
+## Configure the AppHost for SQL Server deployment
 
-.NET Aspire provides two provisioning and deployment options for SQL Server on Azure:
+.NET Aspire provides two built-in configuration options to streamline SQL Server provisioning and deployment in Azure:
 
 - Provision SQL Server as a containerized database using Azure Container Apps
 - Provision SQL Server using an Azure SQL Database
+
+These configurations are supported by tools such as the Azure Developer CLI (`azd`) to streamline .NET Aspire deployments. The Azure Developer CLI consumes these settings and provisions properly configured resources for you. The configuration examples below assume the use of `azd`.
+
+> [!NOTE]
+> You can also use the [Azure CLI]()or [Bicep]() to provision and deploy .NET Aspire apps. These options are more manual but provide more granular control over your deployments. .NET Aspire apps can also connect to databases hosted on other services through manual configurations.
 
 # [Azure SQL Database](#tab/azure-sql)
 
@@ -81,7 +89,7 @@ builder.AddProject<Projects.AspireSql_Web>("webfrontend")
 builder.Build().Run();
 ```
 
-The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`.
+The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. The `PublishAsAzureSqlDatabase` method ensures that an Azure SQL Database resources will be created when you deploy the app using supported tools such as the Azure Developer CLI.
 
 ## [SQL Server Container](#tab/sql-container)
 
@@ -100,17 +108,6 @@ builder.AddProject<Projects.AspireSql_Web>("webfrontend")
 builder.Build().Run();
 ```
 
+The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. This configuration also ensures a containerized SQL Server instance will be deployed to Azure Container Apps when you deploy the app using supported tools such as the Azure Developer CLI.
+
 ---
-
-## Run and test the app locally
-
-The sample app is now ready for testing. Verify that the submitted form data is persisted to the database by completing the following steps:
-
-1. Select the run button at the top of Visual Studio (or <kbd>F5</kbd>) to launch your .NET Aspire app dashboard in the browser.
-1. On the projects page, in the **AspireSQLEFCore** row, click the link in the **Endpoints** column to open the UI of your app.
-
-    :::image type="content" source="media/app-home-screen.png" lightbox="media/app-home-screen.png" alt-text="A screenshot showing the home page of the .NET Aspire support application.":::
-
-1. Enter sample data into the `Title` and `Description` form fields.
-1. Select the **Submit** button, and the form submits the support ticket for processing — and clears the form.
-1. The data you submitted displays in the table at the bottom of the page when the page reloads.
