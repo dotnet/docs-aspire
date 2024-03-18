@@ -1,11 +1,11 @@
 ---
-title: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core
-description: Learn how to connect an ASP.NET Core app to to SQL Server using .NET Aspire and Entity Framework Core.
-ms.date: 01/22/2024
+title: Deploy a ASP.NET Core app that connects to SQL Server to Azure
+description: Learn how to deploy a ASP.NET Core app that connects to SQL Server to Azure
+ms.date: 03/18/2024
 ms.topic: how-to
 ---
 
-# Tutorial: Deploy a ASP.NET Core app that connects to SQL Server to Azure
+# Tutorial: Deploy an ASP.NET Core Aspire + SQL Database app to Azure
 
 In this tutorial, you learn to configure an .NET app that uses a SQL Server component for deployment to Azure. .NET Aspire provides multiple configurations that result in different resources provisioned in Azure. You'll learn how to:
 
@@ -98,6 +98,8 @@ builder.Build().Run();
 
 The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. The `PublishAsAzureSqlDatabase` method ensures that an Azure SQL Database resources will be created when you deploy the app using supported tools such as the Azure Developer CLI.
 
+:::image type="content" source="media/resources-azure-sql-database.png" alt-text="A screenshot showing the deployed Azure SQL Database.":::
+
 ## [SQL Server Container](#tab/sql-container)
 
 ```csharp
@@ -116,5 +118,7 @@ builder.Build().Run();
 ```
 
 The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. This configuration also ensures a containerized SQL Server instance will be deployed to Azure Container Apps when you deploy the app using supported tools such as the Azure Developer CLI.
+
+:::image type="content" source="media/resources-sql-container-database.png" alt-text="A screenshot showing the containerized SQL Database.":::
 
 ---
