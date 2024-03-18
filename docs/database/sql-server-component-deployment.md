@@ -119,6 +119,6 @@ builder.Build().Run();
 
 The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. This configuration also ensures a containerized SQL Server instance will be deployed to Azure Container Apps when you deploy the app using supported tools such as the Azure Developer CLI.
 
-:::image type="content" source="media/resources-sql-container-database.png" alt-text="A screenshot showing the containerized SQL Database.":::
+:::image type="content" source="media/resources-azure-sql-container.png" alt-text="A screenshot showing the containerized SQL Database.":::
 
 ---
