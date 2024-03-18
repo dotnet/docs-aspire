@@ -7,13 +7,13 @@ ms.topic: how-to
 
 # Tutorial: Deploy an ASP.NET Core Aspire + SQL Database app to Azure
 
-In this tutorial, you learn to configure an .NET app that uses a SQL Server component for deployment to Azure. .NET Aspire provides multiple configurations that result in different resources provisioned in Azure. You'll learn how to:
+In this tutorial, you learn to configure a .NET app that uses a SQL Server component for deployment to Azure. .NET Aspire provides multiple configurations that provision different resources in Azure. You'll learn how to:
 
 > [!div class="checklist"]
 >
-> - Create a basic ASP.NET Core app that is set up to use .NET Aspire SQL Server components
-> - Configure a .NET Aspire app to provision and deploy a SQL Server on Azure SQL Database
-> - Configure a .NET Aspire app to provision and deploy a containerized SQL Server database
+> - Create a basic ASP.NET Core app that is configured to use .NET Aspire SQL Server components
+> - Configure the app to provision an Azure SQL Database
+> - Configure the app to provision a containerized SQL Server database
 
 > [!NOTE]
 > This document focuses specifically on .NET Aspire configurations to provision and deploy SQL Server resources in Azure. Visit the [Azure Container Apps deployment](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-azd) tutorial to learn more about the full .NET  Aspire deployment process.
@@ -50,9 +50,9 @@ dotnet new aspire-sql --output AspireSql
 
 The .NET CLI creates a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:
 
-**AspireSQL**: A Blazor project that depends on service defaults.
-**AspireSQL.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
-**AspireSQL.ServiceDefaults**: A shared class library to hold configurations that can be reused across the projects in your solution.
+- **AspireSQL**: A Blazor project that depends on service defaults.
+- **AspireSQL.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
+- **AspireSQL.ServiceDefaults**: A shared class library to hold configurations that can be reused across the projects in your solution.
 
 ---
 
