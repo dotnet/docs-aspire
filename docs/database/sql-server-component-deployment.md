@@ -7,16 +7,16 @@ ms.topic: how-to
 
 # Tutorial: Deploy a ASP.NET Core app that connects to SQL Server to Azure
 
-In this tutorial, you deploy an ASP.NET Core app that uses a .NET Aspire SQL Server component to Azure. .NET Aspire provides multiple configurations that result in different resources provisioned in Azure. You'll learn how to:
+In this tutorial, you learn to configure an .NET app that uses a SQL Server component for deployment to Azure. .NET Aspire provides multiple configurations that result in different resources provisioned in Azure. You'll learn how to:
 
 > [!div class="checklist"]
 >
 > - Create a basic ASP.NET Core app that is set up to use .NET Aspire SQL Server components
-> - Configure the ASP.NET Core app to create an Azure SQL Database when published
-> - Configure and use .NET Aspire Component features to read and write from the database
+> - Configure a .NET Aspire app to provision and deploy a SQL Server on Azure SQL Database
+> - Configure a .NET Aspire app to provision and deploy a containerized SQL Server database
 
 > [!NOTE]
-> This document focuses specifically on .NET Aspire configurations to provision and deploy SQL Server resources in Azure. For in-depth guidance on deploying .NET Aspire apps, visit the [Azure Container Apps deployment]() tutorial.
+> This document focuses specifically on .NET Aspire configurations to provision and deploy SQL Server resources in Azure. Visit the [Azure Container Apps deployment](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-azd) tutorial to learn more about the full .NET  Aspire deployment process.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
@@ -48,27 +48,34 @@ In an empty directory, run the following command to create a new .NET Aspire app
 dotnet new aspire-sql --output AspireSql
 ```
 
+The .NET CLI creates a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:
+
+**AspireSQL**: A Blazor project that depends on service defaults.
+**AspireSQL.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
+**AspireSQL.ServiceDefaults**: A shared class library to hold configurations that can be reused across the projects in your solution.
+
 ---
 
 ## Add the .NET Aspire component to the app
 
-Add the .NET Aspire Sql Server library package to your _AspireSQL.AppHost_ project:
+Add the [Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure/8.0.0-preview.4.24156.9) and [Aspire.Microsoft.Data.Sqlclient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient/8.0.0-preview.4.24156.9) packages to the _AspireSQL.AppHost_ project:
 
 ```dotnetcli
+dotnet add package Aspire.Hosting.Azure --prerelease
 dotnet add package Aspire.Microsoft.Data.SqlClient --prerelease
 ```
 
 ## Configure the AppHost for SQL Server deployment
 
-.NET Aspire provides two built-in configuration options to streamline SQL Server provisioning and deployment in Azure:
+.NET Aspire provides two built-in configuration options to streamline SQL Server provisioning and deployment on Azure:
 
-- Provision SQL Server as a containerized database using Azure Container Apps
-- Provision SQL Server using an Azure SQL Database
+- Provision a containerized SQL Server database using Azure Container Apps
+- Provision an Azure SQL Database
 
-These configurations are supported by tools such as the Azure Developer CLI (`azd`) to streamline .NET Aspire deployments. The Azure Developer CLI consumes these settings and provisions properly configured resources for you. The configuration examples below assume the use of `azd`.
+Tools such as the Azure Developer CLI (`azd`) support these configurations to streamline .NET Aspire deployments. `azd` consumes these settings and provisions properly configured resources for you. The configuration examples below assume the use of `azd`.
 
 > [!NOTE]
-> You can also use the [Azure CLI]()or [Bicep]() to provision and deploy .NET Aspire apps. These options are more manual but provide more granular control over your deployments. .NET Aspire apps can also connect to databases hosted on other services through manual configurations.
+> You can also use the [Azure CLI](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-cli) or [Bicep](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-bicep) to provision and deploy .NET Aspire apps. These options are more manual but provide more granular control over your deployments. .NET Aspire apps can also connect to databases hosted on other services through manual configurations.
 
 # [Azure SQL Database](#tab/azure-sql)
 
