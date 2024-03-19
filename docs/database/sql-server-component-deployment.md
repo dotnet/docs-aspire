@@ -145,7 +145,7 @@ Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/ove
 
     The Azure Developer CLI provisions and deploys your app resources. The process may take a few minutes to complete.
 
-    :::image type="content" source="media/resource-deployment.png" alt-text="A screenshot showing the completed deployment result.":::
+    [!INCLUDE [azd-up-output](../deployment/azure/includes/azd-up-output.md)]
 
 1. When the deployment finishes, click the resource group link in the output to view the created resources.
 
