@@ -82,7 +82,9 @@ var builder = DistributedApplication.CreateBuilder(args);
 var apiService = builder.AddProject<Projects.AspireSql_ApiService>("apiservice");
 
 // Provisions an Azure SQL Database when published
-var sqlServer = builder.AddSqlServer("sqlserver").PublishAsAzureSqlDatabase().AddDatabase("sqldb");
+var sqlServer = builder.AddSqlServer("sqlserver")
+                       .PublishAsAzureSqlDatabase()
+                       .AddDatabase("sqldb");
 
 builder.AddProject<Projects.AspireSql_Web>("webfrontend")
     .WithReference(apiService)
@@ -101,7 +103,8 @@ var builder = DistributedApplication.CreateBuilder(args);
 var apiService = builder.AddProject<Projects.AspireSql_ApiService>("apiservice");
 
 // Provisions a containerized SQL Server database when published
-var sqlServer = builder.AddSqlServer("sqlserver").AddDatabase("sqldb");
+var sqlServer = builder.AddSqlServer("sqlserver")
+                       .AddDatabase("sqldb");
 
 builder.AddProject<Projects.AspireSql_Web>("webfrontend")
     .WithReference(apiService)
@@ -125,7 +128,7 @@ Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/ove
 
 1. Run the `azd init` command to initialize the project with `azd`.
 
-    ```azurecli
+    ```azdeveloper
     azd init
     ```
 
@@ -133,7 +136,7 @@ Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/ove
 
 1. Run the `azd up` command to begin the deployment process:
 
-    ```azurecli
+    ```azdeveloper
     azd up
     ```
 
@@ -149,15 +152,15 @@ Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/ove
 
 1. When the deployment finishes, click the resource group link in the output to view the created resources.
 
-# [Azure SQL Database](#tab/azure-sql)
+## [Azure SQL Database](#tab/azure-sql)
 
 Note that an Azure SQL Database was created as part of the app resources due to the **.AppHost** configuration you provided.
 
 :::image type="content" source="media/resources-azure-sql-database.png" alt-text="A screenshot showing the deployed Azure SQL Database.":::
 
-# [Azure SQL Database](#tab/sql-container)
+## [SQL Server Container](#tab/sql-container)
 
-Note that a Sql Server app container was created as part of the app resources due to the **.AppHost** configuration you provided.
+A SQL Server app container was created as part of the app resources due to the **.AppHost** configuration you provided.
 
 :::image type="content" source="media/resources-azure-sql-container.png" alt-text="A screenshot showing the containerized SQL Database.":::
 
