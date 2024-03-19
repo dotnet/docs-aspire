@@ -19,7 +19,6 @@ In this tutorial, you learn to configure an ASP.NET Core app with a SQL Server D
 > This document focuses specifically on .NET Aspire configurations to provision and deploy SQL Server resources in Azure. Visit the [Azure Container Apps deployment](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-azd) tutorial to learn more about the full .NET Aspire deployment process.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
-- [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
 
 ## Create the sample solution
 
@@ -119,7 +118,7 @@ The preceding code adds a SQL Server Container resource to your app and configur
 
 ## Deploy the app
 
-Tools such as the Azure Developer CLI (`azd`) support .NET Aspire SQL Server component configurations to streamline deployments. `azd` consumes these settings and provisions properly configured resources for you. The deploy steps below assume the use of `azd`.
+Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) (`azd`) support .NET Aspire SQL Server component configurations to streamline deployments. `azd` consumes these settings and provisions properly configured resources for you.
 
 > [!NOTE]
 > You can also use the [Azure CLI](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-cli) or [Bicep](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-bicep) to provision and deploy .NET Aspire app resources. These options require more manual steps, but provide more granular control over your deployments. .NET Aspire apps can also connect to databases hosted on other services through manual configurations.

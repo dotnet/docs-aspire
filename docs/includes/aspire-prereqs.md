@@ -10,5 +10,6 @@ To work with .NET Aspire, you need the following installed locally:
 - Integrated Developer Environment (IDE) or code editor, such as:
   - [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.9 or higher (Optional)
   - [Visual Studio Code](https://code.visualstudio.com/) (Optional)
+- [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd) (For deployment, optional)
 
 For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
