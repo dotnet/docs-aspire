@@ -149,6 +149,8 @@ items:
           - name: Use .NET Aspire with Application Insights
             href: deployment/azure/application-insights.md
             displayName: app insights
+          - name: Tutorial - Deploy .NET Aspire + SQL Database
+            href: database/sql-server-component-deployment.md
       - name: Reference - Tool-builder manifest schemas
         href: deployment/manifest-format.md
 
