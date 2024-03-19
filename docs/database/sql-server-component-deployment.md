@@ -133,7 +133,7 @@ Tools such as the Azure Developer CLI (`azd`) support .NET Aspire SQL Server com
     azd init
     ```
 
-1. When prompted for an environment name, enter *docs-aspiresql*
+1. When prompted for an environment name, enter *docs-aspiresql*.
 
 1. Run the `azd up` command to begin the deployment process:
 
@@ -141,13 +141,13 @@ Tools such as the Azure Developer CLI (`azd`) support .NET Aspire SQL Server com
     azd up
     ```
 
-1. Choose to expose the **webfrontend** service to expose to the internet.
+1. Choose to expose the **webfrontend** service to the internet.
 
 1. Select the Azure subscription that should host your app resources.
 
 1. Select the Azure location to use.
 
-    The Azure Developer CLI provisions and deploys your app resources. The process may take several minutes to complete.
+    The Azure Developer CLI provisions and deploys your app resources. The process may take a few minutes to complete.
 
     :::image type="content" source="media/resource-deployment.png" alt-text="A screenshot showing the completed deployment result.":::
 
@@ -159,7 +159,7 @@ Note that an Azure SQL Database was created as part of the app resources due to 
 
 :::image type="content" source="media/resources-azure-sql-database.png" alt-text="A screenshot showing the deployed Azure SQL Database.":::
 
-# [Azure SQL Database](#tab/azure-sql)
+# [Azure SQL Database](#tab/sql-container)
 
 Note that a Sql Server app container was created as part of the app resources due to the **.AppHost** configuration you provided.
 
@@ -172,5 +172,5 @@ Note that a Sql Server app container was created as part of the app resources du
 ## See also
 
 - [.NET Aspire deployment via Azure Container Apps](../deployment/azure/aca-deployment.md)
-- [.NET Aspire Azure Container Apps deployment deep dive](../deployment/aca-deployment-azd-in-depth.md)
-- [Deploy a .NET Aspire app using GitHub Actions](../deployment/aca-deployment-github-actions.md)
+- [.NET Aspire Azure Container Apps deployment deep dive](../deployment/azure/aca-deployment-azd-in-depth.md)
+- [Deploy a .NET Aspire app using GitHub Actions](../deployment/azure/aca-deployment-github-actions.md)
