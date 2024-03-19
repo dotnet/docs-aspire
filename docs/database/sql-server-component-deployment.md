@@ -19,6 +19,7 @@ In this tutorial, you learn to configure an ASP.NET Core app with a SQL Server D
 > This document focuses specifically on .NET Aspire configurations to provision and deploy SQL Server resources in Azure. Visit the [Azure Container Apps deployment](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-azd) tutorial to learn more about the full .NET Aspire deployment process.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
+- [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
 
 ## Create the sample solution
 
