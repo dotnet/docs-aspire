@@ -116,8 +116,6 @@ The preceding code adds a SQL Server Container resource to your app and configur
 
 ---
 
-[!INCLUDE [init-workflow](../deployment/azure/includes/init-workflow.md)]
-
 ## Deploy the app
 
 Tools such as the Azure Developer CLI (`azd`) support .NET Aspire SQL Server component configurations to streamline deployments. `azd` consumes these settings and provisions properly configured resources for you. The deploy steps below assume the use of `azd`.
