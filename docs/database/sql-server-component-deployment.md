@@ -5,7 +5,7 @@ ms.date: 03/18/2024
 ms.topic: how-to
 ---
 
-# Tutorial: Deploy a .NET Aspire with SQL Server Database app to Azure
+# Tutorial: Deploy a .NET Aspire app with a SQL Server Database to Azure
 
 In this tutorial, you learn to configure an ASP.NET Core app with a SQL Server Database for deployment to Azure. .NET Aspire provides multiple SQL Server component configurations that provision different database services in Azure. You'll learn how to:
 
