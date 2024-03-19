@@ -112,8 +112,6 @@ builder.Build().Run();
 
 The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. This configuration also ensures a containerized SQL Server instance will be deployed to Azure Container Apps when you deploy the app using supported tools such as the Azure Developer CLI.
 
-:::image type="content" source="media/resources-azure-sql-container.png" alt-text="A screenshot showing the containerized SQL Database.":::
-
 ---
 
 ## Deploy the app
@@ -139,7 +137,7 @@ Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/ove
     azd up
     ```
 
-1. Choose to expose the **webfrontend** service to the internet.
+1. When prompted, choose to expose the **webfrontend** service to the internet.
 
 1. Select the Azure subscription that should host your app resources.
 
@@ -161,7 +159,7 @@ Note that an Azure SQL Database was created as part of the app resources due to 
 
 Note that a Sql Server app container was created as part of the app resources due to the **.AppHost** configuration you provided.
 
-:::image type="content" source="media/resources-azure-sql-database.png" alt-text="A screenshot showing the deployed Azure SQL Database.":::
+:::image type="content" source="media/resources-azure-sql-container.png" alt-text="A screenshot showing the containerized SQL Database.":::
 
 ---
 
