@@ -7,7 +7,7 @@ ms.date: 03/25/2024
 
 # .NET Aspire diagnostics overview
 
-Several APIs of .NET Aspire are decorated with the <xref:System.Diagnostics.CodeAnalysis.ExperimentalAttribute%2A>. This attribute indicates that the API is experimental and may be removed or changed in future versions of .NET Aspire. The attribute is used to identify APIs that aren't yet stable and may not be suitable for production use.
+Several APIs of .NET Aspire are decorated with the <xref:System.Diagnostics.CodeAnalysis.ExperimentalAttribute>. This attribute indicates that the API is experimental and may be removed or changed in future versions of .NET Aspire. The attribute is used to identify APIs that aren't yet stable and may not be suitable for production use.
 
 ## ASPIRE0001
 
@@ -24,7 +24,7 @@ using System.Diagnostics.CodeAnalysis;
 Alternatively, you can suppress this diagnostic with preprocessor directive by adding the following code to your project:
 
 ```csharp
-#pragma warning disable ASPIRE0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
-        // API that is causing the issue.
-#pragma warning restore ASPIRE0001 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+#pragma warning disable ASPIRE0001
+        // API that is causing the warning.
+#pragma warning restore ASPIRE0001
 ```
