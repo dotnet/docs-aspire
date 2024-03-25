@@ -17,6 +17,16 @@ Cloud-native apps often require scalable messaging solutions that provide capabi
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
+## Explore the completed sample app
+
+A completed version of the sample app from this tutorial is available on GitHub. The project is also structured as a template for the [Azure Developer CLI](/azure/developer/azure-developer-cli/overview), meaning you can use the `azd up` command to automate Azure resource provisioning if you have the tool [installed](/azure/developer/azure-developer-cli/install-azd).
+
+```bash
+git clone https://github.com/Azure-Samples/dotnet-aspire-connect-messaging.git
+```
+
+Visit the [README](https://github.com/Azure-Samples/dotnet-aspire-connect-messaging/blob/main/README.md) for more information on how to use the sample app with `azd`.
+
 ## Set up the Azure Service Bus account
 
 For this tutorial, you'll need access to an Azure Service Bus namespace with a topic and subscription configured. Use one of the following options to set up the require resources:
