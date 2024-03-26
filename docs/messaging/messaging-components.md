@@ -83,7 +83,7 @@ Visual Studio creates a new ASP.NET Core solution that is structured to use .NET
 
 ## [.NET CLI](#tab/dotnet-cli)
 
-Use the `dotnet new` command to create a new .NET Aspire app:
+Use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new .NET Aspire app:
 
 ```dotnetcli
 dotnet new aspire-starter --name AspireMessaging
@@ -120,19 +120,19 @@ Visual Studio tooling added this line of code to register your new project with 
 
 ## [.NET CLI](#tab/dotnet-cli)
 
-1. In the root directory of the app, use the `dotnet new` command to create a new Worker Service app:
+1. In the root directory of the app, use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new Worker Service app:
 
     ```dotnetcli
     dotnet new worker --name AspireMessaging.WorkerService
     ```
 
-1. Use the `dotnet sln` command to add the project to the solution:
+1. Use the [`dotnet sln`](/dotnet/core/tools/dotnet-sln) command to add the project to the solution:
 
     ```
     dotnet sln AspireMessaging.sln add AspireMessaging.WorkerService/AspireMessaging.WorkerService.csproj
     ```
 
-1. Use the `dotnet add` command to add project reference between the **.AppHost** and **.WorkerService** project:
+1. Use the [`dotnet add`](/dotnet/core/tools/dotnet-add) command to add project reference between the **.AppHost** and **.WorkerService** project:
 
     ```dotnetcli
     dotnet add AspireMessaging.AppHost/AspireMessaging.AppHost.csproj reference AspireMessaging.WorkerService/AspireMessaging.WorkerService.csproj
