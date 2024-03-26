@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 03/11/2024
+ms.date: 03/25/2024
 ---
 
 # .NET Aspire setup and tooling
@@ -19,12 +19,12 @@ ms.date: 03/11/2024
 
 To work with .NET Aspire, you'll need the following installed locally:
 
-- [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0)
-- [.NET Aspire workload](/dotnet/core/tools/dotnet-workload-install)
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0).
+- [.NET Aspire workload](/dotnet/core/tools/dotnet-workload-install).
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) or [Podman](https://podman.io/docs/installation) for container runtime support. For more information, see [Container runtime](#container-runtime).
 - Integrated Developer Environment (IDE) or code editor, such as:
-  - [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.10 or higher (Optional)
-  - [Visual Studio Code](https://code.visualstudio.com/) (Optional)
+  - [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.10 or higher (Optional).
+  - [Visual Studio Code](https://code.visualstudio.com/) (Optional).
 
 The .NET Aspire workload installs internal dependencies and makes available other tooling, such as project templates and Visual Studio features. There are two ways to install the .NET Aspire workload. If you prefer to use Visual Studio Code, follow the .NET CLI instructions:
 
@@ -87,6 +87,29 @@ dotnet workload list
 ```
 
 ---
+
+## Container runtime
+
+.NET Aspire apps are designed to run in containers. You can use either Docker Desktop or Podman as your container runtime. [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most common container runtime. [Podman](https://podman.io/docs/installation) is an open-source daemonless alternative to Docker, that can build and run Open Container Initiative (OCI) containers. If you're host environment has both Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `DOTNET_ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
+
+## [Unix](#tab/unix)
+
+```bash
+export DOTNET_ASPIRE_CONTAINER_RUNTIME=podman
+```
+
+## [Windows](#tab/windows)
+
+```powershell
+$env:DOTNET_ASPIRE_CONTAINER_RUNTIME = "podman"
+```
+
+---
+
+For more information, see:
+
+- [Install Podman on Windows or macOS](https://podman.io/docs/installation#installing-on-mac--windows).
+- [Install Podman on Linux](https://podman.io/docs/installation#installing-on-linux).
 
 ## .NET Aspire project templates
 
