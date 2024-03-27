@@ -318,20 +318,20 @@ The **AspireStorage** and **AspireStorage.Worker** projects must be configured t
 
 1. In the **AspireStorage** project, add the following configuration to the `appsettings.Development.json` file:
 
-```json
-  "ConnectionStrings": {
-    "BlobConnection": "https://<your-storage-account-name>.blob.core.windows.net/",
-    "QueueConnection": "https://<your-storage-account-name>.queue.core.windows.net/"
-  }
-```
+    ```json
+      "ConnectionStrings": {
+        "BlobConnection": "https://<your-storage-account-name>.blob.core.windows.net/",
+        "QueueConnection": "https://<your-storage-account-name>.queue.core.windows.net/"
+      }
+    ```
 
 1. In the **AspireStorage.Worker** project, add the following configuration to the `appsettings.Development.json` file:
 
-```json
-  "ConnectionStrings": {
-    "QueueConnection": "https://<your-storage-account-name>.queue.core.windows.net/"
-  }
-```
+    ```json
+      "ConnectionStrings": {
+        "QueueConnection": "https://<your-storage-account-name>.queue.core.windows.net/"
+      }
+    ```
 
 :::zone-end
 
