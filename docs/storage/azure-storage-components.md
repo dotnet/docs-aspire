@@ -111,6 +111,10 @@ After the operation completes successfully, you have two options moving forward:
 
 ## Create the sample solution
 
+Create a .NET Aspire app using either Visual Studio or the .NET CLI.
+
+## [Visual Studio](#tab/visual-studio)
+
 1. At the top of Visual Studio, navigate to **File** > **New** > **Project**.
 1. In the dialog window, search for *Blazor* and select **Blazor Web App**. Choose **Next**.
 1. On the **Configure your new project** screen:
@@ -127,9 +131,27 @@ Visual Studio creates a new ASP.NET Core solution that is structured to use .NET
 - **AspireStorage.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
 - **AspireStorage.ServiceDefaults**: A shared class library to hold configurations that can be reused across the projects in your solution.
 
+## [.NET CLI](#tab/net-cli)
+
+Use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new .NET Aspire app:
+
+```dotnetcli
+dotnet new aspire-starter --name AspireStorage
+```
+
+The solution consists of the following projects:
+
+- **AspireStorage** - An API project with default .NET Aspire service configurations.
+- **AspireStorage.AppHost** - An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
+- **AspireStorage.ServiceDefaults** - A shared class library to hold code that can be reused across the projects in your solution.
+
+---
+
 ### Add the Worker Service project
 
 Next, add a Worker Service project to the solution to retrieve and process messages as they are added to the Azure Storage queue.
+
+## [Visual Studio](#tab/visual-studio)
 
 1. In the solution explorer, right click on the top level _AspireStorage_ solution node and select **Add** > **New project**.
 1. Search for and select the **Worker Service** template and choose **Next**.
@@ -145,6 +167,34 @@ builder.AddProject<Projects.AspireStorage_Worker>();
 ```
 
 Visual Studio tooling added this line of code to register your new project with the <xref:Aspire.Hosting.IDistributedApplicationBuilder> object, which enables orchestration features. For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
+
+## [.NET CLI](#tab/net-cli)
+
+1. In the root directory of the app, use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new Worker Service app:
+
+    ```dotnetcli
+    dotnet new worker --name AspireStorage.WorkerService
+    ```
+
+1. Use the [`dotnet sln`](/dotnet/core/tools/dotnet-sln) command to add the project to the solution:
+
+    ```
+    dotnet sln AspireStorage.sln add AspireStorage.WorkerService/AspireStorage.WorkerService.csproj
+    ```
+
+1. Use the [`dotnet add`](/dotnet/core/tools/dotnet-add) command to add project reference between the **.AppHost** and **.WorkerService** project:
+
+    ```dotnetcli
+    dotnet add AspireStorage.AppHost/AspireStorage.AppHost.csproj reference AspireStorage.WorkerService/AspireStorage.WorkerService.csproj
+    ```
+
+1. Add the following line of code to the _Program.cs_ file in the **AspireStorage.AppHost** project:
+
+    ```csharp
+    builder.AddProject<Projects.AspireStorage_WorkerService>("aspirestorage-workerservice");
+    ```
+
+---
 
 The completed solution structure should resemble the following:
 
@@ -268,20 +318,20 @@ The **AspireStorage** and **AspireStorage.Worker** projects must be configured t
 
 1. In the **AspireStorage** project, add the following configuration to the `appsettings.Development.json` file:
 
-```json
-  "ConnectionStrings": {
-    "BlobConnection": "https://<your-storage-account-name>.blob.core.windows.net/",
-    "QueueConnection": "https://<your-storage-account-name>.queue.core.windows.net/"
-  }
-```
+    ```json
+      "ConnectionStrings": {
+        "BlobConnection": "https://<your-storage-account-name>.blob.core.windows.net/",
+        "QueueConnection": "https://<your-storage-account-name>.queue.core.windows.net/"
+      }
+    ```
 
 1. In the **AspireStorage.Worker** project, add the following configuration to the `appsettings.Development.json` file:
 
-```json
-  "ConnectionStrings": {
-    "QueueConnection": "https://<your-storage-account-name>.queue.core.windows.net/"
-  }
-```
+    ```json
+      "ConnectionStrings": {
+        "QueueConnection": "https://<your-storage-account-name>.queue.core.windows.net/"
+      }
+    ```
 
 :::zone-end
 
@@ -289,8 +339,10 @@ The **AspireStorage** and **AspireStorage.Worker** projects must be configured t
 
 The sample app is now ready for testing. Verify that the submitted form data is sent to Azure Blob Storage and Azure Queue Storage by completing the following steps:
 
+## [Visual Studio](#tab/visual-studio)
+
 1. Press the run button at the top of Visual Studio to launch your .NET Aspire app dashboard in the browser.
-1. On the projects page, in the **aspirestorage** row, click the link in the **Endpoints** column to open the UI of your app.
+1. On the resources page, in the **aspirestorage** row, click the link in the **Endpoints** column to open the UI of your app.
 
     :::image type="content" source="media/support-app.png" lightbox="media/support-app.png" alt-text="A screenshot showing the home page of the .NET Aspire support application.":::
 
@@ -301,6 +353,28 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../fundamentals/dashboard.md), and selecting the **aspirestorage.worker** from the dropdown.
 
     :::image type="content" source="media/queue-output.png" lightbox="media/queue-output.png"  alt-text="A screenshot showing the console output of the Worker app.":::
+
+## [.NET CLI](#tab/net-cli)
+
+1. In a terminal window at the root of your project, use the `dotnet run` command to start the app:
+
+    ```csharp
+    dotnet run --project AspireStorage.AppHost
+    ```
+
+1. On the resources page, in the **aspirestorage** row, click the link in the **Endpoints** column to open the UI of your app.
+
+    :::image type="content" source="media/support-app.png" lightbox="media/support-app.png" alt-text="A screenshot showing the home page of the .NET Aspire support application.":::
+
+1. Enter sample data into the `Title` and `Description` form fields and select a simple file to upload.
+1. Select the **Submit** button, and the form submits the support ticket for processing — and clears the form.
+1. In a separate browser tab, use the Azure portal to navigate to the **Storage browser** in your Azure Storage Account.
+1. Select **Containers** and then navigate into the **Documents** container to see the uploaded file.
+1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../fundamentals/dashboard.md), and selecting the **aspirestorage.worker** from the dropdown.
+
+    :::image type="content" source="media/queue-output.png" lightbox="media/queue-output.png"  alt-text="A screenshot showing the console output of the Worker app.":::
+
+---
 
 ## Summary
 
