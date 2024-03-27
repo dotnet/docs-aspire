@@ -131,7 +131,7 @@ Visual Studio creates a new ASP.NET Core solution that is structured to use .NET
 - **AspireStorage.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
 - **AspireStorage.ServiceDefaults**: A shared class library to hold configurations that can be reused across the projects in your solution.
 
-## [.NET CLI](#tab/dotnet-cli)
+## [.NET CLI](#tab/net-cli)
 
 Use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new .NET Aspire app:
 
@@ -168,7 +168,7 @@ builder.AddProject<Projects.AspireStorage_Worker>();
 
 Visual Studio tooling added this line of code to register your new project with the <xref:Aspire.Hosting.IDistributedApplicationBuilder> object, which enables orchestration features. For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
 
-## [.NET CLI](#tab/dotnet-cli)
+## [.NET CLI](#tab/net-cli)
 
 1. In the root directory of the app, use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new Worker Service app:
 
@@ -354,7 +354,7 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 
     :::image type="content" source="media/queue-output.png" lightbox="media/queue-output.png"  alt-text="A screenshot showing the console output of the Worker app.":::
 
-## [.NET CLI](#tab/dotnet-cli)
+## [.NET CLI](#tab/net-cli)
 
 1. In a terminal window at the root of your project, use the `dotnet run` command to start the app:
 
