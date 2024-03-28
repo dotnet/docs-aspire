@@ -33,7 +33,12 @@ For more information, see [Provided extension methods](#provided-extension-metho
 
 The _YourAppName.ServiceDefaults_ project is a .NET 8.0 library that contains the following XML:
 
-:::code language="xml" source="snippets/template/YourAppName/YourAppName.ServiceDefaults.csproj":::
+:::code language="xml" source="snippets/template/YourAppName/YourAppName.ServiceDefaults.csproj" highlight="11":::
+
+The service defaults project template imposes a `FrameworkReference` dependency on `Microsoft.AspNetCore.App`.
+
+> [!TIP]
+> If you don't want to take a dependency on `Microsoft.AspNetCore.App`, you can create a custom service defaults project. For more information, see [Custom service defaults](#custom-service-defaults).
 
 The `IsAspireSharedProject` property is set to `true`, which indicates that this project is a shared project. The .NET Aspire tooling uses this project as a reference for other projects added to a .NET Aspire solution. When you enlist the new project for orchestration, it automatically references the _YourAppName.ServiceDefaults_ project and updates the _Program.cs_ file to call the `AddServiceDefaults` method.
 
