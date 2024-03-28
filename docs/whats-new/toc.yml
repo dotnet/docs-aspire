@@ -6,6 +6,8 @@ items:
   - name: Latest product updates
     expanded: true
     items:
+    - name: .NET Aspire preview 5
+      href: preview-5.md
     - name: .NET Aspire preview 4
       href: preview-4.md
     - name: .NET Aspire preview 3
