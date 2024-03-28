@@ -216,7 +216,7 @@ For more information on .NET Aspire components, see [.NET Aspire components over
 
 ### Add a hosting component
 
-.NET Aspire hosting components are used to configure various hosting scenarios, for example, integration with Dapr, Orleans, Hosting components are differentiated from other components in that they are added to the **.AppHost** project. To add a hosting component to your app, follow these steps:
+.NET Aspire hosting components are used to configure various hosting scenarios. Hosting components are differentiated from other components in that they are added to the **.AppHost** project. To add a hosting component to your app, follow these steps:
 
 1. In Visual Studio, right click on the **.AppHost** project and select **Add** > **.NET Aspire Hosting Component...**.
 
