@@ -171,5 +171,7 @@ items:
 
   - name: Reference
     items:
+      - name: Diagnostics overview
+        href: diagnostics/overview.md
       - name: .NET Aspire FAQ
         href: reference/aspire-faq.yml
