@@ -20,8 +20,8 @@ items:
 
   - name: What's new in .NET Aspire
     items:
-      - name: .NET Aspire preview 4
-        href: whats-new/preview-4.md
+      - name: .NET Aspire preview 5
+        href: whats-new/preview-5.md
 
   - name: Fundamentals
     items:
