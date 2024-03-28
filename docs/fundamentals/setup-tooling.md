@@ -210,7 +210,7 @@ You add .NET Aspire components to your app like any other NuGet package using Vi
 
 1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire components, allowing you to easily browse and select the desired component. The **Include prerelease** checkbox needs to be checked to see preview components.
 
-    :::image type="content" source="../media/visual-studio-add-aspire-comp-nuget.png" lightbox="../media/visual-studio-add-aspire-comp-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire options.":::
+    :::image type="content" source="../media/visual-studio-add-aspire-comp-nuget.png" lightbox="../media/visual-studio-add-aspire-comp-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire component options.":::
 
 For more information on .NET Aspire components, see [.NET Aspire components overview](components-overview.md).
 
@@ -224,7 +224,7 @@ For more information on .NET Aspire components, see [.NET Aspire components over
 
 1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire hosting resources, allowing you to easily browse and select the desired component. The **Include prerelease** checkbox needs to be checked to see preview resources.
 
-    :::image type="content" source="../media/visual-studio-add-aspire-hosting-comp-nuget.png" lightbox="../media/visual-studio-add-aspire-hosting-comp-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire options.":::
+    :::image type="content" source="../media/visual-studio-add-aspire-hosting-resource-nuget.png" lightbox="../media/visual-studio-add-aspire-hosting-resource-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire resource options.":::
 
 ### Add orchestration projects
 
