@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire service defaults
 description: Learn about the .NET Aspire service defaults project.
-ms.date: 12/08/2023
+ms.date: 03/28/2024
 ms.topic: reference
 ---
 
@@ -110,6 +110,125 @@ The `MapDefaultEndpoints` method:
 - Maps the liveness endpoint to `/alive` route where the health check tag contains `live`.
 
 For more information, see [.NET Aspire health checks](health-checks.md).
+
+## Custom service defaults
+
+If the default service configuration provided by the project template is not sufficient for your needs, you have the option to create your own service defaults project. This is especially useful when your consuming project, such as a Worker project or WinForms project, cannot or does not want to have a `FrameworkReference` dependency on `Microsoft.AspNetCore.App`.
+
+To do this, create a new .NET 8.0 class library project and add the necessary dependencies to the project file, consider the following example:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" />
+    <PackageReference Include="Microsoft.Extensions.Http.Resilience" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.GrpcNetClient" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
+  </ItemGroup>
+</Project>
+```
+
+Then create an extensions class that contains the necessary methods to configure the app defaults:
+
+```csharp
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Trace;
+
+namespace Microsoft.Extensions.Hosting;
+
+public static class AppDefaultsExtensions
+{
+    public static IHostApplicationBuilder AddAppDefaults(
+        this IHostApplicationBuilder builder)
+    {
+        builder.ConfigureAppOpenTelemetry();
+
+        builder.Services.AddServiceDiscovery();
+
+        builder.Services.ConfigureHttpClientDefaults(http =>
+        {
+            // Turn on resilience by default
+            http.AddStandardResilienceHandler();
+
+            // Turn on service discovery by default
+            http.UseServiceDiscovery();
+        });
+
+        return builder;
+    }
+
+    public static IHostApplicationBuilder ConfigureAppOpenTelemetry(
+        this IHostApplicationBuilder builder)
+    {
+        builder.Logging.AddOpenTelemetry(logging =>
+        {
+            logging.IncludeFormattedMessage = true;
+            logging.IncludeScopes = true;
+        });
+
+        builder.Services.AddOpenTelemetry()
+            .WithMetrics(metrics =>
+            {
+                metrics.AddRuntimeInstrumentation()
+                       .AddAppMeters();
+            })
+            .WithTracing(tracing =>
+            {
+                if (builder.Environment.IsDevelopment())
+                {
+                    // We want to view all traces in development
+                    tracing.SetSampler(new AlwaysOnSampler());
+                }
+
+                tracing.AddGrpcClientInstrumentation()
+                       .AddHttpClientInstrumentation();
+            });
+
+        builder.AddOpenTelemetryExporters();
+
+        return builder;
+    }
+
+    private static IHostApplicationBuilder AddOpenTelemetryExporters(
+        this IHostApplicationBuilder builder)
+    {
+        var useOtlpExporter =
+            !string.IsNullOrWhiteSpace(
+                builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]);
+
+        if (useOtlpExporter)
+        {
+            builder.Services.Configure<OpenTelemetryLoggerOptions>(
+                logging => logging.AddOtlpExporter());
+            builder.Services.ConfigureOpenTelemetryMeterProvider(
+                metrics => metrics.AddOtlpExporter());
+            builder.Services.ConfigureOpenTelemetryTracerProvider(
+                tracing => tracing.AddOtlpExporter());
+        }
+
+        return builder;
+    }
+
+    private static MeterProviderBuilder AddAppMeters(
+        this MeterProviderBuilder meterProviderBuilder) =>
+        meterProviderBuilder.AddMeter("System.Net.Http");
+}
+```
+
+This is only an example, and you can customize the `AppDefaultsExtensions` class to meet your specific needs.
 
 ## Next steps
 
