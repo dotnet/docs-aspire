@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire manifest format for deployment tool builders
 description: Learn about the .NET Aspire manifest format in this comprehensive deployment tool builder guide.
-ms.date: 03/13/2024
+ms.date: 03/29/2024
 ms.topic: reference
 ---
 
@@ -43,6 +43,23 @@ info: Aspire.Hosting.Publishing.ManifestPublisher[0]
 ```
 
 The file generated is the .NET Aspire manifest and is used by tools to support deploying into target cloud environments.
+
+> [!NOTE]
+> You can also generate a manifest as part of the launch profile. Consider the following _launchSettings.json_:
+>
+> ```json
+> {
+>   "$schema": "http://json.schemastore.org/launchsettings.json",
+>   "profiles": {
+>     "generate-manifest": {
+>       "commandName": "Project",
+>       "launchBrowser": false,
+>       "dotnetRunMessages": true,
+>       "commandLineArgs": "--publisher manifest --output-path aspire-manifest.json"
+>     }
+>   }
+> }
+> ```
 
 ## Basic manifest format
 
