@@ -35,7 +35,9 @@ export ASPIRE_ALLOW_UNSECURED_TRANSPORT=true
 $env:ASPIRE_ALLOW_UNSECURED_TRANSPORT = "true"
 ```
 
-Alternatively, you can control this via the launch profile. To do this, add the following setting to the `launchSettings.json` file, per transport setting:
+---
+
+Alternatively, you can control this via the launch profile as it exposes the ability to configure environment variables per profile. To do this, consider the following example settings in the `launchSettings.json` file:
 
 ```json
 {
