@@ -124,7 +124,9 @@ The `containerPort` parameter is the port that the container is listening on. Fo
 
 Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectResource>, <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, and <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, .NET Aspire provides extension methods to add common resources to your app model. The following table lists the methods and their corresponding resource types:
 
-**Cloud-agnostic resources available in the following NuGet packages (available by default in .NET Aspire templates with the AppHost project):**
+**Cloud-agnostic resources are available in the following NuGet packages:**
+
+<!-- - [📦 Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans) -->
 
 - [📦 Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka)
 - [📦 Aspire.Hosting.MongoDB](https://www.nuget.org/packages/Aspire.Hosting.MongoDB)
@@ -132,7 +134,6 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 - [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats)
 - [📦 Aspire.Hosting.NodeJs](https://www.nuget.org/packages/Aspire.Hosting.NodeJs)
 - [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle)
-<!-- - [📦 Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans) -->
 - [📦 Aspire.Hosting.RabbitMQ](https://www.nuget.org/packages/Aspire.Hosting.RabbitMQ)
 - [📦 Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis)
 - [📦 Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq)
@@ -151,7 +152,7 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 | <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> | <xref:Aspire.Hosting.ApplicationModel.RedisResource> | Adds a Redis container resource. |
 | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerServerResource> | Adds a SQL Server server resource. |
 
-**Azure specific resources available in the following NuGet packages:**
+**Azure specific resources are available in the following NuGet packages:**
 
 - [📦 Aspire.Hosting.Azure.AppConfiguration](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppConfiguration)
 - [📦 Aspire.Hosting.Azure.ApplicationInsights](https://www.nuget.org/packages/Aspire.Hosting.Azure.ApplicationInsights)
