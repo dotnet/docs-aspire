@@ -12,7 +12,7 @@ Starting with .NET Aspire preview 5, the app host will crash if an `applicationU
 
 When you run a .NET Aspire application with an `applicationUrl` configured with an insecure transport protocol, you might see the following error message:
 
-```plaintext
+```Output
 The 'applicationUrl' setting must be an https address unless the
 'ASPIRE_ALLOW_UNSECURED_TRANSPORT' environment variable is set to true.
 
