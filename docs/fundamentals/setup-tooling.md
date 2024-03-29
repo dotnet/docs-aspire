@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 03/25/2024
+ms.date: 03/29/2024
 ---
 
 # .NET Aspire setup and tooling
@@ -136,6 +136,9 @@ There are currently four project templates available:
 
 - **.NET Aspire Service Defaults**: A standalone **.ServiceDefaults** project that can be used to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](./telemetry.md).
 
+  > [!IMPORTANT]
+  > The service defaults project template takes a `FrameworkReference` dependency on `Microsoft.AspNetCore.App`. This may not be ideal for some project types. For more information, see [.NET Aspire service defaults](service-defaults.md).
+
 Use Visual Studio or the .NET CLI to create new apps using these project templates. Explore additional .NET Aspire project templates in the [.NET Aspire samples](https://github.com/dotnet/aspire-samples) repository.
 
 # [Visual Studio](#tab/visual-studio)
@@ -207,9 +210,21 @@ You add .NET Aspire components to your app like any other NuGet package using Vi
 
 1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire components, allowing you to easily browse and select the desired component. The **Include prerelease** checkbox needs to be checked to see preview components.
 
-    :::image type="content" source="../media/visual-studio-add-aspire-comp-nuget.png" lightbox="../media/visual-studio-add-aspire-comp-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire options.":::
+    :::image type="content" source="../media/visual-studio-add-aspire-comp-nuget.png" lightbox="../media/visual-studio-add-aspire-comp-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire component options.":::
 
 For more information on .NET Aspire components, see [.NET Aspire components overview](components-overview.md).
+
+### Add hosting packages
+
+.NET Aspire hosting packages are used to configure various resources and dependencies an app may depend on or consume. Hosting packages are differentiated from other component packages in that they are added to the **.AppHost** project. To add a hosting package to your app, follow these steps:
+
+1. In Visual Studio, right click on the **.AppHost** project and select **Add** > **.NET Aspire Hosting Component...**.
+
+    :::image type="content" source="../media/visual-studio-add-aspire-hosting-resource.png" lightbox="../media/visual-studio-add-aspire-hosting-resource.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire Hosting Resource option.":::
+
+1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire hosting packages, allowing you to easily browse and select the desired package. The **Include prerelease** checkbox needs to be checked to see preview packages.
+
+    :::image type="content" source="../media/visual-studio-add-aspire-hosting-resource-nuget.png" lightbox="../media/visual-studio-add-aspire-hosting-resource-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire resource options.":::
 
 ### Add orchestration projects
 
