@@ -154,6 +154,12 @@ items:
       - name: Reference - Tool-builder manifest schemas
         href: deployment/manifest-format.md
 
+  - name: Troubleshooting
+    items:
+      - name: Allow unsecure transport
+        displayName: unsecure transport,http,non-tls
+        href: troubleshooting/allow-unsecure-transport.md
+
   - name: Resources
     items:
       - name: .NET Aspire

@@ -124,6 +124,9 @@ conceptualContent:
         - itemType: how-to-guide
           text: RabbitMQ client .NET Aspire component
           url: messaging/rabbitmq-client-component.md
+        - itemType: how-to-guide
+          text: Apache Kafka
+          url: messaging/kafka-component.md
 
     - title: Caching
       links:
