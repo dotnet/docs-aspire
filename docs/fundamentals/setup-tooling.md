@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 03/28/2024
+ms.date: 03/29/2024
 ---
 
 # .NET Aspire setup and tooling
@@ -214,15 +214,15 @@ You add .NET Aspire components to your app like any other NuGet package using Vi
 
 For more information on .NET Aspire components, see [.NET Aspire components overview](components-overview.md).
 
-### Add a hosting resource
+### Add hosting packages
 
-.NET Aspire hosting resources are used to configure various resources and dependencies an app may depend on or consume. Hosting resources are differentiated from other components in that they are added to the **.AppHost** project. To add a hosting resource to your app, follow these steps:
+.NET Aspire hosting packages are used to configure various resources and dependencies an app may depend on or consume. Hosting packages are differentiated from other component packages in that they are added to the **.AppHost** project. To add a hosting package to your app, follow these steps:
 
 1. In Visual Studio, right click on the **.AppHost** project and select **Add** > **.NET Aspire Hosting Component...**.
 
     :::image type="content" source="../media/visual-studio-add-aspire-hosting-resource.png" lightbox="../media/visual-studio-add-aspire-hosting-resource.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire Hosting Resource option.":::
 
-1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire hosting resources, allowing you to easily browse and select the desired component. The **Include prerelease** checkbox needs to be checked to see preview resources.
+1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire hosting packages, allowing you to easily browse and select the desired package. The **Include prerelease** checkbox needs to be checked to see preview packages.
 
     :::image type="content" source="../media/visual-studio-add-aspire-hosting-resource-nuget.png" lightbox="../media/visual-studio-add-aspire-hosting-resource-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire resource options.":::
 
