@@ -44,7 +44,7 @@ info: Aspire.Hosting.Publishing.ManifestPublisher[0]
 
 The file generated is the .NET Aspire manifest and is used by tools to support deploying into target cloud environments.
 
-> [!TIP]
+> [!NOTE]
 > You can also generate a manifest as part of the launch profile. Consider the following _launchSettings.json_:
 >
 > ```json
