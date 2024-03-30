@@ -74,6 +74,7 @@ Manifest
 - Added port as the "exposed port"
 
 Azure Deployment
+- Service selection prompt gone (WithExternalHttpEndpoints in apphost)
 - Support for multiple endpoints in ACA
 - Support for adding volumes to containers in ACA
 
