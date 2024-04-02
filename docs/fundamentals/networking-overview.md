@@ -107,8 +107,8 @@ The previous code makes the random port available in the `PORT` environment vari
 The preceding diagram depicts the following:
 
 - A web browser as an entry point to the app.
-- A host port of 5607.
-- The frontend proxy sitting between the web browser and the frontend service, listening on port 5607.
+- A host port of 5067.
+- The frontend proxy sitting between the web browser and the frontend service, listening on port 5067.
 - The frontend service listening on an environment 65001.
 
 ## Omit the host port
