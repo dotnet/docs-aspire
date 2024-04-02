@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire health checks
 description: Explore .NET Aspire health checks
-ms.date: 12/08/2023
+ms.date: 04/02/2024
 ms.topic: quickstart
 ---
 
@@ -15,7 +15,7 @@ Health checks provide availability and state information about an app. Health ch
 
 ## .NET Aspire health check endpoints
 
-.NET Aspire exposes two default health check HTTP endpoints when the `AddServiceDefaults` and `MapDefaultEndpoints` methods are called from the _Program.cs_ file:
+.NET Aspire exposes two default health check HTTP endpoints in **Development** environments when the `AddServiceDefaults` and `MapDefaultEndpoints` methods are called from the _Program.cs_ file:
 
 - The `/health` endpoint indicates if the app is running normally where it's ready to receive requests. All health checks must pass for app to be considered ready to accept traffic after starting.
 
@@ -34,6 +34,28 @@ Health checks provide availability and state information about an app. Health ch
     The `/alive` endpoint returns an HTTP status code 200 and a `text/plain` value of <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy> when the app is _alive_.
 
 The `AddServiceDefaults` and `MapDefaultEndpoints` methods also apply various configurations to your app beyond just health checks, such as OpenTelemetry and service discovery configurations.
+
+### Non-development environments
+
+In non-development environments, the `/health` and `/alive` endpoints are disabled by default. If you need to enable them, its recommended to protect these endpoints with various routing features, such as host filtering and/or authorization. For more information, see [Health checks in ASP.NET Core](/aspnet/core/host-and-deploy/health-checks#use-health-checks-routing).
+
+Additionally, it may advantageous to configure request timeouts and output caching for these endpoints to prevent abuse or denial-of-service attacks. To do so, consider the following modified `AddDefaultHealthChecks` method:
+
+:::code language="csharp" source="snippets/healthz/Healthz.ServiceDefaults/Extensions.cs" id="healthchecks":::
+
+The preceding code:
+
+- Adds a timeout of 5 seconds to the health check requests with a policy named `HealthChecks`.
+- Adds a 10-second cache to the health check responses with a policy named `HealthChecks`.
+
+Now consider the updated `MapDefaultEndpoints` method:
+
+:::code language="csharp" source="snippets/healthz/Healthz.ServiceDefaults/Extensions.cs" id="mapendpoints":::
+
+The preceding code:
+
+- Groups the health check endpoints under the `/` path.
+- Caches the output and specifies a request time with the corresponding `HealthChecks` policy.
 
 ## Component health checks
 
