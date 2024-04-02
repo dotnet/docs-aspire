@@ -60,7 +60,4 @@ Welcome to what's new in the .NET Aspire docs for March 2024. This article lists
 
 The following people contributed to the .NET Aspire docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [alexwolfmsft](https://github.com/alexwolfmsft) -  ![4 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-4-green)
-- [IEvangelist](https://github.com/IEvangelist) - David Pine ![4 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-4-green)
 - [Alexanderbtw](https://github.com/Alexanderbtw) - Alexander ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [BillWagner](https://github.com/BillWagner) - Bill Wagner ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
