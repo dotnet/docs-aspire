@@ -221,13 +221,13 @@ For more information on .NET Aspire components, see [.NET Aspire components over
 
 .NET Aspire hosting packages are used to configure various resources and dependencies an app may depend on or consume. Hosting packages are differentiated from other component packages in that they are added to the **.AppHost** project. To add a hosting package to your app, follow these steps:
 
-1. In Visual Studio, right click on the **.AppHost** project and select **Add** > **.NET Aspire Hosting Component...**.
+1. In Visual Studio, right click on the **.AppHost** project and select **Add** > **.NET Aspire package...**.
 
-    :::image type="content" source="../media/visual-studio-add-aspire-hosting-resource.png" lightbox="../media/visual-studio-add-aspire-hosting-resource.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire Hosting Resource option.":::
+    :::image type="content" source="../media/visual-studio-add-aspire-hosting-package.png" lightbox="../media/visual-studio-add-aspire-hosting-package.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire Hosting Resource option.":::
 
 1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire hosting packages, allowing you to easily browse and select the desired package. The **Include prerelease** checkbox needs to be checked to see preview packages.
 
-    :::image type="content" source="../media/visual-studio-add-aspire-hosting-resource-nuget.png" lightbox="../media/visual-studio-add-aspire-hosting-resource-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire resource options.":::
+    :::image type="content" source="../media/visual-studio-add-aspire-hosting-nuget.png" lightbox="../media/visual-studio-add-aspire-hosting-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire resource options.":::
 
 ### Add orchestration projects
 

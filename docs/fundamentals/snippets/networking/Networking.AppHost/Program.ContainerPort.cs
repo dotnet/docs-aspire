@@ -4,7 +4,7 @@
     {
         // <containerport>
         builder.AddContainer("frontend", "mcr.microsoft.com/dotnet/samples", "aspnetapp")
-               .WithHttpEndpoint(hostPort: 8000, containerPort: 8080);
+               .WithHttpEndpoint(port: 8000, targetPort: 8080);
         // </containerport>
     }
 }

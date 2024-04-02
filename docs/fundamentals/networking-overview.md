@@ -47,11 +47,7 @@ For the remainder of this article, imagine that you've created an <xref:Aspire.H
 var builder = DistributedApplication.CreateBuilder(args);
 ```
 
-To specify that the **https** launch profile should be used, call <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithLaunchProfile%2A>:
-
-:::code source="snippets/networking/Networking.AppHost/Program.WithLaunchProfile.cs" id="withlaunchprofile":::
-
-This will select the **https** launch profile from _launchSettings.json_. The `applicationUrl` of that launch profile is used to create a service binding for this project. This is the equivalent of:
+To specify that the **https** launch profile should be used, select the **https** launch profile from _launchSettings.json_. The `applicationUrl` of that launch profile is used to create a service binding for this project. This is the equivalent of:
 
 :::code source="snippets/networking/Networking.AppHost/Program.WithLaunchProfile.cs" id="verbose":::
 

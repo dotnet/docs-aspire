@@ -4,7 +4,7 @@
     {
         // <envvarport>
         builder.AddNpmApp("frontend", "../NodeFrontend", "watch")
-               .WithHttpEndpoint(hostPort: 5067, env: "PORT");
+               .WithHttpEndpoint(port: 5067, env: "PORT");
         // </envvarport>
     }
 }
