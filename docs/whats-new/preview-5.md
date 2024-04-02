@@ -21,11 +21,44 @@ Breaking Changes
 - Async all the things, various callbacks in the app model APIs
 are now async. (GetConnectionStringAsync etc.)
 
-Dashboard
+## Dashboard
 
-- Support for authentication
+In preview 5. our primary focus has been on non-functional requirements around security and performance improvements.
+
+### Security Updates
+
+Communication has been secured across the following endpoints:
   - OTLP
-  - UI (Frontend)
+  - Dashboard
+  - Resource Server
+
+#### OTLP Endpoint Security
+The OTLP endpoint can be secured with [client certificate](https://learn.microsoft.com/aspnet/core/security/authentication/certauth) or API key authentication.
+
+- `Otlp:AuthMode` specifies the authentication mode on the OTLP endpoint. Possible values are `Certificate`, `ApiKey`, `Unsecured`. This configuration is required.
+- `Otlp:ApiKey` specifies the API key for the OTLP endpoint when API key authentication is enabled. This configuration is required for API key authentication.
+  
+#### Dashboard Authentication
+The dashboard's web application frontend supports OpenID Connect (OIDC) for authentication. These can be applied via configurable settings, once Frontend:AuthMode is set to OpenIdConnect:
+
+- `Authentication:Schemes:OpenIdConnect:Authority` &mdash; URL to the identity provider (IdP)
+- `Authentication:Schemes:OpenIdConnect:ClientId` &mdash; Identity of the relying party (RP)
+- `Authentication:Schemes:OpenIdConnect:ClientSecret`&mdash; A secret that only the real RP would know
+- Other properties of [`OpenIdConnectOptions`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.openidconnectoptions) specified in configuration container `Authentication:Schemes:OpenIdConnect:*`
+  
+#### Resource Server Endpoint Security
+The resource server client supports client certificates. This can be applied via configurable settings, once ResourceServiceClient:AuthMode to Certificate
+- `ResourceServiceClient:ClientCertificate:Source` (required) one of:
+  - `File` to load the cert from a file path, configured with:
+    - `ResourceServiceClient:ClientCertificate:FilePath` (required, string)
+    - `ResourceServiceClient:ClientCertificate:Password` (optional, string)
+  - `KeyStore` to load the cert from a key store, configured with:
+    - `ResourceServiceClient:ClientCertificate:Subject` (required, string)
+    - `ResourceServiceClient:ClientCertificate:KeyStore:Name` (optional, [`StoreName`](https://learn.microsoft.com/dotnet/api/system.security.cryptography.x509certificates.storename), defaults to `My`)
+    - `ResourceServiceClient:ClientCertificate:KeyStore:Location` (optional, [`StoreLocation`](https://learn.microsoft.com/dotnet/api/system.security.cryptography.x509certificates.storelocation), defaults to `CurrentUser`)
+- `ResourceServiceClient:Ssl` (optional, [`SslClientAuthenticationOptions`](https://learn.microsoft.com/dotnet/api/system.net.security.sslclientauthenticationoptions))
+        
+### Performance Improvements 
 - LOTS of performance improvements
   - Console log virtualization
   - Load time improvements
