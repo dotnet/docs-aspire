@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 03/29/2024
+ms.date: 04/02/2024
 ---
 
 # .NET Aspire setup and tooling
@@ -134,6 +134,8 @@ There are currently four project templates available:
 
 - **.NET Aspire App Host**: A standalone **.AppHost** project that can be used to orchestrate and manage the different projects and services of your app.
 
+- **.NET Aspire Text Project (xUnit)**:
+
 - **.NET Aspire Service Defaults**: A standalone **.ServiceDefaults** project that can be used to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](./telemetry.md).
 
   > [!IMPORTANT]
@@ -160,12 +162,13 @@ When the .NET Aspire workload is installed, you'll see the following .NET Aspire
 ```Output
 These templates matched your input: 'aspire'
 
-Template Name                    Short Name              Language  Tags
--------------------------------  ----------------------  --------  -------------------------------------------------------
-.NET Aspire App Host             aspire-apphost          [C#]      Common/.NET Aspire/Cloud
-.NET Aspire Application          aspire                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
-.NET Aspire Service Defaults     aspire-servicedefaults  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
-.NET Aspire Starter Application  aspire-starter          [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud
+Template Name                     Short Name              Language  Tags
+--------------------------------  ----------------------  --------  -------------------------------------------------------
+.NET Aspire App Host              aspire-apphost          [C#]      Common/.NET Aspire/Cloud
+.NET Aspire Application           aspire                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire Service Defaults      aspire-servicedefaults  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire Starter Application   aspire-starter          [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud
+.NET Aspire Test Project (xUnit)  aspire-xunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
 ```
 
 To create a .NET Aspire project using the .NET CLI, use the `dotnet new` command and specify which template you would like to create.
