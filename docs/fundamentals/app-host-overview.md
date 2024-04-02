@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs to express resource references.
-ms.date: 03/13/2024
+ms.date: 04/02/2024
 ms.topic: overview
 ---
 
@@ -114,8 +114,8 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
                         .WithReference(endpoint);
 ```
 
-| Method                    | Environment variable                             |
-|---------------------------|--------------------------------------------------|
+| Method                    | Environment variable                            |
+|---------------------------|-------------------------------------------------|
 | `WithReference(endpoint)` | `services__myapp__0=endpoint://localhost:65256` |
 
 The `containerPort` parameter is the port that the container is listening on. For more information on container ports, see [Container ports](networking-overview.md#container-ports). For more information on service discovery, see [.NET Aspire service discovery](../service-discovery/overview.md).
@@ -124,7 +124,19 @@ The `containerPort` parameter is the port that the container is listening on. Fo
 
 Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectResource>, <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, and <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, .NET Aspire provides extension methods to add common resources to your app model. The following table lists the methods and their corresponding resource types:
 
-**Cloud-agnostic resources available in the [📦 Aspire.Hosting](https://www.nuget.org/packages/Aspire.Hosting) NuGet package (available by default in .NET Aspire templates with the AppHost project):**
+**Cloud-agnostic resources are available in the following NuGet packages:**
+
+- [📦 Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka)
+- [📦 Aspire.Hosting.MongoDB](https://www.nuget.org/packages/Aspire.Hosting.MongoDB)
+- [📦 Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql)
+- [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats)
+- [📦 Aspire.Hosting.NodeJs](https://www.nuget.org/packages/Aspire.Hosting.NodeJs)
+- [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle)
+- [📦 Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans)
+- [📦 Aspire.Hosting.RabbitMQ](https://www.nuget.org/packages/Aspire.Hosting.RabbitMQ)
+- [📦 Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis)
+- [📦 Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq)
+- [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer)
 
 | Method | Resource type | Description |
 |--|--|--|
@@ -139,7 +151,20 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 | <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> | <xref:Aspire.Hosting.ApplicationModel.RedisResource> | Adds a Redis container resource. |
 | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerServerResource> | Adds a SQL Server server resource. |
 
-**Azure specific resources available in the [📦 Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure) NuGet package:**
+**Azure specific resources are available in the following NuGet packages:**
+
+- [📦 Aspire.Hosting.Azure.AppConfiguration](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppConfiguration)
+- [📦 Aspire.Hosting.Azure.ApplicationInsights](https://www.nuget.org/packages/Aspire.Hosting.Azure.ApplicationInsights)
+- [📦 Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices)
+- [📦 Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB)
+- [📦 Aspire.Hosting.Azure.OperationalInsights](https://www.nuget.org/packages/Aspire.Hosting.Azure.OperationalInsights)
+- [📦 Aspire.Hosting.Azure.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.Azure.PostgreSQL)
+- [📦 Aspire.Hosting.Azure.Redis](https://www.nuget.org/packages/Aspire.Hosting.Azure.Redis)
+- [📦 Aspire.Hosting.Azure.Search](https://www.nuget.org/packages/Aspire.Hosting.Azure.Search)
+- [📦 Aspire.Hosting.Azure.ServiceBus](https://www.nuget.org/packages/Aspire.Hosting.Azure.ServiceBus)
+- [📦 Aspire.Hosting.Azure.SignalR](https://www.nuget.org/packages/Aspire.Hosting.Azure.SignalR)
+- [📦 Aspire.Hosting.Azure.Sql](https://www.nuget.org/packages/Aspire.Hosting.Azure.Sql)
+- [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage)
 
 | Method | Resource type | Description |
 |--|--|--|

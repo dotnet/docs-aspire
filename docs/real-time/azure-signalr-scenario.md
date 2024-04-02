@@ -2,7 +2,7 @@
 title: .NET Aspire support for Azure SignalR Service
 description: Learn how to use the Azure SignalR Service with .NET Aspire.
 ms.topic: how-to
-ms.date: 03/01/2024
+ms.date: 04/02/2024
 ---
 
 # .NET Aspire support for Azure SignalR Service
