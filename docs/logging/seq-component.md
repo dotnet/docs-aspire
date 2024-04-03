@@ -61,8 +61,9 @@ The .NET Aspire Seq component supports <xref:Microsoft.Extensions.Configuration?
 
 You can pass the `Action<SeqSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
 
-```c#
-builder.AddSeqEndpoint("seq", settings => {
+```csharp
+builder.AddSeqEndpoint("seq", static settings => 
+{
     settings.HealthChecks = false;
     settings.ServerUrl = "http://localhost:5341"
 });
@@ -99,11 +100,11 @@ Register Seq with a data directory in your AppHost project to retain Seq's data 
 var seq = builder.AddSeq("seq", seqDataDirectory: "./seqdata");
 ```
 
-Note that the directory specified must already exist.
+The directory specified must already exist.
 
 ### Seq in the .NET Aspire manifest
 
-Seq is not part of the .NET Aspire deployment manifest. It is recommended you set up a secure production Seq server outside of .NET Aspire.
+Seq isn't part of the .NET Aspire deployment manifest. It's recommended you set up a secure production Seq server outside of .NET Aspire.
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
