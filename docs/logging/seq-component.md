@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your projects, call the <xref:Microsoft.Extensions.Hosting.AspireSeqExtensions.AddSeqEndpoint> extension method to register OpenTelemetry Protocol exporters to send logs and traces to Seq and the .NET Aspire Dashboard. The method takes a connection name parameter.
+In the _Program.cs_ file of your projects, call the <xref:Microsoft.Extensions.Hosting.AspireSeqExtensions.AddSeqEndpoint%2A> extension method to register OpenTelemetry Protocol exporters to send logs and traces to Seq and the .NET Aspire Dashboard. The method takes a connection name parameter.
 
 ```csharp
 builder.AddSeqEndpoint("seq");
