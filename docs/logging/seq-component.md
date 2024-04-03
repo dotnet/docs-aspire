@@ -57,13 +57,9 @@ The .NET Aspire Seq component supports <xref:Microsoft.Extensions.Configuration?
 }
 ```
 
-The `Config` properties of both  `Aspire:Confluent:Kafka:Producer` and `Aspire.Confluent:Kafka:Consumer` configuration sections respectively bind to instances of [`ProducerConfig`](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Seq.ProducerConfig.html) and [`ConsumerConfig`](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Seq.ConsumerConfig.html).
-
-`Seq.Consumer<TKey, TValue>` requires the `ClientId` property to be set to let the broker track consumed message offsets.
-
 ### Use inline delegates
 
-Also you can pass the `Action<SeqSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
+You can pass the `Action<SeqSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
 
 ```c#
 builder.AddSeqEndpoint("seq", settings => {
@@ -80,7 +76,7 @@ In your AppHost project, install the `Aspire.Hosting.Seq` library with [NuGet](h
 dotnet add package Aspire.Hosting.Seq
 ```
 
-Then, in the _Program.cs_ file of `AppHost`, register a Seq server and propagate its configuration using the following methods (note that you must accept the [Seq End User Licence Agreement](https://datalust.co/doc/eula-current.pdf) for Seq to start):
+Then, in the _Program.cs_ file of the **.AppHost** project, register a Seq server and propagate its configuration using the following methods (note that you must accept the [Seq End User Licence Agreement](https://datalust.co/doc/eula-current.pdf) for Seq to start):
 
 ```csharp
 var seq = builder.AddSeq("seq");
@@ -89,7 +85,7 @@ var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(seq);
 ```
 
-In the _Program.cs_ file of `MyService`, logging and tracing to Seq can be configured with:
+In the _Program.cs_ file of the **MyService** project, configure logging and tracing to Seq using the following code:
 
 ```csharp
 builder.AddSeqEndpoint("seq");
@@ -97,7 +93,7 @@ builder.AddSeqEndpoint("seq");
 
 ### Persistent logs and traces
 
-To retain Seq's data and configuration across application restarts register Seq with a data directory in your AppHost project.
+Register Seq with a data directory in your AppHost project to retain Seq's data and configuration across application restarts.
 
 ```csharp
 var seq = builder.AddSeq("seq", seqDataDirectory: "./seqdata");
@@ -107,7 +103,7 @@ Note that the directory specified must already exist.
 
 ### Seq in the .NET Aspire manifest
 
-Seq is not part of the .NET Aspire deployment manifest. It is recommended to set up a secure production Seq server outside of .NET Aspire.
+Seq is not part of the .NET Aspire deployment manifest. It is recommended you set up a secure production Seq server outside of .NET Aspire.
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
