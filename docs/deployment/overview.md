@@ -33,7 +33,7 @@ Kubernetes is a popular container orchestration platform that can run .NET Aspir
 
 ### The Aspir8 project
 
-There's an open-source project named **Aspir8**, which handles the generation of deployment YAML based on the .NET Aspire app host manifest. The project outputs a .NET global tool that can be used to perform a series of tasks, resulting in the generation of Kubernetes manifests:
+**Aspir8**, an open-source project, handles the generation of deployment YAML based on the .NET Aspire app host manifest. The project outputs a .NET global tool that can be used to perform a series of tasks, resulting in the generation of Kubernetes manifests:
 
 - `aspirate init`: Initializes the **Aspir8** project in the current directory.
 - `aspirate generate`: Generates Kubernetes manifests based on the .NET Aspire app host manifest.
