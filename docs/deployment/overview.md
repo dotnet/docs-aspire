@@ -29,11 +29,11 @@ For more information on the schema of the manifest and how to run app host proje
 
 ## Deploy to Kubernetes
 
-Kubernetes is a popular container orchestration platform that can run .NET Aspire applications. To deploy .NET Aspire apps to Kubernetes clusters, you'll need to map the .NET Aspire JSON manifest to a Kubernetes YAML manifest file. There are two ways to do this:
+Kubernetes is a popular container orchestration platform that can run .NET Aspire applications. To deploy .NET Aspire apps to Kubernetes clusters, you need to map the .NET Aspire JSON manifest to a Kubernetes YAML manifest file. There are two ways to do this: by using the Aspir8 project and by manually creating Kubernetes manifests.
 
 ### The Aspir8 project
 
-There's an open-source project named **Aspir8**, which handles the generation of deployment YAML based on the .NET Aspire app host manifest. The project outputs a .NET global tool, that can be used to perform a series of tasks, resulting in the generation of Kubernetes manifests:
+There's an open-source project named **Aspir8**, which handles the generation of deployment YAML based on the .NET Aspire app host manifest. The project outputs a .NET global tool that can be used to perform a series of tasks, resulting in the generation of Kubernetes manifests:
 
 - `aspirate init`: Initializes the **Aspir8** project in the current directory.
 - `aspirate generate`: Generates Kubernetes manifests based on the .NET Aspire app host manifest.
@@ -44,4 +44,4 @@ With these commands, you can build your apps, containerize them, and deploy them
 
 ### Manually create Kubernetes manifests
 
-Alternatively, the Kubernetes manifests can be created manually. This involves more effort, and is a bit more time consuming. For more information, see [Deploy a .NET microservice to Kubernetes](/training/modules/dotnet-deploy-microservices-kubernetes/).
+Alternatively, the Kubernetes manifests can be created manually. This involves more effort and is more time consuming. For more information, see [Deploy a .NET microservice to Kubernetes](/training/modules/dotnet-deploy-microservices-kubernetes/).
