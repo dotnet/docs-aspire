@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Blob Storage component
 description: This article describes the .NET Aspire Azure Blob Storage component features and capabilities.
 ms.topic: how-to
-ms.date: 03/13/2024
+ms.date: 04/04/2024
 ---
 
 # .NET Aspire Azure Blob Storage component

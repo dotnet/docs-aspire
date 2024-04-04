@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Data Tables component
 description: This article describes the .NET Aspire Azure Data Tables component features and capabilities.
-ms.date: 01/22/2024
+ms.date: 04/04/2024
 ms.topic: how-to
 ---
 

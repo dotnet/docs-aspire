@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Service Bus component
 description: This article describes the .NET Aspire Azure Service Bus component features and capabilities
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 04/04/2024
 ---
 
 # .NET Aspire Azure Service Bus component

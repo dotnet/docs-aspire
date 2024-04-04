@@ -2,7 +2,7 @@
 title: .NET Aspire Microsoft Entity Framework Core Cosmos DB component
 description: This article describes the .NET Aspire Microsoft Entity Framework Core Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 04/04/2024
 ---
 
 # .NET Aspire Microsoft Entity Framework Core Cosmos DB component
