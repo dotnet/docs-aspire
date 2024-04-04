@@ -2,7 +2,7 @@
 title: .NET Aspire Microsoft Entity Framework Core Cosmos DB component
 description: This article describes the .NET Aspire Microsoft Entity Framework Core Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 04/04/2024
 ---
 
 # .NET Aspire Microsoft Entity Framework Core Cosmos DB component
@@ -51,7 +51,22 @@ For more information on using Entity Framework Core with Azure Cosmos DB, see th
 
 ## App host usage
 
-[!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
+To add Azure Cosmos DB hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Azure.CosmosDB --prerelease
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Azure.CosmosDB"
+                  Version="[SelectVersion]" />
+```
+
+---
 
 In your app host project, register the .NET Aspire Microsoft Entity Framework Core Cosmos DB component and consume the service using the following methods:
 
