@@ -37,13 +37,13 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your projects, call the <xref:Microsoft.Extensions.Hosting.AspireNatsClientExtensions.AddNatsClient%2A> extension method to register a `INatsConnection` to send logs and traces to NATS and the .NET Aspire Dashboard. The method takes a connection name parameter.
+In the _Program.cs_ file of your projects, call the <xref:Microsoft.Extensions.Hosting.AspireNatsClientExtensions.AddNatsClient%2A> extension method to register an `INatsConnection` to send logs and traces to NATS and the .NET Aspire Dashboard. The method takes a connection name parameter.
 
 ```csharp
 builder.AddNatsClient("nats");
 ```
 
-You can then retrieve an `INatsConnection` instance using dependency injection. For example, to retrieve the client from a service:
+You can then retrieve the `INatsConnection` instance using dependency injection. For example, to retrieve the client from a service:
 
 ```csharp
 public class ExampleService(INatsConnection client)
@@ -78,7 +78,7 @@ See the [ConnectionString documentation](https://docs.nats.io/using-nats/develop
 
 ### Use configuration providers
 
-The .NET Aspire NATS component supports [Microsoft.Extensions.Configuration](https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration). It loads the `NatsClientSettings` from configuration using the `Aspire:Nats:Client` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire NATS component supports [Microsoft.Extensions.Configuration](/dotnet/api/microsoft.extensions.configuration). It loads the `NatsClientSettings` from configuration using the `Aspire:Nats:Client` key. Example `appsettings.json` that configures some of the options:
 
 ```json
 {
@@ -125,7 +125,7 @@ builder.AddNatsClient("nats");
 
 ### Persistent logs and traces
 
-Register NATS with a data directory in your AppHost project to retain NATS's data and configuration across application restarts.
+Register NATS with a data directory in your **.AppHost** project to retain NATS's data and configuration across application restarts.
 
 ```csharp
 var NATS = builder.AddNATS("NATS", NATSDataDirectory: "./NATSdata");
