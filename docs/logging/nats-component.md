@@ -16,7 +16,7 @@ In this article, you learn how to use the .NET Aspire NATS component to send log
 
 ## Get started
 
-To get started with the .NET Aspire NATS component, install the [Aspire.NATS](https://www.nuget.org/packages/Aspire.NATS) NuGet package.
+To get started with the .NET Aspire NATS component, install the [Aspire.NATS.Net](https://www.nuget.org/packages/Aspire.NATS) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -27,7 +27,7 @@ dotnet add package Aspire.NATS.Net --prerelease
 ### [PackageReference](#tab/package-reference)
 
 ```xml
-<PackageReference Include="Aspire.NATS"
+<PackageReference Include="Aspire.NATS.Net"
                   Version="[SelectVersion]" />
 ```
 
@@ -37,7 +37,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your projects, call the <xref:Aspire.Hosting.NatsBuilderExtensions.AddNatsClient%2A> extension method to register a `INatsConnection` to send logs and traces to NATS and the .NET Aspire Dashboard. The method takes a connection name parameter.
+In the _Program.cs_ file of your projects, call the <xref:Microsoft.Extensions.Hosting.AspireNatsClientExtensions.AddNatsClient%2A> extension method to register a `INatsConnection` to send logs and traces to NATS and the .NET Aspire Dashboard. The method takes a connection name parameter.
 
 ```csharp
 builder.AddNatsClient("nats");
@@ -46,7 +46,7 @@ builder.AddNatsClient("nats");
 You can then retrieve an `INatsConnection` instance using dependency injection. For example, to retrieve the client from a service:
 
 ```csharp
-public class ExampleService(BlobServiceClient client)
+public class ExampleService(INatsConnection client)
 {
     // Use client...
 }
@@ -58,13 +58,13 @@ The .NET Aspire NATS component provides multiple options to configure the NATS c
 
 ### Use a connection string
 
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddNatsClient()`:
+Provide the name of the connection string when you call `builder.AddNatsClient()`:
 
 ```csharp
 builder.AddNatsClient("myConnection");
 ```
 
-And then the connection string will be retrieved from the `ConnectionStrings` configuration section:
+The connection string is retrieved from the `ConnectionStrings` configuration section:
 
 ```json
 {
@@ -78,7 +78,7 @@ See the [ConnectionString documentation](https://docs.nats.io/using-nats/develop
 
 ### Use configuration providers
 
-The .NET Aspire NATS component supports [Microsoft.Extensions.Configuration](https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration). It loads the `NatsClientSettings` from configuration by using the `Aspire:Nats:Client` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire NATS component supports [Microsoft.Extensions.Configuration](https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration). It loads the `NatsClientSettings` from configuration using the `Aspire:Nats:Client` key. Example `appsettings.json` that configures some of the options:
 
 ```json
 {
@@ -94,7 +94,7 @@ The .NET Aspire NATS component supports [Microsoft.Extensions.Configuration](htt
 
 ### Use inline delegates
 
-Also you can pass the `Action<NatsClientSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
+Pass the `Action<NatsClientSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
 
 ```csharp
 builder.AddNatsClient("nats", settings => settings.HealthChecks = false);
