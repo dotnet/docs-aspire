@@ -49,7 +49,22 @@ public class ExampleService(QueueServiceClient client)
 
 ## App host usage
 
-[!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
+To add Azure Storage hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Azure.Storage --prerelease
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Azure.Storage"
+                  Version="[SelectVersion]" />
+```
+
+---
 
 In your app host project, add a Storage Queue connection and consume the connection using the following methods, such as <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A>:
 

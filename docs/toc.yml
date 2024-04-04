@@ -134,6 +134,11 @@ items:
       - name: Redis Distributed Cache component
         href: caching/stackexchange-redis-distributed-caching-component.md
 
+  - name: Logging
+    items:
+      - name: Seq component
+        href: logging/seq-component.md
+
   - name: Security
     items:
       - name: Azure Key Vault component

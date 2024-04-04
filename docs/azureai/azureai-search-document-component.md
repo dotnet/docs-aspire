@@ -2,7 +2,7 @@
 title: NET Aspire Azure AI Search Documents component
 description: Learn how to use the NET Aspire Azure AI Search Documents component.
 ms.topic: how-to
-ms.date: 03/11/2024
+ms.date: 04/04/2024
 ---
 
 # NET Aspire Azure AI Search Documents component
@@ -75,7 +75,22 @@ For more information, see the [Azure AI Search client library for .NET](https://
 
 ## App host usage
 
-[!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
+To add Azure Cosmos DB hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Azure.CosmosDB --prerelease
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Azure.CosmosDB"
+                  Version="[SelectVersion]" />
+```
+
+---
 
 In the _Program.cs_ file of `AppHost`, add an Azure Search service and consume the connection using the following methods:
 

@@ -57,7 +57,22 @@ public class ExampleService(ServiceBusClient client)
 
 ## App host usage
 
-[!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
+To add Azure Service Bus hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.ServiceBus](https://www.nuget.org/packages/Aspire.Hosting.Azure.ServiceBus) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Azure.ServiceBus --prerelease
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Azure.ServiceBus"
+                  Version="[SelectVersion]" />
+```
+
+---
 
 In your app host project, register the Service Bus component and consume the service using the following methods:
 
