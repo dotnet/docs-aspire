@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire NATS component to send log
 
 ## Prerequisites
 
-- [Install the NATS server](https://docs.nats.io/running-a-nats-service/introduction/installation) 
+- [Install the NATS server](https://docs.nats.io/running-a-nats-service/introduction/installation)
 - The URL to access the server.
 
 ## Get started
