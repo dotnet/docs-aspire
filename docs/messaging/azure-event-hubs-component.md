@@ -187,8 +187,27 @@ builder.AddAzureEventProcessorClient(
         options => options.Identifier = "PROCESSOR_ID"));
 ```
 
+[!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
+
+### Logging
+
+The .NET Aspire Azure Event Hubs component uses the following log categories:
+
+- `Azure.Core`
+- `Azure.Identity`
+
+### Tracing
+
+The .NET Aspire Azure Event Hubs component will emit the following tracing activities using OpenTelemetry:
+
+- "Azure.Messaging.EventHubs.*"
+
+### Metrics
+
+The .NET Aspire Azure Event Hubs component currently doesn't support metrics by default due to limitations with the Azure SDK for .NET. If that changes in the future, this section will be updated to reflect those changes.
+
 ## See also
 
-- [Azure Blob Storage docs](/azure/storage/blobs/)
+- [Azure Event Hubs](/azure/event-hubs/)
 - [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

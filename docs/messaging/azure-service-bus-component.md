@@ -172,13 +172,6 @@ The following configurable options are exposed through the <xref:Aspire.Azure.Me
 | `Credential`       | The credential used to authenticate to the Service Bus namespace.   |
 | `Namespace`        | The fully qualified Service Bus namespace.                          |
 
-[!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
-
-The .NET Aspire Azure Service Bus component handles the following:
-
-- Adds the `AzureServiceBusHealthCheck` health check, which attempts to connect to and query the specified service bus
-- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
-
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 
 ### Logging
