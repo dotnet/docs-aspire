@@ -147,6 +147,8 @@ items:
         href: deployment/overview.md
       - name: Azure
         items:
+          - name: Local Azure provisioning
+            href: deployment/azure/local-provisioning.md
           - name: Tutorial - Azure Container Apps
             href: deployment/azure/aca-deployment.md
             displayName: azure container apps,aca
@@ -160,8 +162,6 @@ items:
             displayName: app insights
           - name: Tutorial - Deploy .NET Aspire + SQL Database
             href: database/sql-server-component-deployment.md
-          - name: Local Azure provisioning
-            href: deployment/azure/local-provisioning.md
       - name: Reference - Tool-builder manifest schemas
         href: deployment/manifest-format.md
 
