@@ -275,7 +275,7 @@ the following settings to user `secrets.json` file:
 
 When you launch the AppHost the dashboard will show that it is create the Azure resources for you and provide helpful links to the deployment into the Azure portal, or in the case of failure logs that provide hints as to what might be causing the deployment issue.
 
-![](./media/preview-5/azure-resource-provisioning-on-dashboard.png)
+:::image type="content" source="/media/preview-5/azure-resource-provisioning-on-dashboard.png" lightbox="/media/preview-5/azure-resource-provisioning-on-dashboard.png" alt-text=".NET Aspire dashboard: Azure provisioning.":::
 
 To use Azure provisioning you only need to make use of one of an Azure resource. For example:
 
