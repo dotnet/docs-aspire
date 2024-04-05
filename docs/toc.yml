@@ -160,6 +160,8 @@ items:
             displayName: app insights
           - name: Tutorial - Deploy .NET Aspire + SQL Database
             href: database/sql-server-component-deployment.md
+          - name: Local Azure provisioning
+            href: deployment/azure/local-provisioning.md
       - name: Reference - Tool-builder manifest schemas
         href: deployment/manifest-format.md
 
