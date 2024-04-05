@@ -1,6 +1,6 @@
 ---
 title: Local Azure provisioning
-description: Learn how to Azure provisioned resources in your local development environment.
+description: Learn how to use Azure resources in your local development environment.
 ms.date: 04/05/2024
 zone_pivot_groups: azure-cli
 ---
