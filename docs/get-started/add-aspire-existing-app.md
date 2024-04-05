@@ -89,6 +89,25 @@ builder.AddProject<Projects.Products>("products");
 
 Also notice that the **eShopLite.AppHost** project, now depends on both the **Store** and **Products** projects.
 
+## Service Discovery
+
+At this point, both projects are part of .NET Aspire orchestration, but the **Store** needs to be able to discover the **Products** backend address through .NET Aspire's service discovery. To enable service discovery open the **Program.cs** file in **eShopLite.AppHost** and update the code that the **Store** adds a reference to the **Products** project:
+
+```csharp
+var products = builder.AddProject<Projects.Products>("products");
+
+builder.AddProject<Projects.Store>("store").WithReference(products);
+```
+
+Next, update the **appsettings.json** in the **Store** project to of the **ProductEndpoint** and **ProductEndpointHttps**:
+
+```json
+"ProductEndpoint": "http://products",
+"ProductEndpointHttps": "https://products",
+```
+
+Notice the the address uses the name of the **Products** project that was added to the orchestrator in the **AppHost**.
+
 ## Explore the enrolled app
 
 Let's start the solution and examine the new behavior that .NET Aspire has added.
