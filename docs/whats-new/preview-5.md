@@ -176,11 +176,29 @@ Tooling
 - VS Code support
 - Prompting for parameters in Visual Studio
 
-Components
+### New resources and components
 
-- Azure Events Hubs
-- Renamed all of the methods to end with *Client e.g. AddRedisClient
-- Nats OpenTelemetry support
+The following list outlines new components and their corresponding component articles:
+
+- [Azure Event Hubs](https://azure.microsoft.com/products/event-hubs): [Use Application Insights for .NET Aspire telemetry](../messaging/azure-event-hubs-component.md).
+- [NATS](https://nats.io/): [.NET Aspire support for NATS](../logging/nats-component.md).
+- [Seq](https://datalust.co/seq): [.NET Aspire support for Seq](../logging/seq-component.md).
+
+#### Component Breaking Changes
+
+In previous versions, it was confusing what project the following code snippet is from:
+
+```csharp
+builder.AddRedis("redis");
+```
+
+because both the `AppHost` and application projects have extension methods named `builder.AddRedis(string)`. To help reduce this confusion, the runtime component libraries renamed their extension methods to append the word `Client` on the extension methods.
+
+```csharp
+builder.AddRedisClient("redis");
+```
+
+This makes it clear that we are adding a "client" object to the `WebApplicationBuilder` or `HostApplicationBuilder`.
 
 # Azure improvements
 

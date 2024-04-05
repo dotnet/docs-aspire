@@ -1,7 +1,7 @@
 ---
 title: Connect an ASP.NET Core app to .NET Aspire storage components
 description: Learn how to connect an ASP.NET Core app to .NET Aspire storage components.
-ms.date: 01/22/2024
+ms.date: 04/04/2024
 ms.topic: tutorial
 zone_pivot_groups: azure-storage-mechanism
 ms.custom: devx-track-extended-azdevcli
@@ -270,7 +270,22 @@ For more information about creating forms in Blazor, see [ASP.NET Core Blazor fo
 
 The _AspireStorage.AppHost_ project is the orchestrator for your app. It's responsible for connecting and configuring the different projects and services of your app. The orchestrator should be set as the startup project.
 
-[!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
+To add Azure Storage hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Azure.Storage --prerelease
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Azure.Storage"
+                  Version="[SelectVersion]" />
+```
+
+---
 
 Replace the contents of the _Program.cs_ file in the _AspireStorage.AppHost_ project with the following code:
 

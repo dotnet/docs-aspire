@@ -119,6 +119,9 @@ conceptualContent:
           text: Implement Messaging with .NET Aspire
           url: messaging/messaging-components.md
         - itemType: overview
+          text: Azure Event Hubs
+          url: messaging/azure-event-hubs-component.md
+        - itemType: overview
           text: Azure Service Bus
           url: messaging/azure-service-bus-component.md
         - itemType: how-to-guide

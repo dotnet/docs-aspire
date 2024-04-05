@@ -68,6 +68,13 @@ items:
         href: storage/azure-storage-queues-component.md
       - name: Azure Table Storage component
         href: storage/azure-storage-tables-component.md
+  
+  - name: Logging
+    items:
+      - name: NATS component
+        href: logging/nats-component.md
+      - name: SEQ component
+        href: logging/seq-component.md
 
   - name: Database
     items:
@@ -109,6 +116,8 @@ items:
     items:
       - name: Tutorial - Messaging using .NET Aspire components
         href: messaging/messaging-components.md
+      - name: Azure Event Hubs component
+        href: messaging/azure-event-hubs-component.md
       - name: Azure Service Bus component
         href: messaging/azure-service-bus-component.md
       - name: RabbitMQ service broker component

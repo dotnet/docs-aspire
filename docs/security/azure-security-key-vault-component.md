@@ -49,7 +49,22 @@ public class ExampleService(SecretClient client)
 
 ## App host usage
 
-[!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
+To add Azure Key Vault hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.KeyVault](https://www.nuget.org/packages/Aspire.Hosting.Azure.KeyVault) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Azure.KeyVault --prerelease
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Azure.KeyVault"
+                  Version="[SelectVersion]" />
+```
+
+---
 
 In your app host project, register the Azure Key Vault component and consume the service using the following methods:
 
