@@ -48,7 +48,7 @@ After you've configured the necessary values, you can start provisioning Azure r
 
 In Visual Studio, you can use Connected Services to configure the default Azure provisioning settings. Select the app host project, right-click on the **Connected Services** node, and select **Azure Resource Provisioning Settings**:
 
-:::image type="content" source="media/azure-resource-provisioning-settings.png" lightbox="media/azure-resource-provisioning-settings.png" alt-text="Visual Studio 2022: .NET Aspire App Host project, Connected Services context menu.":::
+:::image type="content" source="media/azure-resource-provisioning-settings.png" alt-text="Visual Studio 2022: .NET Aspire App Host project, Connected Services context menu.":::
 
 This will open a dialog where you can configure the Azure provisioning settings, as shown in the following screenshot:
 
@@ -58,7 +58,7 @@ This will open a dialog where you can configure the Azure provisioning settings,
 
 When the `Azure` configuration section is missing, has missing values, or is invalid, the [.NET Aspire dashboard](../../fundamentals/dashboard.md) provides useful hints. For example, consider an app host that's missing the `SubscriptionId` configuration value that's attempting to use an Azure Key Vault resource, the **Resources** page indicates the **State** as **Missing subscription configuration**:
 
-:::image type="content" source="media/resources-kv-missing-subscription.png" alt-text=".NET Aspire dashboard: Missing subscription configuration.":::
+:::image type="content" source="media/resources-kv-missing-subscription.png" lightbox="media/resources-kv-missing-subscription.png" alt-text=".NET Aspire dashboard: Missing subscription configuration.":::
 
 Additionally, the **Console logs** display this information as well, consider the following screenshot:
 
