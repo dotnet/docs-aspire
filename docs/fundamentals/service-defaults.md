@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire service defaults
 description: Learn about the .NET Aspire service defaults project.
-ms.date: 03/28/2024
+ms.date: 04/05/2024
 ms.topic: reference
 ---
 
@@ -137,7 +137,6 @@ To do this, create a new .NET 8.0 class library project and add the necessary de
     <PackageReference Include="Microsoft.Extensions.Http.Resilience" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
-    <PackageReference Include="OpenTelemetry.Instrumentation.GrpcNetClient" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Http" />
     <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
   </ItemGroup>
@@ -186,10 +185,9 @@ public static class AppDefaultsExtensions
         });
 
         builder.Services.AddOpenTelemetry()
-            .WithMetrics(metrics =>
+            .WithMetrics(static metrics =>
             {
-                metrics.AddRuntimeInstrumentation()
-                       .AddAppMeters();
+                metrics.AddRuntimeInstrumentation();
             })
             .WithTracing(tracing =>
             {
@@ -227,10 +225,6 @@ public static class AppDefaultsExtensions
 
         return builder;
     }
-
-    private static MeterProviderBuilder AddAppMeters(
-        this MeterProviderBuilder meterProviderBuilder) =>
-        meterProviderBuilder.AddMeter("System.Net.Http");
 }
 ```
 
