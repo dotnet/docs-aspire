@@ -108,10 +108,6 @@ The `RunAsEmulator` API configures an Azure Cosmos DB resource to be emulated us
 
 If you're using Azure resources in your app host, you're using one or more of the [.NET Aspire Azure hosting libraries](../../fundamentals/app-host-overview.md#azure-hosting-libraries). These hosting libraries provide extension methods to the `IDistributedApplicationBuilder` interface to add Azure resources to your app host.
 
-For example, to add Azure App Configuration to your app host, you can use the `AddAzureAppConfiguration` extension method:
-
-```csharp
-
 ### Azure provisioning libraries
 
 The following Azure provisioning libraries are available:
