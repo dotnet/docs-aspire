@@ -52,7 +52,7 @@ The `Aspire.Hosting.Azure` APIs have been broken up in to the following packages
 | `AsAzureSqlDatabase(...)`            | `Aspire.Hosting.Azure.Sql`                 |
 | `AddAzureStorage(...)`               | `Aspire.Hosting.Azure.Storage`             |
 
-# Application model changes
+## Application model changes
 
 In addition to packaging changes some important changes were made to the application model to allow for better integration between cloud-hosted resources and services that are running locally.
 
@@ -182,8 +182,8 @@ Tooling
 
 The following list outlines new components and their corresponding component articles:
 
-- [Azure Event Hubs](https://azure.microsoft.com/products/event-hubs): [Use Application Insights for .NET Aspire telemetry](../messaging/azure-event-hubs-component.md).
-- [NATS](https://nats.io/): [.NET Aspire support for NATS](../logging/nats-component.md).
+- [Azure Event Hubs](https://azure.microsoft.com/products/event-hubs): [.NET Aspire Azure Event Hubs component](../messaging/azure-event-hubs-component.md).
+- [NATS](https://nats.io/): [.NET Aspire support for NATS](../messaging/nats-component.md).
 - [Seq](https://datalust.co/seq): [.NET Aspire support for Seq](../logging/seq-component.md).
 
 #### Component breaking changes
