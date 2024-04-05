@@ -173,8 +173,19 @@ Service Discovery
 
 Tooling
 
-- VS Code support
-- Prompting for parameters in Visual Studio
+### Visual Studio Code C# DevKit Tooling
+
+With the April release of C# Dev Kit, you can now launch all projects in a .NET Aspire from Visual Studio Code. To launch your .NET Aspire application, simply Ctrl-F5 (Run without debugging). This will launch the app host project and all the associated projects in your .NET Aspire application (front-end and APIs). Similarly, you can debug your .NET Aspire application, simply F5 (Start debugging) and all the projects will attach to the debugger, allowing you to have breakpoints set across projects and each one will be hit when appropriate.
+
+### Visual Studio Tooling Updates
+
+In Visual Studio 17.10 we've continued to improve the end-to-end experience for developers using right-click publish to Azure Container Apps. You no longer need to login separarely to `azd`, Visual Studio will log you in seamlessly. Now, when you use the "Remove Environment" feature in the Visual Studio publishing dialog, you can opt for deleting the Azure Developer CLI (azd) environment from your live Azure subscription. This makes it easies for you to iterate, creating and deleting environments with simplicity. 
+
+:::image type="content" source="media/preview-5/remove-environment.gif" lightbox="media/preview-5/remove-environment.gif" alt-text="Removing a local and live Azure environment":::
+
+This release of Visual Studio also adds support for the Azure Provisioning features in the release. When you're using Azure resources in a .NET Aspire app, like OpenAI, and need to have use the remote resources during your local development, Visual Studio gives you a way of creating or selecting an existing resource group in which those resources can be provisioned. This animation shows the process of adding OpenAI support to an Aspire app, then running the app only to learn the resources need to be created with the warnings in the Aspire dashboard. At this point, you can flip back into Visual Studio and use Connected Services to set up Azure provisioning so your dev-time resources can be created on the fly. 
+
+:::image type="content" source="media/preview-5/aspire-preview-5-relnotes.gif" lightbox="media/preview-5/aspire-preview-5-relnotes.gif" alt-text="Using Connected Services to configure Azure provisioning":::
 
 ### New resources and components
 
