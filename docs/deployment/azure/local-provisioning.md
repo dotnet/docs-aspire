@@ -58,7 +58,7 @@ This will open a dialog where you can configure the Azure provisioning settings,
 
 When the `Azure` configuration section is missing, has missing values, or is invalid, the [.NET Aspire dashboard](../../fundamentals/dashboard.md) provides useful hints. For example, consider an app host that's missing the `SubscriptionId` configuration value that's attempting to use an Azure Key Vault resource, the **Resources** page indicates the **State** as **Missing subscription configuration**:
 
-:::image type="content" source="media/resources-kv-missing-subscription.png" lightbox="media/resources-kv-missing-subscription.png" alt-text=".NET Aspire dashboard: Missing subscription configuration.":::
+:::image type="content" source="media/resources-kv-missing-subscription.png" alt-text=".NET Aspire dashboard: Missing subscription configuration.":::
 
 Additionally, the **Console logs** display this information as well, consider the following screenshot:
 
