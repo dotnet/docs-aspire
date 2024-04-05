@@ -130,6 +130,9 @@ conceptualContent:
         - itemType: how-to-guide
           text: Apache Kafka
           url: messaging/kafka-component.md
+        - itemType: how-to-guide
+          text: NATs
+          url: messaging/nats-component.md
 
     - title: Caching
       links:
