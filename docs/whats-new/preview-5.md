@@ -1,107 +1,109 @@
 ---
 title: .NET Aspire preview 5
 description: .NET Aspire preview 5 is now available and includes many improvements and new capabilities
-ms.date: 04/02/2024
+ms.date: 04/05/2024
 ---
 
 # .NET Aspire preview 5
 
 ## Packaging changes
-As part of our journey to GA we have split up the `Aspire.Hosting` and `Aspire.Hosting.Azure` packages. These changes
-will allow us greater flexibility for servicing and ensure that appropriate boundaries are maintained between our
-core abstractions for .NET Aspire and various cloud-native dependencies that an application may require.
+
+As part of our journey to GA we have split up the `Aspire.Hosting` and `Aspire.Hosting.Azure` packages. These changes will allow us greater flexibility for servicing and ensure that appropriate boundaries are maintained between our core abstractions for .NET Aspire and various cloud-native dependencies that an application may require.
 
 The following table maps between Aspire extension methods you might be using today in your AppHost and the package
 in which they are now contained:
 
-| Extension method | Package |
-|-|-|
-| `AddProject(...)` | `Aspire.Hosting` (unchanged) |
-| `AddContainer(...)` | `Aspire.Hosting` (unchanged) |
+| Extension method     | Package                      |
+|----------------------|------------------------------|
+| `AddProject(...)`    | `Aspire.Hosting` (unchanged) |
+| `AddContainer(...)`  | `Aspire.Hosting` (unchanged) |
 | `AddExecutable(...)` | `Aspire.Hosting` (unchanged) |
-| `AddKafka(...)` | `Aspire.Hosting.Kakfa` |
-| `AddMongoDB(...)` | `Aspire.Hosting.MongoDB` |
-| `AddMySql(...)` | `Aspire.Hosting.MySql` |
-| `AddNpmApp(...)` | `Aspire.Hosting.NodeJs` |
-| `AddNodeApp(...)` | `Aspire.Hosting.NodeJs` |
-| `AddOracle(...)` | `Aspire.Hosting.Oracle` |
-| `AddPostgres(...)` | `Aspire.Hosting.PostgreSQL` |
-| `AddRabbitMQ(...)` | `Aspire.Hosting.RabbitMQ` |
-| `AddRedis(...)` | `Aspire.Hosting.Redis` |
-| `AddSeq(...)` | `Aspire.Hosting.Seq` |
-| `AddSqlServer(...)` | `Aspire.Hosting.SqlServer` |
+| `AddKafka(...)`      | `Aspire.Hosting.Kakfa`       |
+| `AddMongoDB(...)`    | `Aspire.Hosting.MongoDB`     |
+| `AddMySql(...)`      | `Aspire.Hosting.MySql`       |
+| `AddNpmApp(...)`     | `Aspire.Hosting.NodeJs`      |
+| `AddNodeApp(...)`    | `Aspire.Hosting.NodeJs`      |
+| `AddOracle(...)`     | `Aspire.Hosting.Oracle`      |
+| `AddPostgres(...)`   | `Aspire.Hosting.PostgreSQL`  |
+| `AddRabbitMQ(...)`   | `Aspire.Hosting.RabbitMQ`    |
+| `AddRedis(...)`      | `Aspire.Hosting.Redis`       |
+| `AddSeq(...)`        | `Aspire.Hosting.Seq`         |
+| `AddSqlServer(...)`  | `Aspire.Hosting.SqlServer`   |
 
 The `Aspire.Hosting.Azure` APIs have been broken up in to the following packages:
 
-| Extension method | Package |
-|-|-|
-| `AddBicepTemplate(...)` | `Aspire.Hosting.Azure` (unchanged) |
-| `AddBicepTemplateString(...)` | `Aspire.Hosting.Azure` (unchanged) |
-| `AddAzureConstruct(...)` | `Aspire.Hosting.Azure` (unchanged) |
-| `AddAzureAppConfiguration(...)` | `Aspire.Hosting.Azure.AppConfiguration` |
-| `AddAzureApplicationInsights(...)` | `Aspire.Hosting.Azure.ApplicationInsights` |
-| `AddAzureOpenAI(...)` | `Aspire.Hosting.Azure.CognitiveServices` |
-| `AddAzureCosmosDB(...)` | `Aspire.Hosting.Azure.CosmosDB` |
-| `AddAzureEventHubs(...)` | `Aspire.Hosting.Azure.EventHubs` |
-| `AddAzureKeyVault(...)` | `Aspire.Hosting.Azure.KeyVault` |
+| Extension method                     | Package                                    |
+|--------------------------------------|--------------------------------------------|
+| `AddBicepTemplate(...)`              | `Aspire.Hosting.Azure` (unchanged)         |
+| `AddBicepTemplateString(...)`        | `Aspire.Hosting.Azure` (unchanged)         |
+| `AddAzureConstruct(...)`             | `Aspire.Hosting.Azure` (unchanged)         |
+| `AddAzureAppConfiguration(...)`      | `Aspire.Hosting.Azure.AppConfiguration`    |
+| `AddAzureApplicationInsights(...)`   | `Aspire.Hosting.Azure.ApplicationInsights` |
+| `AddAzureOpenAI(...)`                | `Aspire.Hosting.Azure.CognitiveServices`   |
+| `AddAzureCosmosDB(...)`              | `Aspire.Hosting.Azure.CosmosDB`            |
+| `AddAzureEventHubs(...)`             | `Aspire.Hosting.Azure.EventHubs`           |
+| `AddAzureKeyVault(...)`              | `Aspire.Hosting.Azure.KeyVault`            |
 | `AddAzureLogAnalyticsWorkspace(...)` | `Aspire.Hosting.Azure.OperationalInsights` |
-| `AsAzurePostgresFlexibleServer(...)` | `Aspire.Hosting.Azure.PostgreSQL` |
-| `AsAzureRedis(...)` | `Aspire.Hosting.Azure.Redis` |
-| `AddAzureSearch(...)` | `Aspire.Hosting.Azure.Search` |
-| `AddAzureServiceBus(...)` | `Aspire.Hosting.Azure.ServiceBus` |
-| `AddAzureSignalR(...)` | `Aspire.Hosting.Azure.SignalR` |
-| `AsAzureSqlDatabase(...)` | `Aspire.Hosting.Azure.Sql` |
-| `AddAzureStorage(...)` | `Aspire.Hosting.Azure.Storage` |
+| `AsAzurePostgresFlexibleServer(...)` | `Aspire.Hosting.Azure.PostgreSQL`          |
+| `AsAzureRedis(...)`                  | `Aspire.Hosting.Azure.Redis`               |
+| `AddAzureSearch(...)`                | `Aspire.Hosting.Azure.Search`              |
+| `AddAzureServiceBus(...)`            | `Aspire.Hosting.Azure.ServiceBus`          |
+| `AddAzureSignalR(...)`               | `Aspire.Hosting.Azure.SignalR`             |
+| `AsAzureSqlDatabase(...)`            | `Aspire.Hosting.Azure.Sql`                 |
+| `AddAzureStorage(...)`               | `Aspire.Hosting.Azure.Storage`             |
 
-# Application model changes
+## Application model changes
 
-In addition to packaging changes some important changes were made to the application
-model to allow for better integration between cloud-hosted resources and services that
-are running locally.
+In addition to packaging changes some important changes were made to the application model to allow for better integration between cloud-hosted resources and services that are running locally.
 
-For example resources that expose connection strings now have async methods instead
-of synchronous methods which allow the start-up of a micro-service to block whilst
-a cloud resource is being initialized.
+For example resources that expose connection strings now have async methods instead of synchronous methods which allow the start-up of a micro-service to block whilst a cloud resource is being initialized.
 
-A good illustration of the changes here can be seen on the `IResourceWithConnectiongString`
-interface. The code below shows the preview 4 and preview 5 versions one after another.
+A good illustration of the changes here can be seen on the `IResourceWithConnectionString` interface. The code below shows the preview 4 and preview 5 versions one after another.
 
 ```csharp
 // Preview 4
 public interface IResourceWithConnectionString : IResource
 {
     string? GetConnectionString();
+
     string? ConnectionStringExpression => { get; }
+
     string ConnectionStringReferenceExpression { get; }
+
     string? ConnectionStringEnvironmentVariable { get; }
 }
 
 // Preview 5
 public interface IResourceWithConnectionString :
-    IResource, IManifestExpressionProvider, IValueProvider, IValueWithReferences
+    IResource,
+    IManifestExpressionProvider,
+    IValueProvider,
+    IValueWithReferences
 {
-    ValueTask<string?> GetConnectionStringAsync(CancellationToken cancellationToken = default);
+    ValueTask<string?> GetConnectionStringAsync(
+        CancellationToken cancellationToken = default);
+
     string IManifestExpressionProvider.ValueExpression { get; }
+
     ValueTask<string?> IValueProvider.GetValueAsync(CancellationToken cancellationToken);
+
     ReferenceExpression ConnectionStringExpression { get; }
+
     string? ConnectionStringEnvironmentVariable { get; }
+
     IEnumerable<object> IValueWithReferences.References { get; }
 }
 ```
 
-The `GetConnectionString` method has been made asynchronous. But there are many other
-properties that have been added. This allows for better tracking of dependencies
-within the application model.
+The `GetConnectionString` method has been made asynchronous. But there are many other properties that have been added. This allows for better tracking of dependencies within the application model.
 
-Note that the basic usage pattern for adding a reference from one resource to another
-has not changed. The changes above primarily impact the internal implementation details
-and only impact you if you are building custom resource types.
+Note that the basic usage pattern for adding a reference from one resource to another has not changed. The changes above primarily impact the internal implementation details and only impact you if you are building custom resource types.
 
 ## Dashboard
 
-In preview 5. our primary focus has been on non-functional requirements around security and performance improvements.
+In preview 5 our primary focus has been on non-functional requirements around security and performance improvements.
 
-### Security Updates
+### Security updates
 
 Communication has been secured across the following endpoints:
 
@@ -191,11 +193,11 @@ This release of Visual Studio also adds support for the Azure Provisioning featu
 
 The following list outlines new components and their corresponding component articles:
 
-- [Azure Event Hubs](https://azure.microsoft.com/products/event-hubs): [Use Application Insights for .NET Aspire telemetry](../messaging/azure-event-hubs-component.md).
-- [NATS](https://nats.io/): [.NET Aspire support for NATS](../logging/nats-component.md).
+- [Azure Event Hubs](https://azure.microsoft.com/products/event-hubs): [.NET Aspire Azure Event Hubs component](../messaging/azure-event-hubs-component.md).
+- [NATS](https://nats.io/): [.NET Aspire support for NATS](../messaging/nats-component.md).
 - [Seq](https://datalust.co/seq): [.NET Aspire support for Seq](../logging/seq-component.md).
 
-#### Component Breaking Changes
+#### Component breaking changes
 
 In previous versions, it was confusing what project the following code snippet is from:
 
@@ -211,19 +213,13 @@ builder.AddRedisClient("redis");
 
 This makes it clear that we are adding a "client" object to the `WebApplicationBuilder` or `HostApplicationBuilder`.
 
-# Azure improvements
+## Azure improvements
 
-## Azure Provisioning libraries
+### Azure provisioning libraries
 
-In preview 5 the Azure-specific extensions for .NET Aspire have adopted the
-Azure Provisioning libraries being developed by the Azure SDK team. The Azure
-Provisioning libraries allow as to use a C# object model to declare Azure resources
-and at deployment time translate that object model into Bicep which is then used
-to automate deployment.
+In preview 5 the Azure-specific extensions for .NET Aspire have adopted the Azure Provisioning libraries being developed by the Azure SDK team. The Azure Provisioning libraries allow as to use a C# object model to declare Azure resources and at deployment time translate that object model into Bicep which is then used to automate deployment.
 
-If you are already using Azure-based resources with your .NET Aspire application
-the APIs you use today continue to work. For example the following code creates
-an Azure Cosmos database and wires up the connection string to your application.
+If you are already using Azure-based resources with your .NET Aspire application the APIs you use today continue to work. For example the following code creates an Azure Cosmos database and wires up the connection string to your application.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -232,12 +228,9 @@ builder.AddProject<Projects.InventoryApi>("inventoryapi")
                            .WithReference(cosmos);
 ```
 
-In preview 4, if you didn't like the defaults that we specified for Azure Cosmos you
-would need to provide your own Bicep and use the `AddBicepTemplate` extension. In
-preview 5 we provide a callback mechanism which allows you to tweak properties.
+In preview 4, if you didn't like the defaults that we specified for Azure Cosmos you would need to provide your own Bicep and use the `AddBicepTemplate` extension. In preview 5 we provide a callback mechanism which allows you to tweak properties.
 
-For example, if you wanted to modify the consistency level of your Cosmos DB account
-you could do the following:
+For example, if you wanted to modify the consistency level of your Cosmos DB account you could do the following:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -252,34 +245,31 @@ builder.AddProject<Projects.InventoryApi>("inventoryapi")
                            .WithReference(cosmos);
 ```
 
-Azure Provisioning libraries are still experimental and evolving rapidly. Developers
-are free to use them in their applications but expect the API surface to evolve
-before reaching stability. To remind developers of this, using the overloads that
-expose Azure Provisioning types will require the use of a code analysis suppression:
+Azure Provisioning libraries are still experimental and evolving rapidly. Developers are free to use them in their applications but expect the API surface to evolve before reaching stability. To remind developers of this, using the overloads that expose Azure Provisioning types will require the use of a code analysis suppression:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
+
 #pragma warning disable AZPROVISION001
 var cosmos = builder.AddAzureCosmosDB(
     "mycosmos",
-    (resource, construct, account, databases) => {
+    (resource, construct, account, databases) =>
+    {
         
         account.AssignProperty(p => p.ConsistencyPolicy.DefaultConsistencyLevel, "`Session`");
 
     }).AddDatabase("inventory");
 #pragma warning restore AZPROVISION001
+
 builder.AddProject<Projects.InventoryApi>("inventoryapi")
                            .WithReference(cosmos);
 ```
 
 This can be applied globally in your project or in a more localized way as shown above.
 
-## Azure provisioning for local development
+### Azure provisioning for local development
 
-Previous .NET Aspire previews have had limited support for using cloud based resources for
-local development. You could use an emulator (such as Azurite for Azure Storage)
-or you could provision a real resource in the cloud and place a connection string in your AppHost's
-user secrets.
+Previous .NET Aspire previews have had limited support for using cloud based resources for local development. You could use an emulator (such as Azurite for Azure Storage) or you could provision a real resource in the cloud and place a connection string in your AppHost's user secrets.
 
 In preview 5 if you want to use an Azure resource where an emulator does not exist you can add
 the following settings to user `secrets.json` file:
@@ -294,11 +284,9 @@ the following settings to user `secrets.json` file:
 }
 ```
 
-When you launch the AppHost the dashboard will show that it is create the Azure resources for you
-and provide helpful links to the deployment into the Azure portal, or in the case of failure
-logs that provide hints as to what might be causing the deployment issue.
+When you launch the AppHost the dashboard will show that it is create the Azure resources for you and provide helpful links to the deployment into the Azure portal, or in the case of failure logs that provide hints as to what might be causing the deployment issue.
 
-![](./media/preview-5/azure-resource-provisioning-on-dashboard.png)
+:::image type="content" source="/media/preview-5/azure-resource-provisioning-on-dashboard.png" lightbox="/media/preview-5/azure-resource-provisioning-on-dashboard.png" alt-text=".NET Aspire dashboard: Azure provisioning.":::
 
 To use Azure provisioning you only need to make use of one of an Azure resource. For example:
 
@@ -309,8 +297,7 @@ builder.AddProject<Projects.GalleryApp>("galleryapp")
                            .WithReference(blobs);
 ```
 
-Some resources in .NET Aspire such as Postgres are not cloud specific and can run locally
-in a container but when deployed use a managed service (such as Azure Postgres Flexible Server).
+Some resources in .NET Aspire such as Postgres are not cloud specific and can run locally in a container but when deployed use a managed service (such as Azure Postgres Flexible Server).
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -321,15 +308,13 @@ builder.AddProject<Projects.InventoryApi>("inventoryapi")
                            .WithReference(db);
 ```
 
-It is also possible to use an Azure hosted resource for local development by using the
-`AsAzurePostgresFlexibleServer()` extension method instead. When this method is used
-the container will not be started locally and cloud-based instance will be created just
-like the Azure only resource types. The `PublishAsX` and `AsX` methods also support callbacks
-to customize the underlying Azure resources as shown above in the Cosmos DB example.
+It is also possible to use an Azure hosted resource for local development by using the `AsAzurePostgresFlexibleServer()` extension method instead. When this method is used the container will not be started locally and cloud-based instance will be created just like the Azure only resource types. The `PublishAsX` and `AsX` methods also support callbacks to customize the underlying Azure resources as shown above in the Cosmos DB example.
+
+For more information, see [Local Azure provisioning](../deployment/azure/local-provisioning.md).
 
 ## Other Azure-related improvements
 
-### Azure Open AI
+### Azure OpenAI
 
 The `AddAzureOpenAI(...)` extension method will now result in an Azure Open AI resource
 being provisioned in Azure. This support was missing from preview 4 but was added in preview
@@ -338,19 +323,16 @@ above.
 
 ```csharp
 var openai = builder.AddAzureOpenAI("openai").AddDeployment(
-    new("mydeployment", "gpt-35-turbo", "0613")
+        new("mydeployment", "gpt-35-turbo", "0613")
     );
 ```
 
-> NOTE: Currently the Azure Open AI resource provider in Azure does not allow two model
->       deployments at the same time. If you want to deploy multiple models within your
->       application you will need to use separate Azure Open AI resources.
+> [!NOTE]
+> Currently the Azure Open AI resource provider in Azure does not allow two model deployments at the same time. If you want to deploy multiple models within your application you will need to use separate Azure Open AI resources.
 
 ### Azure Event Hubs
 
-Also in preview 5 we added support for Azure Event Hubs. You can add Azure Event Hubs to your
-application model using the ```AddAzureEventHubs(...)` extension method. This will result in the
-creation of an Event Hubs namespace. Use the `AddHub(...)` method.
+Also in preview 5 we added support for Azure Event Hubs. You can add Azure Event Hubs to your application model using the `AddAzureEventHubs(...)` extension method. This will result in the creation of an Event Hubs namespace. Use the `AddHub(...)` method.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -374,8 +356,9 @@ builder.Build().Run();
 ```
 
 As can be seen above the Event Hubs integration includes support for the Event Hubs processor architecture
-not just the consumer model (although either can be used). Refer to the README for the `Aspire.Azure.Messaging.EventHubs`
-package for examples of how to wire-up to the provisioned Event Hubs resource in your service projects.
+not just the consumer model (although either can be used). Refer to the README for the `Aspire.Azure.Messaging.EventHubs` package for examples of how to wire-up to the provisioned Event Hubs resource in your service projects.
+
+For more information, see [.NET Aspire Azure Event Hubs component](../messaging/azure-event-hubs-component.md).
 
 Manifest
 
