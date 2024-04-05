@@ -71,8 +71,6 @@ items:
   
   - name: Logging
     items:
-      - name: NATS component
-        href: logging/nats-component.md
       - name: SEQ component
         href: logging/seq-component.md
 
@@ -124,6 +122,8 @@ items:
         href: messaging/rabbitmq-client-component.md
       - name: Apache Kafka component
         href: messaging/kafka-component.md
+      - name: NATS component
+        href: messaging/nats-component.md
 
   - name: Caching
     items:
