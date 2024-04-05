@@ -2,7 +2,6 @@
 title: Local Azure provisioning
 description: Learn how to use Azure resources in your local development environment.
 ms.date: 04/05/2024
-zone_pivot_groups: azure-cli
 ---
 
 # Local Azure provisioning
@@ -48,7 +47,7 @@ After you've configured the necessary values, you can start provisioning Azure r
 
 In Visual Studio, you can use Connected Services to configure the default Azure provisioning settings. Select the app host project, right-click on the **Connected Services** node, and select **Azure Resource Provisioning Settings**:
 
-:::image type="content" source="media/azure-resource-provisioning-settings.png" alt-text="Visual Studio 2022: .NET Aspire App Host project, Connected Services context menu.":::
+:::image type="content" source="media/azure-resource-provisioning-settings.png" lightbox="media/azure-resource-provisioning-settings.png" alt-text="Visual Studio 2022: .NET Aspire App Host project, Connected Services context menu.":::
 
 This will open a dialog where you can configure the Azure provisioning settings, as shown in the following screenshot:
 
@@ -58,7 +57,7 @@ This will open a dialog where you can configure the Azure provisioning settings,
 
 When the `Azure` configuration section is missing, has missing values, or is invalid, the [.NET Aspire dashboard](../../fundamentals/dashboard.md) provides useful hints. For example, consider an app host that's missing the `SubscriptionId` configuration value that's attempting to use an Azure Key Vault resource, the **Resources** page indicates the **State** as **Missing subscription configuration**:
 
-:::image type="content" source="media/resources-kv-missing-subscription.png" lightbox="media/resources-kv-missing-subscription.png" alt-text=".NET Aspire dashboard: Missing subscription configuration.":::
+:::image type="content" source="media/resources-kv-missing-subscription.png" alt-text=".NET Aspire dashboard: Missing subscription configuration.":::
 
 Additionally, the **Console logs** display this information as well, consider the following screenshot:
 
@@ -134,23 +133,10 @@ The following Azure provisioning libraries are available:
 
 ## Known limitations
 
-After provisioning Azure resources in this way, you must manually clean up the resources in the Azure portal as .NET Aspire doesn't provide a built-in mechanism to delete Azure resources. The easiest way to achieve this is by deleting the configured resource group. This can be done in the [Azure portal](/azure/azure-resource-manager/management/delete-resource-group?tabs=azure-portal#delete-resource-group) or by using an Azure CLI:
-
-:::zone pivot="azure-azd"
-
-```azdeveloper
-azd down
-```
-
-For more information, see [azd down](/azure/developer/azure-developer-cli/reference#azd-down).
-
-:::zone-end
-:::zone pivot="azure-cli"
+After provisioning Azure resources in this way, you must manually clean up the resources in the Azure portal as .NET Aspire doesn't provide a built-in mechanism to delete Azure resources. The easiest way to achieve this is by deleting the configured resource group. This can be done in the [Azure portal](/azure/azure-resource-manager/management/delete-resource-group?tabs=azure-portal#delete-resource-group) or by using the Azure CLI:
 
 ```azurecli
 az group delete --name <ResourceGroupName>
 ```
 
 Replace `<ResourceGroupName>` with the name of the resource group you want to delete. For more information, see [az group delete](/cli/azure/group#az-group-delete).
-
-:::zone-end
