@@ -189,6 +189,14 @@ This release of Visual Studio also adds support for the Azure Provisioning featu
 
 :::image type="content" source="media/preview-5/aspire-preview-5-relnotes.gif" lightbox="media/preview-5/aspire-preview-5-relnotes.gif" alt-text="Using Connected Services to configure Azure provisioning":::
 
+#### Use Upgrade Assistant to Update to Preview 5
+
+We've also released a new version of the [Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant), a Visual Studio extension that helps you upgrade projects in various scenarios. We've added support for upgrading .NET Aspire Preview 4 projects to Preview 5. Install the extension and run 'Upgrade' from the context menu of an Aspire-related project like the `AppHost` or client projects to update packages and API changes.
+
+:::image type="content" source="media/preview-5/vs-upgrade-assistant.png" lightbox="media/preview-5/vs-upgrade-assistant.png" alt-text="Visual Studio Upgrade Assistant with .NET Aspire option":::
+
+You will need to run this on each project in your solution.
+
 ### New resources and components
 
 The following list outlines new components and their corresponding component articles:
