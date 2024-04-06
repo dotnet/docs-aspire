@@ -91,7 +91,7 @@ Also notice that the **eShopLite.AppHost** project, now depends on both the **St
 
 ## Service Discovery
 
-At this point, both projects are part of .NET Aspire orchestration, but the **Store** needs to be able to discover the **Products** backend address through .NET Aspire's service discovery. To enable service discovery open the **Program.cs** file in **eShopLite.AppHost** and update the code that the **Store** adds a reference to the **Products** project:
+At this point, both projects are part of .NET Aspire orchestration, but the _Store_ needs to be able to discover the **Products** backend address through .NET Aspire's service discovery. To enable service discovery, open the _Program.cs_ file in **eShopLite.AppHost** and update the code that the _Store_ adds a reference to the _Products_ project:
 
 ```csharp
 var products = builder.AddProject<Projects.Products>("products");
@@ -99,14 +99,14 @@ var products = builder.AddProject<Projects.Products>("products");
 builder.AddProject<Projects.Store>("store").WithReference(products);
 ```
 
-Next, update the **appsettings.json** in the **Store** project to of the **ProductEndpoint** and **ProductEndpointHttps**:
+Next, update the _appsettings.json_ in the _Store_ project to of the `ProductEndpoint` and `ProductEndpointHttps`:
 
 ```json
 "ProductEndpoint": "http://products",
 "ProductEndpointHttps": "https://products",
 ```
 
-Notice the the address uses the name of the **Products** project that was added to the orchestrator in the **AppHost**.
+The address uses the name of the _Products_ project that was added to the orchestrator in the _AppHost_.
 
 ## Explore the enrolled app
 
