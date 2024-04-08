@@ -137,7 +137,7 @@ var frontend = builder
 
 For more information on the output in the manifest, see [Docker build arguments](#docker-build-arguments).
 
-## Deferred string interpolation for WithEnvironment(...) and reference expressions
+### Deferred string interpolation for WithEnvironment(...) and reference expressions
 
 We have added a new overload to the `WithEnvironment(...)` extension method which supports interpolated strings:
 
@@ -272,6 +272,10 @@ Service Discovery
 - Service discovery API changes.
 - Service discovery auto scheme detection.
 
+## Developer Tools
+
+For Preview 5 we've improved support with our Visual Studio family of products focusing on supporting new capabilities and improving deployment workflows.
+
 ### Visual Studio Code C# DevKit tooling
 
 With the April release of C# Dev Kit, you can now launch all projects in a .NET Aspire from Visual Studio Code. To launch your .NET Aspire application, simply Ctrl-F5 (Run without debugging). This will launch the app host project and all the associated projects in your .NET Aspire application (front-end and APIs). Similarly, you can debug your .NET Aspire application, simply F5 (Start debugging) and all the projects will attach to the debugger, allowing you to have breakpoints set across projects and each one will be hit when appropriate.
@@ -294,6 +298,10 @@ We've also released a new version of the [Upgrade Assistant](https://marketplace
 
 You will need to run this on each project in your solution.
 
+## Resources and Components
+
+Each release brings new resources and components thanks to community feedback and contributions.
+
 ### New resources and components
 
 The following list outlines new components and their corresponding component articles:
@@ -302,7 +310,7 @@ The following list outlines new components and their corresponding component art
 - [NATS](https://nats.io/): [.NET Aspire support for NATS](../messaging/nats-component.md).
 - [Seq](https://datalust.co/seq): [.NET Aspire support for Seq](../logging/seq-component.md).
 
-#### Component breaking changes
+### Component breaking changes
 
 In previous versions, it was confusing what project the following code snippet is from:
 
