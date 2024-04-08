@@ -1,10 +1,14 @@
 ---
 title: .NET Aspire preview 5
-description: .NET Aspire preview 5 is now available and includes many improvements and new capabilities
-ms.date: 04/05/2024
+description: .NET Aspire preview 5 is now available and includes many improvements and new capabilities.
+ms.date: 04/08/2024
 ---
 
 # .NET Aspire preview 5
+
+.NET Aspire preview 5 introduces breaking changes to the application model and packaging. This release includes many improvements and new capabilities. The following sections provide an overview of the changes in preview 5.
+
+The .NET Aspire preview 5 version is `8.0.0-preview.5.24201.12`.
 
 ## Packaging changes
 
@@ -54,42 +58,41 @@ The `Aspire.Hosting.Azure` APIs have been broken up in to the following packages
 
 ## Application model changes
 
+At the core of .NET Aspire's capabilities is the application model. The application model is a set of abstractions that allow you to define the components of your application and how they interact with each other. There were several changes to the application model in preview 5.
+
 ### Enable forwarded headers by default for .NET Core projects
 
-If a .NET Core project is added to your distributed application model, and that project
-has endpoints defined we will automatically set the `ASPNETCORE_FORWARDEDHEADERS_ENABLED`
-environment variable which has the effect of enabling handling for forwarded headers. This
-is because the primary deployment target for Aspire applications is containerized environments
-where a reverse proxy is deployed in front of the workload.
+If a .NET Core project is added to your distributed application model, and that project has endpoints defined we will automatically set the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable which has the effect of enabling handling for forwarded headers. This is because the primary deployment target for Aspire applications is containerized environments where a reverse proxy is deployed in front of the workload.
 
 ### Custom resources support in the dashboard
 
-We have made improvements to the application model to allow custom resources to update
-their status in the dashboard and log console output. This is extremely useful for cloud
-hosted resources that need to be deployed when an application starts.
+We have made improvements to the application model to allow custom resources to update their status in the dashboard and log console output. This is extremely useful for cloud hosted resources that need to be deployed when an application starts.
 
-Two new services exist within the DI container which can be injected into lifecycle hooks
-called `ResourceNotificationService` and `ResourceLoggerService`. Refer to the [CustomResources "playground"
-sample](https://github.com/dotnet/aspire/blob/1b627b7d5d399d4f9118366e7611e11e56de4554/playground/CustomResources/CustomResources.AppHost/TestResource.cs#L30) we have in the repo for how to use these APIs.
+Two new services exist within the DI container which can be injected into lifecycle hooks called `ResourceNotificationService` and `ResourceLoggerService`. Refer to the [CustomResources "playground" sample](https://github.com/dotnet/aspire/blob/1b627b7d5d399d4f9118366e7611e11e56de4554/playground/CustomResources/CustomResources.AppHost/TestResource.cs#L30) we have in the repo for how to use these APIs.
 
 ### Improved volume mount APIs
 
-We have improved the ease of configuring persistence between container restarts for many
-of the container-based Aspire resources. It is now possible to enable persistence on many
-containers through the use of an extension method. For example:
+We have improved the ease of configuring persistence between container restarts for many of the container-based .NET Aspire resources. It's now possible to enable persistence on many containers through the use of an extension method. For example, consider volume mounts:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
-var pg1 = builder.AddPostgres("pgsql1")
-                      .WithDataVolume() // Uses a volume mount to store data between restarts.
 
-var builder = DistributedApplication.CreateBuilder(args)
+// Uses a volume mount to store data between restarts.
 var pg1 = builder.AddPostgres("pgsql1")
-                      .WithDataBindVolume(path) // Uses a bind mount to store data.
+                 .WithDataVolume();
 ```
 
-We've also worked with the Azure Developer CLI team to add support for creating volume mounts in Azure Storage
-for container apps when Aspire apps are deployed to Azure.
+Likewise, it's possible to use a bind mount to store data between restarts. This is useful when you want to store data on the host machine rather than in the container:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args)
+
+// Uses a bind mount to store data.
+var pg1 = builder.AddPostgres("pgsql1")
+                 .WithDataBindVolume(path);
+```
+
+We've also worked with the Azure Developer CLI team to add support for creating volume mounts in Azure Storage for container apps when Aspire apps are deployed to Azure.
 
 ### RabbitMQ management UI
 
@@ -97,29 +100,42 @@ We've added the ability to enable the RabbitMQ management UI:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
+
 var messaging = builder.AddRabbitMQ("messaging")
                        .WithManagementPlugin();
 ```
 
-When the AppHost starts up the dashboard will show a HTTP endpoint. If you click on the endpoint
-you will be prompted for a username and password. The username and password is visible in the environment
-variables assigned to the container.
+When the app host starts up the dashboard will show a HTTP endpoint. If you click on the endpoint you will be prompted for a username and password. The username and password is visible in the environment variables assigned to the container.
 
 ### Automatic password generation
 
-In previous previews of Aspire, each resource created a random password when the resource
-was added to the app model, taking an optional password argument if required. In preview 5
-we have modified the API to take a `IResourceBuilder<ParameterResource>` argument for usernames
-and passwords. If these parameters are omitted a parameter will be automatically injected into
-the application model with a default random value.
+In previous previews of Aspire, each resource created a random password when the resource was added to the app model, taking an optional password argument if required. In preview 5 we have modified the API to take a `IResourceBuilder<ParameterResource>` argument for usernames and passwords. If these parameters are omitted a parameter will be automatically injected into the application model with a default random value.
 
-During deployment with tools such as the Azure Developer CLI (`azd`) the password will be
-generated automatically and stored in a KeyVault for later use by container workloads.
+During deployment with tools such as the Azure Developer CLI (`azd`) the password will be generated automatically and stored in a KeyVault for later use by container workloads.
+
+### API for expressing Docker build args
+
+Before preview 5, it wasn't possible to express Docker build args when an executable resource was published as a `dockerfile.v0`. The app model updated the `PublishAsDockerfile` extension method to accept an `IEnumerable<DockerBuildArg>` parameter. This allows you to pass in build arguments to the Docker build process. This is useful when you want to pass in secrets or other configuration values at build time.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder();
+
+var frontend = builder
+    .AddNpmApp("frontend", "NodeFrontend", "watch")
+    .PublishAsDockerFile(
+        buildArgs:
+        [
+            new DockerBuildArg("NODE_ENV", "staging"),
+            new DockerBuildArg("WEATHER_API") // Null means docker pulls the env var value
+        ]
+    );
+```
+
+For more information on the output in the manifest, see [Docker build arguments](#docker-build-arguments).
 
 ## Deferred string interpolation for WithEnvironment(...) and reference expressions
 
-We have added a new overload to the `WithEnvironment(...)` extension method which supports
-interpolated strings:
+We have added a new overload to the `WithEnvironment(...)` extension method which supports interpolated strings:
 
 ```csharp
 public static IResourceBuilder<T> WithEnvironment<T>(
@@ -131,22 +147,22 @@ public static IResourceBuilder<T> WithEnvironment<T>(
 This allows you to write code like this:
 
 ```csharp
-        var containerA = builder.AddContainer("container1", "image")
-                               .WithHttpEndpoint(name: "primary", targetPort: 10005);
+var containerA = builder.AddContainer("container1", "image")
+                        .WithHttpEndpoint(name: "primary", targetPort: 10005);
 
-        var endpoint = containerA.GetEndpoint("primary");
+var endpoint = containerA.GetEndpoint("primary");
 
-        // The {endpoint} placeholder is evaluated AFTER containerA has started
-        // and the dynamically allocated port can be determined.
-        var containerB = builder.AddContainer("container2", "imageB")
-                                .WithEnvironment("URL", $"{endpoint}/foo")
-                                .WithEnvironment("PORT", $"{endpoint.Property(EndpointProperty.Port)}")
-                                .WithEnvironment("TARGET_PORT", $"{endpoint.Property(EndpointProperty.TargetPort)}")
-                                .WithEnvironment("HOST", $"{test.Resource};name=1");
+// The {endpoint} placeholder is evaluated AFTER containerA has started
+// and the dynamically allocated port can be determined.
+var containerB =
+    builder.AddContainer("container2", "imageB")
+        .WithEnvironment("URL", $"{endpoint}/foo")
+        .WithEnvironment("PORT", $"{endpoint.Property(EndpointProperty.Port)}")
+        .WithEnvironment("TARGET_PORT", $"{endpoint.Property(EndpointProperty.TargetPort)}")
+        .WithEnvironment("HOST", $"{test.Resource};name=1");
 ```
 
-Underlying this improvement is a series of changes to the way that references between resources
-are handled. For example resources that expose connection strings now have async methods instead of synchronous methods which allow the start-up of a micro-service to block whilst a cloud resource is being initialized.
+Underlying this improvement is a series of changes to the way that references between resources are handled. For example resources that expose connection strings now have async methods instead of synchronous methods which allow the start-up of a micro-service to block whilst a cloud resource is being initialized.
 
 A good illustration of the changes here can be seen on the `IResourceWithConnectionString` interface. The code below shows the preview 4 and preview 5 versions one after another.
 
@@ -175,7 +191,8 @@ public interface IResourceWithConnectionString :
 
     string IManifestExpressionProvider.ValueExpression { get; }
 
-    ValueTask<string?> IValueProvider.GetValueAsync(CancellationToken cancellationToken);
+    ValueTask<string?> IValueProvider.GetValueAsync(
+        CancellationToken cancellationToken);
 
     ReferenceExpression ConnectionStringExpression { get; }
 
@@ -185,10 +202,9 @@ public interface IResourceWithConnectionString :
 }
 ```
 
-The `GetConnectionString` method has been made asynchronous. But there are many other properties that have been added. This allows for better tracking of dependencies within the application model. These are defined by intefaces like `IValueProvider` and `IManifestExpressionProvider`.
+The `GetConnectionString` method has been made asynchronous. But there are many other properties that have been added. This allows for better tracking of dependencies within the application model. These are defined by interfaces like `IValueProvider` and `IManifestExpressionProvider`.
 
-Note that the basic usage pattern for adding a reference from one resource to another has not changed. The changes above primarily impact the internal implementation details and only impact you if you are building custom resource types or
-if you are using the string interpolation features mentioned above.
+Note that the basic usage pattern for adding a reference from one resource to another has not changed. The changes above primarily impact the internal implementation details and only impact you if you are building custom resource types or if you are using the string interpolation features mentioned above.
 
 ## Dashboard
 
@@ -267,7 +283,7 @@ This release of Visual Studio also adds support for the Azure Provisioning featu
 
 :::image type="content" source="media/preview-5/aspire-preview-5-relnotes.gif" lightbox="media/preview-5/aspire-preview-5-relnotes.gif" alt-text="Using Connected Services to configure Azure provisioning":::
 
-#### Use Upgrade Assistant to Update to Preview 5
+#### Use Upgrade Assistant to update to preview 5
 
 We've also released a new version of the [Upgrade Assistant](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.upgradeassistant), a Visual Studio extension that helps you upgrade projects in various scenarios. We've added support for upgrading .NET Aspire Preview 4 projects to Preview 5. Install the extension and run 'Upgrade' from the context menu of an Aspire-related project like the `AppHost` or client projects to update packages and API changes.
 
@@ -301,6 +317,8 @@ This makes it clear that we are adding a "client" object to the `WebApplicationB
 
 ## Azure improvements
 
+
+
 ### Azure provisioning libraries
 
 In preview 5 the Azure-specific extensions for .NET Aspire have adopted the Azure Provisioning libraries being developed by the Azure SDK team. The Azure Provisioning libraries allow as to use a C# object model to declare Azure resources and at deployment time translate that object model into Bicep which is then used to automate deployment.
@@ -309,9 +327,12 @@ If you are already using Azure-based resources with your .NET Aspire application
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
-var cosmos = builder.AddAzureCosmosDB("mycosmos").AddDatabase("inventory");
+
+var cosmos = builder.AddAzureCosmosDB("mycosmos")
+                    .AddDatabase("inventory");
+
 builder.AddProject<Projects.InventoryApi>("inventoryapi")
-                           .WithReference(cosmos);
+       .WithReference(cosmos);
 ```
 
 In preview 4, if you didn't like the defaults that we specified for Azure Cosmos you would need to provide your own Bicep and use the `AddBicepTemplate` extension. In preview 5 we provide a callback mechanism which allows you to tweak properties.
@@ -320,15 +341,21 @@ For example, if you wanted to modify the consistency level of your Cosmos DB acc
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
-var cosmos = builder.AddAzureCosmosDB(
-    "mycosmos",
-    (resource, construct, account, databases) => {
-        
-        account.AssignProperty(p => p.ConsistencyPolicy.DefaultConsistencyLevel, "`Session`");
 
-    }).AddDatabase("inventory");
+var cosmos = builder
+    .AddAzureCosmosDB(
+        "mycosmos",
+        static (resource, construct, account, databases) =>
+        {
+            account.AssignProperty(
+                static p => p.ConsistencyPolicy.DefaultConsistencyLevel,
+                "`Session`");
+        }
+    )
+    .AddDatabase("inventory");
+
 builder.AddProject<Projects.InventoryApi>("inventoryapi")
-                           .WithReference(cosmos);
+       .WithReference(cosmos);
 ```
 
 Azure Provisioning libraries are still experimental and evolving rapidly. Developers are free to use them in their applications but expect the API surface to evolve before reaching stability. To remind developers of this, using the overloads that expose Azure Provisioning types will require the use of a code analysis suppression:
@@ -337,18 +364,22 @@ Azure Provisioning libraries are still experimental and evolving rapidly. Develo
 var builder = DistributedApplication.CreateBuilder(args);
 
 #pragma warning disable ASPIRE001
-var cosmos = builder.AddAzureCosmosDB(
-    "mycosmos",
-    (resource, construct, account, databases) =>
-    {
-        
-        account.AssignProperty(p => p.ConsistencyPolicy.DefaultConsistencyLevel, "`Session`");
-
-    }).AddDatabase("inventory");
+var cosmos = builder
+    .AddAzureCosmosDB(
+        "mycosmos",
+        static (resource, construct, account, databases) =>
+        {
+            account.AssignProperty(
+                static p => p.ConsistencyPolicy.DefaultConsistencyLevel,
+                "`Session`"
+            );
+        }
+    )
+    .AddDatabase("inventory");
 #pragma warning restore ASPIRE001
 
 builder.AddProject<Projects.InventoryApi>("inventoryapi")
-                           .WithReference(cosmos);
+       .WithReference(cosmos);
 ```
 
 This can be applied globally in your project or in a more localized way as shown above.
@@ -363,7 +394,7 @@ the following settings to user `secrets.json` file:
 ```json
 {
   "Azure": {
-    "SubscriptionId": "<your azure subscription id>",
+    "SubscriptionId": "<subscription id>",
     "Location": "<default location>",
     "ResourceGroup": "<resource group name>"
   }
@@ -378,20 +409,25 @@ To use Azure provisioning you only need to make use of one of an Azure resource.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
-var blobs = builder.AzureStorage("storage").AddBlobs("blobs");
+
+var blobs = builder.AzureStorage("storage")
+                   .AddBlobs("blobs");
+
 builder.AddProject<Projects.GalleryApp>("galleryapp")
-                           .WithReference(blobs);
+       .WithReference(blobs);
 ```
 
 Some resources in .NET Aspire such as Postgres are not cloud specific and can run locally in a container but when deployed use a managed service (such as Azure Postgres Flexible Server).
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
+
 var db = builder.AddPostgres("pgsql")
                 .PublishAsAzurePostgresFlexibleServer()
                 .AddDatabase("inventorydb");
+
 builder.AddProject<Projects.InventoryApi>("inventoryapi")
-                           .WithReference(db);
+       .WithReference(db);
 ```
 
 It is also possible to use an Azure hosted resource for local development by using the `AsAzurePostgresFlexibleServer()` extension method instead. When this method is used the container will not be started locally and cloud-based instance will be created just like the Azure only resource types. The `PublishAsX` and `AsX` methods also support callbacks to customize the underlying Azure resources as shown above in the Cosmos DB example.
@@ -408,14 +444,13 @@ to the Internet. This included container-based resources that may or may not be 
 access.
 
 In preview 5 we have worked with the Azure Developer CLI team to not display this prompt. Now, by default
-all endpoints exposed container resources are exposed only via the internal Azure Container Apps endpoint. To
-expose endpoints on a container resource you need to use the `WithExternalHttpEndpoints(...)` extension
+all endpoints exposed container resources are exposed only via the internal Azure Container Apps endpoint. To expose endpoints on a container resource you need to use the `WithExternalHttpEndpoints(...)` extension
 to enable this explicitly in the application model.
 
 ```csharp
 builder.AddContainer("grafana", "grafana/grafana")
-                    .WithHttpEndpoint(name: "http", targetPort: 3000)
-                    .WithExternalHttpEndpoints();
+       .WithHttpEndpoint(name: "http", targetPort: 3000)
+       .WithExternalHttpEndpoints();
 ```
 
 This will expose all endpoints defined on the resource. Alternatively it is possible to modify a single
@@ -424,7 +459,7 @@ endpoint when defining it:
 ```csharp
 var catalogDb = builder.AddPostgres("postgres")
                        .WithPgAdmin()
-                       .WithEndpoint("tcp", (endpoint) =>
+                       .WithEndpoint("tcp", static (endpoint) =>
                        {
                            // This callback can be used for mutating other 
                            // values on existing endpoints as well.
@@ -441,9 +476,9 @@ being provisioned in Azure. This support was missing from preview 4 but was adde
 above.
 
 ```csharp
-var openai = builder.AddAzureOpenAI("openai").AddDeployment(
-        new("mydeployment", "gpt-35-turbo", "0613")
-    );
+var openai = builder
+    .AddAzureOpenAI("openai")
+    .AddDeployment(new("mydeployment", "gpt-35-turbo", "0613"));
 ```
 
 > [!NOTE]
@@ -458,18 +493,18 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 // required for the event processor client which will use the connectionName to get the connectionString.
 var blob = builder.AddAzureStorage("ehstorage")
-    .AddBlobs("checkpoints");
+                  .AddBlobs("checkpoints");
 
 var eventHub = builder.AddAzureEventHubs("eventhubns")
-    .AddEventHub("hub");
+                      .AddEventHub("hub");
 
 builder.AddProject<Projects.EventHubsConsumer>("consumer")
-    .WithReference(eventHub)
-    .WithReference(blob);
+       .WithReference(eventHub)
+       .WithReference(blob);
 
 builder.AddProject<Projects.EventHubsApi>("api")
-    .WithExternalHttpEndpoints()
-    .WithReference(eventHub);
+       .WithExternalHttpEndpoints()
+       .WithReference(eventHub);
 
 builder.Build().Run();
 ```
@@ -479,7 +514,9 @@ not just the consumer model (although either can be used). Refer to the README f
 
 For more information, see [.NET Aspire Azure Event Hubs component](../messaging/azure-event-hubs-component.md).
 
-# Manifest changes
+## Manifest changes
+
+The 
 
 ### Volume in the manifest
 
@@ -523,19 +560,32 @@ of the many storage providers that Kubernetes supports.
 
 ### Endpoints
 
-We have expended the level of support for defining multiple endpoints in the
-manifest. To support this we added the `"port":` field to items in the `"bindings":`
-property on `container.v0` and `project.v0` resources. This port defines
-the exposed port that the target deployment environment will use when exposing
-the service. If not explicitly provided this port is assigned (in sequence) at
-manifest generation time.
+We have expended the level of support for defining multiple endpoints in the manifest. To support this we added the `"port":` field to items in the `"bindings":` property on `container.v0` and `project.v0` resources. This port defines the exposed port that the target deployment environment will use when exposing
+the service. If not explicitly provided this port is assigned (in sequence) at manifest generation time.
 
 The `containerPort` property has been renamed to `targetPort` to make it a little
 bit more compute agnostic.
 
-We have worked with the Azure Developer CLI team to make sure `azd` supports these
-new endpoint features when deploying workloads to Azure Container Apps.
+We have worked with the Azure Developer CLI team to make sure `azd` supports these new endpoint features when deploying workloads to Azure Container Apps.
 
+### Docker build arguments
+
+We have added support for Docker build arguments in the manifest. This is useful when you want to pass in secrets or other configuration values at build time. Here is an example of Docker build arguments are represented in the manifest:
+
+```json
+{
+  "type": "dockerfile.v0",
+  "path": "NodeFrontend/Dockerfile",
+  "context": "NodeFrontend",
+  "buildArgs": {
+    "NODE_ENV": "production",
+    "WEATHER_API": null
+  },
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
+```
 
 ## IDE protocol changes
 
