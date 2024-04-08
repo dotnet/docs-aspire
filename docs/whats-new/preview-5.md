@@ -493,26 +493,27 @@ Here is an example of a container in the manifest which defines multiple volumes
 {
     "type": "container.v0",
     "image": "image/name:latest",
-    "volumes": [
-    {
-        "name": "myvolume",
-        "target": "/mount/here",
-        "readOnly": false
-    },
-    {
-        "name": "myreadonlyvolume",
-        "target": "/mount/there",
-        "readOnly": true
-    },
-    {
-        "target": "/mount/everywhere",
-        "readOnly": false
-    }
+    "volumes":
+    [
+      {
+          "name": "myvolume",
+          "target": "/mount/here",
+          "readOnly": false
+      },
+      {
+          "name": "myreadonlyvolume",
+          "target": "/mount/there",
+          "readOnly": true
+      },
+      {
+          "target": "/mount/everywhere",
+          "readOnly": false
+      }
     ]
 }
 ```
 
-It is up to the deployment tool that you are using to deploy the Aspire application
+It's up to the deployment tool that you are using to deploy the Aspire application
 to interpret these volume mounts and the technology that supports them. For example
 when using the Azure Developer CLI (`azd`) an Azure Storage account is created which
 exposes an Azure Files endpoint - and this is bound to the Azure Container App.
