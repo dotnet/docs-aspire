@@ -115,7 +115,7 @@ During deployment with tools such as the Azure Developer CLI (`azd`) the passwor
 
 ### API for expressing Docker build args
 
-Before preview 5, it wasn't possible to express Docker build args when an executable resource was published as a `dockerfile.v0`. The app model updated the `PublishAsDockerfile` extension method to accept an `IEnumerable<DockerBuildArg>` parameter. This allows you to pass in build arguments to the Docker build process. This is useful when you want to pass in secrets or other configuration values at build time.
+Before preview 5, it wasn't possible to express [Docker build args](https://docs.docker.com/reference/cli/docker/image/build/#build-arg) when an executable resource was published as a `dockerfile.v0`. The app model updated the `PublishAsDockerfile` extension method to accept an `IEnumerable<DockerBuildArg>` parameter. This allows you to pass in build arguments to the Docker build process. This is useful when you want to pass in secrets or other configuration values at build time.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder();
