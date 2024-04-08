@@ -537,5 +537,6 @@ We have worked with the Azure Developer CLI team to make sure `azd` supports the
 new endpoint features when deploying workloads to Azure Container Apps.
 
 
-# IDE protocol changes
+## IDE protocol changes
+
 - There's a new IDE protcol
