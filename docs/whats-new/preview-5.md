@@ -64,9 +64,9 @@ For more information, see [Azure-specific resource types](../deployment/manifest
 
 At the core of .NET Aspire's capabilities is the application model. The application model is a set of abstractions that allow you to define the components of your application and how they interact with each other. There were several changes to the application model in preview 5.
 
-### Enable forwarded headers by default for .NET Core projects
+### Enable forwarded headers by default for .NET projects
 
-If a .NET Core project is added to your distributed application model, and that project has endpoints defined the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is automatically set, which has the effect of enabling handling for forwarded headers. This is because the primary deployment target for Aspire applications is containerized environments where a reverse proxy is deployed in front of the workload.
+If a .NET project is added to your distributed application model, and that project has endpoints defined the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is automatically set, which has the effect of enabling handling for forwarded headers. This is because the primary deployment target for Aspire applications is containerized environments where a reverse proxy is deployed in front of the workload.
 
 ### Custom resources support in the dashboard
 
