@@ -54,9 +54,99 @@ The `Aspire.Hosting.Azure` APIs have been broken up in to the following packages
 
 ## Application model changes
 
-In addition to packaging changes some important changes were made to the application model to allow for better integration between cloud-hosted resources and services that are running locally.
+### Enable forwarded headers by default for .NET Core projects
 
-For example resources that expose connection strings now have async methods instead of synchronous methods which allow the start-up of a micro-service to block whilst a cloud resource is being initialized.
+If a .NET Core project is added to your distributed application model, and that project
+has endpoints defined we will automatically set the `ASPNETCORE_FORWARDEDHEADERS_ENABLED`
+environment variable which has the effect of enabling handling for forwarded headers. This
+is because the primary deployment target for Aspire applications is containerized environments
+where a reverse proxy is deployed in front of the workload.
+
+### Custom resources support in the dashboard
+
+We have made improvements to the application model to allow custom resources to update
+their status in the dashboard and log console output. This is extremely useful for cloud
+hosted resources that need to be deployed when an application starts.
+
+Two new services exist within the DI container which can be injected into lifecycle hooks
+called `ResourceNotificationService` and `ResourceLoggerService`. Refer to the [CustomResources "playground"
+sample](https://github.com/dotnet/aspire/blob/1b627b7d5d399d4f9118366e7611e11e56de4554/playground/CustomResources/CustomResources.AppHost/TestResource.cs#L30) we have in the repo for how to use these APIs.
+
+### Improved volume mount APIs
+
+We have improved the ease of configuring persistence between container restarts for many
+of the container-based Aspire resources. It is now possible to enable persistence on many
+containers through the use of an extension method. For example:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+var pg1 = builder.AddPostgres("pgsql1")
+                      .WithDataVolume() // Uses a volume mount to store data between restarts.
+
+var builder = DistributedApplication.CreateBuilder(args)
+var pg1 = builder.AddPostgres("pgsql1")
+                      .WithDataBindVolume(path) // Uses a bind mount to store data.
+```
+
+We've also worked with the Azure Developer CLI team to add support for creating volume mounts in Azure Storage
+for container apps when Aspire apps are deployed to Azure.
+
+### RabbitMQ management UI
+
+We've added the ability to enable the RabbitMQ management UI:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+var messaging = builder.AddRabbitMQ("messaging")
+                       .WithManagementPlugin();
+```
+
+When the AppHost starts up the dashboard will show a HTTP endpoint. If you click on the endpoint
+you will be prompted for a username and password. The username and password is visible in the environment
+variables assigned to the container.
+
+### Automatic password generation
+
+In previous previews of Aspire, each resource created a random password when the resource
+was added to the app model, taking an optional password argument if required. In preview 5
+we have modified the API to take a `IResourceBuilder<ParameterResource>` argument for usernames
+and passwords. If these parameters are omitted a parameter will be automatically injected into
+the application model with a default random value.
+
+During deployment with tools such as the Azure Developer CLI (`azd`) the password will be
+generated automatically and stored in a KeyVault for later use by container workloads.
+
+## Deferred string interpolation for WithEnvironment(...) and reference expressions
+
+We have added a new overload to the `WithEnvironment(...)` extension method which supports
+interpolated strings:
+
+```csharp
+public static IResourceBuilder<T> WithEnvironment<T>(
+    this IResourceBuilder<T> builder,
+    string name,
+    in ReferenceExpression.ExpressionInterpolatedStringHandler value)
+```
+
+This allows you to write code like this:
+
+```csharp
+        var containerA = builder.AddContainer("container1", "image")
+                               .WithHttpEndpoint(name: "primary", targetPort: 10005);
+
+        var endpoint = containerA.GetEndpoint("primary");
+
+        // The {endpoint} placeholder is evaluated AFTER containerA has started
+        // and the dynamically allocated port can be determined.
+        var containerB = builder.AddContainer("container2", "imageB")
+                                .WithEnvironment("URL", $"{endpoint}/foo")
+                                .WithEnvironment("PORT", $"{endpoint.Property(EndpointProperty.Port)}")
+                                .WithEnvironment("TARGET_PORT", $"{endpoint.Property(EndpointProperty.TargetPort)}")
+                                .WithEnvironment("HOST", $"{test.Resource};name=1");
+```
+
+Underlying this improvement is a series of changes to the way that references between resources
+are handled. For example resources that expose connection strings now have async methods instead of synchronous methods which allow the start-up of a micro-service to block whilst a cloud resource is being initialized.
 
 A good illustration of the changes here can be seen on the `IResourceWithConnectionString` interface. The code below shows the preview 4 and preview 5 versions one after another.
 
@@ -95,9 +185,10 @@ public interface IResourceWithConnectionString :
 }
 ```
 
-The `GetConnectionString` method has been made asynchronous. But there are many other properties that have been added. This allows for better tracking of dependencies within the application model.
+The `GetConnectionString` method has been made asynchronous. But there are many other properties that have been added. This allows for better tracking of dependencies within the application model. These are defined by intefaces like `IValueProvider` and `IManifestExpressionProvider`.
 
-Note that the basic usage pattern for adding a reference from one resource to another has not changed. The changes above primarily impact the internal implementation details and only impact you if you are building custom resource types.
+Note that the basic usage pattern for adding a reference from one resource to another has not changed. The changes above primarily impact the internal implementation details and only impact you if you are building custom resource types or
+if you are using the string interpolation features mentioned above.
 
 ## Dashboard
 
@@ -154,19 +245,6 @@ Templates
 
 - HTTPs by default
 - Test project support
-
-AppModel
-
-- Forwarded headers enabled by default for projects with endpoints
-- Custom resources support in dashboard
-  - Can publish notifications to the dashboard
-  - Can log console output to the dashboard
-- Built in methods for containers with well known volume mounts
-- Add RabbitMQ WithManagementUI method.
-- Applied consistent scheme for resources that support passwords
-  - They can autogenerate passwords, or take parameters
-- Support for composing environment variables using string interpolation
-that can capture resource properties. (ReferenceExpression, WithEnvironment overload)
 
 Service Discovery
 
@@ -322,6 +400,39 @@ For more information, see [Local Azure provisioning](../deployment/azure/local-p
 
 ## Other Azure-related improvements
 
+### No more exposed endpoint selection in AZD
+
+In previous previews, when an Aspire application was deployed to Azure, part of the initialization
+process for Azure Developer CLI (`azd`) was to select the services that would be exposed externally
+to the Internet. This included container-based resources that may or may not be hardened for Internet
+access.
+
+In preview 5 we have worked with the Azure Developer CLI team to not display this prompt. Now, by default
+all endpoints exposed container resources are exposed only via the internal Azure Container Apps endpoint. To
+expose endpoints on a container resource you need to use the `WithExternalHttpEndpoints(...)` extension
+to enable this explicitly in the application model.
+
+```csharp
+builder.AddContainer("grafana", "grafana/grafana")
+                    .WithHttpEndpoint(name: "http", targetPort: 3000)
+                    .WithExternalHttpEndpoints();
+```
+
+This will expose all endpoints defined on the resource. Alternatively it is possible to modify a single
+endpoint when defining it:
+
+```csharp
+var catalogDb = builder.AddPostgres("postgres")
+                       .WithPgAdmin()
+                       .WithEndpoint("tcp", (endpoint) =>
+                       {
+                           // This callback can be used for mutating other 
+                           // values on existing endpoints as well.
+                           endpoint.IsExternal = true;
+                       })
+                       .AddDatabase("catalogdb");
+```
+
 ### Azure OpenAI
 
 The `AddAzureOpenAI(...)` extension method will now result in an Azure Open AI resource
@@ -368,18 +479,64 @@ not just the consumer model (although either can be used). Refer to the README f
 
 For more information, see [.NET Aspire Azure Event Hubs component](../messaging/azure-event-hubs-component.md).
 
-Manifest
+# Manifest changes
 
-- Express container volumes and bindmounts in the manifest
-- Support for multiple endpoints in the manifest
-- Renamed containerPort to targetPort
-- Added port as the "exposed port"
+### Volume in the manifest
 
-Azure Deployment
+One of the features we have been wanted to add for some time is support
+for volumes in the manifest. Volumes are essential for some scale out scenarios
+around containers and for resiliency.
 
-- Service selection prompt gone (WithExternalHttpEndpoints in apphost)
-- Support for multiple endpoints in ACA
-- Support for adding volumes to containers in ACA
+Here is an example of a container in the manifest which defines multiple volumes:
 
-- IDE protocol changes
+```json
+{
+    "type": "container.v0",
+    "image": "image/name:latest",
+    "volumes":
+    [
+      {
+          "name": "myvolume",
+          "target": "/mount/here",
+          "readOnly": false
+      },
+      {
+          "name": "myreadonlyvolume",
+          "target": "/mount/there",
+          "readOnly": true
+      },
+      {
+          "target": "/mount/everywhere",
+          "readOnly": false
+      }
+    ]
+}
+```
+
+It's up to the deployment tool that you are using to deploy the Aspire application
+to interpret these volume mounts and the technology that supports them. For example
+when using the Azure Developer CLI (`azd`) an Azure Storage account is created which
+exposes an Azure Files endpoint - and this is bound to the Azure Container App.
+
+A tool that targets Kubernetes might use Kubernetes' own concept of volumes, or one
+of the many storage providers that Kubernetes supports.
+
+### Endpoints
+
+We have expended the level of support for defining multiple endpoints in the
+manifest. To support this we added the `"port":` field to items in the `"bindings":`
+property on `container.v0` and `project.v0` resources. This port defines
+the exposed port that the target deployment environment will use when exposing
+the service. If not explicitly provided this port is assigned (in sequence) at
+manifest generation time.
+
+The `containerPort` property has been renamed to `targetPort` to make it a little
+bit more compute agnostic.
+
+We have worked with the Azure Developer CLI team to make sure `azd` supports these
+new endpoint features when deploying workloads to Azure Container Apps.
+
+
+## IDE protocol changes
+
 - There's a new IDE protcol
