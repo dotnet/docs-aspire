@@ -6,7 +6,7 @@ ms.date: 04/08/2024
 
 # .NET Aspire preview 5
 
-.NET Aspire preview 5 introduces breaking changes to the application model and packaging. This release includes many improvements and new capabilities. The following sections provide an overview of the changes in preview 5.
+.NET Aspire preview 5 introduces are large set of breaking changes to hosting NuGet packages. In addition to these breaking changes, there are several sweeping improvements and additions to be aware of. The following article provide an overview of the changes in preview 5.
 
 The .NET Aspire preview 5 version is `8.0.0-preview.5.24201.12`.
 
@@ -34,6 +34,8 @@ in which they are now contained:
 | `AddSeq(...)`        | `Aspire.Hosting.Seq`         |
 | `AddSqlServer(...)`  | `Aspire.Hosting.SqlServer`   |
 
+For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
+
 The `Aspire.Hosting.Azure` APIs have been broken up in to the following packages:
 
 | Extension method                     | Package                                    |
@@ -56,13 +58,15 @@ The `Aspire.Hosting.Azure` APIs have been broken up in to the following packages
 | `AsAzureSqlDatabase(...)`            | `Aspire.Hosting.Azure.Sql`                 |
 | `AddAzureStorage(...)`               | `Aspire.Hosting.Azure.Storage`             |
 
+For more information, see [Azure-specific resource types](../deployment/manifest-format.md#azure-specific-resource-types).
+
 ## Application model changes
 
 At the core of .NET Aspire's capabilities is the application model. The application model is a set of abstractions that allow you to define the components of your application and how they interact with each other. There were several changes to the application model in preview 5.
 
 ### Enable forwarded headers by default for .NET Core projects
 
-If a .NET Core project is added to your distributed application model, and that project has endpoints defined we will automatically set the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable which has the effect of enabling handling for forwarded headers. This is because the primary deployment target for Aspire applications is containerized environments where a reverse proxy is deployed in front of the workload.
+If a .NET Core project is added to your distributed application model, and that project has endpoints defined the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is automatically set, which has the effect of enabling handling for forwarded headers. This is because the primary deployment target for Aspire applications is containerized environments where a reverse proxy is deployed in front of the workload.
 
 ### Custom resources support in the dashboard
 
@@ -204,7 +208,7 @@ public interface IResourceWithConnectionString :
 
 The `GetConnectionString` method has been made asynchronous. But there are many other properties that have been added. This allows for better tracking of dependencies within the application model. These are defined by interfaces like `IValueProvider` and `IManifestExpressionProvider`.
 
-Note that the basic usage pattern for adding a reference from one resource to another has not changed. The changes above primarily impact the internal implementation details and only impact you if you are building custom resource types or if you are using the string interpolation features mentioned above.
+The basic usage pattern for adding a reference from one resource to another hasn't changed. The changes above primarily impact the internal implementation details and only impact you if you are building custom resource types or if you are using the string interpolation features mentioned above.
 
 ## Dashboard
 
@@ -216,7 +220,7 @@ Communication has been secured across the following endpoints:
 
 - OTLP
 - Dashboard
-- Resource Server
+- Resource server
 
 #### OTLP endpoint security
 
@@ -250,12 +254,13 @@ The resource server client supports client certificates. This can be applied via
 
 ### Performance improvements
 
-- LOTS of performance improvements
-  - Console log virtualization
-  - Load time improvements
-  - Trace ingestion improvements
-- Run on a single port (OTLP and UI)
-- Standalone container now forces you to choose auth
+There were a large number of performance improvements in preview 5. The most notable are:
+
+- Console log virtualization.
+- Load time improvements.
+- Trace ingestion improvements.
+- Run on a single port (OTLP and UI).
+- Standalone container now forces you to choose auth.
 
 Templates
 
@@ -267,13 +272,11 @@ Service Discovery
 - Service discovery API changes
 - Service discovery auto scheme detection
 
-Tooling
-
 ### Visual Studio Code C# DevKit tooling
 
 With the April release of C# Dev Kit, you can now launch all projects in a .NET Aspire from Visual Studio Code. To launch your .NET Aspire application, simply Ctrl-F5 (Run without debugging). This will launch the app host project and all the associated projects in your .NET Aspire application (front-end and APIs). Similarly, you can debug your .NET Aspire application, simply F5 (Start debugging) and all the projects will attach to the debugger, allowing you to have breakpoints set across projects and each one will be hit when appropriate.
 
-### Visual Studio Tooling updates
+### Visual Studio tooling updates
 
 In Visual Studio 17.10 we've continued to improve the end-to-end experience for developers using right-click publish to Azure Container Apps. You no longer need to login separately to `azd`, Visual Studio will log you in seamlessly. Now, when you use the "Remove Environment" feature in the Visual Studio publishing dialog, you can opt for deleting the Azure Developer CLI (azd) environment from your live Azure subscription. This makes it easies for you to iterate, creating and deleting environments with simplicity.
 
@@ -317,7 +320,7 @@ This makes it clear that we are adding a "client" object to the `WebApplicationB
 
 ## Azure improvements
 
-
+The primary focus of the Azure improvements in preview 5 is to make it easier to use Azure resources in your .NET Aspire application. This includes improvements to the Azure provisioning libraries, support for local development with Azure resources, and other Azure-related improvements.
 
 ### Azure provisioning libraries
 
@@ -382,7 +385,7 @@ builder.AddProject<Projects.InventoryApi>("inventoryapi")
        .WithReference(cosmos);
 ```
 
-This can be applied globally in your project or in a more localized way as shown above.
+This can be applied globally in your project or in a more localized way as shown above. For more information, see [.NET Aspire diagnostics overview](../diagnostics/overview.md).
 
 ### Azure provisioning for local development
 
@@ -436,6 +439,8 @@ For more information, see [Local Azure provisioning](../deployment/azure/local-p
 
 ## Other Azure-related improvements
 
+There are several other Azure-related improvements in preview 5, the following sections outline these improvements.
+
 ### No more exposed endpoint selection in AZD
 
 In previous previews, when an Aspire application was deployed to Azure, part of the initialization
@@ -470,10 +475,7 @@ var catalogDb = builder.AddPostgres("postgres")
 
 ### Azure OpenAI
 
-The `AddAzureOpenAI(...)` extension method will now result in an Azure Open AI resource
-being provisioned in Azure. This support was missing from preview 4 but was added in preview
-5 as part of the overall improvements to Azure resource usage for local development mentioned
-above.
+The `AddAzureOpenAI(...)` extension method will now result in an Azure Open AI resource being provisioned in Azure. This support was missing from preview 4 but was added in preview 5 as part of the overall improvements to Azure resource usage for local development mentioned above.
 
 ```csharp
 var openai = builder
@@ -509,14 +511,13 @@ builder.AddProject<Projects.EventHubsApi>("api")
 builder.Build().Run();
 ```
 
-As can be seen above the Event Hubs integration includes support for the Event Hubs processor architecture
-not just the consumer model (although either can be used). Refer to the README for the `Aspire.Azure.Messaging.EventHubs` package for examples of how to wire-up to the provisioned Event Hubs resource in your service projects.
+As can be seen above the Event Hubs integration includes support for the Event Hubs processor architecture not just the consumer model (although either can be used). Refer to the README for the `Aspire.Azure.Messaging.EventHubs` package for examples of how to wire-up to the provisioned Event Hubs resource in your service projects.
 
 For more information, see [.NET Aspire Azure Event Hubs component](../messaging/azure-event-hubs-component.md).
 
 ## Manifest changes
 
-The 
+The manifest format has been updated to support the new features in preview 5. The following sections outline the changes to the manifest format.
 
 ### Volume in the manifest
 
@@ -550,21 +551,15 @@ Here is an example of a container in the manifest which defines multiple volumes
 }
 ```
 
-It's up to the deployment tool that you are using to deploy the Aspire application
-to interpret these volume mounts and the technology that supports them. For example
-when using the Azure Developer CLI (`azd`) an Azure Storage account is created which
-exposes an Azure Files endpoint - and this is bound to the Azure Container App.
+It's up to the deployment tool that you are using to deploy the Aspire application to interpret these volume mounts and the technology that supports them. For example when using the Azure Developer CLI (`azd`) an Azure Storage account is created which exposes an Azure Files endpoint—and this is bound to the Azure Container App.
 
-A tool that targets Kubernetes might use Kubernetes' own concept of volumes, or one
-of the many storage providers that Kubernetes supports.
+A tool that targets Kubernetes might use Kubernetes' own concept of volumes, or one of the many storage providers that Kubernetes supports.
 
 ### Endpoints
 
-We have expended the level of support for defining multiple endpoints in the manifest. To support this we added the `"port":` field to items in the `"bindings":` property on `container.v0` and `project.v0` resources. This port defines the exposed port that the target deployment environment will use when exposing
-the service. If not explicitly provided this port is assigned (in sequence) at manifest generation time.
+We have expended the level of support for defining multiple endpoints in the manifest. To support this we added the `"port":` field to items in the `"bindings":` property on `container.v0` and `project.v0` resources. This port defines the exposed port that the target deployment environment will use when exposing the service. If not explicitly provided this port is assigned (in sequence) at manifest generation time.
 
-The `containerPort` property has been renamed to `targetPort` to make it a little
-bit more compute agnostic.
+The `containerPort` property has been renamed to `targetPort` to make it a little bit more compute agnostic.
 
 We have worked with the Azure Developer CLI team to make sure `azd` supports these new endpoint features when deploying workloads to Azure Container Apps.
 
