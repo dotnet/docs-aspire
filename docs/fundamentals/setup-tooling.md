@@ -134,7 +134,7 @@ There are currently four project templates available:
 
 - **.NET Aspire App Host**: A standalone **.AppHost** project that can be used to orchestrate and manage the different projects and services of your app.
 
-- **.NET Aspire Text Project (xUnit)**: A project that contains xUnit.net integration of a .NET Aspire AppHost project.
+- **.NET Aspire Test Project (xUnit)**: A project that contains xUnit.net integration of a .NET Aspire AppHost project.
 
 - **.NET Aspire Service Defaults**: A standalone **.ServiceDefaults** project that can be used to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](./telemetry.md).
 
