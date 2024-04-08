@@ -264,13 +264,13 @@ There were a large number of performance improvements in preview 5. The most not
 
 Templates
 
-- HTTPs by default
-- Test project support
+- HTTPs by default.
+- Test project support. For more information, see [.NET Aspire project templates](../fundamentals/setup-tooling.md#net-aspire-project-templates).
 
 Service Discovery
 
-- Service discovery API changes
-- Service discovery auto scheme detection
+- Service discovery API changes.
+- Service discovery auto scheme detection.
 
 ### Visual Studio Code C# DevKit tooling
 
