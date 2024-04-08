@@ -8,6 +8,8 @@ ms.date: 04/08/2024
 
 .NET Aspire preview 5 introduces breaking changes to hosting NuGet packages. In addition to these breaking changes, there are several sweeping improvements and additions to be aware of. The following article provides an overview of the major changes in .NET Aspire preview 5:  `8.0.0-preview.5.24201.12`.
 
+If you're using Visual Studio, see the [Use Upgrade Assistant to update to preview 5](#use-upgrade-assistant-to-update-to-preview-5).
+
 ## Packaging changes
 
 As part of our journey to GA we have split up the `Aspire.Hosting` and `Aspire.Hosting.Azure` packages. These changes will allow us greater flexibility for servicing and ensure that appropriate boundaries are maintained between our core abstractions for .NET Aspire and various cloud-native dependencies that an application may require.
