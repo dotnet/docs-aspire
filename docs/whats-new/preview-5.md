@@ -72,7 +72,7 @@ If a .NET project is added to your distributed application model, and that proje
 
 We have made improvements to the application model to allow custom resources to update their status in the dashboard and log console output. This is extremely useful for cloud hosted resources that need to be deployed when an application starts.
 
-Two new services exist within the DI container which can be injected into lifecycle hooks called `ResourceNotificationService` and `ResourceLoggerService`. Refer to the [CustomResources "playground" sample](https://github.com/dotnet/aspire/blob/1b627b7d5d399d4f9118366e7611e11e56de4554/playground/CustomResources/CustomResources.AppHost/TestResource.cs#L30) we have in the repo for how to use these APIs.
+Two new services exist within the DI container which can be injected into lifecycle hooks called `ResourceNotificationService` and `ResourceLoggerService`. For more information, see the [CustomResources "playground" sample](https://github.com/dotnet/aspire/blob/1b627b7d5d399d4f9118366e7611e11e56de4554/playground/CustomResources/CustomResources.AppHost/TestResource.cs#L30) in the repo for how to use these APIs.
 
 ### Improved volume mount APIs
 
