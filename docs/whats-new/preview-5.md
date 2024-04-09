@@ -589,7 +589,3 @@ We have added support for Docker build arguments in the manifest. This is useful
   }
 }
 ```
-
-## IDE protocol changes
-
-- There's a new IDE protcol
