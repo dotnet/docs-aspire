@@ -16,7 +16,7 @@ In this article, you learn how to use the .NET Aspire NATS component to send log
 
 ## Get started
 
-To get started with the .NET Aspire NATS component, install the [Aspire.NATS.Net](https://www.nuget.org/packages/Aspire.NATS) NuGet package.
+To get started with the .NET Aspire NATS component, install the [Aspire.NATS.Net](https://www.nuget.org/packages/Aspire.NATS.Net) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
