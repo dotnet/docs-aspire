@@ -1,27 +1,21 @@
 ---
-title: .NET Aspire dashboard overview
+title: Explore .NET Aspire dashboard
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
 ms.date: 03/13/2024
 ms.topic: reference
 ---
 
-# .NET Aspire dashboard overview
-
-[.NET Aspire](../get-started/aspire-overview.md) project templates offer a sophisticated dashboard for comprehensive app monitoring and inspection. This dashboard allows you to track closely various aspects of your application, including logs, traces, and environment configurations, in real-time. It's purpose-built to enhance the local development experience, providing an insightful overview of your app's state and structure.
+# Explore the .NET Aspire dashboard
 
 In the upcoming sections, you'll discover how to create a .NET Aspire app and embark on the following tasks:
 
 > [!div class="checklist"]
 >
-> - Investigate the dashboard's capabilities by using the app generated from the project template as explained in the [Quickstart: Build your first .NET Aspire app.](../get-started/build-your-first-aspire-app.md)
+> - Investigate the dashboard's capabilities by using the app generated from the project template as explained in the [Quickstart: Build your first .NET Aspire app.](../../get-started/build-your-first-aspire-app.md)
 >
 > - Delve into the features of the .NET Aspire dashboard app.
 
 The screenshots featured in this article showcase the dark theme. For more details on theme selection, refer to [Theme selection](#theme-selection).
-
-## Explore the .NET Aspire dashboard
-
-The .NET Aspire dashboard is only visible while the **AppHost** app is running and will launch automatically when you start the project. The left navigation provides links to the different parts of the dashboard, each of which you'll explore in the following sections. Additionally, the cog icon in the upper right of the dashboard provides access to the settings page, which allows you to configure your dashboard experience.
 
 ## Dashboard shortcuts
 
@@ -69,33 +63,33 @@ The dashboard also provides essential details about each resource:
 
  Consider the following screenshot of the resources page:
 
-:::image type="content" source="media/dashboard/projects.png" lightbox="media/dashboard/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page.":::
+:::image type="content" source="media/explore/projects.png" lightbox="media/explore/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page.":::
 
 You can obtain full details about each resource by selecting the **View** link in the **Details** column:
 
-:::image type="content" source="media/dashboard/resource-details.png" lightbox="media/dashboard/resource-details.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page with the details of a selected resource displayed..":::
+:::image type="content" source="media/explore/resource-details.png" lightbox="media/explore/resource-details.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page with the details of a selected resource displayed..":::
 
 The search bar in the upper right of the dashboard also provides the option to filter the list, which is useful for .NET Aspire apps with many resources. To select the types of resources that are displayed, drop down the arrow to the left of the filter textbox:
 
-:::image type="content" source="media/dashboard/select-resource-type.png" alt-text="A screenshot of the resource type selector list in the .NET Aspire dashboard Resources page.":::
+:::image type="content" source="media/explore/select-resource-type.png" alt-text="A screenshot of the resource type selector list in the .NET Aspire dashboard Resources page.":::
 
 In this example, only containers are displayed in the list. For example, if you enable **Use Redis for caching** when creating a .NET Aspire project, you should see a Redis container listed:
 
-:::image type="content" source="media/dashboard/resources-filtered-containers.png" lightbox="media/dashboard/resources-filtered-containers.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page filtered to show only containers.":::
+:::image type="content" source="media/explore/resources-filtered-containers.png" lightbox="media/explore/resources-filtered-containers.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page filtered to show only containers.":::
 
 Executables are stand-alone processes. You can configure a .NET Aspire app to run a stand-alone executable during startup, though the default starter templates do not include any executables by default.
 
 The following screenshot shows an example of a project that has errors:
 
-:::image type="content" source="media/dashboard/projects-errors.png" lightbox="media/dashboard/projects-errors.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page, showing a project with errors.":::
+:::image type="content" source="media/explore/projects-errors.png" lightbox="media/explore/projects-errors.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page, showing a project with errors.":::
 
 Selecting the error count badge navigates to the [Structured logs](#structured-logs-page) page with a filter applied to show only the logs relevant to the resource:
 
-:::image type="content" source="media/dashboard/structured-logs-errors.png" lightbox="media/dashboard/structured-logs-errors.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a filter applied to show only the logs relevant to the resource.":::
+:::image type="content" source="media/explore/structured-logs-errors.png" lightbox="media/explore/structured-logs-errors.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a filter applied to show only the logs relevant to the resource.":::
 
 To see the log entry in detail for the error, select the **View** button to open a window below the list with the structured log entry details:
 
-:::image type="content" source="media/dashboard/structured-logs-errors-view.png" lightbox="media/dashboard/structured-logs-errors-view.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a lower window with the structured log entry details.":::
+:::image type="content" source="media/explore/structured-logs-errors-view.png" lightbox="media/explore/structured-logs-errors-view.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a lower window with the structured log entry details.":::
 
 For more information and examples of Structured logs, see the [Structured logs page](#structured-logs-page) section.
 
@@ -111,15 +105,15 @@ When you open the Console logs page, you must select a source in the **Select a 
 
 If you select a project, the live logs are rendered with a stylized set of colors that correspond to the severity of the log; green for information as an example. Consider the following example screenshot of project logs with the `apiservice` project selected:
 
-:::image type="content" source="media/dashboard/project-logs.png" lightbox="media/dashboard/project-logs.png" alt-text="A screenshot of the .NET Aspire dashboard Console Logs page with a source selected.":::
+:::image type="content" source="media/explore/project-logs.png" lightbox="media/explore/project-logs.png" alt-text="A screenshot of the .NET Aspire dashboard Console Logs page with a source selected.":::
 
 When errors occur, they're styled in the logs such that they're easy to identify. Consider the following example screenshot of project logs with errors:
 
-:::image type="content" source="media/dashboard/project-logs-error.png" lightbox="media/dashboard/project-logs-error.png" alt-text="A screenshot of the .NET Aspire dashboard Console Logs page, showing logs with errors.":::
+:::image type="content" source="media/explore/project-logs-error.png" lightbox="media/explore/project-logs-error.png" alt-text="A screenshot of the .NET Aspire dashboard Console Logs page, showing logs with errors.":::
 
 If you select a container or executable, formatting is different from a project but verbose behavior information is still available. Consider the following example screenshot of a container log with the `cache` container selected:
 
-:::image type="content" source="media/dashboard/container-logs.png" lightbox="media/dashboard/container-logs.png" alt-text="A screenshot of the .NET Aspire dashboard Console logs page with a container source selected.":::
+:::image type="content" source="media/explore/container-logs.png" lightbox="media/explore/container-logs.png" alt-text="A screenshot of the .NET Aspire dashboard Console logs page with a container source selected.":::
 
 ### Structured logs page
 
@@ -134,7 +128,7 @@ If you select a container or executable, formatting is different from a project 
 
 Consider the following example screenshot of semantic logs:
 
-:::image type="content" source="media/dashboard/structured-logs.png" lightbox="media/dashboard/structured-logs.png" alt-text="A screenshot of the .NET Aspire dashboard Semantic logs page.":::
+:::image type="content" source="media/explore/structured-logs.png" lightbox="media/explore/structured-logs.png" alt-text="A screenshot of the .NET Aspire dashboard Semantic logs page.":::
 
 #### Filter structured logs
 
@@ -142,7 +136,7 @@ The structured logs page also provides a search bar to filter the logs by servic
 
 Consider the following screenshots showing the structured logs, filtered to display items with "Hosting" in the message text:
 
-:::image type="content" source="media/dashboard/structured-logs-filtered.png" lightbox="media/dashboard/structured-logs-filtered.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a filter that displayed only items with Hosting in the message text.":::
+:::image type="content" source="media/explore/structured-logs-filtered.png" lightbox="media/explore/structured-logs-filtered.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a filter that displayed only items with Hosting in the message text.":::
 
 ### Traces page
 
@@ -153,13 +147,13 @@ Navigate to the **Traces** page to view all of the traces for your app. .NET Asp
 - **Spans**: The resources involved in the request.
 - **Duration**: The time it took to complete the request. This column includes a radial icon that illustrates the duration of the request in comparison with the others in the list.
 
-:::image type="content" source="media/dashboard/traces.png" lightbox="media/dashboard/traces.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page.":::
+:::image type="content" source="media/explore/traces.png" lightbox="media/explore/traces.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page.":::
 
 #### Filter traces
 
 The traces page also provides a search bar to filter the traces by name or span. Apply a filter, and notice the trace results are updated immediately. Consider the following screenshot of traces with a filter applied to `weather` and notice how the search term is highlighted in the results:
 
-:::image type="content" source="media/dashboard/trace-view-filter.png" lightbox="media/dashboard/trace-view-filter.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page, showing a filter applied to show only traces with the term 'weather'.":::
+:::image type="content" source="media/explore/trace-view-filter.png" lightbox="media/explore/trace-view-filter.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page, showing a filter applied to show only traces with the term 'weather'.":::
 
 #### Trace details
 
@@ -175,7 +169,7 @@ Each span is represented as a row in the table, and contains a **Name**. Spans a
 
 Within the trace details page, there's a **View Logs** button that takes you to the structured logs page with a filter applied to show only the logs relevant to the request. Consider an example screenshot depicting the structured logs page with a filter applied to show only the logs relevant to the trace:
 
-:::image type="content" source="media/dashboard/structured-logs-trace-errors.png" lightbox="media/dashboard/structured-logs-trace-errors.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a filter applied to show only the logs relevant to the trace.":::
+:::image type="content" source="media/explore/structured-logs-trace-errors.png" lightbox="media/explore/structured-logs-trace-errors.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a filter applied to show only the logs relevant to the trace.":::
 
 The structured logs page is discussed in more detail in the [Structured logs page](#structured-logs-page) section.
 
@@ -183,27 +177,27 @@ The structured logs page is discussed in more detail in the [Structured logs pag
 
 Each trace has a color, which is generated to help differentiate between spans — one color for each resource. The colors are reflected in both the _traces page_ and the _trace detail view_. When traces depict an arrow icon, those icons are colorized as well to match the span of the target trace. Consider the following example screenshot of traces:
 
-:::image type="content" source="media/dashboard/traces.png" lightbox="media/dashboard/traces.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page.":::
+:::image type="content" source="media/explore/traces.png" lightbox="media/explore/traces.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page.":::
 
 You can also select the **View** button to navigate to a detailed view of the request and the duration of time it spent traveling through each application layer. Consider an example selection of a trace to view its details:
 
-:::image type="content" source="media/dashboard/trace.png" lightbox="media/dashboard/trace.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page.":::
+:::image type="content" source="media/explore/trace.png" lightbox="media/explore/trace.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page.":::
 
 For each span in the trace, select **View** to see more details:
 
-:::image type="content" source="media/dashboard/trace-span-details.png" lightbox="media/dashboard/trace-span-details.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page with the details of a span displayed.":::
+:::image type="content" source="media/explore/trace-span-details.png" lightbox="media/explore/trace-span-details.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page with the details of a span displayed.":::
 
 Scroll down in the span details pain to see full information. At the bottom of the span details pane, some span types, such as this call to a cache, show span event timings:
 
-:::image type="content" source="media/dashboard/trace-span-event-details.png" lightbox="media/dashboard/trace-span-event-details.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page with the event timings for a span displayed.":::
+:::image type="content" source="media/explore/trace-span-event-details.png" lightbox="media/explore/trace-span-event-details.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page with the event timings for a span displayed.":::
 
 When errors are present, the page renders an error icon next to the trace name. Consider an example screenshot of traces with errors:
 
-:::image type="content" source="media/dashboard/traces-errors.png" lightbox="media/dashboard/traces-errors.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page, showing traces with errors.":::
+:::image type="content" source="media/explore/traces-errors.png" lightbox="media/explore/traces-errors.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page, showing traces with errors.":::
 
 And the corresponding detailed view of the trace with errors:
 
-:::image type="content" source="media/dashboard/trace-view-errors.png" lightbox="media/dashboard/trace-view-errors.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page, showing a trace with errors.":::
+:::image type="content" source="media/explore/trace-view-errors.png" lightbox="media/explore/trace-view-errors.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page, showing a trace with errors.":::
 
 ## Metrics page
 
@@ -213,19 +207,19 @@ Each metric-publishing project in your app will have its own metrics. The metric
 
 Consider the following example screenshot of the metrics page, with the `webfrontend` project selected and the `System.Net.Http` meter's `http.client.request.duration` metric selected:
 
-:::image type="content" source="media/dashboard/metrics-view.png" lightbox="media/dashboard/metrics-view.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page.":::
+:::image type="content" source="media/explore/metrics-view.png" lightbox="media/explore/metrics-view.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page.":::
 
 In addition to the metrics chart, the metrics page includes an option to view the data as a table instead. Consider the following screenshot of the metrics page with the table view selected:
 
-:::image type="content" source="media/dashboard/metrics-table-view.png" lightbox="media/dashboard/metrics-table-view.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with the table view selected.":::
+:::image type="content" source="media/explore/metrics-table-view.png" lightbox="media/explore/metrics-table-view.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with the table view selected.":::
 
 Under the chart, there is a list of filters you can apply to focus on the data that interests you. For example, in the following screenshot, the **http.request.method** field has been filtered to show only **GET** requests:
 
-:::image type="content" source="media/dashboard/metrics-view-filtered.png" lightbox="media/dashboard/metrics-view-filtered.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with a filter applied to the chart.":::
+:::image type="content" source="media/explore/metrics-view-filtered.png" lightbox="media/explore/metrics-view-filtered.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with a filter applied to the chart.":::
 
 You can also choose to select the count of the displayed metric on the vertical access, instead of its values:
 
-:::image type="content" source="media/dashboard/metrics-view-count.png" lightbox="media/dashboard/metrics-view-count.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with the count option applied.":::
+:::image type="content" source="media/explore/metrics-view-count.png" lightbox="media/explore/metrics-view-count.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with the count option applied.":::
 
 For more information about metrics, see [Built-in Metrics in .NET](/dotnet/core/diagnostics/built-in-metrics).
 
@@ -235,12 +229,8 @@ By default, the theme is set to follow the System theme, which means the dashboa
 
 The following screenshot shows the theme selection dialog, with the default System theme selected:
 
-:::image type="content" source="media/dashboard/theme-selection.png" lightbox="media/dashboard/theme-selection.png" alt-text="The .NET Aspire dashboard Settings dialog, showing the System theme default selection.":::
+:::image type="content" source="media/explore/theme-selection.png" lightbox="media/explore/theme-selection.png" alt-text="The .NET Aspire dashboard Settings dialog, showing the System theme default selection.":::
 
 If you prefer the Light theme, you can select it from the theme selection dialog:
 
-:::image type="content" source="media/dashboard/theme-selection-light.png" lightbox="media/dashboard/theme-selection-light.png" alt-text="The .NET Aspire dashboard Settings dialog, showing the Light theme selection.":::
-
-## Standalone mode
-
-The .NET Aspire dashboard is shipped as a docker image and can be used standalone, without the rest of .NET Aspire. There's a sample project that demonstrates how to use the dashboard in standalone mode. For more information, see the [Standalone .NET Aspire dashboard sample app](/samples/dotnet/aspire-samples/aspire-standalone-dashboard).
+:::image type="content" source="media/explore/theme-selection-light.png" lightbox="media/explore/theme-selection-light.png" alt-text="The .NET Aspire dashboard Settings dialog, showing the Light theme selection.":::

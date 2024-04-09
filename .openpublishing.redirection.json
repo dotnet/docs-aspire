@@ -62,7 +62,11 @@
         },
         {
             "source_path_from_root": "/docs/troubleshooting/allowunsecuredtransport.md",
-            "redirect_url": "/dotnet/aspire//troubleshooting/allow-unsecure-transport."
+            "redirect_url": "/dotnet/aspire/troubleshooting/allow-unsecure-transport"
+        },
+        {
+            "source_path_from_root": "/docs/fundamentals/dashboard.md",
+            "redirect_url": "/dotnet/aspire/fundamentals/dashboard/overview"
         }
     ]
 }

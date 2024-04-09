@@ -32,7 +32,7 @@ Welcome to what's new in the .NET Aspire docs for February 2024. This article li
 - [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)
   - Added clarification and links to related content
   - Remove obsolete APIs
-- [.NET Aspire dashboard overview](../fundamentals/dashboard.md)
+- [.NET Aspire dashboard overview](../fundamentals/dashboard/overview.md)
   - Dashboard screenshots revised for preview 3
   - Fix typo in dashboard docs
 - [.NET Aspire inner-loop networking overview](../fundamentals/networking-overview.md) - Remove obsolete APIs, that were missed.

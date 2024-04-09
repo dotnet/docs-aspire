@@ -18,7 +18,7 @@ Docker or Podman will be auto-detected; if both are present, Docker is preferred
 
 ## Dashboard
 
-The [.NET Aspire dashboard](../fundamentals/dashboard.md) has been really well received by the developer community. With preview 4, we've made several improvements to the dashboard to make it easier to use and more accessible.
+The [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) has been really well received by the developer community. With preview 4, we've made several improvements to the dashboard to make it easier to use and more accessible.
 
 ### Dashboard user experience updates
 
