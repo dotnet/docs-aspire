@@ -408,7 +408,7 @@ var cosmos = builder
         (resource, construct, account, databases) =>
         {
             account.AssignProperty(
-                static p => p.ConsistencyPolicy.DefaultConsistencyLevel,
+                p => p.ConsistencyPolicy.DefaultConsistencyLevel,
                 "`Session`");
         }
     )
@@ -430,7 +430,7 @@ var cosmos = builder
         (resource, construct, account, databases) =>
         {
             account.AssignProperty(
-                static p => p.ConsistencyPolicy.DefaultConsistencyLevel,
+                p => p.ConsistencyPolicy.DefaultConsistencyLevel,
                 "`Session`"
             );
         }
@@ -607,7 +607,8 @@ Here is an example of a container in the manifest which defines multiple volumes
     ]
 }
 ```
-> [!NOTE] 
+
+> [!NOTE]
 > The manifest can express both volumes and bind mounts. Bind mounts require a physical mapping from the host machine and may not work in all deployment scenarios.
 
 It's up to the deployment tool that you are using to deploy the Aspire application to interpret these volume mounts and the technology that supports them. For example when using the Azure Developer CLI (`azd`) an Azure Storage account is created which exposes an Azure Files endpoint—and this is bound to the Azure Container App.
