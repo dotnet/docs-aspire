@@ -494,10 +494,6 @@ It is also possible to use an Azure hosted resource for local development by usi
 
 For more information, see [Local Azure provisioning](../deployment/azure/local-provisioning.md).
 
-## Other Azure-related improvements
-
-There are several other Azure-related improvements in preview 5, the following sections outline these improvements.
-
 ### No more exposed endpoint selection in AZD
 
 In previous previews, when an Aspire application was deployed to Azure, part of the initialization
@@ -619,7 +615,31 @@ A tool that targets Kubernetes might use Kubernetes' own concept of volumes, or 
 
 We have expended the level of support for defining multiple endpoints in the manifest. To support this we added the `"port":` field to items in the `"bindings":` property on `container.v0` and `project.v0` resources. This port defines the exposed port that the target deployment environment will use when exposing the service. If not explicitly provided this port is assigned (in sequence) at manifest generation time.
 
-The `containerPort` property has been renamed to `targetPort` to make it a little bit more compute agnostic.
+> [!IMPORTANT]
+> The `containerPort` property has been renamed to `targetPort` to make it a little bit more compute agnostic.
+
+We've added a new API to express endpoints as external endpoints in the manifest, with the `WithExternalHttpEndpoints` extension method. This is useful when you want to expose a service to the Internet. Consider the following JSON snippet before calling this API and then after as an example:
+
+**Before:**
+
+```json
+"https": {
+  "scheme": "https",
+  "protocol": "tcp",
+  "transport": "http"
+},
+```
+
+**After:**
+
+```json
+"https": {
+  "scheme": "https",
+  "protocol": "tcp",
+  "transport": "http",
+  "external": true
+},
+```
 
 We have worked with the Azure Developer CLI team to make sure `azd` supports these new endpoint features when deploying workloads to Azure Container Apps.
 
