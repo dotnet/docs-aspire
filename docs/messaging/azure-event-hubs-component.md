@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Event Hubs component
 description: This article describes the .NET Aspire Azure Event Hubs component features and capabilities.
 ms.topic: how-to
-ms.date: 04/04/2024
+ms.date: 04/09/2024
 ---
 
 # .NET Aspire Azure Event Hubs component
@@ -133,7 +133,7 @@ And then the connection information will be retrieved from the `ConnectionString
 
 #### Fully Qualified Namespace (FQN)
 
-The recommended approach is to use a fully qualified namespace, which works with the `AzureMessagingEventHubsSettings.Credential` property to establish a connection. If no credential is configured, the [DefaultAzureCredential](https://learn.microsoft.com/dotnet/api/azure.identity.defaultazurecredential) is used.
+The recommended approach is to use a fully qualified namespace, which works with the `AzureMessagingEventHubsSettings.Credential` property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used.
 
 ```json
 {

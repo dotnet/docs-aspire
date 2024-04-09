@@ -1,7 +1,7 @@
 ---
 title: Connect an ASP.NET Core app to .NET Aspire storage components
 description: Learn how to connect an ASP.NET Core app to .NET Aspire storage components.
-ms.date: 04/04/2024
+ms.date: 04/09/2024
 ms.topic: tutorial
 zone_pivot_groups: azure-storage-mechanism
 ms.custom: devx-track-extended-azdevcli
@@ -170,19 +170,19 @@ Visual Studio tooling added this line of code to register your new project with 
 
 ## [.NET CLI](#tab/net-cli)
 
-1. In the root directory of the app, use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new Worker Service app:
+1. In the root directory of the app, use the [dotnet new](/dotnet/core/tools/dotnet-new) command to create a new Worker Service app:
 
     ```dotnetcli
     dotnet new worker --name AspireStorage.WorkerService
     ```
 
-1. Use the [`dotnet sln`](/dotnet/core/tools/dotnet-sln) command to add the project to the solution:
+1. Use the [dotnet sln](/dotnet/core/tools/dotnet-sln) command to add the project to the solution:
 
     ```
     dotnet sln AspireStorage.sln add AspireStorage.WorkerService/AspireStorage.WorkerService.csproj
     ```
 
-1. Use the [`dotnet add`](/dotnet/core/tools/dotnet-add) command to add project reference between the **.AppHost** and **.WorkerService** project:
+1. Use the [dotnet add package](/dotnet/core/tools/dotnet-add-package)command to add project reference between the **.AppHost** and **.WorkerService** project:
 
     ```dotnetcli
     dotnet add AspireStorage.AppHost/AspireStorage.AppHost.csproj reference AspireStorage.WorkerService/AspireStorage.WorkerService.csproj

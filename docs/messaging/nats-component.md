@@ -2,7 +2,7 @@
 title: .NET Aspire NATS component
 description: Learn how to use the .NET Aspire NATS component to send logs and traces to a NATS Server.
 ms.topic: how-to
-ms.date: 04/03/2024
+ms.date: 04/09/2024
 ---
 
 # .NET Aspire NATS component
@@ -37,7 +37,9 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your projects, call the <xref:Microsoft.Extensions.Hosting.AspireNatsClientExtensions.AddNatsClient%2A> extension method to register an `INatsConnection` to send logs and traces to NATS and the .NET Aspire Dashboard. The method takes a connection name parameter.
+<!-- TODO: <xref:Microsoft.Extensions.Hosting.AspireNatsClientExtensions.AddNatsClient%2A>  -->
+
+In the _Program.cs_ file of your projects, call the `AddNatsClient` extension method to register an `INatsConnection` to send logs and traces to NATS and the .NET Aspire Dashboard. The method takes a connection name parameter.
 
 ```csharp
 builder.AddNatsClient("nats");
