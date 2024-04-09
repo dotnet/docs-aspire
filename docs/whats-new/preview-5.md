@@ -255,9 +255,9 @@ There is no change in the user experience when the dashboard automatically launc
 However, if you're launching the dashboard in standalone mode, it will now throw an error. Authentication must either be configured or opted out using the `DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` setting.
 
 ```bash
-docker run --rm -it -p 18888:18888 -p 4317:18889 -d \
-    --name aspire-dashboard mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.5 \
-    -e DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS='true'
+docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
+    -e DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS='true' \
+    mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.5
 ```
 
 This is temporary situation for preview 5. We're working on providing an easy-to-use authentication mechanism for the dashboard frontend. The standalone dashboard will default to it in the future.
