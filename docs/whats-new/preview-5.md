@@ -6,7 +6,7 @@ ms.date: 04/09/2024
 
 # .NET Aspire preview 5
 
-.NET Aspire preview 5 introduces breaking changes to hosting NuGet packages. In addition to these breaking changes, there are several sweeping improvements and additions to be aware of. The following article provides an overview of the major changes in .NET Aspire preview 5:  `8.0.0-preview.5.24201.12`.
+.NET Aspire preview 5 introduces breaking changes to hosting NuGet packages. In addition to these breaking changes, there are several sweeping improvements and additions to be aware of. The following article provides an overview of the major changes in .NET Aspire preview 5: `8.0.0-preview.5.24201.12`.
 
 If you're using Visual Studio, see the [Use Upgrade Assistant to update to preview 5](#use-upgrade-assistant-to-update-to-preview-5).
 
