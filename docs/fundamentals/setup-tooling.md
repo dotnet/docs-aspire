@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 03/11/2024
+ms.date: 04/02/2024
 ---
 
 # .NET Aspire setup and tooling
@@ -19,12 +19,12 @@ ms.date: 03/11/2024
 
 To work with .NET Aspire, you'll need the following installed locally:
 
-- [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0)
-- [.NET Aspire workload](/dotnet/core/tools/dotnet-workload-install)
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0).
+- [.NET Aspire workload](/dotnet/core/tools/dotnet-workload-install).
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) or [Podman](https://podman.io/docs/installation) for container runtime support. For more information, see [Container runtime](#container-runtime).
 - Integrated Developer Environment (IDE) or code editor, such as:
-  - [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.10 or higher (Optional)
-  - [Visual Studio Code](https://code.visualstudio.com/) (Optional)
+  - [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.10 or higher (Optional).
+  - [Visual Studio Code](https://code.visualstudio.com/) (Optional).
 
 The .NET Aspire workload installs internal dependencies and makes available other tooling, such as project templates and Visual Studio features. There are two ways to install the .NET Aspire workload. If you prefer to use Visual Studio Code, follow the .NET CLI instructions:
 
@@ -88,6 +88,29 @@ dotnet workload list
 
 ---
 
+## Container runtime
+
+.NET Aspire apps are designed to run in containers. You can use either Docker Desktop or Podman as your container runtime. [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most common container runtime. [Podman](https://podman.io/docs/installation) is an open-source daemonless alternative to Docker, that can build and run Open Container Initiative (OCI) containers. If you're host environment has both Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `DOTNET_ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
+
+## [Unix](#tab/unix)
+
+```bash
+export DOTNET_ASPIRE_CONTAINER_RUNTIME=podman
+```
+
+## [Windows](#tab/windows)
+
+```powershell
+$env:DOTNET_ASPIRE_CONTAINER_RUNTIME = "podman"
+```
+
+---
+
+For more information, see:
+
+- [Install Podman on Windows or macOS](https://podman.io/docs/installation#installing-on-mac--windows).
+- [Install Podman on Linux](https://podman.io/docs/installation#installing-on-linux).
+
 ## .NET Aspire project templates
 
 > [!NOTE]
@@ -111,7 +134,12 @@ There are currently four project templates available:
 
 - **.NET Aspire App Host**: A standalone **.AppHost** project that can be used to orchestrate and manage the different projects and services of your app.
 
+- **.NET Aspire Test Project (xUnit)**: A project that contains xUnit.net integration of a .NET Aspire AppHost project.
+
 - **.NET Aspire Service Defaults**: A standalone **.ServiceDefaults** project that can be used to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](./telemetry.md).
+
+  > [!IMPORTANT]
+  > The service defaults project template takes a `FrameworkReference` dependency on `Microsoft.AspNetCore.App`. This may not be ideal for some project types. For more information, see [.NET Aspire service defaults](service-defaults.md).
 
 Use Visual Studio or the .NET CLI to create new apps using these project templates. Explore additional .NET Aspire project templates in the [.NET Aspire samples](https://github.com/dotnet/aspire-samples) repository.
 
@@ -134,12 +162,13 @@ When the .NET Aspire workload is installed, you'll see the following .NET Aspire
 ```Output
 These templates matched your input: 'aspire'
 
-Template Name                    Short Name              Language  Tags
--------------------------------  ----------------------  --------  -------------------------------------------------------
-.NET Aspire App Host             aspire-apphost          [C#]      Common/.NET Aspire/Cloud
-.NET Aspire Application          aspire                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
-.NET Aspire Service Defaults     aspire-servicedefaults  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
-.NET Aspire Starter Application  aspire-starter          [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud
+Template Name                     Short Name              Language  Tags
+--------------------------------  ----------------------  --------  -------------------------------------------------------
+.NET Aspire App Host              aspire-apphost          [C#]      Common/.NET Aspire/Cloud
+.NET Aspire Application           aspire                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire Service Defaults      aspire-servicedefaults  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire Starter Application   aspire-starter          [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud
+.NET Aspire Test Project (xUnit)  aspire-xunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
 ```
 
 To create a .NET Aspire project using the .NET CLI, use the `dotnet new` command and specify which template you would like to create.
@@ -184,9 +213,21 @@ You add .NET Aspire components to your app like any other NuGet package using Vi
 
 1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire components, allowing you to easily browse and select the desired component. The **Include prerelease** checkbox needs to be checked to see preview components.
 
-    :::image type="content" source="../media/visual-studio-add-aspire-comp-nuget.png" lightbox="../media/visual-studio-add-aspire-comp-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire options.":::
+    :::image type="content" source="../media/visual-studio-add-aspire-comp-nuget.png" lightbox="../media/visual-studio-add-aspire-comp-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire component options.":::
 
 For more information on .NET Aspire components, see [.NET Aspire components overview](components-overview.md).
+
+### Add hosting packages
+
+.NET Aspire hosting packages are used to configure various resources and dependencies an app may depend on or consume. Hosting packages are differentiated from other component packages in that they are added to the **.AppHost** project. To add a hosting package to your app, follow these steps:
+
+1. In Visual Studio, right click on the **.AppHost** project and select **Add** > **.NET Aspire package...**.
+
+    :::image type="content" source="../media/visual-studio-add-aspire-hosting-package.png" lightbox="../media/visual-studio-add-aspire-hosting-package.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire Hosting Resource option.":::
+
+1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire hosting packages, allowing you to easily browse and select the desired package. The **Include prerelease** checkbox needs to be checked to see preview packages.
+
+    :::image type="content" source="../media/visual-studio-add-aspire-hosting-nuget.png" lightbox="../media/visual-studio-add-aspire-hosting-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire resource options.":::
 
 ### Add orchestration projects
 

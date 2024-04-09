@@ -9,7 +9,7 @@ metadata:
   description: Samples, tutorials, and education for .NET Aspire, your cloud-native app stack build around components that provide production-ready telemetry, health checks, configurability, and testability.
   ms.topic: hub-page
   ms.service: dotnet-aspire
-  ms.date: 02/13/2024
+  ms.date: 03/28/2024
 
 highlightedContent:
   items:
@@ -119,11 +119,20 @@ conceptualContent:
           text: Implement Messaging with .NET Aspire
           url: messaging/messaging-components.md
         - itemType: overview
+          text: Azure Event Hubs
+          url: messaging/azure-event-hubs-component.md
+        - itemType: overview
           text: Azure Service Bus
           url: messaging/azure-service-bus-component.md
         - itemType: how-to-guide
           text: RabbitMQ client .NET Aspire component
           url: messaging/rabbitmq-client-component.md
+        - itemType: how-to-guide
+          text: Apache Kafka
+          url: messaging/kafka-component.md
+        - itemType: how-to-guide
+          text: NATs
+          url: messaging/nats-component.md
 
     - title: Caching
       links:

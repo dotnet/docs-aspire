@@ -47,11 +47,7 @@ For the remainder of this article, imagine that you've created an <xref:Aspire.H
 var builder = DistributedApplication.CreateBuilder(args);
 ```
 
-To specify that the **https** launch profile should be used, call <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithLaunchProfile%2A>:
-
-:::code source="snippets/networking/Networking.AppHost/Program.WithLaunchProfile.cs" id="withlaunchprofile":::
-
-This will select the **https** launch profile from _launchSettings.json_. The `applicationUrl` of that launch profile is used to create a service binding for this project. This is the equivalent of:
+To specify that the **https** launch profile should be used, select the **https** launch profile from _launchSettings.json_. The `applicationUrl` of that launch profile is used to create a service binding for this project. This is the equivalent of:
 
 :::code source="snippets/networking/Networking.AppHost/Program.WithLaunchProfile.cs" id="verbose":::
 
@@ -107,8 +103,8 @@ The previous code makes the random port available in the `PORT` environment vari
 The preceding diagram depicts the following:
 
 - A web browser as an entry point to the app.
-- A host port of 5607.
-- The frontend proxy sitting between the web browser and the frontend service, listening on port 5607.
+- A host port of 5067.
+- The frontend proxy sitting between the web browser and the frontend service, listening on port 5067.
 - The frontend service listening on an environment 65001.
 
 ## Omit the host port

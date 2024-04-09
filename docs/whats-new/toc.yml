@@ -6,6 +6,8 @@ items:
   - name: Latest product updates
     expanded: true
     items:
+    - name: .NET Aspire preview 5
+      href: preview-5.md
     - name: .NET Aspire preview 4
       href: preview-4.md
     - name: .NET Aspire preview 3
@@ -13,9 +15,9 @@ items:
   - name: Latest documentation updates
     expanded: true
     items:
+    - name: March 2024
+      href: dotnet-docs-aspire-mod0.md
     - name: February 2024
       href: dotnet-docs-aspire-mod2.md
     - name: January 2024
       href: dotnet-docs-aspire-mod1.md
-    - name: December 2023
-      href: dotnet-docs-aspire-mod0.md

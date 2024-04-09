@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire service defaults
 description: Learn about the .NET Aspire service defaults project.
-ms.date: 12/08/2023
+ms.date: 04/05/2024
 ms.topic: reference
 ---
 
@@ -33,7 +33,12 @@ For more information, see [Provided extension methods](#provided-extension-metho
 
 The _YourAppName.ServiceDefaults_ project is a .NET 8.0 library that contains the following XML:
 
-:::code language="xml" source="snippets/template/YourAppName/YourAppName.ServiceDefaults.csproj":::
+:::code language="xml" source="snippets/template/YourAppName/YourAppName.ServiceDefaults.csproj" highlight="11":::
+
+The service defaults project template imposes a `FrameworkReference` dependency on `Microsoft.AspNetCore.App`.
+
+> [!TIP]
+> If you don't want to take a dependency on `Microsoft.AspNetCore.App`, you can create a custom service defaults project. For more information, see [Custom service defaults](#custom-service-defaults).
 
 The `IsAspireSharedProject` property is set to `true`, which indicates that this project is a shared project. The .NET Aspire tooling uses this project as a reference for other projects added to a .NET Aspire solution. When you enlist the new project for orchestration, it automatically references the _YourAppName.ServiceDefaults_ project and updates the _Program.cs_ file to call the `AddServiceDefaults` method.
 
@@ -73,7 +78,8 @@ The `ConfigureOpenTelemetry` method:
 - Adds [.NET Aspire telemetry](telemetry.md) logging to include formatted messages and scopes.
 - Adds OpenTelemetry metrics and tracing that include:
   - Runtime instrumentation metrics.
-  - Builtin meters.
+  - ASP.NET Core instrumentation metrics.
+  - HttpClient instrumentation metrics.
   - In a development environment, the `AlwaysOnSampler` is used to view all traces.
   - Tracing details for ASP.NET Core, gRPC and HTTP instrumentation.
 - Adds OpenTelemetry exporters, by calling `AddOpenTelemetryExporters`.
@@ -110,6 +116,119 @@ The `MapDefaultEndpoints` method:
 - Maps the liveness endpoint to `/alive` route where the health check tag contains `live`.
 
 For more information, see [.NET Aspire health checks](health-checks.md).
+
+## Custom service defaults
+
+If the default service configuration provided by the project template is not sufficient for your needs, you have the option to create your own service defaults project. This is especially useful when your consuming project, such as a Worker project or WinForms project, cannot or does not want to have a `FrameworkReference` dependency on `Microsoft.AspNetCore.App`.
+
+To do this, create a new .NET 8.0 class library project and add the necessary dependencies to the project file, consider the following example:
+
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" />
+    <PackageReference Include="Microsoft.Extensions.Http.Resilience" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Runtime" />
+  </ItemGroup>
+</Project>
+```
+
+Then create an extensions class that contains the necessary methods to configure the app defaults:
+
+```csharp
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Trace;
+
+namespace Microsoft.Extensions.Hosting;
+
+public static class AppDefaultsExtensions
+{
+    public static IHostApplicationBuilder AddAppDefaults(
+        this IHostApplicationBuilder builder)
+    {
+        builder.ConfigureAppOpenTelemetry();
+
+        builder.Services.AddServiceDiscovery();
+
+        builder.Services.ConfigureHttpClientDefaults(http =>
+        {
+            // Turn on resilience by default
+            http.AddStandardResilienceHandler();
+
+            // Turn on service discovery by default
+            http.AddServiceDiscovery();
+        });
+
+        return builder;
+    }
+
+    public static IHostApplicationBuilder ConfigureAppOpenTelemetry(
+        this IHostApplicationBuilder builder)
+    {
+        builder.Logging.AddOpenTelemetry(logging =>
+        {
+            logging.IncludeFormattedMessage = true;
+            logging.IncludeScopes = true;
+        });
+
+        builder.Services.AddOpenTelemetry()
+            .WithMetrics(static metrics =>
+            {
+                metrics.AddRuntimeInstrumentation();
+            })
+            .WithTracing(tracing =>
+            {
+                if (builder.Environment.IsDevelopment())
+                {
+                    // We want to view all traces in development
+                    tracing.SetSampler(new AlwaysOnSampler());
+                }
+
+                tracing.AddGrpcClientInstrumentation()
+                       .AddHttpClientInstrumentation();
+            });
+
+        builder.AddOpenTelemetryExporters();
+
+        return builder;
+    }
+
+    private static IHostApplicationBuilder AddOpenTelemetryExporters(
+        this IHostApplicationBuilder builder)
+    {
+        var useOtlpExporter =
+            !string.IsNullOrWhiteSpace(
+                builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]);
+
+        if (useOtlpExporter)
+        {
+            builder.Services.Configure<OpenTelemetryLoggerOptions>(
+                logging => logging.AddOtlpExporter());
+            builder.Services.ConfigureOpenTelemetryMeterProvider(
+                metrics => metrics.AddOtlpExporter());
+            builder.Services.ConfigureOpenTelemetryTracerProvider(
+                tracing => tracing.AddOtlpExporter());
+        }
+
+        return builder;
+    }
+}
+```
+
+This is only an example, and you can customize the `AppDefaultsExtensions` class to meet your specific needs.
 
 ## Next steps
 

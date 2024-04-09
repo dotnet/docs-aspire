@@ -22,7 +22,7 @@ The Azure Developer CLI (`azd`) enables you to deploy .NET Aspire applications u
 :::zone pivot="azure-pipelines"
 
 - [Create an Azure DevOps organization](/azure/devops/organizations/accounts/create-organization) or choose an existing organization
-- [Create a Azure DevOps Personal Access Token (PAT)](/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate#create-a-pat) and save it for later use. Configure the token with the following permissions:
+- [Create an Azure DevOps Personal Access Token (PAT)](/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate#create-a-pat) and save it for later use. Configure the token with the following permissions:
   - Agent Pools (read, manage)
   - Build (read and execute)
   - Code (full)
@@ -179,9 +179,9 @@ Congratulations! You successfully deployed a .NET Aspire app using the Azure Dev
 
 Although `azd` generated some essential template files for you, the project still needs an Azure Pipelines workflow file to support provisioning and deployments using CI/CD.
 
-1. Create an empty _.ado_ folder at the root of your project. `azd` uses this directory by default to discover Azure Pipelines workflow files.
+1. Create an empty _.azdo_ folder at the root of your project. `azd` uses this directory by default to discover Azure Pipelines workflow files.
 
-1. Inside the new _.ado_ folder, create another folder called _pipelines_ (you'll end up with _.ado/pipelines_).
+1. Inside the new _.azdo_ folder, create another folder called _pipelines_ (you'll end up with _.azdo/pipelines_).
 
 1. Add a new Azure Pipelines workflow file into the new folder named _azure-dev.yml_. The `azd` starter template provides a [Sample Azure Pipelines workflow file](https://github.com/Azure-Samples/azd-starter-bicep/blob/main/.azdo/pipelines/azure-dev.yml) that you can copy into your project.
 

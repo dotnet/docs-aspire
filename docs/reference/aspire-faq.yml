@@ -29,14 +29,14 @@ sections:
            .NET Aspire takes a big bet on .NET's integration with OpenTelemetry. The .NET Aspire dashboard is a standard OTLP server that visualizes various telemetry data. Leaning on these open standards makes it easy to build these things without breaking compatibility with the broader ecosystem.
 
       - question: |
-          Observability such as Grafana, Jaeger, and Prometheus work with .NET. Why bother with .NET Aspire?
+          Observability tools such as Grafana, Jaeger, and Prometheus work with .NET. Why bother with .NET Aspire?
         answer: |
           .NET Aspire isn't a replacement for these tools, but rather a complementary technology. .NET Aspire is a set of libraries and tools that make it easy to build applications that are observable. For more information, see the [Metrics example in the .NET Aspire sample repository](https://github.com/dotnet/aspire-samples/tree/main/samples/Metrics) that shows Grafana and Prometheus.
 
       - question: |
-          Why is there a need for a yet another framework to do what's already being done very well by everyone else? 
+          Why is there a need for yet another framework to do what's already being done very well by everyone else? 
         answer: |
-          .NET Aspire isn't a framework. Perhaps the most controversial part of it are the `DistributedApplication` APIs that you can use to build up the orchestration model in any .NET-based language. While everything is possible today, it's not easy. Using the Unix philosophy, the entire cloud-native ecosystem is built around tying various pieces of CNCF software together to build a stack. .NET Aspire tries to do the same thing using learnings from the cloud-native space and picks some opinions (in ways that use the same building blocks). One novel thing about how .NET Aspire builds various pieces of the stack is that it doesn't restrict the access or compatibility of other applications, frameworks, or services. As people play with it more, they realize how composable and extensible it is.
+          .NET Aspire isn't a framework. Perhaps the most controversial parts of it are the `DistributedApplication` APIs that you can use to build up the orchestration model in any .NET-based language. While everything is possible today, it's not easy. Using the Unix philosophy, the entire cloud-native ecosystem is built around tying various pieces of CNCF software together to build a stack. .NET Aspire tries to do the same thing using learnings from the cloud-native space and picks some opinions (in ways that use the same building blocks). One novel thing about how .NET Aspire builds various pieces of the stack is that it doesn't restrict the access or compatibility of other applications, frameworks, or services. As people play with it more, they realize how composable and extensible it is.
 
       - question: |
           When will .NET Aspire be released?
@@ -47,7 +47,7 @@ sections:
         answer: |
           Microsoft Orleans and .NET Aspire are complementary technologies.
 
-          [Orleans](/dotnet/orleans) is a distributed actor-based framework. .NET Aspire is a cloud-ready stack for building observable, production ready, distributed applications. It includes local orchestration capabilities to simplify the developer inner loop and reusable opinionated components for integrating with commonly used application dependencies. An Orleans-based solution will still have external dependencies such as data stores and caches for which .NET Aspire can be used for orchestration purposes.
+          [Orleans](/dotnet/orleans) is a distributed actor-based framework. .NET Aspire is a cloud-ready stack for building observable, production-ready, distributed applications. It includes local orchestration capabilities to simplify the developer inner loop and reusable opinionated components for integrating with commonly used application dependencies. An Orleans-based solution will still have external dependencies such as data stores and caches for which .NET Aspire can be used for orchestration purposes.
 
           We are planning to produce a sample for .NET Aspire that uses Microsoft Orleans, see [GitHub issue](https://github.com/dotnet/aspire-samples/issues/20).
       - question: |
@@ -55,7 +55,7 @@ sections:
         answer: |
           Dapr and .NET Aspire are complementary technologies.
 
-          Where Dapr abstracts some of the underlying cloud platform, .NET Aspire provides opinionated configuration around the underlying cloud technologies without abstracting them. A .NET-based application that uses Dapr can use .NET Aspire to orchestrate the local developer inner loop and streamline deployment. .NET Aspire includes extensions that support the launching for Dapr side-car processes during the inner loop.
+          Where Dapr abstracts some of the underlying cloud platform, .NET Aspire provides opinionated configuration around the underlying cloud technologies without abstracting them. A .NET-based application that uses Dapr can use .NET Aspire to orchestrate the local developer inner loop and streamline deployment. .NET Aspire includes extensions that support the launching of Dapr side-car processes during the inner loop.
 
           For more information, see the [.NET Aspire and Dapr sample app](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithDapr) in the .NET Aspire sample repository.
       - question: |
@@ -78,7 +78,7 @@ sections:
         answer: |
           Due to a deployment related bug, preview 1 of .NET Aspire doesn't support deployment of worker services.
 
-          As a work around consider deploying a web application as a worker which is not exposed to the internet. We are currently tracking this issue and plan to have it resolved for preview 2 (see [GitHub issue](https://github.com/dotnet/aspire/issues/743)).
+          As a workaround consider deploying a web application as a worker which is not exposed to the internet. We are currently tracking this issue and plan to have it resolved for preview 2 (see [GitHub issue](https://github.com/dotnet/aspire/issues/743)).
       - question: |
           Are Azure Functions supported in .NET Aspire?
         answer: |

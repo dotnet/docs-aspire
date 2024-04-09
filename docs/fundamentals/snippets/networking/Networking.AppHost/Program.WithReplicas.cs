@@ -4,7 +4,7 @@
     {
         // <withreplicas>
         builder.AddProject<Projects.Networking_Frontend>("frontend")
-               .WithHttpEndpoint(hostPort: 5066)
+               .WithHttpEndpoint(port: 5066)
                .WithReplicas(2);
         // </withreplicas>
     }
