@@ -72,6 +72,8 @@ In preview 5, the **app host will crash** if an `applicationUrl` is configured w
 
 If a .NET project is added to your distributed application model, and that project has endpoints defined the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is automatically set, which has the effect of enabling handling for forwarded headers. This is because the primary deployment target for Aspire applications is containerized environments where a reverse proxy is deployed in front of the workload.
 
+This can be disabled using the `DisableForwardedHeaders()` extension method.
+
 ### Custom resources support in the dashboard
 
 We have made improvements to the application model to allow custom resources to update their status in the dashboard and log console output. This is extremely useful for cloud hosted resources that need to be deployed when an application starts.

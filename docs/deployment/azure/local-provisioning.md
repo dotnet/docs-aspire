@@ -22,7 +22,6 @@ When utilizing Azure resources in your local development environment, you need t
 - `AllowResourceGroupCreation`: A boolean value that indicates whether to create a new resource group.
 - `ResourceGroup`: The name of the resource group to use.
 - `Location`: The Azure region to use.
-- `Tenant`: The Azure tenant ID, used as the prefix to `<tenant-id>.onmicrosoft.com`. For more information, see [Quickstart: Set up a tenant](/entra/identity-platform/quickstart-create-new-tenant).
 
 Consider the following example _appsettings.json_ configuration:
 
@@ -33,7 +32,6 @@ Consider the following example _appsettings.json_ configuration:
     "AllowResourceGroupCreation": true,
     "ResourceGroup": "<Valid resource group name>",
     "Location": "<Valid Azure location>",
-    "Tenant": "<Your tenant>.onmicrosoft.com"
   }
 }
 ```
