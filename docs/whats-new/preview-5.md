@@ -405,7 +405,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var cosmos = builder
     .AddAzureCosmosDB(
         "mycosmos",
-        static (resource, construct, account, databases) =>
+        (resource, construct, account, databases) =>
         {
             account.AssignProperty(
                 static p => p.ConsistencyPolicy.DefaultConsistencyLevel,
@@ -427,7 +427,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var cosmos = builder
     .AddAzureCosmosDB(
         "mycosmos",
-        static (resource, construct, account, databases) =>
+        (resource, construct, account, databases) =>
         {
             account.AssignProperty(
                 static p => p.ConsistencyPolicy.DefaultConsistencyLevel,
@@ -506,7 +506,7 @@ to the Internet. This included container-based resources that may or may not be 
 access.
 
 In preview 5 we have worked with the Azure Developer CLI team to not display this prompt. Now, by default
-all endpoints exposed container resources are exposed only via the internal Azure Container Apps endpoint. To expose endpoints on a container resource you need to use the `WithExternalHttpEndpoints(...)` extension
+endpoints on all resources only accessible only within the Azure Container Apps environment. To make http endpoints externally accessible on a resource you need to use the `WithExternalHttpEndpoints(...)` extension
 to enable this explicitly in the application model.
 
 ```csharp
@@ -521,7 +521,7 @@ endpoint when defining it:
 ```csharp
 var catalogDb = builder.AddPostgres("postgres")
                        .WithPgAdmin()
-                       .WithEndpoint("tcp", static (endpoint) =>
+                       .WithEndpoint("tcp", endpoint =>
                        {
                            // This callback can be used for mutating other 
                            // values on existing endpoints as well.
@@ -607,6 +607,8 @@ Here is an example of a container in the manifest which defines multiple volumes
     ]
 }
 ```
+> [!NOTE] 
+> The manifest can express both volumes and bind mounts. Bind mounts require a physical mapping from the host machine and may not work in all deployment scenarios.
 
 It's up to the deployment tool that you are using to deploy the Aspire application to interpret these volume mounts and the technology that supports them. For example when using the Azure Developer CLI (`azd`) an Azure Storage account is created which exposes an Azure Files endpoint—and this is bound to the Azure Container App.
 
