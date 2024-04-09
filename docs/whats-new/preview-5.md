@@ -214,7 +214,7 @@ The basic usage pattern for adding a reference from one resource to another hasn
 
 In preview 5, our primary focus has been on non-functional requirements, particularly around security and performance improvements.
 
-### Structured log details improvement
+### Structured logs details improvement
 
 Structured logs provide structured, contextual data along with the log message. Previously, the dashboard UI displayed all information related to a structured log entry in a single list.
 
@@ -234,7 +234,7 @@ Sending a message displays an envelope:
 
 :::image type="content" source="media/preview-5/send-message.png" lightbox="media/preview-5/send-message.png" alt-text="Span with send message icon":::
 
-Receiving a message, understandably, displays a mailbox:
+So of course receiving a message is a mailbox:
 
 :::image type="content" source="media/preview-5/receive-message.png" lightbox="media/preview-5/receive-message.png" alt-text="Span with receive message icon":::
 
