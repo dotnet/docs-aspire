@@ -214,11 +214,11 @@ The basic usage pattern for adding a reference from one resource to another hasn
 
 In preview 5, our primary focus has been on non-functional requirements, particularly around security and performance improvements.
 
-### Structured logs details improvement
+### Structured logs details
 
 Structured logs provide structured, contextual data along with the log message. Previously, the dashboard UI displayed all information related to a structured log entry in a single list.
 
-In preview 5, the dashboard UI has been updated to group information into sections:
+In preview 5, the dashboard UI has been updated to group structured logs information into sections:
 
 - **Log Entry** - The log level, message, and structured data. This is the most frequently used information.
 - **Context** - The context in which the log entry was created. For example, the category and optional trace and span IDs.
