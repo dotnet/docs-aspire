@@ -647,7 +647,7 @@ We've added a new API to express endpoints as external endpoints in the manifest
 },
 ```
 
-We have worked with the Azure Developer CLI team to make sure `azd` supports these new endpoint features when deploying workloads to Azure Container Apps.
+We've worked with the Azure Developer CLI team to make sure `azd` supports these new endpoint features when deploying workloads to Azure Container Apps.
 
 ### Docker build arguments
 
