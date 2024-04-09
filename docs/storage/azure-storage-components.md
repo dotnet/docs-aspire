@@ -1,7 +1,7 @@
 ---
 title: Connect an ASP.NET Core app to .NET Aspire storage components
 description: Learn how to connect an ASP.NET Core app to .NET Aspire storage components.
-ms.date: 01/22/2024
+ms.date: 04/09/2024
 ms.topic: tutorial
 zone_pivot_groups: azure-storage-mechanism
 ms.custom: devx-track-extended-azdevcli
@@ -170,19 +170,19 @@ Visual Studio tooling added this line of code to register your new project with 
 
 ## [.NET CLI](#tab/net-cli)
 
-1. In the root directory of the app, use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new Worker Service app:
+1. In the root directory of the app, use the [dotnet new](/dotnet/core/tools/dotnet-new) command to create a new Worker Service app:
 
     ```dotnetcli
     dotnet new worker --name AspireStorage.WorkerService
     ```
 
-1. Use the [`dotnet sln`](/dotnet/core/tools/dotnet-sln) command to add the project to the solution:
+1. Use the [dotnet sln](/dotnet/core/tools/dotnet-sln) command to add the project to the solution:
 
     ```
     dotnet sln AspireStorage.sln add AspireStorage.WorkerService/AspireStorage.WorkerService.csproj
     ```
 
-1. Use the [`dotnet add`](/dotnet/core/tools/dotnet-add) command to add project reference between the **.AppHost** and **.WorkerService** project:
+1. Use the [dotnet add package](/dotnet/core/tools/dotnet-add-package)command to add project reference between the **.AppHost** and **.WorkerService** project:
 
     ```dotnetcli
     dotnet add AspireStorage.AppHost/AspireStorage.AppHost.csproj reference AspireStorage.WorkerService/AspireStorage.WorkerService.csproj
@@ -270,7 +270,22 @@ For more information about creating forms in Blazor, see [ASP.NET Core Blazor fo
 
 The _AspireStorage.AppHost_ project is the orchestrator for your app. It's responsible for connecting and configuring the different projects and services of your app. The orchestrator should be set as the startup project.
 
-[!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
+To add Azure Storage hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Azure.Storage --prerelease
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Azure.Storage"
+                  Version="[SelectVersion]" />
+```
+
+---
 
 Replace the contents of the _Program.cs_ file in the _AspireStorage.AppHost_ project with the following code:
 

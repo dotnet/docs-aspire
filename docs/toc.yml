@@ -20,8 +20,8 @@ items:
 
   - name: What's new in .NET Aspire
     items:
-      - name: .NET Aspire preview 4
-        href: whats-new/preview-4.md
+      - name: .NET Aspire preview 5
+        href: whats-new/preview-5.md
 
   - name: Fundamentals
     items:
@@ -68,6 +68,11 @@ items:
         href: storage/azure-storage-queues-component.md
       - name: Azure Table Storage component
         href: storage/azure-storage-tables-component.md
+  
+  - name: Logging
+    items:
+      - name: SEQ component
+        href: logging/seq-component.md
 
   - name: Database
     items:
@@ -109,12 +114,16 @@ items:
     items:
       - name: Tutorial - Messaging using .NET Aspire components
         href: messaging/messaging-components.md
+      - name: Azure Event Hubs component
+        href: messaging/azure-event-hubs-component.md
       - name: Azure Service Bus component
         href: messaging/azure-service-bus-component.md
       - name: RabbitMQ service broker component
         href: messaging/rabbitmq-client-component.md
       - name: Apache Kafka component
         href: messaging/kafka-component.md
+      - name: NATS component
+        href: messaging/nats-component.md
 
   - name: Caching
     items:
@@ -138,6 +147,8 @@ items:
         href: deployment/overview.md
       - name: Azure
         items:
+          - name: Local Azure provisioning
+            href: deployment/azure/local-provisioning.md
           - name: Tutorial - Azure Container Apps
             href: deployment/azure/aca-deployment.md
             displayName: azure container apps,aca
@@ -153,6 +164,12 @@ items:
             href: database/sql-server-component-deployment.md
       - name: Reference - Tool-builder manifest schemas
         href: deployment/manifest-format.md
+
+  - name: Troubleshooting
+    items:
+      - name: Allow unsecure transport
+        displayName: unsecure transport,http,non-tls
+        href: troubleshooting/allow-unsecure-transport.md
 
   - name: Resources
     items:
@@ -171,5 +188,7 @@ items:
 
   - name: Reference
     items:
+      - name: Diagnostics overview
+        href: diagnostics/overview.md
       - name: .NET Aspire FAQ
         href: reference/aspire-faq.yml

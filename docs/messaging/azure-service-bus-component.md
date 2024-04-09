@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Service Bus component
 description: This article describes the .NET Aspire Azure Service Bus component features and capabilities
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 04/04/2024
 ---
 
 # .NET Aspire Azure Service Bus component
@@ -57,7 +57,22 @@ public class ExampleService(ServiceBusClient client)
 
 ## App host usage
 
-[!INCLUDE [azure-component-nuget](../includes/azure-component-nuget.md)]
+To add Azure Service Bus hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.ServiceBus](https://www.nuget.org/packages/Aspire.Hosting.Azure.ServiceBus) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Azure.ServiceBus --prerelease
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Azure.ServiceBus"
+                  Version="[SelectVersion]" />
+```
+
+---
 
 In your app host project, register the Service Bus component and consume the service using the following methods:
 
@@ -156,13 +171,6 @@ The following configurable options are exposed through the <xref:Aspire.Azure.Me
 | `ConnectionString` | The connection string used to connect to the Service Bus namespace. |
 | `Credential`       | The credential used to authenticate to the Service Bus namespace.   |
 | `Namespace`        | The fully qualified Service Bus namespace.                          |
-
-[!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
-
-The .NET Aspire Azure Service Bus component handles the following:
-
-- Adds the `AzureServiceBusHealthCheck` health check, which attempts to connect to and query the specified service bus
-- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 
