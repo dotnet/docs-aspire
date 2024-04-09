@@ -212,22 +212,62 @@ The basic usage pattern for adding a reference from one resource to another hasn
 
 ## Dashboard
 
-In preview 5 our primary focus has been on non-functional requirements around security and performance improvements.
+In preview 5, our primary focus has been on non-functional requirements, particularly around security and performance improvements.
+
+### Structured log details improvement
+
+Structured logs provide structured, contextual data along with the log message. Previously, the dashboard UI displayed all information related to a structured log entry in a single list.
+
+In preview 5, the dashboard UI has been updated to group information into sections:
+
+* **Log Entry** - The log level, message, and structured data. This is the most frequently used information.
+* **Context** - The context in which the log entry was created. For example, the category and optional trace and span IDs.
+* **Resource** - The app that sent the log entry to the dashboard.
+
+:::image type="content" source="media/preview-5/dashboard-structure-logs-detail.png" lightbox="media/preview-5/dashboard-structure-logs-detail.png" alt-text="Structure logs page with details open":::
+
+### Trace messaging icon
+
+Spans are created by sending and receiving messages using libraries such as Azure Service Bus or RabbitMQ. In preview 5, messaging spans have custom icons.
+
+Sending a message displays an envelope:
+
+:::image type="content" source="media/preview-5/send-message.png" lightbox="media/preview-5/send-message.png" alt-text="Span with send message icon":::
+
+Receiving a message, understandably, displays a mailbox:
+
+:::image type="content" source="media/preview-5/receive-message.png" lightbox="media/preview-5/receive-message.png" alt-text="Span with receive message icon":::
+
+### Display times using browser local timezone
+
+The dashboard now uses the local browser's timezone to display times in the UI. Most users will not notice a change, as the dashboard app typically runs on their local machine. However, if the dashboard is hosted on an external server, times will now be displayed in your local timezone.
 
 ### Security updates
 
-Communication has been secured across the following endpoints:
+Communication across the following endpoints has been secured:
 
-- OTLP
-- Dashboard
-- Resource server
+- Dashboard frontend
+- OTLP endpoint
+- Resource service
+
+There is no change in the user experience when the dashboard automatically launches with your Aspire app; it is configured to be secure by default. For instance, telemetry received by the dashboard is now protected by an API key that is automatically configured by the Aspire app host.
+
+However, if you're launching the dashboard in standalone mode, it will now throw an error. Authentication must either be configured or opted out using the `DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` setting.
+
+```bash
+docker run --rm -it -p 18888:18888 -p 4317:18889 -d \
+    --name aspire-dashboard mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.6 \
+    -e DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS='true'
+```
+
+This is temporary situation for preview 5. We're working on providing an easy-to-use authentication mechanism for the dashboard frontend. The standalone dashboard will default to it in the future.
 
 #### OTLP endpoint security
 
 The OTLP endpoint can be secured with [client certificate](/aspnet/core/security/authentication/certauth) or API key authentication.
 
-- `Otlp:AuthMode` specifies the authentication mode on the OTLP endpoint. Possible values are `Certificate`, `ApiKey`, `Unsecured`. This configuration is required.
-- `Otlp:ApiKey` specifies the API key for the OTLP endpoint when API key authentication is enabled. This configuration is required for API key authentication.
+- `Dashboard:Otlp:AuthMode` specifies the authentication mode on the OTLP endpoint. Possible values are `Certificate`, `ApiKey`, `Unsecured`. This configuration is required.
+- `Dashboard:Otlp:ApiKey` specifies the API key for the OTLP endpoint when API key authentication is enabled. This configuration is required for API key authentication.
 
 #### Dashboard authentication
 
@@ -252,22 +292,31 @@ The resource server client supports client certificates. This can be applied via
     - `ResourceServiceClient:ClientCertificate:KeyStore:Location` (optional, [`StoreLocation`](/dotnet/api/system.security.cryptography.x509certificates.storelocation), defaults to `CurrentUser`)
 - `ResourceServiceClient:Ssl` (optional, [`SslClientAuthenticationOptions`](/dotnet/api/system.net.security.sslclientauthenticationoptions))
 
+#### Cross-site scripting (XSS) fixes
+
+We've reviewed and hardened the dashboard against XSS attacks by carefully managing how external data from the resource service and telemetry is presented.
+
+For more information, see [Prevent Cross-Site Scripting (XSS) in ASP.NET Core](https://learn.microsoft.com/aspnet/core/security/cross-site-scripting).
+
 ### Performance improvements
 
-There were a large number of performance improvements in preview 5. The most notable are:
+Preview 5 includes numerous performance enhancements. We've leveraged virtualization for UI components displaying large amounts of data, allowing for more efficient rendering. Notable improvements include:
 
-- Console log virtualization.
-- Load time improvements.
-- Trace ingestion improvements.
-- Run on a single port (OTLP and UI).
-- Standalone container now forces you to choose auth.
+- **Resources page** - Optimized resource loading with enabled virtualization for smoother experiences with numerous resources.
+- **Console log page** - Previously, loading extensive console logs could impact performance. Virtualization now allows for smooth handling of tens of thousands of console logs.
+- **Trace detail virtualization** - The trace detail page shows a timeline of spans inside a trace. There is no limit to the number of spans a trace can have. Enabling virtualization again allows the UI to scale up to thousands of items without a problem.
+- **Rate limit UI updates** - The dashboard automatically updates as it receives new data, such as resource state changes or new telemetry. The UI now limits to a maximum of 10 UI updates per-second. This change keeps the dashboard responsive while at the same time not overwhelming your local machine with unnecessarily frequent updates.
 
-Templates
+Console logs page with tens of thousands of console lines:
+
+:::image type="content" source="media/preview-5/console-logs-performance.gif" lightbox="media/preview-5/console-logs-performance.gif" alt-text="Using console logs page with a lot of data":::
+
+## Templates
 
 - HTTPs by default.
 - Test project support. For more information, see [.NET Aspire project templates](../fundamentals/setup-tooling.md#net-aspire-project-templates).
 
-Service Discovery
+## Service Discovery
 
 - Service discovery API changes.
 - Service discovery auto scheme detection.
