@@ -231,7 +231,7 @@ The OTLP endpoint can be secured with [client certificate](/aspnet/core/security
 
 #### Dashboard authentication
 
-The dashboard's web application frontend supports OpenID Connect (OIDC) for authentication. These can be applied via configurable settings, once Frontend:AuthMode is set to OpenIdConnect:
+The dashboard's web application frontend supports OpenID Connect (OIDC) for authentication. These can be applied via configurable settings, once `Dashboard:Frontend:AuthMode` is set to `OpenIdConnect`:
 
 - `Authentication:Schemes:OpenIdConnect:Authority` &mdash; URL to the identity provider (IdP)
 - `Authentication:Schemes:OpenIdConnect:ClientId` &mdash; Identity of the relying party (RP)
