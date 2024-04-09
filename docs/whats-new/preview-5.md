@@ -220,9 +220,9 @@ Structured logs provide structured, contextual data along with the log message. 
 
 In preview 5, the dashboard UI has been updated to group information into sections:
 
-* **Log Entry** - The log level, message, and structured data. This is the most frequently used information.
-* **Context** - The context in which the log entry was created. For example, the category and optional trace and span IDs.
-* **Resource** - The app that sent the log entry to the dashboard.
+- **Log Entry** - The log level, message, and structured data. This is the most frequently used information.
+- **Context** - The context in which the log entry was created. For example, the category and optional trace and span IDs.
+- **Resource** - The app that sent the log entry to the dashboard.
 
 :::image type="content" source="media/preview-5/dashboard-structure-logs-detail.png" lightbox="media/preview-5/dashboard-structure-logs-detail.png" alt-text="Structure logs page with details open":::
 
