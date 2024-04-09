@@ -6,7 +6,7 @@ ms.date: 04/09/2024
 
 # .NET Aspire preview 5
 
-.NET Aspire preview 5 introduces breaking changes to hosting NuGet packages. In addition to these breaking changes, there are several sweeping improvements and additions to be aware of. The following article provides an overview of the major changes in .NET Aspire preview 5: `8.0.0-preview.5.24201.12`.
+.NET Aspire preview 5 introduces breaking changes to hosting NuGet packages. In addition to these breaking changes, there are several sweeping improvements and additions to be aware of, including support for AWS and improvements for Azure. The following article provides an overview of the major changes in .NET Aspire preview 5: `8.0.0-preview.5.24201.12`.
 
 If you're using Visual Studio, see the [Use Upgrade Assistant to update to preview 5](#use-upgrade-assistant-to-update-to-preview-5).
 
@@ -353,7 +353,7 @@ We've also released a new version of the [Upgrade Assistant](https://marketplace
 
 You will need to run this on each project in your solution.
 
-## Resources and Components
+## Resources and components
 
 Each release brings new resources and components thanks to community feedback and contributions.
 
@@ -573,6 +573,110 @@ builder.Build().Run();
 As can be seen above the Event Hubs integration includes support for the Event Hubs processor architecture not just the consumer model (although either can be used). Refer to the README for the `Aspire.Azure.Messaging.EventHubs` package for examples of how to wire-up to the provisioned Event Hubs resource in your service projects.
 
 For more information, see [.NET Aspire Azure Event Hubs component](../messaging/azure-event-hubs-component.md).
+
+## AWS support
+
+Starting with .NET Aspire preview 5, you can use the [Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS) NuGet package to express AWS resources in your application model. This package provides a set of extension methods that allow you to add AWS resources to your application model.
+
+### Configuring the AWS SDK for .NET
+
+The AWS profile and region the SDK should use can be configured using the `AddAWSSDKConfig` method. The following example creates a config using the dev profile from the `~/.aws/credentials` file and points the SDK to the
+`us-west-2` region.
+
+```csharp
+var awsConfig = builder.AddAWSSDKConfig()
+                        .WithProfile("dev")
+                        .WithRegion(RegionEndpoint.USWest2);
+```
+
+The configuration can be attached to projects using the `WithReference` method. This will set the `AWS_PROFILE` and `AWS_REGION` environment variables on the project to the profile and region configured by the `AddAWSSDKConfig` method. SDK service clients created in the project without explicitly setting the credentials and region will pick up these environment variables and use them to configure the service client.
+
+```csharp
+builder.AddProject<Projects.Frontend>("Frontend")
+        .WithReference(awsConfig)
+```
+
+### Provision app resources with AWS CloudFormation
+
+AWS application resources like Amazon DynamoDB tables or Amazon Simple Queue Service (SQS) queues can be provisioning during AppHost startup using a CloudFormation template.
+
+In the AppHost project create either a JSON or YAML CloudFormation template. Here is an example template called `app-resources.template` that creates a queue and topic.
+
+```json
+{
+    "AWSTemplateFormatVersion" : "2010-09-09",
+    "Parameters" : {
+        "DefaultVisibilityTimeout" : {
+            "Type" : "Number",
+            "Description" : "The default visiblity timeout for messages in SQS queue."
+        }
+    },
+    "Resources" : {
+        "ChatMessagesQueue" : {
+            "Type" : "AWS::SQS::Queue",
+            "Properties" : {
+                "VisibilityTimeout" : { "Ref" : "DefaultVisibilityTimeout" }
+            }
+        },
+        "ChatTopic" : {
+            "Type" : "AWS::SNS::Topic",
+            "Properties" : {
+                "Subscription" : [
+                    {"Protocol" : "sqs", "Endpoint" : {"Fn::GetAtt" : [ "ChatMessagesQueue", "Arn"]}}
+                ]
+            }
+        }
+    },
+    "Outputs" : {
+        "ChatMessagesQueueUrl" : {
+            "Value" : { "Ref" : "ChatMessagesQueue" }
+        },
+        "ChatTopicArn" : {
+            "Value" : { "Ref" : "ChatTopic" }
+        }
+    }
+}
+```
+
+In the AppHost the `AddAWSCloudFormationTemplate` method is used to register the CloudFormation resource. The first parameter, which is the Aspire resource name, is used as the CloudFormation stack name. If the template defines parameters the value can be provided using  the `WithParameter` method. To configure what AWS account and region to deploy the CloudFormation stack, the `WithReference` method is used to associate a SDK configuration.
+
+```csharp
+var awsResources = builder.AddAWSCloudFormationTemplate("AspireSampleDevResources", "app-resources.template")
+                          .WithParameter("DefaultVisibilityTimeout", "30")
+                          .WithReference(awsConfig);
+```
+
+The outputs of a CloudFormation stack can be associated to a project using the `WithReference` method.
+
+```csharp
+builder.AddProject<Projects.Frontend>("Frontend")
+       .WithReference(awsResources);
+```
+
+The output parameters from the CloudFormation stack can be found in the `IConfiguration` under the `AWS:Resources` config section. The config section can be changed by setting the `configSection` parameter of the `WithReference` method associating the CloudFormation stack to the project.
+
+```csharp
+var chatTopicArn = builder.Configuration["AWS:Resources:ChatTopicArn"];
+```
+
+Alternatively a single CloudFormation stack output parameter can be assigned to an environment variable using the `GetOutput` method.
+
+```csharp
+builder.AddProject<Projects.Frontend>("Frontend")
+       .WithEnvironment("ChatTopicArnEnv", awsResources.GetOutput("ChatTopicArn"))
+```
+
+### Import existing AWS resources
+
+To import AWS resources that were created by a CloudFormation stack outside of the AppHost the `AddAWSCloudFormationStack` method can be used. It will associated the outputs of the CloudFormation stack the same as the provisioning method `AddAWSCloudFormationTemplate`.
+
+```csharp
+var awsResources = builder.AddAWSCloudFormationStack("ExistingStackName")
+                          .WithReference(awsConfig);
+
+builder.AddProject<Projects.Frontend>("Frontend")
+       .WithReference(awsResources);
+```
 
 ## Manifest changes
 
