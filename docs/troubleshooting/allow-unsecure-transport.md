@@ -1,16 +1,16 @@
 ---
 title: Allow unsecure transport in .NET Aspire
 description: Learn how to allow unsecure transport in .NET Aspire applications.
-ms.date: 03/29/2024
+ms.date: 04/09/2024
 ---
 
 # Allow unsecure transport in .NET Aspire
 
-Starting with .NET Aspire preview 5, the app host will crash if an `applicationUrl` is configured with an insecure transport (non-TLS `http`) protocol. This is a security feature to prevent accidental exposure of sensitive data. However, there are scenarios where you might need to allow unsecure transport. This article explains how to allow unsecure transport in .NET Aspire applications.
+Starting with .NET Aspire preview 5, the app host will crash if an `applicationUrl` is configured with an unsecure transport (non-TLS `http`) protocol. This is a security feature to prevent accidental exposure of sensitive data. However, there are scenarios where you might need to allow unsecure transport. This article explains how to allow unsecure transport in .NET Aspire applications.
 
 ## Symptoms
 
-When you run a .NET Aspire application with an `applicationUrl` configured with an insecure transport protocol, you might see the following error message:
+When you run a .NET Aspire application with an `applicationUrl` configured with an unsecure transport protocol, you might see the following error message:
 
 ```Output
 The 'applicationUrl' setting must be an https address unless the
