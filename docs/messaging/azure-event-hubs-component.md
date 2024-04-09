@@ -157,7 +157,7 @@ Alternatively, use a connection string:
 
 ### Use configuration providers
 
-The .NET Aspire Azure Event Hubs library supports [Microsoft.Extensions.Configuration](https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration). It loads the `AzureMessagingEventHubsSettings` and the associated Options, e.g. `EventProcessorClientOptions`, from configuration by using the `Aspire:Azure:Messaging:EventHubs:` key prefix, followed by the name of the specific client in use. For example, consider the `appsettings.json` that configures some of the options for an `EventProcessorClient`:
+The .NET Aspire Azure Event Hubs library supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureMessagingEventHubsSettings` and the associated Options, e.g. `EventProcessorClientOptions`, from configuration by using the `Aspire:Azure:Messaging:EventHubs:` key prefix, followed by the name of the specific client in use. For example, consider the `appsettings.json` that configures some of the options for an `EventProcessorClient`:
 
 ```json
 {
