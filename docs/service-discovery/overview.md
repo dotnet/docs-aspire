@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire service discovery
 description: Understand essential service discovery concepts in .NET Aspire.
-ms.date: 02/14/2024
+ms.date: 04/10/2024
 ms.topic: quickstart
 ---
 
@@ -94,7 +94,7 @@ builder.Services.AddServiceDiscoveryCore();
 builder.Services.AddDnsSrvServiceEndPointResolver();
 ```
 
-For more information, see <xref:Microsoft.Extensions.Hosting.HostingExtensions.AddServiceDiscoveryCore%2A> and <xref:Microsoft.Extensions.Hosting.HostingExtensions.AddDnsSrvServiceEndPointResolver%2A>.
+For more information, see <xref:Microsoft.Extensions.DependencyInjection.ServiceDiscoveryServiceCollectionExtensions.AddServiceDiscoveryCore%2A> and <xref:Microsoft.Extensions.Hosting.ServiceDiscoveryDnsServiceCollectionExtensions.AddDnsSrvServiceEndPointResolver%2A>.
 
 The special port name "default" is used to specify the default endpoint, resolved using the URI `http://basket`.
 

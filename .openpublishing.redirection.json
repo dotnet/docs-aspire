@@ -59,6 +59,10 @@
         {
             "source_path_from_root": "/docs/openai/azureai-openai-component.md",
             "redirect_url": "/dotnet/aspire/azureai/azureai-openai-component"
-        }
+        },
+        {
+            "source_path_from_root": "/docs/troubleshooting/allowunsecuretransport.md",
+            "redirect_url": "/dotnet/aspire//troubleshooting/allow-unsecure-transport."
+          }
     ]
 }
