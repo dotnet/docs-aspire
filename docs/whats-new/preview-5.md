@@ -66,7 +66,7 @@ At the core of .NET Aspire's capabilities is the application model. The applicat
 
 ### Allow unsecure transport for HTTP endpoints
 
-In preview 5, the **app host will crash** if an `applicationUrl` is configured with an unsecure transport. This can be avoided by setting the `ASPIRE_ALLOW_UNSECURED_TRANSPORT` environment variable. For more information, see [Allow unsecure transport in .NET Aspire](../troubleshooting/allow-unsecure-transport.md).
+In preview 5, the **app host will crash** if an `applicationUrl` is configured with an unsecure transport. This can be avoided by setting the `ASPIRE_ALLOW_UNSECURED_TRANSPORT` environment variable. For more information, see [Allow unsecure transport in .NET Aspire](../troubleshooting/allowunsecuredtransport.md).
 
 ### Enable forwarded headers by default for .NET projects
 

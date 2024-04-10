@@ -68,7 +68,7 @@ items:
         href: storage/azure-storage-queues-component.md
       - name: Azure Table Storage component
         href: storage/azure-storage-tables-component.md
-  
+
   - name: Logging
     items:
       - name: SEQ component
@@ -169,7 +169,7 @@ items:
     items:
       - name: Allow unsecure transport
         displayName: unsecure transport,http,non-tls
-        href: troubleshooting/allow-unsecure-transport.md
+        href: troubleshooting/allowunsecuredtransport.md
 
   - name: Resources
     items:
