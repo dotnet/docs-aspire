@@ -28,14 +28,14 @@ In the preceding example, the _frontend_ project references the _catalog_ projec
 
 ## Named endpoints
 
-Some services expose multiple, named endpoints. Named endpoints can be resolved by specifying the endpoint name in the host portion of the HTTP request URI, following the format `http://_endpointName.serviceName`. For example, if a service named "basket" exposes an endpoint named "dashboard", then the URI `http://_dashboard.basket` can be used to specify this endpoint, for example:
+Some services expose multiple, named endpoints. Named endpoints can be resolved by specifying the endpoint name in the host portion of the HTTP request URI, following the format `scheme://_endpointName.serviceName`. For example, if a service named "basket" exposes an endpoint named "dashboard", then the URI `scheme+http://_dashboard.basket` can be used to specify this endpoint, for example:
 
 ```csharp
 builder.Services.AddHttpClient<BasketServiceClient>(
-    static client => client.BaseAddress = new("http://basket"));
+    static client => client.BaseAddress = new("https+http://basket"));
 
 builder.Services.AddHttpClient<BasketServiceDashboardClient>(
-    static client => client.BaseAddress = new("http://_dashboard.basket"));
+    static client => client.BaseAddress = new("https+http://_dashboard.basket"));
 ```
 
 In the preceding example, two <xref:System.Net.Http.HttpClient> classes are added, one for the core basket service and one for the basket service's dashboard.
@@ -47,24 +47,24 @@ With the configuration-based endpoint resolver, named endpoints can be specified
 ```json
 {
   "Services": {
-    "basket": [
-      "10.2.3.4:8080",
-      "_dashboard.10.2.3.4:9999"
-    ]
+    "basket":
+      "https": "https://10.2.3.4:8080", /* the https endpoint, requested via https://basket */
+      "dashboard": "https://10.2.3.4:9999" /* the "dashboard" endpoint, requested via https://_dashboard.basket */
+    }
   }
 }
 ```
 
 In the preceding JSON:
 
-- The default endpoint, when resolving `http://basket` is `10.2.3.4:8080`.
-- The "dashboard" endpoint, resolved via `http://_dashboard.basket` is `10.2.3.4:9999`.
+- The default endpoint, when resolving `https://basket` is `10.2.3.4:8080`.
+- The "dashboard" endpoint, resolved via `https://_dashboard.basket` is `10.2.3.4:9999`.
 
 ### Named endpoints in .NET Aspire
 
 ```csharp
 var basket = builder.AddProject<Projects.BasketService>("basket")
-    .WithHttpEndpoint(hostPort: 8888, name: "dashboard");
+    .WithHttpsEndpoint(hostPort: 9999, name: "dashboard");
 ```
 
 ### Named endpoints in Kubernetes using DNS SRV
@@ -84,7 +84,7 @@ spec:
   - name: default
     port: 8080
   - name: dashboard
-    port: 8888
+    port: 9999
 ```
 
 To configure a service to resolve the "dashboard" endpoint on the "basket" service, add the DNS SRV service endpoint resolver to the host builder as follows:
@@ -96,20 +96,20 @@ builder.Services.AddDnsSrvServiceEndPointResolver();
 
 For more information, see <xref:Microsoft.Extensions.DependencyInjection.ServiceDiscoveryServiceCollectionExtensions.AddServiceDiscoveryCore%2A> and <xref:Microsoft.Extensions.Hosting.ServiceDiscoveryDnsServiceCollectionExtensions.AddDnsSrvServiceEndPointResolver%2A>.
 
-The special port name "default" is used to specify the default endpoint, resolved using the URI `http://basket`.
+The special port name "default" is used to specify the default endpoint, resolved using the URI `https://basket`.
 
 As in the previous example, add service discovery to an `HttpClient` for the basket service:
 
 ```csharp
 builder.Services.AddHttpClient<BasketServiceClient>(
-    static client => client.BaseAddress = new("http://basket"));
+    static client => client.BaseAddress = new("https://basket"));
 ```
 
 Similarly, the "dashboard" endpoint can be targeted as follows:
 
 ```csharp
 builder.Services.AddHttpClient<BasketServiceDashboardClient>(
-    static client => client.BaseAddress = new("http://_dashboard.basket"));
+    static client => client.BaseAddress = new("https://_dashboard.basket"));
 ```
 
 <!--
