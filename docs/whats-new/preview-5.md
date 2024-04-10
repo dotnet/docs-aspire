@@ -62,7 +62,7 @@ For more information, see [Azure-specific resource types](../deployment/manifest
 
 ## Upgrade to preview 5
 
-If you're using Visual Studio, see the [Use Upgrade Assistant to update to preview 5](#use-upgrade-assistant-to-update-to-preview-5). One of the largest updates is the need to add reference to [Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package. In your AppHost project, add the following package reference:
+If you're using Visual Studio, see the [Use Upgrade Assistant to update to preview 5](#use-upgrade-assistant-to-update-to-preview-5). One of the largest updates is the need to add a reference to the [Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package. In your AppHost project, add the following package reference:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -81,11 +81,11 @@ dotnet add package Aspire.Hosting.AppHost --prerelease
 
 In addition to the package reference, some APIs were updated in preview 5. For more information, see [Application model changes](#application-model-changes). Some parameter names changed, while others were removed.
 
-All .NET Aspire NuGet package references should be upgraded to `8.0.0-preview.5.24201.12`. If you've created .NET Aspire apps using any of the previous templates, you'll want to update the _Extensions.cs_ file of the service defaults project to reflect the new APIs, as well as update the project file to reference the new NuGet packages. For more information, see [service defaults](../fundamentals/service-defaults.md) for the latest source updates.
+All .NET Aspire NuGet package references should be upgraded to `8.0.0-preview.5.24201.12`. If you've created .NET Aspire apps using any of the previous templates, you'll want to update the _Extensions.cs_ file of the service defaults project to reflect the new APIs, as well as update the project file to reference the new NuGet packages. See [service defaults](../fundamentals/service-defaults.md) for the latest source updates.
 
 Additional considerations for upgrading to preview 5 include:
 
-- [Application model changes](#application-model-changes): explore API changes, and update your code where needed.
+- [Application model changes](#application-model-changes): explore API changes and update your code where needed.
 - [Allow unsecure transport for HTTP endpoints](#allow-unsecure-transport-for-http-endpoints): Ensure that your _launchSettings.json_ file includes an `https` profile.
 - [Dashboard security updates](#security-updates): Determine if you're impacted by security updates.
 - [Component breaking changes](#component-breaking-changes): Update source code to account for breaking component changes.
