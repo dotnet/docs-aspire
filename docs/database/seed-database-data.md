@@ -1,7 +1,7 @@
 ---
 title: Seed data in a database using .NET Aspire
 description: Learn about how to seed database data in .NET Aspire
-ms.date: 2/20/2024
+ms.date: 04/10/2024
 ms.topic: how-to
 ---
 
@@ -30,13 +30,10 @@ By default, .NET Aspire database components rely on containerized databases, whi
 
 ## Seed data using volumes and SQL scripts
 
-Volumes are the recommended way to automatically seed containerized databases when using SQL scripts. Volumes can store data for multiple containers at a time, offer high performance and are easy to back up or migrate. With .NET Aspire, you configure a volume for each resource container using the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithVolumeMount%2A?displayProperty=nameWithType> method, which accepts three parameters:
+Volumes are the recommended way to automatically seed containerized databases when using SQL scripts. Volumes can store data for multiple containers at a time, offer high performance and are easy to back up or migrate. With .NET Aspire, you configure a volume for each resource container using the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithBindMount%2A?displayProperty=nameWithType> method, which accepts three parameters:
 
 - **Source**: The source path of the volume mount, which is the physical location on your host.
 - **Target**: The target path in the container of the data you want to persist.
-- **VolumeMountType**: There are two types of volume mounts available:
-  - **Named mounts**: Storage managed by docker that your containers can use to persist data.
-  - **Bind mounts**: Files mounted from your host machine onto your container. Bind mounts are the approach used to seed data, since they allows you to map a script in your local app to the startup entry point in your container.
 
 Consider the following volume configuration code from a _Program.cs_ file in a sample **AppHost** project:
 
@@ -44,14 +41,13 @@ Consider the following volume configuration code from a _Program.cs_ file in a s
 var todosDbName = "Todos";
 var todosDb = builder.AddPostgres("postgres")
     .WithEnvironment("POSTGRES_DB", todosDbName)
-    .WithVolumeMount(
+    .WithBindMount(
         "../DatabaseContainers.ApiService/data/postgres",
-        "/docker-entrypoint-initdb.d",
-        VolumeMountType.Bind)
+        "/docker-entrypoint-initdb.d")
     .AddDatabase(todosDbName);
 ```
 
-In this example, the `.WithVolumeMount` method parameters configure the following:
+In this example, the `.WithBindMount` method parameters configure the following:
 
 - `../DatabaseContainers.ApiService/data/postgres` sets a path to the SQL script in your local project that you want to run in the container to seed data.
 - `/docker-entrypoint-initdb.d` sets the path to an entry point in the container so your script will be run during container startup.
@@ -82,7 +78,7 @@ The script runs during startup every time a new container instance is created.
 
 ## Database seeding examples
 
-The following examples demonstrate how to seed data using SQL scripts and configurations applied using the `.WithVolumeMount` method for different database technologies:
+The following examples demonstrate how to seed data using SQL scripts and configurations applied using the `.WithBindMount` method for different database technologies:
 
 ### [SQL Server](#tab/sql-server)
 
