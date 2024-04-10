@@ -1,14 +1,14 @@
 ---
 title: .NET Aspire preview 5
 description: .NET Aspire preview 5 is now available and includes many improvements and new capabilities.
-ms.date: 04/09/2024
+ms.date: 04/10/2024
 ---
 
 # .NET Aspire preview 5
 
 .NET Aspire preview 5 introduces breaking changes to hosting NuGet packages. In addition to these breaking changes, there are several sweeping improvements and additions to be aware of, including support for AWS and improvements for Azure. The following article provides an overview of the major changes in .NET Aspire preview 5: `8.0.0-preview.5.24201.12`.
 
-If you're using Visual Studio, see the [Use Upgrade Assistant to update to preview 5](#use-upgrade-assistant-to-update-to-preview-5).
+If you're looking to upgrade from a previous version of .NET Aspire, see the [upgrade guide](#upgrade-to-preview-5).
 
 ## Packaging changes
 
@@ -59,6 +59,36 @@ The `Aspire.Hosting.Azure` APIs have been broken up in to the following packages
 | `AddAzureStorage(...)`               | `Aspire.Hosting.Azure.Storage`             |
 
 For more information, see [Azure-specific resource types](../deployment/manifest-format.md#azure-specific-resource-types).
+
+## Upgrade to preview 5
+
+If you're using Visual Studio, see the [Use Upgrade Assistant to update to preview 5](#use-upgrade-assistant-to-update-to-preview-5). One of the largest updates is the need to add a reference to the [Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package. In your AppHost project, add the following package reference:
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.AppHost --prerelease
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.AppHost"
+                  Version="[SelectVersion]" />
+```
+
+---
+
+In addition to the package reference, some APIs were updated in preview 5. For more information, see [Application model changes](#application-model-changes). Some parameter names changed, while others were removed.
+
+All .NET Aspire NuGet package references should be upgraded to `8.0.0-preview.5.24201.12`. If you've created .NET Aspire apps using any of the previous templates, you'll want to update the _Extensions.cs_ file of the service defaults project to reflect the new APIs, as well as update the project file to reference the new NuGet packages. See [service defaults](../fundamentals/service-defaults.md) for the latest source updates.
+
+Additional considerations for upgrading to preview 5 include:
+
+- [Application model changes](#application-model-changes): explore API changes and update your code where needed.
+- [Allow unsecure transport for HTTP endpoints](#allow-unsecure-transport-for-http-endpoints): Ensure that your _launchSettings.json_ file includes an `https` profile.
+- [Dashboard security updates](#security-updates): Determine if you're impacted by security updates.
+- [Component breaking changes](#component-breaking-changes): Update source code to account for breaking component changes.
 
 ## Application model changes
 
