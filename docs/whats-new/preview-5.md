@@ -801,3 +801,15 @@ We have added support for Docker build arguments in the manifest. This is useful
   }
 }
 ```
+
+## Known issues
+
+As known issues for `preview-5` are discovered, they will be listed here.
+
+When running a .NET Aspire app, we sometimes see that the run session fails to start and displays the error "context deadline exceeded." With this occurs, the error output resembles the following:
+
+```Output
+run session could not be started: {"Executable": {"name":"<app/service-name>"}, "Reconciliation": <Number>, "error": "Put \"<http://localhost:4317/v1/run_session>: context deadline exceeded"}"
+```
+
+For more information, see [GitHub dotnet/aspire: Issue #3435](https://github.com/dotnet/aspire/issues/3435).
