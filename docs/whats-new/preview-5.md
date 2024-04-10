@@ -79,6 +79,10 @@ dotnet add package Aspire.Hosting.AppHost --prerelease
 
 ---
 
+In addition to the package reference, some APIs were updated in preview 5. For more information, see [Application model changes](#application-model-changes). Some parameter names changed, while others were removed.
+
+All .NET Aspire NuGet package references should be upgraded to `8.0.0-preview.5.24201.12`. If you've created .NET Aspire apps using any of the previous templates, you'll want to update the _Extensions.cs_ file of the service defaults project to reflect the new APIs, as well as update the project file to reference the new NuGet packages. For more information, see [service defaults](../fundamentals/service-defaults.md) for the latest source updates.
+
 ## Application model changes
 
 At the core of .NET Aspire's capabilities is the application model. The application model is a set of abstractions that allow you to define the components of your application and how they interact with each other. There were several changes to the application model in preview 5.
