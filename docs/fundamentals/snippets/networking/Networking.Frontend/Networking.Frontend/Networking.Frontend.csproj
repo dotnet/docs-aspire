@@ -9,7 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Networking.ServiceDefaults\Networking.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Networking.Frontend.Client\Networking.Frontend.Client.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.4" />
   </ItemGroup>
 
 </Project>
