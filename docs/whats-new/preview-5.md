@@ -85,10 +85,10 @@ All .NET Aspire NuGet package references should be upgraded to `8.0.0-preview.5.
 
 Additional considerations for upgrading to preview 5 include:
 
-- [Application model changes](#application-model-changes).
-- [Allow unsecure transport for HTTP endpoints](#allow-unsecure-transport-for-http-endpoints).
-- [Dashboard security updates](#security-updates).
-- [Component breaking changes](#component-breaking-changes).
+- [Application model changes](#application-model-changes): explore API changes, and update your code where needed.
+- [Allow unsecure transport for HTTP endpoints](#allow-unsecure-transport-for-http-endpoints): Ensure that your _launchSettings.json_ file includes an `https` profile.
+- [Dashboard security updates](#security-updates): Determine if you're impacted by security updates.
+- [Component breaking changes](#component-breaking-changes): Update source code to account for breaking component changes.
 
 ## Application model changes
 
