@@ -1,14 +1,14 @@
 ---
 title: .NET Aspire preview 5
 description: .NET Aspire preview 5 is now available and includes many improvements and new capabilities.
-ms.date: 04/09/2024
+ms.date: 04/10/2024
 ---
 
 # .NET Aspire preview 5
 
 .NET Aspire preview 5 introduces breaking changes to hosting NuGet packages. In addition to these breaking changes, there are several sweeping improvements and additions to be aware of, including support for AWS and improvements for Azure. The following article provides an overview of the major changes in .NET Aspire preview 5: `8.0.0-preview.5.24201.12`.
 
-If you're using Visual Studio, see the [Use Upgrade Assistant to update to preview 5](#use-upgrade-assistant-to-update-to-preview-5).
+If you're looking to upgrade from a previous version of .NET Aspire, see the [upgrade guide](#upgrade-to-preview-5).
 
 ## Packaging changes
 
@@ -59,6 +59,25 @@ The `Aspire.Hosting.Azure` APIs have been broken up in to the following packages
 | `AddAzureStorage(...)`               | `Aspire.Hosting.Azure.Storage`             |
 
 For more information, see [Azure-specific resource types](../deployment/manifest-format.md#azure-specific-resource-types).
+
+## Upgrade to preview 5
+
+If you're using Visual Studio, see the [Use Upgrade Assistant to update to preview 5](#use-upgrade-assistant-to-update-to-preview-5). One of the largest updates is the need to add reference to [Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package. In your AppHost project, add the following package reference:
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.AppHost --prerelease
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.AppHost"
+                  Version="[SelectVersion]" />
+```
+
+---
 
 ## Application model changes
 
