@@ -86,6 +86,7 @@ All .NET Aspire NuGet package references should be upgraded to `8.0.0-preview.5.
 Additional considerations for upgrading to preview 5 include:
 
 - [Application model changes](#application-model-changes): explore API changes and update your code where needed.
+- [Service Discovery API changes](#service-discovery-api-changes): Update your code to account for changes in the service discovery API.
 - [Allow unsecure transport for HTTP endpoints](#allow-unsecure-transport-for-http-endpoints): Ensure that your _launchSettings.json_ file includes an `https` profile.
 - [Dashboard security updates](#security-updates): Determine if you're impacted by security updates.
 - [Component breaking changes](#component-breaking-changes): Update source code to account for breaking component changes.
@@ -352,10 +353,11 @@ Console logs page with tens of thousands of console lines:
 - HTTPs by default.
 - Test project support. For more information, see [.NET Aspire project templates](../fundamentals/setup-tooling.md#net-aspire-project-templates).
 
-## Service Discovery
+## Service Discovery API changes
 
-- Service discovery API changes.
-- Service discovery auto scheme detection.
+In preview 5, we've made changes to the service discovery API. The `UseServiceDiscovery` method was marked as obsolete and replaced with the `AddServiceDiscovery` method. The `AddServiceDiscovery` method is used to add service discovery to the application model. The `UseServiceDiscovery` method is still available but will be removed in preview 6. For more information, see [.NET Aspire service discovery](../service-discovery/overview.md).
+
+In addition to these breaking API changes, service discovery now supports auto scheme selection. It's common to use HTTP while developing and testing a service locally and HTTPS when the service is deployed. Service discovery supports this by allowing for a priority list of URI schemes to be specified in the input string given to Service discovery. Service discovery attempts to resolve the services for the schemes in order and stops after an endpoint is found. URI schemes are separated by a + character, for example: `"https+http://basket"`. Service discovery first tries to find HTTPS endpoints for the "basket" service and then falls back to HTTP endpoints. If any HTTPS endpoint is found, Service Discovery doesn't include HTTP endpoints. For more information, see [Scheme selection when resolving HTTP(S) endpoints](/dotnet/core/extensions/service-discovery?tabs=dotnet-cli#scheme-selection-when-resolving-https-endpoints).
 
 ## Developer Tools
 
