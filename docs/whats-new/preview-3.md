@@ -63,7 +63,7 @@ For more information on API changes, see [Breaking changes and new APIs](#breaki
 
 ## Dashboard updates and refactoring
 
-The [.NET Aspire Dashboard](../fundamentals/dashboard.md) has undergone a lot of refactoring, splitting it out into its own independent component. The dashboard used to be run as part of the host project, and that caused version conflicts between the dashboard and project dependencies. The dashboard is now its own independent executable, that communicates via gRPC to an endpoint to retrieve information about the projects, containers, their status and logs.
+The [.NET Aspire Dashboard](../fundamentals/dashboard/overview.md) has undergone a lot of refactoring, splitting it out into its own independent component. The dashboard used to be run as part of the host project, and that caused version conflicts between the dashboard and project dependencies. The dashboard is now its own independent executable, that communicates via gRPC to an endpoint to retrieve information about the projects, containers, their status and logs.
 
 This refactoring enables the dashboard to be more easily used for real-time runtime diagnostics after deployment, as hosts can implement the same gRPC contract/endpoint for project and dependency status.
 

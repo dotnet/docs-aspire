@@ -63,7 +63,7 @@ conceptualContent:
           url: fundamentals/service-defaults.md
         - itemType: reference
           text: .NET Aspire dashboard
-          url: fundamentals/dashboard.md
+          url: fundamentals/dashboard/overview.md
         - itemType: overview
           text: .NET Aspire local networking
           url: fundamentals/networking-overview.md
