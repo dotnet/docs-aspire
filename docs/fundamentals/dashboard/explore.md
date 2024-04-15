@@ -174,7 +174,7 @@ And the corresponding detailed view of the trace with errors:
 
 :::image type="content" source="media/explore/trace-view-errors.png" lightbox="media/explore/trace-view-errors.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page, showing a trace with errors.":::
 
-## Metrics page
+### Metrics page
 
 Navigate to the **Metrics** page to view the metrics for your app. .NET Aspire automatically configures metrics for the different projects in your app. Metrics are a way to measure the health of your application and can be used to monitor the performance of your app over time.
 
