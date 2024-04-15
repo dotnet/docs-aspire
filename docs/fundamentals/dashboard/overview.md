@@ -1,6 +1,6 @@
 ---
 title: .NET Aspire dashboard overview
-description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
+description: Overview of .NET Aspire dashboard and getting started.
 ms.date: 03/13/2024
 ms.topic: reference
 ---

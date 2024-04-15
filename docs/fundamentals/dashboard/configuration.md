@@ -1,6 +1,6 @@
 ---
 title: .NET Aspire dashboard configuration
-description: Security considerations for running the .NET Aspire dashboard
+description: .NET Aspire dashboard configuration options
 ms.date: 03/13/2024
 ms.topic: reference
 ---
