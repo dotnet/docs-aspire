@@ -75,7 +75,7 @@ Visit each link on the left navigation to view different information about the .
 
     :::image type="content" source="media/aspire-dashboard-metrics.png" lightbox="media/aspire-dashboard-metrics.png" alt-text="A screenshot showing an Aspire dashboard metrics page for the webfrontend.":::
 
-For more information, see [.NET Aspire dashboard overview](../fundamentals/dashboard.md).
+For more information, see [.NET Aspire dashboard overview](../fundamentals/dashboard/overview.md).
 
 ## Understand the .NET Aspire solution structure
 
