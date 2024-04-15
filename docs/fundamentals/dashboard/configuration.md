@@ -41,12 +41,19 @@ Alternatively, configuration in JSON configuration file that is specified using 
 }
 ```
 
+> [!IMPORTANT]
+> The dashboard displays information about resources, including their configuration, console logs and in-depth telemtry.
+>
+> Data displayed in the dashboard can be sensitive. For example, secrets in environment variables, and sensitive runtime data in telemetry. Care should be taken to configure the dashboard to secure access.
+>
+> See [dashboard security](security-considerations.md) for more information.
+
 ### Common configuration
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
-| `ASPNETCORE_URLS` | <http://localhost:18888> | One or more HTTP endpoints through which the dashboard frontend is served. The frontend endpoint is used to view the dashboard in a browser. |
-| `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL` | <http://localhost:18889> | The OTLP endpoint. OTLP endpoint hosts an OTLP service and receives telemetry. |
+| `ASPNETCORE_URLS` | <http://localhost:18888> | One or more HTTP endpoints through which the dashboard frontend is served. The frontend endpoint is used to view the dashboard in a browser. When the dashboard is launched by the Aspire app host this address is secured with HTTPS. Securing the dashboard with HTTPS is recommend. |
+| `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL` | <http://localhost:18889> | The OTLP endpoint. OTLP endpoint hosts an OTLP service and receives telemetry. When the dashboard is launched by the Aspire app host this address is secured with HTTPS. Securing the dashboard with HTTPS is recommend. |
 | `DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` | `false` | Configures the dashboard to not use authentication and accepts anonymous access. This setting is a shortcut to configuring `Dashboard:Frontend:AuthMode` and `Dashboard:Otlp:AuthMode` to `Unsecured`. |
 | `DOTNET_DASHBOARD_CONFIG_FILE_PATH` | `null` | The path for an JSON configuration file. If the dashboard is being run in a Docker container then this is the path to the configuration file in a mounted volume. This value is optional. |
 | `DOTNET_RESOURCE_SERVICE_ENDPOINT_URL` | `null` | The gRPC endpoint to which the dashboard connects for its data. If this value is unspecified, the dashboard shows telemetry data but no resource list or console logs. This setting is a shortcut to `Dashboard:ResourceServiceClient:Url`. |
