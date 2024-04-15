@@ -92,6 +92,7 @@ The resource service client authentication is configured with `Dashboard:Resourc
 | ------ | ------------- | ----------- |
 | `Dashboard:ResourceServiceClient:Url` | `null` | The gRPC endpoint to which the dashboard connects for its data. If this value is unspecified, the dashboard shows telemetry data but no resource list or console logs. |
 | `Dashboard:ResourceServiceClient:AuthMode` | `null` | Can be set to `ApiKey`, `Certificate` or `Unsecured`. `Unsecured` should only be used during local development. It's not recommended when hosting the dashboard publicly or in other settings. This value is required is a resource service URL is specified. |
+| `Dashboard:ResourceServiceClient:ApiKey` | `null` | The API to send to the resource service in the `x-resource-service-api-key` header. This value is required if auth mode is API key. |
 | `Dashboard:ResourceServiceClient:ClientCertificate:Source` | `null` | Can be set to `File` or `KeyStore`. This value is required if auth mode is client certificate. |
 | `Dashboard:ResourceServiceClient:ClientCertificate:FilePath` | `null` | The certificate file path. This value is required if source is `File`. |
 | `Dashboard:ResourceServiceClient:ClientCertificate:Password` | `null` | The password for the certificate file. This value is optional. |
