@@ -17,31 +17,6 @@ In the upcoming sections, you'll discover how to create a .NET Aspire app and em
 
 The screenshots featured in this article showcase the dark theme. For more details on theme selection, refer to [Theme selection](#theme-selection).
 
-## Dashboard shortcuts
-
-The .NET Aspire dashboard provides a variety of shortcuts to help you navigate the different parts of the dashboard. To display the keyboard shortcuts, press <kbd>Shift</kbd> + <kbd>?</kbd>. The following shortcuts are available:
-
-**Panels**:
-
-- <kbd>+</kbd>: Increase panel size.
-- <kbd>-</kbd>: Decrease panel size.
-- <kbd>Shift</kbd> + <kbd>r</kbd>: Reset panel size.
-- <kbd>Shift</kbd> + <kbd>t</kbd>: Toggle panel orientation.
-- <kbd>Shift</kbd> + <kbd>x</kbd>: Close panel.
-
-**Page navigation**:
-
-- <kbd>r</kbd>: Go to **Resources**.
-- <kbd>c</kbd>: Go to **Console Logs**.
-- <kbd>s</kbd>: Go to **Structured Logs**.
-- <kbd>t</kbd>: Go to **Traces**.
-- <kbd>m</kbd>: Go to **Metrics**.
-
-**Site-wide navigation**:
-
-- <kbd>?</kbd>: Got to **Help**.
-- <kbd>Shift</kbd> + <kbd>s</kbd>: Go to **Settings**.
-
 ## Resources page
 
 The **Resources** page is the default home page of the .NET Aspire dashboard. This page lists all of the .NET projects, containers, and executables included in your .NET Aspire app. For example, the starter application includes two projects:
@@ -234,3 +209,28 @@ The following screenshot shows the theme selection dialog, with the default Syst
 If you prefer the Light theme, you can select it from the theme selection dialog:
 
 :::image type="content" source="media/explore/theme-selection-light.png" lightbox="media/explore/theme-selection-light.png" alt-text="The .NET Aspire dashboard Settings dialog, showing the Light theme selection.":::
+
+## Dashboard shortcuts
+
+The .NET Aspire dashboard provides a variety of shortcuts to help you navigate the different parts of the dashboard. To display the keyboard shortcuts, press <kbd>Shift</kbd> + <kbd>?</kbd>. The following shortcuts are available:
+
+**Panels**:
+
+- <kbd>+</kbd>: Increase panel size.
+- <kbd>-</kbd>: Decrease panel size.
+- <kbd>Shift</kbd> + <kbd>r</kbd>: Reset panel size.
+- <kbd>Shift</kbd> + <kbd>t</kbd>: Toggle panel orientation.
+- <kbd>Shift</kbd> + <kbd>x</kbd>: Close panel.
+
+**Page navigation**:
+
+- <kbd>r</kbd>: Go to **Resources**.
+- <kbd>c</kbd>: Go to **Console Logs**.
+- <kbd>s</kbd>: Go to **Structured Logs**.
+- <kbd>t</kbd>: Go to **Traces**.
+- <kbd>m</kbd>: Go to **Metrics**.
+
+**Site-wide navigation**:
+
+- <kbd>?</kbd>: Got to **Help**.
+- <kbd>Shift</kbd> + <kbd>s</kbd>: Go to **Settings**.

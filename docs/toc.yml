@@ -33,7 +33,7 @@ items:
           - name: Dashboard overview
             displayName: aspire dashboard,dashboard
             href: fundamentals/dashboard/overview.md
-          - name: Explore dashboard UI
+          - name: Explore dashboard features
             href: fundamentals/dashboard/explore.md
           - name: Configuration
             href: fundamentals/dashboard/configuration.md
