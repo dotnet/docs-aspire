@@ -11,7 +11,7 @@ ms.topic: reference
 
 ## Using the dashboard with Aspire projects
 
-The dashboard is integrated into the Aspire **AppHost**. During development the dashboard is autommatically launched when you start the project. See the Aspire app's resources and view collected telemetry.
+The dashboard is integrated into the Aspire **AppHost**. During development the dashboard is autommatically launched when you start the project. It's configured to display the Aspire app's resources and telemetry.
 
 :::image type="content" source="media/explore/projects.png" lightbox="media/explore/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page.":::
 

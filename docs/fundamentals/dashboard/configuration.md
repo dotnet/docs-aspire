@@ -9,6 +9,8 @@ ms.topic: reference
 
 The dashboard is configured when it starts up. Configuration includes frontend and OTLP addresses, the resource service endpoint, authentication, telemetry limits and more.
 
+If the dashboard is launched by the Aspire AppHost project then it is automatically configured to display the app's resources and telemetry. Configuration is provided when launching the dashboard in [standalone mode](overview.md#standalone-mode).
+
 There are a number of ways to provide configuration:
 
 - Command line arguments.
@@ -46,7 +48,8 @@ Alternatively, configuration in JSON configuration file that is specified using 
 | `ASPNETCORE_URLS` | <http://localhost:18888> | One or more HTTP endpoints through which the dashboard frontend is served. The frontend endpoint is used to view the dashboard in a browser. |
 | `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL` | <http://localhost:18889> | The OTLP endpoint. OTLP endpoint hosts an OTLP service and recevies telemetry. |
 | `DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` | `false` | Configures the dashboard to not use authentication and accepts anonymous access. This setting is a shortcut to configuring `Dashboard:Frontend:AuthMode` and `Dashboard:Otlp:AuthMode` to `Unsecured`. |
-| `DOTNET_DASHBOARD_CONFIG_FILE_PATH` | `null` | The path for an JSON configuration file. This value is optional. |
+| `DOTNET_DASHBOARD_CONFIG_FILE_PATH` | `null` | The path for an JSON configuration file. If the dashboard is being run in a Docker container then this is the path to the configuration file in a mounted volume. This value is optional. |
+| `DOTNET_RESOURCE_SERVICE_ENDPOINT_URL` | `null` | The gRPC endpoint to which the dashboard connects for its data. If this value is unspecified, the dashboard shows telemetry data but no resource list or console logs. This setting is a shortcut to `Dashboard:ResourceServiceClient:Url`. |
 
 ### Frontend authentication
 
