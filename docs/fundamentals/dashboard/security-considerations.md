@@ -13,26 +13,26 @@ Data displayed in the dashboard can be sensitive. For example, configuration can
 
 ## Scnearios for running the dashboard
 
-The dashboard can be run in different scenarios, such as being automatically starting by Aspire tooling, or as a standalone application that is separate from other Aspire components. Steps to secure the dashboard depend on how it is being run.
+The dashboard can be run in different scenarios, such as being automatically starting by .NET Aspire tooling, or as a standalone application that is separate from other .NET Aspire components. Steps to secure the dashboard depend on how it's being run.
 
-### Aspire tooling
+### .NET Aspire tooling
 
-The dashboard is automatically started when an Aspire app host is run. The dashboard is secure by default when run from Aspire tooling:
+The dashboard is automatically started when an .NET Aspire app host is run. The dashboard is secure by default when run from .NET Aspire tooling:
 
-- Transport is secured with HTTPS. Using HTTPS is configured by default in `launchSettings.json`. The launch profile includes `https` addresses in `applicationUrl` and `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL` values.
+- Transport is secured with HTTPS. Using HTTPS is configured by default in _launchSettings.json_. The launch profile includes `https` addresses in `applicationUrl` and `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL` values.
 - Browser frontend authenticated with a browser token.
 - Incoming telemetry authenticated with an API key.
 
 HTTPS in the dashboard uses the ASP.NET Core development certificate. The certificate must be trusted for the dashboard to work correctly. The steps required to trust the development cert are different depending on the machine's operating system:
 
-- [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](https://learn.microsoft.com/aspnet/core/security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos)
-- [Trust HTTPS certificate on Linux](https://learn.microsoft.com/aspnet/core/security/enforcing-ssl#trust-https-certificate-on-linux)
+- [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](/aspnet/core/security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos)
+- [Trust HTTPS certificate on Linux](/aspnet/core/security/enforcing-ssl#trust-https-certificate-on-linux)
 
-There are scenarios where you might want to allow an unsecured transport. The dashboard can run without HTTPS from the Aspire app host by configuring the `ASPIRE_ALLOW_UNSECURED_TRANSPORT` setting to `true`. For more information, see [Allow unsecured transport in .NET Aspire](../../troubleshooting/allow-unsecure-transport.md).
+There are scenarios where you might want to allow an unsecured transport. The dashboard can run without HTTPS from the .NET Aspire app host by configuring the `ASPIRE_ALLOW_UNSECURED_TRANSPORT` setting to `true`. For more information, see [Allow unsecured transport in .NET Aspire](../../troubleshooting/allow-unsecure-transport.md).
 
 ### Standalone mode
 
-The dashboard is shipped as a docker image and can be without the rest of .NET Aspire. When the dashboard is launched in standalone mode, it defaults to a mix of secure and unsecured settings.
+The dashboard is shipped as a Docker image and can be without the rest of .NET Aspire. When the dashboard is launched in standalone mode, it defaults to a mix of secure and unsecured settings.
 
 - Browser frontend authenticated with a browser token.
 - Incoming telemetry is unsecured. Warnings are displayed in the console and dashboard UI.
@@ -57,7 +57,8 @@ The proceding Docker command:
 When API key authentication is configured, the dashboard validates incoming telemetry has a required API key. Apps that send the dashboard telemetry must be configured to send the API key. This can be configured in .NET with `OtlpExporterOptions.Headers`:
 
 ```csharp
-builder.Services.Configure<OtlpExporterOptions>(o => o.Headers = $"x-otlp-api-key={MY_APIKEY}");
+builder.Services.Configure<OtlpExporterOptions>(
+    o => o.Headers = $"x-otlp-api-key={MY_APIKEY}");
 ```
 
 Other languages have different OpenTelmetry APIs. Passing the [`OTEL_EXPORTER_OTLP_HEADERS` environment variable](https://opentelemetry.io/docs/specs/otel/protocol/exporter/) to apps is a universal way to configure the header.

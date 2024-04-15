@@ -9,7 +9,7 @@ ms.topic: reference
 
 The dashboard is configured when it starts up. Configuration includes frontend and OTLP addresses, the resource service endpoint, authentication, telemetry limits and more.
 
-If the dashboard is launched by the Aspire AppHost project then it is automatically configured to display the app's resources and telemetry. Configuration is provided when launching the dashboard in [standalone mode](overview.md#standalone-mode).
+If the dashboard is launched by the .NET Aspire app host project then it's automatically configured to display the app's resources and telemetry. Configuration is provided when launching the dashboard in [standalone mode](overview.md#standalone-mode).
 
 There are a number of ways to provide configuration:
 
@@ -17,7 +17,7 @@ There are a number of ways to provide configuration:
 - Environment variables. The `:` delimiter should be replaced with double underscore (`__`) in environment variable names.
 - Optional JSON configuration file. The `DOTNET_DASHBOARD_CONFIG_FILE_PATH` setting can be used to specify a JSON configuration file.
 
-Example of configuring the dashboard when started from a Docker container:
+Consider the following example, showing how to configure the dashboard when started from a Docker container:
 
 ```bash
 docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
@@ -27,7 +27,7 @@ docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
     mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.6
 ```
 
-Alternatively, configuration in JSON configuration file that is specified using `DOTNET_DASHBOARD_CONFIG_FILE_PATH`:
+Alternatively, these same values could be configured using a JSON configuration file that is specified using `DOTNET_DASHBOARD_CONFIG_FILE_PATH`:
 
 ```json
 {
@@ -46,21 +46,21 @@ Alternatively, configuration in JSON configuration file that is specified using 
 >
 > Data displayed in the dashboard can be sensitive. For example, secrets in environment variables, and sensitive runtime data in telemetry. Care should be taken to configure the dashboard to secure access.
 >
-> See [dashboard security](security-considerations.md) for more information.
+> For more information, see [dashboard security](security-considerations.md).
 
 ### Common configuration
 
 | Option | Default Value | Description |
 | ------ | ------------- | ----------- |
-| `ASPNETCORE_URLS` | <http://localhost:18888> | One or more HTTP endpoints through which the dashboard frontend is served. The frontend endpoint is used to view the dashboard in a browser. When the dashboard is launched by the Aspire app host this address is secured with HTTPS. Securing the dashboard with HTTPS is recommend. |
-| `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL` | <http://localhost:18889> | The OTLP endpoint. OTLP endpoint hosts an OTLP service and receives telemetry. When the dashboard is launched by the Aspire app host this address is secured with HTTPS. Securing the dashboard with HTTPS is recommend. |
+| `ASPNETCORE_URLS` | <http://localhost:18888> | One or more HTTP endpoints through which the dashboard frontend is served. The frontend endpoint is used to view the dashboard in a browser. When the dashboard is launched by the .NET Aspire app host this address is secured with HTTPS. Securing the dashboard with HTTPS is recommend. |
+| `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL` | <http://localhost:18889> | The OTLP endpoint. OTLP endpoint hosts an OTLP service and receives telemetry. When the dashboard is launched by the .NET Aspire app host this address is secured with HTTPS. Securing the dashboard with HTTPS is recommend. |
 | `DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` | `false` | Configures the dashboard to not use authentication and accepts anonymous access. This setting is a shortcut to configuring `Dashboard:Frontend:AuthMode` and `Dashboard:Otlp:AuthMode` to `Unsecured`. |
-| `DOTNET_DASHBOARD_CONFIG_FILE_PATH` | `null` | The path for an JSON configuration file. If the dashboard is being run in a Docker container then this is the path to the configuration file in a mounted volume. This value is optional. |
+| `DOTNET_DASHBOARD_CONFIG_FILE_PATH` | `null` | The path for a JSON configuration file. If the dashboard is being run in a Docker container then this is the path to the configuration file in a mounted volume. This value is optional. |
 | `DOTNET_RESOURCE_SERVICE_ENDPOINT_URL` | `null` | The gRPC endpoint to which the dashboard connects for its data. If this value is unspecified, the dashboard shows telemetry data but no resource list or console logs. This setting is a shortcut to `Dashboard:ResourceServiceClient:Url`. |
 
 ### Frontend authentication
 
-The dashboard frontend endpoint authenticated is configured with `Dashboard:Frontend:AuthMode`. The frontend can be secured with OpenID Connect (OIDC) or browser token authentication.
+The dashboard frontend endpoint authentication is configured with `Dashboard:Frontend:AuthMode`. The frontend can be secured with OpenID Connect (OIDC) or browser token authentication.
 
 Browser token authentication works by the frontend asking for a token. The token can either be entered in the UI or provided as a query string value to the login page. For example, `https://localhost:1234/login?t=TheToken`. When the token is successfully authenticated an auth cookie is persisted to the browser and the browser is redirected to the app.
 
@@ -75,11 +75,11 @@ Browser token authentication works by the frontend asking for a token. The token
 | `Authentication:Schemes:OpenIdConnect:Authority` | `null` | URL to the identity provider (IdP). |
 | `Authentication:Schemes:OpenIdConnect:ClientId` | `null` | Identity of the relying party (RP). |
 | `Authentication:Schemes:OpenIdConnect:ClientSecret` | `null` | A secret that only the real RP would know. |
-| Other properties of [`OpenIdConnectOptions`](https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.openidconnectoptions) | `null` | Values inside configuration section `Authentication:Schemes:OpenIdConnect:*` are bound to `OpenIdConnectOptions`, such as `Scope`. |
+| Other properties of <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> | `null` | Values inside configuration section `Authentication:Schemes:OpenIdConnect:*` are bound to `OpenIdConnectOptions`, such as `Scope`. |
 
 ### OTLP authentication
 
-The OTLP endpoint authentication is configured with `Dashboard:Otlp:AuthMode`. The OTLP endpoint can be secured can be secured API key or [client certificate](https://learn.microsoft.com/aspnet/core/security/authentication/certauth) authentication.
+The OTLP endpoint authentication is configured with `Dashboard:Otlp:AuthMode`. The OTLP endpoint can be secured with an API key or [client certificate](/aspnet/core/security/authentication/certauth) authentication.
 
 API key authentication works by requiring each OTLP request to have a valid `x-otlp-api-key` header value. It must match either the primary or secondary key.
 
@@ -104,10 +104,10 @@ The resource service client authentication is configured with `Dashboard:Resourc
 | `Dashboard:ResourceServiceClient:ClientCertificate:FilePath` | `null` | The certificate file path. This value is required if source is `File`. |
 | `Dashboard:ResourceServiceClient:ClientCertificate:Password` | `null` | The password for the certificate file. This value is optional. |
 | `Dashboard:ResourceServiceClient:ClientCertificate:Subject` | `null` | The certificate subject. This value is required if source is `KeyStore`. |
-| `Dashboard:ResourceServiceClient:ClientCertificate:Store` | `My` | The certificate [store name](https://learn.microsoft.com/dotnet/api/system.security.cryptography.x509certificates.storename). |
-| `Dashboard:ResourceServiceClient:ClientCertificate:Location` | `CurrentUser` | The certificate [store location](https://learn.microsoft.com/dotnet/api/system.security.cryptography.x509certificates.storelocation). |
+| `Dashboard:ResourceServiceClient:ClientCertificate:Store` | `My` | The certificate <xref:System.Security.Cryptography.X509Certificates.StoreName>. |
+| `Dashboard:ResourceServiceClient:ClientCertificate:Location` | `CurrentUser` | The certificate <xref:System.Security.Cryptography.X509Certificates.StoreLocation>. |
 
-#### Telemetry Limits
+#### Telemetry limits
 
 Telemetry is stored in-memory. To avoid excessive memory usage, the dashboard has limits on the count and size of stored telemetry. When a count limit is reached, new telemetry is added, and the oldest telemetry is removed. When a size limit is reached, data is truncated to the limit.
 

@@ -30,10 +30,10 @@ items:
         href: fundamentals/app-host-overview.md
       - name: .NET Aspire dashboard
         items:
-          - name: Dashboard overview
+          - name: Overview
             displayName: aspire dashboard,dashboard
             href: fundamentals/dashboard/overview.md
-          - name: Dashboard features
+          - name: Explore features
             href: fundamentals/dashboard/explore.md
           - name: Configuration
             href: fundamentals/dashboard/configuration.md
