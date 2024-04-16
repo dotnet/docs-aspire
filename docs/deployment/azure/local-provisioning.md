@@ -1,7 +1,7 @@
 ---
 title: Local Azure provisioning
 description: Learn how to use Azure resources in your local development environment.
-ms.date: 04/05/2024
+ms.date: 04/16/2024
 ---
 
 # Local Azure provisioning
