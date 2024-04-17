@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard overview
 description: Overview of .NET Aspire dashboard and getting started.
-ms.date: 03/13/2024
+ms.date: 04/17/2024
 ms.topic: reference
 ---
 
@@ -47,9 +47,15 @@ The dashboard is configured when it starts up. Configuration includes frontend a
 
 For more information, see [.NET Aspire dashboard configuration](configuration.md).
 
+## Architecture
+
+The dashboard user experience is built with a variety of technologies. The frontend is built with [Microsoft's Fluent UI Blazor component library](https://github.com/microsoft/fluentui-blazor). Each app communicates to the dashboard using the [OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/). A resource server exists within this architecture to provide information about the app's resources, such as a resource listing, console logs, and command execution. The dashboard communicates using gRPC (specifically with the [Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) NuGet package) to the resource server. Consider the following diagram that illustrates the architecture of the .NET Aspire dashboard:
+
+:::image type="content" source="media/architecture-diagram.png" lightbox="media/architecture-diagram.png" alt-text="A diagram showing the architecture of the .NET Aspire dashboard.":::
+
 ## Security
 
-The .NET Aspire dashboard offers powerful insights to your apps. The UI displays information about resources, including their configuration, console logs and in-depth telemtry.
+The .NET Aspire dashboard offers powerful insights to your apps. The UI displays information about resources, including their configuration, console logs and in-depth telemetry.
 
 Data displayed in the dashboard can be sensitive. For example, configuration can include secrets in environment variables, and telemetry can include sensitive runtime data. Care should be taken to secure access to the dashboard.
 
