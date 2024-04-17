@@ -90,7 +90,7 @@ Corresponding SQL script included in the app:
 
 :::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.ApiService/data/sqlserver/init.sql" :::
 
-### [PostreSQL](#tab/postgresql)
+### [PostgreSQL](#tab/postgresql)
 
 Configuration code in the **.AppHost** project:
 
@@ -142,7 +142,7 @@ if (app.Environment.IsDevelopment())
 }
 ```
 
-### [PostreSQL](#tab/postgresql)
+### [PostgreSQL](#tab/postgresql)
 
 ```csharp
 // Register DbContext class
