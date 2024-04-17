@@ -499,7 +499,7 @@ the following settings to user `secrets.json` file:
 }
 ```
 
-When you launch the AppHost, the dashboard shows that it's creating the Azure resources for you and provides helpful links to deployments in the Azure portal, or in case of failure, logs that provide hints as to what might be causing the deployment issue.
+When you launch the AppHost, the dashboard shows that it's creating the Azure resources for you and provides helpful links to deployments in the Azure portal. In case of failure, it provides logs that hint as to what might be causing the deployment issue.
 
 :::image type="content" source="media/preview-5/azure-resource-provisioning-on-dashboard.png" lightbox="media/preview-5/azure-resource-provisioning-on-dashboard.png" alt-text=".NET Aspire dashboard: Azure provisioning.":::
 
@@ -528,7 +528,7 @@ builder.AddProject<Projects.InventoryApi>("inventoryapi")
        .WithReference(db);
 ```
 
-It's also possible to use an Azure hosted resource for local development by using the `AsAzurePostgresFlexibleServer()` extension method instead. When this method is used the container will not be started locally and cloud-based instance will be created just like the Azure only resource types. The `PublishAsX` and `AsX` methods also support callbacks to customize the underlying Azure resources as shown above in the Cosmos DB example.
+It's also possible to use an Azure hosted resource for local development by using the `AsAzurePostgresFlexibleServer()` extension method instead. When this method is used the container isn't started locally and a cloud-based instance is created, just like the Azure-only resource types. The `PublishAsX` and `AsX` methods also support callbacks to customize the underlying Azure resources as shown above in the Cosmos DB example.
 
 For more information, see [Local Azure provisioning](../deployment/azure/local-provisioning.md).
 
