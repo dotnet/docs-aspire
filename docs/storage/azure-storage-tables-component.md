@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Data Tables component
 description: This article describes the .NET Aspire Azure Data Tables component features and capabilities.
-ms.date: 04/04/2024
+ms.date: 04/18/2024
 ms.topic: how-to
 ---
 
@@ -87,6 +87,8 @@ Builder.AddProject<MyApp.ExampleProject>()
 ```
 
 For more information, see <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A>.
+
+[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
 
 ## Configuration
 

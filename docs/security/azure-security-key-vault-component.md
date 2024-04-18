@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Key Vault component
 description: Lean about the .NET Aspire Azure Key Vault component.
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 04/18/2024
 ---
 
 # .NET Aspire Azure Key Vault component
@@ -78,6 +78,8 @@ var secrets = builder.ExecutionContext.IsPublishMode
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(secrets)
 ```
+
+[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
 
 ## Configuration
 

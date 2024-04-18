@@ -2,7 +2,7 @@
 title: .NET Aspire support for Azure SignalR Service
 description: Learn how to use the Azure SignalR Service with .NET Aspire.
 ms.topic: how-to
-ms.date: 04/04/2024
+ms.date: 04/18/2024
 ---
 
 # .NET Aspire support for Azure SignalR Service
@@ -50,16 +50,14 @@ In the [app host project](../fundamentals/app-host-overview.md#app-host-project)
 
 In the preceding code:
 
+- Azure provisioning is added to the `builder` with the `AddAzureProvisioning` method.
 - The `builder` has its execution context checked to see if it's in publish mode.
 - When publishing the `AddAzureSignalR` method is called to express the `AzureSignalRResource`.
 - When not publishing, the `AddConnectionString` method is called to express an `IResourceWithConnectionString` to an existing resource.
 - The `signalr` resource is referenced by the `Hub` host project, in this case known as `apiService`.
 - The `apiService` project resource is referenced by the `SignalR_Web` project.
 
-<!--
-> [!TIP]
-> This example also relies on the [Aspire.Hosting.Azure.Provisioning](https://www.nuget.org/packages/Aspire.Hosting.Azure.Provisioning) NuGet package, as you may have been curious about the `AddAzureProvisioning` method. This functionality adds support for generating Azure resources dynamically during app startup.
--->
+[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
 
 ## See also
 

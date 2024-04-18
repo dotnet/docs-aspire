@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Service Bus component
 description: This article describes the .NET Aspire Azure Service Bus component features and capabilities
 ms.topic: how-to
-ms.date: 04/04/2024
+ms.date: 04/18/2024
 ---
 
 # .NET Aspire Azure Service Bus component
@@ -86,6 +86,8 @@ var serviceBus = builder.ExecutionContext.IsPublishMode
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(serviceBus)
 ```
+
+[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
 
 ## Configuration
 
