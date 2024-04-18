@@ -22,7 +22,7 @@ in which they are now contained:
 | `AddProject(...)`    | `Aspire.Hosting` (unchanged) |
 | `AddContainer(...)`  | `Aspire.Hosting` (unchanged) |
 | `AddExecutable(...)` | `Aspire.Hosting` (unchanged) |
-| `AddKafka(...)`      | `Aspire.Hosting.Kakfa`       |
+| `AddKafka(...)`      | `Aspire.Hosting.Kafka`       |
 | `AddMongoDB(...)`    | `Aspire.Hosting.MongoDB`     |
 | `AddMySql(...)`      | `Aspire.Hosting.MySql`       |
 | `AddNpmApp(...)`     | `Aspire.Hosting.NodeJs`      |
