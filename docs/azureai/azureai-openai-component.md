@@ -2,7 +2,7 @@
 title: .NET Aspire Azure AI OpenAI component
 description: Learn how to use the .NET Aspire Azure AI OpenAI component.
 ms.topic: how-to
-ms.date: 04/10/2024
+ms.date: 04/18/2024
 ---
 
 # .NET Aspire Azure AI OpenAI component
@@ -89,6 +89,8 @@ The `AddAzureAIOpenAI` method will read connection information from the app host
 ```csharp
 builder.AddAzureAIOpenAI("openAiConnectionName");
 ```
+
+[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
 
 ## Configuration
 

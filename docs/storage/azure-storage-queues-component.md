@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Queue Storage component
 description: This article describes the .NET Aspire Azure Queue Storage component features and capabilities
 ms.topic: how-to
-ms.date: 04/04/2024
+ms.date: 04/18/2024
 ---
 
 # .NET Aspire Azure Queue Storage component
@@ -81,6 +81,8 @@ The <xref:Aspire.Hosting.AzureStorageExtensions.AddQueues%2A> method will read c
 ```csharp
 builder.AddAzureQueueService("queue");
 ```
+
+[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
 
 ### Use a connection string
 

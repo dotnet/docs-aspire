@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Cosmos DB component
 description: This article describes the .NET Aspire Azure Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 04/09/2024
+ms.date: 04/18/2024
 ---
 
 # .NET Aspire Azure Cosmos DB component
@@ -86,6 +86,8 @@ The <xref:Aspire.Hosting.AzureCosmosExtensions.AddAzureCosmosDB%2A> method will 
 ```csharp
 builder.AddAzureCosmosDB("cosmosdb");
 ```
+
+[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
 
 ## Configuration
 

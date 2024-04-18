@@ -2,7 +2,7 @@
 title: NET Aspire Azure AI Search Documents component
 description: Learn how to use the NET Aspire Azure AI Search Documents component.
 ms.topic: how-to
-ms.date: 04/09/2024
+ms.date: 04/18/2024
 ---
 
 # NET Aspire Azure AI Search Documents component
@@ -108,6 +108,8 @@ The `AddAzureSearch` method will read connection information from the AppHost's 
 ```csharp
 builder.AddAzureSearch("search");
 ```
+
+[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
 
 ## Configuration
 
