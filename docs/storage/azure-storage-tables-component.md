@@ -88,8 +88,6 @@ Builder.AddProject<MyApp.ExampleProject>()
 
 For more information, see <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A>.
 
-[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
-
 ## Configuration
 
 The .NET Aspire Azure Table Storage component provides multiple options to configure the `TableServiceClient` based on the requirements and conventions of your project.

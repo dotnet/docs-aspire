@@ -50,14 +50,11 @@ In the [app host project](../fundamentals/app-host-overview.md#app-host-project)
 
 In the preceding code:
 
-- Azure provisioning is added to the `builder` with the `AddAzureProvisioning` method.
 - The `builder` has its execution context checked to see if it's in publish mode.
 - When publishing the `AddAzureSignalR` method is called to express the `AzureSignalRResource`.
 - When not publishing, the `AddConnectionString` method is called to express an `IResourceWithConnectionString` to an existing resource.
 - The `signalr` resource is referenced by the `Hub` host project, in this case known as `apiService`.
 - The `apiService` project resource is referenced by the `SignalR_Web` project.
-
-[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
 
 ## See also
 

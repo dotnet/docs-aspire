@@ -87,8 +87,6 @@ The <xref:Aspire.Hosting.AzureCosmosExtensions.AddAzureCosmosDB%2A> method will 
 builder.AddAzureCosmosDB("cosmosdb");
 ```
 
-[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
-
 ## Configuration
 
 The .NET Aspire Azure Cosmos DB library provides multiple options to configure the Azure Cosmos DB connection based on the requirements and conventions of your project.

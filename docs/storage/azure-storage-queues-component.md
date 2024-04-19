@@ -82,8 +82,6 @@ The <xref:Aspire.Hosting.AzureStorageExtensions.AddQueues%2A> method will read c
 builder.AddAzureQueueService("queue");
 ```
 
-[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
-
 ### Use a connection string
 
 When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddAzureQueueService`:

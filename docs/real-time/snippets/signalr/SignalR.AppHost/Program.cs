@@ -1,7 +1,5 @@
 ﻿var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddAzureProvisioning();
-
 var signalr = builder.ExecutionContext.IsPublishMode
     ? builder.AddAzureSignalR("signalr")
     : builder.AddConnectionString("signalr");

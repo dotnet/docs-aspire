@@ -87,8 +87,6 @@ builder.AddProject<Projects.ExampleProject>()
        .WithReference(serviceBus)
 ```
 
-[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
-
 ## Configuration
 
 The .NET Aspire Service Bus component provides multiple options to configure the `ServiceBusClient` based on the requirements and conventions of your project.
