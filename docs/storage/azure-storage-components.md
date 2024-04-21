@@ -182,7 +182,7 @@ Visual Studio tooling added this line of code to register your new project with 
     dotnet sln AspireStorage.sln add AspireStorage.WorkerService/AspireStorage.WorkerService.csproj
     ```
 
-1. Use the [dotnet add package](/dotnet/core/tools/dotnet-add-package)command to add project reference between the **.AppHost** and **.WorkerService** project:
+1. Use the [dotnet add reference](/dotnet/core/tools/dotnet-add-reference) command to add project reference between the **.AppHost** and **.WorkerService** project:
 
     ```dotnetcli
     dotnet add AspireStorage.AppHost/AspireStorage.AppHost.csproj reference AspireStorage.WorkerService/AspireStorage.WorkerService.csproj
