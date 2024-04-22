@@ -109,8 +109,6 @@ The `AddAzureSearch` method will read connection information from the AppHost's 
 builder.AddAzureSearch("search");
 ```
 
-[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
-
 ## Configuration
 
 The .NET Aspire Azure Azure Search library provides multiple options to configure the Azure Search Service based on the requirements and conventions of your project. Note that either an `Endpoint` or a `ConnectionString` is required to be supplied.

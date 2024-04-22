@@ -90,8 +90,6 @@ The `AddAzureAIOpenAI` method will read connection information from the app host
 builder.AddAzureAIOpenAI("openAiConnectionName");
 ```
 
-[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
-
 ## Configuration
 
 The .NET Aspire Azure AI OpenAI component provides multiple options to configure the connection based on the requirements and conventions of your project.

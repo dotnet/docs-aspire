@@ -79,8 +79,6 @@ builder.AddProject<Projects.ExampleProject>()
        .WithReference(secrets)
 ```
 
-[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
-
 ## Configuration
 
 The .NET Aspire Azure Key Vault component provides multiple options to configure the `SecretClient` based on the requirements and conventions of your project.

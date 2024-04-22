@@ -82,8 +82,6 @@ The <xref:Aspire.Hosting.AzureStorageExtensions.AddBlobs%2A> method will read co
 builder.AddAzureBlobService("blobs");
 ```
 
-[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
-
 ## Configuration
 
 The .NET Aspire Azure Blob Storage component provides multiple options to configure the `BlobServiceClient` based on the requirements and conventions of your project.

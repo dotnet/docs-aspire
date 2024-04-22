@@ -86,8 +86,6 @@ The <xref:Microsoft.Extensions.Hosting.AspireAzureCosmosDBExtensions.AddAzureCos
 builder.AddAzureCosmosDB("cosmosdb");
 ```
 
-[!INCLUDE [azure-provisioning](../includes/azure-provisioning.md)]
-
 ## Configuration
 
 The .NET Aspire Microsoft Entity Framework Core Cosmos DB component provides multiple options to configure the Azure Cosmos DB connection based on the requirements and conventions of your project.
