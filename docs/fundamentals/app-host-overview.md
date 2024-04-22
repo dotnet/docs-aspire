@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs to express resource references.
-ms.date: 04/10/2024
+ms.date: 04/22/2024
 ms.topic: overview
 ---
 
@@ -77,7 +77,7 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
        .WithReference(cache);
 ```
 
-The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a dependency on the "cache" container resource. These dependencies can represent connection strings or service discovery information. In the preceding example, an environment variable is injected into the "webfronend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the webfrontend can use to connect to redis via the .NET Aspire Redis component, for example, `ConnectionStrings__cache="localhost:6379"`.
+The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a dependency on the "cache" container resource. These dependencies can represent connection strings or service discovery information. In the preceding example, an environment variable is injected into the "webfronend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the webfrontend can use to connect to redis via the .NET Aspire Redis component, for example, `ConnectionStrings__cache="localhost:62354"`.
 
 ### Connection string and endpoint references
 
@@ -97,8 +97,8 @@ Project-to-project references are handled differently than resources that have w
 
 | Method | Environment variable |
 |--|--|
-| `WithReference(cache)` | `ConnectionStrings__cache="localhost:6379"` |
-| `WithReference(apiservice)` | `services__apiservice__0="http://_http.localhost:8034"` <br /> `services__apiservice__1="http://localhost:8034"` |
+| `WithReference(cache)` | `ConnectionStrings__cache="localhost:62354"` |
+| `WithReference(apiservice)` | `services__apiservice__http__0="http://localhost:5455"` <br /> `services__apiservice__https__0="https://localhost:7356"` |
 
 Adding a reference to the "apiservice" project results in service discovery environment variables being added to the front-end. This is because typically, project to project communication occurs over HTTP/gRPC. For more information, see [.NET Aspire service discovery](../service-discovery/overview.md).
 
@@ -106,7 +106,7 @@ It's possible to get specific endpoints from a container or executable using the
 
 ```csharp
 var customContainer = builder.AddContainer("myapp", "mycustomcontainer")
-                             .WithEndpoint(containerPort: 9043, name: "endpoint");
+                             .WithHttpEndpoint(port: 9043, name: "endpoint");
 
 var endpoint = customContainer.GetEndpoint("endpoint");
 
@@ -114,11 +114,33 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
                         .WithReference(endpoint);
 ```
 
-| Method                    | Environment variable                            |
-|---------------------------|-------------------------------------------------|
-| `WithReference(endpoint)` | `services__myapp__0=endpoint://localhost:65256` |
+| Method                    | Environment variable                                  |
+|---------------------------|-------------------------------------------------------|
+| `WithReference(endpoint)` | `services__myapp__endpoint__0=https://localhost:9043` |
 
-The `containerPort` parameter is the port that the container is listening on. For more information on container ports, see [Container ports](networking-overview.md#container-ports). For more information on service discovery, see [.NET Aspire service discovery](../service-discovery/overview.md).
+The `port` parameter is the port that the container is listening on. For more information on container ports, see [Container ports](networking-overview.md#container-ports). For more information on service discovery, see [.NET Aspire service discovery](../service-discovery/overview.md).
+
+### Service endpoint environment variable format
+
+In the preceding section, the `WithReference` method is used to express dependencies between resources. When service endpoints result in environment variables being injected into the dependent resource, the format may not be obvious. This section provides details on this format.
+
+When one resource depends on another resource, the app host injects environment variables into the dependent resource. These environment variables configure the dependent resource to connect to the resource it depends on. The format of the environment variables is specific to .NET Aspire and expresses service endpoints in a way that is compatible with [Service Discovery](../service-discovery/overview.md).
+
+Service endpoint environment variables start with `services` and are delimited by a double underscore `__`. They're prefixed with `services__`, followed by the service name, the service endpoint name or protocol, and the index. The index supports multiple endpoints for a single service, starting with `0` for the first endpoint and incrementing for each additional endpoint.
+
+Consider the following environment variable examples:
+
+```
+services__apiservice__http__0
+```
+
+The preceding environment variable expresses the first HTTP endpoint for the `apiservice` service. The value of the environment variable is the URL of the service endpoint. A named endpoint might be expressed as follows:
+
+```
+services__apiservice__myendpoint__0
+```
+
+In the preceding example, the `apiservice` service has a named endpoint called `myendpoint`. The value of the environment variable is the URL of the service endpoint.
 
 ### APIs for adding and expressing resources
 
