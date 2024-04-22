@@ -132,7 +132,7 @@ Visual Studio tooling added this line of code to register your new project with 
     dotnet sln AspireMessaging.sln add AspireMessaging.WorkerService/AspireMessaging.WorkerService.csproj
     ```
 
-1. Use the [`dotnet add`](/dotnet/core/tools/dotnet-add) command to add project reference between the **.AppHost** and **.WorkerService** project:
+1. Use the [`dotnet add`](/dotnet/core/tools/dotnet-add-reference) command to add a project reference between the **.AppHost** and **.WorkerService** project:
 
     ```dotnetcli
     dotnet add AspireMessaging.AppHost/AspireMessaging.AppHost.csproj reference AspireMessaging.WorkerService/AspireMessaging.WorkerService.csproj
