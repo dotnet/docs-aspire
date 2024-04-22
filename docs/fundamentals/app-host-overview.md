@@ -122,7 +122,7 @@ The `port` parameter is the port that the container is listening on. For more in
 
 ### Service endpoint environment variable format
 
-In the preceding section, the `WithReference` method is used to express dependencies between resources. When service endpoints result in environment variables being injected into the dependent resource, the format may not be obvious. The following section provides details on this format.
+In the preceding section, the `WithReference` method is used to express dependencies between resources. When service endpoints result in environment variables being injected into the dependent resource, the format may not be obvious. This section provides details on this format.
 
 When one resource depends on another resource, the app host injects environment variables into the dependent resource. These environment variables configure the dependent resource to connect to the resource it depends on. The format of the environment variables is specific to .NET Aspire and expresses service endpoints in a way that is compatible with [Service Discovery](../service-discovery/overview.md).
 
@@ -134,7 +134,7 @@ Consider the following environment variable examples:
 services__apiservice__http__0
 ```
 
-The preceding environment variable expresses the first HTTP endpoint for the `apiservice` service. The value of the environment variable is the URL of the service endpoint. A named endpoint, might be expressed as follows:
+The preceding environment variable expresses the first HTTP endpoint for the `apiservice` service. The value of the environment variable is the URL of the service endpoint. A named endpoint might be expressed as follows:
 
 ```
 services__apiservice__myendpoint__0
