@@ -123,7 +123,7 @@ There are several key modifications from the original Angular template. The firs
 
 :::code language="javascript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/proxy.conf.js":::
 
-The preceding configuration proxies HTTP requests that start with `/api` to target the URL within the `services__weatherapi__1` environment variable. This environment variable is set by the .NET Aspire app host and is used to resolve the "weatherapi" service endpoint.
+The preceding configuration proxies HTTP requests that start with `/api` to target the URL within the `services__weatherapi__http__0` environment variable. This environment variable is set by the .NET Aspire app host and is used to resolve the "weatherapi" service endpoint.
 
 The second update is the to the _package.json_ file. This file is used to configure the Angular client to run on a different port than the default port. This is achieved by using the `PORT` environment variable, and the `run-script-os` npm package to set the port.
 
@@ -158,7 +158,7 @@ There are several key modifications from the original React template. The first 
 
 :::code language="ini" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.React/.env":::
 
-The preceding configuration sets the `REACT_APP_WEATHERAPI_URL` environment variable from the `services__weatherapi__1` environment variable. This environment variable is set by the .NET Aspire app host, and is used to resolve the "weatherapi" service endpoint.
+The preceding configuration sets the `REACT_APP_WEATHERAPI_URL` environment variable from the `services__weatherapi__http__0` environment variable. This environment variable is set by the .NET Aspire app host, and is used to resolve the "weatherapi" service endpoint.
 
 > [!IMPORTANT]
 > For custom environment variables to be available in the React client app, they must be prefixed with `REACT_APP_`. For more information, see [Adding custom environment variables](https://create-react-app.dev/docs/adding-custom-environment-variables/).
@@ -180,7 +180,7 @@ To visualize the React client app, navigate to the "react" endpoint in the .NET 
 
 ## Explore the Vue client
 
-There are several key modifications from the original Vue template. The first is the addition of an _.env_ file. This file configures a `VITE_WEATHERAPI_URL` environment variable from the `services__weatherapi__1` environment variable. This environment variable is set by the .NET Aspire app host and is used to resolve the "weatherapi" service endpoint.
+There are several key modifications from the original Vue template. The first is the addition of an _.env_ file. This file configures a `VITE_WEATHERAPI_URL` environment variable from the `services__weatherapi__http__0` environment variable. This environment variable is set by the .NET Aspire app host and is used to resolve the "weatherapi" service endpoint.
 
 :::code language="ini" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Vue/.env":::
 
