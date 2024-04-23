@@ -68,6 +68,11 @@ To see the log entry in detail for the error, select the **View** button to open
 
 For more information and examples of Structured logs, see the [Structured logs page](#structured-logs-page) section.
 
+> ![NOTE]
+> The resources page isn't available if the dashboard is started without a configured resource service. Instead the dashboard will start on the [Structured logs page](#structured-logs-page). This is the default experience when the dashboard is run in standalone-mode without additional configuration.
+>
+> For more information about configuring a resource service, see [Dashboard configuration](configuration.md).
+
 ## Monitoring pages
 
 The .NET Aspire dashboard provides a variety of ways to view logs, traces, and metrics for your app. This information enables you to track the behavior and performance of your app and to diagnose any issues that arise.
