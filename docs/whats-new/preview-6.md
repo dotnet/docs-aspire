@@ -148,7 +148,7 @@ The above example shows how to create a `DistributedApplicationTestingBuilder` i
 
 ## Templates
 
-We updated to the latest non pre-release versions of the OpenTelemetry SDK and Instrumentation packages. This includes changes to simplfy the OTLP exporter configuration using newer APIs:
+We updated to the latest stable versions of the OpenTelemetry SDK and Instrumentation packages, version 1.8.1. This includes changes to simplify the OTLP exporter configuration using newer APIs:
 
 ```C#
 var useOtlpExporter = !string.IsNullOrWhiteSpace(builder.Configuration["OTEL_EXPORTER_OTLP_ENDPOINT"]);
