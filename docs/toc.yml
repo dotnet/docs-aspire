@@ -20,8 +20,8 @@ items:
 
   - name: What's new in .NET Aspire
     items:
-      - name: .NET Aspire preview 5
-        href: whats-new/preview-5.md
+      - name: .NET Aspire preview 6
+        href: whats-new/preview-6.md
 
   - name: Fundamentals
     items:
@@ -29,8 +29,16 @@ items:
         displayName: orchestration,aspire apphost,aspire app
         href: fundamentals/app-host-overview.md
       - name: .NET Aspire dashboard
-        displayName: aspire dashboard,dashboard
-        href: fundamentals/dashboard.md
+        items:
+          - name: Overview
+            displayName: aspire dashboard,dashboard
+            href: fundamentals/dashboard/overview.md
+          - name: Explore features
+            href: fundamentals/dashboard/explore.md
+          - name: Configuration
+            href: fundamentals/dashboard/configuration.md
+          - name: Security considerations
+            href: fundamentals/dashboard/security-considerations.md
       - name: Components
         displayName: aspire components,components,nuget packages,packages
         href: fundamentals/components-overview.md
@@ -40,6 +48,10 @@ items:
       - name: Service discovery
         displayName: service discovery,service to service communication
         href: service-discovery/overview.md
+      - name: .NET Aspire and launch profiles
+        href: fundamentals/launch-profiles.md
+      - name: Testing .NET Aspire apps
+        href: fundamentals/testing.md
       - name: Service defaults
         href: fundamentals/service-defaults.md
       - name: External parameters

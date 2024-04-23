@@ -365,7 +365,7 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 1. Select the **Submit** button, and the form submits the support ticket for processing — and clears the form.
 1. In a separate browser tab, use the Azure portal to navigate to the **Storage browser** in your Azure Storage Account.
 1. Select **Containers** and then navigate into the **Documents** container to see the uploaded file.
-1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../fundamentals/dashboard.md), and selecting the **aspirestorage.worker** from the dropdown.
+1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md), and selecting the **aspirestorage.worker** from the dropdown.
 
     :::image type="content" source="media/queue-output.png" lightbox="media/queue-output.png"  alt-text="A screenshot showing the console output of the Worker app.":::
 
@@ -385,7 +385,7 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 1. Select the **Submit** button, and the form submits the support ticket for processing — and clears the form.
 1. In a separate browser tab, use the Azure portal to navigate to the **Storage browser** in your Azure Storage Account.
 1. Select **Containers** and then navigate into the **Documents** container to see the uploaded file.
-1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../fundamentals/dashboard.md), and selecting the **aspirestorage.worker** from the dropdown.
+1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md), and selecting the **aspirestorage.worker** from the dropdown.
 
     :::image type="content" source="media/queue-output.png" lightbox="media/queue-output.png"  alt-text="A screenshot showing the console output of the Worker app.":::
 

@@ -9,7 +9,7 @@ metadata:
   description: Samples, tutorials, and education for .NET Aspire, your cloud-native app stack build around components that provide production-ready telemetry, health checks, configurability, and testability.
   ms.topic: hub-page
   ms.service: dotnet-aspire
-  ms.date: 03/28/2024
+  ms.date: 04/23/2024
 
 highlightedContent:
   items:
@@ -58,12 +58,15 @@ conceptualContent:
         - itemType: concept
           text: .NET Aspire service discovery
           url: service-discovery/overview.md
+        - itemType: concept
+          text: .NET Aspire and launch profiles
+          url: fundamentals/launch-profiles.md
         - itemType: reference
           text: .NET Aspire service defaults
           url: fundamentals/service-defaults.md
         - itemType: reference
           text: .NET Aspire dashboard
-          url: fundamentals/dashboard.md
+          url: fundamentals/dashboard/overview.md
         - itemType: overview
           text: .NET Aspire local networking
           url: fundamentals/networking-overview.md

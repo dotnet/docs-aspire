@@ -6,12 +6,33 @@ items:
   - name: Latest product updates
     expanded: true
     items:
+    - name: .NET Aspire preview 6
+      href: preview-6.md
     - name: .NET Aspire preview 5
       href: preview-5.md
     - name: .NET Aspire preview 4
       href: preview-4.md
     - name: .NET Aspire preview 3
       href: preview-3.md
+    - name: .NET Aspire preview 2
+      href: https://devblogs.microsoft.com/dotnet/announcing-dotnet-aspire-preview-2/
+    - name: .NET Aspire preview 1
+      href: https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-simplifying-cloud-native-development-with-dotnet-8/
+  - name: GitHub releases
+    expanded: true
+    items:
+    - name: .NET Aspire 8.0 preview 6
+      href: https://github.com/dotnet/aspire/releases/tag/v8.0.0-preview.6.24214.1
+    - name: .NET Aspire 8.0 preview 5
+      href: https://github.com/dotnet/aspire/releases/tag/v8.0.0-preview.5.24201.12
+    - name: .NET Aspire 8.0 preview 4
+      href: https://github.com/dotnet/aspire/releases/tag/v8.0.0-preview.4.24156.9
+    - name: .NET Aspire 8.0 preview 3
+      href: https://github.com/dotnet/aspire/releases/tag/v8.0.0-preview.3.24105.21
+    - name: .NET Aspire 8.0 preview 2
+      href: https://github.com/dotnet/aspire/releases/tag/v8.0.0-preview.2.23619.3
+    - name: .NET Aspire 8.0 preview 1
+      href: https://github.com/dotnet/aspire/releases/tag/v8.0.0-preview.1.23557.2
   - name: Latest documentation updates
     expanded: true
     items:

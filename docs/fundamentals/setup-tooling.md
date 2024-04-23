@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 04/02/2024
+ms.date: 04/23/2024
 ---
 
 # .NET Aspire setup and tooling
@@ -189,7 +189,7 @@ dotnet new aspire-starter
 
 ## .NET Aspire dashboard
 
-.NET Aspire templates that expose the app host project also include a useful [dashboard](dashboard.md) that can be used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
+.NET Aspire templates that expose the app host project also include a useful [dashboard](dashboard/overview.md) that can be used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
 
 The .NET Aspire dashboard is only visible while the app is running and starts automatically when you start the **.AppHost** project. Visual Studio launches both your app and the .NET Aspire dashboard for you automatically in your browser. If you start the app using the .NET CLI, copy and paste the dashboard URL from the output into your browser, or hold <kbd>Ctrl</kbd> and select the link (if your terminal supports hyperlinks).
 
@@ -197,7 +197,7 @@ The .NET Aspire dashboard is only visible while the app is running and starts au
 
 The left navigation provides links to the different parts of the dashboard, each of which you'll explore in the following sections.
 
-:::image type="content" source="media/dashboard/projects.png" lightbox="media/dashboard/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Projects page.":::
+:::image type="content" source="media/setup-tooling/projects.png" lightbox="media/setup-tooling/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Projects page.":::
 
 ## Visual Studio tooling
 
@@ -254,3 +254,11 @@ For more information on .NET Aspire orchestration, see [.NET Aspire orchestratio
 Visual Studio provides the option to **Enlist in Aspire orchestration** during the new project workflow. Select this option to have Visual Studio create **.AppHost** and **.ServiceDefault** projects alongside your selected project template.
 
 :::image type="content" source="../media/aspire-enlist-orchestration.png" lightbox="../media/aspire-enlist-orchestration.png" alt-text="A screenshot showing how to enlist in .NET Aspire orchestration.":::
+
+### Create test project
+
+When you're using Visual Studio, and you select the **.NET Aspire Start Application** template, you have the option to include a test project. This test project is an xUnit project that includes a sample test that you can use as a starting point for your tests.
+
+:::image type="content" source="media/setup-tooling/create-test-projects-template.png" lightbox="media/setup-tooling/create-test-projects-template.png" alt-text="A screenshot of Visual Studio displaying the option to create a test project.":::
+
+For more information, see [Testing .NET Aspire apps](testing.md).

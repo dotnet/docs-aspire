@@ -151,12 +151,10 @@ To visualize the Angular client app, navigate to the "angular" endpoint in the .
 
 ## Explore the React client
 
-There are several key modifications from the original React template. The first is the addition of an _.env_ file. This file is used to set two React-specific environment variables:
+There are several key modifications from the original React template. The first is the addition of environment variables in the app host. This file is used to set two React-specific environment variables:
 
 - `BROWSER=none`: This environment variable is used to prevent the React client app from launching a browser window.
 - `REACT_APP_WEATHERAPI_URL`: This environment variable is used to set the URL for the "weatherapi" service.
-
-:::code language="ini" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.React/.env":::
 
 The preceding configuration sets the `REACT_APP_WEATHERAPI_URL` environment variable from the `services__weatherapi__http__0` environment variable. This environment variable is set by the .NET Aspire app host, and is used to resolve the "weatherapi" service endpoint.
 
@@ -180,9 +178,7 @@ To visualize the React client app, navigate to the "react" endpoint in the .NET 
 
 ## Explore the Vue client
 
-There are several key modifications from the original Vue template. The first is the addition of an _.env_ file. This file configures a `VITE_WEATHERAPI_URL` environment variable from the `services__weatherapi__http__0` environment variable. This environment variable is set by the .NET Aspire app host and is used to resolve the "weatherapi" service endpoint.
-
-:::code language="ini" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Vue/.env":::
+There are several key modifications from the original Vue template. The first is the addition of an environment variables in the app host. This file configures a `VITE_WEATHERAPI_URL` environment variable from the `services__weatherapi__http__0` environment variable. This environment variable is set by the .NET Aspire app host and is used to resolve the "weatherapi" service endpoint.
 
 > [!IMPORTANT]
 > For custom environment variables to be available in the Vue client app running on Vite, they must be prefixed with `VITE_`. For more information, see [Environment Variables and Modes](https://vitejs.dev/guide/env-and-mode#env-files).
