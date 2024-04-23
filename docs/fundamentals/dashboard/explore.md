@@ -1,7 +1,7 @@
 ---
 title: Explore .NET Aspire dashboard
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 03/13/2024
+ms.date: 04/23/2024
 ms.topic: reference
 ---
 
@@ -16,6 +16,30 @@ In the upcoming sections, you'll discover how to create a .NET Aspire app and em
 > - Delve into the features of the .NET Aspire dashboard app.
 
 The screenshots featured in this article showcase the dark theme. For more details on theme selection, refer to [Theme selection](#theme-selection).
+
+## Dashboard authentication
+
+When you run a .NET Aspire app host, the orchestrator starts up all the apps dependent resources and then opens a browser window to the dashboard. The .NET Aspire dashboard requires token-based authentication for its users because it displays environment variables and other sensitive information.
+
+When the dashboard is launched from Visual Studio or Visual Studio Code (with the [C# Dev Kit extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)), the login page is bypassed, and the dashboard opens directly. This is the typical developer <kbd>F5</kbd> experience, and the authentication login flow is automated by the .NET Aspire tooling.
+
+However, if you start the app host from the command line you'll be presented with the login page. The console window displays a URL that you can click on to open the dashboard in your browser.
+
+:::image type="content" source="media/explore/dotnet-run-login-url.png" lightbox="media/explore/dotnet-run-login-url.png" alt-text=".NET CLI run command output, showing the login URL with token query string.":::
+
+The URL contains a token query string (with the token value mapped to the `t` name part) that's used to _log in_ to the dashboard. If you're console supports it, you can hold the <kbd>Ctrl</kbd> key and then click the link to open the dashboard in your browser. This method is easier than copying the token from the console and pasting it into the login page. If you end up on the dashboard login page without either of the previously described methods, you can always return to the console to copy the token.
+
+:::image type="content" source="media/explore/aspire-login.png" lightbox="media/explore/aspire-login.png" alt-text=".NET Aspire dashboard login page.":::
+
+The login page accepts a token and provides helpful instructions on how to obtain the token as shown in the following screenshot:
+
+:::image type="content" source="media/explore/aspire-login-help.png" lightbox="media/explore/aspire-login-help.png" alt-text=".NET Aspire dashboard login page with instructions on how to obtain the token.":::
+
+After copying the token from the console and pasting it into the login page, select the **Login** button.
+
+:::image type="content" source="media/explore/aspire-login-filled.png" lightbox="media/explore/aspire-login-filled.png" alt-text=".NET Aspire dashboard login page with the token pasted into the textbox.":::
+
+The dashboard persists the token as a browser session cookie. Session cookies are temporary and only valid for the session. If you close the browser, the session cookie is deleted, and you'd need to log in again. For more information, see [Security considerations for running the .NET Aspire dashboard](security-considerations.md).
 
 ## Resources page
 
