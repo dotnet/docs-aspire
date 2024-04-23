@@ -38,7 +38,7 @@ We expect there to be a few more breaking changes before we lock down the API fo
 
 ## Security improvements
 
-We've made several changes to improve the security of .NET Aspire. This includes securing the communication between many of the components (the orchestrator and IDE and the dashboard) to all use TLS and use api keys for authentication. This prevents unauthorized users from accessing potentially sensisitve information exposed by the apphost project and the dashboard when running locally on your machine.
+We've made several changes to improve the security of .NET Aspire. This includes securing the communication between many of the components (the orchestrator and IDE and the dashboard) to all use TLS and use API keys for authentication. This prevents unauthorized users from accessing potentially sensisitve information exposed by the apphost project and the dashboard when running locally on your machine.
 
 ### Dashboard authentication
 
@@ -46,7 +46,13 @@ The biggest user facing change this release is the addition of authentication to
 
 Data displayed in the dashboard can be sensitive. For example, configuration can include secrets in environment variables, and telemetry can include sensitive runtime data. To protect this data, the dashboard now requires authentication, even when running in your local development environment.
 
-TBD Lift content from dashboard PR including images with the new experience
+:::image type="content" source="media/preview-6/login.png" lightbox="media/preview-6/login.png" alt-text=".NET Aspire dashboard login page":::
+
+If you run your .NET Aspire apps from Visual Studio or the C# Dev Kit for Visual Studio Code then you'll never see the login page. Aspire tooling has been updated to log you in automatically. Nice!
+
+If you run your .NET Aspire apps from the command line, you'll need to login the first time you access the dashboard. The required token is printed in console output, so copy and paste it into the login page and click Login. A persistent auth cookie is saved to the browser. Hopefully you won't need to see the login page often.
+
+:::image type="content" source="media/preview-6/console-token.png" lightbox="media/preview-6/console-token.png" alt-text=".NET Aspire console with login token highlighted":::
 
 ### New resources and components
 
