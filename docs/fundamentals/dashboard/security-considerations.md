@@ -11,7 +11,7 @@ The [.NET Aspire dashboard](overview.md) offers powerful insights to your apps. 
 
 Data displayed in the dashboard can be sensitive. For example, configuration can include secrets in environment variables, and telemetry can include sensitive runtime data. Care should be taken to secure access to the dashboard.
 
-## Scnearios for running the dashboard
+## Scenarios for running the dashboard
 
 The dashboard can be run in different scenarios, such as being automatically starting by .NET Aspire tooling, or as a standalone application that is separate from other .NET Aspire components. Steps to secure the dashboard depend on how it's being run.
 
@@ -38,6 +38,16 @@ The dashboard is shipped as a Docker image and can be without the rest of .NET A
 - Incoming telemetry is unsecured. Warnings are displayed in the console and dashboard UI.
 
 The telemetry endpoint accepts incoming OTLP data without authentication. When the endpoint is unsecured, the dashboard is open to receiving telemetry from untrusted apps.
+
+For information about securing the telemetry when running the dashboard in standalone mode, see [Secure telemetry endpoint](#secure-telemetry-endpoint).
+
+## Secure telemetry endpoint
+
+The .NET Aspire dashboard provides a variety of ways to view logs, traces, and metrics for your app. This information enables you to track the behavior and performance of your app and to diagnose any issues that arise. It's important that you can trust this information.
+
+The dashboard collects telemetry through an [OTLP (OpenTelemetry protocol)](https://opentelemetry.io/docs/specs/otel/protocol/) endpoint. Apps send telemetry to the endpoint, the dashboard stores external information it receives in meory, and then it's accessable via the UI.
+
+To prevent untrusted apps from sending telemetry to .NET Aspire, the OTLP endpoint should be secured. The OTLP endpoint is automatically secured with an API key when the dashboard is started by .NET Aspire tooling. Additional configuration is required for standalone mode.
 
 API key authentication can be enabled on the telemetry endpoint with some additional configuration:
 
