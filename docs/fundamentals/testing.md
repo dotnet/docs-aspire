@@ -6,7 +6,7 @@ ms.date: 04/22/2024
 
 # Testing .NET Aspire apps
 
-.NET Aspire include an [xUnit testing project template](setup-tooling.md#net-aspire-project-templates) that you can use to test your .NET Aspire apps. The testing project template is based on the xUnit testing framework and includes a sample test that you can use as a starting point for your tests. In this article, you'll learn how to create a test project, write, and run tests for your .NET Aspire apps.
+In this article, you'll learn how to create a test project, write, and run tests for your .NET Aspire apps. The tests in this article are not unit tests, but rather functional or integration tests. .NET Aspire include an [xUnit testing project template](setup-tooling.md#net-aspire-project-templates) that you can use to test your .NET Aspire apps. The testing project template is based on the xUnit testing framework and includes a sample test that you can use as a starting point for your tests.
 
 ## Create a test project
 
@@ -32,3 +32,17 @@ The template test project includes a `WebTests` class with a single test fact. T
 Consider the following test class:
 
 :::code language="csharp" source="snippets/testing/AspireApp1/AspireApp1.Tests/WebTests.cs":::
+
+The preceding code:
+
+- Relies on the `DistributedApplicationTestingBuilder` to asynchronously create the app host.
+  - The `appHost` is an instance of `IDistributedApplicationTestingBuilder` that represents the app host.
+- The `appHost` has its `BuildAsync` method invoked, which returns the `DistributedApplication` instance as the `app`.
+- The `app` is started asynchronously.
+- An `HttpClient` is created for the `webfrontend` resource.
+- A simple GET request is made to the root of the `webfrontend` resource.
+- The test asserts that the response status code is `OK`.
+
+## Summary
+
+By using the .NET Aspire testing project template, you can easily create test projects for your .NET Aspire apps. The template project includes a sample test that you can use as a starting point for your tests. The `DistributedApplicationTestingBuilder` follows a familiar pattern to the `WebApplicationFactory` in ASP.NET Core. It allows you to create a test host for your distributed application and run tests against it.
