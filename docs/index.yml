@@ -58,6 +58,9 @@ conceptualContent:
         - itemType: concept
           text: .NET Aspire service discovery
           url: service-discovery/overview.md
+        - itemType: concept
+          text: .NET Aspire and launch profiles
+          url: fundamentals/launch-profiles.md
         - itemType: reference
           text: .NET Aspire service defaults
           url: fundamentals/service-defaults.md
