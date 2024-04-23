@@ -39,7 +39,7 @@ The dashboard is shipped as a Docker image and can be without the rest of .NET A
 
 The telemetry endpoint accepts incoming OTLP data without authentication. When the endpoint is unsecured, the dashboard is open to receiving telemetry from untrusted apps.
 
-For information about securing the telemetry when running the dashboard in standalone mode, see [Secure telemetry endpoint](#secure-telemetry-endpoint).
+For information about securing the telemetry when running the dashboard in standalone mode, see [securing the telemetry endpoint](#secure-telemetry-endpoint).
 
 ## Secure telemetry endpoint
 
