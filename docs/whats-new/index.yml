@@ -20,6 +20,10 @@ landingContent:
       url: preview-4.md
     - text: .NET Aspire preview 3
       url: preview-3.md
+    - text: .NET Aspire preview 2
+      url: https://devblogs.microsoft.com/dotnet/announcing-dotnet-aspire-preview-2/
+    - text: .NET Aspire preview 1
+      url: https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-simplifying-cloud-native-development-with-dotnet-8/
 - title: .NET Aspire GitHub release notes
   linkLists:
   - linkListType: whats-new

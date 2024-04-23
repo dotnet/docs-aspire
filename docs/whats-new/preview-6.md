@@ -182,6 +182,8 @@ We removed dependencies on any pre-release versions of OpenTelemetry and replace
 
 The Azure provisioning packages have been broken out into a package per service. This allows you to only install the packages you need to consume these APIs. This update should be transparent to most users, but if you are using the Azure provisioning packages directly, you will need to update your project file to reference the new packages.
 
+For more information, see [Azure provisioning libraries](../deployment/azure/local-provisioning.md#azure-provisioning-libraries).
+
 ## Azure Developer CLI supports multiple endpoints
 
 The Azure Developer CLI (`azd`) now supports deploying projects, containers or docker files with multiple endpoints. These will be mapped to [Azure Container App's ingress](/azure/container-apps/ingress-overview).
