@@ -84,7 +84,7 @@ The OTLP endpoint authentication is configured with `Dashboard:Otlp:AuthMode`. T
 API key authentication works by requiring each OTLP request to have a valid `x-otlp-api-key` header value. It must match either the primary or secondary key.
 
 | Option | Default Value | Description |
-| ------ | ------------- | ----------- |
+|--|--|--|
 | `Dashboard:Otlp:AuthMode` | `Unsecured` | Can be set to `ApiKey`, `Certificate` or `Unsecured`. `Unsecured` should only be used during local development. It's not recommended when hosting the dashboard publicly or in other settings. |
 | `Dashboard:Otlp:PrimaryApiKey` | `null` | Specifies the primary API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended. This value is required if auth mode is API key. |
 | `Dashboard:Otlp:SecondaryApiKey` | `null` | Specifies the secondary API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended. This value is optional. If a second API key is specified then the incoming `x-otlp-api-key` header value can match either the primary or secondary key. |
@@ -96,7 +96,7 @@ The dashboard connects to a resource service to load and display resource inform
 The resource service client authentication is configured with `Dashboard:ResourceServiceClient:AuthMode`. The client can be configured to support API key or client certificate authentication.
 
 | Option | Default Value | Description |
-| ------ | ------------- | ----------- |
+|--|--|--|
 | `Dashboard:ResourceServiceClient:Url` | `null` | The gRPC endpoint to which the dashboard connects for its data. If this value is unspecified, the dashboard shows telemetry data but no resource list or console logs. |
 | `Dashboard:ResourceServiceClient:AuthMode` | `null` | Can be set to `ApiKey`, `Certificate` or `Unsecured`. `Unsecured` should only be used during local development. It's not recommended when hosting the dashboard publicly or in other settings. This value is required is a resource service URL is specified. |
 | `Dashboard:ResourceServiceClient:ApiKey` | `null` | The API to send to the resource service in the `x-resource-service-api-key` header. This value is required if auth mode is API key. |
@@ -114,7 +114,7 @@ Telemetry is stored in-memory. To avoid excessive memory usage, the dashboard ha
 Limits are per-resource. For example, a `MaxLogCount` value of 10,000 configures the dashboard to store up to 10,000 log entries per-resource.
 
 | Option | Default Value | Description |
-| ------ | ------------- | ----------- |
+|--|--|--|
 | `Dashboard:TelemetryLimits:MaxLogCount` | 10,000 | The maximum number of log entries. |
 | `Dashboard:TelemetryLimits:MaxTraceCount` | 10,000 | The maximum number of log traces. |
 | `Dashboard:TelemetryLimits:MaxMetricsCount` | 50,000 | The maximum number of metric data points. |
@@ -125,5 +125,5 @@ Limits are per-resource. For example, a `MaxLogCount` value of 10,000 configures
 ### Other
 
 | Option | Default Value | Description |
-| ------ | ------------- | ----------- |
+|--|--|--|
 | `Dashboard:ApplicationName` | `Aspire` | The application name to be displayed in the UI. This applies only when no resource service URL is specified. When a resource service exists, the service specifies the application name. |
