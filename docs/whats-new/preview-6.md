@@ -8,7 +8,7 @@ ms.date: 04/22/2024
 
 .NET Aspire preview 6 introduces changes that improve the security and reliability of .NET Aspire.
 
-The following article provides an overview of the major changes in .NET Aspire preview 6: 
+The following article provides an overview of the major changes in .NET Aspire preview 6:
 
 **8.0.0-preview.6.24214.1**.
 
@@ -94,7 +94,6 @@ The above example uses the `WithContainerRunArgs` method to pass the `--gpus=all
 > [!NOTE]
 > .NET Aspire's orchestrator will not validate the arguments you pass to the container runtime. It is up to you to ensure that the arguments are valid and safe. These arguments can also conflict with the arguments that .NET Aspire uses to run the container.
 
-
 ### Arguments on project
 
 Outside of using launch profiles, it's now possible to programmatically pass arguments to a project resources:
@@ -165,7 +164,7 @@ if (useOtlpExporter)
 }
 ```
 
-This will automatically configure the OTLP exporter to send metrics, traces, and logs to the 
+This will automatically configure the OTLP exporter to send metrics, traces, and logs to the
 OTLP endpoint specified in the `OTEL_EXPORTER_OTLP_ENDPOINT` environment variable.
 
 ## Components
