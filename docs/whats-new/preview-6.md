@@ -181,4 +181,4 @@ The Azure provisioning packages have been broken out into a package per service.
 
 ### Multiple endpoints
 
-Azd now supports deploying projects, containers or docker files with multiple endpoints. These will be mapped to ACA's [ingress](https://learn.microsoft.com/en-us/azure/container-apps/ingress-overview).
+Azd now supports deploying projects, containers or docker files with multiple endpoints. These will be mapped to ACA's [ingress](https://learn.microsoft.com/azure/container-apps/ingress-overview).
