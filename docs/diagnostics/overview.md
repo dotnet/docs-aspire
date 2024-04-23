@@ -9,22 +9,22 @@ ms.date: 03/25/2024
 
 Several APIs of .NET Aspire are decorated with the <xref:System.Diagnostics.CodeAnalysis.ExperimentalAttribute>. This attribute indicates that the API is experimental and may be removed or changed in future versions of .NET Aspire. The attribute is used to identify APIs that aren't yet stable and may not be suitable for production use.
 
-## ASPIRE0001
+## AZPROVISION001
 
-.NET Aspire provides various overloads for Cloud Development Kit (CDK) resource types. The overloads are used to create resources with different configurations. The overloads are experimental and may be removed or changed in future versions of .NET Aspire.
+.NET Aspire provides various overloads for Azure Provisioning resource types (from the `Azure.Provisioning` package). The overloads are used to create resources with different configurations. The overloads are experimental and may be removed or changed in future versions of .NET Aspire.
 
 To suppress this diagnostic with the `SuppressMessageAttribute`, add the following code to your project:
 
 ```csharp
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("ASPIRE0001", "Justification")]
+[assembly: SuppressMessage("AZPROVISION001", "Justification")]
 ```
 
 Alternatively, you can suppress this diagnostic with preprocessor directive by adding the following code to your project:
 
 ```csharp
-#pragma warning disable ASPIRE0001
+#pragma warning disable AZPROVISION001
         // API that is causing the warning.
-#pragma warning restore ASPIRE0001
+#pragma warning restore AZPROVISION001
 ```
