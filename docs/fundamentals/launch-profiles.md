@@ -96,13 +96,13 @@ The .NET Aspire templates have a very similar set of _launch profiles_ to a regu
 
 In .NET Aspire the AppHost is responsible for coordinating the launch of multiple service projects. When you run the AppHost either via the command line or from Visual Studio (or other development environment) a launch profile is selected for the AppHost. In turn, the AppHost will attempt to find a matching launch profile in the service projects it is launching and use those options to control the environment and default networking configuration for the service project.
 
-When the AppHost launches a service project it does not simply launch the service project using the `--launch-profile` option. Therefore there will be no `DOTNET_LAUNCH_PROFILE` environment variable set for service projects. This is because .NET Aspire modifies the `ASPNETCORE_URLS` environment variable (derived from the `applicationUrl` field in the launch profile) to use a different port. By default .NET Aspire inserts a reverse proxy in front of the ASP.NET Core application to allow for multiple instances of the application using the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithReplicas> method.
+When the AppHost launches a service project it does not simply launch the service project using the `--launch-profile` option. Therefore there will be no `DOTNET_LAUNCH_PROFILE` environment variable set for service projects. This is because .NET Aspire modifies the `ASPNETCORE_URLS` environment variable (derived from the `applicationUrl` field in the launch profile) to use a different port. By default .NET Aspire inserts a reverse proxy in front of the ASP.NET Core application to allow for multiple instances of the application using the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithReplicas%2A> method.
 
 Other settings such as options from the `environmentVariables` field are passed through to the application without modification.
 
 ## Controlling launch profile selection
 
-Ideally it is possible to align the launch profile names between the AppHost and the service projects to make it easy to switch between configuration options on all projects coordinated by the AppHost at once. However it may be desirable to control launch profile that a specific project uses. The <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject> extension method provides a mechanism to do this.
+Ideally it is possible to align the launch profile names between the AppHost and the service projects to make it easy to switch between configuration options on all projects coordinated by the AppHost at once. However it may be desirable to control launch profile that a specific project uses. The <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> extension method provides a mechanism to do this.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -116,11 +116,11 @@ The code above shows that the `inventoryservice` resource (a .NET project) will 
 3. Use the default (first) launch profile in `launchSettings.json`.
 4. Don't use a launch profile.
 
-To force a service project to launch without a launch profile the `launchProfileName` argument on the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject> method can be set to null.
+To force a service project to launch without a launch profile the `launchProfileName` argument on the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> method can be set to null.
 
 ## Launch profiles and endpoints
 
-When adding an ASP.NET Core project to the AppHost, .NET Aspire will parse the `launchSettings.json` file selecting the appropriate launch profile and automatically generate endpoints in the application model based on the URL(s) present in the `applicationUrl` field. To modify the endpoints that are automatically injected the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint> extension method.
+When adding an ASP.NET Core project to the AppHost, .NET Aspire will parse the `launchSettings.json` file selecting the appropriate launch profile and automatically generate endpoints in the application model based on the URL(s) present in the `applicationUrl` field. To modify the endpoints that are automatically injected the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint%2A> extension method.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
