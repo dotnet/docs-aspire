@@ -18,7 +18,7 @@ dotnet new aspire-xunit
 
 ## Explore the test project
 
-The .NET Aspire test project takes a project reference dependency on the target app host. Consider the template project:
+The following example test project was created as part of the **.NET Aspire Starter Application** template. If you're unfamiliar with it, see [Quickstart: Build your first .NET Aspire app](../get-started/build-your-first-aspire-app.md). The .NET Aspire test project takes a project reference dependency on the target app host. Consider the template project:
 
 :::code language="xml" source="snippets/testing/AspireApp1/AspireApp1.Tests/AspireApp1.Tests.csproj":::
 
