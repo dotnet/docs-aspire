@@ -75,7 +75,7 @@ builder.AddQdrantClient("qdrant");
 You can now specify custom arguments to the docker or podman run command when running a container. This can be useful for accessing specifics features of the container runtime not exposed by aspire directly.
 
 ```C#
-var ollama = builder.AddContainer("ollama", "ollama/ollama")
+builder.AddContainer("ollama", "ollama/ollama")
         .WithVolume("/root/.ollama")
         .WithBindMount("./ollamaconfig", "/root/")
         .WithHttpEndpoint(port: 11434, name: "ollama")
