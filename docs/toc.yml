@@ -50,6 +50,8 @@ items:
         href: service-discovery/overview.md
       - name: .NET Aspire and launch profiles
         href: fundamentals/launch-profiles.md
+      - name: Testing .NET Aspire apps
+        href: fundamentals/testing.md
       - name: Service defaults
         href: fundamentals/service-defaults.md
       - name: External parameters
