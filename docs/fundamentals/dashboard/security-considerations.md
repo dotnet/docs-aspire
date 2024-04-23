@@ -43,7 +43,7 @@ For information about securing the telemetry when running the dashboard in stand
 
 ## Secure telemetry endpoint
 
-The .NET Aspire dashboard provides a variety of ways to view logs, traces, and metrics for your app. This information enables you to track the behavior and performance of your app and to diagnose any issues that arise. It's important that you can trust this information.
+The .NET Aspire dashboard provides a variety of ways to view logs, traces, and metrics for your app. This information enables you to track the behavior and performance of your app and to diagnose any issues that arise. It's important that you can trust this information and a warning is displayed in the UI if telemetry isn't secured.
 
 The dashboard collects telemetry through an [OTLP (OpenTelemetry protocol)](https://opentelemetry.io/docs/specs/otel/protocol/) endpoint. Apps send telemetry to the endpoint, the dashboard stores external information it receives in meory, and then it's accessable via the UI.
 
