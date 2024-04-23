@@ -23,15 +23,15 @@ When you run a .NET Aspire app host, the orchestrator starts up all the apps dep
 
 When the dashboard is launched from Visual Studio or Visual Studio Code (with the [C# Dev Kit extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)), the login page is bypassed, and the dashboard opens directly. This is the typical developer <kbd>F5</kbd> experience, and the authentication login flow is automated by the .NET Aspire tooling.
 
-However, if you start the app host from the command line you'll be presented with the login page. The console window displays a URL that you can click on to open the dashboard in your browser.
+However, if you start the app host from the command line, you're presented with the login page. The console window displays a URL that you can click on to open the dashboard in your browser.
 
 :::image type="content" source="media/explore/dotnet-run-login-url.png" lightbox="media/explore/dotnet-run-login-url.png" alt-text=".NET CLI run command output, showing the login URL with token query string.":::
 
-The URL contains a token query string (with the token value mapped to the `t` name part) that's used to _log in_ to the dashboard. If you're console supports it, you can hold the <kbd>Ctrl</kbd> key and then click the link to open the dashboard in your browser. This method is easier than copying the token from the console and pasting it into the login page. If you end up on the dashboard login page without either of the previously described methods, you can always return to the console to copy the token.
+The URL contains a token query string (with the token value mapped to the `t` name part) that's used to _log in_ to the dashboard. If your console supports it, you can hold the <kbd>Ctrl</kbd> key and then click the link to open the dashboard in your browser. This method is easier than copying the token from the console and pasting it into the login page. If you end up on the dashboard login page without either of the previously described methods, you can always return to the console to copy the token.
 
 :::image type="content" source="media/explore/aspire-login.png" lightbox="media/explore/aspire-login.png" alt-text=".NET Aspire dashboard login page.":::
 
-The login page accepts a token and provides helpful instructions on how to obtain the token as shown in the following screenshot:
+The login page accepts a token and provides helpful instructions on how to obtain the token, as shown in the following screenshot:
 
 :::image type="content" source="media/explore/aspire-login-help.png" lightbox="media/explore/aspire-login-help.png" alt-text=".NET Aspire dashboard login page with instructions on how to obtain the token.":::
 
@@ -93,7 +93,7 @@ To see the log entry in detail for the error, select the **View** button to open
 For more information and examples of Structured logs, see the [Structured logs page](#structured-logs-page) section.
 
 > ![NOTE]
-> The resources page isn't available if the dashboard is started without a configured resource service. Instead the dashboard will start on the [Structured logs page](#structured-logs-page). This is the default experience when the dashboard is run in standalone-mode without additional configuration.
+> The resources page isn't available if the dashboard is started without a configured resource service. The dashboard starts on the [Structured logs page](#structured-logs-page) instead. This is the default experience when the dashboard is run in standalone mode without additional configuration.
 >
 > For more information about configuring a resource service, see [Dashboard configuration](configuration.md).
 

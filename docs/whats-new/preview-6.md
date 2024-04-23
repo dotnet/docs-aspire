@@ -41,13 +41,13 @@ We've made several changes to improve the security of .NET Aspire. This includes
 
 ### Dashboard authentication
 
-The biggest user facing change this release is the addition of authentication to the dashboard.
+The biggest user-facing change this release is the addition of authentication to the dashboard.
 
 Data displayed in the dashboard can be sensitive. For example, configuration can include secrets in environment variables, and telemetry can include sensitive runtime data. To protect this data, the dashboard now requires authentication, even when running in your local development environment.
 
 :::image type="content" source="media/preview-6/login.png" lightbox="media/preview-6/login.png" alt-text=".NET Aspire dashboard login page":::
 
-If you run your .NET Aspire apps from Visual Studio or the C# Dev Kit for Visual Studio Code then you'll never see the login page. Aspire tooling has been updated to log you in automatically. Nice!
+If you run your .NET Aspire apps from Visual Studio or the C# Dev Kit for Visual Studio Code, then you'll never see the login page. Aspire tooling has been updated to log you in automatically.
 
 If you run your .NET Aspire apps from the command line, you'll need to login the first time you access the dashboard. The required token is printed in console output, so copy and paste it into the login page and click Login. A persistent auth cookie is saved to the browser. Hopefully you won't need to see the login page often.
 
@@ -110,7 +110,7 @@ builder.AddProject<Projects.Api>("api")
 
 ### Set a custom environment variable name for a connection string
 
-Resources in .NET Aspire can expose connection strings by implement `IResourceWithConnectionString`. This is used in conjunction with the `WithReference` method to pass the connection string to a project. This sets the fixed name `ConnectionStrings__{ResourceName}`. This can make it hard to integrate with systems that already have an existing convention of naming configuration keys. You can now set a custom environment variable name for the connection string:
+Resources in .NET Aspire can expose connection strings by implementing `IResourceWithConnectionString`. This interface is used in conjunction with the `WithReference` method to pass the connection string to a project. This sets the fixed name `ConnectionStrings__{ResourceName}`, which might make it hard to integrate with systems that already have an existing convention of naming configuration keys. To help with this problem, you can now set a custom environment variable name for the connection string:
 
 ```csharp
 var cache = builder.AddRedis("cache");
@@ -121,7 +121,7 @@ builder.AddProject<Projects.WebApplication2>("api")
 
 ### Fully qualified container images
 
-For better compatibility with other container runtimes, we now fully qualify our default container images with docker.io instead of letting the runtime infer the registry. This can be overridden by using the `WithImageRegistry`.
+For better compatibility with other container runtimes, we now fully qualify our default container images with docker.io instead of letting the runtime infer the registry. This can be overridden by using `WithImageRegistry`.
 
 ## Testing
 
@@ -160,7 +160,7 @@ For more information, see [Testing .NET Aspire apps](../fundamentals/testing.md)
 
 ## Templates
 
-We updated to the latest stable versions of the OpenTelemetry SDK and Instrumentation packages, version 1.8.1. This includes changes to simplify the OTLP exporter configuration using newer APIs:
+We updated to the latest stable versions of the OpenTelemetry SDK and Instrumentation packages to version 1.8.1. This includes changes to simplify the OTLP exporter configuration using newer APIs:
 
 ```csharp
 var useOtlpExporter = !string.IsNullOrWhiteSpace(
@@ -180,7 +180,7 @@ We removed dependencies on any pre-release versions of OpenTelemetry and replace
 
 ## Azure provisioning packages
 
-The Azure provisioning packages have been broken out into a package per service. This allows you to only install the packages you need to consume these APIs. This update should be transparent to most users, but if you are using the Azure provisioning packages directly, you will need to update your project file to reference the new packages.
+The Azure provisioning packages have been broken out into a package per service. This allows you to only install the packages you need to consume these APIs. This update should be transparent to most users, but if you are using the Azure provisioning packages directly, you must update your project file to reference the new packages.
 
 For more information, see [Azure provisioning libraries](../deployment/azure/local-provisioning.md#azure-provisioning-libraries).
 
