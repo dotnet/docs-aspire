@@ -12,15 +12,14 @@ To update to the latest version, run the following commands:
 
 ```dotnetcli
 dotnet workload update
-```
-
-```dotnetcli
 dotnet workload install aspire
 ```
 
-Run `dotnet workload list` to see the installed workloads.
+To validate that preview 6 is installed, run `dotnet workload list` to see the installed workloads:
 
 ```dotnetcli
+dotnet workload list
+
 Installed Workload Id    Manifest Version                   Installation Source
 --------------------------------------------------------------------------------------------
 aspire                   8.0.0-preview.6.24214.1/8.0.100    SDK 8.0.200, VS 17.10.34804.81
