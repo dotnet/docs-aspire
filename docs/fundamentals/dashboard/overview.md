@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard overview
 description: Overview of .NET Aspire dashboard and getting started.
-ms.date: 04/17/2024
+ms.date: 04/23/2024
 ms.topic: reference
 ---
 
@@ -31,7 +31,7 @@ The preceding Docker command:
 - Starts a container from the `mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.6` image.
 - The container has two ports:
   - Port `4317` receives OpenTelemetry data from apps. Apps send data using [OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/).
-  - Port `18888` has the dashboard UI. Navigate to <http://localhost:18888> in the browser to view the dashboard.
+  - Port `18888` has the dashboard UI. Navigate to `http://localhost:18888` in the browser to view the dashboard.
 
 For more information, see the [Standalone .NET Aspire dashboard sample app](/samples/dotnet/aspire-samples/aspire-standalone-dashboard).
 

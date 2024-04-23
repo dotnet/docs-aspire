@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard configuration
 description: .NET Aspire dashboard configuration options
-ms.date: 03/13/2024
+ms.date: 04/23/2024
 ms.topic: reference
 ---
 
@@ -51,9 +51,9 @@ Alternatively, these same values could be configured using a JSON configuration 
 ### Common configuration
 
 | Option | Default Value | Description |
-| ------ | ------------- | ----------- |
-| `ASPNETCORE_URLS` | <http://localhost:18888> | One or more HTTP endpoints through which the dashboard frontend is served. The frontend endpoint is used to view the dashboard in a browser. When the dashboard is launched by the .NET Aspire app host this address is secured with HTTPS. Securing the dashboard with HTTPS is recommend. |
-| `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL` | <http://localhost:18889> | The OTLP endpoint. OTLP endpoint hosts an OTLP service and receives telemetry. When the dashboard is launched by the .NET Aspire app host this address is secured with HTTPS. Securing the dashboard with HTTPS is recommend. |
+|--|--|--|
+| `ASPNETCORE_URLS` | `http://localhost:18888` | One or more HTTP endpoints through which the dashboard frontend is served. The frontend endpoint is used to view the dashboard in a browser. When the dashboard is launched by the .NET Aspire app host this address is secured with HTTPS. Securing the dashboard with HTTPS is recommend. |
+| `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL` | `http://localhost:18889` | The OTLP endpoint. OTLP endpoint hosts an OTLP service and receives telemetry. When the dashboard is launched by the .NET Aspire app host this address is secured with HTTPS. Securing the dashboard with HTTPS is recommend. |
 | `DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` | `false` | Configures the dashboard to not use authentication and accepts anonymous access. This setting is a shortcut to configuring `Dashboard:Frontend:AuthMode` and `Dashboard:Otlp:AuthMode` to `Unsecured`. |
 | `DOTNET_DASHBOARD_CONFIG_FILE_PATH` | `null` | The path for a JSON configuration file. If the dashboard is being run in a Docker container then this is the path to the configuration file in a mounted volume. This value is optional. |
 | `DOTNET_RESOURCE_SERVICE_ENDPOINT_URL` | `null` | The gRPC endpoint to which the dashboard connects for its data. If this value is unspecified, the dashboard shows telemetry data but no resource list or console logs. This setting is a shortcut to `Dashboard:ResourceServiceClient:Url`. |
@@ -65,7 +65,7 @@ The dashboard frontend endpoint authentication is configured with `Dashboard:Fro
 Browser token authentication works by the frontend asking for a token. The token can either be entered in the UI or provided as a query string value to the login page. For example, `https://localhost:1234/login?t=TheToken`. When the token is successfully authenticated an auth cookie is persisted to the browser and the browser is redirected to the app.
 
 | Option | Default Value | Description |
-| ------ | ------------- | ----------- |
+|--|--|--|
 | `Dashboard:Frontend:AuthMode` | `BrowserToken` | Can be set to `BrowserToken`, `OpenIdConnect` or `Unsecured`. `Unsecured` should only be used during local development. It's not recommended when hosting the dashboard publicly or in other settings. |
 | `Dashboard:Frontend:BrowserToken` | `null` | Specifies the browser token. If the browser token isn't specified then the dashboard will generate one. Tooling that wants to automate logging in with browser token authentication can specify a token and open a browser with the token in the query string. A new token should be generated each time the dashboard is launched. |
 | `Dashboard:Frontend:OpenIdConnect:NameClaimType` | `name` | Specifies the claim type(s) that should be used to display the authenticated user's full name. Can be a single claim type or a comma-delimited list of claim types. |
