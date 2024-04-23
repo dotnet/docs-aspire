@@ -57,10 +57,12 @@ For more information, see [Explore the .NET Aspire Dashboard: Authentication](..
 
 ### New resources and components
 
+The following are the new resources and components added in this release:
+
 **Aspire.Hosting.Qdrant**: Provides a resource definition for a .NET Aspire AppHost to configure a Qdrant vector database resource.
 **Aspire.Qdrant.Client**: Provides a client library for interacting with a Qdrant vector database.
 
-AppHost
+From within an app host project, you can add a Qdrant resource like this:
 
 ```csharp
 var qdrant = builder.AddQdrant("qdrant");
@@ -69,13 +71,15 @@ var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(qdrant);
 ```
 
-Application
+The component consuming project can the access the Qdrant client as shown in the following code:
 
 ```csharp
 builder.AddQdrantClient("qdrant");
 ```
 
-## AppHost
+## App host updates
+
+In .NET Aspire preview 6, the app host was updated to include several new APIs and features.
 
 ### Container runtime arguments
 
@@ -152,6 +156,8 @@ public class WebTests
 
 The above example shows how to create a `DistributedApplicationTestingBuilder` in order to bootstrap the app host project and run tests against it. There's also an easy way to create an `HttpClient` that is configured to make requests to resources in the app host project.
 
+For more information, see [Testing .NET Aspire apps](../fundamentals/testing.md).
+
 ## Templates
 
 We updated to the latest stable versions of the OpenTelemetry SDK and Instrumentation packages, version 1.8.1. This includes changes to simplify the OTLP exporter configuration using newer APIs:
@@ -172,14 +178,10 @@ This will automatically configure the OTLP exporter to send metrics, traces, and
 
 We removed dependencies on any pre-release versions of OpenTelemetry and replaced them with the latest stable versions where possible. We also removed the dependency on `OpenTelemetry.Instrumentation.EventCounters`.
 
-## Azure
-
-### Azure provisioning packages
+## Azure provisioning packages
 
 The Azure provisioning packages have been broken out into a package per service. This allows you to only install the packages you need to consume these APIs. This update should be transparent to most users, but if you are using the Azure provisioning packages directly, you will need to update your project file to reference the new packages.
 
-## Azure Developer CLI
+## Azure Developer CLI supports multiple endpoints
 
-### Multiple endpoints
-
-Azd now supports deploying projects, containers or docker files with multiple endpoints. These will be mapped to ACA's [ingress](https://learn.microsoft.com/azure/container-apps/ingress-overview).
+The Azure Developer CLI (`azd`) now supports deploying projects, containers or docker files with multiple endpoints. These will be mapped to [Azure Container App's ingress](/azure/container-apps/ingress-overview).
