@@ -32,7 +32,7 @@ There are scenarios where you might want to allow an unsecured transport. The da
 
 ### Standalone mode
 
-The dashboard is shipped as a Docker image and can be without the rest of .NET Aspire. When the dashboard is launched in standalone mode, it defaults to a mix of secure and unsecured settings.
+The dashboard is shipped as a Docker image and can be used without the rest of .NET Aspire. When the dashboard is launched in standalone mode, it defaults to a mix of secure and unsecured settings.
 
 - Browser frontend authenticated with a browser token.
 - Incoming telemetry is unsecured. Warnings are displayed in the console and dashboard UI.
@@ -58,7 +58,7 @@ docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
     mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.6
 ```
 
-The proceding Docker command:
+The preceding Docker command:
 
 - Starts the .NET Aspire dashboard image and exposes OTLP endpoint as port 4317
 - Configures the OTLP endpoint to use `ApiKey` authentication. This requires that incoming telemetry has a valid `x-otlp-api-key` header value.
