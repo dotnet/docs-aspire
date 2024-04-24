@@ -43,7 +43,7 @@ In the _Program.cs_ file of your component-consuming project, call the extension
 builder.AddAzureOpenAIClient("openAiConnectionName");
 ```
 
-In the preceding code, the <xref:Microsoft.Extensions.Hosting.AzureOpenAIExtensions.AddAzureOpenAIClient%2A> method adds an `OpenAIClient` to the DI container. The `openAiConnectionName` parameter is the name of the connection string in the configuration. You can then retrieve the `OpenAIClient` instance using dependency injection. For example, to retrieve the connection from an example service:
+In the preceding code, the <xref:Microsoft.Extensions.Hosting.AspireAzureOpenAIExtensions.AddAzureOpenAIClient%2A> method adds an `OpenAIClient` to the DI container. The `openAiConnectionName` parameter is the name of the connection string in the configuration. You can then retrieve the `OpenAIClient` instance using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
 public class ExampleService(OpenAIClient client)
