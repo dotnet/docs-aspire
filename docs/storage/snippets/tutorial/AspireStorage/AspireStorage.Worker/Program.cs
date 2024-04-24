@@ -2,7 +2,7 @@
 
 var builder = Host.CreateApplicationBuilder(args);
 
-builder.AddAzureQueueService("QueueConnection");
+builder.AddAzureQueueClient("QueueConnection");
 
 builder.AddServiceDefaults();
 builder.Services.AddHostedService<Worker>();

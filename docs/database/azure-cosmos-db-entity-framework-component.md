@@ -2,7 +2,7 @@
 title: .NET Aspire Microsoft Entity Framework Core Cosmos DB component
 description: This article describes the .NET Aspire Microsoft Entity Framework Core Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 04/18/2024
+ms.date: 04/24/2024
 ---
 
 # .NET Aspire Microsoft Entity Framework Core Cosmos DB component
@@ -80,7 +80,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(cosmosdbService);
 ```
 
-The <xref:Microsoft.Extensions.Hosting.AspireAzureCosmosDBExtensions.AddAzureCosmosDB%2A> method will read connection information from the AppHost's configuration under the `ConnectionStrings:cosmosdb` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named `cosmosdb` in the `ExampleProject` project. In the _Program.cs_ file of `cosmosdbService`, the connection can be consumed using:
+The <xref:Aspire.Hosting.AzureCosmosExtensions.AddAzureCosmosDB%2A> method will read connection information from the AppHost's configuration under the `ConnectionStrings:cosmosdb` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named `cosmosdb` in the `ExampleProject` project. In the _Program.cs_ file of `cosmosdbService`, the connection can be consumed using:
 
 ```csharp
 builder.AddAzureCosmosDB("cosmosdb");
