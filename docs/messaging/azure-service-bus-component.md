@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Service Bus component
 description: This article describes the .NET Aspire Azure Service Bus component features and capabilities
 ms.topic: how-to
-ms.date: 04/18/2024
+ms.date: 04/24/2024
 ---
 
 # .NET Aspire Azure Service Bus component
@@ -40,10 +40,10 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireServiceBusExtensions.AddAzureServiceBus%2A> extension to register a `ServiceBusClient` for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireServiceBusExtensions.AddAzureServiceBusClient%2A> extension to register a `ServiceBusClient` for use via the dependency injection container.
 
 ```csharp
-builder.AddAzureServiceBus("messaging");
+builder.AddAzureServiceBusClient("messaging");
 ```
 
 To retrieve the configured <xref:Azure.Messaging.ServiceBus.ServiceBusClient> instance using dependency injection, require it as a constructor parameter. For example, to retrieve the client from an example service:

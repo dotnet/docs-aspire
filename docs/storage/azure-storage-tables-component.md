@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Data Tables component
 description: This article describes the .NET Aspire Azure Data Tables component features and capabilities.
-ms.date: 04/18/2024
+ms.date: 04/24/2024
 ms.topic: how-to
 ---
 
@@ -40,10 +40,10 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireTablesExtensions.AddAzureTableService%2A> extension to register a `TableServiceClient` for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireTablesExtensions.AddAzureTableClient%2A> extension to register a `TableServiceClient` for use via the dependency injection container.
 
 ```csharp
-builder.AddAzureTableService("tables");
+builder.AddAzureTableClient("tables");
 ```
 
 To retrieve the `TableServiceClient` instance using dependency injection, define it as a constructor parameter. Consider the following example service:
@@ -115,22 +115,22 @@ The .NET Aspire Azure Table Storage component supports <xref:Microsoft.Extension
 }
 ```
 
-If you have set up your configurations in the `Aspire:Azure:Data:Tables` section of your _appsettings.json_ file you can just call the method `AddAzureTableService` without passing any parameters.
+If you have set up your configurations in the `Aspire:Azure:Data:Tables` section of your _appsettings.json_ file you can just call the method `AddAzureTableClient` without passing any parameters.
 
 ### Use inline delegates
 
 You can also pass the `Action<AzureDataTablesSettings>` delegate to set up some or all the options inline, for example to set the `Namespace`:
 
 ```csharp
-builder.AddAzureTableService(
+builder.AddAzureTableClient(
     "tables",
     static settings => settings.ServiceUri = new Uri("YOUR_SERVICEURI"));
 ```
 
-You can also set up the <xref:Azure.Data.Tables.TableClientOptions> using `Action<IAzureClientBuilder<TableServiceClient, TableClientOptions>>` delegate, the second parameter of the <xref:Microsoft.Extensions.Hosting.AspireTablesExtensions.AddAzureTableService%2A> method. For example to set the `TableServiceClient` ID to identify the client:
+You can also set up the <xref:Azure.Data.Tables.TableClientOptions> using `Action<IAzureClientBuilder<TableServiceClient, TableClientOptions>>` delegate, the second parameter of the <xref:Microsoft.Extensions.Hosting.AspireTablesExtensions.AddAzureTableClient%2A> method. For example to set the `TableServiceClient` ID to identify the client:
 
 ```csharp
-builder.AddAzureTableService(
+builder.AddAzureTableClient(
     "tables",
     static clientBuilder =>
         clientBuilder.ConfigureOptions(
@@ -139,10 +139,10 @@ builder.AddAzureTableService(
 
 ### Named instances
 
-If you want to add more than one <xref:Azure.Data.Tables.TableServiceClient> you can use named instances. Load the named configuration section from the json config by calling the `AddAzureTableService` method and passing in the `INSTANCE_NAME`.
+If you want to add more than one <xref:Azure.Data.Tables.TableServiceClient> you can use named instances. Load the named configuration section from the json config by calling the `AddAzureTableClient` method and passing in the `INSTANCE_NAME`.
 
 ```csharp
-builder.AddAzureTableService("INSTANCE_NAME");
+builder.AddAzureTableClient("INSTANCE_NAME");
 ```
 
 The corresponding configuration JSON is defined as follows:

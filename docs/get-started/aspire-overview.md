@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire overview
 description: Learn about .NET Aspire, an application stack designed to improve the experience of building cloud-native applications.
-ms.date: 03/10/2024
+ms.date: 04/24/2024
 ---
 
 # .NET Aspire overview
@@ -53,10 +53,10 @@ Each component is designed to work with .NET Aspire orchestration, and they're c
 For example, consider the following code using the .NET Aspire Service Bus component:
 
 ```csharp
-builder.AddAzureServiceBus("servicebus");
+builder.AddAzureServiceBusClient("servicebus");
 ```
 
-The <xref:Microsoft.Extensions.Hosting.AspireServiceBusExtensions.AddAzureServiceBus%2A> method handles the following concerns:
+The <xref:Microsoft.Extensions.Hosting.AspireServiceBusExtensions.AddAzureServiceBusClient%2A> method handles the following concerns:
 
 - Registers a <xref:Azure.Messaging.ServiceBus.ServiceBusClient> as a singleton in the DI container for connecting to Azure Service Bus.
 - Applies `ServiceBusClient` configurations either inline through code or through configuration.

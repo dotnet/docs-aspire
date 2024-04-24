@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Cosmos DB component
 description: This article describes the .NET Aspire Azure Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 04/18/2024
+ms.date: 04/24/2024
 ---
 
 # .NET Aspire Azure Cosmos DB component
@@ -32,10 +32,10 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureCosmosDBExtensions.AddAzureCosmosDB%2A> extension to register a <xref:Microsoft.Azure.Cosmos.CosmosClient?displayProperty=fullName> for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureCosmosDBExtensions.AddAzureCosmosDBClient%2A> extension to register a <xref:Microsoft.Azure.Cosmos.CosmosClient?displayProperty=fullName> for use via the dependency injection container.
 
 ```csharp
-builder.AddAzureCosmosDB("cosmosConnectionName");
+builder.AddAzureCosmosDBClient("cosmosConnectionName");
 ```
 
 You can then retrieve the `CosmosClient` instance using dependency injection. For example, to retrieve the client from a service:

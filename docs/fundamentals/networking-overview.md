@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire inner loop networking overview
 description: Learn how .NET Aspire handles networking and service bindings, and how you can use them in your app code.
-ms.date: 04/22/2024
+ms.date: 04/24/2024
 ms.topic: overview
 ---
 
@@ -33,7 +33,7 @@ To help visualize how service bindings work, consider the .NET Aspire starter te
 
 When you call <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, the app host looks for _Properties/launchSettings.json_ to determine the default set of service bindings. The app host selects a specific launch profile using the following rules:
 
-1. An explicit <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithLaunchProfile%2A> call on the `IResourceBuilder<ProjectResource>`.
+1. An explicit `launchProfileName` argument passed when calling `AddProject`.
 1. The `DOTNET_LAUNCH_PROFILE` environment variable. For more information, see [.NET environment variables](/dotnet/core/tools/dotnet-environment-variables).
 1. The first launch profile defined in _launchSettings.json_.
 
@@ -53,6 +53,8 @@ To specify that the **https** launch profile should be used, select the **https*
 
 > [!IMPORTANT]
 > If there's no _launchSettings.json_ (or launch profile), there are no bindings by default.
+
+For more information, see [.NET Aspire and launch profiles](launch-profiles.md).
 
 ## Ports and proxies
 

@@ -108,7 +108,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults and components.
 builder.AddServiceDefaults();
-builder.AddAzureOpenAI("OpenAI");
+builder.AddAzureOpenAIClient("OpenAI");
 
 var app = builder.Build();
 

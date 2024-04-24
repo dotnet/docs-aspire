@@ -91,10 +91,10 @@ To configure a service to resolve the "dashboard" endpoint on the "basket" servi
 
 ```csharp
 builder.Services.AddServiceDiscoveryCore();
-builder.Services.AddDnsSrvServiceEndPointResolver();
+builder.Services.AddDnsSrvServiceEndpointProvider();
 ```
 
-For more information, see <xref:Microsoft.Extensions.DependencyInjection.ServiceDiscoveryServiceCollectionExtensions.AddServiceDiscoveryCore%2A> and <xref:Microsoft.Extensions.Hosting.ServiceDiscoveryDnsServiceCollectionExtensions.AddDnsSrvServiceEndPointResolver%2A>.
+For more information, see <xref:Microsoft.Extensions.DependencyInjection.ServiceDiscoveryServiceCollectionExtensions.AddServiceDiscoveryCore%2A> and <xref:Microsoft.Extensions.Hosting.ServiceDiscoveryDnsServiceCollectionExtensions.AddDnsSrvServiceEndpointProvider%2A>.
 
 The special port name "default" is used to specify the default endpoint, resolved using the URI `https://basket`.
 

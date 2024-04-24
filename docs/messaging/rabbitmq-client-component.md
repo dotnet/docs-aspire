@@ -2,7 +2,7 @@
 title: .NET Aspire RabbitMQ component
 description: Learn how to use the .NET Aspire RabbitMQ client message-broker component.
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 04/24/2024
 ---
 
 # .NET Aspire RabbitMQ component
@@ -32,10 +32,10 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddRabbitMQ%2A> extension method to register an `IConnection` for use via the dependency injection container. The method takes a connection name parameter.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddRabbitMQClient%2A> extension method to register an `IConnection` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
-builder.AddRabbitMQ("messaging");
+builder.AddRabbitMQClient("messaging");
 ```
 
 You can then retrieve the `IConnection` instance using dependency injection. For example, to retrieve the connection from an example service:

@@ -4,8 +4,8 @@ using Azure.Storage.Queues;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddAzureBlobService("BlobConnection");
-builder.AddAzureQueueService("QueueConnection");
+builder.AddAzureBlobClient("BlobConnection");
+builder.AddAzureQueueClient("QueueConnection");
 
 builder.AddServiceDefaults();
 
