@@ -163,7 +163,7 @@ To visualize the Angular client app, navigate to the "angular" endpoint in the .
 
 The React app wasn't written using a template, and instead was written manually. The complete source code can be found in the [dotnet/aspire-samples repository](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript/AspireJavaScript.React). Some of the key points of interest are found in the _src/App.js_ file:
 
-:::code language="javascript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.React/src/App.js":::
+:::code language="javascript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.React/src/components/App.js":::
 
 The `App` function is the entry point for the React client app. It uses the `useState` and `useEffect` hooks to manage the state of the weather forecast data. The `fetch` API is used to make an HTTP request to the `/api/WeatherForecast` endpoint. The response is then converted to JSON and set as the state of the weather forecast data.
 
@@ -191,7 +191,7 @@ To visualize the React client app, navigate to the "react" endpoint in the .NET 
 
 There are several key modifications from the original Vue template. The primary updates were the addition of the `fetch` call in the _TheWelcome.vue_ file to retrieve the weather forecast data from the `/api/WeatherForecast` endpoint. The following code snippet demonstrates the `fetch` call:
 
-:::code language="typescript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Vue/src/componets/TheWelcome.vue":::
+:::code language="typescript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Vue/src/components/TheWelcome.vue":::
 
 As the `TheWelcome` component is `mounted`, it calls the `/api/weatherforecast` endpoint to retrieve the weather forecast data. The response is then set as the `forecasts` data property. To set the server port, the Vue client app uses the `PORT` environment variable. This is achieved by updating the _vite.config.js_ file:
 
@@ -215,7 +215,7 @@ The sample source code for this article is designed to run locally. It has also 
 
 The client apps are currently configured to run as true SPA apps, and are not configured to run in a server-side rendered (SSR) mode. They sit behind **nginx**, which is used to serve the static files. They leverage a simple _default.conf.template_ file to configure **nginx** to proxy requests to the client app.
 
-:::code source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/default.conf.template":::
+:::code language="Nginx template" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/default.conf.template":::
 
 ## Summary
 
