@@ -215,7 +215,7 @@ The sample source code for this article is designed to run locally. It has also 
 
 The client apps are currently configured to run as true SPA apps, and are not configured to run in a server-side rendered (SSR) mode. They sit behind **nginx**, which is used to serve the static files. They leverage a simple _default.conf.template_ file to configure **nginx** to proxy requests to the client app.
 
-:::code language="Nginx template" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/default.conf.template":::
+:::code language="nginx" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/default.conf.template":::
 
 ## Summary
 
