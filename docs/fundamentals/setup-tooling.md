@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 04/23/2024
+ms.date: 04/25/2024
 ---
 
 # .NET Aspire setup and tooling
@@ -203,11 +203,11 @@ The left navigation provides links to the different parts of the dashboard, each
 
 Visual Studio provides additional features for working with .NET Aspire components and the App Host orchestrator project. These features are currently not available in Visual Studio Code or through the CLI.
 
-### Add a component
+### Add a component package
 
 You add .NET Aspire components to your app like any other NuGet package using Visual Studio. However, Visual Studio also provides UI options to add .NET Aspire components directly.
 
-1. In Visual Studio, right click on the project you want to add an .NET Aspire component to and select **Add** > **.NET Aspire Component...**.
+1. In Visual Studio, right click on the project you want to add an .NET Aspire component to and select **Add** > **.NET Aspire package...**.
 
     :::image type="content" source="../media/visual-studio-add-aspire-component.png" lightbox="../media/visual-studio-add-aspire-component.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire Component option.":::
 
