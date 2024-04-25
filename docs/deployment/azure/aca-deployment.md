@@ -27,6 +27,11 @@ As an alternative to this tutorial and for a more in-depth guide, see [Deploy a 
 [!INCLUDE [aca-deployment-azd](includes/aca-deployment-azd.md)]
 
 :::zone-end
+:::zone pivot="azure-vs"
+
+[!INCLUDE [aca-deployment-cli](includes/aca-deployment-vs.md)]
+
+:::zone-end
 :::zone pivot="azure-cli"
 
 [!INCLUDE [aca-deployment-cli](includes/aca-deployment-cli.md)]
