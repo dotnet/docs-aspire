@@ -193,7 +193,7 @@ dotnet new aspire-starter
 
 The .NET Aspire dashboard is only visible while the app is running and starts automatically when you start the **.AppHost** project. Visual Studio launches both your app and the .NET Aspire dashboard for you automatically in your browser. If you start the app using the .NET CLI, copy and paste the dashboard URL from the output into your browser, or hold <kbd>Ctrl</kbd> and select the link (if your terminal supports hyperlinks).
 
-:::image type="content" source="../media/run-dashboard-cli.png" alt-text="A screenshot showing how to launch the dashboard using the CLI.":::
+:::image type="content" source="dashboard/media/explore/dotnet-run-login-url.png" lightbox="dashboard/media/explore/dotnet-run-login-url.png" alt-text="A screenshot showing how to launch the dashboard using the CLI.":::
 
 The left navigation provides links to the different parts of the dashboard, each of which you'll explore in the following sections.
 
