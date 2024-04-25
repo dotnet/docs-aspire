@@ -191,7 +191,7 @@ To visualize the React client app, navigate to the "react" endpoint in the .NET 
 
 There are several key modifications from the original Vue template. The primary updates were the addition of the `fetch` call in the _TheWelcome.vue_ file to retrieve the weather forecast data from the `/api/WeatherForecast` endpoint. The following code snippet demonstrates the `fetch` call:
 
-:::code language="typescript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Vue/src/components/TheWelcome.vue":::
+:::code language="html" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Vue/src/components/TheWelcome.vue":::
 
 As the `TheWelcome` component is `mounted`, it calls the `/api/weatherforecast` endpoint to retrieve the weather forecast data. The response is then set as the `forecasts` data property. To set the server port, the Vue client app uses the `PORT` environment variable. This is achieved by updating the _vite.config.js_ file:
 
