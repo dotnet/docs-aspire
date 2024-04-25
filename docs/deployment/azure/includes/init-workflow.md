@@ -8,6 +8,18 @@
     azd init
     ```
 
+    For more information on the `azd init` command, see [azd init](/azure/developer/azure-developer-cli/reference#azd-init).
+
+1. If this is the first time you've initialized the app, `azd` prompts you for the environment name:
+
+    ```azdeveloper
+    Initializing an app to run on Azure (azd init)
+
+    ? Enter a new environment name: [? for help]
+    ```
+
+    Enter the desired environment name to continue. For more information on managing environments with `azd`, see [azd env](/azure/developer/azure-developer-cli/reference#azd-env).
+
 1. Select **Use code in the current directory** when `azd` prompts you with two app initialization options.
 
     ```Output
