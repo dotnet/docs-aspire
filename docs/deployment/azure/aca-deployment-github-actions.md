@@ -149,6 +149,9 @@ The Azure Developer CLI enables you to automatically create CI/CD pipelines with
 
 1. When prompted whether to create a new Git repository in the directory, enter <kbd>y</kbd> and press <kbd>Enter</kbd>.
 
+    > [!NOTE]
+    > Creating a GitHub repository required you being logged into GitHub. There are a few selections that vary based on your preferences. After logging in, you will be prompted to create a new repository in the current directory.
+
 1. Select **Create a new private GitHub repository** to configure the git remote.
 
 1. Enter a name of your choice for the new GitHub repository or press enter to use the default name. `azd` creates a new repository in GitHub and configures it with the necessary secrets required to authenticate to Azure.
