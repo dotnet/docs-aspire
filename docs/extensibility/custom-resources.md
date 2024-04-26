@@ -166,7 +166,7 @@ public class MailDevResource(string name) : ContainerResource(name), IResourceWi
     internal const string SmtpEndpointName = "smtp";
     internal const string HttpEndpointName = "http";
 
-    // An EndpointReference is a core .NET Aspire type used for sub keeping
+    // An EndpointReference is a core .NET Aspire type used for keeping
     // track of endpoint details in expressions. Simple literal values cannot
     // be used because endpoints are not known until containers are launched.
     private EndpointReference? _smtpReference;
@@ -174,12 +174,14 @@ public class MailDevResource(string name) : ContainerResource(name), IResourceWi
 
     // Required property on IResourceWithConnectionString. Represents a connection
     // string that applications can use to access the MailDev server. In this case
-    // the connection string contains references to the SmtpEndpoint reference.
+    // the connection string is composed of the SmtpEndpoint endpoint reference.
     public ReferenceExpression ConnectionStringExpression => ReferenceExpression.Create(
         $"smtp://{SmtpEndpoint.Property(EndpointProperty.Host)}:{SmtpEndpoint.Property(EndpointProperty.Port)}"
         );
 }
 ```
+
+<xref:Aspire.Hosting.EndpointReference> and <xref:Aspire.Hosting.ReferenceExpression> are examples of several types which implement a collection of interfaces such as <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider>, <xref:Aspire.Hosting.ApplicationModel.IValueProvider>, and <xref:Aspire.Hosting.ApplicationModel.IValueWithReferences>. To learn more about these types in their role in .NET Aspire see the [technical details](#technical-details) section at the end of this article.
 
 ### Step 3b: Defining resource extensions
 
@@ -322,6 +324,110 @@ If those API calls return a successful response then you should be able to click
 
 ![E-mails visible in the MailDev UI](./media/maildev-emails.png)
 
-### Summary
+## Technical details
+
+### IValueProvider and IManifestExpressionProvider
+
+In the code above the `MailDevResource` had two properties. `SmtpEndpoint` and `ConnectionStringExpression`. The types of these properties were <xref:Aspire.Hosting.EndpointReference> and <xref:Aspire.Hosting.ReferenceExpression> respectively. These types are among several which are used throughout .NET Aspire to represent configuration data which is not finalized until the .NET Aspire application is either run or published to the cloud via a tool such as `azd` (Azure Developer CLI).
+
+The fundamental problem that these types help solve is deferring resolution of concrete configuration information until _all_ of the information is available.
+
+For example, in the `MailDevResource` example we expose a property called `ConnectionStringExpression` as required by the <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> interface. The type of the property is <xref:Aspire.Hosting.ReferenceExpression> and is created by passing in an interpolated string to the <xref:Aspire.Hosting.ReferenceExpression.Create> method.
+
+```csharp
+public ReferenceExpression ConnectionStringExpression => ReferenceExpression.Create(
+        $"smtp://{SmtpEndpoint.Property(EndpointProperty.Host)}:{SmtpEndpoint.Property(EndpointProperty.Port)}"
+        );
+```
+
+The signature for the <xref:Aspire.Hosting.ReferenceExpression.Create> method is as follows:
+
+```csharp
+public static ReferenceExpression Create(in ExpressionInterpolatedStringHandler handler)
+```
+
+Notice that this is not a regular <xref:System.String> argument. Method makes use of the [interpolated string handler pattern](https://learn.microsoft.com/dotnet/csharp/whats-new/tutorials/interpolated-string-handler) in .NET to capture the interpolated string template and the values referenced within it to allow for custom processing. In the case of .NET Aspire we capture these details in a <xref:Aspire.Hosting.ReferenceExpression> which can be evaluated as each value referenced in the interpolated string becomes available.
+
+Here is how the flow of execution works:
+
+1. Resource which implements <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> is added to the model (e.g. `AddMailDev(...)`).
+2. `IResourceBuilder<MailDevResource>` is passed to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> which has a special overload which handles <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> implementors.
+3. `WithReference` wraps the resource in a <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference> instance and the object is captured in a <xref:Aspire.Hosting.ApplicationModel.EnvironmentCallbackAnnotation> which is evaluated after the .NET Aspire application is built and starts running.
+4. As the the process that references the connection string starts .NET Aspire starts evaluating the expression. It first gets the <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference> and calls <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference.GetValueAsync>.
+5. The `GetValueAsync` method gets the value of the <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString.ConnectionStringExpression> property to get the <xref:Aspire.Hosting.ReferenceExpression> instance.
+6. The <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference.GetValueAsync> method then calls <xref:Aspire.Hosting.ReferenceExpression.GetValueAsync> to process the previously captured interpolated string.
+7. Because the interpolated string contains references to other reference types such as <xref:Aspire.Hosting.EndpointReference> they are also evaluated and real value substituted (which at this time are now available).
+
+The <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider> interface is designed to solve the problem of sharing connection information between resources at deployment. Similarly to local development, many of the values necessary to configure the application can not be determined until the application is being deployed via a tool such as `azd` (Azure Developer CLI).
+
+To solve this problem .NET Aspire produces a manifest file which `azd` and other deployment tools interpret. Rather than specifying concrete values for connection information between resources an expression syntax is used which deployment tools evaluate. Generally the manifest file is not visible to developers but it is possible to generate one for manual inspection. The command below can be used on the AppHost to produce a manifest.
+
+```dotnetcli
+dotnet run --project MailDevResource.AppHost\MailDevResource.AppHost.csproj -- --publisher manifest --output-path aspire-manifest.json
+```
+
+This command will produce a manifest file like the following:
+
+```json
+{
+  "resources": {
+    "maildev": {
+      "type": "container.v0",
+      "connectionString": "smtp://{maildev.bindings.smtp.host}:{maildev.bindings.smtp.port}",
+      "image": "docker.io/maildev/maildev:2.0.2",
+      "bindings": {
+        "http": {
+          "scheme": "http",
+          "protocol": "tcp",
+          "transport": "http",
+          "targetPort": 1080
+        },
+        "smtp": {
+          "scheme": "tcp",
+          "protocol": "tcp",
+          "transport": "tcp",
+          "targetPort": 1025
+        }
+      }
+    },
+    "newsletterservice": {
+      "type": "project.v0",
+      "path": "../MailDevResource.NewsletterService/MailDevResource.NewsletterService.csproj",
+      "env": {
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY": "in_memory",
+        "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true",
+        "ConnectionStrings__maildev": "{maildev.connectionString}"
+      },
+      "bindings": {
+        "http": {
+          "scheme": "http",
+          "protocol": "tcp",
+          "transport": "http"
+        },
+        "https": {
+          "scheme": "https",
+          "protocol": "tcp",
+          "transport": "http"
+        }
+      }
+    }
+  }
+}
+```
+
+Because `MailDevResource` inplements <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> the manifest publishing logic in .NET Aspire knows that even though `MailDevResource` is a container resource, it also needs a `connectionString` field. The `connectionString` field references other parts of the `maildev` resource in the manifest to produce the final string:
+
+```json
+{
+    // ... other content omitted.
+    "connectionString": "smtp://{maildev.bindings.smtp.host}:{maildev.bindings.smtp.port}"
+}
+```
+
+.NET Aspire knows how to form this string because it looks at <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString.ConnectionStringExpression> and builds up the final string via the <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider> interface (in much the same way as the <xref:Aspire.Hosting.AppicationModel.IValueProvider> interface is used).
+
+## Summary
 
 In the example above we showed how to create a custom .NET Aspire resource which uses an existing containerized application (MailDev) and used that to improve the local development experience by making it easy to test e-mail testing capabilities that might be used within an application.
