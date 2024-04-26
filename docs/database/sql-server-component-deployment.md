@@ -95,13 +95,13 @@ Replace the contents of the _Program.cs_ file in the _AspireSQL.AppHost_ project
 
 :::code language="csharp" source="snippets/tutorial/aspiresqldeployazure/AspireSql.AppHost/Program.cs":::
 
-The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. The `PublishAsAzureSqlDatabase` method ensures that an Azure SQL Database resources will be created when you deploy the app using supported tools such as the Azure Developer CLI.
+The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. The `PublishAsAzureSqlDatabase` method ensures that tools such as the Azure Developer CLI or Visual Studio create an Azure SQL Database resource during the deployment process.
 
 ## [SQL Server Container](#tab/sql-container)
 
 :::code language="csharp" source="snippets/tutorial/aspiresqldeploycontainer/AspireSql.AppHost/Program.cs":::
 
-The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. This configuration also ensures a containerized SQL Server instance will be deployed to Azure Container Apps when you deploy the app using supported tools such as the Azure Developer CLI.
+The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. This configuration also ensures that tools such as the Azure Developer CLI or Visual Studio create a containerized SQL Server instance during the deployment process.
 
 ---
 
