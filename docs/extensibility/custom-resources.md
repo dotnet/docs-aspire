@@ -146,7 +146,6 @@ To achieve this we need a custom resource named `MailDevResource` which implemen
 
 MailDev is available as a container resource, so we will also want to derive from <xref:Aspire.Hosting.ApplicationModel.ContainerResource> so that we can make use of various pre-existing container-focused extensions in .NET Aspire.
 
-
 Add the following source to `MailDevResource.cs` in the `MailDev.Hosting` package.The code below is the custom resource type. Refer to the comments in the source listing for details on each relevant line of code.
 
 ```csharp
