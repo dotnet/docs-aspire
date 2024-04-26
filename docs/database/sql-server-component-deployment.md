@@ -138,17 +138,17 @@ Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/ove
 
     [!INCLUDE [azd-up-output](../deployment/azure/includes/azd-up-output.md)]
 
-1. When the deployment finishes, click the resource group link in the output to view the created resources.
+1. When the deployment finishes, click the resource group link in the output to view the created resources in the Azure portal.
 
 ## [Azure SQL Database](#tab/azure-sql)
 
-Note that an Azure SQL Database was created as part of the app resources due to the **.AppHost** configuration you provided.
+The deployment process provisioned an Azure SQL Database resource due to the **.AppHost** configuration you provided.
 
 :::image type="content" source="media/resources-azure-sql-database.png" alt-text="A screenshot showing the deployed Azure SQL Database.":::
 
 ## [SQL Server Container](#tab/sql-container)
 
-A SQL Server app container was created as part of the app resources due to the **.AppHost** configuration you provided.
+The deployment process created a SQL Server app container due to the **.AppHost** configuration you provided.
 
 :::image type="content" source="media/resources-azure-sql-container.png" alt-text="A screenshot showing the containerized SQL Database.":::
 
