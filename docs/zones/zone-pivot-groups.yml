@@ -7,6 +7,8 @@ groups:
   pivots:
     - id: azure-azd
       title: Azure Developer CLI
+    - id: azure-vs
+      title: Visual Studio
     - id: azure-cli
       title: Azure CLI
     - id: azure-bicep
