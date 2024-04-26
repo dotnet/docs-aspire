@@ -55,9 +55,9 @@ dir
 
 Once the project is created you should a listing containing the following:
 
-* `MailDevResource.AppHost`; a AppHost used to test out the custom resource.
-* `MailDevResource.ServiceDefaults`; service defaults project to be used in service projects.
-* `MailDevResource.sln`; solution file referencing both projects above.
+- `MailDevResource.AppHost`; a AppHost used to test out the custom resource.
+- `MailDevResource.ServiceDefaults`; service defaults project to be used in service projects.
+- `MailDevResource.sln`; solution file referencing both projects above.
 
 Verify that the project can build and run successfully by executing the following command:
 
