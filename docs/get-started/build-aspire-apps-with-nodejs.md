@@ -8,7 +8,7 @@ ms.date: 04/24/2024
 
 In this article, you learn how to build .NET Aspire apps that use Node.js and Node Package Manager (`npm`). The sample app in this article demonstrates [Angular](https://angular.io), [React](https://react.dev/), and [Vue](https://vuejs.org/) client experiences. The following .NET Aspire APIs exist to support these scenarios:
 
-- [Node.js](https://nodejs.org/): <xref:Aspire.Hosting.NodeAppHostingExtension.AddNodeApp%2A>
+- [Node.js](https://nodejs.org/): <xref:Aspire.Hosting.NodeAppHostingExtension.AddNodeApp%2A>.
 - [`npm` apps](https://docs.npmjs.com/cli/using-npm/scripts): <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A>.
 
 The difference between these two APIs is that the former is used to host Node.js apps, while the latter is used to host apps that execute from a _package.json_ file's `scripts` section—and the corresponding `npm run <script-name>` command.
