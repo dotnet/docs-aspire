@@ -40,7 +40,7 @@ builder.Build().Run();
 
 The firsts code snippet to consider uses the `WithBindMount` API to configure a volume for a SQL Server resource. The following code demonstrates how to configure a volume for a SQL Server resource in a .NET Aspire app host project:
 
-:::code language="csharp" source="snippets/volumes/VolumeMounts.AppHost/Program.WithBindMount.cs" id="with-data-mount":::
+:::code language="csharp" source="snippets/volumes/VolumeMounts.AppHost/Program.WithBindMount.cs" id="mount":::
 
 In this example:
 
@@ -88,7 +88,7 @@ The same pattern applies to the other server-based resource types, such as those
 
 By overriding the generated password, you can ensure that the password remains consistent between app launches, thus creating a persistent password. An alternative approach is to use the `AddParameter` method to create a parameter that can be used as a password. The following code demonstrates how to create a persistent password for a SQL Server resource:
 
-:::code language="csharp" source="snippets/volumes/VolumeMounts.AppHost/Program.ExplicitStable.cs" id="explicit-stable":::
+:::code language="csharp" source="snippets/volumes/VolumeMounts.AppHost/Program.ExplicitStable.cs" id="explicit":::
 
 The preceding code snippet demonstrates how to create a persistent password for a SQL Server resource. The `AddParameter` method is used to create a parameter named `sql-password` that's considered a secret. The `AddSqlServer` method is then called with the `password` parameter to set the password for the SQL Server resource. For more information, see [External parameters](external-parameters.md).
 
