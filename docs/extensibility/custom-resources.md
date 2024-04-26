@@ -181,7 +181,7 @@ public class MailDevResource(string name) : ContainerResource(name), IResourceWi
 }
 ```
 
-<xref:Aspire.Hosting.EndpointReference> and <xref:Aspire.Hosting.ReferenceExpression> are examples of several types which implement a collection of interfaces such as <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider>, <xref:Aspire.Hosting.ApplicationModel.IValueProvider>, and <xref:Aspire.Hosting.ApplicationModel.IValueWithReferences>. To learn more about these types in their role in .NET Aspire see the [technical details](#technical-details) section at the end of this article.
+<xref:Aspire.Hosting.ApplicationModel.EndpointReference> and <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> are examples of several types which implement a collection of interfaces such as <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider>, <xref:Aspire.Hosting.ApplicationModel.IValueProvider>, and <xref:Aspire.Hosting.ApplicationModel.IValueWithReferences>. To learn more about these types in their role in .NET Aspire see the [technical details](#technical-details) section at the end of this article.
 
 ### Step 3b: Defining resource extensions
 
@@ -328,11 +328,11 @@ If those API calls return a successful response then you should be able to click
 
 ### IValueProvider and IManifestExpressionProvider
 
-In the code above the `MailDevResource` had two properties. `SmtpEndpoint` and `ConnectionStringExpression`. The types of these properties were <xref:Aspire.Hosting.EndpointReference> and <xref:Aspire.Hosting.ReferenceExpression> respectively. These types are among several which are used throughout .NET Aspire to represent configuration data which is not finalized until the .NET Aspire application is either run or published to the cloud via a tool such as `azd` (Azure Developer CLI).
+In the code above the `MailDevResource` had two properties. `SmtpEndpoint` and `ConnectionStringExpression`. The types of these properties were <xref:Aspire.Hosting.ApplicationModel.EndpointReference> and <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> respectively. These types are among several which are used throughout .NET Aspire to represent configuration data which is not finalized until the .NET Aspire application is either run or published to the cloud via a tool such as `azd` (Azure Developer CLI).
 
 The fundamental problem that these types help solve is deferring resolution of concrete configuration information until _all_ of the information is available.
 
-For example, in the `MailDevResource` example we expose a property called `ConnectionStringExpression` as required by the <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> interface. The type of the property is <xref:Aspire.Hosting.ReferenceExpression> and is created by passing in an interpolated string to the <xref:Aspire.Hosting.ReferenceExpression.Create> method.
+For example, in the `MailDevResource` example we expose a property called `ConnectionStringExpression` as required by the <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> interface. The type of the property is <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> and is created by passing in an interpolated string to the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.Create> method.
 
 ```csharp
 public ReferenceExpression ConnectionStringExpression => ReferenceExpression.Create(
@@ -340,13 +340,13 @@ public ReferenceExpression ConnectionStringExpression => ReferenceExpression.Cre
         );
 ```
 
-The signature for the <xref:Aspire.Hosting.ReferenceExpression.Create> method is as follows:
+The signature for the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.Create> method is as follows:
 
 ```csharp
 public static ReferenceExpression Create(in ExpressionInterpolatedStringHandler handler)
 ```
 
-Notice that this is not a regular <xref:System.String> argument. Method makes use of the [interpolated string handler pattern](https://learn.microsoft.com/dotnet/csharp/whats-new/tutorials/interpolated-string-handler) in .NET to capture the interpolated string template and the values referenced within it to allow for custom processing. In the case of .NET Aspire we capture these details in a <xref:Aspire.Hosting.ReferenceExpression> which can be evaluated as each value referenced in the interpolated string becomes available.
+Notice that this is not a regular <xref:System.String> argument. Method makes use of the [interpolated string handler pattern](https://learn.microsoft.com/dotnet/csharp/whats-new/tutorials/interpolated-string-handler) in .NET to capture the interpolated string template and the values referenced within it to allow for custom processing. In the case of .NET Aspire we capture these details in a <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> which can be evaluated as each value referenced in the interpolated string becomes available.
 
 Here is how the flow of execution works:
 
@@ -354,9 +354,9 @@ Here is how the flow of execution works:
 2. `IResourceBuilder<MailDevResource>` is passed to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> which has a special overload which handles <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> implementors.
 3. `WithReference` wraps the resource in a <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference> instance and the object is captured in a <xref:Aspire.Hosting.ApplicationModel.EnvironmentCallbackAnnotation> which is evaluated after the .NET Aspire application is built and starts running.
 4. As the the process that references the connection string starts .NET Aspire starts evaluating the expression. It first gets the <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference> and calls <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference.GetValueAsync>.
-5. The `GetValueAsync` method gets the value of the <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString.ConnectionStringExpression> property to get the <xref:Aspire.Hosting.ReferenceExpression> instance.
-6. The <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference.GetValueAsync> method then calls <xref:Aspire.Hosting.ReferenceExpression.GetValueAsync> to process the previously captured interpolated string.
-7. Because the interpolated string contains references to other reference types such as <xref:Aspire.Hosting.EndpointReference> they are also evaluated and real value substituted (which at this time are now available).
+5. The `GetValueAsync` method gets the value of the <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString.ConnectionStringExpression> property to get the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> instance.
+6. The <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference.GetValueAsync> method then calls <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.GetValueAsync> to process the previously captured interpolated string.
+7. Because the interpolated string contains references to other reference types such as <xref:Aspire.Hosting.ApplicationModel.EndpointReference> they are also evaluated and real value substituted (which at this time are now available).
 
 The <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider> interface is designed to solve the problem of sharing connection information between resources at deployment. Similarly to local development, many of the values necessary to configure the application can not be determined until the application is being deployed via a tool such as `azd` (Azure Developer CLI).
 
