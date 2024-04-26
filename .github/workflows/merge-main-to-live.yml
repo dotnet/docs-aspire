@@ -14,58 +14,41 @@ on:
 jobs:
   go-live:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     permissions:
       contents: write
       pull-requests: write
 
     steps:
       - name: "Print manual run reason"
-        if: ${{ github.event_name == 'workflow_dispatch' }}
+        if: github.event_name == 'workflow_dispatch'
         run: |
           echo 'Reason: ${{ github.event.inputs.reason }}'
 
+      - name: Check out code
+        uses: actions/checkout@main
+
+      - name: Check for existing PR
+        id: exists
+        run: |
+          result=$(gh pr list --base live --head main --json number --jq '.[0].number' || echo "")
+          echo "PR_NUMBER=$result" >> $GITHUB_OUTPUT
+        shell: bash
+
       - name: Create pull request
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
-        with:
-          retries: 3
-          script: |
-            // Get the owner and repo from the context
-            const { owner, repo } = context.repo;
+        id: create
+        if: steps.exists.outputs.PR_NUMBER == ''
+        run: |
+          gh pr create \
+            --title "✅ Merge \`main\` into \`live\`" \
+            --body "🤖 Queue merge when ready..." \
+            --base live \
+            --head main
+          echo "CREATED=true" >> $GITHUB_OUTPUT
 
-            // Get the SHA of the latest commit on the main branch
-            const compare = await github.rest.repos.compareCommitsWithBasehead({
-                owner,
-                repo,
-                basehead: 'live...main',
-            });
-
-            core.startGroup('Resulting comparison');
-            core.info(JSON.stringify(compare, null, 2));
-            core.endGroup();
-
-            // Only create a pull request if there are changes in main, not in live.
-            if (compare.data.status === 'identical') {
-                core.info('No changes in main, not creating a pull request.');
-                return;
-            } else {
-                core.info('Changes in main, creating a pull request.');
-            }
-
-            // Create a pull request from main to live
-            try {
-              await github.rest.pulls.create({
-                  owner,
-                  repo,
-                  head: 'main',
-                  base: 'live',
-                  title: '✅ Merge `main` into `live`',
-                  body: '🤖 Queue merge when ready...',
-              });
-            } catch (error) {
-              if (error.status === 422 && error.message.includes('No commits between live and main')) {
-                core.warning('No commits between live and main');
-                return;
-              } else {
-                throw error;
-              }
-            }
+      - name: Enable auto-merge for the pull request
+        if: steps.create.outputs.CREATED == 'true'
+        run: |
+          PR_NUMBER=$(gh pr list --base live --head main --json number --jq '.[0].number')
+          gh pr merge $PR_NUMBER --squash --auto
