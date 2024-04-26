@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>46746d27-b91d-48f7-9c06-d13a0f2325a6</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VolumeMounts.ApiService\VolumeMounts.ApiService.csproj" />
+    <ProjectReference Include="..\VolumeMounts.Web\VolumeMounts.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.0-preview.6.24214.1" />
+    <PackageReference Include="Aspire.Hosting.Azure" Version="8.0.0-preview.6.24214.1" />
+    <PackageReference Include="Aspire.Hosting.Azure.Storage" Version="8.0.0-preview.6.24214.1" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="8.0.0-preview.6.24214.1" />
+    <PackageReference Include="Aspire.Hosting.SqlServer" Version="8.0.0-preview.6.24214.1" />
+  </ItemGroup>
+
+</Project>
