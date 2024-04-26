@@ -4,8 +4,8 @@
     {
         // <mount>
         var sql = builder.AddSqlServer("sql")
-                                 .WithBindMount("VolumeMount.AppHost-sql-data", "/var/opt/mssql")
-                                 .AddDatabase("sqldb");
+                         .WithBindMount("VolumeMount.AppHost-sql-data", "/var/opt/mssql")
+                         .AddDatabase("sqldb");
         // </mount>
 
         return sql;
