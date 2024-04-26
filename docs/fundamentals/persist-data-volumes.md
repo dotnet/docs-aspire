@@ -40,7 +40,7 @@ builder.Build().Run();
 
 The firsts code snippet to consider uses the `WithBindMount` API to configure a volume for a SQL Server resource. The following code demonstrates how to configure a volume for a SQL Server resource in a .NET Aspire app host project:
 
-:::code source="snippets/volumes/VolumeMounts.AppHost/Program.WithBindMount.cs" id="with-data-mount":::
+:::code language="csharp" source="snippets/volumes/VolumeMounts.AppHost/Program.WithBindMount.cs" id="with-data-mount":::
 
 In this example:
 
@@ -49,7 +49,7 @@ In this example:
 
 All .NET Aspire container resources can utilize volume mounts, and some provide convenient APIs for adding named volumes derived from resources. Using the `WithDataVolume` as an example, the following code is functionally equivalent to the previous example but more succinct:
 
-:::code source="snippets/volumes/VolumeMounts.AppHost/Program.Implicit.cs" id="implicit":::
+:::code language="csharp" source="snippets/volumes/VolumeMounts.AppHost/Program.Implicit.cs" id="implicit":::
 
 With the app host project being named `VolumeMount.AppHost`, the `WithDataVolume` method automatically creates a named volume as `VolumeMount.AppHost-sql-data` and is mounted to the `/var/opt/mssql` path in the SQL Server container. The naming convention is as follows:
 
@@ -59,7 +59,7 @@ With the app host project being named `VolumeMount.AppHost`, the `WithDataVolume
 
 Named volumes require a consistent password between app launches. .NET Aspire conveniently provides random password generation functionality. Consider the previous example once more, where a password is generated automatically:
 
-:::code source="snippets/volumes/VolumeMounts.AppHost/Program.Implicit.cs" id="implicit":::
+:::code language="csharp" source="snippets/volumes/VolumeMounts.AppHost/Program.Implicit.cs" id="implicit":::
 
 Since the `password` parameter isn't provided when calling `AddSqlServer`, .NET Aspire automatically generates a password for the SQL Server resource.
 
@@ -88,7 +88,7 @@ The same pattern applies to the other server-based resource types, such as those
 
 By overriding the generated password, you can ensure that the password remains consistent between app launches, thus creating a persistent password. An alternative approach is to use the `AddParameter` method to create a parameter that can be used as a password. The following code demonstrates how to create a persistent password for a SQL Server resource:
 
-:::code source="snippets/volumes/VolumeMounts.AppHost/Program.ExplicitStable.cs" id="explicit-stable":::
+:::code language="csharp" source="snippets/volumes/VolumeMounts.AppHost/Program.ExplicitStable.cs" id="explicit-stable":::
 
 The preceding code snippet demonstrates how to create a persistent password for a SQL Server resource. The `AddParameter` method is used to create a parameter named `sql-password` that's considered a secret. The `AddSqlServer` method is then called with the `password` parameter to set the password for the SQL Server resource. For more information, see [External parameters](external-parameters.md).
 

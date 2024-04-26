@@ -4,8 +4,8 @@
     {
         // <implicit>
         var sql = builder.AddSqlServer("sql")
-                 .WithDataVolume()
-                 .AddDatabase("sqldb");
+                         .WithDataVolume()
+                         .AddDatabase("sqldb");
         // </implicit>
 
         return sql;
