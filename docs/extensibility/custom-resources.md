@@ -348,7 +348,7 @@ The signature for the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.
 public static ReferenceExpression Create(in ExpressionInterpolatedStringHandler handler)
 ```
 
-Notice that this is not a regular <xref:System.String> argument. Method makes use of the [interpolated string handler pattern](../../csharp/whats-new/tutorials/interpolated-string-handler) in .NET to capture the interpolated string template and the values referenced within it to allow for custom processing. In the case of .NET Aspire we capture these details in a <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> which can be evaluated as each value referenced in the interpolated string becomes available.
+Notice that this is not a regular <xref:System.String> argument. Method makes use of the [interpolated string handler pattern](/dotnet/csharp/whats-new/tutorials/interpolated-string-handler) in .NET to capture the interpolated string template and the values referenced within it to allow for custom processing. In the case of .NET Aspire we capture these details in a <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> which can be evaluated as each value referenced in the interpolated string becomes available.
 
 Here is how the flow of execution works:
 
