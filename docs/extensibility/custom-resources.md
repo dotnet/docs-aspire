@@ -328,7 +328,7 @@ If those API calls return a successful response then you should be able to click
 
 ## Technical details
 
-### IValueProvider and IManifestExpressionProvider
+### `IValueProvider` and `IManifestExpressionProvider`
 
 In the code above the `MailDevResource` had two properties. `SmtpEndpoint` and `ConnectionStringExpression`. The types of these properties were <xref:Aspire.Hosting.ApplicationModel.EndpointReference> and <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> respectively. These types are among several which are used throughout .NET Aspire to represent configuration data which is not finalized until the .NET Aspire application is either run or published to the cloud via a tool such as `azd` (Azure Developer CLI).
 
