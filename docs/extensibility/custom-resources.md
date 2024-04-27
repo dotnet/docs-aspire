@@ -296,17 +296,20 @@ builder.Services.AddSingleton<SmtpClient>((sp) =>
 To test the client we will add two simple subscribe and unsubscribe GET methods to the newsletter service. Add the following code to the `Program.cs` file in the `MailDevResource.NewsletterService` project to setup the ASP.NET Core routes:
 
 ```csharp
-app.MapGet("/subscribe", async (SmtpClient smtpClient, string email) => {
-    var message = new MailMessage("newsletter@yourcompany.com", email);
+app.MapGet("/subscribe", async (SmtpClient smtpClient, string email) =>
+{
+    using var message = new MailMessage("newsletter@yourcompany.com", email);
     message.Subject = "Welcome to our newsletter!";
     message.Body = "Thank you for subscribing to our newsletter!";
     await smtpClient.SendMailAsync(message);
 });
 
-app.MapGet("/unsubscribe", async (SmtpClient smtpClient, string email) => {
-    var message = new MailMessage("newsletter@yourcompany.com", email);
+app.MapGet("/unsubscribe", async (SmtpClient smtpClient, string email) =>
+{
+    using var message = new MailMessage("newsletter@yourcompany.com", email);
     message.Subject = "You are unsubscribed from our newsletter!";
     message.Body = "Sorry to see you go. We hope you will come back soon!";
+    
     await smtpClient.SendMailAsync(message);
 });
 ```
