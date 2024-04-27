@@ -432,7 +432,7 @@ Because `MailDevResource` implements <xref:Aspire.Hosting.ApplicationModel.IReso
 
 .NET Aspire knows how to form this string because it looks at <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString.ConnectionStringExpression> and builds up the final string via the <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider> interface (in much the same way as the <xref:Aspire.Hosting.AppicationModel.IValueProvider> interface is used).
 
-The `MailDevResource` automatically gets included in the manifest because it is derived from <xref:Aspire.Hosting.ApplicationModel.ContainerResource>. Resource authors can choose to suppress outputting content to the manifest by overriding the default behavior using the following code (inside the `AddMailDev(...)` extension)
+The `MailDevResource` automatically gets included in the manifest because it is derived from <xref:Aspire.Hosting.ApplicationModel.ContainerResource>. Resource authors can choose to suppress outputting content to the manifest by using the <xref:Aspire.Hosting.ResourceBuilderExtensions.ExcludeFromManifest%2A> extension method on the resource builder.
 
 ```csharp
 public static IResourceBuilder<MailDevResource> AddMailDev(this IDistributedApplicationBuilder builder, string name, int? httpPort = null, int? smtpPort = null)
@@ -444,7 +444,7 @@ public static IResourceBuilder<MailDevResource> AddMailDev(this IDistributedAppl
                     .WithImageTag(MailDevContainerImageTags.Tag)
                     .WithHttpEndpoint(targetPort: 1080, port: httpPort, name: MailDevResource.HttpEndpointName)
                     .WithEndpoint(targetPort: 1025, port: smtpPort, name: MailDevResource.SmtpEndpointName)
-                    .WithAnnotation(ManifestPublishingCallbackAnnotation.Ignore); // This line added!
+                    .ExcludeFromManifest(); // This line added!
 }
 ```
 
