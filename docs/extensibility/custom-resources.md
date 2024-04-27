@@ -314,7 +314,7 @@ app.MapGet("/unsubscribe", async (SmtpClient smtpClient, string email) =>
 });
 ```
 
-Once the _Program.cs_ file is updated launch the app host and use your browser, or `curl` to hit the following URLs:
+Once the _Program.cs_ file is updated launch the app host and use your browser, or `curl` to hit the following URLs (alternatively if you are using Visual Studio you can use `.http` files):
 
 ```bash
 # Remember to replace the port to match your local environment.
@@ -330,7 +330,7 @@ If those API calls return a successful response then you should be able to click
 
 ### `ReferenceExpression` and `EndpointReference`
 
-In the code above the `MailDevResource` had two properties. `SmtpEndpoint` and `ConnectionStringExpression`. The types of these properties were <xref:Aspire.Hosting.ApplicationModel.EndpointReference> and <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> respectively. These types are among several which are used throughout .NET Aspire to represent configuration data which is not finalized until the .NET Aspire application is either run or published to the cloud via a tool such as `azd` (Azure Developer CLI).
+In the code above the `MailDevResource` had two properties. `SmtpEndpoint` and `ConnectionStringExpression`. The types of these properties were <xref:Aspire.Hosting.ApplicationModel.EndpointReference> and <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> respectively. These types are among several which are used throughout .NET Aspire to represent configuration data which is not finalized until the .NET Aspire application is either run or published to the cloud via a tool such as `azd` ([Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview)).
 
 The fundamental problem that these types help solve is deferring resolution of concrete configuration information until _all_ of the information is available.
 
@@ -359,6 +359,8 @@ Here is how the flow of execution works:
 5. The `GetValueAsync` method gets the value of the <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString.ConnectionStringExpression> property to get the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> instance.
 6. The <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference.GetValueAsync> method then calls <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.GetValueAsync> to process the previously captured interpolated string.
 7. Because the interpolated string contains references to other reference types such as <xref:Aspire.Hosting.ApplicationModel.EndpointReference> they are also evaluated and real value substituted (which at this time are now available).
+
+### Manifest publishing
 
 The <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider> interface is designed to solve the problem of sharing connection information between resources at deployment. Similarly to local development, many of the values necessary to configure the application can not be determined until the application is being deployed via a tool such as `azd` (Azure Developer CLI).
 
@@ -429,6 +431,24 @@ Because `MailDevResource` implements <xref:Aspire.Hosting.ApplicationModel.IReso
 ```
 
 .NET Aspire knows how to form this string because it looks at <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString.ConnectionStringExpression> and builds up the final string via the <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider> interface (in much the same way as the <xref:Aspire.Hosting.AppicationModel.IValueProvider> interface is used).
+
+The `MailDevResource` automatically gets included in the manifest because it is derived from <xref:Aspire.Hosting.ApplicationModel.ContainerResource>. Resource authors can choose to suppress outputting content to the manifest by overriding the default behavior using the following code (inside the `AddMailDev(...)` extension)
+
+```csharp
+public static IResourceBuilder<MailDevResource> AddMailDev(this IDistributedApplicationBuilder builder, string name, int? httpPort = null, int? smtpPort = null)
+{
+    var resource = new MailDevResource(name);
+    return builder.AddResource(resource)
+                    .WithImage(MailDevContainerImageTags.Image)
+                    .WithImageRegistry(MailDevContainerImageTags.Registry)
+                    .WithImageTag(MailDevContainerImageTags.Tag)
+                    .WithHttpEndpoint(targetPort: 1080, port: httpPort, name: MailDevResource.HttpEndpointName)
+                    .WithEndpoint(targetPort: 1025, port: smtpPort, name: MailDevResource.SmtpEndpointName)
+                    .WithAnnotation(ManifestPublishingCallbackAnnotation.Ignore); // This line added!
+}
+```
+
+Careful consideration should be given as to whether the resource should be present in the manifest, or whether it should be suppressed. If the resource is being added to the manifest it should be configured in such a way that it is safe and secure to use.
 
 ## Summary
 
