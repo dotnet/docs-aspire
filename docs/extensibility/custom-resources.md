@@ -91,7 +91,7 @@ Press `CTRL-C` to shutdown the application (you can close the browser tab).
 
 ### Step 2: Creating library for resource extension
 
-.NET Aspire resources are just classes and methods contained within a class library that references the .NET Aspire Hosing library (`Aspire.Hosting`). By placing the resource in a separate project you can more easily share it between .NET Aspire-based applications and potentially package it and share it on NuGet.
+.NET Aspire resources are just classes and methods contained within a class library that references the .NET Aspire Hosting library (`Aspire.Hosting`). By placing the resource in a separate project you can more easily share it between .NET Aspire-based applications and potentially package it and share it on NuGet.
 
 ```dotnetcli
 # Create the class library.
