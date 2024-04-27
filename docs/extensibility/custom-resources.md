@@ -43,7 +43,7 @@ To help understand how to develop custom resources, this article will show an ex
 
 In this example we will create a new .NET Aspire application as a test environment for the MailDev resource that we will create. While you can create custom resources in existing Aspire applications it is a good idea to consider whether the custom resource might be used across multiple .NET Aspire-based solutions and should be developed as a reusable component.
 
-### Step 1: Setup starter project
+## Step 1: Setup starter project
 
 Create a new .NET Aspire application that will be used to test out the new resource that we are developing.
 
@@ -89,7 +89,7 @@ Open the dashboard link in the browser and the dashboard:
 
 Press `CTRL-C` to shutdown the application (you can close the browser tab).
 
-### Step 2: Creating library for resource extension
+## Step 2: Creating library for resource extension
 
 .NET Aspire resources are just classes and methods contained within a class library that references the .NET Aspire Hosting library (`Aspire.Hosting`). By placing the resource in a separate project you can more easily share it between .NET Aspire-based applications and potentially package it and share it on NuGet.
 
@@ -131,7 +131,7 @@ This is because .NET Aspire treats project references in the AppHost project as 
 
 Launching the AppHost project should now not cause any warnings to be displayed.
 
-### Step 3a: Defining resource types
+## Step 3: Defining resource types
 
 The class library `MailDev.Hosting` that was added to the solution is the container for the resource type and extension method. It is a good idea to first thinking about the experience that you want to give developers when using your custom resource. In the case of this custom resource we would want developers to be able to write code like the following:
 
@@ -182,7 +182,7 @@ public class MailDevResource(string name) : ContainerResource(name), IResourceWi
 
 <xref:Aspire.Hosting.ApplicationModel.EndpointReference> and <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> are examples of several types which implement a collection of interfaces such as <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider>, <xref:Aspire.Hosting.ApplicationModel.IValueProvider>, and <xref:Aspire.Hosting.ApplicationModel.IValueWithReferences>. To learn more about these types in their role in .NET Aspire see the [technical details](#technical-details) section at the end of this article.
 
-### Step 3b: Defining resource extensions
+## Step 4: Defining resource extensions
 
 To make it easy for developers to use the custom resource an extension method named `AddMailDev(...)` needs to be added to the `MailDev.Hosting` package. The `AddMailDev(...)` extension method is responsible for configuring the resource so it can start successfully as a container.
 
@@ -223,7 +223,7 @@ internal static class MailDevContainerImageTags
 }
 ```
 
-### Step 3c: Validate custom component inside the AppHost
+## Step 5: Validate custom component inside the AppHost
 
 Now that the basic structure for the custom resource is complete it is time to test it in a real AppHost project. Open the `Program.cs` file in the `MailDevResource.AppHost` project and update it with the following code:
 
@@ -246,7 +246,7 @@ After a few moments the dashboard will show that the `maildev` resource is runni
 
 ![MailDev web-based user interface running as a container managed by .NET Aspire](./media/maildev-web-ui.png)
 
-### Step 4a: Adding a .NET service project to the AppHost for testing
+## Step 6: Adding a .NET service project to the AppHost for testing
 
 Once .NET Aspire can successfully launch the MailDev component it is time to consume the connection information for MailDev within a .NET project. In .NET Aspire it is common for there to be a _hosting package_ and one or more _component packages_. For example we have `Aspire.Hosting.Redis` (the hosting package) and `Aspire.StackExchange.Redis`, `Aspire.StackExchange.Redis.DistributedCaching`, and `Aspire.StackExchange.Redis.OutputCaching` (component packages).
 
@@ -280,7 +280,7 @@ After updating the `Program.cs` source file launch the AppHost again and verify 
 
 ![Environment variables for Newsletter Service in .NET Aspire Dashboard](./media/maildev-envvar.png)
 
-### Step 4b: Use connection string to send message.
+## Step 7: Use connection string to send message.
 
 To use the SMTP connection details that were injected into the newsletter service project we will inject an instance of <xref:System.Net.Mail.SmtpClient> into the dependency injection container as a singleton. Add the following code to the `Program.cs` file in the `MailDevResource.NewsletterService` project to setup the singleton service.
 
@@ -328,7 +328,7 @@ If those API calls return a successful response then you should be able to click
 
 ## Technical details
 
-### `IValueProvider` and `IManifestExpressionProvider`
+### `ReferenceExpression` and `EndpointReference`
 
 In the code above the `MailDevResource` had two properties. `SmtpEndpoint` and `ConnectionStringExpression`. The types of these properties were <xref:Aspire.Hosting.ApplicationModel.EndpointReference> and <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> respectively. These types are among several which are used throughout .NET Aspire to represent configuration data which is not finalized until the .NET Aspire application is either run or published to the cloud via a tool such as `azd` (Azure Developer CLI).
 
@@ -419,7 +419,7 @@ This command will produce a manifest file like the following:
 }
 ```
 
-Because `MailDevResource` inplements <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> the manifest publishing logic in .NET Aspire knows that even though `MailDevResource` is a container resource, it also needs a `connectionString` field. The `connectionString` field references other parts of the `maildev` resource in the manifest to produce the final string:
+Because `MailDevResource` implements <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> the manifest publishing logic in .NET Aspire knows that even though `MailDevResource` is a container resource, it also needs a `connectionString` field. The `connectionString` field references other parts of the `maildev` resource in the manifest to produce the final string:
 
 ```json
 {
