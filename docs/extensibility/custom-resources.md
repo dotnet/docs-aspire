@@ -342,7 +342,7 @@ public ReferenceExpression ConnectionStringExpression => ReferenceExpression.Cre
         );
 ```
 
-The signature for the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.Create> method is as follows:
+The signature for the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.Create%2A> method is as follows:
 
 ```csharp
 public static ReferenceExpression Create(in ExpressionInterpolatedStringHandler handler)
