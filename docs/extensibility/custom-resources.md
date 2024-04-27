@@ -334,7 +334,7 @@ In the code above the `MailDevResource` had two properties. `SmtpEndpoint` and `
 
 The fundamental problem that these types help solve is deferring resolution of concrete configuration information until _all_ of the information is available.
 
-For example, in the `MailDevResource` example we expose a property called `ConnectionStringExpression` as required by the <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> interface. The type of the property is <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> and is created by passing in an interpolated string to the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.Create> method.
+For example, in the `MailDevResource` example we expose a property called `ConnectionStringExpression` as required by the <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> interface. The type of the property is <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> and is created by passing in an interpolated string to the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.Create%2A> method.
 
 ```csharp
 public ReferenceExpression ConnectionStringExpression => ReferenceExpression.Create(
