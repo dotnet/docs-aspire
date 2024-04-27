@@ -314,7 +314,7 @@ app.MapGet("/unsubscribe", async (SmtpClient smtpClient, string email) =>
 });
 ```
 
-Once the `Program.cs` file is updated launch the AppHost and use your browser, or `curl` to hit the following URLs:
+Once the _Program.cs_ file is updated launch the app host and use your browser, or `curl` to hit the following URLs:
 
 ```bash
 # Remember to replace the port to match your local environment.
