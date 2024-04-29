@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis distributed caching component
 description: This article describes the .NET Aspire StackExchange Redis distributed caching component features and capabilities
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 04/29/2024
 ---
 
 # .NET Aspire StackExchange Redis distributed caching component
