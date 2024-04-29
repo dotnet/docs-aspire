@@ -56,7 +56,7 @@ For apps with controllers, apply the `[OutputCache]` attribute to the action met
 
 ## App host usage
 
-In your app host project, register the .NET Aspire StackExchange Redis output caching component using the <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> and consume the service using the following methods:
+In your app host project, register the .NET Aspire StackExchange Redis output caching component using the <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> method and consume the service using the following methods:
 
 ```csharp
 // Service registration
