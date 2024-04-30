@@ -1,0 +1,24 @@
+name: Azure OIDC auth flow
+description: "Azure OpenID Connect authentication flow"
+
+outputs:
+  access-token:
+    description: "The Azure OIDC bearer access token"
+    value: ${{ steps.api-access.outputs.AZURE_ACCESS_TOKEN }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Azure OpenID Connect
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.CLIENT_ID }}
+        tenant-id: ${{ secrets.TENANT_ID }}
+        audience: ${{ secrets.OSMP_API_AUDIENCE }}
+        allow-no-subscriptions: true
+
+    - name: OSMP API access
+      id: api-access
+      run: |
+        TOKEN=$(az account get-access-token --query 'accessToken' -o tsv --resource ${{ secrets.OSMP_API_AUDIENCE }})
+        echo "AZURE_ACCESS_TOKEN=$(echo $TOKEN)" >> $GITHUB_OUTPUT
