@@ -235,6 +235,12 @@ In order to test the end-to-end scenario, you need a .NET project which we can i
     dotnet add ./MailDevResource.NewsletterService/MailDevResource.NewsletterService.csproj reference ./MailDev.Hosting/MailDev.Hosting.csproj
     ```
 
+1. Add a referece to the _MailDevResource.AppHost_ project.
+
+    ```dotnetcli
+    dotnet add .\MailDevResource.AppHost\MailDevResource.AppHost.csproj reference .\MailDevResource.NewsletterService\MailDevResource.NewsletterService.csproj
+    ```
+
 1. Add the new project to the solution file.
 
     ```dotnetcli
