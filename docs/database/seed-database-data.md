@@ -80,13 +80,20 @@ The script runs during startup every time a new container instance is created.
 
 The following examples demonstrate how to seed data using SQL scripts and configurations applied using the `.WithBindMount` method for different database technologies:
 
+> [!NOTE]
+> Visit the [Database Container Sample App](https://github.com/dotnet/aspire-samples/blob/main/samples/DatabaseContainers/DatabaseContainers.AppHost/Program.cs) to view the full project and file structure for each database option.
+
 ### [SQL Server](#tab/sql-server)
 
-Configuration code in the **.AppHost** project:
+The configuration code in the **.AppHost** project mounts the required database files and folders and configures an entrypoint so that they run during startup.
 
 :::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/Program.cs" range="25-35" :::
 
-Corresponding SQL script included in the app:
+The _entrypoint.sh_ script lives in the mounted `./sqlserverconfig` folder and runs when the container starts. The script launches SQL Server and checks that it's running.
+
+:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/sqlserverconfig/entrypoint.sh" :::
+
+The SQL script that lives in the mounted `../DatabaseContainers.ApiService/data/sqlserver` directory creates the database and tables.
 
 :::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.ApiService/data/sqlserver/init.sql" :::
 
@@ -137,7 +144,7 @@ if (app.Environment.IsDevelopment())
     using (var scope = app.Services.CreateScope())
     {
         var context = scope.ServiceProvider.GetRequiredService<TicketContext>();
-        context.Database.EnsureCreated();
+        context.Database.Migrate();
     }
 }
 ```
