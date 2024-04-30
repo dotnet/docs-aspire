@@ -47,16 +47,15 @@ The dashboard also has functionality for viewing .NET Aspire resources. The dash
 
 ## Send telemetry to the dashboard
 
-Apps send telemetry to the dashboard using [OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/). Ensure the dashboard container is launched with ports exposed for viewing the UI and receiving OpenTelemetry data from applications.
+Apps send telemetry to the dashboard using [OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/). The dashboard must expose a port for receiving OpenTelemetry data, and apps are configured to send data to that address.
 
-The earlier Docker command [used to start the dashboard](#start-the-dashboard) configured two endpoints:
+The Docker command show earlier to [start the dashboard](#start-the-dashboard) configured the container to receive OpenTelemetry data on port `4317`. The OTLP endpoint's full address is `http://localhost:4317`.
 
-- Port `18888` for accessing the dashboard UI.
-- Port `4317` for receiving OpenTelemetry data from apps at `http://localhost:4317`.
+### Configure OpenTelemetry SDK
 
-### Configure apps OpenTelemetry SDK
+Apps collect and send telemetry using [their language's OpenTelemetry SDK](https://opentelemetry.io/docs/languages/).
 
-Apps collect and send telemetry using [their language's OpenTelemetry SDK](https://opentelemetry.io/docs/languages/). OpenTelemetry SDK options to configure:
+Important OpenTelemetry SDK options to configure:
 
 - OTLP endpoint, which should match the dashboard's configuration, e.g., `http://localhost:4317`.
 - OTLP protocol, with the dashboard currently supporting only the [OTLP/gRPC protocol](https://opentelemetry.io/docs/specs/otlp/#otlpgrpc). Configure applications to use the `grpc` protocol.
