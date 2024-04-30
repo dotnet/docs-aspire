@@ -34,6 +34,10 @@ jobs:
       - name: Azure OpenID Connect
         id: azure-oidc-auth
         uses: ./.github/actions/azure-oidc-auth
+        with:
+          client-id: ${{ secrets.CLIENT_ID }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          audience: ${{ secrets.OSMP_API_AUDIENCE }}
 
         # This step occurs when ran manually, passing the manual issue number input
       - name: manual-sequester

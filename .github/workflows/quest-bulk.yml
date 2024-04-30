@@ -27,6 +27,10 @@ jobs:
       - name: Azure OpenID Connect
         id: azure-oidc-auth
         uses: dotnet/docs-aspire/.github/actions/azure-oidc-auth@main
+        with:
+          client-id: ${{ secrets.CLIENT_ID }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          audience: ${{ secrets.OSMP_API_AUDIENCE }}
 
       - name: bulk-sequester
         id: bulk-sequester
