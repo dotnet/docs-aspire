@@ -31,9 +31,9 @@ Data displayed in the dashboard can be sensitive. By default, the dashboard is s
 
 When the dashboard is run from a standalone container, the login token is printed to the container logs. After copying the highlighted token into the login page, select the *Login* button.
 
-![Screenshot of the .NET Aspire dashboard container logs](./images/aspire-dashboard-container-log.png)
+![Screenshot of the .NET Aspire dashboard container logs](./media/standalone/aspire-dashboard-container-log.png)
 
-For more information about logging into the dashboard, see [Dashboard authentication](https://learn.microsoft.com/dotnet/aspire/fundamentals/dashboard/explore#dashboard-authentication).
+For more information about logging into the dashboard, see [Dashboard authentication](explore.md#dashboard-authentication).
 
 ## Explore the dashboard
 
