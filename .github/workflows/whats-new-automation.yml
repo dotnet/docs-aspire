@@ -29,6 +29,10 @@ jobs:
       - name: Azure OpenID Connect
         id: azure-oidc-auth
         uses: ./.github/actions/azure-oidc-auth
+        with:
+          client-id: ${{ secrets.CLIENT_ID }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          audience: ${{ secrets.OSMP_API_AUDIENCE }}
 
       - uses: dotnet/docs-tools/WhatsNew.Cli@main
         env:
