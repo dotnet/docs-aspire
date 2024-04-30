@@ -35,6 +35,8 @@ items:
             href: fundamentals/dashboard/overview.md
           - name: Explore features
             href: fundamentals/dashboard/explore.md
+          - name: Standalone mode
+            href: fundamentals/dashboard/standalone.md
           - name: Configuration
             href: fundamentals/dashboard/configuration.md
           - name: Security considerations
