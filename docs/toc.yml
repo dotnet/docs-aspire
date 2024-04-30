@@ -179,7 +179,7 @@ items:
 
   - name: Extensibility
     items:
-      - name: Custom resources
+      - name: Create custom resource types
         href: extensibility/custom-resources.md
 
   - name: Troubleshooting
