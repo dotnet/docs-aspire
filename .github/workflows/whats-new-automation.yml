@@ -33,7 +33,7 @@ jobs:
       - uses: dotnet/docs-tools/WhatsNew.Cli@main
         env:
           GitHubKey: ${{ secrets.GITHUB_TOKEN }}
-          OspoKey: ${{ steps.azure-oidc-auth.outputs.access-token }}
+          AZURE_ACCESS_TOKEN: ${{ steps.azure-oidc-auth.outputs.access-token }}
         with:
           owner: dotnet
           repo: docs-aspire
