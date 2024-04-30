@@ -178,7 +178,9 @@ items:
         href: deployment/manifest-format.md
 
   - name: Extensibility
-    href: extensibility/custom-resources.md
+    items:
+      - name: Custom resources
+        href: extensibility/custom-resources.md
 
   - name: Troubleshooting
     items:
