@@ -34,8 +34,14 @@ public static class MailDevResourceBuilderExtensions
                       .WithImage(MailDevContainerImageTags.Image)
                       .WithImageRegistry(MailDevContainerImageTags.Registry)
                       .WithImageTag(MailDevContainerImageTags.Tag)
-                      .WithHttpEndpoint(targetPort: 1080, port: httpPort, name: MailDevResource.HttpEndpointName)
-                      .WithEndpoint(targetPort: 1025, port: smtpPort, name: MailDevResource.SmtpEndpointName);
+                      .WithHttpEndpoint(
+                          targetPort: 1080,
+                          port: httpPort,
+                          name: MailDevResource.HttpEndpointName)
+                      .WithEndpoint(
+                          targetPort: 1025,
+                          port: smtpPort,
+                          name: MailDevResource.SmtpEndpointName);
     }
 }
 
