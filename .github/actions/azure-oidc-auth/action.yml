@@ -19,6 +19,7 @@ runs:
 
     - name: OSMP API access
       id: api-access
+      shell: bash
       run: |
         TOKEN=$(az account get-access-token --query 'accessToken' -o tsv --resource ${{ secrets.OSMP_API_AUDIENCE }})
         echo "AZURE_ACCESS_TOKEN=$(echo $TOKEN)" >> $GITHUB_OUTPUT
