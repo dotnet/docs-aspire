@@ -267,6 +267,9 @@ To test the client, add two simple `subscribe` and `unsubscribe` GET methods to 
 
 :::code source="snippets/MailDevResource/MailDevResource.NewsletterService/Program.cs" id="subs":::
 
+> [!TIP]
+> Remember to reference the `System.Net.Mail` and `Microsoft.AspNetCore.Mvc` namespaces in `Program.cs` if your code editor does not automatically add them.
+
 Once the _Program.cs_ file is updated, launch the app host and use your browser, or `curl` to hit the following URLs (alternatively if you're using Visual Studio you can use `.http` files):
 
 ```curl
