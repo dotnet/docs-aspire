@@ -49,7 +49,7 @@ The dashboard also has functionality for viewing .NET Aspire resources. The dash
 
 Apps send telemetry to the dashboard using [OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/). The dashboard must expose a port for receiving OpenTelemetry data, and apps are configured to send data to that address.
 
-The Docker command show earlier to [start the dashboard](#start-the-dashboard) configured the container to receive OpenTelemetry data on port `4317`. The OTLP endpoint's full address is `http://localhost:4317`.
+A Docker command was shown earlier to [start the dashboard](#start-the-dashboard). It configured the container to receive OpenTelemetry data on port `4317`. The OTLP endpoint's full address is `http://localhost:4317`.
 
 ### Configure OpenTelemetry SDK
 
