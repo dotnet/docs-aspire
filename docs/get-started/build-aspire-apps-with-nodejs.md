@@ -209,7 +209,7 @@ To visualize the Vue client app, navigate to the "vue" endpoint in the .NET Aspi
 
 ## Deployment considerations
 
-The sample source code for this article is designed to run locally. It has also been developed to deploy each client app as a container image. The _Dockerfile_ for each client app is used to build the container image. Each _Dockefile_ is identical, using a multistage build to create a production-ready container image.
+The sample source code for this article is designed to run locally. It has also been developed to deploy each client app as a container image. The _Dockerfile_ for each client app is used to build the container image. Each _Dockerfile_ is identical, using a multistage build to create a production-ready container image.
 
 :::code language="dockerfile" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/Dockerfile":::
 
