@@ -85,15 +85,15 @@ The following examples demonstrate how to seed data using SQL scripts and config
 
 ### [SQL Server](#tab/sql-server)
 
-The configuration code in the **.AppHost** project mounts the required database files and folders and configures an entrypoint so that they run during startup.
+The configuration code in the **.AppHost** _program.cs_ file mounts the required database files and folders and configures an entrypoint so that they run during startup.
 
 :::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/Program.cs" range="25-35" :::
 
-The _entrypoint.sh_ script lives in the mounted `./sqlserverconfig` folder and runs when the container starts. The script launches SQL Server and checks that it's running.
+The _entrypoint.sh_ script lives in the mounted `./sqlserverconfig` project folder and runs when the container starts. The script launches SQL Server and checks that it's running.
 
 :::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/sqlserverconfig/entrypoint.sh" :::
 
-The SQL script that lives in the mounted `../DatabaseContainers.ApiService/data/sqlserver` directory creates the database and tables.
+The _init.sql_ SQL script that lives in the mounted `../DatabaseContainers.ApiService/data/sqlserver` project folder creates the database and tables.
 
 :::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.ApiService/data/sqlserver/init.sql" :::
 
