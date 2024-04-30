@@ -26,7 +26,7 @@ jobs:
 
       - name: Azure OpenID Connect
         id: azure-oidc-auth
-        uses: ./.github/actions/azure-oidc-auth
+        uses: dotnet/docs-aspire/.github/actions/azure-oidc-auth@main
 
       - name: bulk-sequester
         id: bulk-sequester
