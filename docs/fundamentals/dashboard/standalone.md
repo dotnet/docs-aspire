@@ -29,7 +29,7 @@ The preceding Docker command:
 
 Data displayed in the dashboard can be sensitive. By default, the dashboard is secured with authentication that requires a token to login.
 
-When the dashboard is run from a standalone container the login token is printed to the container logs. After copying the highlighted token into the login page, select the *Login* button.
+When the dashboard is run from a standalone container, the login token is printed to the container logs. After copying the highlighted token into the login page, select the *Login* button.
 
 ![Screenshot of the .NET Aspire dashboard container logs](./images/aspire-dashboard-container-log.png)
 
@@ -37,33 +37,33 @@ For more information about logging into the dashboard, see [Dashboard authentica
 
 ## Explore the dashboard
 
-The dashboard provides UI for viewing telemetry. Explore telemetry functionality in the documentation:
+The dashboard offers a UI for viewing telemetry. Refer to the documentation to explore the telemetry functionality:
 
 - [Structured logs page](explore.md#structured-logs-page)
 - [Traces page](explore.md#traces-page)
 - [Metrics page](explore.md#metrics-page)
 
-The dashboard also have functionality for viewing .NET Aspire resources. The dashboard's UI for resources is disabled when it is run in standalone mode. To enable resources UI, [add configuration for a resource service](configuration.md#resources).
+The dashboard also has functionality for viewing .NET Aspire resources. The dashboard resource features are disabled when it is run in standalone mode. To enable the resources UI, [add configuration for a resource service](configuration.md#resources).
 
 ## Send telemetry to the dashboard
 
-Apps send telemetry to the dashboard using [OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/). The dashboard container should be launched with ports exposed to view the dashboard UI and receive OpenTelemetry data from apps.
+Apps send telemetry to the dashboard using [OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/). Ensure the dashboard container is launched with ports exposed for viewing the UI and receiving OpenTelemetry data from applications.
 
 The earlier Docker command [used to start the dashboard](#start-the-dashboard) configured two endpoints:
 
-- Port `18888` has the dashboard UI.
-- Port `4317` receives OpenTelemetry data from apps. Apps send data using [OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/). Its full address is `http://localhost:4317` and is what apps are configured with to send telemetry to the dashboard.
+- Port `18888` for accessing the dashboard UI.
+- Port `4317` for receiving OpenTelemetry data from apps at `http://localhost:4317`.
 
 ### Configure apps OpenTelemetry SDK
 
 Apps collect and send telemetry using [their language's OpenTelemetry SDK](https://opentelemetry.io/docs/languages/). OpenTelemetry SDK options to configure:
 
-- OTLP endpoint. The address should match the dashboard's configuration. For example, `http://localhost:4317`.
-- OTLP protocol. The dashboard currently only supports the [OTLP/gRPC protocol](https://opentelemetry.io/docs/specs/otlp/#otlpgrpc). Apps sending telemetry to the dashboard should be configured to use the `grpc` protocol.
+- OTLP endpoint, which should match the dashboard's configuration, e.g., `http://localhost:4317`.
+- OTLP protocol, with the dashboard currently supporting only the [OTLP/gRPC protocol](https://opentelemetry.io/docs/specs/otlp/#otlpgrpc). Configure applications to use the `grpc` protocol.
 
-There are a couple of options for configuring apps:
+To configure applications:
 
-- Configure the OpenTelemetry SDK inside the app to using its SDK APIs, or
+- Use the OpenTelemetry SDK APIs within the application, or
 - Start the app with [known environment variables](https://opentelemetry.io/docs/specs/otel/protocol/exporter/#configuration-options):
   - `OTEL_EXPORTER_OTLP_PROTOCOL` with a value of `grpc`.
   - `OTEL_EXPORTER_OTLP_ENDPOINT` with a value of `http://localhost:4317`.
