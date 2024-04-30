@@ -238,7 +238,7 @@ In order to test the end-to-end scenario, you need a .NET project which we can i
 1. Add a referece to the _MailDevResource.AppHost_ project.
 
     ```dotnetcli
-    dotnet add .\MailDevResource.AppHost\MailDevResource.AppHost.csproj reference .\MailDevResource.NewsletterService\MailDevResource.NewsletterService.csproj
+    dotnet add ./MailDevResource.AppHost/MailDevResource.AppHost.csproj reference ./MailDevResource.NewsletterService\MailDevResource.NewsletterService.csproj
     ```
 
 1. Add the new project to the solution file.
@@ -268,7 +268,7 @@ To test the client, add two simple `subscribe` and `unsubscribe` GET methods to 
 :::code source="snippets/MailDevResource/MailDevResource.NewsletterService/Program.cs" id="subs":::
 
 > [!TIP]
-> Remember to reference the `System.Net.Mail` and `Microsoft.AspNetCore.Mvc` namespaces in `Program.cs` if your code editor does not automatically add them.
+> Remember to reference the `System.Net.Mail` and `Microsoft.AspNetCore.Mvc` namespaces in _Program.cs_ if your code editor doesn't automatically add them.
 
 Once the _Program.cs_ file is updated, launch the app host and use your browser, or `curl` to hit the following URLs (alternatively if you're using Visual Studio you can use `.http` files):
 
