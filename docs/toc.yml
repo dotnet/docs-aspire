@@ -177,6 +177,11 @@ items:
       - name: Reference - Tool-builder manifest schemas
         href: deployment/manifest-format.md
 
+  - name: Extensibility
+    items:
+      - name: Create custom resource types
+        href: extensibility/custom-resources.md
+
   - name: Troubleshooting
     items:
       - name: Allow unsecure transport
