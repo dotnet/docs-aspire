@@ -1,7 +1,7 @@
 ---
 title: Create custom resource types for .NET Aspire
 description: Learn how to create a custom resource for an existing containerized application.
-ms.date: 04/25/2024
+ms.date: 04/29/2024
 ms.topic: tutorial
 ms.custom: devx-track-extended-azdevcli
 ---
@@ -289,49 +289,58 @@ If those API calls return a successful response then you should be able to click
 
 ## Technical details
 
-### `ReferenceExpression` and `EndpointReference`
+In the following sections, various technical details are discussed which are important to understand when developing custom resources for .NET Aspire.
 
-In the code above the `MailDevResource` had two properties. `SmtpEndpoint` and `ConnectionStringExpression`. The types of these properties were <xref:Aspire.Hosting.ApplicationModel.EndpointReference> and <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> respectively. These types are among several which are used throughout .NET Aspire to represent configuration data which is not finalized until the .NET Aspire application is either run or published to the cloud via a tool such as `azd` ([Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview)).
+### The `ReferenceExpression` and `EndpointReference` type
 
-The fundamental problem that these types help solve is deferring resolution of concrete configuration information until _all_ of the information is available.
+In the preceding code, the `MailDevResource` had two properties:
 
-For example, in the `MailDevResource` example we expose a property called `ConnectionStringExpression` as required by the <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> interface. The type of the property is <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> and is created by passing in an interpolated string to the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.Create%2A> method.
+- `SmtpEndpoint`: <xref:Aspire.Hosting.ApplicationModel.EndpointReference> type.
+- `ConnectionStringExpression`: <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> type.
+
+These types are among several which are used throughout .NET Aspire to represent configuration data, which isn't finalized until the .NET Aspire application is either run or published to the cloud via a tool such as [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/overview).
+
+The fundamental problem that these types help to solve, is deferring resolution of concrete configuration information until _all_ the information is available.
+
+For example, the `MailDevResource` exposes a property called `ConnectionStringExpression` as required by the <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> interface. The type of the property is <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> and is created by passing in an interpolated string to the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.Create%2A> method.
 
 ```csharp
-public ReferenceExpression ConnectionStringExpression => ReferenceExpression.Create(
+public ReferenceExpression ConnectionStringExpression =>
+    ReferenceExpression.Create(
         $"smtp://{SmtpEndpoint.Property(EndpointProperty.Host)}:{SmtpEndpoint.Property(EndpointProperty.Port)}"
-        );
+    );
 ```
 
 The signature for the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.Create%2A> method is as follows:
 
 ```csharp
-public static ReferenceExpression Create(in ExpressionInterpolatedStringHandler handler)
+public static ReferenceExpression Create(
+    in ExpressionInterpolatedStringHandler handler)
 ```
 
-Notice that this is not a regular <xref:System.String> argument. Method makes use of the [interpolated string handler pattern](/dotnet/csharp/whats-new/tutorials/interpolated-string-handler) in .NET to capture the interpolated string template and the values referenced within it to allow for custom processing. In the case of .NET Aspire we capture these details in a <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> which can be evaluated as each value referenced in the interpolated string becomes available.
+This isn't a regular <xref:System.String> argument. The method makes use of the [interpolated string handler pattern](/dotnet/csharp/whats-new/tutorials/interpolated-string-handler), to capture the interpolated string template and the values referenced within it to allow for custom processing. In the case of .NET Aspire, these details are captured in a <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> which can be evaluated as each value referenced in the interpolated string becomes available.
 
-Here is how the flow of execution works:
+Here's how the flow of execution works:
 
-1. Resource which implements <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> is added to the model (e.g. `AddMailDev(...)`).
-2. `IResourceBuilder<MailDevResource>` is passed to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> which has a special overload which handles <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> implementors.
-3. `WithReference` wraps the resource in a <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference> instance and the object is captured in a <xref:Aspire.Hosting.ApplicationModel.EnvironmentCallbackAnnotation> which is evaluated after the .NET Aspire application is built and starts running.
-4. As the the process that references the connection string starts .NET Aspire starts evaluating the expression. It first gets the <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference> and calls <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference.GetValueAsync>.
-5. The `GetValueAsync` method gets the value of the <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString.ConnectionStringExpression> property to get the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> instance.
-6. The <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference.GetValueAsync> method then calls <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.GetValueAsync> to process the previously captured interpolated string.
-7. Because the interpolated string contains references to other reference types such as <xref:Aspire.Hosting.ApplicationModel.EndpointReference> they are also evaluated and real value substituted (which at this time are now available).
+1. A resource which implements <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> is added to the model (for example, `AddMailDev(...)`).
+1. The `IResourceBuilder<MailDevResource>` is passed to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> which has a special overload for handling <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> implementors.
+1. The `WithReference` wraps the resource in a <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference> instance and the object is captured in a <xref:Aspire.Hosting.ApplicationModel.EnvironmentCallbackAnnotation> which is evaluated after the .NET Aspire application is built and starts running.
+1. As the the process that references the connection string starts .NET Aspire starts evaluating the expression. It first gets the <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference> and calls <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference.GetValueAsync%2A>.
+1. The `GetValueAsync` method gets the value of the <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString.ConnectionStringExpression> property to get the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> instance.
+1. The <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference.GetValueAsync%2A> method then calls <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.GetValueAsync%2A> to process the previously captured interpolated string.
+1. Because the interpolated string contains references to other reference types such as <xref:Aspire.Hosting.ApplicationModel.EndpointReference> they are also evaluated and real value substituted (which at this time are now available).
 
 ### Manifest publishing
 
-The <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider> interface is designed to solve the problem of sharing connection information between resources at deployment. Similarly to local development, many of the values necessary to configure the application can not be determined until the application is being deployed via a tool such as `azd` (Azure Developer CLI).
+The <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider> interface is designed to solve the problem of sharing connection information between resources at deployment. The solution for this particular problem is described in the [.NET Aspire inner-loop networking overview](../fundamentals/networking-overview.md). Similarly to local development, many of the values are necessary to configure the app, yet they cannot be determined until the app is being deployed via a tool, such as `azd` (Azure Developer CLI).
 
-To solve this problem .NET Aspire produces a manifest file which `azd` and other deployment tools interpret. Rather than specifying concrete values for connection information between resources an expression syntax is used which deployment tools evaluate. Generally the manifest file is not visible to developers but it is possible to generate one for manual inspection. The command below can be used on the AppHost to produce a manifest.
+To solve this problem [.NET Aspire produces a manifest file](../deployment/manifest-format.md) which `azd` and other deployment tools interpret. Rather than specifying concrete values for connection information between resources an expression syntax is used which deployment tools evaluate. Generally the manifest file isn't visible to developers but it's possible to generate one for manual inspection. The command below can be used on the app host to produce a manifest.
 
 ```dotnetcli
-dotnet run --project MailDevResource.AppHost\MailDevResource.AppHost.csproj -- --publisher manifest --output-path aspire-manifest.json
+dotnet run --project MailDevResource.AppHost/MailDevResource.AppHost.csproj -- --publisher manifest --output-path aspire-manifest.json
 ```
 
-This command will produce a manifest file like the following:
+This command produces a manifest file like the following:
 
 ```json
 {
@@ -382,7 +391,7 @@ This command will produce a manifest file like the following:
 }
 ```
 
-Because `MailDevResource` implements <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> the manifest publishing logic in .NET Aspire knows that even though `MailDevResource` is a container resource, it also needs a `connectionString` field. The `connectionString` field references other parts of the `maildev` resource in the manifest to produce the final string:
+Because the `MailDevResource` implements <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> the manifest publishing logic in .NET Aspire knows that even though `MailDevResource` is a container resource, it also needs a `connectionString` field. The `connectionString` field references other parts of the `maildev` resource in the manifest to produce the final string:
 
 ```json
 {
@@ -391,26 +400,37 @@ Because `MailDevResource` implements <xref:Aspire.Hosting.ApplicationModel.IReso
 }
 ```
 
-.NET Aspire knows how to form this string because it looks at <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString.ConnectionStringExpression> and builds up the final string via the <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider> interface (in much the same way as the <xref:Aspire.Hosting.AppicationModel.IValueProvider> interface is used).
+.NET Aspire knows how to form this string because it looks at <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString.ConnectionStringExpression> and builds up the final string via the <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider> interface (in much the same way as the <xref:Aspire.Hosting.ApplicationModel.IValueProvider> interface is used).
 
-The `MailDevResource` automatically gets included in the manifest because it is derived from <xref:Aspire.Hosting.ApplicationModel.ContainerResource>. Resource authors can choose to suppress outputting content to the manifest by using the <xref:Aspire.Hosting.ResourceBuilderExtensions.ExcludeFromManifest%2A> extension method on the resource builder.
+The `MailDevResource` automatically gets included in the manifest because it's derived from <xref:Aspire.Hosting.ApplicationModel.ContainerResource>. Resource authors can choose to suppress outputting content to the manifest by using the <xref:Aspire.Hosting.ResourceBuilderExtensions.ExcludeFromManifest%2A> extension method on the resource builder.
 
 ```csharp
-public static IResourceBuilder<MailDevResource> AddMailDev(this IDistributedApplicationBuilder builder, string name, int? httpPort = null, int? smtpPort = null)
+public static IResourceBuilder<MailDevResource> AddMailDev(
+    this IDistributedApplicationBuilder builder, 
+    string name,
+    int? httpPort = null,
+    int? smtpPort = null)
 {
     var resource = new MailDevResource(name);
+
     return builder.AddResource(resource)
-                    .WithImage(MailDevContainerImageTags.Image)
-                    .WithImageRegistry(MailDevContainerImageTags.Registry)
-                    .WithImageTag(MailDevContainerImageTags.Tag)
-                    .WithHttpEndpoint(targetPort: 1080, port: httpPort, name: MailDevResource.HttpEndpointName)
-                    .WithEndpoint(targetPort: 1025, port: smtpPort, name: MailDevResource.SmtpEndpointName)
-                    .ExcludeFromManifest(); // This line added!
+                  .WithImage(MailDevContainerImageTags.Image)
+                  .WithImageRegistry(MailDevContainerImageTags.Registry)
+                  .WithImageTag(MailDevContainerImageTags.Tag)
+                  .WithHttpEndpoint(
+                      targetPort: 1080,
+                      port: httpPort,
+                      name: MailDevResource.HttpEndpointName)
+                  .WithEndpoint(
+                      targetPort: 1025,
+                      port: smtpPort,
+                      name: MailDevResource.SmtpEndpointName)
+                  .ExcludeFromManifest(); // This line was added!
 }
 ```
 
-Careful consideration should be given as to whether the resource should be present in the manifest, or whether it should be suppressed. If the resource is being added to the manifest it should be configured in such a way that it is safe and secure to use.
+Careful consideration should be given as to whether the resource should be present in the manifest, or whether it should be suppressed. If the resource is being added to the manifest it should be configured in such a way that it 's safe and secure to use.
 
 ## Summary
 
-In the example above we showed how to create a custom .NET Aspire resource which uses an existing containerized application (MailDev) and used that to improve the local development experience by making it easy to test e-mail testing capabilities that might be used within an application.
+In the custom resource tutorial, you learned how to create a custom .NET Aspire resource which uses an existing containerized application (MailDev). You then used that to improve the local development experience by making it easy to test e-mail capabilities that might be used within an apps. These learnings can be applied to building out other custom resources that can be used in .NET Aspire-based applications.
