@@ -272,18 +272,54 @@ To test the client, add two simple `subscribe` and `unsubscribe` GET methods to 
 
 Once the _Program.cs_ file is updated, launch the app host and use your browser, or `curl` to hit the following URLs (alternatively if you're using Visual Studio you can use `.http` files):
 
-```curl
+```http
+POST /subscribe?email=test@test.com HTTP/1.1
+Host: localhost:7251
+Content-Type: application/json
+```
+
+To use this API, you can use `curl` to send the request. The following `curl` command sends an HTTP `POST` request to the `subscribe` endpoint, and it expects an `email` query string value to subscribe to the newsletter. The `Content-Type` header is set to `application/json` to indicate that the request body is in JSON format.:
+
+## [Unix](#tab/unix)
+
+```bash
 curl -H "Content-Type: application/json" --request POST https://localhost:7251/subscribe?email=test@test.com
 ```
 
-```curl
+## [Windows](#tab/windows)
+
+```powershell
+curl -H "Content-Type: application/json" --request POST https://localhost:7251/subscribe?email=test@test.com
+```
+
+---
+
+```http
+POST /unsubscribe?email=test@test.com HTTP/1.1
+Host: localhost:7251
+Content-Type: application/json
+```
+
+To unsubscribe from the newsletter, you can use the following `curl` command, passing an `email` parameter to the `unsubscribe` endpoint as a query string:
+
+## [Unix](#tab/unix)
+
+```bash
 curl -H "Content-Type: application/json" --request POST https://localhost:7251/unsubscribe?email=test@test.com
 ```
 
-> [!TIP]
-> Make sure that you replace the `https://localhost:7251` with the URL of the app host that you are running.
+## [Windows](#tab/windows)
 
-If those API calls return a successful response then you should be able to click on the `maildev` resource the dashboard and the MailDev UI will show the emails that have been sent to the SMTP endpoint.
+```powershell
+curl -H "Content-Type: application/json" --request POST https://localhost:7251/unsubscribe?email=test@test.com
+```
+
+---
+
+> [!TIP]
+> Make sure that you replace the `https://localhost:7251` with the correct localhost port (the URL of the app host that you are running).
+
+If those API calls return a successful response (HTTP 200, Ok) then you should be able to click on the `maildev` resource the dashboard and the MailDev UI will show the emails that have been sent to the SMTP endpoint.
 
 :::image type="content" source="media/maildev-emails.png" lightbox="media/maildev-emails.png" alt-text="E-mails visible in the MailDev UI":::
 
