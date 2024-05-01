@@ -33,7 +33,7 @@ jobs:
 
       - name: Azure OpenID Connect
         id: azure-oidc-auth
-        uses: dotnet/docs-tools/.github/actions/azure-oidc-auth@main
+        uses: dotnet/docs-tools/.github/actions/oidc-auth-flow@main
         with:
           client-id: ${{ secrets.CLIENT_ID }}
           tenant-id: ${{ secrets.TENANT_ID }}
