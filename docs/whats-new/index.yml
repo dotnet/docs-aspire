@@ -12,6 +12,8 @@ landingContent:
   linkLists:
   - linkListType: whats-new
     links:
+    - text: .NET Aspire preview 7
+      url: preview-7.md
     - text: .NET Aspire preview 6
       url: preview-6.md
     - text: .NET Aspire preview 5
