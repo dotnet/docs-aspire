@@ -45,6 +45,11 @@ The dashboard offers a UI for viewing telemetry. Refer to the documentation to e
 - [Traces page](explore.md#traces-page)
 - [Metrics page](explore.md#metrics-page)
 
+Although there is no restriction on where the dashboard is run, the dashboard is designed as a development and short-term diagnosic tool. The dashboard persists telemetry in-memory which creates some limitations:
+
+- Telemetry is automatically removed if [telemetry limits](configuration.md#telemetry-limits) are exceeded.
+- No telemetry is persisted when the dashboard is restarted.
+
 The dashboard also has functionality for viewing .NET Aspire resources. The dashboard resource features are disabled when it is run in standalone mode. To enable the resources UI, [add configuration for a resource service](configuration.md#resources).
 
 ## Send telemetry to the dashboard
