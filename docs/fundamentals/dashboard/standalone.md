@@ -7,7 +7,10 @@ ms.topic: reference
 
 # Standalone .NET Aspire dashboard
 
-The [.NET Aspire dashboard](overview.md) is also shipped as a Docker image and can be used standalone, without the rest of .NET Aspire. The standalone dashboard provides a great UI for viewing telemetry and can be used by any application.
+The [.NET Aspire dashboard](overview.md) provides a great UI for viewing telemetry. The dashboard:
+
+- Ships as a Docker image that can be used with any OpenTelemetry enabled app.
+- Can be used standalone, without the rest of .NET Aspire.
 
 :::image type="content" source="media/explore/trace.png" lightbox="media/explore/trace.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page.":::
 
