@@ -92,7 +92,7 @@ To see the log entry in detail for the error, select the **View** button to open
 
 For more information and examples of Structured logs, see the [Structured logs page](#structured-logs-page) section.
 
-> ![NOTE]
+> [!NOTE]
 > The resources page isn't available if the dashboard is started without a configured resource service. The dashboard starts on the [Structured logs page](#structured-logs-page) instead. This is the default experience when the dashboard is run in standalone mode without additional configuration.
 >
 > For more information about configuring a resource service, see [Dashboard configuration](configuration.md).
