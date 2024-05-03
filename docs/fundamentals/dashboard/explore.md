@@ -35,7 +35,7 @@ The login page accepts a token and provides helpful instructions on how to obtai
 
 :::image type="content" source="media/explore/aspire-login-help.png" lightbox="media/explore/aspire-login-help.png" alt-text=".NET Aspire dashboard login page with instructions on how to obtain the token.":::
 
-After copying the token from the console and pasting it into the login page, select the **Login** button.
+After copying the token from the console and pasting it into the login page, select the **Log in** button.
 
 :::image type="content" source="media/explore/aspire-login-filled.png" lightbox="media/explore/aspire-login-filled.png" alt-text=".NET Aspire dashboard login page with the token pasted into the textbox.":::
 
