@@ -71,7 +71,6 @@ var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(sqldb);
 ```
 
-
 ## Configuration
 
 The .NET Aspire SQL Server component provides multiple configuration approaches and options to meet the requirements and conventions of your project.
