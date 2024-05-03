@@ -21,7 +21,7 @@ For more information on the schema of the manifest and how to run app host proje
 
 ### Azure Container Apps
 
-.NET Aspire apps are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. The [Azure Container Apps](azure/aca-deployment.md) topic describes how to deploy Aspire apps to ACA manually, using bicep or using the Azure Developer CLI (azd).
+.NET Aspire apps are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. The [Azure Container Apps](azure/aca-deployment.md) topic describes how to deploy Aspire apps to ACA manually, using bicep, or using the Azure Developer CLI (azd).
 
 ### Use Application Insights for .NET Aspire telemetry
 
@@ -29,7 +29,7 @@ For more information on the schema of the manifest and how to run app host proje
 
 ## Deploy to Kubernetes
 
-Kubernetes is a popular container orchestration platform that can run .NET Aspire applications. To deploy .NET Aspire apps to Kubernetes clusters, you need to map the .NET Aspire JSON manifest to a Kubernetes YAML manifest file. There are two ways to do this: by using the Aspir8 project and by manually creating Kubernetes manifests.
+Kubernetes is a popular container orchestration platform that can run .NET Aspire applications. To deploy .NET Aspire apps to Kubernetes clusters, you need to map the .NET Aspire JSON manifest to a Kubernetes YAML manifest file. There are two ways to do this: by using the Aspir8 project, or by manually creating Kubernetes manifests.
 
 ### The Aspir8 project
 
