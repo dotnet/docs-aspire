@@ -1,12 +1,12 @@
 ---
-title: Deploy .NET Aspire apps to Azure Container Apps using Visual STudio
-description: Learn how to use Bicep, the Azure CLI, and Azure Developer CLI to deploy .NET Aspire apps to Azure.
-ms.date: 03/08/2024
+title: Deploy .NET Aspire apps to Azure Container Apps using Visual Studio
+description: Learn how to use Bicep, the Azure CLI, and Azure Developer CLI to deploy .NET Aspire apps to Azure using Visual Studio.
+ms.date: 05/03/2024
 zone_pivot_groups: azure-development-tool
 ms.custom: devx-track-extended-azdevcli
 ---
 
-# Deploy a .NET Aspire app to Azure Container Apps
+# Deploy a .NET Aspire app to Azure Container Apps using Visual Studio
 
 .NET Aspire apps are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. This article will walk you through creating a new .NET Aspire solution and deploying it to Microsoft Azure Container Apps using the Azure Developer CLI (`azd`), the Azure CLI, or Bicep. You'll learn how to complete the following tasks:
 
@@ -18,9 +18,9 @@ ms.custom: devx-track-extended-azdevcli
 > - Deploy the apps to an Azure Container Apps environment
 > - View application console logs to troubleshoot application issues
 
-[!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
+[!INCLUDE [aspire-prereqs](/includes/aspire-prereqs.md)]
 
-[!INCLUDE [file-new-aspire](../../../includes/file-new-aspire.md)]
+[!INCLUDE [file-new-aspire](/includes/file-new-aspire.md)]
 
 ### Deploy the app
 
@@ -38,4 +38,4 @@ ms.custom: devx-track-extended-azdevcli
 
 1. When the publish completes, Visual Studio displays the resource URLs at the bottom of the environment screen. Use these links to view the various deployed resources. Select the **webfrontend** URL to open a browser to the deployed app.
 
-    :::image type="content" source="../../media/visual-studio-deploy-complete.png" alt-text="A screenshot of the completed publishing process and deployed resources.":::
+    :::image type="content" source="/media/visual-studio-deploy-complete.png" alt-text="A screenshot of the completed publishing process and deployed resources.":::

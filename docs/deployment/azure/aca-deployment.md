@@ -17,7 +17,7 @@ ms.custom: devx-track-extended-azdevcli
 > - Deploy the apps to an Azure Container Apps environment
 > - View application console logs to troubleshoot application issues
 
-[!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
+[!INCLUDE [aspire-prereqs](/includes/aspire-prereqs.md)]
 
 As an alternative to this tutorial and for a more in-depth guide, see [Deploy a .NET Aspire app to Azure Container Apps using `azd` (in-depth guide)](aca-deployment-azd-in-depth.md).
 
@@ -25,7 +25,7 @@ As an alternative to this tutorial and for a more in-depth guide, see [Deploy a 
 
 With .NET Aspire and Azure Container Apps (ACA), you have a great hosting scenario for building out your cloud-native apps with .NET. We built some great new features into the Azure Developer CLI (`azd`) specific for making .NET Aspire development and deployment to Azure a friction-free experience. You can still use the Azure CLI and/or Bicep options when you need a granular level of control over your deployments. But for new projects, you won't find an easier path to success for getting a new microservice topology deployed into the cloud.
 
-[!INCLUDE [file-new-aspire](../../../includes/file-new-aspire.md)]
+[!INCLUDE [file-new-aspire](/includes/file-new-aspire.md)]
 
 ## Install the Azure Developer CLI
 
@@ -47,4 +47,4 @@ At this point the app has been deployed and configured, and you can open the Azu
 
 [!INCLUDE [test-deployed-app](includes/test-deployed-app.md)]
 
-[!INCLUDE [clean-up-resources](../../includes/clean-up-resources.md)]
+[!INCLUDE [clean-up-resources](/includes/clean-up-resources.md)]
