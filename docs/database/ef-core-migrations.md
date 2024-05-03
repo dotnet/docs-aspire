@@ -60,3 +60,48 @@ Start by creating some migrations to apply.
 1. Modify the model so that it includes a new property. Open *SupportTicketApi.Data\Models\SupportTicket.cs* and add a new property to the `SupportTicket` class:
 
     :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi/Models/SupportTicket.cs" range="5-14" highlight="9" :::
+
+1. Create a new migration to capture the changes to the model:
+
+    ```dotnetcli
+    dotnet ef migrations add AddCompleted --project ..\SupportTicketApi.Data\SupportTicketApi.Data.csproj
+    ```
+
+Now you've got some migrations to apply. Next, you'll create a migration service that applies these migrations during app startup.
+
+## Create the migration service
+
+To run the migrations at startup, you need to create a service that applies the migrations.
+
+1. Add a new Worker Service project to the solution. If using Visual Studio, right-click the solution in Solution Explorer and select **Add** > **New Project**. Select **Worker Service** and name the project *SupportTicketApi.Migrations*. If using the command line, use the following commands from the solution directory:
+
+    ```dotnetcli
+    dotnet new worker -n SupportTicketApi.Migrations
+    dotnet sln add SupportTicketApi.Migrations
+    ```
+
+1. Add the following project references the *ServiceDefaults* and *Data* project to the *SupportTicketApi.Migrations* project using Visual Studio or the command line:
+
+    ```dotnetcli
+    dotnet add SupportTicketApi.Migrations reference SupportTicketApi.Data
+    dotnet add SupportTicketApi.Migrations reference SupportTicketApi.ServiceDefaults
+    ```
+
+1. Add the following NuGet package references to the *SupportTicketApi.Migrations* project using Visual Studio or the command line:
+
+    ```dotnetcli
+    dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer
+    ```
+
+1. Replace the contents of the *Worker.cs* file in the *SupportTicketApi.Migrations* project with the following code:
+
+    **CODE HERE**
+
+    The preceding code:
+
+    1. explain code here (wip)
+
+Remaining steps are WIP:
+
+1. Add the migration service to the app host.
+1. Remove the seed logic in the API
