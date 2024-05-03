@@ -179,7 +179,7 @@ The structured logs page is discussed in more detail in the [Structured logs pag
 
 #### Trace examples
 
-Each trace has a color, which is generated to help differentiate between spans — one color for each resource. The colors are reflected in both the _traces page_ and the _trace detail view_. When traces depict an arrow icon, those icons are colorized as well to match the span of the target trace. Consider the following example screenshot of traces:
+Each trace has a color, which is generated to help differentiate between spans — one color for each resource. The colors are reflected in both the _traces page_ and the _trace detail page_. When traces depict an arrow icon, those icons are colorized as well to match the span of the target trace. Consider the following example screenshot of traces:
 
 :::image type="content" source="media/explore/traces.png" lightbox="media/explore/traces.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page.":::
 
