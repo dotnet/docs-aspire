@@ -25,7 +25,7 @@ For more information on the schema of the manifest and how to run app host proje
 
 ### Use Application Insights for .NET Aspire telemetry
 
-.NET Aspire apps are designed to emit Telemetry using OpenTelemetry which uses a provider model. .NET Aspire Apps can direct their telemetry to Azure Monitor / Application Insights using the Azure Monitor telemetry distro. For more information, see [Use Application Insights for .NET Aspire telemetry](azure/application-insights.md) for step-by-step instructions.
+.NET Aspire apps are designed to emit telemetry using OpenTelemetry which uses a provider model. .NET Aspire Apps can direct their telemetry to Azure Monitor / Application Insights using the Azure Monitor telemetry distro. For more information, see [Use Application Insights for .NET Aspire telemetry](azure/application-insights.md) for step-by-step instructions.
 
 ## Deploy to Kubernetes
 
