@@ -70,6 +70,9 @@ conceptualContent:
         - itemType: overview
           text: .NET Aspire local networking
           url: fundamentals/networking-overview.md
+        - itemType: overview
+          text: Use Orleans with .NET Aspire
+          url: fundamentals/orleans.md
 
     - title: Storage
       links:
