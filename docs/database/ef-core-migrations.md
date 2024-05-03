@@ -59,5 +59,4 @@ Start by creating some migrations to apply.
 
 1. Modify the model so that it includes a new property. Open *SupportTicketApi.Data\Models\SupportTicket.cs* and add a new property to the `SupportTicket` class:
 
-    :::code source="aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi/Models/SupportTicket.cs" range="5-14" highlight="13":::
-    
+    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi/Models/SupportTicket.cs" range="5-14" highlight="13":::
