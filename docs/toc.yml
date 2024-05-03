@@ -85,7 +85,7 @@ items:
   
   - name: Logging
     items:
-      - name: SEQ component
+      - name: Seq component
         href: logging/seq-component.md
 
   - name: Database
