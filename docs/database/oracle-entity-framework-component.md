@@ -34,7 +34,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireOracleEFCoreExtensions.AddOracleDatabaseDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container.
 
 ```csharp
-builder.AddOracleDatabaseDbContext<MyDbContext>("freepdb");
+builder.AddOracleDatabaseDbContext<MyDbContext>("oracledb");
 ```
 
 You can then retrieve the <xref:Microsoft.EntityFrameworkCore.DbContext> instance using dependency injection. For example, to retrieve the client from a service:
@@ -49,7 +49,7 @@ public class ExampleService(MyDbContext context)
 You might also need to configure specific options of Oracle database, or register a `DbContext` in other ways. In this case call the `EnrichOracleDatabaseDbContext` extension method, for example:
 
 ```csharp
-var connectionString = builder.Configuration.GetConnectionString("freepdb");
+var connectionString = builder.Configuration.GetConnectionString("oracledb");
 
 builder.Services.AddDbContextPool<MyDbContext>(
     dbContextOptionsBuilder => dbContextOptionsBuilder.UseOracle(connectionString));
@@ -63,10 +63,10 @@ In your app host project, register an Oracle container and consume the connectio
 
 ```csharp
 var oracle = builder.AddOracleDatabase("oracle");
-var freepdb = oracle.AddDatabase("freepdb");
+var oracledb = oracle.AddDatabase("oracledb");
 
 var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(freepdb);
+                       .WithReference(oracledb);
 ```
 
 ## Configuration

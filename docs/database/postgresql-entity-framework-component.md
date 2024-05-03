@@ -65,7 +65,7 @@ public class ExampleService(YourDbContext context)
 In your app host project, register the PostgreSQL component and consume the `DbContext` using the following methods:
 
 ```csharp
-var postgres = builder.AddPostgres("pg");
+var postgres = builder.AddPostgres("postgres");
 var postgresdb = postgres.AddDatabase("postgresdb");
 
 var myService = builder.AddProject<Projects.MyService>()
