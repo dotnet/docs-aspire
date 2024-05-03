@@ -136,7 +136,7 @@ Consider the following example screenshot of semantic logs:
 
 #### Filter structured logs
 
-The structured logs page also provides a search bar to filter the logs by service, level, or message. You use the **Level** drop down to filter by log level. For advanced filtering options, select the filter icon button to open the advanced filter dialog.
+The structured logs page also provides a search bar to filter the logs by service, level, or message. You use the **Level** drop down to filter by log level. You can also filter by any log property by selecting the filter icon button, which will open the advanced filter dialog.
 
 Consider the following screenshots showing the structured logs, filtered to display items with "Hosting" in the message text:
 
