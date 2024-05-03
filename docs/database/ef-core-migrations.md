@@ -44,7 +44,7 @@ Run the app to ensure it works as expected. From the Aspire dashboard, select th
 
 Start by creating some migrations to apply.
 
-1. Open a terminal (<kbd>Ctrl</kbd>+<kbd>\`</kbd> in Visual Studio) and set *SupportTicketApi\SupportTicketApi.Api* as the current directory. 
+1. Open a terminal (<kbd>Ctrl</kbd>+<kbd>\`</kbd> in Visual Studio) and set *SupportTicketApi\SupportTicketApi.Api* as the current directory.
 1. Use the [`dotnet ef` command-line tool](https://learn.microsoft.com/ef/core/managing-schemas/migrations/#install-the-tools) to create a new migration to capture the initial state of the database schema:
 
     ```dotnetcli
@@ -59,4 +59,5 @@ Start by creating some migrations to apply.
 
 1. Modify the model so that it includes a new property. Open *SupportTicketApi.Data\Models\SupportTicket.cs* and add a new property to the `SupportTicket` class:
 
-    :::code source="aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi/Models/SupportTicket.cs" range="5-14" highlight="13" 
+    :::code source="aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi/Models/SupportTicket.cs" range="5-14" highlight="13":::
+    
