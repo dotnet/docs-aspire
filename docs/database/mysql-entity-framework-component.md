@@ -40,7 +40,7 @@ builder.AddMySqlDbContext<MyDbContext>("mysqldb");
 You can then retrieve the <xref:Microsoft.EntityFrameworkCore.DbContext> instance using dependency injection. For example, to retrieve the client from a service:
 
 ```csharp
-public class ExampleService(DbContext context)
+public class ExampleService(MyDbContext context)
 {
     // Use context...
 }
@@ -61,17 +61,11 @@ builder.EnrichMySqlDbContext<MyDbContext>();
 In your app host project, register an MySQL container and consume the connection using the following methods:
 
 ```csharp
-var mysqldb = builder.AddMySql("mysql")
-                      .AddDatabase("mysqldb1");
+var mysql = builder.AddMySql("mysql");
+var mysqldb = mysql.AddDatabase("mysqldb");
 
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(mysqldb);
-```
-
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `MyService` project named `mysqldb`. In the _Program.cs_ file of `MyService`, the database connection can be consumed using:
-
-```csharp
-builder.AddMySqlDbContext<MyDbContext>("mysqldb");
 ```
 
 ## Configuration
@@ -91,7 +85,7 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 ```json
 {
   "ConnectionStrings": {
-    "myConnection": "Server=myserver;Database=mysqldb1"
+    "myConnection": "Server=myserver;Database=mysqldb"
   }
 }
 ```

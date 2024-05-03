@@ -44,7 +44,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension to register a `DbContext` for use via the dependency injection container.
 
 ```csharp
-builder.AddSqlServerDbContext<YourDbContext>("sql");
+builder.AddSqlServerDbContext<YourDbContext>("sqldb");
 ```
 
 To retrieve `YourDbContext` object from a service:
@@ -61,17 +61,11 @@ public class ExampleService(YourDbContext client)
 In your app host project, register a SqlServer database and consume the connection using the following methods, such as <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A>:
 
 ```csharp
-var sql = builder.AddSqlServer("sql")
-                 .AddDatabase("sqldata");
+var sql = builder.AddSqlServer("sql");
+var sqldb = sql.AddDatabase("sqldb");
 
 var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(sql);
-```
-
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `MyService` project named `sqldata`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
-
-```csharp
-builder.AddSqlServerDbContext<MyDbContext>("sqldata");
+                       .WithReference(sqldb);
 ```
 
 ## Configuration

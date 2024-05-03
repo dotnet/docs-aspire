@@ -35,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureCosmosDBExtensions.AddAzureCosmosDBClient%2A> extension to register a <xref:Microsoft.Azure.Cosmos.CosmosClient?displayProperty=fullName> for use via the dependency injection container.
 
 ```csharp
-builder.AddAzureCosmosDBClient("cosmosConnectionName");
+builder.AddAzureCosmosDBClient("cosmosdb");
 ```
 
 You can then retrieve the `CosmosClient` instance using dependency injection. For example, to retrieve the client from a service:
@@ -72,19 +72,12 @@ In your app host project, register the .NET Aspire Azure Cosmos DB component and
 
 ```csharp
 // Service registration
-var cosmosdb = builder.ExecutionContext.IsPublishMode
-    ? builder.AddAzureCosmosDB("cdb")
-    : builder.AddConnectionString("cdb");
+var cosmos = builder.AddAzureCosmosDB("cosmos");
+var cosmosdb = cosmos.AddDatabase("cosmosdb");
 
 // Service consumption
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(cosmosdb);
-```
-
-The <xref:Aspire.Hosting.AzureCosmosExtensions.AddAzureCosmosDB%2A> method will read connection information from the AppHost's configuration under the `ConnectionStrings:cosmosdb` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named `cosmosdb` in the `ExampleProject` project. In the _Program.cs_ file of MyService, the connection can be consumed using:
-
-```csharp
-builder.AddAzureCosmosDB("cosmosdb");
 ```
 
 ## Configuration
