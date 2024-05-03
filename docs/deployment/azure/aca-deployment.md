@@ -31,13 +31,13 @@ With .NET Aspire and Azure Container Apps (ACA), you have a great hosting scenar
 
 The process for installing `azd` varies based on your operating system, but it is widely available via `winget`, `brew`, `apt`, or directly via `curl`. To install `azd`, see [Install Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
 
-[!INCLUDE [init workflow](../../init-workflow.md)]
+[!INCLUDE [init-workflow](includes/init-workflow.md)]
 
 ## Deploy the app
 
 Once `azd` is initialized, the provisioning and deployment process can be executed as a single command, [azd up](/azure/developer/azure-developer-cli/reference#azd-up).
 
-[!INCLUDE [azd-up-output](../../azd-up-output.md)]
+[!INCLUDE [azd-up-output](includes/azd-up-output.md)]
 
 First, the projects will be packaged into containers during the `azd package` phase, followed by the `azd provision` phase during which all of the Azure resources the app will need are provisioned.
 
