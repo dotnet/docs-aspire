@@ -42,6 +42,17 @@ updates:
         patterns:
           - "*" # Prefer a single PR per solution update.
   - package-ecosystem: "nuget"
+    directory: "/docs/extensibility/snippets/MailDevResource" #MailDevResource.sln
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for solutions.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per solution update.
+  - package-ecosystem: "nuget"
     directory: "/docs/fundamentals/snippets/components/AspireApp" #AspireApp.sln
     schedule:
       interval: "weekly"
@@ -208,6 +219,39 @@ updates:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
     directory: "/docs/database/snippets/tutorial/aspiresqlefcore/AspireSQLEFCore" #AspireSQLEFCore.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/extensibility/snippets/MailDevResource/MailDev.Hosting" #MailDev.Hosting.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/extensibility/snippets/MailDevResource/MailDevResource.AppHost" #MailDevResource.AppHost.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/extensibility/snippets/MailDevResource/MailDevResource.ServiceDefaults" #MailDevResource.ServiceDefaults.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
