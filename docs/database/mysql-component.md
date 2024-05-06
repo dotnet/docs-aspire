@@ -63,7 +63,7 @@ In your app host project, register a MySql database and consume the connection u
 
 ```csharp
 var mysql = builder.AddMySql("mysql");
-var mysqldb = mysqldb.AddDatabase("mysqldb");
+var mysqldb = mysql.AddDatabase("mysqldb");
 
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(mysqldb);
