@@ -48,7 +48,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext> for use via the dependency injection container.
 
 ```csharp
-builder.AddNpgsqlDbContext<YourDbContext>("db");
+builder.AddNpgsqlDbContext<YourDbContext>("postgresdb");
 ```
 
 You can then retrieve the `YourDbContext` instance using dependency injection. For example, to retrieve the client from a service:
@@ -65,8 +65,8 @@ public class ExampleService(YourDbContext context)
 In your app host project, register the PostgreSQL component and consume the `DbContext` using the following methods:
 
 ```csharp
-var postgresdb = builder.AddPostgres("pg")
-                        .AddDatabase("postgresdb");
+var postgres = builder.AddPostgres("postgres");
+var postgresdb = postgres.AddDatabase("postgresdb");
 
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(postgresdb);
