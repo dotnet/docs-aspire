@@ -18,11 +18,24 @@ Orleans is represented as a resource in Aspire. The Orleans resource includes co
 
 ## Getting started
 
-In your Aspire app host project, install the _Aspire.Hosting.Orleans_ package, which contains the Orleans resource and associated functionality:
+To get started you need to add the Orleans hosting pacakge to the app host project, install the [Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Orleans
+dotnet add package Aspire.Hosting.Orleans --prerelease
 ```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Orleans"
+                  Version="[SelectVersion]" />
+```
+
+---
+
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
 The Orleans resource is added to the Aspire Distributed Application Builder using the `AddOrleans(string name)` method, which returns an Orleans resource builder.
 The name provided to the Orleans resource is for diagnostic purposes. For most applications, a value of `"default"` will suffice.
