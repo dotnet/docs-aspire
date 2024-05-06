@@ -35,6 +35,8 @@ items:
             href: fundamentals/dashboard/overview.md
           - name: Explore features
             href: fundamentals/dashboard/explore.md
+          - name: Standalone mode
+            href: fundamentals/dashboard/standalone.md
           - name: Configuration
             href: fundamentals/dashboard/configuration.md
           - name: Security considerations
@@ -83,7 +85,7 @@ items:
   
   - name: Logging
     items:
-      - name: SEQ component
+      - name: Seq component
         href: logging/seq-component.md
 
   - name: Database
@@ -179,6 +181,11 @@ items:
             href: database/sql-server-component-deployment.md
       - name: Reference - Tool-builder manifest schemas
         href: deployment/manifest-format.md
+
+  - name: Extensibility
+    items:
+      - name: Create custom resource types
+        href: extensibility/custom-resources.md
 
   - name: Troubleshooting
     items:

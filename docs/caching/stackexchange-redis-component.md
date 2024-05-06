@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis component
 description: This article describes the .NET Aspire StackExchange Redis component features and capabilities
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 04/29/2024
 ---
 
 # .NET Aspire StackExchange Redis component
@@ -32,10 +32,10 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> extension to register a `IConnectionMultiplexer` for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisExtensions.AddRedisClient%2A> extension to register a `IConnectionMultiplexer` for use via the dependency injection container.
 
 ```csharp
-builder.AddRedis("cache");
+builder.AddRedisClient("cache");
 ```
 
 You can then retrieve the `IConnectionMultiplexer` instance using dependency injection. For example, to retrieve the connection multiplexer from a service:
@@ -49,7 +49,7 @@ public class ExampleService(IConnectionMultiplexer connectionMultiplexer)
 
 ## App host usage
 
-In your app host project, register the .NET Aspire Stack Exchange Redis component and consume the service using the following methods:
+In your app host project, register the .NET Aspire Stack Exchange Redis component using the <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> method and consume the service using the following methods:
 
 ```csharp
 // Service registration

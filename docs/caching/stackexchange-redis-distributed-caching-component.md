@@ -2,12 +2,12 @@
 title: .NET Aspire StackExchange Redis distributed caching component
 description: This article describes the .NET Aspire StackExchange Redis distributed caching component features and capabilities
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 04/29/2024
 ---
 
 # .NET Aspire StackExchange Redis distributed caching component
 
-In this article, you learn how to use the .NET Aspire StackExchange Redis distributed caching component. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache]<https://stackexchange.github.io/StackExchange.Redis/Basics>) provider for connecting to [Redis](https://redis.io/) server. It enables corresponding health checks, logging and telemetry.
+In this article, you learn how to use the .NET Aspire StackExchange Redis distributed caching component. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache](https://stackexchange.github.io/StackExchange.Redis/Basics) provider for connecting to [Redis](https://redis.io/) server. It enables corresponding health checks, logging and telemetry.
 
 ## Get started
 
