@@ -110,8 +110,8 @@ The .NET Aspire StackExchange Redis output caching component supports <xref:Micr
           "ConnectTimeout": 3000,
           "ConnectRetry": 2
         },
-        "HealthChecks": false,
-        "Tracing": true
+        "DisableHealthChecks": true,
+        "DisableTracing": false
       }
     }
   }
@@ -125,7 +125,7 @@ You can also pass the `Action<StackExchangeRedisSettings> configurationSettings`
 ```csharp
 builder.AddRedisOutputCache(
     "cache",
-    static settings => settings.HealthChecks = false);
+    static settings => settings.DisableHealthChecks  = true);
 ```
 
 You can also set up the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration.html#configuration-options) using the `Action<ConfigurationOptions> configureOptions` delegate parameter of the <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> method. For example to set the connection timeout:

@@ -103,8 +103,8 @@ The .NET Aspire StackExchange Redis distributed caching component supports <xref
           "ConnectTimeout": 3000,
           "ConnectRetry": 2
         },
-        "HealthChecks": false,
-        "Tracing": true
+        "DisableHealthChecks": true,
+        "DisableTracing": false
       }
     }
   }
@@ -113,12 +113,12 @@ The .NET Aspire StackExchange Redis distributed caching component supports <xref
 
 ### Use inline delegates
 
-You can also pass the `Action<StackExchangeRedisSettings>` delegate to set up some or all the options inline, for example to configure `Tracing`:
+You can also pass the `Action<StackExchangeRedisSettings>` delegate to set up some or all the options inline, for example to configure `DisableTracing`:
 
 ```csharp
 builder.AddRedisDistributedCache(
     "cache",
-    settings => settings.Tracing = false);
+    settings => settings.DisableTracing = true);
 ```
 
 You can also set up the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration.html#configuration-options) using the `Action<ConfigurationOptions> configureOptions` delegate parameter of the `AddRedisDistributedCache` method. For example to set the connection timeout:

@@ -103,8 +103,8 @@ The .NET Aspire StackExchange Redis component supports <xref:Microsoft.Extension
           "ConnectTimeout": 3000,
           "ConnectRetry": 2
         },
-        "HealthChecks": false,
-        "Tracing": true
+        "DisableHealthChecks": true,
+        "DisableTracing": false
       }
     }
   }
@@ -113,12 +113,12 @@ The .NET Aspire StackExchange Redis component supports <xref:Microsoft.Extension
 
 ### Use inline delegates
 
-You can also pass the `Action<StackExchangeRedisSettings>` delegate to set up some or all the options inline, for example to configure `Tracing`:
+You can also pass the `Action<StackExchangeRedisSettings>` delegate to set up some or all the options inline, for example to configure `DisableTracing`:
 
 ```csharp
 builder.AddRedis(
     "cache",
-    settings => settings.Tracing = false);
+    settings => settings.DisableTracing = true);
 ```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]

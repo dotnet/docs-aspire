@@ -157,7 +157,7 @@ The .NET Aspire Azure AI Search library supports <xref:Microsoft.Extensions.Conf
     "Azure": {
       "Search": {
         "Documents": {
-          "Tracing": true,
+          "DisableTracing": false,
         }
       }
     }
@@ -172,7 +172,7 @@ You can also pass the `Action<AzureSearchSettings> configureSettings` delegate t
 ```csharp
 builder.AddAzureSearch(
     "searchConnectionName",
-    static settings => settings.Tracing = false);
+    static settings => settings.DisableTracing = true);
 ```
 
 You can also setup the <xref:Azure.Search.Documents.SearchClientOptions> using the optional `Action<IAzureClientBuilder<SearchIndexClient, SearchClientOptions>> configureClientBuilder` parameter of the `AddAzureSearch` method. For example, to set the client ID for this client:
