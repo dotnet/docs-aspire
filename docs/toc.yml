@@ -163,18 +163,21 @@ items:
         items:
           - name: Local Azure provisioning
             href: deployment/azure/local-provisioning.md
-          - name: Tutorial - Azure Container Apps
+          - name: Deploy to Azure Container Apps using AZD
             href: deployment/azure/aca-deployment.md
             displayName: azure container apps,aca
+          - name: Deploy to Azure Container Apps using Visual Studio
+            href: deployment/azure/aca-deployment-visual-studio.md
+            displayName: azure container apps,vs
           - name: Azure Container Apps with azd (In-depth)
             href: deployment/azure/aca-deployment-azd-in-depth.md
             displayName: azure container apps,aca,azd
-          - name: Tutorial - Deploy using azd and CI/CD
+          - name: Deploy using azd and CI/CD
             href: deployment/azure/aca-deployment-github-actions.md
           - name: Use .NET Aspire with Application Insights
             href: deployment/azure/application-insights.md
             displayName: app insights
-          - name: Tutorial - Deploy .NET Aspire + SQL Database
+          - name: Deploy .NET Aspire + SQL Database
             href: database/sql-server-component-deployment.md
       - name: Reference - Tool-builder manifest schemas
         href: deployment/manifest-format.md
