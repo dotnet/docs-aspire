@@ -37,3 +37,7 @@ ms.date: 05/03/2024
 1. When the publish completes, Visual Studio displays the resource URLs at the bottom of the environment screen. Use these links to view the various deployed resources. Select the **webfrontend** URL to open a browser to the deployed app.
 
     :::image type="content" source="../media/visual-studio-deploy-complete.png" alt-text="A screenshot of the completed publishing process and deployed resources.":::
+
+[!INCLUDE [test-deployed-app](includes/test-deployed-app.md)]
+
+[!INCLUDE [clean-up-resources](../../includes/clean-up-resources.md)]
