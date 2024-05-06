@@ -103,8 +103,8 @@ The .NET Aspire Azure Table Storage component supports <xref:Microsoft.Extension
       "Data": {
         "Tables": {
           "ServiceUri": "YOUR_URI",
-          "HealthChecks": false,
-          "Tracing": true,
+          "DisableHealthChecks": true,
+          "DisableTracing": false,
           "ClientOptions": {
           "EnableTenantDiscovery": true
           }
@@ -119,7 +119,7 @@ If you have set up your configurations in the `Aspire:Azure:Data:Tables` section
 
 ### Use inline delegates
 
-You can also pass the `Action<AzureDataTablesSettings>` delegate to set up some or all the options inline, for example to set the `Namespace`:
+You can also pass the `Action<AzureDataTablesSettings>` delegate to set up some or all the options inline, for example to set the `ServiceUri`:
 
 ```csharp
 builder.AddAzureTableClient(
@@ -155,7 +155,7 @@ The corresponding configuration JSON is defined as follows:
         "Tables": {
           "INSTANCE_NAME": {
             "ServiceUri": "YOUR_URI",
-            "HealthChecks": false,
+            "DisableHealthChecks": true,
             "ClientOptions": {
               "EnableTenantDiscovery": true
             }
@@ -171,12 +171,12 @@ The corresponding configuration JSON is defined as follows:
 
 The following configurable options are exposed through the <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings> class:
 
-| Name           | Description                                                                              |
-|----------------|------------------------------------------------------------------------------------------|
-| `ServiceUri`   | A "Uri" referencing the Table service.                                                   |
-| `Credential`   | The credential used to authenticate to the Table Storage.                                |
-| `HealthChecks` | A boolean value that indicates whether the Table Storage health check is enabled or not. |
-| `Tracing`      | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.      |
+| Name                  | Description                                                                               |
+|-----------------------|-------------------------------------------------------------------------------------------|
+| `ServiceUri`          | A "Uri" referencing the Table service.                                                    |
+| `Credential`          | The credential used to authenticate to the Table Storage.                                 |
+| `DisableHealthChecks` | A boolean value that indicates whether the Table Storage health check is disabled or not. |
+| `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not.      |
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 

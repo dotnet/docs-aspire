@@ -130,8 +130,8 @@ The .NET Aspire Azure Blob Storage component supports <xref:Microsoft.Extensions
     "Azure": {
       "Storage": {
         "Blobs": {
-          "HealthChecks": false,
-          "Tracing": true,
+          "DisableHealthChecks": true,
+          "DisableTracing": false,
           "ClientOptions": {
             "Diagnostics": {
               "ApplicationId": "myapp"
@@ -151,7 +151,7 @@ You can also pass the `Action<AzureStorageBlobsSettings> configureSettings` dele
 ```csharp
 builder.AddAzureBlobClient(
     "blobs",
-    static settings => settings.HealthChecks = false);
+    static settings => settings.DisableHealthChecks  = true);
 ```
 
 You can also set up the `BlobClientOptions` using `Action<IAzureClientBuilder<BlobServiceClient, BlobClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureBlobClient` method. For example, to set the first part of user-agent headers for all requests issues by this client:

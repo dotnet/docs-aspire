@@ -95,7 +95,7 @@ The .NET Aspire RabbitMQ component supports <xref:Microsoft.Extensions.Configura
   "Aspire": {
     "RabbitMQ": {
       "Client": {
-        "HealthChecks": false
+        "DisableHealthChecks": true
       }
     }
   }
@@ -109,7 +109,7 @@ Also you can pass the `Action<RabbitMQClientSettings> configureSettings` delegat
 ```csharp
 builder.AddRabbitMQ(
     "messaging",
-    static settings => settings.HealthChecks = false);
+    static settings => settings.DisableHealthChecks  = true);
 ```
 
 You can also set up the [IConnectionFactory](https://rabbitmq.github.io/rabbitmq-dotnet-client/api/RabbitMQ.Client.IConnectionFactory.html) using the `Action<IConnectionFactory> configureConnectionFactory` delegate parameter of the `AddRabbitMQ` method. For example to set the client provided name for connections:

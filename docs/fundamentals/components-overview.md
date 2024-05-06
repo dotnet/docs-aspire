@@ -103,8 +103,8 @@ For example, add the following code to the _appsettings.json_ file to configure 
 {
   "Aspire": {
     "Npgsql": {
-      "HealthChecks": false,
-      "Tracing": false
+      "DisableHealthChecks": true,
+      "DisableTracing": true
     }
   }
 }
@@ -115,7 +115,7 @@ Alternatively, you can configure the component directly in your code using a del
 ```csharp
 builder.AddNpgsqlDataSource(
     "PostgreSqlConnection",
-    static settings => settings.HealthChecks = false);
+    static settings => settings.DisableHealthChecks  = true);
 ```
 
 ## Dependency injection
@@ -137,7 +137,7 @@ For more information, see [.NET dependency injection](/dotnet/core/extensions/de
 ```csharp
 builder.AddKeyedNpgsqlDataSource(
     "PostgreSqlConnection",
-    static settings => settings.HealthChecks = false);
+    static settings => settings.DisableHealthChecks  = true);
 ```
 
 You can then retrieve the registered service using the <xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute>:
