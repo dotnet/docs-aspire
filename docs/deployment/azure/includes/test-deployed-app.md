@@ -2,7 +2,7 @@
 
 Now that the app has been provisioned and deployed, you can browse to the Azure portal. In the resource group where you deployed the app, you'll see the three container apps and other resources.
 
-:::image type="content" source="media/azd-azure-portal-deployed-resources.png" lightbox="media/azd-azure-portal-deployed-resources.png" alt-text="A screenshot of the .NET Aspire app's resource group in the Azure portal.":::
+:::image type="content" source="../media/azd-azure-portal-deployed-resources.png" lightbox="media/azd-azure-portal-deployed-resources.png" alt-text="A screenshot of the .NET Aspire app's resource group in the Azure portal.":::
 
 Click on the `web` Container App to open it up in the portal.
 
