@@ -88,3 +88,10 @@ The .NET Aspire dashboard continues to improve with each release. In this previe
 | `docker.io/library/redis` | `RedisResource` | `7` | `7.2` |
 | `docker.io/rediscommander/redis-commander` | `RedisResource` | N/A | `latest` |
 | `docker.io/datalust/seq` | `SeqResource` | `2024.1` | `2024.2` |
+
+> [!NOTE]
+> All of these container image defaults can be overridden using the fluent API, chaining calls on the `IResourceBuilder<T>` interface, where `T` is the resource type you're configuring (and constrained to the `ContainerResource` type). The following APIs exist to support this customization:
+>
+> - <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithImage%2A>
+> - <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithImageRegistry%2A>
+> - <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithImageTag%2A>
