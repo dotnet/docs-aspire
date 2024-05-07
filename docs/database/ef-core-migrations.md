@@ -44,7 +44,8 @@ Run the app to ensure it works as expected. From the Aspire dashboard, select th
 
 Start by creating some migrations to apply.
 
-1. Open a terminal (<kbd>Ctrl</kbd>+<kbd>\`</kbd> in Visual Studio) and set *SupportTicketApi\SupportTicketApi.Api* as the current directory.
+1. Open a terminal (<kbd>Ctrl</kbd>+<kbd>\`</kbd> in Visual Studio).
+1. Set *SupportTicketApi\SupportTicketApi.Api* as the current directory.
 1. Use the [`dotnet ef` command-line tool](https://learn.microsoft.com/ef/core/managing-schemas/migrations/#install-the-tools) to create a new migration to capture the initial state of the database schema:
 
     ```dotnetcli
@@ -59,7 +60,7 @@ Start by creating some migrations to apply.
 
 1. Modify the model so that it includes a new property. Open *SupportTicketApi.Data\Models\SupportTicket.cs* and add a new property to the `SupportTicket` class:
 
-    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi/Models/SupportTicket.cs" range="5-14" highlight="9" :::
+    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.Data/Models/SupportTicket.cs" range="5-13" highlight="8" :::
 
 1. Create a new migration to capture the changes to the model:
 
@@ -80,14 +81,14 @@ To run the migrations at startup, you need to create a service that applies the 
     dotnet sln add SupportTicketApi.Migrations
     ```
 
-1. Add the following project references the *ServiceDefaults* and *Data* project to the *SupportTicketApi.Migrations* project using Visual Studio or the command line:
+1. Add the *SupportTicketApi.Data* and *SupportTicketApi.ServiceDefaults* project references to the *SupportTicketApi.Migrations* project using Visual Studio or the command line:
 
     ```dotnetcli
     dotnet add SupportTicketApi.Migrations reference SupportTicketApi.Data
     dotnet add SupportTicketApi.Migrations reference SupportTicketApi.ServiceDefaults
     ```
 
-1. Add the following NuGet package references to the *SupportTicketApi.Migrations* project using Visual Studio or the command line:
+1. Add the *Aspire.Microsoft.EntityFrameworkCore.SqlServer* NuGet package reference to the *SupportTicketApi.Migrations* project using Visual Studio or the command line:
 
     ```dotnetcli
     dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer
@@ -95,11 +96,17 @@ To run the migrations at startup, you need to create a service that applies the 
 
 1. Replace the contents of the *Worker.cs* file in the *SupportTicketApi.Migrations* project with the following code:
 
-    **CODE HERE**
+    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.Migrations/Worker.cs" :::
 
-    The preceding code:
+    In the preceding code:
 
-    1. explain code here (wip)
+    - The `ExecuteAsync` method is called when the worker starts. It in turn performs the following steps:
+      1. Gets a reference to the `TicketContext` service from the service provider.
+      1. Calls `EnsureDatabaseAsync` to create the database if it doesn't exist.
+      1. Calls `RunMigrationAsync` to apply any pending migrations.
+      1. Calls `SeedDataAsync` to seed the database with initial data.
+      1. Stops the worker with `StopApplication`.
+    - `EnsureDatabaseAsync`, `RunMigrationAsync`, and `SeedDataAsync` all encapsulate their database operations using execution strategies to handle transient errors that may occur when interacting with the database. To learn more about execution strategies, see [Connection Resiliency](/ef/core/miscellaneous/connection-resiliency).
 
 Remaining steps are WIP:
 
