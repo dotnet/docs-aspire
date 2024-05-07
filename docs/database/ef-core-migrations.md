@@ -74,29 +74,29 @@ Now you've got some migrations to apply. Next, you'll create a migration service
 
 To run the migrations at startup, you need to create a service that applies the migrations.
 
-1. Add a new Worker Service project to the solution. If using Visual Studio, right-click the solution in Solution Explorer and select **Add** > **New Project**. Select **Worker Service** and name the project *SupportTicketApi.Migrations*. If using the command line, use the following commands from the solution directory:
+1. Add a new Worker Service project to the solution. If using Visual Studio, right-click the solution in Solution Explorer and select **Add** > **New Project**. Select **Worker Service** and name the project *SupportTicketApi.MigrationService*. If using the command line, use the following commands from the solution directory:
 
     ```dotnetcli
-    dotnet new worker -n SupportTicketApi.Migrations
-    dotnet sln add SupportTicketApi.Migrations
+    dotnet new worker -n SupportTicketApi.MigrationService
+    dotnet sln add SupportTicketApi.MigrationService
     ```
 
-1. Add the *SupportTicketApi.Data* and *SupportTicketApi.ServiceDefaults* project references to the *SupportTicketApi.Migrations* project using Visual Studio or the command line:
+1. Add the *SupportTicketApi.Data* and *SupportTicketApi.ServiceDefaults* project references to the *SupportTicketApi.MigrationService* project using Visual Studio or the command line:
 
     ```dotnetcli
-    dotnet add SupportTicketApi.Migrations reference SupportTicketApi.Data
-    dotnet add SupportTicketApi.Migrations reference SupportTicketApi.ServiceDefaults
+    dotnet add SupportTicketApi.MigrationService reference SupportTicketApi.Data
+    dotnet add SupportTicketApi.MigrationService reference SupportTicketApi.ServiceDefaults
     ```
 
-1. Add the *Aspire.Microsoft.EntityFrameworkCore.SqlServer* NuGet package reference to the *SupportTicketApi.Migrations* project using Visual Studio or the command line:
+1. Add the *Aspire.Microsoft.EntityFrameworkCore.SqlServer* NuGet package reference to the *SupportTicketApi.MigrationService* project using Visual Studio or the command line:
 
     ```dotnetcli
     dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer
     ```
 
-1. Replace the contents of the *Worker.cs* file in the *SupportTicketApi.Migrations* project with the following code:
+1. Replace the contents of the *Worker.cs* file in the *SupportTicketApi.MigrationService* project with the following code:
 
-    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.Migrations/Worker.cs" :::
+    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.MigrationService/Worker.cs" :::
 
     In the preceding code:
 
@@ -106,7 +106,7 @@ To run the migrations at startup, you need to create a service that applies the 
       1. Calls `RunMigrationAsync` to apply any pending migrations.
       1. Calls `SeedDataAsync` to seed the database with initial data.
       1. Stops the worker with `StopApplication`.
-    - `EnsureDatabaseAsync`, `RunMigrationAsync`, and `SeedDataAsync` all encapsulate their database operations using execution strategies to handle transient errors that may occur when interacting with the database. To learn more about execution strategies, see [Connection Resiliency](/ef/core/miscellaneous/connection-resiliency).
+    - The `EnsureDatabaseAsync`, `RunMigrationAsync`, and `SeedDataAsync` methods all encapsulate their respective database operations using execution strategies to handle transient errors that may occur when interacting with the database. To learn more about execution strategies, see [Connection Resiliency](/ef/core/miscellaneous/connection-resiliency).
 
 Remaining steps are WIP:
 
