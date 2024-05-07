@@ -7,7 +7,7 @@ ms.date: 04/18/2024
 
 # .NET Aspire support for Azure SignalR Service
 
-In this article, you learn how to use .NET Aspire to express an Azure SignalR Service resource. Demonstrating how to write a SignalR app is beyond the scope of this article, instead you explore an app that's already been written and how it's wired up with .NET Aspire. Like other Azure resources within the .NET Aspire [app model](../fundamentals/app-host-overview.md#define-the-app-model), you benefit from simple provisioning and deployment with the Azure Developer CLI (`azd`). For more information, see [Deploy a .NET Aspire app to Azure Container Apps using the `azd` (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md).
+In this article, you learn how to use .NET Aspire to express an Azure SignalR Service resource. Demonstrating how to write a SignalR app is beyond the scope of this article. Instead, you explore an app that's already been written and how it's wired up with .NET Aspire. Like other Azure resources within the .NET Aspire [app model](../fundamentals/app-host-overview.md#define-the-app-model), you benefit from simple provisioning and deployment with the Azure Developer CLI (`azd`). For more information, see [Deploy a .NET Aspire app to Azure Container Apps using the `azd` (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md).
 
 ## Hub host
 

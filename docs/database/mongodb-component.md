@@ -43,7 +43,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 In the _Program.cs_ file of your component-consuming project, call the `AddMongoDBClient` extension to register a `IMongoClient` for use via the dependency injection container.
 
 ```csharp
-builder.AddMongoDBClient("IMongoClient");
+builder.AddMongoDBClient("mongodb");
 ```
 
 To retrieve your `IMongoClient` object, consider the following example service:
@@ -62,17 +62,11 @@ After adding a `IMongoClient`, you can require the `IMongoClient` instance using
 In your app host project, register a MongoDB database and consume the connection using the following methods:
 
 ```csharp
-var mongodb = builder.AddMongoDB("mongodb")
-                     .AddDatabase("database");
+var mongo = builder.AddMongoDB("mongo");
+var mongodb = mongo.AddDatabase("mongodb");
 
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(mongodb);
-```
-
-The `WithReference` method configures a connection in the `MyService` project named `mongodb`. In the _Program.cs_ file of `MyService`, the database connection can be consumed using:
-
-```csharp
-builder.AddMongoDBClient("mongodb");
 ```
 
 ## Configuration

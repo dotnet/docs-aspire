@@ -2,7 +2,6 @@
 title: Deploy .NET Aspire apps to Azure Container Apps
 description: Learn how to use Bicep, the Azure CLI, and Azure Developer CLI to deploy .NET Aspire apps to Azure.
 ms.date: 03/08/2024
-zone_pivot_groups: azure-development-tool
 ms.custom: devx-track-extended-azdevcli
 ---
 
@@ -20,43 +19,32 @@ ms.custom: devx-track-extended-azdevcli
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
-:::zone pivot="azure-azd"
-
 As an alternative to this tutorial and for a more in-depth guide, see [Deploy a .NET Aspire app to Azure Container Apps using `azd` (in-depth guide)](aca-deployment-azd-in-depth.md).
 
-[!INCLUDE [aca-deployment-azd](includes/aca-deployment-azd.md)]
+## Deploy .NET Aspire apps with `azd`
 
-:::zone-end
-:::zone pivot="azure-vs"
+With .NET Aspire and Azure Container Apps (ACA), you have a great hosting scenario for building out your cloud-native apps with .NET. We built some great new features into the Azure Developer CLI (`azd`) specific for making .NET Aspire development and deployment to Azure a friction-free experience. You can still use the Azure CLI and/or Bicep options when you need a granular level of control over your deployments. But for new projects, you won't find an easier path to success for getting a new microservice topology deployed into the cloud.
 
-[!INCLUDE [aca-deployment-cli](includes/aca-deployment-vs.md)]
+[!INCLUDE [file-new-aspire](../../includes/file-new-aspire.md)]
 
-:::zone-end
-:::zone pivot="azure-cli"
+## Install the Azure Developer CLI
 
-[!INCLUDE [aca-deployment-cli](includes/aca-deployment-cli.md)]
+The process for installing `azd` varies based on your operating system, but it is widely available via `winget`, `brew`, `apt`, or directly via `curl`. To install `azd`, see [Install Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
 
-:::zone-end
-:::zone pivot="azure-bicep"
+[!INCLUDE [init-workflow](includes/init-workflow.md)]
 
-[!INCLUDE [aca-deployment-bicep](includes/aca-deployment-bicep.md)]
+## Deploy the app
 
-:::zone-end
+Once `azd` is initialized, the provisioning and deployment process can be executed as a single command, [azd up](/azure/developer/azure-developer-cli/reference#azd-up).
 
-## Test the deployed app
+[!INCLUDE [azd-up-output](includes/azd-up-output.md)]
 
-Now that the app has been provisioned and deployed, you can browse to the Azure portal. In the resource group where you deployed the app, you'll see the three container apps and other resources.
+First, the projects will be packaged into containers during the `azd package` phase, followed by the `azd provision` phase during which all of the Azure resources the app will need are provisioned.
 
-:::image type="content" source="media/azd-azure-portal-deployed-resources.png" lightbox="media/azd-azure-portal-deployed-resources.png" alt-text="A screenshot of the .NET Aspire app's resource group in the Azure portal.":::
+Once `provision` is complete, `azd deploy` will take place. During this phase, the projects are pushed as containers into an Azure Container Registry instance, and then used to create new revisions of Azure Container Apps in which the code will be hosted.
 
-Click on the `web` Container App to open it up in the portal.
+At this point the app has been deployed and configured, and you can open the Azure portal and explore the resources.
 
-:::image type="content" source="../../media/portal-screens-web-container-app.png" lightbox="../../media/portal-screens-web-container-app.png" alt-text="A screenshot of the .NET Aspire app's front end in the Azure portal.":::
-
-Click the **Application URL** link to open the front end in the browser.
-
-:::image type="content" source="../../media/front-end-open.png" lightbox="../../media/front-end-open.png" alt-text="A screenshot of the .NET Aspire app's front end in the browser.":::
-
-When you click the "Weather" node in the navigation bar, the front end `web` container app makes a call to the `apiservice` container app to get data. The front end's output will be cached using the `redis` container app and the [.NET Aspire Redis Output Caching component](../../caching/stackexchange-redis-output-caching-component.md). As you refresh the front end a few times, you'll notice that the weather data is cached. It will update after a few seconds.
+[!INCLUDE [test-deployed-app](includes/test-deployed-app.md)]
 
 [!INCLUDE [clean-up-resources](../../includes/clean-up-resources.md)]

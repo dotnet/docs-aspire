@@ -72,18 +72,12 @@ In your app host project, register the .NET Aspire Microsoft Entity Framework Co
 
 ```csharp
 // Service registration
-var cosmosdbService = builder.AddAzureCosmosDB("cdb")
-                             .AddDatabase("cosmosdb");
+var cosmos = builder.AddAzureCosmosDB("cosmos");
+var cosmosdb = cosmos.AddDatabase("cosmosdb");
 
 // Service consumption
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
-                            .WithReference(cosmosdbService);
-```
-
-The <xref:Aspire.Hosting.AzureCosmosExtensions.AddAzureCosmosDB%2A> method will read connection information from the AppHost's configuration under the `ConnectionStrings:cosmosdb` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named `cosmosdb` in the `ExampleProject` project. In the _Program.cs_ file of `cosmosdbService`, the connection can be consumed using:
-
-```csharp
-builder.AddAzureCosmosDB("cosmosdb");
+                            .WithReference(cosmosdb);
 ```
 
 ## Configuration

@@ -7,7 +7,7 @@ ms.topic: how-to
 
 # Persist .NET Aspire app data using volumes
 
-In this article, you learn how to configure .NET Aspire apps to persist data across app launches using volumes. A continuous set of data during local development is useful in many scenarios. Various .NET Aspire resource container types are able to leverage volume storage, such as PostreSQL, Redis and Azure Storage.
+In this article, you learn how to configure .NET Aspire apps to persist data across app launches using volumes. A continuous set of data during local development is useful in many scenarios. Various .NET Aspire resource container types are able to leverage volume storage, such as PostgreSQL, Redis and Azure Storage.
 
 ## When to use volumes
 

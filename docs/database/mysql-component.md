@@ -43,7 +43,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 In the _Program.cs_ file of your component-consuming project, call the `AddMySqlDataSource` extension to register a `MySqlDataSource` for use via the dependency injection container.
 
 ```csharp
-builder.AddMySqlDataSource("mysqldatasource");
+builder.AddMySqlDataSource("mysqldb");
 ```
 
 To retrieve your `MySqlDataSource` object, consider the following example service:
@@ -62,17 +62,11 @@ After adding a `MySqlDataSource`, you can require the `MySqlDataSource` instance
 In your app host project, register a MySql database and consume the connection using the following methods:
 
 ```csharp
-var mysqldb = builder.AddMySql("mysql")
-                     .AddDatabase("mysqldb");
+var mysql = builder.AddMySql("mysql");
+var mysqldb = mysql.AddDatabase("mysqldb");
 
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(mysqldb);
-```
-
-The `WithReference` method configures a connection in the `MyService` project named `mysqldb`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
-
-```csharp
-builder.AddMySqlDataSource("mysqldb");
 ```
 
 ## Configuration
@@ -92,7 +86,7 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 ```json
 {
   "ConnectionStrings": {
-    "MySqConnection": "Server=mysql;Database=test"
+    "MySqConnection": "Server=mysql;Database=mysqldb"
   }
 }
 ```

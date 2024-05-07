@@ -35,7 +35,7 @@ The login page accepts a token and provides helpful instructions on how to obtai
 
 :::image type="content" source="media/explore/aspire-login-help.png" lightbox="media/explore/aspire-login-help.png" alt-text=".NET Aspire dashboard login page with instructions on how to obtain the token.":::
 
-After copying the token from the console and pasting it into the login page, select the **Login** button.
+After copying the token from the console and pasting it into the login page, select the **Log in** button.
 
 :::image type="content" source="media/explore/aspire-login-filled.png" lightbox="media/explore/aspire-login-filled.png" alt-text=".NET Aspire dashboard login page with the token pasted into the textbox.":::
 
@@ -92,7 +92,7 @@ To see the log entry in detail for the error, select the **View** button to open
 
 For more information and examples of Structured logs, see the [Structured logs page](#structured-logs-page) section.
 
-> ![NOTE]
+> [!NOTE]
 > The resources page isn't available if the dashboard is started without a configured resource service. The dashboard starts on the [Structured logs page](#structured-logs-page) instead. This is the default experience when the dashboard is run in standalone mode without additional configuration.
 >
 > For more information about configuring a resource service, see [Dashboard configuration](configuration.md).
@@ -136,7 +136,7 @@ Consider the following example screenshot of semantic logs:
 
 #### Filter structured logs
 
-The structured logs page also provides a search bar to filter the logs by service, level, or message. You use the **Level** drop down to filter by log level. For advanced filtering options, select the filter icon button to open the advanced filter dialog.
+The structured logs page also provides a search bar to filter the logs by service, level, or message. You use the **Level** drop down to filter by log level. You can also filter by any log property by selecting the filter icon button, which will open the advanced filter dialog.
 
 Consider the following screenshots showing the structured logs, filtered to display items with "Hosting" in the message text:
 
@@ -179,7 +179,7 @@ The structured logs page is discussed in more detail in the [Structured logs pag
 
 #### Trace examples
 
-Each trace has a color, which is generated to help differentiate between spans — one color for each resource. The colors are reflected in both the _traces page_ and the _trace detail view_. When traces depict an arrow icon, those icons are colorized as well to match the span of the target trace. Consider the following example screenshot of traces:
+Each trace has a color, which is generated to help differentiate between spans — one color for each resource. The colors are reflected in both the _traces page_ and the _trace detail page_. When traces depict an arrow icon, those icons are colorized as well to match the span of the target trace. Consider the following example screenshot of traces:
 
 :::image type="content" source="media/explore/traces.png" lightbox="media/explore/traces.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page.":::
 

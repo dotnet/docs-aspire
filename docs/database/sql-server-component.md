@@ -45,7 +45,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerSqlClientExtensions.AddSqlServerClient%2A> extension to register a <xref:System.Data.SqlClient.SqlConnection> for use via the dependency injection container.
 
 ```csharp
-builder.AddSqlServerClient("sql");
+builder.AddSqlServerClient("sqldb");
 ```
 
 To retrieve your `SqlConnection` object an example service:
@@ -64,17 +64,11 @@ After adding a `SqlConnection`, you can get the scoped [SqlConnection](/dotnet/a
 In your app host project, register a SqlServer container and consume the connection using the following methods:
 
 ```csharp
-var sql = builder.AddSqlServer("sql")
-                 .AddDatabase("sqldata");
+var sql = builder.AddSqlServer("sql");
+var sqldb = sql.AddDatabase("sqldb");
 
 var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(sql);
-```
-
-The `WithReference` method configures a connection in the `MyService` project named `sqldata`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
-
-```csharp
-builder.AddSqlServerClient("sqldata");
+                       .WithReference(sqldb);
 ```
 
 ## Configuration
