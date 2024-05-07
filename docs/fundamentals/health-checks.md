@@ -74,7 +74,7 @@ You can disable health checks for a given component using one of the available c
 {
   "Aspire": {
     "Npgsql": {
-      "HealthChecks": false,
+      "DisableHealthChecks": true,
     }
   }
 }
@@ -85,7 +85,7 @@ You can also use an inline delegate to configure health checks:
 ```csharp
 builder.AddNpgsqlDbContext<MyDbContext>(
     "postgresdb",
-    static settings => settings.HealthChecks = false);
+    static settings => settings.DisableHealthChecks  = true);
 ```
 
 ## See also

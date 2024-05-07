@@ -130,8 +130,8 @@ The .NET Aspire Azure Queue Storage component supports <xref:Microsoft.Extension
     "Azure": {
       "Storage": {
         "Queues": {
-          "HealthChecks": false,
-          "Tracing": true,
+          "DisableHealthChecks": true,
+          "DisableTracing": false,
           "ClientOptions": {
             "Diagnostics": {
               "ApplicationId": "myapp"
@@ -146,12 +146,12 @@ The .NET Aspire Azure Queue Storage component supports <xref:Microsoft.Extension
 
 ### Use inline delegates
 
-You can also pass the `Action<AzureStorageQueuesSettings> configureSettings` delegate to set up some or all the options inline, for example to set the `Namespace`:
+You can also pass the `Action<AzureStorageQueuesSettings> configureSettings` delegate to set up some or all the options inline, for example to disable the health check:
 
 ```csharp
 builder.AddAzureQueueClient(
     "queue",
-    static settings => settings.HealthChecks = false);
+    static settings => settings.DisableHealthChecks  = true);
 ```
 
 You can also set up the `QueueClientOptions` using `Action<IAzureClientBuilder<QueueServiceClient, QueueClientOptions>> configureClientBuilder` delegate, the second parameter of the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueClient%2A> method. For example, to set the first part of user-agent headers for all requests issues by this client:

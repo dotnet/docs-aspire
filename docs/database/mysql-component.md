@@ -103,8 +103,8 @@ The following example shows an _appsettings.json_ file that configures some of t
 {
   "Aspire": {
     "MySqlConnector": {
-      "HealthChecks": false,
-      "Tracing": false
+      "DisableHealthChecks": true,
+      "DisableTracing": true
     }
   }
 }
@@ -116,19 +116,19 @@ You can also pass the `Action<MySqlConnectorSettings>` delegate to set up some o
 
 ```csharp
 builder.AddMySqlDataSource("mysql",
-    static settings => settings.HealthChecks = false);
+    static settings => settings.DisableHealthChecks  = true);
 ```
 
 ### Configuration options
 
 Here are the configurable options with corresponding default values:
 
-| Name               | Description                                                                          |
-|--------------------|--------------------------------------------------------------------------------------|
-| `ConnectionString` | The connection string of the MySQL database database to connect to.                  |
-| `HealthChecks`     | A boolean value that indicates whether the database health check is enabled or not.  |
-| `Tracing`          | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.  |
-| `Metrics`          | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not. |
+| Name                  | Description                                                                           |
+|-----------------------|---------------------------------------------------------------------------------------|
+| `ConnectionString`    | The connection string of the MySQL database database to connect to.                   |
+| `DisableHealthChecks` | A boolean value that indicates whether the database health check is disabled or not.  |
+| `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not.  |
+| `DisableMetrics`      | A boolean value that indicates whether the OpenTelemetry metrics are disabled or not. |
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 

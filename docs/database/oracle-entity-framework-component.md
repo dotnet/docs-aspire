@@ -97,7 +97,7 @@ See the [ODP.NET documentation](https://www.oracle.com/database/technologies/app
 
 ### Use configuration providers
 
-The .NET Aspire Oracle Entity Framework Core component supports [Microsoft.Extensions.Configuration](https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration). It loads the `OracleEntityFrameworkCoreSettings` from configuration by using the `Aspire:Oracle:EntityFrameworkCore` key.
+The .NET Aspire Oracle Entity Framework Core component supports [Microsoft.Extensions.Configuration](/dotnet/api/microsoft.extensions.configuration). It loads the `OracleEntityFrameworkCoreSettings` from configuration by using the `Aspire:Oracle:EntityFrameworkCore` key.
 
 The following example shows an _appsettings.json_ that configures some of the available options:
 
@@ -106,10 +106,10 @@ The following example shows an _appsettings.json_ that configures some of the av
   "Aspire": {
     "Oracle": {
       "EntityFrameworkCore": {
-        "HealthChecks": false,
-        "Tracing": false,
-        "Metrics": true,
-        "Retry": true,
+        "DisableHealthChecks": true,
+        "DisableTracing": true,
+        "DisableMetrics": false,
+        "DisableRetry": false,
         "Timeout": 30
       }
     }
@@ -127,19 +127,19 @@ You can also pass the `Action<OracleEntityFrameworkCoreSettings> configureSettin
 ```csharp
 builder.AddOracleDatabaseDbContext<MyDbContext>(
     "oracle",
-    static settings => settings.HealthChecks = false);
+    static settings => settings.DisableHealthChecks  = true);
 ```
 
 or
 
 ```csharp
 builder.EnrichOracleDatabaseDbContext<MyDbContext>(
-    static settings => settings.HealthChecks = false);
+    static settings => settings.DisableHealthChecks  = true);
 ```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
-The The .NET Aspire Oracle Entity Framework Core component registers a basic health check that checks the database connection given a `TContext`. The health check is enabled by default and can be disabled using the `HealthChecks` property in the configuration.
+The The .NET Aspire Oracle Entity Framework Core component registers a basic health check that checks the database connection given a `TContext`. The health check is enabled by default and can be disabled using the `DisableHealthChecks` property in the configuration.
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 

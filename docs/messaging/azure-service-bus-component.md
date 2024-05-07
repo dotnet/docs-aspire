@@ -101,8 +101,8 @@ The Service Bus component supports <xref:Microsoft.Extensions.Configuration?disp
     "Azure": {
       "Messaging": {
         "ServiceBus": {
-          "HealthChecks": false,
-          "Tracing": true,
+          "DisableHealthChecks": true,
+          "DisableTracing": false,
           "ClientOptions": {
             "Identifier": "CLIENT_ID"
           }
@@ -117,12 +117,12 @@ If you have set up your configurations in the `Aspire:Azure:Messaging:ServiceBus
 
 ### Use inline delegates
 
-You can also pass the `Action<AzureMessagingServiceBusSettings>` delegate to set up some or all the options inline, for example to set the `Namespace`:
+You can also pass the `Action<AzureMessagingServiceBusSettings>` delegate to set up some or all the options inline, for example to set the `FullyQualifiedNamespace`:
 
 ```csharp
 builder.AddAzureServiceBus(
     "messaging",
-    static settings => settings.Namespace = "YOUR_SERVICE_BUS_NAMESPACE");
+    static settings => settings.FullyQualifiedNamespace = "YOUR_SERVICE_BUS_NAMESPACE");
 ```
 
 You can also set up the [ServiceBusClientOptions](/dotnet/api/azure.messaging.servicebus.servicebusclientoptions) using `Action<IAzureClientBuilder<ServiceBusClient, ServiceBusClientOptions>>` delegate, the second parameter of the `AddAzureServiceBus` method. For example to set the `ServiceBusClient` ID to identify the client:
@@ -151,7 +151,7 @@ The corresponding configuration JSON is defined as follows:
     "Azure": {
       "Messaging": {
         "INSTANCE_NAME": {
-          "Namespace": "YOUR_SERVICE_BUS_NAMESPACE",
+          "FullyQualifiedNamespace": "YOUR_SERVICE_BUS_NAMESPACE",
           "ClientOptions": {
             "Identifier": "CLIENT_ID"
           }
@@ -166,11 +166,11 @@ The corresponding configuration JSON is defined as follows:
 
 The following configurable options are exposed through the <xref:Aspire.Azure.Messaging.ServiceBus.AzureMessagingServiceBusSettings> class:
 
-| Name               | Description                                                         |
-|--------------------|---------------------------------------------------------------------|
-| `ConnectionString` | The connection string used to connect to the Service Bus namespace. |
-| `Credential`       | The credential used to authenticate to the Service Bus namespace.   |
-| `Namespace`        | The fully qualified Service Bus namespace.                          |
+| Name                      | Description                                                         |
+|---------------------------|---------------------------------------------------------------------|
+| `ConnectionString`        | The connection string used to connect to the Service Bus namespace. |
+| `Credential`              | The credential used to authenticate to the Service Bus namespace.   |
+| `FullyQualifiedNamespace` | The fully qualified Service Bus namespace.                          |
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 

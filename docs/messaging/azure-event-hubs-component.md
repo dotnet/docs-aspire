@@ -114,7 +114,7 @@ builder.AddAzureEventProcessorClient(
 
 ## Configuration
 
-The .NET Aspire Azure Event Hubs library provides multiple options to configure the Azure Event Hubs connection based on the requirements and conventions of your project. Either a `Namespace` or a `ConnectionString` is a required to be supplied.
+The .NET Aspire Azure Event Hubs library provides multiple options to configure the Azure Event Hubs connection based on the requirements and conventions of your project. Either a `FullyQualifiedNamespace` or a `ConnectionString` is a required to be supplied.
 
 ### Use a connection string
 

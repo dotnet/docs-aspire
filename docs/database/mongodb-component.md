@@ -105,9 +105,9 @@ The following example shows an _appsettings.json_ file that configures some of t
     "MongoDB": {
       "Driver": {
         "ConnectionString": "mongodb://server:port/test",
-        "HealthChecks": true,
+        "DisableHealthChecks": false,
         "HealthCheckTimeout": 10000,
-        "Tracing": true
+        "DisableTracing": false
       },
     }
   }
@@ -127,12 +127,12 @@ builder.AddMongoDBClient("mongodb",
 
 Here are the configurable options with corresponding default values:
 
-| Name                 | Description                                                                         |
-|----------------------|-------------------------------------------------------------------------------------|
-| `ConnectionString`   | The connection string of the MongoDB database database to connect to.               |
-| `HealthChecks`       | A boolean value that indicates whether the database health check is enabled or not. |
-| `HealthCheckTimeout` | An `int?` value that indicates the MongoDB health check timeout in milliseconds.    |
-| `Tracing`            | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not. |
+| Name                  | Description                                                                           |
+|-----------------------|---------------------------------------------------------------------------------------|
+| `ConnectionString`    | The connection string of the MongoDB database database to connect to.                 |
+| `DisableHealthChecks` | A boolean value that indicates whether the database health check is disabled or not.  |
+| `HealthCheckTimeout`  | An `int?` value that indicates the MongoDB health check timeout in milliseconds.      |
+| `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not.  |
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 

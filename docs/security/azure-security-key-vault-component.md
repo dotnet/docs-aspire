@@ -94,8 +94,8 @@ The .NET Aspire Azure Key Vault component supports <xref:Microsoft.Extensions.Co
       "Security": {
         "KeyVault": {
           "VaultUri": "YOUR_VAULT_URI",
-          "HealthChecks": true,
-          "Tracing": false,
+          "DisableHealthChecks": false,
+          "DisableTracing": true,
           "ClientOptions": {
             "DisableChallengeResourceVerification": true
           }
@@ -110,12 +110,12 @@ If you have set up your configurations in the `Aspire:Azure:Security:KeyVault` s
 
 ### Use inline delegates
 
-You can also pass the `Action<AzureSecurityKeyVaultSettings>` delegate to set up some or all the options inline, for example to set the `Namespace`:
+You can also pass the `Action<AzureSecurityKeyVaultSettings>` delegate to set up some or all the options inline, for example to set the `VaultUri`:
 
 ```csharp
 builder.AddAzureKeyVaultSecrets(
     "secrets",
-    static settings => settings.ServiceUri = new Uri("YOUR_SERVICEURI"));
+    static settings => settings.VaultUri = new Uri("YOUR_VAULTURI"));
 ```
 
 You can also set up the <xref:Azure.Security.KeyVault.Secrets.SecretClientOptions> using `Action<IAzureClientBuilder<SecretClient, SecretClientOptions>>` delegate, the second parameter of the `AddAzureKeyVaultSecrets` method. For example to set the <xref:Azure.Security.KeyVault.Keys.KeyClientOptions.DisableChallengeResourceVerification?displayProperty=nameWithType> ID to identify the client:
@@ -146,8 +146,8 @@ The corresponding configuration JSON is defined as follows:
         "KeyVault": {
           "INSTANCE_NAME": {
             "VaultUri": "YOUR_VAULT_URI",
-            "HealthChecks": true,
-            "Tracing": false,
+            "DisableHealthChecks": false,
+            "DisableTracing": true,
             "ClientOptions": {
               "DisableChallengeResourceVerification": true
             }
@@ -163,12 +163,12 @@ The corresponding configuration JSON is defined as follows:
 
 The following configurable options are exposed through the <xref:Aspire.Azure.Security.KeyVault.AzureSecurityKeyVaultSettings> class:
 
-| Name           | Description                                                                                 |
-|----------------|---------------------------------------------------------------------------------------------|
-| `VaultUri`     | A URI to the vault on which the client operates. Appears as "DNS Name" in the Azure portal. |
-| `Credential`   | The credential used to authenticate to the Azure Key Vault.                                 |
-| `HealthChecks` | A boolean value that indicates whether the Key Vault health check is enabled or not.        |
-| `Tracing`      | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.         |
+| Name                  | Description                                                                                  |
+|-----------------------|----------------------------------------------------------------------------------------------|
+| `VaultUri`            | A URI to the vault on which the client operates. Appears as "DNS Name" in the Azure portal.  |
+| `Credential`          | The credential used to authenticate to the Azure Key Vault.                                  |
+| `DisableHealthChecks` | A boolean value that indicates whether the Key Vault health check is disabled or not.        |
+| `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not.         |
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 

@@ -115,7 +115,7 @@ The .NET Aspire Microsoft Entity Framework Core Cosmos DB component supports <xr
       "EntityFrameworkCore": {
         "Cosmos": {
           "DbContextPooling": true,
-          "Tracing": false
+          "DisableTracing": true
         }
       }
     }
@@ -130,7 +130,7 @@ You can also pass the `Action<EntityFrameworkCoreCosmosDBSettings> configureSett
 ```csharp
 builder.AddCosmosDbContext<MyDbContext>(
     "cosmosdb",
-    settings => settings.Tracing = false);
+    settings => settings.DisableTracing = true);
 ```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]

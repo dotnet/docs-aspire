@@ -132,7 +132,7 @@ The .NET Aspire Azure Cosmos DB component supports <xref:Microsoft.Extensions.Co
     "Microsoft": {
       "Azure": {
         "Cosmos": {
-          "Tracing": true,
+          "DisableTracing": false,
         }
       }
     }
@@ -147,7 +147,7 @@ You can also pass the `Action<AzureCosmosDBSettings>` delegate to set up some or
 ```csharp
 builder.AddAzureCosmosDB(
     "cosmosConnectionName",
-    static settings => settings.Tracing = false);
+    static settings => settings.DisableTracing = true);
 ```
 
 You can also set up the <xref:Microsoft.Azure.Cosmos.CosmosClientOptions?displayProperty=fullName> using the optional `Action<CosmosClientOptions> configureClientOptions` parameter of the `AddAzureCosmosDB` method. For example to set the <xref:Microsoft.Azure.Cosmos.CosmosClientOptions.ApplicationName?displayProperty=nameWithType> user-agent header suffix for all requests issues by this client:

@@ -90,8 +90,8 @@ The following example shows an _appsettings.json_ file that configures some of t
 {
   "Aspire": {
     "Npgsql": {
-      "HealthChecks": false,
-      "Tracing": false
+      "DisableHealthChecks": true,
+      "DisableTracing": true
     }
   }
 }
@@ -99,12 +99,12 @@ The following example shows an _appsettings.json_ file that configures some of t
 
 ### Use inline delegates
 
-You can also pass the `Action<NpgsqlSettings> configureSettings` delegate to set up some or all the options inline, for example to set the `ConnectionString`:
+You can also pass the `Action<NpgsqlSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks:
 
 ```csharp
 builder.AddNpgsqlDataSource(
     "postgresdb",
-     settings => settings.HealthChecks = false);
+     settings => settings.DisableHealthChecks  = true);
 ```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]

@@ -106,8 +106,8 @@ The following example shows an _appsettings.json_ that configures some of the av
     "Pomelo": {
       "EntityFrameworkCore": {
         "MySql": {
-          "HealthChecks": false,
-          "Tracing": false
+          "DisableHealthChecks": true,
+          "DisableTracing": true
         }
       }
     }
@@ -122,19 +122,19 @@ You can also pass the `Action<PomeloEntityFrameworkCoreMySqlSettings> configureS
 ```csharp
 builder.AddMySqlDbContext<MyDbContext>(
     "mysqldb1",
-    static settings => settings.HealthChecks = false);
+    static settings => settings.DisableHealthChecks  = true);
 ```
 
 or
 
 ```csharp
 builder.EnrichMySqlDbContext<MyDbContext>(
-    static settings => settings.HealthChecks = false);
+    static settings => settings.DisableHealthChecks  = true);
 ```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
-The The .NET Aspire Pomelo MySQL Entity Framework Core component registers a basic health check that checks the database connection given a `TContext`. The health check is enabled by default and can be disabled using the `HealthChecks` property in the configuration.
+The The .NET Aspire Pomelo MySQL Entity Framework Core component registers a basic health check that checks the database connection given a `TContext`. The health check is enabled by default and can be disabled using the `DisableHealthChecks` property in the configuration.
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 
