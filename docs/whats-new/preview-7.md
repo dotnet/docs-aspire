@@ -24,7 +24,7 @@ dotnet workload list
 
 Installed Workload Id    Manifest Version                    Installation Source
 --------------------------------------------------------------------------------------------
-aspire                   8.0.0-preview.7.24251.11/8.0.100    SDK 8.0.200, VS 17.10.34804.81
+aspire                   8.0.0-preview.7.24251.11/8.0.100    SDK 8.0.300, VS 17.10.34825.169
 ```
 
 ## Breaking changes
