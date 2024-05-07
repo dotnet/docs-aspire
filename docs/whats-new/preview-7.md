@@ -14,7 +14,7 @@ All of the component settings classes have been updated to revise the naming of 
 
 - <xref:Aspire.Azure.AI.OpenAI.AzureOpenAISettings>
 - <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings>
-- <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsSettings> (formerly `AzureMessagingEventHubsBaseSettings`)
+- `AzureMessagingEventHubsSettings` (formerly `AzureMessagingEventHubsBaseSettings`)
   - <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsConsumerBaseSettings>
   - <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsProducerSettings>
 - <xref:Aspire.Azure.Search.Documents.AzureSearchSettings>
@@ -43,12 +43,12 @@ The following table shows the changes that were made—not all properties exist 
 | Old property name | New property name     | Default value |
 |-------------------|-----------------------|---------------|
 | `HealthChecks`    | `DisableHealthChecks` | `false`       |
-| `Tracing`         | `DisableTracing`      | `false`       |
 | `Metrics`         | `DisableMetrics`      | `false`       |
 | `Retry`           | `DisableRetry`        | `false`       |
+| `Tracing`         | `DisableTracing`      | `false`       |
 
 > [!TIP]
-> This is a negation change. If you were previously setting `HealthChecks` to `true`, and you upgrade to .NET Aspire preview 7, when the property name is updated you should now set `DisableHealthChecks` to `false`.
+> This is a negation change. If you were previously setting `HealthChecks` to `true`, and you upgrade to .NET Aspire preview 7, when the property name is updated you should now set `DisableHealthChecks` to `false`. If you never changed the default value, you don't need to do anything.
 
 The Azure Service Bus component renamed its `Azure:Messaging:<INSTANCE_NAME>:Namespace` property to `Azure:Messaging:<INSTANCE_NAME>:FullyQualifiedNamespace`. This change was made to ensure that the property name aligns with what the property has always represented, the fully qualified namespace of the Azure Service Bus instance.
 
