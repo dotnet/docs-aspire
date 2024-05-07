@@ -6,7 +6,26 @@ ms.date: 05/07/2024
 
 # .NET Aspire preview 7
 
-.NET Aspire preview 7 wasn't part of the original plan, but as a developer, you might appreciate being about to react quickly to changes in the ecosystem. This preview has a lot of breaking API changes, partly due to the fact that once the product is released, we'll be committed to a stable API surface. Suffice it to say, the team was eager to ensure that they got these changes in before the final release.
+.NET Aspire preview 7 wasn't part of the original plan, but as a developer, you might appreciate being able to react quickly to changes in a quickly evolving development ecosystem. This preview has a lot of breaking API changes, partly due to the fact that once the product is released, we'll be committed to a stable API surface. Suffice it to say, the team was eager to ensure that they got these API changes in place before the final release.
+
+The .NET Aspire preview 7 release version is **8.0.0-preview.7.24251.11**.
+
+To update to the latest version, run the following commands:
+
+```dotnetcli
+dotnet workload update
+dotnet workload install aspire
+```
+
+To validate that preview 7 is installed, run `dotnet workload list` to see the installed workloads:
+
+```dotnetcli
+dotnet workload list
+
+Installed Workload Id    Manifest Version                    Installation Source
+--------------------------------------------------------------------------------------------
+aspire                   8.0.0-preview.7.24251.11/8.0.100    SDK 8.0.200, VS 17.10.34804.81
+```
 
 ## Breaking changes
 
