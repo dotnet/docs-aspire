@@ -16,7 +16,7 @@ builder.AddProject<Projects.AspireStorage>("aspirestorage")
     .WithReference(blobs)
     .WithReference(queues);
 
-builder.AddProject<Projects.AspireStorage_Worker>("aspirestorage.worker")
+builder.AddProject<Projects.AspireStorage_Worker>("aspirestorage-worker")
     .WithReference(queues);
 
 var app = builder.Build();
