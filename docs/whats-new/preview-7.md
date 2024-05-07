@@ -10,6 +10,10 @@ ms.date: 05/07/2024
 
 ## Breaking changes
 
+There were a number of breaking changes in this release. The following sections detail the changes that were made.
+
+### Property renaming
+
 All of the component settings classes have been updated to revise the naming of their shared properties. This change was made to ensure that the settings classes are more consistent and easier to use. The following lists all the settings classes impacted by this change:
 
 - <xref:Aspire.Azure.AI.OpenAI.AzureOpenAISettings>
@@ -52,7 +56,35 @@ The following table shows the changes that were made—not all properties exist 
 
 The Azure Service Bus component renamed its `Azure:Messaging:<INSTANCE_NAME>:Namespace` property to `Azure:Messaging:<INSTANCE_NAME>:FullyQualifiedNamespace`. This change was made to ensure that the property name aligns with what the property has always represented, the fully qualified namespace of the Azure Service Bus instance.
 
+### Class renaming
+
 The following classes were renamed:
 
 - The `AzureMessagingEventHubsBaseSettings` abstract base class was renamed to `AzureMessagingEventHubsSettings` class.
 - The `AzureCosmosDBSettings` class was renamed to `MicrosoftAzureCosmosDBSettings`.
+
+### Method signature changes
+
+When adding an Azure Cosmos DB client, the `AddAzureCosmosDBClient` method was renamed to `AddAzureCosmosClient`.
+
+## Dashboard updates
+
+The .NET Aspire dashboard continues to improve with each release. In this preview, the dashboard has updated several aesthetics and adds more localization.
+
+## Container image default changes
+
+.NET Aspire has always provided resources that express various container image dependencies in the [app host](../fundamentals/app-host-overview.md). All container images are now fully qualified with their registry and tag. The following table outlines the tag version changes for each container image and its corresponding resource:
+
+| Container image | Resource type | Old tag | New tag |
+|--|--|--|--|
+| `docker.io/library/mysql` | `MySqlServerResource` | `8.3.0` | `8.3` |
+| `docker.io/confluentinc/confluent-local` | `KafkaServerResource` | `7.6.0` | `7.6.1` |
+| `docker.io/library/mongo` | `MongoDBServerResource` | `7.0.5` | `7.0` |
+| `docker.io/library/mongo-express` | `MongoDBServerResource` | N/A | `1.0` |
+| `docker.io/library/nats` | `MongoDBServerResource` | `7` | `2.10` |
+| `docker.io/dpage/pgadmin4` | `PostgresServerResource` | N/A | `8.5` |
+| `docker.io/qdrant/qdrant` | `PostgresServerResource` | `v1.8.3` | `v1.8.4` |
+| `docker.io/library/rabbitmq` | `RabbitMQServerResource` | `3` | `3.13` |
+| `docker.io/library/redis` | `RedisResource` | `7` | `7.2` |
+| `docker.io/rediscommander/redis-commander` | `RedisResource` | N/A | `latest` |
+| `docker.io/datalust/seq` | `SeqResource` | `2024.1` | `2024.2` |
