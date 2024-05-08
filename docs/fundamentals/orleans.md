@@ -145,7 +145,7 @@ public sealed class CounterGrain(
 }
 ```
 
-We do similarly in the OrleansClient project, adding the Aspire resources which our project needs to join the Orleans cluster as a client, and configuring the host builder to add an Orleans client:
+You do similarly in the OrleansClient project, adding the .NET Aspire resources which your project needs to join the Orleans cluster as a client, and configuring the host builder to add an Orleans client:
 
 ```csharp
 using OrleansContracts;
