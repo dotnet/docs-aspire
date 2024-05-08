@@ -41,17 +41,17 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 The Orleans resource is added to the .NET Aspire distributed application builder using the `AddOrleans(string name)` method, which returns an Orleans resource builder.
 The name provided to the Orleans resource is for diagnostic purposes. For most applications, a value of `"default"` will suffice.
 
-:::code language="csharp" source="snippets/orleans/OrleansAppHost/Program.cs" range="12":::
+:::code language="csharp" source="snippets/Orleans/OrleansAppHost/Program.cs" range="12":::
 
-The Orleans resource builder, `orleans` in the preceding example, offers methods to configure your Orleans resource. In the following example, the Orleans resource is configured with clustering and grain storage using the `WithClustering` and `WithGrainStorage` methods respectively:
+The Orleans resource builder offers methods to configure your Orleans resource. In the following example, the Orleans resource is configured with clustering and grain storage using the `WithClustering` and `WithGrainStorage` methods respectively:
 
-:::code language="csharp" source="snippets/orleans/OrleansAppHost/Program.cs" range="3-14" highlight="4-5,11-12":::
+:::code language="csharp" source="snippets/Orleans/OrleansAppHost/Program.cs" range="3-14" highlight="4-5,11-12":::
 
 This tells Orleans that any service referencing it will also need to reference the `clusteringTable` resource.
 
 To participate in an Orleans cluster, reference the Orleans resource from your service project, either using `WithReference(orleans)` to participate as an Orleans server, or `WithReference(orleans.AsClient())` to participate as a client. When you reference the Orleans resource from your service, those resources will also be referenced:
 
-:::code language="csharp" source="snippets/orleans/OrleansAppHost/Program.cs" range="16-22":::
+:::code language="csharp" source="snippets/Orleans/OrleansAppHost/Program.cs" range="16-22":::
 
 Putting that all together, here is an example of an Aspire AppHost project which includes:
 
@@ -59,7 +59,7 @@ Putting that all together, here is an example of an Aspire AppHost project which
 - An Orleans server project, 'OrleansServer'.
 - An Orleans client project, 'OrleansClient'.
 
-:::code language="csharp" source="snippets/orleans/OrleansAppHost/Program.cs" :::
+:::code language="csharp" source="snippets/Orleans/OrleansAppHost/Program.cs" :::
 
 To consume the .NET Aspire Orleans resource from an Orleans server project, there are a few steps:
 
@@ -67,13 +67,13 @@ To consume the .NET Aspire Orleans resource from an Orleans server project, ther
 2. Add the Orleans provider packages for those .NET Aspire components. In this example, you're using _Microsoft.Orleans.Persistence.AzureStorage_ and _Microsoft.Orleans.Clustering.AzureStorage_.
 3. Add Orleans to the host application builder.
 
-In the _Program.cs_ file of your Orleans server project, you must configure the .NET Aspire components you are using and add Orleans to the host builder. Note that the names provided must match the names used in the .NET Aspire app host project: "clustering" for the clustering provider, and "grainstate" for the grain state storage provider:
+In the _Program.cs_ file of your Orleans server project, you must configure the .NET Aspire components you are using and add Orleans to the host builder. Note that the names provided must match the names used in the .NET Aspire app host project: "clustering" for the clustering provider, and "grain-state" for the grain state storage provider:
 
-:::code language="csharp" source="snippets/orleans/OrleansServer/Program.cs" :::
+:::code language="csharp" source="snippets/Orleans/OrleansServer/Program.cs" :::
 
 You do similarly in the _OrleansClient_ project, adding the .NET Aspire resources which your project needs to join the Orleans cluster as a client, and configuring the host builder to add an Orleans client:
 
-:::code language="csharp" source="snippets/orleans/OrleansClient/Program.cs" :::
+:::code language="csharp" source="snippets/Orleans/OrleansClient/Program.cs" :::
 
 ## Enabling OpenTelemetry
 
@@ -81,7 +81,7 @@ By convention, .NET Aspire application include a project for defining default co
 To configure Orleans for OpenTelemetry in .NET Aspire, you will need to apply configuration to your service defaults project following the [Orleans observability](/dotnet/orleans/host/monitoring/) guide.
 In short, you will need to modify the `ConfigureOpenTelemetry` method to add the Orleans _meters_ and _tracing_ instruments. The following code snippet shows the _Extensions.cs_ file from a service defaults project which has been modified to include metrics and traces from Orleans.
 
-:::code language="csharp" source="snippets/orleans/OrleansServiceDefaults/Extensions.cs" range="40-68" highlight="15,19-20":::
+:::code language="csharp" source="snippets/Orleans/OrleansServiceDefaults/Extensions.cs" range="40-68" highlight="15,19-20":::
 
 ## Supported providers
 

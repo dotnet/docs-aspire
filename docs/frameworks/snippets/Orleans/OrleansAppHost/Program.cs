@@ -1,12 +1,12 @@
 ﻿var builder = DistributedApplication.CreateBuilder(args);
 
-// Add the resources which you will use for Orleans clustering and 
+// Add the resources which you will use for Orleans clustering and
 // grain state storage.
 var storage = builder.AddAzureStorage("storage").RunAsEmulator();
 var clusteringTable = storage.AddTables("clustering");
-var grainStorage = storage.AddBlobs("grainstate");
+var grainStorage = storage.AddBlobs("grain-state");
 
-// Add the Orleans resource to the Aspire DistributedApplication 
+// Add the Orleans resource to the Aspire DistributedApplication
 // builder, then configure it with Azure Table Storage for clustering
 // and Azure Blob Storage for grain storage.
 var orleans = builder.AddOrleans("default")
@@ -21,7 +21,7 @@ builder.AddProject<Projects.OrleansServer>("silo")
        .WithReference(orleans)
        .WithReplicas(3);
 
-// Reference the Orleans resource as a client from the 'frontend' 
+// Reference the Orleans resource as a client from the 'frontend'
 // project so that it can connect to the Orleans cluster.
 builder.AddProject<Projects.OrleansClient>("frontend")
        .WithReference(orleans.AsClient())
