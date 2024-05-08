@@ -103,7 +103,7 @@ using var app = builder.Build();
 await app.RunAsync();
 ```
 
-To consume the Aspire Orleans resource from an Orleans server project, there are a few steps:
+To consume the .NET Aspire Orleans resource from an Orleans server project, there are a few steps:
 
 1. Add the relevant .NET Aspire components. In this example, you're using _Aspire.Azure.Data.Tables_ and _Aspire.Azure.Storage.Blobs_.
 2. Add the Orleans provider packages for those .NET Aspire components. In this example, you're using _Microsoft.Orleans.Persistence.AzureStorage_ and _Microsoft.Orleans.Clustering.AzureStorage_
