@@ -36,7 +36,7 @@ dotnet add package Aspire.Hosting.Orleans --prerelease
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-The Orleans resource is added to the Aspire Distributed Application Builder using the `AddOrleans(string name)` method, which returns an Orleans resource builder.
+The Orleans resource is added to the .NET Aspire distributed application builder using the `AddOrleans(string name)` method, which returns an Orleans resource builder.
 The name provided to the Orleans resource is for diagnostic purposes. For most applications, a value of `"default"` will suffice.
 
 ```csharp
