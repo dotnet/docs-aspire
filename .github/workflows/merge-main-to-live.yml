@@ -51,4 +51,4 @@ jobs:
         if: steps.create.outputs.CREATED == 'true'
         run: |
           PR_NUMBER=$(gh pr list --base live --head main --json number --jq '.[0].number')
-          gh pr merge $PR_NUMBER --squash --auto
+          gh pr merge $PR_NUMBER --merge --auto
