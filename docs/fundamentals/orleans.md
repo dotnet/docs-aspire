@@ -57,8 +57,7 @@ orleans.WithClustering(clusteringTable);
 
 This tells Orleans that any service referencing it will also need to reference the `clusteringTable` resource.
 
-To participate in an Orleans cluster, reference the Orleans resource from your service project, either using `WithReference(orleans)` to participate as an Orleans server, or `WithReference(orleans.AsClient())` to participate as a client.
-When you reference the Orleans resource from your service, those resources will also be referenced:
+To participate in an Orleans cluster, reference the Orleans resource from your service project, either using `WithReference(orleans)` to participate as an Orleans server, or `WithReference(orleans.AsClient())` to participate as a client. When you reference the Orleans resource from your service, those resources will also be referenced:
 
 ```csharp
 // Add the Orleans resource to the "silo" project:
