@@ -62,7 +62,7 @@ Start by creating some migrations to apply.
 
     :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.Data/Models/SupportTicket.cs" range="5-13" highlight="8" :::
 
-1. Create a new migration to capture the changes to the model:
+1. Create another new migration to capture the changes to the model:
 
     ```dotnetcli
     dotnet ef migrations add AddCompleted --project ..\SupportTicketApi.Data\SupportTicketApi.Data.csproj
@@ -108,7 +108,15 @@ To run the migrations at startup, you need to create a service that applies the 
       1. Stops the worker with `StopApplication`.
     - The `EnsureDatabaseAsync`, `RunMigrationAsync`, and `SeedDataAsync` methods all encapsulate their respective database operations using execution strategies to handle transient errors that may occur when interacting with the database. To learn more about execution strategies, see [Connection Resiliency](/ef/core/miscellaneous/connection-resiliency).
 
-Remaining steps are WIP:
+## Add the migration service to the Aspire orchestration
 
 1. Add the migration service to the app host.
-1. Remove the seed logic in the API
+
+## Remove existing seeding logic
+
+Since the migration service seeds the database, you should remove the existing seeding logic from the API project.
+
+1. In the *SupportTicketApi.Api* project, open the *Program.cs* file.
+1. Delete the highlighted lines.
+
+    :::code source="~/aspire-docs-samples-main/SupportTicketApi/SupportTicketApi.Api/Program.cs" range="20-36" highlight="6-16" :::
