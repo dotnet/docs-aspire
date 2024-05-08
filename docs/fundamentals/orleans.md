@@ -105,7 +105,7 @@ await app.RunAsync();
 
 To consume the Aspire Orleans resource from an Orleans server project, there are a few steps:
 
-1. Add the relevant Aspire components. In our example, we are using _Aspire.Azure.Data.Tables_ and _Aspire.Azure.Storage.Blobs_.
+1. Add the relevant .NET Aspire components. In this example, you're using _Aspire.Azure.Data.Tables_ and _Aspire.Azure.Storage.Blobs_.
 2. Add the Orleans provider packages for those Aspire components. In our example, we are using _Microsoft.Orleans.Persistence.AzureStorage_ and _Microsoft.Orleans.Clustering.AzureStorage_
 3. Add Orleans to the host application builder.
 
