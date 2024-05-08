@@ -72,23 +72,27 @@ Putting that all together, here is an example of an Aspire AppHost project which
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Add the resources which we will use for Orleans clustering and grain state storage.
+// Add the resources which we will use for Orleans clustering and 
+// grain state storage.
 var storage = builder.AddAzureStorage("storage").RunAsEmulator();
 var clusteringTable = storage.AddTables("clustering");
 var grainStorage = storage.AddBlobs("grainstate");
 
-// Add the Orleans resource to the Aspire DistributedApplication builder, then configure it with Azure Table Storage for clustering
+// Add the Orleans resource to the Aspire DistributedApplication 
+// builder, then configure it with Azure Table Storage for clustering
 // and Azure Blob Storage for grain storage.
 var orleans = builder.AddOrleans("my-app")
                      .WithClustering(clusteringTable)
                      .WithGrainStorage("Default", grainStorage);
 
-// Reference the Orleans resource from the 'silo' project so that it can join the Orleans cluster as a service.
+// Reference the Orleans resource from the 'silo' project so that 
+// it can join the Orleans cluster as a service.
 builder.AddProject<Projects.OrleansServer>("silo")
        .WithReference(orleans)
        .WithReplicas(3);
 
-// Reference the Orleans resource as a client from the 'frontend' project so that it can connect to the Orleans cluster.
+// Reference the Orleans resource as a client from the 'frontend' 
+// project so that it can connect to the Orleans cluster.
 builder.AddProject<Projects.OrleansClient>("frontend")
        .WithReference(orleans.AsClient())
        .WithExternalHttpEndpoints()
