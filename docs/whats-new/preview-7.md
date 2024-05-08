@@ -100,9 +100,9 @@ The .NET Aspire dashboard continues to improve with each release. In this previe
 | `docker.io/confluentinc/confluent-local` | `KafkaServerResource` | `7.6.0` | `7.6.1` |
 | `docker.io/library/mongo` | `MongoDBServerResource` | `7.0.5` | `7.0` |
 | `docker.io/library/mongo-express` | `MongoDBServerResource` | N/A | `1.0` |
-| `docker.io/library/nats` | `MongoDBServerResource` | `7` | `2.10` |
+| `docker.io/library/nats` | `MongoDBServerResource` | `2` | `2.10` |
 | `docker.io/dpage/pgadmin4` | `PostgresServerResource` | N/A | `8.5` |
-| `docker.io/qdrant/qdrant` | `PostgresServerResource` | `v1.8.3` | `v1.8.4` |
+| `docker.io/qdrant/qdrant` | `QdrantServerResource` | `v1.8.3` | `v1.8.4` |
 | `docker.io/library/rabbitmq` | `RabbitMQServerResource` | `3` | `3.13` |
 | `docker.io/library/redis` | `RedisResource` | `7` | `7.2` |
 | `docker.io/rediscommander/redis-commander` | `RedisResource` | N/A | `latest` |
