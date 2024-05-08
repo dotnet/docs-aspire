@@ -110,13 +110,39 @@ To run the migrations at startup, you need to create a service that applies the 
 
 ## Add the migration service to the Aspire orchestration
 
-1. Add the migration service to the app host.
+The migration service is created, but it needs to be added to the Aspire app host so that it runs when the app starts.
 
-## Remove existing seeding logic
+1. In the *SupportTicketApi.AppHost* project, open the *Program.cs* file.
+1. Add the following highlighted code to the `ConfigureServices` method:
 
-Since the migration service seeds the database, you should remove the existing seeding logic from the API project.
+    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.AppHost/Program.cs" highlight="9-10" :::
+
+    This enlists the *SupportTicketApi.MigrationService* project as a service in the Aspire app host.
+
+    > [!IMPORTANT]
+    > If you are using Visual Studio, and you selected the **Enlist in Aspire orchestration** option when creating the Worker Service project, similar code is added automatically with the service name `supportticketapi-migrationservice`. Replace that code with the preceding code.
+
+## Remove existing seeding code
+
+Since the migration service seeds the database, you should remove the existing data seeding code from the API project.
 
 1. In the *SupportTicketApi.Api* project, open the *Program.cs* file.
 1. Delete the highlighted lines.
 
     :::code source="~/aspire-docs-samples-main/SupportTicketApi/SupportTicketApi.Api/Program.cs" range="20-36" highlight="6-16" :::
+
+## Test the migration service
+
+Now that the migration service is configured, run the app to test the migrations.
+
+1. Run the app and observe the SupportTicketApi dashboard.
+1. After a short wait, the `migrations` service state will display **Finished**.
+
+    :::image type="content" source="media/ef-core-migrations/dashboard-post-migration.png" lightbox="media/ef-core-migrations/dashboard-post-migration.png" alt-text="A screenshot of the Aspire dashboard with the migration service in a Finished state." :::
+
+1. Select the **View** link on the migration service to investigate the logs showing the SQL commands that were executed.
+
+## Get the code
+
+You can find the [completed sample app on GitHub](https://github.com/MicrosoftDocs/aspire-docs-samples/tree/solution/SupportTicketApi).
+
