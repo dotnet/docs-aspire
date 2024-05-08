@@ -70,9 +70,6 @@ conceptualContent:
         - itemType: overview
           text: .NET Aspire local networking
           url: fundamentals/networking-overview.md
-        - itemType: overview
-          text: Use Orleans with .NET Aspire
-          url: fundamentals/orleans.md
 
     - title: Storage
       links:
@@ -154,6 +151,12 @@ conceptualContent:
         - itemType: how-to-guide
           text: Redis distributed caching
           url: caching/stackexchange-redis-distributed-caching-component.md
+
+    - title: Frameworks
+      links:
+        - itemType: overview
+          text: Use Orleans with .NET Aspire
+          url: frameworks/orleans.md
 
     - title: Deployment
       links:

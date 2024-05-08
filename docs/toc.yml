@@ -82,7 +82,7 @@ items:
         href: storage/azure-storage-queues-component.md
       - name: Azure Table Storage component
         href: storage/azure-storage-tables-component.md
-  
+
   - name: Logging
     items:
       - name: Seq component
@@ -181,6 +181,11 @@ items:
             href: database/sql-server-component-deployment.md
       - name: Reference - Tool-builder manifest schemas
         href: deployment/manifest-format.md
+
+  - name: Frameworks
+    items:
+      - name: Orleans
+        href: frameworks/orleans.md
 
   - name: Extensibility
     items:
