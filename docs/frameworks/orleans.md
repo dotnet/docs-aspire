@@ -43,9 +43,9 @@ The name provided to the Orleans resource is for diagnostic purposes. For most a
 
 :::code language="csharp" source="snippets/orleans/OrleansAppHost/Program.cs" range="12":::
 
-The Orleans resource builder, `orleans` in the preceding example, offers methods to configure your Orleans resource. The simplest Orleans services only need a cluster membership resource:
+The Orleans resource builder, `orleans` in the preceding example, offers methods to configure your Orleans resource. In the following example, the Orleans resource is configured with clustering and grain storage using the `WithClustering` and `WithGrainStorage` methods respectively:
 
-:::code language="csharp" source="snippets/orleans/OrleansAppHost/Program.cs" range="3-14" highlight="6-7,13-14":::
+:::code language="csharp" source="snippets/orleans/OrleansAppHost/Program.cs" range="3-14" highlight="4-5,11-12":::
 
 This tells Orleans that any service referencing it will also need to reference the `clusteringTable` resource.
 
@@ -81,7 +81,7 @@ By convention, .NET Aspire application include a project for defining default co
 To configure Orleans for OpenTelemetry in .NET Aspire, you will need to apply configuration to your service defaults project following the [Orleans observability](/dotnet/orleans/host/monitoring/) guide.
 In short, you will need to modify the `ConfigureOpenTelemetry` method to add the Orleans _meters_ and _tracing_ instruments. The following code snippet shows the _Extensions.cs_ file from a service defaults project which has been modified to include metrics and traces from Orleans.
 
-:::code language="csharp" source="snippets/orleans/OrleansServiceDefaults/Extensions.cs" range="40-68" highlight="54,58-59":::
+:::code language="csharp" source="snippets/orleans/OrleansServiceDefaults/Extensions.cs" range="40-68" highlight="15,19-20":::
 
 ## Supported providers
 
