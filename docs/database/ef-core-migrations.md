@@ -145,4 +145,3 @@ Now that the migration service is configured, run the app to test the migrations
 ## Get the code
 
 You can find the [completed sample app on GitHub](https://github.com/MicrosoftDocs/aspire-docs-samples/tree/solution/SupportTicketApi).
-
