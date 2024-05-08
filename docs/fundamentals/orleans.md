@@ -43,7 +43,7 @@ The name provided to the Orleans resource is for diagnostic purposes. For most a
 var orleans = builder.AddOrleans("default");
 ```
 
-The Orleans resource builder, `orleans` in the above example, offers methods to configure your Orleans resource. The simplest Orleans services only need a cluster membership resource:
+The Orleans resource builder, `orleans` in the preceding example, offers methods to configure your Orleans resource. The simplest Orleans services only need a cluster membership resource:
 
 ```csharp
 // Add a resource which Orleans supports (Azure Table Storage) to use for cluster membership:
