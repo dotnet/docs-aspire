@@ -26,7 +26,6 @@ Location: <YOUR LOCATION>
   (✓) Done: Container Registry: <ID>
   (✓) Done: Log Analytics workspace: <ID>
   (✓) Done: Container Apps Environment: <ID>
-  (✓) Done: Container App: <ID>
 
 SUCCESS: Your application was provisioned in Azure in 1 minute 13 seconds.
 You can view the resources created under the resource group <YOUR RESOURCE GROUP> in Azure Portal:
