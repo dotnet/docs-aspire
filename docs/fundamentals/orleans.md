@@ -46,7 +46,8 @@ var orleans = builder.AddOrleans("default");
 The Orleans resource builder, `orleans` in the preceding example, offers methods to configure your Orleans resource. The simplest Orleans services only need a cluster membership resource:
 
 ```csharp
-// Add a resource which Orleans supports (Azure Table Storage) to use for cluster membership:
+// Add a resource which Orleans supports (Azure Table Storage)
+// to use for cluster membership:
 var storage = builder.AddAzureStorage("storage").RunAsEmulator();
 var clusteringTable = storage.AddTables("clustering");
 
