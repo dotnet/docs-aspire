@@ -15,7 +15,7 @@ Orleans is represented as a resource in .NET Aspire. The Orleans resource includ
 
 - Orleans version 8.1.0 or later
 
-## Getting started
+## Get started
 
 To get started you need to add the Orleans hosting pacakge to the app host project, install the [Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans) NuGet package.
 
