@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansClient", "OrleansClient\OrleansClient.csproj", "{AD9CABB4-CF8E-4268-BD4C-87BC72AD0665}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansContracts", "OrleansContracts\OrleansContracts.csproj", "{1C413B0C-623C-4686-8567-A378AE1A6EA6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansServer", "OrleansServer\OrleansServer.csproj", "{47E83835-3215-4450-A03A-EF99751E4169}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansServiceDefaults", "OrleansServiceDefaults\OrleansServiceDefaults.csproj", "{72EBD6D9-F98C-42FC-8314-F6DABBD194A1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrleansAppHost", "OrleansAppHost\OrleansAppHost.csproj", "{A154FE7F-B97A-4B33-9526-B185B5A845A8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD9CABB4-CF8E-4268-BD4C-87BC72AD0665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD9CABB4-CF8E-4268-BD4C-87BC72AD0665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD9CABB4-CF8E-4268-BD4C-87BC72AD0665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD9CABB4-CF8E-4268-BD4C-87BC72AD0665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C413B0C-623C-4686-8567-A378AE1A6EA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C413B0C-623C-4686-8567-A378AE1A6EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C413B0C-623C-4686-8567-A378AE1A6EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C413B0C-623C-4686-8567-A378AE1A6EA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47E83835-3215-4450-A03A-EF99751E4169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47E83835-3215-4450-A03A-EF99751E4169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47E83835-3215-4450-A03A-EF99751E4169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47E83835-3215-4450-A03A-EF99751E4169}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72EBD6D9-F98C-42FC-8314-F6DABBD194A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72EBD6D9-F98C-42FC-8314-F6DABBD194A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72EBD6D9-F98C-42FC-8314-F6DABBD194A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72EBD6D9-F98C-42FC-8314-F6DABBD194A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A154FE7F-B97A-4B33-9526-B185B5A845A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A154FE7F-B97A-4B33-9526-B185B5A845A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A154FE7F-B97A-4B33-9526-B185B5A845A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A154FE7F-B97A-4B33-9526-B185B5A845A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
