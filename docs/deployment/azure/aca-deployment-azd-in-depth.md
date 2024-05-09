@@ -117,7 +117,7 @@ This file is how `azd` remembers (on a per environment basis) which services sho
 
     The previous command will launch a browser to authenticate the command-line session.
 
-1. Once authenticated, use the following command to provision and deploy the application.
+1. Once authenticated, run the following command from the _AppHost_ project directory to provision and deploy the application.
 
     ```azdeveloper
     azd up
