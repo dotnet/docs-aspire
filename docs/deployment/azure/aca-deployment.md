@@ -47,4 +47,6 @@ At this point the app has been deployed and configured, and you can open the Azu
 
 [!INCLUDE [test-deployed-app](includes/test-deployed-app.md)]
 
+[!INCLUDE [azd-dashboard](includes/azd-dashboard.md)]
+
 [!INCLUDE [clean-up-resources](../../includes/clean-up-resources.md)]

@@ -40,4 +40,6 @@ ms.date: 05/03/2024
 
 [!INCLUDE [test-deployed-app](includes/test-deployed-app.md)]
 
+[!INCLUDE [azd-dashboard](includes/azd-dashboard.md)]
+
 [!INCLUDE [clean-up-resources](../../includes/clean-up-resources.md)]
