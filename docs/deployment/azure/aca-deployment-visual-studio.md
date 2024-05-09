@@ -42,4 +42,4 @@ ms.date: 05/03/2024
 
 [!INCLUDE [azd-dashboard](includes/azd-dashboard.md)]
 
-[!INCLUDE [clean-up-resources](../../includes/clean-up-resources.md)]
+[!INCLUDE [clean-up-resources](../../includes/clean-up-resources-visual-studio.md)]
