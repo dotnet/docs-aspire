@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 04/02/2024
+ms.date: 04/25/2024
 ---
 
 # .NET Aspire setup and tooling
@@ -90,7 +90,7 @@ dotnet workload list
 
 ## Container runtime
 
-.NET Aspire apps are designed to run in containers. You can use either Docker Desktop or Podman as your container runtime. [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most common container runtime. [Podman](https://podman.io/docs/installation) is an open-source daemonless alternative to Docker, that can build and run Open Container Initiative (OCI) containers. If you're host environment has both Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `DOTNET_ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
+.NET Aspire apps are designed to run in containers. You can use either Docker Desktop or Podman as your container runtime. [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most common container runtime. [Podman](https://podman.io/docs/installation) is an open-source daemonless alternative to Docker, that can build and run Open Container Initiative (OCI) containers. If your host environment has both Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `DOTNET_ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
 
 ## [Unix](#tab/unix)
 
@@ -189,25 +189,25 @@ dotnet new aspire-starter
 
 ## .NET Aspire dashboard
 
-.NET Aspire templates that expose the app host project also include a useful [dashboard](dashboard.md) that can be used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
+.NET Aspire templates that expose the app host project also include a useful [dashboard](dashboard/overview.md) that can be used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
 
 The .NET Aspire dashboard is only visible while the app is running and starts automatically when you start the **.AppHost** project. Visual Studio launches both your app and the .NET Aspire dashboard for you automatically in your browser. If you start the app using the .NET CLI, copy and paste the dashboard URL from the output into your browser, or hold <kbd>Ctrl</kbd> and select the link (if your terminal supports hyperlinks).
 
-:::image type="content" source="../media/run-dashboard-cli.png" alt-text="A screenshot showing how to launch the dashboard using the CLI.":::
+:::image type="content" source="dashboard/media/explore/dotnet-run-login-url.png" lightbox="dashboard/media/explore/dotnet-run-login-url.png" alt-text="A screenshot showing how to launch the dashboard using the CLI.":::
 
 The left navigation provides links to the different parts of the dashboard, each of which you'll explore in the following sections.
 
-:::image type="content" source="media/dashboard/projects.png" lightbox="media/dashboard/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Projects page.":::
+:::image type="content" source="media/setup-tooling/projects.png" lightbox="media/setup-tooling/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Projects page.":::
 
 ## Visual Studio tooling
 
 Visual Studio provides additional features for working with .NET Aspire components and the App Host orchestrator project. These features are currently not available in Visual Studio Code or through the CLI.
 
-### Add a component
+### Add a component package
 
 You add .NET Aspire components to your app like any other NuGet package using Visual Studio. However, Visual Studio also provides UI options to add .NET Aspire components directly.
 
-1. In Visual Studio, right click on the project you want to add an .NET Aspire component to and select **Add** > **.NET Aspire Component...**.
+1. In Visual Studio, right click on the project you want to add an .NET Aspire component to and select **Add** > **.NET Aspire package...**.
 
     :::image type="content" source="../media/visual-studio-add-aspire-component.png" lightbox="../media/visual-studio-add-aspire-component.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire Component option.":::
 
@@ -254,3 +254,11 @@ For more information on .NET Aspire orchestration, see [.NET Aspire orchestratio
 Visual Studio provides the option to **Enlist in Aspire orchestration** during the new project workflow. Select this option to have Visual Studio create **.AppHost** and **.ServiceDefault** projects alongside your selected project template.
 
 :::image type="content" source="../media/aspire-enlist-orchestration.png" lightbox="../media/aspire-enlist-orchestration.png" alt-text="A screenshot showing how to enlist in .NET Aspire orchestration.":::
+
+### Create test project
+
+When you're using Visual Studio, and you select the **.NET Aspire Start Application** template, you have the option to include a test project. This test project is an xUnit project that includes a sample test that you can use as a starting point for your tests.
+
+:::image type="content" source="media/setup-tooling/create-test-projects-template.png" lightbox="media/setup-tooling/create-test-projects-template.png" alt-text="A screenshot of Visual Studio displaying the option to create a test project.":::
+
+For more information, see [Testing .NET Aspire apps](testing.md).

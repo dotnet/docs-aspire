@@ -1,7 +1,7 @@
 ---
 title: Connect an ASP.NET Core app to .NET Aspire storage components
 description: Learn how to connect an ASP.NET Core app to .NET Aspire storage components.
-ms.date: 04/09/2024
+ms.date: 04/24/2024
 ms.topic: tutorial
 zone_pivot_groups: azure-storage-mechanism
 ms.custom: devx-track-extended-azdevcli
@@ -182,7 +182,7 @@ Visual Studio tooling added this line of code to register your new project with 
     dotnet sln AspireStorage.sln add AspireStorage.WorkerService/AspireStorage.WorkerService.csproj
     ```
 
-1. Use the [dotnet add package](/dotnet/core/tools/dotnet-add-package)command to add project reference between the **.AppHost** and **.WorkerService** project:
+1. Use the [dotnet add reference](/dotnet/core/tools/dotnet-add-reference) command to add project reference between the **.AppHost** and **.WorkerService** project:
 
     ```dotnetcli
     dotnet add AspireStorage.AppHost/AspireStorage.AppHost.csproj reference AspireStorage.WorkerService/AspireStorage.WorkerService.csproj
@@ -215,7 +215,7 @@ Your **AspireStorage** project is now set up to use .NET Aspire components. Here
 
 The next step is to add the components to the app.
 
-In the _Program.cs_ file of the _AspireStorage_ project, add calls to the <xref:Microsoft.Extensions.Hosting.AspireBlobStorageExtensions.AddAzureBlobService%2A> and <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueService%2A> extension methods after the creation of the `builder` but before the call to `AddServiceDefaults`. For more information, see [.NET Aspire service defaults](../fundamentals/service-defaults.md). Provide the name of your connection string as a parameter.
+In the _Program.cs_ file of the _AspireStorage_ project, add calls to the <xref:Microsoft.Extensions.Hosting.AspireBlobStorageExtensions.AddAzureBlobClient%2A> and <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueClient%2A> extension methods after the creation of the `builder` but before the call to `AddServiceDefaults`. For more information, see [.NET Aspire service defaults](../fundamentals/service-defaults.md). Provide the name of your connection string as a parameter.
 
 :::zone pivot="azurite"
 
@@ -247,7 +247,7 @@ The worker service handles pulling messages off of the Azure Storage queue for p
 dotnet add package Aspire.Azure.Storage.Queues --prerelease
 ```
 
-In the _Program.cs_ file of the _AspireStorage.Worker_ project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueService%2A> extension method after the creation of the `builder` but before the call to `AddServiceDefaults`:
+In the _Program.cs_ file of the _AspireStorage.Worker_ project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueClient%2A> extension method after the creation of the `builder` but before the call to `AddServiceDefaults`:
 
 :::code source="snippets/tutorial/AspireStorage/AspireStorage.Worker/Program.cs" highlight="5":::
 
@@ -365,7 +365,7 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 1. Select the **Submit** button, and the form submits the support ticket for processing — and clears the form.
 1. In a separate browser tab, use the Azure portal to navigate to the **Storage browser** in your Azure Storage Account.
 1. Select **Containers** and then navigate into the **Documents** container to see the uploaded file.
-1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../fundamentals/dashboard.md), and selecting the **aspirestorage.worker** from the dropdown.
+1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md), and selecting the **aspirestorage.worker** from the dropdown.
 
     :::image type="content" source="media/queue-output.png" lightbox="media/queue-output.png"  alt-text="A screenshot showing the console output of the Worker app.":::
 
@@ -385,7 +385,7 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 1. Select the **Submit** button, and the form submits the support ticket for processing — and clears the form.
 1. In a separate browser tab, use the Azure portal to navigate to the **Storage browser** in your Azure Storage Account.
 1. Select **Containers** and then navigate into the **Documents** container to see the uploaded file.
-1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../fundamentals/dashboard.md), and selecting the **aspirestorage.worker** from the dropdown.
+1. You can verify the message on the queue was processed by looking at the **Project logs** of the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md), and selecting the **aspirestorage.worker** from the dropdown.
 
     :::image type="content" source="media/queue-output.png" lightbox="media/queue-output.png"  alt-text="A screenshot showing the console output of the Worker app.":::
 

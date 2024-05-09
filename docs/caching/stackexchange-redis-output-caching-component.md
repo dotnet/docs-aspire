@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis output caching Component
 description: This article describes the .NET Aspire StackExchange Redis output caching component features and capabilities
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 04/29/2024
 ---
 
 # .NET Aspire StackExchange Redis output caching component
@@ -56,7 +56,7 @@ For apps with controllers, apply the `[OutputCache]` attribute to the action met
 
 ## App host usage
 
-In your app host project, register the .NET Aspire StackExchange Redis output caching component and consume the service using the following methods:
+In your app host project, register the .NET Aspire StackExchange Redis output caching component using the <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> method and consume the service using the following methods:
 
 ```csharp
 // Service registration
@@ -110,8 +110,8 @@ The .NET Aspire StackExchange Redis output caching component supports <xref:Micr
           "ConnectTimeout": 3000,
           "ConnectRetry": 2
         },
-        "HealthChecks": false,
-        "Tracing": true
+        "DisableHealthChecks": true,
+        "DisableTracing": false
       }
     }
   }
@@ -125,7 +125,7 @@ You can also pass the `Action<StackExchangeRedisSettings> configurationSettings`
 ```csharp
 builder.AddRedisOutputCache(
     "cache",
-    static settings => settings.HealthChecks = false);
+    static settings => settings.DisableHealthChecks  = true);
 ```
 
 You can also set up the [ConfigurationOptions](https://stackexchange.github.io/StackExchange.Redis/Configuration.html#configuration-options) using the `Action<ConfigurationOptions> configureOptions` delegate parameter of the <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> method. For example to set the connection timeout:

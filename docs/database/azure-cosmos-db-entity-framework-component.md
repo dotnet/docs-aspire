@@ -2,7 +2,7 @@
 title: .NET Aspire Microsoft Entity Framework Core Cosmos DB component
 description: This article describes the .NET Aspire Microsoft Entity Framework Core Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 04/04/2024
+ms.date: 04/24/2024
 ---
 
 # .NET Aspire Microsoft Entity Framework Core Cosmos DB component
@@ -72,18 +72,12 @@ In your app host project, register the .NET Aspire Microsoft Entity Framework Co
 
 ```csharp
 // Service registration
-var cosmosdbService = builder.AddAzureCosmosDB("cdb")
-                             .AddDatabase("cosmosdb");
+var cosmos = builder.AddAzureCosmosDB("cosmos");
+var cosmosdb = cosmos.AddDatabase("cosmosdb");
 
 // Service consumption
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
-                            .WithReference(cosmosdbService);
-```
-
-The <xref:Microsoft.Extensions.Hosting.AspireAzureCosmosDBExtensions.AddAzureCosmosDB%2A> method will read connection information from the AppHost's configuration under the `ConnectionStrings:cosmosdb` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named `cosmosdb` in the `ExampleProject` project. In the _Program.cs_ file of `cosmosdbService`, the connection can be consumed using:
-
-```csharp
-builder.AddAzureCosmosDB("cosmosdb");
+                            .WithReference(cosmosdb);
 ```
 
 ## Configuration
@@ -121,7 +115,7 @@ The .NET Aspire Microsoft Entity Framework Core Cosmos DB component supports <xr
       "EntityFrameworkCore": {
         "Cosmos": {
           "DbContextPooling": true,
-          "Tracing": false
+          "DisableTracing": true
         }
       }
     }
@@ -136,7 +130,7 @@ You can also pass the `Action<EntityFrameworkCoreCosmosDBSettings> configureSett
 ```csharp
 builder.AddCosmosDbContext<MyDbContext>(
     "cosmosdb",
-    settings => settings.Tracing = false);
+    settings => settings.DisableTracing = true);
 ```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]

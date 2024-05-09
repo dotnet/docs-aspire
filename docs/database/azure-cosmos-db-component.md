@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Cosmos DB component
 description: This article describes the .NET Aspire Azure Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 04/09/2024
+ms.date: 04/24/2024
 ---
 
 # .NET Aspire Azure Cosmos DB component
@@ -32,10 +32,10 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureCosmosDBExtensions.AddAzureCosmosDB%2A> extension to register a <xref:Microsoft.Azure.Cosmos.CosmosClient?displayProperty=fullName> for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureCosmosDBExtensions.AddAzureCosmosDBClient%2A> extension to register a <xref:Microsoft.Azure.Cosmos.CosmosClient?displayProperty=fullName> for use via the dependency injection container.
 
 ```csharp
-builder.AddAzureCosmosDB("cosmosConnectionName");
+builder.AddAzureCosmosDBClient("cosmosdb");
 ```
 
 You can then retrieve the `CosmosClient` instance using dependency injection. For example, to retrieve the client from a service:
@@ -72,19 +72,12 @@ In your app host project, register the .NET Aspire Azure Cosmos DB component and
 
 ```csharp
 // Service registration
-var cosmosdb = builder.ExecutionContext.IsPublishMode
-    ? builder.AddAzureCosmosDB("cdb")
-    : builder.AddConnectionString("cdb");
+var cosmos = builder.AddAzureCosmosDB("cosmos");
+var cosmosdb = cosmos.AddDatabase("cosmosdb");
 
 // Service consumption
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(cosmosdb);
-```
-
-The <xref:Aspire.Hosting.AzureCosmosExtensions.AddAzureCosmosDB%2A> method will read connection information from the AppHost's configuration under the `ConnectionStrings:cosmosdb` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named `cosmosdb` in the `ExampleProject` project. In the _Program.cs_ file of MyService, the connection can be consumed using:
-
-```csharp
-builder.AddAzureCosmosDB("cosmosdb");
 ```
 
 ## Configuration
@@ -139,7 +132,7 @@ The .NET Aspire Azure Cosmos DB component supports <xref:Microsoft.Extensions.Co
     "Microsoft": {
       "Azure": {
         "Cosmos": {
-          "Tracing": true,
+          "DisableTracing": false,
         }
       }
     }
@@ -154,7 +147,7 @@ You can also pass the `Action<AzureCosmosDBSettings>` delegate to set up some or
 ```csharp
 builder.AddAzureCosmosDB(
     "cosmosConnectionName",
-    static settings => settings.Tracing = false);
+    static settings => settings.DisableTracing = true);
 ```
 
 You can also set up the <xref:Microsoft.Azure.Cosmos.CosmosClientOptions?displayProperty=fullName> using the optional `Action<CosmosClientOptions> configureClientOptions` parameter of the `AddAzureCosmosDB` method. For example to set the <xref:Microsoft.Azure.Cosmos.CosmosClientOptions.ApplicationName?displayProperty=nameWithType> user-agent header suffix for all requests issues by this client:

@@ -43,7 +43,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 In the _Program.cs_ file of your component-consuming project, call the `AddMySqlDataSource` extension to register a `MySqlDataSource` for use via the dependency injection container.
 
 ```csharp
-builder.AddMySqlDataSource("mysqldatasource");
+builder.AddMySqlDataSource("mysqldb");
 ```
 
 To retrieve your `MySqlDataSource` object, consider the following example service:
@@ -62,17 +62,11 @@ After adding a `MySqlDataSource`, you can require the `MySqlDataSource` instance
 In your app host project, register a MySql database and consume the connection using the following methods:
 
 ```csharp
-var mysqldb = builder.AddMySql("mysql")
-                     .AddDatabase("mysqldb");
+var mysql = builder.AddMySql("mysql");
+var mysqldb = mysql.AddDatabase("mysqldb");
 
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(mysqldb);
-```
-
-The `WithReference` method configures a connection in the `MyService` project named `mysqldb`. In the _Program.cs_ file of `MyService`, the sql connection can be consumed using:
-
-```csharp
-builder.AddMySqlDataSource("mysqldb");
 ```
 
 ## Configuration
@@ -92,7 +86,7 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 ```json
 {
   "ConnectionStrings": {
-    "MySqConnection": "Server=mysql;Database=test"
+    "MySqConnection": "Server=mysql;Database=mysqldb"
   }
 }
 ```
@@ -109,8 +103,8 @@ The following example shows an _appsettings.json_ file that configures some of t
 {
   "Aspire": {
     "MySqlConnector": {
-      "HealthChecks": false,
-      "Tracing": false
+      "DisableHealthChecks": true,
+      "DisableTracing": true
     }
   }
 }
@@ -122,19 +116,19 @@ You can also pass the `Action<MySqlConnectorSettings>` delegate to set up some o
 
 ```csharp
 builder.AddMySqlDataSource("mysql",
-    static settings => settings.HealthChecks = false);
+    static settings => settings.DisableHealthChecks  = true);
 ```
 
 ### Configuration options
 
 Here are the configurable options with corresponding default values:
 
-| Name               | Description                                                                          |
-|--------------------|--------------------------------------------------------------------------------------|
-| `ConnectionString` | The connection string of the MySQL database database to connect to.                  |
-| `HealthChecks`     | A boolean value that indicates whether the database health check is enabled or not.  |
-| `Tracing`          | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.  |
-| `Metrics`          | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not. |
+| Name                  | Description                                                                           |
+|-----------------------|---------------------------------------------------------------------------------------|
+| `ConnectionString`    | The connection string of the MySQL database database to connect to.                   |
+| `DisableHealthChecks` | A boolean value that indicates whether the database health check is disabled or not.  |
+| `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not.  |
+| `DisableMetrics`      | A boolean value that indicates whether the OpenTelemetry metrics are disabled or not. |
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 

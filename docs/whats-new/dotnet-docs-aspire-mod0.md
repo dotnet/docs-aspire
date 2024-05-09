@@ -15,7 +15,7 @@ Welcome to what's new in the .NET Aspire docs for March 2024. This article lists
 
 - [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md) - Add details about container runtime
 - [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md) - Add details for shortcuts
-- [.NET Aspire dashboard overview](../fundamentals/dashboard.md) - Add details for shortcuts
+- [.NET Aspire dashboard overview](../fundamentals/dashboard/overview.md) - Add details for shortcuts
 - [Persist .NET Aspire app data using volumes](../fundamentals/persist-data-volumes.md) - Add details for shortcuts
 
 ## Storage

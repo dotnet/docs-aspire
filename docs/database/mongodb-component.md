@@ -43,7 +43,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 In the _Program.cs_ file of your component-consuming project, call the `AddMongoDBClient` extension to register a `IMongoClient` for use via the dependency injection container.
 
 ```csharp
-builder.AddMongoDBClient("IMongoClient");
+builder.AddMongoDBClient("mongodb");
 ```
 
 To retrieve your `IMongoClient` object, consider the following example service:
@@ -62,17 +62,11 @@ After adding a `IMongoClient`, you can require the `IMongoClient` instance using
 In your app host project, register a MongoDB database and consume the connection using the following methods:
 
 ```csharp
-var mongodb = builder.AddMongoDB("mongodb")
-                     .AddDatabase("database");
+var mongo = builder.AddMongoDB("mongo");
+var mongodb = mongo.AddDatabase("mongodb");
 
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(mongodb);
-```
-
-The `WithReference` method configures a connection in the `MyService` project named `mongodb`. In the _Program.cs_ file of `MyService`, the database connection can be consumed using:
-
-```csharp
-builder.AddMongoDBClient("mongodb");
 ```
 
 ## Configuration
@@ -111,9 +105,9 @@ The following example shows an _appsettings.json_ file that configures some of t
     "MongoDB": {
       "Driver": {
         "ConnectionString": "mongodb://server:port/test",
-        "HealthChecks": true,
+        "DisableHealthChecks": false,
         "HealthCheckTimeout": 10000,
-        "Tracing": true
+        "DisableTracing": false
       },
     }
   }
@@ -133,12 +127,12 @@ builder.AddMongoDBClient("mongodb",
 
 Here are the configurable options with corresponding default values:
 
-| Name                 | Description                                                                         |
-|----------------------|-------------------------------------------------------------------------------------|
-| `ConnectionString`   | The connection string of the MongoDB database database to connect to.               |
-| `HealthChecks`       | A boolean value that indicates whether the database health check is enabled or not. |
-| `HealthCheckTimeout` | An `int?` value that indicates the MongoDB health check timeout in milliseconds.    |
-| `Tracing`            | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not. |
+| Name                  | Description                                                                           |
+|-----------------------|---------------------------------------------------------------------------------------|
+| `ConnectionString`    | The connection string of the MongoDB database database to connect to.                 |
+| `DisableHealthChecks` | A boolean value that indicates whether the database health check is disabled or not.  |
+| `HealthCheckTimeout`  | An `int?` value that indicates the MongoDB health check timeout in milliseconds.      |
+| `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not.  |
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 

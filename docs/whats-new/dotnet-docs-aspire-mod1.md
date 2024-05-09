@@ -1,150 +1,138 @@
 ---
-title: ".NET Aspire docs: What's new for January 2024"
-description: "What's new in the .NET Aspire docs for January 2024."
-ms.custom: January-2024
-ms.date: 02/01/2024
+title: ".NET Aspire docs: What's new for April 2024"
+description: "What's new in the .NET Aspire docs for April 2024."
+ms.custom: April-2024
+ms.date: 05/01/2024
 ---
 
-# .NET Aspire docs: What's new for January 2024
+# .NET Aspire docs: What's new for April 2024
 
-Welcome to what's new in the .NET Aspire docs for January 2024. This article lists some of the major changes to docs during this period.
+Welcome to what's new in the .NET Aspire docs for April 2024. This article lists some of the major changes to docs during this period.
 
 ## Get started
 
-### New articles
-
-- [Build .NET Aspire apps with Node.js](../get-started/build-aspire-apps-with-nodejs.md)
-
 ### Updated articles
 
+- [.NET Aspire overview](../get-started/aspire-overview.md) - Fix invalidated xref's since API updates
 - [Build .NET Aspire apps with Node.js](../get-started/build-aspire-apps-with-nodejs.md)
-  - update Angular Aspire description to match the sample
-  - .NET Aspire with Node.js content
-- [.NET Aspire overview](../get-started/aspire-overview.md)
-  - Restructure components, and add Azure hosting bits
-  - Remove Container methods from AppHost docs
-- [Quickstart: Build your first .NET Aspire app](../get-started/build-your-first-aspire-app.md) - Remove Container methods from AppHost docs
+  - nit: fixed spelling
+  - Update the nodejs content to align with the recent updates to the sample
+  - Fix the env var format for service endpoints
+- [Tutorial: Add .NET Aspire to an existing .NET 8 microservices app](../get-started/add-aspire-existing-app.md) - Add info about service discovery when added existing app
 
 ## Fundamentals
 
 ### New articles
 
-- [Persist .NET Aspire app data using volumes](../fundamentals/persist-data-volumes.md)
-- [.NET Aspire inner-loop networking overview](../fundamentals/networking-overview.md)
+- [Standalone .NET Aspire dashboard](../fundamentals/dashboard/standalone.md)
 
 ### Updated articles
 
-- [.NET Aspire components overview](../fundamentals/components-overview.md)
-  - fix mongodb link
-  - Restructure components, and add Azure hosting bits
-  - Remove Container methods from AppHost docs
-- [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md) - Remove Container methods from AppHost docs
+- [.NET Aspire dashboard overview](../fundamentals/dashboard/overview.md) - Add dashboard standalone documentation
+- [.NET Aspire inner-loop networking overview](../fundamentals/networking-overview.md)
+  - Fix invalidated xref's since API updates
+  - Fix the env var format for service endpoints
+  - Corrected port number description to match associated diagram
+- [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)
+  - Fix the env var format for service endpoints
+  - Try a redirect
+- [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md)
+  - More issues
+  - Update setup-tooling.md (typo)
+- [Health checks in .NET Aspire](../fundamentals/health-checks.md) - Update health-checks verbiage
+- [Persist .NET Aspire app data using volumes](../fundamentals/persist-data-volumes.md)
+  - Local code snippets and correct persisted volumes
+  - Try a redirect
 
 ## Storage
 
 ### Updated articles
 
-- [.NET Aspire Azure Blob Storage component](../storage/azure-storage-blobs-component.md) - Restructure components, and add Azure hosting bits
-- [Tutorial: Connect an ASP.NET Core app to .NET Aspire storage components](../storage/azure-storage-components.md) - Restructure components, and add Azure hosting bits
-- [.NET Aspire Azure Queue Storage component](../storage/azure-storage-queues-component.md) - Restructure components, and add Azure hosting bits
-- [.NET Aspire Azure Data Tables component](../storage/azure-storage-tables-component.md) - Restructure components, and add Azure hosting bits
+- [.NET Aspire Azure Blob Storage component](../storage/azure-storage-blobs-component.md)
+  - Fix invalidated xref's since API updates
+  - Content for configuring Azure credential source.
+- [.NET Aspire Azure Data Tables component](../storage/azure-storage-tables-component.md)
+  - Fix invalidated xref's since API updates
+  - Content for configuring Azure credential source.
+- [.NET Aspire Azure Queue Storage component](../storage/azure-storage-queues-component.md)
+  - Fix invalidated xref's since API updates
+  - Content for configuring Azure credential source.
+- [Tutorial: Connect an ASP.NET Core app to .NET Aspire storage components](../storage/azure-storage-components.md)
+  - Fix invalidated xref's since API updates
+  - Update azure-storage-components.md
 
 ## Database
 
 ### Updated articles
 
-- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](../database/sql-server-components.md)
-  - Removed unused variable from "Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core"
-  - Restructure components, and add Azure hosting bits
-- [.NET Aspire Azure Cosmos DB component](../database/azure-cosmos-db-component.md) - Restructure components, and add Azure hosting bits
-- [.NET Aspire Microsoft Entity Framework Core Cosmos DB component](../database/azure-cosmos-db-entity-framework-component.md) - Restructure components, and add Azure hosting bits
-- [.NET Aspire MongoDB database component](../database/mongodb-component.md)
-  - Restructure components, and add Azure hosting bits
-  - Remove Container methods from AppHost docs
-- [.NET Aspire MySQL database component](../database/mysql-component.md)
-  - Restructure components, and add Azure hosting bits
-  - Remove Container methods from AppHost docs
-- [.NET Aspire PostgreSQL component](../database/postgresql-component.md)
-  - Restructure components, and add Azure hosting bits
-  - Remove Container methods from AppHost docs
-- [.NET Aspire PostgreSQL Entity Framework Core component](../database/postgresql-entity-framework-component.md)
-  - Restructure components, and add Azure hosting bits
-  - Remove Container methods from AppHost docs
-- [.NET Aspire SQL Server component](../database/sql-server-component.md)
-  - Restructure components, and add Azure hosting bits
-  - Update sql-server-component.md
-  - Remove Container methods from AppHost docs
-- [.NET Aspire SqlServer Entity Framework Core component](../database/sql-server-entity-framework-component.md)
-  - Restructure components, and add Azure hosting bits
-  - Patch 2
-  - Remove Container methods from AppHost docs
+- [.NET Aspire Azure Cosmos DB component](../database/azure-cosmos-db-component.md)
+  - Fix invalidated xref's since API updates
+  - Content for configuring Azure credential source.
+- [.NET Aspire Microsoft Entity Framework Core Cosmos DB component](../database/azure-cosmos-db-entity-framework-component.md)
+  - Fix invalidated xref's since API updates
+  - Content for configuring Azure credential source.
+- [Seed data in a database using .NET Aspire](../database/seed-database-data.md)
+  - Add clarifying details for SQL Server and database workflow
+  - Corrected PostgreSQL typo
+  - Try a redirect
+- [Tutorial: Deploy a .NET Aspire app with a SQL Server Database to Azure](../database/sql-server-component-deployment.md) - Updates and fixes for SQL deployment
 
 ## Messaging
 
 ### Updated articles
 
-- [.NET Aspire Azure Service Bus component](../messaging/azure-service-bus-component.md) - Restructure components, and add Azure hosting bits
+- [.NET Aspire Azure Event Hubs component](../messaging/azure-event-hubs-component.md) - Content for configuring Azure credential source.
+- [.NET Aspire Azure Service Bus component](../messaging/azure-service-bus-component.md)
+  - Fix invalidated xref's since API updates
+  - Content for configuring Azure credential source.
+- [.NET Aspire RabbitMQ component](../messaging/rabbitmq-client-component.md) - Fix invalidated xref's since API updates
 - [Tutorial: Use .NET Aspire messaging components in ASP.NET Core](../messaging/messaging-components.md)
-  - Restructure components, and add Azure hosting bits
-  - Update messaging-components.md
-- [.NET Aspire RabbitMQ component](../messaging/rabbitmq-client-component.md)
-  - Restructure components, and add Azure hosting bits
-  - Remove Container methods from AppHost docs
+  - Fix invalidated xref's since API updates
+  - Fix broken link
 
 ## Caching
 
 ### Updated articles
 
-- [.NET Aspire StackExchange Redis component](../caching/stackexchange-redis-component.md)
-  - Restructure components, and add Azure hosting bits
-  - Remove Container methods from AppHost docs
+- [.NET Aspire StackExchange Redis component](../caching/stackexchange-redis-component.md) - Correct xref and API for example usage
 - [.NET Aspire StackExchange Redis distributed caching component](../caching/stackexchange-redis-distributed-caching-component.md)
-  - Restructure components, and add Azure hosting bits
-  - Remove Container methods from AppHost docs
-- [.NET Aspire StackExchange Redis output caching component](../caching/stackexchange-redis-output-caching-component.md)
-  - Restructure components, and add Azure hosting bits
-  - Remove Container methods from AppHost docs
-- [Tutorial: Implement caching with .NET Aspire components](../caching/caching-components.md)
-  - Update caching-components.md
-  - New Cache tutorial
-  - Remove Container methods from AppHost docs
+  - Correct xref and API for example usage
+  - Fix link md
+- [.NET Aspire StackExchange Redis output caching component](../caching/stackexchange-redis-output-caching-component.md) - Correct xref and API for example usage
 
 ## Security
 
 ### Updated articles
 
-- [.NET Aspire Azure Key Vault component](../security/azure-security-key-vault-component.md) - Restructure components, and add Azure hosting bits
+- [.NET Aspire Azure Key Vault component](../security/azure-security-key-vault-component.md) - Content for configuring Azure credential source.
 
 ## Deployment
 
-### New articles
-
-- [Tutorial: Deploy a .NET Aspire app using the Azure Developer CLI and GitHub Actions](../deployment/azure/aca-deployment-github-actions.md)
-
 ### Updated articles
 
-- [.NET Aspire manifest format for deployment tool builders](../deployment/manifest-format.md)
-  - Fixed run -> build in sample
-  - Remove Container methods from AppHost docs
-- [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md)
-  - Remove Container methods from AppHost docs
-  - Tutorial for deploying using azd and github actions
-- [Use Application Insights for .NET Aspire telemetry](../deployment/azure/application-insights.md) - Remove Container methods from AppHost docs
+- [Deploy a .NET Aspire app to Azure Container Apps](../deployment/azure/aca-deployment.md) - Aspire vs deploy
+- [Local Azure provisioning](../deployment/azure/local-provisioning.md) - Remove misplaced provisioning content, it belonged in local
+- [Tutorial: Deploy a .NET Aspire app using the Azure Developer CLI and GitHub Actions](../deployment/azure/aca-deployment-github-actions.md)
+  - Address multiple issues
+  - Correct typo in naming of the directory for azure devops pipeline deployment documentations
+  - Typo "Create a Azure DevOps"→"Create an Azure DevOps"
+- [Use Application Insights for .NET Aspire telemetry](../deployment/azure/application-insights.md) - Correct NuGet package
 
 ## Reference
 
 ### Updated articles
 
-- [Frequently asked questions about .NET Aspire](../reference/aspire-faq.yml) - Add FAQ from Aspire discussion
+- [Frequently asked questions about .NET Aspire](../reference/aspire-faq.yml) - grammar/punctuation fixes
 
 ## Community contributors
 
 The following people contributed to the .NET Aspire docs during this period. Thank you! Learn how to contribute by following the links under "Get involved" in the [what's new landing page](index.yml).
 
-- [MrXhh](https://github.com/MrXhh) - 小辉辉 ![2 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-2-green)
-- [Banovvv](https://github.com/Banovvv) - Ivan Gechev ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [josephaw1022](https://github.com/josephaw1022) - Joe Whiteaker ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [mountain65](https://github.com/mountain65) - Richard de Zwart ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [timdeschryver](https://github.com/timdeschryver) - Tim Deschryver ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [VahidFarahmandian](https://github.com/VahidFarahmandian) - Vahid Farahmandian ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [ZieMcd](https://github.com/ZieMcd) - Zie Mcdowell ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [alexravenna](https://github.com/alexravenna) - Alex Ravenna ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [ayodejii](https://github.com/ayodejii) - isaac ikusika ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [hyoshioka0128](https://github.com/hyoshioka0128) - Hiroshi Yoshioka ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [jodydonetti](https://github.com/jodydonetti) - Jody Donetti ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [jonoabroad](https://github.com/jonoabroad) - Jonathan Ferguson ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [sammychinedu2ky](https://github.com/sammychinedu2ky) - Samson Amaugo ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [seangwright](https://github.com/seangwright) - Sean G. Wright ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
+- [TimWilde](https://github.com/TimWilde) - Tim Wilde ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)

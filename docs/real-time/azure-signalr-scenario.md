@@ -2,12 +2,12 @@
 title: .NET Aspire support for Azure SignalR Service
 description: Learn how to use the Azure SignalR Service with .NET Aspire.
 ms.topic: how-to
-ms.date: 04/04/2024
+ms.date: 04/18/2024
 ---
 
 # .NET Aspire support for Azure SignalR Service
 
-In this article, you learn how to use .NET Aspire to express an Azure SignalR Service resource. Demonstrating how to write a SignalR app is beyond the scope of this article, instead you explore an app that's already been written and how it's wired up with .NET Aspire. Like other Azure resources within the .NET Aspire [app model](../fundamentals/app-host-overview.md#define-the-app-model), you benefit from simple provisioning and deployment with the Azure Developer CLI (`azd`). For more information, see [Deploy a .NET Aspire app to Azure Container Apps using the `azd` (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md).
+In this article, you learn how to use .NET Aspire to express an Azure SignalR Service resource. Demonstrating how to write a SignalR app is beyond the scope of this article. Instead, you explore an app that's already been written and how it's wired up with .NET Aspire. Like other Azure resources within the .NET Aspire [app model](../fundamentals/app-host-overview.md#define-the-app-model), you benefit from simple provisioning and deployment with the Azure Developer CLI (`azd`). For more information, see [Deploy a .NET Aspire app to Azure Container Apps using the `azd` (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md).
 
 ## Hub host
 
@@ -55,11 +55,6 @@ In the preceding code:
 - When not publishing, the `AddConnectionString` method is called to express an `IResourceWithConnectionString` to an existing resource.
 - The `signalr` resource is referenced by the `Hub` host project, in this case known as `apiService`.
 - The `apiService` project resource is referenced by the `SignalR_Web` project.
-
-<!--
-> [!TIP]
-> This example also relies on the [Aspire.Hosting.Azure.Provisioning](https://www.nuget.org/packages/Aspire.Hosting.Azure.Provisioning) NuGet package, as you may have been curious about the `AddAzureProvisioning` method. This functionality adds support for generating Azure resources dynamically during app startup.
--->
 
 ## See also
 

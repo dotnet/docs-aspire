@@ -48,7 +48,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext> for use via the dependency injection container.
 
 ```csharp
-builder.AddNpgsqlDbContext<YourDbContext>("db");
+builder.AddNpgsqlDbContext<YourDbContext>("postgresdb");
 ```
 
 You can then retrieve the `YourDbContext` instance using dependency injection. For example, to retrieve the client from a service:
@@ -65,8 +65,8 @@ public class ExampleService(YourDbContext context)
 In your app host project, register the PostgreSQL component and consume the `DbContext` using the following methods:
 
 ```csharp
-var postgresdb = builder.AddPostgres("pg")
-                        .AddDatabase("postgresdb");
+var postgres = builder.AddPostgres("postgres");
+var postgresdb = postgres.AddDatabase("postgresdb");
 
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(postgresdb);
@@ -90,8 +90,8 @@ The following example shows an _appsettings.json_ file that configures some of t
         "PostgreSQL": {
           "ConnectionString": "YOUR_CONNECTIONSTRING",
           "DbContextPooling": true,
-          "HealthChecks": false,
-          "Tracing": false
+          "DisableHealthChecks": true,
+          "DisableTracing": true
         }
       }
     }
@@ -121,11 +121,11 @@ If you want to register more than one <xref:Microsoft.EntityFrameworkCore.DbCont
         "PostgreSQL": {
           "ConnectionString": "YOUR_CONNECTIONSTRING",
           "DbContextPooling": true,
-          "HealthChecks": false,
-          "Tracing": false,
+          "DisableHealthChecks": true,
+          "DisableTracing": true,
           "AnotherDbContext": {
             "ConnectionString": "AnotherDbContext_CONNECTIONSTRING",
-            "Tracing": true
+            "DisableTracing": false
           }
         }
       }
@@ -144,13 +144,13 @@ builder.AddNpgsqlDbContext<AnotherDbContext>();
 
 Here are the configurable options with corresponding default values:
 
-| Name               | Description                                                                                           |
-|--------------------|-------------------------------------------------------------------------------------------------------|
-| `ConnectionString` | The connection string of the SQL Server database to connect to.                                       |
-| `MaxRetryCount`    | The maximum number of retry attempts. Default value is 6, set it to 0 to disable the retry mechanism. |
-| `HealthChecks`     | A boolean value that indicates whether the database health check is enabled or not.                   |
-| `Tracing`          | A boolean value that indicates whether the OpenTelemetry tracing is enabled or not.                   |
-| `Metrics`          | A boolean value that indicates whether the OpenTelemetry metrics are enabled or not.                  |
+| Name                  | Description                                                                                            |
+|-----------------------|--------------------------------------------------------------------------------------------------------|
+| `ConnectionString`    | The connection string of the SQL Server database to connect to.                                        |
+| `MaxRetryCount`       | The maximum number of retry attempts. Default value is 6, set it to 0 to disable the retry mechanism.  |
+| `DisableHealthChecks` | A boolean value that indicates whether the database health check is disabled or not.                   |
+| `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not.                   |
+| `DisableMetrics`      | A boolean value that indicates whether the OpenTelemetry metrics are disabled or not.                  |
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 

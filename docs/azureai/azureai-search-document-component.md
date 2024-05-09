@@ -1,11 +1,11 @@
 ---
-title: NET Aspire Azure AI Search Documents component
-description: Learn how to use the NET Aspire Azure AI Search Documents component.
+title: .NET Aspire Azure AI Search Documents component
+description: Learn how to use the .NET Aspire Azure AI Search Documents component.
 ms.topic: how-to
-ms.date: 04/09/2024
+ms.date: 04/18/2024
 ---
 
-# NET Aspire Azure AI Search Documents component
+# .NET Aspire Azure AI Search Documents component
 
 In this article, you learn how to use the .NET Aspire Azure AI Search Documents client. The `Aspire.Azure.Search.Documents` library is used to register an <xref:Azure.Search.Documents.Indexes.SearchIndexClient> in the dependency injection (DI) container for connecting to Azure Search. It enables corresponding health checks and logging.
 
@@ -16,7 +16,7 @@ For more information on using the `SearchIndexClient`, see [How to use Azure.Sea
 - Azure subscription: [create one for free](https://azure.microsoft.com/free/).
 - Azure Search service: [create an Azure OpenAI Service resource](/azure/search/search-create-service-portal).
 
-To get started with the NET Aspire Azure AI Search Documents component, install the [Aspire.Azure.Search.Documents](https://www.nuget.org/packages/Aspire.Azure.Search.Documents) NuGet package.
+To get started with the .NET Aspire Azure AI Search Documents component, install the [Aspire.Azure.Search.Documents](https://www.nuget.org/packages/Aspire.Azure.Search.Documents) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -157,7 +157,7 @@ The .NET Aspire Azure AI Search library supports <xref:Microsoft.Extensions.Conf
     "Azure": {
       "Search": {
         "Documents": {
-          "Tracing": true,
+          "DisableTracing": false,
         }
       }
     }
@@ -172,7 +172,7 @@ You can also pass the `Action<AzureSearchSettings> configureSettings` delegate t
 ```csharp
 builder.AddAzureSearch(
     "searchConnectionName",
-    static settings => settings.Tracing = false);
+    static settings => settings.DisableTracing = true);
 ```
 
 You can also setup the <xref:Azure.Search.Documents.SearchClientOptions> using the optional `Action<IAzureClientBuilder<SearchIndexClient, SearchClientOptions>> configureClientBuilder` parameter of the `AddAzureSearch` method. For example, to set the client ID for this client:
@@ -192,7 +192,7 @@ The .NET Aspire Azure AI Search Documents component implements a single health c
 
 ### Logging
 
-The NET Aspire Azure AI Search Documents component uses the following log categories:
+The .NET Aspire Azure AI Search Documents component uses the following log categories:
 
 - `Azure`
 - `Azure.Core`

@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "OrleansServer": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:56277;http://localhost:56278"
+    }
+  }
+}
