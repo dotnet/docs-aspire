@@ -35,7 +35,7 @@ The process for installing `azd` varies based on your operating system, but it i
 
 ## Deploy the app
 
-Once `azd` is initialized, the provisioning and deployment process can be executed as a single command, [azd up](/azure/developer/azure-developer-cli/reference#azd-up).
+Once `azd` is initialized, the provisioning and deployment process can be executed as a single command from the _AppHost_ project directory, [azd up](/azure/developer/azure-developer-cli/reference#azd-up).
 
 [!INCLUDE [azd-up-output](includes/azd-up-output.md)]
 
@@ -46,5 +46,7 @@ Once `provision` is complete, `azd deploy` will take place. During this phase, t
 At this point the app has been deployed and configured, and you can open the Azure portal and explore the resources.
 
 [!INCLUDE [test-deployed-app](includes/test-deployed-app.md)]
+
+[!INCLUDE [azd-dashboard](includes/azd-dashboard.md)]
 
 [!INCLUDE [clean-up-resources](../../includes/clean-up-resources.md)]
