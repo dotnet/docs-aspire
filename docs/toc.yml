@@ -197,6 +197,13 @@ items:
       - name: Allow unsecure transport
         displayName: unsecure transport,http,non-tls
         href: troubleshooting/allow-unsecure-transport.md
+      - name: .NET Aspire GitHub repository
+        href: https://github.com/dotnet/aspire
+      - name: Discord
+        displayName: discord,community
+        href: https://aka.ms/aspire/discord
+      - name: Stack Overflow — .NET Aspire
+        href: https://stackoverflow.com/questions/tagged/dotnet-aspire
 
   - name: Resources
     items:

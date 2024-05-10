@@ -14,7 +14,7 @@ For more information on using the `SearchIndexClient`, see [How to use Azure.Sea
 ## Get started
 
 - Azure subscription: [create one for free](https://azure.microsoft.com/free/).
-- Azure Search service: [create an Azure OpenAI Service resource](/azure/search/search-create-service-portal).
+- Azure Search service: [create an Azure AI Search service resource](/azure/search/search-create-service-portal).
 
 To get started with the .NET Aspire Azure AI Search Documents component, install the [Aspire.Azure.Search.Documents](https://www.nuget.org/packages/Aspire.Azure.Search.Documents) NuGet package.
 
