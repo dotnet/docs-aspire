@@ -116,10 +116,12 @@ items:
         href: database/mongodb-component.md
       - name: Oracle Database - EF Core component
         href: database/oracle-entity-framework-component.md
-      - name: Seed data in a database
-        href: database/seed-database-data.md
-      - name: Entity Framework Core migrations
-        href: database/ef-core-migrations.md
+      - name: Database initialization and maintenance
+        items:
+          - name: Seed data in a database
+            href: database/seed-database-data.md
+          - name: Entity Framework Core migrations
+            href: database/ef-core-migrations.md
 
   - name: Real-time communication
     items:
