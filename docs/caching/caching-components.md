@@ -43,22 +43,29 @@ Visual Studio creates a new .NET Aspire solution that consists of the following 
 
 ## Configure the App Host project
 
-Update the _Program.cs_ file of the `AspireRedis.AppHost` project to match the following code:
+1. Add the [.NET Aspire Hosting Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis) package to the `AspireRedis.AppHost` project:
 
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
+    ```dotnetcli
+    dotnet add package Aspire.Hosting.Redis --prerelease
+    ```
 
-var redis = builder.AddRedis("cache");
+2. Update the _Program.cs_ file of the `AspireRedis.AppHost` project to match the following code:
 
-var apiservice = builder.AddProject<Projects.AspireRedis_ApiService>("apiservice")
-    .WithReference(redis);
-
-builder.AddProject<Projects.AspireRedis_Web>("webfrontend")
-    .WithReference(apiservice)
-    .WithReference(redis);
-
-builder.Build().Run();
-```
+    ```csharp
+    var builder = DistributedApplication.CreateBuilder(args);
+    
+    var redis = builder.AddRedis("cache");
+    
+    var apiservice = builder.AddProject<Projects.AspireRedis_ApiService>("apiservice")
+        .WithReference(redis);
+    
+    builder.AddProject<Projects.AspireRedis_Web>("webfrontend")
+        .WithExternalHttpEndpoints()
+        .WithReference(apiservice)
+        .WithReference(redis);
+    
+    builder.Build().Run();
+    ```
 
 The preceding code creates a local Redis container instance and configures the UI and API to use the instance automatically for both output and distributed caching. The code also configures communication between the frontend UI and the backend API using service discovery. With .NET Aspire's implicit service discovery, setting up and managing service connections is streamlined for developer productivity. In the context of this tutorial, the feature simplifies how you connect to Redis.
 
@@ -78,9 +85,9 @@ Configuring connection string with this method, while functional, requires dupli
 
 1. Add the [.NET Aspire StackExchange Redis output caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireRedis.Web` app:
 
-```dotnetcli
-dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
-```
+    ```dotnetcli
+    dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
+    ```
 
 1. In the _Program.cs_ file of the `AspireRedis.Web` Blazor project, immediately after the line `var builder = WebApplication.CreateBuilder(args);`, add a call to the <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> extension method:
 
