@@ -25,10 +25,10 @@ The sample app is in the *SupportTicketApi* folder. Open the solution in Visual 
 
 - **SupporTicketApi.Api**: The ASP.NET Core project that hosts the API.
 - **SupportTicketApi.Data**: Contains the EF Core contexts and models.
-- **SupportTicketApi.AppHost**: Contains the Aspire app host and configuration.
+- **SupportTicketApi.AppHost**: Contains the .NET Aspire app host and configuration.
 - **SupportTicketApi.ServiceDefaults**: Contains the default service configurations.
 
-Run the app to ensure it works as expected. From the Aspire dashboard, select the **https** Swagger endpoint and test the API's **GET /api/SupportTickets** endpoint by expanding the operation and selecting **Try it out**. Select **Execute** to send the request and view the response:
+Run the app to ensure it works as expected. From the .NET Aspire dashboard, select the **https** Swagger endpoint and test the API's **GET /api/SupportTickets** endpoint by expanding the operation and selecting **Try it out**. Select **Execute** to send the request and view the response:
 
 ```json
 [
@@ -108,16 +108,16 @@ To run the migrations at startup, you need to create a service that applies the 
       1. Stops the worker with `StopApplication`.
     - The `EnsureDatabaseAsync`, `RunMigrationAsync`, and `SeedDataAsync` methods all encapsulate their respective database operations using execution strategies to handle transient errors that may occur when interacting with the database. To learn more about execution strategies, see [Connection Resiliency](/ef/core/miscellaneous/connection-resiliency).
 
-## Add the migration service to the Aspire orchestration
+## Add the migration service to the orchestrator
 
-The migration service is created, but it needs to be added to the Aspire app host so that it runs when the app starts.
+The migration service is created, but it needs to be added to the .NET Aspire app host so that it runs when the app starts.
 
 1. In the *SupportTicketApi.AppHost* project, open the *Program.cs* file.
 1. Add the following highlighted code to the `ConfigureServices` method:
 
     :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.AppHost/Program.cs" highlight="9-10" :::
 
-    This enlists the *SupportTicketApi.MigrationService* project as a service in the Aspire app host.
+    This enlists the *SupportTicketApi.MigrationService* project as a service in the .NET Aspire app host.
 
     > [!IMPORTANT]
     > If you are using Visual Studio, and you selected the **Enlist in Aspire orchestration** option when creating the Worker Service project, similar code is added automatically with the service name `supportticketapi-migrationservice`. Replace that code with the preceding code.
@@ -138,7 +138,7 @@ Now that the migration service is configured, run the app to test the migrations
 1. Run the app and observe the SupportTicketApi dashboard.
 1. After a short wait, the `migrations` service state will display **Finished**.
 
-    :::image type="content" source="media/ef-core-migrations/dashboard-post-migration.png" lightbox="media/ef-core-migrations/dashboard-post-migration.png" alt-text="A screenshot of the Aspire dashboard with the migration service in a Finished state." :::
+    :::image type="content" source="media/ef-core-migrations/dashboard-post-migration.png" lightbox="media/ef-core-migrations/dashboard-post-migration.png" alt-text="A screenshot of the .NET Aspire dashboard with the migration service in a Finished state." :::
 
 1. Select the **View** link on the migration service to investigate the logs showing the SQL commands that were executed.
 
