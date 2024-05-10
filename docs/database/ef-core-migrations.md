@@ -46,7 +46,7 @@ Start by creating some migrations to apply.
 
 1. Open a terminal (<kbd>Ctrl</kbd>+<kbd>\`</kbd> in Visual Studio).
 1. Set *SupportTicketApi\SupportTicketApi.Api* as the current directory.
-1. Use the [`dotnet ef` command-line tool](https://learn.microsoft.com/ef/core/managing-schemas/migrations/#install-the-tools) to create a new migration to capture the initial state of the database schema:
+1. Use the [`dotnet ef` command-line tool](/ef/core/managing-schemas/migrations/#install-the-tools) to create a new migration to capture the initial state of the database schema:
 
     ```dotnetcli
     dotnet ef migrations add InitialCreate --project ..\SupportTicketApi.Data\SupportTicketApi.Data.csproj
