@@ -110,6 +110,9 @@ conceptualContent:
           text: SQL Database with EF Core
           url: database/sql-server-entity-framework-component.md
         - itemType: how-to-guide
+          text: Entity Framework Core migrations
+          url: database/ef-core-migrations.md
+        - itemType: how-to-guide
           text: MySqlConnector Database
           url: database/mysql-component.md
         - itemType: how-to-guide

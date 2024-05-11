@@ -45,7 +45,19 @@
       "url": "https://github.com/dotnet/aspire-samples",
       "branch": "main",
       "branch_mapping": {}
-    }
+    },
+    {
+      "path_to_root": "aspire-docs-samples-solution",
+      "url": "https://github.com/MicrosoftDocs/aspire-docs-samples",
+      "branch": "solution",
+      "branch_mapping": {}
+    },
+    {
+      "path_to_root": "aspire-docs-samples-main",
+      "url": "https://github.com/MicrosoftDocs/aspire-docs-samples",
+      "branch": "main",
+      "branch_mapping": {}
+    }        
   ],
   "branch_target_mapping": {
     "live": [
