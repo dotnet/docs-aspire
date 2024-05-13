@@ -15,7 +15,7 @@ In this tutorial, you learn to configure a .NET Aspire app with a Redis Cache fo
 > - Configure the app to provision a containerized Redis Cache
 
 > [!NOTE]
-> This document focuses specifically on .NET Aspire configurations to provision and deploy Redis Cache resources in Azure. Visit the [Azure Container Apps deployment](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-azd) tutorial to learn more about the full .NET Aspire deployment process.
+> This document focuses specifically on .NET Aspire configurations to provision and deploy Redis Cache resources in Azure. For more information and to learn more about the full .NET Aspire deployment process, see the [Azure Container Apps deployment](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-azd) tutorial.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
@@ -63,7 +63,8 @@ Replace the contents of the _Program.cs_ file in the _AspireRedis.AppHost_ proje
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var cache = builder.AddRedis("cache").PublishAsAzureRedis();
+var cache = builder.AddRedis("cache")
+                   .PublishAsAzureRedis();
 
 var apiService = builder.AddProject<Projects.AspireRedis_ApiService>("apiservice")
                         .WithReference(cache);
@@ -88,7 +89,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var cache = builder.AddRedis("cache");
 
 var apiService = builder.AddProject<Projects.RedisSample_ApiService>("apiservice")
-    .WithReference(cache);
+                        .WithReference(cache);
 
 builder.AddProject<Projects.RedisSample_Web>("webfrontend")
     .WithExternalHttpEndpoints()
@@ -107,7 +108,7 @@ The preceding code adds a Redis Container resource to your app and configures a 
 Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) (`azd`) support .NET Aspire Redis component configurations to streamline deployments. `azd` consumes these settings and provisions properly configured resources for you.
 
 > [!NOTE]
-> You can also use the [Azure CLI](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-cli) or [Bicep](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-bicep) to provision and deploy .NET Aspire app resources. These options require more manual steps, but provide more granular control over your deployments. .NET Aspire apps can also connect to an existing Redis instance through manual configurations.
+> You can also use the [Azure CLI](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-cli) or [Bicep](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-bicep) to provision and deploy .NET Aspire app resources. These options require more manual steps, but provide more granular control over your deployments. .NET Aspire apps can also connect to an existing Redis instance through manual configurations.
 
 1. Open a terminal window in the root of your .NET Aspire project.
 

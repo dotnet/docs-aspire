@@ -184,7 +184,7 @@ items:
           - name: Deploy .NET Aspire + SQL Database
             href: database/sql-server-component-deployment.md
           - name: Deploy .NET Aspire + Redis
-            hred: caching/caching-components-deployment.md
+            href: caching/caching-components-deployment.md
       - name: Reference - Tool-builder manifest schemas
         href: deployment/manifest-format.md
 
