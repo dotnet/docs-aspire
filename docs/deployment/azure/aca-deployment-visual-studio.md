@@ -18,7 +18,9 @@ ms.date: 05/03/2024
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
-[!INCLUDE [file-new-aspire](../../includes/file-new-aspire.md)]
+## Create a .NET Aspire app
+
+As a starting point, this article assumes that you've created a .NET Aspire app from the **.NET Aspire Starter Application** template. For more information, see [Quickstart: Build your first .NET Aspire app](../../get-started/build-your-first-aspire-app.md).
 
 ### Deploy the app
 

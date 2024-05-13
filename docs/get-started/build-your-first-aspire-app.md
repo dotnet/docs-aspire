@@ -21,7 +21,25 @@ In this quickstart, you'll explore the following tasks:
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
-[!INCLUDE [file-new-aspire](../includes/file-new-aspire.md)]
+## Create the .NET Aspire template
+
+To create a new .NET Aspire Starter Application, you can use either Visual Studio, Visual Studio Code, or the .NET CLI.
+
+:::zone pivot="visual-studio"
+
+[!INCLUDE [visual-studio-file-new](visual-studio-file-new.md)]
+
+:::zone-end
+:::zone pivot="vscode"
+
+[!INCLUDE [vscode-file-new](vscode-file-new.md)]
+
+:::zone-end
+:::zone pivot="dotnet-cli"
+
+[!INCLUDE [dotnet-cli-file-new](dotnet-cli-file-new.md)]
+
+:::zone-end
 
 ## Test the app locally
 
