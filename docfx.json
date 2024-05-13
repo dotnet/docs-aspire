@@ -20,7 +20,7 @@
         "dest": ".",
         "exclude": [
           "**/obj/**",
-          "**/includes/**",
+          "**/includes/**.md",
           "_themes/**",
           "_themes.pdf/**",
           "**/docfx.json",
