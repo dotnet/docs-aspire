@@ -1,17 +1,18 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 04/25/2024
+ms.date: 05/13/2024
+zone_pivot_groups: dev-environment
 ---
 
 # .NET Aspire setup and tooling
 
-.NET Aspire includes tooling to help you create and configure cloud-native apps. The tooling includes useful starter project templates and other features to streamline getting started with .NET Aspire for both Visual Studio and CLI workflows. In the sections ahead, you'll learn how to work with .NET Aspire tooling and explore the following tasks:
+.NET Aspire includes tooling to help you create and configure cloud-native apps. The tooling includes useful starter project templates and other features to streamline getting started with .NET Aspire for Visual Studio, Visual Studio Code, and CLI workflows. In the sections ahead, you'll learn how to work with .NET Aspire tooling and explore the following tasks:
 
 > [!div class="checklist"]
 >
 > - Install .NET Aspire and its dependencies
-> - Create starter project templates using Visual Studio or the .NET CLI
+> - Create starter project templates using Visual Studio, Visual Studio Code, or the .NET CLI
 > - Install .NET Aspire components
 > - Work with the .NET Aspire dashboard
 
@@ -25,12 +26,13 @@ To work with .NET Aspire, you'll need the following installed locally:
 - Integrated Developer Environment (IDE) or code editor, such as:
   - [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.10 or higher (Optional).
   - [Visual Studio Code](https://code.visualstudio.com/) (Optional).
+    - [C# Dev Kit: Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) (Optional).
 
 The .NET Aspire workload installs internal dependencies and makes available other tooling, such as project templates and Visual Studio features. There are two ways to install the .NET Aspire workload. If you prefer to use Visual Studio Code, follow the .NET CLI instructions:
 
-# [Visual Studio](#tab/visual-studio)
+:::zone pivot="visual-studio"
 
-Visual Studio 2022 17.10 Preview 1 or higher includes the **.NET Aspire preview 4** workload by default. To verify that you have the .NET Aspire workload installed, run the following command:
+Visual Studio 2022 17.10 Preview 1 or higher includes the latest **.NET Aspire** workload by default. To verify that you have the .NET Aspire workload installed, run the following command:
 
 ```dotnetcli
 dotnet workload list
@@ -66,7 +68,8 @@ To install the .NET Aspire workload in Visual Studio 2022 Preview, use the Visua
     dotnet workload list
     ```
 
-# [.NET CLI](#tab/dotnet-cli)
+:::zone-end
+:::zone pivot="visual-studio-code,dotnet-cli"
 
 To ensure that you install the latest version of the .NET Aspire workload, run the following [dotnet workload update](/dotnet/core/tools/dotnet-workload-update) command before you install .NET Aspire:
 
@@ -86,7 +89,7 @@ To check your version of .NET Aspire, run this command:
 dotnet workload list
 ```
 
----
+:::zone-end
 
 ## Container runtime
 
@@ -143,13 +146,14 @@ There are currently four project templates available:
 
 Use Visual Studio or the .NET CLI to create new apps using these project templates. Explore additional .NET Aspire project templates in the [.NET Aspire samples](https://github.com/dotnet/aspire-samples) repository.
 
-# [Visual Studio](#tab/visual-studio)
+:::zone pivot="visual-studio"
 
 To create a .NET Aspire project using Visual Studio, search for *Aspire* in the Visual Studio new project window and select your desired template.
 
 :::image type="content" source="../media/aspire-templates.png" lightbox="../media/aspire-templates.png" alt-text="The .NET Aspire project templates in Visual Studio.":::
 
-# [.NET CLI](#tab/dotnet-cli)
+:::zone-end
+:::zone pivot="visual-studio-code,dotnet-cli"
 
 To see which .NET Aspire project templates are available, use the [dotnet new list](/dotnet/core/tools/dotnet-new-list) command, passing in the search term `aspire`:
 
@@ -185,7 +189,7 @@ To create a .NET Aspire project with a sample UI and API included:
 dotnet new aspire-starter
 ```
 
----
+:::zone-end
 
 ## .NET Aspire dashboard
 
@@ -198,6 +202,8 @@ The .NET Aspire dashboard is only visible while the app is running and starts au
 The left navigation provides links to the different parts of the dashboard, each of which you'll explore in the following sections.
 
 :::image type="content" source="media/setup-tooling/projects.png" lightbox="media/setup-tooling/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Projects page.":::
+
+:::zone pivot="visual-studio"
 
 ## Visual Studio tooling
 
@@ -262,3 +268,5 @@ When you're using Visual Studio, and you select the **.NET Aspire Start Applicat
 :::image type="content" source="media/setup-tooling/create-test-projects-template.png" lightbox="media/setup-tooling/create-test-projects-template.png" alt-text="A screenshot of Visual Studio displaying the option to create a test project.":::
 
 For more information, see [Testing .NET Aspire apps](testing.md).
+
+:::zone-end
