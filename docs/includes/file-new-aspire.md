@@ -1,8 +1,12 @@
+---
+zone_pivot_groups: dev-environment
+---
+
 ## Create the .NET Aspire template
 
-To create a new .NET Aspire Starter Application, you can use either Visual Studio or the .NET CLI.
+To create a new .NET Aspire Starter Application, you can use either Visual Studio, Visual Studio Code, or the .NET CLI.
 
-### [Visual Studio](#tab/visual-studio)
+:::zone pivot="visual-studio"
 
 Visual Studio provides .NET Aspire project templates that handle some initial setup configurations for you. Complete the following steps to create a project for this quickstart:
 
@@ -21,7 +25,18 @@ Visual Studio provides .NET Aspire project templates that handle some initial se
 
 Visual Studio creates a new solution that is structured to use .NET Aspire.
 
-### [.NET CLI](#tab/dotnet-cli)
+:::zone-end
+:::zone pivot="vscode"
+
+Visual Studio Code provides .NET Aspire project templates that handle some initial setup configurations for you. Complete the following steps to create a project for this quickstart:
+
+1. From a new instance of Visual Studio Code (without a folder open), select **Create .NET project** button.
+1. Select the **.NET Aspire Starter Application** template.
+
+    :::image type="content" source="media/vscode-new-starter-project.png lightbox="media/vscode-new-starter-project.png" alt-text="A screenshot of the .NET Aspire Starter Application template.":::
+
+:::zone-end
+:::zone pivot="dotnet-cli"
 
 ```dotnetcli
 dotnet new aspire-starter --use-redis-cache --output AspireSample
@@ -29,4 +44,4 @@ dotnet new aspire-starter --use-redis-cache --output AspireSample
 
 For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). The .NET CLI creates a new solution that is structured to use .NET Aspire.
 
----
+:::zone-end
