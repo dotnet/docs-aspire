@@ -116,9 +116,6 @@ For more information, see:
 
 ## .NET Aspire project templates
 
-> [!NOTE]
-> The .NET 9.0 SDK causes issues with the .NET Aspire workloads ability to display templates, and create projects from the templates. If you're using .NET 9.0, know that your ability to create new .NET Aspire apps is currently limited. For more information, see [.NET Aspire preview-3 cannot create app when .NET 9 is installed](https://github.com/dotnet/aspire/issues/1951) and [.NET Aspire preview-3 installed with Visual Studio 17.10 doesn't show templates](https://github.com/dotnet/aspire/issues/2186).
-
 The .NET Aspire workload makes available .NET Aspire project templates. These project templates allow you to create new apps pre-configured with the .NET Aspire project structure and default settings. These projects also provide a unified debugging experience across the different resources of your app.
 
 There are currently four project templates available:
@@ -144,7 +141,10 @@ There are currently four project templates available:
   > [!IMPORTANT]
   > The service defaults project template takes a `FrameworkReference` dependency on `Microsoft.AspNetCore.App`. This may not be ideal for some project types. For more information, see [.NET Aspire service defaults](service-defaults.md).
 
-Use Visual Studio or the .NET CLI to create new apps using these project templates. Explore additional .NET Aspire project templates in the [.NET Aspire samples](https://github.com/dotnet/aspire-samples) repository.
+Use Visual Studio, Visual Studio Code, or the .NET CLI to create new apps using these project templates. Explore additional .NET Aspire project templates in the [.NET Aspire samples](https://github.com/dotnet/aspire-samples) repository.
+
+> [!NOTE]
+> The .NET 9.0 SDK causes issues with the .NET Aspire workloads ability to display templates, and create projects from the templates. If you're using .NET 9.0, know that your ability to create new .NET Aspire apps is currently limited. For more information, see [.NET Aspire preview-3 cannot create app when .NET 9 is installed](https://github.com/dotnet/aspire/issues/1951) and [.NET Aspire preview-3 installed with Visual Studio 17.10 doesn't show templates](https://github.com/dotnet/aspire/issues/2186).
 
 :::zone pivot="visual-studio"
 
@@ -207,7 +207,7 @@ The left navigation provides links to the different parts of the dashboard, each
 
 ## Visual Studio tooling
 
-Visual Studio provides additional features for working with .NET Aspire components and the App Host orchestrator project. These features are currently not available in Visual Studio Code or through the CLI.
+Visual Studio provides additional features for working with .NET Aspire components and the App Host orchestrator project. Not all of these features are currently available in Visual Studio Code or through the CLI.
 
 ### Add a component package
 
@@ -268,5 +268,18 @@ When you're using Visual Studio, and you select the **.NET Aspire Start Applicat
 :::image type="content" source="media/setup-tooling/create-test-projects-template.png" lightbox="media/setup-tooling/create-test-projects-template.png" alt-text="A screenshot of Visual Studio displaying the option to create a test project.":::
 
 For more information, see [Testing .NET Aspire apps](testing.md).
+
+:::zone-end
+:::zone pivot="visual-studio-code"
+
+## Visual Studio Code tooling
+
+You can use Visual Studio Code, in conjunction with the [C# Dev Kit extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit), to create and develop .NET Aspire apps. To create a new .NET Aspire app in Visual Studio Code, select the **Create .NET Project** button in the **Explorer** view, then select one of the .NET Aspire templates:
+
+:::image type="content" source="media/setup-tooling/vscode-create-project.png" lightbox="media/setup-tooling/vscode-create-project.png" alt-text="A screenshot showing how to create a new .NET Aspire project in Visual Studio Code.":::
+
+Once you've created a new .NET Aspire project, you run and debug the app, stepping through breakpoints, and inspecting variables using the Visual Studio Code debugger:
+
+:::image type="content" source="media/setup-tooling/vscode-debugging.png" lightbox="media/setup-tooling/vscode-debugging.png" alt-text="A screenshot showing how to debug a .NET Aspire project in Visual Studio Code.":::
 
 :::zone-end
