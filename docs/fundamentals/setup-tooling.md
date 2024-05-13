@@ -69,7 +69,7 @@ To install the .NET Aspire workload in Visual Studio 2022 Preview, use the Visua
     ```
 
 :::zone-end
-:::zone pivot="visual-studio-code,dotnet-cli"
+:::zone pivot="vscode,dotnet-cli"
 
 To ensure that you install the latest version of the .NET Aspire workload, run the following [dotnet workload update](/dotnet/core/tools/dotnet-workload-update) command before you install .NET Aspire:
 
@@ -153,7 +153,7 @@ To create a .NET Aspire project using Visual Studio, search for *Aspire* in the 
 :::image type="content" source="../media/aspire-templates.png" lightbox="../media/aspire-templates.png" alt-text="The .NET Aspire project templates in Visual Studio.":::
 
 :::zone-end
-:::zone pivot="visual-studio-code,dotnet-cli"
+:::zone pivot="vscode,dotnet-cli"
 
 To see which .NET Aspire project templates are available, use the [dotnet new list](/dotnet/core/tools/dotnet-new-list) command, passing in the search term `aspire`:
 
@@ -270,7 +270,7 @@ When you're using Visual Studio, and you select the **.NET Aspire Start Applicat
 For more information, see [Testing .NET Aspire apps](testing.md).
 
 :::zone-end
-:::zone pivot="visual-studio-code"
+:::zone pivot="vscode"
 
 ## Visual Studio Code tooling
 
