@@ -10,6 +10,7 @@ ms.topic: how-to
 In this tutorial, you learn to configure a .NET Aspire app with a Redis Cache for deployment to Azure. .NET Aspire provides multiple caching component configurations that provision different Redis services in Azure. You'll learn how to:
 
 > [!div class="checklist"]
+>
 > - Configure the app to provision an Azure Cache for Redis
 > - Configure the app to provision a containerized Redis Cache
 
