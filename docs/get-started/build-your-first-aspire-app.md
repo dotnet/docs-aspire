@@ -1,7 +1,7 @@
 ---
 title: Build your first .NET Aspire app
 description: Learn how to build your first .NET Aspire app using the .NET Aspire Started Application template.
-ms.date: 12/07/2023
+ms.date: 05/13/2024
 ms.topic: quickstart
 ---
 
@@ -133,13 +133,13 @@ The front end app defines a typed <xref:System.Net.Http.HttpClient> that's used 
 
 The `HttpClient` is configured to use service discovery, consider the following code from the _Program.cs_ file of the _AspireSample.Web_ project:
 
-:::code source="snippets/quickstart/AspireSample/AspireSample.Web/Program.cs" highlight="7-8,14-15":::
+:::code source="snippets/quickstart/AspireSample/AspireSample.Web/Program.cs" highlight="7-8,14-19":::
 
 The preceding code:
 
 - Calls `AddServiceDefaults`, configuring the shared defaults for the app.
 - Calls <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> with the same `connectionName` that was used when adding the Redis container `"cache"` to the application model. This configures the app to use Redis for output caching.
-- Calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> and configures the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> to be `"http://apiservice"`. This is the name that was used when adding the API project to the application model, and with service discovery configured, it will automatically resolve to the correct address to the API project.
+- Calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> and configures the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> to be `"https+http://apiservice"`. This is the name that was used when adding the API project to the application model, and with service discovery configured, it will automatically resolve to the correct address to the API project.
 
 For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fundamentals/networking/http/httpclient) class.
 
@@ -147,6 +147,7 @@ For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fun
 
 - [.NET Aspire components overview](../fundamentals/components-overview.md)
 - [Service discovery in .NET Aspire](../service-discovery/overview.md)
+- [Service discovery in .NET](/dotnet/core/extensions/service-discovery)
 - [.NET Aspire service defaults](../fundamentals/service-defaults.md)
 - [Health checks in .NET Aspire](../fundamentals/health-checks.md)
 - [.NET Aspire telemetry](../fundamentals/telemetry.md)
