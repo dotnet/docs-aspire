@@ -27,17 +27,17 @@ To create a new .NET Aspire Starter Application, you can use either Visual Studi
 
 :::zone pivot="visual-studio"
 
-[!INCLUDE [visual-studio-file-new](visual-studio-file-new.md)]
+[!INCLUDE [visual-studio-file-new](../includes/visual-studio-file-new.md)]
 
 :::zone-end
 :::zone pivot="vscode"
 
-[!INCLUDE [vscode-file-new](vscode-file-new.md)]
+[!INCLUDE [vscode-file-new](../includes/vscode-file-new.md)]
 
 :::zone-end
 :::zone pivot="dotnet-cli"
 
-[!INCLUDE [dotnet-cli-file-new](dotnet-cli-file-new.md)]
+[!INCLUDE [dotnet-cli-file-new](../includes/dotnet-cli-file-new.md)]
 
 :::zone-end
 
