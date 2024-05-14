@@ -17,3 +17,8 @@ When you install the .NET Aspire workload, you might encounter an installation e
 Ensure that any recursive _Nuget.config_ files are correctly configured to specify the correct package sources and NuGet feeds. For example, if you have a _Nuget.config_ file in your user profile directory, ensure that it doesn't specify a package source that is no longer available.
 
 <!-- TODO: Ask Jose to help fill in more details, and perhaps even more symptoms. -->
+
+## See also
+
+- [NuGet: nuget.config reference](/nuget/reference/nuget-config-file)
+- [.NET CLI: dotnet workload install](/dotnet/core/tools/dotnet-workload-install)
