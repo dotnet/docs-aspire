@@ -160,6 +160,9 @@ conceptualContent:
         - itemType: overview
           text: Use Orleans with .NET Aspire
           url: frameworks/orleans.md
+        - itemType: overview
+          text: Use Dapr with .NET Aspire
+          url: frameworks/dapr.md
 
     - title: Deployment
       links:

@@ -192,6 +192,8 @@ items:
     items:
       - name: Orleans
         href: frameworks/orleans.md
+      - name: Dapr
+        href: frameworks/dapr.md
 
   - name: Extensibility
     items:
