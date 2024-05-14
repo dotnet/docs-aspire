@@ -41,6 +41,16 @@ dotnet run --project AspireSample/AspireSample.AppHost
 
 For more information, see [dotnet run](/dotnet/core/tools/dotnet-run).
 
+### [Visual Studio Code](#tab/visual-studio-code)
+
+You can run a .NET Aspire from the terminal window using the .NET CLI.
+
+```dotnetcli
+dotnet run --project AspireSample/AspireSample.AppHost
+```
+
+For more information, see [dotnet run](/dotnet/core/tools/dotnet-run).
+
 ---
 
 1. The app displays the .NET Aspire dashboard in the browser. We'll look at the dashboard in more detail later. For now, find the **webfrontend** project in the list of resources and select the project's **localhost** endpoint.
