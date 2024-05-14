@@ -1,7 +1,7 @@
 ---
 title: Oracle Entity Framework Component
 description: Oracle Entity Framework Component
-ms.date: 02/26/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Oracle Entity Framework Component
@@ -15,7 +15,7 @@ You need an Oracle database and connection string for accessing the database. To
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Oracle.EntityFrameworkCore --prerelease
+dotnet add package Aspire.Oracle.EntityFrameworkCore
 ```
 
 ### [PackageReference](#tab/package-reference)

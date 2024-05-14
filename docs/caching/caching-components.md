@@ -1,7 +1,7 @@
 ---
 title: Implement caching with .NET Aspire components
 description: Learn how to connect to Redis and cache data using .NET Aspire components.
-ms.date: 12/09/2023
+ms.date: 05/14/2024
 ms.topic: tutorial
 ---
 
@@ -46,7 +46,7 @@ Visual Studio creates a new .NET Aspire solution that consists of the following 
 1. Add the [.NET Aspire Hosting Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis) package to the `AspireRedis.AppHost` project:
 
     ```dotnetcli
-    dotnet add package Aspire.Hosting.Redis --prerelease
+    dotnet add package Aspire.Hosting.Redis
     ```
 
 2. Update the _Program.cs_ file of the `AspireRedis.AppHost` project to match the following code:
@@ -86,7 +86,7 @@ Configuring connection string with this method, while functional, requires dupli
 1. Add the [.NET Aspire StackExchange Redis output caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireRedis.Web` app:
 
     ```dotnetcli
-    dotnet add package Aspire.StackExchange.Redis.OutputCaching --prerelease
+    dotnet add package Aspire.StackExchange.Redis.OutputCaching
     ```
 
 1. In the _Program.cs_ file of the `AspireRedis.Web` Blazor project, immediately after the line `var builder = WebApplication.CreateBuilder(args);`, add a call to the <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> extension method:
@@ -120,7 +120,7 @@ Configuring connection string with this method, while functional, requires dupli
 1. Add the [.NET Aspire StackExchange Redis distributed caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireRedis.ApiService` app:
 
     ```dotnetcli
-    dotnet add package Aspire.StackExchange.Redis.DistributedCaching --prerelease
+    dotnet add package Aspire.StackExchange.Redis.DistributedCaching
     ```
 
 1. Towards the top of the _Program.cs_ file, add a call to <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddRedisDistributedCache%2A>:

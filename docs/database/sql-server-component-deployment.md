@@ -1,7 +1,7 @@
 ---
 title: Deploy a ASP.NET Core app that connects to SQL Server to Azure
 description: Learn how to deploy a ASP.NET Core app that connects to SQL Server to Azure
-ms.date: 03/18/2024
+ms.date: 05/14/2024
 ms.topic: how-to
 ---
 
@@ -72,7 +72,7 @@ Add the appropriate .NET Aspire component to the _AspireSQL.AppHost_ project for
 Add the [Aspire.Hosting.Azure.Sql](https://www.nuget.org/packages/Aspire.Hosting.Azure.Sql) package to the _AspireSQL.AppHost_ project:
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Azure.Sql --prerelease
+dotnet add package Aspire.Hosting.Azure.Sql
 ```
 
 ## [SQL Server Container](#tab/sql-container)
@@ -80,7 +80,7 @@ dotnet add package Aspire.Hosting.Azure.Sql --prerelease
 Add the [Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer) package to the _AspireSQL.AppHost_ project:
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.SqlServer --prerelease
+dotnet add package Aspire.Hosting.SqlServer
 ```
 
 ---

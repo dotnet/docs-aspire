@@ -2,7 +2,7 @@
 title: .NET Aspire RabbitMQ component
 description: Learn how to use the .NET Aspire RabbitMQ client message-broker component.
 ms.topic: how-to
-ms.date: 04/24/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire RabbitMQ component
@@ -16,7 +16,7 @@ To get started with the .NET Aspire RabbitMQ component, install the [Aspire.Rabb
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.RabbitMQ.Client --prerelease
+dotnet add package Aspire.RabbitMQ.Client
 ```
 
 ### [PackageReference](#tab/package-reference)

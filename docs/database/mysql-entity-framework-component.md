@@ -1,7 +1,7 @@
 ---
 title: MySQL Entity Framework Component
 description: MySQL Entity Framework Component
-ms.date: 02/27/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Pomelo MySQL Entity Framework Component
@@ -15,7 +15,7 @@ You need a MySQL database and connection string for accessing the database. To g
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Pomelo.EntityFrameworkCore.MySql --prerelease
+dotnet add package Aspire.Pomelo.EntityFrameworkCore.MySql
 ```
 
 ### [PackageReference](#tab/package-reference)

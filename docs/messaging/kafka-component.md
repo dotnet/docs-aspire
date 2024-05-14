@@ -2,7 +2,7 @@
 title: .NET Aspire Apache Kafka component
 description: Learn how to use the .NET Aspire Apache Kafka client message-broker component.
 ms.topic: how-to
-ms.date: 02/12/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Apache Kafka component
@@ -16,7 +16,7 @@ To get started with the .NET Aspire Apache Kafka component, install the [Aspire.
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Confluent.Kafka --prerelease
+dotnet add package Aspire.Confluent.Kafka
 ```
 
 ### [PackageReference](#tab/package-reference)

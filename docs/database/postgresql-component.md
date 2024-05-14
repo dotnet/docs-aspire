@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL component
 description: This article describes the .NET Aspire PostgreSQL component.
-ms.date: 01/22/2024
+ms.date: 05/14/2024
 ms.topic: how-to
 ---
 
@@ -16,7 +16,7 @@ To get started with the .NET Aspire PostgreSQL component, install the [Aspire.Np
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Npgsql --prerelease
+dotnet add package Aspire.Npgsql
 ```
 
 ### [PackageReference](#tab/package-reference)

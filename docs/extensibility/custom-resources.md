@@ -1,7 +1,7 @@
 ---
 title: Create custom resource types for .NET Aspire
 description: Learn how to create a custom resource for an existing containerized application.
-ms.date: 04/29/2024
+ms.date: 05/14/2024
 ms.topic: tutorial
 ms.custom: devx-track-extended-azdevcli
 ---
@@ -74,11 +74,12 @@ The console output should look similar to the following:
 ```dotnetcli
 Building...
 info: Aspire.Hosting.DistributedApplication[0]
-      Aspire version: 8.0.0-preview.7.24251.11+6596fdc41a8d419876a6bf4abc17b7c66b9ef63a
+      Aspire version: 8.0.0+d215c528c07c7919c3ac30b35d92f4e51a60523b
 info: Aspire.Hosting.DistributedApplication[0]
       Distributed application starting.
 info: Aspire.Hosting.DistributedApplication[0]
-      Application host directory is: D:\source\repos\docs-aspire\docs\extensibility\snippets\MailDevResource\MailDevResource.AppHost
+      Application host directory is:
+      ..\docs-aspire\docs\extensibility\snippets\MailDevResource\MailDevResource.AppHost
 info: Aspire.Hosting.DistributedApplication[0]
       Now listening on: https://localhost:17251
 info: Aspire.Hosting.DistributedApplication[0]

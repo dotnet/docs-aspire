@@ -2,7 +2,7 @@
 title: .NET Aspire NATS component
 description: Learn how to use the .NET Aspire NATS component to send logs and traces to a NATS Server.
 ms.topic: how-to
-ms.date: 04/09/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire NATS component
@@ -21,7 +21,7 @@ To get started with the .NET Aspire NATS component, install the [Aspire.NATS.Net
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.NATS.Net --prerelease
+dotnet add package Aspire.NATS.Net
 ```
 
 ### [PackageReference](#tab/package-reference)

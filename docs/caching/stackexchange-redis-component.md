@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis component
 description: This article describes the .NET Aspire StackExchange Redis component features and capabilities
 ms.topic: how-to
-ms.date: 04/29/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire StackExchange Redis component
@@ -16,7 +16,7 @@ To get started with the .NET Aspire StackExchange Redis component, install the [
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.StackExchange.Redis --prerelease
+dotnet add package Aspire.StackExchange.Redis
 ```
 
 ### [PackageReference](#tab/package-reference)

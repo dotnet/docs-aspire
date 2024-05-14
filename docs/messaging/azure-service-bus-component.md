@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Service Bus component
 description: This article describes the .NET Aspire Azure Service Bus component features and capabilities
 ms.topic: how-to
-ms.date: 04/24/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Azure Service Bus component
@@ -24,7 +24,7 @@ To get started with the .NET Aspire Azure Service Bus component, install the [As
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Azure.Messaging.ServiceBus --prerelease
+dotnet add package Aspire.Azure.Messaging.ServiceBus
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -62,7 +62,7 @@ To add Azure Service Bus hosting support to your <xref:Aspire.Hosting.IDistribut
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Azure.ServiceBus --prerelease
+dotnet add package Aspire.Hosting.Azure.ServiceBus
 ```
 
 ### [PackageReference](#tab/package-reference)

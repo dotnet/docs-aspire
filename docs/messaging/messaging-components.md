@@ -1,7 +1,7 @@
 ---
 title: Use .NET Aspire messaging components in ASP.NET Core
 description: Learn how to connect an ASP.NET Core app to messaging services using .NET Aspire components.
-ms.date: 04/24/2024
+ms.date: 05/14/2024
 ms.topic: tutorial
 ---
 
@@ -155,7 +155,7 @@ The completed solution structure should resemble the following:
 Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) component to your `AspireMessaging` app:
 
 ```dotnetcli
-dotnet add package Aspire.Azure.Messaging.ServiceBus --prerelease
+dotnet add package Aspire.Azure.Messaging.ServiceBus
 ```
 
 In the _Program.cs_ file of the `AspireMessaging` Razor Pages project, add a call to the `AddAzureServiceBus` extension methods:
@@ -233,7 +233,7 @@ app.MapPost("/notify", static async (ServiceBusClient client, string message) =>
 Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) component to your `AspireMessaging.WorkerService` app:
 
 ```dotnetcli
-dotnet add package Aspire.Azure.Messaging.ServiceBus --prerelease
+dotnet add package Aspire.Azure.Messaging.ServiceBus
 ```
 
 In the _Program.cs_ file of the `AspireMessaging.WorkerService` Razor Pages project, add a call to the `AddAzureServiceBus` extension methods:
