@@ -125,7 +125,7 @@ builder.AddRabbitMQ(
 
 The .NET Aspire RabbitMQ component handles the following:
 
-- Adds the health check when <xref:Aspire.RabbitMQ.Client.RabbitMQClientSettings.HealthChecks?displayProperty=nameWithType> is `true`, which attempts to connect to and create a channel on the RabbitMQ server.
+- Adds the health check when <xref:Aspire.RabbitMQ.Client.RabbitMQClientSettings.DisableHealthChecks?displayProperty=nameWithType> is `true`, which attempts to connect to and create a channel on the RabbitMQ server.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
