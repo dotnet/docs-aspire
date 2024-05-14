@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire components overview
 description: Explore the fundamental concepts of .NET Aspire components and learn how to integrate them into your apps.
-ms.date: 05/09/2024
+ms.date: 05/14/2024
 ms.topic: conceptual
 ---
 
@@ -49,7 +49,7 @@ For more information on working with .NET Aspire components in Visual Studio, se
     # [.NET CLI](#tab/dotnet-cli)
 
     ```dotnetcli
-    dotnet add package Aspire.Npgsql --prerelease
+    dotnet add package Aspire.Npgsql
     ```
 
     # [PackageReference](#tab/package-reference)

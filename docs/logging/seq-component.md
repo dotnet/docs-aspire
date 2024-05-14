@@ -2,7 +2,7 @@
 title: .NET Aspire Seq component
 description: Learn how to use the .NET Aspire Seq component to add OpenTelemetry Protocol (OTLP) exporters that send logs and traces to a Seq Server.
 ms.topic: how-to
-ms.date: 04/09/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Seq component
@@ -16,7 +16,7 @@ To get started with the .NET Aspire Seq component, install the [Aspire.Seq](http
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Seq --prerelease
+dotnet add package Aspire.Seq
 ```
 
 ### [PackageReference](#tab/package-reference)

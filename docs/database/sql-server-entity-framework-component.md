@@ -2,7 +2,7 @@
 title: .NET Aspire SqlServer Entity Framework Core component
 description: This article describes the .NET Aspire SQL Server Entity Framework Core component.
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire SqlServer Entity Framework Core component
@@ -25,7 +25,7 @@ To get started with the .NET Aspire SQL Server Entity Framework Core component, 
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer --prerelease
+dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 ### [PackageReference](#tab/package-reference)

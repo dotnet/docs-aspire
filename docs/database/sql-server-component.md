@@ -2,7 +2,7 @@
 title: .NET Aspire SQL Server component
 description: This article describes the .NET Aspire SQL Server component.
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire SQL Server component
@@ -26,7 +26,7 @@ To get started with the .NET Aspire SQL Server component, install the [Aspire.Mi
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Microsoft.Data.SqlClient --prerelease
+dotnet add package Aspire.Microsoft.Data.SqlClient
 ```
 
 ### [PackageReference](#tab/package-reference)

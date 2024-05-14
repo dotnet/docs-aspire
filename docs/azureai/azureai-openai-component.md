@@ -2,7 +2,7 @@
 title: .NET Aspire Azure AI OpenAI component
 description: Learn how to use the .NET Aspire Azure AI OpenAI component.
 ms.topic: how-to
-ms.date: 04/24/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Azure AI OpenAI component
@@ -21,7 +21,7 @@ To get started with the .NET Aspire Azure AI OpenAI component, install the [Aspi
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Azure.AI.OpenAI --prerelease
+dotnet add package Aspire.Azure.AI.OpenAI
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -59,7 +59,7 @@ To add Azure AI hosting support to your <xref:Aspire.Hosting.IDistributedApplica
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Azure.CognitiveServices --prerelease
+dotnet add package Aspire.Hosting.Azure.CognitiveServices
 ```
 
 ### [PackageReference](#tab/package-reference)

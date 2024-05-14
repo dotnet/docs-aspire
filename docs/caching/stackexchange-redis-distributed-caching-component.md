@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis distributed caching component
 description: This article describes the .NET Aspire StackExchange Redis distributed caching component features and capabilities
 ms.topic: how-to
-ms.date: 04/29/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire StackExchange Redis distributed caching component
@@ -16,7 +16,7 @@ To get started with the .NET Aspire StackExchange Redis distributed caching comp
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.StackExchange.Redis.DistributedCaching --prerelease
+dotnet add package Aspire.StackExchange.Redis.DistributedCaching
 ```
 
 ### [PackageReference](#tab/package-reference)

@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Key Vault component
 description: Lean about the .NET Aspire Azure Key Vault component.
 ms.topic: how-to
-ms.date: 04/18/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Azure Key Vault component
@@ -16,7 +16,7 @@ To get started with the .NET Aspire Azure Key Vault component, install the [Aspi
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Azure.Security.KeyVault --prerelease
+dotnet add package Aspire.Azure.Security.KeyVault
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -54,7 +54,7 @@ To add Azure Key Vault hosting support to your <xref:Aspire.Hosting.IDistributed
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Azure.KeyVault --prerelease
+dotnet add package Aspire.Hosting.Azure.KeyVault
 ```
 
 ### [PackageReference](#tab/package-reference)

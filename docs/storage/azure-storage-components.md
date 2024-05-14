@@ -1,7 +1,7 @@
 ---
 title: Connect an ASP.NET Core app to .NET Aspire storage components
 description: Learn how to connect an ASP.NET Core app to .NET Aspire storage components.
-ms.date: 04/24/2024
+ms.date: 05/14/2024
 ms.topic: tutorial
 zone_pivot_groups: azure-storage-mechanism
 ms.custom: devx-track-extended-azdevcli
@@ -205,8 +205,8 @@ The completed solution structure should resemble the following:
 Add the [.NET Aspire Azure Blob Storage component](azure-storage-blobs-component.md) and [.NET Aspire Azure Queue Storage component](azure-storage-queues-component.md) packages to your _AspireStorage_ project:
 
 ```dotnetcli
-dotnet add package Aspire.Azure.Storage.Blobs --prerelease
-dotnet add package Aspire.Azure.Storage.Queues --prerelease
+dotnet add package Aspire.Azure.Storage.Blobs
+dotnet add package Aspire.Azure.Storage.Queues
 ```
 
 Your **AspireStorage** project is now set up to use .NET Aspire components. Here's the updated _AspireStorage.csproj_ file:
@@ -244,7 +244,7 @@ When the _AspireStorage_ project starts, it will create a `fileuploads` containe
 The worker service handles pulling messages off of the Azure Storage queue for processing. Add the [.NET Aspire Azure Queue Storage component](azure-storage-queues-component.md) component package to your _AspireStorage.Worker_ app:
 
 ```dotnetcli
-dotnet add package Aspire.Azure.Storage.Queues --prerelease
+dotnet add package Aspire.Azure.Storage.Queues
 ```
 
 In the _Program.cs_ file of the _AspireStorage.Worker_ project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueClient%2A> extension method after the creation of the `builder` but before the call to `AddServiceDefaults`:
@@ -275,7 +275,7 @@ To add Azure Storage hosting support to your <xref:Aspire.Hosting.IDistributedAp
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Azure.Storage --prerelease
+dotnet add package Aspire.Hosting.Azure.Storage
 ```
 
 ### [PackageReference](#tab/package-reference)

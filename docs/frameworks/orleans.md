@@ -1,7 +1,7 @@
 ---
 title: Use Orleans with .NET Aspire
 description: Learn how to use Orleans with .NET Aspire
-ms.date: 05/3/2024
+ms.date: 05/14/2024
 ms.topic: overview
 ---
 
@@ -26,7 +26,7 @@ To get started you need to add the Orleans hosting package to your app host proj
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Orleans --prerelease
+dotnet add package Aspire.Hosting.Orleans
 ```
 
 ### [PackageReference](#tab/package-reference)

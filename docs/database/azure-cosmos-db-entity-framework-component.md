@@ -2,7 +2,7 @@
 title: .NET Aspire Microsoft Entity Framework Core Cosmos DB component
 description: This article describes the .NET Aspire Microsoft Entity Framework Core Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 04/24/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Microsoft Entity Framework Core Cosmos DB component
@@ -16,7 +16,7 @@ To get started with the .NET Aspire Microsoft Entity Framework Core Cosmos DB co
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Microsoft.EntityFrameworkCore.Cosmos --prerelease
+dotnet add package Aspire.Microsoft.EntityFrameworkCore.Cosmos
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureEFCoreCosmosDBExtensions.AddCosmosDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container.
+In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureEFCoreCosmosExtensions.AddCosmosDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container.
 
 ```csharp
 builder.AddCosmosDbContext<MyDbContext>("cosmosdb");
@@ -56,7 +56,7 @@ To add Azure Cosmos DB hosting support to your <xref:Aspire.Hosting.IDistributed
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Azure.CosmosDB --prerelease
+dotnet add package Aspire.Hosting.Azure.CosmosDB
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -79,6 +79,13 @@ var cosmosdb = cosmos.AddDatabase("cosmosdb");
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(cosmosdb);
 ```
+
+> [!TIP]
+> To use the Azure Cosmos DB emulator, chain a call to the <xref:Aspire.Hosting.AzureCosmosExtensions.AddAzureCosmosDB%2A> method.
+>
+> ```csharp
+> cosmosdb.RunAsEmulator();
+> ```
 
 ## Configuration
 
@@ -106,7 +113,7 @@ For more information, see the [ConnectionString documentation](/azure/cosmos-db/
 
 ### Use configuration providers
 
-The .NET Aspire Microsoft Entity Framework Core Cosmos DB component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.Azure.Cosmos.AzureCosmosDBSettings> from _appsettings.json_ or other configuration files using `Aspire:Microsoft:EntityFrameworkCore:Cosmos` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire Microsoft Entity Framework Core Cosmos DB component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.EntityFrameworkCore.Cosmos.EntityFrameworkCoreCosmosSettings > from _appsettings.json_ or other configuration files using `Aspire:Microsoft:EntityFrameworkCore:Cosmos` key. Example `appsettings.json` that configures some of the options:
 
 ```json
 {
@@ -114,7 +121,6 @@ The .NET Aspire Microsoft Entity Framework Core Cosmos DB component supports <xr
     "Microsoft": {
       "EntityFrameworkCore": {
         "Cosmos": {
-          "DbContextPooling": true,
           "DisableTracing": true
         }
       }
@@ -125,7 +131,7 @@ The .NET Aspire Microsoft Entity Framework Core Cosmos DB component supports <xr
 
 ### Use inline delegates
 
-You can also pass the `Action<EntityFrameworkCoreCosmosDBSettings> configureSettings` delegate to set up some or all the <xref:Aspire.Microsoft.EntityFrameworkCore.Cosmos.EntityFrameworkCoreCosmosDBSettings> options inline, for example to disable tracing from code:
+You can also pass the `Action<EntityFrameworkCoreCosmosSettings> configureSettings` delegate to set up some or all the <xref:Aspire.Microsoft.EntityFrameworkCore.Cosmos.EntityFrameworkCoreCosmosSettings> options inline, for example to disable tracing from code:
 
 ```csharp
 builder.AddCosmosDbContext<MyDbContext>(

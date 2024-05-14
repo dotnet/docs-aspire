@@ -2,7 +2,7 @@
 title: .NET Aspire MongoDB database component
 description: This article describes the .NET Aspire MongoDB database component.
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire MongoDB database component
@@ -24,7 +24,7 @@ To get started with the .NET Aspire MongoDB database component, install the [Asp
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.MongoDB.Driver --prerelease
+dotnet add package Aspire.MongoDB.Driver
 ```
 
 ### [PackageReference](#tab/package-reference)

@@ -2,7 +2,7 @@
 title: .NET Aspire Apache Kafka component
 description: Learn how to use the .NET Aspire Apache Kafka client message-broker component.
 ms.topic: how-to
-ms.date: 02/12/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Apache Kafka component
@@ -16,7 +16,7 @@ To get started with the .NET Aspire Apache Kafka component, install the [Aspire.
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Confluent.Kafka --prerelease
+dotnet add package Aspire.Confluent.Kafka
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -151,8 +151,8 @@ Refer to [`ProducerBuilder<TKey, TValue>`](https://docs.confluent.io/platform/cu
 
 The .NET Aspire Apache Kafka component handles the following:
 
-- Adds the `Aspire.Confluent.Kafka.Producer` health check when <xref:Aspire.Confluent.Kafka.KafkaProducerSettings.HealthChecks?displayProperty=nameWithType> is `true`.
-- Adds the `Aspire.Confluent.Kafka.Consumer` health check when <xref:Aspire.Confluent.Kafka.KafkaConsumerSettings.HealthChecks?displayProperty=nameWithType> is `true`.
+- Adds the `Aspire.Confluent.Kafka.Producer` health check when <xref:Aspire.Confluent.Kafka.KafkaProducerSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`.
+- Adds the `Aspire.Confluent.Kafka.Consumer` health check when <xref:Aspire.Confluent.Kafka.KafkaConsumerSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
