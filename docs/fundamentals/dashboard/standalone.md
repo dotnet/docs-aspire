@@ -1,7 +1,7 @@
 ---
 title: Standalone .NET Aspire dashboard
 description: How to use the .NET Aspire dashboard standalone.
-ms.date: 04/30/2024
+ms.date: 05/09/2024
 ms.topic: reference
 ---
 
@@ -9,7 +9,7 @@ ms.topic: reference
 
 The [.NET Aspire dashboard](overview.md) provides a great UI for viewing telemetry. The dashboard:
 
-- Ships as a Docker image that can be used with any OpenTelemetry enabled app.
+- Ships as a container image that can be used with any OpenTelemetry enabled app.
 - Can be used standalone, without the rest of .NET Aspire.
 
 :::image type="content" source="media/explore/trace.png" lightbox="media/explore/trace.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page.":::
@@ -20,12 +20,12 @@ The dashboard is started using the Docker command line.
 
 ```bash
 docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
-    mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.6
+    mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.7
 ```
 
 The preceding Docker command:
 
-- Starts a container from the `mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.6` image.
+- Starts a container from the `mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.7` image.
 - The container has two ports:
   - Port `4317` receives OpenTelemetry data from apps. Apps send data using [OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/).
   - Port `18888` has the dashboard UI. Navigate to `http://localhost:18888` in the browser to view the dashboard.
@@ -48,7 +48,7 @@ The dashboard offers a UI for viewing telemetry. Refer to the documentation to e
 - [Traces page](explore.md#traces-page)
 - [Metrics page](explore.md#metrics-page)
 
-Although there is no restriction on where the dashboard is run, the dashboard is designed as a development and short-term diagnosic tool. The dashboard persists telemetry in-memory which creates some limitations:
+Although there is no restriction on where the dashboard is run, the dashboard is designed as a development and short-term diagnostic tool. The dashboard persists telemetry in-memory which creates some limitations:
 
 - Telemetry is automatically removed if [telemetry limits](configuration.md#telemetry-limits) are exceeded.
 - No telemetry is persisted when the dashboard is restarted.
@@ -67,7 +67,7 @@ Apps collect and send telemetry using [their language's OpenTelemetry SDK](https
 
 Important OpenTelemetry SDK options to configure:
 
-- OTLP endpoint, which should match the dashboard's configuration, e.g., `http://localhost:4317`.
+- OTLP endpoint, which should match the dashboard's configuration, for example, `http://localhost:4317`.
 - OTLP protocol, with the dashboard currently supporting only the [OTLP/gRPC protocol](https://opentelemetry.io/docs/specs/otlp/#otlpgrpc). Configure applications to use the `grpc` protocol.
 
 To configure applications:

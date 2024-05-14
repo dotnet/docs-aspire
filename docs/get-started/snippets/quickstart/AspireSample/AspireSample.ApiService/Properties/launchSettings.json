@@ -1,12 +1,12 @@
 {
-  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "$schema": "https://json.schemastore.org/launchsettings.json",
   "profiles": {
     "http": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "weatherforecast",
-      "applicationUrl": "http://localhost:5499",
+      "applicationUrl": "http://localhost:5593",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -16,7 +16,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "weatherforecast",
-      "applicationUrl": "https://localhost:7453;http://localhost:5499",
+      "applicationUrl": "https://localhost:7352;http://localhost:5593",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

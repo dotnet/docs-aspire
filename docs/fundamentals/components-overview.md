@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire components overview
 description: Explore the fundamental concepts of .NET Aspire components and learn how to integrate them into your apps.
-ms.date: 12/20/2023
+ms.date: 05/09/2024
 ms.topic: conceptual
 ---
 
@@ -42,7 +42,7 @@ For more information on working with .NET Aspire components in Visual Studio, se
 
 ## Explore a sample component workflow
 
-.NET Aspire components streamline the process of consuming popular services and platforms. For example, consider the **.NET Aspire Application**  template. With this template, you get the [AppHost](app-host-overview.md) and [ServiceDefaults](service-defaults.md) projects. Imagine that you have a need for a worker service to perform some database processing. You could use the [.NET Aspire PostgreSQL component](../database/postgresql-component.md) to connect to and utilize a PostgreSQL database. The database could be hosted on-prem or in a cloud service such as Azure, AWS, or GCP. The following steps demonstrate how to integrate this component into your app:
+.NET Aspire components streamline the process of consuming popular services and platforms. For example, consider the **.NET Aspire Application** template. With this template, you get the [AppHost](app-host-overview.md) and [ServiceDefaults](service-defaults.md) projects. Imagine that you have a need for a worker service to perform some database processing. You could use the [.NET Aspire PostgreSQL component](../database/postgresql-component.md) to connect to and utilize a PostgreSQL database. The database could be hosted on-prem or in a cloud service such as Azure, AWS, or GCP. The following steps demonstrate how to integrate this component into your app:
 
 1. In the component consuming (worker service) project, install the [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package.
 
@@ -73,7 +73,7 @@ For more information on working with .NET Aspire components in Visual Studio, se
 
 1. In your app host project (the project with the _*.AppHost_ suffix), add a reference to the worker service project. If you're using Visual Studio, you can use the [**Add .NET Aspire Orchestrator Support**](setup-tooling.md#add-orchestration-projects) project context menu item to add the reference automatically. The following code snippet shows the project reference of the _AspireApp.AppHost.csproj_:
 
-    :::code language="xml" source="snippets/components/AspireApp/AspireApp.AppHost/AspireApp.AppHost.csproj" highlight="16":::
+    :::code language="xml" source="snippets/components/AspireApp/AspireApp.AppHost/AspireApp.AppHost.csproj" highlight="17":::
 
     After the worker service is referenced by the orchestrator project, the worker service project has its _Program.cs_ file updated to call the `AddServiceDefaults` method. For more information on service defaults, see [Service defaults](service-defaults.md).
 
