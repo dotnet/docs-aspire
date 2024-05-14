@@ -35,6 +35,9 @@ Visual Studio Code provides .NET Aspire project templates that handle some initi
 
 1. Open the Visual Studio Code command palette (`Ctrl+Shift+P`).
 1. Search for *.NET* and then select the **.NET: New Project...** command.
+
+    :::image type="content" source="../fundamentals/media/setup-tooling/visual-studio-code-create-project.png" alt-text="A screenshot showing the new project list in Visual Studio Code.":::
+
 1. Select **.NET Aspire Starter Application**.
 1. Enter a **Project Name** of *AspireSample*.
 1. Select the directory where you would like to save the app.
