@@ -113,7 +113,7 @@ For more information, see the [ConnectionString documentation](/azure/cosmos-db/
 
 ### Use configuration providers
 
-The .NET Aspire Microsoft Entity Framework Core Cosmos DB component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.Azure.Cosmos.EntityFrameworkCoreCosmosSettings > from _appsettings.json_ or other configuration files using `Aspire:Microsoft:EntityFrameworkCore:Cosmos` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire Microsoft Entity Framework Core Cosmos DB component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.EntityFrameworkCore.Cosmos.EntityFrameworkCoreCosmosSettings > from _appsettings.json_ or other configuration files using `Aspire:Microsoft:EntityFrameworkCore:Cosmos` key. Example `appsettings.json` that configures some of the options:
 
 ```json
 {
