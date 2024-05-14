@@ -6,11 +6,12 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "applicationUrl": "http://localhost:15026",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "DOTNET_ENVIRONMENT": "Development",
-        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:16053"
-      }
+        "environmentVariables": {
+            "ASPIRE_ALLOW_UNSECURED_TRANSPORT": "true",
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:16053",
+            "DOTNET_ENVIRONMENT": "Development"
+        }
     }
   }
 }
