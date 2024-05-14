@@ -185,6 +185,16 @@ To create a .NET Aspire project with a sample UI and API included:
 dotnet new aspire-starter
 ```
 
+# [Visual Studio Code](#tab/visual-studio-code)
+
+To create a .NET Aspire project using Visual Studio Code:
+
+1. Open the Visual Studio Code command palette (`Ctrl+Shift+P`).
+1. Search for *.NET* and then select the **.NET: New Project...** command.
+1. Select your desired .NET Aspire template.
+
+:::image type="content" source="media/setup-tooling/visual-studio-code-create-project.png" alt-text="A screenshot showing how to create a new .NET Aspire project in Visual Studio code.":::
+
 ---
 
 ## .NET Aspire dashboard

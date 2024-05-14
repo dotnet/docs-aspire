@@ -29,4 +29,17 @@ dotnet new aspire-starter --use-redis-cache --output AspireSample
 
 For more information, see [dotnet new](/dotnet/core/tools/dotnet-new). The .NET CLI creates a new solution that is structured to use .NET Aspire.
 
+### [Visual Studio Code](#tab/visual-studio-code)
+
+Visual Studio Code provides .NET Aspire project templates that handle some initial setup configurations for you. Complete the following steps to create a project for this quickstart:
+
+1. Open the Visual Studio Code command palette (`Ctrl+Shift+P`).
+1. Search for *.NET* and then select the **.NET: New Project...** command.
+1. Select **.NET Aspire Starter Application**.
+1. Enter a **Project Name** of *AspireSample*.
+1. Select the directory where you would like to save the app.
+1. Select **Create Project**.
+
+Visual Studio Code creates and loads the new .NET Aspire.
+
 ---
