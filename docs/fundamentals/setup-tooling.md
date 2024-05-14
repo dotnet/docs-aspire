@@ -86,6 +86,26 @@ To check your version of .NET Aspire, run this command:
 dotnet workload list
 ```
 
+# [Visual Studio Code](#tab/visual-studio-code)
+
+You can install .NET Aspire from a Visual Studio Code terminal window using the .NET CLI. To ensure that you install the latest version of the .NET Aspire workload, run the following [dotnet workload update](/dotnet/core/tools/dotnet-workload-update) command before you install .NET Aspire:
+
+```dotnetcli
+dotnet workload update
+```
+
+To install the .NET Aspire workload from the .NET CLI, use the [dotnet workload install](/dotnet/core/tools/dotnet-workload-install) command:
+
+```dotnetcli
+dotnet workload install aspire
+```
+
+To check your version of .NET Aspire, run this command:
+
+```dotnetcli
+dotnet workload list
+```
+
 ---
 
 ## Container runtime
