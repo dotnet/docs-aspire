@@ -282,3 +282,7 @@ Once you've created a new .NET Aspire project, you run and debug the app, steppi
 :::image type="content" source="media/setup-tooling/vscode-debugging.png" lightbox="media/setup-tooling/vscode-debugging.png" alt-text="A screenshot showing how to debug a .NET Aspire project in Visual Studio Code.":::
 
 :::zone-end
+
+## See also
+
+- [Unable to install .NET Aspire workload](../troubleshooting/unable-to-install-workload.md)
