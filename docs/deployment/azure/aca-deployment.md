@@ -25,7 +25,9 @@ As an alternative to this tutorial and for a more in-depth guide, see [Deploy a 
 
 With .NET Aspire and Azure Container Apps (ACA), you have a great hosting scenario for building out your cloud-native apps with .NET. We built some great new features into the Azure Developer CLI (`azd`) specific for making .NET Aspire development and deployment to Azure a friction-free experience. You can still use the Azure CLI and/or Bicep options when you need a granular level of control over your deployments. But for new projects, you won't find an easier path to success for getting a new microservice topology deployed into the cloud.
 
-[!INCLUDE [file-new-aspire](../../includes/file-new-aspire.md)]
+## Create a .NET Aspire app
+
+As a starting point, this article assumes that you've created a .NET Aspire app from the **.NET Aspire Starter Application** template. For more information, see [Quickstart: Build your first .NET Aspire app](../../get-started/build-your-first-aspire-app.md).
 
 ## Install the Azure Developer CLI
 

@@ -1,17 +1,18 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 04/25/2024
+ms.date: 05/13/2024
+zone_pivot_groups: dev-environment
 ---
 
 # .NET Aspire setup and tooling
 
-.NET Aspire includes tooling to help you create and configure cloud-native apps. The tooling includes useful starter project templates and other features to streamline getting started with .NET Aspire for both Visual Studio and CLI workflows. In the sections ahead, you'll learn how to work with .NET Aspire tooling and explore the following tasks:
+.NET Aspire includes tooling to help you create and configure cloud-native apps. The tooling includes useful starter project templates and other features to streamline getting started with .NET Aspire for Visual Studio, Visual Studio Code, and CLI workflows. In the sections ahead, you'll learn how to work with .NET Aspire tooling and explore the following tasks:
 
 > [!div class="checklist"]
 >
 > - Install .NET Aspire and its dependencies
-> - Create starter project templates using Visual Studio or the .NET CLI
+> - Create starter project templates using Visual Studio, Visual Studio Code, or the .NET CLI
 > - Install .NET Aspire components
 > - Work with the .NET Aspire dashboard
 
@@ -25,12 +26,13 @@ To work with .NET Aspire, you'll need the following installed locally:
 - Integrated Developer Environment (IDE) or code editor, such as:
   - [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.10 or higher (Optional).
   - [Visual Studio Code](https://code.visualstudio.com/) (Optional).
+    - [C# Dev Kit: Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) (Optional).
 
 The .NET Aspire workload installs internal dependencies and makes available other tooling, such as project templates and Visual Studio features. There are two ways to install the .NET Aspire workload. If you prefer to use Visual Studio Code, follow the .NET CLI instructions:
 
-# [Visual Studio](#tab/visual-studio)
+:::zone pivot="visual-studio"
 
-Visual Studio 2022 17.10 Preview 1 or higher includes the **.NET Aspire preview 4** workload by default. To verify that you have the .NET Aspire workload installed, run the following command:
+Visual Studio 2022 17.10 Preview 1 or higher includes the latest **.NET Aspire** workload by default. To verify that you have the .NET Aspire workload installed, run the following command:
 
 ```dotnetcli
 dotnet workload list
@@ -66,7 +68,8 @@ To install the .NET Aspire workload in Visual Studio 2022 Preview, use the Visua
     dotnet workload list
     ```
 
-# [.NET CLI](#tab/dotnet-cli)
+:::zone-end
+:::zone pivot="vscode,dotnet-cli"
 
 To ensure that you install the latest version of the .NET Aspire workload, run the following [dotnet workload update](/dotnet/core/tools/dotnet-workload-update) command before you install .NET Aspire:
 
@@ -86,17 +89,19 @@ To check your version of .NET Aspire, run this command:
 dotnet workload list
 ```
 
----
+:::zone-end
 
 ## Container runtime
 
 .NET Aspire apps are designed to run in containers. You can use either Docker Desktop or Podman as your container runtime. [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most common container runtime. [Podman](https://podman.io/docs/installation) is an open-source daemonless alternative to Docker, that can build and run Open Container Initiative (OCI) containers. If your host environment has both Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `DOTNET_ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
 
-## [Unix](#tab/unix)
+## [Linux](#tab/linux)
 
 ```bash
 export DOTNET_ASPIRE_CONTAINER_RUNTIME=podman
 ```
+
+For more information, see [Install Podman on Linux](https://podman.io/docs/installation#installing-on-linux).
 
 ## [Windows](#tab/windows)
 
@@ -104,17 +109,11 @@ export DOTNET_ASPIRE_CONTAINER_RUNTIME=podman
 $env:DOTNET_ASPIRE_CONTAINER_RUNTIME = "podman"
 ```
 
+For more information, see [Install Podman on Windows](https://podman.io/docs/installation#installing-on-mac--windows).
+
 ---
 
-For more information, see:
-
-- [Install Podman on Windows or macOS](https://podman.io/docs/installation#installing-on-mac--windows).
-- [Install Podman on Linux](https://podman.io/docs/installation#installing-on-linux).
-
 ## .NET Aspire project templates
-
-> [!NOTE]
-> The .NET 9.0 SDK causes issues with the .NET Aspire workloads ability to display templates, and create projects from the templates. If you're using .NET 9.0, know that your ability to create new .NET Aspire apps is currently limited. For more information, see [.NET Aspire preview-3 cannot create app when .NET 9 is installed](https://github.com/dotnet/aspire/issues/1951) and [.NET Aspire preview-3 installed with Visual Studio 17.10 doesn't show templates](https://github.com/dotnet/aspire/issues/2186).
 
 The .NET Aspire workload makes available .NET Aspire project templates. These project templates allow you to create new apps pre-configured with the .NET Aspire project structure and default settings. These projects also provide a unified debugging experience across the different resources of your app.
 
@@ -141,15 +140,19 @@ There are currently four project templates available:
   > [!IMPORTANT]
   > The service defaults project template takes a `FrameworkReference` dependency on `Microsoft.AspNetCore.App`. This may not be ideal for some project types. For more information, see [.NET Aspire service defaults](service-defaults.md).
 
-Use Visual Studio or the .NET CLI to create new apps using these project templates. Explore additional .NET Aspire project templates in the [.NET Aspire samples](https://github.com/dotnet/aspire-samples) repository.
+Use Visual Studio, Visual Studio Code, or the .NET CLI to create new apps using these project templates. Explore additional .NET Aspire project templates in the [.NET Aspire samples](https://github.com/dotnet/aspire-samples) repository.
 
-# [Visual Studio](#tab/visual-studio)
+> [!NOTE]
+> The .NET 9.0 SDK causes issues with the .NET Aspire workloads ability to display templates, and create projects from the templates. If you're using .NET 9.0, know that your ability to create new .NET Aspire apps is currently limited. For more information, see [.NET Aspire preview-3 cannot create app when .NET 9 is installed](https://github.com/dotnet/aspire/issues/1951) and [.NET Aspire preview-3 installed with Visual Studio 17.10 doesn't show templates](https://github.com/dotnet/aspire/issues/2186).
+
+:::zone pivot="visual-studio"
 
 To create a .NET Aspire project using Visual Studio, search for *Aspire* in the Visual Studio new project window and select your desired template.
 
 :::image type="content" source="../media/aspire-templates.png" lightbox="../media/aspire-templates.png" alt-text="The .NET Aspire project templates in Visual Studio.":::
 
-# [.NET CLI](#tab/dotnet-cli)
+:::zone-end
+:::zone pivot="vscode,dotnet-cli"
 
 To see which .NET Aspire project templates are available, use the [dotnet new list](/dotnet/core/tools/dotnet-new-list) command, passing in the search term `aspire`:
 
@@ -185,7 +188,7 @@ To create a .NET Aspire project with a sample UI and API included:
 dotnet new aspire-starter
 ```
 
----
+:::zone-end
 
 ## .NET Aspire dashboard
 
@@ -199,9 +202,11 @@ The left navigation provides links to the different parts of the dashboard, each
 
 :::image type="content" source="media/setup-tooling/projects.png" lightbox="media/setup-tooling/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Projects page.":::
 
+:::zone pivot="visual-studio"
+
 ## Visual Studio tooling
 
-Visual Studio provides additional features for working with .NET Aspire components and the App Host orchestrator project. These features are currently not available in Visual Studio Code or through the CLI.
+Visual Studio provides additional features for working with .NET Aspire components and the App Host orchestrator project. Not all of these features are currently available in Visual Studio Code or through the CLI.
 
 ### Add a component package
 
@@ -262,3 +267,18 @@ When you're using Visual Studio, and you select the **.NET Aspire Start Applicat
 :::image type="content" source="media/setup-tooling/create-test-projects-template.png" lightbox="media/setup-tooling/create-test-projects-template.png" alt-text="A screenshot of Visual Studio displaying the option to create a test project.":::
 
 For more information, see [Testing .NET Aspire apps](testing.md).
+
+:::zone-end
+:::zone pivot="vscode"
+
+## Visual Studio Code tooling
+
+You can use Visual Studio Code, in conjunction with the [C# Dev Kit extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit), to create and develop .NET Aspire apps. To create a new .NET Aspire app in Visual Studio Code, select the **Create .NET Project** button in the **Explorer** view, then select one of the .NET Aspire templates:
+
+:::image type="content" source="media/setup-tooling/vscode-create-project.png" lightbox="media/setup-tooling/vscode-create-project.png" alt-text="A screenshot showing how to create a new .NET Aspire project in Visual Studio Code.":::
+
+Once you've created a new .NET Aspire project, you run and debug the app, stepping through breakpoints, and inspecting variables using the Visual Studio Code debugger:
+
+:::image type="content" source="media/setup-tooling/vscode-debugging.png" lightbox="media/setup-tooling/vscode-debugging.png" alt-text="A screenshot showing how to debug a .NET Aspire project in Visual Studio Code.":::
+
+:::zone-end
