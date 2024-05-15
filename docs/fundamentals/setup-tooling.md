@@ -200,7 +200,7 @@ The .NET Aspire dashboard is only visible while the app is running and starts au
 
 The left navigation provides links to the different parts of the dashboard, each of which you'll explore in the following sections.
 
-:::image type="content" source="media/setup-tooling/projects.png" lightbox="media/setup-tooling/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Projects page.":::
+:::image type="content" source="../get-started/media/aspire-dashboard.png" lightbox="../get-started/media/aspire-dashboard.png" alt-text="A screenshot of the .NET Aspire dashboard Projects page.":::
 
 :::zone pivot="visual-studio"
 

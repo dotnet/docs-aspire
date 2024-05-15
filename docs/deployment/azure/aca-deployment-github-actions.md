@@ -214,10 +214,12 @@ steps:
       azd config set auth.useAzCliAuth "true"
     displayName: Configure `azd` to Use AZ CLI Authentication.
 
-  - task: Install .NET Aspire workload
-    inputs: 
-        inlineScript: |
-            dotnet workload install aspire
+  - task: Bash@3
+    displayName: Install .NET Aspire workload
+    inputs:
+      targetType: 'inline'
+      script: |
+        dotnet workload install aspire
 
   - task: AzureCLI@2
     displayName: Provision Infrastructure
