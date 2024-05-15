@@ -7,11 +7,9 @@ ms.topic: overview
 
 # Use Dapr with .NET Aspire
 
-<!--
-  TODO:
-    Add intro about what Dapr is, what it provides, and why it's relevant.
-    Then transition into how it relates to .NET Aspire
--->
+[Distributed Application Runtime (Dapr)](https://docs.dapr.io/) offers developer APIs that run as a sidecar process and abstract away the common complexities of the underlying cloud platform. Dapr and .NET Aspire work together to improve your local development experience. By using Dapr with .NET Aspire, you can focus on writing and implementing .NET-based distributed applications instead of spending extra time with local onboarding.  
+
+In this guide, you'll learn how to take advantage of Dapr's abstraction and .NET Aspire's opinionated configuration of cloud technologies to build simple, portable, resilient, and secured microservices at-scale on Azure.
 
 ## Prerequisites
 
