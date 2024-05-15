@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot untrusted localhost certificate in .NET Aspire
 description: Explore strategies for troubleshooting issues when working with untrusted localhost certificates in .NET Aspire.
-ms.date: 05/14/2024
+ms.date: 05/15/2024
 ---
 
 # Troubleshoot untrusted localhost certificate in .NET Aspire
@@ -10,21 +10,32 @@ This article provides guidance on how to troubleshoot issues that you might enco
 
 ## Symptoms
 
-Several .NET Aspire templates include ASP.NET Core projects that are configured to use HTTPS by default. If this is the first time you're running the project, ASP.NET Core prompts you to install a localhost certificate. There are situations in which you trust/install the development certificate, but you don't close all your browser windows.
+Several .NET Aspire templates include ASP.NET Core projects that are configured to use HTTPS by default. If this is the first time you're running the project, and you're using Visual Studio, you're prompted to install a localhost certificate.
 
-## Possible solution
+- There are situations in which you trust/install the development certificate, but you don't close all your browser windows. In these cases, your browser might indicate that the certificate isn't trusted.
 
-Close all browser windows. Then attempt to resolve this issue by trusting the self-signed development certificate. To trust the certificate, run the following commands. First, remove the existing certificates:
+- There are also situations where you don't trust the certificate at all. In these cases, your browser might indicate that the certificate isn't trusted.
+
+Additionally, there are warning messages from Kestrel written to the console that indicate that the certificate is not trusted.
+
+## Possible solutions
+
+Close all browser windows and try again. If you're still experiencing the issue, then attempt to resolve this by trusting the self-signed development certificate with the .NET CLI. To trust the certificate, run the following commands. First, remove the existing certificates.
+
+> [!NOTE]
+> This will remove all existing development certificates on the local machine.
 
 ```dotnetcli
 dotnet dev-certs https --clean
 ```
 
-Next, trust the certificate:
+To trust the certificate:
 
 ```dotnetcli
 dotnet dev-certs https --trust
 ```
+
+For more troubleshooting, see [Troubleshoot certificate problems such as certificate not trusted](/aspnet/core/security/enforcing-ssl#troubleshoot-certificate-problems-such-as-certificate-not-trusted).
 
 ## See also
 
