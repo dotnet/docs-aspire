@@ -209,7 +209,7 @@ items:
         href: troubleshooting/unable-to-install-workload.md
       - name: .NET Aspire GitHub repository
         href: https://github.com/dotnet/aspire
-      - name: Discord
+      - name: Ask questions on Discord
         displayName: discord,community
         href: https://aka.ms/aspire/discord
       - name: Stack Overflow — .NET Aspire

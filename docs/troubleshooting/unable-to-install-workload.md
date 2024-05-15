@@ -6,10 +6,7 @@ ms.date: 05/15/2024
 
 # Troubleshoot installing the .NET Aspire workload
 
-This article provides guidance on how to troubleshoot issues that you might encounter when installing the .NET Aspire workload.
-
-> [!IMPORTANT]
-> This article is intended to help you troubleshoot issues with installing the .NET Aspire workload, but it's not necessarily related to .NET Aspire. Instead it's more about .NET workloads.
+This article provides guidance on how to troubleshoot issues that you might encounter when installing the .NET Aspire workload from the .NET CLI.
 
 ## Symptoms
 
