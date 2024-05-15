@@ -35,5 +35,6 @@ In the case where a workload manifest has a dependency on a workload pack not pu
 
 ## See also
 
-- [NuGet: nuget.config reference](/nuget/reference/nuget-config-file)
+- [.NET SDK: Diagnosing issues with .NET SDK Workloads](https://github.com/dotnet/sdk/pull/40912)
 - [.NET CLI: dotnet workload install](/dotnet/core/tools/dotnet-workload-install)
+- [NuGet: nuget.config reference](/nuget/reference/nuget-config-file)
