@@ -62,7 +62,7 @@ public class ExampleService(YourDbContext context)
 
 ## App host usage
 
-In your app host project, register the PostgreSQL component and consume the `DbContext` using the following methods:
+[!INCLUDE [postgresql-app-host](includes/postgresql-app-host.md)]
 
 ```csharp
 var postgres = builder.AddPostgres("postgres");

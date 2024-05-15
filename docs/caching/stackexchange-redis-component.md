@@ -49,7 +49,7 @@ public class ExampleService(IConnectionMultiplexer connectionMultiplexer)
 
 ## App host usage
 
-In your app host project, register the .NET Aspire Stack Exchange Redis component using the <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> method and consume the service using the following methods:
+[!INCLUDE [redis-app-host](includes/redis-app-host.md)]
 
 ```csharp
 // Service registration

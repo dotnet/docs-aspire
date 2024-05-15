@@ -40,6 +40,34 @@ In the _Program.cs_ file of your projects, call the `AddSeqEndpoint` extension m
 builder.AddSeqEndpoint("seq");
 ```
 
+## App host usage
+
+To model the Seq resource in the app host, install the [Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Seq
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Seq"
+                  Version="[SelectVersion]" />
+```
+
+---
+
+In your app host project, register a Seq database and consume the connection using the following methods:
+
+```csharp
+var seq = builder.AddSeq("seq");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(seq);
+```
+
 ## Configuration
 
 The .NET Aspire Seq component provides options to configure the connection to Seq.

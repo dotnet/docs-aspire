@@ -59,7 +59,24 @@ After adding a `IMongoClient`, you can require the `IMongoClient` instance using
 
 ## App host usage
 
-In your app host project, register a MongoDB database and consume the connection using the following methods:
+To model the MongoDB resource in the app host, install the [Aspire.Hosting.MongoDB](https://www.nuget.org/packages/Aspire.Hosting.MongoDB) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.MongoDB
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.MongoDB"
+                  Version="[SelectVersion]" />
+```
+
+---
+
+In your app host project, register the MongoDB database and consume the connection method and consume the service using the following methods:
 
 ```csharp
 var mongo = builder.AddMongoDB("mongo");

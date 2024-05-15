@@ -61,7 +61,7 @@ After adding a `SqlConnection`, you can get the scoped [SqlConnection](/dotnet/a
 
 ## App host usage
 
-In your app host project, register a SqlServer container and consume the connection using the following methods:
+[!INCLUDE [sql-app-host](includes/sql-app-host.md)]
 
 ```csharp
 var sql = builder.AddSqlServer("sql");

@@ -48,7 +48,7 @@ public class ExampleService(NpgsqlDataSource dataSource)
 
 ## App host usage
 
-In your app host project, register and consume the PostgreSQL component using the following methods, such as <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A>:
+[!INCLUDE [postgresql-app-host](includes/postgresql-app-host.md)]
 
 ```csharp
 var postgres = builder.AddPostgres("postgres");

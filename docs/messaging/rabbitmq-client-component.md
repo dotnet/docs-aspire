@@ -49,6 +49,23 @@ public class ExampleService(IConnection connection)
 
 ## App host usage
 
+To model the RabbitMQ resource in the app host, install the [Aspire.Hosting.RabbitMQ](https://www.nuget.org/packages/Aspire.Hosting.RabbitMQ) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.RabbitMQ
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.RabbitMQ"
+                  Version="[SelectVersion]" />
+```
+
+---
+
 In your app host project, register a RabbitMQ server and consume the connection using the following methods, such as <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A>:
 
 ```csharp

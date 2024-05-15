@@ -58,7 +58,7 @@ public class ExampleService(YourDbContext client)
 
 ## App host usage
 
-In your app host project, register a SqlServer database and consume the connection using the following methods, such as <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A>:
+[!INCLUDE [sql-app-host](includes/sql-app-host.md)]
 
 ```csharp
 var sql = builder.AddSqlServer("sql");

@@ -58,7 +58,7 @@ builder.EnrichMySqlDbContext<MyDbContext>();
 
 ## App host usage
 
-In your app host project, register an MySQL container and consume the connection using the following methods:
+[!INCLUDE [mysql-app-host](includes/mysql-app-host.md)]
 
 ```csharp
 var mysql = builder.AddMySql("mysql");

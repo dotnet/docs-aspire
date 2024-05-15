@@ -49,6 +49,23 @@ internal sealed class MyWorker(IProducer<string, string> producer) : BackgroundS
 
 ## App host usage
 
+To model the Kafka resource in the app host, install the [Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Kafka
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Kafka"
+                  Version="[SelectVersion]" />
+```
+
+---
+
 In your app host project, register a Kafka container and consume the connection using the following methods:
 
 ```csharp

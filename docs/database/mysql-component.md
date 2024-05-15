@@ -59,7 +59,7 @@ After adding a `MySqlDataSource`, you can require the `MySqlDataSource` instance
 
 ## App host usage
 
-In your app host project, register a MySql database and consume the connection using the following methods:
+[!INCLUDE [mysql-app-host](includes/mysql-app-host.md)]
 
 ```csharp
 var mysql = builder.AddMySql("mysql");
