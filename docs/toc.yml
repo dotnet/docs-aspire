@@ -203,9 +203,13 @@ items:
       - name: Allow unsecure transport
         displayName: unsecure transport,http,non-tls
         href: troubleshooting/allow-unsecure-transport.md
+      - name: Untrusted localhost certificate
+        href: troubleshooting/untrusted-localhost-certificate.md
+      - name: Unable to install .NET Aspire workload
+        href: troubleshooting/unable-to-install-workload.md
       - name: .NET Aspire GitHub repository
         href: https://github.com/dotnet/aspire
-      - name: Discord
+      - name: Ask questions on Discord
         displayName: discord,community
         href: https://aka.ms/aspire/discord
       - name: Stack Overflow — .NET Aspire

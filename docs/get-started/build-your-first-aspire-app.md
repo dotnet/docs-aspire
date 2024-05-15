@@ -198,3 +198,4 @@ For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fun
 - [.NET Aspire service defaults](../fundamentals/service-defaults.md)
 - [Health checks in .NET Aspire](../fundamentals/health-checks.md)
 - [.NET Aspire telemetry](../fundamentals/telemetry.md)
+- [Troubleshoot untrusted localhost certificate in .NET Aspire](../troubleshooting/untrusted-localhost-certificate.md)
