@@ -38,6 +38,9 @@ When the dashboard is run from a standalone container, the login token is printe
 
 :::image type="content" source="media/standalone/aspire-dashboard-container-log.png" lightbox="media/standalone/aspire-dashboard-container-log.png" alt-text="Screenshot of the .NET Aspire dashboard container logs.":::
 
+> [!TIP]
+> To avoid the login, you can disable the authentication requirement by setting the `DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` environment variable to `true`. Additional configuration is available, see [Dashboard configuration](configuration.md).
+
 For more information about logging into the dashboard, see [Dashboard authentication](explore.md#dashboard-authentication).
 
 ## Explore the dashboard
