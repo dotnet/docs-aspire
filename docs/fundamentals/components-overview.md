@@ -11,6 +11,9 @@ ms.topic: conceptual
 
 .NET Aspire components should not be confused with .NET Aspire hosting packages, as they serve different purposes. Hosting packages are used to model and configure various resources in a .NET Aspire app, while components are used to map configuration to various client libraries.
 
+> [!TIP]
+> Always strive to use the latest version of .NET Aspire components to take advantage of the latest features, improvements, and security updates.
+
 ## Available components
 
 The following table lists the .NET Aspire components currently available for use:
