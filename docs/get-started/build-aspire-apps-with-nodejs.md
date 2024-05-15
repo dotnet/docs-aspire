@@ -1,7 +1,7 @@
 ---
 title: Build .NET Aspire apps with Node.js
 description: Learn how to build .NET Aspire apps with Node.js.
-ms.date: 04/24/2024
+ms.date: 05/14/2024
 ---
 
 # Build .NET Aspire apps with Node.js
