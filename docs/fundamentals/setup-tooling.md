@@ -21,7 +21,7 @@ zone_pivot_groups: dev-environment
 To work with .NET Aspire, you'll need the following installed locally:
 
 - [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0).
-- [.NET Aspire workload](/dotnet/core/tools/dotnet-workload-install).
+- .NET Aspire workload (installed either Visual Studio or the .NET CLI).
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) or [Podman](https://podman.io/docs/installation) for container runtime support. For more information, see [Container runtime](#container-runtime).
 - Integrated Developer Environment (IDE) or code editor, such as:
   - [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.10 or higher (Optional).
