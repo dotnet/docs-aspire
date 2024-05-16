@@ -42,6 +42,7 @@ highlightedContent:
 
 conceptualContent:
   # itemType: architecture | concept | deploy | download | get-started | how-to-guide | training | overview | quickstart | reference | sample | tutorial | video | whats-new
+  summary: Explore various aspects of .NET Aspire, including getting started, storage, database, messaging, caching, frameworks, deployment, and troubleshooting.
   items:
     - title: Get Started
       links:
@@ -208,6 +209,18 @@ conceptualContent:
           text: Stack Overflow — .NET Aspire
           url: https://stackoverflow.com/questions/tagged/dotnet-aspire
 
+    - title: Training
+      links:
+        - itemType: training
+          text: Introduction to .NET Aspire
+          url: /training/modules/introduction-dotnet-aspire
+        - itemType: training
+          text: Create a .NET Aspire application
+          url: /training/modules/create-aspire-applications
+        - itemType: training
+          text: Use telemetry in a .NET Aspire app
+          url: /training/modules/use-telemetry-dotnet-aspire
+
 additionalContent:
   sections:
     - title: .NET extensions
@@ -249,7 +262,9 @@ additionalContent:
               url: /dotnet/core/diagnostics
             - text: Diagnostic resource monitoring in .NET
               url: /dotnet/core/diagnostics/diagnostic-resource-monitoring
+
     - title: .NET community resources
+      summary: Find community resources for .NET, including webcasts, shows, open-source projects, and more.
       items:
         - title: .NET
           links:
