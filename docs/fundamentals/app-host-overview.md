@@ -216,7 +216,7 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 
 - [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS)
 
-For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.com/dotnet/aspire/tree/release/8.0-preview5/src/Aspire.Hosting.AWS).
+For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.com/dotnet/aspire/tree/main/src/Aspire.Hosting.AWS).
 
 ## See also
 

@@ -22,28 +22,29 @@ To work with .NET Aspire, you'll need the following installed locally:
 
 - [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0).
 - .NET Aspire workload (installed either Visual Studio or the .NET CLI).
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) or [Podman](https://podman.io/docs/installation) for container runtime support. For more information, see [Container runtime](#container-runtime).
-- Integrated Developer Environment (IDE) or code editor, such as:
-  - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.10 or higher (Optional).
-  - [Visual Studio Code](https://code.visualstudio.com/) (Optional).
-    - [C# Dev Kit: Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) (Optional).
+- An OCI compliant container runtime, such as:
+  - [Docker Desktop](https://www.docker.com/products/docker-desktop) or [Podman](https://podman.io/). For more information, see [Container runtime](#container-runtime).
+- An Integrated Developer Environment (IDE) or code editor, such as:
+  - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.10 or higher (Optional)
+  - [Visual Studio Code](https://code.visualstudio.com/) (Optional)
+    - [C# Dev Kit: Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) (Optional)
 
 The .NET Aspire workload installs internal dependencies and makes available other tooling, such as project templates and Visual Studio features. There are two ways to install the .NET Aspire workload. If you prefer to use Visual Studio Code, follow the .NET CLI instructions:
 
 :::zone pivot="visual-studio"
 
-Visual Studio 2022 17.10 Preview 1 or higher includes the latest **.NET Aspire** workload by default. To verify that you have the .NET Aspire workload installed, run the following command:
+Visual Studio 2022 17.10 or higher includes the latest **.NET Aspire** workload by default. To verify that you have the .NET Aspire workload installed, run the following command:
 
 ```dotnetcli
 dotnet workload list
 ```
 
-If you have an earlier version of Visual Studio 2022 Preview, you can either upgrade to Visual Studio 2022 17.10 Preview 1 or you can install the .NET Aspire workload using the following steps:
+If you have an earlier version of Visual Studio 2022, you can either upgrade to Visual Studio 2022 17.10 or you can install the .NET Aspire workload using the following steps:
 
-To install the .NET Aspire workload in Visual Studio 2022 Preview, use the Visual Studio installer.
+To install the .NET Aspire workload in Visual Studio 2022, use the Visual Studio installer.
 
 1. Open the Visual Studio Installer.
-1. Select **Modify** next to Visual Studio 2022 Preview.
+1. Select **Modify** next to Visual Studio 2022.
 1. Select the **ASP.NET and web development** workload.
 1. On the **Installation details** panel, select **.NET Aspire SDK (Preview)**.
 1. Select **Modify** to install the .NET Aspire component.

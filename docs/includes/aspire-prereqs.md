@@ -4,13 +4,11 @@ To work with .NET Aspire, you need the following installed locally:
 
 - [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0)
 - .NET Aspire workload:
-  - [Use the Visual Studio installer](../fundamentals/setup-tooling.md?tabs=visual-studio#install-net-aspire)
-  - [Use the `dotnet workload install aspire` command](../fundamentals/setup-tooling.md?tabs=dotnet-cli#install-net-aspire)
-- A container runtime, such as:
-  - [Docker Desktop](https://www.docker.com/products/docker-desktop)
-  - [Podman](https://podman.io/)
-- Integrated Developer Environment (IDE) or code editor, such as:
-  - [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.9 or higher (Optional)
+  - Installed with the [Visual Studio installer](../fundamentals/setup-tooling.md?tabs=visual-studio#install-net-aspire) or [the .NET CLI workload](../fundamentals/setup-tooling.md?tabs=dotnet-cli#install-net-aspire).
+- An OCI compliant container runtime, such as:
+  - [Docker Desktop](https://www.docker.com/products/docker-desktop) or [Podman](https://podman.io/).
+- An Integrated Developer Environment (IDE) or code editor, such as:
+  - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.10 or higher (Optional)
   - [Visual Studio Code](https://code.visualstudio.com/) (Optional)
     - [C# Dev Kit: Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) (Optional)
 

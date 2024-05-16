@@ -87,6 +87,9 @@ conceptualContent:
         - itemType: how-to-guide
           text: Azure Table Storage
           url: storage/azure-storage-tables-component.md
+        - itemType: sample
+          text: Persist volume mount sample
+          url: /samples/dotnet/aspire-samples/aspire-volume-mount/
 
     - title: Database
       links:

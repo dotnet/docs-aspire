@@ -131,7 +131,7 @@ dotnet run --project ./MailDevResource.AppHost/MailDevResource.AppHost.csproj
 This will result in a warning being displayed to the console:
 
 ```Output
-.\.nuget\packages\aspire.hosting.apphost\8.0.0-preview.7.24251.11\build\Aspire.Hosting.AppHost.targets(174,5): warning ASPIRE004: '..\MailDev.Hosting\MailDev.Hosting.csproj' is referenced by an A
+.\.nuget\packages\aspire.hosting.apphost\8.0.0\build\Aspire.Hosting.AppHost.targets(174,5): warning ASPIRE004: '..\MailDev.Hosting\MailDev.Hosting.csproj' is referenced by an A
 spire Host project, but it is not an executable. Did you mean to set IsAspireProjectResource="false"? [D:\source\repos\docs-aspire\docs\extensibility\snippets\MailDevResource\MailDevResource.AppHost\MailDevRe
 source.AppHost.csproj]
 ```
