@@ -24,7 +24,7 @@ To work with .NET Aspire, you'll need the following installed locally:
 - .NET Aspire workload (installed either Visual Studio or the .NET CLI).
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) or [Podman](https://podman.io/docs/installation) for container runtime support. For more information, see [Container runtime](#container-runtime).
 - Integrated Developer Environment (IDE) or code editor, such as:
-  - [Visual Studio 2022 Preview](https://visualstudio.microsoft.com/vs/preview/) version 17.10 or higher (Optional).
+  - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.10 or higher (Optional).
   - [Visual Studio Code](https://code.visualstudio.com/) (Optional).
     - [C# Dev Kit: Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) (Optional).
 
@@ -216,7 +216,7 @@ You add .NET Aspire components to your app like any other NuGet package using Vi
 
     :::image type="content" source="../media/visual-studio-add-aspire-component.png" lightbox="../media/visual-studio-add-aspire-component.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire Component option.":::
 
-1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire components, allowing you to easily browse and select the desired component. The **Include prerelease** checkbox needs to be checked to see preview components.
+1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire components, allowing you to easily browse and select the desired component.
 
     :::image type="content" source="../media/visual-studio-add-aspire-comp-nuget.png" lightbox="../media/visual-studio-add-aspire-comp-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire component options.":::
 
@@ -230,7 +230,7 @@ For more information on .NET Aspire components, see [.NET Aspire components over
 
     :::image type="content" source="../media/visual-studio-add-aspire-hosting-package.png" lightbox="../media/visual-studio-add-aspire-hosting-package.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire Hosting Resource option.":::
 
-1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire hosting packages, allowing you to easily browse and select the desired package. The **Include prerelease** checkbox needs to be checked to see preview packages.
+1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire hosting packages, allowing you to easily browse and select the desired package.
 
     :::image type="content" source="../media/visual-studio-add-aspire-hosting-nuget.png" lightbox="../media/visual-studio-add-aspire-hosting-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire resource options.":::
 
