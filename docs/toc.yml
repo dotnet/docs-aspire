@@ -215,6 +215,15 @@ items:
       - name: Stack Overflow — .NET Aspire
         href: https://stackoverflow.com/questions/tagged/dotnet-aspire
 
+  - name: Reference
+    items:
+      - name: .NET Aspire API reference
+        href:  /dotnet/api?view=dotnet-aspire-8.0&preserve-view=true
+      - name: Diagnostics overview
+        href: diagnostics/overview.md
+      - name: .NET Aspire FAQ
+        href: reference/aspire-faq.yml
+
   - name: Resources
     items:
       - name: .NET Aspire
@@ -229,10 +238,3 @@ items:
         href: https://github.com/dotnet/extensions
       - name: ASP.NET Core
         href: https://github.com/dotnet/aspnetcore
-
-  - name: Reference
-    items:
-      - name: Diagnostics overview
-        href: diagnostics/overview.md
-      - name: .NET Aspire FAQ
-        href: reference/aspire-faq.yml

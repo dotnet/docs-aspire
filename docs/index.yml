@@ -172,7 +172,6 @@ conceptualContent:
           text: Dapr sample
           url: /samples/dotnet/aspire-samples/aspire-dapr/
 
-
     - title: Deployment
       links:
         - itemType: overview
@@ -212,6 +211,7 @@ conceptualContent:
 additionalContent:
   sections:
     - title: .NET extensions
+      summary: Learn about .NET extensions, including logging, dependency injection, configuration, and more. All of which are fundamental in .NET Aspire.
       items:
         - title: Fundamentals
           links:
