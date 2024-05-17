@@ -11,8 +11,6 @@ ms.topic: overview
 
 In this guide, you'll learn how to take advantage of Dapr's abstraction and .NET Aspire's opinionated configuration of cloud technologies to build simple, portable, resilient, and secured microservices at-scale on Azure.
 
-## Prerequisites
-
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
 In addition to the prerequisites for .NET Aspire, you will need:
