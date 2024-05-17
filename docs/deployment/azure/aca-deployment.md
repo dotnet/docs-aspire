@@ -33,8 +33,6 @@ The process for installing `azd` varies based on your operating system, but it i
 
 [!INCLUDE [init-workflow](includes/init-workflow.md)]
 
-## Deploy the app
-
 [!INCLUDE [azd-up-workflow](includes/azd-up-workflow.md)]
 
 [!INCLUDE [test-deployed-app](includes/test-deployed-app.md)]
