@@ -43,18 +43,10 @@ items:
       - name: Service discovery
         displayName: service discovery,service to service communication
         href: service-discovery/overview.md
-      - name: .NET Aspire and launch profiles
-        href: fundamentals/launch-profiles.md
       - name: Testing .NET Aspire apps
         href: fundamentals/testing.md
       - name: Service defaults
         href: fundamentals/service-defaults.md
-      - name: External parameters
-        href: fundamentals/external-parameters.md
-      - name: Persist data using volumes
-        href: fundamentals/persist-data-volumes.md
-      - name: Health checks
-        href: fundamentals/health-checks.md
       - name: Telemetry
         href: fundamentals/telemetry.md
 
@@ -227,10 +219,18 @@ items:
 
   - name: Reference
     items:
-      - name: .NET Aspire API reference
-        href:  /dotnet/api?view=dotnet-aspire-8.0&preserve-view=true
+      - name: .NET Aspire and launch profiles
+        href: fundamentals/launch-profiles.md
       - name: Diagnostics overview
         href: diagnostics/overview.md
+      - name: External parameters
+        href: fundamentals/external-parameters.md
+      - name: Persist data using volumes
+        href: fundamentals/persist-data-volumes.md
+      - name: Health checks
+        href: fundamentals/health-checks.md
+      - name: .NET Aspire API reference
+        href:  /dotnet/api?view=dotnet-aspire-8.0&preserve-view=true
       - name: .NET Aspire FAQ
         href: reference/aspire-faq.yml
 

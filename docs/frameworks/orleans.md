@@ -1,7 +1,7 @@
 ---
 title: Use Orleans with .NET Aspire
 description: Learn how to use Orleans with .NET Aspire
-ms.date: 05/14/2024
+ms.date: 05/17/2024
 ms.topic: overview
 ---
 
@@ -11,10 +11,10 @@ Orleans has in-built support for .NET Aspire. .NET Aspire's application model le
 
 Orleans is represented as a resource in .NET Aspire. The Orleans resource includes configuration which your service needs to operate, such as cluster membership providers and storage providers.
 
-## Prerequisites
+[!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
-- .NET 8.0 SDK or later
-- .NET Aspire workload
+In addition to the prerequisites for .NET Aspire, you will need:
+
 - Orleans version 8.1.0 or later
 
 For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
