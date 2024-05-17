@@ -109,6 +109,9 @@ Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to shutdown the app (you can close the browse
     dotnet add ./MailDev.Hosting/MailDev.Hosting.csproj package Aspire.Hosting --version 8.0.0-preview.7.24251.11
     ```
 
+    > [!IMPORTANT]
+    > The version you specify here should match the version of the .NET Aspire workload installed.
+
 1. Add class library reference to the _MailDevResource.AppHost_ project.
 
     ```dotnetcli
@@ -212,9 +215,9 @@ _The MailDev web app should look similar to the following:_
 
 Once .NET Aspire can successfully launch the MailDev component, it's time to consume the connection information for MailDev within a .NET project. In .NET Aspire it's common for there to be a _hosting package_ and one or more _component packages_. For example consider:
 
-- **Hosting package**:
+- **Hosting package**: Used to represent resources within the app model.
   - `Aspire.Hosting.Redis`
-- **Component packages**:
+- **Component packages**: Used to configure and consume client libraries.
   - `Aspire.StackExchange.Redis`
   - `Aspire.StackExchange.Redis.DistributedCaching`
   - `Aspire.StackExchange.Redis.OutputCaching`
