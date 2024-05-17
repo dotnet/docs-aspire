@@ -29,7 +29,7 @@ Select an Azure location to use:  [Use arrows to move, type to filter]
 
 After you make your selections, `azd` executes the provisioning and deployment process.
 
-[!INCLUDE [azd-up-output](includes/azd-up-output.md)]
+[!INCLUDE [azd-up-output](azd-up-output.md)]
 
 First, the projects will be packaged into containers during the `azd package` phase, followed by the `azd provision` phase during which all of the Azure resources the app will need are provisioned.
 
