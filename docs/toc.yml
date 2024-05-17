@@ -21,6 +21,7 @@ items:
         href: whats-new/index.yml
 
   - name: Fundamentals
+    expanded: true
     items:
       - name: Distributed app host (Orchestration)
         displayName: orchestration,aspire apphost,aspire app
@@ -38,9 +39,6 @@ items:
             href: fundamentals/dashboard/configuration.md
           - name: Security considerations
             href: fundamentals/dashboard/security-considerations.md
-      - name: Components
-        displayName: aspire components,components,nuget packages,packages
-        href: fundamentals/components-overview.md
       - name: Networking overview
         displayName: inner loop,local networking
         href: fundamentals/networking-overview.md
@@ -62,108 +60,118 @@ items:
       - name: Telemetry
         href: fundamentals/telemetry.md
 
-  - name: Azure AI
+  - name: Components
     items:
+      - name: Overview
+        displayName: aspire components,components,nuget packages,packages
+        href: fundamentals/components-overview.md
+      - name: Tutorials
+        items:
+        - name: Caching using Redis components
+          displayName: caching,redis
+          href: caching/caching-components.md
+        - name: Connect to SQL Server with EF Core
+          displayName: database,sql server,ef core
+          href: database/sql-server-components.md
+        - name: Connect to storage
+          href: storage/azure-storage-components.md
+        - name: Database initialization and maintenance
+          items:
+            - name: Entity Framework Core migrations
+              href: database/ef-core-migrations.md
+            - name: Seed data in a database
+              href: database/seed-database-data.md
+        - name: Messaging using .NET Aspire components
+          displayName: messaging
+          href: messaging/messaging-components.md
+      - name: Apache Kafka component
+        displayName: kafka,messaging
+        href: messaging/kafka-component.md
       - name: Azure AI OpenAI component
+        displayName: azure ai,openai
         href: azureai/azureai-openai-component.md
-      - name: Azure AI Search Documents component
+      - name: Azure Search Documents component
+        displayName: azure search,search,azure ai
         href: azureai/azureai-search-document-component.md
-
-  - name: Storage
-    items:
-      - name: Tutorial - Connect to storage
-        href: storage/azure-storage-components.md
       - name: Azure Blob Storage component
         href: storage/azure-storage-blobs-component.md
+      - name: Azure Cosmos DB components
+        items:
+          - name: Azure Cosmos DB - EF Core component
+            displayName: cosmos db,database,ef core
+            href: database/azure-cosmos-db-entity-framework-component.md
+          - name: Azure Cosmos DB component
+            displayName: cosmos db,database
+            href: database/azure-cosmos-db-component.md
+      - name: Azure Event Hubs component
+        displayName: event hubs,messaging
+        href: messaging/azure-event-hubs-component.md
+      - name: Azure Key Vault component
+        displayName: key vault,security
+        href: security/azure-security-key-vault-component.md
+      - name: Azure Service Bus component
+        displayName: service bus,messaging
+        href: messaging/azure-service-bus-component.md
       - name: Azure Storage Queues component
+        displayName: storage queues,azure storage
         href: storage/azure-storage-queues-component.md
       - name: Azure Table Storage component
+        displayName: table storage,azure storage
         href: storage/azure-storage-tables-component.md
-
-  - name: Logging
-    items:
-      - name: Seq component
-        href: logging/seq-component.md
-
-  - name: Database
-    items:
+      - name: MongoDB component
+        displayName: mongodb,database
+        href: database/mongodb-component.md
+      - name: MySQL Database component
+        displayName: mysql,database
+        href: database/mysql-component.md
+      - name: NATS component
+        displayName: nats,messaging
+        href: messaging/nats-component.md
+      - name: Oracle Database - EF Core component
+        displayName: oracle,database,ef core
+        href: database/oracle-entity-framework-component.md
       - name: PostgreSQL Database components
         items:
           - name: PostgreSQL Database component
+            displayName: postgresql,database
             href: database/postgresql-component.md
           - name: PostgreSQL - EF Core component
+            displayName: postgresql,database,ef core
             href: database/postgresql-entity-framework-component.md
+      - name: RabbitMQ service broker component
+        displayName: rabbitmq,messaging,service broker
+        href: messaging/rabbitmq-client-component.md
+      - name: Redis Caching component
+        displayName: caching
+        href: caching/stackexchange-redis-component.md
+      - name: Redis Distributed Cache component
+        displayName: distributed caching
+        href: caching/stackexchange-redis-distributed-caching-component.md
+      - name: Redis Output Caching component
+        displayName: output caching
+        href: caching/stackexchange-redis-output-caching-component.md
       - name: SQL Database components
         items:
-          - name: Tutorial - Connect to SQL Server with EF Core
-            href: database/sql-server-components.md
           - name: SQL Database component
+            displayName: sql server,sql database
             href: database/sql-server-component.md
           - name: SQL Database - EF Core component
+            displayName: sql server,sql database,ef core
             href: database/sql-server-entity-framework-component.md
-      - name: Azure Cosmos DB components
-        items:
-          - name: Azure Cosmos DB component
-            href: database/azure-cosmos-db-component.md
-          - name: Azure Cosmos DB - EF Core component
-            href: database/azure-cosmos-db-entity-framework-component.md
-      - name: MySQL Database component
-        href: database/mysql-component.md
-      - name: MongoDB component
-        href: database/mongodb-component.md
-      - name: Oracle Database - EF Core component
-        href: database/oracle-entity-framework-component.md
-      - name: Database initialization and maintenance
-        items:
-          - name: Seed data in a database
-            href: database/seed-database-data.md
-          - name: Entity Framework Core migrations
-            href: database/ef-core-migrations.md
+      - name: Seq component
+        displayName: seq,logging
+        href: logging/seq-component.md
 
-  - name: Real-time communication
+  - name: Cloud
     items:
-      - name: Azure SignalR Service scenario
-        href: real-time/azure-signalr-scenario.md
-
-  - name: Messaging
-    items:
-      - name: Tutorial - Messaging using .NET Aspire components
-        href: messaging/messaging-components.md
-      - name: Azure Event Hubs component
-        href: messaging/azure-event-hubs-component.md
-      - name: Azure Service Bus component
-        href: messaging/azure-service-bus-component.md
-      - name: RabbitMQ service broker component
-        href: messaging/rabbitmq-client-component.md
-      - name: Apache Kafka component
-        href: messaging/kafka-component.md
-      - name: NATS component
-        href: messaging/nats-component.md
-
-  - name: Caching
-    items:
-      - name: Tutorial - Caching using Redis components
-        href: caching/caching-components.md
-      - name: Redis Caching component
-        href: caching/stackexchange-redis-component.md
-      - name: Redis Output Caching component
-        href: caching/stackexchange-redis-output-caching-component.md
-      - name: Redis Distributed Cache component
-        href: caching/stackexchange-redis-distributed-caching-component.md
-
-  - name: Security
-    items:
-      - name: Azure Key Vault component
-        href: security/azure-security-key-vault-component.md
-
-  - name: Deployment
-    items:
-      - name: Overview
-        href: deployment/overview.md
       - name: Azure
         items:
-          - name: Local Azure provisioning
-            href: deployment/azure/local-provisioning.md
+        - name: Local Azure provisioning
+          href: deployment/azure/local-provisioning.md
+        - name: Deployment
+          items:
+          - name: Overview
+            href: deployment/overview.md
           - name: Deploy to Azure Container Apps using AZD
             href: deployment/azure/aca-deployment.md
             displayName: azure container apps,aca
@@ -182,13 +190,22 @@ items:
             href: database/sql-server-component-deployment.md
           - name: Deploy .NET Aspire + Redis
             href: caching/caching-components-deployment.md
-      - name: Reference - Tool-builder manifest schemas
+      - name: Tool-builder manifest schemas
         href: deployment/manifest-format.md
 
   - name: Frameworks
     items:
       - name: Orleans
         href: frameworks/orleans.md
+      - name: Orleans voting sample
+        href: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
+      - name: Dapr integration sample
+        href: /samples/dotnet/aspire-samples/aspire-dapr/
+
+  - name: Real-time communication
+    items:
+      - name: Azure SignalR Service scenario
+        href: real-time/azure-signalr-scenario.md
 
   - name: Extensibility
     items:

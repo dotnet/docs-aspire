@@ -170,7 +170,7 @@ conceptualContent:
           text: Orleans voting sample
           url: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
         - itemType: sample
-          text: Dapr sample
+          text: Dapr integration sample
           url: /samples/dotnet/aspire-samples/aspire-dapr/
 
     - title: Deployment
