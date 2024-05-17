@@ -55,7 +55,7 @@ Dapr uses the Sidecar pattern to run alongside your application. The Dapr sideca
 
 The `WithDaprSidecar` method offers overloads to configure your Dapr sidecar options like app ID and ports. In the following example, the Dapr sidecar is configured with specific ports for GRPC, HTTP, metrics and a specific App ID.
 
-:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="6-16"  highlight="6-12,16":::
+:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="6-16"  highlight="1-7,11":::
 
 Putting everything together, here's an example of a .NET Aspire app host project which includes:
 
