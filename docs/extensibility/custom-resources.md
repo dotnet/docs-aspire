@@ -106,7 +106,7 @@ Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to shutdown the app (you can close the browse
 1. Add `Aspire.Hosting` to the class library as a package reference.
 
     ```dotnetcli
-    dotnet add ./MailDev.Hosting\MailDev.Hosting.csproj package Aspire.Hosting --version 8.0.0
+    dotnet add ./MailDev.Hosting/MailDev.Hosting.csproj package Aspire.Hosting --version 8.0.0-preview.7.24251.11
     ```
 
 1. Add class library reference to the _MailDevResource.AppHost_ project.
@@ -467,7 +467,7 @@ public static IResourceBuilder<MailDevResource> AddMailDev(
 }
 ```
 
-Careful consideration should be given as to whether the resource should be present in the manifest, or whether it should be suppressed. If the resource is being added to the manifest it should be configured in such a way that it 's safe and secure to use.
+Careful consideration should be given as to whether the resource should be present in the manifest, or whether it should be suppressed. If the resource is being added to the manifest it should be configured in such a way that it's safe and secure to use.
 
 ## Summary
 
