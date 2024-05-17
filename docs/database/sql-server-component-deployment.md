@@ -115,8 +115,6 @@ Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/ove
 
 [!INCLUDE [azd-up-workflow](../deployment/azure/includes/azd-up-workflow.md)]
 
-1. When the deployment finishes, click the resource group link in the output to view the created resources in the Azure portal.
-
 ## [Azure SQL Database](#tab/azure-sql)
 
 The deployment process provisioned an Azure SQL Database resource due to the **.AppHost** configuration you provided.

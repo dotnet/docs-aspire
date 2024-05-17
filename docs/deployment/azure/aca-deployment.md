@@ -37,8 +37,6 @@ The process for installing `azd` varies based on your operating system, but it i
 
 [!INCLUDE [azd-up-workflow](includes/azd-up-workflow.md)]
 
-At this point the app has been deployed and configured, and you can open the Azure portal and explore the resources.
-
 [!INCLUDE [test-deployed-app](includes/test-deployed-app.md)]
 
 [!INCLUDE [azd-dashboard](includes/azd-dashboard.md)]
