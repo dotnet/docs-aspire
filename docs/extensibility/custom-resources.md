@@ -106,8 +106,11 @@ Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to shutdown the app (you can close the browse
 1. Add `Aspire.Hosting` to the class library as a package reference.
 
     ```dotnetcli
-    dotnet add ./MailDev.Hosting\MailDev.Hosting.csproj package Aspire.Hosting --version 8.0.0
+    dotnet add ./MailDev.Hosting/MailDev.Hosting.csproj package Aspire.Hosting --version 8.0.0-preview.7.24251.11
     ```
+
+    > [!IMPORTANT]
+    > The version you specify here should match the version of the .NET Aspire workload installed.
 
 1. Add class library reference to the _MailDevResource.AppHost_ project.
 
@@ -212,9 +215,9 @@ _The MailDev web app should look similar to the following:_
 
 Once .NET Aspire can successfully launch the MailDev component, it's time to consume the connection information for MailDev within a .NET project. In .NET Aspire it's common for there to be a _hosting package_ and one or more _component packages_. For example consider:
 
-- **Hosting package**:
+- **Hosting package**: Used to represent resources within the app model.
   - `Aspire.Hosting.Redis`
-- **Component packages**:
+- **Component packages**: Used to configure and consume client libraries.
   - `Aspire.StackExchange.Redis`
   - `Aspire.StackExchange.Redis.DistributedCaching`
   - `Aspire.StackExchange.Redis.OutputCaching`
@@ -238,7 +241,7 @@ In order to test the end-to-end scenario, you need a .NET project which we can i
 1. Add a referece to the _MailDevResource.AppHost_ project.
 
     ```dotnetcli
-    dotnet add ./MailDevResource.AppHost/MailDevResource.AppHost.csproj reference ./MailDevResource.NewsletterService\MailDevResource.NewsletterService.csproj
+    dotnet add ./MailDevResource.AppHost/MailDevResource.AppHost.csproj reference ./MailDevResource.NewsletterService/MailDevResource.NewsletterService.csproj
     ```
 
 1. Add the new project to the solution file.
@@ -467,7 +470,7 @@ public static IResourceBuilder<MailDevResource> AddMailDev(
 }
 ```
 
-Careful consideration should be given as to whether the resource should be present in the manifest, or whether it should be suppressed. If the resource is being added to the manifest it should be configured in such a way that it 's safe and secure to use.
+Careful consideration should be given as to whether the resource should be present in the manifest, or whether it should be suppressed. If the resource is being added to the manifest it should be configured in such a way that it's safe and secure to use.
 
 ## Summary
 
