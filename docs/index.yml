@@ -1,15 +1,17 @@
 ### YamlMime:Hub
 
-title: .NET Aspire documentation (Preview)
+title: .NET Aspire documentation
+# Limit summary to 400 characters
 summary: Learn about .NET Aspire, an opinionated, cloud ready stack for building observable, production ready, distributed applications. Browse API reference, sample code, tutorials, quickstarts, conceptual articles and more.
 brand: dotnet
 
 metadata:
-  title: .NET Aspire documentation (Preview)
-  description: Samples, tutorials, and education for .NET Aspire, your cloud-native app stack build around components that provide production-ready telemetry, health checks, configurability, and testability.
+  title: .NET Aspire documentation
+  # Limit description to 165 characters
+  description: Learn about .NET Aspire, a cloud-ready stack for building distributed applications. Browse API reference, tutorials, and more.
   ms.topic: hub-page
   ms.service: dotnet-aspire
-  ms.date: 04/23/2024
+  ms.date: 05/16/2024
 
 highlightedContent:
   items:
@@ -39,7 +41,8 @@ highlightedContent:
       url: whats-new/index.yml
 
 conceptualContent:
-  # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
+  # itemType: architecture | concept | deploy | download | get-started | how-to-guide | training | overview | quickstart | reference | sample | tutorial | video | whats-new
+  summary: Explore various aspects of .NET Aspire, including getting started, storage, database, messaging, caching, frameworks, deployment, and troubleshooting.
   items:
     - title: Get Started
       links:
@@ -85,6 +88,9 @@ conceptualContent:
         - itemType: how-to-guide
           text: Azure Table Storage
           url: storage/azure-storage-tables-component.md
+        - itemType: sample
+          text: Persist volume mount sample
+          url: /samples/dotnet/aspire-samples/aspire-volume-mount/
 
     - title: Database
       links:
@@ -160,16 +166,25 @@ conceptualContent:
         - itemType: overview
           text: Use Orleans with .NET Aspire
           url: frameworks/orleans.md
+        - itemType: sample
+          text: Orleans voting sample
+          url: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
+        - itemType: overview
+          text: Use Dapr with .NET Aspire
+          url: frameworks/dapr.md
+        - itemType: sample
+          text: Dapr integration sample
+          url: /samples/dotnet/aspire-samples/aspire-dapr/
 
     - title: Deployment
       links:
         - itemType: overview
           text: Overview
           url: deployment/overview.md
-        - itemType: how-to-guide
+        - itemType: deploy
           text: Deploy to Azure Container Apps
           url: deployment/azure/aca-deployment.md
-        - itemType: how-to-guide
+        - itemType: deploy
           text: Deploy using the Azure Developer CLI
           url: deployment/azure/aca-deployment-azd-in-depth.md
         - itemType: how-to-guide
@@ -179,9 +194,40 @@ conceptualContent:
           text: .NET Aspire deployment manifest format
           url: deployment/manifest-format.md
 
+    - title: Troubleshooting
+      links:
+        - itemType: how-to-guide
+          text: Allow unsecure transport
+          url: troubleshooting/allow-unsecure-transport.md
+        - itemType: how-to-guide
+          text: Unable to install workload
+          url: troubleshooting/unable-to-install-workload.md
+        - itemType: how-to-guide
+          text: Untrusted localhost certificate
+          url: troubleshooting/untrusted-localhost-certificate.md
+        - itemType: reference
+          text: Ask questions on Discord
+          url: https://aka.ms/aspire/discord
+        - itemType: reference
+          text: Stack Overflow — .NET Aspire
+          url: https://stackoverflow.com/questions/tagged/dotnet-aspire
+
+    - title: Training
+      links:
+        - itemType: training
+          text: Introduction to .NET Aspire
+          url: /training/modules/introduction-dotnet-aspire
+        - itemType: training
+          text: Create a .NET Aspire application
+          url: /training/modules/create-aspire-applications
+        - itemType: training
+          text: Use telemetry in a .NET Aspire app
+          url: /training/modules/use-telemetry-dotnet-aspire
+
 additionalContent:
   sections:
     - title: .NET extensions
+      summary: Learn about .NET extensions, including logging, dependency injection, configuration, and more. All of which are fundamental in .NET Aspire.
       items:
         - title: Fundamentals
           links:
@@ -219,18 +265,24 @@ additionalContent:
               url: /dotnet/core/diagnostics
             - text: Diagnostic resource monitoring in .NET
               url: /dotnet/core/diagnostics/diagnostic-resource-monitoring
+
     - title: .NET community resources
+      summary: Find community resources for .NET, including webcasts, shows, open-source projects, and more.
       items:
         - title: .NET
           links:
             - text: .NET documentation
               url: /dotnet
+            - text: .NET Aspire samples browser
+              url: /samples/browse/?expanded=dotnet&terms=aspire
             - text: ASP.NET documentation
               url: /aspnet
             - text: Azure documentation
               url: /azure
             - text: C# documentation
               url: /dotnet/csharp
+            - text: .NET Discord
+              url: https://aka.ms/aspire/discord
         - title: Webcasts and shows
           links:
             - text: Azure Friday

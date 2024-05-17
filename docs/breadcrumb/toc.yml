@@ -7,7 +7,7 @@ items:
         tocHref: /dotnet/
         topicHref: /dotnet/index
         items:
-          - name: .NET Aspire (Preview)
+          - name: .NET Aspire
             tocHref: /dotnet/aspire/
             topicHref: /dotnet/aspire/index
             items:

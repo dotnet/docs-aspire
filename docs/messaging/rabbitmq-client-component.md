@@ -2,7 +2,7 @@
 title: .NET Aspire RabbitMQ component
 description: Learn how to use the .NET Aspire RabbitMQ client message-broker component.
 ms.topic: how-to
-ms.date: 04/24/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire RabbitMQ component
@@ -16,7 +16,7 @@ To get started with the .NET Aspire RabbitMQ component, install the [Aspire.Rabb
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.RabbitMQ.Client --prerelease
+dotnet add package Aspire.RabbitMQ.Client
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -48,6 +48,23 @@ public class ExampleService(IConnection connection)
 ```
 
 ## App host usage
+
+To model the RabbitMQ resource in the app host, install the [Aspire.Hosting.RabbitMQ](https://www.nuget.org/packages/Aspire.Hosting.RabbitMQ) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.RabbitMQ
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.RabbitMQ"
+                  Version="[SelectVersion]" />
+```
+
+---
 
 In your app host project, register a RabbitMQ server and consume the connection using the following methods, such as <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A>:
 
@@ -125,7 +142,7 @@ builder.AddRabbitMQ(
 
 The .NET Aspire RabbitMQ component handles the following:
 
-- Adds the health check when <xref:Aspire.RabbitMQ.Client.RabbitMQClientSettings.HealthChecks?displayProperty=nameWithType> is `true`, which attempts to connect to and create a channel on the RabbitMQ server.
+- Adds the health check when <xref:Aspire.RabbitMQ.Client.RabbitMQClientSettings.DisableHealthChecks?displayProperty=nameWithType> is `true`, which attempts to connect to and create a channel on the RabbitMQ server.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]

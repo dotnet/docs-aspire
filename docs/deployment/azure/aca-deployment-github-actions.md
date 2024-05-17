@@ -54,7 +54,9 @@ curl -fsSL https://aka.ms/install-azd.sh | bash
 
 ---
 
-[!INCLUDE [file-new-aspire](../../includes/file-new-aspire.md)]
+## Create a .NET Aspire app
+
+As a starting point, this article assumes that you've created a .NET Aspire app from the **.NET Aspire Starter Application** template. For more information, see [Quickstart: Build your first .NET Aspire app](../../get-started/build-your-first-aspire-app.md).
 
 [!INCLUDE [init workflow](includes/init-workflow.md)]
 

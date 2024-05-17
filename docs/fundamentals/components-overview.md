@@ -1,13 +1,18 @@
 ---
 title: .NET Aspire components overview
 description: Explore the fundamental concepts of .NET Aspire components and learn how to integrate them into your apps.
-ms.date: 05/09/2024
+ms.date: 05/17/2024
 ms.topic: conceptual
 ---
 
 # .NET Aspire components overview
 
 .NET Aspire components are a curated suite of NuGet packages specifically selected to facilitate the integration of cloud-native applications with prominent services and platforms, including but not limited to Redis and PostgreSQL. Each component furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns. .NET Aspire components can be used without an orchestrator project, but they're designed to work best with the [.NET Aspire app host](app-host-overview.md).
+
+.NET Aspire components should not be confused with .NET Aspire hosting packages, as they serve different purposes. Hosting packages are used to model and configure various resources in a .NET Aspire app, while components are used to map configuration to various client libraries.
+
+> [!TIP]
+> Always strive to use the latest version of .NET Aspire components to take advantage of the latest features, improvements, and security updates.
 
 ## Available components
 
@@ -21,6 +26,7 @@ The following table lists the .NET Aspire components currently available for use
 | [Azure Blob Storage](../storage/azure-storage-blobs-component.md) | [Aspire.Azure.Storage.Blobs](https://www.nuget.org/packages/Aspire.Azure.Storage.Blobs) | A library for accessing [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction). |
 | [Azure Cosmos DB Entity Framework Core](../database/azure-cosmos-db-entity-framework-component.md) | [Aspire.Microsoft.EntityFrameworkCore.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.Cosmos) | A library for accessing Azure Cosmos DB databases with [Entity Framework Core](/ef/core/providers/cosmos/). |
 | [Azure Cosmos DB](../database/azure-cosmos-db-component.md) | [Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) | A library for accessing [Azure Cosmos DB](/azure/cosmos-db/introduction) databases. |
+| [Azure Event Hubs](../messaging/azure-event-hubs-component.md) | [Aspire.Azure.Messaging.EventHubs](https://www.nuget.org/packages/Aspire.Azure.Messaging.EventHubs) | A library for accessing [Azure Event Hubs](/azure/event-hubs/event-hubs-about). |
 | [Azure Key Vault](../security/azure-security-key-vault-component.md) | [Aspire.Azure.Security.KeyVault](https://www.nuget.org/packages/Aspire.Azure.Security.KeyVault) | A library for accessing [Azure Key Vault](/azure/key-vault/general/overview). |
 | [Azure Service Bus](../messaging/azure-service-bus-component.md) | [Aspire.Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) | A library for accessing [Azure Service Bus](/azure/service-bus-messaging/service-bus-messaging-overview). |
 | [Azure Storage Queues](../storage/azure-storage-queues-component.md) | [Aspire.Azure.Storage.Queues](https://www.nuget.org/packages/Aspire.Azure.Storage.Queues) | A library for accessing [Azure Storage Queues](/azure/storage/queues/storage-queues-introduction). |
@@ -49,7 +55,7 @@ For more information on working with .NET Aspire components in Visual Studio, se
     # [.NET CLI](#tab/dotnet-cli)
 
     ```dotnetcli
-    dotnet add package Aspire.Npgsql --prerelease
+    dotnet add package Aspire.Npgsql
     ```
 
     # [PackageReference](#tab/package-reference)

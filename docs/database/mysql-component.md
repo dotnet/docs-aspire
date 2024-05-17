@@ -2,7 +2,7 @@
 title: .NET Aspire MySQL database component
 description: This article describes the .NET Aspire MySQL database component.
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire MySQL database component
@@ -24,7 +24,7 @@ To get started with the .NET Aspire MySQL database component, install the [Aspir
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.MySqlConnector --prerelease
+dotnet add package Aspire.MySqlConnector
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -59,7 +59,7 @@ After adding a `MySqlDataSource`, you can require the `MySqlDataSource` instance
 
 ## App host usage
 
-In your app host project, register a MySql database and consume the connection using the following methods:
+[!INCLUDE [mysql-app-host](includes/mysql-app-host.md)]
 
 ```csharp
 var mysql = builder.AddMySql("mysql");

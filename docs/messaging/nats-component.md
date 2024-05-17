@@ -2,7 +2,7 @@
 title: .NET Aspire NATS component
 description: Learn how to use the .NET Aspire NATS component to send logs and traces to a NATS Server.
 ms.topic: how-to
-ms.date: 04/09/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire NATS component
@@ -21,7 +21,7 @@ To get started with the .NET Aspire NATS component, install the [Aspire.NATS.Net
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.NATS.Net --prerelease
+dotnet add package Aspire.NATS.Net
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -102,13 +102,24 @@ Pass the `Action<NatsClientSettings> configureSettings` delegate to set up some 
 builder.AddNatsClient("nats", settings => settings.DisableHealthChecks  = true);
 ```
 
-## AppHost extensions
+## App host usage
 
-In your AppHost project, install the `Aspire.Hosting.Nats` library with [NuGet](https://www.nuget.org):
+To model the Nats resource in the app host, install the [Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
 dotnet add package Aspire.Hosting.Nats
 ```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Nats"
+                  Version="[SelectVersion]" />
+```
+
+---
 
 Then, in the _Program.cs_ file of `AppHost`, register a NATS server and consume the connection using the following methods:
 

@@ -50,7 +50,7 @@ Add the following `TicketDbContext` data context class at the root of the **Aspi
 Add the [.NET Aspire Entity Framework Core Sql Server library](/dotnet/aspire/database/sql-server-entity-framework-component?tabs=dotnet-cli) package to your _AspireSQLEFCore_ project:
 
 ```dotnetcli
-dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer --prerelease
+dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 Your _AspireSQLEFCore_ project is now set up to use .NET Aspire components. Here's the updated _AspireSQLEFCore.csproj_ file:
@@ -91,7 +91,7 @@ The _AspireSQLEFCore.AppHost_ project is the orchestrator for your app. It's res
 Add the [.NET Aspire Hosting Sql Server](/dotnet/aspire/database/sql-server-entity-framework-component?tabs=dotnet-cli) NuGet package to your _AspireStorage.AppHost_ project:
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.SqlServer --prerelease
+dotnet add package Aspire.Hosting.SqlServer
 ```
 
 Replace the contents of the _Program.cs_ file in the _AspireSQLEFCore.AppHost_ project with the following code:

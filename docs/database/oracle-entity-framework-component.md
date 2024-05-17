@@ -1,7 +1,7 @@
 ---
 title: Oracle Entity Framework Component
 description: Oracle Entity Framework Component
-ms.date: 02/26/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Oracle Entity Framework Component
@@ -15,7 +15,7 @@ You need an Oracle database and connection string for accessing the database. To
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Oracle.EntityFrameworkCore --prerelease
+dotnet add package Aspire.Oracle.EntityFrameworkCore
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -59,10 +59,27 @@ builder.EnrichOracleDatabaseDbContext<MyDbContext>();
 
 ## App host usage
 
+To model the Oracle server resource in the app host, install the [Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Oracle
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Oracle"
+                  Version="[SelectVersion]" />
+```
+
+---
+
 In your app host project, register an Oracle container and consume the connection using the following methods:
 
 ```csharp
-var oracle = builder.AddOracleDatabase("oracle");
+var oracle = builder.AddOracle("oracle");
 var oracledb = oracle.AddDatabase("oracledb");
 
 var myService = builder.AddProject<Projects.MyService>()
