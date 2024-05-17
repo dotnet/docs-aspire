@@ -18,6 +18,8 @@ In this guide, you'll learn how to take advantage of Dapr's abstraction and .NET
 - Docker
 - Dapr version 1.13 or later
 
+Dapr installation instructions can be found [here](https://docs.dapr.io/getting-started/install-dapr-cli/). After installing the Dapr CLI, remember to run dapr init as described [here](https://docs.dapr.io/getting-started/install-dapr-selfhost/).
+
 For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
 
 ## Get started
