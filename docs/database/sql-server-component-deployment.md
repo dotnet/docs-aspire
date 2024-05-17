@@ -111,36 +111,9 @@ The preceding code adds a SQL Server Container resource to your app and configur
 
 Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) (`azd`) support .NET Aspire SQL Server component configurations to streamline deployments. `azd` consumes these settings and provisions properly configured resources for you.
 
-> [!NOTE]
-> You can also use the [Azure CLI](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-cli) or [Bicep](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-bicep) to provision and deploy .NET Aspire app resources. These options require more manual steps, but provide more granular control over your deployments. .NET Aspire apps can also connect to databases hosted on other services through manual configurations.
+[!INCLUDE [init-workflow](../deployment/azure/includes/init-workflow.md)]
 
-1. Open a terminal window in the root of your .NET Aspire project.
-
-1. Run the `azd init` command to initialize the project with `azd`.
-
-    ```azdeveloper
-    azd init
-    ```
-
-1. When prompted for an environment name, enter *docs-aspiresql*.
-
-1. Run the `azd up` command to begin the deployment process:
-
-    ```azdeveloper
-    azd up
-    ```
-
-1. When prompted, choose to expose the **webfrontend** service to the internet.
-
-1. Select the Azure subscription that should host your app resources.
-
-1. Select the Azure location to use.
-
-    The Azure Developer CLI provisions and deploys your app resources. The process may take a few minutes to complete.
-
-    [!INCLUDE [azd-up-output](../deployment/azure/includes/azd-up-output.md)]
-
-1. When the deployment finishes, click the resource group link in the output to view the created resources in the Azure portal.
+[!INCLUDE [azd-up-workflow](../deployment/azure/includes/azd-up-workflow.md)]
 
 ## [Azure SQL Database](#tab/azure-sql)
 
