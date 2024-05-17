@@ -1,7 +1,7 @@
 ---
 title: Create custom resource types for .NET Aspire
 description: Learn how to create a custom resource for an existing containerized application.
-ms.date: 05/14/2024
+ms.date: 05/17/2024
 ms.topic: how-to
 ms.custom: devx-track-extended-azdevcli
 ---
@@ -252,7 +252,7 @@ After the project has been added and references have been updated, open the _Pro
 
 :::code source="snippets/MailDevResource/MailDevResource.AppHost/Program.cs":::
 
-After updating the `Program` source file, launch the app host again and verify that the .NET project that was added started and that the environment variable `ConnectionStrings__maildev` was added to the process. From the **Resources** page, find the `newsletterservice` row, and select the **View** link on the **Details** column:
+After updating the _Program.cs_ file, launch the app host again. Then verify that the Newsletter Service started and that the environment variable `ConnectionStrings__maildev` was added to the process. From the **Resources** page, find the `newsletterservice` row, and select the **View** link on the **Details** column:
 
 :::image type="content" source="media/maildev-envvar.png" lightbox="media/maildev-envvar.png" alt-text="Environment variables for Newsletter Service in .NET Aspire Dashboard.":::
 
