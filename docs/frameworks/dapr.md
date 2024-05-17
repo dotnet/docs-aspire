@@ -69,7 +69,7 @@ The .NET Aspire dashboard will shows the Dapr sidecar as a resource, with its st
 
 ## Adding the Dapr SDK
 
-To use Dapr APIs from .NET Aspire resources you can use the [Dapr SDK for ASP.Net Core](https://www.nuget.org/packages/Dapr.AspNetCore/). The Dapr SDK provides a set of APIs to interact with Dapr sidecars.
+To use Dapr APIs from .NET Aspire resources you can use the [Dapr SDK for ASP.NET Core](https://www.nuget.org/packages/Dapr.AspNetCore/). The Dapr SDK provides a set of APIs to interact with Dapr sidecars.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
