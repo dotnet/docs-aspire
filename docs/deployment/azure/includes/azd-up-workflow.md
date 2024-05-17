@@ -1,6 +1,6 @@
 ## Deploy the template
 
-1. Once `azd` is initialized, the provisioning and deployment process can be executed as a single command from the _AppHost_ project directory, [azd up](/azure/developer/azure-developer-cli/reference#azd-up):
+1. Once an `azd` template is initialized, the provisioning and deployment process can be executed as a single command from the _AppHost_ project directory using [azd up](/azure/developer/azure-developer-cli/reference#azd-up):
 
     ```azdeveloper
     azd up
@@ -18,11 +18,9 @@
 
     ```output
     Select an Azure location to use:  [Use arrows to move, type to filter]
-      41. (South America) Brazil Southeast (brazilsoutheast)
       42. (US) Central US (centralus)
       43. (US) East US (eastus)
     > 44. (US) East US 2 (eastus2)
-      45. (US) East US STG (eastusstg)
       46. (US) North Central US (northcentralus)
       47. (US) South Central US (southcentralus)
     ```
@@ -33,8 +31,8 @@ After you make your selections, `azd` executes the provisioning and deployment p
 
 The `azd up` command acts as wrapper for the following individual `azd` commands to provision and deploy your resources in a single step:
 
-1. `azd package`: The app projects and their dependencies are packaged into containers.
-1. `azd provision`: The Azure resources the app will need are provisioned.
-1. `azd deploy`: The projects are pushed as containers into an Azure Container Registry instance, and then used to create new revisions of Azure Container Apps in which the code will be hosted.
+1. [`azd package`](/azure/developer/azure-developer-cli/reference#azd-package): The app projects and their dependencies are packaged into containers.
+1. [`azd provision`](/azure/developer/azure-developer-cli/reference#azd-provision): The Azure resources the app will need are provisioned.
+1. [`azd deploy`](/azure/developer/azure-developer-cli/reference#azd-deploy): The projects are pushed as containers into an Azure Container Registry instance, and then used to create new revisions of Azure Container Apps in which the code will be hosted.
 
 When the `azd up` stages complete, your app will be available on Azure, and you can open the Azure portal to explore the resources. `azd` also outputs URLs to access the deployed apps directly.
