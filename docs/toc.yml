@@ -21,7 +21,6 @@ items:
         href: whats-new/index.yml
 
   - name: Fundamentals
-    expanded: true
     items:
       - name: Distributed app host (Orchestration)
         displayName: orchestration,aspire apphost,aspire app
