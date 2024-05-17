@@ -90,7 +90,7 @@ items:
       - name: Apache Kafka
         displayName: kafka,messaging
         href: messaging/kafka-component.md
-      - name: Azure components
+      - name: Azure
         items:
         - name: Azure AI OpenAI
           displayName: azure ai,openai
@@ -100,7 +100,7 @@ items:
           href: azureai/azureai-search-document-component.md
         - name: Azure Blob Storage
           href: storage/azure-storage-blobs-component.md
-        - name: Azure Cosmos DB components
+        - name: Azure Cosmos DB
           items:
             - name: Azure Cosmos DB - EF Core
               displayName: cosmos db,database,ef core
@@ -126,38 +126,38 @@ items:
       - name: MongoDB
         displayName: mongodb,database
         href: database/mongodb-component.md
-      - name: MySQL Database
+      - name: MySQL
         displayName: mysql,database
         href: database/mysql-component.md
       - name: NATS
         displayName: nats,messaging
         href: messaging/nats-component.md
-      - name: Oracle Database - EF Core
+      - name: Oracle - EF Core
         displayName: oracle,database,ef core
         href: database/oracle-entity-framework-component.md
-      - name: PostgreSQL Database components
+      - name: PostgreSQL
         items:
-          - name: PostgreSQL Database component
+          - name: PostgreSQL Database
             displayName: postgresql,database
             href: database/postgresql-component.md
-          - name: PostgreSQL - EF Core component
+          - name: PostgreSQL - EF Core
             displayName: postgresql,database,ef core
             href: database/postgresql-entity-framework-component.md
-      - name: RabbitMQ service broker component
+      - name: RabbitMQ service broker
         displayName: rabbitmq,messaging,service broker
         href: messaging/rabbitmq-client-component.md
-      - name: Redis Caching components
+      - name: Redis
         items:
-        - name: Redis Caching
+        - name: Redis caching
           displayName: caching
           href: caching/stackexchange-redis-component.md
-        - name: Redis Distributed Cache
+        - name: Redis distributed cache
           displayName: distributed caching
           href: caching/stackexchange-redis-distributed-caching-component.md
-        - name: Redis Output Caching
+        - name: Redis output caching
           displayName: output caching
           href: caching/stackexchange-redis-output-caching-component.md
-      - name: SQL Database components
+      - name: SQL Server
         items:
           - name: SQL Database - EF Core
             displayName: sql server,sql database,ef core
