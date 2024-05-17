@@ -17,11 +17,8 @@ items:
         href: get-started/build-aspire-apps-with-nodejs.md
       - name: Setup and tooling
         href: fundamentals/setup-tooling.md
-
-  - name: What's new in .NET Aspire
-    items:
-      - name: .NET Aspire preview 7
-        href: whats-new/preview-7.md
+      - name: What's new in .NET Aspire
+        href: whats-new/index.yml
 
   - name: Fundamentals
     items:
@@ -205,13 +202,35 @@ items:
       - name: Allow unsecure transport
         displayName: unsecure transport,http,non-tls
         href: troubleshooting/allow-unsecure-transport.md
+      - name: Untrusted localhost certificate
+        href: troubleshooting/untrusted-localhost-certificate.md
+      - name: Unable to install .NET Aspire workload
+        href: troubleshooting/unable-to-install-workload.md
       - name: .NET Aspire GitHub repository
         href: https://github.com/dotnet/aspire
-      - name: Discord
+      - name: Ask questions on Discord
         displayName: discord,community
         href: https://aka.ms/aspire/discord
       - name: Stack Overflow — .NET Aspire
         href: https://stackoverflow.com/questions/tagged/dotnet-aspire
+
+  - name: Reference
+    items:
+      - name: .NET Aspire API reference
+        href:  /dotnet/api?view=dotnet-aspire-8.0&preserve-view=true
+      - name: Diagnostics overview
+        href: diagnostics/overview.md
+      - name: .NET Aspire FAQ
+        href: reference/aspire-faq.yml
+
+  - name: Training
+    items:
+      - name: Introduction to .NET Aspire
+        href: /training/modules/introduction-dotnet-aspire
+      - name: Create a .NET Aspire application
+        href: /training/modules/create-aspire-applications
+      - name: Use telemetry in a .NET Aspire app
+        href: /training/modules/use-telemetry-dotnet-aspire
 
   - name: Resources
     items:
@@ -227,10 +246,3 @@ items:
         href: https://github.com/dotnet/extensions
       - name: ASP.NET Core
         href: https://github.com/dotnet/aspnetcore
-
-  - name: Reference
-    items:
-      - name: Diagnostics overview
-        href: diagnostics/overview.md
-      - name: .NET Aspire FAQ
-        href: reference/aspire-faq.yml

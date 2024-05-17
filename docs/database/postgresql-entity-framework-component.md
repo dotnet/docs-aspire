@@ -2,7 +2,7 @@
 title: .NET Aspire PostgreSQL Entity Framework Core component
 description: This article describes the .NET Aspire PostgreSQL Entity Framework Core component.
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire PostgreSQL Entity Framework Core component
@@ -29,7 +29,7 @@ To get started with the .NET Aspire PostgreSQL Entity Framework Core component, 
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Npgsql.EntityFrameworkCore.PostgreSQL --prerelease
+dotnet add package Aspire.Npgsql.EntityFrameworkCore.PostgreSQL
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -62,7 +62,7 @@ public class ExampleService(YourDbContext context)
 
 ## App host usage
 
-In your app host project, register the PostgreSQL component and consume the `DbContext` using the following methods:
+[!INCLUDE [postgresql-app-host](includes/postgresql-app-host.md)]
 
 ```csharp
 var postgres = builder.AddPostgres("postgres");

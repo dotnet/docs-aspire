@@ -1,7 +1,7 @@
 ---
 title: Add .NET Aspire to an existing .NET 8 microservices app
 description: Learn how to add .NET Aspire components, orchestration, and tooling to a microservices app that already exists.
-ms.date: 11/15/2023
+ms.date: 05/17/2024
 ms.topic: how-to
 ---
 
@@ -42,7 +42,7 @@ Open and start debugging the project to examine its default behavior:
 1. Start Visual Studio and then select **File** > **Open** > **Project/Solution**.
 1. Navigate to the top level folder of the solution you cloned, select **eShopLite.sln**, and then select **Open**.
 1. In the **Solution Explorer**, right-click the **eShopLite** solution, and then select **Configure Startup Projects**.
-1. Select **Multiple startup projects** and then select the **Create new launch profile** button.
+1. Select **Multiple startup projects**.
 1. In the **Action** column, select **Start** for both the **Products** and **Store** projects.
 1. Select **OK**.
 1. To start debugging the solution, press <kbd>F5</kbd> or select **Start**.
@@ -78,8 +78,9 @@ For more information, see <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.
 To add the **Products** project to .NET Aspire:
 
 1. In Visual Studio, in the **Solution Explorer**, right-click the **Products** project, select **Add**, and then select **.NET Aspire Orchestrator Support**.
-1. In the **Microsoft Visual Studio** dialog, select **OK**.
-1. In the **Add .NET Aspire Orchestrator Support** dialog, select **OK**.
+1. A dialog indicating that .NET Aspire Orchestrator project already exists, select **OK**.
+
+    :::image type="content" source="media/orchestrator-already-added.png" alt-text="Screenshot indicating that the.NET Aspire Orchestrator was already added.":::
 
 In the **eShopLite.AppHost** project, open the **Program.cs** file. Notice this line of code, which registers the **Products** project in the .NET Aspire orchestration:
 

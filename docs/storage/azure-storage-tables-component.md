@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Data Tables component
 description: This article describes the .NET Aspire Azure Data Tables component features and capabilities.
-ms.date: 04/24/2024
+ms.date: 05/14/2024
 ms.topic: how-to
 ---
 
@@ -24,7 +24,7 @@ To get started with the .NET Aspire Azure Data Tables component, install the [As
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Azure.Data.Tables --prerelease
+dotnet add package Aspire.Azure.Data.Tables
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -62,7 +62,7 @@ To add Azure Storage hosting support to your <xref:Aspire.Hosting.IDistributedAp
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Azure.Storage --prerelease
+dotnet add package Aspire.Hosting.Azure.Storage
 ```
 
 ### [PackageReference](#tab/package-reference)

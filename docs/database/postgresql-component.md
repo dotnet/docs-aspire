@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL component
 description: This article describes the .NET Aspire PostgreSQL component.
-ms.date: 01/22/2024
+ms.date: 05/14/2024
 ms.topic: how-to
 ---
 
@@ -16,7 +16,7 @@ To get started with the .NET Aspire PostgreSQL component, install the [Aspire.Np
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Npgsql --prerelease
+dotnet add package Aspire.Npgsql
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -48,7 +48,7 @@ public class ExampleService(NpgsqlDataSource dataSource)
 
 ## App host usage
 
-In your app host project, register and consume the PostgreSQL component using the following methods, such as <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A>:
+[!INCLUDE [postgresql-app-host](includes/postgresql-app-host.md)]
 
 ```csharp
 var postgres = builder.AddPostgres("postgres");

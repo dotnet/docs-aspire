@@ -2,7 +2,7 @@
 title: .NET Aspire Seq component
 description: Learn how to use the .NET Aspire Seq component to add OpenTelemetry Protocol (OTLP) exporters that send logs and traces to a Seq Server.
 ms.topic: how-to
-ms.date: 04/09/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Seq component
@@ -16,7 +16,7 @@ To get started with the .NET Aspire Seq component, install the [Aspire.Seq](http
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Seq --prerelease
+dotnet add package Aspire.Seq
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -38,6 +38,34 @@ In the _Program.cs_ file of your projects, call the `AddSeqEndpoint` extension m
 
 ```csharp
 builder.AddSeqEndpoint("seq");
+```
+
+## App host usage
+
+To model the Seq resource in the app host, install the [Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Seq
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Seq"
+                  Version="[SelectVersion]" />
+```
+
+---
+
+In your app host project, register a Seq database and consume the connection using the following methods:
+
+```csharp
+var seq = builder.AddSeq("seq");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(seq);
 ```
 
 ## Configuration

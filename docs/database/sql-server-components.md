@@ -1,7 +1,7 @@
 ---
 title: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core
 description: Learn how to connect an ASP.NET Core app to to SQL Server using .NET Aspire and Entity Framework Core.
-ms.date: 01/22/2024
+ms.date: 05/14/2024
 ms.topic: tutorial
 ---
 
@@ -50,7 +50,7 @@ Add the following `TicketDbContext` data context class at the root of the **Aspi
 Add the [.NET Aspire Entity Framework Core Sql Server library](/dotnet/aspire/database/sql-server-entity-framework-component?tabs=dotnet-cli) package to your _AspireSQLEFCore_ project:
 
 ```dotnetcli
-dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer --prerelease
+dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 Your _AspireSQLEFCore_ project is now set up to use .NET Aspire components. Here's the updated _AspireSQLEFCore.csproj_ file:
@@ -88,10 +88,10 @@ For more information about creating forms in Blazor, see [ASP.NET Core Blazor fo
 
 The _AspireSQLEFCore.AppHost_ project is the orchestrator for your app. It's responsible for connecting and configuring the different projects and services of your app. The orchestrator should be set as the startup project.
 
-Add the [.NET Aspire Entity Framework Core Sql Server library](/dotnet/aspire/database/sql-server-entity-framework-component?tabs=dotnet-cli) package to your _AspireStorage.AppHost_ project:
+Add the [.NET Aspire Hosting Sql Server](/dotnet/aspire/database/sql-server-entity-framework-component?tabs=dotnet-cli) NuGet package to your _AspireStorage.AppHost_ project:
 
 ```dotnetcli
-dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer --prerelease
+dotnet add package Aspire.Hosting.SqlServer
 ```
 
 Replace the contents of the _Program.cs_ file in the _AspireSQLEFCore.AppHost_ project with the following code:
@@ -110,7 +110,7 @@ The sample app is now ready for testing. Verify that the submitted form data is 
     :::image type="content" source="media/app-home-screen.png" lightbox="media/app-home-screen.png" alt-text="A screenshot showing the home page of the .NET Aspire support application.":::
 
 1. Enter sample data into the `Title` and `Description` form fields.
-1. Select the **Submit** button, and the form submits the support ticket for processing — and clears the form.
+1. Select the **Submit** button, and the form submits the support ticket for processing — (then select **Clear** to clear the form).
 1. The data you submitted displays in the table at the bottom of the page when the page reloads.
 
 ## See also

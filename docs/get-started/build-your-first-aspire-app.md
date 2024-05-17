@@ -3,6 +3,7 @@ title: Build your first .NET Aspire app
 description: Learn how to build your first .NET Aspire app using the .NET Aspire Started Application template.
 ms.date: 05/13/2024
 ms.topic: quickstart
+zone_pivot_groups: dev-environment
 ---
 
 # Quickstart: Build your first .NET Aspire app
@@ -20,7 +21,25 @@ In this quickstart, you'll explore the following tasks:
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
-[!INCLUDE [file-new-aspire](../includes/file-new-aspire.md)]
+## Create the .NET Aspire template
+
+To create a new .NET Aspire Starter Application, you can use either Visual Studio, Visual Studio Code, or the .NET CLI.
+
+:::zone pivot="visual-studio"
+
+[!INCLUDE [visual-studio-file-new](../includes/visual-studio-file-new.md)]
+
+:::zone-end
+:::zone pivot="vscode"
+
+[!INCLUDE [vscode-file-new](../includes/vscode-file-new.md)]
+
+:::zone-end
+:::zone pivot="dotnet-cli"
+
+[!INCLUDE [dotnet-cli-file-new](../includes/dotnet-cli-file-new.md)]
+
+:::zone-end
 
 ## Test the app locally
 
@@ -29,11 +48,19 @@ The sample app is now ready for testing. You want to verify the following:
 - Weather data is retrieved from the API project using service discovery and displayed on the weather page.
 - Subsequent requests are handled via the output caching configured by the .NET Aspire Redis component.
 
-### [Visual Studio](#tab/visual-studio)
+:::zone pivot="visual-studio"
 
 In Visual Studio, set the **AspireSample.AppHost** project as the startup project by right-clicking on the project in the **Solution Explorer** and selecting **Set as Startup Project**. Then, press <kbd>F5</kbd> to run the app.
 
-### [.NET CLI](#tab/dotnet-cli)
+:::zone-end
+:::zone pivot="vscode"
+
+In Visual Studio Code, press <kbd>F5</kbd> to run the app. You'll be prompted to select which language, and C# will be suggested, select C# and then select the **AspireSample.AppHost** project with the **Default Configuration**:
+
+:::image type="content" source="media/vscode-run.png" lightbox="media/vscode-run.png" alt-text="A screenshot of the Visual Studio Code run configuration for the AspireSample.AppHost project.":::
+
+:::zone-end
+:::zone pivot="dotnet-cli"
 
 ```dotnetcli
 dotnet run --project AspireSample/AspireSample.AppHost
@@ -41,7 +68,7 @@ dotnet run --project AspireSample/AspireSample.AppHost
 
 For more information, see [dotnet run](/dotnet/core/tools/dotnet-run).
 
----
+:::zone-end
 
 1. The app displays the .NET Aspire dashboard in the browser. We'll look at the dashboard in more detail later. For now, find the **webfrontend** project in the list of resources and select the project's **localhost** endpoint.
 
@@ -54,7 +81,27 @@ For more information, see [dotnet run](/dotnet/core/tools/dotnet-run).
 
 :::image type="content" source="media/weather-page.png" lightbox="media/weather-page.png" alt-text="The Weather page of the webfrontend app showing the weather data retrieved from the API.":::
 
-🤓 Congratulations! You created and ran your first .NET Aspire application! Now let's investigate the structure and other features of your new .NET Aspire app.
+🤓 Congratulations! You created and ran your first .NET Aspire application! To stop the app, you can close the browser window.
+
+:::zone pivot="visual-studio"
+
+In Visual Studio, select the **Stop Debugging** from the **Debug** menu to stop the app.
+
+:::zone-end
+:::zone pivot="vscode"
+
+In Visual Studio Code, press <kbd>Shift</kbd> + <kbd>F5</kbd> to stop the app, or select the **Stop** button at the top center of the window:
+
+:::image type="content" source="media/vscode-stop.png" lightbox="media/vscode-stop.png" alt-text="A screenshot of the Visual Studio Code stop button.":::
+
+:::zone-end
+:::zone pivot="dotnet-cli"
+
+Press <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal window to stop the app.
+
+:::zone-end
+
+Now let's investigate the structure and other features of your new .NET Aspire app.
 
 ## Explore the .NET Aspire dashboard
 
@@ -151,3 +198,4 @@ For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fun
 - [.NET Aspire service defaults](../fundamentals/service-defaults.md)
 - [Health checks in .NET Aspire](../fundamentals/health-checks.md)
 - [.NET Aspire telemetry](../fundamentals/telemetry.md)
+- [Troubleshoot untrusted localhost certificate in .NET Aspire](../troubleshooting/untrusted-localhost-certificate.md)

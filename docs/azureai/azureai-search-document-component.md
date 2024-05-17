@@ -2,7 +2,7 @@
 title: .NET Aspire Azure AI Search Documents component
 description: Learn how to use the .NET Aspire Azure AI Search Documents component.
 ms.topic: how-to
-ms.date: 04/18/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Azure AI Search Documents component
@@ -21,7 +21,7 @@ To get started with the .NET Aspire Azure AI Search Documents component, install
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Azure.Search.Documents --prerelease
+dotnet add package Aspire.Azure.Search.Documents
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -80,7 +80,7 @@ To add Azure AI hosting support to your <xref:Aspire.Hosting.IDistributedApplica
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Azure.CognitiveServices --prerelease
+dotnet add package Aspire.Hosting.Azure.CognitiveServices
 ```
 
 ### [PackageReference](#tab/package-reference)

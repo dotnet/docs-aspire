@@ -1,7 +1,7 @@
 ---
 title: Deploy a .NET Aspire app that connects to Redis Cache to Azure
 description: Learn how to deploy a .NET Aspire app that connects to Redis Cache to Azure
-ms.date: 05/12/2024
+ms.date: 05/14/2024
 ms.topic: how-to
 ---
 
@@ -39,7 +39,7 @@ Add the appropriate .NET Aspire component to the _AspireRedis.AppHost_ project f
 Add the [Aspire.Hosting.Azure.Redis](https://www.nuget.org/packages/Aspire.Hosting.Azure.Redis) package to the _AspireRedis.AppHost_ project:
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Azure.Redis --prerelease
+dotnet add package Aspire.Hosting.Azure.Redis
 ```
 
 ## [Redis Container](#tab/redis-container)
@@ -47,7 +47,7 @@ dotnet add package Aspire.Hosting.Azure.Redis --prerelease
 Add the [Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis) package to the _AspireRedis.AppHost_ project:
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Redis --prerelease
+dotnet add package Aspire.Hosting.Redis
 ```
 
 ---
