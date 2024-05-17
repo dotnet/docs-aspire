@@ -3,7 +3,6 @@ items:
     href: index.yml
 
   - name: Get Started
-    expanded: true
     items:
       - name: .NET Aspire overview
         displayName: aspire overview,architecture,key concepts
