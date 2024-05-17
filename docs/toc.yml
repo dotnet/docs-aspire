@@ -192,6 +192,8 @@ items:
         href: frameworks/orleans.md
       - name: Orleans voting sample
         href: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
+      - name: Dapr
+        href: frameworks/dapr.md
       - name: Dapr integration sample
         href: /samples/dotnet/aspire-samples/aspire-dapr/
 
