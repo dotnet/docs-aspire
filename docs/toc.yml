@@ -87,7 +87,7 @@ items:
         - name: Messaging using .NET Aspire components
           displayName: messaging
           href: messaging/messaging-components.md
-      - name: Apache Kafka component
+      - name: Apache Kafka
         displayName: kafka,messaging
         href: messaging/kafka-component.md
       - name: Azure components
