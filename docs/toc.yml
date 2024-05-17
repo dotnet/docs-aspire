@@ -195,9 +195,16 @@ items:
       - name: Dapr integration sample
         href: /samples/dotnet/aspire-samples/aspire-dapr/
 
-  - name: Extensibility
+  - name: How-tos
     items:
+      - name: Use external parameters
+        displayName: external parameters,configuration
+        href: fundamentals/external-parameters.md
+      - name: Persist data using volumes
+        displayName: volumes,persist data
+        href: fundamentals/persist-data-volumes.md
       - name: Create custom resource types
+        displayName: custom resources,extensibility
         href: extensibility/custom-resources.md
 
   - name: Troubleshooting
@@ -223,10 +230,6 @@ items:
         href: fundamentals/launch-profiles.md
       - name: Diagnostics overview
         href: diagnostics/overview.md
-      - name: External parameters
-        href: fundamentals/external-parameters.md
-      - name: Persist data using volumes
-        href: fundamentals/persist-data-volumes.md
       - name: Health checks
         href: fundamentals/health-checks.md
       - name: .NET Aspire API reference
