@@ -10,16 +10,6 @@
 
     For more information on the `azd init` command, see [azd init](/azure/developer/azure-developer-cli/reference#azd-init).
 
-1. If this is the first time you've initialized the app, `azd` prompts you for the environment name:
-
-    ```azdeveloper
-    Initializing an app to run on Azure (azd init)
-
-    ? Enter a new environment name: [? for help]
-    ```
-
-    Enter the desired environment name to continue. For more information on managing environments with `azd`, see [azd env](/azure/developer/azure-developer-cli/reference#azd-env).
-
 1. Select **Use code in the current directory** when `azd` prompts you with two app initialization options.
 
     ```Output
@@ -43,17 +33,7 @@
       Cancel and exit
     ```
 
-1. `azd` presents each of the projects in the .NET Aspire solution and prompts you to identify which to deploy with HTTP ingress open publicly to all internet traffic. Select only the `webfrontend` (using the <kbd>↓</kbd> and <kbd>Space</kbd> keys), since you want the API to be private to the Azure Container Apps environment and *not* available publicly.
-
-    ```Output
-    ? Select an option Confirm and continue initializing my app
-    By default, a service can only be reached from inside the Azure Container Apps environment it is running in. Selecting a service here will also allow it to be reached from the Internet.
-    ? Select which services to expose to the Internet  [Use arrows to move, space to select, <right> to all, <left> to none, type to filter]
-      [ ]  apiservice
-    > [x]  webfrontend
-    ```
-
-1. Finally, specify the the environment name, which is used to name provisioned resources in Azure and managing different environments such as `dev` and `prod`.
+1. Enter an environment name, which is used to name provisioned resources in Azure and managing different environments such as `dev` and `prod`.
 
     ```Output
     Generating files to run your app on Azure:
