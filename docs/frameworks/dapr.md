@@ -26,7 +26,7 @@ To get started you need to add the Dapr hosting package to your app host project
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Dapr --prerelease
+dotnet add package Aspire.Hosting.Dapr
 ```
 
 ### [PackageReference](#tab/package-reference)
