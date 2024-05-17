@@ -2,7 +2,7 @@
 title: Create custom resource types for .NET Aspire
 description: Learn how to create a custom resource for an existing containerized application.
 ms.date: 05/14/2024
-ms.topic: tutorial
+ms.topic: how-to
 ms.custom: devx-track-extended-azdevcli
 ---
 

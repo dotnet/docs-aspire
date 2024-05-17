@@ -173,7 +173,7 @@ conceptualContent:
           text: Use Dapr with .NET Aspire
           url: frameworks/dapr.md
         - itemType: sample
-          text: Dapr sample
+          text: Dapr integration sample
           url: /samples/dotnet/aspire-samples/aspire-dapr/
 
     - title: Deployment

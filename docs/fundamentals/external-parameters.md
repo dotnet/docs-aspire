@@ -1,6 +1,7 @@
 ---
 title: External parameters
 description: Learn how to express parameters such as secrets, connection strings, and other configuration values that might vary between environments.
+ms.topic: how-to
 ms.date: 03/01/2024
 ---
 
