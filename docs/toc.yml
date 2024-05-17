@@ -19,24 +19,37 @@ items:
       - name: What's new in .NET Aspire
         href: whats-new/index.yml
 
-  - name: Fundamentals
+  - name: App Host (Orchestration)
     items:
-      - name: Distributed app host (Orchestration)
+      - name: Overview
         displayName: orchestration,aspire apphost,aspire app
         href: fundamentals/app-host-overview.md
-      - name: .NET Aspire dashboard
-        items:
-          - name: Overview
-            displayName: aspire dashboard,dashboard
-            href: fundamentals/dashboard/overview.md
-          - name: Explore features
-            href: fundamentals/dashboard/explore.md
-          - name: Standalone mode
-            href: fundamentals/dashboard/standalone.md
-          - name: Configuration
-            href: fundamentals/dashboard/configuration.md
-          - name: Security considerations
-            href: fundamentals/dashboard/security-considerations.md
+      - name: Use external parameters
+        displayName: external parameters,configuration
+        href: fundamentals/external-parameters.md
+      - name: Persist data using volumes
+        displayName: volumes,persist data
+        href: fundamentals/persist-data-volumes.md
+      - name: Create custom resource types
+        displayName: custom resources,extensibility
+        href: extensibility/custom-resources.md
+
+  - name: Dashboard
+    items:
+      - name: Overview
+        displayName: aspire dashboard,dashboard
+        href: fundamentals/dashboard/overview.md
+      - name: Explore features
+        href: fundamentals/dashboard/explore.md
+      - name: Standalone mode
+        href: fundamentals/dashboard/standalone.md
+      - name: Configuration
+        href: fundamentals/dashboard/configuration.md
+      - name: Security considerations
+        href: fundamentals/dashboard/security-considerations.md
+
+  - name: Fundamentals
+    items:
       - name: Networking overview
         displayName: inner loop,local networking
         href: fundamentals/networking-overview.md
@@ -74,81 +87,85 @@ items:
         - name: Messaging using .NET Aspire components
           displayName: messaging
           href: messaging/messaging-components.md
-      - name: Apache Kafka component
+      - name: Apache Kafka
         displayName: kafka,messaging
         href: messaging/kafka-component.md
-      - name: Azure AI OpenAI component
-        displayName: azure ai,openai
-        href: azureai/azureai-openai-component.md
-      - name: Azure Search Documents component
-        displayName: azure search,search,azure ai
-        href: azureai/azureai-search-document-component.md
-      - name: Azure Blob Storage component
-        href: storage/azure-storage-blobs-component.md
-      - name: Azure Cosmos DB components
+      - name: Azure
         items:
-          - name: Azure Cosmos DB - EF Core component
-            displayName: cosmos db,database,ef core
-            href: database/azure-cosmos-db-entity-framework-component.md
-          - name: Azure Cosmos DB component
-            displayName: cosmos db,database
-            href: database/azure-cosmos-db-component.md
-      - name: Azure Event Hubs component
-        displayName: event hubs,messaging
-        href: messaging/azure-event-hubs-component.md
-      - name: Azure Key Vault component
-        displayName: key vault,security
-        href: security/azure-security-key-vault-component.md
-      - name: Azure Service Bus component
-        displayName: service bus,messaging
-        href: messaging/azure-service-bus-component.md
-      - name: Azure Storage Queues component
-        displayName: storage queues,azure storage
-        href: storage/azure-storage-queues-component.md
-      - name: Azure Table Storage component
-        displayName: table storage,azure storage
-        href: storage/azure-storage-tables-component.md
-      - name: MongoDB component
+        - name: Azure AI OpenAI
+          displayName: azure ai,openai
+          href: azureai/azureai-openai-component.md
+        - name: Azure Search Documents
+          displayName: azure search,search,azure ai
+          href: azureai/azureai-search-document-component.md
+        - name: Azure Blob Storage
+          href: storage/azure-storage-blobs-component.md
+        - name: Azure Cosmos DB
+          items:
+            - name: Azure Cosmos DB - EF Core
+              displayName: cosmos db,database,ef core
+              href: database/azure-cosmos-db-entity-framework-component.md
+            - name: Azure Cosmos DB
+              displayName: cosmos db,database
+              href: database/azure-cosmos-db-component.md
+        - name: Azure Event Hubs
+          displayName: event hubs,messaging
+          href: messaging/azure-event-hubs-component.md
+        - name: Azure Key Vault
+          displayName: key vault,security
+          href: security/azure-security-key-vault-component.md
+        - name: Azure Service Bus
+          displayName: service bus,messaging
+          href: messaging/azure-service-bus-component.md
+        - name: Azure Storage Queues
+          displayName: storage queues,azure storage
+          href: storage/azure-storage-queues-component.md
+        - name: Azure Table Storage
+          displayName: table storage,azure storage
+          href: storage/azure-storage-tables-component.md
+      - name: MongoDB
         displayName: mongodb,database
         href: database/mongodb-component.md
-      - name: MySQL Database component
+      - name: MySQL
         displayName: mysql,database
         href: database/mysql-component.md
-      - name: NATS component
+      - name: NATS
         displayName: nats,messaging
         href: messaging/nats-component.md
-      - name: Oracle Database - EF Core component
+      - name: Oracle - EF Core
         displayName: oracle,database,ef core
         href: database/oracle-entity-framework-component.md
-      - name: PostgreSQL Database components
+      - name: PostgreSQL
         items:
-          - name: PostgreSQL Database component
+          - name: PostgreSQL Database
             displayName: postgresql,database
             href: database/postgresql-component.md
-          - name: PostgreSQL - EF Core component
+          - name: PostgreSQL - EF Core
             displayName: postgresql,database,ef core
             href: database/postgresql-entity-framework-component.md
-      - name: RabbitMQ service broker component
+      - name: RabbitMQ service broker
         displayName: rabbitmq,messaging,service broker
         href: messaging/rabbitmq-client-component.md
-      - name: Redis Caching component
-        displayName: caching
-        href: caching/stackexchange-redis-component.md
-      - name: Redis Distributed Cache component
-        displayName: distributed caching
-        href: caching/stackexchange-redis-distributed-caching-component.md
-      - name: Redis Output Caching component
-        displayName: output caching
-        href: caching/stackexchange-redis-output-caching-component.md
-      - name: SQL Database components
+      - name: Redis
         items:
-          - name: SQL Database component
-            displayName: sql server,sql database
-            href: database/sql-server-component.md
-          - name: SQL Database - EF Core component
+        - name: Redis caching
+          displayName: caching
+          href: caching/stackexchange-redis-component.md
+        - name: Redis distributed cache
+          displayName: distributed caching
+          href: caching/stackexchange-redis-distributed-caching-component.md
+        - name: Redis output caching
+          displayName: output caching
+          href: caching/stackexchange-redis-output-caching-component.md
+      - name: SQL Server
+        items:
+          - name: SQL Database - EF Core
             displayName: sql server,sql database,ef core
             href: database/sql-server-entity-framework-component.md
-      - name: Seq component
+          - name: SQL Database
+            displayName: sql server,sql database
+            href: database/sql-server-component.md
+      - name: Seq
         displayName: seq,logging
         href: logging/seq-component.md
 
@@ -196,18 +213,6 @@ items:
         href: frameworks/dapr.md
       - name: Dapr integration sample
         href: /samples/dotnet/aspire-samples/aspire-dapr/
-
-  - name: How-tos
-    items:
-      - name: Use external parameters
-        displayName: external parameters,configuration
-        href: fundamentals/external-parameters.md
-      - name: Persist data using volumes
-        displayName: volumes,persist data
-        href: fundamentals/persist-data-volumes.md
-      - name: Create custom resource types
-        displayName: custom resources,extensibility
-        href: extensibility/custom-resources.md
 
   - name: Troubleshooting
     items:
