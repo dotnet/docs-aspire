@@ -188,6 +188,9 @@ items:
             href: database/sql-server-component-deployment.md
           - name: Deploy .NET Aspire + Redis
             href: caching/caching-components-deployment.md
+        - name: Azure SignalR Service scenario
+          displayName: azure signalr service,signalr,real-time
+          href: real-time/azure-signalr-scenario.md
       - name: Tool-builder manifest schemas
         href: deployment/manifest-format.md
 
@@ -199,11 +202,6 @@ items:
         href: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
       - name: Dapr integration sample
         href: /samples/dotnet/aspire-samples/aspire-dapr/
-
-  - name: Real-time communication
-    items:
-      - name: Azure SignalR Service scenario
-        href: real-time/azure-signalr-scenario.md
 
   - name: Extensibility
     items:
