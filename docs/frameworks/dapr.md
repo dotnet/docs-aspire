@@ -13,9 +13,9 @@ In this guide, you'll learn how to take advantage of Dapr's abstraction and .NET
 
 ## Prerequisites
 
-- .NET 8.0 SDK or later
-- .NET Aspire workload
-- Docker
+[!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
+
+In addition to the prerequisites for .NET Aspire, you will need:
 - Dapr version 1.13 or later
 
 Dapr installation instructions can be found [here](https://docs.dapr.io/getting-started/install-dapr-cli/). After installing the Dapr CLI, remember to run dapr init as described [here](https://docs.dapr.io/getting-started/install-dapr-selfhost/).
@@ -52,11 +52,12 @@ Dapr uses the Sidecar pattern to run alongside your application. The Dapr sideca
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="18-21"  highlight="21":::
 
-The WithDaprSidecar method offers overloads to configure your Dapr sidecar options like app ID and ports. In the following example the Dapr sidecar is configured with specific ports for GRPC, HTTP, Metrics and a specific App ID.
+The `WithDaprSidecar` method offers overloads to configure your Dapr sidecar options like app ID and ports. In the following example, the Dapr sidecar is configured with specific ports for GRPC, HTTP, metrics and a specific App ID.
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="6-16"  highlight="6-12,16":::
 
-Putting everything together, here is an example of an Aspire AppHost project which includes:
+Putting everything together, here's an example of a .NET Aspire app host project which includes:
+
 - A backend that declares a Dapr sidecar with specific ports and app ID.
 - A frontend that declares a Dapr sidecar with a specific app ID and default ports.
 
@@ -83,7 +84,9 @@ dotnet add package Dapr.AspNetCore
                   Version="[SelectVersion]" />
 ```
 
-Once installed into an ASP.Net Core project, the SDK can be added to the service builder.
+---
+
+Once installed into an ASP.NET Core project, the SDK can be added to the service builder.
 
 :::code language="csharp" source="snippets/Dapr/Dapr.Web/Program.cs" range="15":::
 
@@ -109,4 +112,4 @@ At first sight Dapr and .NET Aspire may look like they have overlapping function
 
 .NET Aspire makes setting up and debugging Dapr applications easier by providing a straightforward API to configure Dapr sidecars, and by exposing the sidecars as resources in the dashboard.
 
-[.NET Aspire Dapr sample app] (https://learn.microsoft.com/en-us/samples/dotnet/aspire-samples/aspire-dapr/)
+[.NET Aspire Dapr sample app](/samples/dotnet/aspire-samples/aspire-dapr/)
