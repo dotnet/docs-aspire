@@ -127,7 +127,7 @@ Create a .NET Aspire app using either Visual Studio or the .NET CLI.
 
 Visual Studio creates a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:
 
-- **AspireStorage**: A Blazor project that depends on service defaults.
+- **AspireStorage.**: A Blazor project that depends on service defaults.
 - **AspireStorage.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
 - **AspireStorage.ServiceDefaults**: A shared class library to hold configurations that can be reused across the projects in your solution.
 
@@ -141,9 +141,10 @@ dotnet new aspire-starter --name AspireStorage
 
 The solution consists of the following projects:
 
-- **AspireStorage** - An API project with default .NET Aspire service configurations.
+- **AspireStorage.ApiService** - An API project with default .NET Aspire service configurations.
 - **AspireStorage.AppHost** - An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
 - **AspireStorage.ServiceDefaults** - A shared class library to hold code that can be reused across the projects in your solution.
+- **AspireStorage.Web** - A Blazor Server project that serves as the front end of your app.
 
 ---
 
