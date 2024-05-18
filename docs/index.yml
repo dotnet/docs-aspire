@@ -319,6 +319,8 @@ additionalContent:
               url: https://dotnetfoundation.org
             - text: We Are .NET
               url: https://www.wearedotnet.io
+            - text: .NET Aspire on YouTube
+              url: https://www.youtube.com/results?search_query=.NET+Aspire
 
     - title: API and language reference
       summary: Search the .NET API and language reference documentation.
