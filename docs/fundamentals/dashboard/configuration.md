@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard configuration
 description: .NET Aspire dashboard configuration options
-ms.date: 04/23/2024
+ms.date: 05/18/2024
 ms.topic: reference
 ---
 
@@ -127,3 +127,8 @@ Limits are per-resource. For example, a `MaxLogCount` value of 10,000 configures
 | Option | Default Value | Description |
 |--|--|--|
 | `Dashboard:ApplicationName` | `Aspire` | The application name to be displayed in the UI. This applies only when no resource service URL is specified. When a resource service exists, the service specifies the application name. |
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Security considerations for running the .NET Aspire dashboard](security-considerations.md)

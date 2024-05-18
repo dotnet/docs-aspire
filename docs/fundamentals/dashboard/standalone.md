@@ -1,7 +1,7 @@
 ---
 title: Standalone .NET Aspire dashboard
 description: How to use the .NET Aspire dashboard standalone.
-ms.date: 05/15/2024
+ms.date: 05/18/2024
 ms.topic: reference
 ---
 
@@ -83,3 +83,8 @@ To configure applications:
 ## Sample
 
 For a sample of using the standalone dashboard, see the [Standalone .NET Aspire dashboard sample app](/samples/dotnet/aspire-samples/aspire-standalone-dashboard).
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Configure the .NET Aspire dashboard](configuration.md)

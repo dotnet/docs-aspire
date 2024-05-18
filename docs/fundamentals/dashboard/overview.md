@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard overview
 description: Overview of .NET Aspire dashboard and getting started.
-ms.date: 04/23/2024
+ms.date: 05/18/2024
 ms.topic: reference
 ---
 
@@ -54,3 +54,8 @@ The .NET Aspire dashboard offers powerful insights to your apps. The UI displays
 Data displayed in the dashboard can be sensitive. For example, configuration can include secrets in environment variables, and telemetry can include sensitive runtime data. Care should be taken to secure access to the dashboard.
 
 For more information, see [.NET Aspire dashboard security considerations](security-considerations.md).
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Explore the .NET Aspire dashboard](explore.md)
