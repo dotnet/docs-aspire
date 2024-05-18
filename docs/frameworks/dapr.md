@@ -1,7 +1,7 @@
 ---
 title: Use Dapr with .NET Aspire
 description: Learn how to use Dapr with .NET Aspire
-ms.date: 05/14/2024
+ms.date: 05/18/2024
 ms.topic: overview
 ---
 
@@ -109,4 +109,7 @@ At first sight Dapr and .NET Aspire may look like they have overlapping function
 
 .NET Aspire makes setting up and debugging Dapr applications easier by providing a straightforward API to configure Dapr sidecars, and by exposing the sidecars as resources in the dashboard.
 
-[.NET Aspire Dapr sample app](/samples/dotnet/aspire-samples/aspire-dapr/)
+## Next steps
+
+> [!div class="nextstepaction"]
+> [.NET Aspire Dapr sample app](/samples/dotnet/aspire-samples/aspire-dapr/)

@@ -1,7 +1,7 @@
 ---
 title: Use Orleans with .NET Aspire
 description: Learn how to use Orleans with .NET Aspire
-ms.date: 05/17/2024
+ms.date: 05/18/2024
 ms.topic: overview
 ---
 
@@ -104,3 +104,8 @@ The Orleans Aspire integration supports a limited subset of Orleans providers to
   - Azure Storage Tables
 
 Streaming providers are not supported as of Orleans version 8.1.0.
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Explore the Orleans voting sample app](/samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/)
