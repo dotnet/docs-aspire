@@ -179,7 +179,7 @@ items:
           items:
           - name: Overview
             href: deployment/overview.md
-          - name: Deploy to Azure Container Apps using AZD
+          - name: Deploy to Azure Container Apps using azd
             href: deployment/azure/aca-deployment.md
             displayName: azure container apps,aca
           - name: Deploy to Azure Container Apps using Visual Studio
