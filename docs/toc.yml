@@ -137,12 +137,12 @@ items:
         href: database/oracle-entity-framework-component.md
       - name: PostgreSQL
         items:
-          - name: PostgreSQL Database
-            displayName: postgresql,database
-            href: database/postgresql-component.md
           - name: PostgreSQL - EF Core
             displayName: postgresql,database,ef core
             href: database/postgresql-entity-framework-component.md
+          - name: PostgreSQL
+            displayName: postgresql,database
+            href: database/postgresql-component.md
       - name: RabbitMQ service broker
         displayName: rabbitmq,messaging,service broker
         href: messaging/rabbitmq-client-component.md
