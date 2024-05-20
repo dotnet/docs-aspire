@@ -31,7 +31,7 @@ A _distributed application_ is one that uses computational resources across mult
 
 ## Orchestration
 
-In .NET Aspire, orchestration primarily focuses on enhancing the local development experience by simplifying the management of your cloud-native app's configuration and interconnections. It's important to note that .NET Aspire's orchestration is not intended to replace the robust systems used in production environments, such as Kubernetes. Instead, it provides a set of abstractions that streamline the setup of service discovery, environment variables, and container configurations, eliminating the need to deal with low-level implementation details. These abstractions ensure a consistent setup pattern across apps with numerous components and services, making it easier to manage complex applications during the development phase.
+In .NET Aspire, orchestration primarily focuses on enhancing the local development experience by simplifying the management of your cloud-native app's configuration and interconnections. It's important to note that .NET Aspire's orchestration is not intended to replace the robust systems used in production environments, such as [Kubernetes](../deployment/overview.md#deploy-to-kubernetes). Instead, it provides a set of abstractions that streamline the setup of service discovery, environment variables, and container configurations, eliminating the need to deal with low-level implementation details. These abstractions ensure a consistent setup pattern across apps with numerous components and services, making it easier to manage complex applications during the development phase.
 
 .NET Aspire orchestration assists with the following concerns:
 

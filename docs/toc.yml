@@ -5,7 +5,7 @@ items:
   - name: Get Started
     items:
       - name: .NET Aspire overview
-        displayName: aspire overview,architecture,key concepts
+        displayName: aspire overview,architecture,key concepts,Kubernetes,k8s
         href: get-started/aspire-overview.md
       - name: Quickstart - Build your first .NET Aspire app
         displayName: quickstart,first app,aspire app
@@ -54,7 +54,7 @@ items:
         displayName: inner loop,local networking
         href: fundamentals/networking-overview.md
       - name: Service discovery
-        displayName: service discovery,service to service communication
+        displayName: service discovery,service to service communication,Kubernetes,k8s
         href: service-discovery/overview.md
       - name: Testing .NET Aspire apps
         href: fundamentals/testing.md
@@ -178,6 +178,7 @@ items:
         - name: Deployment
           items:
           - name: Overview
+            displayName: azure deployment,deployment,Kubernetes,k8s
             href: deployment/overview.md
           - name: Deploy to Azure Container Apps using azd
             href: deployment/azure/aca-deployment.md

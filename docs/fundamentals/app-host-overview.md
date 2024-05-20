@@ -17,7 +17,7 @@ Before continuing, consider some common terminology used in .NET Aspire:
 - **Reference**: A reference defines a connection between resources, expressed as a dependency. For more information, see [Reference resources](#reference-resources).
 
 > [!NOTE]
-> .NET Aspire's orchestration is designed to enhance your local development experience by simplifying the management of your cloud-native app's configuration and interconnections. While it's an invaluable tool for development, it's not intended to replace production environment systems like Kubernetes, which are specifically designed to excel in that context.
+> .NET Aspire's orchestration is designed to enhance your local development experience by simplifying the management of your cloud-native app's configuration and interconnections. While it's an invaluable tool for development, it's not intended to replace production environment systems like [Kubernetes](../deployment/overview.md#deploy-to-kubernetes), which are specifically designed to excel in that context.
 
 ## Define the app model
 
