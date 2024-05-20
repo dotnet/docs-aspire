@@ -43,7 +43,7 @@
           "**/*.png",
           "**/*.svg",
           "**/zone-pivot-groups.json"
-      ],
+        ],
         "exclude": [
           "**/obj/**",
           "**/includes/**.md",
@@ -110,6 +110,47 @@
       },
       "titleSuffix": {
         "docs/**/**.md": ".NET Aspire"
+      },
+      "no-loc": {
+        "**/**.md": [
+          ".NET Aspire",
+          ".NET",
+          "Angular",
+          "ASP.NET Core",
+          "ASP.NET",
+          "Aspire",
+          "Azure",
+          "Blazor WebAssembly",
+          "Blazor",
+          "C# Dev Kit",
+          "Client",
+          "Cookie",
+          "cookie",
+          "Docker",
+          "Dockerfile",
+          "Git",
+          "GitHub",
+          "JSON",
+          "Kubernetes",
+          "Linux",
+          "localhost",
+          "MailDev",
+          "Node.js",
+          "Podman",
+          "Postgres",
+          "PostgreSQL",
+          "Privacy",
+          "React",
+          "Redis",
+          "REST",
+          "Server",
+          "SignalR",
+          "Unix",
+          "Visual Studio Code",
+          "Visual Studio",
+          "Vue",
+          "WASM"
+        ]
       }
     },
     "template": [],
