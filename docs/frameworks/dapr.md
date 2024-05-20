@@ -1,13 +1,13 @@
 ---
 title: Use Dapr with .NET Aspire
 description: Learn how to use Dapr with .NET Aspire
-ms.date: 05/18/2024
+ms.date: 05/20/2024
 ms.topic: overview
 ---
 
 # Use Dapr with .NET Aspire
 
-[Distributed Application Runtime (Dapr)](https://docs.dapr.io/) offers developer APIs that run as a sidecar process and abstract away the common complexities of the underlying cloud platform. Dapr and .NET Aspire work together to improve your local development experience. By using Dapr with .NET Aspire, you can focus on writing and implementing .NET-based distributed applications instead of spending extra time with local onboarding.  
+[Distributed Application Runtime (Dapr)](https://docs.dapr.io/) offers developer APIs that serve as a conduit for interacting with other services and dependencies and abstract the application from the specifics of those services and dependencies. Dapr and .NET Aspire work together to improve your local development experience. By using Dapr with .NET Aspire, you can focus on writing and implementing .NET-based distributed applications instead of spending extra time with local onboarding.  
 
 In this guide, you'll learn how to take advantage of Dapr's abstraction and .NET Aspire's opinionated configuration of cloud technologies to build simple, portable, resilient, and secured microservices at-scale on Azure.
 
@@ -45,7 +45,9 @@ An overload of the `AddDapr()` method that accepts Dapr options is available. Fo
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="4":::
 
-Dapr uses the Sidecar pattern to run alongside your application. The Dapr sidecar is a lightweight, portable, and stateless HTTP server that listens for incoming HTTP requests from your application. The sidecar is responsible for managing the lifecycle of your application, including service discovery, configuration, and secrets management. To add a sidecar to a .NET Aspire resource by using the `WithDaprSidecar(string appId)` method. The `appId` parameter is the unique identifier for the Dapr application.
+Dapr uses the [sidecar pattern](https://docs.dapr.io/concepts/dapr-services/sidecar/) to run alongside your application. The Dapr sidecar runs alongside your application as a lightweight, portable, and stateless HTTP server that listens for incoming HTTP requests from your application.  
+
+Add a sidecar to a .NET Aspire resource by using the `WithDaprSidecar(string appId)` method. The `appId` parameter is the unique identifier for the Dapr application.
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="18-21"  highlight="21":::
 
@@ -66,7 +68,10 @@ The .NET Aspire dashboard will shows the Dapr sidecar as a resource, with its st
 
 ## Adding the Dapr SDK
 
-To use Dapr APIs from .NET Aspire resources you can use the [Dapr SDK for ASP.NET Core](https://www.nuget.org/packages/Dapr.AspNetCore/). The Dapr SDK provides a set of APIs to interact with Dapr sidecars.
+To use Dapr APIs from .NET Aspire resources, you can use the [Dapr SDK for ASP.NET Core (`Dapr.AspNetCore`) library](https://www.nuget.org/packages/Dapr.AspNetCore/). The Dapr SDK provides a set of APIs to interact with Dapr sidecars.
+
+> [!NOTE]
+> Use the `Dapr.AspNetCore` library for the Dapr integration with ASP.NET (DI integration, registration of subscriptions, etc.). Non-ASP.NET apps (such as console apps) can just use the [`Dapr.Client` library](https://www.nuget.org/packages/Dapr.Client) to make calls through the Dapr sidecar.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -101,7 +106,7 @@ In, for example, a Blazor project the `WeatherApiClient` class can be injected i
 
 :::code language="csharp" source="snippets/Dapr/Dapr.Web/Components/Pages/Weather.razor" highlight="5,47":::
 
-What actually happens when the Dapr SDK is used is that the Dapr sidecar is called over HTTP. The Dapr sidecar then forwards the request to the target service. The target service can be running in the same process as the Dapr sidecar or in a different process. The Dapr sidecar is responsible for service discovery and routing the request to the target service.
+What actually happens when the Dapr SDK is used is that the Dapr sidecar is called over HTTP. The Dapr sidecar then forwards the request to the target service. While the target service runs in a separate process from the sidecar, the component related to the service runs in the Dapr sidecar and is responsible for service discovery and routing the request to the target service.
 
 ## Dapr and .NET Aspire
 
