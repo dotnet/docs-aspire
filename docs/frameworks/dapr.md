@@ -97,6 +97,7 @@ An instance of `DaprClient` can now be injected into your services to interact w
 :::code language="csharp" source="snippets/Dapr/Dapr.Web/WeatherApiClient.cs" highlight="9-10":::
 
 `InvokeMethodAsync` is a method that sends an HTTP request to the Dapr sidecar. It is a generic method that takes:
+
 - An HTTP verb
 - The Dapr app ID of the service to call
 - The method name
@@ -105,6 +106,7 @@ An instance of `DaprClient` can now be injected into your services to interact w
 Depending on the HTTP verb, it can also take a request body and headers. The generic type parameter is the type of the response body.
 
 The full `Program.cs` file for the frontend project shows:
+
 - The Dapr client being added to the service builder
 - The `WeatherApiClient` class that uses the Dapr client to call the backend service
 
