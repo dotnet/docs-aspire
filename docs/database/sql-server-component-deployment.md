@@ -91,7 +91,7 @@ Configure the _AspireSQL.AppHost_ project for your desired SQL database service.
 
 # [Azure SQL Database](#tab/azure-sql)
 
-Replace the contents of the _Program.cs_ file in the _AspireSQL.AppHost_ project with the following code:
+Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _AspireSQL.AppHost_ project with the following code:
 
 :::code language="csharp" source="snippets/tutorial/aspiresqldeployazure/AspireSql.AppHost/Program.cs":::
 

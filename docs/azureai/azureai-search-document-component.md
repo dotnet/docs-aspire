@@ -37,7 +37,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the extension method to register an `SearchIndexClient` for use via the dependency injection container. The method takes a connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the extension method to register an `SearchIndexClient` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddAzureSearch("searchConnectionName");
@@ -92,7 +92,7 @@ dotnet add package Aspire.Hosting.Azure.CognitiveServices
 
 ---
 
-In the _Program.cs_ file of `AppHost`, add an Azure Search service and consume the connection using the following methods:
+In the _:::no-loc text="Program.cs":::_ file of `AppHost`, add an Azure Search service and consume the connection using the following methods:
 
 ```csharp
 var search = builder.ExecutionContext.IsPublishMode
@@ -103,7 +103,7 @@ var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(search);
 ```
 
-The `AddAzureSearch` method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:search` config key. The `WithReference` method passes that connection information into a connection string named `search` in the `MyService` project. In the _Program.cs_ file of `MyService`, the connection can be consumed using:
+The `AddAzureSearch` method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:search` config key. The `WithReference` method passes that connection information into a connection string named `search` in the `MyService` project. In the _:::no-loc text="Program.cs":::_ file of `MyService`, the connection can be consumed using:
 
 ```csharp
 builder.AddAzureSearch("search");
@@ -149,7 +149,7 @@ Alternatively, a custom connection string can be used.
 
 ### Use configuration providers
 
-The .NET Aspire Azure AI Search library supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureSearchSettings` and `SearchClientOptions` from configuration by using the `Aspire:Azure:Search:Documents` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire Azure AI Search library supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureSearchSettings` and `SearchClientOptions` from configuration by using the `Aspire:Azure:Search:Documents` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {

@@ -98,7 +98,7 @@ builder.AddServiceDefaults();
 
 For more information on what `AddServiceDefaults` does, see [.NET Aspire service defaults](../fundamentals/service-defaults.md).
 
-When added to your _Program.cs_ file, the preceding code handles the following concerns:
+When added to your _:::no-loc text="Program.cs":::_ file, the preceding code handles the following concerns:
 
 - **OpenTelemetry**: Sets up formatted logging, runtime metrics, built-in meters, and tracing for ASP.NET Core, gRPC, and HTTP. For more information, see [.NET Aspire telemetry](../fundamentals/telemetry.md).
 - **Default health checks**: Adds default health check endpoints that tools can query to monitor your app. For more information, see [.NET app health checks in C#](/dotnet/core/diagnostics/diagnostic-health-checks).

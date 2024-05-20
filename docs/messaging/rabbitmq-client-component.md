@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddRabbitMQClient%2A> extension method to register an `IConnection` for use via the dependency injection container. The method takes a connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddRabbitMQClient%2A> extension method to register an `IConnection` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddRabbitMQClient("messaging");
@@ -105,7 +105,7 @@ For more information on how to format this connection string, see the [RabbitMQ 
 
 ### Use configuration providers
 
-The .NET Aspire RabbitMQ component supports <xref:Microsoft.Extensions.Configuration>. It loads the `RabbitMQClientSettings` from configuration by using the `Aspire:RabbitMQ:Client` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire RabbitMQ component supports <xref:Microsoft.Extensions.Configuration>. It loads the `RabbitMQClientSettings` from configuration by using the `Aspire:RabbitMQ:Client` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {

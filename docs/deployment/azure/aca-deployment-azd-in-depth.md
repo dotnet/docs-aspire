@@ -87,9 +87,9 @@ services:
     host: containerapp
 ```
 
-With the `project` field pointing to a .NET Aspire AppHost project, `azd` activates its integration with .NET Aspire and derives the required infrastructure needed to host this application from the application model specified in the _Program.cs_ file of the .NET Aspire app.
+With the `project` field pointing to a .NET Aspire AppHost project, `azd` activates its integration with .NET Aspire and derives the required infrastructure needed to host this application from the application model specified in the _:::no-loc text="Program.cs":::_ file of the .NET Aspire app.
 
-The _.azure\aspireazddev\config.json_ file has the following contents:
+The _:::no-loc text=".azure\aspireazddev\config.json":::_ file has the following contents:
 
 ```json
 {
@@ -173,7 +173,7 @@ For more information, see [Azure Developer CLI reference: azd deploy](/azure/dev
 
 Whenever the dependency structure within a .NET Aspire app changes, `azd` must re-provision the underlying Azure resources. The `azd provision` command is used to apply these changes to the infrastructure.
 
-To see this in action, update the _Program.cs_ file in the AppHost project to the following:
+To see this in action, update the _:::no-loc text="Program.cs":::_ file in the AppHost project to the following:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

@@ -58,7 +58,7 @@ Configure the _AspireRedis.AppHost_ project for your desired Redis service.
 
 # [Azure Cache for Redis](#tab/azure-redis)
 
-Replace the contents of the _Program.cs_ file in the _AspireRedis.AppHost_ project with the following code:
+Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _AspireRedis.AppHost_ project with the following code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -81,7 +81,7 @@ The preceding code adds an Azure Cache for Redis resource to your app and config
 
 ## [Redis Container](#tab/redis-container)
 
-Replace the contents of the _Program.cs_ file in the _AspireRedis.AppHost_ project with the following code:
+Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _AspireRedis.AppHost_ project with the following code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

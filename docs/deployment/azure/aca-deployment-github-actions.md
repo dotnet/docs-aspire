@@ -168,11 +168,11 @@ The Azure Developer CLI enables you to automatically create CI/CD pipelines with
 
 1. Select the **Actions** tab to view the repository workflows. You should see the new workflow either running or already completed. Select the workflow to view the job steps and details in the logs of the run. For example, you can expand steps such as **Install .NET Aspire Workload** or **Deploy application** to see the details of the completed action.
 
-    :::image type="content" loc-scope="third-party" source="media/github-action.png" alt-text="A screenshot showing the GitHub Action workflow steps.":::
+    :::image type="content" loc-scope="github" source="media/github-action.png" alt-text="A screenshot showing the GitHub Action workflow steps.":::
 
 1. Select **Deploy Application** to expand the logs for that step. You should see two endpoint urls printed out for the `apiservice` and `webfrontend`. Select either of these links to open them in another browser tab and explore the deployed application.
 
-    :::image type="content" loc-scope="third-party" source="media/deployment-links.png" alt-text="A screenshot showing the deployed app links.":::
+    :::image type="content" loc-scope="github" source="media/deployment-links.png" alt-text="A screenshot showing the deployed app links.":::
 
 Congratulations! You successfully deployed a .NET Aspire app using the Azure Developer CLI and GitHub Actions.
 
@@ -287,7 +287,7 @@ The Azure Developer CLI enables you to automatically create pipelines with the c
 
 1. Select the completed pipeline run to view the summary.
 
-    :::image type="content" source="media/azure-pipeline-summary.png" lightbox="media/azure-pipeline-summary.png" alt-text="A screenshot showing the summary view of the Azure Pipelines run.":::
+    :::image type="content" source="media/azure-pipeline-summary.png" alt-text="A screenshot showing the summary view of the Azure Pipelines run.":::
 
 1. Select the job link at the bottom of the view to navigate to the job details.
 

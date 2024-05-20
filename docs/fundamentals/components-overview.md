@@ -68,7 +68,7 @@ For more information on working with .NET Aspire components in Visual Studio, se
 
     For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-1. In the _Program.cs_ file of your worker service project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension method to register `NpgsqlDataSource` as a service.
+1. In the _:::no-loc text="Program.cs":::_ file of your worker service project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension method to register `NpgsqlDataSource` as a service.
 
     :::code source="snippets/components/AspireApp/WorkerService/Program.cs" highlight="5":::
 
@@ -81,9 +81,9 @@ For more information on working with .NET Aspire components in Visual Studio, se
 
     :::code language="xml" source="snippets/components/AspireApp/AspireApp.AppHost/AspireApp.AppHost.csproj" highlight="17":::
 
-    After the worker service is referenced by the orchestrator project, the worker service project has its _Program.cs_ file updated to call the `AddServiceDefaults` method. For more information on service defaults, see [Service defaults](service-defaults.md).
+    After the worker service is referenced by the orchestrator project, the worker service project has its _:::no-loc text="Program.cs":::_ file updated to call the `AddServiceDefaults` method. For more information on service defaults, see [Service defaults](service-defaults.md).
 
-1. In the orchestrator project, update the _Program.cs_ file with the following code:
+1. In the orchestrator project, update the _:::no-loc text="Program.cs":::_ file with the following code:
 
     :::code source="snippets/components/AspireApp/AspireApp.AppHost/Program.cs" highlight="3-4,6-8":::
 
@@ -104,7 +104,7 @@ You now have a fully configured PostgreSQL database component and corresponding 
 
 .NET Aspire components implement a consistent configuration experiences via <xref:Microsoft.Extensions.Configuration.IConfiguration> and <xref:Microsoft.Extensions.Options.IOptions%601>. Configuration is schematized and part of a component's contract, ensuring backward compatibility across versions of the component. You can set up every .NET Aspire component through either JSON configuration files or directly through code using delegates. JSON files must follow a standardized naming convention based on the Component name.
 
-For example, add the following code to the _appsettings.json_ file to configure the PostgreSQL component:
+For example, add the following code to the _:::no-loc text="appsettings.json":::_ file to configure the PostgreSQL component:
 
 ```json
 {

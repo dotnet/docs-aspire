@@ -91,7 +91,7 @@ When utilizing Azure resources in your local development environment, you need t
 - `ResourceGroup`: The name of the resource group to use.
 - `Location`: The Azure region to use.
 
-Consider the following example _appsettings.json_ configuration:
+Consider the following example _:::no-loc text="appsettings.json":::_ configuration:
 
 ```json
 {
@@ -113,7 +113,7 @@ After you've configured the necessary values, you can start provisioning Azure r
 
 The .NET Aspire app host uses a credential store for Azure resource authentication and authorization. Depending on your subscription, the correct credential store may be needed for multi-tenant provisioning scenarios.
 
-With the [Aspire.Hosting.Azure](https://nuget.org/packages/Aspire.Hosting.Azure) NuGet package installed, and if your app host depends on Azure resources, the default Azure credential store relies on the <xref:Azure.Identity.DefaultAzureCredential>. To change this behavior, you can set the credential store value in the _appsettings.json_ file, as shown in the following example:
+With the [Aspire.Hosting.Azure](https://nuget.org/packages/Aspire.Hosting.Azure) NuGet package installed, and if your app host depends on Azure resources, the default Azure credential store relies on the <xref:Azure.Identity.DefaultAzureCredential>. To change this behavior, you can set the credential store value in the _:::no-loc text="appsettings.json":::_ file, as shown in the following example:
 
 ```json
 {

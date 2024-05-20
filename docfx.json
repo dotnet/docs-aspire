@@ -126,6 +126,7 @@
           "Azure Cache for Redis",
           "Azure Container Apps",
           "Azure Cosmos DB",
+          "Azure Developer CLI",
           "Azure Event Hubs",
           "Azure Key Vault",
           "Azure Search Documents",
@@ -159,6 +160,7 @@
           "Node.js",
           "OpenAI",
           "OpenAPI",
+          "OpenTelemetry",
           "Oracle",
           "Orleans",
           "Podman",
@@ -177,7 +179,8 @@
           "Visual Studio Code",
           "Visual Studio",
           "Vue",
-          "WASM"
+          "WASM",
+          "Worker Service"
         ]
       }
     },

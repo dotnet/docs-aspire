@@ -107,7 +107,7 @@ Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to shutdown the app (you can close the browse
 1. Add `Aspire.Hosting` to the class library as a package reference.
 
     ```dotnetcli
-    dotnet add ./MailDev.Hosting\MailDev.Hosting.csproj package Aspire.Hosting --version 8.0.0
+    dotnet add ./MailDev.Hosting/MailDev.Hosting.csproj package Aspire.Hosting --version 8.0.0
     ```
 
 1. Add class library reference to the _MailDevResource.AppHost_ project.
@@ -136,7 +136,7 @@ spire Host project, but it is not an executable. Did you mean to set IsAspirePro
 source.AppHost.csproj]
 ```
 
-This is because .NET Aspire treats project references in the app host as if they are service projects. To tell .NET Aspire that the project reference should be treated as a non-service project modify the _MailDevResource.AppHost\MailDevResource.AppHost.csproj_ files reference to the `MailDev.Hosting` project to be the following:
+This is because .NET Aspire treats project references in the app host as if they are service projects. To tell .NET Aspire that the project reference should be treated as a non-service project modify the _:::no-loc text="MailDevResource.AppHost\MailDevResource.AppHost.csproj":::_ files reference to the `MailDev.Hosting` project to be the following:
 
 ```xml
 <ItemGroup>
@@ -167,7 +167,7 @@ To achieve this, you need a custom resource named `MailDevResource` which implem
 
 MailDev is available as a container resource, so you'll also want to derive from <xref:Aspire.Hosting.ApplicationModel.ContainerResource> so that we can make use of various pre-existing container-focused extensions in .NET Aspire.
 
-Replace the contents of the _Class1.cs_ file in the `MailDev.Hosting` project, and rename the file to _MailDevResource.cs_ with the following code:
+Replace the contents of the _:::no-loc text="Class1.cs":::_ file in the `MailDev.Hosting` project, and rename the file to _:::no-loc text="MailDevResource.cs":::_ with the following code:
 
 :::code language="csharp" source="snippets/MailDevResource/MailDev.Hosting/MailDevResource.cs":::
 
@@ -175,7 +175,7 @@ In the preceding custom resource, the <xref:Aspire.Hosting.ApplicationModel.Endp
 
 ## Define the resource extensions
 
-To make it easy for developers to use the custom resource an extension method named `AddMailDev` needs to be added to the _MailDev.Hosting_ project. The `AddMailDev` extension method is responsible for configuring the resource so it can start successfully as a container.
+To make it easy for developers to use the custom resource an extension method named `AddMailDev` needs to be added to the _:::no-loc text="MailDev.Hosting":::_ project. The `AddMailDev` extension method is responsible for configuring the resource so it can start successfully as a container.
 
 Add the following code to a new file named _MailDevResourceBuilderExtensions.cs_ in the _MailDev.Hosting_ project:
 
@@ -183,7 +183,7 @@ Add the following code to a new file named _MailDevResourceBuilderExtensions.cs_
 
 ## Validate custom component inside the app host
 
-Now that the basic structure for the custom resource is complete it is time to test it in a real AppHost project. Open the _Program.cs_ file in the _MailDevResource.AppHost_ project and update it with the following code:
+Now that the basic structure for the custom resource is complete it is time to test it in a real AppHost project. Open the _:::no-loc text="Program.cs":::_ file in the _:::no-loc text="MailDevResource.AppHost":::_ project and update it with the following code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -193,7 +193,7 @@ var maildev = builder.AddMailDev("maildev");
 builder.Build().Run();
 ```
 
-After updating the _Program.cs_ file, launch the app host project and open the dashboard:
+After updating the _:::no-loc text="Program.cs":::_ file, launch the app host project and open the dashboard:
 
 ```dotnetcli
 dotnet run --project ./MailDevResource.AppHost/MailDevResource.AppHost.csproj
@@ -224,22 +224,22 @@ In the case of the MailDev resource, the .NET platform already has an SMTP clien
 
 In order to test the end-to-end scenario, you need a .NET project which we can inject the connection information into for the MailDev resource. Add a web api project:
 
-1. Create a new .NET project named _MailDevResource.NewsletterService_.
+1. Create a new .NET project named _:::no-loc text="MailDevResource.NewsletterService":::_.
 
     ```dotnetcli
     dotnet new webapi --use-minimal-apis --no-openapi -o MailDevResource.NewsletterService
     ```
 
-1. Add a reference to the _MailDev.Hosting_ project.
+1. Add a reference to the _:::no-loc text="MailDev.Hosting":::_ project.
 
     ```dotnetcli
     dotnet add ./MailDevResource.NewsletterService/MailDevResource.NewsletterService.csproj reference ./MailDev.Hosting/MailDev.Hosting.csproj
     ```
 
-1. Add a referece to the _MailDevResource.AppHost_ project.
+1. Add a referece to the _:::no-loc text="MailDevResource.AppHost":::_ project.
 
     ```dotnetcli
-    dotnet add ./MailDevResource.AppHost/MailDevResource.AppHost.csproj reference ./MailDevResource.NewsletterService\MailDevResource.NewsletterService.csproj
+    dotnet add ./MailDevResource.AppHost/MailDevResource.AppHost.csproj reference ./MailDevResource.NewsletterService/MailDevResource.NewsletterService.csproj
     ```
 
 1. Add the new project to the solution file.
@@ -248,11 +248,11 @@ In order to test the end-to-end scenario, you need a .NET project which we can i
     dotnet sln ./MailDevResource.sln add ./MailDevResource.NewsletterService/MailDevResource.NewsletterService.csproj
     ```
 
-After the project has been added and references have been updated, open the _Program.cs_ of the _MailDevResource.AppHost.csproj_ project, and update the source file to look like the following:
+After the project has been added and references have been updated, open the _:::no-loc text="Program.cs":::_ of the _:::no-loc text="MailDevResource.AppHost.csproj":::_ project, and update the source file to look like the following:
 
 :::code source="snippets/MailDevResource/MailDevResource.AppHost/Program.cs":::
 
-After updating the _Program.cs_ file, launch the app host again. Then verify that the Newsletter Service started and that the environment variable `ConnectionStrings__maildev` was added to the process. From the **Resources** page, find the `newsletterservice` row, and select the **View** link on the **Details** column:
+After updating the _:::no-loc text="Program.cs":::_ file, launch the app host again. Then verify that the Newsletter Service started and that the environment variable `ConnectionStrings__maildev` was added to the process. From the **Resources** page, find the `newsletterservice` row, and select the **View** link on the **Details** column:
 
 :::image type="content" source="media/maildev-envvar.png" lightbox="media/maildev-envvar.png" alt-text="Environment variables for Newsletter Service in .NET Aspire Dashboard.":::
 
@@ -260,18 +260,18 @@ The preceding screenshot shows the environment variables for the `newsletterserv
 
 ## Use connection string to send messages
 
-To use the SMTP connection details that were injected into the newsletter service project, you inject an instance of <xref:System.Net.Mail.SmtpClient> into the dependency injection container as a singleton. Add the following code to the _Program.cs_ file in the _MailDevResource.NewsletterService_ project to setup the singleton service. In the `Program` class, immediately following the `// Add services to the container` comment, add the following code:
+To use the SMTP connection details that were injected into the newsletter service project, you inject an instance of <xref:System.Net.Mail.SmtpClient> into the dependency injection container as a singleton. Add the following code to the _:::no-loc text="Program.cs":::_ file in the _:::no-loc text="MailDevResource.NewsletterService":::_ project to setup the singleton service. In the `Program` class, immediately following the `// Add services to the container` comment, add the following code:
 
 :::code source="snippets/MailDevResource/MailDevResource.NewsletterService/Program.cs" id="smtp":::
 
-To test the client, add two simple `subscribe` and `unsubscribe` GET methods to the newsletter service. Add the following code after the `MapGet` call in the _Program.cs_ file of the _MailDevResource.NewsletterService_ project to setup the ASP.NET Core routes:
+To test the client, add two simple `subscribe` and `unsubscribe` GET methods to the newsletter service. Add the following code after the `MapGet` call in the _:::no-loc text="Program.cs":::_ file of the _MailDevResource.NewsletterService_ project to setup the ASP.NET Core routes:
 
 :::code source="snippets/MailDevResource/MailDevResource.NewsletterService/Program.cs" id="subs":::
 
 > [!TIP]
-> Remember to reference the `System.Net.Mail` and `Microsoft.AspNetCore.Mvc` namespaces in _Program.cs_ if your code editor doesn't automatically add them.
+> Remember to reference the `System.Net.Mail` and `Microsoft.AspNetCore.Mvc` namespaces in _:::no-loc text="Program.cs":::_ if your code editor doesn't automatically add them.
 
-Once the _Program.cs_ file is updated, launch the app host and use your browser, or `curl` to hit the following URLs (alternatively if you're using Visual Studio you can use `.http` files):
+Once the _:::no-loc text="Program.cs":::_ file is updated, launch the app host and use your browser, or `curl` to hit the following URLs (alternatively if you're using Visual Studio you can use `.http` files):
 
 ```http
 POST /subscribe?email=test@test.com HTTP/1.1
@@ -322,7 +322,7 @@ curl -H "Content-Type: application/json" --request POST https://localhost:7251/u
 > [!TIP]
 > Make sure that you replace the `https://localhost:7251` with the correct localhost port (the URL of the app host that you are running).
 
-If those API calls return a successful response (HTTP 200, Ok) then you should be able to click on the `maildev` resource the dashboard and the MailDev UI will show the emails that have been sent to the SMTP endpoint.
+If those API calls return a successful response (HTTP 200, Ok) then you should be able to click on the `maildev` resource the dashboard and the :::no-loc text="MailDev UI"::: will show the emails that have been sent to the SMTP endpoint.
 
 :::image type="content" source="media/maildev-emails.png" lightbox="media/maildev-emails.png" alt-text="E-mails visible in the MailDev UI":::
 
