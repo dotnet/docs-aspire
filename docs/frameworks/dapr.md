@@ -51,7 +51,7 @@ Add a sidecar to a .NET Aspire resource by using the `WithDaprSidecar(string app
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="18-21"  highlight="21":::
 
-The `WithDaprSidecar` method offers overloads to configure your Dapr sidecar options like app ID and ports. In the following example, the Dapr sidecar is configured with specific ports for GRPC, HTTP, metrics and a specific App ID.
+The `WithDaprSidecar` method offers overloads to configure your Dapr sidecar options like app ID and ports. In the following example, the Dapr sidecar is configured with specific ports for GRPC, HTTP, metrics, and a specific App ID.
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="6-16"  highlight="1-7,11":::
 
@@ -62,7 +62,7 @@ Putting everything together, here's an example of a .NET Aspire app host project
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs":::
 
-The .NET Aspire dashboard will shows the Dapr sidecar as a resource, with its status and logs.
+The .NET Aspire dashboard shows the Dapr sidecar as a resource, with its status and logs.
 
 :::image type="content" source="media/aspire-dashboard-dapr-sidecar-resources.png" lightbox="media/aspire-dashboard-dapr-sidecar-resources.png" alt-text=".NET Aspire dashboard showing Dapr sidecar resources":::
 
@@ -96,21 +96,29 @@ An instance of `DaprClient` can now be injected into your services to interact w
 
 :::code language="csharp" source="snippets/Dapr/Dapr.Web/WeatherApiClient.cs" highlight="9-10":::
 
-`InvokeMethodAsync` is a method that sends an HTTP request to the Dapr sidecar. It is a generic method that takes an HTTP verb, the Dapr app ID of the service to call, the method name and a cancellation token. Depending on the HTTP verb it can also take a request body and headers. The generic type parameter is the type of the response body.
+`InvokeMethodAsync` is a method that sends an HTTP request to the Dapr sidecar. It is a generic method that takes:
+- An HTTP verb
+- The Dapr app ID of the service to call
+- The method name
+- A cancellation token
 
-The full `Program.cs` file for the frontend project shows the Dapr Client being added to the service builder and the `WeatherApiClient` class that uses the Dapr Client to call the backend service.
+Depending on the HTTP verb, it can also take a request body and headers. The generic type parameter is the type of the response body.
+
+The full `Program.cs` file for the frontend project shows:
+- The Dapr client being added to the service builder
+- The `WeatherApiClient` class that uses the Dapr client to call the backend service
 
 :::code language="csharp" source="snippets/Dapr/Dapr.Web/Program.cs" highlight="15,17":::
 
-In, for example, a Blazor project the `WeatherApiClient` class can be injected into a component and used to call the backend service.
+For example, in a Blazor project, the `WeatherApiClient` class can be injected into a component and used to call the backend service.
 
 :::code language="csharp" source="snippets/Dapr/Dapr.Web/Components/Pages/Weather.razor" highlight="5,47":::
 
-What actually happens when the Dapr SDK is used is that the Dapr sidecar is called over HTTP. The Dapr sidecar then forwards the request to the target service. While the target service runs in a separate process from the sidecar, the component related to the service runs in the Dapr sidecar and is responsible for service discovery and routing the request to the target service.
+When the Dapr SDK is used, the Dapr sidecar is called over HTTP. The Dapr sidecar then forwards the request to the target service. While the target service runs in a separate process from the sidecar, the component related to the service runs in the Dapr sidecar and is responsible for service discovery and routing the request to the target service.
 
 ## Dapr and .NET Aspire
 
-At first sight Dapr and .NET Aspire may look like they have overlapping functionality, and they do. However, they both take a different approach. .NET Aspire is an opiniated approach on how to build distributed applications on a cloud platform. Dapr is a runtime that abstracts away the common complexities of the underlying cloud platform. It relies on sidecars to provide abstractions for things like configuration, secret management and messaging. The underlying technology can be easily switched out through configuration files, while your code does not need to change.
+At first sight Dapr and .NET Aspire may look like they have overlapping functionality, and they do. However, they both take a different approach. .NET Aspire is an opiniated approach on how to build distributed applications on a cloud platform. Dapr is a runtime that abstracts away the common complexities of the underlying cloud platform. It relies on sidecars to provide abstractions for things like configuration, secret management, and messaging. The underlying technology can be easily switched out through configuration files, while your code does not need to change.
 
 .NET Aspire makes setting up and debugging Dapr applications easier by providing a straightforward API to configure Dapr sidecars, and by exposing the sidecars as resources in the dashboard.
 
