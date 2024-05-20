@@ -119,13 +119,13 @@ Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/ove
 
 The deployment process provisioned an Azure SQL Database resource due to the **.AppHost** configuration you provided.
 
-:::image type="content" source="media/resources-azure-sql-database.png" alt-text="A screenshot showing the deployed Azure SQL Database.":::
+:::image type="content" loc-scope="azure" source="media/resources-azure-sql-database.png" alt-text="A screenshot showing the deployed Azure SQL Database.":::
 
 ## [SQL Server Container](#tab/sql-container)
 
 The deployment process created a SQL Server app container due to the **.AppHost** configuration you provided.
 
-:::image type="content" source="media/resources-azure-sql-container.png" alt-text="A screenshot showing the containerized SQL Database.":::
+:::image type="content" loc-scope="azure" source="media/resources-azure-sql-container.png" alt-text="A screenshot showing the containerized SQL Database.":::
 
 ---
 

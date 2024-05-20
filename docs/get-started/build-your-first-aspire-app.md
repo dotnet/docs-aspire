@@ -57,7 +57,7 @@ In Visual Studio, set the **AspireSample.AppHost** project as the startup projec
 
 In Visual Studio Code, press <kbd>F5</kbd> to run the app. You'll be prompted to select which language, and C# will be suggested, select C# and then select the **AspireSample.AppHost** project with the **Default Configuration**:
 
-:::image type="content" source="media/vscode-run.png" lightbox="media/vscode-run.png" alt-text="A screenshot of the Visual Studio Code run configuration for the AspireSample.AppHost project.":::
+:::image type="content" loc-scope="visual-studio-code" source="media/vscode-run.png" lightbox="media/vscode-run.png" alt-text="A screenshot of the Visual Studio Code run configuration for the AspireSample.AppHost project.":::
 
 :::zone-end
 :::zone pivot="dotnet-cli"
@@ -92,7 +92,7 @@ In Visual Studio, select the **Stop Debugging** from the **Debug** menu to stop 
 
 In Visual Studio Code, press <kbd>Shift</kbd> + <kbd>F5</kbd> to stop the app, or select the **Stop** button at the top center of the window:
 
-:::image type="content" source="media/vscode-stop.png" lightbox="media/vscode-stop.png" alt-text="A screenshot of the Visual Studio Code stop button.":::
+:::image type="content" loc-scope="visual-studio-code" source="media/vscode-stop.png" lightbox="media/vscode-stop.png" alt-text="A screenshot of the Visual Studio Code stop button.":::
 
 :::zone-end
 :::zone pivot="dotnet-cli"

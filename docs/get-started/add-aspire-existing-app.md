@@ -60,7 +60,7 @@ Now, let's enroll the **Store** project, which implements the web user interface
 1. In Visual Studio, in the **Solution Explorer**, right-click the **Store** project, select **Add**, and then select **.NET Aspire Orchestrator Support**.
 1. In the **Add .NET Aspire Orchestrator Support** dialog, select **OK**.
 
-    :::image type="content" source="media/add-aspire-orchestrator-support.png" alt-text="Screenshot of the Add .NET Aspire Orchestrator Support dialog.":::
+    :::image type="content" loc-scope="visual-studio" source="media/add-aspire-orchestrator-support.png" alt-text="Screenshot of the Add .NET Aspire Orchestrator Support dialog.":::
 
 Visual Studio adds two new projects to the solution:
 
@@ -80,7 +80,7 @@ To add the **Products** project to .NET Aspire:
 1. In Visual Studio, in the **Solution Explorer**, right-click the **Products** project, select **Add**, and then select **.NET Aspire Orchestrator Support**.
 1. A dialog indicating that .NET Aspire Orchestrator project already exists, select **OK**.
 
-    :::image type="content" source="media/orchestrator-already-added.png" alt-text="Screenshot indicating that the.NET Aspire Orchestrator was already added.":::
+    :::image type="content" loc-scope="visual-studio" source="media/orchestrator-already-added.png" alt-text="Screenshot indicating that the.NET Aspire Orchestrator was already added.":::
 
 In the **eShopLite.AppHost** project, open the **Program.cs** file. Notice this line of code, which registers the **Products** project in the .NET Aspire orchestration:
 

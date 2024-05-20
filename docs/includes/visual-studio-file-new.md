@@ -3,7 +3,7 @@ Visual Studio provides .NET Aspire project templates that handle some initial se
 1. At the top of Visual Studio, navigate to **File** > **New** > **Project**.
 1. In the dialog window, search for *Aspire* and select **.NET Aspire Starter Application**. Select **Next**.
 
-    :::image type="content" source="../media/aspire-templates.png" lightbox="../media/aspire-templates.png" alt-text="A screenshot of the .NET Aspire Starter Application template.":::
+    :::image type="content" loc-scope="visual-studio" source="../media/aspire-templates.png" lightbox="../media/aspire-templates.png" alt-text="A screenshot of the .NET Aspire Starter Application template.":::
 
 1. On the **Configure your new project** screen:
     - Enter a **Project Name** of *AspireSample*.

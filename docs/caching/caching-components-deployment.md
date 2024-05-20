@@ -138,13 +138,13 @@ Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/ove
 
 The deployment process provisioned an Azure Cache for Redis resource due to the **.AppHost** configuration you provided.
 
-:::image type="content" source="media/resources-azure-redis.png" alt-text="A screenshot showing the deployed Azure Cache for Redis.":::
+:::image type="content" loc-scope="azure" source="media/resources-azure-redis.png" alt-text="A screenshot showing the deployed Azure Cache for Redis.":::
 
 ## [Redis Container](#tab/redis-container)
 
 The deployment process created a Redis app container due to the **.AppHost** configuration you provided.
 
-:::image type="content" source="media/resources-azure-redis-container.png" alt-text="A screenshot showing the containerized Redis.":::
+:::image type="content" loc-scope="azure" source="media/resources-azure-redis-container.png" alt-text="A screenshot showing the containerized Redis.":::
 
 ---
 

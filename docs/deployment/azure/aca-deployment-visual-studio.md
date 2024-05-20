@@ -28,7 +28,7 @@ As a starting point, this article assumes that you've created a .NET Aspire app 
 
 1. Select **Azure Container Apps for .NET Aspire** as the publishing target.
 
-    :::image type="content" source="../media/visual-studio-deploy.png" alt-text="A screenshot of the publishing dialog workflow.":::
+    :::image type="content" loc-scope="visual-studio" source="../media/visual-studio-deploy.png" alt-text="A screenshot of the publishing dialog workflow.":::
 
 1. On the **AzDev Environment** step, select your desired **Subscription** and **Location** values and then enter an **Environment name** such as *aspire-vs*. The environment name determines the naming of Azure Container Apps environment resources.
 
@@ -38,7 +38,7 @@ As a starting point, this article assumes that you've created a .NET Aspire app 
 
 1. When the publish completes, Visual Studio displays the resource URLs at the bottom of the environment screen. Use these links to view the various deployed resources. Select the **webfrontend** URL to open a browser to the deployed app.
 
-    :::image type="content" source="../media/visual-studio-deploy-complete.png" alt-text="A screenshot of the completed publishing process and deployed resources.":::
+    :::image type="content" loc-scope="visual-studio" source="../media/visual-studio-deploy-complete.png" alt-text="A screenshot of the completed publishing process and deployed resources.":::
 
 [!INCLUDE [test-deployed-app](includes/test-deployed-app.md)]
 

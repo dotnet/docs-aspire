@@ -198,7 +198,7 @@ Visual Studio tooling added this line of code to register your new project with 
 
 The completed solution structure should resemble the following:
 
-:::image type="content" source="media/storage-project.png" alt-text="A screenshot showing the structure of the .NET Aspire storage sample solution.":::
+:::image type="content" loc-scope="visual-studio" source="media/storage-project.png" alt-text="A screenshot showing the structure of the .NET Aspire storage sample solution.":::
 
 ## Add the .NET Aspire components to the Blazor app
 
