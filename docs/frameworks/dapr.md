@@ -105,7 +105,7 @@ An instance of `DaprClient` can now be injected into your services to interact w
 
 Depending on the HTTP verb, it can also take a request body and headers. The generic type parameter is the type of the response body.
 
-The full `Program.cs` file for the frontend project shows:
+The full _Program.cs_ file for the frontend project shows:
 
 - The Dapr client being added to the service builder
 - The `WeatherApiClient` class that uses the Dapr client to call the backend service
