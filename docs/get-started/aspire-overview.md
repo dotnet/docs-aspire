@@ -9,7 +9,7 @@ ms.date: 05/17/2024
 :::row:::
 :::column:::
 
-:::image type="content" border="false" source="../../assets/dotnet-aspire-logo-128.svg" alt-text=".NET Aspire logo.":::
+:::image type="icon" border="false" source="../../assets/dotnet-aspire-logo-128.svg":::
 
 :::column-end:::
 :::column span="3":::
