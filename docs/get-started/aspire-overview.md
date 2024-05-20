@@ -59,7 +59,7 @@ For more information, see [.NET Aspire orchestration overview](../fundamentals/a
 
 [.NET Aspire components](../fundamentals/components-overview.md) are NuGet packages designed to simplify connections to popular services and platforms, such as Redis or PostgreSQL. .NET Aspire components handle many cloud-native concerns for you through standardized configuration patterns, such as adding health checks and telemetry.
 
-Each component is designed to work with .NET Aspire orchestration, and they're capable of flowing their configurations through dependencies based on .NET project and package references. In other words, if _Example.ServiceFoo_ references _Example.ServiceBar_, _Example.ServiceFoo_ inherits the component's required configurations to allow them to communicate with each other automatically.
+Each component is designed to work with .NET Aspire orchestration, and they're configurations are injected automatically by simply referencing named resources. In other words, if _Example.ServiceFoo_ references _Example.ServiceBar_, _Example.ServiceFoo_ inherits the component's required configurations to allow them to communicate with each other automatically.
 
 For example, consider the following code using the .NET Aspire Service Bus component:
 
