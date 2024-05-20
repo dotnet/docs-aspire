@@ -190,12 +190,16 @@ The preceding code:
 
 For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fundamentals/networking/http/httpclient) class.
 
-## Next steps
+## See also
 
 - [.NET Aspire components overview](../fundamentals/components-overview.md)
 - [Service discovery in .NET Aspire](../service-discovery/overview.md)
-- [Service discovery in .NET](/dotnet/core/extensions/service-discovery)
 - [.NET Aspire service defaults](../fundamentals/service-defaults.md)
 - [Health checks in .NET Aspire](../fundamentals/health-checks.md)
 - [.NET Aspire telemetry](../fundamentals/telemetry.md)
 - [Troubleshoot untrusted localhost certificate in .NET Aspire](../troubleshooting/untrusted-localhost-certificate.md)
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Tutorial: Add .NET Aspire to an existing .NET app](add-aspire-existing-app.md)

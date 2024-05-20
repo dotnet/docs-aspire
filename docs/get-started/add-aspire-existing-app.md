@@ -1,11 +1,11 @@
 ---
-title: Add .NET Aspire to an existing .NET 8 microservices app
+title: Add .NET Aspire to an existing .NET app
 description: Learn how to add .NET Aspire components, orchestration, and tooling to a microservices app that already exists.
 ms.date: 05/17/2024
 ms.topic: how-to
 ---
 
-# Tutorial: Add .NET Aspire to an existing .NET 8 microservices app
+# Tutorial: Add .NET Aspire to an existing .NET app
 
 If you have already created a microservices .NET web app, you can use Visual Studio to add .NET Aspire to it and get all the features and benefits available to those who enabled .NET Aspire when they selected **File** > **New** > **Project** and chose **Enlist in Aspire orchestration**. In this article, you'll add .NET Aspire orchestration to a simple, pre-existing .NET 8 project. You'll learn how to:
 
