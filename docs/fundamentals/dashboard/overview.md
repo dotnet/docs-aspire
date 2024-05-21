@@ -23,7 +23,7 @@ The .NET Aspire dashboard is also shipped as a Docker image and can be used stan
 
 ```bash
 docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
-    mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
+    mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0-preview
 ```
 
 The preceding Docker command:
