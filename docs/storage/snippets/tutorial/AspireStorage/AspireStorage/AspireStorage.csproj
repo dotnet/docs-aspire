@@ -8,9 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.Azure.Storage.Blobs" 
-                      Version="8.0.0" />
+                      Version="8.0.1" />
     <PackageReference Include="Aspire.Azure.Storage.Queues" 
-                      Version="8.0.0" />
+                      Version="8.0.1" />
   </ItemGroup>
   
   <ItemGroup>
