@@ -55,7 +55,7 @@ API key authentication can be enabled on the telemetry endpoint with some additi
 docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
     -e DASHBOARD__OTLP__AUTHMODE='ApiKey' \
     -e DASHBOARD__OTLP__PRIMARYAPIKEY='{MY_APIKEY}' \
-    mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.6
+    mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0
 ```
 
 The preceding Docker command:

@@ -2,7 +2,7 @@
 title: .NET Aspire PostgreSQL Entity Framework Core component
 description: This article describes the .NET Aspire PostgreSQL Entity Framework Core component.
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire PostgreSQL Entity Framework Core component
@@ -29,7 +29,7 @@ To get started with the .NET Aspire PostgreSQL Entity Framework Core component, 
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Npgsql.EntityFrameworkCore.PostgreSQL --prerelease
+dotnet add package Aspire.Npgsql.EntityFrameworkCore.PostgreSQL
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -45,7 +45,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext> for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext> for use via the dependency injection container.
 
 ```csharp
 builder.AddNpgsqlDbContext<YourDbContext>("postgresdb");
@@ -62,7 +62,7 @@ public class ExampleService(YourDbContext context)
 
 ## App host usage
 
-In your app host project, register the PostgreSQL component and consume the `DbContext` using the following methods:
+[!INCLUDE [postgresql-app-host](includes/postgresql-app-host.md)]
 
 ```csharp
 var postgres = builder.AddPostgres("postgres");
@@ -78,9 +78,9 @@ The .NET Aspire PostgreSQL Entity Framework Core component provides multiple con
 
 ### Use configuration providers
 
-The .NET Aspire PostgreSQL Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Npgsql.EntityFrameworkCore.PostgreSQL.NpgsqlEntityFrameworkCorePostgreSQLSettings> from configuration files such as _appsettings.json_ by using the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` key. If you have set up your configurations in the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` section you can just call the method without passing any parameter.
+The .NET Aspire PostgreSQL Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Npgsql.EntityFrameworkCore.PostgreSQL.NpgsqlEntityFrameworkCorePostgreSQLSettings> from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` key. If you have set up your configurations in the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` section you can just call the method without passing any parameter.
 
-The following example shows an _appsettings.json_ file that configures some of the available options:
+The following example shows an _:::no-loc text="appsettings.json":::_ file that configures some of the available options:
 
 ```json
 {

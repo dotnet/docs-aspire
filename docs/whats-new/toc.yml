@@ -1,4 +1,6 @@
 items:
+- name: .NET Aspire
+  href: ../index.yml
 - name: What's new
   href: index.yml
   expanded: true
@@ -6,6 +8,8 @@ items:
   - name: Latest product updates
     expanded: true
     items:
+    - name: .NET Aspire 8.0 (General Availability)
+      href: https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability/
     - name: .NET Aspire preview 7
       href: preview-7.md
     - name: .NET Aspire preview 6

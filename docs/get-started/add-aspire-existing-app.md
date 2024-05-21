@@ -1,11 +1,11 @@
 ---
-title: Add .NET Aspire to an existing .NET 8 microservices app
+title: Add .NET Aspire to an existing .NET app
 description: Learn how to add .NET Aspire components, orchestration, and tooling to a microservices app that already exists.
-ms.date: 11/15/2023
+ms.date: 05/17/2024
 ms.topic: how-to
 ---
 
-# Tutorial: Add .NET Aspire to an existing .NET 8 microservices app
+# Tutorial: Add .NET Aspire to an existing .NET app
 
 If you have already created a microservices .NET web app, you can use Visual Studio to add .NET Aspire to it and get all the features and benefits available to those who enabled .NET Aspire when they selected **File** > **New** > **Project** and chose **Enlist in Aspire orchestration**. In this article, you'll add .NET Aspire orchestration to a simple, pre-existing .NET 8 project. You'll learn how to:
 
@@ -42,7 +42,7 @@ Open and start debugging the project to examine its default behavior:
 1. Start Visual Studio and then select **File** > **Open** > **Project/Solution**.
 1. Navigate to the top level folder of the solution you cloned, select **eShopLite.sln**, and then select **Open**.
 1. In the **Solution Explorer**, right-click the **eShopLite** solution, and then select **Configure Startup Projects**.
-1. Select **Multiple startup projects** and then select the **Create new launch profile** button.
+1. Select **Multiple startup projects**.
 1. In the **Action** column, select **Start** for both the **Products** and **Store** projects.
 1. Select **OK**.
 1. To start debugging the solution, press <kbd>F5</kbd> or select **Start**.
@@ -60,14 +60,14 @@ Now, let's enroll the **Store** project, which implements the web user interface
 1. In Visual Studio, in the **Solution Explorer**, right-click the **Store** project, select **Add**, and then select **.NET Aspire Orchestrator Support**.
 1. In the **Add .NET Aspire Orchestrator Support** dialog, select **OK**.
 
-    :::image type="content" source="media/add-aspire-orchestrator-support.png" alt-text="Screenshot of the Add .NET Aspire Orchestrator Support dialog.":::
+    :::image type="content" loc-scope="visual-studio" source="media/add-aspire-orchestrator-support.png" alt-text="Screenshot of the Add .NET Aspire Orchestrator Support dialog.":::
 
 Visual Studio adds two new projects to the solution:
 
 - **eShopLite.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator is set as the _Startup project_, and it depends on the **eShopLite.Store** project.
 - **eShopLite.ServiceDefaults**: A .NET Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../fundamentals/telemetry.md).
 
-In the **eShopLite.AppHost** project, open the _Program.cs_ file. Notice this line of code, which registers the **Store** project in the .NET Aspire orchestration:
+In the **eShopLite.AppHost** project, open the _:::no-loc text="Program.cs":::_ file. Notice this line of code, which registers the **Store** project in the .NET Aspire orchestration:
 
 ```csharp
 builder.AddProject<Projects.Store>("store");
@@ -78,8 +78,9 @@ For more information, see <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.
 To add the **Products** project to .NET Aspire:
 
 1. In Visual Studio, in the **Solution Explorer**, right-click the **Products** project, select **Add**, and then select **.NET Aspire Orchestrator Support**.
-1. In the **Microsoft Visual Studio** dialog, select **OK**.
-1. In the **Add .NET Aspire Orchestrator Support** dialog, select **OK**.
+1. A dialog indicating that .NET Aspire Orchestrator project already exists, select **OK**.
+
+    :::image type="content" loc-scope="visual-studio" source="media/orchestrator-already-added.png" alt-text="Screenshot indicating that the.NET Aspire Orchestrator was already added.":::
 
 In the **eShopLite.AppHost** project, open the **Program.cs** file. Notice this line of code, which registers the **Products** project in the .NET Aspire orchestration:
 
@@ -91,7 +92,7 @@ Also notice that the **eShopLite.AppHost** project, now depends on both the **St
 
 ## Service Discovery
 
-At this point, both projects are part of .NET Aspire orchestration, but the _Store_ needs to be able to discover the **Products** backend address through .NET Aspire's service discovery. To enable service discovery, open the _Program.cs_ file in **eShopLite.AppHost** and update the code that the _Store_ adds a reference to the _Products_ project:
+At this point, both projects are part of .NET Aspire orchestration, but the _Store_ needs to be able to discover the **Products** backend address through .NET Aspire's service discovery. To enable service discovery, open the _:::no-loc text="Program.cs":::_ file in **eShopLite.AppHost** and update the code that the _Store_ adds a reference to the _Products_ project:
 
 ```csharp
 var products = builder.AddProject<Projects.Products>("products");
@@ -99,7 +100,7 @@ var products = builder.AddProject<Projects.Products>("products");
 builder.AddProject<Projects.Store>("store").WithReference(products);
 ```
 
-Next, update the _appsettings.json_ in the _Store_ project to of the `ProductEndpoint` and `ProductEndpointHttps`:
+Next, update the _:::no-loc text="appsettings.json":::_ in the _Store_ project to of the `ProductEndpoint` and `ProductEndpointHttps`:
 
 ```json
 "ProductEndpoint": "http://products",

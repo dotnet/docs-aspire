@@ -2,7 +2,7 @@
 title: .NET Aspire NATS component
 description: Learn how to use the .NET Aspire NATS component to send logs and traces to a NATS Server.
 ms.topic: how-to
-ms.date: 04/09/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire NATS component
@@ -21,7 +21,7 @@ To get started with the .NET Aspire NATS component, install the [Aspire.NATS.Net
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.NATS.Net --prerelease
+dotnet add package Aspire.NATS.Net
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -39,7 +39,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 <!-- TODO: <xref:Microsoft.Extensions.Hosting.AspireNatsClientExtensions.AddNatsClient%2A>  -->
 
-In the _Program.cs_ file of your projects, call the `AddNatsClient` extension method to register an `INatsConnection` to send logs and traces to NATS and the .NET Aspire Dashboard. The method takes a connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your projects, call the `AddNatsClient` extension method to register an `INatsConnection` to send logs and traces to NATS and the .NET Aspire Dashboard. The method takes a connection name parameter.
 
 ```csharp
 builder.AddNatsClient("nats");
@@ -80,7 +80,7 @@ See the [ConnectionString documentation](https://docs.nats.io/using-nats/develop
 
 ### Use configuration providers
 
-The .NET Aspire NATS component supports [Microsoft.Extensions.Configuration](/dotnet/api/microsoft.extensions.configuration). It loads the `NatsClientSettings` from configuration using the `Aspire:Nats:Client` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire NATS component supports [Microsoft.Extensions.Configuration](/dotnet/api/microsoft.extensions.configuration). It loads the `NatsClientSettings` from configuration using the `Aspire:Nats:Client` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {
@@ -102,15 +102,26 @@ Pass the `Action<NatsClientSettings> configureSettings` delegate to set up some 
 builder.AddNatsClient("nats", settings => settings.DisableHealthChecks  = true);
 ```
 
-## AppHost extensions
+## App host usage
 
-In your AppHost project, install the `Aspire.Hosting.Nats` library with [NuGet](https://www.nuget.org):
+To model the Nats resource in the app host, install the [Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
 dotnet add package Aspire.Hosting.Nats
 ```
 
-Then, in the _Program.cs_ file of `AppHost`, register a NATS server and consume the connection using the following methods:
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Nats"
+                  Version="[SelectVersion]" />
+```
+
+---
+
+Then, in the _:::no-loc text="Program.cs":::_ file of `AppHost`, register a NATS server and consume the connection using the following methods:
 
 ```csharp
 var nats = builder.AddNats("nats");
@@ -119,7 +130,7 @@ var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(nats);
 ```
 
-The `WithReference` method configures a connection in the `MyService` project named `nats`. In the _Program.cs_ file of `MyService`, the NATS connection can be consumed using:
+The `WithReference` method configures a connection in the `MyService` project named `nats`. In the _:::no-loc text="Program.cs":::_ file of `MyService`, the NATS connection can be consumed using:
 
 ```csharp
 builder.AddNatsClient("nats");

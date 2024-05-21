@@ -1,7 +1,7 @@
 ---
 title: Standalone .NET Aspire dashboard
 description: How to use the .NET Aspire dashboard standalone.
-ms.date: 05/09/2024
+ms.date: 05/18/2024
 ms.topic: reference
 ---
 
@@ -20,15 +20,15 @@ The dashboard is started using the Docker command line.
 
 ```bash
 docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
-    mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.7
+    mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0
 ```
 
 The preceding Docker command:
 
-- Starts a container from the `mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0-preview.7` image.
-- The container has two ports:
-  - Port `4317` receives OpenTelemetry data from apps. Apps send data using [OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/).
-  - Port `18888` has the dashboard UI. Navigate to `http://localhost:18888` in the browser to view the dashboard.
+- Starts a container from the `mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0` image.
+- The container expose two ports:
+  - Mapping the dashboard's OTLP port `18889` to the host's port `4317`. Port `4317` receives OpenTelemetry data from apps. Apps send data using [OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/).
+  - Mapping the dashboard's port `18888` to the host's port `18888`. Port `18888` has the dashboard UI. Navigate to `http://localhost:18888` in the browser to view the dashboard.
 
 ## Login to the dashboard
 
@@ -37,6 +37,9 @@ Data displayed in the dashboard can be sensitive. By default, the dashboard is s
 When the dashboard is run from a standalone container, the login token is printed to the container logs. After copying the highlighted token into the login page, select the *Login* button.
 
 :::image type="content" source="media/standalone/aspire-dashboard-container-log.png" lightbox="media/standalone/aspire-dashboard-container-log.png" alt-text="Screenshot of the .NET Aspire dashboard container logs.":::
+
+> [!TIP]
+> To avoid the login, you can disable the authentication requirement by setting the `DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` environment variable to `true`. Additional configuration is available, see [Dashboard configuration](configuration.md).
 
 For more information about logging into the dashboard, see [Dashboard authentication](explore.md#dashboard-authentication).
 
@@ -80,3 +83,8 @@ To configure applications:
 ## Sample
 
 For a sample of using the standalone dashboard, see the [Standalone .NET Aspire dashboard sample app](/samples/dotnet/aspire-samples/aspire-standalone-dashboard).
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Configure the .NET Aspire dashboard](configuration.md)

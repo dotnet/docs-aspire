@@ -42,7 +42,7 @@ In the preceding example, two <xref:System.Net.Http.HttpClient> classes are adde
 
 ### Named endpoints using configuration
 
-With the configuration-based endpoint resolver, named endpoints can be specified in configuration by prefixing the endpoint value with `_endpointName.`, where `endpointName` is the endpoint name. For example, consider this _appsettings.json_ configuration which defined a default endpoint (with no name) and an endpoint named "dashboard":
+With the configuration-based endpoint resolver, named endpoints can be specified in configuration by prefixing the endpoint value with `_endpointName.`, where `endpointName` is the endpoint name. For example, consider this _:::no-loc text="appsettings.json":::_ configuration which defined a default endpoint (with no name) and an endpoint named "dashboard":
 
 ```json
 {
@@ -69,7 +69,7 @@ var basket = builder.AddProject<Projects.BasketService>("basket")
 
 ### Named endpoints in Kubernetes using DNS SRV
 
-When deploying to Kubernetes, the DNS SRV service endpoint resolver can be used to resolve named endpoints. For example, the following resource definition will result in a DNS SRV record being created for an endpoint named "default" and an endpoint named "dashboard", both on the service named "basket".
+When deploying to [Kubernetes](../deployment/overview.md#deploy-to-kubernetes), the DNS SRV service endpoint resolver can be used to resolve named endpoints. For example, the following resource definition will result in a DNS SRV record being created for an endpoint named "default" and an endpoint named "dashboard", both on the service named "basket".
 
 ```yml
 apiVersion: v1

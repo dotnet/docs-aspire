@@ -400,7 +400,7 @@ We've introduced a new primitive to model Azure Bicep modules in the application
 
 For more information, see [What is Bicep?](/azure/azure-resource-manager/bicep/overview?tabs=bicep).
 
-Consider the following example _Program.cs_ file:
+Consider the following example _:::no-loc text="Program.cs":::_ file:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

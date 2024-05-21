@@ -50,7 +50,7 @@ If no launch profile is specified, then the first launch profile is selected by 
 
 In Visual Studio it's possible to select the launch profile when launching the application making it easy to switch between configuration scenarios when manually debugging issues:
 
-:::image type="content" source="./media/launch-profiles/vs-launch-profile-toolbar.png" lightbox="./media/launch-profiles/vs-launch-profile-toolbar.png" alt-text="Screenshot of the standard toolbar in Visual Studio with the launch profile selector highlighted.":::
+:::image type="content" loc-scope="visual-studio" source="./media/launch-profiles/vs-launch-profile-toolbar.png" lightbox="./media/launch-profiles/vs-launch-profile-toolbar.png" alt-text="Screenshot of the standard toolbar in Visual Studio with the launch profile selector highlighted.":::
 
 When a .NET application is launched with a launch profile a special environment variable called `DOTNET_LAUNCH_PROFILE` is populated with the name of the launch profile that was used when launching the process.
 

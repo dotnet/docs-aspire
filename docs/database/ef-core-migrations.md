@@ -45,7 +45,7 @@ Run the app to ensure it works as expected. From the .NET Aspire dashboard, sele
 Start by creating some migrations to apply.
 
 1. Open a terminal (<kbd>Ctrl</kbd>+<kbd>\`</kbd> in Visual Studio).
-1. Set *SupportTicketApi\SupportTicketApi.Api* as the current directory.
+1. Set *:::no-loc text="SupportTicketApi\SupportTicketApi.Api":::* as the current directory.
 1. Use the [`dotnet ef` command-line tool](/ef/core/managing-schemas/migrations/#install-the-tools) to create a new migration to capture the initial state of the database schema:
 
     ```dotnetcli
@@ -58,7 +58,7 @@ Start by creating some migrations to apply.
       - Creates a migration named *InitialCreate*.
       - Creates the migration in the in the *Migrations* folder in the *SupportTicketApi.Data* project.
 
-1. Modify the model so that it includes a new property. Open *SupportTicketApi.Data\Models\SupportTicket.cs* and add a new property to the `SupportTicket` class:
+1. Modify the model so that it includes a new property. Open *:::no-loc text="SupportTicketApi.Data\Models\SupportTicket.cs":::* and add a new property to the `SupportTicket` class:
 
     :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.Data/Models/SupportTicket.cs" range="5-13" highlight="8" :::
 
@@ -74,27 +74,27 @@ Now you've got some migrations to apply. Next, you'll create a migration service
 
 To run the migrations at startup, you need to create a service that applies the migrations.
 
-1. Add a new Worker Service project to the solution. If using Visual Studio, right-click the solution in Solution Explorer and select **Add** > **New Project**. Select **Worker Service** and name the project *SupportTicketApi.MigrationService*. If using the command line, use the following commands from the solution directory:
+1. Add a new Worker Service project to the solution. If using Visual Studio, right-click the solution in Solution Explorer and select **:::no-loc text="Add":::** > **:::no-loc text="New Project":::**. Select **:::no-loc text="Worker Service":::** and name the project *:::no-loc text="SupportTicketApi.MigrationService":::*. If using the command line, use the following commands from the solution directory:
 
     ```dotnetcli
     dotnet new worker -n SupportTicketApi.MigrationService
     dotnet sln add SupportTicketApi.MigrationService
     ```
 
-1. Add the *SupportTicketApi.Data* and *SupportTicketApi.ServiceDefaults* project references to the *SupportTicketApi.MigrationService* project using Visual Studio or the command line:
+1. Add the *:::no-loc text="SupportTicketApi.Data":::* and *:::no-loc text="SupportTicketApi.ServiceDefaults":::* project references to the *:::no-loc text="SupportTicketApi.MigrationService":::* project using Visual Studio or the command line:
 
     ```dotnetcli
     dotnet add SupportTicketApi.MigrationService reference SupportTicketApi.Data
     dotnet add SupportTicketApi.MigrationService reference SupportTicketApi.ServiceDefaults
     ```
 
-1. Add the *Aspire.Microsoft.EntityFrameworkCore.SqlServer* NuGet package reference to the *SupportTicketApi.MigrationService* project using Visual Studio or the command line:
+1. Add the [Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) NuGet package reference to the *:::no-loc text="SupportTicketApi.MigrationService":::* project using Visual Studio or the command line:
 
     ```dotnetcli
     dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer
     ```
 
-1. Replace the contents of the *Worker.cs* file in the *SupportTicketApi.MigrationService* project with the following code:
+1. Replace the contents of the *:::no-loc text="Worker.cs":::* file in the *:::no-loc text="SupportTicketApi.MigrationService":::* project with the following code:
 
     :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.MigrationService/Worker.cs" :::
 
@@ -112,21 +112,21 @@ To run the migrations at startup, you need to create a service that applies the 
 
 The migration service is created, but it needs to be added to the .NET Aspire app host so that it runs when the app starts.
 
-1. In the *SupportTicketApi.AppHost* project, open the *Program.cs* file.
+1. In the *:::no-loc text="SupportTicketApi.AppHost":::* project, open the *:::no-loc text="Program.cs":::* file.
 1. Add the following highlighted code to the `ConfigureServices` method:
 
     :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.AppHost/Program.cs" highlight="9-10" :::
 
-    This enlists the *SupportTicketApi.MigrationService* project as a service in the .NET Aspire app host.
+    This enlists the *:::no-loc text="SupportTicketApi.MigrationService":::* project as a service in the .NET Aspire app host.
 
     > [!IMPORTANT]
-    > If you are using Visual Studio, and you selected the **Enlist in Aspire orchestration** option when creating the Worker Service project, similar code is added automatically with the service name `supportticketapi-migrationservice`. Replace that code with the preceding code.
+    > If you are using Visual Studio, and you selected the **:::no-loc text="Enlist in Aspire orchestration":::** option when creating the Worker Service project, similar code is added automatically with the service name `supportticketapi-migrationservice`. Replace that code with the preceding code.
 
 ## Remove existing seeding code
 
 Since the migration service seeds the database, you should remove the existing data seeding code from the API project.
 
-1. In the *SupportTicketApi.Api* project, open the *Program.cs* file.
+1. In the *:::no-loc text="SupportTicketApi.Api":::* project, open the *:::no-loc text="Program.cs":::* file.
 1. Delete the highlighted lines.
 
     :::code source="~/aspire-docs-samples-main/SupportTicketApi/SupportTicketApi.Api/Program.cs" range="20-36" highlight="6-16" :::
@@ -135,12 +135,12 @@ Since the migration service seeds the database, you should remove the existing d
 
 Now that the migration service is configured, run the app to test the migrations.
 
-1. Run the app and observe the SupportTicketApi dashboard.
+1. Run the app and observe the :::no-loc text="SupportTicketApi"::: dashboard.
 1. After a short wait, the `migrations` service state will display **Finished**.
 
     :::image type="content" source="media/ef-core-migrations/dashboard-post-migration.png" lightbox="media/ef-core-migrations/dashboard-post-migration.png" alt-text="A screenshot of the .NET Aspire dashboard with the migration service in a Finished state." :::
 
-1. Select the **View** link on the migration service to investigate the logs showing the SQL commands that were executed.
+1. Select the **:::no-loc text="View":::** link on the migration service to investigate the logs showing the SQL commands that were executed.
 
 ## Get the code
 

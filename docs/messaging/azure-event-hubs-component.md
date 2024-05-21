@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Event Hubs component
 description: This article describes the .NET Aspire Azure Event Hubs component features and capabilities.
 ms.topic: how-to
-ms.date: 04/18/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Azure Event Hubs component
@@ -21,7 +21,7 @@ To get started with the .NET Aspire Azure Event Hubs component, install the [Asp
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Azure.Messaging.EventHubs --prerelease
+dotnet add package Aspire.Azure.Messaging.EventHubs
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -50,7 +50,7 @@ The following clients are supported by the library, along with their correspondi
 
 The following example assumes that you have an Azure Event Hubs namespace and an Event Hub created and wish to configure an `EventHubProducerClient` to send events to the Event Hub. The `EventHubConsumerClient`, `EventProcessorClient`, and `PartitionReceiver`are configured in a similar manner.
 
-In the _Program.cs_ file of your component-consuming project, call the `AddAzureEventHubProducerClient` extension to register a `EventHubProducerClient` for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the `AddAzureEventHubProducerClient` extension to register a `EventHubProducerClient` for use via the dependency injection container.
 
 ```csharp
 builder.AddAzureEventHubProducerClient("eventHubsConnectionName");
@@ -74,7 +74,7 @@ To add Azure Event Hub hosting support to your <xref:Aspire.Hosting.IDistributed
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Azure.EventHubs --prerelease
+dotnet add package Aspire.Hosting.Azure.EventHubs
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -101,7 +101,7 @@ The `AddAzureEventHubs` method will read connection information from the AppHost
 > [!IMPORTANT]
 > Even though we are creating an Event Hub using the `AddEventHub` at the same time as the namespace, as of .NET Aspire version `preview-5`, the connection string will not include the `EntityPath` property, so the `EventHubName` property must be set in the settings callback for the preferred client. Future versions of Aspire will include the `EntityPath` property in the connection string and will not require the `EventHubName` property to be set in this scenario.
 
-In the _Program.cs_ file of `ExampleService`, the connection can be consumed using by calling of the supported Event Hubs client extension methods:
+In the _:::no-loc text="Program.cs":::_ file of `ExampleService`, the connection can be consumed using by calling of the supported Event Hubs client extension methods:
 
 ```csharp
 builder.AddAzureEventProcessorClient(
@@ -157,7 +157,7 @@ Alternatively, use a connection string:
 
 ### Use configuration providers
 
-The .NET Aspire Azure Event Hubs library supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureMessagingEventHubsSettings` and the associated Options, e.g. `EventProcessorClientOptions`, from configuration by using the `Aspire:Azure:Messaging:EventHubs:` key prefix, followed by the name of the specific client in use. For example, consider the `appsettings.json` that configures some of the options for an `EventProcessorClient`:
+The .NET Aspire Azure Event Hubs library supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureMessagingEventHubsSettings` and the associated Options, e.g. `EventProcessorClientOptions`, from configuration by using the `Aspire:Azure:Messaging:EventHubs:` key prefix, followed by the name of the specific client in use. For example, consider the _:::no-loc text="appsettings.json":::_ that configures some of the options for an `EventProcessorClient`:
 
 ```json
 {

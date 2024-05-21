@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Cosmos DB component
 description: This article describes the .NET Aspire Azure Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 04/24/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Azure Cosmos DB component
@@ -16,7 +16,7 @@ To get started with the .NET Aspire Azure Cosmos DB component, install the [Aspi
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Microsoft.Azure.Cosmos --prerelease
+dotnet add package Aspire.Microsoft.Azure.Cosmos
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -32,10 +32,10 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureCosmosDBExtensions.AddAzureCosmosDBClient%2A> extension to register a <xref:Microsoft.Azure.Cosmos.CosmosClient?displayProperty=fullName> for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireMicrosoftAzureCosmosExtensions.AddAzureCosmosClient%2A> extension to register a <xref:Microsoft.Azure.Cosmos.CosmosClient?displayProperty=fullName> for use via the dependency injection container.
 
 ```csharp
-builder.AddAzureCosmosDBClient("cosmosdb");
+builder.AddAzureCosmosClient("cosmosdb");
 ```
 
 You can then retrieve the `CosmosClient` instance using dependency injection. For example, to retrieve the client from a service:
@@ -56,7 +56,7 @@ To add Azure Cosmos DB hosting support to your <xref:Aspire.Hosting.IDistributed
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Azure.CosmosDB --prerelease
+dotnet add package Aspire.Hosting.Azure.CosmosDB
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -80,6 +80,13 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(cosmosdb);
 ```
 
+> [!TIP]
+> To use the Azure Cosmos DB emulator, chain a call to the <xref:Aspire.Hosting.AzureCosmosExtensions.AddAzureCosmosDB%2A> method.
+>
+> ```csharp
+> cosmosdb.RunAsEmulator();
+> ```
+
 ## Configuration
 
 The .NET Aspire Azure Cosmos DB library provides multiple options to configure the Azure Cosmos DB connection based on the requirements and conventions of your project.
@@ -102,7 +109,7 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 }
 ```
 
-The recommended connection approach is to use an account endpoint, which works with the <xref:Aspire.Microsoft.Azure.Cosmos.AzureCosmosDBSettings.Credential?displayProperty=nameWithType> property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used:
+The recommended connection approach is to use an account endpoint, which works with the <xref:Aspire.Microsoft.Azure.Cosmos.MicrosoftAzureCosmosSettings.Credential?displayProperty=nameWithType> property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used:
 
 ```json
 {
@@ -124,7 +131,7 @@ Alternatively, an Azure Cosmos DB connection string can be used:
 
 ### Use configuration providers
 
-The .NET Aspire Azure Cosmos DB component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.Azure.Cosmos.AzureCosmosDBSettings> from _appsettings.json_ or other configuration files using `Aspire:Microsoft:Azure:Cosmos` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire Azure Cosmos DB component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.Azure.Cosmos.MicrosoftAzureCosmosSettings> from _:::no-loc text="appsettings.json":::_ or other configuration files using `Aspire:Microsoft:Azure:Cosmos` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {
@@ -142,7 +149,7 @@ The .NET Aspire Azure Cosmos DB component supports <xref:Microsoft.Extensions.Co
 
 ### Use inline delegates
 
-You can also pass the `Action<AzureCosmosDBSettings>` delegate to set up some or all the options inline, for example to disable tracing from code:
+You can also pass the `Action<MicrosoftAzureCosmosSettings >` delegate to set up some or all the options inline, for example to disable tracing from code:
 
 ```csharp
 builder.AddAzureCosmosDB(
