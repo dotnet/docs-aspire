@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL component
 description: This article describes the .NET Aspire PostgreSQL component.
-ms.date: 01/22/2024
+ms.date: 05/14/2024
 ms.topic: how-to
 ---
 
@@ -16,7 +16,7 @@ To get started with the .NET Aspire PostgreSQL component, install the [Aspire.Np
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Npgsql --prerelease
+dotnet add package Aspire.Npgsql
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -31,7 +31,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension to register an `NpgsqlDataSource` for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension to register an `NpgsqlDataSource` for use via the dependency injection container.
 
 ```csharp
 builder.AddNpgsqlDataSource("postgresdb");
@@ -48,7 +48,7 @@ public class ExampleService(NpgsqlDataSource dataSource)
 
 ## App host usage
 
-In your app host project, register and consume the PostgreSQL component using the following methods, such as <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A>:
+[!INCLUDE [postgresql-app-host](includes/postgresql-app-host.md)]
 
 ```csharp
 var postgres = builder.AddPostgres("postgres");
@@ -82,9 +82,9 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 
 ### Use configuration providers
 
-The .NET Aspire PostgreSQL component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Npgsql.NpgsqlSettings> from _appsettings.json_ or other configuration files by using the `Aspire:Npgsql` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire PostgreSQL component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Npgsql.NpgsqlSettings> from _:::no-loc text="appsettings.json":::_ or other configuration files by using the `Aspire:Npgsql` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
-The following example shows an _appsettings.json_ file that configures some of the available options:
+The following example shows an _:::no-loc text="appsettings.json":::_ file that configures some of the available options:
 
 ```json
 {

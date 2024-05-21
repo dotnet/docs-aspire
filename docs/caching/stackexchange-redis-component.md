@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis component
 description: This article describes the .NET Aspire StackExchange Redis component features and capabilities
 ms.topic: how-to
-ms.date: 04/29/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire StackExchange Redis component
@@ -16,7 +16,7 @@ To get started with the .NET Aspire StackExchange Redis component, install the [
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.StackExchange.Redis --prerelease
+dotnet add package Aspire.StackExchange.Redis
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisExtensions.AddRedisClient%2A> extension to register a `IConnectionMultiplexer` for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisExtensions.AddRedisClient%2A> extension to register a `IConnectionMultiplexer` for use via the dependency injection container.
 
 ```csharp
 builder.AddRedisClient("cache");
@@ -49,7 +49,7 @@ public class ExampleService(IConnectionMultiplexer connectionMultiplexer)
 
 ## App host usage
 
-In your app host project, register the .NET Aspire Stack Exchange Redis component using the <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> method and consume the service using the following methods:
+[!INCLUDE [redis-app-host](includes/redis-app-host.md)]
 
 ```csharp
 // Service registration
@@ -60,7 +60,7 @@ builder.AddProject<Projects.ExampleProject>()
        .WithReference(redis)
 ```
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `redis`. In the _Program.cs_ file of `ExampleProject`, the Redis connection can be consumed using:
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `redis`. In the _:::no-loc text="Program.cs":::_ file of `ExampleProject`, the Redis connection can be consumed using:
 
 ```csharp
 builder.AddRedis("cache");
@@ -92,7 +92,7 @@ For more information on how to format this connection string, see the [StackExch
 
 ### Use configuration providers
 
-The .NET Aspire StackExchange Redis component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.StackExchange.Redis.StackExchangeRedisSettings> from configuration by using the `Aspire:StackExchange:Redis` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire StackExchange Redis component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.StackExchange.Redis.StackExchangeRedisSettings> from configuration by using the `Aspire:StackExchange:Redis` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {

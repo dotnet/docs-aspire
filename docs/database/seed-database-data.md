@@ -35,7 +35,7 @@ Volumes are the recommended way to automatically seed containerized databases wh
 - **Source**: The source path of the volume mount, which is the physical location on your host.
 - **Target**: The target path in the container of the data you want to persist.
 
-Consider the following volume configuration code from a _Program.cs_ file in a sample **AppHost** project:
+Consider the following volume configuration code from a _:::no-loc text="Program.cs":::_ file in a sample **AppHost** project:
 
 ```csharp
 var todosDbName = "Todos";
@@ -85,7 +85,7 @@ The following examples demonstrate how to seed data using SQL scripts and config
 
 ### [SQL Server](#tab/sql-server)
 
-The configuration code in the **.AppHost** _program.cs_ file mounts the required database files and folders and configures an entrypoint so that they run during startup.
+The configuration code in the **.AppHost** _:::no-loc text="Program.cs":::_ file mounts the required database files and folders and configures an entrypoint so that they run during startup.
 
 :::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/Program.cs" range="25-35" :::
 
@@ -126,7 +126,7 @@ You can also seed data in .NET Aspire apps using Entity Framework Core by explic
 > [!IMPORTANT]
 > These types of configurations should only be done during development, so make sure to add a conditional that checks your current environment context.
 
-Add the following code to the _Program.cs_ file of your **.AppHost** project.
+Add the following code to the _:::no-loc text="Program.cs":::_ file of your **.AppHost** project.
 
 ### [SQL Server](#tab/sql-server)
 

@@ -1,7 +1,7 @@
 ---
 title: Explore .NET Aspire dashboard
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 04/23/2024
+ms.date: 05/18/2024
 ms.topic: reference
 ---
 
@@ -263,3 +263,8 @@ The .NET Aspire dashboard provides a variety of shortcuts to help you navigate t
 
 - <kbd>?</kbd>: Got to **Help**.
 - <kbd>Shift</kbd> + <kbd>s</kbd>: Go to **Settings**.
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Standalone .NET Aspire dashboard](standalone.md)

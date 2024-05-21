@@ -2,7 +2,7 @@
 title: .NET Aspire Seq component
 description: Learn how to use the .NET Aspire Seq component to add OpenTelemetry Protocol (OTLP) exporters that send logs and traces to a Seq Server.
 ms.topic: how-to
-ms.date: 04/09/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Seq component
@@ -16,7 +16,7 @@ To get started with the .NET Aspire Seq component, install the [Aspire.Seq](http
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Seq --prerelease
+dotnet add package Aspire.Seq
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -34,10 +34,38 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 <!-- TODO: <xref:Microsoft.Extensions.Hosting.AspireSeqExtensions.AddSeqEndpoint%2A> -->
 
-In the _Program.cs_ file of your projects, call the `AddSeqEndpoint` extension method to register OpenTelemetry Protocol exporters to send logs and traces to Seq and the .NET Aspire Dashboard. The method takes a connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your projects, call the `AddSeqEndpoint` extension method to register OpenTelemetry Protocol exporters to send logs and traces to Seq and the .NET Aspire Dashboard. The method takes a connection name parameter.
 
 ```csharp
 builder.AddSeqEndpoint("seq");
+```
+
+## App host usage
+
+To model the Seq resource in the app host, install the [Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Seq
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Seq"
+                  Version="[SelectVersion]" />
+```
+
+---
+
+In your app host project, register a Seq database and consume the connection using the following methods:
+
+```csharp
+var seq = builder.AddSeq("seq");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(seq);
 ```
 
 ## Configuration
@@ -46,7 +74,7 @@ The .NET Aspire Seq component provides options to configure the connection to Se
 
 ### Use configuration providers
 
-The .NET Aspire Seq component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `SeqSettings` from configuration by using the `Aspire:Seq` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire Seq component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `SeqSettings` from configuration by using the `Aspire:Seq` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {
@@ -79,7 +107,7 @@ In your AppHost project, install the `Aspire.Hosting.Seq` library with [NuGet](h
 dotnet add package Aspire.Hosting.Seq
 ```
 
-Then, in the _Program.cs_ file of the **.AppHost** project, register a Seq server and propagate its configuration using the following methods (note that you must accept the [Seq End User Licence Agreement](https://datalust.co/doc/eula-current.pdf) for Seq to start):
+Then, in the _:::no-loc text="Program.cs":::_ file of the **.AppHost** project, register a Seq server and propagate its configuration using the following methods (note that you must accept the [Seq End User Licence Agreement](https://datalust.co/doc/eula-current.pdf) for Seq to start):
 
 ```csharp
 var seq = builder.AddSeq("seq");
@@ -88,7 +116,7 @@ var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(seq);
 ```
 
-In the _Program.cs_ file of the **MyService** project, configure logging and tracing to Seq using the following code:
+In the _:::no-loc text="Program.cs":::_ file of the **MyService** project, configure logging and tracing to Seq using the following code:
 
 ```csharp
 builder.AddSeqEndpoint("seq");

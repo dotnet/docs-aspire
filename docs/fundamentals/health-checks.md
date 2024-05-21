@@ -15,7 +15,7 @@ Health checks provide availability and state information about an app. Health ch
 
 ## .NET Aspire health check endpoints
 
-.NET Aspire exposes two default health check HTTP endpoints in **Development** environments when the `AddServiceDefaults` and `MapDefaultEndpoints` methods are called from the _Program.cs_ file:
+.NET Aspire exposes two default health check HTTP endpoints in **Development** environments when the `AddServiceDefaults` and `MapDefaultEndpoints` methods are called from the _:::no-loc text="Program.cs":::_ file:
 
 - The `/health` endpoint indicates if the app is running normally where it's ready to receive requests. All health checks must pass for app to be considered ready to accept traffic after starting.
 
@@ -68,7 +68,7 @@ If either of these operations fail, the corresponding health check also fails.
 
 ### Configure health checks
 
-You can disable health checks for a given component using one of the available configuration options. .NET Aspire components support [Microsoft.Extensions.Configurations](/dotnet/api/microsoft.extensions.configuration) to apply settings through config files such as `appsettings.json`:
+You can disable health checks for a given component using one of the available configuration options. .NET Aspire components support [Microsoft.Extensions.Configurations](/dotnet/api/microsoft.extensions.configuration) to apply settings through config files such as _:::no-loc text="appsettings.json":::_:
 
 ```json
 {

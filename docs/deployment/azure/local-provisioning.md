@@ -1,7 +1,7 @@
 ---
 title: Local Azure provisioning
 description: Learn how to use Azure resources in your local development environment.
-ms.date: 04/19/2024
+ms.date: 05/16/2024
 ---
 
 # Local Azure provisioning
@@ -10,79 +10,9 @@ ms.date: 04/19/2024
 
 In this article you learn how to provision Azure resources from your local development environment through the [.NET Aspire app host](../../fundamentals/app-host-overview.md). All of this is possible with the help of the [Azure.Provisioning.* libraries](#azure-provisioning-libraries), which provide a set of APIs to provision Azure resources. These packages are transitive dependencies of the .NET Aspire Azure hosting libraries you use in your app host, so you don't need to install them separately.
 
-## Assumptions
+## Requirements
 
 This article assumes that you have an Azure account and subscription. If you don't have an Azure account, you can create a free one at [Azure Free Account](https://azure.microsoft.com/free/). For provisioning functionality to work correctly, you'll need to be authenticated with Azure. Additionally, you'll need to provide some configuration values so that the provisioning logic can create resources on your behalf.
-
-## Configuration
-
-When utilizing Azure resources in your local development environment, you need to provide the necessary configuration values. Configuration values are specified under the `Azure` section:
-
-- `SubscriptionId`: The Azure subscription ID.
-- `AllowResourceGroupCreation`: A boolean value that indicates whether to create a new resource group.
-- `ResourceGroup`: The name of the resource group to use.
-- `Location`: The Azure region to use.
-
-Consider the following example _appsettings.json_ configuration:
-
-```json
-{
-  "Azure": {
-    "SubscriptionId": "<Your subscription id>",
-    "AllowResourceGroupCreation": true,
-    "ResourceGroup": "<Valid resource group name>",
-    "Location": "<Valid Azure location>",
-  }
-}
-```
-
-> [!IMPORTANT]
-> It's recommended to store these values as app secrets. For more information, see [Manage app secrets](/aspnet/core/security/app-secrets).
-
-After you've configured the necessary values, you can start provisioning Azure resources in your local development environment.
-
-### Azure provisioning credential store
-
-The .NET Aspire app host uses a credential store for Azure resource authentication and authorization. Depending on your subscription, the correct credential store may be needed for multi-tenant provisioning scenarios.
-
-With the [Aspire.Hosting.Azure](https://nuget.org/packages/Aspire.Hosting.Azure) NuGet package installed, and if your app host depends on Azure resources, the default Azure credential store relies on the <xref:Azure.Identity.DefaultAzureCredential>. To change this behavior, you can set the credential store value in the _appsettings.json_ file, as shown in the following example:
-
-```json
-{
-  "Azure": {
-    "CredentialStore": "AzureCLI"
-  }
-}
-```
-
-As with all [configuration-based settings](/dotnet/core/extensions/configuration), you can configure these with alternative providers, such as [user secrets](/aspnet/core/security/app-secrets) or [environment variables](/dotnet/core/extensions/configuration-providers#environment-variable-configuration-provider). The `Azure:CredentialStore` value can be set to one of the following values:
-
-- `AzureCLI`: Delegates to the <xref:Azure.Identity.AzureCliCredential>.
-- `AzurePowerShell`: Delegates to the <xref:Azure.Identity.AzurePowerShellCredential>.
-- `VisualStudio`: Delegates to the <xref:Azure.Identity.VisualStudioCredential>.
-- `VisualStudioCode`: Delegates to the <xref:Azure.Identity.VisualStudioCodeCredential>.
-- `AzureDeveloperCLI`: Delegates to the <xref:Azure.Identity.AzureDeveloperCliCredential>.
-- `InteractiveBrowser`: Delegates to the <xref:Azure.Identity.InteractiveBrowserCredential>.
-
-### Tooling support
-
-In Visual Studio, you can use Connected Services to configure the default Azure provisioning settings. Select the app host project, right-click on the **Connected Services** node, and select **Azure Resource Provisioning Settings**:
-
-:::image type="content" source="media/azure-resource-provisioning-settings.png" lightbox="media/azure-resource-provisioning-settings.png" alt-text="Visual Studio 2022: .NET Aspire App Host project, Connected Services context menu.":::
-
-This will open a dialog where you can configure the Azure provisioning settings, as shown in the following screenshot:
-
-:::image type="content" source="media/azure-provisioning-settings-dialog.png" lightbox="media/azure-provisioning-settings-dialog.png" alt-text="Visual Studio 2022: Azure Resource Provisioning Settings dialog.":::
-
-### Missing configuration value hints
-
-When the `Azure` configuration section is missing, has missing values, or is invalid, the [.NET Aspire dashboard](../../fundamentals/dashboard/overview.md) provides useful hints. For example, consider an app host that's missing the `SubscriptionId` configuration value that's attempting to use an Azure Key Vault resource. The **Resources** page indicates the **State** as **Missing subscription configuration**:
-
-:::image type="content" source="media/resources-kv-missing-subscription.png" alt-text=".NET Aspire dashboard: Missing subscription configuration.":::
-
-Additionally, the **Console logs** display this information as well, consider the following screenshot:
-
-:::image type="content" source="media/console-logs-kv-missing-subscription.png" lightbox="media/console-logs-kv-missing-subscription.png" alt-text=".NET Aspire dashboard: Console logs, missing subscription configuration.":::
 
 ## App host provisioning APIs
 
@@ -151,6 +81,76 @@ The following Azure provisioning libraries are available:
 
 > [!TIP]
 > You shouldn't need to install these packages manually in your projects, as they're transitive dependencies of the corresponding .NET Aspire Azure hosting libraries.
+
+## Configuration
+
+When utilizing Azure resources in your local development environment, you need to provide the necessary configuration values. Configuration values are specified under the `Azure` section:
+
+- `SubscriptionId`: The Azure subscription ID.
+- `AllowResourceGroupCreation`: A boolean value that indicates whether to create a new resource group.
+- `ResourceGroup`: The name of the resource group to use.
+- `Location`: The Azure region to use.
+
+Consider the following example _:::no-loc text="appsettings.json":::_ configuration:
+
+```json
+{
+  "Azure": {
+    "SubscriptionId": "<Your subscription id>",
+    "AllowResourceGroupCreation": true,
+    "ResourceGroup": "<Valid resource group name>",
+    "Location": "<Valid Azure location>",
+  }
+}
+```
+
+> [!IMPORTANT]
+> It's recommended to store these values as app secrets. For more information, see [Manage app secrets](/aspnet/core/security/app-secrets).
+
+After you've configured the necessary values, you can start provisioning Azure resources in your local development environment.
+
+### Azure provisioning credential store
+
+The .NET Aspire app host uses a credential store for Azure resource authentication and authorization. Depending on your subscription, the correct credential store may be needed for multi-tenant provisioning scenarios.
+
+With the [Aspire.Hosting.Azure](https://nuget.org/packages/Aspire.Hosting.Azure) NuGet package installed, and if your app host depends on Azure resources, the default Azure credential store relies on the <xref:Azure.Identity.DefaultAzureCredential>. To change this behavior, you can set the credential store value in the _:::no-loc text="appsettings.json":::_ file, as shown in the following example:
+
+```json
+{
+  "Azure": {
+    "CredentialStore": "AzureCLI"
+  }
+}
+```
+
+As with all [configuration-based settings](/dotnet/core/extensions/configuration), you can configure these with alternative providers, such as [user secrets](/aspnet/core/security/app-secrets) or [environment variables](/dotnet/core/extensions/configuration-providers#environment-variable-configuration-provider). The `Azure:CredentialStore` value can be set to one of the following values:
+
+- `AzureCLI`: Delegates to the <xref:Azure.Identity.AzureCliCredential>.
+- `AzurePowerShell`: Delegates to the <xref:Azure.Identity.AzurePowerShellCredential>.
+- `VisualStudio`: Delegates to the <xref:Azure.Identity.VisualStudioCredential>.
+- `VisualStudioCode`: Delegates to the <xref:Azure.Identity.VisualStudioCodeCredential>.
+- `AzureDeveloperCLI`: Delegates to the <xref:Azure.Identity.AzureDeveloperCliCredential>.
+- `InteractiveBrowser`: Delegates to the <xref:Azure.Identity.InteractiveBrowserCredential>.
+
+### Tooling support
+
+In Visual Studio, you can use Connected Services to configure the default Azure provisioning settings. Select the app host project, right-click on the **Connected Services** node, and select **Azure Resource Provisioning Settings**:
+
+:::image type="content" loc-scope="visual-studio" source="media/azure-resource-provisioning-settings.png" lightbox="media/azure-resource-provisioning-settings.png" alt-text="Visual Studio 2022: .NET Aspire App Host project, Connected Services context menu.":::
+
+This will open a dialog where you can configure the Azure provisioning settings, as shown in the following screenshot:
+
+:::image type="content" loc-scope="visual-studio" source="media/azure-provisioning-settings-dialog.png" lightbox="media/azure-provisioning-settings-dialog.png" alt-text="Visual Studio 2022: Azure Resource Provisioning Settings dialog.":::
+
+### Missing configuration value hints
+
+When the `Azure` configuration section is missing, has missing values, or is invalid, the [.NET Aspire dashboard](../../fundamentals/dashboard/overview.md) provides useful hints. For example, consider an app host that's missing the `SubscriptionId` configuration value that's attempting to use an Azure Key Vault resource. The **Resources** page indicates the **State** as **Missing subscription configuration**:
+
+:::image type="content" source="media/resources-kv-missing-subscription.png" alt-text=".NET Aspire dashboard: Missing subscription configuration.":::
+
+Additionally, the **Console logs** display this information as well, consider the following screenshot:
+
+:::image type="content" source="media/console-logs-kv-missing-subscription.png" lightbox="media/console-logs-kv-missing-subscription.png" alt-text=".NET Aspire dashboard: Console logs, missing subscription configuration.":::
 
 ## Known limitations
 

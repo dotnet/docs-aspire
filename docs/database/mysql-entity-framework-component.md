@@ -1,7 +1,7 @@
 ---
 title: MySQL Entity Framework Component
 description: MySQL Entity Framework Component
-ms.date: 02/27/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire Pomelo MySQL Entity Framework Component
@@ -15,7 +15,7 @@ You need a MySQL database and connection string for accessing the database. To g
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Pomelo.EntityFrameworkCore.MySql --prerelease
+dotnet add package Aspire.Pomelo.EntityFrameworkCore.MySql
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -31,7 +31,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireEFMySqlExtensions.AddMySqlDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireEFMySqlExtensions.AddMySqlDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container.
 
 ```csharp
 builder.AddMySqlDbContext<MyDbContext>("mysqldb");
@@ -58,7 +58,7 @@ builder.EnrichMySqlDbContext<MyDbContext>();
 
 ## App host usage
 
-In your app host project, register an MySQL container and consume the connection using the following methods:
+[!INCLUDE [mysql-app-host](includes/mysql-app-host.md)]
 
 ```csharp
 var mysql = builder.AddMySql("mysql");
@@ -98,7 +98,7 @@ See the [MySqlConnector documentation](https://mysqlconnector.net/connection-opt
 
 The .NET Aspire Pomelo MySQL Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `PomeloEntityFrameworkCoreMySqlSettings` from configuration by using the `Aspire:Pomelo:EntityFrameworkCore:MySql` key.
 
-The following example shows an _appsettings.json_ that configures some of the available options:
+The following example shows an _:::no-loc text="appsettings.json":::_ that configures some of the available options:
 
 ```json
 {

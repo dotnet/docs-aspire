@@ -2,7 +2,7 @@
 title: .NET Aspire SqlServer Entity Framework Core component
 description: This article describes the .NET Aspire SQL Server Entity Framework Core component.
 ms.topic: how-to
-ms.date: 01/22/2024
+ms.date: 05/14/2024
 ---
 
 # .NET Aspire SqlServer Entity Framework Core component
@@ -25,7 +25,7 @@ To get started with the .NET Aspire SQL Server Entity Framework Core component, 
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer --prerelease
+dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -41,7 +41,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension to register a `DbContext` for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension to register a `DbContext` for use via the dependency injection container.
 
 ```csharp
 builder.AddSqlServerDbContext<YourDbContext>("sqldb");
@@ -58,7 +58,7 @@ public class ExampleService(YourDbContext client)
 
 ## App host usage
 
-In your app host project, register a SqlServer database and consume the connection using the following methods, such as <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A>:
+[!INCLUDE [sql-app-host](includes/sql-app-host.md)]
 
 ```csharp
 var sql = builder.AddSqlServer("sql");
@@ -74,9 +74,9 @@ The .NET Aspire SQL Server Entity Framework Core component provides multiple con
 
 ### Use configuration providers
 
-The .NET Aspire SQL Server Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings> from configuration files such as _appsettings.json_ by using the `Aspire:Microsoft:EntityFrameworkCore:SqlServer` key. If you have set up your configurations in the `Aspire:Microsoft:EntityFrameworkCore:SqlServer` section you can just call the method without passing any parameter.
+The .NET Aspire SQL Server Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings> from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:Microsoft:EntityFrameworkCore:SqlServer` key. If you have set up your configurations in the `Aspire:Microsoft:EntityFrameworkCore:SqlServer` section you can just call the method without passing any parameter.
 
-The following is an example of an _appsettings.json_ file that configures some of the available options:
+The following is an example of an _:::no-loc text="appsettings.json":::_ file that configures some of the available options:
 
 ```json
 {

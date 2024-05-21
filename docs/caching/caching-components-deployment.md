@@ -1,7 +1,7 @@
 ---
 title: Deploy a .NET Aspire app that connects to Redis Cache to Azure
 description: Learn how to deploy a .NET Aspire app that connects to Redis Cache to Azure
-ms.date: 05/12/2024
+ms.date: 05/14/2024
 ms.topic: how-to
 ---
 
@@ -39,7 +39,7 @@ Add the appropriate .NET Aspire component to the _AspireRedis.AppHost_ project f
 Add the [Aspire.Hosting.Azure.Redis](https://www.nuget.org/packages/Aspire.Hosting.Azure.Redis) package to the _AspireRedis.AppHost_ project:
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Azure.Redis --prerelease
+dotnet add package Aspire.Hosting.Azure.Redis
 ```
 
 ## [Redis Container](#tab/redis-container)
@@ -47,7 +47,7 @@ dotnet add package Aspire.Hosting.Azure.Redis --prerelease
 Add the [Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis) package to the _AspireRedis.AppHost_ project:
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Redis --prerelease
+dotnet add package Aspire.Hosting.Redis
 ```
 
 ---
@@ -58,7 +58,7 @@ Configure the _AspireRedis.AppHost_ project for your desired Redis service.
 
 # [Azure Cache for Redis](#tab/azure-redis)
 
-Replace the contents of the _Program.cs_ file in the _AspireRedis.AppHost_ project with the following code:
+Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _AspireRedis.AppHost_ project with the following code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -81,7 +81,7 @@ The preceding code adds an Azure Cache for Redis resource to your app and config
 
 ## [Redis Container](#tab/redis-container)
 
-Replace the contents of the _Program.cs_ file in the _AspireRedis.AppHost_ project with the following code:
+Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _AspireRedis.AppHost_ project with the following code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -138,13 +138,13 @@ Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/ove
 
 The deployment process provisioned an Azure Cache for Redis resource due to the **.AppHost** configuration you provided.
 
-:::image type="content" source="media/resources-azure-redis.png" alt-text="A screenshot showing the deployed Azure Cache for Redis.":::
+:::image type="content" loc-scope="azure" source="media/resources-azure-redis.png" alt-text="A screenshot showing the deployed Azure Cache for Redis.":::
 
 ## [Redis Container](#tab/redis-container)
 
 The deployment process created a Redis app container due to the **.AppHost** configuration you provided.
 
-:::image type="content" source="media/resources-azure-redis-container.png" alt-text="A screenshot showing the containerized Redis.":::
+:::image type="content" loc-scope="azure" source="media/resources-azure-redis-container.png" alt-text="A screenshot showing the containerized Redis.":::
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs to express resource references.
-ms.date: 04/22/2024
+ms.date: 05/15/2024
 ms.topic: overview
 ---
 
@@ -17,7 +17,7 @@ Before continuing, consider some common terminology used in .NET Aspire:
 - **Reference**: A reference defines a connection between resources, expressed as a dependency. For more information, see [Reference resources](#reference-resources).
 
 > [!NOTE]
-> .NET Aspire's orchestration is designed to enhance your local development experience by simplifying the management of your cloud-native app's configuration and interconnections. While it's an invaluable tool for development, it's not intended to replace production environment systems like Kubernetes, which are specifically designed to excel in that context.
+> .NET Aspire's orchestration is designed to enhance your local development experience by simplifying the management of your cloud-native app's configuration and interconnections. While it's an invaluable tool for development, it's not intended to replace production environment systems like [Kubernetes](../deployment/overview.md#deploy-to-kubernetes), which are specifically designed to excel in that context.
 
 ## Define the app model
 
@@ -144,6 +144,8 @@ In the preceding example, the `apiservice` service has a named endpoint called `
 
 ### APIs for adding and expressing resources
 
+.NET Aspire hosting packages and [.NET Aspire components](components-overview.md) are both delivered as NuGet packages, but they serve different purposes. While components provide client library configuration for consuming apps outside the scope of the app host, hosting packages provide APIs for expressing resources and dependencies within the app host.
+
 Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectResource>, <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, and <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, .NET Aspire provides extension methods to add common resources to your app model. The following table lists the methods and their corresponding resource types:
 
 **Cloud-agnostic resources are available in the following NuGet packages:**
@@ -214,7 +216,7 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 
 - [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS)
 
-For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.com/dotnet/aspire/tree/release/8.0-preview5/src/Aspire.Hosting.AWS).
+For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.com/dotnet/aspire/tree/main/src/Aspire.Hosting.AWS).
 
 ## See also
 

@@ -1,7 +1,7 @@
 ---
 title: Use Orleans with .NET Aspire
 description: Learn how to use Orleans with .NET Aspire
-ms.date: 05/3/2024
+ms.date: 05/18/2024
 ms.topic: overview
 ---
 
@@ -11,10 +11,10 @@ Orleans has in-built support for .NET Aspire. .NET Aspire's application model le
 
 Orleans is represented as a resource in .NET Aspire. The Orleans resource includes configuration which your service needs to operate, such as cluster membership providers and storage providers.
 
-## Prerequisites
+[!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
-- .NET 8.0 SDK or later
-- .NET Aspire workload
+In addition to the prerequisites for .NET Aspire, you will need:
+
 - Orleans version 8.1.0 or later
 
 For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
@@ -26,7 +26,7 @@ To get started you need to add the Orleans hosting package to your app host proj
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Orleans --prerelease
+dotnet add package Aspire.Hosting.Orleans
 ```
 
 ### [PackageReference](#tab/package-reference)
@@ -69,7 +69,7 @@ To consume the .NET Aspire Orleans resource from an Orleans server project, ther
 2. Add the Orleans provider packages for those .NET Aspire components. In this example, you're using _Microsoft.Orleans.Persistence.AzureStorage_ and _Microsoft.Orleans.Clustering.AzureStorage_.
 3. Add Orleans to the host application builder.
 
-In the _Program.cs_ file of your Orleans server project, you must configure the .NET Aspire components you are using and add Orleans to the host builder. Note that the names provided must match the names used in the .NET Aspire app host project: "clustering" for the clustering provider, and "grain-state" for the grain state storage provider:
+In the _:::no-loc text="Program.cs":::_ file of your Orleans server project, you must configure the .NET Aspire components you are using and add Orleans to the host builder. Note that the names provided must match the names used in the .NET Aspire app host project: "clustering" for the clustering provider, and "grain-state" for the grain state storage provider:
 
 :::code language="csharp" source="snippets/Orleans/OrleansServer/Program.cs" :::
 
@@ -104,3 +104,8 @@ The Orleans Aspire integration supports a limited subset of Orleans providers to
   - Azure Storage Tables
 
 Streaming providers are not supported as of Orleans version 8.1.0.
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Explore the Orleans voting sample app](/samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/)
