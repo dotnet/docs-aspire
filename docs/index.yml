@@ -283,7 +283,7 @@ additionalContent:
               url: /dotnet/csharp
             - text: .NET Discord
               url: https://aka.ms/aspire/discord
-            - text: .NET Aspire Collection
+            - text: Official .NET Aspire Collection
               url: /collections/2203hjxnnrop11
         - title: Webcasts and shows
           links:
@@ -297,8 +297,8 @@ additionalContent:
               url: https://dotnet.microsoft.com/live/on-dotnet-live
             - text: .NET Community Standup
               url: https://dotnet.microsoft.com/platform/community/standup
-            - text: .NET Aspire YouTube playlist
-              url: https://www.youtube.com/playlist?list=PLdo4fOcmZ0oWTWWbWXqhn2w8NM3sQ_qDz
+            - text: Welcome to .NET Aspire
+              url: https://www.youtube.com/playlist?list=PLdo4fOcmZ0oUfIayQMrRqaSL55Rkck-GD
         - title: Open source
           links:
             - text: .NET Aspire
@@ -323,6 +323,8 @@ additionalContent:
               url: https://dotnetfoundation.org
             - text: We Are .NET
               url: https://www.wearedotnet.io
+            - text: .NET Aspire YouTube playlist
+              url: https://www.youtube.com/playlist?list=PLdo4fOcmZ0oWTWWbWXqhn2w8NM3sQ_qDz
             - text: .NET Aspire on YouTube
               url: https://www.youtube.com/results?search_query=.NET+Aspire
 

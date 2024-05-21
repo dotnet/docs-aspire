@@ -5,13 +5,15 @@ summary: Welcome to what's new in .NET Aspire docs. Use this page to quickly fin
 metadata:
   title: .NET Aspire what's new?
   description: Learn about new and updated content in .NET Aspire docs.
-  ms.date: 05/01/2024
+  ms.date: 05/21/2024
   ms.topic: landing-page
 landingContent:
 - title: .NET Aspire release documentation
   linkLists:
   - linkListType: whats-new
     links:
+    - text: .NET Aspire 8.0 (General Availability)
+      url: https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability/
     - text: .NET Aspire preview 7
       url: preview-7.md
     - text: .NET Aspire preview 6
