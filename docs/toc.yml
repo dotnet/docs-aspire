@@ -169,17 +169,13 @@ items:
         displayName: seq,logging
         href: logging/seq-component.md
 
-  - name: Cloud
+  - name: Deployment
     items:
+      - name: Overview
+        displayName: azure deployment,deployment,Kubernetes,k8s
+        href: deployment/overview.md
       - name: Azure
         items:
-        - name: Local Azure provisioning
-          href: deployment/azure/local-provisioning.md
-        - name: Deployment
-          items:
-          - name: Overview
-            displayName: azure deployment,deployment,Kubernetes,k8s
-            href: deployment/overview.md
           - name: Deploy to Azure Container Apps using azd
             href: deployment/azure/aca-deployment.md
             displayName: azure container apps,aca
@@ -198,11 +194,18 @@ items:
             href: database/sql-server-component-deployment.md
           - name: Deploy .NET Aspire + Redis
             href: caching/caching-components-deployment.md
+      - name: Tool-builder manifest schemas
+        href: deployment/manifest-format.md
+
+  - name: Cloud
+    items:
+      - name: Azure
+        items:
+        - name: Local Azure provisioning
+          href: deployment/azure/local-provisioning.md
         - name: Azure SignalR Service scenario
           displayName: azure signalr service,signalr,real-time
           href: real-time/azure-signalr-scenario.md
-      - name: Tool-builder manifest schemas
-        href: deployment/manifest-format.md
 
   - name: Frameworks
     items:
