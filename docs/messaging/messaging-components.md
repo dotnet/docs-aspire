@@ -69,11 +69,11 @@ Visual Studio provides app templates to get started with .NET Aspire that handle
 1. At the top of Visual Studio, navigate to **File** > **New** > **Project**.
 1. In the dialog window, search for *Aspire* and select **.NET Aspire Starter Application**. Choose **Next**.
 1. On the **Configure your new project** screen:
-    - Enter a **Project Name** of **AspireMessaging**.
+    - Enter a **Solution Name** of **AspireMessaging**.
     - Leave the rest of the values at their defaults and select **Next**.
 1. On the **Additional information** screen:
-    - Make sure **.NET 8.0** is selected.
-    - Ensure that **Enlist in Aspire orchestration** is checked and select **Next**.
+    - Uncheck **Use Redis for caching** (not required for this tutorial).
+    - Select **Create**.
 
 ## [.NET CLI](#tab/dotnet-cli)
 
