@@ -1,7 +1,7 @@
 ---
 title: Use .NET Aspire messaging components in ASP.NET Core
 description: Learn how to connect an ASP.NET Core app to messaging services using .NET Aspire components.
-ms.date: 05/14/2024
+ms.date: 05/20/2024
 ms.topic: tutorial
 ---
 
@@ -28,10 +28,10 @@ Alternatively:
 - **Azure CLI**: Run the following commands in the Azure CLI or CloudShell to set up the required Azure Service Bus resources:
 
     ```azurecli-interactive
-    az group create -n <your-resource-group-name> -location eastus
+    az group create -n <your-resource-group-name> --location eastus
     az servicebus namespace create -g <your-resource-group-name> --name <your-namespace-name> --location eastus
-    az servicebus topic create --g <your-resource-group-name> --namespace-name <your-namespace-name> --name notifications
-    az servicebus topic subscription create --g <your-resource-group-name> --namespace-name <your-namespace-name> --topic-name notifications --name mobile
+    az servicebus topic create -g <your-resource-group-name> --namespace-name <your-namespace-name> --name notifications
+    az servicebus topic subscription create -g <your-resource-group-name> --namespace-name <your-namespace-name> --topic-name notifications --name mobile
     ```
 
     > [!NOTE]
@@ -67,19 +67,13 @@ Create a .NET Aspire app using either Visual Studio or the .NET CLI.
 Visual Studio provides app templates to get started with .NET Aspire that handle some of the initial setup configurations for you.
 
 1. At the top of Visual Studio, navigate to **File** > **New** > **Project**.
-1. In the dialog window, search for *ASP.NET Core* and select **ASP.NET Core Web API**. Choose **Next**.
+1. In the dialog window, search for *Aspire* and select **.NET Aspire Starter Application**. Choose **Next**.
 1. On the **Configure your new project** screen:
     - Enter a **Project Name** of **AspireMessaging**.
     - Leave the rest of the values at their defaults and select **Next**.
 1. On the **Additional information** screen:
     - Make sure **.NET 8.0** is selected.
     - Ensure that **Enlist in Aspire orchestration** is checked and select **Next**.
-
-Visual Studio creates a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:
-
-- **AspireMessaging** - An API project with default .NET Aspire service configurations.
-- **AspireMessaging.AppHost** - An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
-- **AspireMessaging.ServiceDefaults** - A shared class library to hold code that can be reused across the projects in your solution.
 
 ## [.NET CLI](#tab/dotnet-cli)
 
@@ -89,13 +83,14 @@ Use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new .N
 dotnet new aspire-starter --name AspireMessaging
 ```
 
+---
+
 The solution consists of the following projects:
 
-- **AspireMessaging** - An API project with default .NET Aspire service configurations.
+- **AspireMessaging.ApiService** - An API project with default .NET Aspire service configurations.
 - **AspireMessaging.AppHost** - An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
 - **AspireMessaging.ServiceDefaults** - A shared class library to hold code that can be reused across the projects in your solution.
-
----
+- **AspireMessaging.Web** - A Blazor Server project that serves as the front end for the app.
 
 ### Add the Worker Service project
 
@@ -152,13 +147,13 @@ The completed solution structure should resemble the following:
 
 ## Add the .NET Aspire component to the API
 
-Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) component to your `AspireMessaging` app:
+Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) component to your `AspireMessaging.ApiService` app:
 
 ```dotnetcli
 dotnet add package Aspire.Azure.Messaging.ServiceBus
 ```
 
-In the _Program.cs_ file of the `AspireMessaging` Razor Pages project, add a call to the `AddAzureServiceBus` extension methods:
+In the _Program.cs_ file of the `AspireMessaging.ApiService` API project, add a call to the `AddAzureServiceBusClient` extension method immediately after the `builder.AddServiceDefaults()` call:
 
 ```csharp
 builder.AddAzureServiceBusClient("serviceBusConnection");
@@ -171,7 +166,7 @@ This method accomplishes the following tasks:
 - Registers a <xref:Microsoft.Azure.Commands.ServiceBus.ServiceBusClient> with the DI container for connecting to Azure Service Bus.
 - Automatically enables corresponding health checks, logging, and telemetry for the respective services.
 
-In the _appsettings.json_ file of the `AspireMessaging` project, add the corresponding connection information:
+In the _appsettings.json_ file of the `AspireMessaging.ApiService` project, add the corresponding connection information:
 
 # [Passwordless (Recommended)](#tab/passwordless)
 
@@ -201,7 +196,7 @@ In the _appsettings.json_ file of the `AspireMessaging` project, add the corresp
 
 ## Create the API endpoint
 
-The API must provide an endpoint to receive data and publish it to the Service Bus topic and broadcast to subscribers. Add the following endpoint to the `AspireMessaging` project to send a message to the topic:
+The API must provide an endpoint to receive data and publish it to the Service Bus topic and broadcast to subscribers. Add the following endpoint to the `AspireMessaging.ApiService` project to send a message to the Service Bus topic. Place this code in _Program.cs_ before the `app.MapDefaultEndpoints()` call:
 
 ```csharp
 app.MapPost("/notify", static async (ServiceBusClient client, string message) =>
@@ -225,7 +220,7 @@ app.MapPost("/notify", static async (ServiceBusClient client, string message) =>
     await sender.SendMessagesAsync(messageBatch);
 
     Console.WriteLine($"A message has been published to the topic.");
-})
+});
 ```
 
 ## Add the .NET Aspire component to the Worker Service
@@ -236,10 +231,10 @@ Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) componen
 dotnet add package Aspire.Azure.Messaging.ServiceBus
 ```
 
-In the _Program.cs_ file of the `AspireMessaging.WorkerService` Razor Pages project, add a call to the `AddAzureServiceBus` extension methods:
+In the _Program.cs_ file of the `AspireMessaging.WorkerService` project, add a call to the `AddAzureServiceBus` extension method after the `builder.Services.AddHostedService<Worker>()` call:
 
 ```csharp
-builder.AddAzureServiceBus("serviceBusConnection");
+builder.AddAzureServiceBusClient("serviceBusConnection");
 ```
 
 This method accomplishes the following tasks:
@@ -335,15 +330,13 @@ public class Worker(
 
 The sample app is now ready for testing. Verify that the data submitted to the API is sent to the Azure Service Bus topic and consumed by the subscriber worker service:
 
+
+
 ## [Visual Studio](#tab/visual-studio)
 
 1. Press the run button at the top of Visual Studio to launch your Aspire app. The .NET Aspire dashboard app should open in the browser.
-1. On the resources page, in the **aspireweb** row, click the link in the **Endpoints** column to open the Swagger UI page of your API.
-1. On the .NET Aspire dashboard, navigate to the logs for the **AspireWorkerService** project.
-1. Back on the Swagger UI page, expand the **/notify** endpoint and select **Try it out**.
-1. Enter a test message in the **message** input box.
-1. Select **Execute** to send a test request.
-1. Switch back to the **AspireWorkerService** logs. You should see the test message printed in the output logs.
+
+[!INCLUDE [test-starter-template-curl](../includes/test-starter-template-curl.md)]
 
 ## [.NET CLI](#tab/dotnet-cli)
 
@@ -352,13 +345,8 @@ The sample app is now ready for testing. Verify that the data submitted to the A
     ```csharp
     dotnet run --project AspireMessaging.AppHost
     ```
-
-1. On the resources page, in the **aspireweb** row, click the link in the **Endpoints** column to open the Swagger UI page of your API.
-1. On the .NET Aspire dashboard, navigate to the logs for the **AspireWorkerService** project.
-1. Back on the Swagger UI page, expand the **/notify** endpoint and select **Try it out**.
-1. Enter a test message in the **message** input box.
-1. Select **Execute** to send a test request.
-1. Switch back to the **AspireWorkerService** logs. You should see the test message printed in the output logs.
+    
+[!INCLUDE [test-starter-template-curl](../includes/test-starter-template-curl.md)]
 
 ---
 
