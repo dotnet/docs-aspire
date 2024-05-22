@@ -101,7 +101,7 @@ By default the `QdrantClient` uses the gRPC API endpoint.
 
 ### Use configuration providers
 
-The .NET Aspire Qdrant Client component supports [Microsoft.Extensions.Configuration](https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration). It loads the `QdrantClientSettings` from configuration by using the `Aspire:Qdrant:Client` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire Qdrant Client component supports [Microsoft.Extensions.Configuration](/dotnet/api/microsoft.extensions.configuration). It loads the `QdrantClientSettings` from configuration by using the `Aspire:Qdrant:Client` key. Example `appsettings.json` that configures some of the options:
 
 ```json
 {
@@ -117,7 +117,7 @@ The .NET Aspire Qdrant Client component supports [Microsoft.Extensions.Configura
 
 ### Use inline delegates
 
-Also you can pass the `Action<QdrantClientSettings> configureSettings` delegate to set up some or all the options inline, for example to set the API key from code:
+You can also pass the `Action<QdrantClientSettings> configureSettings` delegate to set up some or all the options inline, for example to set the API key from code:
 
 ```csharp
 builder.AddQdrantClient("qdrant", settings => settings.ApiKey = "12345!@#$%");
