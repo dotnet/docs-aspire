@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire Qdrant component. Use this
 
 ## Get started
 
-To get started with the .NET Aspire Qdrant component, install the [Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Qdrant.Client) NuGet package.
+To get started with the .NET Aspire Qdrant component, install the [Aspire.Qdrant.Client](https://www.nuget.org/packages/Aspire.Qdrant.Client) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -22,7 +22,7 @@ dotnet add package Qdrant.Client
 ### [PackageReference](#tab/package-reference)
 
 ```xml
-<PackageReference Include="Aspire.Microsoft.Data.SqlClient"
+<PackageReference Include="Aspire.Qdrant.Client"
                   Version="[SelectVersion]" />
 ```
 
