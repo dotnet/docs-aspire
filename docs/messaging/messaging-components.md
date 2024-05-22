@@ -330,22 +330,17 @@ public class Worker(
 
 The sample app is now ready for testing. Verify that the data submitted to the API is sent to the Azure Service Bus topic and consumed by the subscriber worker service:
 
-## [Visual Studio](#tab/visual-studio)
+1. Launch the Aspire app by selecting the run button (Visual Studio) or running `dotnet run --project AspireMessaging.AppHost`. The .NET Aspire dashboard app should open in the browser.
+1. On the resources page, in the **apiservice** row, find the link in the **Endpoints** that opens the `weatherforecast` endpoint. Note the HTTPS port number.
+1. On the .NET Aspire dashboard, navigate to the logs for the **aspiremessaging-workerservice** project.
+1. In a terminal window, use the `curl` command to send a test message to the API:
 
-1. Press the run button at the top of Visual Studio to launch your Aspire app. The .NET Aspire dashboard app should open in the browser.
-1. [!INCLUDE [test-starter-template-curl](../includes/test-starter-template-curl.md)]
-
-## [.NET CLI](#tab/dotnet-cli)
-
-1. In a terminal window at the root of your project, use the `dotnet run` command to start the app:
-
-    ```csharp
-    dotnet run --project AspireMessaging.AppHost
+    ```bash
+    curl -X POST -H "Content-Type: application/json" https://localhost:{port}/notify?message=hello%20aspire  
     ```
 
-1. [!INCLUDE [test-starter-template-curl](../includes/test-starter-template-curl.md)]
-
----
+    Be sure to replace **{port}** with the port number from earlier.
+1. Switch back to the **aspiremessaging-workerservice** logs. You should see the test message printed in the output logs.
 
 Congratulations! You created and configured an ASP.NET Core API that connects to Azure Service Bus using Aspire components.
 
