@@ -287,3 +287,4 @@ Once you've created a new .NET Aspire project, you run and debug the app, steppi
 ## See also
 
 - [Unable to install .NET Aspire workload](../troubleshooting/unable-to-install-workload.md)
+- [Use Dev Proxy with .NET Aspire app](/microsoft-cloud/dev/dev-proxy/how-to/use-dev-proxy-with-dotnet-aspire)
