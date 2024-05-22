@@ -333,7 +333,6 @@ The sample app is now ready for testing. Verify that the data submitted to the A
 ## [Visual Studio](#tab/visual-studio)
 
 1. Press the run button at the top of Visual Studio to launch your Aspire app. The .NET Aspire dashboard app should open in the browser.
-
 [!INCLUDE [test-starter-template-curl](../includes/test-starter-template-curl.md)]
 
 ## [.NET CLI](#tab/dotnet-cli)
@@ -343,7 +342,6 @@ The sample app is now ready for testing. Verify that the data submitted to the A
     ```csharp
     dotnet run --project AspireMessaging.AppHost
     ```
-
 [!INCLUDE [test-starter-template-curl](../includes/test-starter-template-curl.md)]
 
 ---
