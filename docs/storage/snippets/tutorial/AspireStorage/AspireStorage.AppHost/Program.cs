@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Hosting;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
@@ -12,12 +12,15 @@ if (builder.Environment.IsDevelopment())
 var blobs = storage.AddBlobs("BlobConnection");
 var queues = storage.AddQueues("QueueConnection");
 
-builder.AddProject<Projects.AspireStorage>("aspirestorage")
+var apiService = builder.AddProject<Projects.AspireStorage_ApiService>("apiservice");
+
+builder.AddProject<Projects.AspireStorage_Web>("webfrontend")
+    .WithExternalHttpEndpoints()
+    .WithReference(apiService)
     .WithReference(blobs)
+    .WithReference(queues); 
+
+builder.AddProject<Projects.AspireStorage_WorkerService>("aspirestorage-workerservice")
     .WithReference(queues);
 
-builder.AddProject<Projects.AspireStorage_Worker>("aspirestorage-worker")
-    .WithReference(queues);
-
-var app = builder.Build();
-app.Run();
+builder.Build().Run();
