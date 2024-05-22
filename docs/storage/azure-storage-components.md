@@ -257,7 +257,7 @@ The app requires a form for the user to be able to submit support ticket informa
 
 Use the following Razor markup to create a basic form, replacing the contents of the _Home.razor_ file in the _AspireStorage.Web/Components/Pages_ directory:
 
-:::code language="razor" source="snippets/tutorial/AspireStorage/AspireStorage/Components/Pages/Home.razor":::
+:::code language="razor" source="snippets/tutorial/AspireStorage/AspireStorage.Web/Components/Pages/Home.razor":::
 
 For more information about creating forms in Blazor, see [ASP.NET Core Blazor forms overview](/aspnet/core/blazor/forms).
 
