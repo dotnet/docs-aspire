@@ -1,7 +1,7 @@
 ---
 title: Use .NET Aspire messaging components in ASP.NET Core
 description: Learn how to connect an ASP.NET Core app to messaging services using .NET Aspire components.
-ms.date: 05/14/2024
+ms.date: 05/22/2024
 ms.topic: tutorial
 ---
 
@@ -330,8 +330,6 @@ public class Worker(
 
 The sample app is now ready for testing. Verify that the data submitted to the API is sent to the Azure Service Bus topic and consumed by the subscriber worker service:
 
-
-
 ## [Visual Studio](#tab/visual-studio)
 
 1. Press the run button at the top of Visual Studio to launch your Aspire app. The .NET Aspire dashboard app should open in the browser.
@@ -345,7 +343,7 @@ The sample app is now ready for testing. Verify that the data submitted to the A
     ```csharp
     dotnet run --project AspireMessaging.AppHost
     ```
-    
+
 [!INCLUDE [test-starter-template-curl](../includes/test-starter-template-curl.md)]
 
 ---
