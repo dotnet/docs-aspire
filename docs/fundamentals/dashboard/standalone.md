@@ -1,7 +1,7 @@
 ---
 title: Standalone .NET Aspire dashboard
 description: How to use the .NET Aspire dashboard standalone.
-ms.date: 05/15/2024
+ms.date: 05/18/2024
 ms.topic: reference
 ---
 
@@ -20,12 +20,12 @@ The dashboard is started using the Docker command line.
 
 ```bash
 docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
-    mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
 ```
 
 The preceding Docker command:
 
-- Starts a container from the `mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0` image.
+- Starts a container from the `mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0` image.
 - The container expose two ports:
   - Mapping the dashboard's OTLP port `18889` to the host's port `4317`. Port `4317` receives OpenTelemetry data from apps. Apps send data using [OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/).
   - Mapping the dashboard's port `18888` to the host's port `18888`. Port `18888` has the dashboard UI. Navigate to `http://localhost:18888` in the browser to view the dashboard.
@@ -83,3 +83,8 @@ To configure applications:
 ## Sample
 
 For a sample of using the standalone dashboard, see the [Standalone .NET Aspire dashboard sample app](/samples/dotnet/aspire-samples/aspire-standalone-dashboard).
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Configure the .NET Aspire dashboard](configuration.md)

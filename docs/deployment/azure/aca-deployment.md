@@ -1,13 +1,13 @@
 ---
 title: Deploy .NET Aspire apps to Azure Container Apps
-description: Learn how to use Bicep, the Azure CLI, and Azure Developer CLI to deploy .NET Aspire apps to Azure.
-ms.date: 03/08/2024
+description: Learn how to use the Azure Developer CLI to deploy .NET Aspire apps to Azure.
+ms.date: 05/18/2024
 ms.custom: devx-track-extended-azdevcli
 ---
 
 # Deploy a .NET Aspire app to Azure Container Apps
 
-.NET Aspire apps are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. This article will walk you through creating a new .NET Aspire solution and deploying it to Microsoft Azure Container Apps using the Azure Developer CLI (`azd`), the Azure CLI, or Bicep. You'll learn how to complete the following tasks:
+.NET Aspire apps are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. This article will walk you through creating a new .NET Aspire solution and deploying it to Microsoft Azure Container Apps using the Azure Developer CLI (`azd`). You'll learn how to complete the following tasks:
 
 > [!div class="checklist"]
 >

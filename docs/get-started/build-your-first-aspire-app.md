@@ -57,7 +57,7 @@ In Visual Studio, set the **AspireSample.AppHost** project as the startup projec
 
 In Visual Studio Code, press <kbd>F5</kbd> to run the app. You'll be prompted to select which language, and C# will be suggested, select C# and then select the **AspireSample.AppHost** project with the **Default Configuration**:
 
-:::image type="content" source="media/vscode-run.png" lightbox="media/vscode-run.png" alt-text="A screenshot of the Visual Studio Code run configuration for the AspireSample.AppHost project.":::
+:::image type="content" loc-scope="vs-code" source="media/vscode-run.png" lightbox="media/vscode-run.png" alt-text="A screenshot of the Visual Studio Code run configuration for the AspireSample.AppHost project.":::
 
 :::zone-end
 :::zone pivot="dotnet-cli"
@@ -92,7 +92,7 @@ In Visual Studio, select the **Stop Debugging** from the **Debug** menu to stop 
 
 In Visual Studio Code, press <kbd>Shift</kbd> + <kbd>F5</kbd> to stop the app, or select the **Stop** button at the top center of the window:
 
-:::image type="content" source="media/vscode-stop.png" lightbox="media/vscode-stop.png" alt-text="A screenshot of the Visual Studio Code stop button.":::
+:::image type="content" loc-scope="vs-code" source="media/vscode-stop.png" lightbox="media/vscode-stop.png" alt-text="A screenshot of the Visual Studio Code stop button.":::
 
 :::zone-end
 :::zone pivot="dotnet-cli"
@@ -149,7 +149,7 @@ The _*.AppHost_ project is responsible for acting as the orchestrator, and sets 
 
 :::code language="xml" source="snippets/quickstart/AspireSample/AspireSample.AppHost/AspireSample.AppHost.csproj" highlight="8":::
 
-Consider the _Program.cs_ file of the _AspireSample.AppHost_ project:
+Consider the _:::no-loc text="Program.cs":::_ file of the _AspireSample.AppHost_ project:
 
 :::code source="snippets/quickstart/AspireSample/AspireSample.AppHost/Program.cs":::
 
@@ -178,7 +178,7 @@ The front end app defines a typed <xref:System.Net.Http.HttpClient> that's used 
 
 :::code source="snippets/quickstart/AspireSample/AspireSample.Web/WeatherApiClient.cs":::
 
-The `HttpClient` is configured to use service discovery, consider the following code from the _Program.cs_ file of the _AspireSample.Web_ project:
+The `HttpClient` is configured to use service discovery, consider the following code from the _:::no-loc text="Program.cs":::_ file of the _AspireSample.Web_ project:
 
 :::code source="snippets/quickstart/AspireSample/AspireSample.Web/Program.cs" highlight="7-8,14-19":::
 
@@ -190,12 +190,16 @@ The preceding code:
 
 For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fundamentals/networking/http/httpclient) class.
 
-## Next steps
+## See also
 
 - [.NET Aspire components overview](../fundamentals/components-overview.md)
 - [Service discovery in .NET Aspire](../service-discovery/overview.md)
-- [Service discovery in .NET](/dotnet/core/extensions/service-discovery)
 - [.NET Aspire service defaults](../fundamentals/service-defaults.md)
 - [Health checks in .NET Aspire](../fundamentals/health-checks.md)
 - [.NET Aspire telemetry](../fundamentals/telemetry.md)
 - [Troubleshoot untrusted localhost certificate in .NET Aspire](../troubleshooting/untrusted-localhost-certificate.md)
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Tutorial: Add .NET Aspire to an existing .NET app](add-aspire-existing-app.md)

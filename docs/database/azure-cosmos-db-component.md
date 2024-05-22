@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireMicrosoftAzureCosmosExtensions.AddAzureCosmosClient%2A> extension to register a <xref:Microsoft.Azure.Cosmos.CosmosClient?displayProperty=fullName> for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireMicrosoftAzureCosmosExtensions.AddAzureCosmosClient%2A> extension to register a <xref:Microsoft.Azure.Cosmos.CosmosClient?displayProperty=fullName> for use via the dependency injection container.
 
 ```csharp
 builder.AddAzureCosmosClient("cosmosdb");
@@ -131,7 +131,7 @@ Alternatively, an Azure Cosmos DB connection string can be used:
 
 ### Use configuration providers
 
-The .NET Aspire Azure Cosmos DB component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.Azure.Cosmos.MicrosoftAzureCosmosSettings> from _appsettings.json_ or other configuration files using `Aspire:Microsoft:Azure:Cosmos` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire Azure Cosmos DB component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.Azure.Cosmos.MicrosoftAzureCosmosSettings> from _:::no-loc text="appsettings.json":::_ or other configuration files using `Aspire:Microsoft:Azure:Cosmos` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {

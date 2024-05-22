@@ -1,7 +1,7 @@
 ---
 title: Use .NET Aspire messaging components in ASP.NET Core
 description: Learn how to connect an ASP.NET Core app to messaging services using .NET Aspire components.
-ms.date: 05/20/2024
+ms.date: 05/14/2024
 ms.topic: tutorial
 ---
 
@@ -105,7 +105,7 @@ Next, add a Worker Service project to the solution to retrieve and process messa
     - Make sure **.NET 8.0** is selected.
     - Make sure **Enlist in .NET Aspire orchestration** is checked and select **Create**.
 
-Visual Studio adds the project to your solution and updates the _Program.cs_ file of the `AspireMessaging.AppHost` project with a new line of code:
+Visual Studio adds the project to your solution and updates the _:::no-loc text="Program.cs":::_ file of the `AspireMessaging.AppHost` project with a new line of code:
 
 ```csharp
 builder.AddProject<Projects.AspireMessaging_WorkerService>("aspiremessaging-workerservice");
@@ -133,7 +133,7 @@ Visual Studio tooling added this line of code to register your new project with 
     dotnet add AspireMessaging.AppHost/AspireMessaging.AppHost.csproj reference AspireMessaging.WorkerService/AspireMessaging.WorkerService.csproj
     ```
 
-1. Add the following line of code to the _Program.cs_ file in the **AspireMessaging.AppHost** project:
+1. Add the following line of code to the _:::no-loc text="Program.cs":::_ file in the **AspireMessaging.AppHost** project:
 
     ```csharp
     builder.AddProject<Projects.AspireMessaging_WorkerService>("aspiremessaging-workerservice");
@@ -153,7 +153,7 @@ Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) componen
 dotnet add package Aspire.Azure.Messaging.ServiceBus
 ```
 
-In the _Program.cs_ file of the `AspireMessaging.ApiService` API project, add a call to the `AddAzureServiceBusClient` extension method immediately after the `builder.AddServiceDefaults()` call:
+In the _:::no-loc text="Program.cs":::_ file of the `AspireMessaging` Razor Pages project, add a call to the `AddAzureServiceBus` extension methods:
 
 ```csharp
 builder.AddAzureServiceBusClient("serviceBusConnection");
@@ -166,7 +166,7 @@ This method accomplishes the following tasks:
 - Registers a <xref:Microsoft.Azure.Commands.ServiceBus.ServiceBusClient> with the DI container for connecting to Azure Service Bus.
 - Automatically enables corresponding health checks, logging, and telemetry for the respective services.
 
-In the _appsettings.json_ file of the `AspireMessaging.ApiService` project, add the corresponding connection information:
+In the _:::no-loc text="appsettings.json":::_ file of the `AspireMessaging` project, add the corresponding connection information:
 
 # [Passwordless (Recommended)](#tab/passwordless)
 
@@ -231,7 +231,7 @@ Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) componen
 dotnet add package Aspire.Azure.Messaging.ServiceBus
 ```
 
-In the _Program.cs_ file of the `AspireMessaging.WorkerService` project, add a call to the `AddAzureServiceBus` extension method after the `builder.Services.AddHostedService<Worker>()` call:
+In the _:::no-loc text="Program.cs":::_ file of the `AspireMessaging.WorkerService` Razor Pages project, add a call to the `AddAzureServiceBus` extension methods:
 
 ```csharp
 builder.AddAzureServiceBusClient("serviceBusConnection");
@@ -242,7 +242,7 @@ This method accomplishes the following tasks:
 - Registers a <xref:Microsoft.Azure.Commands.ServiceBus.ServiceBusClient> with the DI container for connecting to Azure Service Bus.
 - Automatically enables corresponding health checks, logging, and telemetry for the respective services.
 
-In the _appsettings.json_ file of the `AspireMessaging.WorkerService` project, add the corresponding connection information:
+In the _:::no-loc text="appsettings.json":::_ file of the `AspireMessaging.WorkerService` project, add the corresponding connection information:
 
 # [Passwordless (Recommended)](#tab/passwordless)
 

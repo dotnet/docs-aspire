@@ -3,4 +3,4 @@ Visual Studio Code provides .NET Aspire project templates that handle some initi
 1. From a new instance of Visual Studio Code (without a folder open), select **Create .NET project** button.
 1. Select the **.NET Aspire Starter Application** template.
 
-    :::image type="content" source="media/vscode-new-starter-project.png" lightbox="media/vscode-new-starter-project.png" alt-text="A screenshot of the .NET Aspire Starter Application template.":::
+    :::image type="content" loc-scope="vs-code" source="media/vscode-new-starter-project.png" lightbox="media/vscode-new-starter-project.png" alt-text="A screenshot of the .NET Aspire Starter Application template.":::

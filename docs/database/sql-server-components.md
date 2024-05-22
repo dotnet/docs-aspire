@@ -59,7 +59,7 @@ Your _AspireSQLEFCore_ project is now set up to use .NET Aspire components. Here
 
 ## Configure the .NET Aspire component
 
-In the _Program.cs_ file of the _AspireSQLEFCore_ project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension method after the creation of the `builder` but before the call to `AddServiceDefaults`. For more information, see [.NET Aspire service defaults](../fundamentals/service-defaults.md). Provide the name of your connection string as a parameter.
+In the _:::no-loc text="Program.cs":::_ file of the _AspireSQLEFCore_ project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension method after the creation of the `builder` but before the call to `AddServiceDefaults`. For more information, see [.NET Aspire service defaults](../fundamentals/service-defaults.md). Provide the name of your connection string as a parameter.
 
 :::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/Program.cs" range="1-14" highlight="5":::
 
@@ -70,7 +70,7 @@ This method accomplishes the following tasks:
 
 ## Migrate and seed the database
 
-While developing locally, you need to create a database inside the SQL Server container. Update the _Program.cs_ file with the following code to automatically run Entity Framework migrations during startup.
+While developing locally, you need to create a database inside the SQL Server container. Update the _:::no-loc text="Program.cs":::_ file with the following code to automatically run Entity Framework migrations during startup.
 
 :::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/Program.cs" range="1-30" highlight="16-30":::
 
@@ -94,7 +94,7 @@ Add the [.NET Aspire Hosting Sql Server](/dotnet/aspire/database/sql-server-enti
 dotnet add package Aspire.Hosting.SqlServer
 ```
 
-Replace the contents of the _Program.cs_ file in the _AspireSQLEFCore.AppHost_ project with the following code:
+Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _AspireSQLEFCore.AppHost_ project with the following code:
 
 :::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore.AppHost/Program.cs":::
 

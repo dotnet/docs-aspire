@@ -5,7 +5,7 @@ items:
   - name: Get Started
     items:
       - name: .NET Aspire overview
-        displayName: aspire overview,architecture,key concepts
+        displayName: aspire overview,architecture,key concepts,Kubernetes,k8s
         href: get-started/aspire-overview.md
       - name: Quickstart - Build your first .NET Aspire app
         displayName: quickstart,first app,aspire app
@@ -54,7 +54,7 @@ items:
         displayName: inner loop,local networking
         href: fundamentals/networking-overview.md
       - name: Service discovery
-        displayName: service discovery,service to service communication
+        displayName: service discovery,service to service communication,Kubernetes,k8s
         href: service-discovery/overview.md
       - name: Testing .NET Aspire apps
         href: fundamentals/testing.md
@@ -137,12 +137,12 @@ items:
         href: database/oracle-entity-framework-component.md
       - name: PostgreSQL
         items:
-          - name: PostgreSQL Database
-            displayName: postgresql,database
-            href: database/postgresql-component.md
           - name: PostgreSQL - EF Core
             displayName: postgresql,database,ef core
             href: database/postgresql-entity-framework-component.md
+          - name: PostgreSQL
+            displayName: postgresql,database
+            href: database/postgresql-component.md
       - name: RabbitMQ service broker
         displayName: rabbitmq,messaging,service broker
         href: messaging/rabbitmq-client-component.md
@@ -169,17 +169,14 @@ items:
         displayName: seq,logging
         href: logging/seq-component.md
 
-  - name: Cloud
+  - name: Deployment
     items:
+      - name: Overview
+        displayName: azure deployment,deployment,Kubernetes,k8s
+        href: deployment/overview.md
       - name: Azure
         items:
-        - name: Local Azure provisioning
-          href: deployment/azure/local-provisioning.md
-        - name: Deployment
-          items:
-          - name: Overview
-            href: deployment/overview.md
-          - name: Deploy to Azure Container Apps using AZD
+          - name: Deploy to Azure Container Apps using azd
             href: deployment/azure/aca-deployment.md
             displayName: azure container apps,aca
           - name: Deploy to Azure Container Apps using Visual Studio
@@ -197,22 +194,33 @@ items:
             href: database/sql-server-component-deployment.md
           - name: Deploy .NET Aspire + Redis
             href: caching/caching-components-deployment.md
+      - name: Tool-builder manifest schemas
+        href: deployment/manifest-format.md
+
+  - name: Cloud
+    items:
+      - name: Azure
+        items:
+        - name: Local Azure provisioning
+          href: deployment/azure/local-provisioning.md
         - name: Azure SignalR Service scenario
           displayName: azure signalr service,signalr,real-time
           href: real-time/azure-signalr-scenario.md
-      - name: Tool-builder manifest schemas
-        href: deployment/manifest-format.md
 
   - name: Frameworks
     items:
       - name: Orleans
-        href: frameworks/orleans.md
-      - name: Orleans voting sample
-        href: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
+        items:
+          - name: Overview
+            href: frameworks/orleans.md
+          - name: Orleans voting sample
+            href: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
       - name: Dapr
-        href: frameworks/dapr.md
-      - name: Dapr integration sample
-        href: /samples/dotnet/aspire-samples/aspire-dapr/
+        items:
+        - name: Overview
+          href: frameworks/dapr.md
+        - name: Dapr integration sample
+          href: /samples/dotnet/aspire-samples/aspire-dapr/
 
   - name: Troubleshooting
     items:

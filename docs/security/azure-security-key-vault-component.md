@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireKeyVaultExtensions.AddAzureKeyVaultSecrets%2A> extension to register a `SecretClient` for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireKeyVaultExtensions.AddAzureKeyVaultSecrets%2A> extension to register a `SecretClient` for use via the dependency injection container.
 
 ```csharp
 builder.AddAzureKeyVaultSecrets("secrets");
@@ -85,7 +85,7 @@ The .NET Aspire Azure Key Vault component provides multiple options to configure
 
 ### Use configuration providers
 
-The .NET Aspire Azure Key Vault component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Security.KeyVault.AzureSecurityKeyVaultSettings> from _appsettings.json_ or other configuration files using `Aspire:Azure:Security:KeyVault` key.
+The .NET Aspire Azure Key Vault component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Security.KeyVault.AzureSecurityKeyVaultSettings> from _:::no-loc text="appsettings.json":::_ or other configuration files using `Aspire:Azure:Security:KeyVault` key.
 
 ```json
 {
@@ -106,7 +106,7 @@ The .NET Aspire Azure Key Vault component supports <xref:Microsoft.Extensions.Co
 }
 ```
 
-If you have set up your configurations in the `Aspire:Azure:Security:KeyVault` section of your _appsettings.json_ file you can just call the method `AddAzureKeyVaultSecrets` without passing any parameters.
+If you have set up your configurations in the `Aspire:Azure:Security:KeyVault` section of your _:::no-loc text="appsettings.json":::_ file you can just call the method `AddAzureKeyVaultSecrets` without passing any parameters.
 
 ### Use inline delegates
 

@@ -40,7 +40,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireTablesExtensions.AddAzureTableClient%2A> extension to register a `TableServiceClient` for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireTablesExtensions.AddAzureTableClient%2A> extension to register a `TableServiceClient` for use via the dependency injection container.
 
 ```csharp
 builder.AddAzureTableClient("tables");
@@ -94,7 +94,7 @@ The .NET Aspire Azure Table Storage component provides multiple options to confi
 
 ### Use configuration providers
 
-The .NET Aspire Azure Table Storage component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings> from _appsettings.json_ or other configuration files using `Aspire:Azure:Data:Tables` key.
+The .NET Aspire Azure Table Storage component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings> from _:::no-loc text="appsettings.json":::_ or other configuration files using `Aspire:Azure:Data:Tables` key.
 
 ```json
 {
@@ -115,7 +115,7 @@ The .NET Aspire Azure Table Storage component supports <xref:Microsoft.Extension
 }
 ```
 
-If you have set up your configurations in the `Aspire:Azure:Data:Tables` section of your _appsettings.json_ file you can just call the method `AddAzureTableClient` without passing any parameters.
+If you have set up your configurations in the `Aspire:Azure:Data:Tables` section of your _:::no-loc text="appsettings.json":::_ file you can just call the method `AddAzureTableClient` without passing any parameters.
 
 ### Use inline delegates
 

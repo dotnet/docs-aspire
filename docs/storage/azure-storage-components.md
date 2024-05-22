@@ -161,7 +161,7 @@ Next, add a Worker Service project to the solution to retrieve and process messa
     - Make sure **.NET 8.0** is selected.
     - Make sure **Enlist in .NET Aspire orchestration** is checked and select **Create**.
 
-Visual Studio adds the project to your solution and updates the _Program.cs_ file of the _AspireStorage.AppHost_ project with a new line of code:
+Visual Studio adds the project to your solution and updates the _:::no-loc text="Program.cs":::_ file of the _AspireStorage.AppHost_ project with a new line of code:
 
 ```csharp
 builder.AddProject<Projects.AspireStorage_Worker>();
@@ -189,7 +189,7 @@ Visual Studio tooling added this line of code to register your new project with 
     dotnet add AspireStorage.AppHost/AspireStorage.AppHost.csproj reference AspireStorage.WorkerService/AspireStorage.WorkerService.csproj
     ```
 
-1. Add the following line of code to the _Program.cs_ file in the **AspireStorage.AppHost** project:
+1. Add the following line of code to the _:::no-loc text="Program.cs":::_ file in the **AspireStorage.AppHost** project:
 
     ```csharp
     builder.AddProject<Projects.AspireStorage_WorkerService>("aspirestorage-workerservice");
@@ -199,7 +199,7 @@ Visual Studio tooling added this line of code to register your new project with 
 
 The completed solution structure should resemble the following:
 
-:::image type="content" source="media/storage-project.png" alt-text="A screenshot showing the structure of the .NET Aspire storage sample solution.":::
+:::image type="content" loc-scope="visual-studio" source="media/storage-project.png" alt-text="A screenshot showing the structure of the .NET Aspire storage sample solution.":::
 
 ## Add the .NET Aspire components to the Blazor app
 
@@ -216,7 +216,7 @@ Your **AspireStorage** project is now set up to use .NET Aspire components. Here
 
 The next step is to add the components to the app.
 
-In the _Program.cs_ file of the _AspireStorage_ project, add calls to the <xref:Microsoft.Extensions.Hosting.AspireBlobStorageExtensions.AddAzureBlobClient%2A> and <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueClient%2A> extension methods after the creation of the `builder` but before the call to `AddServiceDefaults`. For more information, see [.NET Aspire service defaults](../fundamentals/service-defaults.md). Provide the name of your connection string as a parameter.
+In the _:::no-loc text="Program.cs":::_ file of the _AspireStorage_ project, add calls to the <xref:Microsoft.Extensions.Hosting.AspireBlobStorageExtensions.AddAzureBlobClient%2A> and <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueClient%2A> extension methods after the creation of the `builder` but before the call to `AddServiceDefaults`. For more information, see [.NET Aspire service defaults](../fundamentals/service-defaults.md). Provide the name of your connection string as a parameter.
 
 :::zone pivot="azurite"
 
@@ -248,7 +248,7 @@ The worker service handles pulling messages off of the Azure Storage queue for p
 dotnet add package Aspire.Azure.Storage.Queues
 ```
 
-In the _Program.cs_ file of the _AspireStorage.Worker_ project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueClient%2A> extension method after the creation of the `builder` but before the call to `AddServiceDefaults`:
+In the _:::no-loc text="Program.cs":::_ file of the _AspireStorage.Worker_ project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueClient%2A> extension method after the creation of the `builder` but before the call to `AddServiceDefaults`:
 
 :::code source="snippets/tutorial/AspireStorage/AspireStorage.Worker/Program.cs" highlight="5":::
 
@@ -288,7 +288,7 @@ dotnet add package Aspire.Hosting.Azure.Storage
 
 ---
 
-Replace the contents of the _Program.cs_ file in the _AspireStorage.AppHost_ project with the following code:
+Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _AspireStorage.AppHost_ project with the following code:
 
 :::zone pivot="azurite"
 
@@ -330,7 +330,7 @@ The worker service processes message in the queue and deletes them when they've 
 
 ## Configure the connection strings
 
-The **AspireStorage** and **AspireStorage.Worker** projects must be configured to connect to the correct Azure Storage Account you created earlier. You can specify the endpoints for the blob and queue services in the storage account using the `appsettings.json` file in each project.
+The **AspireStorage** and **AspireStorage.Worker** projects must be configured to connect to the correct Azure Storage Account you created earlier. You can specify the endpoints for the blob and queue services in the storage account using the _:::no-loc text="appsettings.json":::_ file in each project.
 
 1. In the **AspireStorage** project, add the following configuration to the `appsettings.Development.json` file:
 

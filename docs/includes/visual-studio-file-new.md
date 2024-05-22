@@ -1,9 +1,23 @@
+<<<<<<< HEAD
+=======
+<<<<<<<< HEAD:docs/includes/file-new-aspire.md
+---
+zone_pivot_groups: dev-environment
+---
+
+
+========
+>>>>>>> origin/main
 Visual Studio provides .NET Aspire project templates that handle some initial setup configurations for you. Complete the following steps to create a project for this quickstart:
 
 1. At the top of Visual Studio, navigate to **File** > **New** > **Project**.
 1. In the dialog window, search for *Aspire* and select **.NET Aspire Starter Application**. Select **Next**.
 
+<<<<<<< HEAD
     :::image type="content" source="../media/aspire-templates.png" lightbox="../media/aspire-templates.png" alt-text="A screenshot of the .NET Aspire Starter Application template.":::
+=======
+    :::image type="content" loc-scope="visual-studio" source="../media/aspire-templates.png" lightbox="../media/aspire-templates.png" alt-text="A screenshot of the .NET Aspire Starter Application template.":::
+>>>>>>> origin/main
 
 1. On the **Configure your new project** screen:
     - Enter a **Project Name** of *AspireSample*.
@@ -14,3 +28,7 @@ Visual Studio provides .NET Aspire project templates that handle some initial se
     - Optionally, you can select **Create a tests project**. For more information, see [Testing .NET Aspire apps](../fundamentals/testing.md).
 
 Visual Studio creates a new solution that is structured to use .NET Aspire.
+<<<<<<< HEAD
+=======
+>>>>>>>> origin/main:docs/includes/visual-studio-file-new.md
+>>>>>>> origin/main

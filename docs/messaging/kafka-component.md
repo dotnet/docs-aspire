@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireKafkaProducerExtensions.AddKafkaProducer%2A> extension method to register an `IProducer<TKey, TValue>` for use via the dependency injection container. The method takes two generic parameters corresponding to the type of the key and the type of the message to send to the broker. These generic parameters will be used to new an instance of `ProducerBuilder<TKey, TValue>`. This method also take connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireKafkaProducerExtensions.AddKafkaProducer%2A> extension method to register an `IProducer<TKey, TValue>` for use via the dependency injection container. The method takes two generic parameters corresponding to the type of the key and the type of the message to send to the broker. These generic parameters will be used to new an instance of `ProducerBuilder<TKey, TValue>`. This method also take connection name parameter.
 
 ```csharp
 builder.AddKafkaProducer<string, string>("messaging");
@@ -75,7 +75,7 @@ var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(messaging);
 ```
 
-The `WithReference` method configures a connection in the `MyService` project named `messaging`. In the _Program.cs_ file of `MyService`, the Apache Kafka broker connection can be consumed using:
+The `WithReference` method configures a connection in the `MyService` project named `messaging`. In the _:::no-loc text="Program.cs":::_ file of `MyService`, the Apache Kafka broker connection can be consumed using:
 
 ```csharp
 builder.AddKafkaProducer<string, string>("messaging");
@@ -113,7 +113,7 @@ The value provided as connection string will be set to the `BootstrapServers`  p
 
 ### Use configuration providers
 
-The .NET Aspire Apache Kafka component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `KafkaProducerSettings` or `KafkaConsumerSettings` from configuration by respectively using the `Aspire:Confluent:Kafka:Producer` and `Aspire.Confluent:Kafka:Consumer` keys. This example `appsettings.json` configures some of the options:
+The .NET Aspire Apache Kafka component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `KafkaProducerSettings` or `KafkaConsumerSettings` from configuration by respectively using the `Aspire:Confluent:Kafka:Producer` and `Aspire.Confluent:Kafka:Consumer` keys. This example _:::no-loc text="appsettings.json":::_ configures some of the options:
 
 ```json
 {

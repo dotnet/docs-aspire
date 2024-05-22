@@ -11,7 +11,7 @@ Cloud-native applications often require extensive configurations to ensure they 
 
 ## Explore the service defaults project
 
-When you either [**Enlist in .NET Aspire orchestration**](setup-tooling.md#enlist-in-orchestration) or [create a new .NET Aspire project](../get-started/build-your-first-aspire-app.md), the _YourAppName.ServiceDefaults_ project is added to your solution. For example, when building an API, you call the `AddServiceDefaults` method in the _Program.cs_ file of your apps:
+When you either [**Enlist in .NET Aspire orchestration**](setup-tooling.md#enlist-in-orchestration) or [create a new .NET Aspire project](../get-started/build-your-first-aspire-app.md), the _YourAppName.ServiceDefaults_ project is added to your solution. For example, when building an API, you call the `AddServiceDefaults` method in the _:::no-loc text="Program.cs":::_ file of your apps:
 
 ```csharp
 builder.AddServiceDefaults();
@@ -40,7 +40,7 @@ The service defaults project template imposes a `FrameworkReference` dependency 
 > [!TIP]
 > If you don't want to take a dependency on `Microsoft.AspNetCore.App`, you can create a custom service defaults project. For more information, see [Custom service defaults](#custom-service-defaults).
 
-The `IsAspireSharedProject` property is set to `true`, which indicates that this project is a shared project. The .NET Aspire tooling uses this project as a reference for other projects added to a .NET Aspire solution. When you enlist the new project for orchestration, it automatically references the _YourAppName.ServiceDefaults_ project and updates the _Program.cs_ file to call the `AddServiceDefaults` method.
+The `IsAspireSharedProject` property is set to `true`, which indicates that this project is a shared project. The .NET Aspire tooling uses this project as a reference for other projects added to a .NET Aspire solution. When you enlist the new project for orchestration, it automatically references the _YourAppName.ServiceDefaults_ project and updates the _:::no-loc text="Program.cs":::_ file to call the `AddServiceDefaults` method.
 
 ## Provided extension methods
 

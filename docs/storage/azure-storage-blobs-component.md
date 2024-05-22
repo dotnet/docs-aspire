@@ -32,7 +32,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _Program.cs_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireBlobStorageExtensions.AddAzureBlobClient%2A> extension to register a `BlobServiceClient` for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireBlobStorageExtensions.AddAzureBlobClient%2A> extension to register a `BlobServiceClient` for use via the dependency injection container.
 
 ```csharp
 builder.AddAzureBlobClient("blobs");
@@ -76,7 +76,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(blobs);
 ```
 
-The <xref:Aspire.Hosting.AzureStorageExtensions.AddBlobs%2A> method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:blobs` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named blobs in the `ExampleProject` project. In the _Program.cs_ file of `ExampleProject`, the connection can be consumed using:
+The <xref:Aspire.Hosting.AzureStorageExtensions.AddBlobs%2A> method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:blobs` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named blobs in the `ExampleProject` project. In the _:::no-loc text="Program.cs":::_ file of `ExampleProject`, the connection can be consumed using:
 
 ```csharp
 builder.AddAzureBlobClient("blobs");
@@ -122,7 +122,7 @@ Alternatively, an [Azure Storage connection string](/azure/storage/common/storag
 
 ### Use configuration providers
 
-The .NET Aspire Azure Blob Storage component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Storage.Blobs.AzureStorageBlobsSettings> and <xref:Azure.Storage.Blobs.BlobClientOptions> from configuration by using the `Aspire:Azure:Storage:Blobs` key. Example _appsettings.json_ that configures some of the options:
+The .NET Aspire Azure Blob Storage component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Storage.Blobs.AzureStorageBlobsSettings> and <xref:Azure.Storage.Blobs.BlobClientOptions> from configuration by using the `Aspire:Azure:Storage:Blobs` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {

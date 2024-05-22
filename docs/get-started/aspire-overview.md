@@ -9,7 +9,7 @@ ms.date: 05/17/2024
 :::row:::
 :::column:::
 
-:::image type="content" border="false" source="../../assets/dotnet-aspire-logo-128.svg" alt-text=".NET Aspire logo.":::
+:::image type="icon" border="false" source="../../assets/dotnet-aspire-logo-128.svg":::
 
 :::column-end:::
 :::column span="3":::
@@ -31,7 +31,7 @@ A _distributed application_ is one that uses computational resources across mult
 
 ## Orchestration
 
-In .NET Aspire, orchestration primarily focuses on enhancing the local development experience by simplifying the management of your cloud-native app's configuration and interconnections. It's important to note that .NET Aspire's orchestration is not intended to replace the robust systems used in production environments, such as Kubernetes. Instead, it provides a set of abstractions that streamline the setup of service discovery, environment variables, and container configurations, eliminating the need to deal with low-level implementation details. These abstractions ensure a consistent setup pattern across apps with numerous components and services, making it easier to manage complex applications during the development phase.
+In .NET Aspire, orchestration primarily focuses on enhancing the local development experience by simplifying the management of your cloud-native app's configuration and interconnections. It's important to note that .NET Aspire's orchestration is not intended to replace the robust systems used in production environments, such as [Kubernetes](../deployment/overview.md#deploy-to-kubernetes). Instead, it provides a set of abstractions that streamline the setup of service discovery, environment variables, and container configurations, eliminating the need to deal with low-level implementation details. These abstractions ensure a consistent setup pattern across apps with numerous components and services, making it easier to manage complex applications during the development phase.
 
 .NET Aspire orchestration assists with the following concerns:
 
@@ -59,7 +59,7 @@ For more information, see [.NET Aspire orchestration overview](../fundamentals/a
 
 [.NET Aspire components](../fundamentals/components-overview.md) are NuGet packages designed to simplify connections to popular services and platforms, such as Redis or PostgreSQL. .NET Aspire components handle many cloud-native concerns for you through standardized configuration patterns, such as adding health checks and telemetry.
 
-Each component is designed to work with .NET Aspire orchestration, and they're capable of flowing their configurations through dependencies based on .NET project and package references. In other words, if _Example.ServiceFoo_ references _Example.ServiceBar_, _Example.ServiceFoo_ inherits the component's required configurations to allow them to communicate with each other automatically.
+Each component is designed to work with .NET Aspire orchestration, and they're configurations are injected automatically by simply referencing named resources. In other words, if _Example.ServiceFoo_ references _Example.ServiceBar_, _Example.ServiceFoo_ inherits the component's required configurations to allow them to communicate with each other automatically.
 
 For example, consider the following code using the .NET Aspire Service Bus component:
 
@@ -98,7 +98,7 @@ builder.AddServiceDefaults();
 
 For more information on what `AddServiceDefaults` does, see [.NET Aspire service defaults](../fundamentals/service-defaults.md).
 
-When added to your _Program.cs_ file, the preceding code handles the following concerns:
+When added to your _:::no-loc text="Program.cs":::_ file, the preceding code handles the following concerns:
 
 - **OpenTelemetry**: Sets up formatted logging, runtime metrics, built-in meters, and tracing for ASP.NET Core, gRPC, and HTTP. For more information, see [.NET Aspire telemetry](../fundamentals/telemetry.md).
 - **Default health checks**: Adds default health check endpoints that tools can query to monitor your app. For more information, see [.NET app health checks in C#](/dotnet/core/diagnostics/diagnostic-health-checks).

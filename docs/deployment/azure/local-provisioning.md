@@ -91,7 +91,7 @@ When utilizing Azure resources in your local development environment, you need t
 - `ResourceGroup`: The name of the resource group to use.
 - `Location`: The Azure region to use.
 
-Consider the following example _appsettings.json_ configuration:
+Consider the following example _:::no-loc text="appsettings.json":::_ configuration:
 
 ```json
 {
@@ -113,7 +113,7 @@ After you've configured the necessary values, you can start provisioning Azure r
 
 The .NET Aspire app host uses a credential store for Azure resource authentication and authorization. Depending on your subscription, the correct credential store may be needed for multi-tenant provisioning scenarios.
 
-With the [Aspire.Hosting.Azure](https://nuget.org/packages/Aspire.Hosting.Azure) NuGet package installed, and if your app host depends on Azure resources, the default Azure credential store relies on the <xref:Azure.Identity.DefaultAzureCredential>. To change this behavior, you can set the credential store value in the _appsettings.json_ file, as shown in the following example:
+With the [Aspire.Hosting.Azure](https://nuget.org/packages/Aspire.Hosting.Azure) NuGet package installed, and if your app host depends on Azure resources, the default Azure credential store relies on the <xref:Azure.Identity.DefaultAzureCredential>. To change this behavior, you can set the credential store value in the _:::no-loc text="appsettings.json":::_ file, as shown in the following example:
 
 ```json
 {
@@ -136,11 +136,11 @@ As with all [configuration-based settings](/dotnet/core/extensions/configuration
 
 In Visual Studio, you can use Connected Services to configure the default Azure provisioning settings. Select the app host project, right-click on the **Connected Services** node, and select **Azure Resource Provisioning Settings**:
 
-:::image type="content" source="media/azure-resource-provisioning-settings.png" lightbox="media/azure-resource-provisioning-settings.png" alt-text="Visual Studio 2022: .NET Aspire App Host project, Connected Services context menu.":::
+:::image type="content" loc-scope="visual-studio" source="media/azure-resource-provisioning-settings.png" lightbox="media/azure-resource-provisioning-settings.png" alt-text="Visual Studio 2022: .NET Aspire App Host project, Connected Services context menu.":::
 
 This will open a dialog where you can configure the Azure provisioning settings, as shown in the following screenshot:
 
-:::image type="content" source="media/azure-provisioning-settings-dialog.png" lightbox="media/azure-provisioning-settings-dialog.png" alt-text="Visual Studio 2022: Azure Resource Provisioning Settings dialog.":::
+:::image type="content" loc-scope="visual-studio" source="media/azure-provisioning-settings-dialog.png" lightbox="media/azure-provisioning-settings-dialog.png" alt-text="Visual Studio 2022: Azure Resource Provisioning Settings dialog.":::
 
 ### Missing configuration value hints
 
