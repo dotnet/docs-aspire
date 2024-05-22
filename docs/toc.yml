@@ -171,11 +171,11 @@ items:
 
   - name: Deployment
     items:
+      - name: Overview
+        displayName: azure deployment,deployment,Kubernetes,k8s
+        href: deployment/overview.md
       - name: Azure
         items:
-          - name: Overview
-            displayName: azure deployment,deployment,Kubernetes,k8s
-            href: deployment/overview.md
           - name: Deploy to Azure Container Apps using azd
             href: deployment/azure/aca-deployment.md
             displayName: azure container apps,aca
