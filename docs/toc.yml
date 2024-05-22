@@ -143,6 +143,8 @@ items:
           - name: PostgreSQL
             displayName: postgresql,database
             href: database/postgresql-component.md
+      - name: Qdrant
+        href: database/qdrant-component.md
       - name: RabbitMQ service broker
         displayName: rabbitmq,messaging,service broker
         href: messaging/rabbitmq-client-component.md
