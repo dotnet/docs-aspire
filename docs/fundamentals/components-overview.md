@@ -18,6 +18,7 @@ ms.topic: conceptual
 
 The following table lists the .NET Aspire components currently available for use:
 
+<!-- markdownlint-disable MD033 MD045 -->
 | Component | NuGet | Description |
 |--|--|--|
 | [Apache Kafka](../messaging/kafka-component.md) <br/> <img src="media/icons/Apache_Kafka_256x.png" role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Confluent.Kafka](https://www.nuget.org/packages/Aspire.Confluent.Kafka) | A library for producing and consuming messages from an [Apache Kafka](https://kafka.apache.org/) broker. |
@@ -45,6 +46,7 @@ The following table lists the .NET Aspire components currently available for use
 | [Seq](../logging/seq-component.md) <br/> <img src="media/icons/Seq_logo.256x.png" role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Seq](https://www.nuget.org/packages/Aspire.Seq) | A library for logging to [Seq](https://datalust.co/seq). |
 | [SQL Server Entity Framework Core](../database/sql-server-entity-framework-component.md) <br/> <img src="media/icons/SQL_256x.png" role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) | A library for accessing [SQL Server databases using Entity Framework Core](/ef/core/providers/sql-server/). |
 | [SQL Server](../database/sql-server-component.md) <br/> <img src="media/icons/SQL_256x.png" role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) | A library for accessing [SQL Server](/sql/sql-server/) databases. |
+<!-- markdownlint-enable MD033 MD045 -->
 
 For more information on working with .NET Aspire components in Visual Studio, see [Visual Studio tooling](setup-tooling.md#visual-studio-tooling).
 
