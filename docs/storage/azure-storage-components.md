@@ -118,7 +118,7 @@ Create a .NET Aspire app using either Visual Studio or the .NET CLI.
 1. At the top of Visual Studio, navigate to **File** > **New** > **Project**.
 1. In the dialog window, search for *Aspire* and select **.NET Aspire Starter Application**. Choose **Next**.
 1. On the **Configure your new project** screen:
-    - Enter a **Solution Name** of **AspireStorage and select **Next**.
+    - Enter a **Solution Name** of **AspireStorage** and select **Next**.
 1. On the **Additional information** screen:
     - Uncheck **Use Redis for caching** (not required for this tutorial).
     - Select **Create**.
