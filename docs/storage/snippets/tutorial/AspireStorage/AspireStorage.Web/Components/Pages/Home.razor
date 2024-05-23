@@ -55,6 +55,8 @@
 
         await queueClient.SendMessageAsync(
              $"{Ticket.Title} - {Ticket.Description}");
+
+        ClearForm();
     }
 
     private void ClearForm() => Ticket = new();
