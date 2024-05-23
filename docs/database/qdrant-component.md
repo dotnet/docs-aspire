@@ -16,7 +16,7 @@ To get started with the .NET Aspire Qdrant component, install the [Aspire.Qdrant
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Qdrant.Client
+dotnet add package Aspire.Qdrant.Client
 ```
 
 ### [PackageReference](#tab/package-reference)
