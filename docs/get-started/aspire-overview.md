@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire overview
 description: Learn about .NET Aspire, an application stack designed to improve the experience of building cloud-native applications.
-ms.date: 05/17/2024
+ms.date: 05/23/2024
 ---
 
 # .NET Aspire overview
@@ -19,24 +19,24 @@ ms.date: 05/17/2024
 :::column-end:::
 :::row-end:::
 
-A _distributed application_ is one that uses computational resources across multiple nodes, such as containers running on different hosts. Such nodes must communicate over network boundaries to deliver responses to users. A cloud-native app is a specific type of distributed app that takes full advantage of the scalability, resilience, and manageability of cloud infrastructures.
+A _distributed application_ is one that uses computational _resources_ across multiple nodes, such as containers running on different hosts. Such nodes must communicate over network boundaries to deliver responses to users. A cloud-native app is a specific type of distributed app that takes full advantage of the scalability, resilience, and manageability of cloud infrastructures.
 
 ## Why .NET Aspire?
 
 .NET Aspire is designed to improve the experience of building .NET cloud-native apps. It provides a consistent, opinionated set of tools and patterns that help you build and run distributed apps. .NET Aspire is designed to help you with:
 
-- [**Orchestration**](#orchestration): .NET Aspire provides features for running and connecting multi-project applications and their dependencies for local development environments.
+- [**Orchestration**](#orchestration): .NET Aspire provides features for running and connecting multi-project applications and their dependencies for [local development environments](../fundamentals/networking-overview.md).
 - [**Components**](#net-aspire-components): .NET Aspire components are NuGet packages for commonly used services, such as Redis or Postgres, with standardized interfaces ensuring they connect consistently and seamlessly with your app.
-- [**Tooling**](#project-templates-and-tooling): .NET Aspire comes with project templates and tooling experiences for Visual Studio and the [dotnet CLI](/dotnet/core/tools/) to help you create and interact with .NET Aspire apps.
+- [**Tooling**](#project-templates-and-tooling): .NET Aspire comes with project templates and tooling experiences for Visual Studio, Visual Studio Code, and the [dotnet CLI](/dotnet/core/tools/) to help you create and interact with .NET Aspire apps.
 
 ## Orchestration
 
-In .NET Aspire, orchestration primarily focuses on enhancing the local development experience by simplifying the management of your cloud-native app's configuration and interconnections. It's important to note that .NET Aspire's orchestration is not intended to replace the robust systems used in production environments, such as [Kubernetes](../deployment/overview.md#deploy-to-kubernetes). Instead, it provides a set of abstractions that streamline the setup of service discovery, environment variables, and container configurations, eliminating the need to deal with low-level implementation details. These abstractions ensure a consistent setup pattern across apps with numerous components and services, making it easier to manage complex applications during the development phase.
+In .NET Aspire, orchestration primarily focuses on enhancing the _local development_ experience by simplifying the management of your cloud-native app's configuration and interconnections. It's important to note that .NET Aspire's orchestration isn't intended to replace the robust systems used in production environments, such as [Kubernetes](../deployment/overview.md#deploy-to-kubernetes). Instead, it provides a set of abstractions that streamline the setup of service discovery, environment variables, and container configurations, eliminating the need to deal with low-level implementation details. These abstractions ensure a consistent setup pattern across apps with numerous components and services, making it easier to manage complex applications during the development phase.
 
 .NET Aspire orchestration assists with the following concerns:
 
 - **App composition**: Specify the .NET projects, containers, executables, and cloud resources that make up the application.
-- **Service discovery and connection string management**: The app host manages injecting the right connection strings and service discovery information to simplify the developer experience.
+- **Service discovery and connection string management**: The app host manages injecting the right connection strings or newtork configurations and service discovery information to simplify the developer experience.
 
 For example, using .NET Aspire, the following code creates a local Redis container resource and configures the appropriate connection string in the `"frontend"` project with only two helper method calls:
 
