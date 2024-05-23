@@ -368,7 +368,7 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 
 1. In a terminal window at the root of your project, use the `dotnet run` command to start the app:
 
-    ```csharp
+    ```dotnetcli
     dotnet run --project AspireStorage.AppHost
     ```
 
