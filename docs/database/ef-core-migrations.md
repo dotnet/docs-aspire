@@ -23,7 +23,7 @@ git clone https://github.com/MicrosoftDocs/mslearn-aspire-starter
 
 The sample app is in the *SupportTicketApi* folder. Open the solution in Visual Studio or VS Code and take a moment to review the sample app and make sure it runs before proceeding. The sample app is a rudimentary support ticket API, and it contains the following projects:
 
-- **SupporTicketApi.Api**: The ASP.NET Core project that hosts the API.
+- **SupportTicketApi.Api**: The ASP.NET Core project that hosts the API.
 - **SupportTicketApi.Data**: Contains the EF Core contexts and models.
 - **SupportTicketApi.AppHost**: Contains the .NET Aspire app host and configuration.
 - **SupportTicketApi.ServiceDefaults**: Contains the default service configurations.

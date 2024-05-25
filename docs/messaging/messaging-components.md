@@ -231,7 +231,7 @@ Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) componen
 dotnet add package Aspire.Azure.Messaging.ServiceBus
 ```
 
-In the _:::no-loc text="Program.cs":::_ file of the `AspireMessaging.WorkerService` Razor Pages project, add a call to the `AddAzureServiceBus` extension methods:
+In the _:::no-loc text="Program.cs":::_ file of the `AspireMessaging.WorkerService` Worker Service project, add a call to the `AddAzureServiceBus` extension methods:
 
 ```csharp
 builder.AddAzureServiceBusClient("serviceBusConnection");
