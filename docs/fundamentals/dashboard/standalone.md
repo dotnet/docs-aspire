@@ -3,6 +3,7 @@ title: Standalone .NET Aspire dashboard
 description: How to use the .NET Aspire dashboard standalone.
 ms.date: 05/18/2024
 ms.topic: reference
+zone_pivot_groups: command-line-prompts
 ---
 
 # Standalone .NET Aspire dashboard
@@ -18,9 +19,25 @@ The [.NET Aspire dashboard](overview.md) provides a great UI for viewing telemet
 
 The dashboard is started using the Docker command line.
 
+:::zone pivot="bash"
 ```bash
-docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
+docker run --rm -it \
+    -p 18888:18888 \
+    -p 4317:18889 -d \
+    --name aspire-dashboard \
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
 ```
+:::zone-end
+
+:::zone pivot="ps"
+```powershell
+docker run --rm -it `
+    -p 18888:18888 `
+    -p 4317:18889 -d `
+    --name aspire-dashboard `
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
+```
+:::zone-end
 
 The preceding Docker command:
 

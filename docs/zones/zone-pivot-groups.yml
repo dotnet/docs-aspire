@@ -43,4 +43,12 @@ groups:
       title: Visual Studio Code
     - id: dotnet-cli
       title: .NET CLI
+- id: command-line-prompts
+  title: Command Line
+  prompt: Choose a command line
+  pivots:
+    - id: bash
+      title: Bash
+    - id: ps
+      title: Powershell
 
