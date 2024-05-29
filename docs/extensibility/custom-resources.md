@@ -1,7 +1,7 @@
 ---
 title: Create custom resource types for .NET Aspire
 description: Learn how to create a custom resource for an existing containerized application.
-ms.date: 05/17/2024
+ms.date: 05/29/2024
 ms.topic: how-to
 ms.custom: devx-track-extended-azdevcli
 ---
@@ -332,6 +332,12 @@ If those API calls return a successful response (HTTP 200, Ok) then you should b
 ## Technical details
 
 In the following sections, various technical details are discussed which are important to understand when developing custom resources for .NET Aspire.
+
+### Secure networking
+
+In this example, the MailDev resource is a container resource which is exposed to the host machine over HTTP and SMTP. The MailDev resource is a development tool and isn't intended for production use. To instead use HTTPS, see [MailDev: Configure HTTPS](https://github.com/maildev/maildev/blob/357a20edcd205413d3590aedb8fcd7c97563c40d/docs/https.md).
+
+When developing custom resources that expose network endpoints, it's important to consider the security implications of the resource. For example, if the resource is a database, it's important to ensure that the database is secure and that the connection string is not exposed to the public internet.
 
 ### The `ReferenceExpression` and `EndpointReference` type
 
