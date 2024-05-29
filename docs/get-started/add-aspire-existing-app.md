@@ -209,13 +209,13 @@ Also notice that the **eShopLite.AppHost** project, now depends on both the **St
 
 ### Create an app host project
 
-First, create a new [_app host_ project](../fundamentals/app-host-overview.md) from the available .NET Aspire templates using the following .NET CLI command:
+In order to orchestrate the existing projects, you need to create a new _app host_ project. To create a new [_app host_ project](../fundamentals/app-host-overview.md) from the available .NET Aspire templates, use the following .NET CLI command:
 
 ```dotnetcli
 dotnet new aspire-apphost -o eShopLite.AppHost
 ```
 
-Then add the _app host_ project to solution:
+Add the _app host_ project to existing solution:
 
 ## [Unix](#tab/unix)
 
@@ -231,7 +231,7 @@ dotnet sln .\eShopLite.sln add .\eShopLite.AppHost\eShopLite.AppHost.csproj
 
 ---
 
-Update the _app host_ project by adding a project reference to the **Store** project:
+Add the **Store** project as a project reference to the _app host_ project using the following .NET CLI command:
 
 ## [Unix](#tab/unix)
 
@@ -249,7 +249,7 @@ dotnet add .\eShopLite.AppHost\eShopLite.AppHost.csproj reference .\Store\Store.
 
 ### Create a service defaults project
 
-Next, create a new [_service defaults_ project](../fundamentals/service-defaults.md) from the available .NET Aspire templates using the following .NET CLI command:
+After the app host project is created, you need to create a new _service defaults_ project. To create a new [_service defaults_ project](../fundamentals/service-defaults.md) from the available .NET Aspire templates, use the following .NET CLI command:
 
 ```dotnetcli
 dotnet new aspire-servicedefaults -o eShopLite.ServiceDefaults
