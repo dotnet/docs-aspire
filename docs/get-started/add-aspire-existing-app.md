@@ -182,7 +182,7 @@ Now, let's enroll the **Store** project, which implements the web user interface
 
     :::image type="content" loc-scope="visual-studio" source="media/add-aspire-orchestrator-support.png" alt-text="Screenshot of the Add .NET Aspire Orchestrator Support dialog.":::
 
-Visual Studio adds two new projects to the solution:
+You should now have two new projects, both added to the solution:
 
 - **eShopLite.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator is set as the _Startup project_, and it depends on the **eShopLite.Store** project.
 - **eShopLite.ServiceDefaults**: A .NET Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../fundamentals/telemetry.md).
@@ -219,6 +219,8 @@ First, create a new [_app host_ project](../fundamentals/app-host-overview.md) f
 dotnet new aspire-apphost -o eShopLite.AppHost
 ```
 
+Then add the _app host_ project to solution:
+
 ## [Unix](#tab/unix)
 
 ```dotnetcli
@@ -229,6 +231,22 @@ dotnet sln ./eShopLite.sln add ./eShopLite.AppHost/eShopLite.AppHost.csproj
 
 ```dotnetcli
 dotnet sln .\eShopLite.sln add .\eShopLite.AppHost\eShopLite.AppHost.csproj
+```
+
+---
+
+Update the _app host_ project by adding a project reference to the **Store** project:
+
+## [Unix](#tab/unix)
+
+```dotnetcli
+dotnet add ./eShopLite.AppHost/eShopLite.AppHost.csproj reference ./Store/Store.csproj
+```
+
+## [Windows](#tab/windows)
+
+```dotnetcli
+dotnet add .\eShopLite.AppHost\eShopLite.AppHost.csproj reference .\Store\Store.csproj
 ```
 
 ---
@@ -239,19 +257,56 @@ Next, create a new [_service defaults_ project](../fundamentals/service-defaults
 dotnet new aspire-servicedefaults -o eShopLite.ServiceDefaults
 ```
 
+Again, add the project to the solution:
+
 ## [Unix](#tab/unix)
 
 ```dotnetcli
-dotnet sln ./eShopLite.sln add ./eShopLite.AppHost/eShopLite.AppHost.csproj
+dotnet sln ./eShopLite.sln add ./eShopLite.ServiceDefaults/eShopLite.ServiceDefaults.csproj
 ```
 
 ## [Windows](#tab/windows)
 
 ```dotnetcli
-dotnet sln .\eShopLite.sln add .\eShopLite.AppHost\eShopLite.AppHost.csproj
+dotnet sln .\eShopLite.sln add .\eShopLite.ServiceDefaults\eShopLite.ServiceDefaults.csproj
 ```
 
 ---
+
+Finally, update the _app host_ project to add a project reference to the **Products** project:
+
+## [Unix](#tab/unix)
+
+```dotnetcli
+dotnet add ./eShopLite.AppHost/eShopLite.AppHost.csproj reference ./Products/Products.csproj
+```
+
+## [Windows](#tab/windows)
+
+```dotnetcli
+dotnet add .\eShopLite.AppHost\eShopLite.AppHost.csproj reference .\Products\Products.csproj
+```
+
+---
+
+Open the _:::no-loc text="Program.cs":::_ file of the _app host_ project, and replace its contents with the following C# code:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+builder.AddProject<Projects.Store>("store");
+
+builder.AddProject<Projects.Products>("products");
+
+builder.Build().Run();
+```
+
+The preceding code:
+
+- Creates a new **DistributedApplication** builder.
+- Adds the **Store** project to the orchestrator.
+- Adds the **Products** project to the orchestrator.
+- Builds and runs the orchestrator.
 
 :::zone-end
 
@@ -262,21 +317,24 @@ At this point, both projects are part of .NET Aspire orchestration, but the _Sto
 ```csharp
 var products = builder.AddProject<Projects.Products>("products");
 
-builder.AddProject<Projects.Store>("store").WithReference(products);
+builder.AddProject<Projects.Store>("store")
+       .WithReference(products);
 ```
 
-Next, update the _:::no-loc text="appsettings.json":::_ in the _Store_ project to of the `ProductEndpoint` and `ProductEndpointHttps`:
+Next, update the _:::no-loc text="appsettings.json":::_ in the _Store_ project, replacing the `ProductEndpoint` and `ProductEndpointHttps` with the following values:
 
 ```json
 "ProductEndpoint": "http://products",
 "ProductEndpointHttps": "https://products",
 ```
 
-The address uses the name of the _Products_ project that was added to the orchestrator in the _AppHost_.
+The address uses the name of the _Products_ project that was added to the orchestrator in the _app host_.
 
 ## Explore the enrolled app
 
 Let's start the solution and examine the new behavior that .NET Aspire has added.
+
+:::zone pivot="visual-studio"
 
 > [!NOTE]
 > Notice that the **eShopLite.AppHost** project is the new startup project.
@@ -287,5 +345,39 @@ Let's start the solution and examine the new behavior that .NET Aspire has added
 1. In the dashboard, select the endpoint for the **store** project. A new browser tab appears and displays the home page for the web app.
 1. In the menu on the left, select **Products**. The product catalog is displayed.
 1. Close the browser to stop debugging.
+
+:::zone-end
+:::zone pivot="vscode"
+
+You can delete the _launch.json_ file that you created earlier, as it's not needed. Instead, simply start the _app host_ project, which will orchestrate the other projects:
+
+1. Start the _app host_ project by right-clicking the **eShopLite.AppHost** project in the **Solution Explorer** and selecting **Debug** > **Start New Instance**:
+
+    :::image type="content" source="media/vscode-run-app-host.png" lightbox="media/vscode-run-app-host.png" alt-text="Visual Studio Code: Solution Explorer selecting Debug > Start New Instance." :::
+
+    > [!NOTE]
+    > If Docker Desktop (or Podman) isn't running, you'll experience an error. Start the OCI compliant container engine and try again.
+
+:::zone-end
+:::zone pivot="dotnet-cli"
+
+1. Start the _app host_ project by running the following command:
+
+    ```dotnetcli
+    dotnet run --project ./eShopLite.AppHost/eShopLite.AppHost.csproj
+    ```
+
+    > [!NOTE]
+    > If Docker Desktop (or Podman) isn't running, you'll experience an error. Start the OCI compliant container engine and try again.
+
+:::zone-end
+:::zone pivot="vscode,dotnet-cli"
+
+2. In the dashboard, select the endpoint for the **products** project. A new browser tab appears and displays the product catalog in JSON format.
+3. In the dashboard, select the endpoint for the **store** project. A new browser tab appears and displays the home page for the web app.
+4. In the menu on the left, select **Products**. The product catalog is displayed.
+5. Close the browser to stop debugging.
+
+:::zone-end
 
 Congratulations! You have added .NET Aspire orchestration to your pre-existing web app. You can now add .NET Aspire components and use the .NET Aspire tooling to streamline your cloud-native web app development.
