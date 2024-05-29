@@ -350,7 +350,7 @@ The preceding code:
 
 ## Service Discovery
 
-At this point, both projects are part of .NET Aspire orchestration, but the _Store_ needs to be able to discover the **Products** backend address through .NET Aspire's service discovery. To enable service discovery, open the _:::no-loc text="Program.cs":::_ file in **eShopLite.AppHost** and update the code that the _Store_ adds a reference to the _Products_ project:
+At this point, both projects are part of .NET Aspire orchestration, but the _Store_ needs to be able to discover the **Products** backend address through [.NET Aspire's service discovery](../service-discovery/overview.md). To enable service discovery, open the _:::no-loc text="Program.cs":::_ file in **eShopLite.AppHost** and update the code that the _Store_ adds a reference to the _Products_ project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -363,14 +363,24 @@ builder.AddProject<Projects.Store>("store")
 builder.Build().Run();
 ```
 
-You've added a reference to the _Products_ project in the _Store_ project. This reference is used to discover the address of the _Products_ project. Next, update the _:::no-loc text="appsettings.json":::_ in the _Store_ project, replacing the `ProductEndpoint` and `ProductEndpointHttps` with the following values:
+You've added a reference to the _Products_ project in the _Store_ project. This reference is used to discover the address of the _Products_ project. Next, update the _:::no-loc text="appsettings.json":::_ in the _Store_ project with the following JSON:
 
 ```json
-"ProductEndpoint": "http://products",
-"ProductEndpointHttps": "https://products",
+{
+  "DetailedErrors": true,
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ProductEndpoint": "http://products",
+  "ProductEndpointHttps": "https://products"
+}
 ```
 
-The address uses the name of the _Products_ project that was added to the orchestrator in the _app host_.
+The addresses for both the endpoints now uses the "products" name that was added to the orchestrator in the _app host_. These names are used to discover the address of the _Products_ project.
 
 ## Explore the enrolled app
 
