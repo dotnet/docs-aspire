@@ -21,7 +21,7 @@ The dashboard is started using the Docker command line.
 # [Bash](#tab/bash)
 <!-- markdownlint-enable MD025 -->
 
-```cli
+```bash
 docker run --rm -it \
     -p 18888:18888 \
     -p 4317:18889 -d \
