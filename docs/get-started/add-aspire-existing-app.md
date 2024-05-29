@@ -8,7 +8,7 @@ zone_pivot_groups: dev-environment
 
 # Tutorial: Add .NET Aspire to an existing .NET app
 
-If you have already created a microservices .NET web app, you can add .NET Aspire to it and get all the features and benefits available to those who enabled .NET Aspire. In this article, you'll add .NET Aspire orchestration to a simple, pre-existing .NET 8 project. You'll learn how to:
+If you have already created a microservices .NET web app, you can add .NET Aspire to it and get all the included features and benefits. In this article, you'll add .NET Aspire orchestration to a simple, pre-existing .NET 8 project. You'll learn how to:
 
 > [!div class="checklist"]
 >
@@ -74,7 +74,7 @@ Open and start debugging the project to examine its default behavior:
         "version": "0.2.0",
         "compounds": [
             {
-                "name": "Rull all",
+                "name": "Run all",
                 "configurations": [
                     "Run products",
                     "Run store",
@@ -105,7 +105,7 @@ Open and start debugging the project to examine its default behavior:
         "version": "0.2.0",
         "compounds": [
             {
-                "name": "Rull all",
+                "name": "Run all",
                 "configurations": [
                     "Run products",
                     "Run store",
