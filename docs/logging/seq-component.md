@@ -126,8 +126,6 @@ builder.AddSeqEndpoint("seq", static settings =>
 });
 ```
 
-
-
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
 The .NET Aspire Seq component handles the following:
