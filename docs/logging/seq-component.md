@@ -2,7 +2,7 @@
 title: .NET Aspire Seq component
 description: Learn how to use the .NET Aspire Seq component to add OpenTelemetry Protocol (OTLP) exporters that send logs and traces to a Seq Server.
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 05/29/2024
 ---
 
 # .NET Aspire Seq component
@@ -62,11 +62,38 @@ dotnet add package Aspire.Hosting.Seq
 In your app host project, register a Seq database and consume the connection using the following methods:
 
 ```csharp
-var seq = builder.AddSeq("seq");
+var seq = builder.AddSeq("seq")
+                 .ExcludeFromManifest();
 
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(seq);
 ```
+
+The preceding code registers a Seq server and propagates its configuration.
+
+> [!IMPORTANT]
+> You must accept the [Seq End User Licence Agreement](https://datalust.co/doc/eula-current.pdf) for Seq to start):
+
+In the _:::no-loc text="Program.cs":::_ file of the **MyService** project, configure logging and tracing to Seq using the following code:
+
+```csharp
+builder.AddSeqEndpoint("seq");
+```
+
+### Seq in the .NET Aspire manifest
+
+Seq shouldn't be part of the .NET Aspire deployment manifest, hence the chained call to `ExcludeFromManifest`. It's recommended you set up a secure production Seq server outside of .NET Aspire.
+
+### Persistent logs and traces
+
+Register Seq with a data directory in your AppHost project to retain Seq's data and configuration across application restarts.
+
+```csharp
+var seq = builder.AddSeq("seq", seqDataDirectory: "./seqdata")
+                 .ExcludeFromManifest();
+```
+
+The directory specified must already exist.
 
 ## Configuration
 
@@ -98,43 +125,6 @@ builder.AddSeqEndpoint("seq", static settings =>
     settings.ServerUrl = "http://localhost:5341"
 });
 ```
-
-## AppHost extensions
-
-In your AppHost project, install the `Aspire.Hosting.Seq` library with [NuGet](https://www.nuget.org):
-
-```dotnetcli
-dotnet add package Aspire.Hosting.Seq
-```
-
-Then, in the _:::no-loc text="Program.cs":::_ file of the **.AppHost** project, register a Seq server and propagate its configuration using the following methods (note that you must accept the [Seq End User Licence Agreement](https://datalust.co/doc/eula-current.pdf) for Seq to start):
-
-```csharp
-var seq = builder.AddSeq("seq");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(seq);
-```
-
-In the _:::no-loc text="Program.cs":::_ file of the **MyService** project, configure logging and tracing to Seq using the following code:
-
-```csharp
-builder.AddSeqEndpoint("seq");
-```
-
-### Persistent logs and traces
-
-Register Seq with a data directory in your AppHost project to retain Seq's data and configuration across application restarts.
-
-```csharp
-var seq = builder.AddSeq("seq", seqDataDirectory: "./seqdata");
-```
-
-The directory specified must already exist.
-
-### Seq in the .NET Aspire manifest
-
-Seq isn't part of the .NET Aspire deployment manifest. It's recommended you set up a secure production Seq server outside of .NET Aspire.
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
