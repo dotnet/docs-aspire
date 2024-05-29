@@ -1,7 +1,7 @@
 ---
 title: Create custom resource types for .NET Aspire
 description: Learn how to create a custom resource for an existing containerized application.
-ms.date: 05/17/2024
+ms.date: 05/29/2024
 ms.topic: how-to
 ms.custom: devx-track-extended-azdevcli
 ---
@@ -333,6 +333,12 @@ If those API calls return a successful response (HTTP 200, Ok) then you should b
 
 In the following sections, various technical details are discussed which are important to understand when developing custom resources for .NET Aspire.
 
+### Secure networking
+
+In this example, the MailDev resource is a container resource which is exposed to the host machine over HTTP and SMTP. The MailDev resource is a development tool and isn't intended for production use. To instead use HTTPS, see [MailDev: Configure HTTPS](https://github.com/maildev/maildev/blob/357a20edcd205413d3590aedb8fcd7c97563c40d/docs/https.md).
+
+When developing custom resources that expose network endpoints, it's important to consider the security implications of the resource. For example, if the resource is a database, it's important to ensure that the database is secure and that the connection string is not exposed to the public internet.
+
 ### The `ReferenceExpression` and `EndpointReference` type
 
 In the preceding code, the `MailDevResource` had two properties:
@@ -367,7 +373,7 @@ Here's how the flow of execution works:
 1. A resource which implements <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> is added to the model (for example, `AddMailDev(...)`).
 1. The `IResourceBuilder<MailDevResource>` is passed to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> which has a special overload for handling <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString> implementors.
 1. The `WithReference` wraps the resource in a <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference> instance and the object is captured in a <xref:Aspire.Hosting.ApplicationModel.EnvironmentCallbackAnnotation> which is evaluated after the .NET Aspire application is built and starts running.
-1. As the the process that references the connection string starts .NET Aspire starts evaluating the expression. It first gets the <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference> and calls <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference.Aspire%23Hosting%23ApplicationModel%23IValueProvider%23GetValueAsync%2A>.
+1. As the process that references the connection string starts .NET Aspire starts evaluating the expression. It first gets the <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference> and calls <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference.Aspire%23Hosting%23ApplicationModel%23IValueProvider%23GetValueAsync%2A>.
 1. The `GetValueAsync` method gets the value of the <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString.ConnectionStringExpression> property to get the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> instance.
 1. The <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference.Aspire%23Hosting%23ApplicationModel%23IValueProvider%23GetValueAsync%2A> method then calls <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.GetValueAsync%2A> to process the previously captured interpolated string.
 1. Because the interpolated string contains references to other reference types such as <xref:Aspire.Hosting.ApplicationModel.EndpointReference> they are also evaluated and real value substituted (which at this time are now available).

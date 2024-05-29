@@ -1,17 +1,19 @@
 ---
 title: .NET Aspire service defaults
 description: Learn about the .NET Aspire service defaults project.
-ms.date: 04/05/2024
+ms.date: 05/23/2024
 ms.topic: reference
 ---
 
 # .NET Aspire service defaults
 
+In this article, you learn about the .NET Aspire service defaults project, a set of extension methods that wire up [telemetry](telemetry.md), [health checks](health-checks.md), [service discovery](../service-discovery/overview.md), and are designed to be customizable and extensible.
+
 Cloud-native applications often require extensive configurations to ensure they work across different environments reliably and securely. .NET Aspire provides many helper methods and tools to streamline the management of configurations for OpenTelemetry, health checks, environment variables, and more.
 
 ## Explore the service defaults project
 
-When you either [**Enlist in .NET Aspire orchestration**](setup-tooling.md#enlist-in-orchestration) or [create a new .NET Aspire project](../get-started/build-your-first-aspire-app.md), the _YourAppName.ServiceDefaults_ project is added to your solution. For example, when building an API, you call the `AddServiceDefaults` method in the _:::no-loc text="Program.cs":::_ file of your apps:
+When you either [**Enlist in .NET Aspire orchestration**](setup-tooling.md#enlist-in-orchestration) or [create a new .NET Aspire project](../get-started/build-your-first-aspire-app.md), the _YourAppName.ServiceDefaults.csproj_ project is added to your solution. For example, when building an API, you call the `AddServiceDefaults` method in the _:::no-loc text="Program.cs":::_ file of your apps:
 
 ```csharp
 builder.AddServiceDefaults();

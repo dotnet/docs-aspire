@@ -15,10 +15,10 @@ In this tutorial, you learn how to configure .NET Aspire apps to run EF Core mig
 
 ## Obtain the starter app
 
-This tutorial uses a sample app that demonstrates how to apply EF Core migrations in .NET Aspire. Use Visual Studio to clone [the sample app from GitHub](https://github.com/MicrosoftDocs/mslearn-aspire-starter) or use the following command:
+This tutorial uses a sample app that demonstrates how to apply EF Core migrations in .NET Aspire. Use Visual Studio to clone [the sample app from GitHub](https://github.com/MicrosoftDocs/aspire-docs-samples/) or use the following command:
 
 ```bash
-git clone https://github.com/MicrosoftDocs/mslearn-aspire-starter
+git clone https://github.com/MicrosoftDocs/aspire-docs-samples/
 ```
 
 The sample app is in the *SupportTicketApi* folder. Open the solution in Visual Studio or VS Code and take a moment to review the sample app and make sure it runs before proceeding. The sample app is a rudimentary support ticket API, and it contains the following projects:
