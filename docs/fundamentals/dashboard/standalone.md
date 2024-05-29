@@ -30,7 +30,7 @@ docker run --rm -it \
 ```
 
 <!-- markdownlint-disable MD025 -->
-# [Powershell](#tab/powershell)
+# [PowerShell](#tab/powershell)
 <!-- markdownlint-enable MD025 -->
 
 ```powershell
