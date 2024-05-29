@@ -425,10 +425,15 @@ You can delete the _launch.json_ file that you created earlier, as it's not need
 :::zone-end
 :::zone pivot="vscode,dotnet-cli"
 
+<!-- markdownlint-disable MD029 -->
+<!-- We need to continue from the previous shared step from a different pivot. -->
+
 2. In the dashboard, select the endpoint for the **products** project. A new browser tab appears and displays the product catalog in JSON format.
 3. In the dashboard, select the endpoint for the **store** project. A new browser tab appears and displays the home page for the web app.
 4. In the menu on the left, select **Products**. The product catalog is displayed.
 5. Close the browser to stop debugging.
+
+<!-- markdownlint-enable MD029 -->
 
 :::zone-end
 
