@@ -1,13 +1,14 @@
 ---
 title: Add .NET Aspire to an existing .NET app
 description: Learn how to add .NET Aspire components, orchestration, and tooling to a microservices app that already exists.
-ms.date: 05/17/2024
+ms.date: 05/28/2024
 ms.topic: how-to
+zone_pivot_groups: dev-environment
 ---
 
 # Tutorial: Add .NET Aspire to an existing .NET app
 
-If you have already created a microservices .NET web app, you can use Visual Studio to add .NET Aspire to it and get all the features and benefits available to those who enabled .NET Aspire when they selected **File** > **New** > **Project** and chose **Enlist in Aspire orchestration**. In this article, you'll add .NET Aspire orchestration to a simple, pre-existing .NET 8 project. You'll learn how to:
+If you have already created a microservices .NET web app, you can add .NET Aspire to it and get all the features and benefits available to those who enabled .NET Aspire. In this article, you'll add .NET Aspire orchestration to a simple, pre-existing .NET 8 project. You'll learn how to:
 
 > [!div class="checklist"]
 >
@@ -39,6 +40,8 @@ This article uses a .NET 8 solution with three projects:
 
 Open and start debugging the project to examine its default behavior:
 
+:::zone pivot="visual-studio"
+
 1. Start Visual Studio and then select **File** > **Open** > **Project/Solution**.
 1. Navigate to the top level folder of the solution you cloned, select **eShopLite.sln**, and then select **Open**.
 1. In the **Solution Explorer**, right-click the **eShopLite** solution, and then select **Configure Startup Projects**.
@@ -53,9 +56,126 @@ Open and start debugging the project to examine its default behavior:
 
 1. To stop debugging, close the browser.
 
+:::zone-end
+:::zone pivot="vscode"
+
+1. Start Visual Studio Code and open the folder that you just cloned.
+1. Select the **Run and Debug** menu item, or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>.
+1. Select the **create a launch.json file** link.
+
+    :::image type="content" source="media/vscode-launch.json.png" lightbox="media/vscode-launch.json.png" alt-text="Visual Studio Code: Run and Debug create launch.json file.":::
+
+1. Copy and paste the following JSON into this file and **Save**:
+
+    ## [Unix](#tab/unix)
+
+    ```json
+    {
+        // Use IntelliSense to learn about possible attributes.
+        // Hover to view descriptions of existing attributes.
+        // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+        "version": "0.2.0",
+        "compounds": [
+            {
+                "name": "Rull all",
+                "configurations": [
+                    "Run products",
+                    "Run store",
+                ]
+            }
+        ],
+        "configurations": [
+            {
+                "name": "Run products",
+                "type": "dotnet",
+                "request": "launch",
+                "projectPath": "${workspaceFolder}/Products/Products.csproj"
+            },
+            {
+                "name": "Run store",
+                "type": "dotnet",
+                "request": "launch",
+                "projectPath": "${workspaceFolder}/Store/Store.csproj"
+            }
+        ]
+    }
+    ```
+
+    ## [Windows](#tab/windows)
+
+    ```json
+    {
+        // Use IntelliSense to learn about possible attributes.
+        // Hover to view descriptions of existing attributes.
+        // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+        "version": "0.2.0",
+        "compounds": [
+            {
+                "name": "Rull all",
+                "configurations": [
+                    "Run products",
+                    "Run store",
+                ]
+            }
+        ],
+        "configurations": [
+            {
+                "name": "Run products",
+                "type": "dotnet",
+                "request": "launch",
+                "projectPath": "${workspaceFolder}\\Products\\Products.csproj"
+            },
+            {
+                "name": "Run store",
+                "type": "dotnet",
+                "request": "launch",
+                "projectPath": "${workspaceFolder}\\Store\\Store.csproj"
+            }
+        ]
+    }
+    ```
+
+1. To start debugging the solution, press <kbd>F5</kbd> or select **Start**.
+1. Two pages open in the browser:
+
+    - A page displays products in JSON format from a call to the Products Web API.
+    - A page displays the homepage of the website. In the menu on the left, select **Products** to see the catalog obtained from the Web API.
+
+1. To stop debugging, close the browser, and then select the **Stop** button twice (once for each running debug instance).
+
+---
+
+:::zone-end
+:::zone pivot="dotnet-cli"
+
+[!INCLUDE [dotnet-cli-file-new](../includes/dotnet-cli-file-new.md)]
+
+1. Open a terminal window and change directories into the newly cloned repository.
+1. To start the _Products_ app, run the following command:
+
+    ```dotnetcli
+    dotnet run --project ./Products/Products.csproj
+    ```
+
+1. A browser page opens, displaying the JSON for the products.
+1. In a separate terminal window, again change directories to cloned repository.
+1. Start the _Store) app by running the following command:
+
+    ```dotnetcli
+    dotnet run --project ./Store/Store.csproj
+    ```
+
+1. The browser opens a page that displays the homepage of the website. In the menu on the left, select **Products** to see the catalog obtained from the Web API.
+
+1. To stop debugging, close the browser, and press <kbd>Ctrl</kbd>+<kbd>C</kbd> in both terminals.
+
+:::zone-end
+
 ## Add .NET Aspire to the Store web app
 
 Now, let's enroll the **Store** project, which implements the web user interface, in .NET Aspire orchestration:
+
+:::zone pivot="visual-studio"
 
 1. In Visual Studio, in the **Solution Explorer**, right-click the **Store** project, select **Add**, and then select **.NET Aspire Orchestrator Support**.
 1. In the **Add .NET Aspire Orchestrator Support** dialog, select **OK**.
@@ -82,13 +202,58 @@ To add the **Products** project to .NET Aspire:
 
     :::image type="content" loc-scope="visual-studio" source="media/orchestrator-already-added.png" alt-text="Screenshot indicating that the.NET Aspire Orchestrator was already added.":::
 
-In the **eShopLite.AppHost** project, open the **Program.cs** file. Notice this line of code, which registers the **Products** project in the .NET Aspire orchestration:
+In the **eShopLite.AppHost** project, open the _:::no-loc text="Program.cs":::_ file. Notice this line of code, which registers the **Products** project in the .NET Aspire orchestration:
 
 ```csharp
 builder.AddProject<Projects.Products>("products");
 ```
 
 Also notice that the **eShopLite.AppHost** project, now depends on both the **Store** and **Products** projects.
+
+:::zone-end
+:::zone pivot="vscode,dotnet-cli"
+
+First, create a new [_app host_ project](../fundamentals/app-host-overview.md) from the available .NET Aspire templates using the following .NET CLI command:
+
+```dotnetcli
+dotnet new aspire-apphost -o eShopLite.AppHost
+```
+
+## [Unix](#tab/unix)
+
+```dotnetcli
+dotnet sln ./eShopLite.sln add ./eShopLite.AppHost/eShopLite.AppHost.csproj
+```
+
+## [Windows](#tab/windows)
+
+```dotnetcli
+dotnet sln .\eShopLite.sln add .\eShopLite.AppHost\eShopLite.AppHost.csproj
+```
+
+---
+
+Next, create a new [_service defaults_ project](../fundamentals/service-defaults.md) from the available .NET Aspire templates using the following .NET CLI command:
+
+```dotnetcli
+dotnet new aspire-servicedefaults -o eShopLite.ServiceDefaults
+```
+
+## [Unix](#tab/unix)
+
+```dotnetcli
+dotnet sln ./eShopLite.sln add ./eShopLite.AppHost/eShopLite.AppHost.csproj
+```
+
+## [Windows](#tab/windows)
+
+```dotnetcli
+dotnet sln .\eShopLite.sln add .\eShopLite.AppHost\eShopLite.AppHost.csproj
+```
+
+---
+
+:::zone-end
 
 ## Service Discovery
 
