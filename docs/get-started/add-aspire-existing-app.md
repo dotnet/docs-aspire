@@ -71,9 +71,6 @@ Open and start debugging the project to examine its default behavior:
 
     ```json
     {
-        // Use IntelliSense to learn about possible attributes.
-        // Hover to view descriptions of existing attributes.
-        // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
         "version": "0.2.0",
         "compounds": [
             {
@@ -105,9 +102,6 @@ Open and start debugging the project to examine its default behavior:
 
     ```json
     {
-        // Use IntelliSense to learn about possible attributes.
-        // Hover to view descriptions of existing attributes.
-        // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
         "version": "0.2.0",
         "compounds": [
             {
@@ -213,6 +207,8 @@ Also notice that the **eShopLite.AppHost** project, now depends on both the **St
 :::zone-end
 :::zone pivot="vscode,dotnet-cli"
 
+### Create an app host project
+
 First, create a new [_app host_ project](../fundamentals/app-host-overview.md) from the available .NET Aspire templates using the following .NET CLI command:
 
 ```dotnetcli
@@ -251,13 +247,15 @@ dotnet add .\eShopLite.AppHost\eShopLite.AppHost.csproj reference .\Store\Store.
 
 ---
 
+### Create a service defaults project
+
 Next, create a new [_service defaults_ project](../fundamentals/service-defaults.md) from the available .NET Aspire templates using the following .NET CLI command:
 
 ```dotnetcli
 dotnet new aspire-servicedefaults -o eShopLite.ServiceDefaults
 ```
 
-Again, add the project to the solution:
+To add the project to the solution, use the following .NET CLI command:
 
 ## [Unix](#tab/unix)
 
@@ -273,7 +271,7 @@ dotnet sln .\eShopLite.sln add .\eShopLite.ServiceDefaults\eShopLite.ServiceDefa
 
 ---
 
-Finally, update the _app host_ project to add a project reference to the **Products** project:
+Update the _app host_ project to add a project reference to the **Products** project:
 
 ## [Unix](#tab/unix)
 
@@ -289,6 +287,46 @@ dotnet add .\eShopLite.AppHost\eShopLite.AppHost.csproj reference .\Products\Pro
 
 ---
 
+Both the **Store** and **Products** projects need to reference the _service defaults_ project so that they can easily include [service discovery](../service-discovery/overview.md). To add a reference to the _service defaults_ project in the **Store** project, use the following .NET CLI command:
+
+## [Unix](#tab/unix)
+
+```dotnetcli
+dotnet add ./Store/Store.csproj reference ./eShopLite.ServiceDefaults/eShopLite.ServiceDefaults.csproj
+```
+
+## [Windows](#tab/windows)
+
+```dotnetcli
+dotnet add .\Store\Store.csproj reference .\eShopLite.ServiceDefaults\eShopLite.ServiceDefaults.csproj
+```
+
+---
+
+The same command with slightly different paths should be used to add a reference to the _service defaults_ project in the **Products** project:
+
+## [Unix](#tab/unix)
+
+```dotnetcli
+dotnet add ./Products/Products.csproj reference ./eShopLite.ServiceDefaults/eShopLite.ServiceDefaults.csproj
+```
+
+## [Windows](#tab/windows)
+
+```dotnetcli
+dotnet add .\Products\Products.csproj reference .\eShopLite.ServiceDefaults\eShopLite.ServiceDefaults.csproj
+```
+
+---
+
+In both the **Store** and **Products** projects, update their _:::no-loc text="Program.cs":::_ files, adding the following line immediately after their `var builder = WebApplication.CreateBuilder(args);` line:
+
+```csharp
+builder.AddServiceDefaults();
+```
+
+### Update the app host project
+
 Open the _:::no-loc text="Program.cs":::_ file of the _app host_ project, and replace its contents with the following C# code:
 
 ```csharp
@@ -303,7 +341,7 @@ builder.Build().Run();
 
 The preceding code:
 
-- Creates a new **DistributedApplication** builder.
+- Creates a new `DistributedApplicationBuilder` instance.
 - Adds the **Store** project to the orchestrator.
 - Adds the **Products** project to the orchestrator.
 - Builds and runs the orchestrator.
@@ -315,13 +353,17 @@ The preceding code:
 At this point, both projects are part of .NET Aspire orchestration, but the _Store_ needs to be able to discover the **Products** backend address through .NET Aspire's service discovery. To enable service discovery, open the _:::no-loc text="Program.cs":::_ file in **eShopLite.AppHost** and update the code that the _Store_ adds a reference to the _Products_ project:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var products = builder.AddProject<Projects.Products>("products");
 
 builder.AddProject<Projects.Store>("store")
        .WithReference(products);
+
+builder.Build().Run();
 ```
 
-Next, update the _:::no-loc text="appsettings.json":::_ in the _Store_ project, replacing the `ProductEndpoint` and `ProductEndpointHttps` with the following values:
+You've added a reference to the _Products_ project in the _Store_ project. This reference is used to discover the address of the _Products_ project. Next, update the _:::no-loc text="appsettings.json":::_ in the _Store_ project, replacing the `ProductEndpoint` and `ProductEndpointHttps` with the following values:
 
 ```json
 "ProductEndpoint": "http://products",
