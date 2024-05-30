@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Service Bus component
 description: This article describes the .NET Aspire Azure Service Bus component features and capabilities
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 05/30/2024
 ---
 
 # .NET Aspire Azure Service Bus component
@@ -171,6 +171,8 @@ The following configurable options are exposed through the <xref:Aspire.Azure.Me
 | `ConnectionString`        | The connection string used to connect to the Service Bus namespace. |
 | `Credential`              | The credential used to authenticate to the Service Bus namespace.   |
 | `FullyQualifiedNamespace` | The fully qualified Service Bus namespace.                          |
+| `DisableHealthChecks`     | Disables health checks for the Service Bus client.                  |
+| `DisableTracing`          | Disables tracing for the Service Bus client.                        |
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 
@@ -180,12 +182,38 @@ The .NET Aspire Azure Service Bus component uses the following log categories:
 
 - `Azure.Core`
 - `Azure.Identity`
+- `Azure-Messaging-ServiceBus`
 
 ### Tracing
 
-The .NET Aspire Azure Service Bus component will emit the following tracing activities using OpenTelemetry:
+To enable tracing, set the `DisableTracing` option to `false` in the configuration. When enabled, the .NET Aspire Azure Service Bus component will emit the following tracing activities using OpenTelemetry:
 
-- "Azure.Data.Tables.TableServiceClient"
+- `Message`
+- `ServiceBusSender.Send`
+- `ServiceBusSender.Schedule`
+- `ServiceBusSender.Cancel`
+- `ServiceBusReceiver.Receive`
+- `ServiceBusReceiver.ReceiveDeferred`
+- `ServiceBusReceiver.Peek`
+- `ServiceBusReceiver.Abandon`
+- `ServiceBusReceiver.Complete`
+- `ServiceBusReceiver.DeadLetter`
+- `ServiceBusReceiver.Defer`
+- `ServiceBusReceiver.RenewMessageLock`
+- `ServiceBusSessionReceiver.RenewSessionLock`
+- `ServiceBusSessionReceiver.GetSessionState`
+- `ServiceBusSessionReceiver.SetSessionState`
+- `ServiceBusProcessor.ProcessMessage`
+- `ServiceBusSessionProcessor.ProcessSessionMessage`
+- `ServiceBusRuleManager.CreateRule`
+- `ServiceBusRuleManager.DeleteRule`
+- `ServiceBusRuleManager.GetRules`
+
+For more information, see:
+
+- [Azure SDK for .NET: Distributed tracing and the Service Bus client](https://github.com/Azure/azure-sdk-for-net/blob/Azure.Messaging.ServiceBus_7.17.5/sdk/servicebus/Azure.Messaging.ServiceBus/TROUBLESHOOTING.md#distributed-tracing).
+- [Azure SDK for .NET: OpenTelemetry configuration](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/Diagnostics.md#opentelemetry-configuration).
+- [Azure SDK for .NET: Enabling experimental tracing features](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/Diagnostics.md#enabling-experimental-tracing-features).
 
 ### Metrics
 
