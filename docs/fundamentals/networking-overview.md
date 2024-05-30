@@ -47,7 +47,7 @@ For the remainder of this article, imagine that you've created an <xref:Aspire.H
 var builder = DistributedApplication.CreateBuilder(args);
 ```
 
-To specify the **HTTP** and **HTTPS** launch profiles, configure the `applicationUrl` values for both in the _launchSettings.json_ file. These URLs are used to create service bindings for this project. This is the equivalent of:
+To specify the **http** and **https** launch profiles, configure the `applicationUrl` values for both in the _launchSettings.json_ file. These URLs are used to create service bindings for this project. This is the equivalent of:
 
 :::code source="snippets/networking/Networking.AppHost/Program.WithLaunchProfile.cs" id="verbose":::
 
@@ -135,7 +135,7 @@ When you add a container resource, .NET Aspire automatically assigns a random po
 The preceding code:
 
 - Creates a container resource named `frontend`, from the `mcr.microsoft.com/dotnet/samples:aspnetapp` image.
-- Binds the host to port 8000 and the container port to 8080 with the `http` scheme.
+- Exposes an `http` endpoint by binding the host to port 8000 and mapping it to the container's port 8080.
 
 Consider the following diagram:
 
