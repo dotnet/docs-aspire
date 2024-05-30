@@ -1,7 +1,7 @@
 ---
 title: Deploy a .NET Aspire app using the Azure Developer CLI and GitHub Actions
 description: Learn how to use `azd` and GitHub Actions to deploy .NET Aspire apps.
-ms.date: 12/18/2023
+ms.date: 05/30/2024
 zone_pivot_groups: deployment-platform
 ms.custom: devx-track-extended-azdevcli
 ---
@@ -67,6 +67,13 @@ As a starting point, this article assumes that you've created a .NET Aspire app 
 Although `azd` generated some essential template files for you, the project still needs a GitHub Actions workflow file to support provisioning and deployments using CI/CD.
 
 1. Create an empty _.github_ folder at the root of your project. `azd` uses this directory by default to discover GitHub Actions workflow files.
+
+    > [!TIP]
+    > If you're on macOS user and you're struggling to create a folder with a leading `.`, you can use the terminal to create the folder. Open the terminal and navigate to the root of your project. Run the following command to create the folder:
+    >
+    > ```bash
+    > mkdir .github
+    > ```
 
 1. Inside the new _.github_ folder, create another folder called _workflows_ (you'll end up with _.github/workflows_).
 
