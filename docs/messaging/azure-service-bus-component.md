@@ -192,7 +192,7 @@ The .NET Aspire Azure Service Bus component uses the following log categories:
 > [!NOTE]
 > Service Bus `ActivitySource` support in the Azure SDK for .NET is experimental, and the shape of activities may change in the future without notice.
 
-To enable tracing, you can do so in one of three ways:
+You can enable tracing in one of three ways:
 
 - Set the `DisableTracing` option to `false` in the configuration.
 - Call `System.AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true)`.
