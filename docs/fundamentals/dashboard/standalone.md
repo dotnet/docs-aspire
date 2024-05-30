@@ -17,9 +17,8 @@ The [.NET Aspire dashboard](overview.md) provides a great UI for viewing telemet
 ## Start the dashboard
 
 The dashboard is started using the Docker command line.
-<!-- markdownlint-disable MD025 -->
-# [Bash](#tab/bash)
-<!-- markdownlint-enable MD025 -->
+
+## [Bash](#tab/bash)
 
 ```bash
 docker run --rm -it \
@@ -29,9 +28,7 @@ docker run --rm -it \
     mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
 ```
 
-<!-- markdownlint-disable MD025 -->
-# [PowerShell](#tab/powershell)
-<!-- markdownlint-enable MD025 -->
+## [PowerShell](#tab/powershell)
 
 ```powershell
 docker run --rm -it `
