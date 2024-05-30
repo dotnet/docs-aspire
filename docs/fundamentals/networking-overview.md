@@ -47,7 +47,7 @@ For the remainder of this article, imagine that you've created an <xref:Aspire.H
 var builder = DistributedApplication.CreateBuilder(args);
 ```
 
-To specify the **HTTP** and **HTTPS** launch profiles, configure the `applicationUrl` values for both in the _launchSettings.json_. file. These URLs are used to create service bindings for this project. This is the equivalent of:
+To specify the **HTTP** and **HTTPS** launch profiles, configure the `applicationUrl` values for both in the _launchSettings.json_ file. These URLs are used to create service bindings for this project. This is the equivalent of:
 
 :::code source="snippets/networking/Networking.AppHost/Program.WithLaunchProfile.cs" id="verbose":::
 
