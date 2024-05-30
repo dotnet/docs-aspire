@@ -193,7 +193,7 @@ There are several key modifications from the original Vue template. The primary 
 
 :::code language="html" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Vue/src/components/TheWelcome.vue":::
 
-As the `TheWelcome` component is `mounted`, it calls the `/api/weatherforecast` endpoint to retrieve the weather forecast data. The response is then set as the `forecasts` data property. To set the server port, the Vue client app uses the `PORT` environment variable. This is achieved by updating the _vite.config.js_ file:
+As the `TheWelcome` component is `mounted`, it calls the `/api/weatherforecast` endpoint to retrieve the weather forecast data. The response is then set as the `forecasts` data property. To set the server port, the Vue client app uses the `PORT` environment variable. This is achieved by updating the _vite.config.ts_ file:
 
 :::code language="typescript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Vue/vite.config.ts":::
 
