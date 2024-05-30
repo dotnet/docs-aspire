@@ -166,13 +166,16 @@ The corresponding configuration JSON is defined as follows:
 
 The following configurable options are exposed through the <xref:Aspire.Azure.Messaging.ServiceBus.AzureMessagingServiceBusSettings> class:
 
-| Name                      | Description                                                         |
-|---------------------------|---------------------------------------------------------------------|
-| `ConnectionString`        | The connection string used to connect to the Service Bus namespace. |
-| `Credential`              | The credential used to authenticate to the Service Bus namespace.   |
-| `FullyQualifiedNamespace` | The fully qualified Service Bus namespace.                          |
-| `DisableHealthChecks`     | Disables health checks for the Service Bus client.                  |
-| `DisableTracing`          | Disables tracing for the Service Bus client.                        |
+| Name | Description |
+|--|--|
+| `ConnectionString` | The connection string used to connect to the Service Bus namespace. |
+| `Credential` | The credential used to authenticate to the Service Bus namespace. |
+| `FullyQualifiedNamespace` | The fully qualified Service Bus namespace. |
+| `DisableTracing` | Disables tracing for the Service Bus client. |
+| **<sup>†</sup>**`HealthCheckQueueName` | The name of the queue used for health checks. |
+| **<sup>†</sup>**`HealthCheckTopicName` | The name of the topic used for health checks. |
+
+_**<sup>†</sup>** At least one of the name options are mandatory when enabling health checks._
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 
@@ -186,7 +189,16 @@ The .NET Aspire Azure Service Bus component uses the following log categories:
 
 ### Tracing
 
-To enable tracing, set the `DisableTracing` option to `false` in the configuration. When enabled, the .NET Aspire Azure Service Bus component will emit the following tracing activities using OpenTelemetry:
+To enable tracing, you can do so in one of three ways:
+
+- Set the `DisableTracing` option to `false` in the configuration.
+- Call `System.AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true)`.
+- Set the `AZURE_EXPERIMENTAL_ENABLE_ACTIVITY_SOURCE` environment variable to "true".
+
+> [!NOTE]
+> Service Bus `ActivitySource` support in the Azure SDK for .NET is experimental, and the shape of activities may change in the future without notice.
+
+When enabled, the .NET Aspire Azure Service Bus component will emit the following tracing activities using OpenTelemetry:
 
 - `Message`
 - `ServiceBusSender.Send`
