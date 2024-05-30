@@ -18,10 +18,27 @@ The [.NET Aspire dashboard](overview.md) provides a great UI for viewing telemet
 
 The dashboard is started using the Docker command line.
 
+## [Bash](#tab/bash)
+
 ```bash
-docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
+docker run --rm -it \
+    -p 18888:18888 \
+    -p 4317:18889 -d \
+    --name aspire-dashboard \
     mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
 ```
+
+## [PowerShell](#tab/powershell)
+
+```powershell
+docker run --rm -it `
+    -p 18888:18888 `
+    -p 4317:18889 -d `
+    --name aspire-dashboard `
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
+```
+
+---
 
 The preceding Docker command:
 
