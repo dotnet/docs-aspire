@@ -1,7 +1,7 @@
 ---
 title: Standalone .NET Aspire dashboard
 description: How to use the .NET Aspire dashboard standalone.
-ms.date: 05/18/2024
+ms.date: 05/30/2024
 ms.topic: reference
 ---
 
@@ -12,7 +12,7 @@ The [.NET Aspire dashboard](overview.md) provides a great UI for viewing telemet
 - Ships as a container image that can be used with any OpenTelemetry enabled app.
 - Can be used standalone, without the rest of .NET Aspire.
 
-:::image type="content" source="media/explore/trace.png" lightbox="media/explore/trace.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page.":::
+:::image type="content" source="media/standalone/standalone-mode.png" lightbox="media/standalone/standalone-mode.png" alt-text="A screenshot of the .NET Aspire dashboard running in standalone mode.":::
 
 ## Start the dashboard
 

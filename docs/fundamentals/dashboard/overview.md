@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard overview
 description: Overview of .NET Aspire dashboard and getting started.
-ms.date: 05/18/2024
+ms.date: 05/30/2024
 ms.topic: reference
 ---
 
@@ -21,10 +21,21 @@ For more information about using the dashboard during .NET Aspire development, s
 
 The .NET Aspire dashboard is also shipped as a Docker image and can be used standalone, without the rest of .NET Aspire. The standalone dashboard provides a great UI for viewing telemetry and can be used by any application.
 
+## [Bash](#tab/bash)
+
 ```bash
 docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
     mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
 ```
+
+## [PowerShell](#tab/powershell)
+
+```powershell
+docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard `
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
+```
+
+---
 
 The preceding Docker command:
 

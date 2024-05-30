@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard security considerations
 description: Security considerations for running the .NET Aspire dashboard
-ms.date: 03/13/2024
+ms.date: 05/30/2024
 ms.topic: reference
 ---
 
@@ -51,12 +51,25 @@ To prevent untrusted apps from sending telemetry to .NET Aspire, the OTLP endpoi
 
 API key authentication can be enabled on the telemetry endpoint with some additional configuration:
 
+## [Bash](#tab/bash)
+
 ```bash
 docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
     -e DASHBOARD__OTLP__AUTHMODE='ApiKey' \
     -e DASHBOARD__OTLP__PRIMARYAPIKEY='{MY_APIKEY}' \
     mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
 ```
+
+## [PowerShell](#tab/powershell)
+
+```powershell
+docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard `
+    -e DASHBOARD__OTLP__AUTHMODE='ApiKey' `
+    -e DASHBOARD__OTLP__PRIMARYAPIKEY='{MY_APIKEY}' `
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
+```
+
+---
 
 The preceding Docker command:
 
