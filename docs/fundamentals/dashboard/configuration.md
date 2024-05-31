@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard configuration
 description: .NET Aspire dashboard configuration options
-ms.date: 05/18/2024
+ms.date: 05/30/2024
 ms.topic: reference
 ---
 
@@ -19,6 +19,8 @@ There are a number of ways to provide configuration:
 
 Consider the following example, which shows how to configure the dashboard when started from a Docker container:
 
+## [Bash](#tab/bash)
+
 ```bash
 docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
     -e DASHBOARD__TELEMETRYLIMITS__MAXLOGCOUNT='1000' \
@@ -26,6 +28,18 @@ docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
     -e DASHBOARD__TELEMETRYLIMITS__MAXMETRICSCOUNT='1000' \
     mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
 ```
+
+## [PowerShell](#tab/powershell)
+
+```powershell
+docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard `
+    -e DASHBOARD__TELEMETRYLIMITS__MAXLOGCOUNT='1000' `
+    -e DASHBOARD__TELEMETRYLIMITS__MAXTRACECOUNT='1000' `
+    -e DASHBOARD__TELEMETRYLIMITS__MAXMETRICSCOUNT='1000' `
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
+```
+
+---
 
 Alternatively, these same values could be configured using a JSON configuration file that is specified using `DOTNET_DASHBOARD_CONFIG_FILE_PATH`:
 
