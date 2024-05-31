@@ -200,7 +200,9 @@ You can enable tracing in one of three ways:
 
       ```xml
       <ItemGroup>
-          <RuntimeHostConfigurationOption Include="Azure.Experimental.EnableActivitySource" Value="true" />
+          <RuntimeHostConfigurationOption
+               Include="Azure.Experimental.EnableActivitySource"
+               Value="true" />
       </ItemGroup>
       ```
 
