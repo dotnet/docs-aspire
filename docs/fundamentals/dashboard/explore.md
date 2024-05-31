@@ -39,7 +39,7 @@ After copying the token from the console and pasting it into the login page, sel
 
 :::image type="content" source="media/explore/aspire-login-filled.png" lightbox="media/explore/aspire-login-filled.png" alt-text=".NET Aspire dashboard login page with the token pasted into the textbox.":::
 
-The dashboard persists the token as a browser persistent cookie and is set to expire in three days. Persistent cookies are define an expiry and are valid beyond browser sessions as long as the expiration hasn't yet elapsed. If you close the browser, the persistent cookie remains, and you don't need to log in again. For more information, see [Security considerations for running the .NET Aspire dashboard](security-considerations.md).
+The dashboard persists the token as a browser persistent cookie, which remains valid for three days. Persistent cookies have an expiration date and remain valid even after closing the browser. This means that users don't need to log in again if they close and reopen the browser. For more information, refer to the [Security considerations for running the .NET Aspire dashboard](security-considerations.md) documentation.
 
 ## Resources page
 
