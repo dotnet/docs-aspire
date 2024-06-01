@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Service Bus component
 description: This article describes the .NET Aspire Azure Service Bus component features and capabilities
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 05/30/2024
 ---
 
 # .NET Aspire Azure Service Bus component
@@ -166,11 +166,16 @@ The corresponding configuration JSON is defined as follows:
 
 The following configurable options are exposed through the <xref:Aspire.Azure.Messaging.ServiceBus.AzureMessagingServiceBusSettings> class:
 
-| Name                      | Description                                                         |
-|---------------------------|---------------------------------------------------------------------|
-| `ConnectionString`        | The connection string used to connect to the Service Bus namespace. |
-| `Credential`              | The credential used to authenticate to the Service Bus namespace.   |
-| `FullyQualifiedNamespace` | The fully qualified Service Bus namespace.                          |
+| Name | Description |
+|--|--|
+| `ConnectionString` | The connection string used to connect to the Service Bus namespace. |
+| `Credential` | The credential used to authenticate to the Service Bus namespace. |
+| `FullyQualifiedNamespace` | The fully qualified Service Bus namespace. |
+| `DisableTracing` | Disables tracing for the Service Bus client. |
+| **<sup>†</sup>**`HealthCheckQueueName` | The name of the queue used for health checks. |
+| **<sup>†</sup>**`HealthCheckTopicName` | The name of the topic used for health checks. |
+
+_**<sup>†</sup>** At least one of the name options are mandatory when enabling health checks._
 
 [!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
 
@@ -180,12 +185,58 @@ The .NET Aspire Azure Service Bus component uses the following log categories:
 
 - `Azure.Core`
 - `Azure.Identity`
+- `Azure-Messaging-ServiceBus`
 
 ### Tracing
 
-The .NET Aspire Azure Service Bus component will emit the following tracing activities using OpenTelemetry:
+> [!NOTE]
+> Service Bus `ActivitySource` support in the Azure SDK for .NET is experimental, and the shape of activities may change in the future without notice.
 
-- "Azure.Data.Tables.TableServiceClient"
+You can enable tracing in several ways:
+
+- Setting the `Azure.Experimental.EnableActivitySource` [runtime configuration setting](https://learn.microsoft.com/dotnet/core/runtime-config/) to `true`. Which can be done with either:  
+  - Call `AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true);`.
+  - Add the `RuntimeHostConfigurationOption` setting to your project file:
+
+      ```xml
+      <ItemGroup>
+          <RuntimeHostConfigurationOption
+               Include="Azure.Experimental.EnableActivitySource"
+               Value="true" />
+      </ItemGroup>
+      ```
+
+- Set the `AZURE_EXPERIMENTAL_ENABLE_ACTIVITY_SOURCE` environment variable to "true".
+  - Can be achieved by chaining a call to `WithEnvironment("AZURE_EXPERIMENTAL_ENABLE_ACTIVITY_SOURCE", "true")`
+
+When enabled, the .NET Aspire Azure Service Bus component will emit the following tracing activities using OpenTelemetry:
+
+- `Message`
+- `ServiceBusSender.Send`
+- `ServiceBusSender.Schedule`
+- `ServiceBusSender.Cancel`
+- `ServiceBusReceiver.Receive`
+- `ServiceBusReceiver.ReceiveDeferred`
+- `ServiceBusReceiver.Peek`
+- `ServiceBusReceiver.Abandon`
+- `ServiceBusReceiver.Complete`
+- `ServiceBusReceiver.DeadLetter`
+- `ServiceBusReceiver.Defer`
+- `ServiceBusReceiver.RenewMessageLock`
+- `ServiceBusSessionReceiver.RenewSessionLock`
+- `ServiceBusSessionReceiver.GetSessionState`
+- `ServiceBusSessionReceiver.SetSessionState`
+- `ServiceBusProcessor.ProcessMessage`
+- `ServiceBusSessionProcessor.ProcessSessionMessage`
+- `ServiceBusRuleManager.CreateRule`
+- `ServiceBusRuleManager.DeleteRule`
+- `ServiceBusRuleManager.GetRules`
+
+For more information, see:
+
+- [Azure SDK for .NET: Distributed tracing and the Service Bus client](https://github.com/Azure/azure-sdk-for-net/blob/Azure.Messaging.ServiceBus_7.17.5/sdk/servicebus/Azure.Messaging.ServiceBus/TROUBLESHOOTING.md#distributed-tracing).
+- [Azure SDK for .NET: OpenTelemetry configuration](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/Diagnostics.md#opentelemetry-configuration).
+- [Azure SDK for .NET: Enabling experimental tracing features](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/Diagnostics.md#enabling-experimental-tracing-features).
 
 ### Metrics
 
