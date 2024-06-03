@@ -38,9 +38,9 @@ This article uses a .NET 8 solution with three projects:
 - **Products**. This example Web API returns a list of products in the catalog and their properties.
 - **Store**. This example Blazor Web App displays the product catalog to website visitors.
 
-Open and start debugging the project to examine its default behavior:
-
 :::zone pivot="visual-studio"
+
+Open and start debugging the project to examine its default behavior:
 
 1. Start Visual Studio and then select **File** > **Open** > **Project/Solution**.
 1. Navigate to the top level folder of the solution you cloned, select **eShopLite.sln**, and then select **Open**.
@@ -142,8 +142,6 @@ Open and start debugging the project to examine its default behavior:
 :::zone-end
 :::zone pivot="dotnet-cli"
 
-[!INCLUDE [dotnet-cli-file-new](../includes/dotnet-cli-file-new.md)]
-
 1. Open a terminal window and change directories into the newly cloned repository.
 1. To start the _Products_ app, run the following command:
 
@@ -153,7 +151,7 @@ Open and start debugging the project to examine its default behavior:
 
 1. A browser page opens, displaying the JSON for the products.
 1. In a separate terminal window, again change directories to cloned repository.
-1. Start the _Store) app by running the following command:
+1. Start the _Store_ app by running the following command:
 
     ```dotnetcli
     dotnet run --project ./Store/Store.csproj
