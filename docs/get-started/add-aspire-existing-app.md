@@ -38,9 +38,9 @@ This article uses a .NET 8 solution with three projects:
 - **Products**. This example Web API returns a list of products in the catalog and their properties.
 - **Store**. This example Blazor Web App displays the product catalog to website visitors.
 
-:::zone pivot="visual-studio"
-
 Open and start debugging the project to examine its default behavior:
+
+:::zone pivot="visual-studio"
 
 1. Start Visual Studio and then select **File** > **Open** > **Project/Solution**.
 1. Navigate to the top level folder of the solution you cloned, select **eShopLite.sln**, and then select **Open**.
