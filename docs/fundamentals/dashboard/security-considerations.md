@@ -1,13 +1,13 @@
 ---
 title: .NET Aspire dashboard security considerations
 description: Security considerations for running the .NET Aspire dashboard
-ms.date: 05/30/2024
+ms.date: 05/31/2024
 ms.topic: reference
 ---
 
 # Security considerations for running the .NET Aspire dashboard
 
-The [.NET Aspire dashboard](overview.md) offers powerful insights to your apps. The dashboard displays information about resources, including their configuration, console logs and in-depth telemtry.
+The [.NET Aspire dashboard](overview.md) offers powerful insights to your apps. The dashboard displays information about resources, including their configuration, console logs and in-depth telemetry.
 
 Data displayed in the dashboard can be sensitive. For example, configuration can include secrets in environment variables, and telemetry can include sensitive runtime data. Care should be taken to secure access to the dashboard.
 
