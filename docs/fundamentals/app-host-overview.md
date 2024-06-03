@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs to express resource references.
-ms.date: 05/23/2024
+ms.date: 06/03/2024
 ms.topic: overview
 ---
 
@@ -145,6 +145,44 @@ In the preceding example, the `apiservice` service has a named endpoint called `
 ### APIs for adding and expressing resources
 
 .NET Aspire hosting packages and [.NET Aspire components](components-overview.md) are both delivered as NuGet packages, but they serve different purposes. While components provide client library configuration for consuming apps outside the scope of the app host, hosting packages provide APIs for expressing resources and dependencies within the app host.
+
+### Express container resources
+
+To express a container resource, use the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> method:
+
+## [Docker](#tab/docker)
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var ollama = builder.AddContainer("ollama", "ollama/ollama")
+    .WithBindMount("ollama", "/root/.ollama")
+    .WithBindMount("./ollamaconfig", "/usr/config")
+    .WithHttpEndpoint(port: 11434, targetPort: 11434, name: "ollama")
+    .WithEntrypoint("/usr/config/entrypoint.sh")
+    .WithContainerRunArgs("--gpus=all");
+```
+
+For more information, see [GPU support in Docker Desktop](https://docs.docker.com/desktop/gpu/).
+
+## [Podman](#tab/podman)
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var ollama = builder.AddContainer("ollama", "ollama/ollama")
+    .WithBindMount("ollama", "/root/.ollama")
+    .WithBindMount("./ollamaconfig", "/usr/config")
+    .WithHttpEndpoint(port: 11434, targetPort: 11434, name: "ollama")
+    .WithEntrypoint("/usr/config/entrypoint.sh")
+    .WithContainerRuntimeArgs("--device", "nvidia.com/gpu=all");
+```
+
+For more information, see [GPU support in Podman](https://github.com/containers/podman/issues/19005).
+
+---
+
+The preceding code adds a container resource named "ollama" with the image "ollama/ollama". The container resource is configured with multiple bind mounts, a named HTTP endpoint, an entrypoint that resolves to Unix shell script, and container run arguments with the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithContainerRuntimeArgs%2A>.
 
 Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectResource>, <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, and <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, .NET Aspire provides extension methods to add common resources to your app model. The following table lists the methods and their corresponding resource types:
 
