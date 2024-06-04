@@ -1,7 +1,7 @@
 ---
 title: Add .NET Aspire to an existing .NET app
 description: Learn how to add .NET Aspire components, orchestration, and tooling to a microservices app that already exists.
-ms.date: 05/28/2024
+ms.date: 06/03/2024
 ms.topic: how-to
 zone_pivot_groups: dev-environment
 ---
@@ -142,8 +142,6 @@ Open and start debugging the project to examine its default behavior:
 :::zone-end
 :::zone pivot="dotnet-cli"
 
-[!INCLUDE [dotnet-cli-file-new](../includes/dotnet-cli-file-new.md)]
-
 1. Open a terminal window and change directories into the newly cloned repository.
 1. To start the _Products_ app, run the following command:
 
@@ -153,7 +151,7 @@ Open and start debugging the project to examine its default behavior:
 
 1. A browser page opens, displaying the JSON for the products.
 1. In a separate terminal window, again change directories to cloned repository.
-1. Start the _Store) app by running the following command:
+1. Start the _Store_ app by running the following command:
 
     ```dotnetcli
     dotnet run --project ./Store/Store.csproj
@@ -358,12 +356,15 @@ var builder = DistributedApplication.CreateBuilder(args);
 var products = builder.AddProject<Projects.Products>("products");
 
 builder.AddProject<Projects.Store>("store")
+       .WithExternalHttpEndpoints()
        .WithReference(products);
 
 builder.Build().Run();
 ```
 
-You've added a reference to the _Products_ project in the _Store_ project. This reference is used to discover the address of the _Products_ project. Next, update the _:::no-loc text="appsettings.json":::_ in the _Store_ project with the following JSON:
+You've added a reference to the _Products_ project in the _Store_ project. This reference is used to discover the address of the _Products_ project. Additionally, the _Store_ project is configured to use external HTTP endpoints. If you later choose to deploy this app, you'd need the call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints%2A> to ensure that it's public to the outside world.
+
+Next, update the _:::no-loc text="appsettings.json":::_ in the _Store_ project with the following JSON:
 
 ```json
 {
