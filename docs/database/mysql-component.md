@@ -2,7 +2,7 @@
 title: .NET Aspire MySQL database component
 description: This article describes the .NET Aspire MySQL database component.
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 06/03/2024
 ---
 
 # .NET Aspire MySQL database component
@@ -68,6 +68,20 @@ var mysqldb = mysql.AddDatabase("mysqldb");
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(mysqldb);
 ```
+
+When you want to explicitly provide a root MySQL password, you can provide it as a parameter. Consider the following alternative example:
+
+```csharp
+var password = builder.AddParameter("password", secret: true);
+
+var mysql = builder.AddMySql("mysql", password);
+var mysqldb = mysql.AddDatabase("mysqldb");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(mysqldb);
+```
+
+For more information, see [External parameters](../fundamentals/external-parameters.md).
 
 ## Configuration
 

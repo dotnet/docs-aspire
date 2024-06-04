@@ -2,7 +2,7 @@
 title: .NET Aspire PostgreSQL Entity Framework Core component
 description: This article describes the .NET Aspire PostgreSQL Entity Framework Core component.
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 06/03/2024
 ---
 
 # .NET Aspire PostgreSQL Entity Framework Core component
@@ -71,6 +71,8 @@ var postgresdb = postgres.AddDatabase("postgresdb");
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(postgresdb);
 ```
+
+[!INCLUDE [postgresql-explicit-username-password](includes/postgresql-explicit-username-password.md)]
 
 ## Configuration
 

@@ -2,7 +2,7 @@
 title: .NET Aspire SQL Server component
 description: This article describes the .NET Aspire SQL Server component.
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 06/03/2024
 ---
 
 # .NET Aspire SQL Server component
@@ -70,6 +70,20 @@ var sqldb = sql.AddDatabase("sqldb");
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(sqldb);
 ```
+
+When you want to explicitly provide a root SQL password, you can provide it as a parameter. Consider the following alternative example:
+
+```csharp
+var password = builder.AddParameter("password", secret: true);
+
+var sql = builder.AddSqlServer("sql", password);
+var sqldb = sql.AddDatabase("sqldb");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(sqldb);
+```
+
+For more information, see [External parameters](../fundamentals/external-parameters.md).
 
 ## Configuration
 
