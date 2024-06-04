@@ -26,14 +26,6 @@ To install Dapr, see [Install the Dapr CLI](https://docs.dapr.io/getting-started
 > Unable to locate the Dapr CLI.
 > ```
 
-In addition to having the Dapr CLI installed, it needs to also have been initialized.
-
-```console
-dapr init
-```
-
-For more information, see [Initialize Dapr in your local environment](https://docs.dapr.io/getting-started/install-dapr-selfhost/).
-
 ## Get started
 
 To get started you need to add the Dapr hosting package to your app host project by installing the [Aspire.Hosting.Dapr](https://www.nuget.org/packages/Aspire.Hosting.Dapr) NuGet package.
