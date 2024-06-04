@@ -1,7 +1,7 @@
 ---
 title: Use Dapr with .NET Aspire
 description: Learn how to use Dapr with .NET Aspire
-ms.date: 05/20/2024
+ms.date: 06/04/2024
 ms.topic: overview
 ---
 
@@ -18,6 +18,21 @@ In addition to the prerequisites for .NET Aspire, you will need:
 - Dapr version 1.13 or later
 
 To install Dapr, see [Install the Dapr CLI](https://docs.dapr.io/getting-started/install-dapr-cli/). After installing the Dapr CLI, run the `dapr init` described in [Initialize Dapr in your local environment](https://docs.dapr.io/getting-started/install-dapr-selfhost/).
+
+> [!IMPORTANT]
+> If you attempt to run the app without the Dapr CLI, you'll receive the following error:
+>
+> ```plaintext
+> Unable to locate the Dapr CLI.
+> ```
+
+In addition to having the Dapr CLI installed, it needs to also have been initialized.
+
+```console
+dapr init
+```
+
+For more information, see [Initialize Dapr in your local environment](https://docs.dapr.io/getting-started/install-dapr-selfhost/).
 
 ## Get started
 
@@ -40,25 +55,22 @@ dotnet add package Aspire.Hosting.Dapr
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-The Dapr resource is added to the .NET Aspire distributed application builder using the `AddDapr()` method.
-An overload of the `AddDapr()` method that accepts Dapr options is available. For most applications, the default options will suffice.
+## Add a Dapr sidecar
 
-:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="4":::
+Dapr uses the [sidecar pattern](https://docs.dapr.io/concepts/dapr-services/sidecar/) to run alongside your application. The Dapr sidecar runs alongside your app as a lightweight, portable, and stateless HTTP server that listens for incoming HTTP requests from your app.  
 
-Dapr uses the [sidecar pattern](https://docs.dapr.io/concepts/dapr-services/sidecar/) to run alongside your application. The Dapr sidecar runs alongside your application as a lightweight, portable, and stateless HTTP server that listens for incoming HTTP requests from your application.  
+To add a sidecar to a .NET Aspire resource call the <xref:Aspire.Hosting.IDistributedApplicationResourceBuilderExtensions.WithDaprSidecar%2A> method on the desired resource. The `appId` parameter is the unique identifier for the Dapr application, but it's optional. If you don't provide an `appId`, the parent resource name is used instead.
 
-Add a sidecar to a .NET Aspire resource by using the `WithDaprSidecar(string appId)` method. The `appId` parameter is the unique identifier for the Dapr application.
+:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="5-7"  highlight="7":::
 
-:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="18-21"  highlight="21":::
+The `WithDaprSidecar` method offers overloads to configure your Dapr sidecar options like app ID and ports. In the following example, the Dapr sidecar is configured with specific ports for GRPC, HTTP, metrics, and a specific app ID.
 
-The `WithDaprSidecar` method offers overloads to configure your Dapr sidecar options like app ID and ports. In the following example, the Dapr sidecar is configured with specific ports for GRPC, HTTP, metrics, and a specific App ID.
+:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="9-19"  highlight="9-14,19":::
 
-:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="6-16"  highlight="1-7,11":::
+Putting everything together, consider the following example of a .NET Aspire app host project which includes:
 
-Putting everything together, here's an example of a .NET Aspire app host project which includes:
-
-- A backend that declares a Dapr sidecar with specific ports and app ID.
-- A frontend that declares a Dapr sidecar with a specific app ID and default ports.
+- A backend API that declares a Dapr sidecar with defaults.
+- A frontend that declares a Dapr sidecar with specific options, such as explict ports.
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs":::
 
@@ -94,7 +106,7 @@ Once installed into an ASP.NET Core project, the SDK can be added to the service
 
 An instance of `DaprClient` can now be injected into your services to interact with the Dapr sidecar through the Dapr SDK.
 
-:::code language="csharp" source="snippets/Dapr/Dapr.Web/WeatherApiClient.cs" highlight="9-10":::
+:::code language="csharp" source="snippets/Dapr/Dapr.Web/WeatherApiClient.cs" highlight="11-15":::
 
 `InvokeMethodAsync` is a method that sends an HTTP request to the Dapr sidecar. It is a generic method that takes:
 
