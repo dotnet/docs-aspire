@@ -53,11 +53,11 @@ Dapr uses the [sidecar pattern](https://docs.dapr.io/concepts/dapr-services/side
 
 To add a sidecar to a .NET Aspire resource call the <xref:Aspire.Hosting.IDistributedApplicationResourceBuilderExtensions.WithDaprSidecar%2A> method on the desired resource. The `appId` parameter is the unique identifier for the Dapr application, but it's optional. If you don't provide an `appId`, the parent resource name is used instead.
 
-:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="5-7"  highlight="7":::
+:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="1-7"  highlight="7":::
 
 The `WithDaprSidecar` method offers overloads to configure your Dapr sidecar options like app ID and ports. In the following example, the Dapr sidecar is configured with specific ports for GRPC, HTTP, metrics, and a specific app ID.
 
-:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="9-19"  highlight="9-14,19":::
+:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="9-19"  highlight="1-6,11":::
 
 Putting everything together, consider the following example of a .NET Aspire app host project which includes:
 

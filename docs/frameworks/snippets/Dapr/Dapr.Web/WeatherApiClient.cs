@@ -12,7 +12,7 @@ public class WeatherApiClient(DaprClient client)
                 HttpMethod.Get,
                 "apiservice",
                 "/weatherforecast",
-                cancellationToken); ;
+                cancellationToken);
 
         return forecasts?.ToArray() ?? [];
     }
