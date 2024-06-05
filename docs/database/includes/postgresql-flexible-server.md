@@ -1,6 +1,6 @@
 ### Azure app host usage
 
-If you'd like to deploy your PostgreSQL resources to Azure, you need to install the appropriate .NET Aspire hosting package:
+To deploy your PostgreSQL resources to Azure, you need to install the appropriate .NET Aspire hosting package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
