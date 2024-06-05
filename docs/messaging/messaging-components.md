@@ -272,7 +272,7 @@ In the _:::no-loc text="appsettings.json":::_ file of the same project, add the 
 
 # [Passwordless (Recommended)](#tab/passwordless)
 
-```jsonc
+```json
 {
   // Existing configuration is omitted for brevity.
   "ConnectionStrings": {
@@ -283,7 +283,7 @@ In the _:::no-loc text="appsettings.json":::_ file of the same project, add the 
 
 # [Connection String](#tab/connection-string)
 
-```jsonc
+```json
 {
   // Existing configuration is omitted for brevity.
   "ConnectionStrings": {
@@ -375,7 +375,7 @@ In the _:::no-loc text="appsettings.json":::_ file of the **AspireSample.WorkerS
 
 # [Passwordless (Recommended)](#tab/passwordless)
 
-```jsonc
+```json
 {
   // Existing configuration is omitted for brevity.
   "ConnectionStrings": {
@@ -386,7 +386,7 @@ In the _:::no-loc text="appsettings.json":::_ file of the **AspireSample.WorkerS
 
 # [Connection String](#tab/connection-string)
 
-```jsonc
+```json
 {
   // Existing configuration is omitted for brevity.
   "ConnectionStrings": {
