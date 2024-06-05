@@ -69,6 +69,8 @@ dotnet add package Aspire.Hosting.Qdrant
 In your app host project, register a Qdrant server and consume the connection using the following methods:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var qdrant = builder.AddQdrant("qdrant");
 
 var myService = builder.AddProject<Projects.MyService>()

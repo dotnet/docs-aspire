@@ -2,7 +2,7 @@
 title: .NET Aspire Apache Kafka component
 description: Learn how to use the .NET Aspire Apache Kafka client message-broker component.
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 06/05/2024
 ---
 
 # .NET Aspire Apache Kafka component
@@ -69,6 +69,8 @@ dotnet add package Aspire.Hosting.Kafka
 In your app host project, register a Kafka container and consume the connection using the following methods:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var messaging = builder.AddKafka("messaging");
 
 var myService = builder.AddProject<Projects.MyService>()

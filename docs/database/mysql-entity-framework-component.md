@@ -1,7 +1,7 @@
 ---
 title: MySQL Entity Framework Component
 description: MySQL Entity Framework Component
-ms.date: 05/14/2024
+ms.date: 06/05/2024
 ---
 
 # .NET Aspire Pomelo MySQL Entity Framework Component
@@ -61,6 +61,8 @@ builder.EnrichMySqlDbContext<MyDbContext>();
 [!INCLUDE [mysql-app-host](includes/mysql-app-host.md)]
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var mysql = builder.AddMySql("mysql");
 var mysqldb = mysql.AddDatabase("mysqldb");
 
