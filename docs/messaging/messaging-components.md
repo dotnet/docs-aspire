@@ -375,8 +375,9 @@ In the _:::no-loc text="appsettings.json":::_ file of the **AspireSample.WorkerS
 
 # [Passwordless (Recommended)](#tab/passwordless)
 
-```json
+```jsonc
 {
+  // Existing configuration is omitted for brevity.
   "ConnectionStrings": {
     "serviceBusConnection": "{your_namespace}.servicebus.windows.net"
   }
@@ -385,8 +386,9 @@ In the _:::no-loc text="appsettings.json":::_ file of the **AspireSample.WorkerS
 
 # [Connection String](#tab/connection-string)
 
-```json
+```jsonc
 {
+  // Existing configuration is omitted for brevity.
   "ConnectionStrings": {
     "serviceBusConnection": "Endpoint=sb://{your_namespace}.servicebus.windows.net/;
         SharedAccessKeyName=accesskeyname;SharedAccessKey=accesskey"
