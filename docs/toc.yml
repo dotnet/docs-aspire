@@ -233,6 +233,8 @@ items:
         href: troubleshooting/untrusted-localhost-certificate.md
       - name: Unable to install .NET Aspire workload
         href: troubleshooting/unable-to-install-workload.md
+      - name: The specified name is already in use
+        href: troubleshooting/name-is-already-in-use.md
       - name: .NET Aspire GitHub repository
         href: https://github.com/dotnet/aspire
       - name: Ask questions on Discord

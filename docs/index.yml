@@ -205,6 +205,9 @@ conceptualContent:
         - itemType: how-to-guide
           text: Untrusted localhost certificate
           url: troubleshooting/untrusted-localhost-certificate.md
+        - itemType: how-to-guide
+          text: The specified name is already in use
+          url: troubleshooting/name-is-already-in-use.md
         - itemType: reference
           text: Ask questions on Discord
           url: https://aka.ms/aspire/discord

@@ -2,7 +2,7 @@
 title: .NET Aspire Qdrant component
 description: This article describes the .NET Aspire Qdrant component.
 ms.topic: how-to
-ms.date: 05/22/2024
+ms.date: 06/03/2024
 ---
 
 # .NET Aspire Qdrant component
@@ -74,6 +74,19 @@ var qdrant = builder.AddQdrant("qdrant");
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(qdrant);
 ```
+
+When you want to explicitly provide the API key, you can provide it as a parameter. Consider the following alternative example:
+
+```csharp
+var apiKey = builder.AddParameter("apikey", secret: true);
+
+var qdrant = builder.AddQdrant("qdrant", apiKey);
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(qdrant);
+```
+
+For more information, see [External parameters](../fundamentals/external-parameters.md).
 
 ## Configuration
 

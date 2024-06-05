@@ -1,7 +1,7 @@
 ---
 title: Oracle Entity Framework Component
 description: Oracle Entity Framework Component
-ms.date: 05/14/2024
+ms.date: 06/03/2024
 ---
 
 # .NET Aspire Oracle Entity Framework Component
@@ -85,6 +85,20 @@ var oracledb = oracle.AddDatabase("oracledb");
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(oracledb);
 ```
+
+When you want to explicitly provide a password, you can provide it as a parameter. Consider the following alternative example:
+
+```csharp
+var password = builder.AddParameter("password", secret: true);
+
+var oracle = builder.AddOracle("oracle", password);
+var oracledb = oracle.AddDatabase("oracledb");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(oracledb);
+```
+
+For more information, see [External parameters](../fundamentals/external-parameters.md).
 
 ## Configuration
 

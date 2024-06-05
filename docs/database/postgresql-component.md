@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL component
 description: This article describes the .NET Aspire PostgreSQL component.
-ms.date: 05/14/2024
+ms.date: 06/03/2024
 ms.topic: how-to
 ---
 
@@ -57,6 +57,8 @@ var postgresdb = postgres.AddDatabase("postgresdb");
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(postgresdb);
 ```
+
+[!INCLUDE [postgresql-explicit-username-password](includes/postgresql-explicit-username-password.md)]
 
 ## Configuration
 

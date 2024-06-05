@@ -2,7 +2,7 @@
 title: .NET Aspire RabbitMQ component
 description: Learn how to use the .NET Aspire RabbitMQ client message-broker component.
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 06/03/2024
 ---
 
 # .NET Aspire RabbitMQ component
@@ -78,6 +78,21 @@ builder.AddProject<Projects.ExampleProject>()
 ```
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `messaging`.
+
+When you want to explicitly provide the username and password, you can provide those as parameters. Consider the following alternative example:
+
+```csharp
+var username = builder.AddParameter("username", secret: true);
+var password = builder.AddParameter("password", secret: true);
+
+var messaging = builder.AddRabbitMQ("messaging", username, password);
+
+// Service consumption
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(messaging);
+```
+
+For more information, see [External parameters](../fundamentals/external-parameters.md).
 
 ## Configuration
 

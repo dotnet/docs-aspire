@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire health checks
 description: Explore .NET Aspire health checks
-ms.date: 04/02/2024
+ms.date: 06/03/2024
 ms.topic: quickstart
 ---
 
@@ -33,7 +33,7 @@ Health checks provide availability and state information about an app. Health ch
 
     The `/alive` endpoint returns an HTTP status code 200 and a `text/plain` value of <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Healthy> when the app is _alive_.
 
-The `AddServiceDefaults` and `MapDefaultEndpoints` methods also apply various configurations to your app beyond just health checks, such as OpenTelemetry and service discovery configurations.
+The `AddServiceDefaults` and `MapDefaultEndpoints` methods also apply various configurations to your app beyond just health checks, such as [OpenTelemetry](telemetry.md) and [service discovery](../service-discovery/overview.md) configurations.
 
 ### Non-development environments
 
@@ -56,6 +56,27 @@ The preceding code:
 
 - Groups the health check endpoints under the `/` path.
 - Caches the output and specifies a request time with the corresponding `HealthChecks` policy.
+
+In addition to the updated `AddDefaultHealthChecks` and `MapDefaultEndpoints` methods, you must also add the corresponding services for both request timeouts and output caching.
+
+In the appropriate consuming app's entry point (usually the _:::no-loc text="Program.cs":::_ file), add the following code:
+
+```csharp
+// Wherever your services are being registered.
+// Before the call to Build().
+builder.Services.AddRequestTimeouts();
+builder.Services.AddOutputCaching();
+
+var app = builder.Build();
+
+// Wherever your app has been built, before the call to Run().
+app.UseRequestTimeouts();
+app.UseOutputCaching();
+
+app.Run();
+```
+
+For more information, see [Request timeouts middleware in ASP.NET Core](/aspnet/core/performance/timeouts) and [Output caching middleware in ASP.NET Core](/aspnet/core/performance/caching/output).
 
 ## Component health checks
 
