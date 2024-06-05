@@ -51,7 +51,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 Dapr uses the [sidecar pattern](https://docs.dapr.io/concepts/dapr-services/sidecar/) to run alongside your application. The Dapr sidecar runs alongside your app as a lightweight, portable, and stateless HTTP server that listens for incoming HTTP requests from your app.  
 
-To add a sidecar to a .NET Aspire resource call the <xref:Aspire.Hosting.IDistributedApplicationResourceBuilderExtensions.WithDaprSidecar%2A> method on the desired resource. The `appId` parameter is the unique identifier for the Dapr application, but it's optional. If you don't provide an `appId`, the parent resource name is used instead.
+To add a sidecar to a .NET Aspire resource, call the <xref:Aspire.Hosting.IDistributedApplicationResourceBuilderExtensions.WithDaprSidecar%2A> method on the desired resource. The `appId` parameter is the unique identifier for the Dapr application, but it's optional. If you don't provide an `appId`, the parent resource name is used instead.
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="1-7"  highlight="7":::
 
@@ -59,7 +59,7 @@ The `WithDaprSidecar` method offers overloads to configure your Dapr sidecar opt
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="9-19"  highlight="1-6,11":::
 
-Putting everything together, consider the following example of a .NET Aspire app host project which includes:
+Putting everything together, consider the following example of a .NET Aspire app host project that includes:
 
 - A backend API that declares a Dapr sidecar with defaults.
 - A frontend that declares a Dapr sidecar with specific options, such as explict ports.
@@ -128,11 +128,11 @@ At first sight Dapr and .NET Aspire may look like they have overlapping function
 
 .NET Aspire makes setting up and debugging Dapr applications easier by providing a straightforward API to configure Dapr sidecars, and by exposing the sidecars as resources in the dashboard.
 
-### Explore Darp components with .NET Aspire
+### Explore Dapr components with .NET Aspire
 
-Dapr provides many [built-in components](https://docs.dapr.io/concepts/components-concept), and when you use both Dapr with .NET Aspire you can easily explore and configure these components. These components are not to be confused with .NET Aspire components. For example, consider the following:
+Dapr provides many [built-in components](https://docs.dapr.io/concepts/components-concept), and when you use Dapr with .NET Aspire you can easily explore and configure these components. Don't confuse these components with .NET Aspire components. For example, consider the following:
 
-- [Dapr—State stores](https://docs.dapr.io/concepts/components-concept/#state-stores): Call <xref:Aspire.Hosting.Dapr.IDistributedApplicationBuilderExtensions.AddDaprStateStore%2A> to add an configured state store to your .NET Aspire app.
+- [Dapr—State stores](https://docs.dapr.io/concepts/components-concept/#state-stores): Call <xref:Aspire.Hosting.Dapr.IDistributedApplicationBuilderExtensions.AddDaprStateStore%2A> to add a configured state store to your .NET Aspire app.
 - [Dapr—Pub Sub](https://docs.dapr.io/concepts/components-concept/#pubsub-brokers): Call <xref:Aspire.Hosting.Dapr.IDistributedApplicationBuilderExtensions.AddDaprPubSub%2A> to add a configured pub sub to your .NET Aspire app.
 - Dapr—Components: Call <xref:Aspire.Hosting.Dapr.IDistributedApplicationBuilderExtensions.AddDaprComponent%2A> to add a configured component to your .NET Aspire app.
 
