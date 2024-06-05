@@ -32,10 +32,30 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireKeyVaultExtensions.AddAzureKeyVaultSecrets%2A> extension to register a `SecretClient` for use via the dependency injection container.
+### Add secrets to configuration
+
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireKeyVaultExtensions.AddAzureKeyVaultSecrets%2A> extension to add the secrets in the Azure Key Vault to the application's Configuration. The method takes a connection name parameter.
 
 ```csharp
-builder.AddAzureKeyVaultSecrets("secrets");
+builder.Configuration.AddAzureKeyVaultSecrets("secrets");
+```
+
+You can then retrieve a secret through normal <xref:Microsoft.Extensions.Configuration.IConfiguration> APIs. For example, to retrieve a secret from a service:
+
+```csharp
+public class ExampleService(IConfiguration configuration)
+{
+    string secretValue = configuration["secretKey"];
+    // Use secretValue ...
+}
+```
+
+### Use SecretClient
+
+Alternatively, you can use a `SecretClient` to retrieve the secrets on demand. In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireKeyVaultExtensions.AddAzureKeyVaultClient%2A> extension to register a `SecretClient` for use via the dependency injection container.
+
+```csharp
+builder.AddAzureKeyVaultClient("secrets");
 ```
 
 You can then retrieve the <xref:Azure.Security.KeyVault.Secrets.SecretClient> instance using dependency injection. For example, to retrieve the client from a service:
