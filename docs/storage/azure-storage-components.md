@@ -61,7 +61,6 @@ az storage queue create -n tickets --account-name aspirestorage
 ```
 
 :::zone-end
-
 :::zone pivot="azure-portal,azure-cli"
 
 You also need to assign the following roles to the user account you are logged into Visual Studio with:
@@ -70,7 +69,6 @@ You also need to assign the following roles to the user account you are logged i
 - Storage Queue Data Contributor - [Assign an Azure RBAC role](/azure/storage/queues/assign-azure-role-data-access?tabs=portal)
 
 :::zone-end
-
 :::zone pivot="azure-developer-cli"
 
 The [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) enables you to provision and deploy Azure resources using a template system. This tutorial provides a [complete template](https://github.com/Azure-Samples/dotnet-aspire-connect-storage.git) that provisions the required Azure resources and includes the completed sample application code. Run the following commands to initialize and run the template:
@@ -158,7 +156,8 @@ Next, add a Worker Service project to the solution to retrieve and process messa
 Visual Studio adds the project to your solution and updates the _:::no-loc text="Program.cs":::_ file of the _AspireStorage.AppHost_ project with a new line of code:
 
 ```csharp
-builder.AddProject<Projects.AspireStorage_WorkerService>("aspirestorage-workerservice");
+builder.AddProject<Projects.AspireStorage_WorkerService>(
+    "aspirestorage-workerservice");
 ```
 
 Visual Studio tooling added this line of code to register your new project with the <xref:Aspire.Hosting.IDistributedApplicationBuilder> object, which enables orchestration features. For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
@@ -186,7 +185,8 @@ Visual Studio tooling added this line of code to register your new project with 
 1. Add the following line of code to the _:::no-loc text="Program.cs":::_ file in the **AspireStorage.AppHost** project:
 
     ```csharp
-    builder.AddProject<Projects.AspireStorage_WorkerService>("aspirestorage-workerservice");
+    builder.AddProject<Projects.AspireStorage_WorkerService>(
+        "aspirestorage-workerservice");
     ```
 
 ---
