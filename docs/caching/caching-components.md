@@ -1,7 +1,7 @@
 ---
 title: Implement caching with .NET Aspire components
 description: Learn how to connect to Redis and cache data using .NET Aspire components.
-ms.date: 05/14/2024
+ms.date: 06/05/2024
 ms.topic: tutorial
 ---
 
@@ -45,9 +45,22 @@ Visual Studio creates a new .NET Aspire solution that consists of the following 
 
 1. Add the [.NET Aspire Hosting Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis) package to the `AspireRedis.AppHost` project:
 
+    ### [.NET CLI](#tab/dotnet-cli)
+
     ```dotnetcli
     dotnet add package Aspire.Hosting.Redis
     ```
+
+    ### [PackageReference](#tab/package-reference)
+
+    ```xml
+    <PackageReference Include="Aspire.Hosting.Redis"
+                      Version="[SelectVersion]" />
+    ```
+
+    ---
+
+    For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
 2. Update the _:::no-loc text="Program.cs":::_ file of the `AspireRedis.AppHost` project to match the following code:
 
