@@ -2,7 +2,7 @@
 title: .NET Aspire Azure AI OpenAI component
 description: Learn how to use the .NET Aspire Azure AI OpenAI component.
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 06/05/2024
 ---
 
 # .NET Aspire Azure AI OpenAI component
@@ -74,12 +74,12 @@ dotnet add package Aspire.Hosting.Azure.CognitiveServices
 In your app host project, register an Azure AI OpenAI resource using the following methods, such as <xref:Aspire.Hosting.AzureOpenAIExtensions.AddAzureOpenAI%2A>:
 
 ```csharp
-// Service registration
+var builder = DistributedApplication.CreateBuilder(args);
+
 var openai = builder.ExecutionContext.IsPublishMode
     ? builder.AddAzureOpenAI("openAiConnectionName")
     : builder.AddConnectionString("openAiConnectionName");
 
-// Service consumption
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(openai);
 ```

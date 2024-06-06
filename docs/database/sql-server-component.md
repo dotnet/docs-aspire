@@ -2,7 +2,7 @@
 title: .NET Aspire SQL Server component
 description: This article describes the .NET Aspire SQL Server component.
 ms.topic: how-to
-ms.date: 06/03/2024
+ms.date: 06/05/2024
 ---
 
 # .NET Aspire SQL Server component
@@ -64,6 +64,8 @@ After adding a `SqlConnection`, you can get the scoped [SqlConnection](/dotnet/a
 [!INCLUDE [sql-app-host](includes/sql-app-host.md)]
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var sql = builder.AddSqlServer("sql");
 var sqldb = sql.AddDatabase("sqldb");
 

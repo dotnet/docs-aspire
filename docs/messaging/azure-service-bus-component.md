@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Service Bus component
 description: This article describes the .NET Aspire Azure Service Bus component features and capabilities
 ms.topic: how-to
-ms.date: 05/30/2024
+ms.date: 06/05/2024
 ---
 
 # .NET Aspire Azure Service Bus component
@@ -77,12 +77,12 @@ dotnet add package Aspire.Hosting.Azure.ServiceBus
 In your app host project, register the Service Bus component and consume the service using the following methods:
 
 ```csharp
-// Service registration
+var builder = DistributedApplication.CreateBuilder(args);
+
 var serviceBus = builder.ExecutionContext.IsPublishMode
     ? builder.AddAzureServiceBus("messaging")
     : builder.AddConnectionString("messaging");
 
-// Service consumption
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(serviceBus)
 ```
@@ -194,7 +194,7 @@ The .NET Aspire Azure Service Bus component uses the following log categories:
 
 You can enable tracing in several ways:
 
-- Setting the `Azure.Experimental.EnableActivitySource` [runtime configuration setting](https://learn.microsoft.com/dotnet/core/runtime-config/) to `true`. Which can be done with either:  
+- Setting the `Azure.Experimental.EnableActivitySource` [runtime configuration setting](/dotnet/core/runtime-config/) to `true`. Which can be done with either:  
   - Call `AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true);`.
   - Add the `RuntimeHostConfigurationOption` setting to your project file:
 

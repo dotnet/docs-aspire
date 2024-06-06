@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL component
 description: This article describes the .NET Aspire PostgreSQL component.
-ms.date: 06/03/2024
+ms.date: 06/05/2024
 ms.topic: how-to
 ---
 
@@ -51,6 +51,8 @@ public class ExampleService(NpgsqlDataSource dataSource)
 [!INCLUDE [postgresql-app-host](includes/postgresql-app-host.md)]
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var postgres = builder.AddPostgres("postgres");
 var postgresdb = postgres.AddDatabase("postgresdb");
 
@@ -59,6 +61,8 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 ```
 
 [!INCLUDE [postgresql-explicit-username-password](includes/postgresql-explicit-username-password.md)]
+
+[!INCLUDE [postgresql-flexible-server](includes/postgresql-flexible-server.md)]
 
 ## Configuration
 

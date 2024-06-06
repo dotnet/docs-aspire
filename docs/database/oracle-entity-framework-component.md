@@ -79,6 +79,8 @@ dotnet add package Aspire.Hosting.Oracle
 In your app host project, register an Oracle container and consume the connection using the following methods:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var oracle = builder.AddOracle("oracle");
 var oracledb = oracle.AddDatabase("oracledb");
 

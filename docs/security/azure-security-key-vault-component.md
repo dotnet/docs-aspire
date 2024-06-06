@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Key Vault component
 description: Lean about the .NET Aspire Azure Key Vault component.
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 06/05/2024
 ---
 
 # .NET Aspire Azure Key Vault component
@@ -89,12 +89,12 @@ dotnet add package Aspire.Hosting.Azure.KeyVault
 In your app host project, register the Azure Key Vault component and consume the service using the following methods:
 
 ```csharp
-// Service registration
+var builder = DistributedApplication.CreateBuilder(args);
+
 var secrets = builder.ExecutionContext.IsPublishMode
     ? builder.AddAzureKeyVault("secrets")
     : builder.AddConnectionString("secrets");
 
-// Service consumption
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(secrets)
 ```

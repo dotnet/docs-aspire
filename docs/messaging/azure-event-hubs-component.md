@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Event Hubs component
 description: This article describes the .NET Aspire Azure Event Hubs component features and capabilities.
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 06/05/2024
 ---
 
 # .NET Aspire Azure Event Hubs component
@@ -89,8 +89,10 @@ dotnet add package Aspire.Hosting.Azure.EventHubs
 In your app host project, add an Event Hubs connection and an Event Hub resource and consume the connection using the following methods:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var eventHubs = builder.AddAzureEventHubs("eventHubsConnectionName")
-                       .AddEventHub("MyHub");;
+                       .AddEventHub("MyHub");
 
 var ExampleService = builder.AddProject<Projects.ExampleService>()
                             .WithReference(eventHubs);

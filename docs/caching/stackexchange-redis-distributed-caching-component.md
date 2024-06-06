@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis distributed caching component
 description: This article describes the .NET Aspire StackExchange Redis distributed caching component features and capabilities
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 06/05/2024
 ---
 
 # .NET Aspire StackExchange Redis distributed caching component
@@ -52,10 +52,10 @@ public class ExampleService(IDistributedCache cache)
 [!INCLUDE [redis-app-host](includes/redis-app-host.md)]
 
 ```csharp
-// Service registration
+var builder = DistributedApplication.CreateBuilder(args);
+
 var redis = builder.AddRedis("redis");
 
-// Service consumption
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(redis)
 ```

@@ -2,7 +2,7 @@
 title: .NET Aspire MongoDB database component
 description: This article describes the .NET Aspire MongoDB database component.
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 06/05/2024
 ---
 
 # .NET Aspire MongoDB database component
@@ -79,6 +79,8 @@ dotnet add package Aspire.Hosting.MongoDB
 In your app host project, register the MongoDB database and consume the connection method and consume the service using the following methods:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var mongo = builder.AddMongoDB("mongo");
 var mongodb = mongo.AddDatabase("mongodb");
 

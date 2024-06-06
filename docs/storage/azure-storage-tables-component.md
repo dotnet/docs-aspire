@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Data Tables component
 description: This article describes the .NET Aspire Azure Data Tables component features and capabilities.
-ms.date: 05/14/2024
+ms.date: 06/05/2024
 ms.topic: how-to
 ---
 
@@ -77,11 +77,11 @@ dotnet add package Aspire.Hosting.Azure.Storage
 In your app host project, register the Azure Table Storage component and consume the service using the following methods:
 
 ```csharp
-// Service registration
+var builder = DistributedApplication.CreateBuilder(args);
+
 var tables = builder.AddAzureStorage("storage")
                     .AddTables("tables");
 
-// Service consumption
 Builder.AddProject<MyApp.ExampleProject>() 
        .WithReference(tables)
 ```

@@ -2,7 +2,7 @@
 title: .NET Aspire Microsoft Entity Framework Core Cosmos DB component
 description: This article describes the .NET Aspire Microsoft Entity Framework Core Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 06/05/2024
 ---
 
 # .NET Aspire Microsoft Entity Framework Core Cosmos DB component
@@ -71,11 +71,11 @@ dotnet add package Aspire.Hosting.Azure.CosmosDB
 In your app host project, register the .NET Aspire Microsoft Entity Framework Core Cosmos DB component and consume the service using the following methods:
 
 ```csharp
-// Service registration
+var builder = DistributedApplication.CreateBuilder(args);
+
 var cosmos = builder.AddAzureCosmosDB("cosmos");
 var cosmosdb = cosmos.AddDatabase("cosmosdb");
 
-// Service consumption
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(cosmosdb);
 ```
