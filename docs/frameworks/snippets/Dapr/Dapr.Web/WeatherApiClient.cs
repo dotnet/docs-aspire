@@ -4,10 +4,15 @@ namespace Dapr.Web;
 
 public class WeatherApiClient(DaprClient client)
 {
-    public async Task<WeatherForecast[]> GetWeatherAsync(int maxItems = 10, CancellationToken cancellationToken = default)
+    public async Task<WeatherForecast[]> GetWeatherAsync(
+        int maxItems = 10, CancellationToken cancellationToken = default)
     {
         List<WeatherForecast>? forecasts =
-            await client.InvokeMethodAsync<List<WeatherForecast>>(HttpMethod.Get, "apiservice-dapr", "/weatherforecast", cancellationToken); ;
+            await client.InvokeMethodAsync<List<WeatherForecast>>(
+                HttpMethod.Get,
+                "apiservice",
+                "/weatherforecast",
+                cancellationToken);
 
         return forecasts?.ToArray() ?? [];
     }

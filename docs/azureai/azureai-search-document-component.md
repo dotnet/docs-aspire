@@ -2,7 +2,7 @@
 title: .NET Aspire Azure AI Search Documents component
 description: Learn how to use the .NET Aspire Azure AI Search Documents component.
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 06/05/2024
 ---
 
 # .NET Aspire Azure AI Search Documents component
@@ -95,6 +95,8 @@ dotnet add package Aspire.Hosting.Azure.CognitiveServices
 In the _:::no-loc text="Program.cs":::_ file of `AppHost`, add an Azure Search service and consume the connection using the following methods:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var search = builder.ExecutionContext.IsPublishMode
     ? builder.AddAzureSearch("search")
     : builder.AddConnectionString("search");

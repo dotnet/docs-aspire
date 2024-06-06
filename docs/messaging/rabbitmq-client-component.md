@@ -2,7 +2,7 @@
 title: .NET Aspire RabbitMQ component
 description: Learn how to use the .NET Aspire RabbitMQ client message-broker component.
 ms.topic: how-to
-ms.date: 06/03/2024
+ms.date: 06/05/2024
 ---
 
 # .NET Aspire RabbitMQ component
@@ -69,10 +69,10 @@ dotnet add package Aspire.Hosting.RabbitMQ
 In your app host project, register a RabbitMQ server and consume the connection using the following methods, such as <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A>:
 
 ```csharp
-// Service registration
+var builder = DistributedApplication.CreateBuilder(args);
+
 var messaging = builder.AddRabbitMQ("messaging");
 
-// Service consumption
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(messaging);
 ```

@@ -37,8 +37,6 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-<!-- TODO: <xref:Microsoft.Extensions.Hosting.AspireNatsClientExtensions.AddNatsClient%2A>  -->
-
 In the _:::no-loc text="Program.cs":::_ file of your projects, call the `AddNatsClient` extension method to register an `INatsConnection` to send logs and traces to NATS and the .NET Aspire Dashboard. The method takes a connection name parameter.
 
 ```csharp
@@ -52,6 +50,42 @@ public class ExampleService(INatsConnection client)
 {
     // Use client...
 }
+```
+
+## App host usage
+
+To model the Nats resource in the app host, install the [Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Nats
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Nats"
+                  Version="[SelectVersion]" />
+```
+
+---
+
+Then, in the _:::no-loc text="Program.cs":::_ file of `AppHost`, register a NATS server and consume the connection using the following methods:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var nats = builder.AddNats("nats");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(nats);
+```
+
+The `WithReference` method configures a connection in the `MyService` project named `nats`. In the _:::no-loc text="Program.cs":::_ file of `MyService`, the NATS connection can be consumed using:
+
+```csharp
+builder.AddNatsClient("nats");
 ```
 
 ## Configuration
@@ -100,40 +134,6 @@ Pass the `Action<NatsClientSettings> configureSettings` delegate to set up some 
 
 ```csharp
 builder.AddNatsClient("nats", settings => settings.DisableHealthChecks  = true);
-```
-
-## App host usage
-
-To model the Nats resource in the app host, install the [Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats) NuGet package.
-
-### [.NET CLI](#tab/dotnet-cli)
-
-```dotnetcli
-dotnet add package Aspire.Hosting.Nats
-```
-
-### [PackageReference](#tab/package-reference)
-
-```xml
-<PackageReference Include="Aspire.Hosting.Nats"
-                  Version="[SelectVersion]" />
-```
-
----
-
-Then, in the _:::no-loc text="Program.cs":::_ file of `AppHost`, register a NATS server and consume the connection using the following methods:
-
-```csharp
-var nats = builder.AddNats("nats");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(nats);
-```
-
-The `WithReference` method configures a connection in the `MyService` project named `nats`. In the _:::no-loc text="Program.cs":::_ file of `MyService`, the NATS connection can be consumed using:
-
-```csharp
-builder.AddNatsClient("nats");
 ```
 
 ### Persistent logs and traces

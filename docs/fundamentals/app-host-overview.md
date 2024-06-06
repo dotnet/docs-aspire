@@ -256,6 +256,33 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 
 For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.com/dotnet/aspire/tree/main/src/Aspire.Hosting.AWS).
 
+## Execution context
+
+The <xref:Aspire.Hosting.IDistributedApplicationBuilder> exposes an execution context (<xref:Aspire.Hosting.DistributedApplicationExecutionContext>), which provides information about the current execution of the app host. This context can be used to evaluate whether or not the app host is executing as "run" mode, or as part of a publish operation. Consider the following:
+
+- <xref:Aspire.Hosting.DistributedApplicationExecutionContext.IsRunMode%2A>: Returns `true` if the current operation is running.
+- <xref:Aspire.Hosting.DistributedApplicationExecutionContext.IsPublishMode%2A>: Returns `true` if the current operation is publishing.
+
+This information can be useful when you want to conditionally execute code based on the current operation. Consider the following example that demonstrates using the `IsRunMode` property. In this case, an extension method is used to generate a stable node name for RabbitMQ for local development runs.
+
+```csharp
+private static IResourceBuilder<RabbitMQServerResource> RunWithStableNodeName(
+    this IResourceBuilder<RabbitMQServerResource> builder)
+{
+    if (builder.ApplicationBuilder.ExecutionContext.IsRunMode)
+    {
+        builder.WithEnvironment(context =>
+        {
+            // Set a stable node name so queue storage is consistent between sessions
+            var nodeName = $"{builder.Resource.Name}@localhost";
+            context.EnvironmentVariables["RABBITMQ_NODENAME"] = nodeName;
+        });
+    }
+
+    return builder;
+}
+```
+
 ## See also
 
 - [.NET Aspire components overview](components-overview.md)

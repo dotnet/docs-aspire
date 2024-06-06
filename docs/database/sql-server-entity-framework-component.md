@@ -2,7 +2,7 @@
 title: .NET Aspire SqlServer Entity Framework Core component
 description: This article describes the .NET Aspire SQL Server Entity Framework Core component.
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 06/05/2024
 ---
 
 # .NET Aspire SqlServer Entity Framework Core component
@@ -61,6 +61,8 @@ public class ExampleService(YourDbContext client)
 [!INCLUDE [sql-app-host](includes/sql-app-host.md)]
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var sql = builder.AddSqlServer("sql");
 var sqldb = sql.AddDatabase("sqldb");
 

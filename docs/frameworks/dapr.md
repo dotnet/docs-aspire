@@ -1,7 +1,7 @@
 ---
 title: Use Dapr with .NET Aspire
 description: Learn how to use Dapr with .NET Aspire
-ms.date: 05/20/2024
+ms.date: 06/04/2024
 ms.topic: overview
 ---
 
@@ -18,6 +18,13 @@ In addition to the prerequisites for .NET Aspire, you will need:
 - Dapr version 1.13 or later
 
 To install Dapr, see [Install the Dapr CLI](https://docs.dapr.io/getting-started/install-dapr-cli/). After installing the Dapr CLI, run the `dapr init` described in [Initialize Dapr in your local environment](https://docs.dapr.io/getting-started/install-dapr-selfhost/).
+
+> [!IMPORTANT]
+> If you attempt to run the app without the Dapr CLI, you'll receive the following error:
+>
+> ```plaintext
+> Unable to locate the Dapr CLI.
+> ```
 
 ## Get started
 
@@ -40,25 +47,22 @@ dotnet add package Aspire.Hosting.Dapr
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-The Dapr resource is added to the .NET Aspire distributed application builder using the `AddDapr()` method.
-An overload of the `AddDapr()` method that accepts Dapr options is available. For most applications, the default options will suffice.
+## Add a Dapr sidecar
 
-:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="4":::
+Dapr uses the [sidecar pattern](https://docs.dapr.io/concepts/dapr-services/sidecar/) to run alongside your application. The Dapr sidecar runs alongside your app as a lightweight, portable, and stateless HTTP server that listens for incoming HTTP requests from your app.  
 
-Dapr uses the [sidecar pattern](https://docs.dapr.io/concepts/dapr-services/sidecar/) to run alongside your application. The Dapr sidecar runs alongside your application as a lightweight, portable, and stateless HTTP server that listens for incoming HTTP requests from your application.  
+To add a sidecar to a .NET Aspire resource, call the <xref:Aspire.Hosting.IDistributedApplicationResourceBuilderExtensions.WithDaprSidecar%2A> method on the desired resource. The `appId` parameter is the unique identifier for the Dapr application, but it's optional. If you don't provide an `appId`, the parent resource name is used instead.
 
-Add a sidecar to a .NET Aspire resource by using the `WithDaprSidecar(string appId)` method. The `appId` parameter is the unique identifier for the Dapr application.
+:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="1-7"  highlight="7":::
 
-:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="18-21"  highlight="21":::
+The `WithDaprSidecar` method offers overloads to configure your Dapr sidecar options like app ID and ports. In the following example, the Dapr sidecar is configured with specific ports for GRPC, HTTP, metrics, and a specific app ID.
 
-The `WithDaprSidecar` method offers overloads to configure your Dapr sidecar options like app ID and ports. In the following example, the Dapr sidecar is configured with specific ports for GRPC, HTTP, metrics, and a specific App ID.
+:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="9-19"  highlight="1-6,11":::
 
-:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="6-16"  highlight="1-7,11":::
+Putting everything together, consider the following example of a .NET Aspire app host project that includes:
 
-Putting everything together, here's an example of a .NET Aspire app host project which includes:
-
-- A backend that declares a Dapr sidecar with specific ports and app ID.
-- A frontend that declares a Dapr sidecar with a specific app ID and default ports.
+- A backend API that declares a Dapr sidecar with defaults.
+- A frontend that declares a Dapr sidecar with specific options, such as explict ports.
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs":::
 
@@ -94,7 +98,7 @@ Once installed into an ASP.NET Core project, the SDK can be added to the service
 
 An instance of `DaprClient` can now be injected into your services to interact with the Dapr sidecar through the Dapr SDK.
 
-:::code language="csharp" source="snippets/Dapr/Dapr.Web/WeatherApiClient.cs" highlight="9-10":::
+:::code language="csharp" source="snippets/Dapr/Dapr.Web/WeatherApiClient.cs" highlight="11-15":::
 
 `InvokeMethodAsync` is a method that sends an HTTP request to the Dapr sidecar. It is a generic method that takes:
 
@@ -123,6 +127,14 @@ When the Dapr SDK is used, the Dapr sidecar is called over HTTP. The Dapr sideca
 At first sight Dapr and .NET Aspire may look like they have overlapping functionality, and they do. However, they both take a different approach. .NET Aspire is an opiniated approach on how to build distributed applications on a cloud platform. Dapr is a runtime that abstracts away the common complexities of the underlying cloud platform. It relies on sidecars to provide abstractions for things like configuration, secret management, and messaging. The underlying technology can be easily switched out through configuration files, while your code does not need to change.
 
 .NET Aspire makes setting up and debugging Dapr applications easier by providing a straightforward API to configure Dapr sidecars, and by exposing the sidecars as resources in the dashboard.
+
+### Explore Dapr components with .NET Aspire
+
+Dapr provides many [built-in components](https://docs.dapr.io/concepts/components-concept), and when you use Dapr with .NET Aspire you can easily explore and configure these components. Don't confuse these components with .NET Aspire components. For example, consider the following:
+
+- [Dapr—State stores](https://docs.dapr.io/concepts/components-concept/#state-stores): Call <xref:Aspire.Hosting.IDistributedApplicationBuilderExtensions.AddDaprStateStore%2A> to add a configured state store to your .NET Aspire app.
+- [Dapr—Pub Sub](https://docs.dapr.io/concepts/components-concept/#pubsub-brokers): Call <xref:Aspire.Hosting.IDistributedApplicationBuilderExtensions.AddDaprPubSub%2A> to add a configured pub sub to your .NET Aspire app.
+- Dapr—Components: Call <xref:Aspire.Hosting.IDistributedApplicationBuilderExtensions.AddDaprComponent%2A> to add a configured component to your .NET Aspire app.
 
 ## Next steps
 

@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Queue Storage component
 description: This article describes the .NET Aspire Azure Queue Storage component features and capabilities
 ms.topic: how-to
-ms.date: 05/14/2024
+ms.date: 06/05/2024
 ---
 
 # .NET Aspire Azure Queue Storage component
@@ -69,6 +69,8 @@ dotnet add package Aspire.Hosting.Azure.Storage
 In your app host project, add a Storage Queue connection and consume the connection using the following methods, such as <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A>:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var queues = builder.AddAzureStorage("storage")
                     .AddQueues("queues");
 

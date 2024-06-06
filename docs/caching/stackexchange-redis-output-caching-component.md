@@ -2,7 +2,7 @@
 title: .NET Aspire StackExchange Redis output caching Component
 description: This article describes the .NET Aspire StackExchange Redis output caching component features and capabilities
 ms.topic: how-to
-ms.date: 04/29/2024
+ms.date: 06/05/2024
 ---
 
 # .NET Aspire StackExchange Redis output caching component
@@ -59,10 +59,10 @@ For apps with controllers, apply the `[OutputCache]` attribute to the action met
 [!INCLUDE [redis-app-host](includes/redis-app-host.md)]
 
 ```csharp
-// Service registration
+var builder = DistributedApplication.CreateBuilder(args);
+
 var redis = builder.AddRedis("redis");
 
-// Service consumption
 var basket = builder.AddProject<Projects.ExampleProject>()
                     .WithReference(redis)
 ```
