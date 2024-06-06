@@ -87,26 +87,6 @@ services:
     host: containerapp
 ```
 
-With the `project` field pointing to a .NET Aspire AppHost project, `azd` activates its integration with .NET Aspire and derives the required infrastructure needed to host this application from the application model specified in the _:::no-loc text="Program.cs":::_ file of the .NET Aspire app.
-
-The _:::no-loc text=".azure\aspireazddev\config.json":::_ file has the following contents:
-
-```json
-{
-  "services": {
-    "app": {
-      "config": {
-        "exposedServices": [
-          "webfrontend"
-        ]
-      }
-    }
-  }
-}
-```
-
-This file is how `azd` remembers (on a per environment basis) which services should be exposed with a public endpoint. `azd` can be configured to support multiple environments.
-
 ### Initial deployment
 
 1. In order to deploy the .NET Aspire application, authenticate to Azure AD to call the Azure resource management APIs.
