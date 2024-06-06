@@ -194,7 +194,7 @@ The .NET Aspire Azure Service Bus component uses the following log categories:
 
 You can enable tracing in several ways:
 
-- Setting the `Azure.Experimental.EnableActivitySource` [runtime configuration setting](https://learn.microsoft.com/dotnet/core/runtime-config/) to `true`. Which can be done with either:  
+- Setting the `Azure.Experimental.EnableActivitySource` [runtime configuration setting](/dotnet/core/runtime-config/) to `true`. Which can be done with either:  
   - Call `AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true);`.
   - Add the `RuntimeHostConfigurationOption` setting to your project file:
 
