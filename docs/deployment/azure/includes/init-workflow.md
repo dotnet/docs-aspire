@@ -50,4 +50,3 @@
 - _azure.yaml_: Describes the services of the app, such as .NET Aspire AppHost project, and maps them to Azure resources.
 - _.azure/config.json_: Configuration file that informs `azd` what the current active environment is.
 - _.azure/aspireazddev/.env_: Contains environment specific overrides.
-- _.azure/aspireazddev/config.json_: Configuration file that informs `azd` which services should have a public endpoint in this environment.
