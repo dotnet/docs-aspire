@@ -18,7 +18,7 @@ Cloud-native apps often require scalable messaging solutions that provide capabi
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
-In addition to the preceding prerequisites, you'll also need to install the Azure CLI. To install the Azure CLI, follow the instructions in the [Azure CLI installation guide](/cli/azure/install-azure-cli).
+In addition to the preceding prerequisites, you also need to install the Azure CLI. To install the Azure CLI, follow the instructions in the [Azure CLI installation guide](/cli/azure/install-azure-cli).
 
 ## Set up the Azure Service Bus account
 
@@ -224,8 +224,8 @@ Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) componen
 
 :::zone pivot="visual-studio"
 
-1. In the **Solution Explorer**, double-click the **AspireSample.ApiService.csproj** file to open it's XML file.
-1. Add the following `<PackageReference>` element to the `<ItemGroup>` element:
+1. In the **Solution Explorer**, double-click the **AspireSample.ApiService.csproj** file to open its XML file.
+1. Add the following `<PackageReference>` item to the `<ItemGroup>` element:
 
     ```xml
     <ItemGroup>
@@ -241,7 +241,7 @@ Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) componen
 
     :::image type="content" source="media/vscode-add-nuget-package.png" lightbox="media/vscode-add-nuget-package.png" alt-text="Visual Studio Code: Add NuGet package to AspireSample.ApiService project.":::
 
-1. Enter **Aspire.Azure.Messaging.ServiceBus** in the search box and select the package from the list:
+1. Enter **Aspire.Azure.Messaging.ServiceBus** in the search box and select the package from the list.
 1. Select the **(latest)** version to install the package.
 
 :::zone-end
@@ -476,12 +476,12 @@ The sample app is now ready for testing. Verify that the data submitted to the A
 
 :::zone pivot="visual-studio"
 
-1. Launch the .NET Aspire app by selecting the run button **Start** debugging button, or by pressing <kbd>F5</kbd>. The .NET Aspire dashboard app should open in the browser.
+1. Launch the .NET Aspire app by selecting the **Start** debugging button, or by pressing <kbd>F5</kbd>. The .NET Aspire dashboard app should open in the browser.
 
 :::zone-end
 :::zone pivot="vscode"
 
-1. Launch the .NET Aspire app by selecting the run button **Start** debugging button, or by pressing <kbd>F5</kbd>. The .NET Aspire dashboard app should open in the browser.
+1. Launch the .NET Aspire app by selecting the **Start** debugging button, or by pressing <kbd>F5</kbd>. The .NET Aspire dashboard app should open in the browser.
 
 :::zone-end
 :::zone pivot="dotnet-cli"
