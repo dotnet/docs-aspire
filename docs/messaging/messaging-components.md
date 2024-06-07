@@ -1,8 +1,9 @@
 ---
 title: Use .NET Aspire messaging components in ASP.NET Core
 description: Learn how to connect an ASP.NET Core app to messaging services using .NET Aspire components.
-ms.date: 05/22/2024
+ms.date: 06/05/2024
 ms.topic: tutorial
+zone_pivot_groups: dev-environment
 ---
 
 # Tutorial: Use .NET Aspire messaging components in ASP.NET Core
@@ -16,6 +17,8 @@ Cloud-native apps often require scalable messaging solutions that provide capabi
 > - Configure and use .NET Aspire component features to send and receive data
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
+
+In addition to the preceding prerequisites, you also need to install the Azure CLI. To install the Azure CLI, follow the instructions in the [Azure CLI installation guide](/cli/azure/install-azure-cli).
 
 ## Set up the Azure Service Bus account
 
@@ -60,102 +63,201 @@ Retrieve the connection string for your Service Bus namespace from the **Shared 
 
 ## Create the sample solution
 
-Create a .NET Aspire app using either Visual Studio or the .NET CLI.
+To create a new .NET Aspire Starter Application, you can use either Visual Studio, Visual Studio Code, or the .NET CLI.
 
-## [Visual Studio](#tab/visual-studio)
+:::zone pivot="visual-studio"
 
-Visual Studio provides app templates to get started with .NET Aspire that handle some of the initial setup configurations for you.
+[!INCLUDE [visual-studio-file-new](../includes/visual-studio-file-new.md)]
 
-1. At the top of Visual Studio, navigate to **File** > **New** > **Project**.
-1. In the dialog window, search for *Aspire* and select **.NET Aspire Starter Application**. Choose **Next**.
-1. On the **Configure your new project** screen:
-    - Enter a **Solution Name** of **AspireMessaging**.
-    - Leave the rest of the values at their defaults and select **Next**.
-1. On the **Additional information** screen:
-    - Uncheck **Use Redis for caching** (not required for this tutorial).
-    - Select **Create**.
+:::zone-end
+:::zone pivot="vscode"
 
-## [.NET CLI](#tab/dotnet-cli)
+[!INCLUDE [vscode-file-new](../includes/vscode-file-new.md)]
 
-Use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new .NET Aspire app:
+:::zone-end
+:::zone pivot="dotnet-cli"
 
-```dotnetcli
-dotnet new aspire-starter --name AspireMessaging
-```
+[!INCLUDE [dotnet-cli-file-new](../includes/dotnet-cli-file-new.md)]
 
----
-
-The solution consists of the following projects:
-
-- **AspireMessaging.ApiService** - An API project with default .NET Aspire service configurations.
-- **AspireMessaging.AppHost** - An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
-- **AspireMessaging.ServiceDefaults** - A shared class library to hold code that can be reused across the projects in your solution.
-- **AspireMessaging.Web** - A Blazor Server project that serves as the front end for the app.
+:::zone-end
 
 ### Add the Worker Service project
 
 Next, add a Worker Service project to the solution to retrieve and process messages to and from Azure Service Bus.
 
-## [Visual Studio](#tab/visual-studio)
+:::zone pivot="visual-studio"
 
-1. In the solution explorer, right click on the top level `AspireMessaging` solution node and select **Add** > **New project**.
+1. In the solution explorer, right click on the top level `AspireSample` solution node and select **Add** > **New project**.
 1. Search for and select the **Worker Service** template and choose **Next**.
-1. For the **Project name**, enter *AspireMessaging.WorkerService* and select **Next**.
+1. For the **Project name**, enter *AspireSample.WorkerService* and select **Next**.
 1. On the **Additional information** screen:
     - Make sure **.NET 8.0** is selected.
     - Make sure **Enlist in .NET Aspire orchestration** is checked and select **Create**.
 
-Visual Studio adds the project to your solution and updates the _:::no-loc text="Program.cs":::_ file of the `AspireMessaging.AppHost` project with a new line of code:
+Visual Studio adds the project to your solution and updates the _:::no-loc text="Program.cs":::_ file of the `AspireSample.AppHost` project with a new line of code:
 
 ```csharp
-builder.AddProject<Projects.AspireMessaging_WorkerService>("aspiremessaging-workerservice");
+builder.AddProject<Projects.AspireSample_WorkerService>(
+    "aspiresample-workerservice");
 ```
 
 Visual Studio tooling added this line of code to register your new project with the <xref:Aspire.Hosting.IDistributedApplicationBuilder> object, which enables orchestration features you'll explore later.
 
-## [.NET CLI](#tab/dotnet-cli)
+:::zone-end
+:::zone pivot="vscode"
 
-1. In the root directory of the app, use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new Worker Service app:
+1. From the **Solution Explorer** in Visual Studio Code, select the **+** button next to the solution name to add a new project to the solution:
+
+    :::image type="content" source="media/vscode-add-project.png" lightbox="media/vscode-add-project.png" alt-text="Visual Studio Code: Add new project from C# DevKit Solution Explorer.":::
+
+1. To filter the project templates, enter **Worker** in the search box and select the **Worker Service** template that's found:
+
+    :::image type="content" source="media/vscode-create-worker.png" lightbox="media/vscode-create-worker.png" alt-text="Visual Studio Code: Filter to Worker Service project template from Add project.":::
+
+1. Choose the **Worker Service** template and enter the project name as **AspireSample.WorkerService**.
+1. Select **Default directory** to create the project in the same directory as the solution.
+1. Select **Create project** to add the project to the solution.
+1. Right-click on the **AspireSample.AppHost** project in the **Solution Explorer** and select **Add Project Reference**:
+
+    :::image type="content" source="media/vscode-add-project-reference.png" lightbox="media/vscode-add-project-reference.png" alt-text="Visual Studio Code: Add project reference from AspireSample.AppHost to AspireSample.WorkerService.":::
+
+1. Add the following line of code to the _:::no-loc text="Program.cs":::_ file in the **AspireSample.AppHost** project before the call to `builder.Build().Run();`:
+
+    ```csharp
+    builder.AddProject<Projects.AspireSample_WorkerService>(
+        "aspiresample-workerservice");
+    ```
+
+:::zone-end
+:::zone pivot="dotnet-cli"
+
+1. In the root directory of the app, use the [dotnet new](/dotnet/core/tools/dotnet-new) command to create a new Worker Service app:
 
     ```dotnetcli
-    dotnet new worker --name AspireMessaging.WorkerService
+    dotnet new worker --name AspireSample.WorkerService
     ```
 
 1. Use the [`dotnet sln`](/dotnet/core/tools/dotnet-sln) command to add the project to the solution:
 
-    ```
-    dotnet sln AspireMessaging.sln add AspireMessaging.WorkerService/AspireMessaging.WorkerService.csproj
+    ```dotnetcli
+    dotnet sln AspireSample.sln add AspireSample.WorkerService/AspireSample.WorkerService.csproj
     ```
 
 1. Use the [`dotnet add`](/dotnet/core/tools/dotnet-add-reference) command to add a project reference between the **.AppHost** and **.WorkerService** project:
 
     ```dotnetcli
-    dotnet add AspireMessaging.AppHost/AspireMessaging.AppHost.csproj reference AspireMessaging.WorkerService/AspireMessaging.WorkerService.csproj
+    dotnet add AspireSample.AppHost/AspireSample.AppHost.csproj reference AspireSample.WorkerService/AspireSample.WorkerService.csproj
     ```
 
-1. Add the following line of code to the _:::no-loc text="Program.cs":::_ file in the **AspireMessaging.AppHost** project:
+1. Add the following line of code to the _:::no-loc text="Program.cs":::_ file in the **AspireSample.AppHost** project before the call to `builder.Build().Run();`:
 
     ```csharp
-    builder.AddProject<Projects.AspireMessaging_WorkerService>("aspiremessaging-workerservice");
+    builder.AddProject<Projects.AspireSample_WorkerService>(
+        "aspiresample-workerservice");
     ```
 
----
+:::zone-end
 
-The completed solution structure should resemble the following:
+The completed solution structure should resemble the following, assuming the top-level directory is named _aspire-messaging_:
 
-:::image type="content" source="../media/messaging-project.png" alt-text="A screenshot showing the completed sample .NET Aspire app structure.":::
+```Directory
+└───📂 aspire-messaging
+     ├───📂 AspireSample.WorkerService
+     │    ├───📂 Properties
+     │    │    └─── launchSettings.json
+     │    ├─── appsettings.Development.json
+     │    ├─── appsettings.json
+     │    ├─── AspireSample.WorkerService.csproj
+     │    ├─── Program.cs
+     │    └─── Worker.cs
+     ├───📂 AspireSample.ApiService
+     │    ├───📂 Properties
+     │    │    └─── launchSettings.json
+     │    ├─── appsettings.Development.json
+     │    ├─── appsettings.json
+     │    ├─── AspireSample.ApiService.csproj
+     │    └─── Program.cs
+     ├───📂 AspireSample.AppHost
+     │    ├───📂 Properties
+     │    │    └─── launchSettings.json
+     │    ├─── appsettings.Development.json
+     │    ├─── appsettings.json
+     │    ├─── AspireSample.AppHost.csproj
+     │    └─── Program.cs
+     ├───📂 AspireSample.ServiceDefaults
+     │    ├─── AspireSample.ServiceDefaults.csproj
+     │    └─── Extensions.cs
+     ├───📂 AspireSample.Web
+     │    ├───📂 Components
+     │    │    ├───📂 Layout
+     │    │    │    ├─── MainLayout.razor
+     │    │    │    ├─── MainLayout.razor.css
+     │    │    │    ├─── NavMenu.razor
+     │    │    │    └─── NavMenu.razor.css
+     │    │    ├───📂 Pages
+     │    │    │    ├─── Counter.razor
+     │    │    │    ├─── Error.razor
+     │    │    │    ├─── Home.razor
+     │    │    │    └─── Weather.razor
+     │    │    ├─── _Imports.razor
+     │    │    ├─── App.razor
+     │    │    └─── Routes.razor
+     │    ├───📂 Properties
+     │    │    └─── launchSettings.json
+     │    ├───📂 wwwroot
+     │    │    ├───📂 bootstrap
+     │    │    │    ├─── bootstrap.min.css
+     │    │    │    └─── bootstrap.min.css.map
+     │    │    ├─── app.css
+     │    │    └─── favicon.png
+     │    ├─── appsettings.Development.json
+     │    ├─── appsettings.json
+     │    ├─── AspireSample.Web.csproj
+     │    ├─── Program.cs
+     │    └─── WeatherApiClient.cs
+     └─── AspireSample.sln
+```
 
 ## Add the .NET Aspire component to the API
 
-Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) component to your `AspireMessaging.ApiService` app:
+Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) component to your **AspireSample.ApiService** app:
+
+:::zone pivot="visual-studio"
+
+1. In the **Solution Explorer**, double-click the **AspireSample.ApiService.csproj** file to open its XML file.
+1. Add the following `<PackageReference>` item to the `<ItemGroup>` element:
+
+    ```xml
+    <ItemGroup>
+        <PackageReference Include="Aspire.Azure.Messaging.ServiceBus"
+                          Version="8.0.1" />
+    </ItemGroup>
+    ```
+
+:::zone-end
+:::zone pivot="vscode"
+
+1. In the **Solution Explorer**, right-click on the **AspireSample.ApiService** project and select **Add NuGet Package**:
+
+    :::image type="content" source="media/vscode-add-nuget-package.png" lightbox="media/vscode-add-nuget-package.png" alt-text="Visual Studio Code: Add NuGet package to AspireSample.ApiService project.":::
+
+1. Enter **Aspire.Azure.Messaging.ServiceBus** in the search box and select the package from the list.
+1. Select the **(latest)** version to install the package.
+
+:::zone-end
+:::zone pivot="dotnet-cli"
 
 ```dotnetcli
 dotnet add package Aspire.Azure.Messaging.ServiceBus
 ```
 
-In the _:::no-loc text="Program.cs":::_ file of the `AspireMessaging` Razor Pages project, add a call to the `AddAzureServiceBus` extension methods:
+:::zone-end
+
+In the _:::no-loc text="Program.cs":::_ file of the **AspireSample.ApiService** project, add a call to the `AddAzureServiceBusClient` extension method—replacing the existing call to `AddServiceDefaults`:
 
 ```csharp
+// Add service defaults & Aspire components.
+builder.AddServiceDefaults();
 builder.AddAzureServiceBusClient("serviceBusConnection");
 ```
 
@@ -166,14 +268,15 @@ This method accomplishes the following tasks:
 - Registers a <xref:Microsoft.Azure.Commands.ServiceBus.ServiceBusClient> with the DI container for connecting to Azure Service Bus.
 - Automatically enables corresponding health checks, logging, and telemetry for the respective services.
 
-In the _:::no-loc text="appsettings.json":::_ file of the `AspireMessaging` project, add the corresponding connection information:
+In the _:::no-loc text="appsettings.json":::_ file of the same project, add the corresponding connection information:
 
 # [Passwordless (Recommended)](#tab/passwordless)
 
 ```json
 {
+  // Existing configuration is omitted for brevity.
   "ConnectionStrings": {
-    "serviceBusConnectionName": "{your_namespace}.servicebus.windows.net"
+    "serviceBusConnection": "{your_namespace}.servicebus.windows.net"
   }
 }
 ```
@@ -182,6 +285,7 @@ In the _:::no-loc text="appsettings.json":::_ file of the `AspireMessaging` proj
 
 ```json
 {
+  // Existing configuration is omitted for brevity.
   "ConnectionStrings": {
     "serviceBusConnection": "Endpoint=sb://{your_namespace}.servicebus.windows.net/;
           SharedAccessKeyName=accesskeyname;SharedAccessKey=accesskey"
@@ -192,13 +296,29 @@ In the _:::no-loc text="appsettings.json":::_ file of the `AspireMessaging` proj
 ---
 
 > [!NOTE]
-> Make sure to replace **{your_namespace}** in the Service URIs with the name of your own Service Bus namespace.
+> Make sure to replace **{your_namespace}** in the service URIs with the name of your own Service Bus namespace.
 
 ## Create the API endpoint
 
-The API must provide an endpoint to receive data and publish it to the Service Bus topic and broadcast to subscribers. Add the following endpoint to the `AspireMessaging.ApiService` project to send a message to the Service Bus topic. Place this code in _Program.cs_ before the `app.MapDefaultEndpoints()` call:
+The API must provide an endpoint to receive data and publish it to the Service Bus topic and broadcast to subscribers. Add the following endpoint to the **AspireSample.ApiService** project to send a message to the Service Bus topic. Replace all of the contents of the _:::no-loc text="Program.cs":::_ file with the following C# code:
 
 ```csharp
+using Azure.Messaging.ServiceBus;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add service defaults & Aspire components.
+builder.AddServiceDefaults();
+builder.AddAzureServiceBusClient("serviceBusConnection");
+
+// Add services to the container.
+builder.Services.AddProblemDetails();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+app.UseExceptionHandler();
+
 app.MapPost("/notify", static async (ServiceBusClient client, string message) =>
 {
     var sender = client.CreateSender("notifications");
@@ -221,35 +341,45 @@ app.MapPost("/notify", static async (ServiceBusClient client, string message) =>
 
     Console.WriteLine($"A message has been published to the topic.");
 });
+
+app.MapDefaultEndpoints();
+
+app.Run();
 ```
 
 ## Add the .NET Aspire component to the Worker Service
 
-Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) component to your `AspireMessaging.WorkerService` app:
+Add the [.NET Aspire Azure Service Bus](azure-service-bus-component.md) component to your **AspireSample.WorkerService** project. Follow the same steps as you did before when you added the [Aspire.Azure.Messaging.ServiceBus](https://nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) NuGet package to the **AspireSample.ApiService** project. Once it's been added, you can configure the worker service to process messages from the Service Bus topic.
 
-```dotnetcli
-dotnet add package Aspire.Azure.Messaging.ServiceBus
-```
-
-In the _:::no-loc text="Program.cs":::_ file of the `AspireMessaging.WorkerService` Worker Service project, add a call to the `AddAzureServiceBus` extension methods:
+In the _:::no-loc text="Program.cs":::_ file of the **AspireSample.WorkerService** project, repace the existing code with the following:
 
 ```csharp
+using AspireSample.WorkerService;
+
+var builder = Host.CreateApplicationBuilder(args);
+
 builder.AddAzureServiceBusClient("serviceBusConnection");
+
+builder.Services.AddHostedService<Worker>();
+
+var host = builder.Build();
+host.Run();
 ```
 
-This method accomplishes the following tasks:
+The `AddAzureServiceBusClient` method accomplishes the following tasks:
 
 - Registers a <xref:Microsoft.Azure.Commands.ServiceBus.ServiceBusClient> with the DI container for connecting to Azure Service Bus.
 - Automatically enables corresponding health checks, logging, and telemetry for the respective services.
 
-In the _:::no-loc text="appsettings.json":::_ file of the `AspireMessaging.WorkerService` project, add the corresponding connection information:
+In the _:::no-loc text="appsettings.json":::_ file of the **AspireSample.WorkerService** project, add the corresponding connection information:
 
 # [Passwordless (Recommended)](#tab/passwordless)
 
 ```json
 {
+  // Existing configuration is omitted for brevity.
   "ConnectionStrings": {
-    "serviceBusConnectionName": "{your_namespace}.servicebus.windows.net"
+    "serviceBusConnection": "{your_namespace}.servicebus.windows.net"
   }
 }
 ```
@@ -258,6 +388,7 @@ In the _:::no-loc text="appsettings.json":::_ file of the `AspireMessaging.Worke
 
 ```json
 {
+  // Existing configuration is omitted for brevity.
   "ConnectionStrings": {
     "serviceBusConnection": "Endpoint=sb://{your_namespace}.servicebus.windows.net/;
         SharedAccessKeyName=accesskeyname;SharedAccessKey=accesskey"
@@ -272,10 +403,14 @@ In the _:::no-loc text="appsettings.json":::_ file of the `AspireMessaging.Worke
 
 ## Process the message from the subscriber
 
-When a new message is placed on the `messages` queue, the worker service should retrieve, process, and delete the message. Update the _Worker.cs_ class to match the following code:
+When a new message is placed on the `messages` queue, the worker service should retrieve, process, and delete the message. Update the _:::no-loc text="Worker.cs":::_ class to match the following code:
 
 ```csharp
-public class Worker(
+using Azure.Messaging.ServiceBus;
+
+namespace AspireSample.WorkerService;
+
+public sealed class Worker(
     ILogger<Worker> logger,
     ServiceBusClient client) : BackgroundService
 {
@@ -288,22 +423,29 @@ public class Worker(
                 "mobile",
                 new ServiceBusProcessorOptions());
 
-            // add handler to process messages
+            // Add handler to process messages
             processor.ProcessMessageAsync += MessageHandler;
 
-            // add handler to process any errors
+            // Add handler to process any errors
             processor.ProcessErrorAsync += ErrorHandler;
 
-            // start processing
+            // Start processing
             await processor.StartProcessingAsync();
 
-            logger.LogInformation(
-                "Wait for a minute and then press any key to end the processing");
+            logger.LogInformation("""
+                Wait for a minute and then press any key to end the processing
+                """);
+
             Console.ReadKey();
 
-            // stop processing
-            logger.LogInformation("\nStopping the receiver...");
+            // Stop processing
+            logger.LogInformation("""
+
+                Stopping the receiver...
+                """);
+
             await processor.StopProcessingAsync();
+
             logger.LogInformation("Stopped receiving messages");
         }
     }
@@ -311,16 +453,18 @@ public class Worker(
     async Task MessageHandler(ProcessMessageEventArgs args)
     {
         string body = args.Message.Body.ToString();
+
         logger.LogInformation("Received: {Body} from subscription.", body);
 
-        // complete the message. messages is deleted from the subscription.
+        // Complete the message. messages is deleted from the subscription.
         await args.CompleteMessageAsync(args.Message);
     }
 
-    // handle any errors when receiving messages
+    // Handle any errors when receiving messages
     Task ErrorHandler(ProcessErrorEventArgs args)
     {
-        logger.LogError(args.Exception, args.Exception.Message);
+        logger.LogError(args.Exception, "{Error}", args.Exception.Message);
+        
         return Task.CompletedTask;
     }
 }
@@ -330,17 +474,37 @@ public class Worker(
 
 The sample app is now ready for testing. Verify that the data submitted to the API is sent to the Azure Service Bus topic and consumed by the subscriber worker service:
 
-1. Launch the Aspire app by selecting the run button (Visual Studio) or running `dotnet run --project AspireMessaging.AppHost`. The .NET Aspire dashboard app should open in the browser.
-1. On the resources page, in the **apiservice** row, find the link in the **Endpoints** that opens the `weatherforecast` endpoint. Note the HTTPS port number.
-1. On the .NET Aspire dashboard, navigate to the logs for the **aspiremessaging-workerservice** project.
-1. In a terminal window, use the `curl` command to send a test message to the API:
+:::zone pivot="visual-studio"
+
+1. Launch the .NET Aspire app by selecting the **Start** debugging button, or by pressing <kbd>F5</kbd>. The .NET Aspire dashboard app should open in the browser.
+
+:::zone-end
+:::zone pivot="vscode"
+
+1. Launch the .NET Aspire app by selecting the **Start** debugging button, or by pressing <kbd>F5</kbd>. The .NET Aspire dashboard app should open in the browser.
+
+:::zone-end
+:::zone pivot="dotnet-cli"
+
+1. Launch the .NET Aspire app by running `dotnet run --project AspireSample.AppHost`. The .NET Aspire dashboard app should open in the browser.
+
+:::zone-end
+
+<!-- markdownlint-disable MD029 -->
+<!-- We need to continue from the previous shared step from a different pivot. -->
+
+2. On the resources page, in the **apiservice** row, find the link in the **Endpoints** that opens the `weatherforecast` endpoint. Note the HTTPS port number.
+3. On the .NET Aspire dashboard, navigate to the logs for the **aspiresample-workerservice** project.
+4. In a terminal window, use the `curl` command to send a test message to the API:
 
     ```bash
     curl -X POST -H "Content-Type: application/json" https://localhost:{port}/notify?message=hello%20aspire  
     ```
 
     Be sure to replace **{port}** with the port number from earlier.
-1. Switch back to the **aspiremessaging-workerservice** logs. You should see the test message printed in the output logs.
+5. Switch back to the **aspiresample-workerservice** logs. You should see the test message printed in the output logs.
+
+<!-- markdownlint-enable MD029 -->
 
 Congratulations! You created and configured an ASP.NET Core API that connects to Azure Service Bus using Aspire components.
 
