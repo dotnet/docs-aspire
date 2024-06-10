@@ -100,10 +100,10 @@ The .NET Aspire RabbitMQ component provides multiple options to configure the co
 
 ### Use a connection string
 
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddRabbitMQ`:
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddRabbitMQClient`:
 
 ```csharp
-builder.AddRabbitMQ("RabbitMQConnection");
+builder.AddRabbitMQClient("RabbitMQConnection");
 ```
 
 And then the connection string will be retrieved from the `ConnectionStrings` configuration section:
@@ -139,15 +139,15 @@ The .NET Aspire RabbitMQ component supports <xref:Microsoft.Extensions.Configura
 Also you can pass the `Action<RabbitMQClientSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
 
 ```csharp
-builder.AddRabbitMQ(
+builder.AddRabbitMQClient(
     "messaging",
     static settings => settings.DisableHealthChecks  = true);
 ```
 
-You can also set up the [IConnectionFactory](https://rabbitmq.github.io/rabbitmq-dotnet-client/api/RabbitMQ.Client.IConnectionFactory.html) using the `Action<IConnectionFactory> configureConnectionFactory` delegate parameter of the `AddRabbitMQ` method. For example to set the client provided name for connections:
+You can also set up the [IConnectionFactory](https://rabbitmq.github.io/rabbitmq-dotnet-client/api/RabbitMQ.Client.IConnectionFactory.html) using the `Action<IConnectionFactory> configureConnectionFactory` delegate parameter of the `AddRabbitMQClient` method. For example to set the client provided name for connections:
 
 ```csharp
-builder.AddRabbitMQ(
+builder.AddRabbitMQClient(
     "messaging",
     static configureConnectionFactory:
         factory => factory.ClientProvidedName = "MyApp");
