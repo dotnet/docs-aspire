@@ -1,4 +1,6 @@
-﻿var builder = DistributedApplication.CreateBuilder(args);
+﻿using Aspire.Hosting.Azure;
+
+var builder = DistributedApplication.CreateBuilder(args);
 
 var storage = builder.AddBicepTemplate("storage", "storage.bicep");
 
@@ -11,7 +13,5 @@ var user = builder.AddBicepTemplateString("user", """
     """);
 
 var userName = user.GetOutput("userName");
-
-
 
 builder.Build().Run();
