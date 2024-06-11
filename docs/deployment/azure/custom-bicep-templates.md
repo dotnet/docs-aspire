@@ -53,68 +53,81 @@ builder.Build().Run();
 
 ## Reference Bicep files
 
-To add a reference to a Bicep file on disk, call the <xref:Aspire.Hosting.AzureBicepResourceExtensions.AddBicepTemplate%2A> method. Consider the following example:
+Imagine that you've defined a Bicep template in a file named `storage.bicep` that provisions an Azure Storage Account:
+
+:::code language="bicep" source="snippets/AppHost.Bicep/storage.bicep":::
+
+To add a reference to the Bicep file on disk, call the <xref:Aspire.Hosting.AzureBicepResourceExtensions.AddBicepTemplate%2A> method. Consider the following example:
 
 :::code language="csharp" source="snippets/AppHost.Bicep/Program.ReferenceBicep.cs" id="addfile":::
 
-The preceding code adds a reference to a Bicep file located at `../infra/storage.bicep`—file paths are relative to the _app host_ project. This results in an <xref:Aspire.Hosting.Azure.AzureBicepResource> being added to the application's resources collection with the `"storage"` name.
+The preceding code adds a reference to a Bicep file located at `../infra/storage.bicep`the file paths should be relative to the _app host_ project. This results in an <xref:Aspire.Hosting.Azure.AzureBicepResource> being added to the application's resources collection with the `"storage"` name, and the API returns an `IResourceBuilder<AzureBicepResource>` instance that can be used to further customize the resource.
 
 ## Reference Bicep inline
 
-While having a Bicep file on disk is the most common scenario, you can also add Bicep templates inline. This can be useful when you want to define a template in code or when you want to generate the template dynamically. To add an inline Bicep template, call the <xref:Aspire.Hosting.AzureBicepResourceExtensions.AddBicepTemplateString%2A> method with the Bicep template as a string. Consider the following example:
+While having a Bicep file on disk is the most common scenario, you can also add Bicep templates inline. This can be useful when you want to define a template in code or when you want to generate the template dynamically. To add an inline Bicep template, call the <xref:Aspire.Hosting.AzureBicepResourceExtensions.AddBicepTemplateString%2A> method with the Bicep template as a `string`. Consider the following example:
 
 :::code language="csharp" source="snippets/AppHost.Bicep/Program.InlineBicep.cs" id="addinline":::
 
-In this example, the Bicep template is defined as a `string` inline and added to the application's resources collection with the `"ai"` name. This example would provision an Azure AI resource.
+In this example, the Bicep template is defined as an inline `string` and added to the application's resources collection with the name `"ai"`. This example provisions an Azure AI resource.
 
 ## Pass parameters to Bicep templates
 
-Bicep supports accepting parameters, which can be used to customize the behavior of the template. To pass parameters to a Bicep template from .NET Aspire, chain calls to the <xref:Aspire.Hosting.AzureBicepResourceExtensions.WithParameter%2A> method. Consider the following example:
+[Bicep supports accepting parameters](/azure/azure-resource-manager/bicep/parameters), which can be used to customize the behavior of the template. To pass parameters to a Bicep template from .NET Aspire, chain calls to the <xref:Aspire.Hosting.AzureBicepResourceExtensions.WithParameter%2A> method as shown in the following example:
 
 :::code language="csharp" source="snippets/AppHost.Bicep/Program.PassParameter.cs" id="addparameter":::
 
 The preceding code:
 
-- Adds a parameter named `"region"` to the application.
+- Adds a parameter named `"region"` to the `builder` instance.
 - Adds a reference to a Bicep file located at `../infra/storage.bicep`.
 - Passes the `"region"` parameter to the Bicep template, which is resolved using the standard parameter resolution.
-- Passes the `"storageName"` parameter to the Bicep template with a hardcoded value.
-- Adds the `"principalId"` and `"principalType"` parameters to the Bicep template, which are well-known parameters.
+- Passes the `"storageName"` parameter to the Bicep template with a _hardcoded_ value.
+- Adds the `"principalId"` and `"principalType"` parameters to the Bicep template, which are [well-known parameters](#well-known-parameters).
 - Passes the `"tags"` parameter to the Bicep template with an array of strings.
 
-For more information, see [Bicep parameters](/azure/azure-resource-manager/bicep/parameters).
+For more information, see [External parameters](../../fundamentals/external-parameters.md).
 
-### Well known parameters
+### Well-known parameters
 
 .NET Aspire provides a set of well-known parameters that can be passed to Bicep templates. These parameters are used to provide information about the application and the environment to the Bicep templates. The following well-known parameters are available:
 
 | Field | Description | Value |
 |--|--|--|
-| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.KeyVaultName> | The name of the key vault resource used to store secret outputs. | `"keyVaultName"` |
-| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.Location> | The location of the resource. This is required for all resources. | `"location"` |
-| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.LogAnalyticsWorkspaceId> | The resource id of the log analytics workspace. | `"logAnalyticsWorkspaceId"` |
-| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalId> | The principal id of the current user or managed identity. | `"principalId"` |
-| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalName> | The principal name of the current user or managed identity. | `"principalName"` |
-| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalType> | The principal type of the current user or managed identity. Either `User` or `ServicePrincipal`. | `"principalType"` |
+| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.KeyVaultName?displayProperty=nameWithType> | The name of the key vault resource used to store secret outputs. | `"keyVaultName"` |
+| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.Location?displayProperty=nameWithType> | The location of the resource. This is required for all resources. | `"location"` |
+| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.LogAnalyticsWorkspaceId?displayProperty=nameWithType> | The resource id of the log analytics workspace. | `"logAnalyticsWorkspaceId"` |
+| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalId?displayProperty=nameWithType> | The principal id of the current user or managed identity. | `"principalId"` |
+| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalName?displayProperty=nameWithType> | The principal name of the current user or managed identity. | `"principalName"` |
+| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalType?displayProperty=nameWithType> | The principal type of the current user or managed identity. Either `User` or `ServicePrincipal`. | `"principalType"` |
 
 ## Get outputs from Bicep references
 
-In addition to passing parameters to Bicep templates, you can also get outputs from the Bicep templates. Consider the following Bicep template:
+In addition to passing parameters to Bicep templates, you can also get outputs from the Bicep templates. Consider the following Bicep template, as it defines an `output` named `endpoint`:
 
 :::code language="bicep" source="snippets/AppHost.Bicep/storage-out.bicep":::
 
-The Bicep defines an output named `endpoint`. To get the output from the Bicep template, call the <xref:Aspire.Hosting.AzureBicepResourceExtensions.GetOutput%2A> method on an `IResourceBuilder<AzureBicepResource>`. Consider the following example:
+The Bicep defines an output named `endpoint`. To get the output from the Bicep template, call the <xref:Aspire.Hosting.AzureBicepResourceExtensions.GetOutput%2A> method on an `IResourceBuilder<AzureBicepResource>` instance as demonstrated in following C# code snippet:
 
 :::code language="csharp" source="snippets/AppHost.Bicep/Program.GetOutputReference.cs" id="getoutput":::
 
-In this example, the `endpoint` output from the Bicep template is retrieved and stored in the `endpoint` variable. Most often, you'll pass the output as an environment variable to another resource that depends on it. For example, if there was an ASP.NET Core API project that depended on it, we could pass the output as an environment variable:
+In this example, the output from the Bicep template is retrieved and stored in an `endpoint` variable. Typically, you would pass this output as an environment variable to another resource that relies on it. For instance, if you had an ASP.NET Core Minimal API project that depended on this endpoint, you could pass the output as an environment variable to the project using the following code snippet:
 
 ```csharp
-var apiService = builder.AddProject<Projects.AspireSample_ApiService>("apiservice")
+var storage = builder.AddBicepTemplate(
+                name: "storage",
+                bicepFile: "../infra/storage.bicep"
+            );
+
+var endpoint = storage.GetOutput("endpoint");
+
+var apiService = builder.AddProject<Projects.AspireSample_ApiService>(
+        name: "apiservice"
+    )
     .WithEnvironment("STORAGE_ENDPOINT", endpoint);
 ```
 
-If an output is considered a secret, meaning it should not be exposed in logs or other places, you can treat it as a secret by calling the <xref:Aspire.Hosting.AzureBicepResourceExtensions.GetSecretOutput%2A>. This is an output that is written to a Azure Key Vault using the `"keyVaultName"` convention.
+If an output is considered a _secret_, meaning it shouldn't be exposed in logs or other places, you can treat it as a secret by calling the <xref:Aspire.Hosting.AzureBicepResourceExtensions.GetSecretOutput%2A> instead. This is an output that is written to a Azure Key Vault using the `"keyVaultName"` convention.
 
 For more information, see [Bicep outputs](/azure/azure-resource-manager/bicep/outputs).
 
