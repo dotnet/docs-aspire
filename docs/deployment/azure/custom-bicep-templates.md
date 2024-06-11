@@ -6,9 +6,9 @@ ms.date: 06/11/2024
 
 # Use custom Bicep templates
 
-When you're targeting Azure as your desired cloud provider, you can use Bicep to define your infrastructure as code. [Bicep is a Domain Specific Language (DSL)](/azure/azure-resource-manager/bicep/overview) for deploying Azure resources declaratively. It aims to drastically simplify the authoring experience with a cleaner syntax and better support for modularity and code re-use.
+When you're targeting Azure as your desired cloud provider, you can use Bicep to define your infrastructure as code. [Bicep is a domain-specific language (DSL)](/azure/azure-resource-manager/bicep/overview) for deploying Azure resources declaratively. It aims to drastically simplify the authoring experience with a cleaner syntax and better support for modularity and code reuse.
 
-While .NET Aspire provides a set of pre-built Bicep templates so that you don't need to write them, there may be times where you either want to customize the templates or create your own. This article explains the concepts and corresponding APIs that you can use to customize the Bicep templates.
+While .NET Aspire provides a set of pre-built Bicep templates so that you don't need to write them, there might be times when you either want to customize the templates or create your own. This article explains the concepts and corresponding APIs that you can use to customize the Bicep templates.
 
 > [!IMPORTANT]
 > This article is not intended to teach Bicep, but rather to provide guidance on how to create customize Bicep templates for use with .NET Aspire.
@@ -36,7 +36,7 @@ dotnet add package Aspire.Hosting.Azure
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-All of the examples in this article assume that you have installed the `Aspire.Hosting.Azure` package, and will be using the `Aspire.Hosting.Azure` namespace. Additionally, the examples assume you've created an `IDistributedApplicationBuilder` instance:
+All of the examples in this article assume that you've installed the `Aspire.Hosting.Azure` package and imported the `Aspire.Hosting.Azure` namespace. Additionally, the examples assume you've created an `IDistributedApplicationBuilder` instance:
 
 ```csharp
 using Aspire.Hosting.Azure;
@@ -49,7 +49,7 @@ builder.Build().Run();
 ```
 
 > [!TIP]
-> By default, when you call any of the Bicep-related APIs, a call is also made to <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning%2A> that adds support for generating azure resources dynamically during application startup.
+> By default, when you call any of the Bicep-related APIs, a call is also made to <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning%2A> that adds support for generating Azure resources dynamically during application startup.
 
 ## Reference Bicep files
 
@@ -61,11 +61,11 @@ To add a reference to the Bicep file on disk, call the <xref:Aspire.Hosting.Azur
 
 :::code language="csharp" source="snippets/AppHost.Bicep/Program.ReferenceBicep.cs" id="addfile":::
 
-The preceding code adds a reference to a Bicep file located at `../infra/storage.bicep`the file paths should be relative to the _app host_ project. This results in an <xref:Aspire.Hosting.Azure.AzureBicepResource> being added to the application's resources collection with the `"storage"` name, and the API returns an `IResourceBuilder<AzureBicepResource>` instance that can be used to further customize the resource.
+The preceding code adds a reference to a Bicep file located at `../infra/storage.bicep`. The file paths should be relative to the _app host_ project. This reference results in an <xref:Aspire.Hosting.Azure.AzureBicepResource> being added to the application's resources collection with the `"storage"` name, and the API returns an `IResourceBuilder<AzureBicepResource>` instance that can be used to further customize the resource.
 
 ## Reference Bicep inline
 
-While having a Bicep file on disk is the most common scenario, you can also add Bicep templates inline. This can be useful when you want to define a template in code or when you want to generate the template dynamically. To add an inline Bicep template, call the <xref:Aspire.Hosting.AzureBicepResourceExtensions.AddBicepTemplateString%2A> method with the Bicep template as a `string`. Consider the following example:
+While having a Bicep file on disk is the most common scenario, you can also add Bicep templates inline. Inline templates can be useful when you want to define a template in code or when you want to generate the template dynamically. To add an inline Bicep template, call the <xref:Aspire.Hosting.AzureBicepResourceExtensions.AddBicepTemplateString%2A> method with the Bicep template as a `string`. Consider the following example:
 
 :::code language="csharp" source="snippets/AppHost.Bicep/Program.InlineBicep.cs" id="addinline":::
 
@@ -83,7 +83,7 @@ The preceding code:
 - Adds a reference to a Bicep file located at `../infra/storage.bicep`.
 - Passes the `"region"` parameter to the Bicep template, which is resolved using the standard parameter resolution.
 - Passes the `"storageName"` parameter to the Bicep template with a _hardcoded_ value.
-- Adds the `"principalId"` and `"principalType"` parameters to the Bicep template, which are [well-known parameters](#well-known-parameters).
+- Adds `"principalId"` and `"principalType"`, which are [well-known parameters](#well-known-parameters), to the Bicep template.
 - Passes the `"tags"` parameter to the Bicep template with an array of strings.
 
 For more information, see [External parameters](../../fundamentals/external-parameters.md).
@@ -96,8 +96,8 @@ For more information, see [External parameters](../../fundamentals/external-para
 |--|--|--|
 | <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.KeyVaultName?displayProperty=nameWithType> | The name of the key vault resource used to store secret outputs. | `"keyVaultName"` |
 | <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.Location?displayProperty=nameWithType> | The location of the resource. This is required for all resources. | `"location"` |
-| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.LogAnalyticsWorkspaceId?displayProperty=nameWithType> | The resource id of the log analytics workspace. | `"logAnalyticsWorkspaceId"` |
-| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalId?displayProperty=nameWithType> | The principal id of the current user or managed identity. | `"principalId"` |
+| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.LogAnalyticsWorkspaceId?displayProperty=nameWithType> | The resource ID of the log analytics workspace. | `"logAnalyticsWorkspaceId"` |
+| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalId?displayProperty=nameWithType> | The principal ID of the current user or managed identity. | `"principalId"` |
 | <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalName?displayProperty=nameWithType> | The principal name of the current user or managed identity. | `"principalName"` |
 | <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalType?displayProperty=nameWithType> | The principal type of the current user or managed identity. Either `User` or `ServicePrincipal`. | `"principalType"` |
 
@@ -127,13 +127,13 @@ var apiService = builder.AddProject<Projects.AspireSample_ApiService>(
     .WithEnvironment("STORAGE_ENDPOINT", endpoint);
 ```
 
-If an output is considered a _secret_, meaning it shouldn't be exposed in logs or other places, you can treat it as a secret by calling the <xref:Aspire.Hosting.AzureBicepResourceExtensions.GetSecretOutput%2A> instead. This is an output that is written to a Azure Key Vault using the `"keyVaultName"` convention.
+If an output is considered a _secret_, meaning it shouldn't be exposed in logs or other places, you can treat it as a secret by calling the <xref:Aspire.Hosting.AzureBicepResourceExtensions.GetSecretOutput%2A> instead. This output is written to an Azure Key Vault using the `"keyVaultName"` convention.
 
 For more information, see [Bicep outputs](/azure/azure-resource-manager/bicep/outputs).
 
 ## See also
 
-For continued learning, see the following resources as it relates to .NET Aspire and Azure deployment:
+For continued learning, see the following resources as they relate to .NET Aspire and Azure deployment:
 
 - [Deploy a .NET Aspire app to Azure Container Apps](aca-deployment.md)
 - [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](aca-deployment-azd-in-depth.md)
