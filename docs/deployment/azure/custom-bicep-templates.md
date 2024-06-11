@@ -48,6 +48,9 @@ var builder = DistributedApplication.CreateBuilder(args);
 builder.Build().Run();
 ```
 
+> [!TIP]
+> By default, when you call any of the Bicep-related APIs, a call is also made to <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning%2A> that adds support for generating azure resources dynamically during application startup.
+
 ## Reference Bicep files
 
 To add a reference to a Bicep file on disk, call the <xref:Aspire.Hosting.AzureBicepResourceExtensions.AddBicepTemplate%2A> method. Consider the following example:
