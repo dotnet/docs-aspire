@@ -1,7 +1,7 @@
 ---
 title: Deploy a .NET Aspire app that connects to Redis Cache to Azure
 description: Learn how to deploy a .NET Aspire app that connects to Redis Cache to Azure
-ms.date: 05/14/2024
+ms.date: 06/11/2024
 ms.topic: how-to
 ---
 
