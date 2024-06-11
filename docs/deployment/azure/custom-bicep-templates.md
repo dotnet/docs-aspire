@@ -111,7 +111,7 @@ var apiService = builder.AddProject<Projects.AspireSample_ApiService>("apiservic
     .WithEnvironment("STORAGE_ENDPOINT", endpoint);
 ```
 
-If an output is considered a secret, meaning it should not be exposed in logs or other places, you can treat it as a secret by calling the <xref:Aspire.Hosting.AzureBicepResourceExtensions.GetSecretOutput%2A>. This is an output that is written to a keyvault using the `"keyVaultName"` convention.
+If an output is considered a secret, meaning it should not be exposed in logs or other places, you can treat it as a secret by calling the <xref:Aspire.Hosting.AzureBicepResourceExtensions.GetSecretOutput%2A>. This is an output that is written to a Azure Key Vault using the `"keyVaultName"` convention.
 
 For more information, see [Bicep outputs](/azure/azure-resource-manager/bicep/outputs).
 
