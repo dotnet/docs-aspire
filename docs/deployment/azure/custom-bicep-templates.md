@@ -1,12 +1,12 @@
 ---
 title: Use custom Bicep templates
 description: Learn how to customize the Bicep templates provided by .NET Aspire to better suit your needs.
-ms.date: 06/10/2024
+ms.date: 06/11/2024
 ---
 
 # Use custom Bicep templates
 
-When you're targetting Azure as your desired cloud provider, you can use Bicep to define your infrastructure as code. [Bicep is a Domain Specific Language (DSL)](/azure/azure-resource-manager/bicep/overview) for deploying Azure resources declaratively. It aims to drastically simplify the authoring experience with a cleaner syntax and better support for modularity and code re-use.
+When you're targeting Azure as your desired cloud provider, you can use Bicep to define your infrastructure as code. [Bicep is a Domain Specific Language (DSL)](/azure/azure-resource-manager/bicep/overview) for deploying Azure resources declaratively. It aims to drastically simplify the authoring experience with a cleaner syntax and better support for modularity and code re-use.
 
 While .NET Aspire provides a set of pre-built Bicep templates so that you don't need to write them, there may be times where you either want to customize the templates or create your own. This article explains the concepts and corresponding APIs that you can use to customize the Bicep templates.
 
