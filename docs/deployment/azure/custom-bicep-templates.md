@@ -85,13 +85,14 @@ For more information, see [Bicep parameters](/azure/azure-resource-manager/bicep
 
 .NET Aspire provides a set of well-known parameters that can be passed to Bicep templates. These parameters are used to provide information about the application and the environment to the Bicep templates. The following well-known parameters are available:
 
-- <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.KeyVaultName>: The name of the key vault resource used to store secret outputs (`"keyVaultName"`).
-- <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.Location>: The location of the resource. This is required for all resources (`"location"`).
-- <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.LogAnalyticsWorkspaceId>: The resource id of the log analytics workspace (`"logAnalyticsWorkspaceId"`).
-- <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalId>: The principal id of the current user or managed identity (`"principalId"`).
-- <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalName>: The principal name of the current user or managed identity (`"principalName"`).
-- <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalType>:
-The principal type of the current user or managed identity. Either 'User' or 'ServicePrincipal' (`"principalType"`).
+| Field | Description | Value |
+|--|--|--|
+| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.KeyVaultName> | The name of the key vault resource used to store secret outputs. | `"keyVaultName"` |
+| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.Location> | The location of the resource. This is required for all resources. | `"location"` |
+| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.LogAnalyticsWorkspaceId> | The resource id of the log analytics workspace. | `"logAnalyticsWorkspaceId"` |
+| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalId> | The principal id of the current user or managed identity. | `"principalId"` |
+| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalName> | The principal name of the current user or managed identity. | `"principalName"` |
+| <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalType> | The principal type of the current user or managed identity. Either `User` or `ServicePrincipal`. | `"principalType"` |
 
 ## Get outputs from Bicep references
 
