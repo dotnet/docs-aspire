@@ -99,7 +99,7 @@ Consider the following example _:::no-loc text="appsettings.json":::_ configurat
     "SubscriptionId": "<Your subscription id>",
     "AllowResourceGroupCreation": true,
     "ResourceGroup": "<Valid resource group name>",
-    "Location": "<Valid Azure location>",
+    "Location": "<Valid Azure location>"
   }
 }
 ```
