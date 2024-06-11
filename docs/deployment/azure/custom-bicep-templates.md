@@ -114,3 +114,11 @@ var apiService = builder.AddProject<Projects.AspireSample_ApiService>("apiservic
 If an output is considered a secret, meaning it should not be exposed in logs or other places, you can treat it as a secret by calling the <xref:Aspire.Hosting.AzureBicepResourceExtensions.GetSecretOutput%2A>. This is an output that is written to a keyvault using the `"keyVaultName"` convention.
 
 For more information, see [Bicep outputs](/azure/azure-resource-manager/bicep/outputs).
+
+## See also
+
+For continued learning, see the following resources as it relates to .NET Aspire and Azure deployment:
+
+- [Deploy a .NET Aspire app to Azure Container Apps](aca-deployment.md)
+- [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](aca-deployment-azd-in-depth.md)
+- [.NET Aspire manifest format for deployment tool builders](../manifest-format.md)
