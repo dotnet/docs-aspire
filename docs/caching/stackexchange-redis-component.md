@@ -1,17 +1,17 @@
 ---
-title: .NET Aspire StackExchange Redis component
-description: This article describes the .NET Aspire StackExchange Redis component features and capabilities
+title: .NET Aspire Stack Exchange Redis component
+description: This article describes the .NET Aspire Stack Exchange Redis component features and capabilities
 ms.topic: how-to
-ms.date: 06/05/2024
+ms.date: 06/11/2024
 ---
 
-# .NET Aspire StackExchange Redis component
+# .NET Aspire Stack Exchange Redis component
 
-In this article, you learn how to use the .NET Aspire StackExchange Redis component. The `Aspire.StackExchange.Redis` library is used to register an [IConnectionMultiplexer](https://stackexchange.github.io/StackExchange.Redis/Basics) in the DI container for connecting to a [Redis](https://redis.io/) server. It enables corresponding health checks, logging and telemetry.
+In this article, you learn how to use the .NET Aspire Stack Exchange Redis component. The `Aspire.StackExchange.Redis` library is used to register an [IConnectionMultiplexer](https://stackexchange.github.io/StackExchange.Redis/Basics) in the DI container for connecting to a [Redis](https://redis.io/) server. It enables corresponding health checks, logging and telemetry.
 
 ## Get started
 
-To get started with the .NET Aspire StackExchange Redis component, install the [Aspire.StackExchange.Redis](https://www.nuget.org/packages/Aspire.StackExchange.Redis) NuGet package.
+To get started with the .NET Aspire Stack Exchange Redis component, install the [Aspire.StackExchange.Redis](https://www.nuget.org/packages/Aspire.StackExchange.Redis) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -68,7 +68,7 @@ builder.AddRedis("cache");
 
 ## Configuration
 
-The .NET Aspire StackExchange Redis component provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
+The .NET Aspire Stack Exchange Redis component provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
 
 ### Use a connection string
 
@@ -88,11 +88,11 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 }
 ```
 
-For more information on how to format this connection string, see the [StackExchange Redis configuration docs](https://stackexchange.github.io/StackExchange.Redis/Configuration.html#basic-configuration-strings).
+For more information on how to format this connection string, see the [Stack Exchange Redis configuration docs](https://stackexchange.github.io/StackExchange.Redis/Configuration.html#basic-configuration-strings).
 
 ### Use configuration providers
 
-The .NET Aspire StackExchange Redis component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.StackExchange.Redis.StackExchangeRedisSettings> from configuration by using the `Aspire:StackExchange:Redis` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
+The .NET Aspire Stack Exchange Redis component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.StackExchange.Redis.StackExchangeRedisSettings> from configuration by using the `Aspire:StackExchange:Redis` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {
@@ -123,7 +123,7 @@ builder.AddRedis(
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 
-The .NET Aspire StackExchange Redis component handles the following:
+The .NET Aspire Stack Exchange Redis component handles the following:
 
 - Adds the `StackExchange.Redis` health check, tries to open the connection and throws when it fails.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
@@ -132,22 +132,22 @@ The .NET Aspire StackExchange Redis component handles the following:
 
 ### Logging
 
-The .NET Aspire StackExchange Redis component uses the following log categories:
+The .NET Aspire Stack Exchange Redis component uses the following log categories:
 
 - `Aspire.StackExchange.Redis`
 
 ### Tracing
 
-The .NET Aspire StackExchange Redis component will emit the following tracing activities using OpenTelemetry:
+The .NET Aspire Stack Exchange Redis component will emit the following tracing activities using OpenTelemetry:
 
 - "OpenTelemetry.Instrumentation.StackExchangeRedis"
 
 ### Metrics
 
-The .NET Aspire StackExchange Redis component currently doesn't support metrics by default due to limitations with the `StackExchange.Redis` library.
+The .NET Aspire Stack Exchange Redis component currently doesn't support metrics by default due to limitations with the `StackExchange.Redis` library.
 
 ## See also
 
-- [StackExchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
+- [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
 - [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

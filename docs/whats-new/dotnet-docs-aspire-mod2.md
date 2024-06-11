@@ -145,9 +145,9 @@ Welcome to what's new in the .NET Aspire docs for May 2024. This article lists s
 
 ### Updated articles
 
-- [.NET Aspire StackExchange Redis component](../caching/stackexchange-redis-component.md) - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire StackExchange Redis distributed caching component](../caching/stackexchange-redis-distributed-caching-component.md) - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire StackExchange Redis output caching component](../caching/stackexchange-redis-output-caching-component.md) - Placeholder for .NET Aspire preview 7.
+- [.NET Aspire Stack Exchange Redis component](../caching/stackexchange-redis-component.md) - Placeholder for .NET Aspire preview 7.
+- [.NET Aspire Stack Exchange Redis distributed caching component](../caching/stackexchange-redis-distributed-caching-component.md) - Placeholder for .NET Aspire preview 7.
+- [.NET Aspire Stack Exchange Redis output caching component](../caching/stackexchange-redis-output-caching-component.md) - Placeholder for .NET Aspire preview 7.
 - [Tutorial: Implement caching with .NET Aspire components](../caching/caching-components.md) - Caching tutorial fixes
 
 ## Security

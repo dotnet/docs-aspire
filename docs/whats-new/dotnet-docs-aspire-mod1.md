@@ -94,11 +94,11 @@ Welcome to what's new in the .NET Aspire docs for April 2024. This article lists
 
 ### Updated articles
 
-- [.NET Aspire StackExchange Redis component](../caching/stackexchange-redis-component.md) - Correct xref and API for example usage
-- [.NET Aspire StackExchange Redis distributed caching component](../caching/stackexchange-redis-distributed-caching-component.md)
+- [.NET Aspire Stack Exchange Redis component](../caching/stackexchange-redis-component.md) - Correct xref and API for example usage
+- [.NET Aspire Stack Exchange Redis distributed caching component](../caching/stackexchange-redis-distributed-caching-component.md)
   - Correct xref and API for example usage
   - Fix link md
-- [.NET Aspire StackExchange Redis output caching component](../caching/stackexchange-redis-output-caching-component.md) - Correct xref and API for example usage
+- [.NET Aspire Stack Exchange Redis output caching component](../caching/stackexchange-redis-output-caching-component.md) - Correct xref and API for example usage
 
 ## Security
 
