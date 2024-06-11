@@ -1,7 +1,7 @@
 ---
 title: Implement caching with .NET Aspire components
 description: Learn how to connect to Redis and cache data using .NET Aspire components.
-ms.date: 06/05/2024
+ms.date: 06/11/2024
 ms.topic: tutorial
 ---
 
@@ -96,7 +96,7 @@ Configuring connection string with this method, while functional, requires dupli
 
 ## Configure the UI with output caching
 
-1. Add the [.NET Aspire StackExchange Redis output caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireRedis.Web` app:
+1. Add the [.NET Aspire Stack Exchange Redis output caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireRedis.Web` app:
 
     ```dotnetcli
     dotnet add package Aspire.StackExchange.Redis.OutputCaching
@@ -130,7 +130,7 @@ Configuring connection string with this method, while functional, requires dupli
 
 ## Configure the API with distributed caching
 
-1. Add the [.NET Aspire StackExchange Redis distributed caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireRedis.ApiService` app:
+1. Add the [.NET Aspire Stack Exchange Redis distributed caching](stackexchange-redis-output-caching-component.md) component packages to your `AspireRedis.ApiService` app:
 
     ```dotnetcli
     dotnet add package Aspire.StackExchange.Redis.DistributedCaching

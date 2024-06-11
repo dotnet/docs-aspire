@@ -15,4 +15,4 @@ dotnet add package Aspire.Hosting.Redis
 
 ---
 
-In your app host project, register the .NET Aspire StackExchange Redis as a resource using the <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> method and consume the service using the following methods:
+In your app host project, register the .NET Aspire Stack Exchange Redis as a resource using the <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> method and consume the service using the following methods:
