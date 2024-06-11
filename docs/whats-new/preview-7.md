@@ -38,7 +38,7 @@ All of the component settings classes have been updated to revise the naming of 
 - <xref:Aspire.Azure.AI.OpenAI.AzureOpenAISettings>
 - <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings>
 - `AzureMessagingEventHubsSettings` (formerly `AzureMessagingEventHubsBaseSettings`)
-  - <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsConsumerBaseSettings>
+  - `AzureMessagingEventHubsConsumerBaseSettings`
   - <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsProducerSettings>
 - <xref:Aspire.Azure.Search.Documents.AzureSearchSettings>
 - <xref:Aspire.Azure.Security.KeyVault.AzureSecurityKeyVaultSettings>
@@ -46,9 +46,9 @@ All of the component settings classes have been updated to revise the naming of 
 - <xref:Aspire.Azure.Storage.Queues.AzureStorageQueuesSettings>
 - <xref:Aspire.Confluent.Kafka.KafkaConsumerSettings>
 - <xref:Aspire.Confluent.Kafka.KafkaProducerSettings>
-- <xref:Aspire.Microsoft.Azure.Cosmos.AzureCosmosDBSettings>
+- <xref:Aspire.Microsoft.Azure.Cosmos.MicrosoftAzureCosmosSettings>
 - <xref:Aspire.Microsoft.Data.SqlClient.MicrosoftDataSqlClientSettings>
-- <xref:Aspire.Microsoft.EntityFrameworkCore.Cosmos.EntityFrameworkCoreCosmosDBSettings>
+- <xref:Aspire.Microsoft.EntityFrameworkCore.Cosmos.EntityFrameworkCoreCosmosSettings>
 - <xref:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings>
 - <xref:Aspire.MongoDB.Driver.MongoDBSettings>
 - <xref:Aspire.MySqlConnector.MySqlConnectorSettings>

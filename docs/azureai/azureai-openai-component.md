@@ -7,7 +7,7 @@ ms.date: 06/05/2024
 
 # .NET Aspire Azure AI OpenAI component
 
-In this article, you learn how to use the .NET Aspire Azure AI OpenAI client. The `Aspire.Azure.AI.OpenAI` library is used to register an <xref:Azure.AI.OpenAI.OpenAIClient> in the dependency injection (DI) container for consuming Azure AI OpenAI or OpenAI functionality. It enables corresponding logging and telemetry.
+In this article, you learn how to use the .NET Aspire Azure AI OpenAI client. The `Aspire.Azure.AI.OpenAI` library is used to register an `OpenAIClient` in the dependency injection (DI) container for consuming Azure AI OpenAI or OpenAI functionality. It enables corresponding logging and telemetry.
 
 For more information on using the `OpenAIClient`, see [Quickstart: Get started generating text using Azure OpenAI Service](/azure/ai-services/openai/quickstart?tabs=command-line%2Cpython&pivots=programming-language-csharp).
 
@@ -43,7 +43,7 @@ In the _:::no-loc text="Program.cs":::_ file of your component-consuming project
 builder.AddAzureOpenAIClient("openAiConnectionName");
 ```
 
-In the preceding code, the <xref:Microsoft.Extensions.Hosting.AspireAzureOpenAIExtensions.AddAzureOpenAIClient%2A> method adds an `OpenAIClient` to the DI container. The `openAiConnectionName` parameter is the name of the connection string in the configuration. You can then retrieve the `OpenAIClient` instance using dependency injection. For example, to retrieve the connection from an example service:
+In the preceding code, the `AddAzureOpenAIClient` method adds an `OpenAIClient` to the DI container. The `openAiConnectionName` parameter is the name of the connection string in the configuration. You can then retrieve the `OpenAIClient` instance using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
 public class ExampleService(OpenAIClient client)
