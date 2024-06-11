@@ -197,7 +197,7 @@ items:
             href: database/sql-server-component-deployment.md
           - name: Deploy .NET Aspire + Redis
             href: caching/caching-components-deployment.md
-          - name: Custom Bicep templates
+          - name: Use custom Bicep templates
             href: deployment/azure/custom-bicep-templates.md
       - name: Tool-builder manifest schemas
         href: deployment/manifest-format.md
