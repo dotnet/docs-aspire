@@ -145,7 +145,7 @@ For more information, see [Bicep outputs](/azure/azure-resource-manager/bicep/ou
 
 ## Get secret outputs from Bicep references
 
-It's important to [avoid outputs for secrets](/azure/azure-resource-manager/bicep/scenarios-secrets#avoid-outputs-for-secrets) when working with Bicep. If an output is considered a _secret_, meaning it shouldn't be exposed in logs or other places, you can treat it as such. This can be achieved by storing the secret in Azure Key Vault and referencing it in the Bicep template.
+It's important to [avoid outputs for secrets](/azure/azure-resource-manager/bicep/scenarios-secrets#avoid-outputs-for-secrets) when working with Bicep. If an output is considered a _secret_, meaning it shouldn't be exposed in logs or other places, you can treat it as such. This can be achieved by storing the secret in Azure Key Vault and referencing it in the Bicep template. .NET Aspire's Azure integration provides a pattern for securely storing outputs from the Bicep template by allows resources to use the `keyVaultName` parameter to store secrets in Azure Key Vault.
 
 Consider the following Bicep template as an example the helps to demonstrate this concept of securing secret outputs:
 
@@ -157,7 +157,7 @@ The preceding Bicep template expects a `keyVaultName` parameter, among several o
 
 In the preceding code snippet, the `cosmos` Bicep template is added as a reference to the `builder`. The `connectionString` secret output is retrieved from the Bicep template and stored in a variable. The secret output is then passed as an environment variable (`ConnectionStrings__cosmos`) to the `api` project. This environment variable is used to connect to the Cosmos DB instance.
 
-When this resource is deployed, the underlying deployment mechanism with automatically [Reference secrets from Azure Key Vault](/azure/container-apps/manage-secrets?tabs=azure-portal#reference-secret-from-key-vault).
+When this resource is deployed, the underlying deployment mechanism with automatically [Reference secrets from Azure Key Vault](/azure/container-apps/manage-secrets?tabs=azure-portal#reference-secret-from-key-vault). To guarantee secret isolation, .NET Aspire creates a Key Vault per source.
 
 > [!NOTE]
 > In _local provisioning_ mode, the secret is extracted from Key Vault and set it in an environment variable. For more information, see [Local Azure provisioning](local-provisioning.md).
