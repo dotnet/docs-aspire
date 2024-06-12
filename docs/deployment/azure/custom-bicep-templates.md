@@ -102,7 +102,7 @@ For more information, see [External parameters](../../fundamentals/external-para
 
 Consider an example where you want to setup an Azure Event Grid webhook. You might define the Bicep template as follows:
 
- :::code language="bicep" source="snippets/AppHost.Bicep/event-grid-webhook.bicep" highlight="3-4,29-37":::
+ :::code language="bicep" source="snippets/AppHost.Bicep/event-grid-webhook.bicep" highlight="3-4,27-35":::
 
 This Bicep template defines several parameters, including the `topicName`, `webHookEndpoint`, `principalId`, `principalType`, and the optional `location`. To pass these parameters to the Bicep template, you can use the following code snippet:
 
