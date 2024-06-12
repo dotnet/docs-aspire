@@ -4,9 +4,9 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 // <secrets>
 var cosmos = builder.AddBicepTemplate("cosmos", "../infra/cosmosdb.bicep")
-    .WithParameter("databaseAccountName", "db-example")
+    .WithParameter("databaseAccountName", "fallout-db")
     .WithParameter(AzureBicepResource.KnownParameters.KeyVaultName)
-    .WithParameter("databases", ["33", "111"]);
+    .WithParameter("databases", ["vault-33", "vault-111"]);
 
 var connectionString =
     cosmos.GetSecretOutput("connectionString");
