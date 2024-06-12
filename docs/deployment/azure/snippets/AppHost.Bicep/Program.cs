@@ -2,16 +2,19 @@
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var storage = builder.AddBicepTemplate("storage", "storage.bicep");
+// <secrets>
+var cosmos = builder.AddBicepTemplate("cosmos", "../infra/cosmosdb.bicep")
+    .WithParameter("databaseAccountName", "db-example")
+    .WithParameter("keyVaultName", "vault-13")
+    .WithParameter("databases", ["33", "111"]);
 
-var user = builder.AddBicepTemplateString("user", """
-    var user = {
-      'user-name': 'Test Person'
-    }
+var connectionString =
+    cosmos.GetSecretOutput("connectionString");
 
-    output userName string = user['user-name']
-    """);
-
-var userName = user.GetOutput("userName");
+builder.AddProject<Projects.WebHook_Api>("api")
+    .WithEnvironment(
+        "ConnectionStrings__cosmos",
+        connectionString);
+// </secrets>
 
 builder.Build().Run();

@@ -83,7 +83,6 @@ The preceding code:
 - Adds a reference to a Bicep file located at `../infra/storage.bicep`.
 - Passes the `"region"` parameter to the Bicep template, which is resolved using the standard parameter resolution.
 - Passes the `"storageName"` parameter to the Bicep template with a _hardcoded_ value.
-- Adds `"principalId"` and `"principalType"`, which are [well-known parameters](#well-known-parameters), to the Bicep template.
 - Passes the `"tags"` parameter to the Bicep template with an array of strings.
 
 For more information, see [External parameters](../../fundamentals/external-parameters.md).
@@ -100,6 +99,21 @@ For more information, see [External parameters](../../fundamentals/external-para
 | <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalId?displayProperty=nameWithType> | The principal ID of the current user or managed identity. | `"principalId"` |
 | <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalName?displayProperty=nameWithType> | The principal name of the current user or managed identity. | `"principalName"` |
 | <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalType?displayProperty=nameWithType> | The principal type of the current user or managed identity. Either `User` or `ServicePrincipal`. | `"principalType"` |
+
+Consider an example where you want to setup an Azure Event Grid webhook. You might define the Bicep template as follows:
+
+ :::code language="bicep" source="snippets/AppHost.Bicep/event-grid-webhook.bicep" highlight="3-4,29-37":::
+
+This Bicep template defines several parameters, including the `topicName`, `webHookEndpoint`, `principalId`, `principalType`, and the optional `location`. To pass these parameters to the Bicep template, you can use the following code snippet:
+
+:::code language="csharp" source="snippets/AppHost.Bicep/Program.PassParameter.cs" id="addwellknownparams":::
+
+- The `webHookApi` project is added as a reference to the `builder`.
+- The `topicName` parameter is passed a hardcoded name value.
+- The `webHookEndpoint` parameter is passed as an expression that resolves to the URL from the `api` project references' "https" endpoint with the `/hook` route.
+- The `principalId` and `principalType` parameters are passed as well-known parameters.
+
+The well-known parameters are convention-based. This easily enables functionality, such as role assignments, to be added to the Bicep templates, as shown in the preceding example. Role assignments are required for the Event Grid webhook to send events to the specified endpoint. For more information, see [EventGrid Data Sender role assignment](/azure/role-based-access-control/built-in-roles/integration#eventgrid-data-sender).
 
 ## Get outputs from Bicep references
 
@@ -127,9 +141,23 @@ var apiService = builder.AddProject<Projects.AspireSample_ApiService>(
     .WithEnvironment("STORAGE_ENDPOINT", endpoint);
 ```
 
+For more information, see [Bicep outputs](/azure/azure-resource-manager/bicep/outputs).
+
+## Get secret outputs from Bicep references
+
 If an output is considered a _secret_, meaning it shouldn't be exposed in logs or other places, you can treat it as a secret by calling the <xref:Aspire.Hosting.AzureBicepResourceExtensions.GetSecretOutput%2A> instead. This output is written to an Azure Key Vault using the `"keyVaultName"` convention.
 
-For more information, see [Bicep outputs](/azure/azure-resource-manager/bicep/outputs).
+Consider the following Bicep template as an example the helps to demonstrate this concept of securing outputs:
+
+:::code language="bicep" source="snippets/AppHost.Bicep/cosmosdb.bicep" highlight="2,41":::
+
+The preceding Bicep template expects a `keyVaultName` parameter, among several other parameters. It then defines an Azure Cosmos DB resource and stashes a secret into Azure Key Vault, named `connectionString` which represents the fully qualified connection string to the Cosmos DB instance. To access this secret connection string value, you can use the following code snippet:
+
+:::code language="csharp" source="snippets/AppHost.Bicep/Program.cs" id="secrets":::
+
+In the preceding code snippet, the `cosmos` Bicep template is added as a reference to the `builder`. The `connectionString` secret output is retrieved from the Bicep template and stored in a variable. The secret output is then passed as an environment variable (`ConnectionStrings__cosmos`) to the `api` project. This environment variable is used to connect to the Cosmos DB instance.
+
+For more information, see [Avoid outputs for secrets](/azure/azure-resource-manager/bicep/scenarios-secrets#avoid-outputs-for-secrets) and [Reference secrets from Azure Key Vault](/azure/container-apps/manage-secrets?tabs=azure-portal#reference-secret-from-key-vault).
 
 ## See also
 
