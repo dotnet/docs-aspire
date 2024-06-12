@@ -1,7 +1,7 @@
 ---
 title: Build your first .NET Aspire app
 description: Learn how to build your first .NET Aspire app using the .NET Aspire Started Application template.
-ms.date: 05/13/2024
+ms.date: 06/12/2024
 ms.topic: quickstart
 zone_pivot_groups: dev-environment
 ---
@@ -51,6 +51,17 @@ The sample app is now ready for testing. You want to verify the following:
 :::zone pivot="visual-studio"
 
 In Visual Studio, set the **AspireSample.AppHost** project as the startup project by right-clicking on the project in the **Solution Explorer** and selecting **Set as Startup Project**. Then, press <kbd>F5</kbd> to run the app.
+
+:::zone-end
+:::zone pivot="vscode,dotnet-cli"
+
+If you haven't already trusted the localhost certificate, you may need to trust the certificate before running the app:
+
+```dotnetcli
+dotnet dev-certs https --trust
+```
+
+For more information, see [Troubleshoot untrusted localhost certificate in .NET Aspire](../troubleshooting/untrusted-localhost-certificate.md). For in-depth details about troubleshooting localhost certificates on Linux, see [ASP.NET Core: GitHub repository issue #32842](https://github.com/dotnet/aspnetcore/issues/32842).
 
 :::zone-end
 :::zone pivot="vscode"
