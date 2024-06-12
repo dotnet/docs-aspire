@@ -100,7 +100,7 @@ For more information, see [External parameters](../../fundamentals/external-para
 | <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalName?displayProperty=nameWithType> | The principal name of the current user or managed identity. | `"principalName"` |
 | <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalType?displayProperty=nameWithType> | The principal type of the current user or managed identity. Either `User` or `ServicePrincipal`. | `"principalType"` |
 
-Whenever you use the well-known parameters, you don't pass a value, instead just the well-known parameter name.
+To use a well-known parameter, pass the parameter name to the <xref:Aspire.Hosting.AzureBicepResourceExtensions.WithParameter%2A> method, such as `WithParameter(AzureBicepResource.KnownParameters.KeyVaultName)`. You don't pass values for well-known parameters, as they're resolved automatically by .NET Aspire.
 
 Consider an example where you want to setup an Azure Event Grid webhook. You might define the Bicep template as follows:
 
