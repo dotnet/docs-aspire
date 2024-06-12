@@ -55,7 +55,7 @@ In Visual Studio, set the **AspireSample.AppHost** project as the startup projec
 :::zone-end
 :::zone pivot="vscode,dotnet-cli"
 
-If you haven't already trusted the localhost certificate, you may need to trust the certificate before running the app:
+If you haven't already trusted the ASP.NET Core localhost certificate, you will need to trust the certificate before running the app:
 
 ```dotnetcli
 dotnet dev-certs https --trust
