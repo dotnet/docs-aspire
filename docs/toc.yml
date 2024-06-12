@@ -151,6 +151,8 @@ items:
         href: messaging/rabbitmq-client-component.md
       - name: Redis
         items:
+        - name: Overview
+          href: caching/stackexchange-redis-caching-overview.md
         - name: Redis caching
           displayName: caching
           href: caching/stackexchange-redis-component.md
