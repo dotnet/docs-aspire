@@ -42,3 +42,4 @@ For more troubleshooting, see [Troubleshoot certificate problems such as certifi
 - [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](/aspnet/core/security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos)
 - [Trust HTTPS certificate on Linux](/aspnet/core/security/enforcing-ssl##trust-https-certificate-on-linux)
 - [.NET CLI: dotnet dev-certs](/dotnet/core/tools/dotnet-dev-certs)
+- [Trust localhost certificate on Linux](https://github.com/dotnet/aspnetcore/issues/32842)
