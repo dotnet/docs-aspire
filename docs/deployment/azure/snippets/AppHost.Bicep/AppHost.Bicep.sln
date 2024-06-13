@@ -1,0 +1,30 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.34929.205
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppHost.Bicep", "AppHost.Bicep.csproj", "{9D692CBB-E892-4CA9-B900-BEA71FF0F37D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebHook.Api", "..\WebHook.Api\WebHook.Api.csproj", "{5472D255-76E4-4000-B053-D8231FDB9905}"
+EndProject
+Global
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1FECE22C-F99C-4BEF-BE41-5BC5D0B5FCF2}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5472D255-76E4-4000-B053-D8231FDB9905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5472D255-76E4-4000-B053-D8231FDB9905}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5472D255-76E4-4000-B053-D8231FDB9905}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5472D255-76E4-4000-B053-D8231FDB9905}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D692CBB-E892-4CA9-B900-BEA71FF0F37D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D692CBB-E892-4CA9-B900-BEA71FF0F37D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D692CBB-E892-4CA9-B900-BEA71FF0F37D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D692CBB-E892-4CA9-B900-BEA71FF0F37D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

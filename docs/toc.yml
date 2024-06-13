@@ -24,6 +24,9 @@ items:
       - name: Overview
         displayName: orchestration,aspire apphost,aspire app
         href: fundamentals/app-host-overview.md
+      - name: Networking overview
+        displayName: inner loop,local networking
+        href: fundamentals/networking-overview.md
       - name: Use external parameters
         displayName: external parameters,configuration
         href: fundamentals/external-parameters.md
@@ -53,9 +56,6 @@ items:
 
   - name: Fundamentals
     items:
-      - name: Networking overview
-        displayName: inner loop,local networking
-        href: fundamentals/networking-overview.md
       - name: Service discovery
         displayName: service discovery,service to service communication,Kubernetes,k8s
         href: service-discovery/overview.md
@@ -199,6 +199,8 @@ items:
             href: database/sql-server-component-deployment.md
           - name: Deploy .NET Aspire + Redis
             href: caching/caching-components-deployment.md
+          - name: Use custom Bicep templates
+            href: deployment/azure/custom-bicep-templates.md
       - name: Tool-builder manifest schemas
         href: deployment/manifest-format.md
 
