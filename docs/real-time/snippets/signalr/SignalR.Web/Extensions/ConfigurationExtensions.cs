@@ -3,14 +3,14 @@
 public static class ConfigurationExtensions
 {
     public static Uri GetServiceHttpUri(this IConfiguration config, string name) =>
-        config.GetServiceUri(name, 0);
+        config.GetServiceUri(name, "http", 0);
 
     public static Uri GetServiceHttpsUri(this IConfiguration config, string name) =>
-        config.GetServiceUri(name, 1);
+        config.GetServiceUri(name, "https", 0);
 
-    private static Uri GetServiceUri(this IConfiguration config, string name, int index)
+    private static Uri GetServiceUri(this IConfiguration config, string name, string scheme, int index)
     {
-        var url = config[$"services:{name}:{index}"];
+        var url = config[$"services:{name}:{scheme}:{index}"];
 
         ArgumentException.ThrowIfNullOrWhiteSpace(url);
 

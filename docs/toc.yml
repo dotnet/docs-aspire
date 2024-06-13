@@ -115,7 +115,7 @@ items:
         - name: Azure Key Vault
           displayName: key vault,security
           href: security/azure-security-key-vault-component.md
-        - name: Azure SignalR Service scenario
+        - name: Azure SignalR Service
           displayName: azure signalr service,signalr,real-time
           href: real-time/azure-signalr-scenario.md
         - name: Azure Service Bus
