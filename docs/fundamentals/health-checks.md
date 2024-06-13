@@ -65,13 +65,13 @@ In the appropriate consuming app's entry point (usually the _:::no-loc text="Pro
 // Wherever your services are being registered.
 // Before the call to Build().
 builder.Services.AddRequestTimeouts();
-builder.Services.AddOutputCaching();
+builder.Services.AddOutputCache();
 
 var app = builder.Build();
 
 // Wherever your app has been built, before the call to Run().
 app.UseRequestTimeouts();
-app.UseOutputCaching();
+app.UseOutputCache();
 
 app.Run();
 ```
