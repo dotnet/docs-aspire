@@ -2,7 +2,7 @@
 title: .NET Aspire Azure AI Search Documents component
 description: Learn how to use the .NET Aspire Azure AI Search Documents component.
 ms.topic: how-to
-ms.date: 06/05/2024
+ms.date: 06/12/2024
 ---
 
 # .NET Aspire Azure AI Search Documents component
@@ -37,10 +37,10 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the extension method to register an `SearchIndexClient` for use via the dependency injection container. The method takes a connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the extension method to register an `SearchIndexClient` for use via the dependency injection container. The <xref:Microsoft.Extensions.Hosting.AspireAzureSearchExtensions.AddAzureSearchClient%2A> method takes a connection name parameter.
 
 ```csharp
-builder.AddAzureSearch("searchConnectionName");
+builder.AddAzureSearchClient("searchConnectionName");
 ```
 
 You can then retrieve the `SearchIndexClient` instance using dependency injection. For example, to retrieve the client from an example service:
@@ -105,7 +105,7 @@ var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(search);
 ```
 
-The `AddAzureSearch` method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:search` config key. The `WithReference` method passes that connection information into a connection string named `search` in the `MyService` project. In the _:::no-loc text="Program.cs":::_ file of `MyService`, the connection can be consumed using:
+The <xref:Aspire.Hosting.AzureSearchExtensions.AddAzureSearch%2A> method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:search` config key. The `WithReference` method passes that connection information into a connection string named `search` in the `MyService` project. In the _:::no-loc text="Program.cs":::_ file of `MyService`, the connection can be consumed using:
 
 ```csharp
 builder.AddAzureSearch("search");
