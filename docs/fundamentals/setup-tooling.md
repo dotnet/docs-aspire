@@ -169,7 +169,7 @@ These templates matched your input: 'aspire'
 Template Name                     Short Name              Language  Tags
 --------------------------------  ----------------------  --------  -------------------------------------------------------
 .NET Aspire App Host              aspire-apphost          [C#]      Common/.NET Aspire/Cloud
-.NET Aspire project           aspire                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire Application           aspire                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
 .NET Aspire Service Defaults      aspire-servicedefaults  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
 .NET Aspire Starter Application   aspire-starter          [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud
 .NET Aspire Test Project (xUnit)  aspire-xunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test

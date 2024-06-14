@@ -54,7 +54,7 @@ The `azd init` workflow provides customized supported for .NET Aspire projects. 
 1. Finally, once the container image is in ACR, `azd` updates the resource using ARM to start using the new version of the container image.
 
 > [!NOTE]
-> `azd` also enables you to output the generated Bicep to an `infra` folder in your project, which you can read more about in the [Generating Bicep from .NET Aspire project model](/dotnet/aspire/deployment/azure/aca-deployment-azd-in-depth?branch=main#generate-bicep-from-net-aspire-app-model) section.
+> `azd` also enables you to output the generated Bicep to an `infra` folder in your project, which you can read more about in the [Generating Bicep from .NET Aspire app model](/dotnet/aspire/deployment/azure/aca-deployment-azd-in-depth?branch=main#generate-bicep-from-net-aspire-app-model) section.
 
 ## Provision and deploy a .NET Aspire starter app
 

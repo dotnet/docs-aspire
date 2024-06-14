@@ -85,7 +85,7 @@ A full list of available components is detailed on the [.NET Aspire components](
 
 There are currently two .NET Aspire starter templates available to help you get started with this structure:
 
-- **.NET Aspire project**: A basic starter template that only includes the **AspireSample.AppHost** and **AspireSample.ServiceDefaults** projects. This template is designed to only provide the essentials for you to build off of.
+- **.NET Aspire Application**: A basic starter template that only includes the **AspireSample.AppHost** and **AspireSample.ServiceDefaults** projects. This template is designed to only provide the essentials for you to build off of.
 - **.NET Aspire Starter Application**: This template includes the **AspireSample.AppHost** and **AspireSample.ServiceDefaults** projects, but also includes boilerplate UI and API projects. These projects are pre-configured with service discovery and other basic examples of common .NET Aspire functionality.
 
 For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
