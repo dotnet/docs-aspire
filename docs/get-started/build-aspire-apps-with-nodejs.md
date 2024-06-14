@@ -1,12 +1,12 @@
 ---
-title: Build .NET Aspire apps with Node.js
-description: Learn how to build .NET Aspire apps with Node.js.
-ms.date: 05/14/2024
+title: Add Node.js apps to a .NET Aspire project
+description: Learn how to integrate Node.js and npm apps into a .NET Aspire App Host project.
+ms.date: 06/13/2024
 ---
 
 # Build .NET Aspire apps with Node.js
 
-In this article, you learn how to build .NET Aspire apps that use Node.js and Node Package Manager (`npm`). The sample app in this article demonstrates [Angular](https://angular.io), [React](https://react.dev/), and [Vue](https://vuejs.org/) client experiences. The following .NET Aspire APIs exist to support these scenarios:
+In this article, you learn how to use Node.js and Node Package Manager (`npm`) apps in a .NET Aspire project. The sample app in this article demonstrates [Angular](https://angular.io), [React](https://react.dev/), and [Vue](https://vuejs.org/) client experiences. The following .NET Aspire APIs exist to support these scenarios:
 
 - [Node.js](https://nodejs.org/): <xref:Aspire.Hosting.NodeAppHostingExtension.AddNodeApp%2A>.
 - [`npm` apps](https://docs.npmjs.com/cli/using-npm/scripts): <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A>.

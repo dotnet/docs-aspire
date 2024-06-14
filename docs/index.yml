@@ -19,7 +19,7 @@ highlightedContent:
       title: .NET Aspire overview
       url: get-started/aspire-overview.md
     - itemType: quickstart
-      title: Build your first .NET Aspire app
+      title: Build your first .NET Aspire project
       url: get-started/build-your-first-aspire-app.md
     - itemType: concept
       title: Distributed app host
@@ -31,7 +31,7 @@ highlightedContent:
       title: Service discovery
       url: service-discovery/overview.md
     - itemType: deploy
-      title: Deploy a .NET Aspire app
+      title: Deploy a .NET Aspire project
       url: deployment/overview.md
     - itemType: reference
       title: .NET Aspire FAQ
@@ -50,10 +50,10 @@ conceptualContent:
           text: .NET Aspire overview
           url: get-started/aspire-overview.md
         - itemType: quickstart
-          text: Build your first .NET Aspire app
+          text: Build your first .NET Aspire project
           url: get-started/build-your-first-aspire-app.md
         - itemType: sample
-          text: Build .NET Aspire app with Node.js
+          text: Add a Node.js app to a .NET Aspire project
           url: get-started/build-aspire-apps-with-nodejs.md
         - itemType: how-to-guide
           text: .NET Aspire setup and tooling
@@ -224,10 +224,10 @@ conceptualContent:
           text: Introduction to .NET Aspire
           url: /training/modules/introduction-dotnet-aspire
         - itemType: training
-          text: Create a .NET Aspire application
+          text: Create a .NET Aspire project
           url: /training/modules/create-aspire-applications
         - itemType: training
-          text: Use telemetry in a .NET Aspire app
+          text: Use telemetry in a .NET Aspire project
           url: /training/modules/use-telemetry-dotnet-aspire
 
 additionalContent:
