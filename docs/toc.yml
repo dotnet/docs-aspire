@@ -7,7 +7,7 @@ items:
       - name: .NET Aspire overview
         displayName: aspire overview,architecture,key concepts,Kubernetes,k8s
         href: get-started/aspire-overview.md
-      - name: Quickstart - Build your first .NET Aspire app
+      - name: Quickstart - Build your first .NET Aspire project
         displayName: quickstart,first app,aspire app
         href: get-started/build-your-first-aspire-app.md
       - name: Tutorial - Add .NET Aspire to an existing .NET app

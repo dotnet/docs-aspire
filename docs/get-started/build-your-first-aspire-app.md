@@ -1,12 +1,12 @@
 ---
-title: Build your first .NET Aspire app
-description: Learn how to build your first .NET Aspire app using the .NET Aspire Started Application template.
+title: Build your first .NET Aspire project
+description: Learn how to build your first .NET Aspire project using the .NET Aspire Started Application template.
 ms.date: 06/12/2024
 ms.topic: quickstart
 zone_pivot_groups: dev-environment
 ---
 
-# Quickstart: Build your first .NET Aspire app
+# Quickstart: Build your first .NET Aspire project
 
 Cloud-native apps often require connections to various services such as databases, storage and caching solutions, messaging providers, or other web services. .NET Aspire is designed to streamline connections and configurations between these types of services. This quickstart shows how to create a .NET Aspire Starter Application template solution.
 
@@ -92,7 +92,7 @@ For more information, see [dotnet run](/dotnet/core/tools/dotnet-run).
 
 :::image type="content" source="media/weather-page.png" lightbox="media/weather-page.png" alt-text="The Weather page of the webfrontend app showing the weather data retrieved from the API.":::
 
-🤓 Congratulations! You created and ran your first .NET Aspire application! To stop the app, you can close the browser window.
+🤓 Congratulations! You created and ran your first .NET Aspire project! To stop the app, you can close the browser window.
 
 :::zone pivot="visual-studio"
 
@@ -112,17 +112,17 @@ Press <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal window to stop the app.
 
 :::zone-end
 
-Now let's investigate the structure and other features of your new .NET Aspire app.
+Now let's investigate the structure and other features of your new .NET Aspire project.
 
 ## Explore the .NET Aspire dashboard
 
-When you run a .NET Aspire app, a dashboard launches that you use to monitor various parts of your app. The dashboard resembles the following screenshot:
+When you run a .NET Aspire project, a dashboard launches that you use to monitor various parts of your app. The dashboard resembles the following screenshot:
 
 :::image type="content" source="media/aspire-dashboard.png" lightbox="media/aspire-dashboard.png" alt-text="A screenshot of the .NET Aspire Dashboard, depicting the Projects tab.":::
 
-Visit each link on the left navigation to view different information about the .NET Aspire app:
+Visit each link on the left navigation to view different information about the .NET Aspire project:
 
-- **Resources**: Lists basic information for all of the individual .NET projects in your .NET Aspire app, such as the app state, endpoint addresses, and the environment variables that were loaded in.
+- **Resources**: Lists basic information for all of the individual .NET projects in your .NET Aspire project, such as the app state, endpoint addresses, and the environment variables that were loaded in.
 - **Console**: Displays the console output from each of the projects in your app.
 - **Structured**: Displays structured logs in table format. These logs support basic filtering, free-form search, and log level filtering as well. You should see logs from the `apiservice` and the `webfrontend`. You can expand the details of each log entry by selecting the **View** button on the right end of the row.
 - **Traces**: Displays the traces for your application, which can track request paths through your apps. Locate a request for **/weather** and select **View** on the right side of the page. The dashboard should display the request in stages as it travels through the different parts of your app.
@@ -154,7 +154,7 @@ Each project in an .NET Aspire solution plays a role in the composition of your 
 
 The two projects of interest in this quickstart are the _*.AppHost_ and _*.ServiceDefaults_ projects detailed in the following sections.
 
-### .NET Aspire app host project
+### .NET Aspire host project
 
 The _*.AppHost_ project is responsible for acting as the orchestrator, and sets the `IsAspireHost` property of the project file to `true`:
 
