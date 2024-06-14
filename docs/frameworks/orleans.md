@@ -79,7 +79,7 @@ You do similarly in the _OrleansClient_ project, adding the .NET Aspire resource
 
 ## Enabling OpenTelemetry
 
-By convention, .NET Aspire application include a project for defining default configuration and behavior for your service. This project is called the _service default_ project and templates create it with a name ending in _ServiceDefaults_.
+By convention, .NET Aspire project include a project for defining default configuration and behavior for your service. This project is called the _service default_ project and templates create it with a name ending in _ServiceDefaults_.
 To configure Orleans for OpenTelemetry in .NET Aspire, you will need to apply configuration to your service defaults project following the [Orleans observability](/dotnet/orleans/host/monitoring/) guide.
 In short, you will need to modify the `ConfigureOpenTelemetry` method to add the Orleans _meters_ and _tracing_ instruments. The following code snippet shows the _Extensions.cs_ file from a service defaults project which has been modified to include metrics and traces from Orleans.
 

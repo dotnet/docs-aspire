@@ -7,14 +7,14 @@ ms.topic: reference
 
 # .NET Aspire manifest format for deployment tool builders
 
-In this article, you learn about the .NET Aspire manifest format. This article serves as a reference guide for deployment tool builders, aiding in the creation of tooling to deploy .NET Aspire applications on specific hosting platforms, whether on-premises or in the cloud.
+In this article, you learn about the .NET Aspire manifest format. This article serves as a reference guide for deployment tool builders, aiding in the creation of tooling to deploy .NET Aspire projects on specific hosting platforms, whether on-premises or in the cloud.
 
 .NET Aspire [simplifies the local development experience](../fundamentals/networking-overview.md) by helping to manage interdependencies between application components. To help simplify the deployment of applications, .NET Aspire projects can generate a manifest of all the resources defined as a JSON formatted file.
 
 ## Generate a manifest
 
-A valid .NET Aspire application is required to generate a manifest. To get started, create
-a .NET Aspire application using the `aspire-starter` .NET template:
+A valid .NET Aspire project is required to generate a manifest. To get started, create
+a .NET Aspire project using the `aspire-starter` .NET template:
 
 ```dotnetcli
 dotnet new aspire-starter --use-redis-cache `
@@ -934,7 +934,7 @@ Example manifest:
 
 ### Resource types supported in the Azure Developer CLI
 
-The [Azure Developer CLI](/azure/developer/azure-developer-cli/) (azd) is a tool that can be used to deploy .NET Aspire applications to Azure Container Apps. With the `azure.bicep.v0` resource type, cloud-agnostic resource container types can be mapped to Azure-specific resources. The following table lists the resource types that are supported in the Azure Developer CLI:
+The [Azure Developer CLI](/azure/developer/azure-developer-cli/) (azd) is a tool that can be used to deploy .NET Aspire projects to Azure Container Apps. With the `azure.bicep.v0` resource type, cloud-agnostic resource container types can be mapped to Azure-specific resources. The following table lists the resource types that are supported in the Azure Developer CLI:
 
 | Name | Cloud-agnostic API | Configure as Azure resource |
 | ---- | ---------------------------- | ---------------------------------- |
@@ -942,7 +942,7 @@ The [Azure Developer CLI](/azure/developer/azure-developer-cli/) (azd) is a tool
 | Postgres | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A> | `PublishAsAzurePostgresFlexibleServer` |
 | SQL Server | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A> | `PublishAsAzureSqlDatabase` |
 
-When resources as configured as Azure resources, the `azure.bicep.v0` resource type is generated in the manifest. For more information, see [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](azure/aca-deployment-azd-in-depth.md).
+When resources as configured as Azure resources, the `azure.bicep.v0` resource type is generated in the manifest. For more information, see [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](azure/aca-deployment-azd-in-depth.md).
 
 ## See also
 

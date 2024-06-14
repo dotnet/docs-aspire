@@ -104,7 +104,7 @@ The preceding code adds a SQL Server Container resource to your app and configur
 
 The sample app is now ready for testing. Verify that the submitted form data is persisted to the database by completing the following steps:
 
-1. Select the run button at the top of Visual Studio (or <kbd>F5</kbd>) to launch your .NET Aspire app dashboard in the browser.
+1. Select the run button at the top of Visual Studio (or <kbd>F5</kbd>) to launch your .NET Aspire project dashboard in the browser.
 1. On the projects page, in the **AspireSQLEFCore** row, click the link in the **Endpoints** column to open the UI of your app.
 
     :::image type="content" source="media/app-home-screen.png" lightbox="media/app-home-screen.png" alt-text="A screenshot showing the home page of the .NET Aspire support application.":::
@@ -117,4 +117,4 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 
 - [.NET Aspire with SQL Database deployment](sql-server-component-deployment.md)
 - [.NET Aspire deployment via Azure Container Apps](../deployment/azure/aca-deployment.md)
-- [Deploy a .NET Aspire app using GitHub Actions](../deployment/azure/aca-deployment-github-actions.md)
+- [Deploy a .NET Aspire project using GitHub Actions](../deployment/azure/aca-deployment-github-actions.md)

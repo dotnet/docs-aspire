@@ -109,7 +109,7 @@ After the operation completes successfully, you have two options moving forward:
 
 ## Create the sample solution
 
-Create a .NET Aspire app using either Visual Studio or the .NET CLI.
+Create a .NET Aspire project using either Visual Studio or the .NET CLI.
 
 ## [Visual Studio](#tab/visual-studio)
 
@@ -125,7 +125,7 @@ Visual Studio creates a new ASP.NET Core solution that is structured to use .NET
 
 ## [.NET CLI](#tab/net-cli)
 
-Use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new .NET Aspire app:
+Use the [`dotnet new`](/dotnet/core/tools/dotnet-new) command to create a new .NET Aspire project:
 
 ```dotnetcli
 dotnet new aspire-starter --name AspireStorage
@@ -351,7 +351,7 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 
 ## [Visual Studio](#tab/visual-studio)
 
-1. Press the run button at the top of Visual Studio to launch your .NET Aspire app dashboard in the browser.
+1. Press the run button at the top of Visual Studio to launch your .NET Aspire project dashboard in the browser.
 1. On the resources page, in the **aspirestorage.web** row, click the link in the **Endpoints** column to open the UI of your app.
 
     :::image type="content" source="media/support-app.png" lightbox="media/support-app.png" alt-text="A screenshot showing the home page of the .NET Aspire support application.":::

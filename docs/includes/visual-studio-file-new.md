@@ -11,6 +11,6 @@ Visual Studio provides .NET Aspire project templates that handle some initial se
 1. On the **Additional information** screen:
     - Make sure **.NET 8.0 (Long Term Support)** is selected.
     - Ensure that **Use Redis for caching (requires a supported container runtime)** is checked and select **Create**.
-    - Optionally, you can select **Create a tests project**. For more information, see [Testing .NET Aspire apps](../fundamentals/testing.md).
+    - Optionally, you can select **Create a tests project**. For more information, see [Testing .NET Aspire projects](../fundamentals/testing.md).
 
 Visual Studio creates a new solution that is structured to use .NET Aspire.

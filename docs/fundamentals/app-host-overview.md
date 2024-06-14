@@ -21,11 +21,11 @@ Before continuing, consider some common terminology used in .NET Aspire:
 
 ## Define the app model
 
-.NET Aspire empowers you to seamlessly build, provision, deploy, configure, test, run, and observe your cloud application. This is achieved through the utilization of an _app model_ that outlines the resources in your app and their relationships. These resources encompass projects, executables, containers, as well as external services and cloud resources that your app depends on. Within every .NET Aspire app, there is a designated [App host project](#app-host-project), where the app model is precisely defined using methods available on the <xref:Aspire.Hosting.IDistributedApplicationBuilder>. This builder is obtained by invoking <xref:Aspire.Hosting.DistributedApplication.CreateBuilder%2A?displayProperty=nameWithType>.
+.NET Aspire empowers you to seamlessly build, provision, deploy, configure, test, run, and observe your cloud application. This is achieved through the utilization of an _app model_ that outlines the resources in your app and their relationships. These resources encompass projects, executables, containers, as well as external services and cloud resources that your app depends on. Within every .NET Aspire project, there is a designated [App host project](#app-host-project), where the app model is precisely defined using methods available on the <xref:Aspire.Hosting.IDistributedApplicationBuilder>. This builder is obtained by invoking <xref:Aspire.Hosting.DistributedApplication.CreateBuilder%2A?displayProperty=nameWithType>.
 
 ## App host project
 
-The app host project handles running all of the projects that are part of the .NET Aspire application. In other words, it's responsible for orchestrating all apps within the app model. The following code describes an application with two projects and a Redis cache:
+The app host project handles running all of the projects that are part of the .NET Aspire project. In other words, it's responsible for orchestrating all apps within the app model. The following code describes an application with two projects and a Redis cache:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -49,7 +49,7 @@ Each resource must be uniquely named. This diagram shows each resource and the r
 
 ## Built-in resource types
 
-.NET Aspire apps are made up of a set of resources. There are three base types of compute resources:
+.NET Aspire projects are made up of a set of resources. There are three base types of compute resources:
 
 | Method | Resource type | Description |
 |--|--|--|

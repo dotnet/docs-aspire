@@ -7,11 +7,11 @@ ms.topic: reference
 
 # Explore the .NET Aspire dashboard
 
-In the upcoming sections, you'll discover how to create a .NET Aspire app and embark on the following tasks:
+In the upcoming sections, you'll discover how to create a .NET Aspire project and embark on the following tasks:
 
 > [!div class="checklist"]
 >
-> - Investigate the dashboard's capabilities by using the app generated from the project template as explained in the [Quickstart: Build your first .NET Aspire app.](../../get-started/build-your-first-aspire-app.md)
+> - Investigate the dashboard's capabilities by using the app generated from the project template as explained in the [Quickstart: Build your first .NET Aspire project.](../../get-started/build-your-first-aspire-app.md)
 >
 > - Delve into the features of the .NET Aspire dashboard app.
 
@@ -43,10 +43,10 @@ The dashboard persists the token as a browser persistent cookie, which remains v
 
 ## Resources page
 
-The **Resources** page is the default home page of the .NET Aspire dashboard. This page lists all of the .NET projects, containers, and executables included in your .NET Aspire app. For example, the starter application includes two projects:
+The **Resources** page is the default home page of the .NET Aspire dashboard. This page lists all of the .NET projects, containers, and executables included in your .NET Aspire project. For example, the starter application includes two projects:
 
-- **apiservice**: A back-end API for the .NET Aspire app built using Minimal APIs.
-- **webfrontend**: The front-end UI for the .NET Aspire app built using Blazor.
+- **apiservice**: A back-end API for the .NET Aspire project built using Minimal APIs.
+- **webfrontend**: The front-end UI for the .NET Aspire project built using Blazor.
 
 The dashboard also provides essential details about each resource:
 
@@ -68,7 +68,7 @@ You can obtain full details about each resource by selecting the **View** link i
 
 :::image type="content" source="media/explore/resource-details.png" lightbox="media/explore/resource-details.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page with the details of a selected resource displayed..":::
 
-The search bar in the upper right of the dashboard also provides the option to filter the list, which is useful for .NET Aspire apps with many resources. To select the types of resources that are displayed, drop down the arrow to the left of the filter textbox:
+The search bar in the upper right of the dashboard also provides the option to filter the list, which is useful for .NET Aspire projects with many resources. To select the types of resources that are displayed, drop down the arrow to the left of the filter textbox:
 
 :::image type="content" source="media/explore/select-resource-type.png" alt-text="A screenshot of the resource type selector list in the .NET Aspire dashboard Resources page.":::
 
@@ -76,7 +76,7 @@ In this example, only containers are displayed in the list. For example, if you 
 
 :::image type="content" source="media/explore/resources-filtered-containers.png" lightbox="media/explore/resources-filtered-containers.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page filtered to show only containers.":::
 
-Executables are stand-alone processes. You can configure a .NET Aspire app to run a stand-alone executable during startup, though the default starter templates do not include any executables by default.
+Executables are stand-alone processes. You can configure a .NET Aspire project to run a stand-alone executable during startup, though the default starter templates do not include any executables by default.
 
 The following screenshot shows an example of a project that has errors:
 
@@ -121,7 +121,7 @@ If you select a container or executable, formatting is different from a project 
 
 ### Structured logs page
 
-.NET Aspire automatically configures your projects with logging using OpenTelemetry. Navigate to the **Structured logs** page to view the semantic logs for your .NET Aspire app. [Semantic, or structured logging](https://github.com/NLog/NLog/wiki/How-to-use-structured-logging) makes it easier to store and query log-events, as the log-event message-template and message-parameters are preserved, instead of just transforming them into a formatted message. You'll notice a clean structure for the different logs displayed on the page using columns:
+.NET Aspire automatically configures your projects with logging using OpenTelemetry. Navigate to the **Structured logs** page to view the semantic logs for your .NET Aspire project. [Semantic, or structured logging](https://github.com/NLog/NLog/wiki/How-to-use-structured-logging) makes it easier to store and query log-events, as the log-event message-template and message-parameters are preserved, instead of just transforming them into a formatted message. You'll notice a clean structure for the different logs displayed on the page using columns:
 
 - **Resource**: The resource the log originated from.
 - **Level**: The log level of the entry, such as information, warning, or error.
@@ -169,7 +169,7 @@ The trace details page contains various details pertinent to the request, includ
 - **Depth**: The number of layers involved in the request.
 - **Total Spans**: The total number of spans involved in the request.
 
-Each span is represented as a row in the table, and contains a **Name**. Spans also display the error icon if an error occurred within that particular span of the trace. Spans that have a type of client/consumer, but don't have a span on the server, show an arrow icon and then the destination address. This represents a client call to a system outside of the .NET Aspire application. For example, an HTTP request an external web API, or a database call.
+Each span is represented as a row in the table, and contains a **Name**. Spans also display the error icon if an error occurred within that particular span of the trace. Spans that have a type of client/consumer, but don't have a span on the server, show an arrow icon and then the destination address. This represents a client call to a system outside of the .NET Aspire project. For example, an HTTP request an external web API, or a database call.
 
 Within the trace details page, there's a **View Logs** button that takes you to the structured logs page with a filter applied to show only the logs relevant to the request. Consider an example screenshot depicting the structured logs page with a filter applied to show only the logs relevant to the trace:
 

@@ -14,7 +14,7 @@ This article describes several techniques to avoid this problem.
 
 ## Symptoms
 
-When deploying a .NET Aspire app to Azure, the resources in the [app model](../fundamentals/app-host-overview.md#define-the-app-model) are transformed into Azure resources. Some Azure resources have globally scoped names, such as Azure App Configuration, where all instances are in the `[name].azconfig.io` global namespace.
+When deploying a .NET Aspire project to Azure, the resources in the [app model](../fundamentals/app-host-overview.md#define-the-app-model) are transformed into Azure resources. Some Azure resources have globally scoped names, such as Azure App Configuration, where all instances are in the `[name].azconfig.io` global namespace.
 
 The value of `[name]` is derived from the .NET Aspire resource name, along with random characters based on the resource group name. However, the generated string may exceed the allowable length for the resource name in App Configuration. As a result, some characters are truncated to ensure compliance.
 

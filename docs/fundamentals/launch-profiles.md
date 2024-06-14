@@ -56,7 +56,7 @@ When a .NET application is launched with a launch profile a special environment 
 
 ## Launch profiles for .NET Aspire app host
 
-In .NET Aspire, the AppHost is just a .NET application. As a result it has a `launchSettings.json` file just like any other application. Here is an example of the `launchSettings.json` file generated when creating a new .NET Aspire application from the starter template (`dotnet new aspire-starter`).
+In .NET Aspire, the AppHost is just a .NET application. As a result it has a `launchSettings.json` file just like any other application. Here is an example of the `launchSettings.json` file generated when creating a new .NET Aspire project from the starter template (`dotnet new aspire-starter`).
 
 ```json
 {
@@ -90,7 +90,7 @@ In .NET Aspire, the AppHost is just a .NET application. As a result it has a `la
 }
 ```
 
-The .NET Aspire templates have a very similar set of _launch profiles_ to a regular ASP.NET Core application. When the .NET Aspire application launches it hosts a web-server which is used by the .NET Aspire Dashboard to fetch information about resources which are being orchestrated by .NET Aspire. There are some additional environment variables which are defined which are covered in [.NET Aspire dashboard configuration](./dashboard/configuration.md).
+The .NET Aspire templates have a very similar set of _launch profiles_ to a regular ASP.NET Core application. When the .NET Aspire project launches it hosts a web-server which is used by the .NET Aspire Dashboard to fetch information about resources which are being orchestrated by .NET Aspire. There are some additional environment variables which are defined which are covered in [.NET Aspire dashboard configuration](./dashboard/configuration.md).
 
 ## Relationship between app host launch profiles and service projects
 

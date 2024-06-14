@@ -1,12 +1,12 @@
 ---
-title: Deploy .NET Aspire apps to Azure Container Apps using Visual Studio
-description: Learn how to use Bicep, the Azure CLI, and Azure Developer CLI to deploy .NET Aspire apps to Azure using Visual Studio.
+title: Deploy .NET Aspire projects to Azure Container Apps using Visual Studio
+description: Learn how to use Bicep, the Azure CLI, and Azure Developer CLI to deploy .NET Aspire projects to Azure using Visual Studio.
 ms.date: 05/18/2024
 ---
 
-# Deploy a .NET Aspire app to Azure Container Apps using Visual Studio
+# Deploy a .NET Aspire project to Azure Container Apps using Visual Studio
 
-.NET Aspire apps are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. This article will walk you through creating a new .NET Aspire solution and deploying it to Microsoft Azure Container Apps using the Visual Studio. You'll learn how to complete the following tasks:
+.NET Aspire projects are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. This article will walk you through creating a new .NET Aspire solution and deploying it to Microsoft Azure Container Apps using the Visual Studio. You'll learn how to complete the following tasks:
 
 > [!div class="checklist"]
 >
@@ -18,9 +18,9 @@ ms.date: 05/18/2024
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
-## Create a .NET Aspire app
+## Create a .NET Aspire project
 
-As a starting point, this article assumes that you've created a .NET Aspire app from the **.NET Aspire Starter Application** template. For more information, see [Quickstart: Build your first .NET Aspire app](../../get-started/build-your-first-aspire-app.md).
+As a starting point, this article assumes that you've created a .NET Aspire project from the **.NET Aspire Starter Application** template. For more information, see [Quickstart: Build your first .NET Aspire project](../../get-started/build-your-first-aspire-app.md).
 
 ### Deploy the app
 

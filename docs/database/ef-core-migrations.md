@@ -7,9 +7,9 @@ ms.topic: how-to
 
 # Apply Entity Framework Core migrations in .NET Aspire
 
-Since .NET Aspire apps use a containerized architecture, databases are ephemeral and can be recreated at any time. Entity Framework Core (EF Core) uses a feature called [migrations](/ef/core/managing-schemas/migrations) to create and update database schemas. Since databases are recreated when the app starts, you need to apply migrations to initialize the database schema each time your app starts. This is accomplished by registering a migration service project in your app that runs migrations during startup.
+Since .NET Aspire projects use a containerized architecture, databases are ephemeral and can be recreated at any time. Entity Framework Core (EF Core) uses a feature called [migrations](/ef/core/managing-schemas/migrations) to create and update database schemas. Since databases are recreated when the app starts, you need to apply migrations to initialize the database schema each time your app starts. This is accomplished by registering a migration service project in your app that runs migrations during startup.
 
-In this tutorial, you learn how to configure .NET Aspire apps to run EF Core migrations during app startup.
+In this tutorial, you learn how to configure .NET Aspire projects to run EF Core migrations during app startup.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 

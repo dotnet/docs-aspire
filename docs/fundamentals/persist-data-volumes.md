@@ -5,19 +5,19 @@ ms.date: 04/26/2024
 ms.topic: how-to
 ---
 
-# Persist .NET Aspire app data using volumes
+# Persist .NET Aspire project data using volumes
 
-In this article, you learn how to configure .NET Aspire apps to persist data across app launches using volumes. A continuous set of data during local development is useful in many scenarios. Various .NET Aspire resource container types are able to leverage volume storage, such as PostgreSQL, Redis and Azure Storage.
+In this article, you learn how to configure .NET Aspire projects to persist data across app launches using volumes. A continuous set of data during local development is useful in many scenarios. Various .NET Aspire resource container types are able to leverage volume storage, such as PostgreSQL, Redis and Azure Storage.
 
 ## When to use volumes
 
-By default, every time you start and stop a .NET Aspire app, the app also creates and destroys the app resource containers. This setup creates problems when you want to persist data in a database or storage services between app launches for testing or debugging. For example, you may want to handle the following scenarios:
+By default, every time you start and stop a .NET Aspire project, the app also creates and destroys the app resource containers. This setup creates problems when you want to persist data in a database or storage services between app launches for testing or debugging. For example, you may want to handle the following scenarios:
 
 - Work with a continuous set of data in a database during an extended development session.
 - Test or debug a changing set of files in an Azure Blob Storage emulator.
 - Maintain cached data or messages in a Redis instance across app launches.
 
-These goals can all be accomplished using volumes. With volumes, you decide which services retain data between launches of your .NET Aspire app.
+These goals can all be accomplished using volumes. With volumes, you decide which services retain data between launches of your .NET Aspire project.
 
 ## Understand volumes
 

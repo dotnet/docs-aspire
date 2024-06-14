@@ -81,7 +81,7 @@ dotnet add package Aspire.Hosting.AppHost --prerelease
 
 In addition to the package reference, some APIs were updated in preview 5. For more information, see [Application model changes](#application-model-changes). Some parameter names changed, while others were removed.
 
-All .NET Aspire NuGet package references should be upgraded to `8.0.0-preview.5.24201.12`. If you've created .NET Aspire apps using any of the previous templates, you'll want to update the _Extensions.cs_ file of the service defaults project to reflect the new APIs, as well as update the project file to reference the new NuGet packages. See [service defaults](../fundamentals/service-defaults.md) for the latest source updates.
+All .NET Aspire NuGet package references should be upgraded to `8.0.0-preview.5.24201.12`. If you've created .NET Aspire projects using any of the previous templates, you'll want to update the _Extensions.cs_ file of the service defaults project to reflect the new APIs, as well as update the project file to reference the new NuGet packages. See [service defaults](../fundamentals/service-defaults.md) for the latest source updates.
 
 Additional considerations for upgrading to preview 5 include:
 
@@ -365,7 +365,7 @@ For Preview 5 we've improved support with our Visual Studio family of products f
 
 ### Visual Studio Code C# DevKit tooling
 
-With the April release of C# Dev Kit, you can now launch all projects in a .NET Aspire from Visual Studio Code. To launch your .NET Aspire application, simply Ctrl-F5 (Run without debugging). This will launch the app host project and all the associated projects in your .NET Aspire application (front-end and APIs). Similarly, you can debug your .NET Aspire application, simply F5 (Start debugging) and all the projects will attach to the debugger, allowing you to have breakpoints set across projects and each one will be hit when appropriate.
+With the April release of C# Dev Kit, you can now launch all projects in a .NET Aspire from Visual Studio Code. To launch your .NET Aspire project, simply Ctrl-F5 (Run without debugging). This will launch the app host project and all the associated projects in your .NET Aspire project (front-end and APIs). Similarly, you can debug your .NET Aspire project, simply F5 (Start debugging) and all the projects will attach to the debugger, allowing you to have breakpoints set across projects and each one will be hit when appropriate.
 
 ### Visual Studio tooling updates
 
@@ -373,7 +373,7 @@ In Visual Studio 17.10 we've continued to improve the end-to-end experience for 
 
 :::image type="content" source="media/preview-5/remove-environment.gif" lightbox="media/preview-5/remove-environment.gif" alt-text="Removing a local and live Azure environment":::
 
-This release of Visual Studio also adds support for the Azure Provisioning features in the release. When you're using Azure resources in a .NET Aspire app, like OpenAI, and need to have use the remote resources during your local development, Visual Studio gives you a way of creating or selecting an existing resource group in which those resources can be provisioned. This animation shows the process of adding OpenAI support to an Aspire app, then running the app only to learn the resources need to be created with the warnings in the Aspire dashboard. At this point, you can flip back into Visual Studio and use Connected Services to set up Azure provisioning so your dev-time resources can be created on the fly.
+This release of Visual Studio also adds support for the Azure Provisioning features in the release. When you're using Azure resources in a .NET Aspire project, like OpenAI, and need to have use the remote resources during your local development, Visual Studio gives you a way of creating or selecting an existing resource group in which those resources can be provisioned. This animation shows the process of adding OpenAI support to an Aspire app, then running the app only to learn the resources need to be created with the warnings in the Aspire dashboard. At this point, you can flip back into Visual Studio and use Connected Services to set up Azure provisioning so your dev-time resources can be created on the fly.
 
 :::image type="content" source="media/preview-5/aspire-preview-5-relnotes.gif" lightbox="media/preview-5/aspire-preview-5-relnotes.gif" alt-text="Using Connected Services to configure Azure provisioning":::
 
@@ -415,13 +415,13 @@ This makes it clear that we are adding a "client" object to the `WebApplicationB
 
 ## Azure improvements
 
-The primary focus of the Azure improvements in preview 5 is to make it easier to use Azure resources in your .NET Aspire application. This includes improvements to the Azure provisioning libraries, support for local development with Azure resources, and other Azure-related improvements.
+The primary focus of the Azure improvements in preview 5 is to make it easier to use Azure resources in your .NET Aspire project. This includes improvements to the Azure provisioning libraries, support for local development with Azure resources, and other Azure-related improvements.
 
 ### Azure provisioning libraries
 
 In preview 5 the Azure-specific extensions for .NET Aspire have adopted the Azure Provisioning libraries being developed by the Azure SDK team. The Azure Provisioning libraries allow as to use a C# object model to declare Azure resources and at deployment time translate that object model into Bicep which is then used to automate deployment.
 
-If you are already using Azure-based resources with your .NET Aspire application the APIs you use today continue to work. For example the following code creates an Azure Cosmos database and wires up the connection string to your application.
+If you are already using Azure-based resources with your .NET Aspire project the APIs you use today continue to work. For example the following code creates an Azure Cosmos database and wires up the connection string to your application.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -808,7 +808,7 @@ We have added support for Docker build arguments in the manifest. This is useful
 
 As known issues for `preview-5` are discovered, they will be listed here.
 
-When running a .NET Aspire app, we sometimes see that the run session fails to start and displays the error "context deadline exceeded." With this occurs, the error output resembles the following:
+When running a .NET Aspire project, we sometimes see that the run session fails to start and displays the error "context deadline exceeded." With this occurs, the error output resembles the following:
 
 ```Output
 run session could not be started: {"Executable": {"name":"<app/service-name>"}, "Reconciliation": <Number>, "error": "Put \"<http://localhost:4317/v1/run_session>: context deadline exceeded"}"

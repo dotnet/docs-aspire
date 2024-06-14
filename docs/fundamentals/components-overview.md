@@ -9,7 +9,7 @@ ms.topic: conceptual
 
 .NET Aspire components are a curated suite of NuGet packages specifically selected to facilitate the integration of cloud-native applications with prominent services and platforms, including but not limited to Redis and PostgreSQL. Each component furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns. .NET Aspire components can be used without an app host (orchestrator) project, but they're designed to work best with the [.NET Aspire app host](app-host-overview.md).
 
-.NET Aspire components should not be confused with .NET Aspire hosting packages, as they serve different purposes. Hosting packages are used to model and configure various resources in a .NET Aspire app, while components are used to map configuration to various client libraries.
+.NET Aspire components should not be confused with .NET Aspire hosting packages, as they serve different purposes. Hosting packages are used to model and configure various resources in a .NET Aspire project, while components are used to map configuration to various client libraries.
 
 > [!TIP]
 > Always strive to use the latest version of .NET Aspire components to take advantage of the latest features, improvements, and security updates.
@@ -53,7 +53,7 @@ For more information on working with .NET Aspire components in Visual Studio, se
 
 ## Explore a sample component workflow
 
-.NET Aspire components streamline the process of consuming popular services and platforms. For example, consider the **.NET Aspire Application** template. With this template, you get the [AppHost](app-host-overview.md) and [ServiceDefaults](service-defaults.md) projects. Imagine that you have a need for a worker service to perform some database processing. You could use the [.NET Aspire PostgreSQL component](../database/postgresql-component.md) to connect to and utilize a PostgreSQL database. The database could be hosted on-prem or in a cloud service such as Azure, AWS, or GCP. The following steps demonstrate how to integrate this component into your app:
+.NET Aspire components streamline the process of consuming popular services and platforms. For example, consider the **.NET Aspire project** template. With this template, you get the [AppHost](app-host-overview.md) and [ServiceDefaults](service-defaults.md) projects. Imagine that you have a need for a worker service to perform some database processing. You could use the [.NET Aspire PostgreSQL component](../database/postgresql-component.md) to connect to and utilize a PostgreSQL database. The database could be hosted on-prem or in a cloud service such as Azure, AWS, or GCP. The following steps demonstrate how to integrate this component into your app:
 
 1. In the component consuming (worker service) project, install the [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package.
 
@@ -167,9 +167,9 @@ For more information, see [Dependency injection in .NET: Keyed services](/dotnet
 
 Cloud-native applications surface many unique requirements and concerns. The core features of .NET Aspire orchestration and components are designed to handle many cloud-native concerns for you with minimal configurations. Some of the key features include:
 
-- [Orchestration](app-host-overview.md): A lightweight, extensible, and cross-platform app host for .NET Aspire apps. The app host provides a consistent configuration and dependency injection experience for .NET Aspire components.
+- [Orchestration](app-host-overview.md): A lightweight, extensible, and cross-platform app host for .NET Aspire projects. The app host provides a consistent configuration and dependency injection experience for .NET Aspire components.
 - [Service discovery](../service-discovery/overview.md): A technique for locating services within a distributed application. Service discovery is a key component of microservice architectures.
-- [Service defaults](service-defaults.md): A set of default configurations intended for sharing amongst resources within .NET Aspire apps. These defaults are designed to work well in most scenarios and can be customized as needed.
+- [Service defaults](service-defaults.md): A set of default configurations intended for sharing amongst resources within .NET Aspire projects. These defaults are designed to work well in most scenarios and can be customized as needed.
 
 Some .NET Aspire components also include more capabilities for specific services or platforms, which can be found in the component specific reference docs.
 

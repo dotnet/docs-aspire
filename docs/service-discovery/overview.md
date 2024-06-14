@@ -7,7 +7,7 @@ ms.topic: quickstart
 
 # .NET Aspire service discovery
 
-In this article, you learn how service discovery works within a .NET Aspire app. .NET Aspire includes functionality for configuring service discovery at development and testing time. Service discovery functionality works by providing configuration in the format expected by the _configuration-based endpoint resolver_ from the .NET Aspire AppHost project to the individual service projects added to the application model. For more information, see [Service discovery in .NET](/dotnet/core/extensions/service-discovery).
+In this article, you learn how service discovery works within a .NET Aspire project. .NET Aspire includes functionality for configuring service discovery at development and testing time. Service discovery functionality works by providing configuration in the format expected by the _configuration-based endpoint resolver_ from the .NET Aspire AppHost project to the individual service projects added to the application model. For more information, see [Service discovery in .NET](/dotnet/core/extensions/service-discovery).
 
 ## Implicit service discovery by reference
 
@@ -24,7 +24,7 @@ var frontend = builder.AddProject<Projects.MyFrontend>("frontend")
                       .WithReference(catalog);
 ```
 
-In the preceding example, the _frontend_ project references the _catalog_ project and the _basket_ project. The two <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> calls instruct the .NET Aspire application to pass service discovery information for the referenced projects (_catalog_, and _basket_) into the _frontend_ project.
+In the preceding example, the _frontend_ project references the _catalog_ project and the _basket_ project. The two <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> calls instruct the .NET Aspire project to pass service discovery information for the referenced projects (_catalog_, and _basket_) into the _frontend_ project.
 
 ## Named endpoints
 
