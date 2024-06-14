@@ -1,7 +1,7 @@
 ---
 title: Deploy .NET Aspire projects to Azure Container Apps
 description: Learn how to use the Azure Developer CLI to deploy .NET Aspire projects to Azure.
-ms.date: 05/18/2024
+ms.date: 06/14/2024
 ms.custom: devx-track-extended-azdevcli
 ---
 
@@ -28,6 +28,10 @@ With .NET Aspire and Azure Container Apps (ACA), you have a great hosting scenar
 ## Create a .NET Aspire project
 
 As a starting point, this article assumes that you've created a .NET Aspire project from the **.NET Aspire Starter Application** template. For more information, see [Quickstart: Build your first .NET Aspire project](../../get-started/build-your-first-aspire-app.md).
+
+### Resource naming
+
+[!INCLUDE [azure-container-app-naming](../../includes/azure-container-app-naming.md)]
 
 ## Install the Azure Developer CLI
 

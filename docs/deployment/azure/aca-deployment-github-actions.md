@@ -1,7 +1,7 @@
 ---
 title: Deploy a .NET Aspire project using the Azure Developer CLI and GitHub Actions
 description: Learn how to use `azd` and GitHub Actions to deploy .NET Aspire projects.
-ms.date: 05/30/2024
+ms.date: 06/14/2024
 zone_pivot_groups: deployment-platform
 ms.custom: devx-track-extended-azdevcli
 ---
@@ -57,6 +57,10 @@ curl -fsSL https://aka.ms/install-azd.sh | bash
 ## Create a .NET Aspire project
 
 As a starting point, this article assumes that you've created a .NET Aspire project from the **.NET Aspire Starter Application** template. For more information, see [Quickstart: Build your first .NET Aspire project](../../get-started/build-your-first-aspire-app.md).
+
+### Resource naming
+
+[!INCLUDE [azure-container-app-naming](../../includes/azure-container-app-naming.md)]
 
 [!INCLUDE [init workflow](includes/init-workflow.md)]
 
