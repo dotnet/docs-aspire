@@ -41,7 +41,7 @@ sections:
       - question: |
           When will .NET Aspire be released?
         answer: |
-          .NET Aspire is now in its preview release phase, with monthly updates expected until the product reaches general availability (GA). The official release is planned for the first half of 2024. Stay updated by checking the [official .NET Aspire repository](https://github.com/dotnet/aspire) for more information.
+          .NET Aspire was officially released May 21st, 2024 to general availability (GA). Stay up to day with development and new releases on [official .NET Aspire repository](https://github.com/dotnet/aspire).
       - question: |
           What's the difference between .NET Aspire and Microsoft Orleans?
         answer: |
