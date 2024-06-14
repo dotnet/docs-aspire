@@ -16,7 +16,7 @@ Welcome to what's new in the .NET Aspire docs for March 2024. This article lists
 - [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md) - Add details about container runtime
 - [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md) - Add details for shortcuts
 - [.NET Aspire dashboard overview](../fundamentals/dashboard/overview.md) - Add details for shortcuts
-- [Persist .NET Aspire app data using volumes](../fundamentals/persist-data-volumes.md) - Add details for shortcuts
+- [Persist .NET Aspire project data using volumes](../fundamentals/persist-data-volumes.md) - Add details for shortcuts
 
 ## Storage
 
@@ -32,7 +32,7 @@ Welcome to what's new in the .NET Aspire docs for March 2024. This article lists
 
 ### New articles
 
-- [Tutorial: Deploy a .NET Aspire app with a SQL Server Database to Azure](../database/sql-server-component-deployment.md)
+- [Tutorial: Deploy a .NET Aspire project with a SQL Server Database to Azure](../database/sql-server-component-deployment.md)
 
 ### Updated articles
 
@@ -52,9 +52,9 @@ Welcome to what's new in the .NET Aspire docs for March 2024. This article lists
 ### Updated articles
 
 - [.NET Aspire manifest format for deployment tool builders](../deployment/manifest-format.md) - Add details for shortcuts
-- [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md) - add tags for azd content tracking
-- [Tutorial: Deploy a .NET Aspire app using the Azure Developer CLI and GitHub Actions](../deployment/azure/aca-deployment-github-actions.md) - add tags for azd content tracking
-- [Deploy a .NET Aspire app to Azure Container Apps](../deployment/azure/aca-deployment.md) - add tags for azd content tracking
+- [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md) - add tags for azd content tracking
+- [Tutorial: Deploy a .NET Aspire project using the Azure Developer CLI and GitHub Actions](../deployment/azure/aca-deployment-github-actions.md) - add tags for azd content tracking
+- [Deploy a .NET Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md) - add tags for azd content tracking
 
 ## Community contributors
 

@@ -7,7 +7,7 @@ ms.topic: how-to
 
 # Seed data in a database using .NET Aspire
 
-In this article, you learn how to configure .NET Aspire apps to seed data in a database during app startup. .NET Aspire enables you to seed data using database scripts or Entity Framework Core for common platforms such as SQL Server, PostgreSQL and MySQL.
+In this article, you learn how to configure .NET Aspire projects to seed data in a database during app startup. .NET Aspire enables you to seed data using database scripts or Entity Framework Core for common platforms such as SQL Server, PostgreSQL and MySQL.
 
 ## When to seed data
 
@@ -16,7 +16,7 @@ Seeding data pre-populates database tables with rows of data so they're ready fo
 - Manually develop and test different features of your app against a meaningful set of data, such as a product catalog or list of customers.
 - Run test suites to verify that features behave a specific way with a given set of data.
 
-Manually seeding data is tedious and time consuming, so you should automate the process when possible. Use volumes to run database scripts for .NET Aspire apps during startup. You can also seed your database using tools like Entity Framework Core, which handles many underlying concerns for you.
+Manually seeding data is tedious and time consuming, so you should automate the process when possible. Use volumes to run database scripts for .NET Aspire projects during startup. You can also seed your database using tools like Entity Framework Core, which handles many underlying concerns for you.
 
 ## Understand containerized databases
 
@@ -121,7 +121,7 @@ Corresponding SQL script included in the app:
 
 ## Seed data using Entity Framework Core
 
-You can also seed data in .NET Aspire apps using Entity Framework Core by explicitly running migrations during startup. Entity Framework Core handles underlying database connections and schema creation for you, which eliminates the need to use volumes or run SQL scripts during container startup.
+You can also seed data in .NET Aspire projects using Entity Framework Core by explicitly running migrations during startup. Entity Framework Core handles underlying database connections and schema creation for you, which eliminates the need to use volumes or run SQL scripts during container startup.
 
 > [!IMPORTANT]
 > These types of configurations should only be done during development, so make sure to add a conditional that checks your current environment context.

@@ -93,7 +93,7 @@ ENVIRONMENT="${SOLUTION,,}cae"          # Azure Container Apps Environment name,
 
 ## Provision the Azure resources
 
-Azure Container Apps (ACA) is an ideal hosting platform for .NET Aspire apps. You can use Bicep or the Azure CLI to create resources in Azure to host the .NET Aspire app code along with supporting services:
+Azure Container Apps (ACA) is an ideal hosting platform for .NET Aspire projects. You can use Bicep or the Azure CLI to create resources in Azure to host the .NET Aspire project code along with supporting services:
 
 - An Azure Container Apps Environment to host your code and tertiary containers
 - A pair of Azure Container Apps, hosting your code

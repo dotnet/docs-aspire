@@ -13,7 +13,7 @@ While .NET Aspire provides a set of pre-built Bicep templates so that you don't 
 > [!IMPORTANT]
 > This article is not intended to teach Bicep, but rather to provide guidance on how to create customize Bicep templates for use with .NET Aspire.
 
-As part of the Azure deployment story for .NET Aspire, the Azure Developer CLI (`azd`) provides an understanding of your .NET Aspire application and the ability to deploy it to Azure. The `azd` CLI uses the Bicep templates to deploy the application to Azure.
+As part of the Azure deployment story for .NET Aspire, the Azure Developer CLI (`azd`) provides an understanding of your .NET Aspire project and the ability to deploy it to Azure. The `azd` CLI uses the Bicep templates to deploy the application to Azure.
 
 ## Install App Host package
 
@@ -168,6 +168,6 @@ When this resource is deployed, the underlying deployment mechanism with automat
 
 For continued learning, see the following resources as they relate to .NET Aspire and Azure deployment:
 
-- [Deploy a .NET Aspire app to Azure Container Apps](aca-deployment.md)
-- [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](aca-deployment-azd-in-depth.md)
+- [Deploy a .NET Aspire project to Azure Container Apps](aca-deployment.md)
+- [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](aca-deployment-azd-in-depth.md)
 - [.NET Aspire manifest format for deployment tool builders](../manifest-format.md)

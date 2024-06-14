@@ -15,7 +15,7 @@ If you have already created a microservices .NET web app, you can add .NET Aspir
 > - Understand the structure of the existing microservices app.
 > - Enroll existing projects in .NET Aspire orchestration.
 > - Understand the changes enrollment makes in the projects.
-> - Start the .NET Aspire app.
+> - Start the .NET Aspire project.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 

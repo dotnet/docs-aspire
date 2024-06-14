@@ -4,7 +4,7 @@ description: Learn how to integrate Node.js and npm apps into a .NET Aspire App 
 ms.date: 06/13/2024
 ---
 
-# Build .NET Aspire apps with Node.js
+# Add Node.js apps to a .NET Aspire project
 
 In this article, you learn how to use Node.js and Node Package Manager (`npm`) apps in a .NET Aspire project. The sample app in this article demonstrates [Angular](https://angular.io), [React](https://react.dev/), and [Vue](https://vuejs.org/) client experiences. The following .NET Aspire APIs exist to support these scenarios:
 
@@ -47,10 +47,10 @@ cd samples/AspireWithJavaScript
 From this directory, there are six child directories described in the following list:
 
 - **AspireJavaScript.Angular**: An Angular app that consumes the weather forecast API and displays the data in a table.
-- **AspireJavaScript.AppHost**: A .NET Aspire app that orchestrates the other apps in this sample. For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
+- **AspireJavaScript.AppHost**: A .NET Aspire project that orchestrates the other apps in this sample. For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
 - **AspireJavaScript.MinimalApi**: An HTTP API that returns randomly generated weather forecast data.
 - **AspireJavaScript.React**: A React app that consumes the weather forecast API and displays the data in a table.
-- **AspireJavaScript.ServiceDefaults**: The default shared project for .NET Aspire apps. For more information, see [.NET Aspire service defaults](../fundamentals/service-defaults.md).
+- **AspireJavaScript.ServiceDefaults**: The default shared project for .NET Aspire projects. For more information, see [.NET Aspire service defaults](../fundamentals/service-defaults.md).
 - **AspireJavaScript.Vue**: A Vue app that consumes the weather forecast API and displays the data in a table.
 
 ## Install client dependencies
@@ -219,4 +219,4 @@ The client apps are currently configured to run as true SPA apps, and are not co
 
 ## Summary
 
-While there are several considerations that are beyond the scope of this article, you learned how to build .NET Aspire apps that use Node.js and Node Package Manager (`npm`). You also learned how to use the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A> APIs to host Node.js apps and apps that execute from a _package.json_ file, respectively. Finally, you learned how to use the `npm` CLI to create Angular, React, and Vue client apps, and how to configure them to run on different ports.
+While there are several considerations that are beyond the scope of this article, you learned how to build .NET Aspire projects that use Node.js and Node Package Manager (`npm`). You also learned how to use the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A> APIs to host Node.js apps and apps that execute from a _package.json_ file, respectively. Finally, you learned how to use the `npm` CLI to create Angular, React, and Vue client apps, and how to configure them to run on different ports.

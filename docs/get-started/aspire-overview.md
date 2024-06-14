@@ -27,7 +27,7 @@ A _distributed application_ is one that uses computational _resources_ across mu
 
 - [**Orchestration**](#orchestration): .NET Aspire provides features for running and connecting multi-project applications and their dependencies for [local development environments](../fundamentals/networking-overview.md).
 - [**Components**](#net-aspire-components): .NET Aspire components are NuGet packages for commonly used services, such as Redis or Postgres, with standardized interfaces ensuring they connect consistently and seamlessly with your app.
-- [**Tooling**](#project-templates-and-tooling): .NET Aspire comes with project templates and tooling experiences for Visual Studio, Visual Studio Code, and the [dotnet CLI](/dotnet/core/tools/) to help you create and interact with .NET Aspire apps.
+- [**Tooling**](#project-templates-and-tooling): .NET Aspire comes with project templates and tooling experiences for Visual Studio, Visual Studio Code, and the [dotnet CLI](/dotnet/core/tools/) to help you create and interact with .NET Aspire projects.
 
 ## Orchestration
 
@@ -77,15 +77,15 @@ A full list of available components is detailed on the [.NET Aspire components](
 
 ## Project templates and tooling
 
-.NET Aspire apps follow a standardized structure designed around the default .NET Aspire project templates. Most .NET Aspire apps have at least three projects:
+.NET Aspire projects follow a standardized structure designed around the default .NET Aspire project templates. Most .NET Aspire projects have at least three projects:
 
 - **MyFirstAspireApp**: Your starter app, which could be any common .NET project such as a Blazor UI or Minimal API. You can add more projects to your app as it expands and manage orchestration between them using the **.AppHost** and **.ServiceDefaults** project.
 - **MyFirstAspireApp.AppHost**: The **.AppHost** project is used to manage the high level orchestration concerns of the app. Orchestration involves putting together various parts of your app, like APIs, service containers, and executables, and setting up how they find and communicate with each other.
-- **MyFirstAspireApp.ServiceDefaults**: The **.ServiceDefaults** project contains default .NET Aspire app configurations that can be extended and customized as needed. These configurations include concerns such as setting up health checks, OpenTelemetry settings, and more.
+- **MyFirstAspireApp.ServiceDefaults**: The **.ServiceDefaults** project contains default .NET Aspire project configurations that can be extended and customized as needed. These configurations include concerns such as setting up health checks, OpenTelemetry settings, and more.
 
 There are currently two .NET Aspire starter templates available to help you get started with this structure:
 
-- **.NET Aspire Application**: A basic starter template that only includes the **AspireSample.AppHost** and **AspireSample.ServiceDefaults** projects. This template is designed to only provide the essentials for you to build off of.
+- **.NET Aspire project**: A basic starter template that only includes the **AspireSample.AppHost** and **AspireSample.ServiceDefaults** projects. This template is designed to only provide the essentials for you to build off of.
 - **.NET Aspire Starter Application**: This template includes the **AspireSample.AppHost** and **AspireSample.ServiceDefaults** projects, but also includes boilerplate UI and API projects. These projects are pre-configured with service discovery and other basic examples of common .NET Aspire functionality.
 
 For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
@@ -107,4 +107,4 @@ When added to your _:::no-loc text="Program.cs":::_ file, the preceding code han
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Quickstart: Build your first .NET Aspire app](build-your-first-aspire-app.md)
+> [Quickstart: Build your first .NET Aspire project](build-your-first-aspire-app.md)

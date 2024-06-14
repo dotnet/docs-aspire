@@ -63,7 +63,7 @@ With preview 4, we have introduced a screen reader compatible table view for dis
 
 ## Databases and Entity Framework improvements
 
-In addition to new APIs, the .NET Aspire preview 4 release includes several improvements to the Entity Framework components. These improvements are designed to make it easier to configure and use Entity Framework in .NET Aspire applications.
+In addition to new APIs, the .NET Aspire preview 4 release includes several improvements to the Entity Framework components. These improvements are designed to make it easier to configure and use Entity Framework in .NET Aspire projects.
 
 ### More database management tools
 
@@ -99,7 +99,7 @@ Since these new methods provide a simpler way to configure the `DbContext`, the 
 
 ### Entity Framework migrations
 
-We've improved the process of using [EF Core tooling to create migrations](/ef/core/managing-schemas/migrations/) within .NET Aspire apps. Previously, EF Core tooling would fail, displaying an error that the database connection string is missing. This error occurred because EF Core tooling initiated the app, not .NET Aspire hosting, resulting in a failure to inject a connection string into the app. In preview 4, .NET Aspire detects whether a project is launched with EF Core tooling and disables connection string validation, allowing migrations to be successfully created.
+We've improved the process of using [EF Core tooling to create migrations](/ef/core/managing-schemas/migrations/) within .NET Aspire projects. Previously, EF Core tooling would fail, displaying an error that the database connection string is missing. This error occurred because EF Core tooling initiated the app, not .NET Aspire hosting, resulting in a failure to inject a connection string into the app. In preview 4, .NET Aspire detects whether a project is launched with EF Core tooling and disables connection string validation, allowing migrations to be successfully created.
 
 Another challenge with EF Core migrations is applying them to a transient database that starts up with the app. An approach we've been exploring involves adding a .NET background worker resource to the .NET Aspire solution. This worker executes migrations when the app host starts.
 
@@ -670,7 +670,7 @@ In addition to new features, azd will automatically create secrets in Azure Cont
 
 ## Visual Studio Publish to Azure
 
-This release we've enabled a Visual Studio publish experience for .NET Aspire applications. This new deployment experience enables a single right-click-publish gesture that results in *all* of the nodes of your .NET Aspire project being published as individual Azure Container Apps in an Azure Container Apps Environment, ideal for dev/test scenarios. Even better - the publishing experience in Visual Studio uses `azd` under the hood, so you'll be able to publish .NET Aspire apps directly from Visual Studio to any `azd` environment you have running in Azure.
+This release we've enabled a Visual Studio publish experience for .NET Aspire projects. This new deployment experience enables a single right-click-publish gesture that results in *all* of the nodes of your .NET Aspire project being published as individual Azure Container Apps in an Azure Container Apps Environment, ideal for dev/test scenarios. Even better - the publishing experience in Visual Studio uses `azd` under the hood, so you'll be able to publish .NET Aspire projects directly from Visual Studio to any `azd` environment you have running in Azure.
 
 :::image type="content" source="media/preview-4/aspire-azd-publish.gif" lightbox="media/preview-4/aspire-azd-publish.gif" alt-text=".NET Aspire right-click publish in Visual Studio":::
 
@@ -692,7 +692,7 @@ When using Podman, the console logs for a container don't show up in the .NET As
 
 **Workaround**: You can add a symlink from `docker` to `podman` as described in [issue comment](https://github.com/dotnet/aspire/issues/2701#issuecomment-1987227953) or you can simply alias Docker to Podman (`alias docker=podman`) as mentioned in [What is Podman](https://docs.podman.io/en/latest/index.html#what-is-podman).
 
-### When running .NET Aspire app, we sometimes see `KubeConfigException : kubeconfig file not found when the host is trying to start up`
+### When running .NET Aspire project, we sometimes see `KubeConfigException : kubeconfig file not found when the host is trying to start up`
 
 As described in [issue #2542](https://github.com/dotnet/aspire/issues/2542), you might see a `KubeConfigException` sometimes when running the Aspire application. For more information, see [issue #2542 comment](https://github.com/dotnet/aspire/issues/2542#issuecomment-1974253166) for a description of why this issue might likely happen.
 

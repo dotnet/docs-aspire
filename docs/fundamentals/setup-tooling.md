@@ -94,7 +94,7 @@ dotnet workload list
 
 ## Container runtime
 
-.NET Aspire apps are designed to run in containers. You can use either Docker Desktop or Podman as your container runtime. [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most common container runtime. [Podman](https://podman.io/docs/installation) is an open-source daemonless alternative to Docker, that can build and run Open Container Initiative (OCI) containers. If your host environment has both Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `DOTNET_ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
+.NET Aspire projects are designed to run in containers. You can use either Docker Desktop or Podman as your container runtime. [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most common container runtime. [Podman](https://podman.io/docs/installation) is an open-source daemonless alternative to Docker, that can build and run Open Container Initiative (OCI) containers. If your host environment has both Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `DOTNET_ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
 
 ## [Linux](#tab/linux)
 
@@ -120,7 +120,7 @@ The .NET Aspire workload makes available .NET Aspire project templates. These pr
 
 There are currently four project templates available:
 
-- **.NET Aspire Application**: A minimal .NET Aspire app that includes the following:
+- **.NET Aspire project**: A minimal .NET Aspire project that includes the following:
 
   - **AspireSample.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app.
 
@@ -169,7 +169,7 @@ These templates matched your input: 'aspire'
 Template Name                     Short Name              Language  Tags
 --------------------------------  ----------------------  --------  -------------------------------------------------------
 .NET Aspire App Host              aspire-apphost          [C#]      Common/.NET Aspire/Cloud
-.NET Aspire Application           aspire                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire project           aspire                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
 .NET Aspire Service Defaults      aspire-servicedefaults  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
 .NET Aspire Starter Application   aspire-starter          [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud
 .NET Aspire Test Project (xUnit)  aspire-xunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
@@ -267,14 +267,14 @@ When you're using Visual Studio, and you select the **.NET Aspire Start Applicat
 
 :::image type="content" source="media/setup-tooling/create-test-projects-template.png" lightbox="media/setup-tooling/create-test-projects-template.png" alt-text="A screenshot of Visual Studio displaying the option to create a test project.":::
 
-For more information, see [Testing .NET Aspire apps](testing.md).
+For more information, see [Testing .NET Aspire projects](testing.md).
 
 :::zone-end
 :::zone pivot="vscode"
 
 ## Visual Studio Code tooling
 
-You can use Visual Studio Code, in conjunction with the [C# Dev Kit extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit), to create and develop .NET Aspire apps. To create a new .NET Aspire app in Visual Studio Code, select the **Create .NET Project** button in the **Explorer** view, then select one of the .NET Aspire templates:
+You can use Visual Studio Code, in conjunction with the [C# Dev Kit extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit), to create and develop .NET Aspire projects. To create a new .NET Aspire project in Visual Studio Code, select the **Create .NET Project** button in the **Explorer** view, then select one of the .NET Aspire templates:
 
 :::image type="content" source="media/setup-tooling/vscode-create-project.png" lightbox="media/setup-tooling/vscode-create-project.png" alt-text="A screenshot showing how to create a new .NET Aspire project in Visual Studio Code.":::
 
@@ -287,4 +287,4 @@ Once you've created a new .NET Aspire project, you run and debug the app, steppi
 ## See also
 
 - [Unable to install .NET Aspire workload](../troubleshooting/unable-to-install-workload.md)
-- [Use Dev Proxy with .NET Aspire app](/microsoft-cloud/dev/dev-proxy/how-to/use-dev-proxy-with-dotnet-aspire)
+- [Use Dev Proxy with .NET Aspire project](/microsoft-cloud/dev/dev-proxy/how-to/use-dev-proxy-with-dotnet-aspire)
