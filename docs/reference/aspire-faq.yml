@@ -72,7 +72,7 @@ sections:
       - question: |
           What's the relationship between .NET Aspire and Kubernetes?
         answer: |
-          .NET Aspire makes it easy to develop distributed applications that can be orchestrated on your local development environment as executables and containers. Kubernetes is a technology that orchestrates and manages containers across multiple machines. .NET Aspire applications can produce a [manifest](../deployment/manifest-format.md) that tool authors can use to produce artifacts for deployment to Kubernetes. In essence, Kubernetes is a deployment target for .NET Aspire applications.
+          .NET Aspire makes it easy to develop distributed applications that can be orchestrated on your local development environment as executables and containers. Kubernetes is a technology that orchestrates and manages containers across multiple machines. .NET Aspire projects can produce a [manifest](../deployment/manifest-format.md) that tool authors can use to produce artifacts for deployment to Kubernetes. In essence, Kubernetes is a deployment target for .NET Aspire projects.
       - question: |
           Are worker services supported in .NET Aspire?
         answer: |
@@ -91,5 +91,5 @@ additionalContent: |
   To learn more about networking and functions:
 
   * [.NET Aspire overview](../get-started/aspire-overview.md)
-  * [Build your first .NET Aspire app](../get-started/build-your-first-aspire-app.md)
+  * [Build your first .NET Aspire project](../get-started/build-your-first-aspire-app.md)
   * [.NET Aspire components](../fundamentals/components-overview.md)

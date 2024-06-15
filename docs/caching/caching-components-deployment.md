@@ -1,13 +1,13 @@
 ---
-title: Deploy a .NET Aspire app that connects to Redis Cache to Azure
-description: Learn how to deploy a .NET Aspire app that connects to Redis Cache to Azure
+title: Deploy a .NET Aspire project that connects to Redis Cache to Azure
+description: Learn how to deploy a .NET Aspire project that connects to Redis Cache to Azure
 ms.date: 06/11/2024
 ms.topic: how-to
 ---
 
-# Tutorial: Deploy a .NET Aspire app with a Redis Cache to Azure
+# Tutorial: Deploy a .NET Aspire project with a Redis Cache to Azure
 
-In this tutorial, you learn to configure a .NET Aspire app with a Redis Cache for deployment to Azure. .NET Aspire provides multiple caching component configurations that provision different Redis services in Azure. You'll learn how to:
+In this tutorial, you learn to configure a .NET Aspire project with a Redis Cache for deployment to Azure. .NET Aspire provides multiple caching component configurations that provision different Redis services in Azure. You'll learn how to:
 
 > [!div class="checklist"]
 >
@@ -108,7 +108,7 @@ The preceding code adds a Redis Container resource to your app and configures a 
 Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) (`azd`) support .NET Aspire Redis component configurations to streamline deployments. `azd` consumes these settings and provisions properly configured resources for you.
 
 > [!NOTE]
-> You can also use the [Azure CLI](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-cli) or [Bicep](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-bicep) to provision and deploy .NET Aspire app resources. These options require more manual steps, but provide more granular control over your deployments. .NET Aspire apps can also connect to an existing Redis instance through manual configurations.
+> You can also use the [Azure CLI](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-cli) or [Bicep](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-bicep) to provision and deploy .NET Aspire project resources. These options require more manual steps, but provide more granular control over your deployments. .NET Aspire projects can also connect to an existing Redis instance through manual configurations.
 
 1. Open a terminal window in the root of your .NET Aspire project.
 
@@ -154,4 +154,4 @@ The deployment process created a Redis app container due to the **.AppHost** con
 
 - [.NET Aspire deployment via Azure Container Apps](../deployment/azure/aca-deployment.md)
 - [.NET Aspire Azure Container Apps deployment deep dive](../deployment/azure/aca-deployment-azd-in-depth.md)
-- [Deploy a .NET Aspire app using GitHub Actions](../deployment/azure/aca-deployment-github-actions.md)
+- [Deploy a .NET Aspire project using GitHub Actions](../deployment/azure/aca-deployment-github-actions.md)

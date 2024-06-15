@@ -41,7 +41,7 @@ aspire                   8.0.0-preview.3.24105.21/8.0.100    SDK 8.0.100, VS 17.
 
 ### Update existing apps
 
-For existing .NET Aspire apps, after installing the latest workload, update all .NET Aspire package references to:
+For existing .NET Aspire projects, after installing the latest workload, update all .NET Aspire package references to:
 
 - `8.0.0-preview.3.24105.21`
 
@@ -277,7 +277,7 @@ builder.AddAzureCosmosDB("db", static settings =>
 
 When using the Cosmos DB emulator, you can ignore the certificate validation by setting the `IgnoreEmulatorCertificate` property to `true`. We are currently working with the Cosmos team to remove the need to set `IgnoreEmulatorCertificate` so this customization for settings may not be required in the future.
 
-When deployed, `azd` will automatically provision the Cosmos DB resource and create the database as defined in the .NET Aspire application model.
+When deployed, `azd` will automatically provision the Cosmos DB resource and create the database as defined in the .NET Aspire project model.
 
 ### `StackExchange.Redis` now has logging
 
@@ -410,9 +410,9 @@ builder.AddKeyedRedis("redis-cart");
 
 The .NET Aspire samples are located in <https://github.com/dotnet/aspire-samples>, not the main Aspire repo. New samples for preview 3 include:
 
-- [AspireWithJavaScript](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript) demonstrates an approach for integrating several Node.js apps into a .NET Aspire application, including Angular, React, and Vue.
-- [ClientAppsIntegration](https://github.com/dotnet/aspire-samples/tree/main/samples/ClientAppsIntegration) demonstrates working with client apps such as WinForms, WPF, etc., in a .NET Aspire app, such that the client app is launched along with the AppHost project, can resolve services via service discovery, and logs, traces, and metrics via OpenTelemetry to the dashboard.
-- [Persistent Volume Mount](https://github.com/dotnet/aspire-samples/tree/main/samples/VolumeMount) demonstrates how to configure a SQL Server container to use a persistent volume mount in .NET Aspire, so that the data is persisted across app launches. This method can be used to persist data across instances of other container types configured in .NET Aspire apps too, e.g. PostgreSQL, Redis, etc.
+- [AspireWithJavaScript](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript) demonstrates an approach for integrating several Node.js apps into a .NET Aspire project, including Angular, React, and Vue.
+- [ClientAppsIntegration](https://github.com/dotnet/aspire-samples/tree/main/samples/ClientAppsIntegration) demonstrates working with client apps such as WinForms, WPF, etc., in a .NET Aspire project, such that the client app is launched along with the AppHost project, can resolve services via service discovery, and logs, traces, and metrics via OpenTelemetry to the dashboard.
+- [Persistent Volume Mount](https://github.com/dotnet/aspire-samples/tree/main/samples/VolumeMount) demonstrates how to configure a SQL Server container to use a persistent volume mount in .NET Aspire, so that the data is persisted across app launches. This method can be used to persist data across instances of other container types configured in .NET Aspire projects too, e.g. PostgreSQL, Redis, etc.
 
 ## Deployment to Azure using `azd`
 
@@ -429,7 +429,7 @@ var azSqlServer = builder.AddAzureSqlServer("azsql").AddDatabase("azsqldb");
 
 ## Add templates for _AppHost_ and _ServiceDefaults_ projects
 
-For those wishing to add .NET Aspire functionality to an existing solution, you can use the new templates for the _AppHost_ and _ServiceDefault_ projects. These are the same projects included in the empty .NET Aspire application template. They can be added through Visual Studio _Add New Project_ or via the command line using:
+For those wishing to add .NET Aspire functionality to an existing solution, you can use the new templates for the _AppHost_ and _ServiceDefault_ projects. These are the same projects included in the empty .NET Aspire project template. They can be added through Visual Studio _Add New Project_ or via the command line using:
 
 ```console
 dotnet new aspire-apphost

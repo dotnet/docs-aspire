@@ -1,19 +1,19 @@
 ---
-title: Deploy a .NET Aspire app using the Azure Developer CLI and GitHub Actions
-description: Learn how to use `azd` and GitHub Actions to deploy .NET Aspire apps.
+title: Deploy a .NET Aspire project using the Azure Developer CLI and GitHub Actions
+description: Learn how to use `azd` and GitHub Actions to deploy .NET Aspire projects.
 ms.date: 05/30/2024
 zone_pivot_groups: deployment-platform
 ms.custom: devx-track-extended-azdevcli
 ---
 
-# Tutorial: Deploy a .NET Aspire app using the Azure Developer CLI and GitHub Actions
+# Tutorial: Deploy a .NET Aspire project using the Azure Developer CLI and GitHub Actions
 
-The Azure Developer CLI (`azd`) enables you to deploy .NET Aspire applications using GitHub Actions by automatically configuring the required authentication and environment settings. This article walks you through the process of creating and deploying a .NET Aspire app on Azure Container Apps using `azd` and GitHub Actions. You learn the following concepts:
+The Azure Developer CLI (`azd`) enables you to deploy .NET Aspire projects using GitHub Actions by automatically configuring the required authentication and environment settings. This article walks you through the process of creating and deploying a .NET Aspire project on Azure Container Apps using `azd` and GitHub Actions. You learn the following concepts:
 
 > [!div class="checklist"]
 >
-> - Explore how `azd` integration works with .NET Aspire apps and GitHub Actions
-> - Create and configure a GitHub repository for a .NET Aspire app using `azd`
+> - Explore how `azd` integration works with .NET Aspire projects and GitHub Actions
+> - Create and configure a GitHub repository for a .NET Aspire project using `azd`
 > - Add a GitHub Actions workflow file to your .NET Aspire solution
 > - Monitor and explore GitHub Actions workflow executions and Azure deployments
 
@@ -54,9 +54,9 @@ curl -fsSL https://aka.ms/install-azd.sh | bash
 
 ---
 
-## Create a .NET Aspire app
+## Create a .NET Aspire project
 
-As a starting point, this article assumes that you've created a .NET Aspire app from the **.NET Aspire Starter Application** template. For more information, see [Quickstart: Build your first .NET Aspire app](../../get-started/build-your-first-aspire-app.md).
+As a starting point, this article assumes that you've created a .NET Aspire project from the **.NET Aspire Starter Application** template. For more information, see [Quickstart: Build your first .NET Aspire project](../../get-started/build-your-first-aspire-app.md).
 
 [!INCLUDE [init workflow](includes/init-workflow.md)]
 
@@ -181,7 +181,7 @@ The Azure Developer CLI enables you to automatically create CI/CD pipelines with
 
     :::image type="content" loc-scope="github" source="media/deployment-links.png" alt-text="A screenshot showing the deployed app links.":::
 
-Congratulations! You successfully deployed a .NET Aspire app using the Azure Developer CLI and GitHub Actions.
+Congratulations! You successfully deployed a .NET Aspire project using the Azure Developer CLI and GitHub Actions.
 
 :::zone-end
 
@@ -316,7 +316,7 @@ The Azure Developer CLI enables you to automatically create pipelines with the c
 > [!IMPORTANT]
 > If you encounter a `403 Forbidden` error when viewing your site in the browser, make sure the ingress settings are configured correctly. On the **webfrontend** app page in the Azure Portal, navigate to **Ingress** on the left navigation. Make sure **Ingress traffic** is set to **Accepting traffic from anywhere** and save your changes.
 
-Congratulations! You successfully deployed a .NET Aspire app using the Azure Developer CLI and Azure Pipelines.
+Congratulations! You successfully deployed a .NET Aspire project using the Azure Developer CLI and Azure Pipelines.
 
 :::zone-end
 

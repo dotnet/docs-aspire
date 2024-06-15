@@ -476,17 +476,17 @@ The sample app is now ready for testing. Verify that the data submitted to the A
 
 :::zone pivot="visual-studio"
 
-1. Launch the .NET Aspire app by selecting the **Start** debugging button, or by pressing <kbd>F5</kbd>. The .NET Aspire dashboard app should open in the browser.
+1. Launch the .NET Aspire project by selecting the **Start** debugging button, or by pressing <kbd>F5</kbd>. The .NET Aspire dashboard app should open in the browser.
 
 :::zone-end
 :::zone pivot="vscode"
 
-1. Launch the .NET Aspire app by selecting the **Start** debugging button, or by pressing <kbd>F5</kbd>. The .NET Aspire dashboard app should open in the browser.
+1. Launch the .NET Aspire project by selecting the **Start** debugging button, or by pressing <kbd>F5</kbd>. The .NET Aspire dashboard app should open in the browser.
 
 :::zone-end
 :::zone pivot="dotnet-cli"
 
-1. Launch the .NET Aspire app by running `dotnet run --project AspireSample.AppHost`. The .NET Aspire dashboard app should open in the browser.
+1. Launch the .NET Aspire project by running `dotnet run --project AspireSample.AppHost`. The .NET Aspire dashboard app should open in the browser.
 
 :::zone-end
 

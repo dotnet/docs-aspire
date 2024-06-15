@@ -7,11 +7,11 @@ ms.date: 05/21/2024
 
 # .NET Aspire deployments
 
-.NET Aspire applications are built with cloud-agnostic principles, allowing deployment flexibility across various platforms supporting .NET and containers. Users can adapt the provided guidelines for deployment on other cloud environments or local hosting. The manual deployment process, while feasible, involves exhaustive steps prone to errors. Users prefer leveraging CI/CD pipelines and cloud-specific tooling for a more streamlined deployment experience tailored to their chosen infrastructure.
+.NET Aspire projects are built with cloud-agnostic principles, allowing deployment flexibility across various platforms supporting .NET and containers. Users can adapt the provided guidelines for deployment on other cloud environments or local hosting. The manual deployment process, while feasible, involves exhaustive steps prone to errors. Users prefer leveraging CI/CD pipelines and cloud-specific tooling for a more streamlined deployment experience tailored to their chosen infrastructure.
 
 ## Deployment manifest
 
-To enable deployment tools from Microsoft and other cloud providers to understand the structure of .NET Aspire applications, specialized targets of the [AppHost project](../fundamentals/app-host-overview.md) can be executed to generate a manifest file describing the projects/services used by the app and the properties necessary for deployment, such as environment variables.
+To enable deployment tools from Microsoft and other cloud providers to understand the structure of .NET Aspire projects, specialized targets of the [AppHost project](../fundamentals/app-host-overview.md) can be executed to generate a manifest file describing the projects/services used by the app and the properties necessary for deployment, such as environment variables.
 
 For more information on the schema of the manifest and how to run app host project targets, see [.NET Aspire manifest format for deployment tool builders](manifest-format.md).
 
@@ -21,15 +21,15 @@ For more information on the schema of the manifest and how to run app host proje
 
 ### Azure Container Apps
 
-.NET Aspire apps are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. The [Azure Container Apps](azure/aca-deployment.md) topic describes how to deploy Aspire apps to ACA manually, using bicep, or using the Azure Developer CLI (azd).
+.NET Aspire projects are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. The [Azure Container Apps](azure/aca-deployment.md) topic describes how to deploy Aspire apps to ACA manually, using bicep, or using the Azure Developer CLI (azd).
 
 ### Use Application Insights for .NET Aspire telemetry
 
-.NET Aspire apps are designed to emit telemetry using OpenTelemetry which uses a provider model. .NET Aspire Apps can direct their telemetry to Azure Monitor / Application Insights using the Azure Monitor telemetry distro. For more information, see [Use Application Insights for .NET Aspire telemetry](azure/application-insights.md) for step-by-step instructions.
+.NET Aspire projects are designed to emit telemetry using OpenTelemetry which uses a provider model. .NET Aspire projects can direct their telemetry to Azure Monitor / Application Insights using the Azure Monitor telemetry distro. For more information, see [Use Application Insights for .NET Aspire telemetry](azure/application-insights.md) for step-by-step instructions.
 
 ## Deploy to Kubernetes
 
-Kubernetes is a popular container orchestration platform that can run .NET Aspire applications. To deploy .NET Aspire apps to Kubernetes clusters, you need to map the .NET Aspire JSON manifest to a Kubernetes YAML manifest file. There are two ways to do this: by using the Aspir8 project, or by manually creating Kubernetes manifests.
+Kubernetes is a popular container orchestration platform that can run .NET Aspire projects. To deploy .NET Aspire projects to Kubernetes clusters, you need to map the .NET Aspire JSON manifest to a Kubernetes YAML manifest file. There are two ways to do this: by using the Aspir8 project, or by manually creating Kubernetes manifests.
 
 ### The Aspir8 project
 

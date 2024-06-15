@@ -14,7 +14,7 @@ Welcome to what's new in the .NET Aspire docs for April 2024. This article lists
 ### Updated articles
 
 - [.NET Aspire overview](../get-started/aspire-overview.md) - Fix invalidated xref's since API updates
-- [Build .NET Aspire apps with Node.js](../get-started/build-aspire-apps-with-nodejs.md)
+- [Add Node.js apps to a .NET Aspire project](../get-started/build-aspire-apps-with-nodejs.md)
   - nit: fixed spelling
   - Update the nodejs content to align with the recent updates to the sample
   - Fix the env var format for service endpoints
@@ -40,7 +40,7 @@ Welcome to what's new in the .NET Aspire docs for April 2024. This article lists
   - More issues
   - Update setup-tooling.md (typo)
 - [Health checks in .NET Aspire](../fundamentals/health-checks.md) - Update health-checks verbiage
-- [Persist .NET Aspire app data using volumes](../fundamentals/persist-data-volumes.md)
+- [Persist .NET Aspire project data using volumes](../fundamentals/persist-data-volumes.md)
   - Local code snippets and correct persisted volumes
   - Try a redirect
 
@@ -75,7 +75,7 @@ Welcome to what's new in the .NET Aspire docs for April 2024. This article lists
   - Add clarifying details for SQL Server and database workflow
   - Corrected PostgreSQL typo
   - Try a redirect
-- [Tutorial: Deploy a .NET Aspire app with a SQL Server Database to Azure](../database/sql-server-component-deployment.md) - Updates and fixes for SQL deployment
+- [Tutorial: Deploy a .NET Aspire project with a SQL Server Database to Azure](../database/sql-server-component-deployment.md) - Updates and fixes for SQL deployment
 
 ## Messaging
 
@@ -110,9 +110,9 @@ Welcome to what's new in the .NET Aspire docs for April 2024. This article lists
 
 ### Updated articles
 
-- [Deploy a .NET Aspire app to Azure Container Apps](../deployment/azure/aca-deployment.md) - Aspire vs deploy
+- [Deploy a .NET Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md) - Aspire vs deploy
 - [Local Azure provisioning](../deployment/azure/local-provisioning.md) - Remove misplaced provisioning content, it belonged in local
-- [Tutorial: Deploy a .NET Aspire app using the Azure Developer CLI and GitHub Actions](../deployment/azure/aca-deployment-github-actions.md)
+- [Tutorial: Deploy a .NET Aspire project using the Azure Developer CLI and GitHub Actions](../deployment/azure/aca-deployment-github-actions.md)
   - Address multiple issues
   - Correct typo in naming of the directory for azure devops pipeline deployment documentations
   - Typo "Create a Azure DevOps"→"Create an Azure DevOps"

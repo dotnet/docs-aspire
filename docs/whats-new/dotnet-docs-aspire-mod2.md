@@ -17,10 +17,10 @@ Welcome to what's new in the .NET Aspire docs for May 2024. This article lists s
   - Fixes typo in .NET Aspire Overview
   - Help more clearly define local dev.
   - typo
-- [Build .NET Aspire apps with Node.js](../get-started/build-aspire-apps-with-nodejs.md)
+- [Add Node.js apps to a .NET Aspire project](../get-started/build-aspire-apps-with-nodejs.md)
   - Update build-aspire-apps-with-nodejs.md
   - Fix screen capture and TS file ref.
-- [Quickstart: Build your first .NET Aspire app](../get-started/build-your-first-aspire-app.md)
+- [Quickstart: Build your first .NET Aspire project](../get-started/build-your-first-aspire-app.md)
   - Update build-your-first-aspire-app.md to highlight the correct line
   - Address all issues in #720
 - [Tutorial: Add .NET Aspire to an existing .NET app](../get-started/add-aspire-existing-app.md) - Add content for VS Code and .NET CLI to tutorial
@@ -55,7 +55,7 @@ Welcome to what's new in the .NET Aspire docs for May 2024. This article lists s
   - Change trace detail view -> page
   - Fix #810
 - [Health checks in .NET Aspire](../fundamentals/health-checks.md) - Placeholder for .NET Aspire preview 7.
-- [Persist .NET Aspire app data using volumes](../fundamentals/persist-data-volumes.md) - Fix PostgreSQL typo in persist-data-volumes.md
+- [Persist .NET Aspire project data using volumes](../fundamentals/persist-data-volumes.md) - Fix PostgreSQL typo in persist-data-volumes.md
 - [Security considerations for running the .NET Aspire dashboard](../fundamentals/dashboard/security-considerations.md)
   - Updates to .NET Aspire dashboard content
   - Add missing image updates
@@ -141,7 +141,7 @@ Welcome to what's new in the .NET Aspire docs for May 2024. This article lists s
 
 ### New articles
 
-- [Tutorial: Deploy a .NET Aspire app with a Redis Cache to Azure](../caching/caching-components-deployment.md)
+- [Tutorial: Deploy a .NET Aspire project with a Redis Cache to Azure](../caching/caching-components-deployment.md)
 
 ### Updated articles
 
@@ -160,24 +160,24 @@ Welcome to what's new in the .NET Aspire docs for May 2024. This article lists s
 
 ### New articles
 
-- [Deploy a .NET Aspire app to Azure Container Apps using Visual Studio](../deployment/azure/aca-deployment-visual-studio.md)
+- [Deploy a .NET Aspire project to Azure Container Apps using Visual Studio](../deployment/azure/aca-deployment-visual-studio.md)
 
 ### Updated articles
 
 - [.NET Aspire deployments](../deployment/overview.md)
   - Edit pass on deployment doc
   - Minor casing fix
-- [Deploy a .NET Aspire app to Azure Container Apps](../deployment/azure/aca-deployment.md)
+- [Deploy a .NET Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md)
   - Deployment fixes
   - deployment refactoring
-- [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md)
+- [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md)
   - Update aca-deployment-azd-in-depth.md - Add missing dotnet cli command argument
   - Deployment fixes
-- [Deploy a .NET Aspire app to Azure Container Apps using Visual Studio](../deployment/azure/aca-deployment-visual-studio.md)
+- [Deploy a .NET Aspire project to Azure Container Apps using Visual Studio](../deployment/azure/aca-deployment-visual-studio.md)
   - Deployment fixes
   - deployment refactoring
 - [Local Azure provisioning](../deployment/azure/local-provisioning.md) - Fix AzureProvisioner config docs
-- [Tutorial: Deploy a .NET Aspire app using the Azure Developer CLI and GitHub Actions](../deployment/azure/aca-deployment-github-actions.md)
+- [Tutorial: Deploy a .NET Aspire project using the Azure Developer CLI and GitHub Actions](../deployment/azure/aca-deployment-github-actions.md)
   - Add link to supporting content for `az group delete` and help macOS users create .github
   - fix deployment yaml
 

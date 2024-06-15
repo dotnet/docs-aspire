@@ -265,9 +265,9 @@ items:
     items:
       - name: Introduction to .NET Aspire
         href: /training/modules/introduction-dotnet-aspire
-      - name: Create a .NET Aspire application
+      - name: Create a .NET Aspire project
         href: /training/modules/create-aspire-applications
-      - name: Use telemetry in a .NET Aspire app
+      - name: Use telemetry in a .NET Aspire project
         href: /training/modules/use-telemetry-dotnet-aspire
 
   - name: Resources

@@ -46,9 +46,9 @@ Data displayed in the dashboard can be sensitive. For example, configuration can
 
 :::image type="content" source="media/preview-6/login.png" lightbox="media/preview-6/login.png" alt-text=".NET Aspire dashboard login page":::
 
-If you run your .NET Aspire apps from Visual Studio or the C# Dev Kit for Visual Studio Code, then you'll never see the login page. Aspire tooling has been updated to log you in automatically.
+If you run your .NET Aspire projects from Visual Studio or the C# Dev Kit for Visual Studio Code, then you'll never see the login page. Aspire tooling has been updated to log you in automatically.
 
-If you run your .NET Aspire apps from the command line, you'll need to login the first time you access the dashboard. The required token is printed in console output, so copy and paste it into the login page and click Login. A persistent auth cookie is saved to the browser. Hopefully you won't need to see the login page often.
+If you run your .NET Aspire projects from the command line, you'll need to login the first time you access the dashboard. The required token is printed in console output, so copy and paste it into the login page and click Login. A persistent auth cookie is saved to the browser. Hopefully you won't need to see the login page often.
 
 :::image type="content" source="media/preview-6/console-token.png" lightbox="media/preview-6/console-token.png" alt-text=".NET Aspire console with login token highlighted":::
 
@@ -155,7 +155,7 @@ public class WebTests
 
 The above example shows how to create a `DistributedApplicationTestingBuilder` in order to bootstrap the app host project and run tests against it. There's also an easy way to create an `HttpClient` that is configured to make requests to resources in the app host project.
 
-For more information, see [Testing .NET Aspire apps](../fundamentals/testing.md).
+For more information, see [Testing .NET Aspire projects](../fundamentals/testing.md).
 
 ## Templates
 

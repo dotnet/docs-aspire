@@ -7,13 +7,13 @@ ms.topic: how-to
 
 # Use Application Insights for .NET Aspire telemetry
 
-Azure Application Insights, a feature of Azure Monitor, excels in Application Performance Management (APM) for live web applications. .NET Aspire apps are designed to use OpenTelemetry for application telemetry. OpenTelemetry supports an extension model to support sending data to different APMs. .NET Aspire uses OTLP by default for telemetry export, which is used by the dashboard during development. Azure Monitor doesn't (yet) support OTLP, so the applications need to be modified to use the Azure Monitor exporter, and configured with the connection string.
+Azure Application Insights, a feature of Azure Monitor, excels in Application Performance Management (APM) for live web applications. .NET Aspire projects are designed to use OpenTelemetry for application telemetry. OpenTelemetry supports an extension model to support sending data to different APMs. .NET Aspire uses OTLP by default for telemetry export, which is used by the dashboard during development. Azure Monitor doesn't (yet) support OTLP, so the applications need to be modified to use the Azure Monitor exporter, and configured with the connection string.
 
 To use Application insights, you specify its configuration in the app host project *and* use the [Azure Monitor distro in the service defaults project](#use-the-azure-monitor-distro).
 
 ## Choosing how Application Insights is provisioned
 
-.NET Aspire has the capability to provision cloud resources as part of cloud deployment, including Application Insights. In your .NET Aspire app, you can decide if you want .NET Aspire to provision an Application Insights resource when deploying to Azure. You can also select to use an existing Application Insights resource by providing its connection string. The connection information is managed by the resource configuration in the app host project.
+.NET Aspire has the capability to provision cloud resources as part of cloud deployment, including Application Insights. In your .NET Aspire project, you can decide if you want .NET Aspire to provision an Application Insights resource when deploying to Azure. You can also select to use an existing Application Insights resource by providing its connection string. The connection information is managed by the resource configuration in the app host project.
 
 ### Provisioning Application insights during Azure deployment
 
@@ -42,7 +42,7 @@ builder.AddProject<Projects.Web>("webfrontend")
 builder.Build().Run();
 ```
 
-Follow the steps in [Deploy a .NET Aspire app to Azure Container Apps using the Azure Developer CLI (in-depth guide)](./aca-deployment-azd-in-depth.md) to deploy the application to Azure Container Apps. `azd` will create an Application Insights resource as part of the same resource group, and configure the connection string for each container.
+Follow the steps in [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](./aca-deployment-azd-in-depth.md) to deploy the application to Azure Container Apps. `azd` will create an Application Insights resource as part of the same resource group, and configure the connection string for each container.
 
 ### Manual provisioning of Application Insights resource
 
@@ -71,7 +71,7 @@ builder.Build().Run();
 
 #### Resource usage during developemnt
 
-When running the .NET Aspire app locally, the preceding code reads the connection string from configuration. As this is a secret, you should store the value in [app secrets](/aspnet/core/security/app-secrets). Right click on the app host project and choose **Manage Secrets** from the context menu to open the secrets file for the app host project. In the file add the key and your specific connection string, the example below is for illustration purposes.
+When running the .NET Aspire project locally, the preceding code reads the connection string from configuration. As this is a secret, you should store the value in [app secrets](/aspnet/core/security/app-secrets). Right click on the app host project and choose **Manage Secrets** from the context menu to open the secrets file for the app host project. In the file add the key and your specific connection string, the example below is for illustration purposes.
 
 ```json
 {
