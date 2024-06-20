@@ -47,7 +47,7 @@ public sealed partial class Home : IAsyncDisposable
 
     protected override async Task OnInitializedAsync()
     {
-        var api = Configuration.GetServiceHttpUri("apiservice");
+        var api = Configuration.GetServiceHttpsUri("apiservice");
 
         var builder = new UriBuilder(api)
         {

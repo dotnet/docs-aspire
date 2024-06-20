@@ -115,6 +115,9 @@ items:
         - name: Azure Key Vault
           displayName: key vault,security
           href: security/azure-security-key-vault-component.md
+        - name: Azure SignalR Service
+          displayName: azure signalr service,signalr,real-time
+          href: real-time/azure-signalr-scenario.md
         - name: Azure Service Bus
           displayName: service bus,messaging
           href: messaging/azure-service-bus-component.md
@@ -199,8 +202,6 @@ items:
             href: database/sql-server-component-deployment.md
           - name: Deploy .NET Aspire + Redis
             href: caching/caching-components-deployment.md
-          - name: Use custom Bicep templates
-            href: deployment/azure/custom-bicep-templates.md
       - name: Tool-builder manifest schemas
         href: deployment/manifest-format.md
 
@@ -210,9 +211,8 @@ items:
         items:
         - name: Local Azure provisioning
           href: deployment/azure/local-provisioning.md
-        - name: Azure SignalR Service scenario
-          displayName: azure signalr service,signalr,real-time
-          href: real-time/azure-signalr-scenario.md
+        - name: Use custom Bicep templates
+          href: deployment/azure/custom-bicep-templates.md
 
   - name: Frameworks
     items:
