@@ -54,7 +54,7 @@ public class ExampleService(IDistributedCache cache)
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var redis = builder.AddRedis("redis");
+var redis = builder.AddRedis("cache");
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(redis)
