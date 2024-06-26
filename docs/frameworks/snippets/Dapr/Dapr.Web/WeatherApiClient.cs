@@ -11,10 +11,10 @@ public class WeatherApiClient(DaprClient client)
             await client.InvokeMethodAsync<List<WeatherForecast>>(
                 HttpMethod.Get,
                 "apiservice",
-                "/weatherforecast",
+                "weatherforecast",
                 cancellationToken);
 
-        return forecasts?.ToArray() ?? [];
+        return forecasts?.Take(maxItems)?.ToArray() ?? [];
     }
 }
 
