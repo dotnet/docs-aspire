@@ -2,7 +2,7 @@
 title: .NET Aspire Azure AI Search Documents component
 description: Learn how to use the .NET Aspire Azure AI Search Documents component.
 ms.topic: how-to
-ms.date: 06/12/2024
+ms.date: 06/26/2024
 ---
 
 # .NET Aspire Azure AI Search Documents component
@@ -75,18 +75,18 @@ For more information, see the [Azure AI Search client library for .NET](/dotnet/
 
 ## App host usage
 
-To add Azure AI hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices) NuGet package.
+To add Azure AI hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.Search](https://www.nuget.org/packages/Aspire.Hosting.Azure.Search) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Azure.CognitiveServices
+dotnet add package Aspire.Hosting.Azure.Search
 ```
 
 ### [PackageReference](#tab/package-reference)
 
 ```xml
-<PackageReference Include="Aspire.Hosting.Azure.CognitiveServices"
+<PackageReference Include="Aspire.Hosting.Azure.Search"
                   Version="[SelectVersion]" />
 ```
 
