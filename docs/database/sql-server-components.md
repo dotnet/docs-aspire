@@ -1,7 +1,7 @@
 ---
 title: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core
 description: Learn how to connect an ASP.NET Core app to to SQL Server using .NET Aspire and Entity Framework Core.
-ms.date: 05/14/2024
+ms.date: 06/26/2024
 ms.topic: tutorial
 ---
 
@@ -55,7 +55,7 @@ dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer
 
 Your _AspireSQLEFCore_ project is now set up to use .NET Aspire components. Here's the updated _AspireSQLEFCore.csproj_ file:
 
-:::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/AspireSQLEFCore.csproj" highlight="10, 11":::
+:::code language="xml" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/AspireSQLEFCore.csproj" highlight="10":::
 
 ## Configure the .NET Aspire component
 
