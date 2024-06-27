@@ -45,7 +45,7 @@ configuration:
           - isActivitySender:
               user: dotnet-policy-service[bot]
           - titleContains:
-              pattern: Merge main into live
+              pattern: "✅ Merge `main` into `live`"
               isRegex: False
         then:
           - addLabel:
