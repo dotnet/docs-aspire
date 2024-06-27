@@ -2,7 +2,7 @@
 title: .NET Aspire Azure AI OpenAI component
 description: Learn how to use the .NET Aspire Azure AI OpenAI component.
 ms.topic: how-to
-ms.date: 06/05/2024
+ms.date: 06/26/2024
 ---
 
 # .NET Aspire Azure AI OpenAI component
@@ -102,7 +102,7 @@ When using a connection string from the `ConnectionStrings` configuration sectio
 builder.AddAzureAIOpenAI("openAiConnectionName");
 ```
 
-And then the connection string will be retrieved from the `ConnectionStrings` configuration section:
+The connection string is retrieved from the `ConnectionStrings` configuration section, and there are two supported formats, either the account endpoint used in conjunction with the default Azure credential or a connection string with the account key.
 
 #### Account endpoint
 
