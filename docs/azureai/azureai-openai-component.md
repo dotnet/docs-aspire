@@ -123,7 +123,7 @@ Alternatively, a custom connection string can be used.
 ```json
 {
   "ConnectionStrings": {
-    "openaiConnectionName": "Endpoint=https://{account_name}.openai.azure.com/;Key={account_key};"
+    "openAiConnectionName": "Endpoint=https://{account_name}.openai.azure.com/;Key={account_key};"
   }
 }
 ```
