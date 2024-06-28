@@ -2,7 +2,7 @@
 title: .NET Aspire PostgreSQL Entity Framework Core component
 description: This article describes the .NET Aspire PostgreSQL Entity Framework Core component.
 ms.topic: how-to
-ms.date: 06/05/2024
+ms.date: 06/28/2024
 ---
 
 # .NET Aspire PostgreSQL Entity Framework Core component
@@ -82,6 +82,28 @@ var myService = builder.AddProject<Projects.MyService>()
 
 The .NET Aspire PostgreSQL Entity Framework Core component provides multiple configuration approaches and options to meet the requirements and conventions of your project.
 
+### Use a connection string
+
+When using a connection string from the `ConnectionStrings` configuration section, you provide the name of the connection string when calling `AddNpgsqlDbContext`:
+
+```csharp
+builder.AddNpgsqlDbContext<MyDbContext>("myConnection");
+```
+
+The connection string is retrieved from the `ConnectionStrings` configuration section:
+
+```json
+{
+  "ConnectionStrings": {
+    "myConnection": "Host=myserver;Database=test"
+  }
+}
+```
+
+The `EnrichNpgsqlDbContext` won't make use of the `ConnectionStrings` configuration section since it expects a `DbContext` to be registered at the point it is called.
+
+For more information, see the [ConnectionString](https://www.npgsql.org/doc/connection-string-parameters.html).
+
 ### Use configuration providers
 
 The .NET Aspire PostgreSQL Entity Framework Core component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Npgsql.EntityFrameworkCore.PostgreSQL.NpgsqlEntityFrameworkCorePostgreSQLSettings> from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` key. If you have set up your configurations in the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` section you can just call the method without passing any parameter.
@@ -115,7 +137,7 @@ builder.AddNpgsqlDbContext<YourDbContext>(
     static settings => settings.ConnectionString = "YOUR_CONNECTIONSTRING");
 ```
 
-### Configure multiple DBContext classes
+### Configure multiple DdContext classes
 
 If you want to register more than one <xref:Microsoft.EntityFrameworkCore.DbContext> with different configuration, you can use `$"Aspire:Npgsql:EntityFrameworkCore:PostgreSQL:{typeof(TContext).Name}"` configuration section name. The json configuration would look like:
 

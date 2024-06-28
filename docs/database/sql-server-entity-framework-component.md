@@ -2,7 +2,7 @@
 title: .NET Aspire SqlServer Entity Framework Core component
 description: This article describes the .NET Aspire SQL Server Entity Framework Core component.
 ms.topic: how-to
-ms.date: 06/05/2024
+ms.date: 06/28/2024
 ---
 
 # .NET Aspire SqlServer Entity Framework Core component
@@ -73,6 +73,28 @@ var myService = builder.AddProject<Projects.MyService>()
 ## Configuration
 
 The .NET Aspire SQL Server Entity Framework Core component provides multiple configuration approaches and options to meet the requirements and conventions of your project.
+
+### Use connection string
+
+When using a connection string from the `ConnectionStrings` configuration section, you provide the name of the connection string when calling `builder.AddSqlServerDbContext<TContext>()`:
+
+```csharp
+builder.AddSqlServerDbContext<MyDbContext>("myConnection");
+```
+
+The connection string is retrieved from the `ConnectionStrings` configuration section:
+
+```json
+{
+  "ConnectionStrings": {
+    "myConnection": "Data Source=myserver;Initial Catalog=master"
+  }
+}
+```
+
+The `EnrichSqlServerDbContext` won't make use of the `ConnectionStrings` configuration section since it expects a `DbContext` to be registered at the point it's called.
+
+For more information, see the [ConnectionString](/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring#remarks).
 
 ### Use configuration providers
 
