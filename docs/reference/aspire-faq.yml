@@ -3,7 +3,7 @@ metadata:
   title: Frequently asked questions about .NET Aspire
   description: Answers to some of the most common questions and scenarios for .NET Aspire.
   ms.topic: faq
-  ms.date: 05/18/2024
+  ms.date: 06/28/2024
 title: Frequently asked questions about .NET Aspire
 summary: |
   This article lists frequently asked questions about .NET Aspire. For a more comprehensive overview, see [.NET Aspire overview](../get-started/aspire-overview.md).
@@ -76,14 +76,12 @@ sections:
       - question: |
           Are worker services supported in .NET Aspire?
         answer: |
-          Due to a deployment related bug, preview 1 of .NET Aspire doesn't support deployment of worker services.
-
-          As a workaround consider deploying a web application as a worker which is not exposed to the internet. We are currently tracking this issue and plan to have it resolved for preview 2 (see [GitHub issue](https://github.com/dotnet/aspire/issues/743)).
+          Yes, worker services are fully supported and there are docs and samples available to help you get started. Worker services are a great way to run background tasks, scheduled tasks, or long-running tasks in .NET Aspire. For more information, see [Database migrations with Entity Framework Core sample app](/samples/dotnet/aspire-samples/aspire-efcore-migrations/).
       - question: |
           Are Azure Functions supported in .NET Aspire?
         answer: |
-          We have no specific support for Azure Functions in preview 1 of .NET Aspire however it's a target
-          execution environment for deployment that we are planning to support in future previews.
+          We have no specific support for Azure Functions thus far in .NET Aspire, however it's a target
+          execution environment for deployment that we are planning to support in future.
 
 additionalContent: |
 
