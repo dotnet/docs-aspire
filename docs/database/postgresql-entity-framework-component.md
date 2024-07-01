@@ -137,7 +137,7 @@ builder.AddNpgsqlDbContext<YourDbContext>(
     static settings => settings.ConnectionString = "YOUR_CONNECTIONSTRING");
 ```
 
-### Configure multiple DdContext classes
+### Configure multiple DbContext classes
 
 If you want to register more than one <xref:Microsoft.EntityFrameworkCore.DbContext> with different configuration, you can use `$"Aspire:Npgsql:EntityFrameworkCore:PostgreSQL:{typeof(TContext).Name}"` configuration section name. The json configuration would look like:
 
