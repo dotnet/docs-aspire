@@ -1,7 +1,7 @@
 ---
 title: MySQL Entity Framework Component
 description: MySQL Entity Framework Component
-ms.date: 06/05/2024
+ms.date: 06/28/2024
 ---
 
 # .NET Aspire Pomelo MySQL Entity Framework Component
@@ -94,7 +94,7 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 
 The `EnrichMySqlDbContext` won't make use of the `ConnectionStrings` configuration section since it expects a `DbContext` to be registered at the point it is called.
 
-See the [MySqlConnector documentation](https://mysqlconnector.net/connection-options/) for more information on how to format this connection string.
+For more information, see the [MySqlConnector documentation](https://mysqlconnector.net/connection-options/).
 
 ### Use configuration providers
 

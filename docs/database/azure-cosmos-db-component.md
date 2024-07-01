@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Cosmos DB component
 description: This article describes the .NET Aspire Azure Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 06/05/2024
+ms.date: 06/28/2024
 ---
 
 # .NET Aspire Azure Cosmos DB component
@@ -114,7 +114,7 @@ The recommended connection approach is to use an account endpoint, which works w
 ```json
 {
     "ConnectionStrings": {
-    "cosmosConnectionName": "https://{account_name}.documents.azure.com:443/"
+      "cosmosConnectionName": "https://{account_name}.documents.azure.com:443/"
     }
 }
 ```

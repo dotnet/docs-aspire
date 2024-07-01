@@ -2,7 +2,7 @@
 title: .NET Aspire SQL Server component
 description: This article describes the .NET Aspire SQL Server component.
 ms.topic: how-to
-ms.date: 06/05/2024
+ms.date: 06/28/2024
 ---
 
 # .NET Aspire SQL Server component
@@ -91,6 +91,26 @@ For more information, see [External parameters](../fundamentals/external-paramet
 
 The .NET Aspire SQL Server component provides multiple configuration approaches and options to meet the requirements and conventions of your project.
 
+### Use a connection string
+
+When using a connection string from the `ConnectionStrings` configuration section, you provide the name of the connection string when calling `AddSqlServerClient`:
+
+```csharp
+builder.AddSqlServerClient("myConnection");
+```
+
+The connection string is retrieved from the `ConnectionStrings` configuration section:
+
+```json
+{
+  "ConnectionStrings": {
+    "myConnection": "Data Source=myserver;Initial Catalog=master"
+  }
+}
+```
+
+For more information, see the [ConnectionString](/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring#remarks).
+
 ### Use configuration providers
 
 The .NET Aspire SQL Server supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `MicrosoftDataSqlClientSettings` from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:SqlServer:SqlClient` key. If you have set up your configurations in the `Aspire:SqlServer:SqlClient` section, you can just call the method without passing any parameter.
@@ -116,7 +136,7 @@ The following example shows an _:::no-loc text="appsettings.json":::_ file that 
 You can also pass the `Action<MicrosoftDataSqlClientSettings>` delegate to set up some or all the options inline, for example to turn off the `DisableMetrics`:
 
 ```csharp
-builder.AddSqlServerSqlClientConfig(
+builder.AddSqlServerClient(
     static settings => settings.DisableMetrics = true);
 ```
 
@@ -139,10 +159,10 @@ If you want to add more than one `SqlConnection` you could use named instances. 
 }
 ```
 
-To load the named configuration section from the json config call the `AddSqlServerSqlClientConfig` method by passing the `INSTANCE_NAME`.
+To load the named configuration section from the json config call the `AddSqlServerClient` method by passing the `INSTANCE_NAME`.
 
 ```csharp
-builder.AddSqlServerSqlClientConfig("INSTANCE_NAME");
+builder.AddSqlServerClient("INSTANCE_NAME");
 ```
 
 ### Configuration options

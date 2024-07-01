@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL component
 description: This article describes the .NET Aspire PostgreSQL component.
-ms.date: 06/05/2024
+ms.date: 06/28/2024
 ms.topic: how-to
 ---
 
@@ -85,6 +85,8 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
   }
 }
 ```
+
+For more information, see the [ConnectionString](https://www.npgsql.org/doc/connection-string-parameters.html).
 
 ### Use configuration providers
 
