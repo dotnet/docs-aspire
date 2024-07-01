@@ -3,7 +3,7 @@ metadata:
   title: Frequently asked questions about .NET Aspire
   description: Answers to some of the most common questions and scenarios for .NET Aspire.
   ms.topic: faq
-  ms.date: 05/18/2024
+  ms.date: 06/28/2024
 title: Frequently asked questions about .NET Aspire
 summary: |
   This article lists frequently asked questions about .NET Aspire. For a more comprehensive overview, see [.NET Aspire overview](../get-started/aspire-overview.md).
@@ -36,12 +36,8 @@ sections:
       - question: |
           Why is there a need for yet another framework to do what's already being done very well by everyone else? 
         answer: |
-          .NET Aspire isn't a framework. Perhaps the most controversial parts of it are the `DistributedApplication` APIs that you can use to build up the orchestration model in any .NET-based language. While everything is possible today, it's not easy. Using the Unix philosophy, the entire cloud-native ecosystem is built around tying various pieces of CNCF software together to build a stack. .NET Aspire tries to do the same thing using learnings from the cloud-native space and picks some opinions (in ways that use the same building blocks). One novel thing about how .NET Aspire builds various pieces of the stack is that it doesn't restrict the access or compatibility of other applications, frameworks, or services. As people play with it more, they realize how composable and extensible it is.
+          .NET Aspire isn't a framework, it's an [opinionated stack](../get-started/aspire-overview.md). Perhaps the most controversial parts of it are the `DistributedApplication` APIs that you can use to build up the orchestration model in any .NET-based language. While everything is possible today, it's not easy. Using the Unix philosophy, the entire cloud-native ecosystem is built around tying various pieces of CNCF software together to build a stack. .NET Aspire tries to do the same thing using learnings from the cloud-native space and picks some opinions (in ways that use the same building blocks). One novel thing about how .NET Aspire builds various pieces of the stack is that it doesn't restrict the access or compatibility of other applications, frameworks, or services. As people play with it more, they realize how composable and extensible it is.
 
-      - question: |
-          When will .NET Aspire be released?
-        answer: |
-          .NET Aspire was [officially released](https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability/) May 21st, 2024 to general availability (GA). Stay up to day with development and new releases on [official .NET Aspire repository](https://github.com/dotnet/aspire).
       - question: |
           What's the difference between .NET Aspire and Microsoft Orleans?
         answer: |
@@ -50,6 +46,7 @@ sections:
           [Orleans](/dotnet/orleans) is a distributed actor-based framework. .NET Aspire is a cloud-ready stack for building observable, production-ready, distributed applications. It includes local orchestration capabilities to simplify the developer inner loop and reusable opinionated components for integrating with commonly used application dependencies. An Orleans-based solution will still have external dependencies such as data stores and caches for which .NET Aspire can be used for orchestration purposes.
 
           For more information, see [Use Orleans with .NET Aspire](../frameworks/orleans.md) and the corresponding [Orleans voting app sample](/samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/).
+
       - question: |
           What's the difference between .NET Aspire and Dapr?
         answer: |
@@ -58,6 +55,7 @@ sections:
           Where Dapr abstracts some of the underlying cloud platform, .NET Aspire provides opinionated configuration around the underlying cloud technologies without abstracting them. A .NET-based application that uses Dapr can use .NET Aspire to orchestrate the local developer inner loop and streamline deployment. .NET Aspire includes extensions that support the launching of Dapr side-car processes during the inner loop.
 
           For more information, see [Use Dapr with .NET Aspire](../frameworks/dapr.md) and the corresponding [Dapr sample app](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithDapr) in the .NET Aspire sample repository.
+
       - question: |
           What's the difference between .NET Aspire and Project Tye?
         answer: |
@@ -65,25 +63,27 @@ sections:
           deployment into orchestrators such as Kubernetes. .NET Aspire is a superset of Tye which includes the
           orchestration and deployment capabilities along with opinionated components for integrating common
           cloud-native dependencies. .NET Aspire can be considered the evolution of the Project Tye experiment.
+
       - question: |
           What's the relationship between .NET Aspire and the Azure SDK for .NET?
         answer: |
           .NET Aspire provides components that rely on the [Azure SDK for .NET](/dotnet/azure/intro), to expose common functionality for storage ([Azure Blob Storage](../storage/azure-storage-blobs-component.md), [Azure Storage Queues](../storage/azure-storage-queues-component.md), and [Azure Table Storage](../storage/azure-storage-tables-component.md)), databases ([Azure Cosmos DB](../database/azure-cosmos-db-component.md) and [Azure Cosmos DB with Entity Framework Core](../database/azure-cosmos-db-entity-framework-component.md)), [messaging](../messaging/azure-service-bus-component.md), and [security](../security/azure-security-key-vault-component.md).
+
       - question: |
           What's the relationship between .NET Aspire and Kubernetes?
         answer: |
           .NET Aspire makes it easy to develop distributed applications that can be orchestrated on your local development environment as executables and containers. Kubernetes is a technology that orchestrates and manages containers across multiple machines. .NET Aspire projects can produce a [manifest](../deployment/manifest-format.md) that tool authors can use to produce artifacts for deployment to Kubernetes. In essence, Kubernetes is a deployment target for .NET Aspire projects.
+
       - question: |
           Are worker services supported in .NET Aspire?
         answer: |
-          Due to a deployment related bug, preview 1 of .NET Aspire doesn't support deployment of worker services.
+          Yes, worker services are fully supported and there are docs and samples available to help you get started. Worker services are a great way to run background tasks, scheduled tasks, or long-running tasks in .NET Aspire. For more information, see [Database migrations with Entity Framework Core sample app](/samples/dotnet/aspire-samples/aspire-efcore-migrations/).
 
-          As a workaround consider deploying a web application as a worker which is not exposed to the internet. We are currently tracking this issue and plan to have it resolved for preview 2 (see [GitHub issue](https://github.com/dotnet/aspire/issues/743)).
       - question: |
           Are Azure Functions supported in .NET Aspire?
         answer: |
-          We have no specific support for Azure Functions in preview 1 of .NET Aspire however it's a target
-          execution environment for deployment that we are planning to support in future previews.
+          We have no specific support for Azure Functions thus far in .NET Aspire, however it's a target
+          execution environment for deployment that we are planning to support in future.
 
 additionalContent: |
 
