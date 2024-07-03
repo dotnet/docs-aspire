@@ -29,5 +29,3 @@ Confirm that Docker is installed and running.
 * On Windows, check that in the system tray the Docker icon is present and marked as "Running". 
 
 * On Linux, check that "docker ps -a" returns success.
-
-
