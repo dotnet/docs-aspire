@@ -240,6 +240,10 @@ items:
         href: troubleshooting/unable-to-install-workload.md
       - name: The specified name is already in use
         href: troubleshooting/name-is-already-in-use.md
+      - name: Container runtime appears to be unhealthy
+        href: troubleshooting/container-runtime-unhealthy.md
+      - name: The connection string is missing
+        href: troubleshooting/connection-string-missing.md
       - name: .NET Aspire GitHub repository
         href: https://github.com/dotnet/aspire
       - name: Ask questions on Discord

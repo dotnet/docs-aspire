@@ -6,9 +6,11 @@ ms.date: 07/03/2024
 
 # Container runtime appears to be unhealthy
 
+Aspire applications require Docker to be running and healthy. This topic describes a possible symptom you may see if Docker is not in a healthy state.
+
 ## Symptoms
 
-When starting the AppHost the dashboard doesn't show up and an exception stack trace similar to this example is displayed in the console: 
+When starting the AppHost the dashboard doesn't show up and an exception stack trace similar to this example is displayed in the console:
 
 ```Output
 info: Aspire.Hosting.DistributedApplication[0] 
