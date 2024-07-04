@@ -10,7 +10,7 @@ ms.date: 07/03/2024
 
 When starting the AppHost the dashboard doesn't show up and an exception stack trace similar to this example is displayed in the console: 
 
-```sh
+```Output
 info: Aspire.Hosting.DistributedApplication[0] 
       Aspire version: 8.1.0-dev 
 info: Aspire.Hosting.DistributedApplication[0] 
@@ -24,8 +24,7 @@ fail: Microsoft.Extensions.Hosting.Internal.Host[11]
 
 ## Possible solutions
 
-Confirm that Docker is installed and running. 
+Confirm that Docker is installed and running:
 
-* On Windows, check that in the system tray the Docker icon is present and marked as "Running". 
-
-* On Linux, check that "docker ps -a" returns success.
+- On Windows, check that in the system tray the Docker icon is present and marked as "Running". 
+- On Linux, check that `docker ps -a` returns success.

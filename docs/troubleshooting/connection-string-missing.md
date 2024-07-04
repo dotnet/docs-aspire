@@ -14,9 +14,9 @@ When your app accesses a service that needs one of the components in your app, i
 
 ## Possible solutions
 
-Verify that the name of the resource, for instance a database resource, is the same in the AppHost and the Service that fails. 
+Verify that the name of the resource, for instance a database resource, is the same in the AppHost and the Service that fails.
 
-For example, if the AppHost defines a PostgreSQL resource with the name db1 like this: 
+For example, if the AppHost defines a PostgreSQL resource with the name `db1` like this: 
 
 ```csharp
 var db1 = builder.AddPostgres("pg1").AddDatabase("db1"); 
