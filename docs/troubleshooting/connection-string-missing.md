@@ -6,7 +6,7 @@ ms.date: 07/03/2024
 
 # The specified name is already in use
 
-In an Aspire app, code identifies resources with an arbitrary string, such as "database". Code that is consuming the resource elsewhere must use the same string or it will fail.
+In .NET Aspire, code identifies resources with an arbitrary string, such as "database". Code that is consuming the resource elsewhere must use the same string or it will fail to correctly configure their relationships.
 
 ## Symptoms
 
