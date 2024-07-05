@@ -125,13 +125,16 @@ The resource service client authentication is configured with `Dashboard:Resourc
 
 Telemetry is stored in memory. To avoid excessive memory usage, the dashboard has limits on the count and size of stored telemetry. When a count limit is reached, new telemetry is added, and the oldest telemetry is removed. When a size limit is reached, data is truncated to the limit.
 
-Limits are per-resource. For example, a `MaxLogCount` value of 10,000 configures the dashboard to store up to 10,000 log entries per-resource.
+Telemetry limits have different scopes depending upon the telemetry type:
+
+* `MaxLogCount` and `MaxTraceCount` are shared across resources. For example, a `MaxLogCount` value of 5,000 configures the dashboard to store up to 5,000 total log entries for all resources.
+* `MaxMetricsCount` is per-resource. For example, a `MaxMetricsCount` value of 10,000 configures the dashboard to store up to 10,000 metrics data points per-resource.
 
 | Option | Default Value | Description |
 |--|--|--|
-| `Dashboard:TelemetryLimits:MaxLogCount` | 10,000 | The maximum number of log entries. |
-| `Dashboard:TelemetryLimits:MaxTraceCount` | 10,000 | The maximum number of log traces. |
-| `Dashboard:TelemetryLimits:MaxMetricsCount` | 50,000 | The maximum number of metric data points. |
+| `Dashboard:TelemetryLimits:MaxLogCount` | 10,000 | The maximum number of log entries. Limit is shared across resources. |
+| `Dashboard:TelemetryLimits:MaxTraceCount` | 10,000 | The maximum number of log traces. Limit is shared across resources. |
+| `Dashboard:TelemetryLimits:MaxMetricsCount` | 50,000 | The maximum number of metric data points. Limit is per-resource. |
 | `Dashboard:TelemetryLimits:MaxAttributeCount` | 128 | The maximum number of attributes on telemetry. |
 | `Dashboard:TelemetryLimits:MaxAttributeLength` | `null` | The maximum length of attributes. |
 | `Dashboard:TelemetryLimits:MaxSpanEventCount` | `null` | The maximum number of events on span attributes. |
