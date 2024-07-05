@@ -6,7 +6,7 @@ ms.date: 07/03/2024
 
 # Container runtime appears to be unhealthy
 
-Aspire applications require Docker to be running and healthy. This topic describes a possible symptom you may see if Docker is not in a healthy state.
+.NET Aspire requires Docker (or Podman) to be running and healthy. This topic describes a possible symptom you may see if Docker isn’t in a healthy state.
 
 ## Symptoms
 
