@@ -211,6 +211,12 @@ conceptualContent:
         - itemType: how-to-guide
           text: The specified name is already in use
           url: troubleshooting/name-is-already-in-use.md
+        - itemType: how-to-guide
+          text: Container runtime appears to be unhealthy
+          url: troubleshooting/container-runtime-unhealthy.md
+        - itemType: how-to-guide
+          text: The connection string is missing
+          url: troubleshooting/connection-string-missing.md
         - itemType: reference
           text: Ask questions on Discord
           url: https://aka.ms/aspire/discord
