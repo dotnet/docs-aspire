@@ -35,7 +35,7 @@
     "DefaultParentNode": 227485,
     "WorkItemTags": [
         {
-            "Label": ":label: content-curation",
+            "Label": "okr-curation",
             "Tag": "content-curation"
         }
     ]
