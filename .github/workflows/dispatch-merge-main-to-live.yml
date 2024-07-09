@@ -8,6 +8,9 @@ on:
         required: true
         default: "Need to update live now, before daily scheduled run."
 
+permissions:
+  contents: read
+
 jobs:
   go-live:
     runs-on: ubuntu-latest
@@ -18,13 +21,18 @@ jobs:
       pull-requests: write
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6 # v2.8.1
+        with:
+          egress-policy: audit
+
       - name: "Print manual run reason"
         if: github.event_name == 'workflow_dispatch'
         run: |
           echo 'Reason: ${{ github.event.inputs.reason }}'
 
       - name: Check out code
-        uses: actions/checkout@main
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # main
 
       - name: Check for existing PR
         id: exists
