@@ -1,5 +1,6 @@
 # .NET Aspire docs
 
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9186/badge)](https://www.bestpractices.dev/projects/9186)
 [![GitHub contributors](https://img.shields.io/github/contributors/dotnet/docs-aspire.svg)](https://GitHub.com/dotnet/docs-aspire/graphs/contributors/)
 [![GitHub repo size](https://img.shields.io/github/repo-size/dotnet/docs-aspire)](https://github.com/dotnet/docs-aspire)
 [![GitHub issues-opened](https://img.shields.io/github/issues/dotnet/docs-aspire.svg)](https://GitHub.com/dotnet/docs-aspire/issues?q=is%3Aissue+is%3Aopened)

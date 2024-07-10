@@ -1,7 +1,7 @@
 ---
 title: Deploy a .NET Aspire project using the Azure Developer CLI and GitHub Actions
 description: Learn how to use `azd` and GitHub Actions to deploy .NET Aspire projects.
-ms.date: 06/14/2024
+ms.date: 07/08/2024
 zone_pivot_groups: deployment-platform
 ms.custom: devx-track-extended-azdevcli
 ---
@@ -54,13 +54,9 @@ curl -fsSL https://aka.ms/install-azd.sh | bash
 
 ---
 
-## Create a .NET Aspire project
+## Create a .NET Aspire solution
 
-As a starting point, this article assumes that you've created a .NET Aspire project from the **.NET Aspire Starter Application** template. For more information, see [Quickstart: Build your first .NET Aspire project](../../get-started/build-your-first-aspire-app.md).
-
-### Resource naming
-
-[!INCLUDE [azure-container-app-naming](../../includes/azure-container-app-naming.md)]
+As a starting point, this article assumes that you've created a .NET Aspire solution from the **.NET Aspire Starter Application** template. For more information, see [Quickstart: Build your first .NET Aspire app](../../get-started/build-your-first-aspire-app.md).
 
 [!INCLUDE [init workflow](includes/init-workflow.md)]
 
@@ -113,7 +109,7 @@ Although `azd` generated some essential template files for you, the project stil
             uses: actions/checkout@v4
     
           - name: Install azd
-            uses: Azure/setup-azd@v0.1.0
+            uses: Azure/setup-azd@v1.0.0
     
           - name: Install .NET Aspire workload
             run: dotnet workload install aspire
@@ -141,10 +137,21 @@ Although `azd` generated some essential template files for you, the project stil
     
           - name: Provision Infrastructure
             run: azd provision --no-prompt
-    
+            # Required when 
+            # env:
+            #   AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
+
+          # Required when provisioning and deploying are defined in separate jobs.
+          # - name: Refresh azd env (pulls latest infrastructure provision)
+          #  run: azd env refresh
+          #  env:
+          #    AZURE_LOCATION: ${{ env.AZURE_LOCATION }}
+
           - name: Deploy Application
             run: azd deploy --no-prompt
     ```
+
+Additionally, you may notice that the provisioning and deployment steps are combined into a single job. If you prefer to separate these steps into different jobs, you can do so by creating two separate jobs in the workflow file. The provisioning job should run first, followed by the deployment job. The deployment job should include the `AZD_INITIAL_ENVIRONMENT_CONFIG` secret to ensure the deployment job has access to the environment configuration. You'd also need to uncomment the `azd env refresh` step in the deployment job to ensure the deployment job has access to the latest infrastructure provision.
 
 ## Create the GitHub repository and pipeline
 
@@ -304,7 +311,7 @@ The Azure Developer CLI enables you to automatically create pipelines with the c
 
     :::image type="content" loc-scope="azure" source="media/azure-pipeline-run-details.png" lightbox="media/azure-pipeline-run-details.png" alt-text="A screenshot showing the detailed view of the Azure Pipelines run." :::
 
-1. The job details page shows the status of all the individual stages. Select **Provision Infrastructure** to view the logs for that stage, which detail all of the provisioning steps completed by `azd`. At the bottom of the logs take note of the final status message and link to the provisioned Azure resouce group.
+1. The job details page shows the status of all the individual stages. Select **Provision Infrastructure** to view the logs for that stage, which detail all of the provisioning steps completed by `azd`. At the bottom of the logs take note of the final status message and link to the provisioned Azure resource group.
 
 1. Select the link at the bottom of the provisioning output logs to navigate to the new Azure resource group.
 

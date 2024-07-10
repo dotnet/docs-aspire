@@ -16,6 +16,9 @@ on:
         default: "STS"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+permissions:
+  contents: read
+
 jobs:
   # This workflow contains a single job called "build"
   version-sweep:
@@ -29,9 +32,14 @@ jobs:
     steps:
       # Start the .NET version updater action
       # A composite of the .NET Version Sweeper and the .NET Upgrade Assistant
+      - name: Harden Runner
+        uses: step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6 # v2.8.1
+        with:
+          egress-policy: audit
+
       - name: .NET version updater
         id: dotnet-version-updater
-        uses: dotnet/docs-tools/actions/dotnet-version-updater@main
+        uses: dotnet/docs-tools/actions/dotnet-version-updater@cf581edfb9f8bbccc3f0476ce1b8369689fb0290 # main
         with:
           support: ${{ github.event.inputs.support }}
           token: ${{ secrets.GITHUB_TOKEN }}
