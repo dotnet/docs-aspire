@@ -108,6 +108,9 @@
       "ms.author": {
         "docs/**/*.*": "dapine"
       },
+      "ms.collection": {
+        "docs/azureai/**/*.md": "ce-skilling-ai-copilot"
+      },
       "titleSuffix": {
         "docs/**/**.md": ".NET Aspire"
       },
