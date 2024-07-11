@@ -96,6 +96,9 @@
       ]
     },
     "fileMetadata": {
+      "ms.collection": {
+        "docs/azureai/**/*.md": "ce-skilling-ai-copilot"
+      },
       "ms.topic": {
         "docs/**/*.md": "conceptual"
       },
