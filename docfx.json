@@ -96,9 +96,6 @@
       ]
     },
     "fileMetadata": {
-      "ms.collection": {
-        "docs/azureai/**/*.md": "ce-skilling-ai-copilot"
-      },
       "ms.topic": {
         "docs/**/*.md": "conceptual"
       },
@@ -110,6 +107,9 @@
       },
       "ms.author": {
         "docs/**/*.*": "dapine"
+      },
+      "ms.collection": {
+        "docs/azureai/**/*.md": "ce-skilling-ai-copilot"
       },
       "titleSuffix": {
         "docs/**/**.md": ".NET Aspire"
