@@ -1,9 +1,8 @@
 ---
 title: Create custom resource types for .NET Aspire
 description: Learn how to create a custom resource for an existing containerized application.
-ms.date: 05/29/2024
+ms.date: 07/12/2024
 ms.topic: how-to
-ms.custom: devx-track-extended-azdevcli
 ---
 
 # Create custom resource types for .NET Aspire
@@ -230,7 +229,7 @@ In order to test the end-to-end scenario, you need a .NET project which we can i
 1. Create a new .NET project named _:::no-loc text="MailDevResource.NewsletterService":::_.
 
     ```dotnetcli
-    dotnet new webapi --use-minimal-apis --no-openapi -o MailDevResource.NewsletterService
+    dotnet new webapi --use-minimal-apis -o MailDevResource.NewsletterService
     ```
 
 1. Add a reference to the _:::no-loc text="MailDev.Hosting":::_ project.
@@ -265,7 +264,19 @@ The preceding screenshot shows the environment variables for the `newsletterserv
 
 To use the SMTP connection details that were injected into the newsletter service project, you inject an instance of <xref:System.Net.Mail.SmtpClient> into the dependency injection container as a singleton. Add the following code to the _:::no-loc text="Program.cs":::_ file in the _:::no-loc text="MailDevResource.NewsletterService":::_ project to setup the singleton service. In the `Program` class, immediately following the `// Add services to the container` comment, add the following code:
 
-:::code source="snippets/MailDevResource/MailDevResource.NewsletterService/Program.cs" id="smtp":::
+```csharp
+builder.Services.AddSingleton<SmtpClient>(sp =>
+{
+    var smtpUri = new Uri(builder.Configuration.GetConnectionString("maildev")!);
+
+    var smtpClient = new SmtpClient(smtpUri.Host, smtpUri.Port);
+
+    return smtpClient;
+});
+```
+
+> [!TIP]
+> This code snippet relies on the official `SmtpClient`, however; this type is obsolete on some platforms and not recommended on others. This is used here to demonstrate a non-componentized approach to using the MailDev resource. For a more modern approach using [MailKit](https://github.com/jstedfast/MailKit), see [Create custom .NET Aspire component](custom-component.md).
 
 To test the client, add two simple `subscribe` and `unsubscribe` GET methods to the newsletter service. Add the following code after the `MapGet` call in the _:::no-loc text="Program.cs":::_ file of the _MailDevResource.NewsletterService_ project to setup the ASP.NET Core routes:
 
@@ -293,7 +304,7 @@ curl -H "Content-Type: application/json" --request POST https://localhost:7251/s
 ## [Windows](#tab/windows)
 
 ```powershell
-curl -H "Content-Type: application/json" --request POST https://localhost:7251/subscribe?email=test@test.com
+curl -H @{ ContentType = "application/json" } -Method POST https://localhost:7251/subscribe?email=test@test.com
 ```
 
 ---
@@ -317,7 +328,7 @@ curl -H "Content-Type: application/json" --request POST https://localhost:7251/u
 ## [Windows](#tab/windows)
 
 ```powershell
-curl -H "Content-Type: application/json" --request POST https://localhost:7251/unsubscribe?email=test@test.com
+curl -H @{ ContentType = "application/json" } -Method POST https://localhost:7251/unsubscribe?email=test@test.com
 ```
 
 ---
@@ -482,3 +493,8 @@ Careful consideration should be given as to whether the resource should be prese
 ## Summary
 
 In the custom resource tutorial, you learned how to create a custom .NET Aspire resource which uses an existing containerized application (MailDev). You then used that to improve the local development experience by making it easy to test e-mail capabilities that might be used within an app. These learnings can be applied to building out other custom resources that can be used in .NET Aspire-based applications. This specific example didn't include any custom components, but it's possible to build out custom components to make it easier for developers to use the resource. In this scenario you were able to rely on the existing `SmtpClient` class in the .NET platform to send e-mails.
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Create custom .NET Aspire component](custom-component.md)

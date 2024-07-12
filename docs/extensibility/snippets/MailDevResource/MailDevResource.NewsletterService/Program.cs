@@ -5,6 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 // Add services to the container.
 // <smtp>
 builder.AddMailDevClient("maildev");
@@ -16,13 +19,15 @@ app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 // <subs>
 app.MapPost("/subscribe", async ([FromServices] MailDevClient client, string email) =>
 {
     await client.SubscribeToNewsletterAsync(email);
-});
+}).WithOpenApi();
 
 app.MapPost("/unsubscribe", async ([FromServices] MailDevClient client, string email) =>
 {

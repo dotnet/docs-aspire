@@ -3,16 +3,12 @@ using MimeKit;
 
 namespace MailDev.Client;
 
-/// <summary>
-/// A representation of a MailDev client.
-/// </summary>
+/// <summary>A representation of a MailDev client.</summary>
+/// <param name="smtpUri">The <see cref="Uri"/> for the SMTP server.</param>
 /// <remarks>
 /// Initializes a new instance of <see cref="MailDevClient"/> with the
 /// given <paramref name="smtpUri"/>.
 /// </remarks>
-/// <param name="smtpUri">
-/// The <see cref="Uri"/> for the SMTP server.
-/// </param>
 public sealed class MailDevClient(Uri smtpUri)
 {
     private readonly string _from = "newsletter@yourcompany.com";
@@ -67,8 +63,13 @@ public sealed class MailDevClient(Uri smtpUri)
     {
         using var client = new SmtpClient();
 
-        await client.ConnectAsync(smtpUri.Host, smtpUri.Port);
-        await client.SendAsync(message);
-        await client.DisconnectAsync(true);
+        await client.ConnectAsync(smtpUri.Host, smtpUri.Port)
+            .ConfigureAwait(false);
+
+        await client.SendAsync(message)
+            .ConfigureAwait(false);
+
+        await client.DisconnectAsync(true)
+            .ConfigureAwait(false);
     }
 }
