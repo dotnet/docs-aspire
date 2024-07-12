@@ -1,31 +1,24 @@
-﻿using MailKit.Net.Smtp;
+﻿using MailKit.Client;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace MailDev.Client;
 
-internal sealed class MailDevHealthCheck(Uri smtpUri) : IHealthCheck
+internal sealed class MailKitHealthCheck(MailKitClientFactory factory) : IHealthCheck
 {
     public async Task<HealthCheckResult> CheckHealthAsync(
         HealthCheckContext context,
         CancellationToken cancellationToken = default)
     {
-        SmtpClient client = new();
-
         try
         {
-            await client.ConnectAsync(smtpUri, cancellationToken)
-                .ConfigureAwait(false);
+            // The factory connects (and authenticates).
+            _ = await factory.GetSmtpClientAsync(cancellationToken);
 
             return HealthCheckResult.Healthy();
         }
         catch (Exception ex)
         {
             return HealthCheckResult.Unhealthy(exception: ex);
-        }
-        finally
-        {
-            await client.DisconnectAsync(true, cancellationToken)
-                .ConfigureAwait(false);
         }
     }
 }

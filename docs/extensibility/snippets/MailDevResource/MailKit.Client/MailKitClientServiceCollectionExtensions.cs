@@ -1,17 +1,18 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using MailDev.Client;
+using MailKit;
+using MailKit.Client;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Hosting;
 
-namespace MailDev.Client;
+namespace Microsoft.Extensions.Hosting;
 
 /// <summary>
-/// Provides extension methods for registering a <see cref="MailDevClient"/> as a
+/// Provides extension methods for registering a <see cref="SmtpClient"/> as a
 /// scoped-lifetime service in the services provided by the <see cref="IHostApplicationBuilder"/>.
 /// </summary>
-public static class MailDevClientServiceCollectionExtensions
+public static class MailKitClientServiceCollectionExtensions
 {
-    private const string DefaultConfigSectionName = "Aspire:MailDev:Client";
+    private const string DefaultConfigSectionName = "Aspire:MailKit:Client";
 
     /// <summary>
     /// Registers 'Scoped' <see cref="MailDevClient" /> for sending emails.
@@ -22,7 +23,7 @@ public static class MailDevClientServiceCollectionExtensions
     public static void AddMailDevClient(
         this IHostApplicationBuilder builder,
         string connectionName,
-        Action<MailDevClientSettings>? configureSettings = null) =>
+        Action<MailKitClientSettings>? configureSettings = null) =>
         AddMailDevClient(
             builder,
             DefaultConfigSectionName,
@@ -39,7 +40,7 @@ public static class MailDevClientServiceCollectionExtensions
     public static void AddKeyedMailDevClient(
         this IHostApplicationBuilder builder,
         string name,
-        Action<MailDevClientSettings>? configureSettings = null)
+        Action<MailKitClientSettings>? configureSettings = null)
     {
         ArgumentNullException.ThrowIfNull(name);
 
@@ -54,60 +55,82 @@ public static class MailDevClientServiceCollectionExtensions
     private static void AddMailDevClient(
         this IHostApplicationBuilder builder,
         string configurationSectionName,
-        Action<MailDevClientSettings>? configureSettings,
+        Action<MailKitClientSettings>? configureSettings,
         string connectionName,
         object? serviceKey)
     {
         ArgumentNullException.ThrowIfNull(builder);
-
-        var settings = new MailDevClientSettings();
+        var settings = new MailKitClientSettings();
 
         builder.Configuration
                .GetSection(configurationSectionName)
                .Bind(settings);
 
+        if (builder.Configuration.GetConnectionString(connectionName) is string connectionString)
+        {
+            settings.ConnectionString = connectionString;
+        }
+
         configureSettings?.Invoke(settings);
 
-        var smtpUri = GetMailDevSmtpUri(builder.Configuration, connectionName);
+        MailKitClientFactory CreateMailKitClientFactory(IServiceProvider sp)
+        {
+            var connectionString = settings.ConnectionString;
+
+            if (string.IsNullOrWhiteSpace(connectionString))
+            {
+                throw new InvalidOperationException($"""
+                    ConnectionString is missing.
+                    It should be provided in 'ConnectionStrings:{connectionName}'
+                    or under 'ConnectionString' key in '{DefaultConfigSectionName}'
+                    configuration section.
+                    """);
+            }
+
+            if (Uri.TryCreate(connectionString, UriKind.Absolute, out var smtpUri) is false ||
+                smtpUri is null)
+            {
+                throw new InvalidOperationException($"""
+                    The 'ConnectionStrings:{connectionName}' (or 'ConnectionString' key in
+                    '{DefaultConfigSectionName}') isn't a valid URI format.
+                    """);
+            }
+
+            return new MailKitClientFactory(smtpUri, settings.Credentials);
+        }
 
         if (serviceKey is null)
         {
-            builder.Services.AddScoped(_ => new MailDevClient(smtpUri));
+            builder.Services.AddScoped(CreateMailKitClientFactory);
         }
         else
         {
-            builder.Services.AddKeyedScoped(serviceKey, (_, __) => new MailDevClient(smtpUri));
+            builder.Services.AddKeyedScoped(serviceKey, (sp, _) => CreateMailKitClientFactory(sp));
         }
 
         if (settings.DisableHealthChecks is false)
         {
             builder.Services.AddHealthChecks()
-                .Add(new HealthCheckRegistration(
-                    "Aspire.HealthChecks.MailDev",
-                    _ => new MailDevHealthCheck(smtpUri),
+                .AddCheck<MailKitHealthCheck>(
+                    name: serviceKey is null ? "MailKit" : $"MailKit_{connectionName}",
                     failureStatus: default,
-                    tags: default));
+                    tags: [ "live" ]);
         }
-    }
 
-    private static Uri GetMailDevSmtpUri(IConfigurationManager config, string name)
-    {
-        ArgumentNullException.ThrowIfNull(config);
-        ArgumentException.ThrowIfNullOrWhiteSpace(name);
-
-        if (config.GetConnectionString(name) is not { } connectionString)
+        if (settings.DisableTracing is false)
         {
-            throw new ArgumentException(
-                $"Missing connection string for {name}", nameof(name));
+            builder.Services.AddOpenTelemetry()
+                .WithTracing(
+                    traceBuilder => traceBuilder.AddSource(
+                        Telemetry.SmtpClient.ActivitySourceName));
         }
 
-        if (Uri.TryCreate(connectionString, UriKind.Absolute, out var smtpUri) is false ||
-            smtpUri is null)
+        if (settings.DisableMetrics is false)
         {
-            throw new ArgumentException(
-                $"Connection string isn't a URI for {name}", nameof(name));
+            builder.Services.AddOpenTelemetry()
+                .WithMetrics(
+                    metricsBuilder => metricsBuilder.AddMeter(
+                        Telemetry.SmtpClient.MeterName));
         }
-
-        return smtpUri;
     }
 }

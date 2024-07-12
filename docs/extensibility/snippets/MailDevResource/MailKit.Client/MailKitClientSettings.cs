@@ -1,10 +1,30 @@
-﻿namespace MailDev.Client;
+﻿using System.Net;
+
+namespace MailDev.Client;
 
 /// <summary>
-/// Provides the client configuration settings for connecting to a MailDev SMTP server.
+/// Provides the client configuration settings for connecting MailKit to an SMTP server.
 /// </summary>
-public sealed class MailDevClientSettings
+public sealed class MailKitClientSettings
 {
+    /// <summary>
+    /// Gets or sets the SMTP server connection string. It should be represented in a
+    /// valid <see cref="Uri"/> form.
+    /// </summary>
+    /// <value>
+    /// The default value is <see langword="null"/>.
+    /// </value>
+    public string? ConnectionString { get; set; }
+
+    /// <summary>
+    /// Gets or sets the network credentials that are optionally configurable for SMTP
+    /// server's that require authentication.
+    /// </summary>
+    /// <value>
+    /// The default value is <see langword="null"/>.
+    /// </value>
+    public NetworkCredential? Credentials { get; set; }
+
     /// <summary>
     /// Gets or sets a boolean value that indicates whether the database health check is disabled or not.
     /// </summary>

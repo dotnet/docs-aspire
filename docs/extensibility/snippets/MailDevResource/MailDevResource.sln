@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailDev.Hosting", "MailDev.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailDevResource.NewsletterService", "MailDevResource.NewsletterService\MailDevResource.NewsletterService.csproj", "{3C023F9E-2B5D-4C48-818F-A640EDAE9E4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailDev.Client", "MailDev.Client\MailDev.Client.csproj", "{C9A58484-13CC-4391-9D93-88FDFA7B0DDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailKit.Client", "MailKit.Client\MailKit.Client.csproj", "{C9A58484-13CC-4391-9D93-88FDFA7B0DDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
