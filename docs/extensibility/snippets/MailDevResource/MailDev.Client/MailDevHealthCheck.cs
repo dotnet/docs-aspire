@@ -18,9 +18,9 @@ internal sealed class MailDevHealthCheck(Uri smtpUri) : IHealthCheck
 
             return HealthCheckResult.Healthy();
         }
-        catch
+        catch (Exception ex)
         {
-            return HealthCheckResult.Unhealthy();
+            return HealthCheckResult.Unhealthy(exception: ex);
         }
         finally
         {

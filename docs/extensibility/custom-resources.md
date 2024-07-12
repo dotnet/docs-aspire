@@ -278,9 +278,31 @@ builder.Services.AddSingleton<SmtpClient>(sp =>
 > [!TIP]
 > This code snippet relies on the official `SmtpClient`, however; this type is obsolete on some platforms and not recommended on others. This is used here to demonstrate a non-componentized approach to using the MailDev resource. For a more modern approach using [MailKit](https://github.com/jstedfast/MailKit), see [Create custom .NET Aspire component](custom-component.md).
 
-To test the client, add two simple `subscribe` and `unsubscribe` GET methods to the newsletter service. Add the following code after the `MapGet` call in the _:::no-loc text="Program.cs":::_ file of the _MailDevResource.NewsletterService_ project to setup the ASP.NET Core routes:
+To test the client, add two simple `subscribe` and `unsubscribe` GET methods to the newsletter service. Add the following code replacing the "weatherforecast" `MapGet` call in the _:::no-loc text="Program.cs":::_ file of the _MailDevResource.NewsletterService_ project to setup the ASP.NET Core routes:
 
-:::code source="snippets/MailDevResource/MailDevResource.NewsletterService/Program.cs" id="subs":::
+```csharp
+app.MapPost("/subscribe", async ([FromServices] SmtpClient smtpClient, string email) =>
+{
+    using var message = new MailMessage("newsletter@yourcompany.com", email)
+    {
+        Subject = "Welcome to our newsletter!",
+        Body = "Thank you for subscribing to our newsletter!"
+    };
+
+    await smtpClient.SendMailAsync(message);
+});
+
+app.MapPost("/unsubscribe", async ([FromServices] SmtpClient smtpClient, string email) =>
+{
+    using var message = new MailMessage("newsletter@yourcompany.com", email)
+    {
+        Subject = "You are unsubscribed from our newsletter!",
+        Body = "Sorry to see you go. We hope you will come back soon!"
+    };
+
+    await smtpClient.SendMailAsync(message);
+});
+```
 
 > [!TIP]
 > Remember to reference the `System.Net.Mail` and `Microsoft.AspNetCore.Mvc` namespaces in _:::no-loc text="Program.cs":::_ if your code editor doesn't automatically add them.

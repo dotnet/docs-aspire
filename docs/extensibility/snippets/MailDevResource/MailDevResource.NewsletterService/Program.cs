@@ -27,7 +27,7 @@ app.UseHttpsRedirection();
 app.MapPost("/subscribe", async ([FromServices] MailDevClient client, string email) =>
 {
     await client.SubscribeToNewsletterAsync(email);
-}).WithOpenApi();
+});
 
 app.MapPost("/unsubscribe", async ([FromServices] MailDevClient client, string email) =>
 {
