@@ -1,5 +1,5 @@
-﻿using MailDev.Client;
+﻿//using MailDev.Client;
 
-[assembly: ConfigurationSchema("Aspire:MailDev:Client", typeof(MailDevClientSettings))]
+//[assembly: ConfigurationSchema("Aspire:MailDev:Client", typeof(MailDevClientSettings))]
 
-[assembly: LoggingCategories("MailDev-Client")]
+//[assembly: LoggingCategories("MailDev-Client")]

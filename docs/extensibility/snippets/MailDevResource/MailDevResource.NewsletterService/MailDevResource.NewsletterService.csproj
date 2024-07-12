@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <ItemGroup>
+    <ProjectReference Include="..\MailDev.Client\MailDev.Client.csproj" />
     <ProjectReference Include="..\MailDev.Hosting\MailDev.Hosting.csproj" />
     <ProjectReference Include="..\MailDevResource.ServiceDefaults\MailDevResource.ServiceDefaults.csproj" />
   </ItemGroup>

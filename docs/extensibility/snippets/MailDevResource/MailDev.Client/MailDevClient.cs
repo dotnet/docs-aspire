@@ -1,48 +1,21 @@
-﻿using System.Net.Mail;
-using Microsoft.Extensions.Configuration;
+﻿using MailKit.Net.Smtp;
+using MimeKit;
 
 namespace MailDev.Client;
 
 /// <summary>
 /// A representation of a MailDev client.
 /// </summary>
-public sealed class MailDevClient : IDisposable
+/// <remarks>
+/// Initializes a new instance of <see cref="MailDevClient"/> with the
+/// given <paramref name="smtpUri"/>.
+/// </remarks>
+/// <param name="smtpUri">
+/// The <see cref="Uri"/> for the SMTP server.
+/// </param>
+public sealed class MailDevClient(Uri smtpUri)
 {
-    private readonly string _from;
-    private readonly SmtpClient _smtpClient;
-
-    /// <summary>
-    /// Initializes a new instance of <see cref="MailDevClient"/> with the
-    /// given <paramref name="configuration"/> and <paramref name="name"/>.
-    /// </summary>
-    /// <param name="configuration">
-    /// The configuration containing the named (<paramref name="name"/>) connection string for the SMTP server.
-    /// </param>
-    /// <param name="name">
-    /// The name used to resolve the connection string
-    /// </param>
-    public MailDevClient(IConfiguration configuration, string name)
-    {
-        ArgumentNullException.ThrowIfNull(configuration);
-
-        _from = configuration["MailDev:NewsletterEmail"]
-            ?? "newsletter@yourcompany.com";
-
-        var connectionString = configuration.GetConnectionString(name);
-        if (string.IsNullOrWhiteSpace(connectionString))
-        {
-            throw new ArgumentException(
-                $"A connection string is required for {name}");
-        }
-
-        if (Uri.TryCreate(connectionString, UriKind.Absolute, out var smtpUri) is false)
-        {
-            throw new ArgumentException(
-                $"The configured connection string for {name} isn't a valid URI: {connectionString}");
-        }
-
-        _smtpClient = new SmtpClient(smtpUri.Host, smtpUri.Port);
-    }
+    private readonly string _from = "newsletter@yourcompany.com";
 
     /// <summary>
     /// Subscribes the given <paramref name="email"/> to the newsletter.
@@ -51,15 +24,20 @@ public sealed class MailDevClient : IDisposable
     /// <returns>
     /// An asynchronous operation representing the subscribe functionality.
     /// </returns>
-    public async Task SubscribeToNewsletterAsync(string email)
+    public Task SubscribeToNewsletterAsync(string email)
     {
-        using var message = new MailMessage(_from, email)
+        var message = new MimeMessage
         {
             Subject = "Welcome to our newsletter!",
-            Body = "Thank you for subscribing to our newsletter!"
+            Body = new TextPart("plain")
+            {
+                Text = "Thank you for subscribing to our newsletter!"
+            },
+            From = { new MailboxAddress("Dev Newsletter", _from) },
+            To = { new MailboxAddress("Recipient Name", email) }
         };
 
-        await _smtpClient.SendMailAsync(message);
+        return SendMessageAsync(message);
     }
 
     /// <summary>
@@ -69,17 +47,28 @@ public sealed class MailDevClient : IDisposable
     /// <returns>
     /// An asynchronous operation representing the unsubscribe functionality.
     /// </returns>
-    public async Task UnsubscribeToNewsletterAsync(string email)
+    public Task UnsubscribeToNewsletterAsync(string email)
     {
-        using var message = new MailMessage(_from, email)
+        var message = new MimeMessage
         {
             Subject = "You are unsubscribed from our newsletter!",
-            Body = "Sorry to see you go. We hope you will come back soon!"
+            Body = new TextPart("plain")
+            {
+                Text = "Sorry to see you go. We hope you will come back soon!"
+            },
+            From = { new MailboxAddress("Dev Newsletter", _from) },
+            To = { new MailboxAddress("Recipient Name", email) }
         };
 
-        await _smtpClient.SendMailAsync(message);
+        return SendMessageAsync(message);
     }
 
-    /// <inheritdoc cref="SmtpClient.Dispose()" />
-    public void Dispose() => _smtpClient.Dispose();
+    private async Task SendMessageAsync(MimeMessage message)
+    {
+        using var client = new SmtpClient();
+
+        await client.ConnectAsync(smtpUri.Host, smtpUri.Port);
+        await client.SendAsync(message);
+        await client.DisconnectAsync(true);
+    }
 }
