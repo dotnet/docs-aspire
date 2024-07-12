@@ -195,7 +195,6 @@ The .NET Aspire SQL Server Entity Framework Core component uses the following Lo
 - `Microsoft.EntityFrameworkCore.Database.Connection`
 - `Microsoft.EntityFrameworkCore.Database.Transaction`
 - `Microsoft.EntityFrameworkCore.Infrastructure`
-- `Microsoft.EntityFrameworkCore.Infrastructure`
 - `Microsoft.EntityFrameworkCore.Migrations`
 - `Microsoft.EntityFrameworkCore.Model`
 - `Microsoft.EntityFrameworkCore.Model.Validation`
