@@ -1,7 +1,6 @@
-﻿using MailKit.Client;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
+﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace MailDev.Client;
+namespace MailKit.Client;
 
 internal sealed class MailKitHealthCheck(MailKitClientFactory factory) : IHealthCheck
 {

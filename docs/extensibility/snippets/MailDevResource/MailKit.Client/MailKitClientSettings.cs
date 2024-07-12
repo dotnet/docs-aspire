@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace MailDev.Client;
+namespace MailKit.Client;
 
 /// <summary>
 /// Provides the client configuration settings for connecting MailKit to an SMTP server.
