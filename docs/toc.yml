@@ -69,6 +69,9 @@ items:
       - name: Overview
         displayName: aspire components,components,nuget packages,packages
         href: fundamentals/components-overview.md
+      - name: Create custom components
+        displayName: custom components,extensibility
+        href: extensibility/custom-component.md
       - name: Tutorials
         items:
         - name: Caching using Redis components

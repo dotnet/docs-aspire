@@ -21,11 +21,11 @@ public static class MailKitClientServiceCollectionExtensions
     /// <param name="builder">The <see cref="IHostApplicationBuilder" /> to read config from and add services to.</param>
     /// <param name="connectionName">A name used to retrieve the connection string from the ConnectionStrings configuration section.</param>
     /// <param name="configureSettings">An optional delegate that can be used for customizing options. It's invoked after the settings are read from the configuration.</param>
-    public static void AddMailDevClient(
+    public static void AddMailKitClient(
         this IHostApplicationBuilder builder,
         string connectionName,
         Action<MailKitClientSettings>? configureSettings = null) =>
-        AddMailDevClient(
+        AddMailKitClient(
             builder,
             DefaultConfigSectionName,
             configureSettings,
@@ -39,14 +39,14 @@ public static class MailKitClientServiceCollectionExtensions
     /// <param name="builder">The <see cref="IHostApplicationBuilder" /> to read config from and add services to.</param>
     /// <param name="name">The name of the component, which is used as the <see cref="ServiceDescriptor.ServiceKey"/> of the service and also to retrieve the connection string from the ConnectionStrings configuration section.</param>
     /// <param name="configureSettings">An optional method that can be used for customizing options. It's invoked after the settings are read from the configuration.</param>
-    public static void AddKeyedMailDevClient(
+    public static void AddKeyedMailKitClient(
         this IHostApplicationBuilder builder,
         string name,
         Action<MailKitClientSettings>? configureSettings = null)
     {
         ArgumentNullException.ThrowIfNull(name);
 
-        AddMailDevClient(
+        AddMailKitClient(
             builder,
             $"{DefaultConfigSectionName}:{name}",
             configureSettings,
@@ -54,7 +54,7 @@ public static class MailKitClientServiceCollectionExtensions
             serviceKey: name);
     }
 
-    private static void AddMailDevClient(
+    private static void AddMailKitClient(
         this IHostApplicationBuilder builder,
         string configurationSectionName,
         Action<MailKitClientSettings>? configureSettings,
@@ -75,7 +75,16 @@ public static class MailKitClientServiceCollectionExtensions
 
         configureSettings?.Invoke(settings);
 
-        MailKitClientFactory CreateMailKitClientFactory(IServiceProvider sp)
+        if (serviceKey is null)
+        {
+            builder.Services.AddScoped(CreateMailKitClientFactory);
+        }
+        else
+        {
+            builder.Services.AddKeyedScoped(serviceKey, (sp, _) => CreateMailKitClientFactory(sp));
+        }
+
+        MailKitClientFactory CreateMailKitClientFactory(IServiceProvider _)
         {
             var connectionString = settings.ConnectionString;
 
@@ -99,15 +108,6 @@ public static class MailKitClientServiceCollectionExtensions
             }
 
             return new MailKitClientFactory(smtpUri, settings.Credentials);
-        }
-
-        if (serviceKey is null)
-        {
-            builder.Services.AddScoped(CreateMailKitClientFactory);
-        }
-        else
-        {
-            builder.Services.AddKeyedScoped(serviceKey, (sp, _) => CreateMailKitClientFactory(sp));
         }
 
         if (settings.DisableHealthChecks is false)

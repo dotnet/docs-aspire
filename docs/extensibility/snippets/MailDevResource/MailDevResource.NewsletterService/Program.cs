@@ -10,9 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add services to the container.
-// <smtp>
-builder.AddMailDevClient("maildev");
-// </smtp>
+builder.AddMailKitClient("maildev");
 
 var app = builder.Build();
 
@@ -24,8 +22,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
-// <subs>
-app.MapPost("/subscribe", async ([FromServices] MailKitClientFactory factory, string email) =>
+app.MapPost("/subscribe",
+    async ([FromServices] MailKitClientFactory factory, string email) =>
 {
     var client = await factory.GetSmtpClientAsync();
 
@@ -60,6 +58,5 @@ app.MapPost("/unsubscribe", async ([FromServices] MailKitClientFactory factory, 
 
     await client.SendAsync(message);
 });
-// </subs>
 
 app.Run();
