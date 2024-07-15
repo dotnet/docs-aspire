@@ -23,7 +23,7 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 app.MapPost("/subscribe",
-    async ([FromServices] MailKitClientFactory factory, string email) =>
+    async (MailKitClientFactory factory, string email) =>
 {
     var client = await factory.GetSmtpClientAsync();
 
@@ -41,7 +41,8 @@ app.MapPost("/subscribe",
     await client.SendAsync(message);
 });
 
-app.MapPost("/unsubscribe", async ([FromServices] MailKitClientFactory factory, string email) =>
+app.MapPost("/unsubscribe",
+    async (MailKitClientFactory factory, string email) =>
 {
     var client = await factory.GetSmtpClientAsync();
 

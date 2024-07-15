@@ -281,7 +281,7 @@ builder.Services.AddSingleton<SmtpClient>(sp =>
 To test the client, add two simple `subscribe` and `unsubscribe` POST methods to the newsletter service. Add the following code replacing the "weatherforecast" `MapGet` call in the _:::no-loc text="Program.cs":::_ file of the _MailDevResource.NewsletterService_ project to setup the ASP.NET Core routes:
 
 ```csharp
-app.MapPost("/subscribe", async ([FromServices] SmtpClient smtpClient, string email) =>
+app.MapPost("/subscribe", async (SmtpClient smtpClient, string email) =>
 {
     using var message = new MailMessage("newsletter@yourcompany.com", email)
     {
@@ -292,7 +292,7 @@ app.MapPost("/subscribe", async ([FromServices] SmtpClient smtpClient, string em
     await smtpClient.SendMailAsync(message);
 });
 
-app.MapPost("/unsubscribe", async ([FromServices] SmtpClient smtpClient, string email) =>
+app.MapPost("/unsubscribe", async (SmtpClient smtpClient, string email) =>
 {
     using var message = new MailMessage("newsletter@yourcompany.com", email)
     {

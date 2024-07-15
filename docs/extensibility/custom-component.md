@@ -144,3 +144,9 @@ The most noteable changes in the preceding code are:
 
 - The replacement of the registration for the official .NET `SmtpClient` with the call to the `AddMailKitClient` extension method.
 - Replacing both `/subscribe` and `/unsubscribe` map post calls to instead inject the `MailKitClientFactory` and use the `ISmtpClient` instance to send the email.
+
+## Summary
+
+In this article, you learned how to create a .NET Aspire component that uses MailKit to send emails. You also learned how to integrate this component into the Newsletter app you previously built. You learned about the core principles of .NET Aspire components, such as exposing the underlying client library to consumers through dependency injection, and how to add health checks and telemetry to the component. You also learned how to update the Newsletter service to use the MailKit client.
+
+Go forth and build your own .NET Aspire components! If you believe that there's enough value in the component you've built, consider publishing it as a NuGet package for others to use. Furthermore, consider submitting a pull request to the [.NET Aspire GitHub repository](https://github.com/dotnet/aspire) for consideration to be included in the official .NET Aspire components.
