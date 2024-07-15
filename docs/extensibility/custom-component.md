@@ -13,6 +13,9 @@ This article is a continuation of the [Create custom resource types for .NET Asp
 
 If you're following along, you should have already completed the steps in the [Create custom resource types for .NET Aspire](custom-resources.md) article.
 
+> [!TIP]
+> This article is inspired by existing .NET Aspire components, and based on the teams official guidance. There are places where said guidance varies, and it's important to understand the reasoning behind the differences.
+
 ## Create library for component
 
 [.NET Aspire components](../fundamentals/components-overview.md) are delivered as NuGet packages, but in this example, it's beyond the scope of this article to publish a NuGet package. Instead, you create a class library project that contains the component and reference it as a project. .NET Aspire component packages are intended to wrap a client library, such as MailKit, and provide production-ready telemetry, health checks, configurability, and testability. Let's start by creating a new class library project.
@@ -66,7 +69,9 @@ The `MailKitClientFactory` class is a factory that creates an `ISmtpClient` inst
 
 :::code source="snippets/MailDevResource/MailKit.Client/MailKitClientServiceCollectionExtensions.cs":::
 
-The preceding code adds two extension methods on the `IHostApplicationBuilder` type, one for the standard registration of MailKit and another for keyed-registration of MailKit. Both extensions ultimately rely on the private `AddMailKitClient` method to register the `MailKitClientFactory` with the dependency injection container as a scoped-life service. The reason for registering the `MailKitClientFactory` as a scoped service is due to the fact that the connection (and authentication) operations are considered expensive and should be reused within the same scope where possible. In other words, for a single request, the same `ISmtpClient` instance should be used.
+The preceding code adds two extension methods on the `IHostApplicationBuilder` type, one for the standard registration of MailKit and another for keyed-registration of MailKit. Extension methods for .NET Aspire components should extend the `IHostApplicationBuilder` type and following the `Add<Name>` naming convention where the `<Name>` is the thing you're adding.
+
+Both extensions ultimately rely on the private `AddMailKitClient` method to register the `MailKitClientFactory` with the dependency injection container as a scoped-life service. The reason for registering the `MailKitClientFactory` as a scoped service is due to the fact that the connection (and authentication) operations are considered expensive and should be reused within the same scope where possible. In other words, for a single request, the same `ISmtpClient` instance should be used.
 
 The pattern for binding component settings to the builder's configuration, is to first instantiate the settings class and then bind settings to the specific section of the configuration.
 
@@ -100,7 +105,7 @@ if (settings.DisableHealthChecks is false)
         .AddCheck<MailKitHealthCheck>(
             name: serviceKey is null ? "MailKit" : $"MailKit_{connectionName}",
             failureStatus: default,
-            tags: [ "live" ]);
+            tags: []);
 }
 ```
 
@@ -121,6 +126,8 @@ if (settings.DisableTracing is false)
 
 if (settings.DisableMetrics is false)
 {
+    Telemetry.SmtpClient.Configure();
+
     builder.Services.AddOpenTelemetry()
         .WithMetrics(
             metricsBuilder => metricsBuilder.AddMeter(
@@ -149,4 +156,4 @@ The most noteable changes in the preceding code are:
 
 In this article, you learned how to create a .NET Aspire component that uses MailKit to send emails. You also learned how to integrate this component into the Newsletter app you previously built. You learned about the core principles of .NET Aspire components, such as exposing the underlying client library to consumers through dependency injection, and how to add health checks and telemetry to the component. You also learned how to update the Newsletter service to use the MailKit client.
 
-Go forth and build your own .NET Aspire components! If you believe that there's enough value in the component you've built, consider publishing it as a NuGet package for others to use. Furthermore, consider submitting a pull request to the [.NET Aspire GitHub repository](https://github.com/dotnet/aspire) for consideration to be included in the official .NET Aspire components.
+Go forth and build your own .NET Aspire components! If you believe that there's enough community value in the component you've built, consider publishing it as a [NuGet package](/dotnet/standard/library-guidance/nuget) for others to use. Furthermore, consider submitting a pull request to the [.NET Aspire GitHub repository](https://github.com/dotnet/aspire) for consideration to be included in the official .NET Aspire components.

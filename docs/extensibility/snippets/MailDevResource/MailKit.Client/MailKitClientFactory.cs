@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics.Metrics;
+using System.Net;
 using MailKit.Net.Smtp;
 
 namespace MailKit.Client;
@@ -11,8 +12,12 @@ namespace MailKit.Client;
 /// <param name="credentials">
 /// The optional <see cref="ICredentials"/> used to authenticate to the SMTP server
 /// </param>
-public sealed class MailKitClientFactory(Uri smtpUri, ICredentials? credentials = null)
+public sealed class MailKitClientFactory(
+    Uri smtpUri,
+    ICredentials? credentials = null) : IDisposable
 {
+    private SmtpClient? _client;
+
     /// <summary>
     /// Gets an <see cref="ISmtpClient"/> instance in the connected state
     /// (and that's been authenticated if configured).
@@ -22,22 +27,24 @@ public sealed class MailKitClientFactory(Uri smtpUri, ICredentials? credentials 
     /// <remarks>
     /// Since both the connection and authentication are considered expensive operations,
     /// the <see cref="ISmtpClient"/> returned is intended to be used for the duration of a request
-    /// (registered as 'Scoped') and shouldn't be disposed of and disconnect shouldn't be called.
+    /// (registered as 'Scoped') and is automatically disposed of.
     /// </remarks>
     public async Task<ISmtpClient> GetSmtpClientAsync(
         CancellationToken cancellationToken = default)
     {
-        SmtpClient client = new();
+        _client = new SmtpClient();
 
-        await client.ConnectAsync(smtpUri, cancellationToken)
+        await _client.ConnectAsync(smtpUri, cancellationToken)
                     .ConfigureAwait(false);
 
         if (credentials is not null)
         {
-            await client.AuthenticateAsync(credentials, cancellationToken)
+            await _client.AuthenticateAsync(credentials, cancellationToken)
                         .ConfigureAwait(false);
         }
 
-        return client;
+        return _client;
     }
+
+    public void Dispose() => _client?.Dispose();
 }

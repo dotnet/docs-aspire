@@ -1,5 +1,6 @@
-﻿using MailKit.Client;
-using Microsoft.AspNetCore.Mvc;
+﻿using System.Net.Mail;
+using MailKit.Client;
+using MailKit.Net.Smtp;
 using MimeKit;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,39 +26,31 @@ app.UseHttpsRedirection();
 app.MapPost("/subscribe",
     async (MailKitClientFactory factory, string email) =>
 {
-    var client = await factory.GetSmtpClientAsync();
+    // Can be disposed of since we're only sending a single message.
+    using ISmtpClient client = await factory.GetSmtpClientAsync();
 
-    var message = new MimeMessage
+    using var message = new MailMessage("newsletter@yourcompany.com", email)
     {
         Subject = "Welcome to our newsletter!",
-        Body = new TextPart("plain")
-        {
-            Text = "Thank you for subscribing to our newsletter!"
-        },
-        From = { new MailboxAddress("Dev Newsletter", "newsletter@yourcompany.com") },
-        To = { new MailboxAddress("Recipient Name", email) }
+        Body = "Thank you for subscribing to our newsletter!"
     };
 
-    await client.SendAsync(message);
+    await client.SendAsync(MimeMessage.CreateFromMailMessage(message));
 });
 
 app.MapPost("/unsubscribe",
     async (MailKitClientFactory factory, string email) =>
 {
-    var client = await factory.GetSmtpClientAsync();
+    // Can be disposed of since we're only sending a single message.
+    using ISmtpClient client = await factory.GetSmtpClientAsync();
 
-    var message = new MimeMessage
+    using var message = new MailMessage("newsletter@yourcompany.com", email)
     {
         Subject = "You are unsubscribed from our newsletter!",
-        Body = new TextPart("plain")
-        {
-            Text = "Sorry to see you go. We hope you will come back soon!"
-        },
-        From = { new MailboxAddress("Dev Newsletter", "newsletter@yourcompany.com") },
-        To = { new MailboxAddress("Recipient Name", email) }
+        Body = "Sorry to see you go. We hope you will come back soon!"
     };
 
-    await client.SendAsync(message);
+    await client.SendAsync(MimeMessage.CreateFromMailMessage(message));
 });
 
 app.Run();

@@ -1,4 +1,5 @@
-﻿using MailKit;
+﻿using System.Diagnostics.Metrics;
+using MailKit;
 using MailKit.Client;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
@@ -12,15 +13,22 @@ namespace Microsoft.Extensions.Hosting;
 /// </summary>
 public static class MailKitClientServiceCollectionExtensions
 {
-    private const string DefaultConfigSectionName = "Aspire:MailKit:Client";
+    private const string DefaultConfigSectionName = "MailKit:Client";
 
     /// <summary>
     /// Registers 'Scoped' <see cref="MailKitClientFactory" /> for creating
     /// connected <see cref="SmtpClient"/> instance for sending emails.
     /// </summary>
-    /// <param name="builder">The <see cref="IHostApplicationBuilder" /> to read config from and add services to.</param>
-    /// <param name="connectionName">A name used to retrieve the connection string from the ConnectionStrings configuration section.</param>
-    /// <param name="configureSettings">An optional delegate that can be used for customizing options. It's invoked after the settings are read from the configuration.</param>
+    /// <param name="builder">
+    /// The <see cref="IHostApplicationBuilder" /> to read config from and add services to.
+    /// </param>
+    /// <param name="connectionName">
+    /// A name used to retrieve the connection string from the ConnectionStrings configuration section.
+    /// </param>
+    /// <param name="configureSettings">
+    /// An optional delegate that can be used for customizing options.
+    /// It's invoked after the settings are read from the configuration.
+    /// </param>
     public static void AddMailKitClient(
         this IHostApplicationBuilder builder,
         string connectionName,
@@ -92,7 +100,7 @@ public static class MailKitClientServiceCollectionExtensions
             builder.Services.AddKeyedScoped(serviceKey, (sp, _) => CreateMailKitClientFactory(sp));
         }
 
-        MailKitClientFactory CreateMailKitClientFactory(IServiceProvider _)
+        MailKitClientFactory CreateMailKitClientFactory(IServiceProvider sp)
         {
             var connectionString = settings.ConnectionString;
 
@@ -115,7 +123,10 @@ public static class MailKitClientServiceCollectionExtensions
                     """);
             }
 
-            return new MailKitClientFactory(smtpUri, settings.Credentials);
+            return new MailKitClientFactory(
+                sp.GetRequiredService<IMeterFactory>(),
+                smtpUri,
+                settings.Credentials);
         }
 
         if (settings.DisableHealthChecks is false)
@@ -124,7 +135,7 @@ public static class MailKitClientServiceCollectionExtensions
                 .AddCheck<MailKitHealthCheck>(
                     name: serviceKey is null ? "MailKit" : $"MailKit_{connectionName}",
                     failureStatus: default,
-                    tags: [ "live" ]);
+                    tags: []);
         }
 
         if (settings.DisableTracing is false)
@@ -137,6 +148,8 @@ public static class MailKitClientServiceCollectionExtensions
 
         if (settings.DisableMetrics is false)
         {
+            Telemetry.SmtpClient.Configure();
+
             builder.Services.AddOpenTelemetry()
                 .WithMetrics(
                     metricsBuilder => metricsBuilder.AddMeter(
