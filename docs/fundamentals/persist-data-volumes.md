@@ -38,7 +38,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 builder.Build().Run();
 ```
 
-The firsts code snippet to consider uses the `WithBindMount` API to configure a volume for a SQL Server resource. The following code demonstrates how to configure a volume for a SQL Server resource in a .NET Aspire app host project:
+The first code snippet to consider uses the `WithBindMount` API to configure a volume for a SQL Server resource. The following code demonstrates how to configure a volume for a SQL Server resource in a .NET Aspire app host project:
 
 :::code language="csharp" source="snippets/volumes/VolumeMounts.AppHost/Program.WithBindMount.cs" id="mount":::
 
