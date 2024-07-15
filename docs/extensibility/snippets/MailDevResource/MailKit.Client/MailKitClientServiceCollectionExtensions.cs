@@ -124,7 +124,6 @@ public static class MailKitClientServiceCollectionExtensions
             }
 
             return new MailKitClientFactory(
-                sp.GetRequiredService<IMeterFactory>(),
                 smtpUri,
                 settings.Credentials);
         }

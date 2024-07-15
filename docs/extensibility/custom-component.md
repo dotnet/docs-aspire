@@ -109,7 +109,7 @@ if (settings.DisableHealthChecks is false)
 }
 ```
 
-The consumer could choose to omit health checks by setting the `DisableHealthChecks` property to `true` in the configuration. This is a common pattern for components that have optional features.
+The consumer could choose to omit health checks by setting the `DisableHealthChecks` property to `true` in the configuration. This is a common pattern for components that have optional features. For more information on health checks and a working sample that includes a user interface, see [.NET Aspire ASP.NET Core HealthChecksUI sample](/samples/dotnet/aspire-samples/aspire-health-checks-ui/).
 
 ### Wire up telemetry
 
