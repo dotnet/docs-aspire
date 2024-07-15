@@ -1,7 +1,7 @@
 ---
 title: Create custom resource types for .NET Aspire
 description: Learn how to create a custom resource for an existing containerized application.
-ms.date: 07/12/2024
+ms.date: 07/15/2024
 ms.topic: how-to
 ---
 
@@ -278,7 +278,7 @@ builder.Services.AddSingleton<SmtpClient>(sp =>
 > [!TIP]
 > This code snippet relies on the official `SmtpClient`, however; this type is obsolete on some platforms and not recommended on others. This is used here to demonstrate a non-componentized approach to using the MailDev resource. For a more modern approach using [MailKit](https://github.com/jstedfast/MailKit), see [Create custom .NET Aspire component](custom-component.md).
 
-To test the client, add two simple `subscribe` and `unsubscribe` GET methods to the newsletter service. Add the following code replacing the "weatherforecast" `MapGet` call in the _:::no-loc text="Program.cs":::_ file of the _MailDevResource.NewsletterService_ project to setup the ASP.NET Core routes:
+To test the client, add two simple `subscribe` and `unsubscribe` POST methods to the newsletter service. Add the following code replacing the "weatherforecast" `MapGet` call in the _:::no-loc text="Program.cs":::_ file of the _MailDevResource.NewsletterService_ project to setup the ASP.NET Core routes:
 
 ```csharp
 app.MapPost("/subscribe", async ([FromServices] SmtpClient smtpClient, string email) =>

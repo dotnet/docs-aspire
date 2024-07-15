@@ -8,7 +8,9 @@ namespace MailKit.Client;
 /// given a <paramref name="smtpUri"/> (and optional <paramref name="credentials"/>).
 /// </summary>
 /// <param name="smtpUri">The <see cref="Uri"/> for the SMTP server</param>
-/// <param name="credentials">The optional <see cref="ICredentials"/> used to authenticate to the SMTP server</param>
+/// <param name="credentials">
+/// The optional <see cref="ICredentials"/> used to authenticate to the SMTP server
+/// </param>
 public sealed class MailKitClientFactory(Uri smtpUri, ICredentials? credentials = null)
 {
     /// <summary>

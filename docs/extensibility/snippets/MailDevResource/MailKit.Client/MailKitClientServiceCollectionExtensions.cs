@@ -36,9 +36,17 @@ public static class MailKitClientServiceCollectionExtensions
     /// Registers 'Scoped' <see cref="MailKitClientFactory" /> for creating
     /// connected <see cref="SmtpClient"/> instance for sending emails.
     /// </summary>
-    /// <param name="builder">The <see cref="IHostApplicationBuilder" /> to read config from and add services to.</param>
-    /// <param name="name">The name of the component, which is used as the <see cref="ServiceDescriptor.ServiceKey"/> of the service and also to retrieve the connection string from the ConnectionStrings configuration section.</param>
-    /// <param name="configureSettings">An optional method that can be used for customizing options. It's invoked after the settings are read from the configuration.</param>
+    /// <param name="builder">
+    /// The <see cref="IHostApplicationBuilder" /> to read config from and add services to.
+    /// </param>
+    /// <param name="name">
+    /// The name of the component, which is used as the <see cref="ServiceDescriptor.ServiceKey"/> of the
+    /// service and also to retrieve the connection string from the ConnectionStrings configuration section.
+    /// </param>
+    /// <param name="configureSettings">
+    /// An optional method that can be used for customizing options. It's invoked after the settings are
+    /// read from the configuration.
+    /// </param>
     public static void AddKeyedMailKitClient(
         this IHostApplicationBuilder builder,
         string name,
