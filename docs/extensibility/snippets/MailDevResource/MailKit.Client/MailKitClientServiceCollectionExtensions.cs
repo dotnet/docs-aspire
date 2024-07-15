@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Metrics;
-using MailKit;
+﻿using MailKit;
 using MailKit.Client;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;

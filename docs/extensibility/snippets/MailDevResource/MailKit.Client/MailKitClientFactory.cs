@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.Metrics;
-using System.Net;
+﻿using System.Net;
 using MailKit.Net.Smtp;
 
 namespace MailKit.Client;

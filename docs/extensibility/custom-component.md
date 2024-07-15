@@ -14,7 +14,7 @@ This article is a continuation of the [Create custom resource types for .NET Asp
 If you're following along, you should have already completed the steps in the [Create custom resource types for .NET Aspire](custom-resources.md) article.
 
 > [!TIP]
-> This article is inspired by existing .NET Aspire components, and based on the teams official guidance. There are places where said guidance varies, and it's important to understand the reasoning behind the differences.
+> This article is inspired by existing .NET Aspire components, and based on the teams official guidance. There are places where said guidance varies, and it's important to understand the reasoning behind the differences. For more information, see [.NET Aspire component requirements](https://github.com/dotnet/aspire/blob/f38b6cba86942ad1c45fc04fe7170f0fd4ba7c0b/src/Components/Aspire_Components_Progress.md#net-aspire-component-requirements).
 
 ## Create library for component
 
