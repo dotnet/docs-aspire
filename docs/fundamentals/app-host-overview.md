@@ -160,7 +160,7 @@ var ollama = builder.AddContainer("ollama", "ollama/ollama")
     .WithBindMount("./ollamaconfig", "/usr/config")
     .WithHttpEndpoint(port: 11434, targetPort: 11434, name: "ollama")
     .WithEntrypoint("/usr/config/entrypoint.sh")
-    .WithContainerRunArgs("--gpus=all");
+    .WithContainerRuntimeArgs("--gpus=all");
 ```
 
 For more information, see [GPU support in Docker Desktop](https://docs.docker.com/desktop/gpu/).
