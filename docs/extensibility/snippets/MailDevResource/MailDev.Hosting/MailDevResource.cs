@@ -7,10 +7,8 @@ namespace Aspire.Hosting.ApplicationModel;
 public sealed class MailDevResource(string name) : ContainerResource(name), IResourceWithConnectionString
 {
     // Constants used to refer to well known-endpoint names, this is specific
-    // for each resource type. MailDev exposes an SMTP endpoint and a HTTP
-    // endpoint.
+    // for each resource type. MailDev exposes an SMTP endpoint.
     internal const string SmtpEndpointName = "smtp";
-    internal const string HttpEndpointName = "http";
 
     // An EndpointReference is a core .NET Aspire type used for keeping
     // track of endpoint details in expressions. Simple literal values cannot
