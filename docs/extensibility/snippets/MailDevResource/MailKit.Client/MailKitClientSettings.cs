@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using Microsoft.Extensions.Configuration;
 
 namespace MailKit.Client;
 
@@ -71,5 +72,26 @@ public sealed class MailKitClientSettings
         }
 
         Endpoint = uri;
+    }
+
+    internal void ParseCredentials(IConfigurationSection credentialsSection)
+    {
+        if (credentialsSection is null or { Value: null })
+        {
+            return;
+        }
+
+        var username = credentialsSection["UserName"];
+        var password = credentialsSection["Password"];
+
+        if (username is null || password is null)
+        {
+            throw new InvalidOperationException($"""
+                    The '{DefaultConfigSectionName}:Credentials' section cannot be empty.
+                    Either remove Credentials altogether, or provide them.
+                    """);
+        }
+
+        Credentials = new(username, password);
     }
 }

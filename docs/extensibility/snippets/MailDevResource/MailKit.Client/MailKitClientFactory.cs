@@ -15,8 +15,9 @@ namespace MailKit.Client;
 /// </param>
 public sealed class MailKitClientFactory(MailKitClientSettings settings) : IDisposable
 {
+    private readonly SemaphoreSlim _semaphore = new(1, 1);
+
     private SmtpClient? _client;
-    private SemaphoreSlim _semaphore = new(1, 1);
 
     /// <summary>
     /// Gets an <see cref="ISmtpClient"/> instance in the connected state

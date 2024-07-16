@@ -68,6 +68,15 @@ The settings class also contains a `ParseConnectionString` method that parses th
 
 If neither of these values are provided, an exception is thrown. Likewise, if there's a value but it's not a valid URI, an exception is thrown.
 
+### Parse credentials logic
+
+The settings class also contains a `ParseCredentials` method that parses the credentials into a valid `NetworkCredential`. The configuration is expected to be provided in the following format:
+
+- `MailKit:Client:Credentials:UserName`: The username to authenticate with the SMTP server.
+- `MailKit:Client:Credentials:Password`: The password to authenticate with the SMTP server.
+
+When credentials are configured, the `ParseCredentials` method attempts to parse the username and password from the configuration. If either the username or password is missing, an exception is thrown.
+
 ## Expose component wrapper functionality
 
 The goal of .NET Aspire components is to expose the underlying client library to consumers through dependency injection. With MailKit and for this example, the `SmtpClient` class is what you want to expose. You're not wrapping any functionality, but rather mapping configuration settings to an `SmtpClient` class. It's common to expose both standard and keyed-service registrations for components. Standard registrations are used when there's only one instance of a service, and keyed-service registrations are used when there are multiple instances of a service. Sometimes, to achieve multiple registrations of the same type you use a factory pattern. Add the following code to the `MailKit.Client` project in a file named _MailKitClientFactory.cs_:
@@ -165,6 +174,89 @@ The most notable changes in the preceding code are:
 - The updated `using` statements that include the `MailKit.Client`, `MailKit.Net.Smtp`, and `MimeKit` namespaces.
 - The replacement of the registration for the official .NET `SmtpClient` with the call to the `AddMailKitClient` extension method.
 - The replacement of both `/subscribe` and `/unsubscribe` map post calls to instead inject the `MailKitClientFactory` and use the `ISmtpClient` instance to send the email.
+
+## Run the sample
+
+Now that you've created the MailKit client component and updated the Newsletter service to use it, you can run the sample. From your IDE, select <kbd>F5</kbd> or run `dotnet run` from the root directory of the solution to start the application—you should see the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md):
+
+:::image type="content" source="./media/maildev-with-newsletterservice-dashboard.png" lightbox="./media/maildev-with-newsletterservice-dashboard.png" alt-text=".NET Aspire dashboard: MailDev and Newsletter resources running.":::
+
+Once the application is running, navigate to the Swagger UI at [https://localhost:7251/swagger](https://localhost:7251/swagger) and test the `/subscribe` and `/unsubscribe` endpoints. Select the down arrow to expand the endpoint:
+
+:::image type="content" source="./media/swagger-ui.png" lightbox="./media/swagger-ui.png" alt-text="Swagger UI: Subscribe endpoint.":::
+
+Then select the `Try it out` button. Enter an email address, and then select the `Execute` button.
+
+:::image type="content" source="./media/swagger-ui-try.png" lightbox="./media/swagger-ui-try.png" alt-text="Swagger UI: Subscribe endpoint with email address.":::
+
+Repeat this several times, to add multiple email addresses. You should see the email sent to the MailDev inbox:
+
+:::image type="content" source="./media/maildev-inbox.png" alt-text="MailDev inbox with multiple emails.":::
+
+Stop the application by selecting <kbd>Ctrl</kbd>+<kbd>C</kbd> in the terminal window where the application is running, or by selecting the stop button in your IDE.
+
+### Configure MailDev credentials
+
+The MailDev container supports basic authentication for both incoming and outgoing SMTP. To configure the credentials for incoming, you need to set the `MAILDEV_INCOMING_USER` and `MAILDEV_INCOMING_PASS` environment variables. For more information, see [MailDev: Usage](https://maildev.github.io/maildev/#usage).
+
+To configure these credentials, update the _Program.cs_ file in the `MailDevResource.AppHost` project with the following code:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var mailDevUsername = builder.AddParameter("maildev-username");
+var mailDevPassword = builder.AddParameter("maildev-password");
+
+var maildev = builder.AddMailDev("maildev")
+    .WithEnvironment("MAILDEV_INCOMING_USER", mailDevUsername)
+    .WithEnvironment("MAILDEV_INCOMING_PASS", mailDevPassword);
+
+builder.AddProject<Projects.MailDevResource_NewsletterService>("newsletterservice")
+       .WithReference(maildev);
+
+builder.Build().Run();
+```
+
+The preceding code adds two parameters for the MailDev username and password. It assigns these parameters to the `MAILDEV_INCOMING_USER` and `MAILDEV_INCOMING_PASS` environment variables. The `AddMailDev` method is then updated to include these environment variables. For more information on parameters, see [External parameters](../fundamentals/external-parameters.md).
+
+Next, configure the secrets for these paremeters. Right-click on the `MailDevResource.AppHost` project and select `Manage User Secrets`. Add the following JSON to the `secrets.json` file:
+
+```json
+{
+  "Parameters:maildev-username": "@admin",
+  "Parameters:maildev-password": "t3st1ng"
+}
+```
+
+> [!WARNING]
+> These credentials are for demonstration purposes only and MailDev is intended for local development. These crednetials are fictitious and shouldn't be used in a production environment.
+
+If you're to run the sample now, the client wouldn't be able to connect to the MailDev container. This is because the MailDev container is configured to require authentication for incoming SMTP connections. The MailKit client configuration also needs to be updated to include the credentials.
+
+To configure the credentials in the client, right-click on the `MailDevResource.NewsletterService` project and select `Manage User Secrets`. Add the following JSON to the `secrets.json` file:
+
+```json
+{
+  "MailKit:Client": {
+    "Credentials": {
+      "UserName": "@admin",
+      "Password": "t3st1ng"
+    }
+  }
+}
+```
+
+Run the app again, and everything works as it did before, but now with authentication enabled.
+
+### View MailKit telemetry
+
+The MailKit client library exposes telemetry that can be viewed in the .NET Aspire dashboard. To view the telemetry, navigate to the .NET Aspire dashboard at [https://localhost:7251](https://localhost:7251). Select the `newsletter` resource to view the telemetry on the **Metrics** page:
+
+:::image type="content" source="./media/mailkit-metrics-dashboard.png" lightbox="./media/mailkit-metrics-dashboard.png" alt-text=".NET Aspire dashboard: MailKit telemetry.":::
+
+Open up the Swagger UI again, and make some requests to the `/subscribe` and `/unsubscribe` endpoints. Then, navigate back to the .NET Aspire dashboard and select the `newsletter` resource. Select a metric under the **mailkit.net.smtp** node, such as `mailkit.net.smtp.client.operation.count`. You should see the telemetry for the MailKit client:
+
+:::image type="content" source="./media/mailkit-metrics-graph-dashboard.png" lightbox="./media/mailkit-metrics-graph-dashboard.png" alt-text=".NET Aspire dashboard: MailKit telemetry for operation count.":::
 
 ## Summary
 
