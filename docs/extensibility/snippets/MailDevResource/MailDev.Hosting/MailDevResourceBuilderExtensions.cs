@@ -30,20 +30,18 @@ public static class MailDevResourceBuilderExtensions
         // the resource (if any exist) target the builder interface.
         var resource = new MailDevResource(name);
 
-        var mailDevResourceBuilder = builder.AddResource(resource)
-            .WithImage(MailDevContainerImageTags.Image)
-            .WithImageRegistry(MailDevContainerImageTags.Registry)
-            .WithImageTag(MailDevContainerImageTags.Tag)
-            .WithHttpEndpoint(
-                targetPort: 1080,
-                port: httpPort,
-                name: MailDevResource.HttpEndpointName)
-            .WithEndpoint(
-                targetPort: 1025,
-                port: smtpPort,
-                name: MailDevResource.SmtpEndpointName);
-
-        return mailDevResourceBuilder;
+        return builder.AddResource(resource)
+                      .WithImage(MailDevContainerImageTags.Image)
+                      .WithImageRegistry(MailDevContainerImageTags.Registry)
+                      .WithImageTag(MailDevContainerImageTags.Tag)
+                      .WithHttpEndpoint(
+                          targetPort: 1080,
+                          port: httpPort,
+                          name: MailDevResource.HttpEndpointName)
+                      .WithEndpoint(
+                          targetPort: 1025,
+                          port: smtpPort,
+                          name: MailDevResource.SmtpEndpointName);
     }
 }
 
