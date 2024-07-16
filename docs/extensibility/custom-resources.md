@@ -57,7 +57,7 @@ cd MailDevResource
 dir
 ```
 
-Once the project is created you should a listing containing the following:
+Once the project is created you should see a listing containing the following:
 
 - `MailDevResource.AppHost`: The [app host](../fundamentals/app-host-overview.md) used to test out the custom resource.
 - `MailDevResource.ServiceDefaults`: The [service defaults](../fundamentals/service-defaults.md) project for use in service-related projects.
@@ -481,4 +481,4 @@ Careful consideration should be given as to whether the resource should be prese
 
 ## Summary
 
-In the custom resource tutorial, you learned how to create a custom .NET Aspire resource which uses an existing containerized application (MailDev). You then used that to improve the local development experience by making it easy to test e-mail capabilities that might be used within an apps. These learnings can be applied to building out other custom resources that can be used in .NET Aspire-based applications. This specific example, didn't include any custom components, but it's possible to build out custom components to make it easier for developers to use the resource. In this scenario you were able to rely on the existing `SmtpClient` class in the .NET platform to send e-mails.
+In the custom resource tutorial, you learned how to create a custom .NET Aspire resource which uses an existing containerized application (MailDev). You then used that to improve the local development experience by making it easy to test e-mail capabilities that might be used within an app. These learnings can be applied to building out other custom resources that can be used in .NET Aspire-based applications. This specific example didn't include any custom components, but it's possible to build out custom components to make it easier for developers to use the resource. In this scenario you were able to rely on the existing `SmtpClient` class in the .NET platform to send e-mails.
