@@ -107,7 +107,7 @@ You now have a fully configured PostgreSQL database component and corresponding 
 
 ## Configure .NET Aspire components
 
-.NET Aspire components implement a consistent configuration experiences via <xref:Microsoft.Extensions.Configuration.IConfiguration> and <xref:Microsoft.Extensions.Options.IOptions%601>. Configuration is schematized and part of a component's contract, ensuring backward compatibility across versions of the component. You can set up every .NET Aspire component through either JSON configuration files or directly through code using delegates. JSON files must follow a standardized naming convention based on the Component name.
+.NET Aspire components implement a consistent configuration experience via <xref:Microsoft.Extensions.Configuration.IConfiguration> and <xref:Microsoft.Extensions.Options.IOptions%601>. Configuration is schematized and part of a component's contract, ensuring backward compatibility across versions of the component. You can set up every .NET Aspire component through either JSON configuration files or directly through code using delegates. JSON files must follow a standardized naming convention based on the Component name.
 
 For example, add the following code to the _:::no-loc text="appsettings.json":::_ file to configure the PostgreSQL component:
 
