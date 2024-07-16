@@ -217,7 +217,7 @@ builder.AddProject<Projects.MailDevResource_NewsletterService>("newsletterservic
 builder.Build().Run();
 ```
 
-The preceding code adds two parameters for the MailDev username and password. It assigns these parameters to the `MAILDEV_INCOMING_USER` and `MAILDEV_INCOMING_PASS` environment variables. The `AddMailDev` method is then updated to include these environment variables. For more information on parameters, see [External parameters](../fundamentals/external-parameters.md).
+The preceding code adds two parameters for the MailDev username and password. It assigns these parameters to the `MAILDEV_INCOMING_USER` and `MAILDEV_INCOMING_PASS` environment variables. The `AddMailDev` method has two chained calls to `WithEnvironment` which includes these environment variables. For more information on parameters, see [External parameters](../fundamentals/external-parameters.md).
 
 Next, configure the secrets for these paremeters. Right-click on the `MailDevResource.AppHost` project and select `Manage User Secrets`. Add the following JSON to the `secrets.json` file:
 
