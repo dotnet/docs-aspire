@@ -26,8 +26,7 @@ app.UseHttpsRedirection();
 app.MapPost("/subscribe",
     async (MailKitClientFactory factory, string email) =>
 {
-    // Can be disposed of since we're only sending a single message.
-    using ISmtpClient client = await factory.GetSmtpClientAsync();
+    ISmtpClient client = await factory.GetSmtpClientAsync();
 
     using var message = new MailMessage("newsletter@yourcompany.com", email)
     {
@@ -41,8 +40,7 @@ app.MapPost("/subscribe",
 app.MapPost("/unsubscribe",
     async (MailKitClientFactory factory, string email) =>
 {
-    // Can be disposed of since we're only sending a single message.
-    using ISmtpClient client = await factory.GetSmtpClientAsync();
+    ISmtpClient client = await factory.GetSmtpClientAsync();
 
     using var message = new MailMessage("newsletter@yourcompany.com", email)
     {

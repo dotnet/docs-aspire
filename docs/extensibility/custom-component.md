@@ -1,7 +1,7 @@
 ---
 title: Create custom .NET Aspire component
 description: Learn how to create a custom .NET Aspire component for an existing containerized application.
-ms.date: 07/15/2024
+ms.date: 07/16/2024
 ms.topic: how-to
 ---
 
@@ -87,7 +87,7 @@ Both extensions ultimately rely on the private `AddMailKitClient` method to regi
 
 ### Configuration binding
 
-To invoke the delegate after configuration binding, the consumer should instantiate the settings class and then bind the settings to the specific section of the configuration. This allows the consumer to further configure the settings, ensuring that manual code settings are honored over configuration settings. After that, depending on whether the `serviceKey` value was provided, the `MailKitClientFactory` should be registered with the dependency injection container as either a standard or keyed service.
+One of the first things that the private implementation of the `AddMailKitClient` methods does, is to bind the configuration settings to the `MailKitClientSettings` class. The settings class is instantiated and then `Bind` is called with the specific section of configuration. Then the optional `configureSettings` delegate is invoked with the current settings. This allows the consumer to further configure the settings, ensuring that manual code settings are honored over configuration settings. After that, depending on whether the `serviceKey` value was provided, the `MailKitClientFactory` should be registered with the dependency injection container as either a standard or keyed service.
 
 > [!IMPORTANT]
 > It's intentional that the `implementationFactory` overload is called when registering services. The `CreateMailKitClientFactory` method throws when the configuration is invalid. This ensures that creation of the `MailKitClientFactory` is deferred until it's needed and it prevents the app from erroring out before logging is available.
@@ -138,6 +138,7 @@ if (settings.DisableTracing is false)
 
 if (settings.DisableMetrics is false)
 {
+    // Required by MailKit to enable metrics
     Telemetry.SmtpClient.Configure();
 
     builder.Services.AddOpenTelemetry()
@@ -155,14 +156,15 @@ With the component library created, you can now update the Newsletter service to
 dotnet add ./MailDevResource.NewsletterService/MailDevResource.NewsletterService.csproj reference MailKit.Client/MailKit.Client.csproj
 ```
 
-The final step is to replace the existing _Program.cs_ file in the `MailDevResource.NewsletterService` project with the following code:
+The final step is to replace the existing _Program.cs_ file in the `MailDevResource.NewsletterService` project with the following C# code:
 
 :::code source="snippets/MailDevResource/MailDevResource.NewsletterService/Program.cs":::
 
 The most notable changes in the preceding code are:
 
+- The updated `using` statements that include the `MailKit.Client`, `MailKit.Net.Smtp`, and `MimeKit` namespaces.
 - The replacement of the registration for the official .NET `SmtpClient` with the call to the `AddMailKitClient` extension method.
-- Replacing both `/subscribe` and `/unsubscribe` map post calls to instead inject the `MailKitClientFactory` and use the `ISmtpClient` instance to send the email.
+- The replacement of both `/subscribe` and `/unsubscribe` map post calls to instead inject the `MailKitClientFactory` and use the `ISmtpClient` instance to send the email.
 
 ## Summary
 

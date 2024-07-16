@@ -94,7 +94,7 @@ public static class MailKitClientServiceCollectionExtensions
         }
         else
         {
-            builder.Services.AddKeyedScoped(serviceKey, (sp, _) => CreateMailKitClientFactory(sp));
+            builder.Services.AddKeyedScoped(serviceKey, (sp, key) => CreateMailKitClientFactory(sp));
         }
 
         MailKitClientFactory CreateMailKitClientFactory(IServiceProvider _)
@@ -121,6 +121,7 @@ public static class MailKitClientServiceCollectionExtensions
 
         if (settings.DisableMetrics is false)
         {
+            // Required by MailKit to enable metrics
             Telemetry.SmtpClient.Configure();
 
             builder.Services.AddOpenTelemetry()
