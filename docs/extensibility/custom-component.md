@@ -74,9 +74,9 @@ The goal of .NET Aspire components is to expose the underlying client library to
 
 :::code source="snippets/MailDevResource/MailKit.Client/MailKitClientFactory.cs":::
 
-The `MailKitClientFactory` class is a factory that creates an `ISmtpClient` instance based on the configuration settings. It's responsible for returning an `ISmtpClient` implementation that has an active connection to a configured SMTP server and optionally authenticated. Next, you need to expose the functionality for the consumers to register this factory with the dependency injection container. Add the following code to the `MailKit.Client` project in a file named _MailKitClientServiceCollectionExtensions.cs_:
+The `MailKitClientFactory` class is a factory that creates an `ISmtpClient` instance based on the configuration settings. It's responsible for returning an `ISmtpClient` implementation that has an active connection to a configured SMTP server and optionally authenticated. Next, you need to expose the functionality for the consumers to register this factory with the dependency injection container. Add the following code to the `MailKit.Client` project in a file named _MailKitExtensions.cs_:
 
-:::code source="snippets/MailDevResource/MailKit.Client/MailKitClientServiceCollectionExtensions.cs":::
+:::code source="snippets/MailDevResource/MailKit.Client/MailKitExtensions.cs":::
 
 The preceding code adds two extension methods on the `IHostApplicationBuilder` type, one for the standard registration of MailKit and another for keyed-registration of MailKit.
 

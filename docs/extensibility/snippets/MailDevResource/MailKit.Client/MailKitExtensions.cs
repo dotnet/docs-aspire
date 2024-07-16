@@ -114,6 +114,9 @@ public static class MailKitExtensions
 
         if (settings.DisableTracing is false)
         {
+            // Required by MailKit to enable tracing
+            Telemetry.SmtpClient.Configure();
+
             builder.Services.AddOpenTelemetry()
                 .WithTracing(
                     traceBuilder => traceBuilder.AddSource(

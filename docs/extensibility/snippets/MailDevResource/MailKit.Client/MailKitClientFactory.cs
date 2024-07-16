@@ -16,6 +16,7 @@ namespace MailKit.Client;
 public sealed class MailKitClientFactory(MailKitClientSettings settings) : IDisposable
 {
     private SmtpClient? _client;
+    private SemaphoreSlim _semaphore = new(1, 1);
 
     /// <summary>
     /// Gets an <see cref="ISmtpClient"/> instance in the connected state
@@ -31,19 +32,35 @@ public sealed class MailKitClientFactory(MailKitClientSettings settings) : IDisp
     public async Task<ISmtpClient> GetSmtpClientAsync(
         CancellationToken cancellationToken = default)
     {
-        _client = new SmtpClient();
+        await _semaphore.WaitAsync(cancellationToken);
 
-        await _client.ConnectAsync(settings.Endpoint, cancellationToken)
-                     .ConfigureAwait(false);
-
-        if (credentials is not null)
+        try
         {
-            await _client.AuthenticateAsync(credentials, cancellationToken)
-                         .ConfigureAwait(false);
+            if (_client is null)
+            {
+                _client = new SmtpClient();
+
+                await _client.ConnectAsync(settings.Endpoint, cancellationToken)
+                             .ConfigureAwait(false);
+
+                if (settings.Credentials is not null)
+                {
+                    await _client.AuthenticateAsync(settings.Credentials, cancellationToken)
+                                 .ConfigureAwait(false);
+                }
+            }
         }
+        finally
+        {
+            _semaphore.Release();
+        }       
 
         return _client;
     }
 
-    public void Dispose() => _client?.Dispose();
+    public void Dispose()
+    {
+        _client?.Dispose();
+        _semaphore.Dispose();
+    }
 }
