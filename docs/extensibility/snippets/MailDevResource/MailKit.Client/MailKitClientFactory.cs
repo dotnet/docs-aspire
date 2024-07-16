@@ -13,9 +13,7 @@ namespace MailKit.Client;
 /// <param name="credentials">
 /// The optional <see cref="ICredentials"/> used to authenticate to the SMTP server
 /// </param>
-public sealed class MailKitClientFactory(
-    MailKitClientSettings settings,
-    ICredentials? credentials = null) : IDisposable
+public sealed class MailKitClientFactory(MailKitClientSettings settings) : IDisposable
 {
     private SmtpClient? _client;
 

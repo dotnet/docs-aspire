@@ -10,7 +10,7 @@ namespace Microsoft.Extensions.Hosting;
 /// Provides extension methods for registering a <see cref="SmtpClient"/> as a
 /// scoped-lifetime service in the services provided by the <see cref="IHostApplicationBuilder"/>.
 /// </summary>
-public static class MailKitClientServiceCollectionExtensions
+public static class MailKitExtensions
 {
     /// <summary>
     /// Registers 'Scoped' <see cref="MailKitClientFactory" /> for creating
@@ -82,9 +82,10 @@ public static class MailKitClientServiceCollectionExtensions
                .GetSection(configurationSectionName)
                .Bind(settings);
 
-        settings.ParseConnectionString(
-            builder.Configuration.GetConnectionString(connectionName) ??
-            builder.Configuration[$"{MailKitClientSettings.DefaultConfigSectionName}:Endpoint"]);
+        if (builder.Configuration.GetConnectionString(connectionName) is string connectionString)
+        {
+            settings.ParseConnectionString(connectionString);
+        }
 
         configureSettings?.Invoke(settings);
 
