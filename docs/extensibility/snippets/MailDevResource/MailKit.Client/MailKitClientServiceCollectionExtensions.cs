@@ -12,8 +12,6 @@ namespace Microsoft.Extensions.Hosting;
 /// </summary>
 public static class MailKitClientServiceCollectionExtensions
 {
-    private const string DefaultConfigSectionName = "MailKit:Client";
-
     /// <summary>
     /// Registers 'Scoped' <see cref="MailKitClientFactory" /> for creating
     /// connected <see cref="SmtpClient"/> instance for sending emails.
@@ -34,7 +32,7 @@ public static class MailKitClientServiceCollectionExtensions
         Action<MailKitClientSettings>? configureSettings = null) =>
         AddMailKitClient(
             builder,
-            DefaultConfigSectionName,
+            MailKitClientSettings.DefaultConfigSectionName,
             configureSettings,
             connectionName,
             serviceKey: null);
@@ -63,7 +61,7 @@ public static class MailKitClientServiceCollectionExtensions
 
         AddMailKitClient(
             builder,
-            $"{DefaultConfigSectionName}:{name}",
+            $"{MailKitClientSettings.DefaultConfigSectionName}:{name}",
             configureSettings,
             connectionName: name,
             serviceKey: name);
@@ -77,16 +75,16 @@ public static class MailKitClientServiceCollectionExtensions
         object? serviceKey)
     {
         ArgumentNullException.ThrowIfNull(builder);
+
         var settings = new MailKitClientSettings();
 
         builder.Configuration
                .GetSection(configurationSectionName)
                .Bind(settings);
 
-        if (builder.Configuration.GetConnectionString(connectionName) is string connectionString)
-        {
-            settings.ConnectionString = connectionString;
-        }
+        settings.ParseConnectionString(
+            builder.Configuration.GetConnectionString(connectionName) ??
+            builder.Configuration[$"{MailKitClientSettings.DefaultConfigSectionName}:Endpoint"]);
 
         configureSettings?.Invoke(settings);
 
@@ -99,32 +97,9 @@ public static class MailKitClientServiceCollectionExtensions
             builder.Services.AddKeyedScoped(serviceKey, (sp, _) => CreateMailKitClientFactory(sp));
         }
 
-        MailKitClientFactory CreateMailKitClientFactory(IServiceProvider sp)
+        MailKitClientFactory CreateMailKitClientFactory(IServiceProvider _)
         {
-            var connectionString = settings.ConnectionString;
-
-            if (string.IsNullOrWhiteSpace(connectionString))
-            {
-                throw new InvalidOperationException($"""
-                    ConnectionString is missing.
-                    It should be provided in 'ConnectionStrings:{connectionName}'
-                    or under 'ConnectionString' key in '{DefaultConfigSectionName}'
-                    configuration section.
-                    """);
-            }
-
-            if (Uri.TryCreate(connectionString, UriKind.Absolute, out var smtpUri) is false ||
-                smtpUri is null)
-            {
-                throw new InvalidOperationException($"""
-                    The 'ConnectionStrings:{connectionName}' (or 'ConnectionString' key in
-                    '{DefaultConfigSectionName}') isn't a valid URI format.
-                    """);
-            }
-
-            return new MailKitClientFactory(
-                smtpUri,
-                settings.Credentials);
+            return new MailKitClientFactory(settings);
         }
 
         if (settings.DisableHealthChecks is false)

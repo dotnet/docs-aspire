@@ -53,11 +53,20 @@ Whenever you're creating a .NET Aspire component, it's best to understand the cl
 
 The preceding code defines the `MailKitClientSettings` class with:
 
-- `ConnectionString` property that represents the connection string to the SMTP server.
+- `Endpoint` property that represents the connection string to the SMTP server.
 - `Credentials` property that represents the credentials to authenticate with the SMTP server.
 - `DisableHealthChecks` property that determines whether health checks are enabled.
 - `DisableTracing` property that determines whether tracing is enabled.
 - `DisableMetrics` property that determines whether metrics are enabled.
+
+### Parse connection string logic
+
+The settings class also contains a `ParseConnectionString` method that parses the connection string into a valid `Uri`. The configuration is expected to be provided in the following format:
+
+- `ConnectionStrings:<connectionName>`: The connection string to the SMTP server.
+- `MailKit:Client:Endpoint`: The connection string to the SMTP server.
+
+If neither of these values are provided, an exception is thrown. Likewise, if there's a value but it's not a valid URI, an exception is thrown.
 
 ## Expose component wrapper functionality
 
@@ -65,7 +74,7 @@ The goal of .NET Aspire components is to expose the underlying client library to
 
 :::code source="snippets/MailDevResource/MailKit.Client/MailKitClientFactory.cs":::
 
-The `MailKitClientFactory` class is a factory that creates an `ISmtpClient` instance based on the configuration settings. It's responsible for returning an `ISmtpClient` implementation that has an active connection to a configured SMTP server and optionally authenticated. Next, you need to expose the functionality for the consumers to register this factory with the dependency injection container. Add the following code to the `MailKit.Client` project in a file named MailKitClientServiceCollectionExtensions.cs_:
+The `MailKitClientFactory` class is a factory that creates an `ISmtpClient` instance based on the configuration settings. It's responsible for returning an `ISmtpClient` implementation that has an active connection to a configured SMTP server and optionally authenticated. Next, you need to expose the functionality for the consumers to register this factory with the dependency injection container. Add the following code to the `MailKit.Client` project in a file named _MailKitClientServiceCollectionExtensions.cs_:
 
 :::code source="snippets/MailDevResource/MailKit.Client/MailKitClientServiceCollectionExtensions.cs":::
 
@@ -74,7 +83,9 @@ The preceding code adds two extension methods on the `IHostApplicationBuilder` t
 > [!TIP]
 > Extension methods for .NET Aspire components should extend the `IHostApplicationBuilder` type and follow the `Add<MeaningfulName>` naming convention where the `<MeaningfulName>` is the type or functionality you're adding.
 
-Both extensions ultimately rely on the private `AddMailKitClient` method to register the `MailKitClientFactory` with the dependency injection container as a [scoped service](/dotnet/core/extensions/dependency-injection#scoped). The reason for registering the `MailKitClientFactory` as a scoped service is because the connection (and authentication) operations are considered expensive and should be reused within the same scope where possible. In other words, for a single request, the same `ISmtpClient` instance should be used.
+Both extensions ultimately rely on the private `AddMailKitClient` method to register the `MailKitClientFactory` with the dependency injection container as a [scoped service](/dotnet/core/extensions/dependency-injection#scoped). The reason for registering the `MailKitClientFactory` as a scoped service is because the connection (and authentication) operations are considered expensive and should be reused within the same scope where possible. In other words, for a single request, the same `ISmtpClient` instance should be used. The factory holds on to the instance of the `SmtpClient` that it creates and disposes of it.
+
+### Configuration binding
 
 To invoke the delegate after configuration binding, the consumer should instantiate the settings class and then bind the settings to the specific section of the configuration. This allows the consumer to further configure the settings, ensuring that manual code settings are honored over configuration settings. After that, depending on whether the `serviceKey` value was provided, the `MailKitClientFactory` should be registered with the dependency injection container as either a standard or keyed service.
 

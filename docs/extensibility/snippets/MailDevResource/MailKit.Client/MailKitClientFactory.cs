@@ -7,12 +7,14 @@ namespace MailKit.Client;
 /// A factory for creating <see cref="ISmtpClient"/> instances
 /// given a <paramref name="smtpUri"/> (and optional <paramref name="credentials"/>).
 /// </summary>
-/// <param name="smtpUri">The <see cref="Uri"/> for the SMTP server</param>
+/// <param name="settings">
+/// The <see cref="MailKitClientSettings"/> settings for the SMTP server
+/// </param>
 /// <param name="credentials">
 /// The optional <see cref="ICredentials"/> used to authenticate to the SMTP server
 /// </param>
 public sealed class MailKitClientFactory(
-    Uri smtpUri,
+    MailKitClientSettings settings,
     ICredentials? credentials = null) : IDisposable
 {
     private SmtpClient? _client;
@@ -33,13 +35,13 @@ public sealed class MailKitClientFactory(
     {
         _client = new SmtpClient();
 
-        await _client.ConnectAsync(smtpUri, cancellationToken)
-                    .ConfigureAwait(false);
+        await _client.ConnectAsync(settings.Endpoint, cancellationToken)
+                     .ConfigureAwait(false);
 
         if (credentials is not null)
         {
             await _client.AuthenticateAsync(credentials, cancellationToken)
-                        .ConfigureAwait(false);
+                         .ConfigureAwait(false);
         }
 
         return _client;
