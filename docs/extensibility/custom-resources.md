@@ -57,7 +57,7 @@ cd MailDevResource
 dir
 ```
 
-Once the project is created you should get a listing containing the following:
+Once the project is created you should see a listing containing the following:
 
 - `MailDevResource.AppHost`: The [app host](../fundamentals/app-host-overview.md) used to test out the custom resource.
 - `MailDevResource.ServiceDefaults`: The [service defaults](../fundamentals/service-defaults.md) project for use in service-related projects.
