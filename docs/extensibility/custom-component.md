@@ -81,7 +81,7 @@ The `MailKitClientFactory` class is a factory that creates an `ISmtpClient` inst
 The preceding code adds two extension methods on the `IHostApplicationBuilder` type, one for the standard registration of MailKit and another for keyed-registration of MailKit.
 
 > [!TIP]
-> Extension methods for .NET Aspire components should extend the `IHostApplicationBuilder` type and follow the `Add<MeaningfulName>` naming convention where the `<MeaningfulName>` is the type or functionality you're adding.
+> Extension methods for .NET Aspire components should extend the `IHostApplicationBuilder` type and follow the `Add<MeaningfulName>` naming convention where the `<MeaningfulName>` is the type or functionality you're adding. For this article, the `AddMailKitClient` extension method is used to add the MailKit client. It's likely more in-line with the official guidance to use `AddMailKitSmtpClient` instead of `AddMailKitClient`, since this only registers the `SmtpClient` and not the entire MailKit library.
 
 Both extensions ultimately rely on the private `AddMailKitClient` method to register the `MailKitClientFactory` with the dependency injection container as a [scoped service](/dotnet/core/extensions/dependency-injection#scoped). The reason for registering the `MailKitClientFactory` as a scoped service is because the connection (and authentication) operations are considered expensive and should be reused within the same scope where possible. In other words, for a single request, the same `ISmtpClient` instance should be used. The factory holds on to the instance of the `SmtpClient` that it creates and disposes of it.
 
