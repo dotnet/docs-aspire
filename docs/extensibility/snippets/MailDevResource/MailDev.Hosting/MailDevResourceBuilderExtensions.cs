@@ -6,6 +6,9 @@ namespace Aspire.Hosting;
 
 public static class MailDevResourceBuilderExtensions
 {
+    private const string UserEnvVarName = "MAILDEV_INCOMING_USER";
+    private const string PasswordEnvVarName = "MAILDEV_INCOMING_PASS";
+
     /// <summary>
     /// Adds the <see cref="MailDevResource"/> to the given
     /// <paramref name="builder"/> instance. Uses the "2.0.2" tag.
@@ -22,13 +25,20 @@ public static class MailDevResourceBuilderExtensions
         this IDistributedApplicationBuilder builder,
         string name,
         int? httpPort = null,
-        int? smtpPort = null)
+        int? smtpPort = null,
+        IResourceBuilder<ParameterResource>? userName = null,
+        IResourceBuilder<ParameterResource>? password = null)
     {
+        var passwordParameter = password?.Resource ??
+            ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter(
+                builder, $"{name}-password");
+
         // The AddResource method is a core API within .NET Aspire and is
         // used by resource developers to wrap a custom resource in an
         // IResourceBuilder<T> instance. Extension methods to customize
         // the resource (if any exist) target the builder interface.
-        var resource = new MailDevResource(name);
+        var resource = new MailDevResource(
+            name, userName?.Resource, passwordParameter);
 
         return builder.AddResource(resource)
                       .WithImage(MailDevContainerImageTags.Image)
@@ -41,7 +51,12 @@ public static class MailDevResourceBuilderExtensions
                       .WithEndpoint(
                           targetPort: 1025,
                           port: smtpPort,
-                          name: MailDevResource.SmtpEndpointName);
+                          name: MailDevResource.SmtpEndpointName)
+                      .WithEnvironment(context =>
+                      {
+                          context.EnvironmentVariables[UserEnvVarName] = resource.UserNameReference;
+                          context.EnvironmentVariables[PasswordEnvVarName] = resource.PasswordParameter;
+                      });
     }
 }
 

@@ -361,22 +361,7 @@ Next, configure the secrets for these paremeters. Right-click on the `MailDevRes
 > [!WARNING]
 > These credentials are for demonstration purposes only and MailDev is intended for local development. These crednetials are fictitious and shouldn't be used in a production environment.
 
-If you're to run the sample now, the client wouldn't be able to connect to the MailDev container. This is because the MailDev container is configured to require authentication for incoming SMTP connections. The MailKit client configuration also needs to be updated to include the credentials.
-
-To configure the credentials in the client, right-click on the `MailDevResource.NewsletterService` project and select `Manage User Secrets`. Add the following JSON to the `secrets.json` file:
-
-```json
-{
-  "MailKit:Client": {
-    "Credentials": {
-      "UserName": "@admin",
-      "Password": "t3st1ng"
-    }
-  }
-}
-```
-
-Run the app again, and everything works as it did before, but now with authentication enabled.
+Run the app again and everything works as it did before, but now with authentication enabled.
 
 ### View MailKit telemetry
 
