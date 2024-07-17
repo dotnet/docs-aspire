@@ -1,5 +1,5 @@
-﻿using System.Net;
-using Microsoft.Extensions.Configuration;
+﻿using System.Data.Common;
+using System.Net;
 
 namespace MailKit.Client;
 
@@ -63,35 +63,41 @@ public sealed class MailKitClientSettings
                     """);
         }
 
-        if (Uri.TryCreate(connectionString, UriKind.Absolute, out var uri) is false)
+        if (Uri.TryCreate(connectionString, UriKind.Absolute, out var uri))
         {
-            throw new InvalidOperationException($"""
-                    The 'ConnectionStrings:<connectionName>' (or 'Endpoint' key in
-                    '{DefaultConfigSectionName}') isn't a valid URI format.
-                    """);
+            Endpoint = uri;
         }
-
-        Endpoint = uri;
-    }
-
-    internal void ParseCredentials(IConfigurationSection credentialsSection)
-    {
-        if (credentialsSection is null or { Value: null })
+        else
         {
-            return;
+            var builder = new DbConnectionStringBuilder
+            {
+                ConnectionString = connectionString
+            };
+            
+            if (builder.TryGetValue("Endpoint", out var endpoint) is false)
+            {
+                throw new InvalidOperationException($"""
+                        The 'ConnectionStrings:<connectionName>' (or 'Endpoint' key in
+                        '{DefaultConfigSectionName}') is missing.
+                        """);
+            }
+
+            if (Uri.TryCreate(endpoint.ToString(), UriKind.Absolute, out var uri) is false)
+            {
+                throw new InvalidOperationException($"""
+                        The 'ConnectionStrings:<connectionName>' (or 'Endpoint' key in
+                        '{DefaultConfigSectionName}') isn't a valid URI.
+                        """);
+            }
+
+            Endpoint = uri;
+            
+            if (builder.TryGetValue("Username", out var username) &&
+                builder.TryGetValue("Password", out var password))
+            {
+                Credentials = new(
+                    username.ToString(), password.ToString());
+            }
         }
-
-        var username = credentialsSection["UserName"];
-        var password = credentialsSection["Password"];
-
-        if (username is null || password is null)
-        {
-            throw new InvalidOperationException($"""
-                    The '{DefaultConfigSectionName}:Credentials' section cannot be empty.
-                    Either remove Credentials altogether, or provide them.
-                    """);
-        }
-
-        Credentials = new(username, password);
     }
 }

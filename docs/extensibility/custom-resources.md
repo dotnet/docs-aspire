@@ -1,7 +1,7 @@
 ---
 title: Create custom resource types for .NET Aspire
 description: Learn how to create a custom resource for an existing containerized application.
-ms.date: 07/15/2024
+ms.date: 07/17/2024
 ms.topic: how-to
 ---
 
@@ -264,45 +264,14 @@ The preceding screenshot shows the environment variables for the `newsletterserv
 
 To use the SMTP connection details that were injected into the newsletter service project, you inject an instance of <xref:System.Net.Mail.SmtpClient> into the dependency injection container as a singleton. Add the following code to the _:::no-loc text="Program.cs":::_ file in the _:::no-loc text="MailDevResource.NewsletterService":::_ project to setup the singleton service. In the `Program` class, immediately following the `// Add services to the container` comment, add the following code:
 
-```csharp
-builder.Services.AddSingleton<SmtpClient>(sp =>
-{
-    var smtpUri = new Uri(builder.Configuration.GetConnectionString("maildev")!);
-
-    var smtpClient = new SmtpClient(smtpUri.Host, smtpUri.Port);
-
-    return smtpClient;
-});
-```
+:::code source="snippets/MailDevResource/MailDevResource.NewsletterService/Program.cs" id="smtp":::
 
 > [!TIP]
 > This code snippet relies on the official `SmtpClient`, however; this type is obsolete on some platforms and not recommended on others. This is used here to demonstrate a non-componentized approach to using the MailDev resource. For a more modern approach using [MailKit](https://github.com/jstedfast/MailKit), see [Create custom .NET Aspire component](custom-component.md).
 
 To test the client, add two simple `subscribe` and `unsubscribe` POST methods to the newsletter service. Add the following code replacing the "weatherforecast" `MapGet` call in the _:::no-loc text="Program.cs":::_ file of the _MailDevResource.NewsletterService_ project to setup the ASP.NET Core routes:
 
-```csharp
-app.MapPost("/subscribe", async (SmtpClient smtpClient, string email) =>
-{
-    using var message = new MailMessage("newsletter@yourcompany.com", email)
-    {
-        Subject = "Welcome to our newsletter!",
-        Body = "Thank you for subscribing to our newsletter!"
-    };
-
-    await smtpClient.SendMailAsync(message);
-});
-
-app.MapPost("/unsubscribe", async (SmtpClient smtpClient, string email) =>
-{
-    using var message = new MailMessage("newsletter@yourcompany.com", email)
-    {
-        Subject = "You are unsubscribed from our newsletter!",
-        Body = "Sorry to see you go. We hope you will come back soon!"
-    };
-
-    await smtpClient.SendMailAsync(message);
-});
-```
+:::code source="snippets/MailDevResource/MailDevResource.NewsletterService/Program.cs" id="subs":::
 
 > [!TIP]
 > Remember to reference the `System.Net.Mail` and `Microsoft.AspNetCore.Mvc` namespaces in _:::no-loc text="Program.cs":::_ if your code editor doesn't automatically add them.

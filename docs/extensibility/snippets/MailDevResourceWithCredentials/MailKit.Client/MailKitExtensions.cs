@@ -87,12 +87,6 @@ public static class MailKitExtensions
             settings.ParseConnectionString(connectionString);
         }
 
-        if (builder.Configuration.GetSection(
-            $"{configurationSectionName}:Credentials") is { } section)
-        {
-            settings.ParseCredentials(section);
-        }
-
         configureSettings?.Invoke(settings);
 
         if (serviceKey is null)

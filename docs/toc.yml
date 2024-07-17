@@ -33,9 +33,6 @@ items:
       - name: Persist data using volumes
         displayName: volumes,persist data
         href: fundamentals/persist-data-volumes.md
-      - name: Create custom resource types
-        displayName: custom resources,extensibility
-        href: extensibility/custom-resources.md
 
   - name: Dashboard
     items:
@@ -64,14 +61,22 @@ items:
       - name: Telemetry
         href: fundamentals/telemetry.md
 
+  - name: Extensibility
+    items:
+      - name: Create custom resource types
+        displayName: custom resources,extensibility
+        href: extensibility/custom-resources.md
+      - name: Create custom components
+        displayName: custom components,extensibility
+        href: extensibility/custom-component.md
+      - name: Implement auth from resource to component
+        href: extensibility/implement-auth-from-resource-to-component.md
+
   - name: Components
     items:
       - name: Overview
         displayName: aspire components,components,nuget packages,packages
         href: fundamentals/components-overview.md
-      - name: Create custom components
-        displayName: custom components,extensibility
-        href: extensibility/custom-component.md
       - name: Tutorials
         items:
         - name: Caching using Redis components
