@@ -2,7 +2,7 @@
 title: .NET Aspire MongoDB database component
 description: This article describes the .NET Aspire MongoDB database component.
 ms.topic: how-to
-ms.date: 06/05/2024
+ms.date: 07/17/2024
 ---
 
 # .NET Aspire MongoDB database component
@@ -19,7 +19,7 @@ In this article, you learn how to use the .NET Aspire MongoDB database component
 
 ## Get started
 
-To get started with the .NET Aspire MongoDB database component, install the [Aspire.MongoDB.Driver](https://www.nuget.org/packages/Aspire.MongoDB.Driver) NuGet package.
+To get started with the .NET Aspire MongoDB database component, install the [Aspire.MongoDB.Driver](https://www.nuget.org/packages/Aspire.MongoDB.Driver) NuGet package in the consuming client project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -59,7 +59,7 @@ After adding a `IMongoClient`, you can require the `IMongoClient` instance using
 
 ## App host usage
 
-To model the MongoDB resource in the app host, install the [Aspire.Hosting.MongoDB](https://www.nuget.org/packages/Aspire.Hosting.MongoDB) NuGet package.
+To model the MongoDB resource in the app host, install the [Aspire.Hosting.MongoDB](https://www.nuget.org/packages/Aspire.Hosting.MongoDB) NuGet package in the [app host](xref:aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

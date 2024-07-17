@@ -2,7 +2,7 @@
 title: .NET Aspire Azure AI Search Documents component
 description: Learn how to use the .NET Aspire Azure AI Search Documents component.
 ms.topic: how-to
-ms.date: 06/26/2024
+ms.date: 07/17/2024
 ---
 
 # .NET Aspire Azure AI Search Documents component
@@ -16,7 +16,7 @@ For more information on using the `SearchIndexClient`, see [How to use Azure.Sea
 - Azure subscription: [create one for free](https://azure.microsoft.com/free/).
 - Azure Search service: [create an Azure AI Search service resource](/azure/search/search-create-service-portal).
 
-To get started with the .NET Aspire Azure AI Search Documents component, install the [Aspire.Azure.Search.Documents](https://www.nuget.org/packages/Aspire.Azure.Search.Documents) NuGet package.
+To get started with the .NET Aspire Azure AI Search Documents component, install the [Aspire.Azure.Search.Documents](https://www.nuget.org/packages/Aspire.Azure.Search.Documents) NuGet package in the consuming client project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -75,7 +75,7 @@ For more information, see the [Azure AI Search client library for .NET](/dotnet/
 
 ## App host usage
 
-To add Azure AI hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.Search](https://www.nuget.org/packages/Aspire.Hosting.Azure.Search) NuGet package.
+To add Azure AI hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.Search](https://www.nuget.org/packages/Aspire.Hosting.Azure.Search) NuGet package in the [app host](xref:aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

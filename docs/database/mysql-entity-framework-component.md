@@ -1,7 +1,7 @@
 ---
 title: MySQL Entity Framework Component
 description: MySQL Entity Framework Component
-ms.date: 06/28/2024
+ms.date: 07/17/2024
 ---
 
 # .NET Aspire Pomelo MySQL Entity Framework Component
@@ -10,7 +10,7 @@ In this article, you learn how to use the The .NET Aspire Pomelo MySQL Entity Fr
 
 ## Get started
 
-You need a MySQL database and connection string for accessing the database. To get started with the The .NET Aspire Pomelo MySQL Entity Framework Core component, install the [Aspire.Pomelo.EntityFrameworkCore.MySql](https://www.nuget.org/packages/Aspire.Pomelo.EntityFrameworkCore.MySql) NuGet package.
+You need a MySQL database and connection string for accessing the database. To get started with the The .NET Aspire Pomelo MySQL Entity Framework Core component, install the [Aspire.Pomelo.EntityFrameworkCore.MySql](https://www.nuget.org/packages/Aspire.Pomelo.EntityFrameworkCore.MySql) NuGet package in the consuming client project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
