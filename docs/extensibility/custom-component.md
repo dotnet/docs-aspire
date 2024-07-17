@@ -204,4 +204,4 @@ Go forth and build your own .NET Aspire components. If you believe that there's 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Flow auth from custom resource to component](flow-auth-from-resource-to-component.md)
+> [Implement auth from custom resource to component](implement-auth-from-resource-to-component.md)

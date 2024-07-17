@@ -1,18 +1,18 @@
 ---
-title: Flow auth from custom resource to component
-description: Learn how to flow authentication credentials from a custom resource to a custom component.
+title: Implement auth from custom resource to component
+description: Learn how to implement authentication credentials from a custom resource to a custom component.
 ms.date: 07/16/2024
 ms.topic: how-to
 ---
 
-# Flow auth from custom resource to component
+# Implement auth from custom resource to component
 
 This article is a continuation of two previous articles:
 
 - [Create custom resource types for .NET Aspire](custom-resources.md)
 - [Create custom .NET Aspire component](custom-component.md)
 
-One of the primary benefits to .NET Aspire is how it simplifies the configurability of resources and consuming clients (or components). This article demonstrates how to flow authentication credentials from a custom resource to a custom component. The custom resource is a MailDev container that allows for either incoming or outgoing credentials. The custom component is a MailKit client that sends emails.
+One of the primary benefits to .NET Aspire is how it simplifies the configurability of resources and consuming clients (or components). This article demonstrates how to authentication credentials from from a custom resource to a custom component. The custom resource is a MailDev container that allows for either incoming or outgoing credentials. The custom component is a MailKit client that sends emails.
 
 ## Prerequisites
 
