@@ -63,34 +63,41 @@ public sealed class MailKitClientSettings
                     """);
         }
 
-        var builder = new DbConnectionStringBuilder
+        if (Uri.TryCreate(connectionString, UriKind.Absolute, out var uri))
         {
-            ConnectionString = connectionString
-        };
-        
-        if (builder.TryGetValue("Endpoint", out var endpoint) is false)
-        {
-            throw new InvalidOperationException($"""
-                    The 'ConnectionStrings:<connectionName>' (or 'Endpoint' key in
-                    '{DefaultConfigSectionName}') is missing.
-                    """);
+            Endpoint = uri;
         }
-
-        if (Uri.TryCreate(endpoint.ToString(), UriKind.Absolute, out var uri) is false)
+        else
         {
-            throw new InvalidOperationException($"""
-                    The 'ConnectionStrings:<connectionName>' (or 'Endpoint' key in
-                    '{DefaultConfigSectionName}') isn't a valid URI.
-                    """);
-        }
+            var builder = new DbConnectionStringBuilder
+            {
+                ConnectionString = connectionString
+            };
+            
+            if (builder.TryGetValue("Endpoint", out var endpoint) is false)
+            {
+                throw new InvalidOperationException($"""
+                        The 'ConnectionStrings:<connectionName>' (or 'Endpoint' key in
+                        '{DefaultConfigSectionName}') is missing.
+                        """);
+            }
 
-        Endpoint = uri;
+            if (Uri.TryCreate(endpoint.ToString(), UriKind.Absolute, out var uri) is false)
+            {
+                throw new InvalidOperationException($"""
+                        The 'ConnectionStrings:<connectionName>' (or 'Endpoint' key in
+                        '{DefaultConfigSectionName}') isn't a valid URI.
+                        """);
+            }
 
-        if (builder.TryGetValue("Username", out var username) &&
-            builder.TryGetValue("Password", out var password))
-        {
-            Credentials = new(
-                username.ToString(), password.ToString());
+            Endpoint = uri;
+            
+            if (builder.TryGetValue("Username", out var username) &&
+                builder.TryGetValue("Password", out var password))
+            {
+                Credentials = new(
+                    username.ToString(), password.ToString());
+            }
         }
     }
 }
