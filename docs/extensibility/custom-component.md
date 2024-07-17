@@ -76,7 +76,7 @@ When a connection string is configured, the `ParseConnectionString` method expec
 
 When the `Endpoint` isn't a valid `Uri` and exception is thrown. If the `Username` and `Password` are provided, a `NetworkCredential` is created and the result is assigned to the setting's `Credentials` property.
 
-## Expose component wrapper functionality
+## Expose client functionality
 
 The goal of .NET Aspire components is to expose the underlying client library to consumers through dependency injection. With MailKit and for this example, the `SmtpClient` class is what you want to expose. You're not wrapping any functionality, but rather mapping configuration settings to an `SmtpClient` class. It's common to expose both standard and keyed-service registrations for components. Standard registrations are used when there's only one instance of a service, and keyed-service registrations are used when there are multiple instances of a service. Sometimes, to achieve multiple registrations of the same type you use a factory pattern. Add the following code to the `MailKit.Client` project in a file named _MailKitClientFactory.cs_:
 
