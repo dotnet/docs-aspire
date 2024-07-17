@@ -6,6 +6,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MailKit.Client\MailKit.Client.csproj" />
     <ProjectReference Include="..\MailDev.Hosting\MailDev.Hosting.csproj" />
     <ProjectReference Include="..\MailDevResource.ServiceDefaults\MailDevResource.ServiceDefaults.csproj" />
   </ItemGroup>

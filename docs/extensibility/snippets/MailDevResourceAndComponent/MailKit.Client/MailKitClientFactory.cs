@@ -1,5 +1,4 @@
-﻿using System.Net;
-using MailKit.Net.Smtp;
+﻿using MailKit.Net.Smtp;
 
 namespace MailKit.Client;
 
@@ -9,9 +8,6 @@ namespace MailKit.Client;
 /// </summary>
 /// <param name="settings">
 /// The <see cref="MailKitClientSettings"/> settings for the SMTP server
-/// </param>
-/// <param name="credentials">
-/// The optional <see cref="ICredentials"/> used to authenticate to the SMTP server
 /// </param>
 public sealed class MailKitClientFactory(MailKitClientSettings settings) : IDisposable
 {
@@ -43,12 +39,6 @@ public sealed class MailKitClientFactory(MailKitClientSettings settings) : IDisp
 
                 await _client.ConnectAsync(settings.Endpoint, cancellationToken)
                              .ConfigureAwait(false);
-
-                if (settings.Credentials is not null)
-                {
-                    await _client.AuthenticateAsync(settings.Credentials, cancellationToken)
-                                 .ConfigureAwait(false);
-                }
             }
         }
         finally

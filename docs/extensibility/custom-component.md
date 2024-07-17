@@ -49,12 +49,11 @@ The next step is to add all the NuGet packages that the component relies on. Rat
 
 Whenever you're creating a .NET Aspire component, it's best to understand the client library that you're mapping to. With MailKit, you need to understand the configuration settings that are required to connect to a Simple Mail Transfer Protocol (SMTP) server. But it's also important to understand if the library has support for _health checks_, _tracing_ and _metrics_. MailKit supports _tracing_ and _metrics_, through its [`Telemetry.SmtpClient` class](https://github.com/jstedfast/MailKit/blob/master/MailKit/Telemetry.cs#L112-L189). When adding _health checks_, you should use any established or existing health checks where possible. Otherwise, you might consider implementing your own in the component. Add the following code to the `MailKit.Client` project in a file named _MailKitClientSettings.cs_:
 
-:::code source="snippets/MailDevResource/MailKit.Client/MailKitClientSettings.cs":::
+:::code source="snippets/MailDevResourceAndComponent/MailKit.Client/MailKitClientSettings.cs":::
 
 The preceding code defines the `MailKitClientSettings` class with:
 
 - `Endpoint` property that represents the connection string to the SMTP server.
-- `Credentials` property that represents the credentials to authenticate with the SMTP server.
 - `DisableHealthChecks` property that determines whether health checks are enabled.
 - `DisableTracing` property that determines whether tracing is enabled.
 - `DisableMetrics` property that determines whether metrics are enabled.
@@ -64,35 +63,26 @@ The preceding code defines the `MailKitClientSettings` class with:
 The settings class also contains a `ParseConnectionString` method that parses the connection string into a valid `Uri`. The configuration is expected to be provided in the following format:
 
 - `ConnectionStrings:<connectionName>`: The connection string to the SMTP server.
-- `MailKit:Client:Endpoint`: The connection string to the SMTP server.
+- `MailKit:Client:ConnectionString`: The connection string to the SMTP server.
 
-If neither of these values are provided, an exception is thrown. Likewise, if there's a value but it's not a valid URI, an exception is thrown.
+If neither of these values are provided, an exception is thrown.
 
-### Parse credentials logic
-
-The settings class also contains a `ParseCredentials` method that parses the credentials into a valid `NetworkCredential`. The configuration is expected to be provided in the following format:
-
-- `MailKit:Client:Credentials:UserName`: The username to authenticate with the SMTP server.
-- `MailKit:Client:Credentials:Password`: The password to authenticate with the SMTP server.
-
-When credentials are configured, the `ParseCredentials` method attempts to parse the username and password from the configuration. If either the username or password is missing, an exception is thrown.
-
-## Expose component wrapper functionality
+## Expose client functionality
 
 The goal of .NET Aspire components is to expose the underlying client library to consumers through dependency injection. With MailKit and for this example, the `SmtpClient` class is what you want to expose. You're not wrapping any functionality, but rather mapping configuration settings to an `SmtpClient` class. It's common to expose both standard and keyed-service registrations for components. Standard registrations are used when there's only one instance of a service, and keyed-service registrations are used when there are multiple instances of a service. Sometimes, to achieve multiple registrations of the same type you use a factory pattern. Add the following code to the `MailKit.Client` project in a file named _MailKitClientFactory.cs_:
 
-:::code source="snippets/MailDevResource/MailKit.Client/MailKitClientFactory.cs":::
+:::code source="snippets/MailDevResourceAndComponent/MailKit.Client/MailKitClientFactory.cs":::
 
-The `MailKitClientFactory` class is a factory that creates an `ISmtpClient` instance based on the configuration settings. It's responsible for returning an `ISmtpClient` implementation that has an active connection to a configured SMTP server and optionally authenticated. Next, you need to expose the functionality for the consumers to register this factory with the dependency injection container. Add the following code to the `MailKit.Client` project in a file named _MailKitExtensions.cs_:
+The `MailKitClientFactory` class is a factory that creates an `ISmtpClient` instance based on the configuration settings. It's responsible for returning an `ISmtpClient` implementation that has an active connection to a configured SMTP server. Next, you need to expose the functionality for the consumers to register this factory with the dependency injection container. Add the following code to the `MailKit.Client` project in a file named _MailKitExtensions.cs_:
 
-:::code source="snippets/MailDevResource/MailKit.Client/MailKitExtensions.cs":::
+:::code source="snippets/MailDevResourceAndComponent/MailKit.Client/MailKitExtensions.cs":::
 
 The preceding code adds two extension methods on the `IHostApplicationBuilder` type, one for the standard registration of MailKit and another for keyed-registration of MailKit.
 
 > [!TIP]
 > Extension methods for .NET Aspire components should extend the `IHostApplicationBuilder` type and follow the `Add<MeaningfulName>` naming convention where the `<MeaningfulName>` is the type or functionality you're adding. For this article, the `AddMailKitClient` extension method is used to add the MailKit client. It's likely more in-line with the official guidance to use `AddMailKitSmtpClient` instead of `AddMailKitClient`, since this only registers the `SmtpClient` and not the entire MailKit library.
 
-Both extensions ultimately rely on the private `AddMailKitClient` method to register the `MailKitClientFactory` with the dependency injection container as a [scoped service](/dotnet/core/extensions/dependency-injection#scoped). The reason for registering the `MailKitClientFactory` as a scoped service is because the connection (and authentication) operations are considered expensive and should be reused within the same scope where possible. In other words, for a single request, the same `ISmtpClient` instance should be used. The factory holds on to the instance of the `SmtpClient` that it creates and disposes of it.
+Both extensions ultimately rely on the private `AddMailKitClient` method to register the `MailKitClientFactory` with the dependency injection container as a [scoped service](/dotnet/core/extensions/dependency-injection#scoped). The reason for registering the `MailKitClientFactory` as a scoped service is because the connection operations are considered expensive and should be reused within the same scope where possible. In other words, for a single request, the same `ISmtpClient` instance should be used. The factory holds on to the instance of the `SmtpClient` that it creates and disposes of it.
 
 ### Configuration binding
 
@@ -107,7 +97,7 @@ The registration of health checks, and telemetry are described in a bit more det
 
 [Health checks](../fundamentals/health-checks.md) are a way to monitor the health of a component. With MailKit, you can check if the connection to the SMTP server is healthy. Add the following code to the `MailKit.Client` project in a file named _MailKitHealthCheck.cs_:
 
-:::code source="snippets/MailDevResource/MailKit.Client/MailKitHealthCheck.cs":::
+:::code source="snippets/MailDevResourceAndComponent/MailKit.Client/MailKitHealthCheck.cs":::
 
 The preceding health check implementation:
 
@@ -165,9 +155,9 @@ With the component library created, you can now update the Newsletter service to
 dotnet add ./MailDevResource.NewsletterService/MailDevResource.NewsletterService.csproj reference MailKit.Client/MailKit.Client.csproj
 ```
 
-The final step is to replace the existing _Program.cs_ file in the `MailDevResource.NewsletterService` project with the following C# code:
+The final step is to replace the existing _:::no-loc text="Program.cs":::_ file in the `MailDevResource.NewsletterService` project with the following C# code:
 
-:::code source="snippets/MailDevResource/MailDevResource.NewsletterService/Program.cs":::
+:::code source="snippets/MailDevResourceAndComponent/MailDevResource.NewsletterService/Program.cs":::
 
 The most notable changes in the preceding code are:
 
@@ -195,59 +185,6 @@ Repeat this several times, to add multiple email addresses. You should see the e
 
 Stop the application by selecting <kbd>Ctrl</kbd>+<kbd>C</kbd> in the terminal window where the application is running, or by selecting the stop button in your IDE.
 
-### Configure MailDev credentials
-
-The MailDev container supports basic authentication for both incoming and outgoing SMTP. To configure the credentials for incoming, you need to set the `MAILDEV_INCOMING_USER` and `MAILDEV_INCOMING_PASS` environment variables. For more information, see [MailDev: Usage](https://maildev.github.io/maildev/#usage).
-
-To configure these credentials, update the _Program.cs_ file in the `MailDevResource.AppHost` project with the following code:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var mailDevUsername = builder.AddParameter("maildev-username");
-var mailDevPassword = builder.AddParameter("maildev-password");
-
-var maildev = builder.AddMailDev("maildev")
-    .WithEnvironment("MAILDEV_INCOMING_USER", mailDevUsername)
-    .WithEnvironment("MAILDEV_INCOMING_PASS", mailDevPassword);
-
-builder.AddProject<Projects.MailDevResource_NewsletterService>("newsletterservice")
-       .WithReference(maildev);
-
-builder.Build().Run();
-```
-
-The preceding code adds two parameters for the MailDev username and password. It assigns these parameters to the `MAILDEV_INCOMING_USER` and `MAILDEV_INCOMING_PASS` environment variables. The `AddMailDev` method has two chained calls to `WithEnvironment` which includes these environment variables. For more information on parameters, see [External parameters](../fundamentals/external-parameters.md).
-
-Next, configure the secrets for these paremeters. Right-click on the `MailDevResource.AppHost` project and select `Manage User Secrets`. Add the following JSON to the `secrets.json` file:
-
-```json
-{
-  "Parameters:maildev-username": "@admin",
-  "Parameters:maildev-password": "t3st1ng"
-}
-```
-
-> [!WARNING]
-> These credentials are for demonstration purposes only and MailDev is intended for local development. These crednetials are fictitious and shouldn't be used in a production environment.
-
-If you're to run the sample now, the client wouldn't be able to connect to the MailDev container. This is because the MailDev container is configured to require authentication for incoming SMTP connections. The MailKit client configuration also needs to be updated to include the credentials.
-
-To configure the credentials in the client, right-click on the `MailDevResource.NewsletterService` project and select `Manage User Secrets`. Add the following JSON to the `secrets.json` file:
-
-```json
-{
-  "MailKit:Client": {
-    "Credentials": {
-      "UserName": "@admin",
-      "Password": "t3st1ng"
-    }
-  }
-}
-```
-
-Run the app again, and everything works as it did before, but now with authentication enabled.
-
 ### View MailKit telemetry
 
 The MailKit client library exposes telemetry that can be viewed in the .NET Aspire dashboard. To view the telemetry, navigate to the .NET Aspire dashboard at [https://localhost:7251](https://localhost:7251). Select the `newsletter` resource to view the telemetry on the **Metrics** page:
@@ -263,3 +200,8 @@ Open up the Swagger UI again, and make some requests to the `/subscribe` and `/u
 In this article, you learned how to create a .NET Aspire component that uses MailKit to send emails. You also learned how to integrate this component into the Newsletter app you previously built. You learned about the core principles of .NET Aspire components, such as exposing the underlying client library to consumers through dependency injection, and how to add health checks and telemetry to the component. You also learned how to update the Newsletter service to use the MailKit client.
 
 Go forth and build your own .NET Aspire components. If you believe that there's enough community value in the component you're building, consider publishing it as a [NuGet package](/dotnet/standard/library-guidance/nuget) for others to use. Furthermore, consider submitting a pull request to the [.NET Aspire GitHub repository](https://github.com/dotnet/aspire) for consideration to be included in the official .NET Aspire components.
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Implement auth from custom resource to component](implement-auth-from-resource-to-component.md)

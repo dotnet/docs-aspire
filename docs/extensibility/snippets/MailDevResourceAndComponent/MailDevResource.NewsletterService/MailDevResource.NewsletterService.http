@@ -1,0 +1,6 @@
+@MailDevResource.NewsletterService_HostAddress = http://localhost:5021
+
+GET {{MailDevResource.NewsletterService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
