@@ -73,7 +73,7 @@ The preceding settings class, now includes a `Credentials` property of type `Net
 
 With the settings class updated to understand and populate the credentials, update the factory to conditionally use the credentials if they're configured. Update the _MailKitClientFactory.cs_ file in the `MailKit.Client` project with the following C# code:
 
-:::code source="snippets/MailDevResourceWithCredentials/MailKit.Client/MailKitClientFactory.cs" highlight="47-51":::
+:::code source="snippets/MailDevResourceWithCredentials/MailKit.Client/MailKitClientFactory.cs" highlight="44-48":::
 
 When the factory determines that credentials have been configured, it authenticates with the SMTP server after connecting before returning the `SmtpClient`.
 
