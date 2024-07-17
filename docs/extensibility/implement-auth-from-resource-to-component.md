@@ -35,11 +35,11 @@ To flow authentication credentials from the MailDev resource to the MailKit comp
 
 The MailDev container supports basic authentication for both incoming and outgoing SMTP. To configure the credentials for incoming, you need to set the `MAILDEV_INCOMING_USER` and `MAILDEV_INCOMING_PASS` environment variables. For more information, see [MailDev: Usage](https://maildev.github.io/maildev/#usage). Update the _MailDevResource.cs_ file in the `MailDev.Hosting` project, by replacing its contents with the following C# code:
   
-:::code source="snippets/MailDevResourceWithCredentials/MailDev.Hosting/MailDevResource.cs":::
+:::code source="snippets/MailDevResourceWithCredentials/MailDev.Hosting/MailDevResource.cs" highlight="9-10":::
 
 These updates add a `UsernameParameter` and `PasswordParameter` property. These properties are used to store the parameters for the MailDev username and password. The `ConnectionStringExpression` property is updated to include the username and password parameters in the connection string. Next, update the _MailDevResourceBuilderExtensions.cs_ file in the `MailDev.Hosting` project with the following C# code:
 
-:::code source="snippets/MailDevResourceWithCredentials/MailDev.Hosting/MailDevResourceBuilderExtensions.cs":::
+:::code source="snippets/MailDevResourceWithCredentials/MailDev.Hosting/MailDevResourceBuilderExtensions.cs" highlight="9-10,29-30,32-34,40-41,55-59":::
 
 The preceding code updates the `AddMailDev` extension method to include the `userName` and `password` parameters. The `WithEnvironment` method is updated to include the `UserEnvVarName` and `PasswordEnvVarName` environment variables. These environment variables are used to set the MailDev username and password.
 
@@ -47,7 +47,7 @@ The preceding code updates the `AddMailDev` extension method to include the `use
 
 Now that the resource is updated to include the username and password parameters, you need to update the app host to include these parameters. Update the _:::no-loc text="Program.cs":::_ file in the `MailDevResource.AppHost` project with the following C# code:
 
-:::code source="snippets/MailDevResourceWithCredentials/MailDevResource.AppHost/Program.cs":::
+:::code source="snippets/MailDevResourceWithCredentials/MailDevResource.AppHost/Program.cs" highlight="3-4,6-9":::
 
 The preceding code adds two parameters for the MailDev username and password. It assigns these parameters to the `MAILDEV_INCOMING_USER` and `MAILDEV_INCOMING_PASS` environment variables. The `AddMailDev` method has two chained calls to `WithEnvironment` which includes these environment variables. For more information on parameters, see [External parameters](../fundamentals/external-parameters.md).
 
@@ -67,7 +67,7 @@ Next, configure the secrets for these paremeters. Right-click on the `MailDevRes
 
 It's good practice for components to expect connection strings to contain varions key/value pairs, and to parse these pairs into the appropriate properties. Update the _MailKitClientSettings.cs_ file in the `MailKit.Client` project with the following C# code:
 
-:::code source="snippets/MailDevResourceWithCredentials/MailKit.Client/MailKitClientSettings.cs" highlight="21-28":::
+:::code source="snippets/MailDevResourceWithCredentials/MailKit.Client/MailKitClientSettings.cs" highlight="21-28,95-100":::
 
 The preceding settings class, now includes a `Credentials` property of type `NetworkCredential`. The `ParseConnectionString` method is updated to parse the `Username` and `Password` keys from the connection string. If the `Username` and `Password` keys are present, a `NetworkCredential` is created and assigned to the `Credentials` property.
 

@@ -10,9 +10,6 @@ namespace MailKit.Client;
 /// <param name="settings">
 /// The <see cref="MailKitClientSettings"/> settings for the SMTP server
 /// </param>
-/// <param name="credentials">
-/// The optional <see cref="ICredentials"/> used to authenticate to the SMTP server
-/// </param>
 public sealed class MailKitClientFactory(MailKitClientSettings settings) : IDisposable
 {
     private readonly SemaphoreSlim _semaphore = new(1, 1);
