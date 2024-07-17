@@ -1,12 +1,6 @@
 ﻿var builder = DistributedApplication.CreateBuilder(args);
 
-var mailDevUsername = builder.AddParameter("maildev-username");
-var mailDevPassword = builder.AddParameter("maildev-password");
-
-var maildev = builder.AddMailDev(
-    name: "maildev",
-    userName: mailDevUsername,
-    password: mailDevPassword);
+var maildev = builder.AddMailDev("maildev");
 
 builder.AddProject<Projects.MailDevResource_NewsletterService>("newsletterservice")
        .WithReference(maildev);
