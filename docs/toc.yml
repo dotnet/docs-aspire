@@ -69,8 +69,8 @@ items:
       - name: Create custom components
         displayName: custom components,extensibility
         href: extensibility/custom-component.md
-      - name: Flow auth from resource to component
-        href: extensibility/flow-auth-from-resource-to-component.md
+      - name: Implement auth from resource to component
+        href: extensibility/implement-auth-from-resource-to-component.md
 
   - name: Components
     items:
