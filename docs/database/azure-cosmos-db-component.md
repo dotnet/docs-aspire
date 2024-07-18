@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Cosmos DB component
 description: This article describes the .NET Aspire Azure Cosmos DB component features and capabilities.
 ms.topic: how-to
-ms.date: 06/28/2024
+ms.date: 07/17/2024
 ---
 
 # .NET Aspire Azure Cosmos DB component
@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire Azure Cosmos DB component.
 
 ## Get started
 
-To get started with the .NET Aspire Azure Cosmos DB component, install the [Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) NuGet package.
+To get started with the .NET Aspire Azure Cosmos DB component, install the [Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) NuGet package in the consuming client project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -51,7 +51,7 @@ For more information on using the <xref:Microsoft.Azure.Cosmos.CosmosClient>, se
 
 ## App host usage
 
-To add Azure Cosmos DB hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB) NuGet package.
+To add Azure Cosmos DB hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB) NuGet package in the [app host](xref:aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

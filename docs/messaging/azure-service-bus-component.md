@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Service Bus component
 description: This article describes the .NET Aspire Azure Service Bus component features and capabilities
 ms.topic: how-to
-ms.date: 06/05/2024
+ms.date: 07/17/2024
 ---
 
 # .NET Aspire Azure Service Bus component
@@ -19,7 +19,7 @@ Cloud-native apps often require communication with messaging services such as [A
 
 ## Get started
 
-To get started with the .NET Aspire Azure Service Bus component, install the [Aspire.Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) NuGet package.
+To get started with the .NET Aspire Azure Service Bus component, install the [Aspire.Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) NuGet package in the consuming client project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -57,7 +57,7 @@ public class ExampleService(ServiceBusClient client)
 
 ## App host usage
 
-To add Azure Service Bus hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.ServiceBus](https://www.nuget.org/packages/Aspire.Hosting.Azure.ServiceBus) NuGet package.
+To add Azure Service Bus hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.ServiceBus](https://www.nuget.org/packages/Aspire.Hosting.Azure.ServiceBus) NuGet package in the [app host](xref:aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

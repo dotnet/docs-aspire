@@ -2,7 +2,7 @@
 title: .NET Aspire Azure AI OpenAI component
 description: Learn how to use the .NET Aspire Azure AI OpenAI component.
 ms.topic: how-to
-ms.date: 06/26/2024
+ms.date: 07/17/2024
 ---
 
 # .NET Aspire Azure AI OpenAI component
@@ -16,7 +16,7 @@ For more information on using the `OpenAIClient`, see [Quickstart: Get started g
 - Azure subscription: [create one for free](https://azure.microsoft.com/free/).
 - Azure AI OpenAI or OpenAI account: [create an Azure OpenAI Service resource](/azure/ai-services/openai/how-to/create-resource).
 
-To get started with the .NET Aspire Azure AI OpenAI component, install the [Aspire.Azure.AI.OpenAI](https://www.nuget.org/packages/Aspire.Azure.AI.OpenAI) NuGet package.
+To get started with the .NET Aspire Azure AI OpenAI component, install the [Aspire.Azure.AI.OpenAI](https://www.nuget.org/packages/Aspire.Azure.AI.OpenAI) NuGet package in the consuming client project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -54,7 +54,7 @@ public class ExampleService(OpenAIClient client)
 
 ## App host usage
 
-To add Azure AI hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices) NuGet package.
+To add Azure AI hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices) NuGet package in the [app host](xref:aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Event Hubs component
 description: This article describes the .NET Aspire Azure Event Hubs component features and capabilities.
 ms.topic: how-to
-ms.date: 06/05/2024
+ms.date: 07/17/2024
 ---
 
 # .NET Aspire Azure Event Hubs component
@@ -16,7 +16,7 @@ In this article, you learn how to use the .NET Aspire Azure Event Hubs component
 
 ## Get started
 
-To get started with the .NET Aspire Azure Event Hubs component, install the [Aspire.Azure.Messaging.EventHubs](https://www.nuget.org/packages/Aspire.Azure.Messaging.EventHubs) NuGet package.
+To get started with the .NET Aspire Azure Event Hubs component, install the [Aspire.Azure.Messaging.EventHubs](https://www.nuget.org/packages/Aspire.Azure.Messaging.EventHubs) NuGet package in the consuming client project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -69,7 +69,7 @@ For more information, see the [Azure.Messaging.EventHubs documentation](https://
 
 ## App host usage
 
-To add Azure Event Hub hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.EventHubs](https://www.nuget.org/packages/Aspire.Hosting.Azure.EventHubs) NuGet package.
+To add Azure Event Hub hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.EventHubs](https://www.nuget.org/packages/Aspire.Hosting.Azure.EventHubs) NuGet package in the [app host](xref:aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

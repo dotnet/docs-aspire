@@ -2,7 +2,7 @@
 title: .NET Aspire SqlServer Entity Framework Core component
 description: This article describes the .NET Aspire SQL Server Entity Framework Core component.
 ms.topic: how-to
-ms.date: 06/28/2024
+ms.date: 07/17/2024
 ---
 
 # .NET Aspire SqlServer Entity Framework Core component
@@ -20,7 +20,7 @@ In this article, you learn how to use the .NET Aspire SqlServer Entity Framework
 
 ## Get started
 
-To get started with the .NET Aspire SQL Server Entity Framework Core component, install the [Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) NuGet package.
+To get started with the .NET Aspire SQL Server Entity Framework Core component, install the [Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) NuGet package in the consuming client project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
