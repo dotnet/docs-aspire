@@ -2,7 +2,7 @@
 title: .NET Aspire Qdrant component
 description: This article describes the .NET Aspire Qdrant component.
 ms.topic: how-to
-ms.date: 06/03/2024
+ms.date: 07/17/2024
 ---
 
 # .NET Aspire Qdrant component
@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire Qdrant component. Use this
 
 ## Get started
 
-To get started with the .NET Aspire Qdrant component, install the [Aspire.Qdrant.Client](https://www.nuget.org/packages/Aspire.Qdrant.Client) NuGet package.
+To get started with the .NET Aspire Qdrant component, install the [Aspire.Qdrant.Client](https://www.nuget.org/packages/Aspire.Qdrant.Client) NuGet package in the consuming client project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -49,7 +49,7 @@ public class ExampleService(QdrantClient client)
 
 ## App host usage
 
-To model the Qdrant server resource in the app host, install the [Aspire.Hosting.Qdrant](https://www.nuget.org/packages/Aspire.Hosting.Qdrant) NuGet package.
+To model the Qdrant server resource in the app host, install the [Aspire.Hosting.Qdrant](https://www.nuget.org/packages/Aspire.Hosting.Qdrant) NuGet package in the [app host](xref:aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

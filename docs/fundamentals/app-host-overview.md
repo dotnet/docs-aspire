@@ -3,6 +3,7 @@ title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs to express resource references.
 ms.date: 06/03/2024
 ms.topic: overview
+uid: aspire/app-host
 ---
 
 # .NET Aspire orchestration overview

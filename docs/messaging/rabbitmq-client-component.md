@@ -2,7 +2,7 @@
 title: .NET Aspire RabbitMQ component
 description: Learn how to use the .NET Aspire RabbitMQ client message-broker component.
 ms.topic: how-to
-ms.date: 06/05/2024
+ms.date: 07/17/2024
 ---
 
 # .NET Aspire RabbitMQ component
@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire RabbitMQ client message-br
 
 ## Get started
 
-To get started with the .NET Aspire RabbitMQ component, install the [Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) NuGet package.
+To get started with the .NET Aspire RabbitMQ component, install the [Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) NuGet package in the consuming client project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -49,7 +49,7 @@ public class ExampleService(IConnection connection)
 
 ## App host usage
 
-To model the RabbitMQ resource in the app host, install the [Aspire.Hosting.RabbitMQ](https://www.nuget.org/packages/Aspire.Hosting.RabbitMQ) NuGet package.
+To model the RabbitMQ resource in the app host, install the [Aspire.Hosting.RabbitMQ](https://www.nuget.org/packages/Aspire.Hosting.RabbitMQ) NuGet package in the [app host](xref:aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

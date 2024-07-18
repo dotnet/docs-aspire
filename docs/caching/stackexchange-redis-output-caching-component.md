@@ -2,7 +2,7 @@
 title: .NET Aspire Stack Exchange Redis output caching Component
 description: This article describes the .NET Aspire Stack Exchange Redis output caching component features and capabilities
 ms.topic: how-to
-ms.date: 06/11/2024
+ms.date: 07/17/2024
 ---
 
 # .NET Aspire Stack Exchange Redis output caching component
@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire Stack Exchange Redis outpu
 
 ## Get started
 
-To get started with the .NET Aspire Stack Exchange Redis output caching component, install the [Aspire.StackExchange.Redis.OutputCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.OutputCaching) NuGet package.
+To get started with the .NET Aspire Stack Exchange Redis output caching component, install the [Aspire.StackExchange.Redis.OutputCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.OutputCaching) NuGet package in the consuming client project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

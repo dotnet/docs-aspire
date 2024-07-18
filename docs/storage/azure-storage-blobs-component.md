@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Blob Storage component
 description: This article describes the .NET Aspire Azure Blob Storage component features and capabilities.
 ms.topic: how-to
-ms.date: 06/05/2024
+ms.date: 07/17/2024
 ---
 
 # .NET Aspire Azure Blob Storage component
@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire Azure Blob Storage compone
 
 ## Get started
 
-To get started with the .NET Aspire Azure Blob Storage component, install the [Aspire.Azure.Storage.Blobs](https://www.nuget.org/packages/Aspire.Azure.Storage.Blobs) NuGet package.
+To get started with the .NET Aspire Azure Blob Storage component, install the [Aspire.Azure.Storage.Blobs](https://www.nuget.org/packages/Aspire.Azure.Storage.Blobs) NuGet package in the consuming client project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -49,7 +49,7 @@ public class ExampleService(BlobServiceClient client)
 
 ## App host usage
 
-To add Azure Storage hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package.
+To add Azure Storage hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package in the [app host](xref:aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

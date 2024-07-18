@@ -2,7 +2,7 @@
 title: .NET Aspire PostgreSQL Entity Framework Core component
 description: This article describes the .NET Aspire PostgreSQL Entity Framework Core component.
 ms.topic: how-to
-ms.date: 06/28/2024
+ms.date: 07/17/2024
 ---
 
 # .NET Aspire PostgreSQL Entity Framework Core component
@@ -24,7 +24,7 @@ PostgreSQL is a powerful, open source, object-relational database system. The .N
 
 ## Get started
 
-To get started with the .NET Aspire PostgreSQL Entity Framework Core component, install the [Aspire.Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL) NuGet package.
+To get started with the .NET Aspire PostgreSQL Entity Framework Core component, install the [Aspire.Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL) NuGet package in the consuming client project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
