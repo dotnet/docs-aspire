@@ -172,5 +172,5 @@ The .NET Aspire NATS component emits the following tracing activities:
 
 ## See also
 
-- [NATS.Net quickstart](https://nats-io.github.io/nats.net.v2/documentation/intro.html?tabs=core-nats)
+- [NATS.Net quickstart](https://nats-io.github.io/nats.net/documentation/intro.html?tabs=core-nats)
 - [NATS component README](https://github.com/dotnet/aspire/tree/main/src/Components/README.md)
