@@ -2,13 +2,13 @@
 title: .NET Aspire Stack Exchange Redis output caching Component
 description: This article describes the .NET Aspire Stack Exchange Redis output caching component features and capabilities
 ms.topic: how-to
-ms.date: 07/17/2024
+ms.date: 07/19/2024
 zone_pivot_groups: resp-host
 ---
 
 # .NET Aspire Stack Exchange Redis output caching component
 
-In this article, you learn how to use the .NET Aspire Stack Exchange Redis output caching component. The `Aspire.StackExchange.Redis.OutputCaching` library is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Redis](https://redis.io/) server. It enables corresponding health check, logging, and telemetry.
+In this article, you learn how to use the .NET Aspire Stack Exchange Redis output caching component. The `Aspire.StackExchange.Redis.OutputCaching` library is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Redis](https://redis.io/) server. It enables corresponding health check, logging, and telemetry..
 
 ## Get started
 
