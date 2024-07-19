@@ -1,10 +1,10 @@
 ---
-title: Add Node.js apps to a .NET Aspire project
+title: Orchestrate Node.js apps in .NET Aspire
 description: Learn how to integrate Node.js and npm apps into a .NET Aspire App Host project.
 ms.date: 06/13/2024
 ---
 
-# Add Node.js apps to a .NET Aspire project
+# Orchestrate Node.js apps in .NET Aspire
 
 In this article, you learn how to use Node.js and Node Package Manager (`npm`) apps in a .NET Aspire project. The sample app in this article demonstrates [Angular](https://angular.io), [React](https://react.dev/), and [Vue](https://vuejs.org/) client experiences. The following .NET Aspire APIs exist to support these scenarios:
 

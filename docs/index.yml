@@ -163,6 +163,12 @@ conceptualContent:
         - itemType: how-to-guide
           text: Redis distributed caching
           url: caching/stackexchange-redis-distributed-caching-component.md
+        - itemType: how-to-guide
+          text: Garnet caching
+          url: caching/garnet-component.md
+        - itemType: how-to-guide
+          text: Valkey caching
+          url: caching/valkey-component.md
 
     - title: Frameworks
       links:
@@ -235,6 +241,15 @@ conceptualContent:
         - itemType: training
           text: Use telemetry in a .NET Aspire project
           url: /training/modules/use-telemetry-dotnet-aspire
+        - itemType: training
+          text: Use databases in a .NET Aspire project
+          url: /training/modules/use-databases-dotnet-aspire-app/
+        - itemType: training
+          text: Improve performance with a cache in a .NET Aspire project
+          url: /training/modules/improve-performance-cache-aspire/
+        - itemType: training
+          text: Send messages with RabbitMQ in a .NET Aspire project
+          url: /training/modules/send-messages-rabbitmq-dotnet-aspire-app/
 
 additionalContent:
   sections:

@@ -12,8 +12,6 @@ items:
         href: get-started/build-your-first-aspire-app.md
       - name: Tutorial - Add .NET Aspire to an existing .NET app
         href: get-started/add-aspire-existing-app.md
-      - name: Sample - Add Node.js apps to a .NET Aspire project
-        href: get-started/build-aspire-apps-with-nodejs.md
       - name: Setup and tooling
         href: fundamentals/setup-tooling.md
       - name: What's new in .NET Aspire
@@ -24,6 +22,10 @@ items:
       - name: Overview
         displayName: orchestration,aspire apphost,aspire app
         href: fundamentals/app-host-overview.md
+      - name: Orchestrate Node.js apps in .NET Aspire
+        href: get-started/build-aspire-apps-with-nodejs.md
+      - name: Orchestrate Python apps in .NET Aspire
+        href: get-started/build-aspire-apps-with-python.md
       - name: Networking overview
         displayName: inner loop,local networking
         href: fundamentals/networking-overview.md
@@ -135,6 +137,12 @@ items:
         - name: Azure Table Storage
           displayName: table storage,azure storage
           href: storage/azure-storage-tables-component.md
+      - name: Elasticsearch
+        displayName: elasticsearch,search
+        href: search/elasticsearch-component.md
+      - name: Garnet
+        href: caching/garnet-component.md
+        displayName: caching,redis,resp,cache-store
       - name: MongoDB
         displayName: mongodb,database
         href: database/mongodb-component.md
@@ -184,6 +192,9 @@ items:
       - name: Seq
         displayName: seq,logging
         href: logging/seq-component.md
+      - name: Valkey
+        href: caching/valkey-component.md
+        displayName: caching,redis
 
   - name: Deployment
     items:
