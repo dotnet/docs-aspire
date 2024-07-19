@@ -3,6 +3,7 @@ title: .NET Aspire Stack Exchange Redis output caching Component
 description: This article describes the .NET Aspire Stack Exchange Redis output caching component features and capabilities
 ms.topic: how-to
 ms.date: 07/17/2024
+zonezone_pivot_groups: resp-host
 ---
 
 # .NET Aspire Stack Exchange Redis output caching component
@@ -56,22 +57,21 @@ For apps with controllers, apply the `[OutputCache]` attribute to the action met
 
 ## App host usage
 
+:::zone pivot="redis"
+
 [!INCLUDE [redis-app-host](includes/redis-app-host.md)]
 
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
+:::zone-end
+:::zone pivot="garnet"
 
-var redis = builder.AddRedis("redis");
+[!INCLUDE [garnet-app-host](includes/garnet-app-host.md)]
 
-var basket = builder.AddProject<Projects.ExampleProject>()
-                    .WithReference(redis)
-```
+:::zone-end
+:::zone pivot="valkey"
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `redis`. In the _:::no-loc text="Program.cs":::_ file of `ExampleProject`, the Redis connection can be consumed using:
+[!INCLUDE [valkey-app-host](includes/valkey-app-host.md)]
 
-```csharp
-builder.AddRedisOutputCache("messaging");
-```
+:::zone-end
 
 ## Configuration
 

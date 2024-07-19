@@ -140,9 +140,6 @@ items:
       - name: Elasticsearch
         displayName: elasticsearch,search
         href: search/elasticsearch-component.md
-      - name: Garnet
-        href: caching/garnet-component.md
-        displayName: caching,redis,resp,cache-store
       - name: MongoDB
         displayName: mongodb,database
         href: database/mongodb-component.md
@@ -192,9 +189,6 @@ items:
       - name: Seq
         displayName: seq,logging
         href: logging/seq-component.md
-      - name: Valkey
-        href: caching/valkey-component.md
-        displayName: caching,redis
 
   - name: Deployment
     items:

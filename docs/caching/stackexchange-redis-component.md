@@ -3,6 +3,7 @@ title: .NET Aspire Stack Exchange Redis component
 description: This article describes the .NET Aspire Stack Exchange Redis component features and capabilities
 ms.topic: how-to
 ms.date: 07/17/2024
+zonezone_pivot_groups: resp-host
 ---
 
 # .NET Aspire Stack Exchange Redis component
@@ -49,22 +50,21 @@ public class ExampleService(IConnectionMultiplexer connectionMultiplexer)
 
 ## App host usage
 
+:::zone pivot="redis"
+
 [!INCLUDE [redis-app-host](includes/redis-app-host.md)]
 
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
+:::zone-end
+:::zone pivot="garnet"
 
-var redis = builder.AddRedis("redis");
+[!INCLUDE [garnet-app-host](includes/garnet-app-host.md)]
 
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(redis)
-```
+:::zone-end
+:::zone pivot="valkey"
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `redis`. In the _:::no-loc text="Program.cs":::_ file of `ExampleProject`, the Redis connection can be consumed using:
+[!INCLUDE [valkey-app-host](includes/valkey-app-host.md)]
 
-```csharp
-builder.AddRedis("cache");
-```
+:::zone-end
 
 ## Configuration
 
