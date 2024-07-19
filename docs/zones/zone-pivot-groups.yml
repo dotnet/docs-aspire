@@ -45,7 +45,7 @@ groups:
       title: .NET CLI
 - id: resp-host
   title: RESP Host
-  prompt: Choose a RESP host resource
+  prompt: Choose a RESP Hosting resource type
   pivots:
     - id: redis
       title: Stack Exchange Redis
