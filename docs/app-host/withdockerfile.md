@@ -9,7 +9,6 @@ ms.date: 07/19/2024
 <!--
 https://github.com/dotnet/docs-aspire/issues/1063
 
-
 We are adding a new extension method called WithDockerfile which allows .NET Aspire to dynamically build a container image from a Dockerfile and run it.
 
 Article abstract
