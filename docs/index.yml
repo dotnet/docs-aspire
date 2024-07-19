@@ -163,12 +163,6 @@ conceptualContent:
         - itemType: how-to-guide
           text: Redis distributed caching
           url: caching/stackexchange-redis-distributed-caching-component.md
-        - itemType: how-to-guide
-          text: Garnet caching
-          url: caching/garnet-component.md
-        - itemType: how-to-guide
-          text: Valkey caching
-          url: caching/valkey-component.md
 
     - title: Frameworks
       links:

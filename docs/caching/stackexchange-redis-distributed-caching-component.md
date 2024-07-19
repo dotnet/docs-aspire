@@ -3,7 +3,7 @@ title: .NET Aspire Stack Exchange Redis distributed caching component
 description: This article describes the .NET Aspire Stack Exchange Redis distributed caching component features and capabilities
 ms.topic: how-to
 ms.date: 07/17/2024
-zonezone_pivot_groups: resp-host
+zone_pivot_groups: resp-host
 ---
 
 # .NET Aspire Stack Exchange Redis distributed caching component
