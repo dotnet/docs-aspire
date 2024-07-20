@@ -61,13 +61,13 @@ For apps with controllers, apply the `[OutputCache]` attribute to the action met
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var redis = builder.AddRedis("redis");
+var redis = builder.AddRedis("messaging");
 
 var basket = builder.AddProject<Projects.ExampleProject>()
                     .WithReference(redis)
 ```
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `redis`. In the _:::no-loc text="Program.cs":::_ file of `ExampleProject`, the Redis connection can be consumed using:
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `messaging`. In the _:::no-loc text="Program.cs":::_ file of `ExampleProject`, the Redis connection can be consumed using:
 
 ```csharp
 builder.AddRedisOutputCache("messaging");
