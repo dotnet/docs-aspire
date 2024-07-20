@@ -54,13 +54,13 @@ public class ExampleService(IConnectionMultiplexer connectionMultiplexer)
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var redis = builder.AddRedis("redis");
+var redis = builder.AddRedis("cache");
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(redis)
 ```
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `redis`. In the _:::no-loc text="Program.cs":::_ file of `ExampleProject`, the Redis connection can be consumed using:
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `cache`. In the _:::no-loc text="Program.cs":::_ file of `ExampleProject`, the Redis connection can be consumed using:
 
 ```csharp
 builder.AddRedis("cache");
