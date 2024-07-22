@@ -7,7 +7,7 @@ ms.date: 07/22/2024
 
 # .NET Aspire Elasticsearch component
 
-In this article, you learn how to use the .NET Aspire Elasticsearch component. The `Aspire.Elastic.Clients.Elasticsearch` library registers a [ElasticsearchClient](https://github.com/elastic/elasticsearch-net) in the DI container for connecting to a Elasticsearch. It enables corresponding health check, logging and telemetry.
+In this article, you learn how to use the .NET Aspire Elasticsearch component. The `Aspire.Elastic.Clients.Elasticsearch` library registers a [ElasticsearchClient](https://github.com/elastic/elasticsearch-net) in the DI container for connecting to a Elasticsearch. It enables corresponding health check and telemetry.
 
 ## Prerequisites
 
