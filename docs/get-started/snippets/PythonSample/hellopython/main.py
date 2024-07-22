@@ -1,10 +1,15 @@
-import os 
+import os
 from flask import Flask
+import logging
+
+logging.basicConfig()
+logging.getLogger().setLevel(logging.NOTSET)
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def hello_world():
+    logging.getLogger(__name__).info("request received!")
     return 'Hello, World!'
 
 if __name__ == '__main__':

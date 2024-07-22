@@ -39,7 +39,7 @@ cd PythonSample
 Once the template has been created launch the app host with the following command to ensure that the app host and the dashboard launches successfully:
 
 ```dotnetcli
-dotnet run --project PythonSample.AppHost\PythonSample.AppHost.csproj
+dotnet run --project PythonSample.AppHost/PythonSample.AppHost.csproj
 ```
 
 Once the app host starts it should be possible to click on the dashboard link in the console output. At this point the dashboard will not show any resources. Stop the app host by pressing <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal.
@@ -58,7 +58,9 @@ Change directories into the newly created _hellopython_ directory:
 cd hellopython
 ```
 
-To create a virtual environment, run the following command:
+### Initialize the Python virutal environment
+
+To work with Python projects, they need to be within a virtual environment. To create a virtual environment, run the following command:
 
 ```python
 python -m venv .venv
@@ -82,26 +84,24 @@ source .venv/bin/activate
 
 ---
 
-Verify the location of the Python interpreter by running the following command:
-
-### [Unix/macOS](#tab/bash)
-
-```bash
-which python
-```
-
-### [Windows](#tab/powershell)
-
-```powershell
-where python
-```
-
----
-
-Next, install the Flask package by running the following command:
+Ensure that pip within the virutual environment is up-to-date by running the following command:
 
 ```python
-python -m pip install Flask
+python -m pip install --upgrade pip
+```
+
+## Install Python packages
+
+Install the Flask package by creating a _requirements.txt_ file in the _hellopython_ directory and adding the following line:
+
+```python
+Flask==3.0.3
+```
+
+Then, install the Flask package by running the following command:
+
+```python
+pip install -r requirements.txt
 ```
 
 After Flask is installed, create a new file named _main.py_ in the _hellopython_ directory and add the following code:
@@ -120,6 +120,10 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8111))
     app.run(host='0.0.0.0', port=port)
 ```
+
+The preceding code creates a simple Flask app that listens on port 8111 and returns the message "Hello, World!" when the root endpoint is accessed.
+
+## Update the app host project
 
 Install the Python hosting package by running the following command:
 
@@ -170,57 +174,24 @@ Select the **Endpoints** link to open the `hello-python` endpoint in a new brows
 
 :::image source="media/python-hello-world.png" lightbox="media/python-hello-world.png" alt-text=".NET Aspire dashboard: Python sample app endpoint.":::
 
+Stop the app host by pressing <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal.
+
 ## Add telemetry support.
 
-TODO: Add OTLP dependency.
+To add a bit of observability, add telemetry to help monitor the dependant Python app. In the Python project, add the following OpenTelemetry package as a dependency in the _requirements.txt_ file:
 
-```text
-Flask==3.0.3
-opentelemetry-distro[otlp]
-```
+:::code language="python" source="snippets/PythonSample/hellopython/requirements.txt" highlight="2":::
 
-TODO: Install dependencies again.
+The preceding requirement update, adds the OpenTelemetry package and the OTLP exporter. Next, re-install the Python app requirements into the virtual environment by running the following command:
 
-```dotnetcli
+```python
 pip install -r requirements.txt
 ```
 
-TODO: Update source
+The preceding command installs the OpenTelemetry package and the OTLP exporter, in the virtual environment. Update the Python app to include the OpenTelemetry code, by replacing the existing _main.py_ code with the following:
 
-```python
-import os
-from flask import Flask
-import logging
+:::code language="python" source="snippets/PythonSample/hellopython/main.py":::
 
-logging.basicConfig()
-logging.getLogger().setLevel(logging.NOTSET)
+Update the app host project's _launchSettings.json_ file to include the `ASPIRE_ALLOW_UNSECURED_TRANSPORT` environment variable:
 
-app = Flask(__name__)
-
-@app.route('/', methods=['GET'])
-def hello_world():
-    logging.getLogger(__name__).info("request received!")
-    return 'Hello, World!'
-
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 8111))
-    app.run(host='0.0.0.0', port=port)
-```
-
-TODO: Update app launchSettings to use `ASPIRE_ALLOW_UNSECURED_TRANSPORT`:
-
-```json
-"http": {
-  "commandName": "Project",
-  "dotnetRunMessages": true,
-  "launchBrowser": true,
-  "applicationUrl": "http://localhost:15044",
-  "environmentVariables": {
-    "ASPNETCORE_ENVIRONMENT": "Development",
-    "DOTNET_ENVIRONMENT": "Development",
-    "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19080",
-    "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20252",
-    "ASPIRE_ALLOW_UNSECURED_TRANSPORT": "true"
-  }
-}
-```
+:::code language="json" source="snippets/PythonSample/PythonSample.AppHost/Properties/launchSettings.json":::
