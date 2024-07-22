@@ -100,6 +100,16 @@ var ExampleService = builder.AddProject<Projects.ExampleService>()
 
 The `AddAzureEventHubs` method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:eventHubsConnectionName` config key. The `WithReference` method passes that connection information into a connection string named `eventHubsConnectionName` in the `ExampleService` project.
 
+As of .NET Aspire 8.1, the Azure EventHubs extension for .NET Aspire supports launching a local emulator for EventHubs. You can use the emulator by applying the `RunAsEmulator()` extension method as follows:
+
+```csharp
+var eventHubs = builder.AddAzureEventHubs("eventHubsConnectionName")
+                       .RunAsEmulator()
+                       .AddEventHub("MyHub");
+```
+
+The emulator for Azure EventHubs results in two container resources being launched inside .NET Aspire derived from the name of the Event Hubs resource name.
+
 > [!IMPORTANT]
 > Even though we are creating an Event Hub using the `AddEventHub` at the same time as the namespace, as of .NET Aspire version `preview-5`, the connection string will not include the `EntityPath` property, so the `EventHubName` property must be set in the settings callback for the preferred client. Future versions of Aspire will include the `EntityPath` property in the connection string and will not require the `EventHubName` property to be set in this scenario.
 
