@@ -3,7 +3,7 @@ from flask import Flask
 import logging
 
 logging.basicConfig()
-logging.getLogger().setLevel(logging.NOTSET)
+logging.getLogger().setLevel(logging.DEBUG)
 
 app = Flask(__name__)
 

@@ -49,13 +49,13 @@ Once the app host starts it should be possible to click on the dashboard link in
 From your previous terminal session where you created the .NET Aspire solution, create a new directory to contain the Python source code.
 
 ```Console
-mkdir hellopython
+mkdir hello-python
 ```
 
-Change directories into the newly created _hellopython_ directory:
+Change directories into the newly created _hello-python_ directory:
 
 ```Console
-cd hellopython
+cd hello-python
 ```
 
 ### Initialize the Python virutal environment
@@ -92,7 +92,7 @@ python -m pip install --upgrade pip
 
 ## Install Python packages
 
-Install the Flask package by creating a _requirements.txt_ file in the _hellopython_ directory and adding the following line:
+Install the Flask package by creating a _requirements.txt_ file in the _hello-python_ directory and adding the following line:
 
 ```python
 Flask==3.0.3
@@ -104,7 +104,7 @@ Then, install the Flask package by running the following command:
 pip install -r requirements.txt
 ```
 
-After Flask is installed, create a new file named _main.py_ in the _hellopython_ directory and add the following code:
+After Flask is installed, create a new file named _main.py_ in the _hello-python_ directory and add the following code:
 
 ```python
 import os
@@ -180,7 +180,7 @@ Stop the app host by pressing <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal.
 
 To add a bit of observability, add telemetry to help monitor the dependant Python app. In the Python project, add the following OpenTelemetry package as a dependency in the _requirements.txt_ file:
 
-:::code language="python" source="snippets/PythonSample/hellopython/requirements.txt" highlight="2":::
+:::code language="python" source="snippets/PythonSample/hello-python/requirements.txt" highlight="2":::
 
 The preceding requirement update, adds the OpenTelemetry package and the OTLP exporter. Next, re-install the Python app requirements into the virtual environment by running the following command:
 
@@ -190,7 +190,7 @@ pip install -r requirements.txt
 
 The preceding command installs the OpenTelemetry package and the OTLP exporter, in the virtual environment. Update the Python app to include the OpenTelemetry code, by replacing the existing _main.py_ code with the following:
 
-:::code language="python" source="snippets/PythonSample/hellopython/main.py":::
+:::code language="python" source="snippets/PythonSample/hello-python/main.py":::
 
 Update the app host project's _launchSettings.json_ file to include the `ASPIRE_ALLOW_UNSECURED_TRANSPORT` environment variable:
 
