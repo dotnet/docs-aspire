@@ -1,11 +1,11 @@
 import os
-from flask import Flask
+import flask
 import logging
 
 logging.basicConfig()
-logging.getLogger().setLevel(logging.DEBUG)
+logging.getLogger().setLevel(logging.NOTSET)
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def hello_world():

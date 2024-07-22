@@ -101,16 +101,16 @@ Flask==3.0.3
 Then, install the Flask package by running the following command:
 
 ```python
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 After Flask is installed, create a new file named _main.py_ in the _hello-python_ directory and add the following code:
 
 ```python
 import os
-from flask import Flask
+import flask
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def hello_world():
@@ -185,7 +185,7 @@ To add a bit of observability, add telemetry to help monitor the dependant Pytho
 The preceding requirement update, adds the OpenTelemetry package and the OTLP exporter. Next, re-install the Python app requirements into the virtual environment by running the following command:
 
 ```python
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 The preceding command installs the OpenTelemetry package and the OTLP exporter, in the virtual environment. Update the Python app to include the OpenTelemetry code, by replacing the existing _main.py_ code with the following:
@@ -195,3 +195,7 @@ The preceding command installs the OpenTelemetry package and the OTLP exporter, 
 Update the app host project's _launchSettings.json_ file to include the `ASPIRE_ALLOW_UNSECURED_TRANSPORT` environment variable:
 
 :::code language="json" source="snippets/PythonSample/PythonSample.AppHost/Properties/launchSettings.json":::
+
+## Summary
+
+While there are several considerations that are beyond the scope of this article, you learned how to build .NET Aspire solution that integrates with Python. You also learned how to use the `AddPythonProject` API to host Python apps.
