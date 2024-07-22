@@ -176,14 +176,23 @@ items:
         - name: Overview
           href: caching/stackexchange-redis-caching-overview.md
         - name: Redis caching
-          displayName: caching
           href: caching/stackexchange-redis-component.md
         - name: Redis distributed cache
-          displayName: distributed caching
           href: caching/stackexchange-redis-distributed-caching-component.md
         - name: Redis output caching
-          displayName: output caching
           href: caching/stackexchange-redis-output-caching-component.md
+        - name: Redis caching (Garnet)
+          href: caching/stackexchange-redis-component.md?pivots=garnet
+        - name: Redis distributed cache (Garnet)
+          href: caching/stackexchange-redis-distributed-caching-component.md?pivots=garnet
+        - name: Redis output caching (Garnet)
+          href: caching/stackexchange-redis-output-caching-component.md?pivots=garnet
+        - name: Redis caching (Valkey)
+          href: caching/stackexchange-redis-component.md?pivots=valkey
+        - name: Redis distributed cache (Valkey)
+          href: caching/stackexchange-redis-distributed-caching-component.md?pivots=valkey
+        - name: Redis output caching (Valkey)
+          href: caching/stackexchange-redis-output-caching-component.md?pivots=valkey
       - name: SQL Server
         items:
           - name: SQL Database - EF Core
