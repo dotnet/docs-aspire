@@ -1,55 +1,55 @@
 ---
 title: Orchestrate Python apps in .NET Aspire
 description: Learn how to integrate Python apps into a .NET Aspire App Host project.
-ms.date: 07/19/2024
+ms.date: 07/22/2024
 ---
 
 # Orchestrate Python apps in .NET Aspire
 
-In this article, you learn how to use Pthon apps in a .NET Aspire project. The sample app in this article demonstrates launching a Python application. The Python extension for .NET Aspire requires the use of of virtual environments.
+In this article, you learn how to use Python apps in a .NET Aspire project. The sample app in this article demonstrates launching a Python application. The Python extension for .NET Aspire requires the use of virtual environments.
 
-## Creating a .NET Aspire project using the template
+## Create a .NET Aspire project using the template
 
 To get started launching a Python project in .NET Aspire first use the starter template to create a .NET Aspire application host:
 
 ```dotnetcli
-$ dotnet new aspire -o PythonSample
-$ cd PythonSample
+dotnet new aspire -o PythonSample
+cd PythonSample
 ```
 
-Once the template has been created launch the app host with the following command to ensure that the apphost and the dashboard launches successfully:
+Once the template has been created launch the app host with the following command to ensure that the app host and the dashboard launches successfully:
 
 ```dotnetcli
-$ dotnet run --project PythonSample.AppHost\PythonSample.AppHost.csproj
+dotnet run --project PythonSample.AppHost\PythonSample.AppHost.csproj
 ```
 
-Once AppHost starts it should be possible to click on the dashboard link in the console output. At this stage the dashboard will not show any resources.
+Once the app host starts it should be possible to click on the dashboard link in the console output. At this stage the dashboard will not show any resources.
 
-## Preparing a Python project
+## Prepare a Python project
 
 Create a new directory to contain Python source code.
 
 ```dotnetcli
-$ mkdir hellopython
-$ cd hellopython
+mkdir hellopython
+cd hellopython
 ```
 
 TODO: Install virtual environment
 
 ```dotnetcli
-$ python -m pip install venv
+python -m pip install venv
 ```
 
 TODO: Setup virtual environment
 
 ```dotnetcli
-$ python -m venv .venv
+python -m venv .venv
 ```
 
 TODO: Activate virtual environment
 
 ```dotnetcli
-$ .\.venv\Scripts\activate.ps1
+.\.venv\Scripts\activate.ps1
 ```
 
 TODO: Setup requirements
@@ -115,7 +115,7 @@ builder.Build().Run();
 
 TODO: Launch project / screenshot.
 
-## Adding telemetry support.
+## Add telemetry support.
 
 TODO: Add OTLP dependency.
 
