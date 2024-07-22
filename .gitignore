@@ -1,3 +1,6 @@
+# Python virtual environments
+.venv
+
 docs/_build/
 .idea/
 *.swp
