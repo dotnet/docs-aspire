@@ -26,8 +26,9 @@ items:
         href: get-started/build-aspire-apps-with-nodejs.md
       - name: Orchestrate Python apps in .NET Aspire
         href: get-started/build-aspire-apps-with-python.md
-      - name: Add Dockerfiles to your .NET Aspire app model
+      - name: Add Dockerfiles to the app model
         href: app-host/withdockerfile.md
+        displayName: dockerfile,docker
       - name: Networking overview
         displayName: inner loop,local networking
         href: fundamentals/networking-overview.md
@@ -142,6 +143,9 @@ items:
       - name: Elasticsearch
         displayName: elasticsearch,search
         href: search/elasticsearch-component.md
+      - name: Milvus
+        displayName: milvus,database
+        href: database/milvus-component.md
       - name: MongoDB
         displayName: mongodb,database
         href: database/mongodb-component.md
