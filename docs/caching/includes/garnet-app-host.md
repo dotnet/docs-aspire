@@ -38,7 +38,7 @@ dotnet add package Aspire.Hosting.Garnet
 
 ---
 
-In your app host project, register the .NET Aspire Garnet as a resource using the `AddGarnet` method and consume the service using the following methods:
+In your app host project, register .NET Aspire Garnet as a `GarnetResource` using the `AddGarnet` method and consume the service using the following methods:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

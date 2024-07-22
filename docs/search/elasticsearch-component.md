@@ -2,12 +2,17 @@
 title: .NET Aspire Elasticsearch component
 description: This article describes the .NET Aspire Elasticsearch component features and capabilities.
 ms.topic: how-to
-ms.date: 07/19/2024
+ms.date: 07/22/2024
 ---
 
 # .NET Aspire Elasticsearch component
 
 In this article, you learn how to use the .NET Aspire Elasticsearch component. The `Aspire.Elastic.Clients.Elasticsearch` library registers a [ElasticsearchClient](https://github.com/elastic/elasticsearch-net) in the DI container for connecting to a Elasticsearch. It enables corresponding health check, logging and telemetry.
+
+## Prerequisites
+
+- Elasticsearch cluster.
+- Endpoint URI string for accessing the Elasticsearch API endpoint or a CloudId and an ApiKey from [Elastic Cloud](https://www.elastic.co/cloud)
 
 ## Get started
 
@@ -96,7 +101,7 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 
 ### Use configuration providers
 
-The .NET Aspire Elasticsearch Client component supports [Microsoft.Extensions.Configuration](/dotnet/api/microsoft.extensions.configuration). It loads the  `ElasticClientsElasticsearchSettings` from configuration by using the `Aspire:Elastic:Clients:Elasticsearch` key. Example _appsettings.json_ that configures some of the options:
+The .NET Aspire Elasticsearch Client component supports [Microsoft.Extensions.Configuration](/dotnet/api/microsoft.extensions.configuration). It loads the `ElasticClientsElasticsearchSettings` from configuration by using the `Aspire:Elastic:Clients:Elasticsearch` key. Consider the following example _appsettings.json_ that configures some of the options:
 
 ```json
 {
@@ -104,7 +109,7 @@ The .NET Aspire Elasticsearch Client component supports [Microsoft.Extensions.Co
     "Elastic": {
       "Clients": {
         "Elasticsearch": {
-            "ConnectionString": "http://elastic:password@localhost:27011"
+            "Endpoint": "http://elastic:password@localhost:27011"
         }
       }
     }
@@ -120,12 +125,12 @@ Also you can pass the `Action<ElasticClientsElasticsearchSettings> configureSett
 builder.AddElasticsearchClient(
     "elasticsearch",
     settings =>
-        settings.ConnectionString = "http://elastic:password@localhost:27011");
+        settings.Endpoint = new Uri("http://elastic:password@localhost:27011"));
 ```
 
 ### Use a `CloudId` and an `ApiKey` with configuration providers
 
-When using [Elastic Cloud](https://www.elastic.co/cloud), you can provide the `CloudId` and `ApiKey` in `Aspire:Elastic:Clients:Elasticsearch:Cloud` section and set `Aspire:Elastic:Clients:Elasticsearch:UseCloud` key to `true` when calling `builder.AddElasticsearchClient()`.
+When using [Elastic Cloud](https://www.elastic.co/cloud), you can provide the `CloudId` and `ApiKey` in `Aspire:Elastic:Clients:Elasticsearch:Cloud` section when calling `builder.AddElasticsearchClient()`.
 
 ```csharp
 builder.AddElasticsearchClient("elasticsearch");
@@ -138,10 +143,9 @@ Consider the following example _appsettings.json_ that configures the options:
   "Aspire": {
     "Elastic": {
       "Clients": {
-        "UseCloud" : true,
         "Cloud": {
-            "ApiKey": "Valid ApiKey",
-            "CloudId": "Valid CloudId"
+            "ApiKey": "<Valid ApiKey>",
+            "CloudId": "<Valid CloudId>"
         }
       }
     }
@@ -154,13 +158,24 @@ Consider the following example _appsettings.json_ that configures the options:
 ```csharp
 builder.AddElasticsearchClient(
     "elasticsearch",
-    settings => 
+    settings =>
     {
-        settings.UseCloud = true;
-        settings.Cloud.CloudId = "<Valid CloudId>";
         settings.Cloud.ApiKey = "<Valid ApiKey>";
+        settings.Cloud.CloudId = "<Valid CloudId>";
     });
 ```
+
+[!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
+
+The .NET Aspire Elasticsearch component uses the configured client to perform a `PingAsync`. If the result is an HTTP 200 OK, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
+
+[!INCLUDE [component-observability-and-telemetry](../includes/component-observability-and-telemetry.md)]
+
+### Tracing
+
+The .NET Aspire Elasticsearch component will emit the following tracing activities using OpenTelemetry:
+
+- `Elastic.Transport`
 
 ## See also
 
