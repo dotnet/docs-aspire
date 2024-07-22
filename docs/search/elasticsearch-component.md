@@ -40,7 +40,7 @@ builder.AddElasticsearchClient("elasticsearch");
 
 ## App host usage
 
-To model the RabbitMQ resource in the app host, install the [Aspire.Hosting.Elasticsearch](https://www.nuget.org/packages/Aspire.Hosting.Elasticsearch) NuGet package in the [app host](xref:aspire/app-host) project.
+To model the Elasticsearch resource in the app host, install the [Aspire.Hosting.Elasticsearch](https://www.nuget.org/packages/Aspire.Hosting.Elasticsearch) NuGet package in the [app host](xref:aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
