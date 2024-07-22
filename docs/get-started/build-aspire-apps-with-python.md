@@ -14,6 +14,11 @@ To get started launching a Python project in .NET Aspire first use the starter t
 
 ```dotnetcli
 dotnet new aspire -o PythonSample
+```
+
+In the same terminal session, change directories into the newly created project:
+
+```dotnetcli
 cd PythonSample
 ```
 

@@ -80,6 +80,9 @@ builder.AddMilvusClient("milvus");
 
 The .NET Aspire Milvus Client component provides multiple options to configure the server connection based on the requirements and conventions of your project.
 
+> [!TIP]
+> The default use is `root` and the default password is `Milvus`. Currently, Milvus doesn't support changing the superuser password at startup. It needs to be manually changed with the client.
+
 ### Use a connection string
 
 When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddMilvusClient()`:
@@ -102,7 +105,7 @@ By default the `MilvusClient` uses the gRPC API endpoint.
 
 ### Use configuration providers
 
-The .NET Aspire Milvus Client component supports [Microsoft.Extensions.Configuration](https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration). It loads the `MilvusSettings` from configuration by using the `Aspire:Milvus:Client` key. Example `appsettings.json` that configures some of the options:
+The .NET Aspire Milvus Client component supports [Microsoft.Extensions.Configuration](/dotnet/api/microsoft.extensions.configuration). It loads the `MilvusSettings` from configuration by using the `Aspire:Milvus:Client` key. Consider the following example _appsettings.json_ that configures some of the options:
 
 ```json
 {
@@ -121,7 +124,9 @@ The .NET Aspire Milvus Client component supports [Microsoft.Extensions.Configura
 Also you can pass the `Action<MilvusSettings> configureSettings` delegate to set up some or all the options inline, for example to set the API key from code:
 
 ```csharp
-builder.AddMilvusClient("milvus", settings => settings.Key = "root:12345!@#$%");
+builder.AddMilvusClient(
+    "milvus",
+    settings => settings.Key = "root:12345!@#$%");
 ```
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
