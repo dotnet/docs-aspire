@@ -26,6 +26,8 @@ items:
         href: get-started/build-aspire-apps-with-nodejs.md
       - name: Orchestrate Python apps in .NET Aspire
         href: get-started/build-aspire-apps-with-python.md
+      - name: Add Dockerfiles to your .NET Aspire app model
+        href: app-host/withdockerfile.md
       - name: Networking overview
         displayName: inner loop,local networking
         href: fundamentals/networking-overview.md
