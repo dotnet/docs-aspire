@@ -130,7 +130,7 @@ builder.AddElasticsearchClient(
 
 ### Use a `CloudId` and an `ApiKey` with configuration providers
 
-When using [Elastic Cloud](https://www.elastic.co/cloud), you can provide the `CloudId` and `ApiKey` in `Aspire:Elastic:Clients:Elasticsearch:Cloud` section when calling `builder.AddElasticsearchClient()`.
+When using [Elastic Cloud](https://www.elastic.co/cloud), you can provide the `CloudId` and `ApiKey` in `Aspire:Elastic:Clients:Elasticsearch` section when calling `builder.AddElasticsearchClient()`.
 
 ```csharp
 builder.AddElasticsearchClient("elasticsearch");
@@ -143,7 +143,7 @@ Consider the following example _appsettings.json_ that configures the options:
   "Aspire": {
     "Elastic": {
       "Clients": {
-        "Cloud": {
+        "Elasticsearch": {
             "ApiKey": "<Valid ApiKey>",
             "CloudId": "<Valid CloudId>"
         }
@@ -160,8 +160,8 @@ builder.AddElasticsearchClient(
     "elasticsearch",
     settings =>
     {
-        settings.Cloud.ApiKey = "<Valid ApiKey>";
-        settings.Cloud.CloudId = "<Valid CloudId>";
+        settings.ApiKey = "<Valid ApiKey>";
+        settings.CloudId = "<Valid CloudId>";
     });
 ```
 
