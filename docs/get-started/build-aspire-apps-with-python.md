@@ -1,7 +1,7 @@
 ---
 title: Orchestrate Python apps in .NET Aspire
 description: Learn how to integrate Python apps into a .NET Aspire App Host project.
-ms.date: 07/22/2024
+ms.date: 07/23/2024
 ---
 
 # Orchestrate Python apps in .NET Aspire
@@ -58,7 +58,7 @@ Change directories into the newly created _hello-python_ directory:
 cd hello-python
 ```
 
-### Initialize the Python virutal environment
+### Initialize the Python virtual environment
 
 To work with Python projects, they need to be within a virtual environment. To create a virtual environment, run the following command:
 
@@ -84,7 +84,7 @@ source .venv/bin/activate
 
 ---
 
-Ensure that pip within the virutual environment is up-to-date by running the following command:
+Ensure that pip within the virtual environment is up-to-date by running the following command:
 
 ```python
 python -m pip install --upgrade pip
@@ -121,7 +121,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port)
 ```
 
-The preceding code creates a simple Flask app that listens on port 8111 and returns the message "Hello, World!" when the root endpoint is accessed.
+The preceding code creates a simple Flask app that listens on port 8111 and returns the message `"Hello, World!"` when the root endpoint is accessed.
 
 ## Update the app host project
 
