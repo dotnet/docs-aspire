@@ -48,7 +48,7 @@ groups:
   prompt: Choose a RESP Hosting resource type
   pivots:
     - id: redis
-      title: Stack Exchange Redis
+      title: Redis
     - id: garnet
       title: Garnet
     - id: valkey
