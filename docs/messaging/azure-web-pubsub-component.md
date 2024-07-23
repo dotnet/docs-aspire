@@ -12,7 +12,7 @@ In this article, you learn how to use the .NET Aspire Azure Web PubSub component
 ## Prerequisites
 
 - Azure subscription: [create one for free](https://azure.microsoft.com/free/).
-- An existing Azure Web PubSub service instance. For more information, see [Create a Web PubSub resource](https://learn.microsoft.com/azure/azure-web-pubsub/howto-develop-create-instance). Alternatively, you can use a connection string, which isn't recommended in production environments.
+- An existing Azure Web PubSub service instance. For more information, see [Create a Web PubSub resource](/azure/azure-web-pubsub/howto-develop-create-instance). Alternatively, you can use a connection string, which isn't recommended in production environments.
 
 ## Get started
 

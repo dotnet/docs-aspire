@@ -6,11 +6,11 @@ ms.date: 07/23/2024
 
 # Add Dockerfiles to your .NET app model
 
-With .NET Aspire it's possible to specify a _Dockerfile_ to build when the [app host](../fundamentals/app-host-overview.md) is started using either the <xref:Aspire.Hosting.ResourceBuilderExtensions.AddDockerfile%2A> or <xref:Aspire.Hosting.ResourceBuilderExtensions.WithDockerfile%2A> extension methods.
+With .NET Aspire it's possible to specify a _Dockerfile_ to build when the [app host](../fundamentals/app-host-overview.md) is started using either the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile%2A> or <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A> extension methods.
 
 ## Add a Dockerfile to the app model
 
-In the following example the <xref:Aspire.Hosting.ResourceBuilderExtensions.AddDockerfile%2A> extension method is used to specify a container by referencing the context path for the container build.
+In the following example the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile%2A> extension method is used to specify a container by referencing the context path for the container build.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -37,9 +37,9 @@ var container = builder.ExecutionContext.IsRunMode
 
 ## Customize existing container resources
 
-When using <xref:Aspire.Hosting.ResourceBuilderExtensions.AddDockerfile%2A> the return value is an `IResourceBuilder<ContainerResource>`. .NET Aspire includes many custom resource types that are derived from <xref:Aspire.Hosting.ApplicationModel.ContainerResource>.
+When using <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile%2A> the return value is an `IResourceBuilder<ContainerResource>`. .NET Aspire includes many custom resource types that are derived from <xref:Aspire.Hosting.ApplicationModel.ContainerResource>.
 
-Using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithDockerfile%2A> extension method it's possible to continue using these strongly typed resource types and customize the underlying container that is used.
+Using the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A> extension method it's possible to continue using these strongly typed resource types and customize the underlying container that is used.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -51,7 +51,7 @@ var pgsql = builder.AddPostgres("pgsql")
 
 ## Pass build arguments
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithBuildArg%2A> method can be used to pass arguments into the container image build.
+The <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithBuildArg%2A> method can be used to pass arguments into the container image build.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -60,7 +60,7 @@ var container = builder.AddDockerfile("mygoapp", "relative/context/path")
                        .WithBuildArg("GO_VERSION", "1.22");
 ```
 
-The value parameter on the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithBuildArg%2A> method can be a literal value (`boolean`, `string`, `int`) or it can be a resource builder for a [parameter resource](../fundamentals/external-parameters.md). The following code replaces the `GO_VERSION` with a parameter value that can be specified at deployment time.
+The value parameter on the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithBuildArg%2A> method can be a literal value (`boolean`, `string`, `int`) or it can be a resource builder for a [parameter resource](../fundamentals/external-parameters.md). The following code replaces the `GO_VERSION` with a parameter value that can be specified at deployment time.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -93,7 +93,7 @@ CMD ["./mygoapp"]
 
 ## Pass build secrets
 
-In addition to build arguments it's possible to specify build secrets using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithBuildSecret%2A> which are made selectively available to individual commands in the _Dockerfile_ using the `--mount=type=secret` syntax on `RUN` commands.
+In addition to build arguments it's possible to specify build secrets using <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithBuildSecret%2A> which are made selectively available to individual commands in the _Dockerfile_ using the `--mount=type=secret` syntax on `RUN` commands.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
