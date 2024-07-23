@@ -36,7 +36,7 @@ In the same terminal session, change directories into the newly created project:
 cd PythonSample
 ```
 
-Once the template has been created launch the app host with the following command to ensure that the app host and the dashboard launches successfully:
+Once the template has been created launch the app host with the following command to ensure that the app host and the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) launches successfully:
 
 ```dotnetcli
 dotnet run --project PythonSample.AppHost/PythonSample.AppHost.csproj
@@ -166,7 +166,7 @@ Now that you've added the Python hosting package, updated the app host _Program.
 dotnet run --project PythonSample.AppHost/PythonSample.AppHost.csproj
 ```
 
-Launch the .NET Aspire dashboard by clicking the link in the console output. The dashboard should display the Python project as a resource.
+Launch the dashboard by clicking the link in the console output. The dashboard should display the Python project as a resource.
 
 :::image source="media/python-dashboard.png" lightbox="media/python-dashboard.png" alt-text=".NET Aspire dashboard: Python sample app.":::
 
@@ -196,13 +196,13 @@ Update the app host project's _launchSettings.json_ file to include the `ASPIRE_
 
 :::code language="json" source="snippets/PythonSample/PythonSample.AppHost/Properties/launchSettings.json":::
 
-The `ASPIRE_ALLOW_UNSECURED_TRANSPORT` variable is required because when running locally the open telemetry client in Python rejects the local development certificate. Launch the App Host again:
+The `ASPIRE_ALLOW_UNSECURED_TRANSPORT` variable is required because when running locally the OpenTelemetry client in Python rejects the local development certificate. Launch the _app host_ again:
 
 ```dotnetcli
 dotnet run --project PythonSample.AppHost/PythonSample.AppHost.csproj
 ```
 
-Once the app has launched navigate to the dashboard and note that in addition to console log output, structured logging is also being routed through to the dashboard.
+Once the app host has launched navigate to the dashboard and note that in addition to console log output, structured logging is also being routed through to the dashboard.
 
 :::image source="media/python-telemetry-in-dashboard.png" lightbox="media/python-telemetry-in-dashboard.png" alt-text=".NET Aspire dashboard: Structured logging from Python process.":::
 
