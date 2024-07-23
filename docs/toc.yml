@@ -140,6 +140,9 @@ items:
         - name: Azure Table Storage
           displayName: table storage,azure storage
           href: storage/azure-storage-tables-component.md
+        - name: Azure Web PubSub
+          displayName: web pubsub,real-time,messaging
+          href: messaging/azure-web-pubsub-component.md  
       - name: Elasticsearch
         displayName: elasticsearch,search
         href: search/elasticsearch-component.md

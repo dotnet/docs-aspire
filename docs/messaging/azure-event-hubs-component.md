@@ -94,7 +94,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var eventHubs = builder.AddAzureEventHubs("eventHubsConnectionName")
                        .AddEventHub("MyHub");
 
-var ExampleService = builder.AddProject<Projects.ExampleService>()
+var exampleService = builder.AddProject<Projects.ExampleService>()
                             .WithReference(eventHubs);
 ```
 
