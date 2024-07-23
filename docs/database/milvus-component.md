@@ -2,7 +2,7 @@
 title: .NET Aspire Milvus database component
 description: This article describes the .NET Aspire Milvus database component.
 ms.topic: how-to
-ms.date: 07/22/2024
+ms.date: 07/23/2024
 ---
 
 # .NET Aspire Milvus database component

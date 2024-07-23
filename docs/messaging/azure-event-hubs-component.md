@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Event Hubs component
 description: This article describes the .NET Aspire Azure Event Hubs component features and capabilities.
 ms.topic: how-to
-ms.date: 07/17/2024
+ms.date: 07/23/2024
 ---
 
 # .NET Aspire Azure Event Hubs component
