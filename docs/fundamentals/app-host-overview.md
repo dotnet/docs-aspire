@@ -50,7 +50,7 @@ Each resource must be uniquely named. This diagram shows each resource and the r
 
 ## Built-in resource types
 
-.NET Aspire projects are made up of a set of resources. There are three base types of compute resources:
+.NET Aspire projects are made up of a set of resources. There are three base types of compute resources from the primary [Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) Nuget package:
 
 | Method | Resource type | Description |
 |--|--|--|
@@ -189,7 +189,11 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 
 **Cloud-agnostic resources are available in the following NuGet packages:**
 
+- [📦 Aspire.Hosting.Dapr](https://www.nuget.org/packages/Aspire.Hosting.Dapr)
+- [📦 Aspire.Hosting.Elasticsearch](https://www.nuget.org/packages/Aspire.Hosting.Elasticsearch)
 - [📦 Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka)
+- [📦 Aspire.Hosting.Keycloak](https://www.nuget.org/packages/Aspire.Hosting.Keycloak)
+- [📦 Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus)
 - [📦 Aspire.Hosting.MongoDB](https://www.nuget.org/packages/Aspire.Hosting.MongoDB)
 - [📦 Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql)
 - [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats)
@@ -197,10 +201,19 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 - [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle)
 - [📦 Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans)
 - [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL)
+- [📦 Aspire.Hosting.Python](https://www.nuget.org/packages/Aspire.Hosting.Python)
+- [📦 Aspire.Hosting.Qdrant](https://www.nuget.org/packages/Aspire.Hosting.Qdrant)
 - [📦 Aspire.Hosting.RabbitMQ](https://www.nuget.org/packages/Aspire.Hosting.RabbitMQ)
 - [📦 Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis)
 - [📦 Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq)
 - [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer)
+- [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing)
+
+| `AddElasticsearch(...)` | `ElasticsearchResource` | Adds an Elasticsearch container resource to the application model. |
+| `AddKeycloak(...)` | `KeycloakResource` | Adds a Keycloak container to the application model. |
+| `AddMilvus(...)` | `MilvusServerResource` | Adds a Milvus resource to the application. |
+| `AddPythonProject(...)` | `PythonProjectResource` | Adds a python application with a virtual environment to the application model. |
+| `AddQdrant(...)` | `QdrantServerResource` | Adds a Qdrant server resource. |
 
 | Method | Resource type | Description |
 |--|--|--|
@@ -233,6 +246,7 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 - [📦 Aspire.Hosting.Azure.SignalR](https://www.nuget.org/packages/Aspire.Hosting.Azure.SignalR)
 - [📦 Aspire.Hosting.Azure.Sql](https://www.nuget.org/packages/Aspire.Hosting.Azure.Sql)
 - [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage)
+- [📦 Aspire.Hosting.Azure.WebPubSub](https://www.nuget.org/packages/Aspire.Hosting.Azure.WebPubSub)
 
 | Method | Resource type | Description |
 |--|--|--|
@@ -245,6 +259,7 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 | `AddRedis(...)`.<xref:Aspire.Hosting.AzureRedisExtensions.AsAzureRedis%2A> | <xref:Aspire.Hosting.Azure.AzureRedisResource> | Configures resource to use Azure for local development and when doing a deployment via the Azure Developer CLI. |
 | `AddSqlServer(...)`.<xref:Aspire.Hosting.AzureSqlExtensions.AsAzureSqlDatabase%2A> | <xref:Aspire.Hosting.Azure.AzureSqlServerResource> | Configures SQL Server resource to be deployed as Azure SQL Database (server). |
 | <xref:Aspire.Hosting.AzureServiceBusExtensions.AddAzureServiceBus%2A> | <xref:Aspire.Hosting.Azure.AzureServiceBusResource> | Adds an Azure Service Bus resource. |
+| <xref:Aspire.Hosting.AzureWebPubSubExtensions.AddAzureWebPubSub%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureWebPubSubResource> | Adds an Azure Web PubSub resources. |
 
 > [!IMPORTANT]
 > The .NET Aspire Azure hosting libraries rely on `Azure.Provisioning.*` libraries to provision Azure resources. For more information, [Azure provisioning libraries](../deployment/azure/local-provisioning.md#azure-provisioning-libraries).
