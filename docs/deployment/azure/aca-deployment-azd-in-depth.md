@@ -41,7 +41,7 @@ curl -fsSL https://aka.ms/install-azd.sh | bash
 
 ## How Azure Developer CLI integration works
 
-The `azd init` workflow provides customized supported for .NET Aspire projects. The following diagram illustrates how this flow works conceptually and how `azd` and .NET Aspire are integrated:
+The `azd init` workflow provides customized support for .NET Aspire projects. The following diagram illustrates how this flow works conceptually and how `azd` and .NET Aspire are integrated:
 
 :::image type="content" source="media/azd-internals.png" alt-text="Illustration of internal processing of `azd` when deploying .NET Aspire project.":::
 
