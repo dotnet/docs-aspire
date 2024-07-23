@@ -209,24 +209,23 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 - [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer)
 - [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing)
 
-| `AddElasticsearch(...)` | `ElasticsearchResource` | Adds an Elasticsearch container resource to the application model. |
-| `AddKeycloak(...)` | `KeycloakResource` | Adds a Keycloak container to the application model. |
-| `AddMilvus(...)` | `MilvusServerResource` | Adds a Milvus resource to the application. |
-| `AddPythonProject(...)` | `PythonProjectResource` | Adds a python application with a virtual environment to the application model. |
-| `AddQdrant(...)` | `QdrantServerResource` | Adds a Qdrant server resource. |
-
 | Method | Resource type | Description |
 |--|--|--|
-| `AddMongoDB(...)` | `MongoDBServerResource` | Adds a MongoDB server resource. |
-| `AddMySql(...)` | `MySqlServerResource` | Adds a MySql server resource. |
-| `AddNodeApp(...)` | `NodeAppResource` | Adds a Node.js app resource. |
-| `AddNpmApp(...)` | `NodeAppResource` | Adds a Node.js app resource that wraps an [NPM](https://www.npmjs.com/) package. |
-| `AddPostgres(...).`<xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresDatabaseResource> | Adds a Postgres database resource. |
-| `AddSqlServer(...).`<xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource> | Adds a SQL Server database resource. |
+| <xref:Aspire.Hosting.ElasticsearchBuilderExtensions.AddElasticsearch*> | <xref:Aspire.Hosting.ApplicationModel.ElasticsearchResource> | Adds an Elasticsearch container resource to the application model. |
+| <xref:Aspire.Hosting.KeycloakResourceBuilderExtensions.AddKeycloak*> | <xref:Aspire.Hosting.ApplicationModel.KeycloakResource> | Adds a Keycloak container to the application model. |
+| <xref:Aspire.Hosting.MilvusBuilderExtensions.AddMilvus*> | <xref:Aspire.Hosting.Milvus.MilvusServerResource> | Adds a Milvus resource to the application. |
+| <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddMongoDB*> | <xref:Aspire.Hosting.ApplicationModel.MongoDBServerResource> | Adds a MongoDB server resource. |
+| <xref:Aspire.Hosting.MySqlBuilderExtensions.AddMySql*> | <xref:Aspire.Hosting.ApplicationModel.MySqlServerResource> | Adds a MySql server resource. |
+| <xref:Aspire.Hosting.NodeAppHostingExtension.AddNodeApp*> | <xref:Aspire.Hosting.NodeAppResource> | Adds a Node.js app resource. |
+| <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp*> | <xref:Aspire.Hosting.NodeAppResource> | Adds a Node.js app resource that wraps an [NPM](https://www.npmjs.com/) package. |
 | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresServerResource> | Adds a Postgres server resource. |
+| `AddPostgres(...).`<xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresDatabaseResource> | Adds a Postgres database resource. |
+| <xref:Aspire.Hosting.PythonProjectResourceBuilderExtensions.AddPythonProject*> | <xref:Aspire.Hosting.Python.PythonProjectResource> | Adds a python application with a virtual environment to the application model. |
+| <xref:Aspire.Hosting.QdrantBuilderExtensions.AddQdrant*> | <xref:Aspire.Hosting.ApplicationModel.QdrantServerResource> | Adds a Qdrant server resource. |
 | <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A> | <xref:Aspire.Hosting.ApplicationModel.RabbitMQServerResource> | Adds a RabbitMQ server resource. |
 | <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> | <xref:Aspire.Hosting.ApplicationModel.RedisResource> | Adds a Redis container resource. |
 | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerServerResource> | Adds a SQL Server server resource. |
+| `AddSqlServer(...).`<xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource> | Adds a SQL Server database resource. |
 
 **Azure specific resources are available in the following NuGet packages:**
 
