@@ -43,4 +43,13 @@ groups:
       title: Visual Studio Code
     - id: dotnet-cli
       title: .NET CLI
-
+- id: resp-host
+  title: RESP Host
+  prompt: Choose a RESP Hosting resource type
+  pivots:
+    - id: redis
+      title: Redis
+    - id: garnet
+      title: Garnet
+    - id: valkey
+      title: Valkey
