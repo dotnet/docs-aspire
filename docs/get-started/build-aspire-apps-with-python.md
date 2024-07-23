@@ -196,6 +196,16 @@ Update the app host project's _launchSettings.json_ file to include the `ASPIRE_
 
 :::code language="json" source="snippets/PythonSample/PythonSample.AppHost/Properties/launchSettings.json":::
 
+The `ASPIRE_ALLOW_UNSECURED_TRANSPORT` variable is required because when running locally the open telemetry client in Python rejects the local development certificate. Launch the App Host again:
+
+```dotnetcli
+dotnet run --project PythonSample.AppHost/PythonSample.AppHost.csproj
+```
+
+Once the app has launched navigate to the dashboard and note that in addition to console log output, structured logging is also being routed through to the dashboard.
+
+:::image source="media/python-telemetry-in-dashboard.png" lightbox="media/python-telemetry-in-dashboard.png" alt-text=".NET Aspire dashboard: Structured logging from Python process.":::
+
 ## Summary
 
 While there are several considerations that are beyond the scope of this article, you learned how to build .NET Aspire solution that integrates with Python. You also learned how to use the `AddPythonProject` API to host Python apps.
