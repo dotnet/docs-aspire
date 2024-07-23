@@ -1,7 +1,7 @@
 ---
 title: Stack Exchange Redis caching overview
 description: Learn about Stack Exchange Redis caching and how to use it in your applications.
-ms.date: 06/11/2024
+ms.date: 07/23/2024
 ---
 
 # Stack Exchange Redis caching overview
@@ -10,12 +10,29 @@ With .NET Aspire, there are several ways to use caching in your applications. On
 
 To use multiple Redis caching components in your application, see [Tutorial: Implement caching with .NET Aspire components](caching-components.md). If you're interested in using the Redis Cache for Azure, see [Tutorial: Deploy a .NET Aspire project with a Redis Cache to Azure](caching-components-deployment.md).
 
+## Redis serialization protocol (RESP)
+
+The Redis serialization protocol (RESP) is a binary-safe protocol that Redis uses to communicate with clients. RESP is a simple, text-based protocol that is easy to implement and efficient to parse. RESP is used to send commands to Redis and receive responses from Redis. RESP is designed to be fast and efficient, making it well-suited for use in high-performance applications. For more information, see [Redis serialization protocol specification](https://redis.io/docs/latest/develop/reference/protocol-spec/).
+
+In addition to Redis itself, there are two well-maintained implementations of RESP for .NET:
+
+- [Garnet](https://github.com/microsoft/Garnet): Garnet is a remote cache-store from Microsoft Research that offers strong performance (throughput and latency), scalability, storage, recovery, cluster sharding, key migration, and replication features. Garnet can work with existing Redis clients.
+- [Valkey](https://github.com/valkey-io/valkey): A flexible distributed key-value datastore that supports both caching and beyond caching workloads.
+
+.NET Aspire lets you easily model either the Redis, Garnet, or Valkey RESP protocol in your applications and you can choose which one to use based on your requirements. All of the .NET Aspire Redis components can be used with either the Redis, Garnet, or Valkey RESP protocol.
+
 ## Caching
 
 Caching is a technique used to store frequently accessed data in memory. This helps to reduce the time it takes to retrieve the data from the original source, such as a database or a web service. Caching can significantly improve the performance of an application by reducing the number of requests made to the original source. To access the Redis `IConnectionMultiplexer` object, you use the `Aspire.StackExchange.Redis` NuGet package:
 
 > [!div class="nextstepaction"]
 > [.NET Aspire Stack Exchange Redis component](stackexchange-redis-component.md)
+
+> [!div class="nextstepaction"]
+> [.NET Aspire Stack Exchange Redis component (Garnet)](stackexchange-redis-component.md?pivots=garnet)
+
+> [!div class="nextstepaction"]
+> [.NET Aspire Stack Exchange Redis component (Valkey)](stackexchange-redis-component.md?pivots=valkey)
 
 ## Distributed caching
 
@@ -24,12 +41,24 @@ Distributed caching is a type of caching that stores data across multiple server
 > [!div class="nextstepaction"]
 > [.NET Aspire Stack Exchange Redis distributed caching component](stackexchange-redis-distributed-caching-component.md)
 
+> [!div class="nextstepaction"]
+> [.NET Aspire Stack Exchange Redis distributed caching component (Garnet)](stackexchange-redis-distributed-caching-component.md?pivots=garnet)
+
+> [!div class="nextstepaction"]
+> [.NET Aspire Stack Exchange Redis distributed caching component (Valkey)](stackexchange-redis-distributed-caching-component.md?pivots=valkey)
+
 ## Output caching
 
 Output caching is a type of caching that stores the output of a web page or API response. This allows the response to be served directly from the cache, rather than generating it from scratch each time. Output caching can help to improve the performance of a web application by reducing the time it takes to generate a response. To use declarative Redis output caching with either the `OutputCache` attribute or the `CacheOutput` method in your application, use the `Aspire.StackExchange.Redis.OutputCaching` NuGet package:
 
 > [!div class="nextstepaction"]
 > [.NET Aspire Stack Exchange Redis output caching component](stackexchange-redis-output-caching-component.md)
+
+> [!div class="nextstepaction"]
+> [.NET Aspire Stack Exchange Redis output caching component (Garnet)](stackexchange-redis-output-caching-component.md?pivots=garnet)
+
+> [!div class="nextstepaction"]
+> [.NET Aspire Stack Exchange Redis output caching component (Valkey)](stackexchange-redis-output-caching-component.md?pivots=valkey)
 
 ## See also
 

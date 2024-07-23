@@ -12,8 +12,6 @@ items:
         href: get-started/build-your-first-aspire-app.md
       - name: Tutorial - Add .NET Aspire to an existing .NET app
         href: get-started/add-aspire-existing-app.md
-      - name: Sample - Add Node.js apps to a .NET Aspire project
-        href: get-started/build-aspire-apps-with-nodejs.md
       - name: Setup and tooling
         href: fundamentals/setup-tooling.md
       - name: What's new in .NET Aspire
@@ -24,6 +22,13 @@ items:
       - name: Overview
         displayName: orchestration,aspire apphost,aspire app
         href: fundamentals/app-host-overview.md
+      - name: Orchestrate Node.js apps in .NET Aspire
+        href: get-started/build-aspire-apps-with-nodejs.md
+      - name: Orchestrate Python apps in .NET Aspire
+        href: get-started/build-aspire-apps-with-python.md
+      - name: Add Dockerfiles to the app model
+        href: app-host/withdockerfile.md
+        displayName: dockerfile,docker
       - name: Networking overview
         displayName: inner loop,local networking
         href: fundamentals/networking-overview.md
@@ -135,6 +140,18 @@ items:
         - name: Azure Table Storage
           displayName: table storage,azure storage
           href: storage/azure-storage-tables-component.md
+        - name: Azure Web PubSub
+          displayName: web pubsub,real-time,messaging
+          href: messaging/azure-web-pubsub-component.md  
+      - name: Elasticsearch
+        displayName: elasticsearch,search
+        href: search/elasticsearch-component.md
+      - name: Keycloak
+        displayName: security,openid connect,single sign-on,sso,identity,federation,account management
+        href: authentication/keycloak-component.md
+      - name: Milvus
+        displayName: milvus,database
+        href: database/milvus-component.md
       - name: MongoDB
         displayName: mongodb,database
         href: database/mongodb-component.md
@@ -165,14 +182,23 @@ items:
         - name: Overview
           href: caching/stackexchange-redis-caching-overview.md
         - name: Redis caching
-          displayName: caching
           href: caching/stackexchange-redis-component.md
         - name: Redis distributed cache
-          displayName: distributed caching
           href: caching/stackexchange-redis-distributed-caching-component.md
         - name: Redis output caching
-          displayName: output caching
           href: caching/stackexchange-redis-output-caching-component.md
+        - name: Redis caching (Garnet)
+          href: caching/stackexchange-redis-component.md?pivots=garnet
+        - name: Redis distributed cache (Garnet)
+          href: caching/stackexchange-redis-distributed-caching-component.md?pivots=garnet
+        - name: Redis output caching (Garnet)
+          href: caching/stackexchange-redis-output-caching-component.md?pivots=garnet
+        - name: Redis caching (Valkey)
+          href: caching/stackexchange-redis-component.md?pivots=valkey
+        - name: Redis distributed cache (Valkey)
+          href: caching/stackexchange-redis-distributed-caching-component.md?pivots=valkey
+        - name: Redis output caching (Valkey)
+          href: caching/stackexchange-redis-output-caching-component.md?pivots=valkey
       - name: SQL Server
         items:
           - name: SQL Database - EF Core

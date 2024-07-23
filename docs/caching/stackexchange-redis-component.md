@@ -2,7 +2,8 @@
 title: .NET Aspire Stack Exchange Redis component
 description: This article describes the .NET Aspire Stack Exchange Redis component features and capabilities
 ms.topic: how-to
-ms.date: 07/17/2024
+ms.date: 07/23/2024
+zone_pivot_groups: resp-host
 ---
 
 # .NET Aspire Stack Exchange Redis component
@@ -49,22 +50,21 @@ public class ExampleService(IConnectionMultiplexer connectionMultiplexer)
 
 ## App host usage
 
+:::zone pivot="redis"
+
 [!INCLUDE [redis-app-host](includes/redis-app-host.md)]
 
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
+:::zone-end
+:::zone pivot="garnet"
 
-var redis = builder.AddRedis("redis");
+[!INCLUDE [garnet-app-host](includes/garnet-app-host.md)]
 
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(redis)
-```
+:::zone-end
+:::zone pivot="valkey"
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `redis`. In the _:::no-loc text="Program.cs":::_ file of `ExampleProject`, the Redis connection can be consumed using:
+[!INCLUDE [valkey-app-host](includes/valkey-app-host.md)]
 
-```csharp
-builder.AddRedis("cache");
-```
+:::zone-end
 
 ## Configuration
 
@@ -72,18 +72,42 @@ The .NET Aspire Stack Exchange Redis component provides multiple options to conf
 
 ### Use a connection string
 
+:::zone pivot="redis"
+
 When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddRedis`:
 
 ```csharp
-builder.AddRedis("RedisConnection");
+builder.AddRedis("cache");
 ```
+
+:::zone-end
+:::zone pivot="garnet"
+
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddGarnet`:
+
+```csharp
+builder.AddGarnet("cache");
+```
+
+:::zone-end
+:::zone pivot="valkey"
+
+[!INCLUDE [valkey-app-host](includes/valkey-app-host.md)]
+
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddValkey`:
+
+```csharp
+builder.AddValkey("cache");
+```
+
+:::zone-end
 
 And then the connection string will be retrieved from the `ConnectionStrings` configuration section:
 
 ```json
 {
   "ConnectionStrings": {
-    "RedisConnection": "localhost:6379"
+    "cache": "localhost:6379"
   }
 }
 ```
@@ -115,11 +139,35 @@ The .NET Aspire Stack Exchange Redis component supports <xref:Microsoft.Extensio
 
 You can also pass the `Action<StackExchangeRedisSettings>` delegate to set up some or all the options inline, for example to configure `DisableTracing`:
 
+:::zone pivot="redis"
+
 ```csharp
 builder.AddRedis(
     "cache",
     settings => settings.DisableTracing = true);
 ```
+
+:::zone-end
+:::zone pivot="garnet"
+
+```csharp
+builder.AddGarnet(
+    "cache",
+    settings => settings.DisableTracing = true);
+```
+
+:::zone-end
+:::zone pivot="valkey"
+
+[!INCLUDE [valkey-app-host](includes/valkey-app-host.md)]
+
+```csharp
+builder.AddValkey(
+    "cache",
+    settings => settings.DisableTracing = true);
+```
+
+:::zone-end
 
 [!INCLUDE [component-health-checks](../includes/component-health-checks.md)]
 

@@ -136,6 +136,9 @@ conceptualContent:
         - itemType: overview
           text: Azure Service Bus
           url: messaging/azure-service-bus-component.md
+        - itemType: overview
+          text: Azure Web PubSub
+          url: messaging/azure-web-pubsub-component.md
         - itemType: how-to-guide
           text: RabbitMQ client .NET Aspire component
           url: messaging/rabbitmq-client-component.md
@@ -235,6 +238,15 @@ conceptualContent:
         - itemType: training
           text: Use telemetry in a .NET Aspire project
           url: /training/modules/use-telemetry-dotnet-aspire
+        - itemType: training
+          text: Use databases in a .NET Aspire project
+          url: /training/modules/use-databases-dotnet-aspire-app/
+        - itemType: training
+          text: Improve performance with a cache in a .NET Aspire project
+          url: /training/modules/improve-performance-cache-aspire/
+        - itemType: training
+          text: Send messages with RabbitMQ in a .NET Aspire project
+          url: /training/modules/send-messages-rabbitmq-dotnet-aspire-app/
 
 additionalContent:
   sections:
