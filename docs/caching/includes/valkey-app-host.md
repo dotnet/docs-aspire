@@ -1,27 +1,4 @@
-<!--
-https://github.com/dotnet/docs-aspire/issues/1049
-
-We are introducing support for Valkey in this PR:
-
-dotnet/aspire#4324
-
-It is presently a drop in alternative for Redis. We probably need an article that sites right alongside the Redis articles so that folks who might be looking for Redis content to understand how Valkey works can find it.
-
-The article should cover:
-
-AddValkey
-WithDataVolume/WithBindMount
-WithPersistence
-It can probably cover off the client side pieces by just referring back to the Redis article although the Redis article might need to more clearly call out which is service code and which is app host code.
-
-Configuring Valkey using AddValkey and using the data volume and persistence extension methods.
-
-Include links to:
-- https://github.com/valkey-io/valkey
-- https://valkey.io/docs/
--->
-
-To model the Valkey resource in the app host, install the [Aspire.Hosting.Valkey](https://www.nuget.org/packages/Aspire.Hosting.Valkey) NuGet package in the [app host](xref:aspire/app-host) project.
+To model the Valkey resource (`ValkeyResource`) in the app host, install the [Aspire.Hosting.Valkey](https://www.nuget.org/packages/Aspire.Hosting.Valkey) NuGet package in the [app host](xref:aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
