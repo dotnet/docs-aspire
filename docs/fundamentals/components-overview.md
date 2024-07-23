@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire components overview
 description: Explore the fundamental concepts of .NET Aspire components and learn how to integrate them into your apps.
-ms.date: 07/22/2024
+ms.date: 07/23/2024
 ms.topic: conceptual
 ---
 
@@ -33,6 +33,7 @@ The following table lists the .NET Aspire components currently available for use
 | [Azure Storage Queues](../storage/azure-storage-queues-component.md) <br/> <img src="media/icons/AzureStorageQueue_256x.png" alt="Azure Storage Queues logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Azure.Storage.Queues](https://www.nuget.org/packages/Aspire.Azure.Storage.Queues) | A library for accessing [Azure Storage Queues](/azure/storage/queues/storage-queues-introduction). |
 | [Azure Table Storage](../storage/azure-storage-tables-component.md) <br/> <img src="media/icons/AzureTable_256x.png" alt="Azure Table Storage logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Azure.Data.Tables](https://www.nuget.org/packages/Aspire.Azure.Data.Tables) | A library for accessing the [Azure Table](/azure/storage/tables/table-storage-overview) service. |
 | [Elasticsearch](../search/elasticsearch-component.md) <br/> <img src="media/icons/Elastic_logo_256x.png" alt="Elasticsearch logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Elasticsearch.Client](https://www.nuget.org/packages/Aspire.Elasticsearch.Client) | A library for accessing [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/client/index.html) databases. |
+| [Keycloak](../authentication/keycloak-component.md) <br/> <img src="media/icons/Aspire-logo-256.png" alt=".NET Aspire logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Keycloak.Authentication](https://www.nuget.org/packages/Aspire.Keycloak.Authentication) | A library for accessing [Keycloak](https://www.keycloak.org/docs/latest/server_admin/index.html) authentication. |
 | [Milvus](../database/milvus-component.md) <br/> <img src="media/icons/Milvus_256x.png" alt="Milvus logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Milvus.Client](https://www.nuget.org/packages/Aspire.Milvus.Client) | A library for accessing [Milvus](https://milvus.io/) databases. |
 | [MongoDB Driver](../database/mongodb-component.md) <br/> <img src="media/icons/MongoDB_256px.png" alt="MongoDB logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.MongoDB.Driver](https://www.nuget.org/packages/Aspire.MongoDB.Driver) | A library for accessing [MongoDB](https://www.mongodb.com/docs) databases. |
 | [MySqlConnector](../database/mysql-component.md) <br/> <img src="media/icons/mysqlconnector_logo.png" alt="MySqlConnector logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.MySqlConnector](https://www.nuget.org/packages/Aspire.MySqlConnector) | A library for accessing [MySqlConnector](https://mysqlconnector.net/) databases. |
