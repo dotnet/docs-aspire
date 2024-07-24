@@ -103,10 +103,16 @@
         "docs/**/*.*": "csharp"
       },
       "author": {
-        "docs/**/*.*": "IEvangelist"
+        "docs/**/*.*": "IEvangelist",
+        "docs/database/**/*.*": "CamSoper",
+        "docs/storage/**/*.*": "CamSoper",
+        "docs/messaging/**/*.*": "CamSoper"
       },
       "ms.author": {
-        "docs/**/*.*": "dapine"
+        "docs/**/*.*": "dapine",
+        "docs/database/**/*.*": "casoper",
+        "docs/storage/**/*.*": "casoper",
+        "docs/messaging/**/*.*": "casoper"
       },
       "ms.collection": {
         "docs/azureai/**/*.md": "ce-skilling-ai-copilot"
