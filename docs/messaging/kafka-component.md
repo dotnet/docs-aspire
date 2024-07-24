@@ -71,13 +71,14 @@ In your app host project, register a Kafka container and consume the connection 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var messaging = builder.AddKafka("messaging");
+var messaging = builder.AddKafka("messaging")
+                       .WithKafkaUI();
 
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(messaging);
 ```
 
-The `WithReference` method configures a connection in the `MyService` project named `messaging`. In the _:::no-loc text="Program.cs":::_ file of `MyService`, the Apache Kafka broker connection can be consumed using:
+The `WithKafkaUI()` extension method which provides a web-based interface to view the state of the Kafka container instance. The `WithReference` method configures a connection in the `MyService` project named `messaging`. In the _:::no-loc text="Program.cs":::_ file of `MyService`, the Apache Kafka broker connection can be consumed using:
 
 ```csharp
 builder.AddKafkaProducer<string, string>("messaging");
