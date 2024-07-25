@@ -106,13 +106,15 @@
         "docs/**/*.*": "IEvangelist",
         "docs/database/**/*.*": "CamSoper",
         "docs/storage/**/*.*": "CamSoper",
-        "docs/messaging/**/*.*": "CamSoper"
+        "docs/messaging/**/*.*": "CamSoper",
+        "docs/deployment/**/*.*": "CamSoper"
       },
       "ms.author": {
         "docs/**/*.*": "dapine",
         "docs/database/**/*.*": "casoper",
         "docs/storage/**/*.*": "casoper",
-        "docs/messaging/**/*.*": "casoper"
+        "docs/messaging/**/*.*": "casoper",
+        "docs/deployment/**/*.*": "casoper"
       },
       "ms.collection": {
         "docs/azureai/**/*.md": "ce-skilling-ai-copilot"
