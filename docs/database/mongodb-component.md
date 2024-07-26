@@ -2,7 +2,7 @@
 title: .NET Aspire MongoDB database component
 description: This article describes the .NET Aspire MongoDB database component.
 ms.topic: how-to
-ms.date: 07/17/2024
+ms.date: 07/26/2024
 ---
 
 # .NET Aspire MongoDB database component
@@ -129,7 +129,7 @@ For more information on how to format this connection string, see [MongoDB: Conn
 
 ### Use configuration providers
 
-The .NET Aspire MongoDB database component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `MongoDBSettings ` from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:MongoDB:Driver` key.
+The .NET Aspire MongoDB database component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `MongoDBSettings` from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:MongoDB:Driver` key.
 
 The following example shows an _:::no-loc text="appsettings.json":::_ file that configures some of the available options:
 
