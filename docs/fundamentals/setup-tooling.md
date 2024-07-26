@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 05/13/2024
+ms.date: 07/26/2024
 zone_pivot_groups: dev-environment
 ---
 
@@ -134,7 +134,13 @@ There are currently four project templates available:
 
 - **.NET Aspire App Host**: A standalone **.AppHost** project that can be used to orchestrate and manage the different projects and services of your app.
 
-- **.NET Aspire Test Project (xUnit)**: A project that contains xUnit.net integration of a .NET Aspire AppHost project.
+- **.NET Aspire Test projects**:
+
+  - **MSTest**: A project that contains MSTest integration of a .NET Aspire AppHost project.
+
+  - **NUnit**: A project that contains NUnit integration of a .NET Aspire AppHost project.
+
+  - **xUnit**: A project that contains xUnit.net integration of a .NET Aspire AppHost project.
 
 - **.NET Aspire Service Defaults**: A standalone **.ServiceDefaults** project that can be used to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](./telemetry.md).
 
@@ -166,13 +172,15 @@ When the .NET Aspire workload is installed, you'll see the following .NET Aspire
 ```Output
 These templates matched your input: 'aspire'
 
-Template Name                     Short Name              Language  Tags
---------------------------------  ----------------------  --------  -------------------------------------------------------
-.NET Aspire App Host              aspire-apphost          [C#]      Common/.NET Aspire/Cloud
-.NET Aspire Application           aspire                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
-.NET Aspire Service Defaults      aspire-servicedefaults  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
-.NET Aspire Starter Application   aspire-starter          [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud
-.NET Aspire Test Project (xUnit)  aspire-xunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
+Template Name                      Short Name              Language  Tags
+---------------------------------  ----------------------  --------  -------------------------------------------------------
+.NET Aspire App Host               aspire-apphost          [C#]      Common/.NET Aspire/Cloud
+.NET Aspire Empty App              aspire                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire Service Defaults       aspire-servicedefaults  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire Starter App            aspire-starter          [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud
+.NET Aspire Test Project (MSTest)  aspire-mstest           [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
+.NET Aspire Test Project (NUnit)   aspire-nunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
+.NET Aspire Test Project (xUnit)   aspire-xunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
 ```
 
 To create a .NET Aspire project using the .NET CLI, use the `dotnet new` command and specify which template you would like to create.
