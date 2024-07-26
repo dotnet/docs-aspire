@@ -1,0 +1,36 @@
+name: "CSS"
+description: Intended for internal Microsoft use only (CSS requests).
+assignees: ["IEvangelist", "CamSoper"]
+title: "[CSS]: "
+labels: ["customer-support"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        "We prioritize CSS requests for Microsoft employees.
+        If you're not a Microsoft employee, this is the wrong issue template to submit.
+        Instead, please submit a [General feedback](https://github.com/dotnet/docs-aspire/issues/new/choose) issue.
+  - type: input
+    id: title
+    attributes:
+      label: Article title
+      description: Please provide the title of the article in question.
+      placeholder: For example, .NET Aspire Overview
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Article URL
+      description: Please provide the URL of the article in question.
+      placeholder: "For example, 'https://learn.microsoft.com/dotnet/aspire'"
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Description
+      description: Please descibe the issue with the content in as much detail as required to correctly communicate.
+      placeholder: Describe the issue...
+    validations:
+      required: true
