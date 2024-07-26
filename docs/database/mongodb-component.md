@@ -115,7 +115,7 @@ Consider the following MongoDB example JSON configuration:
 }
 ```
 
-MongoDB Atlas Eexmple:
+Consider the following MongoDB Atlas example JSON configuration:
 
 ```json
 {
