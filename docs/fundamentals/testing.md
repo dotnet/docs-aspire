@@ -43,10 +43,11 @@ The following example test project was created as part of the **.NET Aspire Star
 
 The preceding project file is fairly standard. There's a `PackageReference` to the [Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package, which includes the required types to write tests for .NET Aspire projects.
 
-The template test project includes a `WebTests` class with a single test fact. The test fact verifies the following scenario:
+The template test project includes a `WebTests` class with a single test. The test verifies the following scenario:
 
 - The app host is successfully created and started.
-- An HTTP request can be made to the `webfrontend` resource and returns a successful response.
+- The `webfrontend` resource is available and running.
+- An HTTP request can be made to the `webfrontend` resource and returns a successful response (HTTP 200 OK).
 
 Consider the following test class:
 
@@ -82,3 +83,9 @@ The preceding code:
 ## Summary
 
 By using the .NET Aspire testing project template, you can easily create test projects for your .NET Aspire projects. The template project includes a sample test that you can use as a starting point for your tests. The `DistributedApplicationTestingBuilder` follows a familiar pattern to the `WebApplicationFactory` in ASP.NET Core. It allows you to create a test host for your distributed application and run tests against it.
+
+## See also
+
+- [Unit testing C# in .NET using dotnet test and xUnit](/dotnet/core/testing/unit-testing-with-dotnet-test)
+- [MSTest overview](/dotnet/core/testing/unit-testing-mstest-intro)
+- [Unit testing C# with NUnit and .NET Core](/dotnet/core/testing/unit-testing-with-nunit)
