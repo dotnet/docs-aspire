@@ -2,22 +2,38 @@
 title: Testing .NET Aspire projects
 description: Learn how to test your .NET Aspire projects using the xUnit testing framework.
 ms.date: 07/26/2024
+zone_pivot_groups: unit-testing-framework
 ---
 
 # Testing .NET Aspire projects
 
-In this article, you'll learn how to create a test project, write, and run tests for your .NET Aspire projects. The tests in this article are not unit tests, but rather functional or integration tests. .NET Aspire include an [xUnit testing project template](setup-tooling.md#net-aspire-project-templates) that you can use to test your .NET Aspire projects. The testing project template is based on the xUnit testing framework and includes a sample test that you can use as a starting point for your tests.
+In this article, you'll learn how to create a test project, write, and run tests for your .NET Aspire projects. The tests in this article are not unit tests, but rather functional or integration tests. .NET Aspire include an [testing project templates](setup-tooling.md#net-aspire-project-templates) that you can use to test your .NET Aspire projects. The testing project templates are available for MSTest, NUnit, and xUnit testing frameworks and includes a sample test that you can use as a starting point for your tests.
 
 ## Create a test project
 
 The easiest way to create a .NET Aspire test project is to use the testing project template. If you're starting a new .NET Aspire project and want to include test projects, the [Visual Studio tooling supports that option](setup-tooling.md#create-test-project). If you're adding a test project to an existing .NET Aspire project, you can use the `dotnet new` command to create a test project:
 
+:::zone pivot="xunit"
+
 ```dotnetcli
 dotnet new aspire-xunit
 ```
 
-> [!TIP]
-> In addition to the xUnit testing project template, there's also templates for MSTest and NUnit.
+:::zone-end
+:::zone pivot="mstest"
+
+```dotnetcli
+dotnet new aspire-mstest
+```
+
+:::zone-end
+:::zone pivot="nunit"
+
+```dotnetcli
+dotnet new aspire-nunit
+```
+
+:::zone-end
 
 ## Explore the test project
 
@@ -34,7 +50,21 @@ The template test project includes a `WebTests` class with a single test fact. T
 
 Consider the following test class:
 
-:::code language="csharp" source="snippets/testing/AspireApp1/AspireApp1.Tests/WebTests.cs":::
+:::zone pivot="xunit"
+
+:::code language="csharp" source="snippets/testing/xunit/AspireApp.Tests/WebTests.cs":::
+
+:::zone-end
+:::zone pivot="mstest"
+
+:::code language="csharp" source="snippets/testing/mstest/AspireApp.Tests/WebTests.cs":::
+
+:::zone-end
+:::zone pivot="nunit"
+
+:::code language="csharp" source="snippets/testing/nunit/AspireApp.Tests/WebTests.cs":::
+
+:::zone-end
 
 The preceding code:
 
