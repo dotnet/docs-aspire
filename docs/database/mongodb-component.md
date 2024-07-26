@@ -105,7 +105,7 @@ builder.AddMongoDBClient("MongoConnection");
 
 And then the connection string will be retrieved from the `ConnectionStrings` configuration section:
 
-MongoDB Example:
+Consider the following MongoDB example JSON configuration:
 
 ```json
 {
