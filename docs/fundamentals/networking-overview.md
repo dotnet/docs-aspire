@@ -160,7 +160,7 @@ The `Uri` is constructed using the `admin` endpoint name prefixed with the `_` s
 
 ### Additional considerations
 
-When calling the `WithEndpoint` extension method, the `callback` overload exposes the raw <xref:Aspire.Hosting.ApplicationModel.EndpointAnnotation> which allows the consumer to customize many aspects of the endpoint.
+When calling the `WithEndpoint` extension method, the `callback` overload exposes the raw <xref:Aspire.Hosting.ApplicationModel.EndpointAnnotation>, which allows the consumer to customize many aspects of the endpoint.
 
 The `AllocatedEndpoint` property allows you to get or set the endpoint for a service. The `IsExternal` and `IsProxied` properties determine how the endpoint is managed and exposed: `IsExternal` decides if it should be publicly accessible, while `IsProxied` ensures DCP manages it, allowing for internal port differences and replication.
 
