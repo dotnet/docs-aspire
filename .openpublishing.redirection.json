@@ -69,23 +69,23 @@
       "redirect_url": "/dotnet/aspire/fundamentals/dashboard/overview"
     },
     {
-      "source_path_from_root": "docs/whats-new/preview-3.md",
+      "source_path_from_root": "/docs/whats-new/preview-3.md",
       "redirect_url": "/dotnet/aspire"
     },
     {
-      "source_path_from_root": "docs/whats-new/preview-4.md",
+      "source_path_from_root": "/docs/whats-new/preview-4.md",
       "redirect_url": "/dotnet/aspire"
     },
     {
-      "source_path_from_root": "docs/whats-new/preview-5.md",
+      "source_path_from_root": "/docs/whats-new/preview-5.md",
       "redirect_url": "/dotnet/aspire"
     },
     {
-      "source_path_from_root": "docs/whats-new/preview-6.md",
+      "source_path_from_root": "/docs/whats-new/preview-6.md",
       "redirect_url": "/dotnet/aspire"
     },
     {
-      "source_path_from_root": "docs/whats-new/preview-7.md",
+      "source_path_from_root": "/docs/whats-new/preview-7.md",
       "redirect_url": "/dotnet/aspire"
     }
   ]
