@@ -1,7 +1,7 @@
 ---
 title: Testing .NET Aspire projects
 description: Learn how to test your .NET Aspire projects using the xUnit testing framework.
-ms.date: 04/22/2024
+ms.date: 07/26/2024
 ---
 
 # Testing .NET Aspire projects
@@ -15,6 +15,9 @@ The easiest way to create a .NET Aspire test project is to use the testing proje
 ```dotnetcli
 dotnet new aspire-xunit
 ```
+
+> [!TIP]
+> In addition to the xUnit testing project template, there's also templates for MSTest and NUnit.
 
 ## Explore the test project
 
@@ -37,10 +40,13 @@ The preceding code:
 
 - Relies on the `DistributedApplicationTestingBuilder` to asynchronously create the app host.
   - The `appHost` is an instance of `IDistributedApplicationTestingBuilder` that represents the app host.
+  - The `appHost` instance has its service collection configured with the standard HTTP resilience handler. For more information, see [Build resilient HTTP apps: Key development patterns](/dotnet/core/resilience/http-resilience).
 - The `appHost` has its `BuildAsync` method invoked, which returns the `DistributedApplication` instance as the `app`.
-- The `app` is started asynchronously.
-- An `HttpClient` is created for the `webfrontend` resource.
-- A simple GET request is made to the root of the `webfrontend` resource.
+  - The `app` has its service provider get the <xref:Aspire.Hosting.ApplicationModel.ResourceNotificationService> instance.
+  - The `app` is started asynchronously.
+- An `HttpClient` is created for the `webfrontend` resource by calling `app.CreateHttpClient`.
+- The `resourceNotificationService` is used to wait for the `webfrontend` resource to be available and running.
+- A simple HTTP GET request is made to the root of the `webfrontend` resource.
 - The test asserts that the response status code is `OK`.
 
 ## Summary
