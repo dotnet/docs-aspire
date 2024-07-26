@@ -173,6 +173,7 @@ The .NET Aspire MongoDB database component will emit the following Tracing activ
 The .NET Aspire MongoDB database component doesn't currently expose any OpenTelemetry metrics.
 
 ## See also
+
 - [MongoDB database](https://www.mongodb.com/docs/drivers/csharp/current/quick-start)
 - [.NET Aspire components](../fundamentals/components-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
