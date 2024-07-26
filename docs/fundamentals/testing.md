@@ -39,7 +39,21 @@ dotnet new aspire-nunit
 
 The following example test project was created as part of the **.NET Aspire Starter Application** template. If you're unfamiliar with it, see [Quickstart: Build your first .NET Aspire project](../get-started/build-your-first-aspire-app.md). The .NET Aspire test project takes a project reference dependency on the target app host. Consider the template project:
 
-:::code language="xml" source="snippets/testing/AspireApp1/AspireApp1.Tests/AspireApp1.Tests.csproj":::
+:::zone pivot="xunit"
+
+:::code language="xml" source="snippets/testing/xunit/AspireApp.Tests/AspireApp.Tests.csproj":::
+
+:::zone-end
+:::zone pivot="mstest"
+
+:::code language="xml" source="snippets/testing/mstest/AspireApp.Tests/AspireApp.Tests.csproj":::
+
+:::zone-end
+:::zone pivot="nunit"
+
+:::code language="xml" source="snippets/testing/nunit/AspireApp.Tests/AspireApp.Tests.csproj":::
+
+:::zone-end
 
 The preceding project file is fairly standard. There's a `PackageReference` to the [Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package, which includes the required types to write tests for .NET Aspire projects.
 
