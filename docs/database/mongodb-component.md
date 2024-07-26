@@ -88,7 +88,8 @@ var mongodb = mongo.AddDatabase("mongodb");
 var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(mongodb);
 ```
-**N.B.**: If using MongoDB Atlas, you do not need the call to ```.AddDatabase("mongodb");``` as the database creation will automatically be handled by Atlas.
+
+If using MongoDB Atlas, you don't need the call to `.AddDatabase("mongodb");` as the database creation will automatically be handled by Atlas.
 
 ## Configuration
 
