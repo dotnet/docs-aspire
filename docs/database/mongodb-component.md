@@ -127,6 +127,25 @@ Consider the following MongoDB Atlas example JSON configuration:
 
 For more information on how to format this connection string, see [MongoDB: ConnectionString documentation](https://www.mongodb.com/docs/v3.0/reference/connection-string).
 
+### Use configuration providers
+
+The .NET Aspire MongoDB database component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `MongoDBSettings ` from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:MongoDB:Driver` key.
+
+The following example shows an _:::no-loc text="appsettings.json":::_ file that configures some of the available options:
+
+```json
+{
+  "Aspire": {
+    "MongoDB": {
+      "Driver": {
+        "ConnectionString": "mongodb://server:port/test",
+        "DisableHealthChecks": false,
+        "HealthCheckTimeout": 10000,
+        "DisableTracing": false
+      },
+    }
+  }
+
 ### Use inline configurations
 
 You can also pass the `Action<MongoDBSettings>` delegate to set up some or all the options inline:
