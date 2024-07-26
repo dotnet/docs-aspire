@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire inner loop networking overview
 description: Learn how .NET Aspire handles networking and service bindings, and how you can use them in your app code.
-ms.date: 04/24/2024
+ms.date: 07/25/2024
 ms.topic: overview
 ---
 
@@ -143,7 +143,7 @@ Consider the following diagram:
 
 ## Endpoint extension methods
 
-Any resource that implements the `IResourceWithEndpoints` interface can use the `WithEndpoint` extension methods. There are several overloads of this extension, allowing you to specify the scheme, container port, host port, environment variable name, and whether the endpoint is proxied.
+Any resource that implements the <xref:Aspire.Hosting.ApplicationModel.IResourceWithEndpoints> interface can use the `WithEndpoint` extension methods. There are several overloads of this extension, allowing you to specify the scheme, container port, host port, environment variable name, and whether the endpoint is proxied.
 
 There's also an overload that allows you to specify a delegate to configure the endpoint. This is useful when you need to configure the endpoint based on the environment or other factors. Consider the following code:
 
@@ -157,3 +157,18 @@ builder.Services.AddHttpClient<WeatherApiClient>(
 ```
 
 The `Uri` is constructed using the `admin` endpoint name prefixed with the `_` sentinel. This is a convention to indicate that the `admin` segment is the endpoint name belonging to the `apiservice` service. For more information, see [.NET Aspire service discovery](../service-discovery/overview.md).
+
+### Additional considerations
+
+When calling the `WithEndpoint` extension method, the `callback` overload exposes the raw <xref:Aspire.Hosting.ApplicationModel.EndpointAnnotation>, which allows the consumer to customize many aspects of the endpoint.
+
+The `AllocatedEndpoint` property allows you to get or set the endpoint for a service. The `IsExternal` and `IsProxied` properties determine how the endpoint is managed and exposed: `IsExternal` decides if it should be publicly accessible, while `IsProxied` ensures DCP manages it, allowing for internal port differences and replication.
+
+> [!TIP]
+> If you're hosting an external executable that runs its own proxy and encounters port binding issues due to DCP already binding the port, try setting the `IsProxied` property to `false`. This prevents DCP from managing the proxy, allowing your executable to bind the port successfully.
+
+The `Name` property identifies the service, whereas the `Port` and `TargetPort` properties specify the desired and listening ports, respectively.
+
+For network communication, the `Protocol` property supports **TCP** and **UDP**, with potential for more in the future, and the `Transport` property indicates the transport protocol (**HTTP**, **HTTP2**, **HTTP3**). Lastly, if the service is URI-addressable, the `UriScheme` property provides the URI scheme for constructing the service URI.
+
+For more information, see the available properties of the [EndpointAnnotation properties](/dotnet/api/aspire.hosting.applicationmodel.endpointannotation#properties).
