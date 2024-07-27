@@ -2,20 +2,21 @@
 title: .NET Aspire MongoDB database component
 description: This article describes the .NET Aspire MongoDB database component.
 ms.topic: how-to
-ms.date: 07/17/2024
+ms.date: 07/26/2024
 ---
 
 # .NET Aspire MongoDB database component
 
 In this article, you learn how to use the .NET Aspire MongoDB database component. The `Aspire.MongoDB.Driver` library:
 
-- Registers a [IMongoClient](https://www.mongodb.com/docs/drivers/csharp/current/quick-start/#add-mongodb-as-a-dependency) in the DI container for connecting MongoDB database.
+- Registers a [IMongoClient](https://www.mongodb.com/docs/drivers/csharp/current/quick-start/#add-mongodb-as-a-dependency) in the DI container for connecting to a MongoDB database.
 - Automatically configures the following:
   - Health checks, logging and telemetry to improve app monitoring and diagnostics
+- It supports both a local MongoDB Database and a [MongoDB Atlas](https://mdb.link/atlas) database deployed in the cloud.
 
 ## Prerequisites
 
-- MongoDB database and connection string for accessing the database.
+- If using Atlas, make sure you have a database deployed and your connection string.
 
 ## Get started
 
@@ -88,6 +89,8 @@ var myService = builder.AddProject<Projects.MyService>()
                        .WithReference(mongodb);
 ```
 
+If using MongoDB Atlas, you don't need the call to `.AddDatabase("mongodb");` as the database creation will automatically be handled by Atlas.
+
 ## Configuration
 
 The .NET Aspire MongoDB database component provides multiple configuration approaches and options to meet the requirements and conventions of your project.
@@ -102,6 +105,8 @@ builder.AddMongoDBClient("MongoConnection");
 
 And then the connection string will be retrieved from the `ConnectionStrings` configuration section:
 
+Consider the following MongoDB example JSON configuration:
+
 ```json
 {
   "ConnectionStrings": {
@@ -110,11 +115,21 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 }
 ```
 
+Consider the following MongoDB Atlas example JSON configuration:
+
+```json
+{
+  "ConnectionStrings": {
+    "MongoConnection": "mongodb+srv://username:password@server.mongodb.net/",
+  }
+}
+```
+
 For more information on how to format this connection string, see [MongoDB: ConnectionString documentation](https://www.mongodb.com/docs/v3.0/reference/connection-string).
 
 ### Use configuration providers
 
-The .NET Aspire MongoDB database component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `MySqlConnectorSettings` from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:MongoDB:Driver` key. If you have set up your configurations in the `Aspire:MongoDB:Driver` section, you can just call the method without passing any parameter.
+The .NET Aspire MongoDB database component supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `MongoDBSettings` from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:MongoDB:Driver` key.
 
 The following example shows an _:::no-loc text="appsettings.json":::_ file that configures some of the available options:
 
@@ -130,8 +145,6 @@ The following example shows an _:::no-loc text="appsettings.json":::_ file that 
       },
     }
   }
-}
-```
 
 ### Use inline configurations
 
