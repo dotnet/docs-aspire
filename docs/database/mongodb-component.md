@@ -16,7 +16,7 @@ In this article, you learn how to use the .NET Aspire MongoDB database component
 
 ## Prerequisites
 
-- If using Atlas, make sure you have a database deployed and your connection string.
+- MongoDB database and connection string for accessing the database.
 
 ## Get started
 
