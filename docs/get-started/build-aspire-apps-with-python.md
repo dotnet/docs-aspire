@@ -163,7 +163,7 @@ Update the app host _Program.cs_ file to include the Python project, by calling 
 Now that you've added the Python hosting package, updated the app host _Program.cs_ file, and created a Python project, you can run the app host:
 
 ```dotnetcli
-dotnet run --project PythonSample.AppHost/PythonSample.AppHost.csproj
+dotnet run --project ../PythonSample.AppHost/PythonSample.AppHost.csproj
 ```
 
 Launch the dashboard by clicking the link in the console output. The dashboard should display the Python project as a resource.
@@ -199,7 +199,7 @@ Update the app host project's _launchSettings.json_ file to include the `ASPIRE_
 The `ASPIRE_ALLOW_UNSECURED_TRANSPORT` variable is required because when running locally the OpenTelemetry client in Python rejects the local development certificate. Launch the _app host_ again:
 
 ```dotnetcli
-dotnet run --project PythonSample.AppHost/PythonSample.AppHost.csproj
+dotnet run --project ../PythonSample.AppHost/PythonSample.AppHost.csproj
 ```
 
 Once the app host has launched navigate to the dashboard and note that in addition to console log output, structured logging is also being routed through to the dashboard.
