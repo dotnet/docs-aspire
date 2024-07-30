@@ -145,6 +145,7 @@ The following example shows an _:::no-loc text="appsettings.json":::_ file that 
       },
     }
   }
+```
 
 ### Use inline configurations
 
