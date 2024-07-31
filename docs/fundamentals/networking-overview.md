@@ -151,33 +151,14 @@ The preceding configuration specifies the an `Https` endpoint. The `Url` propert
 
 With the Kestrel endpoint configured, the project should remove any configured `applicationUrl` from the _launchSettings.json_ file.
 
-```diff
-{
-  "$schema": "http://json.schemastore.org/launchsettings.json",
-  "profiles": {
-    "http": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": false,
--     "applicationUrl": "http://localhost:5066",
-      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "https": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
-      "applicationUrl": "https://localhost:7239;http://localhost:5066",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    }
-  }
-}
-```
+> [!NOTE]
+> If the `applicationUrl` is present in the _launchSettings.json_ file and the Kestrel endpoint is configured, the app host will throw an exception.
+
+When you add a project resource, there's an overload that allows you to specify that the _launchSettings.json_ file should be ignored, and the Kestrel endpoint should be used instead:
+
+:::code source="snippets/networking/Networking.AppHost/Program.KestrelConfiguration.cs" id="kestrel":::
+
+For more information, see <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>.
 
 ## Endpoint extension methods
 

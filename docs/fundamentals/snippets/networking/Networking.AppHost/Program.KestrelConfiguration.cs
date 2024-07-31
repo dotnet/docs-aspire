@@ -3,10 +3,16 @@
     public static IResourceBuilder<ProjectResource> WithKestrelConfig(IDistributedApplicationBuilder builder)
     {
         var project =
-        // <hostport>
-        builder.AddProject<Projects.Networking_ApiService>("apiservice")
-               .WithHttpsEndpoint();
-        // </hostport>
+        // <kestrel>
+        builder.AddProject<Projects.Networking_ApiService>(
+            name: "apiservice",
+            configure: static project =>
+            {
+                project.ExcludeLaunchProfile = true;
+                project.ExcludeKestrelEndpoints = false;
+            })
+            .WithHttpsEndpoint();
+        // </kesrel>
 
         return project;
     }
