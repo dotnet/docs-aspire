@@ -63,6 +63,10 @@ items:
         href: service-discovery/overview.md
       - name: Service defaults
         href: fundamentals/service-defaults.md
+      - name: .NET Aspire and launch profiles
+        href: fundamentals/launch-profiles.md
+      - name: Health checks
+        href: fundamentals/health-checks.md
       - name: Telemetry
         href: fundamentals/telemetry.md
 
@@ -288,12 +292,8 @@ items:
 
   - name: Reference
     items:
-      - name: .NET Aspire and launch profiles
-        href: fundamentals/launch-profiles.md
       - name: Diagnostics overview
         href: diagnostics/overview.md
-      - name: Health checks
-        href: fundamentals/health-checks.md
       - name: .NET Aspire API reference
         href:  /dotnet/api?view=dotnet-aspire-8.0&preserve-view=true
       - name: .NET Aspire FAQ
