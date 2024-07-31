@@ -59,18 +59,18 @@ For more information, see [.NET Aspire and launch profiles](launch-profiles.md).
 
 ## Kestrel configured endpoints
 
-.NET Aspire supports Kestrel endpoint configuration. For example, consider a _appsettings.json_ file for a project that defines a Kestrel endpoint with the `https` scheme and port 7001:
+.NET Aspire supports Kestrel endpoint configuration. For example, consider an _appsettings.json_ file for a project that defines a Kestrel endpoint with the HTTPS scheme and port 7001:
 
 :::code language="json" source="snippets/networking/Networking.Frontend/Networking.Frontend/appsettings.Development.json" highlight="8-14":::
 
-The preceding configuration specifies the an `Https` endpoint. The `Url` property is set to `https://*:7001`, which means the endpoint listens on all interfaces on port 7001. For more information, see [Configure endpoints for the ASP.NET Core Kestrel web server](/aspnet/core/fundamentals/servers/kestrel/endpoints).
+The preceding configuration specifies an `Https` endpoint. The `Url` property is set to `https://*:7001`, which means the endpoint listens on all interfaces on port 7001. For more information, see [Configure endpoints for the ASP.NET Core Kestrel web server](/aspnet/core/fundamentals/servers/kestrel/endpoints).
 
 With the Kestrel endpoint configured, the project should remove any configured `applicationUrl` from the _launchSettings.json_ file.
 
 > [!NOTE]
 > If the `applicationUrl` is present in the _launchSettings.json_ file and the Kestrel endpoint is configured, the app host will throw an exception.
 
-When you add a project resource, there's an overload that allows you to specify that the _launchSettings.json_ file should be ignored, and the Kestrel endpoint should be used instead:
+When you add a project resource, there's an overload that lets you specify that the Kestrel endpoint should be used instead of the _launchSettings.json_ file:
 
 :::code source="snippets/networking/Networking.AppHost/Program.KestrelConfiguration.cs" id="kestrel":::
 
@@ -202,4 +202,4 @@ All .NET Aspire project resource endpoints follow a set of default heuristics. S
 
 :::code source="snippets/networking/Networking.AppHost/Program.EndpointFilter.cs" id="filter":::
 
-The preceding code adds a default HTTPS endpoint, as well as an `admin` endpoint on port 19227, however; the `admin` endpoint is excluded from the environment variables. This is useful when you want to expose an endpoint for internal use only.
+The preceding code adds a default HTTPS endpoint, as well as an `admin` endpoint on port 19227. However, the `admin` endpoint is excluded from the environment variables. This is useful when you want to expose an endpoint for internal use only.
