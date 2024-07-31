@@ -1,15 +1,12 @@
 ﻿var builder = DistributedApplication.CreateBuilder(args);
 
-var apiService = builder.AddProject<Projects.Networking_ApiService>("apiService")
-    .WithEndpoint("admin", static endpoint =>
-    {
-        endpoint.Port = 17003;
-        endpoint.UriScheme = "http";
-        endpoint.Transport = "http";
-    });
+var apiservice =
+    builder.AddProject<Projects.Networking_ApiService>(
+        name: "apiservice",
+        launchProfileName: null);
 
 builder.AddProject<Projects.Networking_Frontend>("frontend")
-       .WithReference(apiService);
+       .WithReference(apiservice);
 
 // WithEndpoint(builder);
 // ContainerPort(builder);
