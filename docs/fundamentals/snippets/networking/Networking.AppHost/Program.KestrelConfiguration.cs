@@ -12,7 +12,7 @@
                 project.ExcludeKestrelEndpoints = false;
             })
             .WithHttpsEndpoint();
-        // </kesrel>
+        // </kestrel>
 
         return project;
     }
