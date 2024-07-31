@@ -1,7 +1,7 @@
 ---
 title: Apply EF Core migrations in .NET Aspire
 description: Learn about how to to apply Entity Framework Core migrations in .NET Aspire
-ms.date: 3/20/2024
+ms.date: 07/31/2024
 ms.topic: how-to
 ---
 
@@ -93,6 +93,16 @@ To run the migrations at startup, you need to create a service that applies the 
     ```dotnetcli
     dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer
     ```
+
+1. Add the highlighted lines to the *:::no-loc text="Program.cs":::* file in the *:::no-loc text="SupportTicketApi.MigrationService":::* project:
+
+    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.MigrationService/Program.cs" highlight="1,6,9-12" :::
+
+    In the preceding code:
+
+    - The `AddServiceDefaults` extension method [adds service defaults functionality](/dotnet/aspire/fundamentals/service-defaults#add-service-defaults-functionality).
+    - The `AddOpenTelemetry` extension method [configures OpenTelemetry functionality](/dotnet/aspire/fundamentals/telemetry#net-aspire-opentelemetry-integration).
+    - The `AddSqlServerDbContext` extension method adds the `TicketContext` service to the service collection. This service is used to run migrations and seed the database.
 
 1. Replace the contents of the *:::no-loc text="Worker.cs":::* file in the *:::no-loc text="SupportTicketApi.MigrationService":::* project with the following code:
 
