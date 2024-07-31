@@ -191,3 +191,11 @@ The `Name` property identifies the service, whereas the `Port` and `TargetPort` 
 For network communication, the `Protocol` property supports **TCP** and **UDP**, with potential for more in the future, and the `Transport` property indicates the transport protocol (**HTTP**, **HTTP2**, **HTTP3**). Lastly, if the service is URI-addressable, the `UriScheme` property provides the URI scheme for constructing the service URI.
 
 For more information, see the available properties of the [EndpointAnnotation properties](/dotnet/api/aspire.hosting.applicationmodel.endpointannotation#properties).
+
+## Endpoint filtering
+
+All .NET Aspire project resource endpoints follow a set of default heuristics. Some endpoints are included in `ASPNETCORE_URLS` at runtime, some are published as `HTTP/HTTPS_PORTS`, and some configurations are resolved from Kestrel configuration. Regardless of the default behavior, you can filter the endpoints that are included in environment variables by using the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithEndpointsInEnvironment%2A> extension method:
+
+:::code source="snippets/networking/Networking.AppHost/Program.EndpointFilter.cs" id="filter":::
+
+The preceding code adds a default HTTPS endpoint, as well as an `admin` endpoint on port 19227, however; the `admin` endpoint is excluded from the environment variables. This is useful when you want to expose an endpoint for internal use only.
