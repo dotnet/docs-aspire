@@ -131,3 +131,7 @@ builder.AddProject<Projects.InventoryService>("inventoryservice")
 ```
 
 The preceding code shows how to disable the reverse proxy that .NET Aspire deploys in front for the .NET Core application and instead allows the .NET Core application to respond directly on requests over HTTP(S). For more information on networking options within .NET Aspire see [.NET Aspire inner loop networking overview](./networking-overview.md).
+
+## See also
+
+- [Kestrel configured endpoints](networking-overview.md#kestrel-configured-endpoints)
