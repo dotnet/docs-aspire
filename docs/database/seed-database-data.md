@@ -126,7 +126,7 @@ You can also seed data in .NET Aspire projects using Entity Framework Core by ex
 > [!IMPORTANT]
 > These types of configurations should only be done during development, so make sure to add a conditional that checks your current environment context.
 
-Add the following code to the _:::no-loc text="Program.cs":::_ file of your **.AppHost** project.
+Add the following code to the _:::no-loc text="Program.cs":::_ file of your **API Service** project.
 
 ### [SQL Server](#tab/sql-server)
 
