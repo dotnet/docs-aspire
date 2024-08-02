@@ -119,6 +119,14 @@ If you select a container or executable, formatting is different from a project 
 
 :::image type="content" source="media/explore/container-logs.png" lightbox="media/explore/container-logs.png" alt-text="A screenshot of the .NET Aspire dashboard Console logs page with a container source selected.":::
 
+#### Resource replicas
+
+When project resources are replicated using the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithReplicas%2A> API, they're represented in the resource selector under a top-level named resource entry with an icon to indicator. Each replicated resource is listed under the top-level resource entry, with its corresponding unique name. Consider the following example screenshot of a replicated project resource:
+
+:::image type="content" source="media/explore/console-logs-with-replicas.png" lightbox="media/explore/console-logs-with-replicas.png" alt-text=".NET Aspire dashboard: Console logs page resource selector with nested replica resources.":::
+
+The preceding screenshot shows the `catalogservice (application)` project with two replicas, `catalogservice-2bpj2qdq6k` and `catalogservice-6ljdin0hc0`. Each replica has its own set of logs that can be viewed by selecting the replica name.
+
 ### Structured logs page
 
 .NET Aspire automatically configures your projects with logging using OpenTelemetry. Navigate to the **Structured logs** page to view the semantic logs for your .NET Aspire project. [Semantic, or structured logging](https://github.com/NLog/NLog/wiki/How-to-use-structured-logging) makes it easier to store and query log-events, as the log-event message-template and message-parameters are preserved, instead of just transforming them into a formatted message. You'll notice a clean structure for the different logs displayed on the page using columns:
