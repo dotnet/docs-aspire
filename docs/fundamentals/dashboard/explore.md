@@ -1,7 +1,7 @@
 ---
 title: Explore .NET Aspire dashboard
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 05/31/2024
+ms.date: 08/02/2024
 ms.topic: reference
 ---
 
@@ -226,6 +226,33 @@ You can also choose to select the count of the displayed metric on the vertical 
 :::image type="content" source="media/explore/metrics-view-count.png" lightbox="media/explore/metrics-view-count.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with the count option applied.":::
 
 For more information about metrics, see [Built-in Metrics in .NET](/dotnet/core/diagnostics/built-in-metrics).
+
+### Exemplars
+
+The .NET Aspire dashboard supports and displays OpenTelemetry _Exemplars_. An _exemplar_ is a recorded value that contains additional associate context from traces with metric events, making them useful for linking trace signals with metrics.
+
+An _exemplar_ is made up of the following data points:
+
+- `trace_id` and `span_id`: (Optional) The trace associated with the recording, identified by trace and span identifiers.
+- `time_unix_nano`: The time of the observation, represented in Unix nanoseconds.
+- `value`: The recorded value.
+- `filtered_attributes`: A set of filtered attributes that provide additional context when the observation was made.
+
+Exemplars are displayed in the metrics chart as a small round dot next to the data point. When you hover over the indicator, a tooltip displays the exemplar details as shown in the following screenshot:
+
+:::image type="content" source="media/explore/metrics-page-exemplars.png" lightbox="media/explore/metrics-page-exemplars.png" alt-text=".NET Aspire Dashboard: Metrics Page, with exemplar indicator hover details.":::
+
+The preceding screenshot shows the exemplar details for the `http.client.request.duration` metric. The exemplar details include the:
+
+- Resource name.
+- Operation performed, in this case an HTTP GET to the `/catalog/images/{id}`.
+- Corresponding value and the time stamp.
+
+Selecting the exemplar indicator opens the trace details page, where you can view the trace associated, for example consider the following screenshot:
+
+:::image type="content" source="media/explore/trace-page-from-exemplars.png" lightbox="media/explore/trace-page-from-exemplars.png" alt-text=".NET Aspire Dashboard: Trace Page, navigated to from the corresponding Metrics Page exemplar.":::
+
+For more information, see [OpenTelemetry Docs: Exemplars](https://opentelemetry.io/docs/specs/otel/metrics/data-model/#exemplars).
 
 ## Theme selection
 
