@@ -151,7 +151,7 @@ Finally, the Angular client app needs to call the `/api/WeatherForecast` endpoin
 - _app.integration.html_: [Update the HTML to display the weather forecast data in a table.](https://github.com/dotnet/aspire-samples/blob/ef6868b0999c6eea3d42a10f2b20433c5ea93720/samples/AspireWithJavaScript/AspireJavaScript.Angular/src/app/app.integration.html)
 - _app.integration.ts_: [Update the TypeScript to call the `/api/WeatherForecast` endpoint and display the data in the table.](https://github.com/dotnet/aspire-samples/blob/ef6868b0999c6eea3d42a10f2b20433c5ea93720/samples/AspireWithJavaScript/AspireJavaScript.Angular/src/app/app.integration.ts)
 
-:::code language="typescript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/src/app/app.integration.ts":::
+:::code language="typescript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/src/app/app.components.ts":::
 
 ### Angular app running
 
@@ -163,7 +163,7 @@ To visualize the Angular client app, navigate to the "angular" endpoint in the .
 
 The React app wasn't written using a template, and instead was written manually. The complete source code can be found in the [dotnet/aspire-samples repository](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript/AspireJavaScript.React). Some of the key points of interest are found in the _src/App.js_ file:
 
-:::code language="javascript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.React/src/integrations/App.js":::
+:::code language="javascript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.React/src/components/App.js":::
 
 The `App` function is the entry point for the React client app. It uses the `useState` and `useEffect` hooks to manage the state of the weather forecast data. The `fetch` API is used to make an HTTP request to the `/api/WeatherForecast` endpoint. The response is then converted to JSON and set as the state of the weather forecast data.
 
@@ -191,7 +191,7 @@ To visualize the React client app, navigate to the "react" endpoint in the .NET 
 
 There are several key modifications from the original Vue template. The primary updates were the addition of the `fetch` call in the _TheWelcome.vue_ file to retrieve the weather forecast data from the `/api/WeatherForecast` endpoint. The following code snippet demonstrates the `fetch` call:
 
-:::code language="html" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Vue/src/integrations/TheWelcome.vue":::
+:::code language="html" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Vue/src/components/TheWelcome.vue":::
 
 As the `TheWelcome` integration is `mounted`, it calls the `/api/weatherforecast` endpoint to retrieve the weather forecast data. The response is then set as the `forecasts` data property. To set the server port, the Vue client app uses the `PORT` environment variable. This is achieved by updating the _vite.config.ts_ file:
 
