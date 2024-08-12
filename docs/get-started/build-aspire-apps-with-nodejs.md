@@ -151,7 +151,7 @@ Finally, the Angular client app needs to call the `/api/WeatherForecast` endpoin
 - _app.integration.html_: [Update the HTML to display the weather forecast data in a table.](https://github.com/dotnet/aspire-samples/blob/ef6868b0999c6eea3d42a10f2b20433c5ea93720/samples/AspireWithJavaScript/AspireJavaScript.Angular/src/app/app.integration.html)
 - _app.integration.ts_: [Update the TypeScript to call the `/api/WeatherForecast` endpoint and display the data in the table.](https://github.com/dotnet/aspire-samples/blob/ef6868b0999c6eea3d42a10f2b20433c5ea93720/samples/AspireWithJavaScript/AspireJavaScript.Angular/src/app/app.integration.ts)
 
-:::code language="typescript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/src/app/app.components.ts":::
+:::code language="typescript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/src/app/app.component.ts":::
 
 ### Angular app running
 
