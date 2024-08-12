@@ -57,6 +57,10 @@
       "redirect_url": "https://prom3theu5.github.io/aspirational-manifests/getting-started.html"
     },
     {
+      "source_path_from_root": "/docs/openai/azureai-openai-component.md",
+      "redirect_url": "/dotnet/aspire/azureai/azureai-openai-integration"
+    },
+    {
       "source_path_from_root": "/docs/azureai/azureai-openai-component.md",
       "redirect_url": "/dotnet/aspire/azureai/azureai-openai-integration"
     },
