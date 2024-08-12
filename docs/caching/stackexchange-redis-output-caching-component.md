@@ -36,7 +36,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 In the _:::no-loc text="Program.cs":::_ file of your component-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> extension to register the required services for output caching.
 
 ```csharp
-builder.AddRedisOutputCache();
+builder.AddRedisOutputCache("cache");
 ```
 
 Add the middleware to the request processing pipeline by calling [UseOutputCache](/dotnet/api/microsoft.aspnetcore.builder.outputcacheapplicationbuilderextensions.useoutputcache).
