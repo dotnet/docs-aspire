@@ -6,11 +6,11 @@
     },
     {
       "source_path_from_root": "/docs/storage/azure-storage.md",
-      "redirect_url": "/dotnet/aspire/storage/azure-storage-components"
+      "redirect_url": "/dotnet/aspire/storage/azure-storage-integrations"
     },
     {
       "source_path_from_root": "/docs/database/quickstart-sql-server.md",
-      "redirect_url": "/dotnet/aspire/database/sql-server-components"
+      "redirect_url": "/dotnet/aspire/database/sql-server-integrations"
     },
     {
       "source_path_from_root": "/docs/get-started/quickstart-build-your-first-aspire-app.md",
@@ -18,19 +18,19 @@
     },
     {
       "source_path_from_root": "/docs/messaging/quickstart-messaging.md",
-      "redirect_url": "/dotnet/aspire/messaging/messaging-components"
+      "redirect_url": "/dotnet/aspire/messaging/messaging-integrations"
     },
     {
       "source_path_from_root": "/docs/caching/quickstart-caching.md",
-      "redirect_url": "/dotnet/aspire/caching/caching-components"
+      "redirect_url": "/dotnet/aspire/caching/caching-integrations"
     },
     {
       "source_path_from_root": "/docs/app-host-overview.md",
       "redirect_url": "/dotnet/aspire/fundamentals/app-host-overview"
     },
     {
-      "source_path_from_root": "/docs/components-overview.md",
-      "redirect_url": "/dotnet/aspire/fundamentals/components-overview"
+      "source_path_from_root": "/docs/integrations-overview.md",
+      "redirect_url": "/dotnet/aspire/fundamentals/integrations-overview"
     },
     {
       "source_path_from_root": "/docs/dashboard.md",
@@ -57,8 +57,8 @@
       "redirect_url": "https://prom3theu5.github.io/aspirational-manifests/getting-started.html"
     },
     {
-      "source_path_from_root": "/docs/openai/azureai-openai-component.md",
-      "redirect_url": "/dotnet/aspire/azureai/azureai-openai-component"
+      "source_path_from_root": "/docs/openai/azureai-openai-integration.md",
+      "redirect_url": "/dotnet/aspire/azureai/azureai-openai-integration"
     },
     {
       "source_path_from_root": "/docs/troubleshooting/allowunsecuredtransport.md",
@@ -87,6 +87,170 @@
     {
       "source_path_from_root": "/docs/whats-new/preview-7.md",
       "redirect_url": "/dotnet/aspire"
+    },
+    {
+      "source_path_from_root": "/docs/authentication/keycloak-component.md",
+      "redirect_url": "/dotnet/aspire/authentication/keycloak-integration"
+    },
+    {
+      "source_path_from_root": "/docs/azureai/azureai-openai-component.md",
+      "redirect_url": "/dotnet/aspire/azureai/azureai-openai-integration"
+    },
+    {
+      "source_path_from_root": "/docs/azureai/azureai-search-document-component.md",
+      "redirect_url": "/dotnet/aspire/azureai/azureai-search-document-integration"
+    },
+    {
+      "source_path_from_root": "/docs/caching/caching-components-deployment.md",
+      "redirect_url": "/dotnet/aspire/caching/caching-integrations-deployment"
+    },
+    {
+      "source_path_from_root": "/docs/caching/caching-components.md",
+      "redirect_url": "/dotnet/aspire/caching/caching-integrations"
+    },
+    {
+      "source_path_from_root": "/docs/caching/stackexchange-redis-component.md",
+      "redirect_url": "/dotnet/aspire/caching/stackexchange-redis-integration"
+    },
+    {
+      "source_path_from_root": "/docs/caching/stackexchange-redis-distributed-caching-component.md",
+      "redirect_url": "/dotnet/aspire/caching/stackexchange-redis-distributed-caching-integration"
+    },
+    {
+      "source_path_from_root": "/docs/caching/stackexchange-redis-output-caching-component.md",
+      "redirect_url": "/dotnet/aspire/caching/stackexchange-redis-output-caching-integration"
+    },
+    {
+      "source_path_from_root": "/docs/database/azure-cosmos-db-component.md",
+      "redirect_url": "/dotnet/aspire/database/azure-cosmos-db-integration"
+    },
+    {
+      "source_path_from_root": "/docs/database/azure-cosmos-db-entity-framework-component.md",
+      "redirect_url": "/dotnet/aspire/database/azure-cosmos-db-entity-framework-integration"
+    },
+    {
+      "source_path_from_root": "/docs/database/milvus-component.md",
+      "redirect_url": "/dotnet/aspire/database/milvus-integration"
+    },
+    {
+      "source_path_from_root": "/docs/database/mongodb-component.md",
+      "redirect_url": "/dotnet/aspire/database/mongodb-integration"
+    },
+    {
+      "source_path_from_root": "/docs/database/mysql-component.md",
+      "redirect_url": "/dotnet/aspire/database/mysql-integration"
+    },
+    {
+      "source_path_from_root": "/docs/database/mysql-entity-framework-component.md",
+      "redirect_url": "/dotnet/aspire/database/mysql-entity-framework-integration"
+    },
+    {
+      "source_path_from_root": "/docs/database/oracle-entity-framework-component.md",
+      "redirect_url": "/dotnet/aspire/database/oracle-entity-framework-integration"
+    },
+    {
+      "source_path_from_root": "/docs/database/postgresql-component.md",
+      "redirect_url": "/dotnet/aspire/database/postgresql-integration"
+    },
+    {
+      "source_path_from_root": "/docs/database/postgresql-entity-framework-component.md",
+      "redirect_url": "/dotnet/aspire/database/postgresql-entity-framework-integration"
+    },
+    {
+      "source_path_from_root": "/docs/database/qdrant-component.md",
+      "redirect_url": "/dotnet/aspire/database/qdrant-integration"
+    },
+    {
+      "source_path_from_root": "/docs/database/sql-server-component-deployment.md",
+      "redirect_url": "/dotnet/aspire/database/sql-server-integration-deployment"
+    },
+    {
+      "source_path_from_root": "/docs/database/sql-server-component.md",
+      "redirect_url": "/dotnet/aspire/database/sql-server-integration"
+    },
+    {
+      "source_path_from_root": "/docs/database/sql-server-components.md",
+      "redirect_url": "/dotnet/aspire/database/sql-server-integrations"
+    },
+    {
+      "source_path_from_root": "/docs/database/sql-server-entity-framework-component.md",
+      "redirect_url": "/dotnet/aspire/database/sql-server-entity-framework-integration"
+    },
+    {
+      "source_path_from_root": "/docs/extensibility/custom-component.md",
+      "redirect_url": "/dotnet/aspire/extensibility/custom-integration"
+    },
+    {
+      "source_path_from_root": "/docs/extensibility/implement-auth-for-resource-to-component.md",
+      "redirect_url": "/dotnet/aspire/extensibility/implement-auth-for-resource-to-integration"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/components-overview.md",
+      "redirect_url": "/dotnet/aspire/fundamentals/integrations-overview"
+    },
+    {
+      "source_path_from_root": "/docs/includes/component-health-checks.md",
+      "redirect_url": "/dotnet/includes/integration-health-checks"
+    },
+    {
+      "source_path_from_root": "/docs/includes/component-observability-and-telemetry.md",
+      "redirect_url": "/dotnet/includes/integration-observability-and-telemetry"
+    },
+    {
+      "source_path_from_root": "/docs/logging/seq-component.md",
+      "redirect_url": "/dotnet/aspire/logging/seq-integration"
+    },
+    {
+      "source_path_from_root": "/docs/messaging/azure-event-hubs-component.md",
+      "redirect_url": "/dotnet/aspire/messaging/azure-event-hubs-integration"
+    },
+    {
+      "source_path_from_root": "/docs/messaging/azure-service-bus-component.md",
+      "redirect_url": "/dotnet/aspire/messaging/azure-service-bus-integration"
+    },
+    {
+      "source_path_from_root": "/docs/messaging/azure-web-pubsub-component.md",
+      "redirect_url": "/dotnet/aspire/messaging/azure-web-pubsub-integration"
+    },
+    {
+      "source_path_from_root": "/docs/messaging/kafka-component.md",
+      "redirect_url": "/dotnet/aspire/messaging/kafka-integration"
+    },
+    {
+      "source_path_from_root": "/docs/messaging/messaging-components.md",
+      "redirect_url": "/dotnet/aspire/messaging/messaging-integrations"
+    },
+    {
+      "source_path_from_root": "/docs/messaging/nats-component.md",
+      "redirect_url": "/dotnet/aspire/messaging/nats-integration"
+    },
+    {
+      "source_path_from_root": "/docs/messaging/rabbitmq-component.md",
+      "redirect_url": "/dotnet/aspire/messaging/rabbitmq-integration"
+    },
+    {
+      "source_path_from_root": "/docs/search/elasticsearch-component.md",
+      "redirect_url": "/dotnet/aspire/search/elasticsearch-integration"
+    },
+    {
+      "source_path_from_root": "/docs/security/azure-security-key-vault-component.md",
+      "redirect_url": "/dotnet/aspire/security/azure-security-key-vault-integration"
+    },
+    {
+      "source_path_from_root": "/docs/storage/azure-storage-components.md",
+      "redirect_url": "/dotnet/aspire/storage/azure-storage-integrations"
+    },
+    {
+      "source_path_from_root": "/docs/storage/azure-storage-blobs-component.md",
+      "redirect_url": "/dotnet/aspire/storage/azure-storage-blobs-integration"
+    },
+    {
+      "source_path_from_root": "/docs/storage/azure-storage-queues-component.md",
+      "redirect_url": "/dotnet/aspire/storage/azure-storage-queues-integration"
+    },
+    {
+      "source_path_from_root": "/docs/storage/azure-storage-tables-component.md",
+      "redirect_url": "/dotnet/aspire/storage/azure-storage-tables-integration"
     }
   ]
 }
