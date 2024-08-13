@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire PostgreSQL integration. Th
 
 ## Get started
 
-To get started with the .NET Aspire PostgreSQL integration, install the [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package in the consuming client project.
+To get started with the .NET Aspire PostgreSQL integration, install the [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package in the client-consuming project, i.e., the project for the application that uses the PostgreSQL client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

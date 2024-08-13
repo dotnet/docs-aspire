@@ -16,7 +16,7 @@ In this article, you learn how to use the .NET Aspire Azure Event Hubs integrati
 
 ## Get started
 
-To get started with the .NET Aspire Azure Event Hubs integration, install the [Aspire.Azure.Messaging.EventHubs](https://www.nuget.org/packages/Aspire.Azure.Messaging.EventHubs) NuGet package in the consuming client project.
+To get started with the .NET Aspire Azure Event Hubs integration, install the [Aspire.Azure.Messaging.EventHubs](https://www.nuget.org/packages/Aspire.Azure.Messaging.EventHubs) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Event Hubs client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

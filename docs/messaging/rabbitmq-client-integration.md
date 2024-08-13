@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire RabbitMQ client message-br
 
 ## Get started
 
-To get started with the .NET Aspire RabbitMQ integration, install the [Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) NuGet package in the consuming client project.
+To get started with the .NET Aspire RabbitMQ integration, install the [Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) NuGet package in the client-consuming project, i.e., the project for the application that uses the RabbitMQ client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

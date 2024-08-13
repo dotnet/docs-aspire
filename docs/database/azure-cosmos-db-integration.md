@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire Azure Cosmos DB integratio
 
 ## Get started
 
-To get started with the .NET Aspire Azure Cosmos DB integration, install the [Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) NuGet package in the consuming client project.
+To get started with the .NET Aspire Azure Cosmos DB integration, install the [Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Cosmos DB client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

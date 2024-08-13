@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire Microsoft Entity Framework
 
 ## Get started
 
-To get started with the .NET Aspire Microsoft Entity Framework Core Cosmos DB integration, install the [Aspire.Microsoft.EntityFrameworkCore.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.Cosmos) NuGet package in the consuming client project.
+To get started with the .NET Aspire Microsoft Entity Framework Core Cosmos DB integration, install the [Aspire.Microsoft.EntityFrameworkCore.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.Cosmos) NuGet package in the client-consuming project, i.e., the project for the application that uses the Microsoft Entity Framework Core Cosmos DB client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

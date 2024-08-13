@@ -12,7 +12,7 @@ In this article, you learn how to use the .NET Aspire Stack Exchange Redis outpu
 
 ## Get started
 
-To get started with the .NET Aspire Stack Exchange Redis output caching integration, install the [Aspire.StackExchange.Redis.OutputCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.OutputCaching) NuGet package in the consuming client project.
+To get started with the .NET Aspire Stack Exchange Redis output caching integration, install the [Aspire.StackExchange.Redis.OutputCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.OutputCaching) NuGet package in the client-consuming project, i.e., the project for the application that uses the Stack Exchange Redis output caching client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

@@ -21,7 +21,7 @@ In this article, you learn how to use the .NET Aspire SQL Server integration. Th
 
 ## Get started
 
-To get started with the .NET Aspire SQL Server integration, install the [Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) NuGet package in the consuming client project.
+To get started with the .NET Aspire SQL Server integration, install the [Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) NuGet package in the client-consuming project, i.e., the project for the application that uses the SQL Server client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

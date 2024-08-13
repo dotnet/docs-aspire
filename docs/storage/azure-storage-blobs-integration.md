@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire Azure Blob Storage integra
 
 ## Get started
 
-To get started with the .NET Aspire Azure Blob Storage integration, install the [Aspire.Azure.Storage.Blobs](https://www.nuget.org/packages/Aspire.Azure.Storage.Blobs) NuGet package in the consuming client project.
+To get started with the .NET Aspire Azure Blob Storage integration, install the [Aspire.Azure.Storage.Blobs](https://www.nuget.org/packages/Aspire.Azure.Storage.Blobs) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Blob Storage client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

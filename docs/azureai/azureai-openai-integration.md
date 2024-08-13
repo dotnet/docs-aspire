@@ -16,7 +16,7 @@ For more information on using the `OpenAIClient`, see [Quickstart: Get started g
 - Azure subscription: [create one for free](https://azure.microsoft.com/free/).
 - Azure AI OpenAI or OpenAI account: [create an Azure OpenAI Service resource](/azure/ai-services/openai/how-to/create-resource).
 
-To get started with the .NET Aspire Azure AI OpenAI integration, install the [Aspire.Azure.AI.OpenAI](https://www.nuget.org/packages/Aspire.Azure.AI.OpenAI) NuGet package in the consuming client project.
+To get started with the .NET Aspire Azure AI OpenAI integration, install the [Aspire.Azure.AI.OpenAI](https://www.nuget.org/packages/Aspire.Azure.AI.OpenAI) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure AI OpenAI client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

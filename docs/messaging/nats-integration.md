@@ -16,7 +16,7 @@ In this article, you learn how to use the .NET Aspire NATS integration to send l
 
 ## Get started
 
-To get started with the .NET Aspire NATS integration, install the [Aspire.NATS.Net](https://www.nuget.org/packages/Aspire.NATS.Net) NuGet package in the consuming client project.
+To get started with the .NET Aspire NATS integration, install the [Aspire.NATS.Net](https://www.nuget.org/packages/Aspire.NATS.Net) NuGet package in the client-consuming project, i.e., the project for the application that uses the NATS client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire Qdrant integration. Use th
 
 ## Get started
 
-To get started with the .NET Aspire Qdrant integration, install the [Aspire.Qdrant.Client](https://www.nuget.org/packages/Aspire.Qdrant.Client) NuGet package in the consuming client project.
+To get started with the .NET Aspire Qdrant integration, install the [Aspire.Qdrant.Client](https://www.nuget.org/packages/Aspire.Qdrant.Client) NuGet package in the client-consuming project, i.e., the project for the application that uses the Qdrant client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

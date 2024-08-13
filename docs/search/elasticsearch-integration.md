@@ -16,7 +16,7 @@ In this article, you learn how to use the .NET Aspire Elasticsearch integration.
 
 ## Get started
 
-To get started with the .NET Aspire Elasticsearch integration, install the [Aspire.Elastic.Clients.Elasticsearch](https://www.nuget.org/packages/Aspire.Elastic.Clients.Elasticsearch) NuGet package in the consuming client project.
+To get started with the .NET Aspire Elasticsearch integration, install the [Aspire.Elastic.Clients.Elasticsearch](https://www.nuget.org/packages/Aspire.Elastic.Clients.Elasticsearch) NuGet package in the client-consuming project, i.e., the project for the application that uses the Elasticsearch client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

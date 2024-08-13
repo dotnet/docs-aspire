@@ -24,7 +24,7 @@ PostgreSQL is a powerful, open source, object-relational database system. The .N
 
 ## Get started
 
-To get started with the .NET Aspire PostgreSQL Entity Framework Core integration, install the [Aspire.Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL) NuGet package in the consuming client project.
+To get started with the .NET Aspire PostgreSQL Entity Framework Core integration, install the [Aspire.Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL) NuGet package in the client-consuming project, i.e., the project for the application that uses the PostgreSQL Entity Framework Core client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

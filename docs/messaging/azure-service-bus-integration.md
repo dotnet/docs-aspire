@@ -19,7 +19,7 @@ Cloud-native apps often require communication with messaging services such as [A
 
 ## Get started
 
-To get started with the .NET Aspire Azure Service Bus integration, install the [Aspire.Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) NuGet package in the consuming client project.
+To get started with the .NET Aspire Azure Service Bus integration, install the [Aspire.Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Service Bus client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

@@ -16,7 +16,7 @@ For more information on using the `SearchIndexClient`, see [How to use Azure.Sea
 - Azure subscription: [create one for free](https://azure.microsoft.com/free/).
 - Azure Search service: [create an Azure AI Search service resource](/azure/search/search-create-service-portal).
 
-To get started with the .NET Aspire Azure AI Search Documents integration, install the [Aspire.Azure.Search.Documents](https://www.nuget.org/packages/Aspire.Azure.Search.Documents) NuGet package in the consuming client project.
+To get started with the .NET Aspire Azure AI Search Documents integration, install the [Aspire.Azure.Search.Documents](https://www.nuget.org/packages/Aspire.Azure.Search.Documents) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure AI Search Documents client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

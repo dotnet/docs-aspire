@@ -18,7 +18,7 @@ In this article, you learn how to use the .NET Aspire Keycloak integration. The 
 
 ## Get started
 
-To get started with the .NET Aspire Keycloak integration, install the [Aspire.Keycloak.Authentication](https://www.nuget.org/packages/Aspire.Keycloak.Authentication) NuGet package in the consuming client project.
+To get started with the .NET Aspire Keycloak integration, install the [Aspire.Keycloak.Authentication](https://www.nuget.org/packages/Aspire.Keycloak.Authentication) NuGet package in the client-consuming project, i.e., the project for the application that uses the Keycloak client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

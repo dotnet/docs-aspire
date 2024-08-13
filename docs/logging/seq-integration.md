@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire Seq integration to add Ope
 
 ## Get started
 
-To get started with the .NET Aspire Seq integration, install the [Aspire.Seq](https://www.nuget.org/packages/Aspire.Seq) NuGet package in the consuming client project.
+To get started with the .NET Aspire Seq integration, install the [Aspire.Seq](https://www.nuget.org/packages/Aspire.Seq) NuGet package in the client-consuming project, i.e., the project for the application that uses the Seq client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

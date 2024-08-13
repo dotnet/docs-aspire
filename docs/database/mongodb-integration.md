@@ -20,7 +20,7 @@ In this article, you learn how to use the .NET Aspire MongoDB database integrati
 
 ## Get started
 
-To get started with the .NET Aspire MongoDB database integration, install the [Aspire.MongoDB.Driver](https://www.nuget.org/packages/Aspire.MongoDB.Driver) NuGet package in the consuming client project.
+To get started with the .NET Aspire MongoDB database integration, install the [Aspire.MongoDB.Driver](https://www.nuget.org/packages/Aspire.MongoDB.Driver) NuGet package in the client-consuming project, i.e., the project for the application that uses the MongoDB database client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

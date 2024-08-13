@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire Apache Kafka client messag
 
 ## Get started
 
-To get started with the .NET Aspire Apache Kafka integration, install the [Aspire.Confluent.Kafka](https://www.nuget.org/packages/Aspire.Confluent.Kafka) NuGet package in the consuming client project.
+To get started with the .NET Aspire Apache Kafka integration, install the [Aspire.Confluent.Kafka](https://www.nuget.org/packages/Aspire.Confluent.Kafka) NuGet package in the client-consuming project, i.e., the project for the application that uses the Apache Kafka client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
