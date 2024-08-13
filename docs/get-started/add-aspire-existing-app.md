@@ -1,6 +1,6 @@
 ---
 title: Add .NET Aspire to an existing .NET app
-description: Learn how to add .NET Aspire components, orchestration, and tooling to a microservices app that already exists.
+description: Learn how to add .NET Aspire integrations, orchestration, and tooling to a microservices app that already exists.
 ms.date: 06/03/2024
 ms.topic: how-to
 zone_pivot_groups: dev-environment
@@ -438,4 +438,4 @@ You can delete the _launch.json_ file that you created earlier, as it's not need
 
 :::zone-end
 
-Congratulations! You have added .NET Aspire orchestration to your pre-existing web app. You can now add .NET Aspire components and use the .NET Aspire tooling to streamline your cloud-native web app development.
+Congratulations! You have added .NET Aspire orchestration to your pre-existing web app. You can now add .NET Aspire integrations and use the .NET Aspire tooling to streamline your cloud-native web app development.
