@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs to express resource references.
-ms.date: 06/03/2024
+ms.date: 08/12/2024
 ms.topic: overview
 uid: aspire/app-host
 ---
@@ -15,6 +15,7 @@ Before continuing, consider some common terminology used in .NET Aspire:
 - **App model**: A collection of resources that make up your distributed application (<xref:Aspire.Hosting.DistributedApplication>). For a more formal definition, see [Define the app model](#define-the-app-model).
 - **App host/Orchestrator project**: The .NET project that orchestrates the _app model_, named with the _*.AppHost_ suffix (by convention).
 - **Resource**: A [resource](#built-in-resource-types) represents a part of an application whether it be a .NET project, container, or executable, or some other resource like a database, cache, or cloud service (such as a storage service).
+- **Integration**: An integration is a NuGet package for either the _app host_ that models a _resource_ or a package that configures a client for use in a consuming app.
 - **Reference**: A reference defines a connection between resources, expressed as a dependency using the `WithReference` API. For more information, see [Reference resources](#reference-resources).
 
 > [!NOTE]
@@ -78,7 +79,7 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
        .WithReference(cache);
 ```
 
-The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a dependency on the "cache" container resource. These dependencies can represent connection strings or [service discovery](../service-discovery/overview.md) information. In the preceding example, an environment variable is injected into the "webfronend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the webfrontend can use to connect to redis via the .NET Aspire Redis component, for example, `ConnectionStrings__cache="localhost:62354"`.
+The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a dependency on the "cache" container resource. These dependencies can represent connection strings or [service discovery](../service-discovery/overview.md) information. In the preceding example, an environment variable is injected into the "webfronend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the webfrontend can use to connect to redis via the .NET Aspire Redis integration, for example, `ConnectionStrings__cache="localhost:62354"`.
 
 ### Connection string and endpoint references
 
@@ -145,7 +146,7 @@ In the preceding example, the `apiservice` service has a named endpoint called `
 
 ### APIs for adding and expressing resources
 
-.NET Aspire hosting packages and [.NET Aspire components](components-overview.md) are both delivered as NuGet packages, but they serve different purposes. While components provide client library configuration for consuming apps outside the scope of the app host, hosting packages provide APIs for expressing resources and dependencies within the app host.
+.NET Aspire hosting packages and [.NET Aspire integrations](integrations-overview.md) are both delivered as NuGet packages, but they serve different purposes. While integrations provide client library configuration for consuming apps outside the scope of the app host, hosting packages provide APIs for expressing resources and dependencies within the app host.
 
 ### Express container resources
 
@@ -300,6 +301,6 @@ private static IResourceBuilder<RabbitMQServerResource> RunWithStableNodeName(
 
 ## See also
 
-- [.NET Aspire components overview](components-overview.md)
+- [.NET Aspire integrations overview](integrations-overview.md)
 - [Service discovery in .NET Aspire](../service-discovery/overview.md)
 - [.NET Aspire service defaults](service-defaults.md)

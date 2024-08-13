@@ -29,12 +29,12 @@ Welcome to what's new in the .NET Aspire docs for May 2024. This article lists s
 
 ### Updated articles
 
-- [.NET Aspire components overview](../fundamentals/components-overview.md)
+- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
   - Help more clearly define local dev.
-  - Add Qdrant component
+  - Add Qdrant integration
   - Add icons
   - Address all issues in #720
-  - Add components entry for Azure Search Documents
+  - Add integrations entry for Azure Search Documents
   - Placeholder for .NET Aspire preview 7.
 - [.NET Aspire dashboard overview](../fundamentals/dashboard/overview.md)
   - Updates to .NET Aspire dashboard content
@@ -71,69 +71,69 @@ Welcome to what's new in the .NET Aspire docs for May 2024. This article lists s
 
 ### Updated articles
 
-- [.NET Aspire Azure Blob Storage component](../storage/azure-storage-blobs-component.md) - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire Azure Data Tables component](../storage/azure-storage-tables-component.md) - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire Azure Queue Storage component](../storage/azure-storage-queues-component.md) - Placeholder for .NET Aspire preview 7.
-- [Tutorial: Connect an ASP.NET Core app to .NET Aspire storage components](../storage/azure-storage-components.md) - Revise tutorials to use Aspire Starter App in VS (to match VSCode directions)
+- [.NET Aspire Azure Blob Storage integration](../storage/azure-storage-blobs-integration.md) - Placeholder for .NET Aspire preview 7.
+- [.NET Aspire Azure Data Tables integration](../storage/azure-storage-tables-integration.md) - Placeholder for .NET Aspire preview 7.
+- [.NET Aspire Azure Queue Storage integration](../storage/azure-storage-queues-integration.md) - Placeholder for .NET Aspire preview 7.
+- [Tutorial: Connect an ASP.NET Core app to .NET Aspire storage integrations](../storage/azure-storage-integrations.md) - Revise tutorials to use Aspire Starter App in VS (to match VSCode directions)
 
 ## Database
 
 ### New articles
 
-- [.NET Aspire Qdrant component](../database/qdrant-component.md)
+- [.NET Aspire Qdrant integration](../database/qdrant-integration.md)
 - [Apply Entity Framework Core migrations in .NET Aspire](../database/ef-core-migrations.md)
 
 ### Updated articles
 
-- [.NET Aspire Azure Cosmos DB component](../database/azure-cosmos-db-component.md)
+- [.NET Aspire Azure Cosmos DB integration](../database/azure-cosmos-db-integration.md)
   - Update Database Clarity
   - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire Microsoft Entity Framework Core Cosmos DB component](../database/azure-cosmos-db-entity-framework-component.md)
+- [.NET Aspire Microsoft Entity Framework Core Cosmos DB integration](../database/azure-cosmos-db-entity-framework-integration.md)
   - Update Database Clarity
   - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire MongoDB database component](../database/mongodb-component.md)
+- [.NET Aspire MongoDB database integration](../database/mongodb-integration.md)
   - Update Database Clarity
   - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire MySQL database component](../database/mysql-component.md)
+- [.NET Aspire MySQL database integration](../database/mysql-integration.md)
   - Update Database Clarity
   - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire Oracle Entity Framework Component](../database/oracle-entity-framework-component.md)
+- [.NET Aspire Oracle Entity Framework Component](../database/oracle-entity-framework-integration.md)
   - Update Database Clarity
   - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire Pomelo MySQL Entity Framework Component](../database/mysql-entity-framework-component.md)
+- [.NET Aspire Pomelo MySQL Entity Framework Component](../database/mysql-entity-framework-integration.md)
   - Update Database Clarity
   - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire PostgreSQL component](../database/postgresql-component.md)
+- [.NET Aspire PostgreSQL integration](../database/postgresql-integration.md)
   - Update Database Clarity
   - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire PostgreSQL Entity Framework Core component](../database/postgresql-entity-framework-component.md)
+- [.NET Aspire PostgreSQL Entity Framework Core integration](../database/postgresql-entity-framework-integration.md)
   - Update Database Clarity
   - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire Qdrant component](../database/qdrant-component.md)
+- [.NET Aspire Qdrant integration](../database/qdrant-integration.md)
   - Fix wrong nuget package in installation documentation.
-  - Add Qdrant component
-- [.NET Aspire SQL Server component](../database/sql-server-component.md)
+  - Add Qdrant integration
+- [.NET Aspire SQL Server integration](../database/sql-server-integration.md)
   - Update Database Clarity
   - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire SqlServer Entity Framework Core component](../database/sql-server-entity-framework-component.md)
+- [.NET Aspire SqlServer Entity Framework Core integration](../database/sql-server-entity-framework-integration.md)
   - Update Database Clarity
   - Placeholder for .NET Aspire preview 7.
 - [Apply Entity Framework Core migrations in .NET Aspire](../database/ef-core-migrations.md)
   - Fix bad link
   - Fixes/Updates to documentation
   - New migrations doc
-- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](../database/sql-server-components.md) - Update SQL Server components content
+- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](../database/sql-server-integrations.md) - Update SQL Server integrations content
 
 ## Messaging
 
 ### Updated articles
 
-- [.NET Aspire Apache Kafka component](../messaging/kafka-component.md) - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire Azure Event Hubs component](../messaging/azure-event-hubs-component.md) - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire Azure Service Bus component](../messaging/azure-service-bus-component.md) - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire NATS component](../messaging/nats-component.md) - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire RabbitMQ component](../messaging/rabbitmq-client-component.md) - Placeholder for .NET Aspire preview 7.
-- [Tutorial: Use .NET Aspire messaging components in ASP.NET Core](../messaging/messaging-components.md)
+- [.NET Aspire Apache Kafka integration](../messaging/kafka-integration.md) - Placeholder for .NET Aspire preview 7.
+- [.NET Aspire Azure Event Hubs integration](../messaging/azure-event-hubs-integration.md) - Placeholder for .NET Aspire preview 7.
+- [.NET Aspire Azure Service Bus integration](../messaging/azure-service-bus-integration.md) - Placeholder for .NET Aspire preview 7.
+- [.NET Aspire NATS integration](../messaging/nats-integration.md) - Placeholder for .NET Aspire preview 7.
+- [.NET Aspire RabbitMQ integration](../messaging/rabbitmq-client-integration.md) - Placeholder for .NET Aspire preview 7.
+- [Tutorial: Use .NET Aspire messaging integrations in ASP.NET Core](../messaging/messaging-integrations.md)
   - Fixes/Updates to documentation
   - Revise tutorials to use Aspire Starter App in VS (to match VSCode directions)
 
@@ -141,20 +141,20 @@ Welcome to what's new in the .NET Aspire docs for May 2024. This article lists s
 
 ### New articles
 
-- [Tutorial: Deploy a .NET Aspire project with a Redis Cache to Azure](../caching/caching-components-deployment.md)
+- [Tutorial: Deploy a .NET Aspire project with a Redis Cache to Azure](../caching/caching-integrations-deployment.md)
 
 ### Updated articles
 
-- [.NET Aspire Stack Exchange Redis component](../caching/stackexchange-redis-component.md) - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire Stack Exchange Redis distributed caching component](../caching/stackexchange-redis-distributed-caching-component.md) - Placeholder for .NET Aspire preview 7.
-- [.NET Aspire Stack Exchange Redis output caching component](../caching/stackexchange-redis-output-caching-component.md) - Placeholder for .NET Aspire preview 7.
-- [Tutorial: Implement caching with .NET Aspire components](../caching/caching-components.md) - Caching tutorial fixes
+- [.NET Aspire Stack Exchange Redis integration](../caching/stackexchange-redis-integration.md) - Placeholder for .NET Aspire preview 7.
+- [.NET Aspire Stack Exchange Redis distributed caching integration](../caching/stackexchange-redis-distributed-caching-integration.md) - Placeholder for .NET Aspire preview 7.
+- [.NET Aspire Stack Exchange Redis output caching integration](../caching/stackexchange-redis-output-caching-integration.md) - Placeholder for .NET Aspire preview 7.
+- [Tutorial: Implement caching with .NET Aspire integrations](../caching/caching-integrations.md) - Caching tutorial fixes
 
 ## Security
 
 ### Updated articles
 
-- [.NET Aspire Azure Key Vault component](../security/azure-security-key-vault-component.md) - Placeholder for .NET Aspire preview 7.
+- [.NET Aspire Azure Key Vault integration](../security/azure-security-key-vault-integration.md) - Placeholder for .NET Aspire preview 7.
 
 ## Deployment
 

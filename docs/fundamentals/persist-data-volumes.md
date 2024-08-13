@@ -96,6 +96,6 @@ The preceding code snippet demonstrates how to create a persistent password for 
 
 You can apply the volume concepts in the preceding code to a variety of services, including seeding a database with data that will persist across app launches. Try combining these techniques with the resource implementations demonstrated in the following tutorials:
 
-- [Tutorial: Connect an ASP.NET Core app to .NET Aspire storage components](../storage/azure-storage-components.md)
-- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](../database/sql-server-components.md)
+- [Tutorial: Connect an ASP.NET Core app to .NET Aspire storage integrations](../storage/azure-storage-integrations.md)
+- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](../database/sql-server-integrations.md)
 - [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)

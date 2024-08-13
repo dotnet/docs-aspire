@@ -10,7 +10,7 @@ In .NET Aspire, code identifies resources with an arbitrary string, such as "dat
 
 ## Symptoms
 
-When your app accesses a service that needs one of the components in your app, it may fail with an exception similar to the following:
+When your app accesses a service that needs one of the integrations in your app, it may fail with an exception similar to the following:
 
 > "InvalidOperationException: ConnectionString is missing."
 
