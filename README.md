@@ -1,5 +1,6 @@
 # .NET Aspire docs
 
+[![Discord](https://img.shields.io/discord/732297728826277939?style=flat&logo=discord&logoColor=white&label=join%20our%20discord&labelColor=512bd4&color=cyan)](https://discord.com/invite/h87kDAHQgJ)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9186/badge)](https://www.bestpractices.dev/projects/9186)
 [![GitHub contributors](https://img.shields.io/github/contributors/dotnet/docs-aspire.svg)](https://GitHub.com/dotnet/docs-aspire/graphs/contributors/)
 [![GitHub repo size](https://img.shields.io/github/repo-size/dotnet/docs-aspire)](https://github.com/dotnet/docs-aspire)
