@@ -2,7 +2,7 @@
 title: .NET Aspire Azure AI OpenAI component
 description: Learn how to use the .NET Aspire Azure AI OpenAI component.
 ms.topic: how-to
-ms.date: 07/17/2024
+ms.date: 08/20/2024
 ---
 
 # .NET Aspire Azure AI OpenAI component
@@ -84,10 +84,23 @@ builder.AddProject<Projects.ExampleProject>()
        .WithReference(openai);
 ```
 
-The `AddAzureAIOpenAI` method will read connection information from the app host's configuration (for example, from "user secrets") under the `ConnectionStrings:openAiConnectionName` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named `openAiConnectionName` in the `ExampleProject` project. In the _:::no-loc text="Program.cs":::_ file of ExampleProject, the connection can be consumed using:
+The `AddAzureOpenAI` method will read connection information from the app host's configuration (for example, from "user secrets") under the `ConnectionStrings:openAiConnectionName` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named `openAiConnectionName` in the `ExampleProject` project. In the _:::no-loc text="Program.cs":::_ file of ExampleProject, the connection can be consumed using:
 
 ```csharp
-builder.AddAzureAIOpenAI("openAiConnectionName");
+builder.AddAzureOpenAI("openAiConnectionName");
+```
+
+To add an Azure OpenAI Deployment resource to the application model, chain a call to <xref:Aspire.Hosting.AzureOpenAIExtensions.AddDeployment%2A> method:
+
+```csharp
+builder.AddAzureOpenAI("openAiConnectionName")
+    .AddDeployment(
+        new AzureOpenAIDeployment(
+            name: "chatmodel",
+            modelName: "gpt-4o",
+            modelVersion: "2024-05-13",
+            skuName: "Standard",
+            skuCapacity: 1000));
 ```
 
 ## Configuration
