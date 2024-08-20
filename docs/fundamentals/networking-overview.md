@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire inner loop networking overview
 description: Learn how .NET Aspire handles networking and service bindings, and how you can use them in your app code.
-ms.date: 07/25/2024
+ms.date: 08/20/2024
 ms.topic: overview
 ---
 
@@ -59,11 +59,11 @@ For more information, see [.NET Aspire and launch profiles](launch-profiles.md).
 
 ## Kestrel configured endpoints
 
-.NET Aspire supports Kestrel endpoint configuration. For example, consider an _appsettings.json_ file for a project that defines a Kestrel endpoint with the HTTPS scheme and port 7001:
+.NET Aspire supports Kestrel endpoint configuration. For example, consider an _appsettings.json_ file for a project that defines a Kestrel endpoint with the HTTPS scheme and port 5271:
 
 :::code language="json" source="snippets/networking/Networking.Frontend/Networking.Frontend/appsettings.Development.json" highlight="8-14":::
 
-The preceding configuration specifies an `Https` endpoint. The `Url` property is set to `https://*:7001`, which means the endpoint listens on all interfaces on port 7001. For more information, see [Configure endpoints for the ASP.NET Core Kestrel web server](/aspnet/core/fundamentals/servers/kestrel/endpoints).
+The preceding configuration specifies an `Https` endpoint. The `Url` property is set to `https://*:5271`, which means the endpoint listens on all interfaces on port 5271. For more information, see [Configure endpoints for the ASP.NET Core Kestrel web server](/aspnet/core/fundamentals/servers/kestrel/endpoints).
 
 With the Kestrel endpoint configured, the project should remove any configured `applicationUrl` from the _launchSettings.json_ file.
 
