@@ -84,7 +84,7 @@ builder.AddProject<Projects.ExampleProject>()
        .WithReference(openai);
 ```
 
-The `AddAzureOpenAI` method will read connection information from the app host's configuration (for example, from "user secrets") under the `ConnectionStrings:openAiConnectionName` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named `openAiConnectionName` in the `ExampleProject` project. In the _:::no-loc text="Program.cs":::_ file of ExampleProject, the connection can be consumed using:
+The `AddAzureOpenAI` method reads connection information from the app host's configuration (for example, from "user secrets") under the `ConnectionStrings:openAiConnectionName` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named `openAiConnectionName` in the `ExampleProject` project. In the _:::no-loc text="Program.cs":::_ file of ExampleProject, the connection can be consumed using:
 
 ```csharp
 builder.AddAzureOpenAI("openAiConnectionName");
