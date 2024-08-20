@@ -2,7 +2,7 @@
 title: External parameters
 description: Learn how to express parameters such as secrets, connection strings, and other configuration values that might vary between environments.
 ms.topic: how-to
-ms.date: 03/01/2024
+ms.date: 08/20/2024
 ---
 
 # External parameters
@@ -130,25 +130,7 @@ Now consider the following app host configuration file _:::no-loc text="appsetti
 }
 ```
 
-The manifest representation is as follows:
-
-```json
-{
-  "resources": {
-    "redis": {
-      "type": "parameter.v0",
-      "connectionString": "{redis.value}",
-      "value": "{redis.inputs.value}",
-      "inputs": {
-        "value": {
-          "type": "string",
-          "secret": true
-        }
-      }
-    }
-  }
-}
-```
+For more information pertaining to connection strings and their representation in the deployment manifest, see[Connection string and binding references](../deployment/manifest-format.md#connection-string-and-binding-references).
 
 ## Parameter example
 
