@@ -154,6 +154,11 @@ With the component library created, you can now update the Newsletter service to
 ```dotnetcli
 dotnet add ./MailDevResource.NewsletterService/MailDevResource.NewsletterService.csproj reference MailKit.Client/MailKit.Client.csproj
 ```
+Next, add a reference to the `ServiceDefaults` project:
+
+```dotnetcli
+dotnet add ./MailDevResource.NewsletterService/MailDevResource.NewsletterService.csproj reference MailDevResource.ServiceDefaults/MailDevResource.ServiceDefaults.csproj
+```
 
 The final step is to replace the existing _:::no-loc text="Program.cs":::_ file in the `MailDevResource.NewsletterService` project with the following C# code:
 
