@@ -29,7 +29,7 @@ If you're following along, you should have a Newsletter app from the steps in th
 1. Add the project to the solution.
 
     ```dotnetcli
-    dotnet sln /MailDevResource.sln add MailKit.Client/MailKit.Client.csproj
+    dotnet sln ./MailDevResource.sln add MailKit.Client/MailKit.Client.csproj
     ```
 
 The next step is to add all the NuGet packages that the component relies on. Rather than having you add each package one-by-one from the .NET CLI, it's likely easier to copy and paste the following XML into the _MailKit.Client.csproj_ file.
