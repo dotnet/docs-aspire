@@ -72,7 +72,7 @@ public sealed class MailKitClientSettings
                         """);
             }
 
-            if (Uri.TryCreate(endpoint.ToString(), UriKind.Absolute, out var uri) is false)
+            if (Uri.TryCreate(endpoint.ToString(), UriKind.Absolute, out uri) is false)
             {
                 throw new InvalidOperationException($"""
                         The 'ConnectionStrings:<connectionName>' (or 'Endpoint' key in
