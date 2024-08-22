@@ -29,7 +29,7 @@ If you're following along, you should have a Newsletter app from the steps in th
 1. Add the project to the solution.
 
     ```dotnetcli
-    dotnet sln /MailDevResource.sln add MailKit.Client/MailKit.Client.csproj
+    dotnet sln ./MailDevResource.sln add MailKit.Client/MailKit.Client.csproj
     ```
 
 The next step is to add all the NuGet packages that the component relies on. Rather than having you add each package one-by-one from the .NET CLI, it's likely easier to copy and paste the following XML into the _MailKit.Client.csproj_ file.
@@ -153,6 +153,12 @@ With the component library created, you can now update the Newsletter service to
 
 ```dotnetcli
 dotnet add ./MailDevResource.NewsletterService/MailDevResource.NewsletterService.csproj reference MailKit.Client/MailKit.Client.csproj
+```
+
+Next, add a reference to the `ServiceDefaults` project:
+
+```dotnetcli
+dotnet add ./MailDevResource.NewsletterService/MailDevResource.NewsletterService.csproj reference MailDevResource.ServiceDefaults/MailDevResource.ServiceDefaults.csproj
 ```
 
 The final step is to replace the existing _:::no-loc text="Program.cs":::_ file in the `MailDevResource.NewsletterService` project with the following C# code:
