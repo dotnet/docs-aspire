@@ -2,7 +2,7 @@
 title: .NET Aspire PostgreSQL Entity Framework Core integration
 description: This article describes the .NET Aspire PostgreSQL Entity Framework Core integration.
 ms.topic: how-to
-ms.date: 08/12/2024
+ms.date: 08/22/2024
 ---
 
 # .NET Aspire PostgreSQL Entity Framework Core integration
@@ -75,6 +75,8 @@ var myService = builder.AddProject<Projects.MyService>()
 ```
 
 [!INCLUDE [postgresql-explicit-username-password](includes/postgresql-explicit-username-password.md)]
+
+[!INCLUDE [postgresql-pgweb](includes/postgresql-pgweb.md)]
 
 [!INCLUDE [postgresql-flexible-server](includes/postgresql-flexible-server.md)]
 

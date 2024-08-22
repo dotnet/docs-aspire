@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL integration
 description: This article describes the .NET Aspire PostgreSQL integration.
-ms.date: 08/12/2024
+ms.date: 08/22/2024
 ms.topic: how-to
 ---
 
@@ -61,6 +61,8 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 ```
 
 [!INCLUDE [postgresql-explicit-username-password](includes/postgresql-explicit-username-password.md)]
+
+[!INCLUDE [postgresql-pgweb](includes/postgresql-pgweb.md)]
 
 [!INCLUDE [postgresql-flexible-server](includes/postgresql-flexible-server.md)]
 
