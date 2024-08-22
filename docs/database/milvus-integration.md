@@ -2,7 +2,7 @@
 title: .NET Aspire Milvus database integration
 description: This article describes the .NET Aspire Milvus database integration.
 ms.topic: how-to
-ms.date: 08/12/2024
+ms.date: 08/22/2024
 ---
 
 # .NET Aspire Milvus database integration
@@ -75,6 +75,29 @@ The `WithReference` method configures a connection in the `MyService` project na
 ```csharp
 builder.AddMilvusClient("milvus");
 ```
+
+Milvus supports configuration-based (environment variable `COMMON_SECURITY_DEFAULTROOTPASSWORD`) default passwords. The default user is `root` and the default password is `Milvus`. To change the default password in the container, pass an `apiKey` parameter when calling the `AddMilvus` hosting API:
+
+```csharp
+var apiKey = builder.AddParameter("apiKey");
+
+var milvus = builder.AddMilvus("milvus", apiKey);
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(milvus);
+```
+
+The preceding code gets a parameter to pass to the `AddMilvus` API, and internally assigns the parameter to the `COMMON_SECURITY_DEFAULTROOTPASSWORD` environment variable of the Milvus container. The `apiKey` parameter is usually specified as a _user secret_:
+
+```json
+{
+  "Parameters": {
+    "apiKey": "Non-default P@ssw0rd"
+  }
+}
+```
+
+For more information, see [External parameters](../fundamentals/external-parameters.md).
 
 ## Configuration
 
