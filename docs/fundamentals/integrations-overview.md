@@ -7,24 +7,22 @@ ms.topic: conceptual
 
 # .NET Aspire integrations overview
 
-.NET Aspire integrations are a curated suite of NuGet packages specifically selected to facilitate the integration of cloud-native applications with prominent services and platforms, including but not limited to Redis and PostgreSQL. Each integration furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns.
+.NET Aspire integrations are a curated suite of NuGet packages selected to facilitate the integration of cloud-native applications with prominent services and platforms, including but not limited to Redis and PostgreSQL. Each integration furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns.
 
 > [!TIP]
 > Always strive to use the latest version of .NET Aspire integrations to take advantage of the latest features, improvements, and security updates.
 
-## Integration types
+## Integration responsibilities
 
-There are two types of integrations available in .NET Aspire:
+There are two sides to integrations in .NET Aspire, each with a different responsibility:
 
-- **Resource integrations**:
+- **Resource integrations**: These packages model various services, platforms, or capabilities such as caches, databases, logging, storage, and messaging systems. They extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface allowing the app host project to express resources in the distributed application builder and are tagged with `aspire`, `integration`, and `hosting`.
 
-    Some integrations model resources that represent various services and platforms, such as caches, databases, logging, storage, and messaging systems. Resource integrations expose APIs that extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. Their NuGet packages are tagged with at least the following: `aspire`, `integration`, and `hosting`.
+- **Client integrations**: These packages configure existing libraries to connect to resource-backed integrations. They extend the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> interface allowing client-consuming projects to use the connected resource and are tagged with `aspire`, `integration`, and `client`.
 
-- **Client integrations**:
+While .NET Aspire _client integrations_ can be used independently, they work best with the [.NET Aspire app host](app-host-overview.md). Each [integration](#available-integrations) provides installation, configuration, and usage details in the documentation—for both sides of the integration, the hosting and client respectively.
 
-    Other integrations provide a means of configuring existing libraries to connect to resource-backed integrations. Client integrations expose APIs that extend the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> interface. Their NuGet packages are tagged with at least the following: `aspire`, `integration`, and `client`.
-
-While .NET Aspire _client integrations_ can be used without an app host (orchestrator) project, they're designed to work best with the [.NET Aspire app host](app-host-overview.md). Each integration is documented to provide details for installing, configuring, and using the integration in your app.
+For example, if you want to use [Redis for caching](../caching/stackexchange-redis-caching-overview.md) in your .NET Aspire solution, you would use the `Aspire.Hosting.Redis` package to model the Redis resource. Then, you can connect to the Redis resource using the `Aspire.StackExchange.Redis` client integration.
 
 ## Available integrations
 
@@ -69,17 +67,17 @@ For more information on working with .NET Aspire integrations in Visual Studio, 
 
 ## Explore a sample integration workflow
 
-.NET Aspire integrations streamline the process of consuming popular services and platforms. For example, consider the **.NET Aspire project** template. With this template, you get the [AppHost](app-host-overview.md) and [ServiceDefaults](service-defaults.md) projects. Imagine that you have a need for a worker service to perform some database processing. You could use the [.NET Aspire PostgreSQL integration](../database/postgresql-integration.md) to connect to and utilize a PostgreSQL database. The database could be hosted on-prem or in a cloud service such as Azure, AWS, or GCP. The following steps demonstrate how to integrate this integration into your app:
+.NET Aspire integrations streamline the process of consuming popular services and platforms. For example, consider the **.NET Aspire project** template. With this template, you get the [AppHost](app-host-overview.md) and [ServiceDefaults](service-defaults.md) projects. Imagine that you have a need for a worker service to perform some database processing. You could use the [.NET Aspire PostgreSQL integration](../database/postgresql-integration.md) to connect to and utilize a PostgreSQL database. The database could be hosted on-premises or in a cloud service such as Azure, Amazon Web Services (AWS), or Google Cloud Platform (GCP). The following steps demonstrate how to integrate this integration into your app:
 
 1. In the integration consuming (worker service) project, install the [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package.
 
-    # [.NET CLI](#tab/dotnet-cli)
+    ### [.NET CLI](#tab/dotnet-cli)
 
     ```dotnetcli
     dotnet add package Aspire.Npgsql
     ```
 
-    # [PackageReference](#tab/package-reference)
+    ### [PackageReference](#tab/package-reference)
 
     ```xml
     <PackageReference Include="Aspire.Npgsql" Version="[SelectVersion]" />
@@ -119,11 +117,11 @@ For more information on working with .NET Aspire integrations in Visual Studio, 
 
     :::code source="snippets/integrations/AspireApp/WorkerService/Worker.cs" highlight="7,13":::
 
-You now have a fully configured PostgreSQL database integration and corresponding container with connection integrated into your app! This integration also configured health checks, logging, metrics, retries, and other useful capabilities for you behind the scenes. .NET Aspire integrations provide various options to configure each of these features.
+You now have a fully configured PostgreSQL database integration and corresponding container with connection integrated into your app. This integration also configured health checks, logging, metrics, retries, and other useful capabilities for you behind the scenes. .NET Aspire integrations provide various options to configure each of these features.
 
 ## Configure .NET Aspire integrations
 
-.NET Aspire integrations implement a consistent configuration experience via <xref:Microsoft.Extensions.Configuration.IConfiguration> and <xref:Microsoft.Extensions.Options.IOptions%601>. Configuration is schematized and part of a integration's contract, ensuring backward compatibility across versions of the integration. You can set up every .NET Aspire integration through either JSON configuration files or directly through code using delegates. JSON files must follow a standardized naming convention based on the Component name.
+.NET Aspire integrations implement a consistent configuration experience via <xref:Microsoft.Extensions.Configuration.IConfiguration> and <xref:Microsoft.Extensions.Options.IOptions%601>. Configuration is schematized and part of an integration's contract, ensuring backward compatibility across versions of the integration. You can set up every .NET Aspire integration through either JSON configuration files or directly through code using delegates. JSON files must follow a standardized naming convention based on the Component name.
 
 For example, add the following code to the _:::no-loc text="appsettings.json":::_ file to configure the PostgreSQL integration:
 
@@ -160,7 +158,7 @@ For more information, see [.NET dependency injection](/dotnet/core/extensions/de
 
 ### Keyed services
 
-.NET Aspire integrations also support keyed dependency injection. In this scenario, the service name for keyed dependency injection will be the same as the connection name:
+.NET Aspire integrations also support keyed dependency injection. In this scenario, the service name for keyed dependency injection is the same as the connection name:
 
 ```csharp
 builder.AddKeyedNpgsqlDataSource(
@@ -185,7 +183,7 @@ Cloud-native applications surface many unique requirements and concerns. The cor
 
 - [Orchestration](app-host-overview.md): A lightweight, extensible, and cross-platform app host for .NET Aspire projects. The app host provides a consistent configuration and dependency injection experience for .NET Aspire integrations.
 - [Service discovery](../service-discovery/overview.md): A technique for locating services within a distributed application. Service discovery is a key integration of microservice architectures.
-- [Service defaults](service-defaults.md): A set of default configurations intended for sharing amongst resources within .NET Aspire projects. These defaults are designed to work well in most scenarios and can be customized as needed.
+- [Service defaults](service-defaults.md): A set of default configurations intended for sharing among resources within .NET Aspire projects. These defaults are designed to work well in most scenarios and can be customized as needed.
 
 Some .NET Aspire integrations also include more capabilities for specific services or platforms, which can be found in the integration specific reference docs.
 
@@ -193,13 +191,13 @@ Some .NET Aspire integrations also include more capabilities for specific servic
 
 .NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as _the pillars of observability_.
 
-- **[Logging](/dotnet/core/diagnostics/logging-tracing)**: A technique where code is instrumented to produce logs of interesting events that occurred while the program was running. A baseline set of log events are enabled for .NET Aspire integrations by default and more extensive logging can be enabled on-demand to diagnose particular problems.
+- **[Logging](/dotnet/core/diagnostics/logging-tracing)**: A technique where code is instrumented to produce logs of interesting events that occurred while the program was running. A baseline set of log events is enabled for .NET Aspire integrations by default and more extensive logging can be enabled on-demand to diagnose particular problems.
 
 - **[Tracing](/dotnet/core/diagnostics/distributed-tracing)**: A specialized form of logging that helps you localize failures and performance issues within applications distributed across multiple machines or processes. This technique tracks requests through an application to correlate work done by different application integrations and separate it from other work the application may be doing for concurrent requests.
 
 - **[Metrics](/dotnet/core/diagnostics/metrics)**: Numerical measurements recorded over time to monitor application performance and health. Metrics are often used to generate alerts when potential problems are detected. Metrics have low performance overhead and many services configure them as always-on telemetry.
 
-Together, these types of telemetry allow you to gain insights into your application's behavior and performance using various monitoring and analysis tools. Depending on the backing service, some integrations may only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled. For more information, see [.NET Aspire service defaults](service-defaults.md).
+Together, these types of telemetry allow you to gain insights into your application's behavior and performance using various monitoring and analysis tools. Depending on the backing service, some integrations might only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled. For more information, see [.NET Aspire service defaults](service-defaults.md).
 
 ### Health checks
 
