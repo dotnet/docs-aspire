@@ -7,7 +7,15 @@ ms.date: 08/26/2024
 
 # .NET Aspire Azure Event Hubs integration
 
-In this article, you learn how to use the .NET Aspire Azure Event Hubs integration. The `Aspire.Azure.Messaging.EventHubs` library offers options for registering an <xref:Azure.Messaging.EventHubs.Producer.EventHubProducerClient>, an <xref:Azure.Messaging.EventHubs.Consumer.EventHubConsumerClient>, an <xref:Azure.Messaging.EventHubs.EventProcessorClient> or a <xref:Azure.Messaging.EventHubs.Primitives.PartitionReceiver> in the DI container for connecting to [Azure Event Hubs](/azure/event-hubs).
+In this article, you learn how to use the .NET Aspire Azure Event Hubs integration. The `Aspire.Azure.Messaging.EventHubs` library offers options for registering the following types:
+
+- <xref:Azure.Messaging.EventHubs.Producer.EventHubProducerClient>
+- <xref:Azure.Messaging.EventHubs.Producer.EventHubBufferedProducerClient>
+- <xref:Azure.Messaging.EventHubs.Consumer.EventHubConsumerClient>
+- <xref:Azure.Messaging.EventHubs.EventProcessorClient>
+- <xref:Azure.Messaging.EventHubs.Primitives.PartitionReceiver>
+
+These type are registered in the DI container for connecting to [Azure Event Hubs](/azure/event-hubs).
 
 ## Prerequisites
 
