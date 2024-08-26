@@ -55,6 +55,8 @@ The following clients are supported by the library, along with their correspondi
 | `EventProcessorClient`           | `EventProcessorClientOptions`           | `AzureMessagingEventHubsProcessorSettings`         |
 | `PartitionReceiver`              | `PartitionReceiverOptions`              | `AzureMessagingEventHubsPartitionReceiverSettings` |
 
+The client type are from the Azure SDK for .NET, as are the corresponding options classes. The settings classes are provided by the .NET Aspire Azure Event Hubs integration library.
+
 ## Example usage
 
 The following example assumes that you have an Azure Event Hubs namespace and an Event Hub created and wish to configure an `EventHubProducerClient` to send events to the Event Hub. The `EventHubBufferedProducerClient`, `EventHubConsumerClient`, `EventProcessorClient`, and `PartitionReceiver`are configured in a similar manner.
