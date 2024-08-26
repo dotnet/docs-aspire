@@ -12,11 +12,17 @@ ms.topic: conceptual
 > [!TIP]
 > Always strive to use the latest version of .NET Aspire integrations to take advantage of the latest features, improvements, and security updates.
 
-_Integrations are two-fold_:
+## Integration types
 
-- **Resource integrations**: some integrations model resources that represent various services and platforms, such as caches, databases, logging, storage, and messaging systems. Resource integrations expose APIs that extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface.
+There are two types of integrations available in .NET Aspire:
 
-- **Client integrations**: provide a means of configuring existing libraries to connect to resource-backed integrations. Client integrations expose APIs that extend the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> interface.
+- **Resource integrations**:
+
+    Some integrations model resources that represent various services and platforms, such as caches, databases, logging, storage, and messaging systems. Resource integrations expose APIs that extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. Their NuGet packages are tagged with at least the following: `aspire`, `integration`, and `hosting`.
+
+- **Client integrations**:
+
+    Other integrations provide a means of configuring existing libraries to connect to resource-backed integrations. Client integrations expose APIs that extend the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> interface. Their NuGet packages are tagged with at least the following: `aspire`, `integration`, and `client`.
 
 While .NET Aspire _client integrations_ can be used without an app host (orchestrator) project, they're designed to work best with the [.NET Aspire app host](app-host-overview.md). Each integration is documented to provide details for installing, configuring, and using the integration in your app.
 
