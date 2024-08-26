@@ -47,7 +47,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 The following clients are supported by the library, along with their corresponding options and settings classes:
 
-| Client type                      | Options class                           | Settings class                                     |
+| Azure Client type                | Azure Options class                     | .NET Aspire Settings class                         |
 |----------------------------------|-----------------------------------------|----------------------------------------------------|
 | `EventHubProducerClient`         | `EventHubProducerClientOptions`         | `AzureMessagingEventHubsProducerSettings`          |
 | `EventHubBufferedProducerClient` | `EventHubBufferedProducerClientOptions` | `AzureMessagingEventHubsBufferedProducerSettings`  |
