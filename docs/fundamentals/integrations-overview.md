@@ -7,7 +7,7 @@ ms.topic: conceptual
 
 # .NET Aspire integrations overview
 
-.NET Aspire integrations are a curated suite of NuGet packages selected to facilitate the integration of cloud-native applications with prominent services and platforms, including but not limited to Redis and PostgreSQL. Each integration furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns.
+.NET Aspire integrations are a curated suite of NuGet packages selected to facilitate the integration of cloud-native applications with prominent services and platforms, such as Redis and PostgreSQL. Each integration furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns.
 
 > [!TIP]
 > Always strive to use the latest version of .NET Aspire integrations to take advantage of the latest features, improvements, and security updates.
