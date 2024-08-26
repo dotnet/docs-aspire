@@ -2,12 +2,20 @@
 title: .NET Aspire Azure Event Hubs integration
 description: This article describes the .NET Aspire Azure Event Hubs integration features and capabilities.
 ms.topic: how-to
-ms.date: 08/12/2024
+ms.date: 08/26/2024
 ---
 
 # .NET Aspire Azure Event Hubs integration
 
-In this article, you learn how to use the .NET Aspire Azure Event Hubs integration. The `Aspire.Azure.Messaging.EventHubs` library offers options for registering an <xref:Azure.Messaging.EventHubs.Producer.EventHubProducerClient>, an <xref:Azure.Messaging.EventHubs.Consumer.EventHubConsumerClient>, an <xref:Azure.Messaging.EventHubs.EventProcessorClient> or a <xref:Azure.Messaging.EventHubs.Primitives.PartitionReceiver> in the DI container for connecting to [Azure Event Hubs](/azure/event-hubs).
+In this article, you learn how to use the .NET Aspire Azure Event Hubs integration. The `Aspire.Azure.Messaging.EventHubs` library offers options for registering the following types:
+
+- <xref:Azure.Messaging.EventHubs.Producer.EventHubProducerClient>
+- <xref:Azure.Messaging.EventHubs.Producer.EventHubBufferedProducerClient>
+- <xref:Azure.Messaging.EventHubs.Consumer.EventHubConsumerClient>
+- <xref:Azure.Messaging.EventHubs.EventProcessorClient>
+- <xref:Azure.Messaging.EventHubs.Primitives.PartitionReceiver>
+
+These type are registered in the DI container for connecting to [Azure Event Hubs](/azure/event-hubs).
 
 ## Prerequisites
 
@@ -39,16 +47,19 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 The following clients are supported by the library, along with their corresponding options and settings classes:
 
-| Client type              | Options class                   | Settings class                                     |
-|--------------------------|---------------------------------|----------------------------------------------------|
-| `EventHubProducerClient` | `EventHubProducerClientOptions` | `AzureMessagingEventHubsProducerSettings`          |
-| `EventHubConsumerClient` | `EventHubConsumerClientOptions` | `AzureMessagingEventHubsConsumerSettings`          |
-| `EventProcessorClient`   | `EventProcessorClientOptions`   | `AzureMessagingEventHubsProcessorSettings`         |
-| `PartitionReceiver`      | `PartitionReceiverOptions`      | `AzureMessagingEventHubsPartitionReceiverSettings` |
+| Azure Client type                | Azure Options class                     | .NET Aspire Settings class                         |
+|----------------------------------|-----------------------------------------|----------------------------------------------------|
+| `EventHubProducerClient`         | `EventHubProducerClientOptions`         | `AzureMessagingEventHubsProducerSettings`          |
+| `EventHubBufferedProducerClient` | `EventHubBufferedProducerClientOptions` | `AzureMessagingEventHubsBufferedProducerSettings`  |
+| `EventHubConsumerClient`         | `EventHubConsumerClientOptions`         | `AzureMessagingEventHubsConsumerSettings`          |
+| `EventProcessorClient`           | `EventProcessorClientOptions`           | `AzureMessagingEventHubsProcessorSettings`         |
+| `PartitionReceiver`              | `PartitionReceiverOptions`              | `AzureMessagingEventHubsPartitionReceiverSettings` |
+
+The client type are from the Azure SDK for .NET, as are the corresponding options classes. The settings classes are provided by the .NET Aspire Azure Event Hubs integration library.
 
 ## Example usage
 
-The following example assumes that you have an Azure Event Hubs namespace and an Event Hub created and wish to configure an `EventHubProducerClient` to send events to the Event Hub. The `EventHubConsumerClient`, `EventProcessorClient`, and `PartitionReceiver`are configured in a similar manner.
+The following example assumes that you have an Azure Event Hubs namespace and an Event Hub created and wish to configure an `EventHubProducerClient` to send events to the Event Hub. The `EventHubBufferedProducerClient`, `EventHubConsumerClient`, `EventProcessorClient`, and `PartitionReceiver`are configured in a similar manner.
 
 In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the `AddAzureEventHubProducerClient` extension to register a `EventHubProducerClient` for use via the dependency injection container.
 
