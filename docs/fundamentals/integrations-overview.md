@@ -1,18 +1,24 @@
 ---
 title: .NET Aspire integrations overview
 description: Explore the fundamental concepts of .NET Aspire integrations and learn how to integrate them into your apps.
-ms.date: 08/12/2024
+ms.date: 08/26/2024
 ms.topic: conceptual
 ---
 
 # .NET Aspire integrations overview
 
-.NET Aspire integrations are a curated suite of NuGet packages specifically selected to facilitate the integration of cloud-native applications with prominent services and platforms, including but not limited to Redis and PostgreSQL. Each integration furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns. .NET Aspire integrations can be used without an app host (orchestrator) project, but they're designed to work best with the [.NET Aspire app host](app-host-overview.md).
-
-.NET Aspire integrations should not be confused with .NET Aspire hosting packages, as they serve different purposes. Hosting packages are used to model and configure various resources in a .NET Aspire project, while integrations are used to map configuration to various client libraries.
+.NET Aspire integrations are a curated suite of NuGet packages specifically selected to facilitate the integration of cloud-native applications with prominent services and platforms, including but not limited to Redis and PostgreSQL. Each integration furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns.
 
 > [!TIP]
 > Always strive to use the latest version of .NET Aspire integrations to take advantage of the latest features, improvements, and security updates.
+
+_Integrations are two-fold_:
+
+- **Resource integrations**: some integrations model resources that represent various services and platforms, such as caches, databases, logging, storage, and messaging systems. Resource integrations expose APIs that extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface.
+
+- **Client integrations**: provide a means of configuring existing libraries to connect to resource-backed integrations. Client integrations expose APIs that extend the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> interface.
+
+While .NET Aspire _client integrations_ can be used without an app host (orchestrator) project, they're designed to work best with the [.NET Aspire app host](app-host-overview.md). Each integration is documented to provide details for installing, configuring, and using the integration in your app.
 
 ## Available integrations
 
