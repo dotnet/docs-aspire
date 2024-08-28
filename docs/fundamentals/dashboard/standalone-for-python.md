@@ -175,6 +175,46 @@ To use the Aspire dashboard with your Python application, you need to install th
 1. Replace the `print` calls with `logger.info` calls in your application.
 1. Restart your application.
 
+### Framework Specific Instrumentation
+
+This instrumentation has only focused on adding OpenTelemetry to our code. For more detailed instrumentation, you can use the OpenTelemetry Instrumentation packages for the specific frameworks that you are using.
+
+### [Flask](#tab/flask)
+
+1. Install the Flask instrumentation package:
+
+    ```Console
+    pip install opentelemetry-instrumentation-flask
+    ```
+
+1. Add the following code to your application:
+
+    ```Python
+    from opentelemetry.instrumentation.flask import FlaskInstrumentor
+
+    # add this line after configure_otel_otlp() call
+    FlaskInstrumentor().instrument()
+    ```
+
+### [FastAPI](#tab/fastapi)
+
+1. Install the FastAPI instrumentation package:
+
+    ```Console
+    pip install opentelemetry-instrumentation-fastapi
+    ```
+
+1. Add the following code to your application:
+
+    ```Python
+    from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+
+    # add this line after configure_otel_otlp() call
+    FastAPIInstrumentor.instrument_app(app)
+    ```
+
+---
+
 ## Start the Aspire dashboard
 
 To start the Aspire dashboard in standalone mode, run the following Docker command:
