@@ -47,7 +47,11 @@ items:
       - name: Explore features
         href: fundamentals/dashboard/explore.md
       - name: Standalone mode
-        href: fundamentals/dashboard/standalone.md
+        items:
+          - name: Overview
+            href: fundamentals/dashboard/standalone.md
+          - name: Tutorial: Use the dashboard in standalone mode with Python
+            href: fundamentals/dashboard/standalone-for-python.md
       - name: Configuration
         href: fundamentals/dashboard/configuration.md
       - name: Security considerations
@@ -146,7 +150,7 @@ items:
           href: storage/azure-storage-tables-component.md
         - name: Azure Web PubSub
           displayName: web pubsub,real-time,messaging
-          href: messaging/azure-web-pubsub-component.md  
+          href: messaging/azure-web-pubsub-component.md
       - name: Elasticsearch
         displayName: elasticsearch,search
         href: search/elasticsearch-component.md
