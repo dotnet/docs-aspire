@@ -3,6 +3,7 @@ title: Using Aspire Dashboard with Python Applications
 description: How to use the Aspire Dashboard in a Python application.
 ms.date: 08/27/2024
 ms.topic: tutorial
+ms.author: aapowell
 ---
 
 # Tutorial: Using the Aspire Dashboard with Python Applications
@@ -193,4 +194,4 @@ Navigate around the Python application, and you'll see structured logs in the As
 
 ## Next steps
 
-Congratulations! You have successfully used the Aspire dashboard with a Python application. To learn more about the Aspire dashboard, see the [Aspire dashboard overview](overview.md) and how to orchestrate a Python application with the [Aspire App Host](../get-started/build-aspire-apps-with-python.md).
+Congratulations! You have successfully used the Aspire dashboard with a Python application. To learn more about the Aspire dashboard, see the [Aspire dashboard overview](overview.md) and how to orchestrate a Python application with the [Aspire App Host](../../get-started/build-aspire-apps-with-python.md).
