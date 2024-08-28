@@ -8,7 +8,7 @@ ms.date: 08/27/2024
 
 ```Cmd
 py -m venv .venv
-.venv\scripts\activate
+.\.venv\Scripts\Activate.ps1
 ```
 
 #### [macOS/Linux](#tab/mac-linux)

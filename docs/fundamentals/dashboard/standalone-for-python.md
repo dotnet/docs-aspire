@@ -21,8 +21,8 @@ To complete this tutorial, you need the following:
 
 - [Docker](https://docs.docker.com/get-docker/)
   - You can use an alternative container runtime, but the commands in this article are for Docker.
-- [Python 3.12 or higher](https://www.python.org/downloads/) locally installed
-- A sample allication
+- [Python 3.9 or higher](https://www.python.org/downloads/) locally installed
+- A sample application
 
 ## Sample application
 
