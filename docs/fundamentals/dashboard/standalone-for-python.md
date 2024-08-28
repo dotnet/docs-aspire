@@ -11,17 +11,17 @@ The [Aspire dashboard](overview.md) provides a great UI for viewing telemetry, a
 
 > [!div class="checklist"]
 >
-> -   Start the Aspire dashboard in standalone mode.
-> -   Use the Aspire dashboard with a Python application.
+> - Start the Aspire dashboard in standalone mode.
+> - Use the Aspire dashboard with a Python application.
 
 ## Prerequisites
 
 To complete this tutorial, you need the following:
 
--   [Docker](https://docs.docker.com/get-docker/)
-    -   You can use an alternative container runtime, but the commands in this article are for Docker.
--   [Python 3.12 or higher](https://www.python.org/downloads/) locally installed
--   A sample allication
+- [Docker](https://docs.docker.com/get-docker/)
+  - You can use an alternative container runtime, but the commands in this article are for Docker.
+- [Python 3.12 or higher](https://www.python.org/downloads/) locally installed
+- A sample allication
 
 ## Sample application
 
