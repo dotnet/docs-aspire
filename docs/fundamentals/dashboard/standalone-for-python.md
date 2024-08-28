@@ -2,7 +2,7 @@
 title: Using Aspire Dashboard with Python Applications
 description: How to use the Aspire Dashboard in a Python application.
 ms.date: 08/27/2024
-ms.topic: Tutorial
+ms.topic: tutorial
 ---
 
 # Tutorial: Using the Aspire Dashboard with Python Applications
@@ -53,7 +53,7 @@ To run the application locally:
 
 1. Create a virtual environment for the app:
 
-    [!INCLUDE [Virtual environment setup](./includes/quickstart-python/virtual-environment-setup.md)]
+    [!INCLUDE [Virtual environment setup](./includes/standalone/virtual-environment-setup.md)]
 
 1. Install the dependencies:
 
@@ -69,7 +69,7 @@ To run the application locally:
 
 1. Browse to the sample application at `http://localhost:5000` in a web browser.
 
-    :::image type="content" source="./media/run-flask-app-localhost.png" alt-text="Screenshot of the Flask app running locally in a browser":::
+    :::image type="content" source="./media/standalone/run-flask-app-localhost.png" alt-text="Screenshot of the Flask app running locally in a browser":::
 
 ### [FastAPI](#tab/fastapi)
 
@@ -81,7 +81,7 @@ To run the application locally:
 
 1. Create a virtual environment for the app:
 
-    [!INCLUDE [Virtual environment setup](./includes/virtual-environment-setup.md)]
+    [!INCLUDE [Virtual environment setup](./includes/standalone/virtual-environment-setup.md)]
 
 1. Install the dependencies:
 
@@ -97,7 +97,7 @@ To run the application locally:
 
 1. Browse to the sample application at `http://localhost:8000` in a web browser.
 
-    :::image type="content" source="./media/run-django-app-localhost.png" alt-text="Screenshot of the FastAPI app running locally in a browser.":::
+    :::image type="content" source="./media/standalone/run-fastapi-app-localhost.png" alt-text="Screenshot of the FastAPI app running locally in a browser.":::
 
 ---
 
@@ -189,7 +189,7 @@ In the Docker logs, the endpoint and key for the dashboard are displayed. Copy t
 
 Navigate around the Python application, and you'll see structured logs in the Aspire dashboard. The structured logs page displays logs from your application, and you can filter and search the logs.
 
-:::image type="content" source="./media/aspire-dashboard-python-logs.png" alt-text="Screenshot of the Aspire dashboard showing the Python application logs":::
+:::image type="content" source="./media/standalone/aspire-dashboard-python-logs.png" alt-text="Screenshot of the Aspire dashboard showing the Python application logs":::
 
 ## Next steps
 
