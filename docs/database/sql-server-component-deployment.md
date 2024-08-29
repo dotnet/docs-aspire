@@ -44,7 +44,7 @@ Visual Studio creates a new ASP.NET Core solution that is structured to use .NET
 In an empty directory, run the following command to create a new .NET Aspire project:
 
 ```dotnetcli
-dotnet new aspire-starter --output AspireSql
+dotnet new aspire-starter --output AspireSQL
 ```
 
 The .NET CLI creates a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:
@@ -93,7 +93,7 @@ Configure the _AspireSQL.AppHost_ project for your desired SQL database service.
 
 Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _AspireSQL.AppHost_ project with the following code:
 
-:::code language="csharp" source="snippets/tutorial/aspiresqldeployazure/AspireSql.AppHost/Program.cs":::
+:::code language="csharp" source="snippets/tutorial/aspiresqldeployazure/AspireSQL.AppHost/Program.cs":::
 
 The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. The `PublishAsAzureSqlDatabase` method ensures that tools such as the Azure Developer CLI or Visual Studio create an Azure SQL Database resource during the deployment process.
 
@@ -101,7 +101,7 @@ The preceding code adds a SQL Server Container resource to your app and configur
 
 Replace the contents of the Program.cs file in the AspireSQL.AppHost project with the following code:
 
-:::code language="csharp" source="snippets/tutorial/aspiresqldeploycontainer/AspireSql.AppHost/Program.cs":::
+:::code language="csharp" source="snippets/tutorial/aspiresqldeploycontainer/AspireSQL.AppHost/Program.cs":::
 
 The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. This configuration also ensures that tools such as the Azure Developer CLI or Visual Studio create a containerized SQL Server instance during the deployment process.
 
