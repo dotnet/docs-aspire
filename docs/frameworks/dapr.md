@@ -1,7 +1,7 @@
 ---
 title: Use Dapr with .NET Aspire
 description: Learn how to use Dapr with .NET Aspire
-ms.date: 06/26/2024
+ms.date: 08/12/2024
 ms.topic: overview
 ---
 
@@ -116,25 +116,25 @@ The full _:::no-loc text="Program.cs":::_ file for the frontend project shows:
 
 :::code language="csharp" source="snippets/Dapr/Dapr.Web/Program.cs" highlight="15,17":::
 
-For example, in a Blazor project, the `WeatherApiClient` class can be injected into a component and used to call the backend service.
+For example, in a Blazor project, the `WeatherApiClient` class can be injected into a integration and used to call the backend service.
 
 :::code language="csharp" source="snippets/Dapr/Dapr.Web/Components/Pages/Weather.razor" highlight="5,47":::
 
-When the Dapr SDK is used, the Dapr sidecar is called over HTTP. The Dapr sidecar then forwards the request to the target service. While the target service runs in a separate process from the sidecar, the component related to the service runs in the Dapr sidecar and is responsible for service discovery and routing the request to the target service.
+When the Dapr SDK is used, the Dapr sidecar is called over HTTP. The Dapr sidecar then forwards the request to the target service. While the target service runs in a separate process from the sidecar, the integration related to the service runs in the Dapr sidecar and is responsible for service discovery and routing the request to the target service.
 
 ## Dapr and .NET Aspire
 
-At first sight Dapr and .NET Aspire may look like they have overlapping functionality, and they do. However, they both take a different approach. .NET Aspire is an opiniated approach on how to build distributed applications on a cloud platform. Dapr is a runtime that abstracts away the common complexities of the underlying cloud platform. It relies on sidecars to provide abstractions for things like configuration, secret management, and messaging. The underlying technology can be easily switched out through configuration files, while your code does not need to change.
+At first sight Dapr and .NET Aspire may look like they have overlapping functionality, and they do. However, they both take a different approach. .NET Aspire is an opinionated approach on how to build distributed applications on a cloud platform. Dapr is a runtime that abstracts away the common complexities of the underlying cloud platform. It relies on sidecars to provide abstractions for things like configuration, secret management, and messaging. The underlying technology can be easily switched out through configuration files, while your code does not need to change.
 
 .NET Aspire makes setting up and debugging Dapr applications easier by providing a straightforward API to configure Dapr sidecars, and by exposing the sidecars as resources in the dashboard.
 
 ### Explore Dapr components with .NET Aspire
 
-Dapr provides many [built-in components](https://docs.dapr.io/concepts/components-concept), and when you use Dapr with .NET Aspire you can easily explore and configure these components. Don't confuse these components with .NET Aspire components. For example, consider the following:
+Dapr provides many [built-in components](https://docs.dapr.io/concepts/components-concept), and when you use Dapr with .NET Aspire you can easily explore and configure these components. Don't confuse these components with .NET Aspire integrations. For example, consider the following:
 
 - [Dapr—State stores](https://docs.dapr.io/concepts/components-concept/#state-stores): Call <xref:Aspire.Hosting.IDistributedApplicationBuilderExtensions.AddDaprStateStore%2A> to add a configured state store to your .NET Aspire project.
 - [Dapr—Pub Sub](https://docs.dapr.io/concepts/components-concept/#pubsub-brokers): Call <xref:Aspire.Hosting.IDistributedApplicationBuilderExtensions.AddDaprPubSub%2A> to add a configured pub sub to your .NET Aspire project.
-- Dapr—Components: Call <xref:Aspire.Hosting.IDistributedApplicationBuilderExtensions.AddDaprComponent%2A> to add a configured component to your .NET Aspire project.
+- Dapr—Components: Call <xref:Aspire.Hosting.IDistributedApplicationBuilderExtensions.AddDaprComponent%2A> to add a configured integration to your .NET Aspire project.
 
 ## Next steps
 

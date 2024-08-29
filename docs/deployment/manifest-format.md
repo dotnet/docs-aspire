@@ -9,7 +9,7 @@ ms.topic: reference
 
 In this article, you learn about the .NET Aspire manifest format. This article serves as a reference guide for deployment tool builders, aiding in the creation of tooling to deploy .NET Aspire projects on specific hosting platforms, whether on-premises or in the cloud.
 
-.NET Aspire [simplifies the local development experience](../fundamentals/networking-overview.md) by helping to manage interdependencies between application components. To help simplify the deployment of applications, .NET Aspire projects can generate a manifest of all the resources defined as a JSON formatted file.
+.NET Aspire [simplifies the local development experience](../fundamentals/networking-overview.md) by helping to manage interdependencies between application integrations. To help simplify the deployment of applications, .NET Aspire projects can generate a manifest of all the resources defined as a JSON formatted file.
 
 ## Generate a manifest
 
@@ -948,5 +948,5 @@ When resources as configured as Azure resources, the `azure.bicep.v0` resource t
 
 - [.NET Aspire overview](../get-started/aspire-overview.md)
 - [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)
-- [.NET Aspire components overview](../fundamentals/components-overview.md)
+- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
 - [Service discovery in .NET Aspire](../service-discovery/overview.md)

@@ -1,7 +1,7 @@
 ---
 title: Create custom resource types for .NET Aspire
 description: Learn how to create a custom resource for an existing containerized application.
-ms.date: 07/17/2024
+ms.date: 08/12/2024
 ms.topic: how-to
 ---
 
@@ -44,7 +44,7 @@ When custom resource requires optional configuration, developers may wish to imp
 
 To help understand how to develop custom resources, this article shows an example of how to build a custom resource for [MailDev](https://maildev.github.io/maildev/). MailDev is an open-source tool which provides a local mail server specifically designed to allow developers to test e-mail sending behaviors within their app. For more information, see [the MailDev GitHub repository](https://github.com/maildev/maildev).
 
-In this example you create a new .NET Aspire project as a test environment for the MailDev resource that you create. While you can create custom resources in existing .NET Aspire projects it's a good idea to consider whether the custom resource might be used across multiple .NET Aspire-based solutions and should be developed as a reusable component.
+In this example you create a new .NET Aspire project as a test environment for the MailDev resource that you create. While you can create custom resources in existing .NET Aspire projects it's a good idea to consider whether the custom resource might be used across multiple .NET Aspire-based solutions and should be developed as a reusable integration.
 
 ## Setup the starter project
 
@@ -183,7 +183,7 @@ Add the following code to a new file named _MailDevResourceBuilderExtensions.cs_
 
 :::code language="csharp" source="snippets/MailDevResource/MailDev.Hosting/MailDevResourceBuilderExtensions.cs":::
 
-## Validate custom component inside the app host
+## Validate custom integration inside the app host
 
 Now that the basic structure for the custom resource is complete it is time to test it in a real AppHost project. Open the _:::no-loc text="Program.cs":::_ file in the _:::no-loc text="MailDevResource.AppHost":::_ project and update it with the following code:
 
@@ -213,7 +213,7 @@ _The MailDev web app should look similar to the following:_
 
 ## Add a .NET service project to the app host for testing
 
-Once .NET Aspire can successfully launch the MailDev component, it's time to consume the connection information for MailDev within a .NET project. In .NET Aspire it's common for there to be a _hosting package_ and one or more _component packages_. For example consider:
+Once .NET Aspire can successfully launch the MailDev integration, it's time to consume the connection information for MailDev within a .NET project. In .NET Aspire it's common for there to be a _hosting package_ and one or more _component packages_. For example consider:
 
 - **Hosting package**: Used to represent resources within the app model.
   - `Aspire.Hosting.Redis`
@@ -222,7 +222,7 @@ Once .NET Aspire can successfully launch the MailDev component, it's time to con
   - `Aspire.StackExchange.Redis.DistributedCaching`
   - `Aspire.StackExchange.Redis.OutputCaching`
 
-In the case of the MailDev resource, the .NET platform already has an SMTP client in the form of <xref:System.Net.Mail.SmtpClient>. In this example you use this existing API for the sake of simplicity, although other resource types may benefit from custom component libraries to assist developers.
+In the case of the MailDev resource, the .NET platform already has an SMTP client in the form of <xref:System.Net.Mail.SmtpClient>. In this example you use this existing API for the sake of simplicity, although other resource types may benefit from custom integration libraries to assist developers.
 
 In order to test the end-to-end scenario, you need a .NET project which we can inject the connection information into for the MailDev resource. Add a web api project:
 
@@ -267,7 +267,7 @@ To use the SMTP connection details that were injected into the newsletter servic
 :::code source="snippets/MailDevResource/MailDevResource.NewsletterService/Program.cs" id="smtp":::
 
 > [!TIP]
-> This code snippet relies on the official `SmtpClient`, however; this type is obsolete on some platforms and not recommended on others. This is used here to demonstrate a non-componentized approach to using the MailDev resource. For a more modern approach using [MailKit](https://github.com/jstedfast/MailKit), see [Create custom .NET Aspire component](custom-component.md).
+> This code snippet relies on the official `SmtpClient`, however; this type is obsolete on some platforms and not recommended on others. This is used here to demonstrate a non-componentized approach to using the MailDev resource. For a more modern approach using [MailKit](https://github.com/jstedfast/MailKit), see [Create custom .NET Aspire integration](custom-integration.md).
 
 To test the client, add two simple `subscribe` and `unsubscribe` POST methods to the newsletter service. Add the following code replacing the "weatherforecast" `MapGet` call in the _:::no-loc text="Program.cs":::_ file of the _MailDevResource.NewsletterService_ project to setup the ASP.NET Core routes:
 
@@ -483,9 +483,9 @@ Careful consideration should be given as to whether the resource should be prese
 
 ## Summary
 
-In the custom resource tutorial, you learned how to create a custom .NET Aspire resource which uses an existing containerized application (MailDev). You then used that to improve the local development experience by making it easy to test e-mail capabilities that might be used within an app. These learnings can be applied to building out other custom resources that can be used in .NET Aspire-based applications. This specific example didn't include any custom components, but it's possible to build out custom components to make it easier for developers to use the resource. In this scenario you were able to rely on the existing `SmtpClient` class in the .NET platform to send e-mails.
+In the custom resource tutorial, you learned how to create a custom .NET Aspire resource which uses an existing containerized application (MailDev). You then used that to improve the local development experience by making it easy to test e-mail capabilities that might be used within an app. These learnings can be applied to building out other custom resources that can be used in .NET Aspire-based applications. This specific example didn't include any custom integrations, but it's possible to build out custom integrations to make it easier for developers to use the resource. In this scenario you were able to rely on the existing `SmtpClient` class in the .NET platform to send e-mails.
 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Create custom .NET Aspire component](custom-component.md)
+> [Create custom .NET Aspire integration](custom-integration.md)

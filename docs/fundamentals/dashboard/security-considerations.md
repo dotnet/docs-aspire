@@ -13,7 +13,7 @@ Data displayed in the dashboard can be sensitive. For example, configuration can
 
 ## Scenarios for running the dashboard
 
-The dashboard can be run in different scenarios, such as being automatically starting by .NET Aspire tooling, or as a standalone application that is separate from other .NET Aspire components. Steps to secure the dashboard depend on how it's being run.
+The dashboard can be run in different scenarios, such as being automatically starting by .NET Aspire tooling, or as a standalone application that is separate from other .NET Aspire integrations. Steps to secure the dashboard depend on how it's being run.
 
 ### .NET Aspire tooling
 

@@ -20,7 +20,7 @@ Welcome to what's new in the .NET Aspire docs for July 2024. This article lists 
 ### Updated articles
 
 - [.NET Aspire and launch profiles](../fundamentals/launch-profiles.md) - Networking refinements
-- [.NET Aspire components overview](../fundamentals/components-overview.md) - Fix typo
+- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md) - Fix typo
 - [.NET Aspire inner-loop networking overview](../fundamentals/networking-overview.md)
   - Networking refinements
   - Add a few more bits about the callback overload.
@@ -37,40 +37,40 @@ Welcome to what's new in the .NET Aspire docs for July 2024. This article lists 
 
 ### Updated articles
 
-- [.NET Aspire Azure Blob Storage component](../storage/azure-storage-blobs-component.md) - Explicitly define each target project install for NuGet
-- [.NET Aspire Azure Data Tables component](../storage/azure-storage-tables-component.md) - Explicitly define each target project install for NuGet
-- [.NET Aspire Azure Queue Storage component](../storage/azure-storage-queues-component.md) - Explicitly define each target project install for NuGet
+- [.NET Aspire Azure Blob Storage integration](../storage/azure-storage-blobs-integration.md) - Explicitly define each target project install for NuGet
+- [.NET Aspire Azure Data Tables integration](../storage/azure-storage-tables-integration.md) - Explicitly define each target project install for NuGet
+- [.NET Aspire Azure Queue Storage integration](../storage/azure-storage-queues-integration.md) - Explicitly define each target project install for NuGet
 
 ## Database
 
 ### Updated articles
 
-- [.NET Aspire Azure Cosmos DB component](../database/azure-cosmos-db-component.md)
+- [.NET Aspire Azure Cosmos DB integration](../database/azure-cosmos-db-integration.md)
   - Explicitly define each target project install for NuGet
   - Add missing connection string sections.
-- [.NET Aspire Microsoft Entity Framework Core Cosmos DB component](../database/azure-cosmos-db-entity-framework-component.md) - Explicitly define each target project install for NuGet
-- [.NET Aspire MongoDB database component](../database/mongodb-component.md)
+- [.NET Aspire Microsoft Entity Framework Core Cosmos DB integration](../database/azure-cosmos-db-entity-framework-integration.md) - Explicitly define each target project install for NuGet
+- [.NET Aspire MongoDB database integration](../database/mongodb-integration.md)
   - Fix code section closing tag
   - Updated line that was changed incorrectly
   - Update to MongoDB Component Doc
   - Explicitly define each target project install for NuGet
-- [.NET Aspire Oracle Entity Framework Component](../database/oracle-entity-framework-component.md)
+- [.NET Aspire Oracle Entity Framework Component](../database/oracle-entity-framework-integration.md)
   - Explicitly define each target project install for NuGet
   - Add missing connection string sections.
-- [.NET Aspire Pomelo MySQL Entity Framework Component](../database/mysql-entity-framework-component.md)
+- [.NET Aspire Pomelo MySQL Entity Framework Component](../database/mysql-entity-framework-integration.md)
   - Explicitly define each target project install for NuGet
   - Add missing connection string sections.
-- [.NET Aspire PostgreSQL component](../database/postgresql-component.md)
+- [.NET Aspire PostgreSQL integration](../database/postgresql-integration.md)
   - Explicitly define each target project install for NuGet
   - Add missing connection string sections.
-- [.NET Aspire PostgreSQL Entity Framework Core component](../database/postgresql-entity-framework-component.md)
+- [.NET Aspire PostgreSQL Entity Framework Core integration](../database/postgresql-entity-framework-integration.md)
   - Explicitly define each target project install for NuGet
   - Add missing connection string sections.
-- [.NET Aspire Qdrant component](../database/qdrant-component.md) - Explicitly define each target project install for NuGet
-- [.NET Aspire SQL Server component](../database/sql-server-component.md)
+- [.NET Aspire Qdrant integration](../database/qdrant-integration.md) - Explicitly define each target project install for NuGet
+- [.NET Aspire SQL Server integration](../database/sql-server-integration.md)
   - Explicitly define each target project install for NuGet
   - Add missing connection string sections.
-- [.NET Aspire SqlServer Entity Framework Core component](../database/sql-server-entity-framework-component.md)
+- [.NET Aspire SqlServer Entity Framework Core integration](../database/sql-server-entity-framework-integration.md)
   - Explicitly define each target project install for NuGet
   - Add missing connection string sections.
 - [Seed data in a database using .NET Aspire](../database/seed-database-data.md) - Adjust code snippets
@@ -79,29 +79,29 @@ Welcome to what's new in the .NET Aspire docs for July 2024. This article lists 
 
 ### Updated articles
 
-- [.NET Aspire Apache Kafka component](../messaging/kafka-component.md)
+- [.NET Aspire Apache Kafka integration](../messaging/kafka-integration.md)
   - Kafka UI mention.
   - Explicitly define each target project install for NuGet
-- [.NET Aspire Azure Event Hubs component](../messaging/azure-event-hubs-component.md) - Explicitly define each target project install for NuGet
-- [.NET Aspire Azure Service Bus component](../messaging/azure-service-bus-component.md) - Explicitly define each target project install for NuGet
-- [.NET Aspire NATS component](../messaging/nats-component.md)
+- [.NET Aspire Azure Event Hubs integration](../messaging/azure-event-hubs-integration.md) - Explicitly define each target project install for NuGet
+- [.NET Aspire Azure Service Bus integration](../messaging/azure-service-bus-integration.md) - Explicitly define each target project install for NuGet
+- [.NET Aspire NATS integration](../messaging/nats-integration.md)
   - Fix nats link
   - Explicitly define each target project install for NuGet
-- [.NET Aspire RabbitMQ component](../messaging/rabbitmq-client-component.md) - Explicitly define each target project install for NuGet
+- [.NET Aspire RabbitMQ integration](../messaging/rabbitmq-client-integration.md) - Explicitly define each target project install for NuGet
 
 ## Caching
 
 ### Updated articles
 
-- [.NET Aspire Stack Exchange Redis component](../caching/stackexchange-redis-component.md) - Explicitly define each target project install for NuGet
-- [.NET Aspire Stack Exchange Redis distributed caching component](../caching/stackexchange-redis-distributed-caching-component.md) - Explicitly define each target project install for NuGet
-- [.NET Aspire Stack Exchange Redis output caching component](../caching/stackexchange-redis-output-caching-component.md) - Explicitly define each target project install for NuGet
+- [.NET Aspire Stack Exchange Redis integration](../caching/stackexchange-redis-integration.md) - Explicitly define each target project install for NuGet
+- [.NET Aspire Stack Exchange Redis distributed caching integration](../caching/stackexchange-redis-distributed-caching-integration.md) - Explicitly define each target project install for NuGet
+- [.NET Aspire Stack Exchange Redis output caching integration](../caching/stackexchange-redis-output-caching-integration.md) - Explicitly define each target project install for NuGet
 
 ## Security
 
 ### Updated articles
 
-- [.NET Aspire Azure Key Vault component](../security/azure-security-key-vault-component.md)
+- [.NET Aspire Azure Key Vault integration](../security/azure-security-key-vault-integration.md)
   - Address UUF issues for Azure Key Vault content
   - Explicitly define each target project install for NuGet
 
