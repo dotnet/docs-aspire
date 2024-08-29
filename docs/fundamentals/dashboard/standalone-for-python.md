@@ -1,19 +1,19 @@
 ---
-title: Using Aspire Dashboard with Python Applications
+title: Use the .NET Aspire dashboard with Python apps
 description: How to use the Aspire Dashboard in a Python application.
 ms.date: 08/27/2024
 ms.topic: tutorial
 ms.author: aapowell
 ---
 
-# Tutorial: Using the Aspire Dashboard with Python Applications
+# Tutorial: Use the .NET Aspire dashboard with Python apps
 
-The [Aspire dashboard](overview.md) provides a great UI for viewing telemetry, and is available as a standalone container image that can be used with any OpenTelemetry-enabled app. In this article, you'll learn how to:
+The [.NET Aspire dashboard](overview.md) provides a great user experience for viewing telemetry, and is available as a standalone container image that can be used with any OpenTelemetry-enabled app. In this article, you'll learn how to:
 
 > [!div class="checklist"]
 >
-> - Start the Aspire dashboard in standalone mode.
-> - Use the Aspire dashboard with a Python application.
+> - Start the .NET Aspire dashboard in standalone mode.
+> - Use the .NET Aspire dashboard with a Python app.
 
 ## Prerequisites
 
@@ -21,22 +21,22 @@ To complete this tutorial, you need the following:
 
 - [Docker](https://docs.docker.com/get-docker/)
   - You can use an alternative container runtime, but the commands in this article are for Docker.
-- [Python 3.9 or higher](https://www.python.org/downloads/) locally installed
-- A sample application
+- [Python 3.9 or higher](https://www.python.org/downloads/) locally installed.
+- A sample application.
 
 ## Sample application
 
-This quickstart can be completed using either Flask, Django, or FastAPI. A sample application in each framework is provided to help you follow along with this quickstart. Download or clone the sample application to your local workstation.
+This tutorial can be completed using either Flask, Django, or FastAPI. A sample application in each framework is provided to help you follow along with this tutorial. Download or clone the sample application to your local workstation.
 
 ### [Flask](#tab/flask)
 
-```Console
+```console
 git clone https://github.com/Azure-Samples/msdocs-python-flask-webapp-quickstart
 ```
 
 ### [FastAPI](#tab/fastapi)
 
-```Console
+```console
 git clone https://github.com/Azure-Samples/msdocs-python-fastapi-webapp-quickstart.git
 ```
 
@@ -48,7 +48,7 @@ To run the application locally:
 
 1. Go to the application folder:
 
-    ```Console
+    ```console
     cd msdocs-python-flask-webapp-quickstart
     ```
 
@@ -64,7 +64,7 @@ To run the application locally:
 
 1. Run the app:
 
-    ```Console
+    ```console
     flask run
     ```
 
@@ -76,7 +76,7 @@ To run the application locally:
 
 1. Go to the application folder:
 
-    ```Console
+    ```console
     cd msdocs-python-fastapi-webapp-quickstart
     ```
 
@@ -92,7 +92,7 @@ To run the application locally:
 
 1. Run the app:
 
-    ```Console
+    ```console
     uvicorn main:app --reload
     ```
 
@@ -104,7 +104,7 @@ To run the application locally:
 
 ## Adding OpenTelemetry
 
-To use the Aspire dashboard with your Python application, you need to install the OpenTelemetry SDK and exporter. The OpenTelemetry SDK provides the API for instrumenting your application, and the exporter sends telemetry data to the Aspire dashboard.
+To use the .NET Aspire dashboard with your Python app, you need to install the OpenTelemetry SDK and exporter. The OpenTelemetry SDK provides the API for instrumenting your application, and the exporter sends telemetry data to the .NET Aspire dashboard.
 
 1. Install the OpenTelemetry SDK and exporter:
 
@@ -114,7 +114,7 @@ To use the Aspire dashboard with your Python application, you need to install th
 
 1. Add a new file to your application called `otlp_tracing.py` and add the following code:
 
-    ```Python
+    ```python
     import logging
     from opentelemetry import metrics, trace
 
@@ -189,7 +189,7 @@ This instrumentation has only focused on adding OpenTelemetry to our code. For m
 
 1. Add the following code to your application:
 
-    ```Python
+    ```python
     from opentelemetry.instrumentation.flask import FlaskInstrumentor
 
     # add this line after configure_otel_otlp() call
@@ -206,7 +206,7 @@ This instrumentation has only focused on adding OpenTelemetry to our code. For m
 
 1. Add the following code to your application:
 
-    ```Python
+    ```python
     from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 
     # add this line after configure_otel_otlp() call
@@ -226,7 +226,7 @@ docker run --rm -it -p 18888:18888 -p 4317:18889 --name aspire-dashboard \
 
 In the Docker logs, the endpoint and key for the dashboard are displayed. Copy the key and navigate to `http://localhost:18888` in a web browser. Enter the key to log in to the dashboard.
 
-## Viewing Structured Logs
+## View Structured Logs
 
 Navigate around the Python application, and you'll see structured logs in the Aspire dashboard. The structured logs page displays logs from your application, and you can filter and search the logs.
 
@@ -234,4 +234,4 @@ Navigate around the Python application, and you'll see structured logs in the As
 
 ## Next steps
 
-Congratulations! You have successfully used the Aspire dashboard with a Python application. To learn more about the Aspire dashboard, see the [Aspire dashboard overview](overview.md) and how to orchestrate a Python application with the [Aspire App Host](../../get-started/build-aspire-apps-with-python.md).
+You have successfully used the .NET Aspire dashboard with a Python application. To learn more about the .NET Aspire dashboard, see the [Aspire dashboard overview](overview.md) and how to orchestrate a Python application with the [.NET Aspire app host](../../get-started/build-aspire-apps-with-python.md).
