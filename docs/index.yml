@@ -25,8 +25,8 @@ highlightedContent:
       title: Distributed app host
       url: fundamentals/app-host-overview.md
     - itemType: concept
-      title: .NET Aspire components
-      url: fundamentals/components-overview.md
+      title: .NET Aspire integrations
+      url: fundamentals/integrations-overview.md
     - itemType: concept
       title: Service discovery
       url: service-discovery/overview.md
@@ -78,16 +78,16 @@ conceptualContent:
       links:
         - itemType: tutorial
           text: Connect to storage with .NET Aspire
-          url: storage/azure-storage-components.md
+          url: storage/azure-storage-integrations.md
         - itemType: how-to-guide
           text: Azure Blob Storage
-          url: storage/azure-storage-blobs-component.md
+          url: storage/azure-storage-blobs-integration.md
         - itemType: how-to-guide
           text: Azure Storage Queues
-          url: storage/azure-storage-queues-component.md
+          url: storage/azure-storage-queues-integration.md
         - itemType: how-to-guide
           text: Azure Table Storage
-          url: storage/azure-storage-tables-component.md
+          url: storage/azure-storage-tables-integration.md
         - itemType: sample
           text: Persist volume mount sample
           url: /samples/dotnet/aspire-samples/aspire-volume-mount/
@@ -96,76 +96,76 @@ conceptualContent:
       links:
         - itemType: tutorial
           text: Connect to SQL Server with EF Core
-          url: database/sql-server-components.md
+          url: database/sql-server-integrations.md
         - itemType: how-to-guide
           text: PostgreSQL database
-          url: database/postgresql-component.md
+          url: database/postgresql-integration.md
         - itemType: how-to-guide
           text: PostgreSQL with EF Core
-          url: database/postgresql-entity-framework-component.md
+          url: database/postgresql-entity-framework-integration.md
         - itemType: how-to-guide
           text: Azure Cosmos DB
-          url: database/azure-cosmos-db-component.md
+          url: database/azure-cosmos-db-integration.md
         - itemType: how-to-guide
           text: Azure Cosmos DB with EF Core
-          url: database/azure-cosmos-db-entity-framework-component.md
+          url: database/azure-cosmos-db-entity-framework-integration.md
         - itemType: how-to-guide
           text: SQL Database
-          url: database/sql-server-component.md
+          url: database/sql-server-integration.md
         - itemType: how-to-guide
           text: SQL Database with EF Core
-          url: database/sql-server-entity-framework-component.md
+          url: database/sql-server-entity-framework-integration.md
         - itemType: how-to-guide
           text: Entity Framework Core migrations
           url: database/ef-core-migrations.md
         - itemType: how-to-guide
           text: MySqlConnector Database
-          url: database/mysql-component.md
+          url: database/mysql-integration.md
         - itemType: how-to-guide
           text: MongoDB Database
-          url: database/mongodb-component.md
+          url: database/mongodb-integration.md
 
     - title: Messaging
       links:
         - itemType: tutorial
           text: Implement Messaging with .NET Aspire
-          url: messaging/messaging-components.md
+          url: messaging/messaging-integrations.md
         - itemType: overview
           text: Azure Event Hubs
-          url: messaging/azure-event-hubs-component.md
+          url: messaging/azure-event-hubs-integration.md
         - itemType: overview
           text: Azure Service Bus
-          url: messaging/azure-service-bus-component.md
+          url: messaging/azure-service-bus-integration.md
         - itemType: overview
           text: Azure Web PubSub
-          url: messaging/azure-web-pubsub-component.md
+          url: messaging/azure-web-pubsub-integration.md
         - itemType: how-to-guide
-          text: RabbitMQ client .NET Aspire component
-          url: messaging/rabbitmq-client-component.md
+          text: RabbitMQ client
+          url: messaging/rabbitmq-client-integration.md
         - itemType: how-to-guide
           text: Apache Kafka
-          url: messaging/kafka-component.md
+          url: messaging/kafka-integration.md
         - itemType: how-to-guide
           text: NATs
-          url: messaging/nats-component.md
+          url: messaging/nats-integration.md
 
     - title: Caching
       links:
         - itemType: tutorial
           text: Improve app caching with .NET Aspire
-          url: caching/caching-components.md
+          url: caching/caching-integrations.md
         - itemType: overview
           text: Stack Exchange Redis caching overview
           url: caching/stackexchange-redis-caching-overview.md
         - itemType: how-to-guide
           text: Redis caching
-          url: caching/stackexchange-redis-component.md
+          url: caching/stackexchange-redis-integration.md
         - itemType: how-to-guide
           text: Redis output caching
-          url: caching/stackexchange-redis-output-caching-component.md
+          url: caching/stackexchange-redis-output-caching-integration.md
         - itemType: how-to-guide
           text: Redis distributed caching
-          url: caching/stackexchange-redis-distributed-caching-component.md
+          url: caching/stackexchange-redis-distributed-caching-integration.md
 
     - title: Frameworks
       links:
