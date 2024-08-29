@@ -79,145 +79,145 @@ items:
       - name: Create custom resource types
         displayName: custom resources,extensibility
         href: extensibility/custom-resources.md
-      - name: Create custom components
-        displayName: custom components,extensibility
-        href: extensibility/custom-component.md
-      - name: Implement auth from resource to component
-        href: extensibility/implement-auth-from-resource-to-component.md
+      - name: Create custom integrations
+        displayName: custom integrations,extensibility
+        href: extensibility/custom-integration.md
+      - name: Implement auth from resource to integration
+        href: extensibility/implement-auth-from-resource-to-integration.md
 
-  - name: Components
+  - name: Integrations
     items:
       - name: Overview
-        displayName: aspire components,components,nuget packages,packages
-        href: fundamentals/components-overview.md
+        displayName: aspire integrations,integrations,nuget packages,packages
+        href: fundamentals/integrations-overview.md
       - name: Tutorials
         items:
-        - name: Caching using Redis components
+        - name: Caching using Redis integrations
           displayName: caching,redis
-          href: caching/caching-components.md
+          href: caching/caching-integrations.md
         - name: Connect to SQL Server with EF Core
           displayName: database,sql server,ef core
-          href: database/sql-server-components.md
+          href: database/sql-server-integrations.md
         - name: Connect to storage
-          href: storage/azure-storage-components.md
+          href: storage/azure-storage-integrations.md
         - name: Database initialization and maintenance
           items:
             - name: Entity Framework Core migrations
               href: database/ef-core-migrations.md
             - name: Seed data in a database
               href: database/seed-database-data.md
-        - name: Messaging using .NET Aspire components
+        - name: Messaging using .NET Aspire integrations
           displayName: messaging
-          href: messaging/messaging-components.md
+          href: messaging/messaging-integrations.md
       - name: Apache Kafka
         displayName: kafka,messaging
-        href: messaging/kafka-component.md
+        href: messaging/kafka-integration.md
       - name: Azure
         items:
         - name: Azure AI OpenAI
           displayName: azure ai,openai
-          href: azureai/azureai-openai-component.md
+          href: azureai/azureai-openai-integration.md
         - name: Azure Search Documents
           displayName: azure search,search,azure ai
-          href: azureai/azureai-search-document-component.md
+          href: azureai/azureai-search-document-integration.md
         - name: Azure Blob Storage
-          href: storage/azure-storage-blobs-component.md
+          href: storage/azure-storage-blobs-integration.md
         - name: Azure Cosmos DB
           items:
             - name: Azure Cosmos DB - EF Core
               displayName: cosmos db,database,ef core
-              href: database/azure-cosmos-db-entity-framework-component.md
+              href: database/azure-cosmos-db-entity-framework-integration.md
             - name: Azure Cosmos DB
               displayName: cosmos db,database
-              href: database/azure-cosmos-db-component.md
+              href: database/azure-cosmos-db-integration.md
         - name: Azure Event Hubs
           displayName: event hubs,messaging
-          href: messaging/azure-event-hubs-component.md
+          href: messaging/azure-event-hubs-integration.md
         - name: Azure Key Vault
           displayName: key vault,security
-          href: security/azure-security-key-vault-component.md
+          href: security/azure-security-key-vault-integration.md
         - name: Azure SignalR Service
           displayName: azure signalr service,signalr,real-time
           href: real-time/azure-signalr-scenario.md
         - name: Azure Service Bus
           displayName: service bus,messaging
-          href: messaging/azure-service-bus-component.md
+          href: messaging/azure-service-bus-integration.md
         - name: Azure Storage Queues
           displayName: storage queues,azure storage
-          href: storage/azure-storage-queues-component.md
+          href: storage/azure-storage-queues-integration.md
         - name: Azure Table Storage
           displayName: table storage,azure storage
-          href: storage/azure-storage-tables-component.md
+          href: storage/azure-storage-tables-integration.md
         - name: Azure Web PubSub
           displayName: web pubsub,real-time,messaging
-          href: messaging/azure-web-pubsub-component.md
+          href: messaging/azure-web-pubsub-integration.md  
       - name: Elasticsearch
         displayName: elasticsearch,search
-        href: search/elasticsearch-component.md
+        href: search/elasticsearch-integration.md
       - name: Keycloak
         displayName: security,openid connect,single sign-on,sso,identity,federation,account management
-        href: authentication/keycloak-component.md
+        href: authentication/keycloak-integration.md
       - name: Milvus
         displayName: milvus,database
-        href: database/milvus-component.md
+        href: database/milvus-integration.md
       - name: MongoDB
         displayName: mongodb,database
-        href: database/mongodb-component.md
+        href: database/mongodb-integration.md
       - name: MySQL
         displayName: mysql,database
-        href: database/mysql-component.md
+        href: database/mysql-integration.md
       - name: NATS
         displayName: nats,messaging
-        href: messaging/nats-component.md
+        href: messaging/nats-integration.md
       - name: Oracle - EF Core
         displayName: oracle,database,ef core
-        href: database/oracle-entity-framework-component.md
+        href: database/oracle-entity-framework-integration.md
       - name: PostgreSQL
         items:
           - name: PostgreSQL - EF Core
             displayName: postgresql,database,ef core
-            href: database/postgresql-entity-framework-component.md
+            href: database/postgresql-entity-framework-integration.md
           - name: PostgreSQL
             displayName: postgresql,database
-            href: database/postgresql-component.md
+            href: database/postgresql-integration.md
       - name: Qdrant
-        href: database/qdrant-component.md
+        href: database/qdrant-integration.md
       - name: RabbitMQ service broker
         displayName: rabbitmq,messaging,service broker
-        href: messaging/rabbitmq-client-component.md
+        href: messaging/rabbitmq-client-integration.md
       - name: Redis
         items:
         - name: Overview
           href: caching/stackexchange-redis-caching-overview.md
         - name: Redis caching
-          href: caching/stackexchange-redis-component.md
+          href: caching/stackexchange-redis-integration.md
         - name: Redis distributed cache
-          href: caching/stackexchange-redis-distributed-caching-component.md
+          href: caching/stackexchange-redis-distributed-caching-integration.md
         - name: Redis output caching
-          href: caching/stackexchange-redis-output-caching-component.md
+          href: caching/stackexchange-redis-output-caching-integration.md
         - name: Redis caching (Garnet)
-          href: caching/stackexchange-redis-component.md?pivots=garnet
+          href: caching/stackexchange-redis-integration.md?pivots=garnet
         - name: Redis distributed cache (Garnet)
-          href: caching/stackexchange-redis-distributed-caching-component.md?pivots=garnet
+          href: caching/stackexchange-redis-distributed-caching-integration.md?pivots=garnet
         - name: Redis output caching (Garnet)
-          href: caching/stackexchange-redis-output-caching-component.md?pivots=garnet
+          href: caching/stackexchange-redis-output-caching-integration.md?pivots=garnet
         - name: Redis caching (Valkey)
-          href: caching/stackexchange-redis-component.md?pivots=valkey
+          href: caching/stackexchange-redis-integration.md?pivots=valkey
         - name: Redis distributed cache (Valkey)
-          href: caching/stackexchange-redis-distributed-caching-component.md?pivots=valkey
+          href: caching/stackexchange-redis-distributed-caching-integration.md?pivots=valkey
         - name: Redis output caching (Valkey)
-          href: caching/stackexchange-redis-output-caching-component.md?pivots=valkey
+          href: caching/stackexchange-redis-output-caching-integration.md?pivots=valkey
       - name: SQL Server
         items:
           - name: SQL Database - EF Core
             displayName: sql server,sql database,ef core
-            href: database/sql-server-entity-framework-component.md
+            href: database/sql-server-entity-framework-integration.md
           - name: SQL Database
             displayName: sql server,sql database
-            href: database/sql-server-component.md
+            href: database/sql-server-integration.md
       - name: Seq
         displayName: seq,logging
-        href: logging/seq-component.md
+        href: logging/seq-integration.md
 
   - name: Deployment
     items:
@@ -241,9 +241,9 @@ items:
             href: deployment/azure/application-insights.md
             displayName: app insights
           - name: Deploy .NET Aspire + SQL Database
-            href: database/sql-server-component-deployment.md
+            href: database/sql-server-integration-deployment.md
           - name: Deploy .NET Aspire + Redis
-            href: caching/caching-components-deployment.md
+            href: caching/caching-integrations-deployment.md
       - name: Tool-builder manifest schemas
         href: deployment/manifest-format.md
 

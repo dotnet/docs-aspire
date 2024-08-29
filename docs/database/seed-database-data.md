@@ -1,7 +1,7 @@
 ---
 title: Seed data in a database using .NET Aspire
 description: Learn about how to seed database data in .NET Aspire
-ms.date: 04/10/2024
+ms.date: 08/12/2024
 ms.topic: how-to
 ---
 
@@ -20,7 +20,7 @@ Manually seeding data is tedious and time consuming, so you should automate the 
 
 ## Understand containerized databases
 
-By default, .NET Aspire database components rely on containerized databases, which create the following challenges when trying to seed data:
+By default, .NET Aspire database integrations rely on containerized databases, which create the following challenges when trying to seed data:
 
 - .NET Aspire destroys and recreates containers every time the app restarts, which means by default you have to re-seed your database every time the app restarts.
 - Depending on your selected database technology, the new container instance may or may not create a default database, which means you might also have to create the database itself.
@@ -197,6 +197,6 @@ if (app.Environment.IsDevelopment())
 
 Database seeding is useful in a variety of app development scenarios. Try combining these techniques with the resource implementations demonstrated in the following tutorials:
 
-- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](../database/sql-server-components.md)
-- [Tutorial: Connect an ASP.NET Core app to .NET Aspire storage components](../storage/azure-storage-components.md)
+- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](../database/sql-server-integrations.md)
+- [Tutorial: Connect an ASP.NET Core app to .NET Aspire storage integrations](../storage/azure-storage-integrations.md)
 - [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)

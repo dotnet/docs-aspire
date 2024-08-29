@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire overview
 description: Learn about .NET Aspire, an application stack designed to improve the experience of building cloud-native applications.
-ms.date: 05/23/2024
+ms.date: 08/12/2024
 ---
 
 # .NET Aspire overview
@@ -26,12 +26,12 @@ A _distributed application_ is one that uses computational _resources_ across mu
 .NET Aspire is designed to improve the experience of building .NET cloud-native apps. It provides a consistent, opinionated set of tools and patterns that help you build and run distributed apps. .NET Aspire is designed to help you with:
 
 - [**Orchestration**](#orchestration): .NET Aspire provides features for running and connecting multi-project applications and their dependencies for [local development environments](../fundamentals/networking-overview.md).
-- [**Components**](#net-aspire-components): .NET Aspire components are NuGet packages for commonly used services, such as Redis or Postgres, with standardized interfaces ensuring they connect consistently and seamlessly with your app.
+- [**Integrations**](#net-aspire-integrations): .NET Aspire integrations are NuGet packages for commonly used services, such as Redis or Postgres, with standardized interfaces ensuring they connect consistently and seamlessly with your app.
 - [**Tooling**](#project-templates-and-tooling): .NET Aspire comes with project templates and tooling experiences for Visual Studio, Visual Studio Code, and the [dotnet CLI](/dotnet/core/tools/) to help you create and interact with .NET Aspire projects.
 
 ## Orchestration
 
-In .NET Aspire, orchestration primarily focuses on enhancing the _local development_ experience by simplifying the management of your cloud-native app's configuration and interconnections. It's important to note that .NET Aspire's orchestration isn't intended to replace the robust systems used in production environments, such as [Kubernetes](../deployment/overview.md#deploy-to-kubernetes). Instead, it provides a set of abstractions that streamline the setup of service discovery, environment variables, and container configurations, eliminating the need to deal with low-level implementation details. These abstractions ensure a consistent setup pattern across apps with numerous components and services, making it easier to manage complex applications during the development phase.
+In .NET Aspire, orchestration primarily focuses on enhancing the _local development_ experience by simplifying the management of your cloud-native app's configuration and interconnections. It's important to note that .NET Aspire's orchestration isn't intended to replace the robust systems used in production environments, such as [Kubernetes](../deployment/overview.md#deploy-to-kubernetes). Instead, it provides a set of abstractions that streamline the setup of service discovery, environment variables, and container configurations, eliminating the need to deal with low-level implementation details. These abstractions ensure a consistent setup pattern across apps with numerous integrations and services, making it easier to manage complex applications during the development phase.
 
 .NET Aspire orchestration assists with the following concerns:
 
@@ -55,13 +55,13 @@ builder.AddProject<Projects.MyFrontend>("frontend")
 
 For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
 
-## .NET Aspire components
+## .NET Aspire integrations
 
-[.NET Aspire components](../fundamentals/components-overview.md) are NuGet packages designed to simplify connections to popular services and platforms, such as Redis or PostgreSQL. .NET Aspire components handle many cloud-native concerns for you through standardized configuration patterns, such as adding health checks and telemetry.
+[.NET Aspire integrations](../fundamentals/integrations-overview.md) are NuGet packages designed to simplify connections to popular services and platforms, such as Redis or PostgreSQL. .NET Aspire integrations handle many cloud-native concerns for you through standardized configuration patterns, such as adding health checks and telemetry. Integrations are two-fold, in that one side represents the service you're connecting to, and the other side represents the client or consumer of that service. In other words, for each hosting package there's a corresponding client package that handles the service connection.
 
-Each component is designed to work with .NET Aspire orchestration, and their configurations are injected automatically by simply referencing named resources. In other words, if _Example.ServiceFoo_ references _Example.ServiceBar_, _Example.ServiceFoo_ inherits the component's required configurations to allow them to communicate with each other automatically.
+Each integration is designed to work with .NET Aspire orchestration, and their configurations are injected automatically by simply referencing named resources. In other words, if _Example.ServiceFoo_ references _Example.ServiceBar_, _Example.ServiceFoo_ inherits the integration's required configurations to allow them to communicate with each other automatically.
 
-For example, consider the following code using the .NET Aspire Service Bus component:
+For example, consider the following code using the .NET Aspire Service Bus integration:
 
 ```csharp
 builder.AddAzureServiceBusClient("servicebus");
@@ -73,7 +73,7 @@ The <xref:Microsoft.Extensions.Hosting.AspireServiceBusExtensions.AddAzureServic
 - Applies `ServiceBusClient` configurations either inline through code or through configuration.
 - Enables corresponding health checks, logging and telemetry specific to the Azure Service Bus usage.
 
-A full list of available components is detailed on the [.NET Aspire components](../fundamentals/components-overview.md) overview page.
+A full list of available integrations is detailed on the [.NET Aspire integrations](../fundamentals/integrations-overview.md) overview page.
 
 ## Project templates and tooling
 
