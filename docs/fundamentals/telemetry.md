@@ -6,15 +6,15 @@ ms.date: 12/08/2023
 
 # .NET Aspire telemetry
 
-One of the primary objectives of .NET Aspire is to ensure that apps are straightforward to debug and diagnose. .NET Aspire components automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as the pillars of observability, using the [.NET OpenTelemetry SDK](https://github.com/open-telemetry/opentelemetry-dotnet).
+One of the primary objectives of .NET Aspire is to ensure that apps are straightforward to debug and diagnose. .NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as the pillars of observability, using the [.NET OpenTelemetry SDK](https://github.com/open-telemetry/opentelemetry-dotnet).
 
-- **[Logging](/dotnet/core/diagnostics/logging-tracing)**: Log events describe what's happening as an app runs. A baseline set is enabled for .NET Aspire components by default and more extensive logging can be enabled on-demand to diagnose particular problems.
+- **[Logging](/dotnet/core/diagnostics/logging-tracing)**: Log events describe what's happening as an app runs. A baseline set is enabled for .NET Aspire integrations by default and more extensive logging can be enabled on-demand to diagnose particular problems.
 
 - **[Tracing](/dotnet/core/diagnostics/distributed-tracing)**: Traces correlate log events that are part of the same logical activity (e.g. the handling of a single request), even if they're spread across multiple machines or processes.
 
 - **[Metrics](/dotnet/core/diagnostics/metrics)**: Metrics expose the performance and health characteristics of an app as simple numerical values. As a result, they have low performance overhead and many services configure them as always-on telemetry. This also makes them suitable for triggering alerts when potential problems are detected.
 
-Together, these types of telemetry allow you to gain insights into your application's behavior and performance using various monitoring and analysis tools. Depending on the backing service, some components may only support some of these features.
+Together, these types of telemetry allow you to gain insights into your application's behavior and performance using various monitoring and analysis tools. Depending on the backing service, some integrations may only support some of these features.
 
 ## .NET Aspire OpenTelemetry integration
 

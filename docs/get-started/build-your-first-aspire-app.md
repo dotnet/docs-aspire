@@ -15,7 +15,7 @@ In this quickstart, you'll explore the following tasks:
 > [!div class="checklist"]
 >
 > - Create a basic .NET app that is set up to use .NET Aspire.
-> - Add and configure a .NET Aspire component to implement caching at project creation time.
+> - Add and configure a .NET Aspire integration to implement caching at project creation time.
 > - Create an API and use service discovery to connect to it.
 > - Orchestrate communication between a front end UI, a back end API, and a local Redis cache.
 
@@ -46,7 +46,7 @@ To create a new .NET Aspire Starter Application, you can use either Visual Studi
 The sample app is now ready for testing. You want to verify the following:
 
 - Weather data is retrieved from the API project using service discovery and displayed on the weather page.
-- Subsequent requests are handled via the output caching configured by the .NET Aspire Redis component.
+- Subsequent requests are handled via the output caching configured by the .NET Aspire Redis integration.
 
 :::zone pivot="visual-studio"
 
@@ -203,7 +203,7 @@ For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fun
 
 ## See also
 
-- [.NET Aspire components overview](../fundamentals/components-overview.md)
+- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
 - [Service discovery in .NET Aspire](../service-discovery/overview.md)
 - [.NET Aspire service defaults](../fundamentals/service-defaults.md)
 - [Health checks in .NET Aspire](../fundamentals/health-checks.md)

@@ -15,4 +15,4 @@ dotnet add package Aspire.Hosting.PostgreSQL
 
 ---
 
-In your app host project, register and consume the PostgreSQL component using the following methods, such as <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A>:
+In your app host project, register and consume the PostgreSQL integration using the following methods, such as <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A>:

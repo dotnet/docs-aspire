@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire health checks
 description: Explore .NET Aspire health checks
-ms.date: 06/03/2024
+ms.date: 08/12/2024
 ms.topic: quickstart
 ---
 
@@ -78,9 +78,9 @@ app.Run();
 
 For more information, see [Request timeouts middleware in ASP.NET Core](/aspnet/core/performance/timeouts) and [Output caching middleware in ASP.NET Core](/aspnet/core/performance/caching/output).
 
-## Component health checks
+## Integration health checks
 
-.NET Aspire components can also register additional health checks for your app. These health checks contribute to the returned status of the `/health` and `/alive` endpoints. For example, the .NET Aspire PostgreSQL component automatically adds a health check to verify the following conditions:
+.NET Aspire integrations can also register additional health checks for your app. These health checks contribute to the returned status of the `/health` and `/alive` endpoints. For example, the .NET Aspire PostgreSQL integration automatically adds a health check to verify the following conditions:
 
 - A database connection could be established
 - A database query could be executed successfully
@@ -89,7 +89,7 @@ If either of these operations fail, the corresponding health check also fails.
 
 ### Configure health checks
 
-You can disable health checks for a given component using one of the available configuration options. .NET Aspire components support [Microsoft.Extensions.Configurations](/dotnet/api/microsoft.extensions.configuration) to apply settings through config files such as _:::no-loc text="appsettings.json":::_:
+You can disable health checks for a given integration using one of the available configuration options. .NET Aspire integrations support [Microsoft.Extensions.Configurations](/dotnet/api/microsoft.extensions.configuration) to apply settings through config files such as _:::no-loc text="appsettings.json":::_:
 
 ```json
 {

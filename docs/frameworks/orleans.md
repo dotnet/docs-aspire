@@ -1,7 +1,7 @@
 ---
 title: Use Orleans with .NET Aspire
 description: Learn how to use Orleans with .NET Aspire
-ms.date: 05/18/2024
+ms.date: 08/12/2024
 ms.topic: overview
 ---
 
@@ -65,11 +65,11 @@ Putting that all together, here is an example of an Aspire AppHost project which
 
 To consume the .NET Aspire Orleans resource from an Orleans server project, there are a few steps:
 
-1. Add the relevant .NET Aspire components. In this example, you're using _Aspire.Azure.Data.Tables_ and _Aspire.Azure.Storage.Blobs_.
-2. Add the Orleans provider packages for those .NET Aspire components. In this example, you're using _Microsoft.Orleans.Persistence.AzureStorage_ and _Microsoft.Orleans.Clustering.AzureStorage_.
-3. Add Orleans to the host application builder.
+1. Add the relevant .NET Aspire integrations. In this example, you're using _Aspire.Azure.Data.Tables_ and _Aspire.Azure.Storage.Blobs_.
+1. Add the Orleans provider packages for those .NET Aspire integrations. In this example, you're using _Microsoft.Orleans.Persistence.AzureStorage_ and _Microsoft.Orleans.Clustering.AzureStorage_.
+1. Add Orleans to the host application builder.
 
-In the _:::no-loc text="Program.cs":::_ file of your Orleans server project, you must configure the .NET Aspire components you are using and add Orleans to the host builder. Note that the names provided must match the names used in the .NET Aspire app host project: "clustering" for the clustering provider, and "grain-state" for the grain state storage provider:
+In the _:::no-loc text="Program.cs":::_ file of your Orleans server project, you must configure the .NET Aspire integrations you are using and add Orleans to the host builder. Note that the names provided must match the names used in the .NET Aspire app host project: "clustering" for the clustering provider, and "grain-state" for the grain state storage provider:
 
 :::code language="csharp" source="snippets/Orleans/OrleansServer/Program.cs" :::
 

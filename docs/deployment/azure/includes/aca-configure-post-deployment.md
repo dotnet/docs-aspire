@@ -35,7 +35,7 @@ Configure the front end with the correct Redis connection configuration:
     exit
     ```
 
-1. The `web` Container App is using the .NET Aspire component for Redis, which loads the connection information from the app's configuration with the key `ConnectionStrings__cache`. Update the app configuration in ACA so that an environment variable with this name contains a valid connection string constructed using the details retrieved in the previous step. Note that .NET expects comma delimited values in the Redis connection string. For example,  `redis:6379,password=jH7DePUiK5E...`:
+1. The `web` Container App is using the .NET Aspire integration for Redis, which loads the connection information from the app's configuration with the key `ConnectionStrings__cache`. Update the app configuration in ACA so that an environment variable with this name contains a valid connection string constructed using the details retrieved in the previous step. Note that .NET expects comma delimited values in the Redis connection string. For example,  `redis:6379,password=jH7DePUiK5E...`:
 
     # [PowerShell](#tab/powershell)
 

@@ -13,7 +13,7 @@ zone_pivot_groups: dev-environment
 >
 > - Install .NET Aspire and its dependencies
 > - Create starter project templates using Visual Studio, Visual Studio Code, or the .NET CLI
-> - Install .NET Aspire components
+> - Install .NET Aspire integrations
 > - Work with the .NET Aspire dashboard
 
 ## Install .NET Aspire
@@ -47,7 +47,7 @@ To install the .NET Aspire workload in Visual Studio 2022, use the Visual Studio
 1. Select **Modify** next to Visual Studio 2022.
 1. Select the **ASP.NET and web development** workload.
 1. On the **Installation details** panel, select **.NET Aspire SDK (Preview)**.
-1. Select **Modify** to install the .NET Aspire component.
+1. Select **Modify** to install the .NET Aspire integration.
 
    :::image type="content" loc-scope="visual-studio" source="../media/install-aspire-workload-visual-studio.png" lightbox="../media/install-aspire-workload-visual-studio.png" alt-text="A screenshot showing how to install the .NET Aspire workload with the Visual Studio installer.":::
 
@@ -214,25 +214,25 @@ The left navigation provides links to the different parts of the dashboard, each
 
 ## Visual Studio tooling
 
-Visual Studio provides additional features for working with .NET Aspire components and the App Host orchestrator project. Not all of these features are currently available in Visual Studio Code or through the CLI.
+Visual Studio provides additional features for working with .NET Aspire integrations and the App Host orchestrator project. Not all of these features are currently available in Visual Studio Code or through the CLI.
 
-### Add a component package
+### Add a integration package
 
-You add .NET Aspire components to your app like any other NuGet package using Visual Studio. However, Visual Studio also provides UI options to add .NET Aspire components directly.
+You add .NET Aspire integrations to your app like any other NuGet package using Visual Studio. However, Visual Studio also provides UI options to add .NET Aspire integrations directly.
 
-1. In Visual Studio, right click on the project you want to add an .NET Aspire component to and select **Add** > **.NET Aspire package...**.
+1. In Visual Studio, right click on the project you want to add an .NET Aspire integration to and select **Add** > **.NET Aspire package...**.
 
-    :::image type="content" loc-scope="visual-studio" source="../media/visual-studio-add-aspire-component.png" lightbox="../media/visual-studio-add-aspire-component.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire Component option.":::
+    :::image type="content" loc-scope="visual-studio" source="../media/visual-studio-add-aspire-package.png" lightbox="../media/visual-studio-add-aspire-package.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire Component option.":::
 
-1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire components, allowing you to easily browse and select the desired component.
+1. The package manager will open with search results pre-configured (populating filter criteria) for .NET Aspire integrations, allowing you to easily browse and select the desired integration.
 
-    :::image type="content" loc-scope="visual-studio" source="../media/visual-studio-add-aspire-comp-nuget.png" lightbox="../media/visual-studio-add-aspire-comp-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire component options.":::
+    :::image type="content" loc-scope="visual-studio" source="../media/visual-studio-add-aspire-comp-nuget.png" lightbox="../media/visual-studio-add-aspire-comp-nuget.png" alt-text="The Visual Studio context menu displaying the Add .NET Aspire integration options.":::
 
-For more information on .NET Aspire components, see [.NET Aspire components overview](components-overview.md).
+For more information on .NET Aspire integrations, see [.NET Aspire integrations overview](integrations-overview.md).
 
 ### Add hosting packages
 
-.NET Aspire hosting packages are used to configure various resources and dependencies an app may depend on or consume. Hosting packages are differentiated from other component packages in that they are added to the **.AppHost** project. To add a hosting package to your app, follow these steps:
+.NET Aspire hosting packages are used to configure various resources and dependencies an app may depend on or consume. Hosting packages are differentiated from other integration packages in that they are added to the **.AppHost** project. To add a hosting package to your app, follow these steps:
 
 1. In Visual Studio, right click on the **.AppHost** project and select **Add** > **.NET Aspire package...**.
 
