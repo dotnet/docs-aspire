@@ -58,7 +58,7 @@ To run the application locally:
 
 1. Install the dependencies:
 
-    ```Console
+    ```console
     pip install -r requirements.txt
     ```
 
@@ -86,7 +86,7 @@ To run the application locally:
 
 1. Install the dependencies:
 
-    ```Console
+    ```console
     pip install -r requirements.txt
     ```
 
@@ -108,7 +108,7 @@ To use the .NET Aspire dashboard with your Python app, you need to install the O
 
 1. Install the OpenTelemetry SDK and exporter:
 
-    ```Console
+    ```console
     pip install opentelemetry-api opentelemetry-sdk opentelemetry-exporter-otlp-proto-grpc
     ```
 
@@ -183,7 +183,7 @@ This instrumentation has only focused on adding OpenTelemetry to our code. For m
 
 1. Install the Flask instrumentation package:
 
-    ```Console
+    ```console
     pip install opentelemetry-instrumentation-flask
     ```
 
@@ -200,7 +200,7 @@ This instrumentation has only focused on adding OpenTelemetry to our code. For m
 
 1. Install the FastAPI instrumentation package:
 
-    ```Console
+    ```console
     pip install opentelemetry-instrumentation-fastapi
     ```
 
