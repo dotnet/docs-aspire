@@ -119,7 +119,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per solution update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/components/AspireApp" #AspireApp.sln
+    directory: "/docs/fundamentals/snippets/healthz/Healthz.ServiceDefaults" #healthz.sln
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -130,7 +130,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per solution update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/healthz/Healthz.ServiceDefaults" #healthz.sln
+    directory: "/docs/fundamentals/snippets/integrations/AspireApp" #AspireApp.sln
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -614,7 +614,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/components/AspireApp/AspireApp.AppHost" #AspireApp.AppHost.csproj
+    directory: "/docs/fundamentals/snippets/integrations/AspireApp/AspireApp.AppHost" #AspireApp.AppHost.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -625,7 +625,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/components/AspireApp/AspireApp.ServiceDefaults" #AspireApp.ServiceDefaults.csproj
+    directory: "/docs/fundamentals/snippets/integrations/AspireApp/AspireApp.ServiceDefaults" #AspireApp.ServiceDefaults.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -636,7 +636,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/components/AspireApp/WorkerService" #WorkerService.csproj
+    directory: "/docs/fundamentals/snippets/integrations/AspireApp/WorkerService" #WorkerService.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
