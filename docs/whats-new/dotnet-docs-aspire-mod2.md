@@ -17,7 +17,7 @@ Welcome to what's new in the .NET Aspire docs for August 2024. This article list
 - [Explore the .NET Aspire dashboard](../fundamentals/dashboard/explore.md) - Add exemplars and resource replicas
 - [External parameters](../fundamentals/external-parameters.md) - Remove manifest JSON, replace with link
 - [Standalone .NET Aspire dashboard](../fundamentals/dashboard/standalone.md) - Update standalone.md 8.1.0 dash
-- [ZZZ - Title not found in: #1449](../fundamentals/components-overview.md) - Fix NuGet link
+- [.NET Aspire - Release 8.2 Content: #1484](../fundamentals/components-overview.md) - Fix NuGet link
 
 ## Database
 
@@ -25,13 +25,13 @@ Welcome to what's new in the .NET Aspire docs for August 2024. This article list
 
 - [Apply Entity Framework Core migrations in .NET Aspire](../database/ef-core-migrations.md) - Fixes issue on EF Migration doc
 - [Seed data in a database using .NET Aspire](../database/seed-database-data.md) - Change target for code sample
-- [ZZZ - Title not found in: #1572](../database/sql-server-component-deployment.md) - Update sql-server-component-deployment.md
+- [Partial fix - address naming: #1572](../database/sql-server-component-deployment.md) - Update sql-server-component-deployment.md
 
 ## Caching
 
 ### Updated articles
 
-- [ZZZ - Title not found in: #1476](../caching/stackexchange-redis-output-caching-component.md) - Update stackexchange-redis-output-caching-component.md
+- [Add missing name `cache`: #1476](../caching/stackexchange-redis-output-caching-component.md) - Update stackexchange-redis-output-caching-component.md
 
 ## Reference
 
