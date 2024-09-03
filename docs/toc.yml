@@ -47,7 +47,11 @@ items:
       - name: Explore features
         href: fundamentals/dashboard/explore.md
       - name: Standalone mode
-        href: fundamentals/dashboard/standalone.md
+        items:
+          - name: Overview
+            href: fundamentals/dashboard/standalone.md
+          - name: Tutorial — Use with Python
+            href: fundamentals/dashboard/standalone-for-python.md
       - name: Configuration
         href: fundamentals/dashboard/configuration.md
       - name: Security considerations
