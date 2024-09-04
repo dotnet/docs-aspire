@@ -151,9 +151,6 @@ There are currently four project templates available:
 
 Use Visual Studio, Visual Studio Code, or the .NET CLI to create new apps using these project templates. Explore additional .NET Aspire project templates in the [.NET Aspire samples](https://github.com/dotnet/aspire-samples) repository.
 
-> [!NOTE]
-> The .NET 9.0 SDK causes issues with the .NET Aspire workloads ability to display templates, and create projects from the templates. If you're using .NET 9.0, know that your ability to create new .NET Aspire apps is currently limited. For more information, see [.NET Aspire preview-3 cannot create app when .NET 9 is installed](https://github.com/dotnet/aspire/issues/1951) and [.NET Aspire preview-3 installed with Visual Studio 17.10 doesn't show templates](https://github.com/dotnet/aspire/issues/2186).
-
 :::zone pivot="visual-studio"
 
 To create a .NET Aspire project using Visual Studio, search for *Aspire* in the Visual Studio new project window and select your desired template.
