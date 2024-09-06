@@ -65,14 +65,22 @@ In the _:::no-loc text="Program.cs":::_ file of the _AspireSQLEFCore_ project, a
 
 This method accomplishes the following tasks:
 
-- Registers a `TicketDbContext` with the DI container for connecting to the containerized Azure SQL Database.
+- Registers a `TicketContext` with the DI container for connecting to the containerized Azure SQL Database.
 - Automatically enable corresponding health checks, logging, and telemetry.
 
-## Migrate and seed the database
+## Create the database
 
-While developing locally, you need to create a database inside the SQL Server container. Update the _:::no-loc text="Program.cs":::_ file with the following code to automatically run Entity Framework migrations during startup.
+While developing locally, you need to create a database inside the SQL Server container. Update the _:::no-loc text="Program.cs":::_ file with the following code:
 
 :::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore/Program.cs" range="1-30" highlight="16-30":::
+
+The preceding code:
+
+- Checks if the app is running in a development environment.
+- If it is, it retrieves the `TicketContext` service from the DI container and calls `Database.EnsureCreated()` to create the database if it doesn't already exist.
+
+> [!NOTE]
+> Note that `EnsureCreated()` is not suitable for production environments, and it only creates the database as defined in the context. It doesn't apply any migrations. For more information on Entity Framework Core migrations in .NET Aspire, see [Apply Entity Framework Core migrations in .NET Aspire](ef-core-migrations.md).
 
 ## Create the form
 
