@@ -1,7 +1,7 @@
 ---
 title: Testing .NET Aspire projects
 description: Learn how to test your .NET Aspire projects using the xUnit testing framework.
-ms.date: 07/26/2024
+ms.date: 09/06/2024
 zone_pivot_groups: unit-testing-framework
 ---
 
@@ -93,6 +93,26 @@ The preceding code:
 - The `resourceNotificationService` is used to wait for the `webfrontend` resource to be available and running.
 - A simple HTTP GET request is made to the root of the `webfrontend` resource.
 - The test asserts that the response status code is `OK`.
+
+## Test resource environment variables
+
+To further test resources and their expressed dependencies in your .NET Aspire solution, you can assert that environment variables are injected correctly. The following example demonstrates how to test the `webfrontend` resource has an HTTPS environment variable that resolves to the `apiservice` resource:
+
+:::zone pivot="xunit"
+
+:::code language="csharp" source="snippets/testing/xunit/AspireApp.Tests/EnvVarTests.cs":::
+
+:::zone-end
+:::zone pivot="mstest"
+
+:::code language="csharp" source="snippets/testing/mstest/AspireApp.Tests/EnvVarTests.cs":::
+
+:::zone-end
+:::zone pivot="nunit"
+
+:::code language="csharp" source="snippets/testing/nunit/AspireApp.Tests/EnvVarTests.cs":::
+
+:::zone-end
 
 ## Summary
 
