@@ -78,6 +78,8 @@ var myService = builder.AddProject<Projects.MyService>()
 
 [!INCLUDE [postgresql-pgweb](includes/postgresql-pgweb.md)]
 
+[!INCLUDE [postgresql-pgadmin](includes/postgresql-pgadmin.md)]
+
 [!INCLUDE [postgresql-flexible-server](includes/postgresql-flexible-server.md)]
 
 ## Configuration
