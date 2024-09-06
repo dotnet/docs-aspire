@@ -3,7 +3,7 @@ metadata:
   title: Frequently asked questions about .NET Aspire
   description: Answers to some of the most common questions and scenarios for .NET Aspire.
   ms.topic: faq
-  ms.date: 08/13/2024
+  ms.date: 09/06/2024
 title: Frequently asked questions about .NET Aspire
 summary: |
   This article lists frequently asked questions about .NET Aspire. For a more comprehensive overview, see [.NET Aspire overview](../get-started/aspire-overview.md).
@@ -99,6 +99,21 @@ sections:
         answer: |
           We have no specific support for Azure Functions thus far in .NET Aspire, however it's a target
           execution environment for deployment that we are planning to support in future.
+
+      - question: |
+          I want to run my web apps locally on IIS or IIS Express, does .NET Aspire support this?
+        answer: |
+          No. .NET Aspire doesn't support running web apps on IIS or IIS Express.
+      
+      - question: |
+          I want to deploy my apps to IIS, does .NET Aspire support this?
+        answer: |
+          No. .NET Aspire doesn't support deploying apps to IIS. However, it doesn't prevent you from deploying your apps to IIS in the same way that you always have.
+
+      - question: |
+          When deploying my existing apps, that are now referenced within a .NET Aspire solution, to IIS some integrations and [Service Discovery](../service-discovery/overview.md) isn't working as expected. What can I do?
+        answer: |
+          .NET Aspire integrations require specific configuration that must be provided manually. The same is true for Service Discovery, ideally, you should deploy to something other than IIS.          
 
 additionalContent: |
 
