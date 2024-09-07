@@ -96,6 +96,8 @@ The `EnrichMySqlDbContext` won't make use of the `ConnectionStrings` configurati
 
 For more information, see the [MySqlConnector documentation](https://mysqlconnector.net/connection-options/).
 
+[!INCLUDE [mysql-phpmyadmin](includes/mysql-phpmyadmin.md)]
+
 ### Use configuration providers
 
 The .NET Aspire Pomelo MySQL Entity Framework Core integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `PomeloEntityFrameworkCoreMySqlSettings` from configuration by using the `Aspire:Pomelo:EntityFrameworkCore:MySql` key.

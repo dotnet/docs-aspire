@@ -109,6 +109,8 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 
 For more information on how to format this connection string, see [MySqlConnector: ConnectionString documentation](https://mysqlconnector.net/connection-options/).
 
+[!INCLUDE [mysql-phpmyadmin](includes/mysql-phpmyadmin.md)]
+
 ### Use configuration providers
 
 The .NET Aspire MySQL database supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `MySqlConnectorSettings` from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:MySqlConnector` key. If you have set up your configurations in the `Aspire:MySqlConnector` section, you can just call the method without passing any parameter.
