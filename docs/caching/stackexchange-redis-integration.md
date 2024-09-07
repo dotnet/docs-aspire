@@ -169,6 +169,26 @@ builder.AddValkey(
 
 :::zone-end
 
+:::zone pivot="redis"
+
+### Use Redis Commander
+
+When adding Redis resources to the `builder` with the `AddRedis` method, you can chain calls to `WithRedisCommander` to add the [**Redis Commander**](https://github.com/joeferner/redis-commander/) container. This container is a cross-platform client for Redis databases, that serves a web-based admin dashboard. Consider the following example:
+
+```csharp
+var cache = builder.AddRedis("cache")
+                      .WithRedisCommander();
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(cache);
+```
+
+:::zone-end :::zone pivot="garnet"
+
+:::zone-end :::zone pivot="valkey"
+
+:::zone-end
+
 [!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
 
 The .NET Aspire Stack Exchange Redis integration handles the following:
