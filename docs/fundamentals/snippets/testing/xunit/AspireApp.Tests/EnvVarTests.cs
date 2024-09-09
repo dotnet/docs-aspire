@@ -3,7 +3,7 @@
 public class EnvVarTests
 {
     [Fact]
-    public async Task VerifyEnvironmentVariablesAreSetTest()
+    public async Task WebResourceEnvVarsResolveToApiService()
     {
         // Arrange
         var appHost = await DistributedApplicationTestingBuilder
