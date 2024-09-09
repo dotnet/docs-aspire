@@ -1,13 +1,13 @@
 ---
-title: Testing .NET Aspire projects
-description: Learn how to test your .NET Aspire projects using the xUnit testing framework.
+title: Testing .NET Aspire solutions
+description: Learn how to test your .NET Aspire solutions using the xUnit, NUnit, and MSTest testing frameworks.
 ms.date: 09/09/2024
 zone_pivot_groups: unit-testing-framework
 ---
 
-# Testing .NET Aspire projects
+# Testing .NET Aspire solutions
 
-In this article, you'll learn how to create a test project, write, and run tests for your .NET Aspire projects. The tests in this article are not unit tests, but rather functional or integration tests. .NET Aspire include an [testing project templates](setup-tooling.md#net-aspire-project-templates) that you can use to test your .NET Aspire projects. The testing project templates are available for MSTest, NUnit, and xUnit testing frameworks and includes a sample test that you can use as a starting point for your tests.
+In this article, you learn how to create a test project, write, and run tests for your .NET Aspire solutions. The tests in this article are not unit tests, but rather functional or integration tests. .NET Aspire includes several variations of [testing project templates](setup-tooling.md#net-aspire-project-templates) that you use to test your .NET Aspire resource dependencies—and their communications. The testing project templates are available for MSTest, NUnit, and xUnit testing frameworks and includes a sample test that you can use as a starting point for your tests.
 
 The .NET Aspire test project templates rely on the [Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package. This package exposes the `DistributedApplicationTestingBuilder` class, which is used to create a test host for your distributed application. The distributed application testing builder relies on the `DistributedApplication` class to create and start the [app host](app-host-overview.md).
 
