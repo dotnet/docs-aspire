@@ -1,7 +1,7 @@
 ---
 title: Testing .NET Aspire projects
 description: Learn how to test your .NET Aspire projects using the xUnit testing framework.
-ms.date: 09/06/2024
+ms.date: 09/09/2024
 zone_pivot_groups: unit-testing-framework
 ---
 
@@ -113,6 +113,14 @@ To further test resources and their expressed dependencies in your .NET Aspire s
 :::code language="csharp" source="snippets/testing/nunit/AspireApp.Tests/EnvVarTests.cs":::
 
 :::zone-end
+
+The preceding code:
+
+- Relies on the `DistributedApplicationTestingBuilder` to asynchronously create the app host.
+- The `builder` instance is used to retrieve an `IResourceWithEnvironment` instance named "webfrontend" from the <xref:Aspire.Hosting.Testing.IDistributedApplicationTestingBuilder.Resources%2A?displayProperty=nameWithType>.
+- The `webfrontend` resource is used to call <xref:Aspire.Hosting.ApplicationModel.ResourceExtensions.GetEnvironmentVariableValuesAsync%2A> to retrieve its configured environment variables.
+- The `DistributedApplicationOperation.Publish` argument is passed when calling `GetEnvironmentVariableValuesAsync` to specify environment variables that are published to the resource as binding expressions.
+- With the returned environment variables, the test asserts that the `webfrontend` resource has an HTTPS environment variable that resolves to the `apiservice` resource.
 
 ## Summary
 
