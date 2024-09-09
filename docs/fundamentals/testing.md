@@ -9,6 +9,8 @@ zone_pivot_groups: unit-testing-framework
 
 In this article, you'll learn how to create a test project, write, and run tests for your .NET Aspire projects. The tests in this article are not unit tests, but rather functional or integration tests. .NET Aspire include an [testing project templates](setup-tooling.md#net-aspire-project-templates) that you can use to test your .NET Aspire projects. The testing project templates are available for MSTest, NUnit, and xUnit testing frameworks and includes a sample test that you can use as a starting point for your tests.
 
+The .NET Aspire test project templates rely on the [Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package. This package exposes the `DistributedApplicationTestingBuilder` class, which is used to create a test host for your distributed application. The distributed application testing builder relies on the `DistributedApplication` class to create and start the [app host](app-host-overview.md).
+
 ## Create a test project
 
 The easiest way to create a .NET Aspire test project is to use the testing project template. If you're starting a new .NET Aspire project and want to include test projects, the [Visual Studio tooling supports that option](setup-tooling.md#create-test-project). If you're adding a test project to an existing .NET Aspire project, you can use the `dotnet new` command to create a test project:
@@ -124,7 +126,7 @@ The preceding code:
 
 ## Summary
 
-By using the .NET Aspire testing project template, you can easily create test projects for your .NET Aspire projects. The template project includes a sample test that you can use as a starting point for your tests. The `DistributedApplicationTestingBuilder` follows a familiar pattern to the `WebApplicationFactory` in ASP.NET Core. It allows you to create a test host for your distributed application and run tests against it.
+By using the .NET Aspire testing project template, you can easily create test projects for your .NET Aspire solutions. The template project includes a sample test that you can use as a starting point for your tests. The `DistributedApplicationTestingBuilder` follows a familiar pattern to the `WebApplicationFactory` in ASP.NET Core. It allows you to create a test host for your distributed application and run tests against it.
 
 ## See also
 
