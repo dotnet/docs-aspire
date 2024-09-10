@@ -62,7 +62,7 @@ Alternatively, these same values could be configured using a JSON configuration 
 >
 > For more information, see [dashboard security](security-considerations.md).
 
-### Common configuration
+## Common configuration
 
 | Option | Default Value | Description |
 |--|--|--|
@@ -73,7 +73,7 @@ Alternatively, these same values could be configured using a JSON configuration 
 | `DOTNET_DASHBOARD_CONFIG_FILE_PATH` | `null` | The path for a JSON configuration file. If the dashboard is being run in a Docker container, then this is the path to the configuration file in a mounted volume. This value is optional. |
 | `DOTNET_RESOURCE_SERVICE_ENDPOINT_URL` | `null` | The gRPC endpoint to which the dashboard connects for its data. If this value is unspecified, the dashboard shows telemetry data but no resource list or console logs. This setting is a shortcut to `Dashboard:ResourceServiceClient:Url`. |
 
-### Frontend authentication
+## Frontend authentication
 
 The dashboard frontend endpoint authentication is configured with `Dashboard:Frontend:AuthMode`. The frontend can be secured with OpenID Connect (OIDC) or browser token authentication.
 
@@ -92,7 +92,7 @@ Browser token authentication works by the frontend asking for a token. The token
 | `Authentication:Schemes:OpenIdConnect:ClientSecret` | `null` | A secret that only the real RP would know. |
 | Other properties of <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> | `null` | Values inside configuration section `Authentication:Schemes:OpenIdConnect:*` are bound to `OpenIdConnectOptions`, such as `Scope`. |
 
-### OTLP authentication
+## OTLP authentication
 
 The OTLP endpoint authentication is configured with `Dashboard:Otlp:AuthMode`. The OTLP endpoint can be secured with an API key or [client certificate](/aspnet/core/security/authentication/certauth) authentication.
 
@@ -104,7 +104,7 @@ API key authentication works by requiring each OTLP request to have a valid `x-o
 | `Dashboard:Otlp:PrimaryApiKey` | `null` | Specifies the primary API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended. This value is required if auth mode is API key. |
 | `Dashboard:Otlp:SecondaryApiKey` | `null` | Specifies the secondary API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended. This value is optional. If a second API key is specified then the incoming `x-otlp-api-key` header value can match either the primary or secondary key. |
 
-### OTLP CORS
+## OTLP CORS
 
 CORS (Cross-Origin Resource Sharing) is a mechanism that allows many resources (e.g., fonts, JavaScript, etc.) on a web page to be requested from another domain outside the domain from which the resource originated.
 
@@ -132,7 +132,7 @@ Consider the following configuration options:
 | `DASHBOARD__OTLP__CORS__ALLOWEDORIGINS` | `null` | A comma-delimited list of allowed origins for CORS. This setting is optional and a shortcut to `Dashboard:Otlp:Cors:AllowedOrigins`. |
 | `DASHBOARD__OTLP__CORS__ALLOWEDHEADERS` | `null` | A comma-delimited list of allowed headers for CORS. This setting is optional and a shortcut to `Dashboard:Otlp:Cors:AllowedHeaders`. |
 
-### Resources
+## Resources
 
 The dashboard connects to a resource service to load and display resource information. The client is configured in the dashboard for how to connect to the service.
 
@@ -150,7 +150,7 @@ The resource service client authentication is configured with `Dashboard:Resourc
 | `Dashboard:ResourceServiceClient:ClientCertificate:Store` | `My` | The certificate <xref:System.Security.Cryptography.X509Certificates.StoreName>. |
 | `Dashboard:ResourceServiceClient:ClientCertificate:Location` | `CurrentUser` | The certificate <xref:System.Security.Cryptography.X509Certificates.StoreLocation>. |
 
-#### Telemetry limits
+### Telemetry limits
 
 Telemetry is stored in memory. To avoid excessive memory usage, the dashboard has limits on the count and size of stored telemetry. When a count limit is reached, new telemetry is added, and the oldest telemetry is removed. When a size limit is reached, data is truncated to the limit.
 
@@ -168,7 +168,7 @@ Telemetry limits have different scopes depending upon the telemetry type:
 | `Dashboard:TelemetryLimits:MaxAttributeLength` | `null` | The maximum length of attributes. |
 | `Dashboard:TelemetryLimits:MaxSpanEventCount` | `null` | The maximum number of events on span attributes. |
 
-### Other
+## Other
 
 | Option | Default Value | Description |
 |--|--|--|
