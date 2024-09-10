@@ -155,3 +155,7 @@ Now that the migration service is configured, run the app to test the migrations
 ## Get the code
 
 You can find the [completed sample app on GitHub](https://github.com/MicrosoftDocs/aspire-docs-samples/tree/solution/SupportTicketApi).
+
+## More sample code
+
+The [Aspire Shop](/samples/dotnet/aspire-samples/aspire-shop/) sample app uses this approach to apply migrations. See the `AspireShop.CatalogDbManager` project for the migration service implementation.
