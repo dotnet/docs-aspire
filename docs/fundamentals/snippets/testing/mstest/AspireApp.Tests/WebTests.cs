@@ -19,7 +19,7 @@ public class WebTests
 
         var resourceNotificationService = app.Services
             .GetRequiredService<ResourceNotificationService>();
-        
+
         await app.StartAsync();
 
         // Act
