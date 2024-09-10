@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard configuration
 description: .NET Aspire dashboard configuration options
-ms.date: 05/30/2024
+ms.date: 09/10/2024
 ms.topic: reference
 ---
 
@@ -103,6 +103,34 @@ API key authentication works by requiring each OTLP request to have a valid `x-o
 | `Dashboard:Otlp:AuthMode` | `Unsecured` | Can be set to `ApiKey`, `Certificate` or `Unsecured`. `Unsecured` should only be used during local development. It's not recommended when hosting the dashboard publicly or in other settings. |
 | `Dashboard:Otlp:PrimaryApiKey` | `null` | Specifies the primary API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended. This value is required if auth mode is API key. |
 | `Dashboard:Otlp:SecondaryApiKey` | `null` | Specifies the secondary API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended. This value is optional. If a second API key is specified then the incoming `x-otlp-api-key` header value can match either the primary or secondary key. |
+
+### OTLP CORS
+
+CORS (Cross-Origin Resource Sharing) is a mechanism that allows many resources (e.g., fonts, JavaScript, etc.) on a web page to be requested from another domain outside the domain from which the resource originated.
+
+With the .NET Aspire dashboard, the OTLP endpoint can be configured to allow cross-origin requests. This is useful when the dashboard is hosted on a different domain than the OTLP endpoint, and this can enable scenarios where browser telemetry is sent directly to the OTLP endpoint as demonstrated in the [browser telemetry](https://github.com/dotnet/aspire/tree/main/playground/BrowserTelemetry) sample.
+
+To configure CORS, use the `Dashboard:Otlp:Cors` section and specify the allowed origins and headers:
+
+```json
+{
+  "Dashboard": {
+    "Otlp": {
+      "Cors": {
+        "AllowedOrigins": [ "https://example.com" ],
+        "AllowedHeaders": [ "Content-Type" ]
+      }
+    }
+  }
+}
+```
+
+Consider the following configuration options:
+
+| Option | Default Value | Description |
+|--|--|--|
+| `DASHBOARD__OTLP__CORS__ALLOWEDORIGINS` | `null` | A comma-delimited list of allowed origins for CORS. This setting is optional and a shortcut to `Dashboard:Otlp:Cors:AllowedOrigins`. |
+| `DASHBOARD__OTLP__CORS__ALLOWEDHEADERS` | `null` | A comma-delimited list of allowed headers for CORS. This setting is optional and a shortcut to `Dashboard:Otlp:Cors:AllowedHeaders`. |
 
 ### Resources
 
