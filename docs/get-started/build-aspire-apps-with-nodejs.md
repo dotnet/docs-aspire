@@ -6,7 +6,7 @@ ms.date: 09/11/2024
 
 # Orchestrate Node.js apps in .NET Aspire
 
-In this article, you learn how to use Node.js and Node Package Manager (`npm`) apps in a .NET Aspire project. The sample app in this article demonstrates [Angular](https://angular.io), [React](https://react.dev/), and [Vue](https://vuejs.org/) client experiences. The following .NET Aspire APIs exist to support these scenarios:
+In this article, you learn how to use Node.js and Node Package Manager (`npm`) apps in a .NET Aspire project. The sample app in this article demonstrates [Angular](https://angular.io), [React](https://react.dev/), and [Vue](https://vuejs.org/) client experiences. The following .NET Aspire APIs exist to support these scenarios—and they're part of the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package:
 
 - [Node.js](https://nodejs.org/): <xref:Aspire.Hosting.NodeAppHostingExtension.AddNodeApp%2A>.
 - [`npm` apps](https://docs.npmjs.com/cli/using-npm/scripts): <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A>.
@@ -14,7 +14,7 @@ In this article, you learn how to use Node.js and Node Package Manager (`npm`) a
 The difference between these two APIs is that the former is used to host Node.js apps, while the latter is used to host apps that execute from a _package.json_ file's `scripts` section—and the corresponding `npm run <script-name>` command.
 
 > [!TIP]
-> The sample source code for this article is available on [GitHub](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript), and there are details available on the [Code Samples: .NET Aspire with Angular, React and Vue](/samples/dotnet/aspire-samples/aspire-angular-react-vue) page.
+> The sample source code for this article is available on [GitHub](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript), and there are details available on the [Code Samples: .NET Aspire with Angular, React and Vue](/samples/dotnet/aspire-samples/aspire-angular-react-vue) page. An additional Node.js sample is available on the [Code Samples: .NET Aspire Node.js App](/samples/dotnet/aspire-samples/aspire-nodejs) sample page.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
