@@ -137,7 +137,7 @@ When the app host orchestrates the launch of each client app, it uses the `npm r
 The proxy is configured in:
 
 - The _proxy.conf.js_ file for the Angular client.
-- The _webpack.config.js_ for the React client.
+- The _webpack.config.js_ file for the React client.
 - The _vite.config.ts_ file for the Vue client.
 
 ## Explore the Angular client
@@ -234,7 +234,7 @@ The client apps are currently configured to run as true SPA apps, and aren't con
 
 While this article focuses on client apps, you might have scenarios where you need to host a Node.js server app. The same semantics are required to host a Node.js server app as a SPA client app. The .NET Aspire app host requires a package reference to the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package and the code needs to call either `AddNodeApp` or `AddNpmApp`. These APIs are useful for adding existing JavaScript apps to the .NET Aspire app host.
 
-When configuring secrets and passing environment variables to JavaScript-based apps, wether they are client or server apps, use parameters. For more information, see [.NET Aspire: External parameters—secrets](../fundamentals/external-parameters.md#secret-values).
+When configuring secrets and passing environment variables to JavaScript-based apps, whether they are client or server apps, use parameters. For more information, see [.NET Aspire: External parameters—secrets](../fundamentals/external-parameters.md#secret-values).
 
 ### Use the OpenTelemetry JavaScript SDK
 
