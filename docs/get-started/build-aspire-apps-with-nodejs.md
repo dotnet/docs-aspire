@@ -107,7 +107,7 @@ The [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) launches in y
 
 :::image type="content" source="media/aspire-dashboard-with-nodejs.png" lightbox="media/aspire-dashboard-with-nodejs.png" alt-text=".NET Aspire dashboard with multiple JavaScript client apps.":::
 
-The `weatherapi` service endpoint resolves to a Swagger UI page that documents the HTTP API. This service is consumed by each client app to display the weather forecast data. You can view each client app by navigating to the corresponding endpoint in the .NET Aspire dashboard. Their screenshots and the modifications made from the template starting point are detailed in the following sections.
+The `weatherapi` service endpoint resolves to a Swagger UI page that documents the HTTP API. Each client app consumes this service to display the weather forecast data. You can view each client app by navigating to the corresponding endpoint in the .NET Aspire dashboard. Their screenshots and the modifications made from the template starting point are detailed in the following sections.
 
 In the same terminal session that you used to run the app, press <kbd>Ctrl</kbd> + <kbd>C</kbd> to stop the app.
 
@@ -117,7 +117,7 @@ To help understand how each client app resource is orchestrated, look to the app
 
 :::code language="xml" highlight="13,20-28" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.AppHost/AspireJavaScript.AppHost.csproj":::
 
-The project file also defines a build target that ensures that the NPM dependencies are installed before the app host is built. The app host code (_Program.cs_) declares the client app resources using the `AddNpmApp` API.
+The project file also defines a build target that ensures that the npm dependencies are installed before the app host is built. The app host code (_Program.cs_) declares the client app resources using the `AddNpmApp` API.
 
 :::code source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.AppHost/Program.cs":::
 
@@ -132,7 +132,13 @@ The preceding code:
 
 For more information on inner-loop networking, see [.NET Aspire inner-loop networking overview](../fundamentals/networking-overview.md). For more information on deploying apps, see [.NET Aspire manifest format for deployment tool builders](../deployment/manifest-format.md).
 
-When the app host orchestrates the start up of each client app, it uses the `npm run start` command. This command is defined in the `scripts` section of the _package.json_ file for each client app. The `start` script is used to start the client app on the specified port. Each client app relies on a proxy to request the "weatherapi" service. The proxy is configured in the _proxy.conf.js_ file for the Angular client, _webpack.config.js_ for the React client, and in the _vite.config.ts_ file for the Vue client.
+When the app host orchestrates the launch of each client app, it uses the `npm run start` command. This command is defined in the `scripts` section of the _package.json_ file for each client app. The `start` script is used to start the client app on the specified port. Each client app relies on a proxy to request the "weatherapi" service.
+
+The proxy is configured in:
+
+- The _proxy.conf.js_ file for the Angular client.
+- The _webpack.config.js_ for the React client.
+- The _vite.config.ts_ file for the Vue client.
 
 ## Explore the Angular client
 
@@ -140,9 +146,9 @@ There are several key modifications from the original Angular template. The firs
 
 :::code language="javascript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/proxy.conf.js":::
 
-The preceding configuration proxies HTTP requests that start with `/api` to target the URL within the `services__weatherapi__http__0` environment variable. This environment variable is set by the .NET Aspire app host and is used to resolve the "weatherapi" service endpoint.
+The .NET Aspire app host sets the `services__weatherapi__http__0` environment variable, which is used to resolve the "weatherapi" service endpoint. The preceding configuration proxies HTTP requests that start with `/api` to the target URL specified in the environment variable.
 
-The second update is the to the _package.json_ file. This file is used to configure the Angular client to run on a different port than the default port. This is achieved by using the `PORT` environment variable, and the `run-script-os` npm package to set the port.
+The second update is to the _package.json_ file. This file is used to configure the Angular client to run on a different port than the default port. This is achieved by using the `PORT` environment variable, and the `run-script-os` npm package to set the port.
 
 :::code language="json" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/package.json":::
 
@@ -216,23 +222,23 @@ To visualize the Vue client app, navigate to the "vue" endpoint in the .NET Aspi
 
 ## Deployment considerations
 
-The sample source code for this article is designed to run locally. It has also been developed to deploy each client app as a container image. The _Dockerfile_ for each client app is used to build the container image. Each _Dockerfile_ is identical, using a multistage build to create a production-ready container image.
+The sample source code for this article is designed to run locally. Each client app deploys as a container image. The _Dockerfile_ for each client app is used to build the container image. Each _Dockerfile_ is identical, using a multistage build to create a production-ready container image.
 
 :::code language="dockerfile" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/Dockerfile":::
 
-The client apps are currently configured to run as true SPA apps, and are not configured to run in a server-side rendered (SSR) mode. They sit behind **nginx**, which is used to serve the static files. They leverage a simple _default.conf.template_ file to configure **nginx** to proxy requests to the client app.
+The client apps are currently configured to run as true SPA apps, and aren't configured to run in a server-side rendered (SSR) mode. They sit behind **nginx**, which is used to serve the static files. They use a _default.conf.template_ file to configure **nginx** to proxy requests to the client app.
 
 :::code language="nginx" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/default.conf.template":::
 
 ## Node.js server app considerations
 
-While this article focuses on client apps, you may have scenarios where you need to host a Node.js server app. The same semantics are required to host a Node.js server app as a SPA client app. The .NET Aspire app host requires a package reference to the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package and the code needs to call either `AddNodeApp` or `AddNpmApp`.
+While this article focuses on client apps, you might have scenarios where you need to host a Node.js server app. The same semantics are required to host a Node.js server app as a SPA client app. The .NET Aspire app host requires a package reference to the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package and the code needs to call either `AddNodeApp` or `AddNpmApp`.
 
 ### Use the OpenTelemetry JavaScript SDK
 
 To export OpenTelemetry logs, traces, and metrics from a Node.js server app, you use the [OpenTelemetry JavaScript SDK](https://opentelemetry.io/docs/languages/js/).
 
-For a complete example of a Node.js server app using the OpenTelemetry JavaScript SDK, you can refer to the [Code Samples: .NET Aspire Node.js sample](/samples/dotnet/aspire-samples/aspire-nodejs) page. In this sample, you will find the _instrumentation.js_ file, which demonstrates how to configure the OpenTelemetry JavaScript SDK to export logs, traces, and metrics:
+For a complete example of a Node.js server app using the OpenTelemetry JavaScript SDK, you can refer to the [Code Samples: .NET Aspire Node.js sample](/samples/dotnet/aspire-samples/aspire-nodejs) page. Consider the sample's _instrumentation.js_ file, which demonstrates how to configure the OpenTelemetry JavaScript SDK to export logs, traces, and metrics:
 
 :::code language="javascript" source="~/aspire-samples/samples/AspireWithNode/NodeFrontend/instrumentation.js":::
 
@@ -242,5 +248,5 @@ While there are several considerations that are beyond the scope of this article
 
 ## See also
 
-- [Code Samples: .NET Aspire with Angular, React and Vue](/samples/dotnet/aspire-samples/aspire-angular-react-vue)
+- [Code Samples: .NET Aspire with Angular, React, and Vue](/samples/dotnet/aspire-samples/aspire-angular-react-vue)
 - [Code Samples: .NET Aspire Node.js App](/samples/dotnet/aspire-samples/aspire-nodejs)
