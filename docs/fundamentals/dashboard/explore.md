@@ -66,8 +66,8 @@ The dashboard also provides essential details about each resource:
 
 To view a _text visualizer_ of certain columns, on hover you'll see a vertical ellipsis icon. Select the icon to display the available options:
 
-- **Copy to clipboard**: Copies the text to the clipboard.
-- **Open in text visualizer**: Opens a text visualizer modal dialog.
+- **Copy to clipboard**
+- **Open in text visualizer**
 
 Consider the following screenshot of the ellipsis menu options:
 
@@ -77,7 +77,7 @@ When you select the **Open in text visualizer** option, a modal dialog opens wit
 
 :::image type="content" source="media/explore/text-visualizer-resources.png" lightbox="media/explore/text-visualizer-resources.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page, showing the text visualizer.":::
 
-Some values are formatted as JSON or XML, in these cases, the text visualizer will enable the **Select format** dropdown to switch between the different formats.
+Some values are formatted as JSON or XML. In these cases, the text visualizer enables the **Select format** dropdown to switch between the different formats.
 
 You can obtain full details about each resource by selecting the **View** link in the **Details** column:
 
