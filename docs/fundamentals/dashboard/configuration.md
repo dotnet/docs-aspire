@@ -133,8 +133,8 @@ Consider the following configuration options:
 | `DASHBOARD__OTLP__CORS__ALLOWEDORIGINS` | `null` | A comma-delimited string, representing the allowed origins for CORS. The `*` represents a wildcard allowing any domain. An example domain would be a browser app that wants to send telemetry directly to the dashboard. This setting is optional and maps to the `Dashboard:Otlp:Cors:AllowedOrigins` configuration. |
 | `DASHBOARD__OTLP__CORS__ALLOWEDHEADERS` | `null` | A comma-delimited string, representing the allowed headers for CORS. This setting is optional and a shortcut to `Dashboard:Otlp:Cors:AllowedHeaders`. |
 
-> [!IMPORTANT]
-The dashboard only supports the `POST` method for sending telemetry and doesn't allow configuration of the _allowed methods_ (`Access-Control-Allow-Methods`) for CORS.
+> [!NOTE]
+> The dashboard only supports the `POST` method for sending telemetry and doesn't allow configuration of the _allowed methods_ (`Access-Control-Allow-Methods`) for CORS.
 
 ## Resources
 
