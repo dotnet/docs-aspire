@@ -226,9 +226,13 @@ The client apps are currently configured to run as true SPA apps, and are not co
 
 ## Node.js server app considerations
 
-While this article focuses on client apps, you may have scenarios where you need to host a Node.js server app. To export OpenTelemetry logs, traces, and metrics from a Node.js server app, you use the [OpenTelemetry JavaScript SDK](https://opentelemetry.io/docs/languages/js/).
+While this article focuses on client apps, you may have scenarios where you need to host a Node.js server app. The same semantics are required to host a Node.js server app as a SPA client app. The .NET Aspire app host requires a package reference to the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package and the code needs to call either `AddNodeApp` or `AddNpmApp`.
 
-A full sample app exists with a Node.js server app that uses the OpenTelemetry JavaScript SDK. The sample app is available on the [Code Samples: .NET Aspire Node.js sample](/samples/dotnet/aspire-samples/aspire-nodejs) page. Consider the _instrumentation.js_ file in the sample app, which demonstrates how to configure the OpenTelemetry JavaScript SDK to export logs, traces, and metrics:
+### Use the OpenTelemetry JavaScript SDK
+
+To export OpenTelemetry logs, traces, and metrics from a Node.js server app, you use the [OpenTelemetry JavaScript SDK](https://opentelemetry.io/docs/languages/js/).
+
+For a complete example of a Node.js server app using the OpenTelemetry JavaScript SDK, you can refer to the [Code Samples: .NET Aspire Node.js sample](/samples/dotnet/aspire-samples/aspire-nodejs) page. In this sample, you will find the _instrumentation.js_ file, which demonstrates how to configure the OpenTelemetry JavaScript SDK to export logs, traces, and metrics:
 
 :::code language="javascript" source="~/aspire-samples/samples/AspireWithNode/NodeFrontend/instrumentation.js":::
 
