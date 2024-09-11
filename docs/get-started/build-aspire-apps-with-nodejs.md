@@ -242,6 +242,9 @@ For a complete example of a Node.js server app using the OpenTelemetry JavaScrip
 
 :::code language="javascript" source="~/aspire-samples/samples/AspireWithNode/NodeFrontend/instrumentation.js":::
 
+> [!TIP]
+> To configure the .NET Aspire dashboard OTEL CORS settings, see the [.NET Aspire dashboard OTEL CORS settings](../fundamentals/dashboard/configuration.md#otlp-cors) page.
+
 ## Summary
 
 While there are several considerations that are beyond the scope of this article, you learned how to build .NET Aspire projects that use Node.js and Node Package Manager (`npm`). You also learned how to use the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A> APIs to host Node.js apps and apps that execute from a _package.json_ file, respectively. Finally, you learned how to use the `npm` CLI to create Angular, React, and Vue client apps, and how to configure them to run on different ports.
