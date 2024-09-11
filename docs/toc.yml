@@ -301,6 +301,7 @@ items:
       - name: .NET Aspire API reference
         href:  /dotnet/api?view=dotnet-aspire-8.0&preserve-view=true
       - name: .NET Aspire FAQ
+        displayName: iis,functions,deploy,azure,kubernetes
         href: reference/aspire-faq.yml
 
   - name: Training
