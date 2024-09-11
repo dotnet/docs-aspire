@@ -106,9 +106,11 @@ API key authentication works by requiring each OTLP request to have a valid `x-o
 
 ## OTLP CORS
 
-CORS (Cross-Origin Resource Sharing) is a mechanism that allows many resources (for example, fonts, JavaScript, etc.) on a web page to be requested from another domain outside the domain from which the resource originated.
+CORS (Cross-Origin Resource Sharing) can be configured to allow browser apps to send telemetry to the dashboard.
 
-With the .NET Aspire dashboard, the OTLP endpoint can be configured to allow cross-origin requests. This is useful when the dashboard is hosted on a different domain than the OTLP endpoint, and this can enable scenarios where browser telemetry is sent directly to the OTLP endpoint as demonstrated in the [browser telemetry](https://github.com/dotnet/aspire/tree/main/playground/BrowserTelemetry) sample.
+By default, browser apps are restricted from making cross domain API calls. This impacts sending telemetry to the dashboard because the dashboard and the browser app are always on different domains. Configuring CORS in the .NET Aspire dashboard removes the restriction and allows browser apps with the [OpenTelemetry SDK for JavaScript](https://opentelemetry.io/docs/languages/js/) to send telemetry directly to the dashboard OTLP HTTP endpoint.
+
+Using CORS, the dashboard and browser telemetry together is demonstrated in the [browser telemetry](https://github.com/dotnet/aspire/tree/main/playground/BrowserTelemetry) sample.
 
 To configure CORS, use the `Dashboard:Otlp:Cors` section and specify the allowed origins and headers:
 
@@ -117,8 +119,7 @@ To configure CORS, use the `Dashboard:Otlp:Cors` section and specify the allowed
   "Dashboard": {
     "Otlp": {
       "Cors": {
-        "AllowedOrigins": [ "https://example.com" ],
-        "AllowedHeaders": [ "Content-Type" ]
+        "AllowedOrigins": "http://localhost:5000,https://localhost:5001"
       }
     }
   }
