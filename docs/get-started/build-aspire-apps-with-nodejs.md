@@ -224,6 +224,14 @@ The client apps are currently configured to run as true SPA apps, and are not co
 
 :::code language="nginx" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/default.conf.template":::
 
+## Node.js server app considerations
+
+While this article focuses on client apps, you may have scenarios where you need to host a Node.js server app. To export OpenTelemetry logs, traces, and metrics from a Node.js server app, you use the [OpenTelemetry JavaScript SDK](https://opentelemetry.io/docs/languages/js/).
+
+A full sample app exists with a Node.js server app that uses the OpenTelemetry JavaScript SDK. The sample app is available on the [Code Samples: .NET Aspire Node.js sample](/samples/dotnet/aspire-samples/aspire-nodejs) page. Consider the _instrumentation.js_ file in the sample app, which demonstrates how to configure the OpenTelemetry JavaScript SDK to export logs, traces, and metrics:
+
+:::code language="javascript" source="~/aspire-samples/samples/AspireWithNode/NodeFrontend/instrumentation.js":::
+
 ## Summary
 
 While there are several considerations that are beyond the scope of this article, you learned how to build .NET Aspire projects that use Node.js and Node Package Manager (`npm`). You also learned how to use the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A> APIs to host Node.js apps and apps that execute from a _package.json_ file, respectively. Finally, you learned how to use the `npm` CLI to create Angular, React, and Vue client apps, and how to configure them to run on different ports.
