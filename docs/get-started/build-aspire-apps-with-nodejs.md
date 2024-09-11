@@ -14,7 +14,10 @@ In this article, you learn how to use Node.js and Node Package Manager (`npm`) a
 The difference between these two APIs is that the former is used to host Node.js apps, while the latter is used to host apps that execute from a _package.json_ file's `scripts` section—and the corresponding `npm run <script-name>` command.
 
 > [!TIP]
-> The sample source code for this article is available on [GitHub](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript), and there are details available on the [Code Samples: .NET Aspire with Angular, React and Vue](/samples/dotnet/aspire-samples/aspire-angular-react-vue) page. An additional Node.js sample is available on the [Code Samples: .NET Aspire Node.js App](/samples/dotnet/aspire-samples/aspire-nodejs) sample page.
+> The sample source code for this article is available on [GitHub](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript), and there are details available on the [Code Samples: .NET Aspire with Angular, React and Vue](/samples/dotnet/aspire-samples/aspire-angular-react-vue) page.
+
+> [!IMPORTANT]
+> While this article is focused on Single-Page App (SPA) frontend bits, there's an additional Node.js sample available on the [Code Samples: .NET Aspire Node.js sample](/samples/dotnet/aspire-samples/aspire-nodejs) page, that demonstrates how to use Node.js as a server app with [express](https://expressjs.com/).
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
@@ -224,3 +227,8 @@ The client apps are currently configured to run as true SPA apps, and are not co
 ## Summary
 
 While there are several considerations that are beyond the scope of this article, you learned how to build .NET Aspire projects that use Node.js and Node Package Manager (`npm`). You also learned how to use the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A> APIs to host Node.js apps and apps that execute from a _package.json_ file, respectively. Finally, you learned how to use the `npm` CLI to create Angular, React, and Vue client apps, and how to configure them to run on different ports.
+
+## See also
+
+- [Code Samples: .NET Aspire with Angular, React and Vue](/samples/dotnet/aspire-samples/aspire-angular-react-vue)
+- [Code Samples: .NET Aspire Node.js App](/samples/dotnet/aspire-samples/aspire-nodejs)
