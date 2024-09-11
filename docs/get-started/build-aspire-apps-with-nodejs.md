@@ -232,7 +232,7 @@ The client apps are currently configured to run as true SPA apps, and aren't con
 
 ## Node.js server app considerations
 
-While this article focuses on client apps, you might have scenarios where you need to host a Node.js server app. The same semantics are required to host a Node.js server app as a SPA client app. The .NET Aspire app host requires a package reference to the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package and the code needs to call either `AddNodeApp` or `AddNpmApp`.
+While this article focuses on client apps, you might have scenarios where you need to host a Node.js server app. The same semantics are required to host a Node.js server app as a SPA client app. The .NET Aspire app host requires a package reference to the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package and the code needs to call either `AddNodeApp` or `AddNpmApp`. These APIs are useful for adding existing JavaScript apps to the .NET Aspire app host.
 
 ### Use the OpenTelemetry JavaScript SDK
 
