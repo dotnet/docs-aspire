@@ -111,9 +111,9 @@ sections:
           No. .NET Aspire doesn't support deploying apps to IIS. However, it doesn't prevent you from deploying your apps to IIS in the same way that you always have.
 
       - question: |
-          When deploying my existing apps, that are now referenced within a .NET Aspire solution, to IIS some integrations and [Service Discovery](../service-discovery/overview.md) isn't working as expected. What can I do?
+          When deploying my existing apps, that are now referenced within a .NET Aspire solution, to IIS some integrations and Service Discovery isn't working as expected. What can I do?
         answer: |
-          .NET Aspire integrations require specific configuration that must be provided manually. The same is true for Service Discovery, ideally, you should deploy to something other than IIS.          
+          .NET Aspire integrations require specific configuration that must be provided manually. The same is true for [Service Discovery](../service-discovery/overview.md), ideally, you should deploy to something other than IIS.          
 
 additionalContent: |
 
