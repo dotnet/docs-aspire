@@ -7,10 +7,7 @@ ms.topic: how-to
 
 # Implement auth for hosting and client integrations
 
-This article is a continuation of two previous articles:
-
-- [Create custom resource types for .NET Aspire](custom-resources.md)
-- [Create custom .NET Aspire integration](custom-integration.md)
+This article is a continuation of two previous articles demonstrating the creation of [custom hosting integrations](custom-hosting-integration.md) and [custom client integrations](custom-client-integration.md).
 
 One of the primary benefits to .NET Aspire is how it simplifies the configurability of resources and consuming clients (or integrations). This article demonstrates how to authentication credentials from a custom resource to a custom integration. The custom resource is a MailDev container that allows for either incoming or outgoing credentials. The custom integration is a MailKit client that sends emails.
 

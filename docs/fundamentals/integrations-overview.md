@@ -20,13 +20,13 @@ There are two types of integrations in .NET Aspire, each with a different respon
 
 Hosting integrations configure applications by provisioning resources (like containers or cloud resources) or pointing to existing ones (such as a local SQL server). These packages model various services, platforms, or capabilities, including caches, databases, logging, storage, and messaging systems. They extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface, enabling the _app host_ project to express resources within its _app model_. The official [hosting integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+hosting+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `hosting`.
 
-For information on creating a custom hosting integration, see [Create a custom hosting integration](../extensibility/custom-resources.md).
+For information on creating a custom hosting integration, see [Create custom .NET Aspire hosting integration](../extensibility/custom-hosting-integration.md).
 
 ### Client integrations
 
 Client integrations define configuration schema, wire up client libraries to dependency injection (DI), add health checks, resiliency, and telemetry where applicable. These packages configure existing libraries to connect to resource-backed integrations. They extend the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> interface allowing client-consuming projects to use the connected resource. The official [client integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+client+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `client`.
 
-For more information on creating a custom client integration, see [Create a custom client integration](../extensibility/custom-integration.md).
+For more information on creating a custom client integration, see [Create custom .NET Aspire client integration](../extensibility/custom-client-integration.md).
 
 ### Hosting and client integration relationship
 

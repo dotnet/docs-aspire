@@ -267,7 +267,7 @@ To use the SMTP connection details that were injected into the newsletter servic
 :::code source="snippets/MailDevResource/MailDevResource.NewsletterService/Program.cs" id="smtp":::
 
 > [!TIP]
-> This code snippet relies on the official `SmtpClient`, however; this type is obsolete on some platforms and not recommended on others. This is used here to demonstrate a non-componentized approach to using the MailDev resource. For a more modern approach using [MailKit](https://github.com/jstedfast/MailKit), see [Create custom .NET Aspire integration](custom-integration.md).
+> This code snippet relies on the official `SmtpClient`, however; this type is obsolete on some platforms and not recommended on others. For a more modern approach using [MailKit](https://github.com/jstedfast/MailKit), see [Create custom .NET Aspire client integration](custom-client-integration.md).
 
 To test the client, add two simple `subscribe` and `unsubscribe` POST methods to the newsletter service. Add the following code replacing the "weatherforecast" `MapGet` call in the _:::no-loc text="Program.cs":::_ file of the _MailDevResource.NewsletterService_ project to set up the ASP.NET Core routes:
 
