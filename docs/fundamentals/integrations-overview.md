@@ -14,13 +14,25 @@ ms.topic: conceptual
 
 ## Integration responsibilities
 
-There are two sides to integrations in .NET Aspire, each with a different responsibility:
+There are two types of integrations in .NET Aspire, each with a different responsibility. One type represents resources within the app host project, while the other represents client libraries that connect to these resources.
 
-- **Resource integrations**: These packages model various services, platforms, or capabilities such as caches, databases, logging, storage, and messaging systems. They extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface allowing the app host project to express resources in the distributed application builder and are tagged with `aspire`, `integration`, and `hosting`.
+### Hosting integrations
 
-- **Client integrations**: These packages configure existing libraries to connect to resource-backed integrations. They extend the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> interface allowing client-consuming projects to use the connected resource and are tagged with `aspire`, `integration`, and `client`.
+Hosting integrations configure applications by provisioning resources (like containers or cloud resources) or pointing to existing ones (such as a local SQL server). These packages model various services, platforms, or capabilities, including caches, databases, logging, storage, and messaging systems. They extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface, enabling the _app host_ project to express resources within its _app model_. The official [hosting integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+hosting+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `hosting`.
 
-While .NET Aspire _client integrations_ can be used independently, they work best with the [.NET Aspire app host](app-host-overview.md). Each [integration](#available-integrations) provides installation, configuration, and usage details in the documentation—for both sides of the integration, the hosting and client respectively.
+For information on creating a custom hosting integration, see [Create a custom hosting integration](../extensibility/custom-resources.md).
+
+### Client integrations
+
+Client integrations define configuration schema, wire up client libraries to dependency injection (DI), add health checks, resiliency, and telemetry where applicable. These packages configure existing libraries to connect to resource-backed integrations. They extend the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> interface allowing client-consuming projects to use the connected resource. The official [client integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+client+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `client`.
+
+For more information on creating a custom client integration, see [Create a custom client integration](../extensibility/custom-integration.md).
+
+### Hosting and client integration relationship
+
+Hosting and client integrations are best when used together, but are NOT coupled and may be used separately (some hosting integrations may not have a library integration for for example). Configuration is what makes the hosting integration work with the client library integration.
+
+While .NET Aspire _client integrations_ can be used independently, they work best with their corresponding [hosting integrations](#hosting-integrations). Each [integration](#available-integrations) provides installation, configuration, and usage details in the documentation—for both sides of the integration, the hosting and client respectively.
 
 For example, if you want to use [Redis for caching](../caching/stackexchange-redis-caching-overview.md) in your .NET Aspire solution, you would use the `Aspire.Hosting.Redis` package to model the Redis resource. Then, you can connect to the Redis resource using the `Aspire.StackExchange.Redis` client integration.
 

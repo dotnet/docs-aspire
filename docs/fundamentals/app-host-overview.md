@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs to express resource references.
-ms.date: 08/12/2024
+ms.date: 09/12/2024
 ms.topic: overview
 uid: aspire/app-host
 ---
@@ -57,13 +57,15 @@ Each resource must be uniquely named. This diagram shows each resource and the r
 |--|--|--|
 | <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> | <xref:Aspire.Hosting.ApplicationModel.ProjectResource> | A .NET project, for example ASP.NET Core web apps. |
 | <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.ContainerResource> | A container image, such as a Docker image. |
-| <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> | <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> | An executable file. |
+| <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> | <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> | An executable file, such as . |
 
-Project resources are .NET projects that are part of the app model. When you add a project reference to the app host project, the app host generates a type in the `Projects` namespace for each referenced project.
+Project resources represent .NET projects that are part of the app model. When you add a project reference to the app host project, the .NET Aspire SDK generates a type in the `Projects` namespace for each referenced project.
 
 To add a project to the app model, use the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> method:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 // Adds the project "apiservice" of type "Projects.AspireApp_ApiService".
 var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice");
 ```
@@ -73,19 +75,23 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 A reference represents a dependency between resources. Consider the following:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var cache = builder.AddRedis("cache");
 
 builder.AddProject<Projects.AspireApp_Web>("webfrontend")
        .WithReference(cache);
 ```
 
-The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a dependency on the "cache" container resource. These dependencies can represent connection strings or [service discovery](../service-discovery/overview.md) information. In the preceding example, an environment variable is injected into the "webfronend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the webfrontend can use to connect to redis via the .NET Aspire Redis integration, for example, `ConnectionStrings__cache="localhost:62354"`.
+The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a dependency on the "cache" container resource. These dependencies can represent connection strings or [service discovery](../service-discovery/overview.md) information. In the preceding example, an environment variable is _injected_ into the "webfronend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the `webfrontend` uses to connect to Redis via the [.NET Aspire Redis integration](../caching/stackexchange-redis-caching-overview.md), for example, `ConnectionStrings__cache="localhost:62354"`.
 
 ### Connection string and endpoint references
 
-It's also possible to have dependencies between project resources. Consider the following example code:
+It's common to express dependencies between project resources. Consider the following example code:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var cache = builder.AddRedis("cache");
 
 var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice");
@@ -107,6 +113,8 @@ Adding a reference to the "apiservice" project results in service discovery envi
 It's possible to get specific endpoints from a container or executable using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint%2A> and calling the <xref:Aspire.Hosting.ResourceBuilderExtensions.GetEndpoint%2A>:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var customContainer = builder.AddContainer("myapp", "mycustomcontainer")
                              .WithHttpEndpoint(port: 9043, name: "endpoint");
 
@@ -146,7 +154,7 @@ In the preceding example, the `apiservice` service has a named endpoint called `
 
 ### APIs for adding and expressing resources
 
-.NET Aspire hosting packages and [.NET Aspire integrations](integrations-overview.md) are both delivered as NuGet packages, but they serve different purposes. While integrations provide client library configuration for consuming apps outside the scope of the app host, hosting packages provide APIs for expressing resources and dependencies within the app host.
+.NET Aspire [hosting integrations](integrations-overview.md#hosting-integrations) and [Client integrations](integrations-overview.md#client-integrations) are both delivered as NuGet packages, but they serve different purposes. While client integrations provide client library configuration for consuming apps outside the scope of the app host, hosting integration provide APIs for expressing resources and dependencies within the app host. For more information, see [Integration responsibilities](integrations-overview.md#integration-responsibilities).
 
 ### Express container resources
 
