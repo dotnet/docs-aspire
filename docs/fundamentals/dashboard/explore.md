@@ -1,7 +1,7 @@
 ---
 title: Explore .NET Aspire dashboard
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 08/02/2024
+ms.date: 09/06/2024
 ms.topic: reference
 ---
 
@@ -63,6 +63,21 @@ The dashboard also provides essential details about each resource:
  Consider the following screenshot of the resources page:
 
 :::image type="content" source="media/explore/projects.png" lightbox="media/explore/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page.":::
+
+To view a _text visualizer_ of certain columns, on hover you'll see a vertical ellipsis icon. Select the icon to display the available options:
+
+- **Copy to clipboard**
+- **Open in text visualizer**
+
+Consider the following screenshot of the ellipsis menu options:
+
+:::image type="content" source="media/explore/text-visualizer-selection-menu.png" lightbox="media/explore/text-visualizer-selection-menu.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page, showing the ellipsis menu options.":::
+
+When you select the **Open in text visualizer** option, a modal dialog opens with the text displayed in a larger format. Consider the following screenshot of the text visualizer modal dialog:
+
+:::image type="content" source="media/explore/text-visualizer-resources.png" lightbox="media/explore/text-visualizer-resources.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page, showing the text visualizer.":::
+
+Some values are formatted as JSON or XML. In these cases, the text visualizer enables the **Select format** dropdown to switch between the different formats.
 
 You can obtain full details about each resource by selecting the **View** link in the **Details** column:
 

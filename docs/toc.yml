@@ -24,6 +24,7 @@ items:
         href: fundamentals/app-host-overview.md
       - name: Orchestrate Node.js apps in .NET Aspire
         href: get-started/build-aspire-apps-with-nodejs.md
+        displayName: node.js,node,express,typescript,javascript,spa,client-side,server-side
       - name: Orchestrate Python apps in .NET Aspire
         href: get-started/build-aspire-apps-with-python.md
       - name: Add Dockerfiles to the app model
@@ -301,6 +302,7 @@ items:
       - name: .NET Aspire API reference
         href:  /dotnet/api?view=dotnet-aspire-8.0&preserve-view=true
       - name: .NET Aspire FAQ
+        displayName: iis,functions,deploy,azure,kubernetes
         href: reference/aspire-faq.yml
 
   - name: Training
