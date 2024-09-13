@@ -228,3 +228,5 @@ private static IResourceBuilder<RabbitMQServerResource> RunWithStableNodeName(
 - [.NET Aspire integrations overview](integrations-overview.md)
 - [Service discovery in .NET Aspire](../service-discovery/overview.md)
 - [.NET Aspire service defaults](service-defaults.md)
+- [Expressing external parameters](external-parameters.md)
+- [.NET Aspire inner-loop networking overview](networking-overview.md)
