@@ -225,10 +225,10 @@ items:
     items:
       - name: Create hosting integrations
         displayName: resources,extensibility,hosting,integrations
-        href: extensibility/custom-resources.md
+        href: extensibility/custom-hosting-integration.md
       - name: Create client integrations
         displayName: custom,extensibility,client,library,integrations
-        href: extensibility/custom-integration.md
+        href: extensibility/custom-client-integration.md
       - name: Implement auth for hosting and client integrations
         href: extensibility/implement-auth-from-resource-to-integration.md
 
