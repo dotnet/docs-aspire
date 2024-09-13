@@ -1,7 +1,7 @@
 ---
 title: Local Azure provisioning
 description: Learn how to use Azure resources in your local development environment.
-ms.date: 05/16/2024
+ms.date: 09/13/2024
 ---
 
 # Local Azure provisioning
@@ -56,7 +56,7 @@ The `RunAsEmulator` API configures an Azure Cosmos DB resource to be emulated us
 
 ### .NET Aspire Azure hosting libraries
 
-If you're using Azure resources in your app host, you're using one or more of the [.NET Aspire Azure hosting libraries](../../fundamentals/app-host-overview.md#azure-hosting-libraries). These hosting libraries provide extension methods to the `IDistributedApplicationBuilder` interface to add Azure resources to your app host.
+If you're using Azure resources in your app host, you're using one or more of the [.NET Aspire Azure hosting libraries](../../fundamentals/integrations-overview.md#azure-hosting-libraries). These hosting libraries provide extension methods to the `IDistributedApplicationBuilder` interface to add Azure resources to your app host.
 
 ### Azure provisioning libraries
 
