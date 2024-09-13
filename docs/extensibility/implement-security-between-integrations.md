@@ -1,11 +1,11 @@
 ---
-title: Implement auth for hosting and client integrations
-description: Learn how to implement authentication credentials from a custom resource to a custom integration.
+title: Implement security between hosting and client integrations
+description: Learn how to implement security between hosting and client integrations.
 ms.date: 09/12/2024
 ms.topic: how-to
 ---
 
-# Implement auth for hosting and client integrations
+# Implement security between hosting and client integrations
 
 This article is a continuation of two previous articles demonstrating the creation of [custom hosting integrations](custom-hosting-integration.md) and [custom client integrations](custom-client-integration.md).
 

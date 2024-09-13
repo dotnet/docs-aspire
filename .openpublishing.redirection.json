@@ -259,6 +259,10 @@
     {
       "source_path_from_root": "/docs/extensibility/custom-integration.md",
       "redirect_url": "/dotnet/aspire/extensibility/custom-client-integration"
+    },
+    {
+      "source_path_from_root": "/docs/extensibility/implement-auth-from-resource-to-integration.md",
+      "redirect_url": "/dotnet/aspire/extensibility/implement-security-between-integrations"
     }
   ]
 }

@@ -229,8 +229,8 @@ items:
       - name: Create client integrations
         displayName: custom,extensibility,client,library,integrations
         href: extensibility/custom-client-integration.md
-      - name: Implement auth for hosting and client integrations
-        href: extensibility/implement-auth-from-resource-to-integration.md
+      - name: Implement security for hosting and client integrations
+        href: extensibility/implement-security-between-integrations.md
 
   - name: Deployment
     items:

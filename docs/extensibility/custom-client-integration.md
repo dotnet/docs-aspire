@@ -201,4 +201,4 @@ Go forth and build your own .NET Aspire integrations. If you believe that there'
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Implement auth from custom resource to integration](implement-auth-from-resource-to-integration.md)
+> [Implement security between hosting and client integrations](implement-security-between-integrations.md)
