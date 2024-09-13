@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire integrations overview
 description: Explore the fundamental concepts of .NET Aspire integrations and learn how to integrate them into your apps.
-ms.date: 08/26/2024
+ms.date: 09/13/2024
 ms.topic: conceptual
 ---
 
@@ -14,11 +14,13 @@ ms.topic: conceptual
 
 ## Integration responsibilities
 
-There are two types of integrations in .NET Aspire, each with a different responsibility. One type represents resources within the app host project, while the other represents client libraries that connect to these resources.
+There are two types of integrations in .NET Aspire, each with a different responsibility. One type represents resources within the app host project—these are known as [hosting integrations](#hosting-integrations). The other type of integration represents client libraries that connect to the aforementioned resources, and they're known as [client integrations](#client-integrations).
 
 ### Hosting integrations
 
-Hosting integrations configure applications by provisioning resources (like containers or cloud resources) or pointing to existing ones (such as a local SQL server). These packages model various services, platforms, or capabilities, including caches, databases, logging, storage, and messaging systems. They extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface, enabling the _app host_ project to express resources within its _app model_. The official [hosting integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+hosting+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `hosting`.
+Hosting integrations configure applications by provisioning resources (like containers or cloud resources) or pointing to existing ones (such as a local SQL server). These packages model various services, platforms, or capabilities, including caches, databases, logging, storage, and messaging systems.
+
+Hosting integrations extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface, enabling the _app host_ project to express resources within its _app model_. The official [hosting integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+hosting+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `hosting`.
 
 For information on creating a custom hosting integration, see [Create custom .NET Aspire hosting integration](../extensibility/custom-hosting-integration.md).
 
@@ -28,17 +30,103 @@ Client integrations define configuration schema, wire up client libraries to dep
 
 For more information on creating a custom client integration, see [Create custom .NET Aspire client integration](../extensibility/custom-client-integration.md).
 
-### Hosting and client integration relationship
+### Relationship between hosting and client integrations
 
-Hosting and client integrations are best when used together, but are NOT coupled and may be used separately (some hosting integrations may not have a library integration for for example). Configuration is what makes the hosting integration work with the client library integration.
-
-While .NET Aspire _client integrations_ can be used independently, they work best with their corresponding [hosting integrations](#hosting-integrations). Each [integration](#available-integrations) provides installation, configuration, and usage details in the documentation—for both sides of the integration, the hosting and client respectively.
+Hosting and client integrations are best when used together, but are **not** coupled and may be used separately. Some hosting integrations may not have a corresponding client integration. Configuration is what makes the hosting integration work with the client integration.
 
 For example, if you want to use [Redis for caching](../caching/stackexchange-redis-caching-overview.md) in your .NET Aspire solution, you would use the `Aspire.Hosting.Redis` package to model the Redis resource. Then, you can connect to the Redis resource using the `Aspire.StackExchange.Redis` client integration.
 
-## Available integrations
+## Available hosting integrations
 
-The following table lists the .NET Aspire integrations currently available for use:
+The following section details the available .NET Aspire hosting integrations, links to their respective NuGet packages, the resource types they expose, and provides a brief description of each integration.
+
+**Cloud-agnostic resources are available in the following NuGet packages:**
+
+- [📦 Aspire.Hosting.Dapr](https://www.nuget.org/packages/Aspire.Hosting.Dapr)
+- [📦 Aspire.Hosting.Elasticsearch](https://www.nuget.org/packages/Aspire.Hosting.Elasticsearch)
+- [📦 Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka)
+- [📦 Aspire.Hosting.Keycloak](https://www.nuget.org/packages/Aspire.Hosting.Keycloak)
+- [📦 Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus)
+- [📦 Aspire.Hosting.MongoDB](https://www.nuget.org/packages/Aspire.Hosting.MongoDB)
+- [📦 Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql)
+- [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats)
+- [📦 Aspire.Hosting.NodeJs](https://www.nuget.org/packages/Aspire.Hosting.NodeJs)
+- [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle)
+- [📦 Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans)
+- [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL)
+- [📦 Aspire.Hosting.Python](https://www.nuget.org/packages/Aspire.Hosting.Python)
+- [📦 Aspire.Hosting.Qdrant](https://www.nuget.org/packages/Aspire.Hosting.Qdrant)
+- [📦 Aspire.Hosting.RabbitMQ](https://www.nuget.org/packages/Aspire.Hosting.RabbitMQ)
+- [📦 Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis)
+- [📦 Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq)
+- [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer)
+- [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing)
+
+| Method | Resource type | Description |
+|--|--|--|
+| <xref:Aspire.Hosting.ElasticsearchBuilderExtensions.AddElasticsearch*> | <xref:Aspire.Hosting.ApplicationModel.ElasticsearchResource> | Adds an Elasticsearch container resource to the application model. |
+| <xref:Aspire.Hosting.KeycloakResourceBuilderExtensions.AddKeycloak*> | <xref:Aspire.Hosting.ApplicationModel.KeycloakResource> | Adds a Keycloak container to the application model. |
+| <xref:Aspire.Hosting.MilvusBuilderExtensions.AddMilvus*> | <xref:Aspire.Hosting.Milvus.MilvusServerResource> | Adds a Milvus resource to the application. |
+| <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddMongoDB*> | <xref:Aspire.Hosting.ApplicationModel.MongoDBServerResource> | Adds a MongoDB server resource. |
+| <xref:Aspire.Hosting.MySqlBuilderExtensions.AddMySql*> | <xref:Aspire.Hosting.ApplicationModel.MySqlServerResource> | Adds a MySql server resource. |
+| <xref:Aspire.Hosting.NodeAppHostingExtension.AddNodeApp*> | <xref:Aspire.Hosting.NodeAppResource> | Adds a Node.js app resource. |
+| <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp*> | <xref:Aspire.Hosting.NodeAppResource> | Adds a Node.js app resource that wraps an [NPM](https://www.npmjs.com/) package. |
+| <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresServerResource> | Adds a Postgres server resource. |
+| `AddPostgres(...).`<xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresDatabaseResource> | Adds a Postgres database resource. |
+| <xref:Aspire.Hosting.PythonProjectResourceBuilderExtensions.AddPythonProject*> | <xref:Aspire.Hosting.Python.PythonProjectResource> | Adds a python application with a virtual environment to the application model. |
+| <xref:Aspire.Hosting.QdrantBuilderExtensions.AddQdrant*> | <xref:Aspire.Hosting.ApplicationModel.QdrantServerResource> | Adds a Qdrant server resource. |
+| <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A> | <xref:Aspire.Hosting.ApplicationModel.RabbitMQServerResource> | Adds a RabbitMQ server resource. |
+| <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> | <xref:Aspire.Hosting.ApplicationModel.RedisResource> | Adds a Redis container resource. |
+| <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerServerResource> | Adds a SQL Server server resource. |
+| `AddSqlServer(...).`<xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource> | Adds a SQL Server database resource. |
+
+**Azure specific resources are available in the following NuGet packages:**
+
+<span id="azure-hosting-libraries"></span>
+
+- [📦 Aspire.Hosting.Azure.AppConfiguration](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppConfiguration)
+- [📦 Aspire.Hosting.Azure.ApplicationInsights](https://www.nuget.org/packages/Aspire.Hosting.Azure.ApplicationInsights)
+- [📦 Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices)
+- [📦 Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB)
+- [📦 Aspire.Hosting.Azure.EventHubs](https://www.nuget.org/packages/Aspire.Hosting.Azure.EventHubs)
+- [📦 Aspire.Hosting.Azure.KeyVault](https://www.nuget.org/packages/Aspire.Hosting.Azure.KeyVault)
+- [📦 Aspire.Hosting.Azure.OperationalInsights](https://www.nuget.org/packages/Aspire.Hosting.Azure.OperationalInsights)
+- [📦 Aspire.Hosting.Azure.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.Azure.PostgreSQL)
+- [📦 Aspire.Hosting.Azure.Redis](https://www.nuget.org/packages/Aspire.Hosting.Azure.Redis)
+- [📦 Aspire.Hosting.Azure.Search](https://www.nuget.org/packages/Aspire.Hosting.Azure.Search)
+- [📦 Aspire.Hosting.Azure.ServiceBus](https://www.nuget.org/packages/Aspire.Hosting.Azure.ServiceBus)
+- [📦 Aspire.Hosting.Azure.SignalR](https://www.nuget.org/packages/Aspire.Hosting.Azure.SignalR)
+- [📦 Aspire.Hosting.Azure.Sql](https://www.nuget.org/packages/Aspire.Hosting.Azure.Sql)
+- [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage)
+- [📦 Aspire.Hosting.Azure.WebPubSub](https://www.nuget.org/packages/Aspire.Hosting.Azure.WebPubSub)
+
+| Method | Resource type | Description |
+|--|--|--|
+| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A> | <xref:Aspire.Hosting.Azure.AzureStorageResource> | Adds an Azure Storage resource. |
+| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureStorageExtensions.AddBlobs%2A> | <xref:Aspire.Hosting.Azure.AzureBlobStorageResource> | Adds an Azure Blob Storage resource. |
+| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureStorageExtensions.AddQueues%2A> | <xref:Aspire.Hosting.Azure.AzureQueueStorageResource> | Adds an Azure Queue Storage resource. |
+| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureStorageExtensions.AddTables%2A> | <xref:Aspire.Hosting.Azure.AzureTableStorageResource> | Adds an Azure Table Storage resource. |
+| <xref:Aspire.Hosting.AzureCosmosExtensions.AddAzureCosmosDB%2A> | <xref:Aspire.Hosting.AzureCosmosDBResource> | Adds an Azure Cosmos DB resource. |
+| <xref:Aspire.Hosting.AzureKeyVaultResourceExtensions.AddAzureKeyVault%2A> | <xref:Aspire.Hosting.Azure.AzureKeyVaultResource> | Adds an Azure Key Vault resource. |
+| `AddRedis(...)`.<xref:Aspire.Hosting.AzureRedisExtensions.AsAzureRedis%2A> | <xref:Aspire.Hosting.Azure.AzureRedisResource> | Configures resource to use Azure for local development and when doing a deployment via the Azure Developer CLI. |
+| `AddSqlServer(...)`.<xref:Aspire.Hosting.AzureSqlExtensions.AsAzureSqlDatabase%2A> | <xref:Aspire.Hosting.Azure.AzureSqlServerResource> | Configures SQL Server resource to be deployed as Azure SQL Database (server). |
+| <xref:Aspire.Hosting.AzureServiceBusExtensions.AddAzureServiceBus%2A> | <xref:Aspire.Hosting.Azure.AzureServiceBusResource> | Adds an Azure Service Bus resource. |
+| <xref:Aspire.Hosting.AzureWebPubSubExtensions.AddAzureWebPubSub%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureWebPubSubResource> | Adds an Azure Web PubSub resources. |
+
+> [!IMPORTANT]
+> The .NET Aspire Azure hosting libraries rely on `Azure.Provisioning.*` libraries to provision Azure resources. For more information, [Azure provisioning libraries](../deployment/azure/local-provisioning.md#azure-provisioning-libraries).
+
+**AWS specific resources are available in the following NuGet package:**
+
+<span id="aws-hosting-libraries"></span>
+
+- [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS)
+
+For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.com/dotnet/aspire/tree/main/src/Aspire.Hosting.AWS).
+
+## Available client integrations
+
+The following section details the available .NET Aspire client integrations, links to their respective NuGet packages, and provides a brief description of each integration.
 
 <!-- markdownlint-disable MD033 MD045 -->
 | Component | NuGet | Description |
