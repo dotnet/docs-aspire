@@ -180,17 +180,17 @@ In the preceding section, the `WithReference` method is used to express dependen
 
 When one resource depends on another resource, the app host injects environment variables into the dependent resource. These environment variables configure the dependent resource to connect to the resource it depends on. The format of the environment variables is specific to .NET Aspire and expresses service endpoints in a way that is compatible with [Service Discovery](../service-discovery/overview.md).
 
-Service endpoint environment variables start with `services` and are delimited by a double underscore `__`. They're prefixed with `services__`, followed by the service name, the service endpoint name or protocol, and the index. The index supports multiple endpoints for a single service, starting with `0` for the first endpoint and incrementing for each additional endpoint.
+Service endpoint environment variable names are prefixed with `services__` (double underscore), then the service name, the endpoint name, and finally the index. The index supports multiple endpoints for a single service, starting with `0` for the first endpoint and incrementing for each additional endpoint.
 
 Consider the following environment variable examples:
 
-```
+```Environment
 services__apiservice__http__0
 ```
 
 The preceding environment variable expresses the first HTTP endpoint for the `apiservice` service. The value of the environment variable is the URL of the service endpoint. A named endpoint might be expressed as follows:
 
-```
+```Environment
 services__apiservice__myendpoint__0
 ```
 
