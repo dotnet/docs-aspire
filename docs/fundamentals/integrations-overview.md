@@ -26,7 +26,7 @@ For information on creating a custom hosting integration, see [Create custom .NE
 
 ### Client integrations
 
-Client integrations define configuration schema, wire up client libraries to dependency injection (DI), add health checks, resiliency, and telemetry where applicable. These packages configure existing libraries to connect to resource-backed integrations. They extend the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> interface allowing client-consuming projects to use the connected resource. The official [client integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+client+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `client`.
+Client integrations define configuration schema, wire up client libraries to dependency injection (DI), add health checks, resiliency, and telemetry where applicable. These packages configure existing libraries to connect to hosting integrations. They extend the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> interface allowing client-consuming projects to use the connected resource. The official [client integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+client+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `client`.
 
 For more information on creating a custom client integration, see [Create custom .NET Aspire client integration](../extensibility/custom-client-integration.md).
 
