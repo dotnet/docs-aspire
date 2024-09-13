@@ -85,6 +85,50 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
 
 The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a dependency on the "cache" container resource. These dependencies can represent connection strings or [service discovery](../service-discovery/overview.md) information. In the preceding example, an environment variable is _injected_ into the "webfronend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the `webfrontend` uses to connect to Redis via the [.NET Aspire Redis integration](../caching/stackexchange-redis-caching-overview.md), for example, `ConnectionStrings__cache="localhost:62354"`.
 
+### APIs for adding and expressing resources
+
+.NET Aspire [hosting integrations](integrations-overview.md#hosting-integrations) and [client integrations](integrations-overview.md#client-integrations) are both delivered as NuGet packages, but they serve different purposes. While _client integrations_ provide client library configuration for consuming apps outside the scope of the app host, _hosting integrations_ provide APIs for expressing resources and dependencies within the app host. For more information, see [Integration responsibilities](integrations-overview.md#integration-responsibilities).
+
+### Express container resources
+
+To express a container resource, use the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> method:
+
+## [Docker](#tab/docker)
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var ollama = builder.AddContainer("ollama", "ollama/ollama")
+    .WithBindMount("ollama", "/root/.ollama")
+    .WithBindMount("./ollamaconfig", "/usr/config")
+    .WithHttpEndpoint(port: 11434, targetPort: 11434, name: "ollama")
+    .WithEntrypoint("/usr/config/entrypoint.sh")
+    .WithContainerRuntimeArgs("--gpus=all");
+```
+
+For more information, see [GPU support in Docker Desktop](https://docs.docker.com/desktop/gpu/).
+
+## [Podman](#tab/podman)
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var ollama = builder.AddContainer("ollama", "ollama/ollama")
+    .WithBindMount("ollama", "/root/.ollama")
+    .WithBindMount("./ollamaconfig", "/usr/config")
+    .WithHttpEndpoint(port: 11434, targetPort: 11434, name: "ollama")
+    .WithEntrypoint("/usr/config/entrypoint.sh")
+    .WithContainerRuntimeArgs("--device", "nvidia.com/gpu=all");
+```
+
+For more information, see [GPU support in Podman](https://github.com/containers/podman/issues/19005).
+
+---
+
+The preceding code adds a container resource named "ollama" with the image "ollama/ollama". The container resource is configured with multiple bind mounts, a named HTTP endpoint, an entrypoint that resolves to Unix shell script, and container run arguments with the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithContainerRuntimeArgs%2A> method.
+
+Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectResource>, <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, and <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, .NET Aspire provides extension methods to add common resources to your app model. For more information, see [Hosting integrations](integrations-overview.md#hosting-integrations).
+
 ### Connection string and endpoint references
 
 It's common to express dependencies between project resources. Consider the following example code:
@@ -151,50 +195,6 @@ services__apiservice__myendpoint__0
 ```
 
 In the preceding example, the `apiservice` service has a named endpoint called `myendpoint`. The value of the environment variable is the URL of the service endpoint.
-
-### APIs for adding and expressing resources
-
-.NET Aspire [hosting integrations](integrations-overview.md#hosting-integrations) and [Client integrations](integrations-overview.md#client-integrations) are both delivered as NuGet packages, but they serve different purposes. While client integrations provide client library configuration for consuming apps outside the scope of the app host, hosting integration provide APIs for expressing resources and dependencies within the app host. For more information, see [Integration responsibilities](integrations-overview.md#integration-responsibilities).
-
-### Express container resources
-
-To express a container resource, use the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> method:
-
-## [Docker](#tab/docker)
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var ollama = builder.AddContainer("ollama", "ollama/ollama")
-    .WithBindMount("ollama", "/root/.ollama")
-    .WithBindMount("./ollamaconfig", "/usr/config")
-    .WithHttpEndpoint(port: 11434, targetPort: 11434, name: "ollama")
-    .WithEntrypoint("/usr/config/entrypoint.sh")
-    .WithContainerRuntimeArgs("--gpus=all");
-```
-
-For more information, see [GPU support in Docker Desktop](https://docs.docker.com/desktop/gpu/).
-
-## [Podman](#tab/podman)
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var ollama = builder.AddContainer("ollama", "ollama/ollama")
-    .WithBindMount("ollama", "/root/.ollama")
-    .WithBindMount("./ollamaconfig", "/usr/config")
-    .WithHttpEndpoint(port: 11434, targetPort: 11434, name: "ollama")
-    .WithEntrypoint("/usr/config/entrypoint.sh")
-    .WithContainerRuntimeArgs("--device", "nvidia.com/gpu=all");
-```
-
-For more information, see [GPU support in Podman](https://github.com/containers/podman/issues/19005).
-
----
-
-The preceding code adds a container resource named "ollama" with the image "ollama/ollama". The container resource is configured with multiple bind mounts, a named HTTP endpoint, an entrypoint that resolves to Unix shell script, and container run arguments with the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithContainerRuntimeArgs%2A> method.
-
-Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectResource>, <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, and <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, .NET Aspire provides extension methods to add common resources to your app model.
 
 ## Execution context
 
