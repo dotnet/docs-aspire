@@ -201,4 +201,4 @@ Go forth and build your own .NET Aspire integrations. If you believe that there'
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Implement security between hosting and client integrations](implement-security-between-integrations.md)
+> [Secure communication between hosting and client integrations](secure-communication-between-integrations.md)

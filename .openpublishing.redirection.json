@@ -262,7 +262,7 @@
     },
     {
       "source_path_from_root": "/docs/extensibility/implement-auth-from-resource-to-integration.md",
-      "redirect_url": "/dotnet/aspire/extensibility/implement-security-between-integrations"
+      "redirect_url": "/dotnet/aspire/extensibility/secure-communication-between-integrations"
     }
   ]
 }

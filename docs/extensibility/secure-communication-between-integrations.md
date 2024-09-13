@@ -1,11 +1,11 @@
 ---
-title: Implement security between hosting and client integrations
-description: Learn how to implement security between hosting and client integrations.
+title: Secure communication between hosting and client integrations
+description: Learn how to Secure communication between hosting and client integrations.
 ms.date: 09/12/2024
 ms.topic: how-to
 ---
 
-# Implement security between hosting and client integrations
+# Secure communication between hosting and client integrations
 
 This article is a continuation of two previous articles demonstrating the creation of [custom hosting integrations](custom-hosting-integration.md) and [custom client integrations](custom-client-integration.md).
 
