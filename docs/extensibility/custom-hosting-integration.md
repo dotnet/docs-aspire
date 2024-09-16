@@ -1,11 +1,11 @@
 ---
-title: Create custom .NET Aspire hosting integration
+title: Create custom .NET Aspire hosting integrations
 description: Learn how to create a custom .NET Aspire hosting integration for an existing containerized application.
 ms.date: 09/12/2024
 ms.topic: how-to
 ---
 
-# Create custom .NET Aspire hosting integration
+# Create custom .NET Aspire hosting integrations
 
 .NET Aspire improves the development experience by providing reusable building blocks that can be used to quickly arrange application dependencies and expose them to your own code. One of the key building blocks of an Aspire-based application is the _resource_. Consider the code below:
 
@@ -267,7 +267,7 @@ To use the SMTP connection details that were injected into the newsletter servic
 :::code source="snippets/MailDevResource/MailDevResource.NewsletterService/Program.cs" id="smtp":::
 
 > [!TIP]
-> This code snippet relies on the official `SmtpClient`, however; this type is obsolete on some platforms and not recommended on others. For a more modern approach using [MailKit](https://github.com/jstedfast/MailKit), see [Create custom .NET Aspire client integration](custom-client-integration.md).
+> This code snippet relies on the official `SmtpClient`, however; this type is obsolete on some platforms and not recommended on others. For a more modern approach using [MailKit](https://github.com/jstedfast/MailKit), see [Create custom .NET Aspire client integrations](custom-client-integration.md).
 
 To test the client, add two simple `subscribe` and `unsubscribe` POST methods to the newsletter service. Add the following code replacing the "weatherforecast" `MapGet` call in the _:::no-loc text="Program.cs":::_ file of the _MailDevResource.NewsletterService_ project to set up the ASP.NET Core routes:
 
@@ -488,4 +488,4 @@ In the custom resource tutorial, you learned how to create a custom .NET Aspire 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Create custom .NET Aspire client integration](custom-client-integration.md)
+> [Create custom .NET Aspire client integrations](custom-client-integration.md)

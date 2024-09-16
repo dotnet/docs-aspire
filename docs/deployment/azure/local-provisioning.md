@@ -54,11 +54,11 @@ var cosmos = builder.AddAzureCosmosDB("cosmos")
 
 The `RunAsEmulator` API configures an Azure Cosmos DB resource to be emulated using the Azure Cosmos DB emulator with the NoSQL API.
 
-### .NET Aspire Azure hosting libraries
+### .NET Aspire Azure hosting integrations
 
-If you're using Azure resources in your app host, you're using one or more of the [.NET Aspire Azure hosting libraries](../../fundamentals/integrations-overview.md#azure-hosting-libraries). These hosting libraries provide extension methods to the `IDistributedApplicationBuilder` interface to add Azure resources to your app host.
+If you're using Azure resources in your app host, you're using one or more of the .NET Aspire Azure hosting integrations. These hosting libraries provide extension methods to the `IDistributedApplicationBuilder` interface to add Azure resources to your app host.
 
-### Azure provisioning libraries
+### Azure provisioning integrations
 
 The following Azure provisioning libraries are available:
 

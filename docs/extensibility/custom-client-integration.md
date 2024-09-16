@@ -1,20 +1,20 @@
 ---
-title: Create custom .NET Aspire client integration
+title: Create custom .NET Aspire client integrations
 description: Learn how to create a custom .NET Aspire client integration for an existing containerized application.
 ms.date: 09/12/2024
 ms.topic: how-to
 ---
 
-# Create custom .NET Aspire client integration
+# Create custom .NET Aspire client integrations
 
-This article is a continuation of the [Create custom .NET Aspire hosting integration](custom-hosting-integration.md) article. It guides you through creating a .NET Aspire integration that uses [MailKit](https://github.com/jstedfast/MailKit) to send emails. This integration is then integrated into the Newsletter app you previously built. The previous example, omitted the creation of an integration and instead relied on the existing .NET `SmtpClient`. It's best to use MailKit's `SmtpClient` over the official .NET `SmtpClient` for sending emails, as it's more modern and supports more features/protocols. For more information, see [.NET SmtpClient: Remarks](/dotnet/api/system.net.mail.smtpclient#remarks).
+This article is a continuation of the [Create custom .NET Aspire hosting integrations](custom-hosting-integration.md) article. It guides you through creating a .NET Aspire integration that uses [MailKit](https://github.com/jstedfast/MailKit) to send emails. This integration is then integrated into the Newsletter app you previously built. The previous example, omitted the creation of an integration and instead relied on the existing .NET `SmtpClient`. It's best to use MailKit's `SmtpClient` over the official .NET `SmtpClient` for sending emails, as it's more modern and supports more features/protocols. For more information, see [.NET SmtpClient: Remarks](/dotnet/api/system.net.mail.smtpclient#remarks).
 
 ## Prerequisites
 
 If you're following along, you should have a Newsletter app from the steps in the [Create custom .NET Aspire hosting integration](custom-hosting-integration.md) article.
 
 > [!TIP]
-> This article is inspired by existing .NET Aspire integrations, and based on the teams official guidance. There are places where said guidance varies, and it's important to understand the reasoning behind the differences. For more information, see [.NET Aspire integration requirements](https://github.com/dotnet/aspire/blob/f38b6cba86942ad1c45fc04fe7170f0fd4ba7c0b/src/Components/Aspire_Components_Progress.md#net-aspire-integration-requirements).
+> This article is inspired by existing .NET Aspire integrations, and based on the team's official guidance. There are places where said guidance varies, and it's important to understand the reasoning behind the differences. For more information, see [.NET Aspire integration requirements](https://github.com/dotnet/aspire/blob/f38b6cba86942ad1c45fc04fe7170f0fd4ba7c0b/src/Components/Aspire_Components_Progress.md#net-aspire-integration-requirements).
 
 ## Create library for integration
 

@@ -15,8 +15,8 @@ One of the primary benefits to .NET Aspire is how it simplifies the configurabil
 
 Since this article continues from previous content, you should have already created the resulting solution as a starting point for this article. If you haven't already, complete the following articles:
 
-- [Create custom .NET Aspire hosting integration](custom-hosting-integration.md)
-- [Create custom .NET Aspire client integration](custom-client-integration.md)
+- [Create custom .NET Aspire hosting integrations](custom-hosting-integration.md)
+- [Create custom .NET Aspire client integrations](custom-client-integration.md)
 
 The resulting solution from these previous articles contains the following projects:
 
@@ -76,7 +76,7 @@ When the factory determines that credentials have been configured, it authentica
 
 ## Run the sample
 
-Now that you've updated both the resource and corresponding integration projects, and the app host, you're ready to run the sample app. To run the sample from your IDE, select <kbd>F5</kbd> or use `dotnet run` from the root directory of the solution to start the application—you should see the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md). Navigate to the `maildev` container resource and view the details. You should see the username and password parameters in the resource details, under the **Environment Variables** section:
+Now that you've updated the resource, corresponding integration projects, and the app host, you're ready to run the sample app. To run the sample from your IDE, select <kbd>F5</kbd> or use `dotnet run` from the root directory of the solution to start the application—you should see the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md). Navigate to the `maildev` container resource and view the details. You should see the username and password parameters in the resource details, under the **Environment Variables** section:
 
 :::image type="content" source="media/maildev-details.png" lightbox="media/maildev-details.png" alt-text=".NET Aspire Dashboard: MailDev container resource details.":::
 
