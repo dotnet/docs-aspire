@@ -174,6 +174,9 @@ items:
             href: frameworks/orleans.md
           - name: Orleans voting sample
             href: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
+      - name: Pomelo MySQL - EF Core
+        displayName: pomelo mysql,database
+        href: database/mysql-entity-framework-integration.md
       - name: PostgreSQL
         items:
           - name: PostgreSQL - EF Core
@@ -209,6 +212,9 @@ items:
           href: caching/stackexchange-redis-distributed-caching-integration.md?pivots=valkey
         - name: Redis output caching (Valkey)
           href: caching/stackexchange-redis-output-caching-integration.md?pivots=valkey
+      - name: Seq
+        displayName: seq,logging
+        href: logging/seq-integration.md
       - name: SQL Server
         items:
           - name: SQL Database - EF Core
@@ -217,9 +223,6 @@ items:
           - name: SQL Database
             displayName: sql server,sql database
             href: database/sql-server-integration.md
-      - name: Seq
-        displayName: seq,logging
-        href: logging/seq-integration.md
 
   - name: Custom integrations
     items:
