@@ -7,7 +7,7 @@ ms.topic: how-to
 
 # Create custom .NET Aspire client integrations
 
-This article is a continuation of the [Create custom .NET Aspire hosting integrations](custom-hosting-integration.md) article. It guides you through creating a .NET Aspire integration that uses [MailKit](https://github.com/jstedfast/MailKit) to send emails. This integration is then integrated into the Newsletter app you previously built. The previous example, omitted the creation of an integration and instead relied on the existing .NET `SmtpClient`. It's best to use MailKit's `SmtpClient` over the official .NET `SmtpClient` for sending emails, as it's more modern and supports more features/protocols. For more information, see [.NET SmtpClient: Remarks](/dotnet/api/system.net.mail.smtpclient#remarks).
+This article is a continuation of the [Create custom .NET Aspire hosting integrations](custom-hosting-integration.md) article. It guides you through creating a .NET Aspire client integration that uses [MailKit](https://github.com/jstedfast/MailKit) to send emails. This integration is then added into the Newsletter app you previously built. The previous example omitted the creation of a client integration and instead relied on the existing .NET `SmtpClient`. It's best to use MailKit's `SmtpClient` over the official .NET `SmtpClient` for sending emails, as it's more modern and supports more features/protocols. For more information, see [.NET SmtpClient: Remarks](/dotnet/api/system.net.mail.smtpclient#remarks).
 
 ## Prerequisites
 

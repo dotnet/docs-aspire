@@ -9,7 +9,7 @@ ms.topic: how-to
 
 This article is a continuation of two previous articles demonstrating the creation of [custom hosting integrations](custom-hosting-integration.md) and [custom client integrations](custom-client-integration.md).
 
-One of the primary benefits to .NET Aspire is how it simplifies the configurability of resources and consuming clients (or integrations). This article demonstrates how to authentication credentials from a custom resource to a custom integration. The custom resource is a MailDev container that allows for either incoming or outgoing credentials. The custom integration is a MailKit client that sends emails.
+One of the primary benefits to .NET Aspire is how it simplifies the configurability of resources and consuming clients (or integrations). This article demonstrates how to share authentication credentials from a custom resource in a hosting integration, to the consuming client in a custom client integration. The custom resource is a MailDev container that allows for either incoming or outgoing credentials. The custom client integration is a MailKit client that sends emails.
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ The resulting solution from these previous articles contains the following proje
 - _MailDevResource.AppHost_: The [app host](../fundamentals/app-host-overview.md) that uses the custom resource and defines it as a dependency for a Newsletter service.
 - _MailDevResource.NewsletterService_: An ASP.NET Core Web API project that sends emails using the MailDev container.
 - _MailDevResource.ServiceDefaults_: Contains the [default service configurations](../fundamentals/service-defaults.md) intended for sharing.
-- _MailKit.Client_: Contains the custom integration that exposes the MailKit `SmtpClient` through a factory.
+- _MailKit.Client_: Contains the custom client integration that exposes the MailKit `SmtpClient` through a factory.
 
 ## Update the MailDev resource
 
@@ -62,7 +62,7 @@ Next, configure the secrets for these parameters. Right-click on the `MailDevRes
 
 ## Update the MailKit integration
 
-It's good practice for integrations to expect connection strings to contain various key/value pairs, and to parse these pairs into the appropriate properties. Update the _MailKitClientSettings.cs_ file in the `MailKit.Client` project with the following C# code:
+It's good practice for client integrations to expect connection strings to contain various key/value pairs, and to parse these pairs into the appropriate properties. Update the _MailKitClientSettings.cs_ file in the `MailKit.Client` project with the following C# code:
 
 :::code source="snippets/MailDevResourceWithCredentials/MailKit.Client/MailKitClientSettings.cs" highlight="21-28,95-100":::
 
