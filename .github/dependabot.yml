@@ -768,17 +768,6 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/testing/mstest/AspireApp.Web" #AspireApp.Web.csproj
-    schedule:
-      interval: "weekly"
-      day: "wednesday"
-    open-pull-requests-limit: 5
-    groups:
-      # Group .NET updates together for projects.
-      dotnet:
-        patterns:
-          - "*" # Prefer a single PR per project update.
-  - package-ecosystem: "nuget"
     directory: "/docs/fundamentals/snippets/testing/nunit/AspireApp.AppHost" #AspireApp.AppHost.csproj
     schedule:
       interval: "weekly"
@@ -812,17 +801,6 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/testing/nunit/AspireApp.Web" #AspireApp.Web.csproj
-    schedule:
-      interval: "weekly"
-      day: "wednesday"
-    open-pull-requests-limit: 5
-    groups:
-      # Group .NET updates together for projects.
-      dotnet:
-        patterns:
-          - "*" # Prefer a single PR per project update.
-  - package-ecosystem: "nuget"
     directory: "/docs/fundamentals/snippets/testing/xunit/AspireApp.AppHost" #AspireApp.AppHost.csproj
     schedule:
       interval: "weekly"
@@ -846,17 +824,6 @@ updates:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
     directory: "/docs/fundamentals/snippets/testing/xunit/AspireApp.Tests" #AspireApp.Tests.csproj
-    schedule:
-      interval: "weekly"
-      day: "wednesday"
-    open-pull-requests-limit: 5
-    groups:
-      # Group .NET updates together for projects.
-      dotnet:
-        patterns:
-          - "*" # Prefer a single PR per project update.
-  - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/testing/xunit/AspireApp.Web" #AspireApp.Web.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
