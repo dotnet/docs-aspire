@@ -41,7 +41,7 @@ For example, if you want to use [Redis for caching](../caching/stackexchange-red
 The following section details the available .NET Aspire integrations, links to their respective NuGet packages, and provides a brief description of each integration.
 
 <!-- markdownlint-disable MD033 MD045 -->
-| Integration | NuGet packages | Description |
+| Integration | Docs and NuGet packages | Description |
 |--|--|--|
 | <img src="media/icons/Aspire-logo-256.png" alt=".NET Aspire logo." role="presentation" width="64" data-linktype="relative-path"> | - **Learn more**: [📄 Apache Kafka](../messaging/kafka-integration.md) <br/> - **Hosting**: [📦 Aspire. Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka)<br>- **Client**: [📦 Aspire. Confluent.Kafka](https://www.nuget.org/packages/Aspire.Confluent.Kafka) | A library for producing and consuming messages from an [Apache Kafka](https://kafka.apache.org/) broker. |
 | <img src="media/icons/AzureOpenAI_256x.png" alt="Azure OpenAI logo." role="presentation" width="64" data-linktype="relative-path"> | - **Learn more**: [📄 Azure AI OpenAI](../azureai/azureai-openai-integration.md) <br/> - **Hosting**: [📦 Aspire. Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices)<br>- **Client**: [📦 Aspire. Azure.AI.OpenAI](https://www.nuget.org/packages/Aspire.Azure.AI.OpenAI) | A library for accessing [Azure AI OpenAI](/azure/ai-services/openai/overview) or OpenAI functionality. |
