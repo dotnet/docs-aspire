@@ -80,7 +80,7 @@ For more information on working with .NET Aspire integrations in Visual Studio, 
 
 ### Azure hosting integrations
 
-While several of the available end-to-end integrations are Azure-specific, some integrations support Azure hosting. Azure hosting integrations configure applications to use Azure resources. These integrations are available in the [Aspire.Hosting.Azure.*](#azure-hosting-libraries) NuGet packages:
+While several of the available end-to-end integrations are Azure-specific, some integrations support Azure hosting. Azure hosting integrations configure applications to use Azure resources. These integrations are available in the `Aspire.Hosting.Azure.*` NuGet packages:
 
 <!-- markdownlint-disable MD033 MD045 -->
 | Integration | Docs and NuGet packages | Description |
@@ -94,7 +94,7 @@ While several of the available end-to-end integrations are Azure-specific, some 
 <!-- markdownlint-enable MD033 MD045 -->
 
 > [!IMPORTANT]
-> The .NET Aspire Azure hosting libraries rely on `Azure.Provisioning.*` libraries to provision Azure resources. For more information, [Azure provisioning libraries](../deployment/azure/local-provisioning.md#azure-provisioning-libraries).
+> The .NET Aspire Azure hosting libraries rely on `Azure.Provisioning.*` libraries to provision Azure resources. For more information, [Azure provisioning libraries](../deployment/azure/local-provisioning.md).
 
 ### AWS hosting integrations
 
