@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire integrations overview
 description: Explore the fundamental concepts of .NET Aspire integrations and learn how to integrate them into your apps.
-ms.date: 08/26/2024
+ms.date: 09/23/2024
 ms.topic: conceptual
 ---
 
@@ -14,168 +14,101 @@ ms.topic: conceptual
 
 ## Integration responsibilities
 
-There are two sides to integrations in .NET Aspire, each with a different responsibility:
+There are two types of integrations in .NET Aspire, each with a different responsibility. One type represents resources within the app host project—these are known as [hosting integrations](#hosting-integrations). The other type of integration represents client libraries that connect to the aforementioned resources, and they're known as [client integrations](#client-integrations).
 
-- **Resource integrations**: These packages model various services, platforms, or capabilities such as caches, databases, logging, storage, and messaging systems. They extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface allowing the app host project to express resources in the distributed application builder and are tagged with `aspire`, `integration`, and `hosting`.
+### Hosting integrations
 
-- **Client integrations**: These packages configure existing libraries to connect to resource-backed integrations. They extend the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> interface allowing client-consuming projects to use the connected resource and are tagged with `aspire`, `integration`, and `client`.
+Hosting integrations configure applications by provisioning resources (like containers or cloud resources) or pointing to existing instances (such as a local SQL server). These packages model various services, platforms, or capabilities, including caches, databases, logging, storage, and messaging systems.
 
-While .NET Aspire _client integrations_ can be used independently, they work best with the [.NET Aspire app host](app-host-overview.md). Each [integration](#available-integrations) provides installation, configuration, and usage details in the documentation—for both sides of the integration, the hosting and client respectively.
+Hosting integrations extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface, enabling the _app host_ project to express resources within its _app model_. The official [hosting integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+hosting+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `hosting`.
 
-For example, if you want to use [Redis for caching](../caching/stackexchange-redis-caching-overview.md) in your .NET Aspire solution, you would use the `Aspire.Hosting.Redis` package to model the Redis resource. Then, you can connect to the Redis resource using the `Aspire.StackExchange.Redis` client integration.
+For information on creating a custom hosting integration, see [Create custom .NET Aspire hosting integration](../extensibility/custom-hosting-integration.md).
+
+### Client integrations
+
+Client integrations define configuration schema, wire up client libraries to dependency injection (DI), and add health checks, resiliency, and telemetry where applicable. These packages configure existing client libraries to connect to hosting integrations. They extend the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> interface allowing client-consuming projects, such as your web app or API, to use the connected resource. The official [client integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+client+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `client`.
+
+For more information on creating a custom client integration, see [Create custom .NET Aspire client integrations](../extensibility/custom-client-integration.md).
+
+### Relationship between hosting and client integrations
+
+Hosting and client integrations are best when used together, but are **not** coupled and may be used separately. Some hosting integrations may not have a corresponding client integration. Configuration is what makes the hosting integration work with the client integration.
+
+Consider the following diagram that depicts the relationship between hosting and client integrations:
+
+:::image type="content" source="media/integrations-thumb.png" lightbox="media/integrations.png" alt-text="A diagram ":::
+
+The app host project is where hosting integrations are used. Configuration, specifically environment variables, is injected into projects, executables, and containers, allowing client integrations to connect to the hosting integrations.
 
 ## Available integrations
 
-The following table lists the .NET Aspire integrations currently available for use:
+The following section details the available .NET Aspire integrations, links to their respective NuGet packages, and provides a brief description of each integration.
 
 <!-- markdownlint-disable MD033 MD045 -->
-| Component | NuGet | Description |
+| Integration | Docs and NuGet packages | Description |
 |--|--|--|
-| [Apache Kafka](../messaging/kafka-integration.md) <br/> <img src="media/icons/Aspire-logo-256.png" alt=".NET Aspire logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Confluent.Kafka](https://www.nuget.org/packages/Aspire.Confluent.Kafka) | A library for producing and consuming messages from an [Apache Kafka](https://kafka.apache.org/) broker. |
-| [Azure AI OpenAI](../azureai/azureai-openai-integration.md) <br/> <img src="media/icons/AzureOpenAI_256x.png" alt="Azire OpenAI logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Azure.AI.OpenAI](https://www.nuget.org/packages/Aspire.Azure.AI.OpenAI) | A library for accessing [Azure AI OpenAI](/azure/ai-services/openai/overview) or OpenAI functionality. |
-| [Azure Blob Storage](../storage/azure-storage-blobs-integration.md) <br/> <img src="media/icons/AzureStorageContainer_256x.png" alt="Azure Blog Storage logo."  role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Azure.Storage.Blobs](https://www.nuget.org/packages/Aspire.Azure.Storage.Blobs) | A library for accessing [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction). |
-| [Azure Cosmos DB Entity Framework Core](../database/azure-cosmos-db-entity-framework-integration.md) <br/> <img src="media/icons/AzureCosmosDB_256x.png" alt="Azure Cosmos DB EF logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Microsoft.EntityFrameworkCore.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.Cosmos) | A library for accessing Azure Cosmos DB databases with [Entity Framework Core](/ef/core/providers/cosmos/). |
-| [Azure Cosmos DB](../database/azure-cosmos-db-integration.md) <br/> <img src="media/icons/AzureCosmosDB_256x.png" alt="Azure Cosmos DB logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) | A library for accessing [Azure Cosmos DB](/azure/cosmos-db/introduction) databases. |
-| [Azure Event Hubs](../messaging/azure-event-hubs-integration.md) <br/> <img src="media/icons/AzureEventHubs_256x.png" alt="Azure Event Hubs logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Azure.Messaging.EventHubs](https://www.nuget.org/packages/Aspire.Azure.Messaging.EventHubs) | A library for accessing [Azure Event Hubs](/azure/event-hubs/event-hubs-about). |
-| [Azure Key Vault](../security/azure-security-key-vault-integration.md) <br/> <img src="media/icons/AzureKeyVault_256x.png" alt="Azure Key Vault logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Azure.Security.KeyVault](https://www.nuget.org/packages/Aspire.Azure.Security.KeyVault) | A library for accessing [Azure Key Vault](/azure/key-vault/general/overview). |
-| [Azure Search Documents](../azureai/azureai-search-document-integration.md) <br/> <img src="media/icons/AzureSearch_256x.png" alt="Azure Search Documents logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Azure.Search.Documents](https://www.nuget.org/packages/Aspire.Azure.Search.Documents) | A library for accessing [Azure AI Search](/azure/search/search-what-is-azure-search). |
-| [Azure Service Bus](../messaging/azure-service-bus-integration.md) <br/> <img src="media/icons/AzureServiceBus_256x.png" alt="Azure Service Bus logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) | A library for accessing [Azure Service Bus](/azure/service-bus-messaging/service-bus-messaging-overview). |
-| [Azure Storage Queues](../storage/azure-storage-queues-integration.md) <br/> <img src="media/icons/AzureStorageQueue_256x.png" alt="Azure Storage Queues logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Azure.Storage.Queues](https://www.nuget.org/packages/Aspire.Azure.Storage.Queues) | A library for accessing [Azure Storage Queues](/azure/storage/queues/storage-queues-introduction). |
-| [Azure Table Storage](../storage/azure-storage-tables-integration.md) <br/> <img src="media/icons/AzureTable_256x.png" alt="Azure Table Storage logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Azure.Data.Tables](https://www.nuget.org/packages/Aspire.Azure.Data.Tables) | A library for accessing the [Azure Table](/azure/storage/tables/table-storage-overview) service. |
-| [Azure Web PubSub](../messaging/azure-web-pubsub-integration.md) <br/> <img src="media/icons/AzureWebPubSub_256x.png" alt="Azure Web PubSub logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Azure.Messaging.WebPubSub](https://www.nuget.org/packages/Aspire.Azure.Messaging.WebPubSub) | A library for accessing the [Azure Web PubSub](/azure/azure-web-pubsub/) service. |
-| [Elasticsearch](../search/elasticsearch-integration.md) <br/> <img src="media/icons/Elastic_logo_256x.png" alt="Elasticsearch logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Elastic.Clients.Elasticsearch](https://www.nuget.org/packages/Aspire.Elastic.Clients.Elasticsearch) | A library for accessing [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/client/index.html) databases. |
-| [Keycloak](../authentication/keycloak-integration.md) <br/> <img src="media/icons/Aspire-logo-256.png" alt=".NET Aspire logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Keycloak.Authentication](https://www.nuget.org/packages/Aspire.Keycloak.Authentication) | A library for accessing [Keycloak](https://www.keycloak.org/docs/latest/server_admin/index.html) authentication. |
-| [Milvus](../database/milvus-integration.md) <br/> <img src="media/icons/Milvus_256x.png" alt="Milvus logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Milvus.Client](https://www.nuget.org/packages/Aspire.Milvus.Client) | A library for accessing [Milvus](https://milvus.io/) databases. |
-| [MongoDB Driver](../database/mongodb-integration.md) <br/> <img src="media/icons/MongoDB_256px.png" alt="MongoDB logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.MongoDB.Driver](https://www.nuget.org/packages/Aspire.MongoDB.Driver) | A library for accessing [MongoDB](https://www.mongodb.com/docs) databases. |
-| [MySqlConnector](../database/mysql-integration.md) <br/> <img src="media/icons/mysqlconnector_logo.png" alt="MySqlConnector logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.MySqlConnector](https://www.nuget.org/packages/Aspire.MySqlConnector) | A library for accessing [MySqlConnector](https://mysqlconnector.net/) databases. |
-| [NATS](../messaging/nats-integration.md) <br/> <img src="media/icons/nats-icon.png" alt="NATS logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.NATS.Net](https://www.nuget.org/packages/Aspire.NATS.Net) | A library for accessing [NATS](https://nats.io/) messaging. |
-| [Oracle Entity Framework Core](../database/oracle-entity-framework-integration.md) <br/> <img src="media/icons/Aspire-logo-256.png" alt=".NET Aspire logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Aspire.Oracle.EntityFrameworkCore) | A library for accessing Oracle databases with [Entity Framework Core](/ef/core). |
-| [Pomelo MySQL Entity Framework Core](../database/mysql-entity-framework-integration.md) <br/> <img src="media/icons/Aspire-logo-256.png" alt=".NET Aspire logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Pomelo.EntityFrameworkCore.MySql](https://www.nuget.org/packages/Aspire.Pomelo.EntityFrameworkCore.MySql) | A library for accessing MySql databases with [Entity Framework Core](/ef/core). |
-| [PostgreSQL Entity Framework Core](../database/postgresql-entity-framework-integration.md) <br/> <img src="media/icons/PostgreSQL_logo.3colors.256x.png" alt="PostgreSQL logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL) | A library for accessing PostgreSQL databases using [Entity Framework Core](https://www.npgsql.org/efcore/index.html). |
-| [PostgreSQL](../database/postgresql-integration.md) <br/> <img src="media/icons/PostgreSQL_logo.3colors.256x.png" alt="PostgreSQL logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) | A library for accessing [PostgreSQL](https://www.npgsql.org/doc/index.html) databases. |
-| [Qdrant](../database/qdrant-integration.md) <br/> <img src="media/icons/QdrantLogo_256x.png" alt="Qdrant logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Qdrant.Client](https://www.nuget.org/packages/Aspire.Qdrant.Client) | A library for accessing [Qdrant](https://qdrant.tech/) databases. |
-| [RabbitMQ](../messaging/rabbitmq-client-integration.md) <br/> <img src="media/icons/Aspire-logo-256.png" alt=".NET Aspire logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) | A library for accessing [RabbitMQ](https://www.rabbitmq.com/dotnet.html). |
-| [Redis Distributed Caching](../caching/stackexchange-redis-distributed-caching-integration.md) <br/> <img src="media/icons/redis-cube-red_white-rgb.png" alt="Redis logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.StackExchange.Redis.DistributedCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.DistributedCaching) | A library for accessing [Redis](https://stackexchange.github.io/StackExchange.Redis/) caches for [distributed caching](/aspnet/core/performance/caching/distributed). |
-| [Redis Output Caching](../caching/stackexchange-redis-output-caching-integration.md) <br/> <img src="media/icons/redis-cube-red_white-rgb.png" alt="Redis logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.StackExchange.Redis.OutputCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.OutputCaching) | A library for accessing [Redis](https://stackexchange.github.io/StackExchange.Redis/) caches for [output caching](/aspnet/core/performance/caching/output). |
-| [Redis](../caching/stackexchange-redis-integration.md) <br/> <img src="media/icons/redis-cube-red_white-rgb.png" alt="Redis logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.StackExchange.Redis](https://www.nuget.org/packages/Aspire.StackExchange.Redis) | A library for accessing [Redis](https://stackexchange.github.io/StackExchange.Redis/) caches. |
-| [Seq](../logging/seq-integration.md) <br/> <img src="media/icons/Seq_logo.256x.png" alt="Seq logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Seq](https://www.nuget.org/packages/Aspire.Seq) | A library for logging to [Seq](https://datalust.co/seq). |
-| [SQL Server Entity Framework Core](../database/sql-server-entity-framework-integration.md) <br/> <img src="media/icons/SQL_256x.png" alt="SQL logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) | A library for accessing [SQL Server databases using Entity Framework Core](/ef/core/providers/sql-server/). |
-| [SQL Server](../database/sql-server-integration.md) <br/> <img src="media/icons/SQL_256x.png" alt="SQL logo." role="presentation" width="64" data-linktype="relative-path"> | [Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) | A library for accessing [SQL Server](/sql/sql-server/) databases. |
+| <img src="media/icons/Aspire-logo-256.png" alt=".NET Aspire logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Apache Kafka](../messaging/kafka-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka)<br>- **Client**: [📦 Aspire.Confluent.Kafka](https://www.nuget.org/packages/Aspire.Confluent.Kafka) | A library for producing and consuming messages from an [Apache Kafka](https://kafka.apache.org/) broker. |
+| <img src="media/icons/Aspire-logo-256.png" alt=".NET Aspire logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Dapr](../frameworks/dapr.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Dapr](https://www.nuget.org/packages/Aspire.Hosting.Dapr)<br>- **Client**: N/A | A library for modeling [Dapr](https://dapr.io/) as a .NET Aspire resource. |
+| <img src="media/icons/Elastic_logo_256x.png" alt="Elasticsearch logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Elasticsearch](../search/elasticsearch-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Elasticsearch](https://www.nuget.org/packages/Aspire.Hosting.Elasticsearch)<br>- **Client**: [📦 Aspire.Elastic.Clients.Elasticsearch](https://www.nuget.org/packages/Aspire.Elastic.Clients.Elasticsearch) | A library for accessing [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/client/index.html) databases. |
+| <img src="media/icons/Aspire-logo-256.png" alt=".NET Aspire logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Keycloak](../authentication/keycloak-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Keycloak](https://www.nuget.org/packages/Aspire.Hosting.Keycloak)<br>- **Client**: [📦 Aspire.Keycloak.Authentication](https://www.nuget.org/packages/Aspire.Keycloak.Authentication) | A library for accessing [Keycloak](https://www.keycloak.org/docs/latest/server_admin/index.html) authentication. |
+| <img src="media/icons/Milvus_256x.png" alt="Milvus logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Milvus](../database/milvus-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus)<br>- **Client**: [📦 Aspire.Milvus.Client](https://www.nuget.org/packages/Aspire.Milvus.Client) | A library for accessing [Milvus](https://milvus.io/) databases. |
+| <img src="media/icons/MongoDB_256px.png" alt="MongoDB logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 MongoDB Driver](../database/mongodb-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.MongoDB](https://www.nuget.org/packages/Aspire.Hosting.MongoDB)<br>- **Client**: [📦 Aspire.MongoDB.Driver](https://www.nuget.org/packages/Aspire.MongoDB.Driver) | A library for accessing [MongoDB](https://www.mongodb.com/docs) databases. |
+| <img src="media/icons/mysqlconnector_logo.png" alt="MySqlConnector logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 MySqlConnector](../database/mysql-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql)<br>- **Client**: [📦 Aspire.MySqlConnector](https://www.nuget.org/packages/Aspire.MySqlConnector) | A library for accessing [MySqlConnector](https://mysqlconnector.net/) databases. |
+| <img src="media/icons/nats-icon.png" alt="NATS logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 NATS](../messaging/nats-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats)<br>- **Client**: [📦 Aspire.NATS.Net](https://www.nuget.org/packages/Aspire.NATS.Net) | A library for accessing [NATS](https://nats.io/) messaging. |
+| <img src="media/icons/Aspire-logo-256.png" alt=".NET Aspire logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Oracle - EF Core](../database/oracle-entity-framework-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle)<br>- **Client**: [📦 Aspire.Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Aspire.Oracle.EntityFrameworkCore) | A library for accessing Oracle databases with [Entity Framework Core](/ef/core). |
+| <img src="/dotnet/media/dotnet-Orleans.png" alt="Microsoft Orleans logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Orleans](../frameworks/Orleans.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans)<br>- **Client**: N/A | A library for modeling [Orleans](/dotnet/Orleans) as a .NET Aspire resource. |
+| <img src="media/icons/Aspire-logo-256.png" alt=".NET Aspire logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Pomelo MySQL - EF Core](../database/mysql-entity-framework-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql)<br>- **Client**: [📦 Aspire.Pomelo.EntityFrameworkCore.MySql](https://www.nuget.org/packages/Aspire.Pomelo.EntityFrameworkCore.MySql) | A library for accessing MySql databases with [Entity Framework Core](/ef/core). |
+| <img src="media/icons/PostgreSQL_logo.3colors.256x.png" alt="PostgreSQL logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 PostgreSQL - EF Core](../database/postgresql-entity-framework-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL)<br>- **Client**: [📦 Aspire.Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL) | A library for accessing PostgreSQL databases using [Entity Framework Core](https://www.npgsql.org/efcore/index.html). |
+| <img src="media/icons/PostgreSQL_logo.3colors.256x.png" alt="PostgreSQL logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 PostgreSQL](../database/postgresql-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL)<br>- **Client**: [📦 Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) | A library for accessing [PostgreSQL](https://www.npgsql.org/doc/index.html) databases. |
+| <img src="media/icons/QdrantLogo_256x.png" alt="Qdrant logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Qdrant](../database/qdrant-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Qdrant](https://www.nuget.org/packages/Aspire.Hosting.Qdrant)<br>- **Client**: [📦 Aspire.Qdrant.Client](https://www.nuget.org/packages/Aspire.Qdrant.Client) | A library for accessing [Qdrant](https://qdrant.tech/) databases. |
+| <img src="media/icons/Aspire-logo-256.png" alt=".NET Aspire logo." role="presentation" width="78" data-linktype="relative-path"> |  - **Learn more**: [📄 RabbitMQ](../messaging/rabbitmq-client-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.RabbitMQ](https://www.nuget.org/packages/Aspire.Hosting.RabbitMQ)<br>- **Client**: [📦 Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) | A library for accessing [RabbitMQ](https://www.rabbitmq.com/dotnet.html). |
+| <img src="media/icons/redis-cube-red_white-rgb.png" alt="Redis logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Redis Distributed Caching](../caching/stackexchange-redis-distributed-caching-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis), [📦 Aspire.Hosting.Garnet](https://www.nuget.org/packages/Aspire.Hosting.Garnet), or [📦 Aspire.Hosting.Valkey](https://www.nuget.org/packages/Aspire.Hosting.Valkey)<br>- **Client**: [📦 Aspire.StackExchange.Redis.DistributedCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.DistributedCaching) | A library for accessing [Redis](https://stackexchange.github.io/StackExchange.Redis/) caches for [distributed caching](/aspnet/core/performance/caching/distributed). |
+| <img src="media/icons/redis-cube-red_white-rgb.png" alt="Redis logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Redis Output Caching](../caching/stackexchange-redis-output-caching-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis), [📦 Aspire.Hosting.Garnet](https://www.nuget.org/packages/Aspire.Hosting.Garnet), or [📦 Aspire.Hosting.Valkey](https://www.nuget.org/packages/Aspire.Hosting.Valkey)<br>- **Client**: [📦 Aspire.StackExchange.Redis.OutputCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.OutputCaching) | A library for accessing [Redis](https://stackexchange.github.io/StackExchange.Redis/) caches for [output caching](/aspnet/core/performance/caching/output). |
+| <img src="media/icons/redis-cube-red_white-rgb.png" alt="Redis logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Redis](../caching/stackexchange-redis-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis), [📦 Aspire.Hosting.Garnet](https://www.nuget.org/packages/Aspire.Hosting.Garnet), or [📦 Aspire.Hosting.Valkey](https://www.nuget.org/packages/Aspire.Hosting.Valkey)<br>- **Client**: [📦 Aspire.StackExchange.Redis](https://www.nuget.org/packages/Aspire.StackExchange.Redis) | A library for accessing [Redis](https://stackexchange.github.io/StackExchange.Redis/) caches. |
+| <img src="media/icons/Seq_logo.256x.png" alt="Seq logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Seq](../logging/seq-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq)<br>- **Client**: [📦 Aspire.Seq](https://www.nuget.org/packages/Aspire.Seq) | A library for logging to [Seq](https://datalust.co/seq). |
+| <img src="media/icons/SQL_256x.png" alt="SQL logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 SQL Server - EF Core](../database/sql-server-entity-framework-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer)<br>- **Client**: [📦 Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) | A library for accessing [SQL Server databases using EF Core](/ef/core/providers/sql-server/). |
+| <img src="media/icons/SQL_256x.png" alt="SQL logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 SQL Server](../database/sql-server-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer)<br>- **Client**: [📦 Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) | A library for accessing [SQL Server](/sql/sql-server/) databases. |
 <!-- markdownlint-enable MD033 MD045 -->
 
 For more information on working with .NET Aspire integrations in Visual Studio, see [Visual Studio tooling](setup-tooling.md#visual-studio-tooling).
 
-## Explore a sample integration workflow
+### Azure integrations
 
-.NET Aspire integrations streamline the process of consuming popular services and platforms. For example, consider the **.NET Aspire project** template. With this template, you get the [AppHost](app-host-overview.md) and [ServiceDefaults](service-defaults.md) projects. Imagine that you have a need for a worker service to perform some database processing. You could use the [.NET Aspire PostgreSQL integration](../database/postgresql-integration.md) to connect to and utilize a PostgreSQL database. The database could be hosted on-premises or in a cloud service such as Azure, Amazon Web Services (AWS), or Google Cloud Platform (GCP). The following steps demonstrate how to integrate this integration into your app:
+Azure integrations configure applications to use Azure resources. These hosting integrations are available in the `Aspire.Hosting.Azure.*` NuGet packages, while their client integrations are available in the `Aspire.*` NuGet packages.:
 
-1. In the integration consuming (worker service) project, install the [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package.
+<!-- markdownlint-disable MD033 MD045 -->
+| Integration | Docs and NuGet packages | Description |
+|--|--|--|
+| <img src="media/icons/AzureAppConfig_256x.png" alt="Azure App Configuration logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure App Configuration](https://github.com/dotnet/aspire/blob/main/src/Aspire.Hosting.Azure.AppConfiguration/README.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.AppConfiguration](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppConfiguration)<br>- **Client**: N/A | A library for interacting with [Azure App Configuration](/azure/azure-app-configuration/). |
+| <img src="media/icons/AzureAppInsights_256x.png" alt="Azure Application Insights logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure Application Insights](https://github.com/dotnet/aspire/blob/main/src/Aspire.Hosting.Azure.ApplicationInsights/README.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.ApplicationInsights](https://www.nuget.org/packages/Aspire.Hosting.Azure.ApplicationInsights)<br>- **Client**: N/A | A library for interacting with [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview). |
+| <img src="media/icons/AzureCosmosDB_256x.png" alt="Azure Cosmos DB EF logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure Cosmos DB - EF Core](../database/azure-cosmos-db-entity-framework-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB)<br>- **Client**: [📦 Aspire.Microsoft.EntityFrameworkCore.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.Cosmos) | A library for accessing Azure Cosmos DB databases with [Entity Framework Core](/ef/core/providers/cosmos/). |
+| <img src="media/icons/AzureCosmosDB_256x.png" alt="Azure Cosmos DB logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure Cosmos DB](../database/azure-cosmos-db-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB)<br>- **Client**: [📦 Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) | A library for accessing [Azure Cosmos DB](/azure/cosmos-db/introduction) databases. |
+| <img src="media/icons/AzureEventHubs_256x.png" alt="Azure Event Hubs logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure Event Hubs](../messaging/azure-event-hubs-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.EventHubs](https://www.nuget.org/packages/Aspire.Hosting.Azure.EventHubs)<br>- **Client**: [📦 Aspire.Azure.Messaging.EventHubs](https://www.nuget.org/packages/Aspire.Azure.Messaging.EventHubs) | A library for accessing [Azure Event Hubs](/azure/event-hubs/event-hubs-about). |
+| <img src="media/icons/AzureKeyVault_256x.png" alt="Azure Key Vault logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure Key Vault](../security/azure-security-key-vault-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.KeyVault](https://www.nuget.org/packages/Aspire.Hosting.Azure.KeyVault)<br>- **Client**: [📦 Aspire.Azure.Security.KeyVault](https://www.nuget.org/packages/Aspire.Azure.Security.KeyVault) | A library for accessing [Azure Key Vault](/azure/key-vault/general/overview). |
+| <img src="media/icons/AzureLogAnalytics_256x.png" alt="Azure Operational Insights logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure Operational Insights](https://github.com/dotnet/aspire/blob/main/src/Aspire.Hosting.Azure.OperationalInsights/README.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.OperationalInsights](https://www.nuget.org/packages/Aspire.Hosting.Azure.OperationalInsights)<br>- **Client**: N/A | A library for interacting with [Azure Operational Insights](/azure/azure-monitor/logs/log-analytics-workspace-overview). |
+| <img src="media/icons/AzureOpenAI_256x.png" alt="Azure OpenAI logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure AI OpenAI](../azureai/azureai-openai-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices)<br>- **Client**: [📦 Aspire.Azure.AI.OpenAI](https://www.nuget.org/packages/Aspire.Azure.AI.OpenAI) | A library for accessing [Azure AI OpenAI](/azure/ai-services/openai/overview) or OpenAI functionality. |
+| <img src="media/icons/AzurePostgreSQL_256x.png" alt="Azure PostgreSQL logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure PostgreSQL](https://github.com/dotnet/aspire/blob/main/src/Aspire.Hosting.Azure.PostgreSQL/README.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.Azure.PostgreSQL)<br>- **Client**: N/A | A library for interacting with [Azure Database for PostgreSQL](/azure/postgresql/). |
+| <img src="media/icons/AzureSearch_256x.png" alt="Azure AI Search Documents logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure AI Search](../azureai/azureai-search-document-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.Search](https://www.nuget.org/packages/Aspire.Hosting.Azure.Search)<br>- **Client**: [📦 Aspire.Azure.Search.Documents](https://www.nuget.org/packages/Aspire.Azure.Search.Documents) | A library for accessing [Azure AI Search](/azure/search/search-what-is-azure-search) functionality. |
+| <img src="media/icons/AzureServiceBus_256x.png" alt="Azure Service Bus logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure Service Bus](../messaging/azure-service-bus-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.ServiceBus](https://www.nuget.org/packages/Aspire.Hosting.Azure.ServiceBus)<br>- **Client**: [📦 Aspire.Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) | A library for accessing [Azure Service Bus](/azure/service-bus-messaging/service-bus-messaging-overview). |
+| <img src="media/icons/AzureSignalR_256x.png" alt="Azure SignalR Service logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure SignalR Service](../real-time/azure-signalr-scenario.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.SignalR](https://www.nuget.org/packages/Aspire.Hosting.Azure.SignalR)<br>- **Client**: [Microsoft.Azure.SignalR](https://www.nuget.org/packages/Microsoft.Azure.SignalR) | A library for accessing [Azure SignalR Service](/azure/azure-signalr/signalr-overview). |
+| <img src="media/icons/AzureStorageContainer_256x.png" alt="Azure Blog Storage logo."  role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure Blob Storage](../storage/azure-storage-blobs-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage)<br>- **Client**: [📦 Aspire.Azure.Storage.Blobs](https://www.nuget.org/packages/Aspire.Azure.Storage.Blobs) | A library for accessing [Azure Blob Storage](/azure/storage/blobs/storage-blobs-introduction). |
+| <img src="media/icons/AzureStorageQueue_256x.png" alt="Azure Storage Queues logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure Storage Queues](../storage/azure-storage-queues-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage)<br>- **Client**: [📦 Aspire.Azure.Storage.Queues](https://www.nuget.org/packages/Aspire.Azure.Storage.Queues) | A library for accessing [Azure Storage Queues](/azure/storage/queues/storage-queues-introduction). |
+| <img src="media/icons/AzureTable_256x.png" alt="Azure Table Storage logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure Table Storage](../storage/azure-storage-tables-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage)<br>- **Client**: [📦 Aspire.Azure.Data.Tables](https://www.nuget.org/packages/Aspire.Azure.Data.Tables) | A library for accessing the [Azure Table](/azure/storage/tables/table-storage-overview) service. |
+| <img src="media/icons/AzureWebPubSub_256x.png" alt="Azure Web PubSub logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 Azure Web PubSub](../messaging/azure-web-pubsub-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.WebPubSub](https://www.nuget.org/packages/Aspire.Hosting.Azure.WebPubSub)<br>- **Client**: [📦 Aspire.Azure.Messaging.WebPubSub](https://www.nuget.org/packages/Aspire.Azure.Messaging.WebPubSub) | A library for accessing the [Azure Web PubSub](/azure/azure-web-pubsub/) service. |
+<!-- markdownlint-enable MD033 MD045 -->
 
-    ### [.NET CLI](#tab/dotnet-cli)
+> [!IMPORTANT]
+> The .NET Aspire Azure hosting libraries rely on `Azure.Provisioning.*` libraries to provision Azure resources. For more information, [Azure provisioning libraries](../deployment/azure/local-provisioning.md).
 
-    ```dotnetcli
-    dotnet add package Aspire.Npgsql
-    ```
+### AWS hosting integrations
 
-    ### [PackageReference](#tab/package-reference)
+<!-- markdownlint-disable MD033 MD045 -->
+| Integration | Docs and NuGet packages | Description |
+|--|--|--|
+| <img src="media/icons/AWS.png" alt="AWS logo." role="presentation" width="78" data-linktype="relative-path"> | - **Learn more**: [📄 AWS Hosting](https://github.com/dotnet/aspire/blob/main/src/Aspire.Hosting.AWS/README.md) <br/> - **Hosting**: [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS)<br>- **Client**: N/A | A library for modeling [AWS resources](https://aws.amazon.com/cdk/). |
+<!-- markdownlint-enable MD033 MD045 -->
 
-    ```xml
-    <PackageReference Include="Aspire.Npgsql" Version="[SelectVersion]" />
-    ```
-
-    ---
-
-    For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
-
-1. In the _:::no-loc text="Program.cs":::_ file of your worker service project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension method to register `NpgsqlDataSource` as a service.
-
-    :::code source="snippets/integrations/AspireApp/WorkerService/Program.cs" highlight="5":::
-
-    The preceding code adds the `NpgsqlDataSource` to the dependency injection container with the connection name of `"customers"`. The connection name is later used by the orchestrator project, when expressing resource dependencies.
-
-    > [!TIP]
-    > Integrations that are designed to connect to Azure services also support passwordless authentication and authorization using [Azure RBAC](/azure/role-based-access-control/overview), which is the recommended approach for production apps.
-
-1. In your app host project (the project with the _*.AppHost_ suffix), add a reference to the worker service project. If you're using Visual Studio, you can use the [**Add .NET Aspire Orchestrator Support**](setup-tooling.md#add-orchestration-projects) project context menu item to add the reference automatically. The following code snippet shows the project reference of the _AspireApp.AppHost.csproj_:
-
-    :::code language="xml" source="snippets/integrations/AspireApp/AspireApp.AppHost/AspireApp.AppHost.csproj" highlight="17":::
-
-    After the worker service is referenced by the orchestrator project, the worker service project has its _:::no-loc text="Program.cs":::_ file updated to call the `AddServiceDefaults` method. For more information on service defaults, see [Service defaults](service-defaults.md).
-
-1. In the orchestrator project, update the _:::no-loc text="Program.cs":::_ file with the following code:
-
-    :::code source="snippets/integrations/AspireApp/AspireApp.AppHost/Program.cs" highlight="3-4,6-8":::
-
-    The preceding code:
-
-    - Calls <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A> and chains a call to <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A>, adding a PostgreSQL database container to the app model with a database named `"customers"`.
-    - Chains calls on the result of the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> from the worker service project:
-      - Calls <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a reference to the `database`.
-      - Calls <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithReplicas%2A> to set the number of replicas to `3`.
-
-1. Inject the `NpgsqlDataSource` object into the `Worker` to run commands against the database:
-
-    :::code source="snippets/integrations/AspireApp/WorkerService/Worker.cs" highlight="7,13":::
-
-You now have a fully configured PostgreSQL database integration and corresponding container with connection integrated into your app. This integration also configured health checks, logging, metrics, retries, and other useful capabilities for you behind the scenes. .NET Aspire integrations provide various options to configure each of these features.
-
-## Configure .NET Aspire integrations
-
-.NET Aspire integrations implement a consistent configuration experience via <xref:Microsoft.Extensions.Configuration.IConfiguration> and <xref:Microsoft.Extensions.Options.IOptions%601>. Configuration is schematized and part of an integration's contract, ensuring backward compatibility across versions of the integration. You can set up every .NET Aspire integration through either JSON configuration files or directly through code using delegates. JSON files must follow a standardized naming convention based on the Component name.
-
-For example, add the following code to the _:::no-loc text="appsettings.json":::_ file to configure the PostgreSQL integration:
-
-```json
-{
-  "Aspire": {
-    "Npgsql": {
-      "DisableHealthChecks": true,
-      "DisableTracing": true
-    }
-  }
-}
-```
-
-Alternatively, you can configure the integration directly in your code using a delegate:
-
-```csharp
-builder.AddNpgsqlDataSource(
-    "PostgreSqlConnection",
-    static settings => settings.DisableHealthChecks  = true);
-```
-
-## Dependency injection
-
-.NET Aspire integrations automatically register essential services with the .NET dependency container using the proper scope. This allows key integration classes and services to be injected throughout your code. For example, the .NET Aspire PostgreSQL integration makes available the `NpgsqlDataSource` to inject into your application layers and run commands against a database:
-
-```csharp
-public class ExampleService(NpgsqlDataSource dataSource)
-{
-}
-```
-
-For more information, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
-
-### Keyed services
-
-.NET Aspire integrations also support keyed dependency injection. In this scenario, the service name for keyed dependency injection is the same as the connection name:
-
-```csharp
-builder.AddKeyedNpgsqlDataSource(
-    "PostgreSqlConnection",
-    static settings => settings.DisableHealthChecks  = true);
-```
-
-You can then retrieve the registered service using the <xref:Microsoft.Extensions.DependencyInjection.FromKeyedServicesAttribute>:
-
-```csharp
-public class ExampleService(
-    [FromKeyedServices("PostgreSqlConnection")] NpgsqlDataSource npgContext)
-{
-}
-```
-
-For more information, see [Dependency injection in .NET: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
+For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.com/dotnet/aspire/tree/main/src/Aspire.Hosting.AWS).
 
 ## Cloud-native features
 

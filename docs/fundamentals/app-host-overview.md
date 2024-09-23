@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs to express resource references.
-ms.date: 08/12/2024
+ms.date: 09/12/2024
 ms.topic: overview
 uid: aspire/app-host
 ---
@@ -51,19 +51,22 @@ Each resource must be uniquely named. This diagram shows each resource and the r
 
 ## Built-in resource types
 
-.NET Aspire projects are made up of a set of resources. There are three base types of compute resources from the primary [Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) Nuget package:
+.NET Aspire projects are made up of a set of resources. The primary base resource types in the [Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) Nuget package are described in the following table:
 
 | Method | Resource type | Description |
 |--|--|--|
 | <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> | <xref:Aspire.Hosting.ApplicationModel.ProjectResource> | A .NET project, for example ASP.NET Core web apps. |
 | <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.ContainerResource> | A container image, such as a Docker image. |
-| <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> | <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> | An executable file. |
+| <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> | <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> | An executable file, such as a [Node.js app](../get-started/build-aspire-apps-with-nodejs.md). |
+| <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddParameter%2A> | <xref:Aspire.Hosting.ApplicationModel.ParameterResource> | A parameter resource that can be used to [express external parameters](external-parameters.md). |
 
-Project resources are .NET projects that are part of the app model. When you add a project reference to the app host project, the app host generates a type in the `Projects` namespace for each referenced project.
+Project resources represent .NET projects that are part of the app model. When you add a project reference to the app host project, the .NET Aspire SDK generates a type in the `Projects` namespace for each referenced project.
 
 To add a project to the app model, use the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> method:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 // Adds the project "apiservice" of type "Projects.AspireApp_ApiService".
 var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice");
 ```
@@ -73,80 +76,19 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 A reference represents a dependency between resources. Consider the following:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var cache = builder.AddRedis("cache");
 
 builder.AddProject<Projects.AspireApp_Web>("webfrontend")
        .WithReference(cache);
 ```
 
-The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a dependency on the "cache" container resource. These dependencies can represent connection strings or [service discovery](../service-discovery/overview.md) information. In the preceding example, an environment variable is injected into the "webfronend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the webfrontend can use to connect to redis via the .NET Aspire Redis integration, for example, `ConnectionStrings__cache="localhost:62354"`.
-
-### Connection string and endpoint references
-
-It's also possible to have dependencies between project resources. Consider the following example code:
-
-```csharp
-var cache = builder.AddRedis("cache");
-
-var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice");
-
-builder.AddProject<Projects.AspireApp_Web>("webfrontend")
-       .WithReference(cache)
-       .WithReference(apiservice);
-```
-
-Project-to-project references are handled differently than resources that have well defined connection strings. Instead of connection string being injected into the "webfrontend" resource, environment variables to support service discovery are injected.
-
-| Method | Environment variable |
-|--|--|
-| `WithReference(cache)` | `ConnectionStrings__cache="localhost:62354"` |
-| `WithReference(apiservice)` | `services__apiservice__http__0="http://localhost:5455"` <br /> `services__apiservice__https__0="https://localhost:7356"` |
-
-Adding a reference to the "apiservice" project results in service discovery environment variables being added to the front-end. This is because typically, project to project communication occurs over HTTP/gRPC. For more information, see [.NET Aspire service discovery](../service-discovery/overview.md).
-
-It's possible to get specific endpoints from a container or executable using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint%2A> and calling the <xref:Aspire.Hosting.ResourceBuilderExtensions.GetEndpoint%2A>:
-
-```csharp
-var customContainer = builder.AddContainer("myapp", "mycustomcontainer")
-                             .WithHttpEndpoint(port: 9043, name: "endpoint");
-
-var endpoint = customContainer.GetEndpoint("endpoint");
-
-var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
-                        .WithReference(endpoint);
-```
-
-| Method                    | Environment variable                                  |
-|---------------------------|-------------------------------------------------------|
-| `WithReference(endpoint)` | `services__myapp__endpoint__0=https://localhost:9043` |
-
-The `port` parameter is the port that the container is listening on. For more information on container ports, see [Container ports](networking-overview.md#container-ports). For more information on service discovery, see [.NET Aspire service discovery](../service-discovery/overview.md).
-
-### Service endpoint environment variable format
-
-In the preceding section, the `WithReference` method is used to express dependencies between resources. When service endpoints result in environment variables being injected into the dependent resource, the format may not be obvious. This section provides details on this format.
-
-When one resource depends on another resource, the app host injects environment variables into the dependent resource. These environment variables configure the dependent resource to connect to the resource it depends on. The format of the environment variables is specific to .NET Aspire and expresses service endpoints in a way that is compatible with [Service Discovery](../service-discovery/overview.md).
-
-Service endpoint environment variables start with `services` and are delimited by a double underscore `__`. They're prefixed with `services__`, followed by the service name, the service endpoint name or protocol, and the index. The index supports multiple endpoints for a single service, starting with `0` for the first endpoint and incrementing for each additional endpoint.
-
-Consider the following environment variable examples:
-
-```
-services__apiservice__http__0
-```
-
-The preceding environment variable expresses the first HTTP endpoint for the `apiservice` service. The value of the environment variable is the URL of the service endpoint. A named endpoint might be expressed as follows:
-
-```
-services__apiservice__myendpoint__0
-```
-
-In the preceding example, the `apiservice` service has a named endpoint called `myendpoint`. The value of the environment variable is the URL of the service endpoint.
+The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a dependency on the "cache" container resource. These dependencies can represent connection strings or [service discovery](../service-discovery/overview.md) information. In the preceding example, an environment variable is _injected_ into the "webfronend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the `webfrontend` uses to connect to Redis via the [.NET Aspire Redis integration](../caching/stackexchange-redis-caching-overview.md), for example, `ConnectionStrings__cache="localhost:62354"`.
 
 ### APIs for adding and expressing resources
 
-.NET Aspire hosting packages and [.NET Aspire integrations](integrations-overview.md) are both delivered as NuGet packages, but they serve different purposes. While integrations provide client library configuration for consuming apps outside the scope of the app host, hosting packages provide APIs for expressing resources and dependencies within the app host.
+.NET Aspire [hosting integrations](integrations-overview.md#hosting-integrations) and [client integrations](integrations-overview.md#client-integrations) are both delivered as NuGet packages, but they serve different purposes. While _client integrations_ provide client library configuration for consuming apps outside the scope of the app host, _hosting integrations_ provide APIs for expressing resources and dependencies within the app host. For more information, see [Integration responsibilities](integrations-overview.md#integration-responsibilities).
 
 ### Express container resources
 
@@ -186,91 +128,74 @@ For more information, see [GPU support in Podman](https://github.com/containers/
 
 The preceding code adds a container resource named "ollama" with the image "ollama/ollama". The container resource is configured with multiple bind mounts, a named HTTP endpoint, an entrypoint that resolves to Unix shell script, and container run arguments with the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithContainerRuntimeArgs%2A> method.
 
-Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectResource>, <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, and <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, .NET Aspire provides extension methods to add common resources to your app model. The following table lists the methods and their corresponding resource types:
+Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectResource>, <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, and <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, .NET Aspire provides extension methods to add common resources to your app model. For more information, see [Hosting integrations](integrations-overview.md#hosting-integrations).
 
-**Cloud-agnostic resources are available in the following NuGet packages:**
+### Connection string and endpoint references
 
-- [📦 Aspire.Hosting.Dapr](https://www.nuget.org/packages/Aspire.Hosting.Dapr)
-- [📦 Aspire.Hosting.Elasticsearch](https://www.nuget.org/packages/Aspire.Hosting.Elasticsearch)
-- [📦 Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka)
-- [📦 Aspire.Hosting.Keycloak](https://www.nuget.org/packages/Aspire.Hosting.Keycloak)
-- [📦 Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus)
-- [📦 Aspire.Hosting.MongoDB](https://www.nuget.org/packages/Aspire.Hosting.MongoDB)
-- [📦 Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql)
-- [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats)
-- [📦 Aspire.Hosting.NodeJs](https://www.nuget.org/packages/Aspire.Hosting.NodeJs)
-- [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle)
-- [📦 Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans)
-- [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL)
-- [📦 Aspire.Hosting.Python](https://www.nuget.org/packages/Aspire.Hosting.Python)
-- [📦 Aspire.Hosting.Qdrant](https://www.nuget.org/packages/Aspire.Hosting.Qdrant)
-- [📦 Aspire.Hosting.RabbitMQ](https://www.nuget.org/packages/Aspire.Hosting.RabbitMQ)
-- [📦 Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis)
-- [📦 Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq)
-- [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer)
-- [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing)
+It's common to express dependencies between project resources. Consider the following example code:
 
-| Method | Resource type | Description |
-|--|--|--|
-| <xref:Aspire.Hosting.ElasticsearchBuilderExtensions.AddElasticsearch*> | <xref:Aspire.Hosting.ApplicationModel.ElasticsearchResource> | Adds an Elasticsearch container resource to the application model. |
-| <xref:Aspire.Hosting.KeycloakResourceBuilderExtensions.AddKeycloak*> | <xref:Aspire.Hosting.ApplicationModel.KeycloakResource> | Adds a Keycloak container to the application model. |
-| <xref:Aspire.Hosting.MilvusBuilderExtensions.AddMilvus*> | <xref:Aspire.Hosting.Milvus.MilvusServerResource> | Adds a Milvus resource to the application. |
-| <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddMongoDB*> | <xref:Aspire.Hosting.ApplicationModel.MongoDBServerResource> | Adds a MongoDB server resource. |
-| <xref:Aspire.Hosting.MySqlBuilderExtensions.AddMySql*> | <xref:Aspire.Hosting.ApplicationModel.MySqlServerResource> | Adds a MySql server resource. |
-| <xref:Aspire.Hosting.NodeAppHostingExtension.AddNodeApp*> | <xref:Aspire.Hosting.NodeAppResource> | Adds a Node.js app resource. |
-| <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp*> | <xref:Aspire.Hosting.NodeAppResource> | Adds a Node.js app resource that wraps an [NPM](https://www.npmjs.com/) package. |
-| <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresServerResource> | Adds a Postgres server resource. |
-| `AddPostgres(...).`<xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.PostgresDatabaseResource> | Adds a Postgres database resource. |
-| <xref:Aspire.Hosting.PythonProjectResourceBuilderExtensions.AddPythonProject*> | <xref:Aspire.Hosting.Python.PythonProjectResource> | Adds a python application with a virtual environment to the application model. |
-| <xref:Aspire.Hosting.QdrantBuilderExtensions.AddQdrant*> | <xref:Aspire.Hosting.ApplicationModel.QdrantServerResource> | Adds a Qdrant server resource. |
-| <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ%2A> | <xref:Aspire.Hosting.ApplicationModel.RabbitMQServerResource> | Adds a RabbitMQ server resource. |
-| <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> | <xref:Aspire.Hosting.ApplicationModel.RedisResource> | Adds a Redis container resource. |
-| <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerServerResource> | Adds a SQL Server server resource. |
-| `AddSqlServer(...).`<xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase%2A> | <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource> | Adds a SQL Server database resource. |
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
 
-**Azure specific resources are available in the following NuGet packages:**
+var cache = builder.AddRedis("cache");
 
-<span id="azure-hosting-libraries"></span>
+var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice");
 
-- [📦 Aspire.Hosting.Azure.AppConfiguration](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppConfiguration)
-- [📦 Aspire.Hosting.Azure.ApplicationInsights](https://www.nuget.org/packages/Aspire.Hosting.Azure.ApplicationInsights)
-- [📦 Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices)
-- [📦 Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB)
-- [📦 Aspire.Hosting.Azure.EventHubs](https://www.nuget.org/packages/Aspire.Hosting.Azure.EventHubs)
-- [📦 Aspire.Hosting.Azure.KeyVault](https://www.nuget.org/packages/Aspire.Hosting.Azure.KeyVault)
-- [📦 Aspire.Hosting.Azure.OperationalInsights](https://www.nuget.org/packages/Aspire.Hosting.Azure.OperationalInsights)
-- [📦 Aspire.Hosting.Azure.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.Azure.PostgreSQL)
-- [📦 Aspire.Hosting.Azure.Redis](https://www.nuget.org/packages/Aspire.Hosting.Azure.Redis)
-- [📦 Aspire.Hosting.Azure.Search](https://www.nuget.org/packages/Aspire.Hosting.Azure.Search)
-- [📦 Aspire.Hosting.Azure.ServiceBus](https://www.nuget.org/packages/Aspire.Hosting.Azure.ServiceBus)
-- [📦 Aspire.Hosting.Azure.SignalR](https://www.nuget.org/packages/Aspire.Hosting.Azure.SignalR)
-- [📦 Aspire.Hosting.Azure.Sql](https://www.nuget.org/packages/Aspire.Hosting.Azure.Sql)
-- [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage)
-- [📦 Aspire.Hosting.Azure.WebPubSub](https://www.nuget.org/packages/Aspire.Hosting.Azure.WebPubSub)
+builder.AddProject<Projects.AspireApp_Web>("webfrontend")
+       .WithReference(cache)
+       .WithReference(apiservice);
+```
 
-| Method | Resource type | Description |
-|--|--|--|
-| <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A> | <xref:Aspire.Hosting.Azure.AzureStorageResource> | Adds an Azure Storage resource. |
-| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureStorageExtensions.AddBlobs%2A> | <xref:Aspire.Hosting.Azure.AzureBlobStorageResource> | Adds an Azure Blob Storage resource. |
-| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureStorageExtensions.AddQueues%2A> | <xref:Aspire.Hosting.Azure.AzureQueueStorageResource> | Adds an Azure Queue Storage resource. |
-| `AddAzureStorage(...).`<xref:Aspire.Hosting.AzureStorageExtensions.AddTables%2A> | <xref:Aspire.Hosting.Azure.AzureTableStorageResource> | Adds an Azure Table Storage resource. |
-| <xref:Aspire.Hosting.AzureCosmosExtensions.AddAzureCosmosDB%2A> | <xref:Aspire.Hosting.AzureCosmosDBResource> | Adds an Azure Cosmos DB resource. |
-| <xref:Aspire.Hosting.AzureKeyVaultResourceExtensions.AddAzureKeyVault%2A> | <xref:Aspire.Hosting.Azure.AzureKeyVaultResource> | Adds an Azure Key Vault resource. |
-| `AddRedis(...)`.<xref:Aspire.Hosting.AzureRedisExtensions.AsAzureRedis%2A> | <xref:Aspire.Hosting.Azure.AzureRedisResource> | Configures resource to use Azure for local development and when doing a deployment via the Azure Developer CLI. |
-| `AddSqlServer(...)`.<xref:Aspire.Hosting.AzureSqlExtensions.AsAzureSqlDatabase%2A> | <xref:Aspire.Hosting.Azure.AzureSqlServerResource> | Configures SQL Server resource to be deployed as Azure SQL Database (server). |
-| <xref:Aspire.Hosting.AzureServiceBusExtensions.AddAzureServiceBus%2A> | <xref:Aspire.Hosting.Azure.AzureServiceBusResource> | Adds an Azure Service Bus resource. |
-| <xref:Aspire.Hosting.AzureWebPubSubExtensions.AddAzureWebPubSub%2A> | <xref:Aspire.Hosting.ApplicationModel.AzureWebPubSubResource> | Adds an Azure Web PubSub resources. |
+Project-to-project references are handled differently than resources that have well defined connection strings. Instead of connection string being injected into the "webfrontend" resource, environment variables to support service discovery are injected.
 
-> [!IMPORTANT]
-> The .NET Aspire Azure hosting libraries rely on `Azure.Provisioning.*` libraries to provision Azure resources. For more information, [Azure provisioning libraries](../deployment/azure/local-provisioning.md#azure-provisioning-libraries).
+| Method | Environment variable |
+|--|--|
+| `WithReference(cache)` | `ConnectionStrings__cache="localhost:62354"` |
+| `WithReference(apiservice)` | `services__apiservice__http__0="http://localhost:5455"` <br /> `services__apiservice__https__0="https://localhost:7356"` |
 
-**AWS specific resources are available in the following NuGet package:**
+Adding a reference to the "apiservice" project results in service discovery environment variables being added to the front-end. This is because typically, project to project communication occurs over HTTP/gRPC. For more information, see [.NET Aspire service discovery](../service-discovery/overview.md).
 
-<span id="aws-hosting-libraries"></span>
+It's possible to get specific endpoints from a container or executable using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint%2A> and calling the <xref:Aspire.Hosting.ResourceBuilderExtensions.GetEndpoint%2A>:
 
-- [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS)
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
 
-For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.com/dotnet/aspire/tree/main/src/Aspire.Hosting.AWS).
+var customContainer = builder.AddContainer("myapp", "mycustomcontainer")
+                             .WithHttpEndpoint(port: 9043, name: "endpoint");
+
+var endpoint = customContainer.GetEndpoint("endpoint");
+
+var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
+                        .WithReference(endpoint);
+```
+
+| Method                    | Environment variable                                  |
+|---------------------------|-------------------------------------------------------|
+| `WithReference(endpoint)` | `services__myapp__endpoint__0=https://localhost:9043` |
+
+The `port` parameter is the port that the container is listening on. For more information on container ports, see [Container ports](networking-overview.md#container-ports). For more information on service discovery, see [.NET Aspire service discovery](../service-discovery/overview.md).
+
+### Service endpoint environment variable format
+
+In the preceding section, the `WithReference` method is used to express dependencies between resources. When service endpoints result in environment variables being injected into the dependent resource, the format may not be obvious. This section provides details on this format.
+
+When one resource depends on another resource, the app host injects environment variables into the dependent resource. These environment variables configure the dependent resource to connect to the resource it depends on. The format of the environment variables is specific to .NET Aspire and expresses service endpoints in a way that is compatible with [Service Discovery](../service-discovery/overview.md).
+
+Service endpoint environment variable names are prefixed with `services__` (double underscore), then the service name, the endpoint name, and finally the index. The index supports multiple endpoints for a single service, starting with `0` for the first endpoint and incrementing for each additional endpoint.
+
+Consider the following environment variable examples:
+
+```Environment
+services__apiservice__http__0
+```
+
+The preceding environment variable expresses the first HTTP endpoint for the `apiservice` service. The value of the environment variable is the URL of the service endpoint. A named endpoint might be expressed as follows:
+
+```Environment
+services__apiservice__myendpoint__0
+```
+
+In the preceding example, the `apiservice` service has a named endpoint called `myendpoint`. The value of the environment variable is the URL of the service endpoint.
 
 ## Execution context
 
@@ -304,3 +229,5 @@ private static IResourceBuilder<RabbitMQServerResource> RunWithStableNodeName(
 - [.NET Aspire integrations overview](integrations-overview.md)
 - [Service discovery in .NET Aspire](../service-discovery/overview.md)
 - [.NET Aspire service defaults](service-defaults.md)
+- [Expressing external parameters](external-parameters.md)
+- [.NET Aspire inner-loop networking overview](networking-overview.md)

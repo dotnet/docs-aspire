@@ -1,25 +1,22 @@
 ---
-title: Implement auth from custom resource to integration
-description: Learn how to implement authentication credentials from a custom resource to a custom integration.
-ms.date: 08/12/2024
+title: Secure communication between hosting and client integrations
+description: Learn how to Secure communication between hosting and client integrations.
+ms.date: 09/12/2024
 ms.topic: how-to
 ---
 
-# Implement auth from custom resource to integration
+# Secure communication between hosting and client integrations
 
-This article is a continuation of two previous articles:
+This article is a continuation of two previous articles demonstrating the creation of [custom hosting integrations](custom-hosting-integration.md) and [custom client integrations](custom-client-integration.md).
 
-- [Create custom resource types for .NET Aspire](custom-resources.md)
-- [Create custom .NET Aspire integration](custom-integration.md)
-
-One of the primary benefits to .NET Aspire is how it simplifies the configurability of resources and consuming clients (or integrations). This article demonstrates how to authentication credentials from from a custom resource to a custom integration. The custom resource is a MailDev container that allows for either incoming or outgoing credentials. The custom integration is a MailKit client that sends emails.
+One of the primary benefits to .NET Aspire is how it simplifies the configurability of resources and consuming clients (or integrations). This article demonstrates how to share authentication credentials from a custom resource in a hosting integration, to the consuming client in a custom client integration. The custom resource is a MailDev container that allows for either incoming or outgoing credentials. The custom client integration is a MailKit client that sends emails.
 
 ## Prerequisites
 
-Since this article continues from previous content, it's expected that you've already created the resulting solution as a starting point for this article. If you haven't already, complete the following articles:
+Since this article continues from previous content, you should have already created the resulting solution as a starting point for this article. If you haven't already, complete the following articles:
 
-- [Create custom resource types for .NET Aspire](custom-resources.md)
-- [Create custom .NET Aspire integration](custom-integration.md)
+- [Create custom .NET Aspire hosting integrations](custom-hosting-integration.md)
+- [Create custom .NET Aspire client integrations](custom-client-integration.md)
 
 The resulting solution from these previous articles contains the following projects:
 
@@ -27,13 +24,13 @@ The resulting solution from these previous articles contains the following proje
 - _MailDevResource.AppHost_: The [app host](../fundamentals/app-host-overview.md) that uses the custom resource and defines it as a dependency for a Newsletter service.
 - _MailDevResource.NewsletterService_: An ASP.NET Core Web API project that sends emails using the MailDev container.
 - _MailDevResource.ServiceDefaults_: Contains the [default service configurations](../fundamentals/service-defaults.md) intended for sharing.
-- _MailKit.Client_: Contains the custom integration that exposes the MailKit `SmptClient` through a factory.
+- _MailKit.Client_: Contains the custom client integration that exposes the MailKit `SmtpClient` through a factory.
 
 ## Update the MailDev resource
 
 To flow authentication credentials from the MailDev resource to the MailKit integration, you need to update the MailDev resource to include the username and password parameters.
 
-The MailDev container supports basic authentication for both incoming and outgoing SMTP. To configure the credentials for incoming, you need to set the `MAILDEV_INCOMING_USER` and `MAILDEV_INCOMING_PASS` environment variables. For more information, see [MailDev: Usage](https://maildev.github.io/maildev/#usage). Update the _MailDevResource.cs_ file in the `MailDev.Hosting` project, by replacing its contents with the following C# code:
+The MailDev container supports basic authentication for both incoming and outgoing simple mail transfer protocol (SMTP). To configure the credentials for incoming, you need to set the `MAILDEV_INCOMING_USER` and `MAILDEV_INCOMING_PASS` environment variables. For more information, see [MailDev: Usage](https://maildev.github.io/maildev/#usage). Update the _MailDevResource.cs_ file in the `MailDev.Hosting` project, by replacing its contents with the following C# code:
   
 :::code source="snippets/MailDevResourceWithCredentials/MailDev.Hosting/MailDevResource.cs" highlight="9-10":::
 
@@ -51,7 +48,7 @@ Now that the resource is updated to include the username and password parameters
 
 The preceding code adds two parameters for the MailDev username and password. It assigns these parameters to the `MAILDEV_INCOMING_USER` and `MAILDEV_INCOMING_PASS` environment variables. The `AddMailDev` method has two chained calls to `WithEnvironment` which includes these environment variables. For more information on parameters, see [External parameters](../fundamentals/external-parameters.md).
 
-Next, configure the secrets for these paremeters. Right-click on the `MailDevResource.AppHost` project and select `Manage User Secrets`. Add the following JSON to the `secrets.json` file:
+Next, configure the secrets for these parameters. Right-click on the `MailDevResource.AppHost` project and select `Manage User Secrets`. Add the following JSON to the _secrets.json_ file:
 
 ```json
 {
@@ -65,7 +62,7 @@ Next, configure the secrets for these paremeters. Right-click on the `MailDevRes
 
 ## Update the MailKit integration
 
-It's good practice for integrations to expect connection strings to contain varions key/value pairs, and to parse these pairs into the appropriate properties. Update the _MailKitClientSettings.cs_ file in the `MailKit.Client` project with the following C# code:
+It's good practice for client integrations to expect connection strings to contain various key/value pairs, and to parse these pairs into the appropriate properties. Update the _MailKitClientSettings.cs_ file in the `MailKit.Client` project with the following C# code:
 
 :::code source="snippets/MailDevResourceWithCredentials/MailKit.Client/MailKitClientSettings.cs" highlight="21-28,95-100":::
 
@@ -79,7 +76,7 @@ When the factory determines that credentials have been configured, it authentica
 
 ## Run the sample
 
-Now that you've updated both the resource and corresponding integration projects, as well as the app host, you're ready to run the sample app. To run the sample from your IDE, select <kbd>F5</kbd> or use `dotnet run` from the root directory of the solution to start the application—you should see the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md). Navigate to the `maildev` container resource and view the details. You should see the username and password parameters in the resource details, under the **Environment Variables** section:
+Now that you've updated the resource, corresponding integration projects, and the app host, you're ready to run the sample app. To run the sample from your IDE, select <kbd>F5</kbd> or use `dotnet run` from the root directory of the solution to start the application—you should see the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md). Navigate to the `maildev` container resource and view the details. You should see the username and password parameters in the resource details, under the **Environment Variables** section:
 
 :::image type="content" source="media/maildev-details.png" lightbox="media/maildev-details.png" alt-text=".NET Aspire Dashboard: MailDev container resource details.":::
 
@@ -91,4 +88,4 @@ Validate that everything is working as expected.
 
 ## Summary
 
-This article demonstrated how to flow authentication credentials from a custom resource to a custom integration. The custom resource is a MailDev container that allows for either incoming or outgoing credentials. The custom integration is a MailKit client that sends emails. By updating the resource to include the username and password parameters, and updating the integration to parse and use these parameters, you can flow authentication credentials from the resource to the integration.
+This article demonstrated how to flow authentication credentials from a custom resource to a custom client integration. The custom resource is a MailDev container that allows for either incoming or outgoing credentials. The custom client integration is a MailKit client that sends emails. By updating the resource to include the `username` and `password` parameters, and updating the integration to parse and use these parameters, authentication flows credentials from the hosting integration to the client integration.

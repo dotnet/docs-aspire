@@ -1,14 +1,14 @@
 ---
 title: Local Azure provisioning
 description: Learn how to use Azure resources in your local development environment.
-ms.date: 05/16/2024
+ms.date: 09/23/2024
 ---
 
 # Local Azure provisioning
 
 .NET Aspire simplifies local cloud-native app development with its compelling app host model. This model allows you to run your app locally with the same configuration and services as in Azure.
 
-In this article you learn how to provision Azure resources from your local development environment through the [.NET Aspire app host](../../fundamentals/app-host-overview.md). All of this is possible with the help of the [Azure.Provisioning.* libraries](#azure-provisioning-libraries), which provide a set of APIs to provision Azure resources. These packages are transitive dependencies of the .NET Aspire Azure hosting libraries you use in your app host, so you don't need to install them separately.
+In this article you learn how to provision Azure resources from your local development environment through the [.NET Aspire app host](../../fundamentals/app-host-overview.md). All of this is possible with the help of the `Azure.Provisioning.*` libraries, which provide a set of APIs to provision Azure resources. These packages are transitive dependencies of the .NET Aspire Azure hosting libraries you use in your app host, so you don't need to install them separately.
 
 ## Requirements
 
@@ -54,11 +54,11 @@ var cosmos = builder.AddAzureCosmosDB("cosmos")
 
 The `RunAsEmulator` API configures an Azure Cosmos DB resource to be emulated using the Azure Cosmos DB emulator with the NoSQL API.
 
-### .NET Aspire Azure hosting libraries
+### .NET Aspire Azure hosting integrations
 
-If you're using Azure resources in your app host, you're using one or more of the [.NET Aspire Azure hosting libraries](../../fundamentals/app-host-overview.md#azure-hosting-libraries). These hosting libraries provide extension methods to the `IDistributedApplicationBuilder` interface to add Azure resources to your app host.
+If you're using Azure resources in your app host, you're using one or more of the .NET Aspire Azure hosting integrations. These hosting libraries provide extension methods to the `IDistributedApplicationBuilder` interface to add Azure resources to your app host.
 
-### Azure provisioning libraries
+### Azure provisioning integrations
 
 The following Azure provisioning libraries are available:
 
