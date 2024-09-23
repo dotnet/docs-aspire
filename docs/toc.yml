@@ -208,6 +208,9 @@ items:
           href: caching/stackexchange-redis-distributed-caching-integration.md?pivots=valkey
         - name: Redis output caching (Valkey)
           href: caching/stackexchange-redis-output-caching-integration.md?pivots=valkey
+      - name: Seq
+        displayName: seq,logging
+        href: logging/seq-integration.md
       - name: SQL Server
         items:
           - name: SQL Database - EF Core
@@ -216,9 +219,9 @@ items:
           - name: SQL Database
             displayName: sql server,sql database
             href: database/sql-server-integration.md
-      - name: Seq
-        displayName: seq,logging
-        href: logging/seq-integration.md
+      - name: SurrealDB
+        displayName: surrealdb,kv,document,graph,temporal
+        href: database/surrealdb-integration.md
 
   - name: Deployment
     items:
