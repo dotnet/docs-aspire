@@ -1,14 +1,14 @@
 ---
 title: Local Azure provisioning
 description: Learn how to use Azure resources in your local development environment.
-ms.date: 09/13/2024
+ms.date: 09/23/2024
 ---
 
 # Local Azure provisioning
 
 .NET Aspire simplifies local cloud-native app development with its compelling app host model. This model allows you to run your app locally with the same configuration and services as in Azure.
 
-In this article you learn how to provision Azure resources from your local development environment through the [.NET Aspire app host](../../fundamentals/app-host-overview.md). All of this is possible with the help of the [Azure.Provisioning.* libraries](#azure-provisioning-libraries), which provide a set of APIs to provision Azure resources. These packages are transitive dependencies of the .NET Aspire Azure hosting libraries you use in your app host, so you don't need to install them separately.
+In this article you learn how to provision Azure resources from your local development environment through the [.NET Aspire app host](../../fundamentals/app-host-overview.md). All of this is possible with the help of the `Azure.Provisioning.*` libraries, which provide a set of APIs to provision Azure resources. These packages are transitive dependencies of the .NET Aspire Azure hosting libraries you use in your app host, so you don't need to install them separately.
 
 ## Requirements
 
