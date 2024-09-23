@@ -72,9 +72,9 @@ The following section details the available .NET Aspire integrations, links to t
 
 For more information on working with .NET Aspire integrations in Visual Studio, see [Visual Studio tooling](setup-tooling.md#visual-studio-tooling).
 
-### Azure hosting integrations
+### Azure integrations
 
-Azure hosting integrations configure applications to use Azure resources. These integrations are available in the `Aspire.Hosting.Azure.*` NuGet packages:
+Azure integrations configure applications to use Azure resources. These hosting integrations are available in the `Aspire.Hosting.Azure.*` NuGet packages, while their client integrations are available in the `Aspire.*` NuGet packages.:
 
 <!-- markdownlint-disable MD033 MD045 -->
 | Integration | Docs and NuGet packages | Description |
