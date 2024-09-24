@@ -88,9 +88,13 @@ If either of these operations fail, the health check also fails. For more inform
 
 For more information, see [Build resilient HTTP apps](/dotnet/core/resilience/http-resilience).
 
-## Available integrations
+## Official integrations
 
-The following section details the available .NET Aspire integrations, links to their respective NuGet packages, and provides a brief description of each integration.
+.NET Aspire provides many integrations to help you build cloud-native applications. These integrations are designed to work seamlessly with the .NET Aspire app host and client libraries. The following sections detail cloud-agnostic, Azure-specific, and Amazon Web Services (AWS) integrations.
+
+### Cloud-agnostic integrations
+
+The following section details cloud-agnostic .NET Aspire integrations, links to their respective docs and NuGet packages, and provides a brief description of each integration.
 
 <!-- markdownlint-disable MD033 MD045 -->
 | Integration | Docs and NuGet packages | Description |
