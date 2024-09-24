@@ -94,7 +94,7 @@ For more information, see [Build resilient HTTP apps](/dotnet/core/resilience/ht
 
 ### Cloud-agnostic integrations
 
-The following section details cloud-agnostic .NET Aspire integrations, links to their respective docs and NuGet packages, and provides a brief description of each integration.
+The following section details cloud-agnostic .NET Aspire integrations with links to their respective docs and NuGet packages, and provides a brief description of each integration.
 
 <!-- markdownlint-disable MD033 MD045 -->
 | Integration | Docs and NuGet packages | Description |
