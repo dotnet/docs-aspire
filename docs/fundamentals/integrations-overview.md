@@ -45,7 +45,6 @@ The app host project is where hosting integrations are used. Configuration, spec
 
 When you add a client integration to a project within your .NET Aspire solution, [service defaults](service-defaults.md) are automatically applied to that project; meaning the Service Defaults project is referenced and the `AddServiceDefaults` extension method is called. These defaults are designed to work well in most scenarios and can be customized as needed. The following service defaults are applied:
 
-- **[Service discovery](../service-discovery/overview.md)**: Automatically locates services within a distributed application. Service discovery is a key integration of microservice architectures.
 - **Observability and telemetry**: Automatically sets up logging, tracing, and metrics configurations:
 
   - **[Logging](/dotnet/core/diagnostics/logging-tracing)**: A technique where code is instrumented to produce logs of interesting events that occurred while the program was running.
