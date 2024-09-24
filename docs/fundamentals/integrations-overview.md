@@ -14,7 +14,7 @@ ms.topic: conceptual
 
 ## Integration responsibilities
 
-There are two types of integrations in .NET Aspire, each with a different responsibility. One type represents resources within the app host project—these are known as [hosting integrations](#hosting-integrations). The other type of integration represents client libraries that connect to the aforementioned resources, and they're known as [client integrations](#client-integrations).
+Most .NET Aspire integrations are made up of 2 separate libraries, each with a different responsibility. One type represents resources within the app host project—these are known as [hosting integrations](#hosting-integrations). The other type of integration represents client libraries that connect to the aforementioned resources, and they're known as [client integrations](#client-integrations).
 
 ### Hosting integrations
 
@@ -26,7 +26,7 @@ For information on creating a custom hosting integration, see [Create custom .NE
 
 ### Client integrations
 
-Client integrations define configuration schema, wire up client libraries to dependency injection (DI), and add health checks, resiliency, and telemetry where applicable. These packages configure existing client libraries to connect to hosting integrations. They extend the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> interface allowing client-consuming projects, such as your web app or API, to use the connected resource. The official [client integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+client+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `client`.
+Client integrations wire up client libraries to dependency injection (DI), define configuration schema, and add health checks, resiliency, and telemetry where applicable. These packages configure existing client libraries to connect to hosting integrations. They extend the <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> interface allowing client-consuming projects, such as your web app or API, to use the connected resource. The official [client integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+client+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `client`.
 
 For more information on creating a custom client integration, see [Create custom .NET Aspire client integrations](../extensibility/custom-client-integration.md).
 
@@ -140,7 +140,7 @@ Together, these types of telemetry allow you to gain insights into your applicat
 - Verify that underlying dependencies are available, such as a database or cache, and return an appropriate status message.
 - Trigger alerts or notifications when an app isn't responding as expected.
 
-For example, the .NET Aspire PostgreSQL integration automatically adds a health check at the `/health` URL path to verify the following:
+For example, the [Service defaults](service-defaults.md) configures a health endpoint at the `/health` URL path. The .NET Aspire PostgreSQL client integration automatically adds a health check into that endpoint to verify the following:
 
 - A database connection could be established
 - A database query could be executed successfully
