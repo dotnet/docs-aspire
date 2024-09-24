@@ -41,7 +41,7 @@ Consider the following diagram that depicts the relationship between hosting and
 
 The app host project is where hosting integrations are used. Configuration, specifically environment variables, is injected into projects, executables, and containers, allowing client integrations to connect to the hosting integrations.
 
-## Client integration features
+## Integration features
 
 When you add a client integration to a project within your .NET Aspire solution, [service defaults](service-defaults.md) are automatically applied to that project; meaning the Service Defaults project is referenced and the `AddServiceDefaults` extension method is called. These defaults are designed to work well in most scenarios and can be customized as needed. The following service defaults are applied:
 
