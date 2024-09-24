@@ -1,8 +1,9 @@
 ---
 title: .NET Aspire service defaults
 description: Learn about the .NET Aspire service defaults project.
-ms.date: 05/23/2024
+ms.date: 09/24/2024
 ms.topic: reference
+uid: aspire/service-defaults
 ---
 
 # .NET Aspire service defaults

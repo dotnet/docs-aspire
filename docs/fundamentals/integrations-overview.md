@@ -41,52 +41,19 @@ Consider the following diagram that depicts the relationship between hosting and
 
 The app host project is where hosting integrations are used. Configuration, specifically environment variables, is injected into projects, executables, and containers, allowing client integrations to connect to the hosting integrations.
 
-## Cloud-native features
+## Client integration features
 
-Cloud-native applications surface many unique requirements and concerns. The core features of .NET Aspire orchestration and integrations are designed to handle many cloud-native concerns for you with minimal configurations. Some of the key features include:
+When you add a client integration to a project within your .NET Aspire solution, [service defaults](service-defaults.md) are automatically applied to that project; meaning the Service Defaults project is referenced and the `AddServiceDefaults` extension method is called. These defaults are designed to work well in most scenarios and can be customized as needed. The following service defaults are applied:
 
-- [Orchestration](app-host-overview.md): A lightweight, extensible, and cross-platform app host for .NET Aspire projects. The app host provides a consistent configuration and dependency injection experience for .NET Aspire integrations.
-- [Service discovery](../service-discovery/overview.md): A technique for locating services within a distributed application. Service discovery is a key integration of microservice architectures.
-- [Service defaults](service-defaults.md): A set of default configurations intended for sharing among resources within .NET Aspire projects. These defaults are designed to work well in most scenarios and can be customized as needed.
+- **[Service discovery](../service-discovery/overview.md)**: Automatically locates services within a distributed application. Service discovery is a key integration of microservice architectures.
+- **Observability and telemetry**: Automatically sets up logging, tracing, and metrics configurations:
 
-Some .NET Aspire integrations also include more capabilities for specific services or platforms, which can be found in the integration specific reference docs.
+  - **[Logging](/dotnet/core/diagnostics/logging-tracing)**: A technique where code is instrumented to produce logs of interesting events that occurred while the program was running.
+  - **[Tracing](/dotnet/core/diagnostics/distributed-tracing)**: A specialized form of logging that helps you localize failures and performance issues within applications distributed across multiple machines or processes.
+  - **[Metrics](/dotnet/core/diagnostics/metrics)**: Numerical measurements recorded over time to monitor application performance and health. Metrics are often used to generate alerts when potential problems are detected.
 
-### Observability and telemetry
-
-.NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as _the pillars of observability_.
-
-- **[Logging](/dotnet/core/diagnostics/logging-tracing)**: A technique where code is instrumented to produce logs of interesting events that occurred while the program was running. A baseline set of log events is enabled for .NET Aspire integrations by default and more extensive logging can be enabled on-demand to diagnose particular problems.
-
-- **[Tracing](/dotnet/core/diagnostics/distributed-tracing)**: A specialized form of logging that helps you localize failures and performance issues within applications distributed across multiple machines or processes. This technique tracks requests through an application to correlate work done by different application integrations and separate it from other work the application might be doing for concurrent requests.
-
-- **[Metrics](/dotnet/core/diagnostics/metrics)**: Numerical measurements recorded over time to monitor application performance and health. Metrics are often used to generate alerts when potential problems are detected. Metrics have low performance overhead and many services configure them as always-on telemetry.
-
-Together, these types of telemetry allow you to gain insights into your application's behavior and performance using various monitoring and analysis tools. Depending on the backing service, some integrations might only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled. For more information, see [.NET Aspire service defaults](service-defaults.md).
-
-### Health checks
-
-.NET Aspire integrations enable health checks for services by default. Health checks are HTTP endpoints exposed by an app to provide basic availability and state information. These endpoints can be configured to report information used for various scenarios:
-
-- Influence decisions made by container orchestrators, load balancers, API gateways, and other management services. For instance, if the health check for a containerized app fails, a load balancer routing traffic might skip the unhealthy instance.
-- Verify that underlying dependencies are available, such as a database or cache, and return an appropriate status message.
-- Trigger alerts or notifications when an app isn't responding as expected.
-
-For example, the .NET Aspire PostgreSQL integration automatically adds a health check at the `/health` URL path to verify the following conditions are met:
-
-- A database connection could be established.
-- A database query could be executed successfully.
-
-If either of these operations fail, the health check also fails. For more information, see [Health checks in .NET Aspire](health-checks.md).
-
-### Resiliency
-
-.NET Aspire integrations enable resiliency configurations automatically where appropriate. Resiliency is the ability of your system to react to failure and still remain functional. Resiliency extends beyond preventing failures to include recovering and reconstructing your cloud-native environment back to a healthy state. Examples of resiliency configurations include:
-
-- **Connection retries**: You can configure some .NET Aspire integrations to retry requests that initially fail. For example, failed database queries can be retried multiple times if the first request fails. This approach creates tolerance in environments where service dependencies experience brief unresponsiveness or unavailability when the system state changes.
-
-- **Timeouts**: You can configure how long an .NET Aspire integration waits for a request to finish before it times out. Timeout configurations can be useful for handling dependencies with variable response times.
-
-For more information, see [Build resilient HTTP apps](/dotnet/core/resilience/http-resilience).
+- **[Health checks](health-checks.md)**: Exposes HTTP endpoints to provide basic availability and state information about an app. Health checks are used to influence decisions made by container orchestrators, load balancers, API gateways, and other management services.
+- **[Resiliency](/dotnet/core/resilience/http-resilience)**: The ability of your system to react to failure and still remain functional. Resiliency extends beyond preventing failures to include recovering and reconstructing your cloud-native environment back to a healthy state.
 
 ## Official integrations
 
