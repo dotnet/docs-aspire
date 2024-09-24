@@ -1,20 +1,20 @@
 ---
-title: Create custom .NET Aspire integration
-description: Learn how to create a custom .NET Aspire integration for an existing containerized application.
-ms.date: 08/12/2024
+title: Create custom .NET Aspire client integrations
+description: Learn how to create a custom .NET Aspire client integration for an existing containerized application.
+ms.date: 09/12/2024
 ms.topic: how-to
 ---
 
-# Create custom .NET Aspire integration
+# Create custom .NET Aspire client integrations
 
-This article is a continuation of the [Create custom resource types for .NET Aspire](custom-resources.md) article. It guides you through creating a .NET Aspire integration that uses [MailKit](https://github.com/jstedfast/MailKit) to send emails. This integration is then integrated into the Newsletter app you previously built. The previous example, omitted the creation of a integration and instead relied on the existing .NET `SmtpClient`. It's best to use MailKit's `SmtpClient` over the official .NET `SmtpClient` for sending emails, as it's more modern and supports more features/protocols. For more information, see [.NET SmtpClient: Remarks](/dotnet/api/system.net.mail.smtpclient#remarks).
+This article is a continuation of the [Create custom .NET Aspire hosting integrations](custom-hosting-integration.md) article. It guides you through creating a .NET Aspire client integration that uses [MailKit](https://github.com/jstedfast/MailKit) to send emails. This integration is then added into the Newsletter app you previously built. The previous example omitted the creation of a client integration and instead relied on the existing .NET `SmtpClient`. It's best to use MailKit's `SmtpClient` over the official .NET `SmtpClient` for sending emails, as it's more modern and supports more features/protocols. For more information, see [.NET SmtpClient: Remarks](/dotnet/api/system.net.mail.smtpclient#remarks).
 
 ## Prerequisites
 
-If you're following along, you should have a Newsletter app from the steps in the [Create custom resource types for .NET Aspire](custom-resources.md) article.
+If you're following along, you should have a Newsletter app from the steps in the [Create custom .NET Aspire hosting integration](custom-hosting-integration.md) article.
 
 > [!TIP]
-> This article is inspired by existing .NET Aspire integrations, and based on the teams official guidance. There are places where said guidance varies, and it's important to understand the reasoning behind the differences. For more information, see [.NET Aspire integration requirements](https://github.com/dotnet/aspire/blob/f38b6cba86942ad1c45fc04fe7170f0fd4ba7c0b/src/Components/Aspire_Components_Progress.md#net-aspire-integration-requirements).
+> This article is inspired by existing .NET Aspire integrations, and based on the team's official guidance. There are places where said guidance varies, and it's important to understand the reasoning behind the differences. For more information, see [.NET Aspire integration requirements](https://github.com/dotnet/aspire/blob/f38b6cba86942ad1c45fc04fe7170f0fd4ba7c0b/src/Components/Aspire_Components_Progress.md#net-aspire-integration-requirements).
 
 ## Create library for integration
 
@@ -34,16 +34,7 @@ If you're following along, you should have a Newsletter app from the steps in th
 
 The next step is to add all the NuGet packages that the integration relies on. Rather than having you add each package one-by-one from the .NET CLI, it's likely easier to copy and paste the following XML into the _MailKit.Client.csproj_ file.
 
-```xml
-  <ItemGroup>
-    <PackageReference Include="MailKit" Version="4.7.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
-    <PackageReference Include="Microsoft.Extensions.Resilience" Version="8.7.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="8.0.7" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.9.0" />
-  </ItemGroup>
-```
+:::code language="xml" source="snippets/MailDevResourceAndComponent/MailKit.Client/MailKit.Client.csproj" range="9-16":::
 
 ## Define integration settings
 
@@ -95,7 +86,7 @@ The registration of health checks, and telemetry are described in a bit more det
 
 ### Add health checks
 
-[Health checks](../fundamentals/health-checks.md) are a way to monitor the health of a integration. With MailKit, you can check if the connection to the SMTP server is healthy. Add the following code to the `MailKit.Client` project in a file named _MailKitHealthCheck.cs_:
+[Health checks](../fundamentals/health-checks.md) are a way to monitor the health of an integration. With MailKit, you can check if the connection to the SMTP server is healthy. Add the following code to the `MailKit.Client` project in a file named _MailKitHealthCheck.cs_:
 
 :::code source="snippets/MailDevResourceAndComponent/MailKit.Client/MailKitHealthCheck.cs":::
 
@@ -210,4 +201,4 @@ Go forth and build your own .NET Aspire integrations. If you believe that there'
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Implement auth from custom resource to integration](implement-auth-from-resource-to-integration.md)
+> [Secure communication between hosting and client integrations](secure-communication-between-integrations.md)

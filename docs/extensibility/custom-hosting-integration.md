@@ -1,11 +1,11 @@
 ---
-title: Create custom resource types for .NET Aspire
-description: Learn how to create a custom resource for an existing containerized application.
-ms.date: 08/12/2024
+title: Create custom .NET Aspire hosting integrations
+description: Learn how to create a custom .NET Aspire hosting integration for an existing containerized application.
+ms.date: 09/12/2024
 ms.topic: how-to
 ---
 
-# Create custom resource types for .NET Aspire
+# Create custom .NET Aspire hosting integrations
 
 .NET Aspire improves the development experience by providing reusable building blocks that can be used to quickly arrange application dependencies and expose them to your own code. One of the key building blocks of an Aspire-based application is the _resource_. Consider the code below:
 
@@ -29,7 +29,7 @@ In the preceding code there are four resources represented:
 1. `inventorydb`: A database hosted on `pgserver`.
 1. `inventoryservice`: An ASP.NET Core application.
 
-Most .NET Aspire-related code that the average developer will write, centers around adding resources to the [app model](../fundamentals/app-host-overview.md) and creating references between them.
+Most .NET Aspire-related code that the average developer writes, centers around adding resources to the [app model](../fundamentals/app-host-overview.md) and creating references between them.
 
 ## Key elements of a .NET Aspire custom resource
 
@@ -42,13 +42,13 @@ When custom resource requires optional configuration, developers may wish to imp
 
 ## A practical example: MailDev
 
-To help understand how to develop custom resources, this article shows an example of how to build a custom resource for [MailDev](https://maildev.github.io/maildev/). MailDev is an open-source tool which provides a local mail server specifically designed to allow developers to test e-mail sending behaviors within their app. For more information, see [the MailDev GitHub repository](https://github.com/maildev/maildev).
+To help understand how to develop custom resources, this article shows an example of how to build a custom resource for [MailDev](https://maildev.github.io/maildev/). MailDev is an open-source tool which provides a local mail server designed to allow developers to test e-mail sending behaviors within their app. For more information, see [the MailDev GitHub repository](https://github.com/maildev/maildev).
 
 In this example you create a new .NET Aspire project as a test environment for the MailDev resource that you create. While you can create custom resources in existing .NET Aspire projects it's a good idea to consider whether the custom resource might be used across multiple .NET Aspire-based solutions and should be developed as a reusable integration.
 
-## Setup the starter project
+## Set up the starter project
 
-Create a new .NET Aspire project that will be used to test out the new resource that we are developing.
+Create a new .NET Aspire project that is used to test out the new resource that we're developing.
 
 ```dotnetcli
 dotnet new aspire -o MailDevResource
@@ -56,7 +56,7 @@ cd MailDevResource
 dir
 ```
 
-Once the project is created you should see a listing containing the following:
+Once the project is created, you should see a listing containing the following:
 
 - `MailDevResource.AppHost`: The [app host](../fundamentals/app-host-overview.md) used to test out the custom resource.
 - `MailDevResource.ServiceDefaults`: The [service defaults](../fundamentals/service-defaults.md) project for use in service-related projects.
@@ -91,11 +91,11 @@ Select the [dashboard link in the browser](../fundamentals/dashboard/explore.md#
 
 :::image type="content" source="media/maildevresource-empty-dashboard.png" lightbox="media/maildevresource-empty-dashboard.png" alt-text="A screenshot of the empty .NET Aspire dashboard for test project.":::
 
-Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to shutdown the app (you can close the browser tab).
+Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to shut down the app (you can close the browser tab).
 
 ## Create library for resource extension
 
-.NET Aspire resources are just classes and methods contained within a class library that references the .NET Aspire Hosting library (`Aspire.Hosting`). By placing the resource in a separate project you can more easily share it between .NET Aspire-based apps and potentially package and share it on NuGet.
+.NET Aspire resources are just classes and methods contained within a class library that references the .NET Aspire Hosting library (`Aspire.Hosting`). By placing the resource in a separate project, you can more easily share it between .NET Aspire-based apps and potentially package and share it on NuGet.
 
 1. Create the class library project named _MailDev.Hosting_.
 
@@ -124,13 +124,13 @@ Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to shutdown the app (you can close the browse
     dotnet sln ./MailDevResource.sln add ./MailDev.Hosting/MailDev.Hosting.csproj
     ```
 
-Once the following steps are performed you can launch the project:
+Once the following steps are performed, you can launch the project:
 
 ```dotnetcli
 dotnet run --project ./MailDevResource.AppHost/MailDevResource.AppHost.csproj
 ```
 
-This will result in a warning being displayed to the console:
+This results in a warning being displayed to the console:
 
 ```Output
 .\.nuget\packages\aspire.hosting.apphost\8.0.0\build\Aspire.Hosting.AppHost.targets(174,5): warning ASPIRE004: '..\MailDev.Hosting\MailDev.Hosting.csproj' is referenced by an A
@@ -138,7 +138,7 @@ spire Host project, but it is not an executable. Did you mean to set IsAspirePro
 source.AppHost.csproj]
 ```
 
-This is because .NET Aspire treats project references in the app host as if they are service projects. To tell .NET Aspire that the project reference should be treated as a non-service project modify the _:::no-loc text="MailDevResource.AppHost\MailDevResource.AppHost.csproj":::_ files reference to the `MailDev.Hosting` project to be the following:
+This is because .NET Aspire treats project references in the app host as if they're service projects. To tell .NET Aspire that the project reference should be treated as a nonservice project modify the _:::no-loc text="MailDevResource.AppHost\MailDevResource.AppHost.csproj":::_ files reference to the `MailDev.Hosting` project to be the following:
 
 ```xml
 <ItemGroup>
@@ -185,7 +185,7 @@ Add the following code to a new file named _MailDevResourceBuilderExtensions.cs_
 
 ## Validate custom integration inside the app host
 
-Now that the basic structure for the custom resource is complete it is time to test it in a real AppHost project. Open the _:::no-loc text="Program.cs":::_ file in the _:::no-loc text="MailDevResource.AppHost":::_ project and update it with the following code:
+Now that the basic structure for the custom resource is complete it's time to test it in a real AppHost project. Open the _:::no-loc text="Program.cs":::_ file in the _:::no-loc text="MailDevResource.AppHost":::_ project and update it with the following code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -201,7 +201,7 @@ After updating the _:::no-loc text="Program.cs":::_ file, launch the app host pr
 dotnet run --project ./MailDevResource.AppHost/MailDevResource.AppHost.csproj
 ```
 
-After a few moments the dashboard will show that the `maildev` resource is running and a hyperlink will be available that navigates to the MailDev web app, which shows the content of each e-mail that your app sends.
+After a few moments the dashboard shows that the `maildev` resource is running and a hyperlink will be available that navigates to the MailDev web app, which shows the content of each e-mail that your app sends.
 
 _The .NET Aspire dashboard should look similar to the following:_
 
@@ -222,9 +222,9 @@ Once .NET Aspire can successfully launch the MailDev integration, it's time to c
   - `Aspire.StackExchange.Redis.DistributedCaching`
   - `Aspire.StackExchange.Redis.OutputCaching`
 
-In the case of the MailDev resource, the .NET platform already has an SMTP client in the form of <xref:System.Net.Mail.SmtpClient>. In this example you use this existing API for the sake of simplicity, although other resource types may benefit from custom integration libraries to assist developers.
+In the case of the MailDev resource, the .NET platform already has a simple mail transfer protocol (SMTP) client in the form of <xref:System.Net.Mail.SmtpClient>. In this example you use this existing API for the sake of simplicity, although other resource types may benefit from custom integration libraries to assist developers.
 
-In order to test the end-to-end scenario, you need a .NET project which we can inject the connection information into for the MailDev resource. Add a web api project:
+In order to test the end-to-end scenario, you need a .NET project which we can inject the connection information into for the MailDev resource. Add a Web API project:
 
 1. Create a new .NET project named _:::no-loc text="MailDevResource.NewsletterService":::_.
 
@@ -238,7 +238,7 @@ In order to test the end-to-end scenario, you need a .NET project which we can i
     dotnet add ./MailDevResource.NewsletterService/MailDevResource.NewsletterService.csproj reference ./MailDev.Hosting/MailDev.Hosting.csproj
     ```
 
-1. Add a referece to the _:::no-loc text="MailDevResource.AppHost":::_ project.
+1. Add a reference to the _:::no-loc text="MailDevResource.AppHost":::_ project.
 
     ```dotnetcli
     dotnet add ./MailDevResource.AppHost/MailDevResource.AppHost.csproj reference ./MailDevResource.NewsletterService/MailDevResource.NewsletterService.csproj
@@ -262,14 +262,14 @@ The preceding screenshot shows the environment variables for the `newsletterserv
 
 ## Use connection string to send messages
 
-To use the SMTP connection details that were injected into the newsletter service project, you inject an instance of <xref:System.Net.Mail.SmtpClient> into the dependency injection container as a singleton. Add the following code to the _:::no-loc text="Program.cs":::_ file in the _:::no-loc text="MailDevResource.NewsletterService":::_ project to setup the singleton service. In the `Program` class, immediately following the `// Add services to the container` comment, add the following code:
+To use the SMTP connection details that were injected into the newsletter service project, you inject an instance of <xref:System.Net.Mail.SmtpClient> into the dependency injection container as a singleton. Add the following code to the _:::no-loc text="Program.cs":::_ file in the _:::no-loc text="MailDevResource.NewsletterService":::_ project to set up the singleton service. In the `Program` class, immediately following the `// Add services to the container` comment, add the following code:
 
 :::code source="snippets/MailDevResource/MailDevResource.NewsletterService/Program.cs" id="smtp":::
 
 > [!TIP]
-> This code snippet relies on the official `SmtpClient`, however; this type is obsolete on some platforms and not recommended on others. This is used here to demonstrate a non-componentized approach to using the MailDev resource. For a more modern approach using [MailKit](https://github.com/jstedfast/MailKit), see [Create custom .NET Aspire integration](custom-integration.md).
+> This code snippet relies on the official `SmtpClient`, however; this type is obsolete on some platforms and not recommended on others. For a more modern approach using [MailKit](https://github.com/jstedfast/MailKit), see [Create custom .NET Aspire client integrations](custom-client-integration.md).
 
-To test the client, add two simple `subscribe` and `unsubscribe` POST methods to the newsletter service. Add the following code replacing the "weatherforecast" `MapGet` call in the _:::no-loc text="Program.cs":::_ file of the _MailDevResource.NewsletterService_ project to setup the ASP.NET Core routes:
+To test the client, add two simple `subscribe` and `unsubscribe` POST methods to the newsletter service. Add the following code replacing the "weatherforecast" `MapGet` call in the _:::no-loc text="Program.cs":::_ file of the _MailDevResource.NewsletterService_ project to set up the ASP.NET Core routes:
 
 :::code source="snippets/MailDevResource/MailDevResource.NewsletterService/Program.cs" id="subs":::
 
@@ -327,7 +327,7 @@ curl -H @{ ContentType = "application/json" } -Method POST https://localhost:725
 > [!TIP]
 > Make sure that you replace the `https://localhost:7251` with the correct localhost port (the URL of the app host that you are running).
 
-If those API calls return a successful response (HTTP 200, Ok) then you should be able to click on the `maildev` resource the dashboard and the :::no-loc text="MailDev UI"::: will show the emails that have been sent to the SMTP endpoint.
+If those API calls return a successful response (HTTP 200, Ok) then you should be able to select on the `maildev` resource the dashboard and the :::no-loc text="MailDev UI"::: will show the emails that have been sent to the SMTP endpoint.
 
 :::image type="content" source="media/maildev-emails.png" lightbox="media/maildev-emails.png" alt-text="E-mails visible in the MailDev UI":::
 
@@ -339,7 +339,7 @@ In the following sections, various technical details are discussed which are imp
 
 In this example, the MailDev resource is a container resource which is exposed to the host machine over HTTP and SMTP. The MailDev resource is a development tool and isn't intended for production use. To instead use HTTPS, see [MailDev: Configure HTTPS](https://github.com/maildev/maildev/blob/357a20edcd205413d3590aedb8fcd7c97563c40d/docs/https.md).
 
-When developing custom resources that expose network endpoints, it's important to consider the security implications of the resource. For example, if the resource is a database, it's important to ensure that the database is secure and that the connection string is not exposed to the public internet.
+When developing custom resources that expose network endpoints, it's important to consider the security implications of the resource. For example, if the resource is a database, it's important to ensure that the database is secure and that the connection string isn't exposed to the public internet.
 
 ### The `ReferenceExpression` and `EndpointReference` type
 
@@ -378,11 +378,11 @@ Here's how the flow of execution works:
 1. As the process that references the connection string starts .NET Aspire starts evaluating the expression. It first gets the <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference> and calls <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference.Aspire%23Hosting%23ApplicationModel%23IValueProvider%23GetValueAsync%2A>.
 1. The `GetValueAsync` method gets the value of the <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString.ConnectionStringExpression> property to get the <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> instance.
 1. The <xref:Aspire.Hosting.ApplicationModel.ConnectionStringReference.Aspire%23Hosting%23ApplicationModel%23IValueProvider%23GetValueAsync%2A> method then calls <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression.GetValueAsync%2A> to process the previously captured interpolated string.
-1. Because the interpolated string contains references to other reference types such as <xref:Aspire.Hosting.ApplicationModel.EndpointReference> they are also evaluated and real value substituted (which at this time are now available).
+1. Because the interpolated string contains references to other reference types such as <xref:Aspire.Hosting.ApplicationModel.EndpointReference> they're also evaluated and real value substituted (which at this time is now available).
 
 ### Manifest publishing
 
-The <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider> interface is designed to solve the problem of sharing connection information between resources at deployment. The solution for this particular problem is described in the [.NET Aspire inner-loop networking overview](../fundamentals/networking-overview.md). Similarly to local development, many of the values are necessary to configure the app, yet they cannot be determined until the app is being deployed via a tool, such as `azd` (Azure Developer CLI).
+The <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider> interface is designed to solve the problem of sharing connection information between resources at deployment. The solution for this particular problem is described in the [.NET Aspire inner-loop networking overview](../fundamentals/networking-overview.md). Similarly to local development, many of the values are necessary to configure the app, yet they can't be determined until the app is being deployed via a tool, such as `azd` (Azure Developer CLI).
 
 To solve this problem [.NET Aspire produces a manifest file](../deployment/manifest-format.md) which `azd` and other deployment tools interpret. Rather than specifying concrete values for connection information between resources an expression syntax is used which deployment tools evaluate. Generally the manifest file isn't visible to developers but it's possible to generate one for manual inspection. The command below can be used on the app host to produce a manifest.
 
@@ -475,11 +475,11 @@ public static IResourceBuilder<MailDevResource> AddMailDev(
                       targetPort: 1025,
                       port: smtpPort,
                       name: MailDevResource.SmtpEndpointName)
-                  .ExcludeFromManifest(); // This line was added!
+                  .ExcludeFromManifest(); // This line was added
 }
 ```
 
-Careful consideration should be given as to whether the resource should be present in the manifest, or whether it should be suppressed. If the resource is being added to the manifest it should be configured in such a way that it's safe and secure to use.
+Careful consideration should be given as to whether the resource should be present in the manifest, or whether it should be suppressed. If the resource is being added to the manifest, it should be configured in such a way that it's safe and secure to use.
 
 ## Summary
 
@@ -488,4 +488,4 @@ In the custom resource tutorial, you learned how to create a custom .NET Aspire 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Create custom .NET Aspire integration](custom-integration.md)
+> [Create custom .NET Aspire client integrations](custom-client-integration.md)

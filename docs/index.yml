@@ -11,7 +11,7 @@ metadata:
   description: Learn about .NET Aspire, a cloud-ready stack for building distributed applications. Browse API reference, tutorials, and more.
   ms.topic: hub-page
   ms.service: dotnet-aspire
-  ms.date: 05/16/2024
+  ms.date: 09/12/2024
 
 highlightedContent:
   items:
@@ -74,7 +74,7 @@ conceptualContent:
           text: .NET Aspire local networking
           url: fundamentals/networking-overview.md
 
-    - title: Storage
+    - title: Storage integrations
       links:
         - itemType: tutorial
           text: Connect to storage with .NET Aspire
@@ -92,7 +92,7 @@ conceptualContent:
           text: Persist volume mount sample
           url: /samples/dotnet/aspire-samples/aspire-volume-mount/
 
-    - title: Database
+    - title: Database integrations
       links:
         - itemType: tutorial
           text: Connect to SQL Server with EF Core
@@ -125,7 +125,7 @@ conceptualContent:
           text: MongoDB Database
           url: database/mongodb-integration.md
 
-    - title: Messaging
+    - title: Messaging integrations
       links:
         - itemType: tutorial
           text: Implement Messaging with .NET Aspire
@@ -149,7 +149,7 @@ conceptualContent:
           text: NATs
           url: messaging/nats-integration.md
 
-    - title: Caching
+    - title: Caching integrations
       links:
         - itemType: tutorial
           text: Improve app caching with .NET Aspire
@@ -167,7 +167,7 @@ conceptualContent:
           text: Redis distributed caching
           url: caching/stackexchange-redis-distributed-caching-integration.md
 
-    - title: Frameworks
+    - title: Framework integrations
       links:
         - itemType: overview
           text: Use Orleans with .NET Aspire
