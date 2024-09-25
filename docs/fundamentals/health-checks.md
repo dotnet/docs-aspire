@@ -1,8 +1,9 @@
 ---
 title: .NET Aspire health checks
 description: Explore .NET Aspire health checks
-ms.date: 08/12/2024
+ms.date: 09/24/2024
 ms.topic: quickstart
+uid: aspire/health-checks
 ---
 
 # Health checks in .NET Aspire
