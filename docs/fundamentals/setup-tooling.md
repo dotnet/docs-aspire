@@ -1,8 +1,9 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 07/26/2024
+ms.date: 09/24/2024
 zone_pivot_groups: dev-environment
+uid: aspire/setup-tooling
 ---
 
 # .NET Aspire setup and tooling
