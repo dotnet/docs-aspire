@@ -106,7 +106,7 @@ The connection string is retrieved from the `ConnectionStrings` configuration se
 
 #### Account endpoint
 
-The recommended approach is to use an `Endpoint`, which works with the `AzureOpenAISettings.Credential` property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used.
+The recommended approach is to use an **Endpoint**, which works with the `AzureOpenAISettings.Credential` property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used.
 
 ```json
 {
