@@ -70,6 +70,9 @@ In Visual Studio Code, press <kbd>F5</kbd> to launch the app. You're prompted to
 
 :::image type="content" loc-scope="vs-code" source="media/vscode-run.png" lightbox="media/vscode-run.png" alt-text="A screenshot of the Visual Studio Code launch configuration for the AspireSample.AppHost project.":::
 
+> [!TIP]
+> If you're on MacOS and using Safari, when your browser opens if the page is blank, you might need to manually refresh the page.
+
 :::zone-end
 :::zone pivot="dotnet-cli"
 
@@ -174,7 +177,7 @@ If you've used either the [.NET Generic Host](/dotnet/core/extensions/generic-ho
 Finally, the app is built and run. The <xref:Aspire.Hosting.DistributedApplication.Run?displayProperty=nameWithType> method is provided by the .NET Aspire SDK, and is responsible for starting the app and all of its dependencies. For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
 
 > [!TIP]
-> The call to `AddRedis` creates a local Redis server for the app to use. If you'd rather simply point to an existing Redis server, 
+> The call to `AddRedis` creates a local Redis container for the app to use. If you'd rather simply point to an existing Redis instance, you can use the `AddConnectionString` method to reference an existing connection string. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
 
 ### .NET Aspire service defaults project
 
