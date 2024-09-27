@@ -34,6 +34,12 @@ dotnet add package Microsoft.Azure.SignalR
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
+If you're client app is Python, Java, or JavaScript, use the appropriate SignalR client SDK for that language:
+
+- [Python: azure.mgmt.signalr](xref:azure.mgmt.signalr)
+- [Java: com.microsoft.signalr](xref:com.microsoft.signalr)
+- [JavaScript: @microsoft/signalr](xref:@microsoft/signalr)
+
 ### Express the resource
 
 Whichever project you're using to host your <xref:Microsoft.AspNetCore.SignalR.Hub> is where you'll wire up your Azure SignalR Service resource. The following example demonstrates how to use the `AddNamedAzureSignalR` extension method which is chained on the `AddSignalR` method:
