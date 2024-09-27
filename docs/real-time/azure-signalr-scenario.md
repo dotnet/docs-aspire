@@ -36,7 +36,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 If your client app is Python, Java, or JavaScript, use the appropriate SignalR client SDK for that language:
 
-- [Python: azure.mgmt.signalr](xref:azure.mgmt.signalr)
+- <xref:@azure/arm-signalr.SignalR.listKeys?displayProperty=nameWithType>
 - [Java: com.microsoft.signalr](xref:com.microsoft.signalr)
 - [JavaScript: @microsoft/signalr](xref:@microsoft/signalr)
 
