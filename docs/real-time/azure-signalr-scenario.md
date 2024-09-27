@@ -34,7 +34,7 @@ dotnet add package Microsoft.Azure.SignalR
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-If you're client app is Python, Java, or JavaScript, use the appropriate SignalR client SDK for that language:
+If your client app is Python, Java, or JavaScript, use the appropriate SignalR client SDK for that language:
 
 - [Python: azure.mgmt.signalr](xref:azure.mgmt.signalr)
 - [Java: com.microsoft.signalr](xref:com.microsoft.signalr)
