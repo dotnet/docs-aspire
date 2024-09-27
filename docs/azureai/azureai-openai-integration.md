@@ -2,7 +2,7 @@
 title: .NET Aspire Azure AI OpenAI integration
 description: Learn how to use the .NET Aspire Azure AI OpenAI integration.
 ms.topic: how-to
-ms.date: 08/12/2024
+ms.date: 09/27/2024
 ---
 
 # .NET Aspire Azure AI OpenAI integration
@@ -115,6 +115,8 @@ The recommended approach is to use an `Endpoint`, which works with the `AzureOpe
   }
 }
 ```
+
+For more information, see [Use Azure OpenAI without keys](/azure/developer/ai/keyless-connections).
 
 #### Connection string
 
