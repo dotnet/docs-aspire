@@ -2,7 +2,7 @@
 title: External parameters
 description: Learn how to express parameters such as secrets, connection strings, and other configuration values that might vary between environments.
 ms.topic: how-to
-ms.date: 08/20/2024
+ms.date: 09/27/2024
 ---
 
 # External parameters
@@ -11,7 +11,7 @@ Environments provide context for the application to run in. Parameters express t
 
 ## Parameter values
 
-Parameter values are read from the `Parameters` section of the app host's configuration and are used to provide values to the app while running locally. When deploying the app, the value will be asked for the parameter value.
+Parameter values are read from the `Parameters` section of the app host's configuration and are used to provide values to the app while running locally. When you publish the app, if the value isn't available you're prompted to provide it.
 
 Consider the following app host _:::no-loc text="Program.cs":::_ example file:
 
@@ -55,7 +55,7 @@ Parameters are represented in the manifest as a new primitive called `parameter.
 
 ## Secret values
 
-Parameters can be used to model secrets. When a parameter is marked as a secret, this is a hint to the manifest that the value should be treated as a secret. When deploying, the value will be prompted for and stored in a secure location. When running locally, the value will be read from the `Parameters` section of the app host configuration.
+Parameters can be used to model secrets. When a parameter is marked as a secret, it serves as a hint to the manifest that the value should be treated as a secret. When you publish the app, the value is prompted for and stored in a secure location. When you run the app locally, the value is read from the `Parameters` section of the app host configuration.
 
 Consider the following app host _:::no-loc text="Program.cs":::_ example file:
 
@@ -102,7 +102,7 @@ The manifest representation is as follows:
 
 ## Connection string values
 
-Parameters can be used to model connection strings. When deploying, the value will be prompted for and stored in a secure location. When running locally, the value will be read from the `ConnectionStrings` section of the app host configuration.
+Parameters can be used to model connection strings. When you publish the app, the value is prompted for and stored in a secure location. When you run the app locally, the value is read from the `ConnectionStrings` section of the app host configuration.
 
 > [!NOTE]
 > Connection strings are used to represent a wide range of connection information including database connections, message brokers, and other services. In .NET Aspire nomenclature, the term "connection string" is used to represent any kind of connection information.
@@ -114,7 +114,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var redis = builder.AddConnectionString("redis");
 
-builder.AddProject<Projects.WebApplication1>("api")
+builder.AddProject<Projects.WebApplication>("api")
        .WithReference(redis);
 
 builder.Build().Run();
@@ -151,7 +151,7 @@ The value for the `insertionRows` parameter is read from the `Parameters` sectio
 
 :::code language="json" source="snippets/params/Parameters.AppHost/appsettings.json":::
 
-The `Parameters_ApiService` project consumes the `insertionRows` parameter, consider the _:::no-loc text="Program.cs":::_ example file:
+The `Parameters_ApiService` project consumes the `insertionRows` parameter. Consider the _:::no-loc text="Program.cs":::_ example file:
 
 :::code source="snippets/params/Parameters.ApiService/Program.cs":::
 

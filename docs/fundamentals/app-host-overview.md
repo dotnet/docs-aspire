@@ -243,6 +243,28 @@ private static IResourceBuilder<RabbitMQServerResource> RunWithStableNodeName(
 }
 ```
 
+The execution context is often used to conditionally add resources or connection strings that point to existing resources. Consider the following example that demonstrates conditionally adding Redis or a connection string based on the execution context:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var redis = builder.ExecutionContext.IsRunMode
+    ? builder.AddRedis("redis")
+    : builder.AddConnectionString("redis");
+
+builder.AddProject<Projects.WebApplication>("api")
+       .WithReference(redis);
+
+builder.Build().Run();
+```
+
+In the preceding code:
+
+- If the app host is running in "run" mode, a Redis container resource is added.
+- If the app host is running in "publish" mode, a connection string is added.
+
+This logic can easily be inverted to connect to an existing Redis resource when you're running locally, and create a new Redis resource when you're publishing.
+
 ## See also
 
 - [.NET Aspire integrations overview](integrations-overview.md)

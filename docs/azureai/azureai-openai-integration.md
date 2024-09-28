@@ -1,22 +1,22 @@
 ---
-title: .NET Aspire Azure AI OpenAI integration
-description: Learn how to use the .NET Aspire Azure AI OpenAI integration.
+title: .NET Aspire Azure OpenAI integration
+description: Learn how to use the .NET Aspire Azure OpenAI integration.
 ms.topic: how-to
-ms.date: 08/12/2024
+ms.date: 09/27/2024
 ---
 
-# .NET Aspire Azure AI OpenAI integration
+# .NET Aspire Azure OpenAI integration
 
-In this article, you learn how to use the .NET Aspire Azure AI OpenAI client. The `Aspire.Azure.AI.OpenAI` library is used to register an `OpenAIClient` in the dependency injection (DI) container for consuming Azure AI OpenAI or OpenAI functionality. It enables corresponding logging and telemetry.
+In this article, you learn how to use the .NET Aspire Azure OpenAI client. The `Aspire.Azure.AI.OpenAI` library is used to register an `OpenAIClient` in the dependency injection (DI) container for consuming Azure OpenAI or OpenAI functionality. It enables corresponding logging and telemetry.
 
 For more information on using the `OpenAIClient`, see [Quickstart: Get started generating text using Azure OpenAI Service](/azure/ai-services/openai/quickstart?tabs=command-line%2Cpython&pivots=programming-language-csharp).
 
 ## Get started
 
 - Azure subscription: [create one for free](https://azure.microsoft.com/free/).
-- Azure AI OpenAI or OpenAI account: [create an Azure OpenAI Service resource](/azure/ai-services/openai/how-to/create-resource).
+- Azure OpenAI or OpenAI account: [create an Azure OpenAI Service resource](/azure/ai-services/openai/how-to/create-resource).
 
-To get started with the .NET Aspire Azure AI OpenAI integration, install the [Aspire.Azure.AI.OpenAI](https://www.nuget.org/packages/Aspire.Azure.AI.OpenAI) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure AI OpenAI client.
+To get started with the .NET Aspire Azure OpenAI integration, install the [Aspire.Azure.AI.OpenAI](https://www.nuget.org/packages/Aspire.Azure.AI.OpenAI) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure OpenAI client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -54,7 +54,7 @@ public class ExampleService(OpenAIClient client)
 
 ## App host usage
 
-To add Azure AI hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices) NuGet package in the [app host](xref:aspire/app-host) project.
+To add Azure hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices) NuGet package in the [app host](xref:aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -71,7 +71,7 @@ dotnet add package Aspire.Hosting.Azure.CognitiveServices
 
 ---
 
-In your app host project, register an Azure AI OpenAI resource using the following methods, such as <xref:Aspire.Hosting.AzureOpenAIExtensions.AddAzureOpenAI%2A>:
+In your app host project, register an Azure OpenAI resource using the following methods, such as <xref:Aspire.Hosting.AzureOpenAIExtensions.AddAzureOpenAI%2A>:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -92,7 +92,7 @@ builder.AddAzureAIOpenAI("openAiConnectionName");
 
 ## Configuration
 
-The .NET Aspire Azure AI OpenAI integration provides multiple options to configure the connection based on the requirements and conventions of your project.
+The .NET Aspire Azure OpenAI integration provides multiple options to configure the connection based on the requirements and conventions of your project.
 
 ### Use a connection string
 
@@ -106,7 +106,7 @@ The connection string is retrieved from the `ConnectionStrings` configuration se
 
 #### Account endpoint
 
-The recommended approach is to use an `Endpoint`, which works with the `AzureOpenAISettings.Credential` property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used.
+The recommended approach is to use an **Endpoint**, which works with the `AzureOpenAISettings.Credential` property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used.
 
 ```json
 {
@@ -115,6 +115,8 @@ The recommended approach is to use an `Endpoint`, which works with the `AzureOpe
   }
 }
 ```
+
+For more information, see [Use Azure OpenAI without keys](/azure/developer/ai/keyless-connections).
 
 #### Connection string
 
@@ -132,7 +134,7 @@ In order to connect to the non-Azure OpenAI service, drop the `Endpoint` propert
 
 ### Use configuration providers
 
-The .NET Aspire Azure AI OpenAI integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `AzureOpenAISettings` from configuration by using the `Aspire:Azure:AI:OpenAI` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
+The .NET Aspire Azure OpenAI integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `AzureOpenAISettings` from configuration by using the `Aspire:Azure:AI:OpenAI` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {
@@ -171,7 +173,7 @@ builder.AddAzureAIOpenAI(
 
 ### Logging
 
-The .NET Aspire Azure AI OpenAI integration uses the following log categories:
+The .NET Aspire Azure OpenAI integration uses the following log categories:
 
 - `Azure`
 - `Azure.Core`
@@ -179,6 +181,6 @@ The .NET Aspire Azure AI OpenAI integration uses the following log categories:
 
 ## See also
 
-- [Azure AI OpenAI docs](/azure/ai-services/openai/overview)
+- [Azure OpenAI docs](/azure/ai-services/openai/overview)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

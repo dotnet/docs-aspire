@@ -104,7 +104,7 @@ items:
         href: messaging/kafka-integration.md
       - name: Azure
         items:
-        - name: Azure AI OpenAI
+        - name: Azure OpenAI
           displayName: azure ai,openai
           href: azureai/azureai-openai-integration.md
         - name: Azure Search Documents
