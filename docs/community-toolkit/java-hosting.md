@@ -93,4 +93,4 @@ var executableapp = builder.AddSpringApp("executableapp",
 ## See also
 
 - [Java developer resources](https://learn.microsoft.com/java/spring/hosting)
-- [.NET Aspire Community Toolkit](https://github.com/CommunityToolkit/Aspire)
+- [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
