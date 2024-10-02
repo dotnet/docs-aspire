@@ -6,3 +6,7 @@
 # The '*' pattern is global owners.
 
 *    @IEvangelist
+
+# Community Toolkit docs
+
+/docs/community-toolkit/*    @aaronpowell
