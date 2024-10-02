@@ -33,13 +33,13 @@
             "ParentNodeId": 286039
         },
         {
-            "Semester": "Selenium",
-            "ParentNodeId": 286017
-        },
-        {
             "Label": "okr-freshness",
             "Semester": "Selenium",
             "ParentNodeId": 237266
+        },
+        {
+            "Semester": "Selenium",
+            "ParentNodeId": 308203
         },
         {
             "Label": "okr-curation",
@@ -86,7 +86,7 @@
             "ParentNodeId": 227485
         }
     ],
-    "DefaultParentNode": 286017,
+    "DefaultParentNode": 308203,
     "WorkItemTags": [
         {
             "Label": "okr-curation",
