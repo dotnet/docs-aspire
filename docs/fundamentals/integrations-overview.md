@@ -56,7 +56,7 @@ When you add a client integration to a project within your .NET Aspire solution,
 
 ## Official integrations
 
-.NET Aspire provides many integrations to help you build cloud-native applications. These integrations are designed to work seamlessly with the .NET Aspire app host and client libraries. The following sections detail cloud-agnostic, Azure-specific, and Amazon Web Services (AWS) integrations.
+.NET Aspire provides many integrations to help you build cloud-native applications. These integrations are designed to work seamlessly with the .NET Aspire app host and client libraries. The following sections detail cloud-agnostic, Azure-specific, Amazon Web Services (AWS), and Community Toolkit integrations.
 
 ### Cloud-agnostic integrations
 
@@ -124,3 +124,19 @@ Azure integrations configure applications to use Azure resources. These hosting 
 <!-- markdownlint-enable MD033 MD045 -->
 
 For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.com/dotnet/aspire/tree/main/src/Aspire.Hosting.AWS).
+
+### Community Toolkit integrations
+
+> [!NOTE]
+> The Community Toolkit integrations are community-driven and maintained by the .NET Aspire community. These integrations are not officially supported by the .NET Aspire team.
+
+<!-- markdownlint-disable MD033 MD045 -->
+| Integration docs and NuGet packages | Description |
+|--|--|
+| - **Learn More**: [📄 Azure Static Web Apps emulator][../community-toolkit/swa-emulator] <br /> - **Hosting**: [📦 Aspire.CommunityToolkit.Hosting.Azure.StaticWebApps](https://www.nuget.org/packages/Aspire.CommunityToolkit.Hosting.Azure.StaticWebApps) <br /> - **Client**: N/A | A hosting integration for the [Azure Static Web Apps emulator](https://learn.microsoft.com/azure/static-web-apps/static-web-apps-cli-overview) (Note: this does not support deployment of a project to Azure Static Web Apps). |
+| **Learn More**: [📄 Java/Spring hosting][../community-toolkit/java-hosting] <br /> - **Hosting**: [📦 Aspire.CommunityToolkit.Hosting.Java](https://www.nuget.org/packages/Aspire.CommunityToolkit.Hosting.Java) <br /> - **Client**: N/A | A integration for running Java code in .NET Aspire either using the local JDK or using a container. |
+| - **Learn More**: [📄 Node.js hosting extensions][../community-toolkit/nodejs-hosting-extensions] <br /> - **Hosting**: [📦 Aspire.CommunityToolkit.Hosting.NodeJs.Extensions](https://www.nuget.org/packages/Aspire.CommunityToolkit.Hosting.NodeJs.Extensions) <br /> - **Client**: N/A  | An integration that contains some additional extensions for running Node.js applications |
+| - **Learn More**: [📄 Ollama][../community-toolkit/ollama-hosting] <br /> - **Hosting**: [📦 Aspire.CommunityToolkit.Hosting.Ollama](https://www.nuget.org/packages/Aspire.CommunityToolkit.Hosting.Ollama) <br /> - **Client**: N/A | An Aspire component leveraging the [Ollama](https://ollama.com) container with support for downloading a model on startup. |
+<!-- markdownlint-enable MD033 MD045 -->
+
+For more information, see [GitHub: Aspire.CommunityToolkit library](https://github.com/CommunityToolkit/Aspire).
