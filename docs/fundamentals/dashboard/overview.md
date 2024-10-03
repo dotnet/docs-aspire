@@ -48,7 +48,7 @@ For more information, see the [Standalone .NET Aspire dashboard](standalone.md).
 
 ## Configuration
 
-The dashboard is configured when it starts up. Configuration includes frontend and OTLP addresses, the resource service endpoint, authentication, telemetry limits and more. The dashboard can also be [configured to allow browser telemetry](configuration.md#otlp-cors), which enables scenarios where telemetry data is sent directly to the dashboard from a browser.
+The dashboard is configured when it starts up. Configuration includes frontend and OTLP addresses, the resource service endpoint, authentication, telemetry limits and more. The dashboard can also [configure CORS](configuration.md#otlp-cors) and even [enable browser telemetry](configuration.md#enable-browser-telemetry), which enables scenarios where telemetry data is sent directly to the dashboard from a browser.
 
 For more information, see [.NET Aspire dashboard configuration](configuration.md).
 
