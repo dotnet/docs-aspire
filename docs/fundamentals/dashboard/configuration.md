@@ -157,6 +157,8 @@ The header is added to all telemetry data sent to the dashboard. This header nee
 
 Resource attributes identify the resource sending telemetry data. The app host manages the `OTEL_RESOURCE_ATTRIBUTES` environment variable, which is a comma-delimited string formatted as `key=value`. For example, `"service.instance.id=71d4a6j4g4"` specifies that a service instance with the given ID can report telemetry to the dashboard.
 
+For more information, see [Resources](#resources).
+
 ### Browser metadata
 
 The browser app must set the appropriate `meta` element in the HTML to specify the `name="traceparent"` that corresponds to the current trace. The `traceparent` is used to correlate telemetry data to the current trace. In a .NET app for example, this would likely be assigned from the <xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType> and passing its <xref:System.Diagnostics.Activity.Id?displayProperty=nameWithType> value as the `content`. For example, consider the following Razor code:
@@ -183,7 +185,8 @@ The preceding JavaScript code defines an `initializeTelemetry` function that exp
 
 :::code language="razor" source="snippets/BrowserTelemetry/BrowserTelemetry.Web/Pages/Shared/_Layout.cshtml" highlight="31-38":::
 
-The bundling and minification of the JavaScript code is beyond the scope of this article. For the complete working example of how to configure the JavaScript OTEL SDK to send telemetry to the dashboard, see the [browser telemetry sample](https://github.com/dotnet/aspire/tree/main/playground/BrowserTelemetry).
+> [!TIP]
+> The bundling and minification of the JavaScript code is beyond the scope of this article. For the complete working example of how to configure the JavaScript OTEL SDK to send telemetry to the dashboard, see the [browser telemetry sample](https://github.com/dotnet/aspire/tree/main/playground/BrowserTelemetry).
 
 ## Resources
 
