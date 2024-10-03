@@ -60,8 +60,6 @@ The dashboard also provides essential details about each resource:
 - **Environment**: The environment variables that were loaded during startup.
 - **Logs**: A link to the resource logs page.
 
-
-
  Consider the following screenshot of the resources page:
 
 :::image type="content" source="media/explore/projects.png" lightbox="media/explore/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page.":::
