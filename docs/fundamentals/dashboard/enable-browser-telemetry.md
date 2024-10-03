@@ -73,4 +73,12 @@ The preceding JavaScript code defines an `initializeTelemetry` function that exp
 :::code language="razor" source="snippets/BrowserTelemetry/BrowserTelemetry.Web/Pages/Shared/_Layout.cshtml" highlight="31-38":::
 
 > [!TIP]
-> The bundling and minification of the JavaScript code is beyond the scope of this article. For the complete working example of how to configure the JavaScript OTEL SDK to send telemetry to the dashboard, see the [browser telemetry sample](https://github.com/dotnet/aspire/tree/main/playground/BrowserTelemetry).
+> The bundling and minification of the JavaScript code is beyond the scope of this article.
+
+For the complete working example of how to configure the JavaScript OTEL SDK to send telemetry to the dashboard, see the [browser telemetry sample](https://github.com/dotnet/aspire/tree/main/playground/BrowserTelemetry).
+
+## See also
+
+- [.NET Aspire dashboard configuration](configuration.md)
+- [Standalone .NET Aspire dashboard](standalone.md)
+- [Browser telemetry sample](https://github.com/dotnet/aspire/tree/main/playground/BrowserTelemetry)
