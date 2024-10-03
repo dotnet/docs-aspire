@@ -147,6 +147,11 @@ While the dashboard supports both gRPC and HTTP endpoints simultaneously, resour
 
 The <xref:Aspire.Hosting.OtlpConfigurationExtensions.WithOtlpExporter``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0})> method is used to configure the OTLP exporter in the app host when adding various resources to the app model. This is called when adding project resources, Azure Functions resources, Node.js resources, and Python resources.
 
+When the app host is in run mode, the OTLP exporter is configured:
+
+- `OTEL_EXPORTER_OTLP_ENDPOINT` is assigned from the URL that was determined by the app host.
+- `OTEL_EXPORTER_OTLP_PROTOCOL` is assigned as `grpc` or `http/protobuf` based on the URL.
+
 #### App host launch settings
 
 These environment variables can be specified in the _launchSettings.json_ file. Consider the following example JSON file:
