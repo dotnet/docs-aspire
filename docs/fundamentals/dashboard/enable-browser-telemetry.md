@@ -44,7 +44,7 @@ The header is added to all telemetry data sent to the dashboard. This header nee
 
 Resource attributes identify the resource sending telemetry data. The app host manages the `OTEL_RESOURCE_ATTRIBUTES` environment variable, which is a comma-delimited string formatted as `key=value`. For example, `"service.instance.id=71d4a6j4g4"` specifies that a service instance with the given ID can report telemetry to the dashboard.
 
-For more information, see [Resources](#resources).
+For more information, see [.NET Aspire dashboard configuration: Resources](configuration.md#resources).
 
 ## Browser metadata
 
