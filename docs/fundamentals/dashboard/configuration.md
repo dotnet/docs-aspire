@@ -138,7 +138,7 @@ In addition to [enabling CORS](#otlp-cors), you also need to configure the OTLP 
 
 ### OTLP configuration
 
-To configure the gPRC or HTTP endpoints, specify the following environment variables:
+To enable browser telemetry, you need to configure the OTLP endpoint. The dashboard supports both gRPC and HTTP endpoints. To configure the gPRC or HTTP endpoints, specify the following environment variables:
 
 - `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL`: The gRPC endpoint to which the dashboard connects for its data.
 - `DOTNET_DASHBOARD_OTLP_HTTP_ENDPOINT_URL`: The HTTP endpoint to which the dashboard connects for its data.
@@ -146,6 +146,14 @@ To configure the gPRC or HTTP endpoints, specify the following environment varia
 While the dashboard supports both gRPC and HTTP endpoints simultaneously, resources are limited to one endpoint when set from environment variables. When both endpoints are set, the gRPC endpoint is used by default. If no endpoint is set, gRPC is used with the default value of `http://localhost:18889`.
 
 The <xref:Aspire.Hosting.OtlpConfigurationExtensions.WithOtlpExporter``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0})> method is used to configure the OTLP exporter in the app host when adding various resources to the app model. This is called when adding project resources, Azure Functions resources, Node.js resources, and Python resources.
+
+#### App host launch settings
+
+These environment variables can be specified in the _launchSettings.json_ file. Consider the following example JSON file:
+
+:::code language="json" source="snippets/BrowserTelemetry/BrowserTelemetry.AppHost/Properties/launchSettings.json" highlight="12,25,40":::
+
+The preceding launch settings JSON file configures all profiles to include the `DOTNET_DASHBOARD_OTLP_HTTP_ENDPOINT_URL` environment variable.
 
 ### OTLP API key header
 
