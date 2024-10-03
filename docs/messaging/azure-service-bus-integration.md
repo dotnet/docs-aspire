@@ -113,14 +113,14 @@ The Service Bus integration supports <xref:Microsoft.Extensions.Configuration?di
 }
 ```
 
-If you have set up your configurations in the `Aspire:Azure:Messaging:ServiceBus` section of your _:::no-loc text="appsettings.json":::_ file you can just call the method `AddAzureServiceBus` without passing any parameters.
+If you have set up your configurations in the `Aspire:Azure:Messaging:ServiceBus` section of your _:::no-loc text="appsettings.json":::_ file you can just call the method `AddAzureServiceBusClient` without passing any parameters.
 
 ### Use inline delegates
 
 You can also pass the `Action<AzureMessagingServiceBusSettings>` delegate to set up some or all the options inline, for example to set the `FullyQualifiedNamespace`:
 
 ```csharp
-builder.AddAzureServiceBus(
+builder.AddAzureServiceBusClient(
     "messaging",
     static settings => settings.FullyQualifiedNamespace = "YOUR_SERVICE_BUS_NAMESPACE");
 ```
@@ -128,7 +128,7 @@ builder.AddAzureServiceBus(
 You can also set up the [ServiceBusClientOptions](/dotnet/api/azure.messaging.servicebus.servicebusclientoptions) using `Action<IAzureClientBuilder<ServiceBusClient, ServiceBusClientOptions>>` delegate, the second parameter of the `AddAzureServiceBus` method. For example to set the `ServiceBusClient` ID to identify the client:
 
 ```csharp
-builder.AddAzureServiceBus(
+builder.AddAzureServiceBusClient(
     "messaging",
     static clientBuilder =>
         clientBuilder.ConfigureOptions(
