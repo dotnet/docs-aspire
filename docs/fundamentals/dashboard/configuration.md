@@ -181,9 +181,9 @@ The following JavaScript code demonstrates the initialization of the OpenTelemet
 
 The preceding JavaScript code defines an `initializeTelemetry` function that expects the OTLP endpoint URL, the headers, and the resource attributes. These parameters are provided by the consuming browser app that pulls them from the environment variables set by the app host. Consider the following Razor code:
 
-:::code language="razor" source="snippets/BrowserTelemetry/BrowserTelemetry.Web/Pages/Shared/_Layout.cshtml" range="31-38":::
+:::code language="razor" source="snippets/BrowserTelemetry/BrowserTelemetry.Web/Pages/Shared/_Layout.cshtml" highlight="31-38":::
 
-For a complete working example of how to configure the JavaScript OTEL SDK to send telemetry to the dashboard, see the [browser telemetry sample](https://github.com/dotnet/aspire/tree/main/playground/BrowserTelemetry).
+The bundling and minification of the JavaScript code is beyond the scope of this article. For the complete working example of how to configure the JavaScript OTEL SDK to send telemetry to the dashboard, see the [browser telemetry sample](https://github.com/dotnet/aspire/tree/main/playground/BrowserTelemetry).
 
 ## Resources
 
