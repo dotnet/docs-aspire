@@ -16,8 +16,6 @@ Overview of the thing we're integrating with, why you'd want to use it, and what
 Image: diagram showing the thing we're integrating with and the components of the integration.
 -->
 
-
-
 ## Hosting integration
 
 The RabbitMQ hosting integration models a RabbitMQ server as the <xref:Aspire.Hosting.ApplicationModel.RabbitMQServerResource> type. To access this type and APIs that allow you to add it to your app host, install the [📦 Aspire.Hosting.RabbitMQ](https://www.nuget.org/packages/Aspire.Hosting.RabbitMQ) NuGet package in the [app host](xref:aspire/app-host) project.
