@@ -35,6 +35,8 @@ dotnet add package Aspire.Hosting.RabbitMQ
 
 ---
 
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+
 ### Add RabbitMQ server resource
 
 In your app host project, call <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ*> on the `builder` instance to add a RabbitMQ server resource:
@@ -55,7 +57,7 @@ When .NET Aspire adds a container image to the app host, as shown in the precedi
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"messaging"`.
 
 > [!TIP]
-> If you'd rather connect to an existing RabbitMQ server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString(Aspire.Hosting.IDistributedApplicationBuilder,System.String,System.String)> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
+> If you'd rather connect to an existing RabbitMQ server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
 
 ### Add RabbitMQ server resource with parameters
 
