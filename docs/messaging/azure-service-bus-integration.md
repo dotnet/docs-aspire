@@ -135,33 +135,6 @@ builder.AddAzureServiceBusClient(
             static options => options.Identifier = "CLIENT_ID"));
 ```
 
-### Named instances
-
-If you want to add more than one [ServiceBusClient](/dotnet/api/azure.messaging.servicebus.servicebusclient) you can use named instances. Load the named configuration section from the JSON config by calling the `AddAzureServiceBus` method and passing in the `INSTANCE_NAME`.
-
-```csharp
-builder.AddAzureServiceBus("INSTANCE_NAME");
-```
-
-The corresponding configuration JSON is defined as follows:
-
-```json
-{
-  "Aspire": {
-    "Azure": {
-      "Messaging": {
-        "INSTANCE_NAME": {
-          "FullyQualifiedNamespace": "YOUR_SERVICE_BUS_NAMESPACE",
-          "ClientOptions": {
-            "Identifier": "CLIENT_ID"
-          }
-        }
-      }
-    }
-  }
-}
-```
-
 ### Configuration options
 
 The following configurable options are exposed through the <xref:Aspire.Azure.Messaging.ServiceBus.AzureMessagingServiceBusSettings> class:

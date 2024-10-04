@@ -137,36 +137,6 @@ builder.AddAzureTableClient(
             static options => options.EnableTenantDiscovery = true));
 ```
 
-### Named instances
-
-If you want to add more than one <xref:Azure.Data.Tables.TableServiceClient> you can use named instances. Load the named configuration section from the json config by calling the `AddAzureTableClient` method and passing in the `INSTANCE_NAME`.
-
-```csharp
-builder.AddAzureTableClient("INSTANCE_NAME");
-```
-
-The corresponding configuration JSON is defined as follows:
-
-```json
-{
-  "Aspire":{
-    "Azure": {
-      "Data": {
-        "Tables": {
-          "INSTANCE_NAME": {
-            "ServiceUri": "YOUR_URI",
-            "DisableHealthChecks": true,
-            "ClientOptions": {
-              "EnableTenantDiscovery": true
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
 ### Configuration options
 
 The following configurable options are exposed through the <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings> class:
