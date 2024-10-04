@@ -146,9 +146,7 @@ TODO: Were are still missing the following bits:
 We need to also call out any related extension methods per/type of integration.
 -->
 
-In this article, you learn how to use the .NET Aspire RabbitMQ client message-broker. The `Aspire.RabbitMQ.Client` library is used to register an [IConnection](https://rabbitmq.github.io/rabbitmq-dotnet-client/api/RabbitMQ.Client.IConnection.html) in the dependency injection (DI) container for connecting to a RabbitMQ server. It enables corresponding health check, logging and telemetry.
-
-To get started with the .NET Aspire RabbitMQ integration, install the [Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) NuGet package in the client-consuming project, i.e., the project for the application that uses the RabbitMQ client.
+To get started with the .NET Aspire RabbitMQ client integration, install the [Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) NuGet package in the client-consuming project, i.e., the project for the application that uses the RabbitMQ client. The RabbitMQ client integration registers an [IConnection](https://rabbitmq.github.io/rabbitmq-dotnet-client/api/RabbitMQ.Client.IConnection.html) instance that you can use to interact with RabbitMQ.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -184,10 +182,6 @@ public class ExampleService(IConnection connection)
 
 <!-- Keyed services - DI, examples... -->
 <!-- Consider Advanced section. -->
-
-## Advanced scenarios
-
-
 
 ### Configuration
 
