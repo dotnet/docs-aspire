@@ -163,10 +163,12 @@ dotnet add package Aspire.RabbitMQ.Client
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
+### Add RabbitMQ client
+
 In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddRabbitMQClient%2A> extension method to register an `IConnection` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
-builder.AddRabbitMQClient("messaging");
+builder.AddRabbitMQClient(connectionName: "messaging");
 ```
 
 You can then retrieve the `IConnection` instance using dependency injection. For example, to retrieve the connection from an example service:
@@ -178,8 +180,27 @@ public class ExampleService(IConnection connection)
 }
 ```
 
-<!-- Keyed services - DI, examples... -->
-<!-- Consider Advanced section. -->
+### Add keyed RabbitMQ client
+
+There might be situations where you want to register multiple `IConnection` instances with different connection names. To register keyed RabbitMQ clients, call the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddKeyedRabbitMQClient*>:
+
+```csharp
+builder.AddKeyedRabbitMQClient(name: "chat");
+builder.AddKeyedRabbitMQClient(name: "queue");
+```
+
+Then you can retrieve the `IConnection` instances using dependency injection. For example, to retrieve the connection from an example service:
+
+```csharp
+public class ExampleService(
+    [FromKeyedServices("chat")] IConnection chatConnection,
+    [FromKeyedServices("queue")] IConnection queueConnection)
+{
+    // Use connections...
+}
+```
+
+For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
 
 ### Configuration
 
@@ -240,14 +261,18 @@ builder.AddRabbitMQClient(
         factory => factory.ClientProvidedName = "MyApp");
 ```
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+### Health checks
+
+By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
 
 The .NET Aspire RabbitMQ integration handles the following:
 
 - Adds the health check when <xref:Aspire.RabbitMQ.Client.RabbitMQClientSettings.DisableHealthChecks?displayProperty=nameWithType> is `true`, which attempts to connect to and create a channel on the RabbitMQ server.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
-[!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
+### Observability and telemetry
+
+.NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations may only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
 
 #### Logging
 
