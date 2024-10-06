@@ -155,37 +155,6 @@ builder.AddAzureKeyVaultSecrets(
             static options => options.DisableChallengeResourceVerification = true))
 ```
 
-### Named instances
-
-If you want to add more than one `SecretClient` you can use named instances. Load the named configuration section from the json config by calling the `AddAzureKeyVaultSecrets` method and passing in the `INSTANCE_NAME`.
-
-```csharp
-builder.AddAzureKeyVaultSecrets("INSTANCE_NAME");
-```
-
-The corresponding configuration JSON is defined as follows:
-
-```json
-{
-  "Aspire": {
-    "Azure": {
-      "Security": {
-        "KeyVault": {
-          "INSTANCE_NAME": {
-            "VaultUri": "YOUR_VAULT_URI",
-            "DisableHealthChecks": false,
-            "DisableTracing": true,
-            "ClientOptions": {
-              "DisableChallengeResourceVerification": true
-            }
-          }
-        }
-      }
-    }
-  }
-}
-```
-
 ### Configuration options
 
 The following configurable options are exposed through the <xref:Aspire.Azure.Security.KeyVault.AzureSecurityKeyVaultSettings> class:
