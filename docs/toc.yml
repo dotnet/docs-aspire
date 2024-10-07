@@ -189,7 +189,7 @@ items:
         href: database/qdrant-integration.md
       - name: RabbitMQ service broker
         displayName: rabbitmq,messaging,service broker
-        href: messaging/rabbitmq-client-integration.md
+        href: messaging/rabbitmq-integration.md
       - name: Redis
         items:
         - name: Overview
