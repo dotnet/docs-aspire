@@ -60,7 +60,12 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 > [!TIP]
 > If you'd rather connect to an existing RabbitMQ server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
 
-When the app host is run, the RabbitMQ server is started in a container and the `ExampleProject` connects to it. Under the hood, .NET Aspire runs the RabbitMQ server container using the `docker.io/library/rabbitmq` image similar to how the `docker run` (or `podman run`) command works.
+When the app host is run, the RabbitMQ server is started in a container and the `ExampleProject` connects to it. Under the hood, .NET Aspire runs the RabbitMQ server container using the `docker.io/library/rabbitmq` image by delegating calls to the appropriate OCI-compliant container runtime, either Docker or Podman. The following commands are used:
+
+- `docker/podman container create`: Create the container.
+- `docker/podman container start`: Start the container.
+
+These commands are used to manage attached container networks, volumes, and ports. This allows any IP (network configuration) to already be present at initial startup.
 
 ### Add RabbitMQ server resource with management plugin
 
