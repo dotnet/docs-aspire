@@ -10,7 +10,7 @@ uid: rabbitmq-integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[RabbitMQ](https://www.rabbitmq.com/) is a reliable and mature messaging and streaming broker, which is easy to deploy on cloud environments, on-premises, and on your local machine. The .NET Aspire RabbitMQ integration enables you to connect to existing RabbitMQ instances, or create new instances from .NET with the [`docker.io/library/rabbitmq` container image](https://hub.docker.com/_/rabbitmq).
+[RabbitMQ](https://www.rabbitmq.com/) is a reliable messaging and streaming broker, which is easy to deploy on cloud environments, on-premises, and on your local machine. The .NET Aspire RabbitMQ integration enables you to connect to existing RabbitMQ instances, or create new instances from .NET with the [`docker.io/library/rabbitmq` container image](https://hub.docker.com/_/rabbitmq).
 
 <!-- 
 Overview of the thing we're integrating with, why you'd want to use it, and what you can do with it.
@@ -53,7 +53,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/rabbitmq` image, it creates a new RabbitMQ server instance on your local machine. A reference to your RabbitMQ server (the `rabbitmq` variable) is added to the `ExampleProject`. The RabbitMQ server resource includes default credentials with a `username` of `"guest"` and a `password` that's randomly generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
+When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/rabbitmq` image, it creates a new RabbitMQ server instance on your local machine. A reference to your RabbitMQ server (the `rabbitmq` variable) is added to the `ExampleProject`. The RabbitMQ server resource includes default credentials with a `username` of `"guest"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"messaging"`.
 
@@ -76,7 +76,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The RabbitMQ management plugin provides an HTTP-based API for management and monitoring of your RabbitMQ server. .NET Aspire will add another container image [`docker.io/library/rabbitmq-management`](https://hub.docker.com/_/rabbitmq) to the app host that runs the management plugin.
+The RabbitMQ management plugin provides an HTTP-based API for management and monitoring of your RabbitMQ server. .NET Aspire adds another container image [`docker.io/library/rabbitmq-management`](https://hub.docker.com/_/rabbitmq) to the app host that runs the management plugin.
 
 ### Add RabbitMQ server resource with data volume
 
@@ -94,7 +94,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The data volume is used to persist the RabbitMQ server data outside the lifecycle of its container. The data volume is mounted at the `/var/lib/rabbitmq` path in the RabbitMQ server container and it's randomly named when a `name` parameter isn't provided. For more information on data volumes and details on why they're preferred over [bind mounts](#add-rabbitmq-server-resource-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
+The data volume is used to persist the RabbitMQ server data outside the lifecycle of its container. The data volume is mounted at the `/var/lib/rabbitmq` path in the RabbitMQ server container and when a `name` parameter isn't provided, the name is generated at random. For more information on data volumes and details on why they're preferred over [bind mounts](#add-rabbitmq-server-resource-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
 
 ### Add RabbitMQ server resource with data bind mount
 
@@ -118,7 +118,7 @@ Data bind mounts rely on the host machine's filesystem to persist the RabbitMQ s
 
 ### Add RabbitMQ server resource with parameters
 
-When you want to explicitly provide the username and password used by the container image, you can provide those as parameters. Consider the following alternative example:
+When you want to explicitly provide the username and password used by the container image, you can provide these credentials as parameters. Consider the following alternative example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -154,7 +154,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.Rabbitmq](ht
 We need to also call out any related extension methods per/type of integration.
 -->
 
-To get started with the .NET Aspire RabbitMQ client integration, install the [📦 Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) NuGet package in the client-consuming project, i.e., the project for the application that uses the RabbitMQ client. The RabbitMQ client integration registers an [IConnection](https://rabbitmq.github.io/rabbitmq-dotnet-client/api/RabbitMQ.Client.IConnection.html) instance that you can use to interact with RabbitMQ.
+To get started with the .NET Aspire RabbitMQ client integration, install the [📦 Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the RabbitMQ client. The RabbitMQ client integration registers an [IConnection](https://rabbitmq.github.io/rabbitmq-dotnet-client/api/RabbitMQ.Client.IConnection.html) instance that you can use to interact with RabbitMQ.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -227,7 +227,7 @@ When using a connection string from the `ConnectionStrings` configuration sectio
 builder.AddRabbitMQClient(connectionName: "messaging");
 ```
 
-Then the connection string will be retrieved from the `ConnectionStrings` configuration section:
+Then the connection string is retrieved from the `ConnectionStrings` configuration section:
 
 ```json
 {
@@ -283,14 +283,14 @@ builder.AddRabbitMQClient(
 
 By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-The .NET Aspire RabbitMQ integration handles the following:
+The .NET Aspire RabbitMQ integration:
 
 - Adds the health check when <xref:Aspire.RabbitMQ.Client.RabbitMQClientSettings.DisableHealthChecks?displayProperty=nameWithType> is `true`, which attempts to connect to and create a channel on the RabbitMQ server.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 ### Observability and telemetry
 
-.NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations may only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
+.NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations might only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
 
 #### Logging
 
@@ -300,13 +300,13 @@ The .NET Aspire RabbitMQ integration uses the following log categories:
 
 #### Tracing
 
-The .NET Aspire RabbitMQ integration will emit the following tracing activities using OpenTelemetry:
+The .NET Aspire RabbitMQ integration emits the following tracing activities using OpenTelemetry:
 
 - `Aspire.RabbitMQ.Client`
 
 #### Metrics
 
-The .NET Aspire RabbitMQ integration currently doesn't support metrics by default. If that changes in the future, this section will be updated to reflect those changes.
+The .NET Aspire RabbitMQ integration currently doesn't support metrics by default. Check back for updates on this feature.
 
 ## See also
 
