@@ -87,4 +87,3 @@ When using the `WithNpmPackageInstallation`, `WithYarnPackageInstallation` or `W
 
 - [Orchestrate Node.js apps in .NET Aspire](../get-started/build-aspire-apps-with-nodejs.md)
 - [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
-
