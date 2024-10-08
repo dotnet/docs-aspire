@@ -199,7 +199,7 @@ internal sealed class Worker(IConsumer<string, string> consumer) : BackgroundSer
 
 There might be situations where you want to register multiple producer or consumer instances with different connection names. To register keyed Kafka producers or consumers, call the appropriate API:
 
-- <xref:Microsoft.Extensions.Hosting.AspireKafkaConsumerExtensions.AddKeyedKafkaProducer%2A>: Registers a keyed Kafka producer.
+- <xref:Microsoft.Extensions.Hosting.AspireKafkaProducerExtensions.AddKeyedKafkaProducer%2A>: Registers a keyed Kafka producer.
 - <xref:Microsoft.Extensions.Hosting.AspireKafkaConsumerExtensions.AddKeyedKafkaConsumer%2A>: Registers a keyed Kafka consumer.
 
 For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
