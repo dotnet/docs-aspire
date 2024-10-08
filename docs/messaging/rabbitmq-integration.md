@@ -2,7 +2,7 @@
 title: .NET Aspire RabbitMQ integration
 description: Learn how to use the .NET Aspire RabbitMQ message-broker integration, which includes both hosting and client integrations.
 ms.topic: how-to
-ms.date: 10/07/2024
+ms.date: 10/08/2024
 uid: rabbitmq-integration
 ---
 
@@ -13,8 +13,7 @@ uid: rabbitmq-integration
 [RabbitMQ](https://www.rabbitmq.com/) is a reliable messaging and streaming broker, which is easy to deploy on cloud environments, on-premises, and on your local machine. The .NET Aspire RabbitMQ integration enables you to connect to existing RabbitMQ instances, or create new instances from .NET with the [`docker.io/library/rabbitmq` container image](https://hub.docker.com/_/rabbitmq).
 
 <!-- 
-Overview of the thing we're integrating with, why you'd want to use it, and what you can do with it.
-Image: diagram showing the thing we're integrating with and the components of the integration.
+TODO: Diagram showing the thing we're integrating with and the components of the integration.
 -->
 
 ## Hosting integration
@@ -144,9 +143,7 @@ builder.AddProject<Projects.ExampleProject>()
 For more information on providing parameters, see [External parameters](../fundamentals/external-parameters.md).
 
 <!--
-TODO: Were are still missing the following bits:
-
-- Container lifetimes, link to related docs.
+TODO: Link to Container lifetimes content that doesn't exist yet.
 -->
 
 ### Hosting integration health checks
@@ -156,10 +153,6 @@ The RabbitMQ hosting integration automatically adds a health check for the Rabbi
 The hosting integration relies on the [📦 AspNetCore.HealthChecks.Rabbitmq](https://www.nuget.org/packages/AspNetCore.HealthChecks.Rabbitmq) NuGet package.
 
 ## Client integration
-
-<!--
-We need to also call out any related extension methods per/type of integration.
--->
 
 To get started with the .NET Aspire RabbitMQ client integration, install the [📦 Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the RabbitMQ client. The RabbitMQ client integration registers an [IConnection](https://rabbitmq.github.io/rabbitmq-dotnet-client/api/RabbitMQ.Client.IConnection.html) instance that you can use to interact with RabbitMQ.
 
@@ -317,6 +310,7 @@ The .NET Aspire RabbitMQ integration currently doesn't support metrics by defaul
 
 ## See also
 
+- [Send messages with RabbitMQ in .NET Aspire](/training/modules/send-messages-rabbitmq-dotnet-aspire-app)
 - [RabbitMQ .NET Client docs](https://rabbitmq.github.io/rabbitmq-dotnet-client)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
