@@ -59,12 +59,7 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 > [!TIP]
 > If you'd rather connect to an existing RabbitMQ server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
 
-When the app host is run, the RabbitMQ server is started in a container, and the `ExampleProject` connects to it. Under the hood, .NET Aspire runs the RabbitMQ server container using the `docker.io/library/rabbitmq` image by delegating calls to the appropriate OCI-compliant container runtime, either Docker or Podman. The following commands are used:
-
-- `docker/podman container create`: Create the container.
-- `docker/podman container start`: Start the container.
-
-These commands are used to manage attached container networks, volumes, and ports. Calling these commands in this order allows any IP (network configuration) to already be present at initial startup.
+For more information, see [Container resource lifecycle](../fundamentals/app-host-overview.md#container-resource-lifecycle).
 
 ### Add RabbitMQ server resource with management plugin
 
@@ -111,7 +106,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var rabbitmq = builder.AddRabbitMQ("messaging")
                       .WithDataBindMount(
-                          source: "/mnt/rabbitmq",
+                          source: "/RabbitMQ/Data",
                           isReadOnly: false);
 
 builder.AddProject<Projects.ExampleProject>()
@@ -120,7 +115,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-Data bind mounts rely on the host machine's filesystem to persist the RabbitMQ server data across container restarts. The data bind mount is mounted at the `/mnt/rabbitmq` path in the RabbitMQ server container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
+Data bind mounts rely on the host machine's filesystem to persist the RabbitMQ server data across container restarts. The data bind mount is mounted at the `/RabbitMQ/Data` path in the RabbitMQ server container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
 
 ### Add RabbitMQ server resource with parameters
 
