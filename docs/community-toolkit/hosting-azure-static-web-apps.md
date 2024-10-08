@@ -9,10 +9,10 @@ ms.date: 10/11/2024
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you'll learn how to use the .NET Aspire [Azure Static Web Apps emulator](https://learn.microsoft.com/azure/static-web-apps/local-development) integration to run Azure Static Web Apps locally using the emulator. The emulator provides support for proxying both the static frontend and the API backend using resources defined in the AppHost project.
+In this article, you'll learn how to use the .NET Aspire [Azure Static Web Apps emulator](/azure/static-web-apps/local-development) integration to run Azure Static Web Apps locally using the emulator. The emulator provides support for proxying both the static frontend and the API backend using resources defined in the app host.
 
-> [!NOTE]
-> This does not support deployment to Azure Static Web Apps.
+> [!IMPORTANT]
+> The .NET Aspire Azure Static Web Apps emulator integration doesn't support deployment to Azure Static Web Apps.
 
 ## Getting Started
 

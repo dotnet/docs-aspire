@@ -79,7 +79,7 @@ builder.AddViteApp("pnpm-demo", packageManager: "pnpm")
 builder.Build().Run();
 ```
 
-### Installing packages
+### Install packages
 
 When using the `WithNpmPackageInstallation`, `WithYarnPackageInstallation` or `WithPnpmPackageInstallation` methods, the package manager will be used to install the packages before starting the application. This is useful to ensure that packages are installed before the application starts, similar to how a .NET application would restore NuGet packages before running.
 
