@@ -2,7 +2,7 @@
 title: .NET Aspire Apache Kafka integration
 description: Learn how to use the .NET Aspire Apache Kafka client message-broker integration.
 ms.topic: how-to
-ms.date: 10/08/2024
+ms.date: 10/09/2024
 uid: kafka-integration
 ---
 
@@ -50,12 +50,10 @@ builder.AddProject<Projects.ExampleProject>()
 
 When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/confluentinc/confluent-local` image, it creates a new Kafka server instance on your local machine. A reference to your Kafka server (the `kafka` variable) is added to the `ExampleProject`. The Kafka server resource includes default ports
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"kafka"`.
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"kafka"`. For more information, see [Container resource lifecycle](../fundamentals/app-host-overview.md#container-resource-lifecycle).
 
 > [!TIP]
 > If you'd rather connect to an existing Kafka server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
-
-For more information, see [Container resource lifecycle](../fundamentals/app-host-overview.md#container-resource-lifecycle).
 
 ### Add Kafka UI
 
@@ -156,8 +154,6 @@ dotnet add package Aspire.Confluent.Kafka
 ```
 
 ---
-
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
 ### Add Kafka producer
 
