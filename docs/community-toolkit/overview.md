@@ -5,7 +5,7 @@ description: An overview of the .NET Aspire Community Toolkit project.
 ms.date: 10/11/2024
 ---
 
-## .NET Aspire Community Toolkit
+# .NET Aspire Community Toolkit
 
 The .NET Aspire Community Toolkit is a collection of integrations and extensions for .NET Aspire created by the community. These integrations are not officially supported by the .NET Aspire team, but are provided as-is for the community to use and contribute to. The source code for the toolkit is available on [GitHub][repo].
 
