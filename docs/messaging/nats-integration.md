@@ -34,7 +34,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add NATS server resource
 
-In your app host project, call <xref:Aspire.Hosting.NatsBuilderExtensions.AddNats*> on the `builder` instance to add a RabbitMQ server resource:
+In your app host project, call <xref:Aspire.Hosting.NatsBuilderExtensions.AddNats*> on the `builder` instance to add a NATS server resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -47,7 +47,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/nats` image, it creates a new NATS server instance on your local machine. A reference to your RabbitMQ server (the `nats` variable) is added to the `ExampleProject`.
+When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/nats` image, it creates a new NATS server instance on your local machine. A reference to your NATS server (the `nats` variable) is added to the `ExampleProject`.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"nats"`. For more information, see [Container resource lifecycle](../fundamentals/app-host-overview.md#container-resource-lifecycle).
 
@@ -74,7 +74,7 @@ The NATS JetStream functionality provides a built-in persistence engine called J
 
 ### Add NATS server resource with data volume
 
-To add a data volume to the NATS server resource, call the <xref:Aspire.Hosting.NatsBuilderExtensions.WithDataVolume*> method on the RabbitMQ server resource:
+To add a data volume to the NATS server resource, call the <xref:Aspire.Hosting.NatsBuilderExtensions.WithDataVolume*> method on the NATS server resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -88,7 +88,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The data volume is used to persist the NATS server data outside the lifecycle of its container. The data volume is mounted at the `/var/lib/nats` path in the NATS server container and when a `name` parameter isn't provided, the name is generated at random. For more information on data volumes and details on why they're preferred over [bind mounts](#add-rabbitmq-server-resource-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
+The data volume is used to persist the NATS server data outside the lifecycle of its container. The data volume is mounted at the `/var/lib/nats` path in the NATS server container and when a `name` parameter isn't provided, the name is generated at random. For more information on data volumes and details on why they're preferred over [bind mounts](#add-nats-server-resource-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
 
 ### Add NATS server resource with data bind mount
 
