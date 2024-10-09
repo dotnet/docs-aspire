@@ -32,6 +32,8 @@ dotnet add package Aspire.CommunityToolkit.OllamaSharp
 
 ---
 
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+
 ## Example usage
 
 In the _::no-loc text="Program.cs"_ file of your client-consuming project, call the `AddOllamaClientApi` extension to register an `IOllamaClientApi` for use via the dependency injection container.
