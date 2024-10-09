@@ -229,6 +229,8 @@ items:
             href: community-toolkit/overview.md
           - name: Azure Static Web Apps
             href: community-toolkit/hosting-azure-static-web-apps.md
+          - name: Go apps
+            href: community-toolkit/hosting-go.md
           - name: Java/Spring
             href: community-toolkit/hosting-java.md
           - name: Node.js extensions
