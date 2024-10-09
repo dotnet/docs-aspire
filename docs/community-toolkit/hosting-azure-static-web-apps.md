@@ -21,7 +21,7 @@ In this article, you'll learn how to use the .NET Aspire [Azure Static Web Apps 
 
 To get started with the .NET Aspire Azure Static Web Apps emulator integration, install the [Aspire.CommunityToolkit.Hosting.Azure.StaticWebApps](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.Hosting.Azure.StaticWebApps) NuGet package in the AppHost project.
 
-[!INCLUDE [githhub-packages](includes/githhub-packages.md)]
+[!INCLUDE [github-packages](includes/github-packages.md)]
 
 ### [.NET CLI](#tab/dotnet-cli)
 
