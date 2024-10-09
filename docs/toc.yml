@@ -228,11 +228,11 @@ items:
           - name: Overview
             href: community-toolkit/overview.md
           - name: Azure Static Web Apps
-            href: community-toolkit/swa-emulator.md
+            href: community-toolkit/hosting-azure-static-web-apps.md
           - name: Java/Spring
-            href: community-toolkit/java-hosting.md
+            href: community-toolkit/hosting-java.md
           - name: Node.js extensions
-            href: community-toolkit/nodejs-hosting-extensions.md
+            href: community-toolkit/hosting-nodejs-extensions.md
           - name: Ollama
             href: community-toolkit/ollama.md
 

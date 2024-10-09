@@ -5,7 +5,7 @@ description: A .NET Aspire hosting integration for hosting Java/Spring applicati
 ms.date: 10/11/2024
 ---
 
-## .NET Aspire Java/Spring hosting integration
+# .NET Aspire Java/Spring hosting integration
 
 [!INCLUDE [banner](includes/banner.md)]
 
@@ -92,5 +92,5 @@ var executableapp = builder.AddSpringApp("executableapp",
 
 ## See also
 
-- [Java developer resources](https://learn.microsoft.com/java/spring/hosting)
+- [Java developer resources](/java/spring/hosting)
 - [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)

@@ -5,7 +5,7 @@ description: A .NET Aspire hosting integration for hosting Ollama models using t
 ms.date: 10/11/2024
 ---
 
-## .NET Aspire Community Toolkit Ollama hosting integration
+# .NET Aspire Community Toolkit Ollama hosting integration
 
 [!INCLUDE [banner](includes/banner.md)]
 

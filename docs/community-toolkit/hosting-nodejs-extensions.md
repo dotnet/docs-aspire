@@ -5,7 +5,7 @@ description: Extensions on the .NET Aspire hosting for Node.js applications to s
 ms.date: 10/11/2024
 ---
 
-## .NET Aspire Community Toolkit Node.js hosting extensions
+# .NET Aspire Community Toolkit Node.js hosting extensions
 
 [!INCLUDE [banner](includes/banner.md)]
 

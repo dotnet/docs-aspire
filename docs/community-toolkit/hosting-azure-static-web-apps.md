@@ -5,7 +5,7 @@ description: A .NET Aspire hosting integration for the Azure Static Web Apps emu
 ms.date: 10/11/2024
 ---
 
-## .NET Aspire Azure Static Web Apps emulator integration
+# .NET Aspire Azure Static Web Apps emulator integration
 
 [!INCLUDE [banner](includes/banner.md)]
 
@@ -65,6 +65,6 @@ builder.Build().Run();
 
 ## See also
 
-- [Azure Static Web Apps emulator](https://learn.microsoft.com/azure/static-web-apps/local-development)
-- [Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/)
+- [Azure Static Web Apps emulator](/azure/static-web-apps/local-development)
+- [Azure Static Web Apps](/azure/static-web-apps/)
 - [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
