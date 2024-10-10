@@ -140,7 +140,7 @@ items:
           href: storage/azure-storage-tables-integration.md
         - name: Azure Web PubSub
           displayName: web pubsub,real-time,messaging
-          href: messaging/azure-web-pubsub-integration.md  
+          href: messaging/azure-web-pubsub-integration.md
       - name: Dapr
         items:
           - name: Overview
@@ -223,6 +223,20 @@ items:
           - name: SQL Database
             displayName: sql server,sql database
             href: database/sql-server-integration.md
+      - name: Community Toolkit
+        items:
+          - name: Overview
+            href: community-toolkit/overview.md
+          - name: Azure Static Web Apps
+            href: community-toolkit/hosting-azure-static-web-apps.md
+          - name: Go apps
+            href: community-toolkit/hosting-golang.md
+          - name: Java/Spring
+            href: community-toolkit/hosting-java.md
+          - name: Node.js extensions
+            href: community-toolkit/hosting-nodejs-extensions.md
+          - name: Ollama
+            href: community-toolkit/ollama.md
 
   - name: Custom integrations
     items:
