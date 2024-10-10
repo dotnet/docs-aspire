@@ -1,6 +1,6 @@
 ---
 title: Node.js hosting extensions
-description: Learn about the .NET Aspire Community Toolkit Node.js hosting extensions package which provides additional functionality to the .NET Aspire NodeJS hosting package.
+description: Learn about the .NET Aspire Community Toolkit Node.js hosting extensions package which provides extra functionality to the .NET Aspire NodeJS hosting package.
 ms.date: 10/11/2024
 ---
 
@@ -10,7 +10,7 @@ ms.date: 10/11/2024
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you'll learn about the .NET Aspire Community Toolkit Node.js hosting extensions package which provides additional functionality to the .NET Aspire [NodeJS hosting package](https://nuget.org/packages/Aspire.Hosting.NodeJS). The extensions package brings the following features:
+In this article, you learn about the .NET Aspire Community Toolkit Node.js hosting extensions package which provides extra functionality to the .NET Aspire [NodeJS hosting package](https://nuget.org/packages/Aspire.Hosting.NodeJS). The extensions package brings the following features:
 
 - Running [Vite](https://vitejs.dev/) applications
 - Running Node.js applications using [Yarn](https://yarnpkg.com/) and [pnpm](https://pnpm.io/)
@@ -39,7 +39,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-The following sections details various usages, from running Vite applications to using specific package managers.
+The following sections detail various usages, from running Vite applications to using specific package managers.
 
 ### Run specific package managers
 
@@ -67,7 +67,7 @@ builder.AddPnpmApp("pnpm-demo")
 
 ### Run Vite apps
 
-This integration extension adds support for running the development server for Vite applications. By default, it will use the `npm` package manager to launch, but this can be overridden with the `packageManager` argument.
+This integration extension adds support for running the development server for Vite applications. By default, it uses the `npm` package manager to launch, but this can be overridden with the `packageManager` argument.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -86,9 +86,10 @@ builder.Build().Run();
 
 ### Install packages
 
-When using the `WithNpmPackageInstallation`, `WithYarnPackageInstallation` or `WithPnpmPackageInstallation` methods, the package manager will be used to install the packages before starting the application. This is useful to ensure that packages are installed before the application starts, similar to how a .NET application would restore NuGet packages before running.
+When using the `WithNpmPackageInstallation`, `WithYarnPackageInstallation` or `WithPnpmPackageInstallation` methods, the package manager is used to install the packages before starting the application. These methods are useful to ensure that packages are installed before the application starts, similar to how a .NET application would restore NuGet packages before running.
 
 ## See also
 
 - [Orchestrate Node.js apps in .NET Aspire](../get-started/build-aspire-apps-with-nodejs.md)
 - [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
+- [Sample Node.js apps](https://github.com/CommunityToolkit/Aspire/tree/main/examples/nodejs-ext)

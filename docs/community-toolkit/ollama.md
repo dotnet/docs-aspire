@@ -35,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Ollama resource
 
-In the app host project, register and consume the Ollama integration using the `AddOllama` extension method to add the Ollama container to the application builder. You can then add models to the container, which will be downloaded and run when the container starts, using the `AddModel` extension method.
+In the app host project, register and consume the Ollama integration using the `AddOllama` extension method to add the Ollama container to the application builder. You can then add models to the container, which downloads and run when the container starts, using the `AddModel` extension method.
 
 ```csharp
 var ollama = builder.AddOllama("ollama")
@@ -46,14 +46,14 @@ When .NET Aspire adds a container image to the app host, as shown in the precedi
 
 ### Download the LLM
 
-When the Ollama container for this integration first spins up, this integration will download the LLM(s). The progress of this download will be displayed in the State column for this integration on the Aspire orchestration app.
+When the Ollama container for this integration first spins up, it downloads one or more configured LLMs. The progress of this download displays in the **State** column for this integration on the Aspire orchestration app.
 
 > [!IMPORTANT]
 > Keep the .NET Aspire orchestration app open until the download is complete, otherwise the download will be cancelled.
 
 ### Cache the LLM
 
-The LLM(s) will be downloaded into the container which Ollama is running from, and by default this container is ephemeral. If you need to persist the LLM(s) across container restarts, you will need to mount a volume into the container using the `AddDataVolume` method.
+One or more LLMs are downloaded into the container which Ollama is running from, and by default this container is ephemeral. If you need to persist one or more LLMs across container restarts, you need to mount a volume into the container using the `AddDataVolume` method.
 
 ```csharp
 var ollama = builder.AddOllama("ollama")
@@ -73,7 +73,7 @@ var ollama = builder.AddOllama("ollama")
 
 ## Client integration
 
-To get started with the .NET Aspire OllamaSharp integration, install the [Aspire.CommunityToolkit.OllamaSharp](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.OllamaSharp) NuGet package in the client-consuming project, i.e., the project for the application that uses the Ollama client.
+To get started with the .NET Aspire OllamaSharp integration, install the [Aspire.CommunityToolkit.OllamaSharp](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.OllamaSharp) NuGet package in the client-consuming project, that is, the project for the application that uses the Ollama client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

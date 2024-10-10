@@ -11,7 +11,7 @@ ms.date: 10/11/2024
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you'll learn how to use the .NET Aspire Java/Spring hosting integration to host Java/Spring applications using either the Java runtime or a container.
+In this article, you learn how to use the .NET Aspire Java/Spring hosting integration to host Java/Spring applications using either the Java runtime or a container.
 
 ## Prerequisites
 
