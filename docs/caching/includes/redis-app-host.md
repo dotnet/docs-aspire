@@ -10,7 +10,7 @@ dotnet add package Aspire.Hosting.Redis
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Redis"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

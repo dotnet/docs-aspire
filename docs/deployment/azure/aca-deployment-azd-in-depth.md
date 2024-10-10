@@ -213,7 +213,7 @@ After this command is executed in the starter template example used in this guid
 
 - _infra/main.bicep_: Represents the main entry point for the deployment.
 - _infra/main.parameters.json_: Used as the parameters for main Bicep (maps to environment variables defined in _.azure_ folder).
-- _infra/resoures.bicep_: Defines the Azure resources required to support the .NET Aspire project model.
+- _infra/resources.bicep_: Defines the Azure resources required to support the .NET Aspire project model.
 - _AspireSample.Web/manifests/containerApp.tmpl.yaml_: The container app definition for `webfrontend`.
 - _AspireSample.ApiService/manifests/containerApp.tmpl.yaml_: The container app definition for `apiservice`.
 

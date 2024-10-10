@@ -277,7 +277,7 @@ dotnet add package Aspire.Hosting.Azure.Storage
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Azure.Storage"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

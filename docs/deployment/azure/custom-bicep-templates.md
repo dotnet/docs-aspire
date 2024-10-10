@@ -29,7 +29,7 @@ dotnet add package Aspire.Hosting.Azure
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Azure"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

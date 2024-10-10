@@ -40,7 +40,7 @@ dotnet add package Aspire.Hosting.Dapr
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Dapr"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -87,7 +87,7 @@ dotnet add package Dapr.AspNetCore
 
 ```xml
 <PackageReference Include="Dapr.AspNetCore"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

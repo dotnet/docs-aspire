@@ -140,8 +140,8 @@ conceptualContent:
           text: Azure Web PubSub
           url: messaging/azure-web-pubsub-integration.md
         - itemType: how-to-guide
-          text: RabbitMQ client
-          url: messaging/rabbitmq-client-integration.md
+          text: RabbitMQ
+          url: messaging/rabbitmq-integration.md
         - itemType: how-to-guide
           text: Apache Kafka
           url: messaging/kafka-integration.md

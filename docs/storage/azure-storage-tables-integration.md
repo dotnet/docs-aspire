@@ -31,7 +31,7 @@ dotnet add package Aspire.Azure.Data.Tables
 
 ```xml
 <PackageReference Include="Aspire.Azure.Data.Tables"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -69,7 +69,7 @@ dotnet add package Aspire.Hosting.Azure.Storage
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Azure.Storage"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -135,36 +135,6 @@ builder.AddAzureTableClient(
     static clientBuilder =>
         clientBuilder.ConfigureOptions(
             static options => options.EnableTenantDiscovery = true));
-```
-
-### Named instances
-
-If you want to add more than one <xref:Azure.Data.Tables.TableServiceClient> you can use named instances. Load the named configuration section from the json config by calling the `AddAzureTableClient` method and passing in the `INSTANCE_NAME`.
-
-```csharp
-builder.AddAzureTableClient("INSTANCE_NAME");
-```
-
-The corresponding configuration JSON is defined as follows:
-
-```json
-{
-  "Aspire":{
-    "Azure": {
-      "Data": {
-        "Tables": {
-          "INSTANCE_NAME": {
-            "ServiceUri": "YOUR_URI",
-            "DisableHealthChecks": true,
-            "ClientOptions": {
-              "EnableTenantDiscovery": true
-            }
-          }
-        }
-      }
-    }
-  }
-}
 ```
 
 ### Configuration options

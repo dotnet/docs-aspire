@@ -10,7 +10,7 @@ dotnet add package Aspire.Hosting.MySql
 
 ```xml
 <PackageReference Include="Aspire.Hosting.MySql"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

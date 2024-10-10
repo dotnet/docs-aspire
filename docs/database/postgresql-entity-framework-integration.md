@@ -36,7 +36,7 @@ dotnet add package Aspire.Npgsql.EntityFrameworkCore.PostgreSQL
 
 ```xml
 <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -178,7 +178,7 @@ Here are the configurable options with corresponding default values:
 
 | Name                  | Description                                                                                            |
 |-----------------------|--------------------------------------------------------------------------------------------------------|
-| `ConnectionString`    | The connection string of the SQL Server database to connect to.                                        |
+| `ConnectionString`    | The connection string of the PostgreSQL database to connect to.                                        |
 | `MaxRetryCount`       | The maximum number of retry attempts. Default value is 6, set it to 0 to disable the retry mechanism.  |
 | `DisableHealthChecks` | A boolean value that indicates whether the database health check is disabled or not.                   |
 | `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not.                   |

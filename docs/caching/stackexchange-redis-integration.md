@@ -24,7 +24,7 @@ dotnet add package Aspire.StackExchange.Redis
 
 ```xml
 <PackageReference Include="Aspire.StackExchange.Redis"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

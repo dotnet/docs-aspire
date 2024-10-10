@@ -23,7 +23,7 @@ dotnet add package Aspire.Azure.Security.KeyVault
 
 ```xml
 <PackageReference Include="Aspire.Azure.Security.KeyVault"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -83,7 +83,7 @@ dotnet add package Aspire.Hosting.Azure.KeyVault
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Azure.KeyVault"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -153,37 +153,6 @@ builder.AddAzureKeyVaultSecrets(
     static clientBuilder =>
         clientBuilder.ConfigureOptions(
             static options => options.DisableChallengeResourceVerification = true))
-```
-
-### Named instances
-
-If you want to add more than one `SecretClient` you can use named instances. Load the named configuration section from the json config by calling the `AddAzureKeyVaultSecrets` method and passing in the `INSTANCE_NAME`.
-
-```csharp
-builder.AddAzureKeyVaultSecrets("INSTANCE_NAME");
-```
-
-The corresponding configuration JSON is defined as follows:
-
-```json
-{
-  "Aspire": {
-    "Azure": {
-      "Security": {
-        "KeyVault": {
-          "INSTANCE_NAME": {
-            "VaultUri": "YOUR_VAULT_URI",
-            "DisableHealthChecks": false,
-            "DisableTracing": true,
-            "ClientOptions": {
-              "DisableChallengeResourceVerification": true
-            }
-          }
-        }
-      }
-    }
-  }
-}
 ```
 
 ### Configuration options

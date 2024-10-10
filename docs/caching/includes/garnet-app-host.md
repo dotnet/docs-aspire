@@ -10,7 +10,7 @@ dotnet add package Aspire.Hosting.Garnet
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Garnet"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

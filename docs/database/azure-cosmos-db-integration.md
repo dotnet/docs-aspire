@@ -23,7 +23,7 @@ dotnet add package Aspire.Microsoft.Azure.Cosmos
 
 ```xml
 <PackageReference Include="Aspire.Microsoft.Azure.Cosmos"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -63,7 +63,7 @@ dotnet add package Aspire.Hosting.Azure.CosmosDB
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Azure.CosmosDB"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

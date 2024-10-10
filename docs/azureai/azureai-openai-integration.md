@@ -28,7 +28,7 @@ dotnet add package Aspire.Azure.AI.OpenAI
 
 ```xml
 <PackageReference Include="Aspire.Azure.AI.OpenAI"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -66,7 +66,7 @@ dotnet add package Aspire.Hosting.Azure.CognitiveServices
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Azure.CognitiveServices"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

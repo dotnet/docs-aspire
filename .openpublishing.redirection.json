@@ -263,6 +263,10 @@
     {
       "source_path_from_root": "/docs/extensibility/implement-auth-from-resource-to-integration.md",
       "redirect_url": "/dotnet/aspire/extensibility/secure-communication-between-integrations"
+    },
+    {
+      "source_path_from_root": "/docs/messaging/rabbitmq-client-integration.md",
+      "redirect_url": "/dotnet/aspire/messaging/rabbitmq-integration"
     }
   ]
 }

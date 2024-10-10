@@ -24,7 +24,7 @@ dotnet add package Aspire.StackExchange.Redis.DistributedCaching
 
 ```xml
 <PackageReference Include="Aspire.StackExchange.Redis.DistributedCaching"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

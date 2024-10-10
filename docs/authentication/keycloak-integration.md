@@ -30,7 +30,7 @@ dotnet add package Aspire.Keycloak.Authentication
 
 ```xml
 <PackageReference Include="Aspire.Keycloak.Authentication"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -84,7 +84,7 @@ dotnet add package Aspire.Hosting.Keycloak
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Keycloak"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
