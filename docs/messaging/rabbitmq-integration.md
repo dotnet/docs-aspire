@@ -234,7 +234,7 @@ For more information on how to format this connection string, see the [RabbitMQ 
 
 #### Use configuration providers
 
-The .NET Aspire RabbitMQ integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.RabbitMQ.Client.RabbitMQClientSettings> from configuration by using the `Aspire:RabbitMQ:Client` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
+The .NET Aspire RabbitMQ integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.RabbitMQ.Client.RabbitMQClientSettings> from configuration by using the `Aspire:RabbitMQ:Client` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
@@ -299,7 +299,7 @@ The .NET Aspire RabbitMQ integration emits the following tracing activities usin
 
 #### Metrics
 
-The .NET Aspire RabbitMQ integration currently doesn't support metrics by default. Check back for updates on this feature.
+The .NET Aspire RabbitMQ integration currently doesn't support metrics by default.
 
 ## See also
 

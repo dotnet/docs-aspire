@@ -13,7 +13,7 @@ ms.date: 10/09/2024
 
 ## Hosting integration
 
-The NATS hosting integration models a NATS server as the <xref:Aspire.Hosting.ApplicationModel.NatsServerResource> type. To access this type and APIs that allow you to add it to your app host, install the [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats) NuGet package in the [app host](xref:aspire/app-host) project.
+NATS hosting integration for .NET Aspire models a NATS server as the <xref:Aspire.Hosting.ApplicationModel.NatsServerResource> type. To access this type, install the [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats) NuGet package in the [app host](xref:aspire/app-host) project, then add it with the builder.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -88,7 +88,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The data volume is used to persist the NATS server data outside the lifecycle of its container. The data volume is mounted at the `/var/lib/nats` path in the NATS server container and when a `name` parameter isn't provided, the name is generated at random. For more information on data volumes and details on why they're preferred over [bind mounts](#add-nats-server-resource-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
+The data volume is used to persist the NATS server data outside the lifecycle of its container. The data volume is mounted at the `/var/lib/nats` path in the NATS server container. A name is generated at random unless you provide a set the `name` parameter. For more information on data volumes and details on why they're preferred over [bind mounts](#add-nats-server-resource-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
 
 ### Add NATS server resource with data bind mount
 
@@ -159,7 +159,7 @@ For more information on dependency injection, see [.NET dependency injection](/d
 
 ### Add keyed NATS client
 
-There might be situations where you want to register multiple `INatsConnection` instances with different connection names. To register keyed NATS clients, call the <xref:Microsoft.Extensions.Hosting.AspireNatsClientExtensions.AddKeyedNatsClient*>:
+There might be situations where you want to register multiple `INatsConnection` instances with different connection names. To register keyed NATS clients, call the <xref:Microsoft.Extensions.Hosting.AspireNatsClientExtensions.AddKeyedNatsClient*> method:
 
 ```csharp
 builder.AddKeyedNatsClient(name: "chat");

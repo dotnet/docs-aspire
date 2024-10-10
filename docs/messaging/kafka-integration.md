@@ -157,7 +157,7 @@ dotnet add package Aspire.Confluent.Kafka
 
 ### Add Kafka producer
 
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireKafkaProducerExtensions.AddKafkaProducer%2A> extension method to register an `IProducer<TKey, TValue>` for use via the dependency injection container. The method takes two generic parameters corresponding to the type of the key and the type of the message to send to the broker. These generic parameters are used to new an instance of `ProducerBuilder<TKey, TValue>`. This method also takes connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireKafkaProducerExtensions.AddKafkaProducer%2A> extension method to register an `IProducer<TKey, TValue>` for use via the dependency injection container. The method takes two generic parameters corresponding to the type of the key and the type of the message to send to the broker. These generic parameters are used by `AddKafkaProducer` to create an instance of `ProducerBuilder<TKey, TValue>`. This method also takes connection name parameter.
 
 ```csharp
 builder.AddKafkaProducer<string, string>("messaging");
@@ -176,7 +176,7 @@ For more information on workers, see [Worker services in .NET](/dotnet/core/exte
 
 ### Add Kafka consumer
 
-To register an `IConsumer<TKey, TValue>` for use via the dependency injection container, call the <xref:Microsoft.Extensions.Hosting.AspireKafkaConsumerExtensions.AddKafkaConsumer%2A> extension method in the _:::no-loc text="Program.cs":::_ file of your client-consuming project. The method takes two generic parameters corresponding to the type of the key and the type of the message to receive from the broker. These generic parameters are used to new an instance of `ConsumerBuilder<TKey, TValue>`. This method also takes connection name parameter.
+To register an `IConsumer<TKey, TValue>` for use via the dependency injection container, call the <xref:Microsoft.Extensions.Hosting.AspireKafkaConsumerExtensions.AddKafkaConsumer%2A> extension method in the _:::no-loc text="Program.cs":::_ file of your client-consuming project. The method takes two generic parameters corresponding to the type of the key and the type of the message to receive from the broker. These generic parameters are used by `AddKafkaConsumer` to create an instance of `ConsumerBuilder<TKey, TValue>`. This method also takes connection name parameter.
 
 ```csharp
 builder.AddKafkaConsumer<string, string>("messaging");
@@ -222,7 +222,7 @@ Then the connection string is retrieved from the `ConnectionStrings` configurati
 }
 ```
 
-The value provided as connection string is set to the `BootstrapServers`  property of the produced `IProducer<TKey, TValue>` or `IConsumer<TKey, TValue>` instance. For more information, see [BootstrapServers](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.ClientConfig.html#Confluent_Kafka_ClientConfig_BootstrapServers).
+The connection string value is set to the `BootstrapServers`  property of the produced `IProducer<TKey, TValue>` or `IConsumer<TKey, TValue>` instance. For more information, see [BootstrapServers](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.ClientConfig.html#Confluent_Kafka_ClientConfig_BootstrapServers).
 
 ### Use configuration providers
 
