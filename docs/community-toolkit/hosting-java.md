@@ -7,9 +7,11 @@ ms.date: 10/11/2024
 
 # .NET Aspire Java/Spring hosting integration
 
+[!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
+
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you'll learn how to use the .NET Aspire Java/Spring hosting integration to host Java/Spring applications using either the Java runtime or a container.
+In this article, you learn how to use the .NET Aspire Java/Spring hosting integration to host Java/Spring applications using either the Java runtime or a container.
 
 ## Prerequisites
 
@@ -36,9 +38,9 @@ Invoke-WebRequest `
 
 ---
 
-## Getting Started
+## Get started
 
-To get started with the .NET Aspire Azure Static Web Apps emulator integration, install the [Aspire.CommunityToolkit.Hosting.Java](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.Hosting.Java) NuGet package in the AppHost project.
+To get started with the .NET Aspire Azure Static Web Apps emulator integration, install the [📦 Aspire.CommunityToolkit.Hosting.Java](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.Hosting.Java) NuGet package in the AppHost project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -59,30 +61,34 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example Usage
 
+The following sections detail various example usage scenarios, from hosting a containerized Spring app to hosting an executable Spring app.
+
 ### [Container hosting](#tab/container-hosting)
 
 In the _:::no-loc text="Program.cs":::_file of your app host project, call the `AddSpringApp` method to define the containerized Spring app. Use the `JavaAppContainerResourceOptions` to define the containerized Spring app.
 
 ```csharp
-var containerapp = builder.AddSpringApp("containerapp",
-                           new JavaAppContainerResourceOptions()
-                           {
-                               ContainerImageName = "<repository>/<image>",
-                               OtelAgentPath = "<agent-path>"
-                           });
+var containerapp = builder.AddSpringApp(
+    "containerapp",
+    new JavaAppContainerResourceOptions
+    {
+        ContainerImageName = "<repository>/<image>",
+        OtelAgentPath = "<agent-path>"
+    });
 ```
 
 ### [Executable hosting](#tab/executable-hosting)
 
-In the _::no-loc text="Program.cs"_ file of your AppHost project, call the `AddSpringApp` method to define the executable Spring app. Use the `JavaAppExecutableResourceOptions` to define the executable Spring app.
+In the _:::no-loc text="Program.cs":::_ file of your AppHost project, call the `AddSpringApp` method to define the executable Spring app. Use the `JavaAppExecutableResourceOptions` to define the executable Spring app.
 
 ```csharp
-var executableapp = builder.AddSpringApp("executableapp",
-                           new JavaAppExecutableResourceOptions()
-                           {
-                               ApplicationName = "target/app.jar",
-                               OtelAgentPath = "../../../agents"
-                           });
+var executableapp = builder.AddSpringApp(
+    "executableapp",
+    new JavaAppExecutableResourceOptions
+    {
+        ApplicationName = "target/app.jar",
+        OtelAgentPath = "../../../agents"
+    });
 ```
 
 ---
