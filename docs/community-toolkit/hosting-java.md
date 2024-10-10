@@ -61,7 +61,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### [Container hosting](#tab/container-hosting)
 
-In the _::no-loc text="Program.cs"_ file of your AppHost project, call the `AddSpringApp` method to define the containerized Spring app. Use the `JavaAppContainerResourceOptions` to define the containerized Spring app.
+In the _:::no-loc text="Program.cs":::_file of your app host project, call the `AddSpringApp` method to define the containerized Spring app. Use the `JavaAppContainerResourceOptions` to define the containerized Spring app.
 
 ```csharp
 var containerapp = builder.AddSpringApp("containerapp",

@@ -15,7 +15,7 @@ In this article, you'll learn about the .NET Aspire Community Toolkit Node.js ho
 - Running Node.js applications using [Yarn](https://yarnpkg.com/) and [pnpm](https://pnpm.io/)
 - Ensuring that the packages are installed before running the application (using the specified package manager)
 
-## Getting Started
+## Get started
 
 To get started with the .NET Aspire Community Toolkit Node.js hosting extensions, install the [Aspire.CommunityToolkit.Hosting.NodeJS.Extensions](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.Hosting.NodeJS.Extensions) NuGet package in the AppHost project.
 
@@ -34,7 +34,7 @@ dotnet add package Aspire.CommunityToolkit.Hosting.NodeJS.Extensions
 
 ---
 
-## Example Usage
+## Example usage
 
 ### Running with a specific package manager
 

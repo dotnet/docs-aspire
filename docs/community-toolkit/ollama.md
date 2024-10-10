@@ -11,7 +11,7 @@ ms.date: 10/11/2024
 
 In this article, you'll learn how to use the .NET Aspire Ollama hosting integration to host [Ollama](https://ollama.com) models using the Ollama container and accessing it via the [OllamaSharp](https://www.nuget.org/packages/OllamaSharp) client.
 
-## Getting Started
+## Get started
 
 To get started with the .NET Aspire OllamaSharp integration, install the [Aspire.CommunityToolkit.OllamaSharp](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.OllamaSharp) NuGet package in the client-consuming project, i.e., the project for the application that uses the Ollama client.
 
@@ -77,14 +77,14 @@ var ollama = builder.AddOllama("ollama")
                     .AddModel("llama3");
 ```
 
-### Downloading the LLM
+### Download the LLM
 
 When the Ollama container for this integration first spins up, this integration will download the LLM(s). The progress of this download will be displayed in the State column for this integration on the Aspire orchestration app.
 
 > [!IMPORTANT]
 > Keep the .NET Aspire orchestration app open until the download is complete, otherwise the download will be cancelled.
 
-### Caching the LLM
+### Cache the LLM
 
 The LLM(s) will be downloaded into the container which Ollama is running from, and by default this container is ephemeral. If you need to persist the LLM(s) across container restarts, you will need to mount a volume into the container using the `AddDataVolume` method.
 
@@ -94,7 +94,7 @@ var ollama = builder.AddOllama("ollama")
                     .AddDataVolume();
 ```
 
-## Accessing the Ollama server in other services
+## Access the Ollama server in other services
 
 The Ollama hosting integration exposes the endpoint of the Ollama server as a connection string that can be accessed from other services in the application.
 
