@@ -27,7 +27,7 @@ dotnet add package Aspire.Milvus.Client
 
 ```xml
 <PackageReference Include="Aspire.Milvus.Client"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -56,7 +56,7 @@ dotnet add package Aspire.Hosting.Milvus
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Milvus"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

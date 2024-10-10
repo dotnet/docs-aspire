@@ -1,9 +1,8 @@
 ---
 title: .NET Aspire RabbitMQ integration
 description: Learn how to use the .NET Aspire RabbitMQ message-broker integration, which includes both hosting and client integrations.
-ms.topic: how-to
 ms.date: 10/09/2024
-uid: rabbitmq-integration
+uid: messaging/rabbitmq-integration
 ---
 
 # .NET Aspire RabbitMQ integration
@@ -18,7 +17,7 @@ TODO: Diagram showing the thing we're integrating with and the components of the
 
 ## Hosting integration
 
-The RabbitMQ hosting integration models a RabbitMQ server as the <xref:Aspire.Hosting.ApplicationModel.RabbitMQServerResource> type. To access this type and APIs that allow you to add it to your app host, install the [📦 Aspire.Hosting.RabbitMQ](https://www.nuget.org/packages/Aspire.Hosting.RabbitMQ) NuGet package in the [app host](xref:aspire/app-host) project.
+The RabbitMQ hosting integration models a RabbitMQ server as the <xref:Aspire.Hosting.ApplicationModel.RabbitMQServerResource> type. To access this type and APIs that allow you to add it to your [app model](xref:aspire/app-host#define-the-app-model), install the [📦 Aspire.Hosting.RabbitMQ](https://www.nuget.org/packages/Aspire.Hosting.RabbitMQ) NuGet package in the [app host](xref:aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -30,7 +29,7 @@ dotnet add package Aspire.Hosting.RabbitMQ
 
 ```xml
 <PackageReference Include="Aspire.Hosting.RabbitMQ"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -159,7 +158,7 @@ dotnet add package Aspire.RabbitMQ.Client
 
 ```xml
 <PackageReference Include="Aspire.RabbitMQ.Client"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

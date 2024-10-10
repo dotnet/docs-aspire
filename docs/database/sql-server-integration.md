@@ -33,7 +33,7 @@ dotnet add package Aspire.Microsoft.Data.SqlClient
 
 ```xml
 <PackageReference Include="Aspire.Microsoft.Data.SqlClient"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

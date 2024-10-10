@@ -36,7 +36,7 @@ dotnet add package Aspire.Azure.Messaging.EventHubs
 
 ```xml
 <PackageReference Include="Aspire.Azure.Messaging.EventHubs"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -92,7 +92,7 @@ dotnet add package Aspire.Hosting.Azure.EventHubs
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Azure.EventHubs"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

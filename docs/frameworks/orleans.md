@@ -33,7 +33,7 @@ dotnet add package Aspire.Hosting.Orleans
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Orleans"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

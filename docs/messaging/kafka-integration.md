@@ -1,9 +1,8 @@
 ---
 title: .NET Aspire Apache Kafka integration
 description: Learn how to use the .NET Aspire Apache Kafka client message-broker integration.
-ms.topic: how-to
 ms.date: 10/09/2024
-uid: kafka-integration
+uid: messaging/kafka-integration
 ---
 
 # .NET Aspire Apache Kafka integration
@@ -14,7 +13,7 @@ uid: kafka-integration
 
 ## Hosting integration
 
-The Apache Kafka integration models a Kafka server as the <xref:Aspire.Hosting.KafkaServerResource> type. To access this type and APIs that allow you to add it your app host, install the [📦 Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka) NuGet package in the [app host](xref:aspire/app-host) project.
+The Apache Kafka hosting integration models a Kafka server as the <xref:Aspire.Hosting.KafkaServerResource> type. To access this type, install the [📦 Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka) NuGet package in the [app host](xref:aspire/app-host) project, then add it with the builder.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -26,7 +25,7 @@ dotnet add package Aspire.Hosting.Kafka
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Kafka"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -150,7 +149,7 @@ dotnet add package Aspire.Confluent.Kafka
 
 ```xml
 <PackageReference Include="Aspire.Confluent.Kafka"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -226,7 +225,7 @@ The connection string value is set to the `BootstrapServers`  property of the pr
 
 ### Use configuration providers
 
-The .NET Aspire Apache Kafka integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Confluent.Kafka.KafkaProducerSettings> or <xref:Aspire.Confluent.Kafka.KafkaConsumerSettings> from configuration by respectively using the `Aspire:Confluent:Kafka:Producer` and `Aspire.Confluent:Kafka:Consumer` keys. This example _:::no-loc text="appsettings.json":::_ configures some of the options:
+The .NET Aspire Apache Kafka integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Confluent.Kafka.KafkaProducerSettings> or <xref:Aspire.Confluent.Kafka.KafkaConsumerSettings> from configuration by respectively using the `Aspire:Confluent:Kafka:Producer` and `Aspire.Confluent:Kafka:Consumer` keys. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {

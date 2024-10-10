@@ -23,7 +23,7 @@ dotnet add package Aspire.Qdrant.Client
 
 ```xml
 <PackageReference Include="Aspire.Qdrant.Client"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -61,7 +61,7 @@ dotnet add package Aspire.Hosting.Qdrant
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Qdrant"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

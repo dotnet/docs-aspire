@@ -31,7 +31,7 @@ dotnet add package Aspire.Azure.Data.Tables
 
 ```xml
 <PackageReference Include="Aspire.Azure.Data.Tables"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -69,7 +69,7 @@ dotnet add package Aspire.Hosting.Azure.Storage
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Azure.Storage"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

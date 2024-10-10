@@ -22,7 +22,7 @@ dotnet add package Aspire.Oracle.EntityFrameworkCore
 
 ```xml
 <PackageReference Include="Aspire.Oracle.EntityFrameworkCore"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -71,7 +71,7 @@ dotnet add package Aspire.Hosting.Oracle
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Oracle"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

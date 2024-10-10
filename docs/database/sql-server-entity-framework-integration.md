@@ -32,7 +32,7 @@ dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer
 
 ```xml
 <PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

@@ -1,8 +1,8 @@
 ---
 title: .NET Aspire NATS integration
 description: Learn how to use the .NET Aspire NATS integration to send logs and traces to a NATS Server.
-ms.topic: how-to
 ms.date: 10/09/2024
+uid: messaging/nats-integration
 ---
 
 # .NET Aspire NATS integration
@@ -25,7 +25,7 @@ dotnet add package Aspire.Hosting.Nats
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Nats"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -130,7 +130,7 @@ dotnet add package Aspire.NATS.Net
 
 ```xml
 <PackageReference Include="Aspire.NATS.Net"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -205,7 +205,7 @@ See the [ConnectionString documentation](https://docs.nats.io/using-nats/develop
 
 ### Use configuration providers
 
-The .NET Aspire NATS integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.NATS.Net.NatsClientSettings> from configuration by using the `Aspire:Nats:Client` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
+The .NET Aspire NATS integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.NATS.Net.NatsClientSettings> from configuration by using the `Aspire:Nats:Client` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
@@ -235,7 +235,7 @@ builder.AddNatsClient(
 
 ### NATS in the .NET Aspire manifest
 
-NATS isn't part of the .NET Aspire deployment manifest. It's recommended you set up a secure production NATS server outside of .NET Aspire.
+NATS isn't part of the .NET Aspire [deployment manifest](../deployment/manifest-format.md). It's recommended you set up a secure production NATS server outside of .NET Aspire.
 
 [!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
 

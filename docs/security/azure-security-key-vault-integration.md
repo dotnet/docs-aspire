@@ -23,7 +23,7 @@ dotnet add package Aspire.Azure.Security.KeyVault
 
 ```xml
 <PackageReference Include="Aspire.Azure.Security.KeyVault"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -83,7 +83,7 @@ dotnet add package Aspire.Hosting.Azure.KeyVault
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Azure.KeyVault"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

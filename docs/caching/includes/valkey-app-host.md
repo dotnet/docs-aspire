@@ -10,7 +10,7 @@ dotnet add package Aspire.Hosting.Valkey
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Valkey"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

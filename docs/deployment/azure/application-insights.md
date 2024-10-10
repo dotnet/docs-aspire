@@ -120,7 +120,7 @@ Add the following package to the `ServiceDefaults` project, so that it will be i
 
 ``` xml
 <PackageReference Include="Azure.Monitor.OpenTelemetry.AspNetCore" 
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 Add a using statement to the top of the project.
