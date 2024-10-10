@@ -1,11 +1,12 @@
 ---
 title: Node.js hosting extensions
-author: aaronpowell
-description: Extensions on the .NET Aspire hosting for Node.js applications to support alternative package managers.
+description: Learn about the .NET Aspire Community Toolkit Node.js hosting extensions package which provides additional functionality to the .NET Aspire NodeJS hosting package.
 ms.date: 10/11/2024
 ---
 
 # .NET Aspire Community Toolkit Node.js hosting extensions
+
+[!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
@@ -15,9 +16,9 @@ In this article, you'll learn about the .NET Aspire Community Toolkit Node.js ho
 - Running Node.js applications using [Yarn](https://yarnpkg.com/) and [pnpm](https://pnpm.io/)
 - Ensuring that the packages are installed before running the application (using the specified package manager)
 
-## Get started
+## Hosting integration
 
-To get started with the .NET Aspire Community Toolkit Node.js hosting extensions, install the [Aspire.CommunityToolkit.Hosting.NodeJS.Extensions](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.Hosting.NodeJS.Extensions) NuGet package in the AppHost project.
+To get started with the .NET Aspire Community Toolkit Node.js hosting extensions, install the [📦 Aspire.CommunityToolkit.Hosting.NodeJS.Extensions](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.Hosting.NodeJS.Extensions) NuGet package in the AppHost project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -34,9 +35,13 @@ dotnet add package Aspire.CommunityToolkit.Hosting.NodeJS.Extensions
 
 ---
 
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+
 ## Example usage
 
-### Running with a specific package manager
+The following sections details various usages, from running Vite applications to using specific package managers.
+
+### Run specific package managers
 
 This integration extension adds support for running Node.js applications using Yarn or pnpm as the package manager.
 
@@ -46,7 +51,7 @@ This integration extension adds support for running Node.js applications using Y
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddYarnApp("yarn-demo")
-    .WithExternalHttpEndpoints();
+       .WithExternalHttpEndpoints();
 ```
 
 # [pnpm](#tab/pnpm)
@@ -55,12 +60,12 @@ builder.AddYarnApp("yarn-demo")
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddPnpmApp("pnpm-demo")
-    .WithExternalHttpEndpoints();
+       .WithExternalHttpEndpoints();
 ```
 
 ---
 
-### Running Vite applications
+### Run Vite apps
 
 This integration extension adds support for running the development server for Vite applications. By default, it will use the `npm` package manager to launch, but this can be overridden with the `packageManager` argument.
 
@@ -68,13 +73,13 @@ This integration extension adds support for running the development server for V
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddViteApp("vite-demo")
-    .WithExternalHttpEndpoints();
+       .WithExternalHttpEndpoints();
 
 builder.AddViteApp("yarn-demo", packageManager: "yarn")
-    .WithExternalHttpEndpoints();
+       .WithExternalHttpEndpoints();
 
 builder.AddViteApp("pnpm-demo", packageManager: "pnpm")
-    .WithExternalHttpEndpoints();
+       .WithExternalHttpEndpoints();
 
 builder.Build().Run();
 ```
