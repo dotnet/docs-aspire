@@ -111,7 +111,7 @@ The data volume is used to persist the Kafka server data outside the lifecycle o
 
 ### Add Kafka server resource with data bind mount
 
-To add a data bind mount to the Kafka server resource, call the <xref:Aspire.Hosting.KafkaBuilderExtensions.WithDataBindMount*>
+To add a data bind mount to the Kafka server resource, call the <xref:Aspire.Hosting.KafkaBuilderExtensions.WithDataBindMount*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -126,6 +126,8 @@ builder.AddProject<Projects.ExampleProject>()
 
 // After adding all resources, run the app...
 ```
+
+[!INCLUDE [data-bind-mount-vs-volumes](../includes/data-bind-mount-vs-volumes.md)]
 
 Data bind mounts rely on the host machine's filesystem to persist the Kafka server data across container restarts. The data bind mount is mounted at the `/Kafka/Data` path in the Kafka server container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
 

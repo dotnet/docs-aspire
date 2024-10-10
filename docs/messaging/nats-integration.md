@@ -108,6 +108,8 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
+[!INCLUDE [data-bind-mount-vs-volumes](../includes/data-bind-mount-vs-volumes.md)]
+
 Data bind mounts rely on the host machine's filesystem to persist the NATS server data across container restarts. The data bind mount is mounted at the `/NATS/Data` path in the NATS server container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
 
 ### Hosting integration health checks
