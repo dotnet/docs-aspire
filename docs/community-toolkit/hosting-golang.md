@@ -25,7 +25,7 @@ dotnet add package Aspire.CommunityToolkit.Hosting.Golang
 
 ```xml
 <PackageReference Include="Aspire.CommunityToolkit.Hosting.Golang"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

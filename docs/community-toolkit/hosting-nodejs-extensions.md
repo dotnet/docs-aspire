@@ -29,7 +29,7 @@ dotnet add package Aspire.CommunityToolkit.Hosting.NodeJS.Extensions
 
 ```xml
 <PackageReference Include="Aspire.CommunityToolkit.Hosting.NodeJS.Extensions"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

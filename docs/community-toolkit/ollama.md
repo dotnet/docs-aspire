@@ -63,7 +63,7 @@ dotnet add package Aspire.CommunityToolkit.Hosting.Ollama
 
 ```xml
 <PackageReference Include="Aspire.CommunityToolkit.Hosting.Ollama"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

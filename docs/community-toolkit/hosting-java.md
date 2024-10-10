@@ -50,7 +50,7 @@ dotnet add package Aspire.CommunityToolkit.Hosting.Java
 
 ```xml
 <PackageReference Include="Aspire.CommunityToolkit.Hosting.Java"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

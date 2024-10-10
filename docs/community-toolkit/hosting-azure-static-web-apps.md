@@ -27,7 +27,7 @@ dotnet add package Aspire.CommunityToolkit.Hosting.Azure.StaticWebApps
 
 ```xml
 <PackageReference Include="Aspire.CommunityToolkit.Hosting.Azure.StaticWebApps"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
