@@ -11,15 +11,9 @@ ms.date: 10/11/2024
 
 In this article, you'll learn how to use the .NET Aspire [Azure Static Web Apps emulator](/azure/static-web-apps/local-development) integration to run Azure Static Web Apps locally using the emulator. The emulator provides support for proxying both the static frontend and the API backend using resources defined in the app host.
 
-> [!IMPORTANT]
-> The .NET Aspire Azure Static Web Apps emulator integration doesn't support deployment to Azure Static Web Apps.
-
 ## Getting Started
 
-> [!NOTE]
-> This integration requires the Azure Static Web Apps CLI. Be sure to follow the [Getting Started guide](/azure/static-web-apps/local-development#get-started) to ensure it is available on your machine.
-
-To get started with the .NET Aspire Azure Static Web Apps emulator integration, install the [Aspire.CommunityToolkit.Hosting.Azure.StaticWebApps](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.Hosting.Azure.StaticWebApps) NuGet package in the AppHost project.
+To get started with the .NET Aspire Azure Static Web Apps emulator integration, install the [Aspire.CommunityToolkit.Hosting.Azure.StaticWebApps](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.Hosting.Azure.StaticWebApps) NuGet package in the AppHost project. You'll also need the Azure Static Web Apps CLI, be sure to follow the [Getting Started guide](/azure/static-web-apps/local-development#get-started) for it.
 
 [!INCLUDE [github-packages](includes/github-packages.md)]
 

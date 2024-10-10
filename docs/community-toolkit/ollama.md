@@ -15,8 +15,6 @@ In this article, you'll learn how to use the .NET Aspire Ollama hosting integrat
 
 To get started with the .NET Aspire OllamaSharp integration, install the [Aspire.CommunityToolkit.OllamaSharp](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.OllamaSharp) NuGet package in the client-consuming project, i.e., the project for the application that uses the Ollama client.
 
-[!INCLUDE [github-packages](includes/github-packages.md)]
-
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli

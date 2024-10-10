@@ -38,12 +38,7 @@ Invoke-WebRequest `
 
 ## Getting Started
 
-> [!NOTE]
-> This integration requires your Java/Spring application to be compiled and built through Maven, Gradle or any other build tool that generates a JAR file.
-
 To get started with the .NET Aspire Azure Static Web Apps emulator integration, install the [Aspire.CommunityToolkit.Hosting.Java](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.Hosting.Java) NuGet package in the AppHost project.
-
-[!INCLUDE [github-packages](includes/github-packages.md)]
 
 ### [.NET CLI](#tab/dotnet-cli)
 
