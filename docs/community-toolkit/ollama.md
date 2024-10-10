@@ -53,8 +53,6 @@ public class ExampleService(IOllamaClientApi ollama)
 
 To model the Ollama server, install the [Aspire.CommunityToolkit.Hosting.Ollama](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.Hosting.Ollama) NuGet package in the [app host](xref:aspire/app-host) project.
 
-[!INCLUDE [github-packages](includes/github-packages.md)]
-
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
