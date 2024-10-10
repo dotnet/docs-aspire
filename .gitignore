@@ -1,3 +1,5 @@
+syntax: glob
+
 # Python virtual environments
 .venv
 
@@ -60,3 +62,5 @@ docs/csharp/language-reference/xmldoc/snippets/xmldoc/xmldoc.xml
 
 BenchmarkDotNet.Artifacts
 *.pfx
+
+node_modules/
