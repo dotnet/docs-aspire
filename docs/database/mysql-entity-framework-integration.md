@@ -22,7 +22,7 @@ dotnet add package Aspire.Pomelo.EntityFrameworkCore.MySql
 
 ```xml
 <PackageReference Include="Aspire.Pomelo.EntityFrameworkCore.MySql"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

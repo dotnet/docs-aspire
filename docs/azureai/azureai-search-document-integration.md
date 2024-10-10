@@ -28,7 +28,7 @@ dotnet add package Aspire.Azure.Search.Documents
 
 ```xml
 <PackageReference Include="Aspire.Azure.Search.Documents"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -87,7 +87,7 @@ dotnet add package Aspire.Hosting.Azure.Search
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Azure.Search"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

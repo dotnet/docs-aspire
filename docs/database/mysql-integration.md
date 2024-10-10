@@ -31,7 +31,7 @@ dotnet add package Aspire.MySqlConnector
 
 ```xml
 <PackageReference Include="Aspire.MySqlConnector"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

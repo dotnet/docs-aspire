@@ -12,7 +12,7 @@ dotnet add package Aspire.Hosting.Azure.PostgreSQL
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Azure.PostgreSQL"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

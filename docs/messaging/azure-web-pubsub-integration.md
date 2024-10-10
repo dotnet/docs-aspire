@@ -28,7 +28,7 @@ dotnet add package Aspire.Azure.Messaging.WebPubSub
 
 ```xml
 <PackageReference Include="Aspire.Azure.Messaging.WebPubSub"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -68,7 +68,7 @@ dotnet add package Aspire.Hosting.Azure.WebPubSub
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Azure.WebPubSub"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

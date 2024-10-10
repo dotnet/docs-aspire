@@ -87,7 +87,7 @@ Welcome to what's new in the .NET Aspire docs for July 2024. This article lists 
 - [.NET Aspire NATS integration](../messaging/nats-integration.md)
   - Fix nats link
   - Explicitly define each target project install for NuGet
-- [.NET Aspire RabbitMQ integration](../messaging/rabbitmq-client-integration.md) - Explicitly define each target project install for NuGet
+- [.NET Aspire RabbitMQ integration](../messaging/rabbitmq-integration.md) - Explicitly define each target project install for NuGet
 
 ## Caching
 

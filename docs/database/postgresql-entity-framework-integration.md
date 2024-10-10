@@ -36,7 +36,7 @@ dotnet add package Aspire.Npgsql.EntityFrameworkCore.PostgreSQL
 
 ```xml
 <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

@@ -23,7 +23,7 @@ dotnet add package Aspire.Seq
 
 ```xml
 <PackageReference Include="Aspire.Seq"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -54,7 +54,7 @@ dotnet add package Aspire.Hosting.Seq
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Seq"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

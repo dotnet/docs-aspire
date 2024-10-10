@@ -32,7 +32,7 @@ dotnet add package Aspire.MongoDB.Driver
 
 ```xml
 <PackageReference Include="Aspire.MongoDB.Driver"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -72,7 +72,7 @@ dotnet add package Aspire.Hosting.MongoDB
 
 ```xml
 <PackageReference Include="Aspire.Hosting.MongoDB"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

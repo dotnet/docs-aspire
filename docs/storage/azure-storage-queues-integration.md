@@ -23,7 +23,7 @@ dotnet add package Aspire.Azure.Storage.Queues
 
 ```xml
 <PackageReference Include="Aspire.Azure.Storage.Queues"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -61,7 +61,7 @@ dotnet add package Aspire.Hosting.Azure.Storage
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Azure.Storage"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
