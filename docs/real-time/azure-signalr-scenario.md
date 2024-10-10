@@ -27,7 +27,7 @@ dotnet add package Microsoft.Azure.SignalR
 
 ```xml
 <PackageReference Include="Microsoft.Azure.SignalR"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

@@ -28,7 +28,7 @@ dotnet add package Aspire.Elastic.Clients.Elasticsearch
 
 ```xml
 <PackageReference Include="Aspire.Elastic.Clients.Elasticsearch"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -57,7 +57,7 @@ dotnet add package Aspire.Hosting.Elasticsearch
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Elasticsearch"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

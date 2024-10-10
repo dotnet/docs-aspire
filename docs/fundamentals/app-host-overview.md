@@ -105,7 +105,7 @@ The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExte
 
 ### Express container resources
 
-To express a container resource, use the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> method:
+To express a <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, use the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> method:
 
 #### [Docker](#tab/docker)
 
@@ -140,6 +140,15 @@ For more information, see [GPU support in Podman](https://github.com/containers/
 ---
 
 The preceding code adds a container resource named "ollama" with the image "ollama/ollama". The container resource is configured with multiple bind mounts, a named HTTP endpoint, an entrypoint that resolves to Unix shell script, and container run arguments with the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithContainerRuntimeArgs%2A> method.
+
+#### Container resource lifecycle
+
+When the app host is run, the container resource is used to determine what container image to create and start. Under the hood, .NET Aspire runs the container using the defined container image by delegating calls to the appropriate OCI-compliant container runtime, either Docker or Podman. The following commands are used:
+
+- `docker/podman container create`: Create the container.
+- `docker/podman container start`: Start the container.
+
+These commands are used instead of `docker/podman run` to manage attached container networks, volumes, and ports. Calling these commands in this order allows any IP (network configuration) to already be present at initial startup.
 
 Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectResource>, <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, and <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, .NET Aspire provides extension methods to add common resources to your app model. For more information, see [Hosting integrations](integrations-overview.md#hosting-integrations).
 

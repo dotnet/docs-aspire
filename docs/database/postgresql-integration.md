@@ -22,7 +22,7 @@ dotnet add package Aspire.Npgsql
 ### [PackageReference](#tab/package-reference)
 
 ```xml
-<PackageReference Include="Aspire.Npgsql" Version="[SelectVersion]" />
+<PackageReference Include="Aspire.Npgsql" Version="*" />
 ```
 
 ---

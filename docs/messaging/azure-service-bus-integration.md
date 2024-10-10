@@ -31,7 +31,7 @@ dotnet add package Aspire.Azure.Messaging.ServiceBus
 
 ```xml
 <PackageReference Include="Aspire.Azure.Messaging.ServiceBus"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---
@@ -69,7 +69,7 @@ dotnet add package Aspire.Hosting.Azure.ServiceBus
 
 ```xml
 <PackageReference Include="Aspire.Hosting.Azure.ServiceBus"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

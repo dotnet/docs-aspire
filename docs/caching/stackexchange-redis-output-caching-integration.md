@@ -24,7 +24,7 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching
 
 ```xml
 <PackageReference Include="Aspire.StackExchange.Redis.OutputCache"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

@@ -10,7 +10,7 @@ dotnet add package Aspire.Hosting.SqlServer
 
 ```xml
 <PackageReference Include="Aspire.Hosting.SqlServer"
-                  Version="[SelectVersion]" />
+                  Version="*" />
 ```
 
 ---

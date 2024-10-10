@@ -55,7 +55,7 @@ Visual Studio creates a new .NET Aspire solution that consists of the following 
 
     ```xml
     <PackageReference Include="Aspire.Hosting.Redis"
-                      Version="[SelectVersion]" />
+                      Version="*" />
     ```
 
     ---
