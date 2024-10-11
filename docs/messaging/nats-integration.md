@@ -239,13 +239,17 @@ builder.AddNatsClient(
 
 NATS isn't part of the .NET Aspire [deployment manifest](../deployment/manifest-format.md). It's recommended you set up a secure production NATS server outside of .NET Aspire.
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+### Client integration health checks
+
+By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
 
 The .NET Aspire NATS integration handles the following:
 
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
-[!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
+### Observability and telemetry
+
+.NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations may only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
 
 ### Logging
 

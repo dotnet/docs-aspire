@@ -290,7 +290,9 @@ builder.AddKafkaProducer<string, MyMessage>(
 
 For more information, see [`ProducerBuilder<TKey, TValue>`](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.ProducerBuilder-2.html) and [`ConsumerBuilder<TKey, TValue>`](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.ConsumerBuilder-2.html) API documentation.
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+### Client integration health checks
+
+By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
 
 The .NET Aspire Apache Kafka integration handles the following health check scenarios:
 
@@ -298,21 +300,23 @@ The .NET Aspire Apache Kafka integration handles the following health check scen
 - Adds the `Aspire.Confluent.Kafka.Consumer` health check when <xref:Aspire.Confluent.Kafka.KafkaConsumerSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
-[!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
+### Observability and telemetry
 
-### Logging
+.NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations may only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
+
+#### Logging
 
 The .NET Aspire Apache Kafka integration uses the following log categories:
 
 - `Aspire.Confluent.Kafka`
 
-### Tracing
+#### Tracing
 
 The .NET Aspire Apache Kafka integration emits the following tracing activities using OpenTelemetry:
 
 - `Aspire.Confluent.Kafka`
 
-### Metrics
+#### Metrics
 
 The .NET Aspire Apache Kafka integration emits the following metrics using OpenTelemetry:
 
