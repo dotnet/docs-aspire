@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Apache Kafka integration
 description: Learn how to use the .NET Aspire Apache Kafka client message-broker integration.
-ms.date: 10/09/2024
+ms.date: 10/11/2024
 uid: messaging/kafka-integration
 ---
 
@@ -118,7 +118,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var kafka = builder.AddKafka("kafka")
                    .WithDataBindMount(
-                       source: "/Kafka/Data",
+                       source: @"C:\Kafka\Data",
                        isReadOnly: false);
 
 builder.AddProject<Projects.ExampleProject>()
@@ -129,7 +129,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 [!INCLUDE [data-bind-mount-vs-volumes](../includes/data-bind-mount-vs-volumes.md)]
 
-Data bind mounts rely on the host machine's filesystem to persist the Kafka server data across container restarts. The data bind mount is mounted at the `/Kafka/Data` path in the Kafka server container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
+Data bind mounts rely on the host machine's filesystem to persist the Kafka server data across container restarts. The data bind mount is mounted at the `C:\Kafka\Data` on Windows (or `/Kafka/Data` on Unix) path on the host machine in the Kafka server container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
 
 ### Hosting integration health checks
 
