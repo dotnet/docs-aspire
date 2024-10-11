@@ -1,7 +1,7 @@
 ---
 title: Enable browser telemetry
 description: Learn how to enable browser telemetry in the .NET Aspire dashboard.
-ms.date: 10/03/2024
+ms.date: 10/11/2024
 ---
 
 # Enable browser telemetry
@@ -35,7 +35,9 @@ The preceding launch settings JSON file configures all profiles to include the `
 
 If the dashboard is used standalone, without the rest of .NET Aspire, the OTLP HTTP endpoint is enabled by default on port `18890`. However, the port must be mapped when the dashboard container is started:
 
-```
+### [Bash](#tab/bash)
+
+```bash
 docker run --rm -it \
     -p 18888:18888 \
     -p 4317:18889 \
@@ -43,6 +45,19 @@ docker run --rm -it \
     --name aspire-dashboard \
     mcr.microsoft.com/dotnet/aspire-dashboard:8.1.0
 ```
+
+### [PowerShell](#tab/powershell)
+
+```powershell
+docker run --rm -it `
+    -p 18888:18888 `
+    -p 4317:18889 `
+    -p 4318:18890 -d `
+    --name aspire-dashboard `
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.1.0
+```
+
+---
 
 The preceding command runs the dashboard container and maps gRPC OTLP to port `4317` and HTTP OTLP to port `4318`.
 
@@ -54,7 +69,9 @@ If the dashboard and your app are started by the app host, no CORS configuration
 
 If the dashboard is used standlone then CORS must be configured manually. The domain used to view the browser app must be configured as an allowed origin by specifing the `DASHBOARD__OTLP__CORS__ALLOWEDORIGINS` environment variable when the dashboard container is started:
 
-```
+### [Bash](#tab/bash)
+
+```bash
 docker run --rm -it \
     -p 18888:18888 \
     -p 4317:18889 \
@@ -63,6 +80,20 @@ docker run --rm -it \
     --name aspire-dashboard \
     mcr.microsoft.com/dotnet/aspire-dashboard:8.1.0
 ```
+
+### [PowerShell](#tab/powershell)
+
+```powershell
+docker run --rm -it `
+    -p 18888:18888 `
+    -p 4317:18889 `
+    -p 4318:18890 -d `
+    -e DASHBOARD__OTLP__CORS__ALLOWEDORIGINS=https://localhost:8080 `
+    --name aspire-dashboard `
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.1.0
+```
+
+---
 
 The preceding command runs the dashboard container and configures `https://localhost:8080` as an allowed origin. That means a browser app that is accessed using `https://localhost:8080` has permission to send the dashboard telemetry.
 
