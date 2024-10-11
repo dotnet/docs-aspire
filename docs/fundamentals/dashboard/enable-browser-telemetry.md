@@ -6,51 +6,97 @@ ms.date: 10/03/2024
 
 # Enable browser telemetry
 
-The .NET Aspire dashboard allows consumers to configure browser telemetry, which enables scenarios where telemetry data is sent directly to the dashboard from a browser. This feature is useful for monitoring client-side performance and user interactions. Browser telemetry is enabled by configuring the OpenTelemetry (OTEL) Protocol (OTLP) endpoint, headers, resource attributes, and browser metadata. This article explains how to enable browser telemetry in the .NET Aspire dashboard.
+The .NET Aspire dashboard can be configure to receive telemetry sent from browser apps. This feature is useful for monitoring client-side performance and user interactions. Browser telemetry requires additional configuration to setup. This article discusses how to enable browser telemetry in the .NET Aspire dashboard.
 
 In addition to [enabling CORS](configuration.md#otlp-cors), you also need the [JavaScript OTEL SDK](https://opentelemetry.io/docs/languages/js/getting-started/browser/) in your browser app.
 
 ## OTLP configuration
 
-To enable browser telemetry, you need to configure the OTLP endpoint. The dashboard supports both gRPC and HTTP endpoints. To configure the gPRC or HTTP endpoints, specify the following environment variables:
+The .NET Aspire dashboard receives telemetry through OTLP endpoints. [HTTP OTLP endpoints](https://opentelemetry.io/docs/specs/otlp/#otlphttp) and gRPC OTLP endpoints are supported by the dashboard. Browser apps must use HTTP OLTP to send telemetry to the dashboard because browser apps don't support gRPC.
+
+To configure the gPRC or HTTP endpoints, specify the following environment variables:
 
 - `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL`: The gRPC endpoint to which the dashboard connects for its data.
 - `DOTNET_DASHBOARD_OTLP_HTTP_ENDPOINT_URL`: The HTTP endpoint to which the dashboard connects for its data.
 
-While the dashboard supports both gRPC and HTTP endpoints simultaneously, resources are limited to one endpoint when set from environment variables. When both endpoints are set, the gRPC endpoint is used by default. If no endpoint is set, gRPC is used with the default value of `http://localhost:18889`.
+Configuration of the HTTP OTLP endpoint depends on whether the dashboard is started by the app host or is run standalone.
 
-The <xref:Aspire.Hosting.OtlpConfigurationExtensions.WithOtlpExporter``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0})> method is used to configure the OTLP exporter in the app host when adding various resources to the app model. This API is called on your behalf when adding project resources, Azure Functions resources, Node.js resources, and Python resources.
+### Configure OTLP HTTP with app host
 
-When the app host is in _run mode_, the OTLP exporter is configured:
+If the dashboard and your app are started by the app host, the dashboard OTLP endpoints are configured in the app host's _launchSettings.json_ file.
 
-- `OTEL_EXPORTER_OTLP_ENDPOINT` is assigned from the URL configured in the app host.
-- `OTEL_EXPORTER_OTLP_PROTOCOL` is assigned as `grpc` or `http/protobuf` based on the URL.
-
-For more information on run modes, see [.NET Aspire app host overview: Execution context](../app-host-overview.md#execution-context).
-
-### App host launch settings
-
-The OTLP endpoint environment variables can be specified in the _launchSettings.json_ file. Consider the following example JSON file:
+Consider the following example JSON file:
 
 :::code language="json" source="snippets/BrowserTelemetry/BrowserTelemetry.AppHost/Properties/launchSettings.json" highlight="12,25,40":::
 
 The preceding launch settings JSON file configures all profiles to include the `DOTNET_DASHBOARD_OTLP_HTTP_ENDPOINT_URL` environment variable.
 
-## OTLP API key header
+### Configure OTLP HTTP with standalone dashboard
 
-The OTLP API key `x-otlp-api-key` header is generated in the app host and is passed to apps as a standard OTEL attribute. The app host's configuration value for the `AppHost:OtlpApiKey` setting is used to generate the header value. All exporter headers are configured in the `OTEL_EXPORTER_OTLP_HEADERS` environment variable. Values are comma-delimited and formatted as `key=value`.
+If the dashboard is used standalone, without the rest of .NET Aspire, the OTLP HTTP endpoint is enabled by default on port `18890`. However, the port must be mapped when the dashboard container is started:
 
-The header is added to all telemetry data sent to the dashboard. This header needs to be specified within the browser app so that it can be sent to the dashboard.
+```
+docker run --rm -it \
+    -p 18888:18888 \
+    -p 4317:18889 \
+    -p 4318:18890 -d \
+    --name aspire-dashboard \
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.1.0
+```
 
-## Resource attributes
+The preceding command runs the dashboard container and maps gRPC OTLP to port `4317` and HTTP OTLP to port `4318`.
 
-Resource attributes identify the resource sending telemetry data. The app host manages the `OTEL_RESOURCE_ATTRIBUTES` environment variable, which is a comma-delimited string formatted as `key=value`. For example, `"service.instance.id=71d4a6j4g4"` specifies that a service instance with the given ID can report telemetry to the dashboard.
+## CORS configuration
 
-For more information, see [.NET Aspire dashboard configuration: Resources](configuration.md#resources).
+By default, browser apps are restricted from making cross domain API calls. This impacts sending telemetry to the dashboard because the dashboard and the browser app are always on different domains. Configuring CORS in the .NET Aspire dashboard removes the restriction.
 
-## Browser metadata
+If the dashboard and your app are started by the app host, no CORS configuration is required. .NET Aspire automatically configures the dashboard to allow all resource origins.
 
-The browser app must set the appropriate `meta` element in the HTML to specify the `name="traceparent"` that corresponds to the current trace. The `traceparent` is used to correlate telemetry data to the current trace. In a .NET app, for example, the trace parent value would likely be assigned from the <xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType> and passing its <xref:System.Diagnostics.Activity.Id?displayProperty=nameWithType> value as the `content`. For example, consider the following Razor code:
+If the dashboard is used standlone then CORS must be configured manually. The domain used to view the browser app must be configured as an allowed origin by specifing the `DASHBOARD__OTLP__CORS__ALLOWEDORIGINS` environment variable when the dashboard container is started:
+
+```
+docker run --rm -it \
+    -p 18888:18888 \
+    -p 4317:18889 \
+    -p 4318:18890 -d \
+    -e DASHBOARD__OTLP__CORS__ALLOWEDORIGINS=https://localhost:8080 \
+    --name aspire-dashboard \
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.1.0
+```
+
+The preceding command runs the dashboard container and configures `https://localhost:8080` as an allowed origin. That means a browser app that is accessed using `https://localhost:8080` has permission to send the dashboard telemetry.
+
+Multiple origins can be allowed with a comma separated value. Or all origins can be allowed with the `*` wildcard. For example, `DASHBOARD__OTLP__CORS__ALLOWEDORIGINS=*`.
+
+For more information, see [.NET Aspire dashboard configuration: OTLP CORS](configuration.md#otlp-cors).
+
+## OTLP endpoint security
+
+Dashboard OTLP endpoints can be secured with API key authentication. When enabled, HTTP OTLP requests to the dashboard must include the API key as the `x-otlp-api-key` header. By default a new  API key is generated each time the dashboard is run.
+
+API key authentication is automatically enabled when the dashboard is run from the app host. Dashboard authentication can be disabled by setting `DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` to `true` in the app host's _launchSettings.json_ file.
+
+OTLP endpoints are unsecured by default in the standalone dashboard.
+
+## Browser app configuration
+
+A browser app uses the [JavaScript OTEL SDK](https://opentelemetry.io/docs/languages/js/getting-started/browser/) to send telemetry to the dashboard. Successfully sending telemetry to the dashboard requires the SDK to be correctly configured.
+
+### OTLP exporter
+
+OTLP exporters must be included in the browser app and configured with the SDK. For example, exporting distributed tracing with OTLP uses the [@opentelemetry/exporter-trace-otlp-proto](https://www.npmjs.com/package/@opentelemetry/exporter-trace-otlp-proto) package.
+
+When OTLP is added to the SDK, OTLP options must be specified. OTLP options includes:
+
+- `url`: The address that HTTP OTLP requests are made to. The address should be the dashboard HTTP OTLP endpoint and the path to the OTLP HTTP API. For example, `https://localhost:4318/v1/traces` for the trace OTLP exporter. If the browser app is launched by the app host then the HTTP OTLP endpoint is available from the `OTEL_EXPORTER_OTLP_ENDPOINT` environment variable.
+
+- `headers`: The headers sent with requests. If OTLP endpoint API key authentication is enabled the `x-otlp-api-key` header must be sent with OTLP requests. If the browser app is launched by the app host then the API key is available from the `OTEL_EXPORTER_OTLP_HEADERS` environment variable.
+
+### Browser metadata
+
+When a browser app is configured to collect distributed traces, the browser app can set the trace parent a browser's spans using the `meta` element in the HTML. The value of the `name="traceparent"` meta element should correspond to the current trace.
+
+In a .NET app, for example, the trace parent value would likely be assigned from the <xref:System.Diagnostics.Activity.Current?displayProperty=nameWithType> and passing its <xref:System.Diagnostics.Activity.Id?displayProperty=nameWithType> value as the `content`. For example, consider the following Razor code:
 
 ```razor
 <head>
