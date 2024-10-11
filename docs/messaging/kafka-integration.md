@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Apache Kafka integration
 description: Learn how to use the .NET Aspire Apache Kafka client message-broker integration.
-ms.date: 10/09/2024
+ms.date: 10/11/2024
 uid: messaging/kafka-integration
 ---
 
@@ -118,7 +118,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var kafka = builder.AddKafka("kafka")
                    .WithDataBindMount(
-                       source: "/Kafka/Data",
+                       source: @"C:\Kafka\Data",
                        isReadOnly: false);
 
 builder.AddProject<Projects.ExampleProject>()
@@ -129,7 +129,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 [!INCLUDE [data-bind-mount-vs-volumes](../includes/data-bind-mount-vs-volumes.md)]
 
-Data bind mounts rely on the host machine's filesystem to persist the Kafka server data across container restarts. The data bind mount is mounted at the `/Kafka/Data` path in the Kafka server container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
+Data bind mounts rely on the host machine's filesystem to persist the Kafka server data across container restarts. The data bind mount is mounted at the `C:\Kafka\Data` on Windows (or `/Kafka/Data` on Unix) path on the host machine in the Kafka server container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
 
 ### Hosting integration health checks
 
@@ -201,11 +201,11 @@ There might be situations where you want to register multiple producer or consum
 
 For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
 
-## Configuration
+### Configuration
 
 The .NET Aspire Apache Kafka integration provides multiple options to configure the connection based on the requirements and conventions of your project.
 
-### Use a connection string
+#### Use a connection string
 
 When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddKafkaProducer()` or `builder.AddKafkaProducer()`:
 
@@ -225,7 +225,7 @@ Then the connection string is retrieved from the `ConnectionStrings` configurati
 
 The connection string value is set to the `BootstrapServers`  property of the produced `IProducer<TKey, TValue>` or `IConsumer<TKey, TValue>` instance. For more information, see [BootstrapServers](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.ClientConfig.html#Confluent_Kafka_ClientConfig_BootstrapServers).
 
-### Use configuration providers
+#### Use configuration providers
 
 The .NET Aspire Apache Kafka integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Confluent.Kafka.KafkaProducerSettings> or <xref:Aspire.Confluent.Kafka.KafkaConsumerSettings> from configuration by respectively using the `Aspire:Confluent:Kafka:Producer` and `Aspire.Confluent:Kafka:Consumer` keys. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
@@ -252,11 +252,11 @@ The `Config` properties of both  `Aspire:Confluent:Kafka:Producer` and `Aspire.C
 
 For the complete Kafka client integration JSON schema, see [Aspire.Confluent.Kafka/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v8.2.1/src/Components/Aspire.Confluent.Kafka/ConfigurationSchema.json).
 
-### Use inline delegates
+#### Use inline delegates
 
 There are several inline delegates available to configure various options.
 
-#### Configure`KafkaProducerSettings` and `KafkaConsumerSettings`
+##### Configure`KafkaProducerSettings` and `KafkaConsumerSettings`
 
 You can pass the `Action<KafkaProducerSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
 
@@ -274,7 +274,7 @@ builder.AddKafkaConsumer<string, string>(
     static settings => settings.DisableHealthChecks = true);
 ```
 
-#### Configure `ProducerBuilder<TKey, TValue>` and `ConsumerBuilder<TKey, TValue>`
+##### Configure `ProducerBuilder<TKey, TValue>` and `ConsumerBuilder<TKey, TValue>`
 
 To configure `Confluent.Kafka` builders, pass an `Action<ProducerBuilder<TKey, TValue>>` (or `Action<ConsumerBuilder<TKey, TValue>>`):
 
@@ -290,7 +290,9 @@ builder.AddKafkaProducer<string, MyMessage>(
 
 For more information, see [`ProducerBuilder<TKey, TValue>`](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.ProducerBuilder-2.html) and [`ConsumerBuilder<TKey, TValue>`](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.ConsumerBuilder-2.html) API documentation.
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+### Client integration health checks
+
+By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
 
 The .NET Aspire Apache Kafka integration handles the following health check scenarios:
 
@@ -298,21 +300,23 @@ The .NET Aspire Apache Kafka integration handles the following health check scen
 - Adds the `Aspire.Confluent.Kafka.Consumer` health check when <xref:Aspire.Confluent.Kafka.KafkaConsumerSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
-[!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
+### Observability and telemetry
 
-### Logging
+.NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations may only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
+
+#### Logging
 
 The .NET Aspire Apache Kafka integration uses the following log categories:
 
 - `Aspire.Confluent.Kafka`
 
-### Tracing
+#### Tracing
 
 The .NET Aspire Apache Kafka integration emits the following tracing activities using OpenTelemetry:
 
 - `Aspire.Confluent.Kafka`
 
-### Metrics
+#### Metrics
 
 The .NET Aspire Apache Kafka integration emits the following metrics using OpenTelemetry:
 

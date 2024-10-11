@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire NATS integration
 description: Learn how to use the .NET Aspire NATS integration to send logs and traces to a NATS Server.
-ms.date: 10/09/2024
+ms.date: 10/11/2024
 uid: messaging/nats-integration
 ---
 
@@ -99,7 +99,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var nats = builder.AddNats("nats");
                   .WithDataBindMount(
-                      source: "/NATS/Data",
+                      source: @"C:\NATS\Data",
                       isReadOnly: false);
 
 builder.AddProject<Projects.ExampleProject>()
@@ -110,7 +110,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 [!INCLUDE [data-bind-mount-vs-volumes](../includes/data-bind-mount-vs-volumes.md)]
 
-Data bind mounts rely on the host machine's filesystem to persist the NATS server data across container restarts. The data bind mount is mounted at the `/NATS/Data` path in the NATS server container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
+Data bind mounts rely on the host machine's filesystem to persist the NATS server data across container restarts. The data bind mount is mounted at the `C:\NATS\Data` on Windows (or `/NATS/Data` on Unix) path on the host machine in the NATS server container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
 
 ### Hosting integration health checks
 
@@ -181,11 +181,11 @@ public class ExampleService(
 
 For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
 
-## Configuration
+### Configuration
 
 The .NET Aspire NATS integration provides multiple options to configure the NATS connection based on the requirements and conventions of your project.
 
-### Use a connection string
+#### Use a connection string
 
 Provide the name of the connection string when you call `builder.AddNatsClient`:
 
@@ -205,7 +205,7 @@ The connection string is retrieved from the `ConnectionStrings` configuration se
 
 See the [ConnectionString documentation](https://docs.nats.io/using-nats/developer/connecting#nats-url) for more information on how to format this connection string.
 
-### Use configuration providers
+#### Use configuration providers
 
 The .NET Aspire NATS integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.NATS.Net.NatsClientSettings> from configuration by using the `Aspire:Nats:Client` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
@@ -225,7 +225,7 @@ The .NET Aspire NATS integration supports <xref:Microsoft.Extensions.Configurati
 
 For the complete NATS client integration JSON schema, see [Aspire.NATS.Net/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v8.2.1/src/Components/Aspire.NATS.Net/ConfigurationSchema.json).
 
-### Use inline delegates
+#### Use inline delegates
 
 Pass the `Action<NatsClientSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
 
@@ -239,13 +239,17 @@ builder.AddNatsClient(
 
 NATS isn't part of the .NET Aspire [deployment manifest](../deployment/manifest-format.md). It's recommended you set up a secure production NATS server outside of .NET Aspire.
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+### Client integration health checks
+
+By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
 
 The .NET Aspire NATS integration handles the following:
 
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
-[!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
+### Observability and telemetry
+
+.NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations may only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
 
 ### Logging
 
