@@ -181,11 +181,11 @@ public class ExampleService(
 
 For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
 
-## Configuration
+### Configuration
 
 The .NET Aspire NATS integration provides multiple options to configure the NATS connection based on the requirements and conventions of your project.
 
-### Use a connection string
+#### Use a connection string
 
 Provide the name of the connection string when you call `builder.AddNatsClient`:
 
@@ -205,7 +205,7 @@ The connection string is retrieved from the `ConnectionStrings` configuration se
 
 See the [ConnectionString documentation](https://docs.nats.io/using-nats/developer/connecting#nats-url) for more information on how to format this connection string.
 
-### Use configuration providers
+#### Use configuration providers
 
 The .NET Aspire NATS integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.NATS.Net.NatsClientSettings> from configuration by using the `Aspire:Nats:Client` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
@@ -225,7 +225,7 @@ The .NET Aspire NATS integration supports <xref:Microsoft.Extensions.Configurati
 
 For the complete NATS client integration JSON schema, see [Aspire.NATS.Net/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v8.2.1/src/Components/Aspire.NATS.Net/ConfigurationSchema.json).
 
-### Use inline delegates
+#### Use inline delegates
 
 Pass the `Action<NatsClientSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
 

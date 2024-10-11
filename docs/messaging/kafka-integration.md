@@ -201,11 +201,11 @@ There might be situations where you want to register multiple producer or consum
 
 For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
 
-## Configuration
+### Configuration
 
 The .NET Aspire Apache Kafka integration provides multiple options to configure the connection based on the requirements and conventions of your project.
 
-### Use a connection string
+#### Use a connection string
 
 When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddKafkaProducer()` or `builder.AddKafkaProducer()`:
 
@@ -225,7 +225,7 @@ Then the connection string is retrieved from the `ConnectionStrings` configurati
 
 The connection string value is set to the `BootstrapServers`  property of the produced `IProducer<TKey, TValue>` or `IConsumer<TKey, TValue>` instance. For more information, see [BootstrapServers](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.ClientConfig.html#Confluent_Kafka_ClientConfig_BootstrapServers).
 
-### Use configuration providers
+#### Use configuration providers
 
 The .NET Aspire Apache Kafka integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Confluent.Kafka.KafkaProducerSettings> or <xref:Aspire.Confluent.Kafka.KafkaConsumerSettings> from configuration by respectively using the `Aspire:Confluent:Kafka:Producer` and `Aspire.Confluent:Kafka:Consumer` keys. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
@@ -252,11 +252,11 @@ The `Config` properties of both  `Aspire:Confluent:Kafka:Producer` and `Aspire.C
 
 For the complete Kafka client integration JSON schema, see [Aspire.Confluent.Kafka/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v8.2.1/src/Components/Aspire.Confluent.Kafka/ConfigurationSchema.json).
 
-### Use inline delegates
+#### Use inline delegates
 
 There are several inline delegates available to configure various options.
 
-#### Configure`KafkaProducerSettings` and `KafkaConsumerSettings`
+##### Configure`KafkaProducerSettings` and `KafkaConsumerSettings`
 
 You can pass the `Action<KafkaProducerSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
 
@@ -274,7 +274,7 @@ builder.AddKafkaConsumer<string, string>(
     static settings => settings.DisableHealthChecks = true);
 ```
 
-#### Configure `ProducerBuilder<TKey, TValue>` and `ConsumerBuilder<TKey, TValue>`
+##### Configure `ProducerBuilder<TKey, TValue>` and `ConsumerBuilder<TKey, TValue>`
 
 To configure `Confluent.Kafka` builders, pass an `Action<ProducerBuilder<TKey, TValue>>` (or `Action<ConsumerBuilder<TKey, TValue>>`):
 
