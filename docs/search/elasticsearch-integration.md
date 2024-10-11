@@ -146,7 +146,7 @@ builder.AddElasticsearchClient(connectionName: "elasticsearch");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the RabbitMQ server resource in the app host project. For more information, see [Add Elasticsearch resource](#add-elasticsearch-resource).
+> The `connectionName` parameter must match the name used when adding the Elasticsearch resource in the app host project. For more information, see [Add Elasticsearch resource](#add-elasticsearch-resource).
 
 You can then retrieve the `ElasticsearchClient` instance using dependency injection. For example, to retrieve the connection from an example service:
 
@@ -157,7 +157,7 @@ public class ExampleService(ElasticsearchClient client)
 }
 ```
 
-### Add keyed RabbitMQ client
+### Add keyed Elasticsearch client
 
 There might be situations where you want to register multiple `ElasticsearchClient` instances with different connection names. To register keyed Elasticsearch clients, call the <xref:Microsoft.Extensions.Hosting.AspireElasticClientsElasticsearchExtensions.AddKeyedElasticsearchClient*>:
 
