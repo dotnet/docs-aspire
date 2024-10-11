@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard configuration
 description: .NET Aspire dashboard configuration options
-ms.date: 09/11/2024
+ms.date: 10/03/2024
 ms.topic: reference
 ---
 
@@ -108,11 +108,7 @@ API key authentication works by requiring each OTLP request to have a valid `x-o
 
 CORS (Cross-Origin Resource Sharing) can be configured to allow browser apps to send telemetry to the dashboard.
 
-By default, browser apps are restricted from making cross domain API calls. This impacts sending telemetry to the dashboard because the dashboard and the browser app are always on different domains. Configuring CORS in the .NET Aspire dashboard removes the restriction and allows browser apps with the [OpenTelemetry SDK for JavaScript](https://opentelemetry.io/docs/languages/js/) to send telemetry directly to the dashboard OTLP HTTP endpoint.
-
-Using CORS, the dashboard and browser telemetry together is demonstrated in the [browser telemetry](https://github.com/dotnet/aspire/tree/main/playground/BrowserTelemetry) sample.
-
-To configure CORS, use the `Dashboard:Otlp:Cors` section and specify the allowed origins and headers:
+By default, browser apps are restricted from making cross domain API calls. This impacts sending telemetry to the dashboard because the dashboard and the browser app are always on different domains. To configure CORS, use the `Dashboard:Otlp:Cors` section and specify the allowed origins and headers:
 
 ```json
 {

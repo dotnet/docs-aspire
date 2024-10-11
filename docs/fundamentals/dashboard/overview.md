@@ -1,15 +1,15 @@
 ---
 title: .NET Aspire dashboard overview
 description: Overview of .NET Aspire dashboard and getting started.
-ms.date: 05/30/2024
+ms.date: 10/03/2024
 ms.topic: reference
 ---
 
 # .NET Aspire dashboard overview
 
-[.NET Aspire](../../get-started/aspire-overview.md) project templates offer a sophisticated dashboard for comprehensive app monitoring and inspection. This dashboard allows you to closely track various aspects of your app, including logs, traces, and environment configurations, in real-time. It's purpose-built to enhance the local development experience, providing an insightful overview of your app's state and structure.
+[.NET Aspire](../../get-started/aspire-overview.md) project templates offer a sophisticated dashboard for comprehensive app monitoring and inspection, and it's also available in [standalone mode](#standalone-mode). This dashboard allows you to closely track various aspects of your app, including logs, traces, and environment configurations, in real-time. It's purpose-built to enhance the development experience, providing an insightful overview of your app's state and structure.
 
-## Using the dashboard with .NET Aspire projects
+## Use the dashboard with .NET Aspire projects
 
 The dashboard is integrated into the .NET Aspire **AppHost**. During development the dashboard is automatically launched when you start the project. It's configured to display the .NET Aspire project's resources and telemetry.
 
