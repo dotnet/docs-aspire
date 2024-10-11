@@ -104,12 +104,14 @@
       },
       "author": {
         "docs/**/*.*": "IEvangelist",
+        "docs/community-toolkit/**/*.*": "aaronpowell",
         "docs/database/**/*.*": "CamSoper",
         "docs/storage/**/*.*": "CamSoper",
         "docs/deployment/**/*.*": "CamSoper"
       },
       "ms.author": {
         "docs/**/*.*": "dapine",
+        "docs/community-toolkit/**/*.*": "aapowell",
         "docs/database/**/*.*": "casoper",
         "docs/storage/**/*.*": "casoper",
         "docs/deployment/**/*.*": "casoper"
