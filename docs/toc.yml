@@ -55,6 +55,9 @@ items:
             href: fundamentals/dashboard/standalone-for-python.md
       - name: Configuration
         href: fundamentals/dashboard/configuration.md
+      - name: Enable browser telemetry
+        displayName: otel,otlp,telemetry,grpc,opentelemetry,protobuf,traceparent
+        href: fundamentals/dashboard/enable-browser-telemetry.md
       - name: Security considerations
         href: fundamentals/dashboard/security-considerations.md
 

@@ -53,12 +53,12 @@ When the Ollama container for this integration first spins up, it downloads one 
 
 ### Cache the LLM
 
-One or more LLMs are downloaded into the container which Ollama is running from, and by default this container is ephemeral. If you need to persist one or more LLMs across container restarts, you need to mount a volume into the container using the `AddDataVolume` method.
+One or more LLMs are downloaded into the container which Ollama is running from, and by default this container is ephemeral. If you need to persist one or more LLMs across container restarts, you need to mount a volume into the container using the `WithDataVolume` method.
 
 ```csharp
 var ollama = builder.AddOllama("ollama")
                     .AddModel("llama3")
-                    .AddDataVolume();
+                    .WithDataVolume();
 ```
 
 ### Open WebUI support

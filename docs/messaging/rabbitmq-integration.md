@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire RabbitMQ integration
 description: Learn how to use the .NET Aspire RabbitMQ message-broker integration, which includes both hosting and client integrations.
-ms.date: 10/09/2024
+ms.date: 10/11/2024
 uid: messaging/rabbitmq-integration
 ---
 
@@ -103,7 +103,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var rabbitmq = builder.AddRabbitMQ("messaging")
                       .WithDataBindMount(
-                          source: "/RabbitMQ/Data",
+                          source: @"C:\RabbitMQ\Data",
                           isReadOnly: false);
 
 builder.AddProject<Projects.ExampleProject>()
@@ -114,7 +114,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 [!INCLUDE [data-bind-mount-vs-volumes](../includes/data-bind-mount-vs-volumes.md)]
 
-Data bind mounts rely on the host machine's filesystem to persist the RabbitMQ server data across container restarts. The data bind mount is mounted at the `/RabbitMQ/Data` path in the RabbitMQ server container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
+Data bind mounts rely on the host machine's filesystem to persist the RabbitMQ server data across container restarts. The data bind mount is mounted at the `C:\RabbitMQ\Data` on Windows (or `/RabbitMQ/Data` on Unix) path on the host machine in the RabbitMQ server container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
 
 ### Add RabbitMQ server resource with parameters
 
