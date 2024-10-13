@@ -288,6 +288,18 @@ builder.AddKafkaProducer<string, MyMessage>(
     })
 ```
 
+In case you need a service registered in the DI container, you can pass an `Action<IServiceProvider, ProducerBuilder<TKey, TValue>>` (or `Action<IServiceProvider, ConsumerBuilder<TKey, TValue>>`) too:
+
+```csharp
+builder.AddKafkaProducer<string, MyMessage>(
+    "messaging",
+    static (serviceProvider, producerBuilder) => 
+    {
+        var messageSerializer = serviceProvider.GetRequiredServices<MyMessageSerializer>();
+        producerBuilder.SetValueSerializer(messageSerializer);
+    })
+```
+
 For more information, see [`ProducerBuilder<TKey, TValue>`](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.ProducerBuilder-2.html) and [`ConsumerBuilder<TKey, TValue>`](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.ConsumerBuilder-2.html) API documentation.
 
 ### Client integration health checks
@@ -312,9 +324,7 @@ The .NET Aspire Apache Kafka integration uses the following log categories:
 
 #### Tracing
 
-The .NET Aspire Apache Kafka integration emits the following tracing activities using OpenTelemetry:
-
-- `Aspire.Confluent.Kafka`
+The .NET Aspire Apache Kafka integration dos not emit distributed traces.
 
 #### Metrics
 
