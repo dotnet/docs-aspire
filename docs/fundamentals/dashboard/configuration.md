@@ -26,7 +26,7 @@ docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
     -e DASHBOARD__TELEMETRYLIMITS__MAXLOGCOUNT='1000' \
     -e DASHBOARD__TELEMETRYLIMITS__MAXTRACECOUNT='1000' \
     -e DASHBOARD__TELEMETRYLIMITS__MAXMETRICSCOUNT='1000' \
-    mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.2
 ```
 
 ## [PowerShell](#tab/powershell)
@@ -36,7 +36,7 @@ docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard `
     -e DASHBOARD__TELEMETRYLIMITS__MAXLOGCOUNT='1000' `
     -e DASHBOARD__TELEMETRYLIMITS__MAXTRACECOUNT='1000' `
     -e DASHBOARD__TELEMETRYLIMITS__MAXMETRICSCOUNT='1000' `
-    mcr.microsoft.com/dotnet/aspire-dashboard:8.0.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.2
 ```
 
 ---
@@ -106,7 +106,7 @@ API key authentication works by requiring each OTLP request to have a valid `x-o
 
 ## OTLP CORS
 
-CORS (Cross-Origin Resource Sharing) can be configured to allow browser apps to send telemetry to the dashboard.
+Cross-origin resource sharing (CORS) can be configured to allow browser apps to send telemetry to the dashboard.
 
 By default, browser apps are restricted from making cross domain API calls. This impacts sending telemetry to the dashboard because the dashboard and the browser app are always on different domains. To configure CORS, use the `Dashboard:Otlp:Cors` section and specify the allowed origins and headers:
 
