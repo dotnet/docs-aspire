@@ -1,18 +1,53 @@
 ---
-title: .NET Aspire Stack Exchange Redis integration
-description: This article describes the .NET Aspire Stack Exchange Redis integration features and capabilities
-ms.topic: how-to
-ms.date: 08/12/2024
+title: .NET Aspire Redis integration
+description: Learn how to use the .NET Aspire Redis integration, which includes both hosting and client integrations.
+ms.date: 10/14/2024
 zone_pivot_groups: resp-host
 ---
 
-# .NET Aspire Stack Exchange Redis integration
+# .NET Aspire Redis integration
+
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
+
+:::zone pivot="redis"
+
+[!INCLUDE [redis-intro](includes/redis-intro.md)]
+
+:::zone-end
+:::zone pivot="garnet"
+
+[!INCLUDE [garnet-intro](includes/garnet-intro.md)]
+
+:::zone-end
+:::zone pivot="valkey"
+
+[!INCLUDE [valkey-intro](includes/valkey-intro.md)]
+
+:::zone-end
+
+## Hosting integration
+
+:::zone pivot="redis"
+
+[!INCLUDE [redis-app-host](includes/redis-app-host.md)]
+
+:::zone-end
+:::zone pivot="garnet"
+
+[!INCLUDE [garnet-app-host](includes/garnet-app-host.md)]
+
+:::zone-end
+:::zone pivot="valkey"
+
+[!INCLUDE [valkey-app-host](includes/valkey-app-host.md)]
+
+:::zone-end
+
+## Client integration
 
 In this article, you learn how to use the .NET Aspire Stack Exchange Redis integration. The `Aspire.StackExchange.Redis` library is used to register an [IConnectionMultiplexer](https://stackexchange.github.io/StackExchange.Redis/Basics) in the DI container for connecting to a [Redis](https://redis.io/) server. It enables corresponding health checks, logging and telemetry.
 
-## Get started
-
-To get started with the .NET Aspire Stack Exchange Redis integration, install the [Aspire.StackExchange.Redis](https://www.nuget.org/packages/Aspire.StackExchange.Redis) NuGet package in the client-consuming project, i.e., the project for the application that uses the Stack Exchange Redis client.
+To get started with the .NET Aspire Stack Exchange Redis integration, install the [📦 Aspire.StackExchange.Redis](https://www.nuget.org/packages/Aspire.StackExchange.Redis) NuGet package in the client-consuming project, i.e., the project for the application that uses the Stack Exchange Redis client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -28,8 +63,6 @@ dotnet add package Aspire.StackExchange.Redis
 ```
 
 ---
-
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
 ## Example usage
 
@@ -47,24 +80,6 @@ public class ExampleService(IConnectionMultiplexer connectionMultiplexer)
     // Use connection multiplexer...
 }
 ```
-
-## App host usage
-
-:::zone pivot="redis"
-
-[!INCLUDE [redis-app-host](includes/redis-app-host.md)]
-
-:::zone-end
-:::zone pivot="garnet"
-
-[!INCLUDE [garnet-app-host](includes/garnet-app-host.md)]
-
-:::zone-end
-:::zone pivot="valkey"
-
-[!INCLUDE [valkey-app-host](includes/valkey-app-host.md)]
-
-:::zone-end
 
 ## Configuration
 
@@ -188,7 +203,7 @@ The .NET Aspire Stack Exchange Redis integration uses the following log categori
 
 The .NET Aspire Stack Exchange Redis integration will emit the following tracing activities using OpenTelemetry:
 
-- "OpenTelemetry.Instrumentation.StackExchangeRedis"
+- `OpenTelemetry.Instrumentation.StackExchangeRedis`
 
 ### Metrics
 
@@ -199,3 +214,5 @@ The .NET Aspire Stack Exchange Redis integration currently doesn't support metri
 - [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+
+**<a name="registered">*</a>**: _Redis is a registered trademark of Redis Ltd. Any rights therein are reserved to Redis Ltd. Any use by Microsoft is for referential purposes only and does not indicate any sponsorship, endorsement or affiliation between Redis and Microsoft._

@@ -1,4 +1,8 @@
-To model the Garnet resource (`GarnetResource`) in the app host, install the [Aspire.Hosting.Garnet](https://www.nuget.org/packages/Aspire.Hosting.Garnet) NuGet package in the [app host](xref:aspire/app-host) project.
+---
+ms.topic: include
+---
+
+The Garnet hosting integration models a Garnet resource as the <xref:Aspire.Hosting.ApplicationModel.GarnetResource> type. To access this type and APIs that allow you to add it to your [app model](xref:aspire/app-host#define-the-app-model), install the [📦 Aspire.Hosting.Garnet](https://www.nuget.org/packages/Aspire.Hosting.Garnet) NuGet package in the [app host](xref:aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -15,7 +19,9 @@ dotnet add package Aspire.Hosting.Garnet
 
 ---
 
-In your app host project, register .NET Aspire Garnet as a `GarnetResource` using the `AddGarnet` method and consume the service using the following methods:
+### Add Garnet resource
+
+In your app host project, call <xref:Aspire.Hosting.GarnetBuilderExtensions.AddGarnet*> on the `builder` instance to add a Garnet resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -23,11 +29,14 @@ var builder = DistributedApplication.CreateBuilder(args);
 var cache = builder.AddGarnet("cache");
 
 builder.AddProject<Projects.ExampleProject>()
-       .WithReference(cache)
+       .WithReference(cache);
+
+// After adding all resources, run the app...
 ```
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` project named `cache`. In the _:::no-loc text="Program.cs":::_ file of `ExampleProject`, the Garnet connection can be consumed using:
+When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `ghcr.io/microsoft/garnet` image, it creates a new Garnet instance on your local machine. A reference to your Garnet resource (the `cache` variable) is added to the `ExampleProject`.
 
-```csharp
-builder.AddGarnet("cache");
-```
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"cache"`. For more information, see [Container resource lifecycle](../../fundamentals/app-host-overview.md#container-resource-lifecycle).
+
+> [!TIP]
+> If you'd rather connect to an existing Garnet instance, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../../fundamentals/app-host-overview.md#reference-existing-resources).
