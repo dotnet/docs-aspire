@@ -8,9 +8,14 @@ ms.date: 10/11/2024
 
 The .NET Aspire dashboard can be configure to receive telemetry sent from browser apps. This feature is useful for monitoring client-side performance and user interactions. Browser telemetry requires additional configuration to setup. This article discusses how to enable browser telemetry in the .NET Aspire dashboard.
 
-In addition to [enabling CORS](configuration.md#otlp-cors), you also need the [JavaScript OTEL SDK](https://opentelemetry.io/docs/languages/js/getting-started/browser/) in your browser app.
+## Aspire dashboard configuration
 
-## OTLP configuration
+Browser telemetry requires the dashboard to enable these features:
+
+- OTLP HTTP endpoint. This endpoint is used by the dashboard to receive telemetry from browser apps.
+- Cross-origin resource sharing (CORS). CORS allows a browser apps to make requests to the dashboard.
+
+### OTLP configuration
 
 The .NET Aspire dashboard receives telemetry through OTLP endpoints. [HTTP OTLP endpoints](https://opentelemetry.io/docs/specs/otlp/#otlphttp) and gRPC OTLP endpoints are supported by the dashboard. Browser apps must use HTTP OLTP to send telemetry to the dashboard because browser apps don't support gRPC.
 
@@ -21,47 +26,47 @@ To configure the gPRC or HTTP endpoints, specify the following environment varia
 
 Configuration of the HTTP OTLP endpoint depends on whether the dashboard is started by the app host or is run standalone.
 
-### Configure OTLP HTTP with app host
+#### Configure OTLP HTTP with app host
 
 If the dashboard and your app are started by the app host, the dashboard OTLP endpoints are configured in the app host's _launchSettings.json_ file.
 
 Consider the following example JSON file:
 
-:::code language="json" source="snippets/BrowserTelemetry/BrowserTelemetry.AppHost/Properties/launchSettings.json" highlight="12,25,40":::
+:::code language="json" source="snippets/BrowserTelemetry/BrowserTelemetry.AppHost/Properties/launchSettings.json" highlight="12,25":::
 
 The preceding launch settings JSON file configures all profiles to include the `DOTNET_DASHBOARD_OTLP_HTTP_ENDPOINT_URL` environment variable.
 
-### Configure OTLP HTTP with standalone dashboard
+#### Configure OTLP HTTP with standalone dashboard
 
 If the dashboard is used standalone, without the rest of .NET Aspire, the OTLP HTTP endpoint is enabled by default on port `18890`. However, the port must be mapped when the dashboard container is started:
 
 ### [Bash](#tab/bash)
 
 ```bash
-docker run --rm -it \
+docker run --rm -it -d \
     -p 18888:18888 \
     -p 4317:18889 \
-    -p 4318:18890 -d \
+    -p 4318:18890 \
     --name aspire-dashboard \
-    mcr.microsoft.com/dotnet/aspire-dashboard:8.1.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.2
 ```
 
 ### [PowerShell](#tab/powershell)
 
 ```powershell
-docker run --rm -it `
+docker run --rm -it -d `
     -p 18888:18888 `
     -p 4317:18889 `
-    -p 4318:18890 -d `
+    -p 4318:18890 `
     --name aspire-dashboard `
-    mcr.microsoft.com/dotnet/aspire-dashboard:8.1.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.2
 ```
 
 ---
 
 The preceding command runs the dashboard container and maps gRPC OTLP to port `4317` and HTTP OTLP to port `4318`.
 
-## CORS configuration
+### CORS configuration
 
 By default, browser apps are restricted from making cross domain API calls. This impacts sending telemetry to the dashboard because the dashboard and the browser app are always on different domains. Configuring CORS in the .NET Aspire dashboard removes the restriction.
 
@@ -72,25 +77,25 @@ If the dashboard is used standlone then CORS must be configured manually. The do
 ### [Bash](#tab/bash)
 
 ```bash
-docker run --rm -it \
+docker run --rm -it -d \
     -p 18888:18888 \
     -p 4317:18889 \
-    -p 4318:18890 -d \
+    -p 4318:18890 \
     -e DASHBOARD__OTLP__CORS__ALLOWEDORIGINS=https://localhost:8080 \
     --name aspire-dashboard \
-    mcr.microsoft.com/dotnet/aspire-dashboard:8.1.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.2
 ```
 
 ### [PowerShell](#tab/powershell)
 
 ```powershell
-docker run --rm -it `
+docker run --rm -it -d `
     -p 18888:18888 `
     -p 4317:18889 `
-    -p 4318:18890 -d `
+    -p 4318:18890 `
     -e DASHBOARD__OTLP__CORS__ALLOWEDORIGINS=https://localhost:8080 `
     --name aspire-dashboard `
-    mcr.microsoft.com/dotnet/aspire-dashboard:8.1.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:8.2
 ```
 
 ---
@@ -101,7 +106,7 @@ Multiple origins can be allowed with a comma separated value. Or all origins can
 
 For more information, see [.NET Aspire dashboard configuration: OTLP CORS](configuration.md#otlp-cors).
 
-## OTLP endpoint security
+### OTLP endpoint security
 
 Dashboard OTLP endpoints can be secured with API key authentication. When enabled, HTTP OTLP requests to the dashboard must include the API key as the `x-otlp-api-key` header. By default a new  API key is generated each time the dashboard is run.
 
