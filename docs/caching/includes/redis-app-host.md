@@ -19,6 +19,8 @@ dotnet add package Aspire.Hosting.Redis
 
 ---
 
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+
 ### Add Redis resource
 
 In your app host project, call <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis*> on the `builder` instance to add a Redis resource:
@@ -94,11 +96,11 @@ To add a data volume to the Redis resource, call the <xref:Aspire.Hosting.RedisB
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var Redis = builder.AddRedis("cache")
+var cache = builder.AddRedis("cache")
                    .WithDataVolume(isReadOnly: false);
 
 builder.AddProject<Projects.ExampleProject>()
-       .WithReference(Redis);
+       .WithReference(cache);
 
 // After adding all resources, run the app...
 ```
@@ -134,14 +136,14 @@ To add persistence to the Redis resource, call the <xref:Aspire.Hosting.RedisBui
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var Redis = builder.AddRedis("cache")
+var cache = builder.AddRedis("cache")
                    .WithDataVolume()
                    .WithPersistence(
                        interval: TimeSpan.FromMinutes(5),
                        keysChangedThreshold: 100);
 
 builder.AddProject<Projects.ExampleProject>()
-       .WithReference(Redis);
+       .WithReference(cache);
 
 // After adding all resources, run the app...
 ```

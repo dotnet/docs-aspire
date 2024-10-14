@@ -189,7 +189,7 @@ For more information on dependency injection, see [.NET dependency injection](/d
 
 ### Add keyed RabbitMQ client
 
-There might be situations where you want to register multiple `IConnection` instances with different connection names. To register keyed RabbitMQ clients, call the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddKeyedRabbitMQClient*>:
+There might be situations where you want to register multiple `IConnection` instances with different connection names. To register keyed RabbitMQ clients, call the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddKeyedRabbitMQClient*> method:
 
 ```csharp
 builder.AddKeyedRabbitMQClient(name: "chat");
