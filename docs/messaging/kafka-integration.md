@@ -288,7 +288,12 @@ builder.AddKafkaProducer<string, MyMessage>(
     })
 ```
 
-In case you need a service registered in the DI container, you can pass an `Action<IServiceProvider, ProducerBuilder<TKey, TValue>>` (or `Action<IServiceProvider, ConsumerBuilder<TKey, TValue>>`) too:
+When registering producers and consumers, if you need to access a service registered in the DI container, you can pass an `Action<IServiceProvider, ProducerBuilder<TKey, TValue>>` or `Action<IServiceProvider, ConsumerBuilder<TKey, TValue>>` respectively:
+
+- <xref:Microsoft.Extensions.Hosting.AspireKafkaProducerExtensions.AddKafkaProducer<TKey,TValue>(IHostApplicationBuilder, String, Action<KafkaProducerSettings>, Action<IServiceProvider,ProducerBuilder<TKey,TValue>>)>
+- <xref:Microsoft.Extensions.Hosting.AspireKafkaConsumerExtensions.AddKafkaConsumer<TKey,TValue>(IHostApplicationBuilder, String, Action<KafkaConsumerSettings>, Action<IServiceProvider,ConsumerBuilder<TKey,TValue>>)>
+
+Consider the following producer registration example:
 
 ```csharp
 builder.AddKafkaProducer<string, MyMessage>(
