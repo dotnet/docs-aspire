@@ -13,7 +13,7 @@ For writing tests with .NET Aspire, we'll use the [`Aspire.Hosting.Testing`](htt
 
 ## Using the `DistributedApplicationTestingBuilder` class
 
-In the [tutorial on writing your first test](./writing-your-first-test.md), we were introduced to the `DistributedApplicationTestingBuilder` class which can be used to create the app host instance like this:
+In the [tutorial on writing your first test](./writing-your-first-test.md), we were introduced to the `DistributedApplicationTestingBuilder` class which can be used to create the app host instance:
 
 ```csharp
 var appHost = await DistributedApplicationTestingBuilder
@@ -24,7 +24,7 @@ The `CreateAsync` method takes the type of the app host project reference as a g
 
 :::zone pivot="xunit"
 
-With xUnit, we use the `IAsyncLifetime` interface to provide the asynchroneous setup and teardown of the app host instance. The `InitializeAsync` method is used to create the app host instance and the `DisposeAsync` method is used to dispose the app host instance.
+With xUnit, we implement the `IAsyncLifetime` interface on the test class to support asynchroneous setup and teardown of the app host instance. The `InitializeAsync` method is used to create the app host instance before the tests are run and the `DisposeAsync` method is used to dispose the app host once the tests are completed.
 
 ```csharp
 public class WebTests : IAsyncLifetime
@@ -52,7 +52,7 @@ public class WebTests : IAsyncLifetime
 :::zone-end
 :::zone pivot="mstest"
 
-With MSTest, we use the `ClassInitialize` and `ClassCleanup` attributes to provide the setup and teardown of the app host instance. The `ClassInitialize` method is used to create the app host instance and the `ClassCleanup` method is used to dispose the app host instance.
+With MSTest, we use the `ClassInitialize` and `ClassCleanup` attributes to static methods of the test class to provide the setup and teardown of the app host instance. The `ClassInitialize` method is used to create the app host instance before the tests are run and the `ClassCleanup` method is used to dispose the app host instance once the tests are completed.
 
 ```csharp
 [TestClass]
@@ -83,15 +83,15 @@ public class WebTests
 :::zone-end
 :::zone pivot="nunit"
 
-With NUnit, we use the `OneTimeSetUp` and `OneTimeTearDown` attributes to provide the setup and teardown of the app host instance. The `OneTimeSetUp` method is used to create the app host instance and the `OneTimeTearDown` method is used to dispose the app host instance.
+With NUnit, we use the `OneTimeSetUp` and `OneTimeTearDown` attributes to methods of the test class to provide the setup and teardown of the app host instance. The `OneTimeSetUp` method is used to create the app host instance before the tests are run and the `OneTimeTearDown` method is used to dispose the app host instance once the tests are completed.
 
 ```csharp
 public class WebTests
 {
-    private static DistributedApplication _app;
+    private DistributedApplication _app;
 
     [OneTimeSetUp]
-    public static async Task OneTimeSetup(TestContext context)
+    public async Task OneTimeSetup()
     {
        var appHost = await DistributedApplicationTestingBuilder
             .CreateAsync<Projects.AspireApp_AppHost>();
@@ -100,7 +100,7 @@ public class WebTests
     }
     
     [OneTimeTearDown]
-    public static async Task OneTimeTearDown() => await _app.DisposeAsync();
+    public async Task OneTimeTearDown() => await _app.DisposeAsync();
 
     [Test]
     public async Task GetWebResourceRootReturnsOkStatusCode()
@@ -112,11 +112,11 @@ public class WebTests
 
 :::zone-end
 
-By capturing the app host instance in a field when the test run is started, we can share it between each test without the need to recreate it, decreasing the time it takes to run the test suite. Then, when the test run has completed, we can dispose of the app host instance, which will clean up any resources that were created during the test run, such as containers.
+By capturing the app host in a field when the test run is started, we can access it in each test without the need to recreate it, decreasing the time it takes to run the test suite. Then, when the test run has completed, we dispose of the app host, which will clean up any resources that were created during the test run, such as containers.
 
 ## Using the `DistributedApplicationFactory` class
 
-While the `DistributedApplicationTestingBuilder` class is useful for many scenarios, there may be instances that we want to have more control over the pipeline for starting the app host instance, such as executing code before the builder is created or after the app host is built. In these cases, we can use the `DistributedApplicationFactory` class to create the app host instance. This is what the `DistributedApplicationTestingBuilder` uses internally.
+While the `DistributedApplicationTestingBuilder` class is useful for many scenarios, there may be instances that we want to have more control over starting the app host, such as executing code before the builder is created or after the app host is built. In these cases, we can implement our own version of the `DistributedApplicationFactory` class. This is what the `DistributedApplicationTestingBuilder` uses internally.
 
 ```csharp
 public class TestingAspireAppHost : DistributedApplicationFactory(typeof(Projects.AspireApp_AppHost))
@@ -125,7 +125,7 @@ public class TestingAspireAppHost : DistributedApplicationFactory(typeof(Project
 }
 ```
 
-The class requires the type of the app host project reference as a parameter, and optionally we can provide arguments to the underlying host application builder which will control how it starts the app host instance and provide values to the `args` variable that the `Program.cs` file uses to start the app host instance.
+The constructor requires the type of the app host project reference as a parameter, and optionally we can provide arguments to the underlying host application builder which will control how it starts the app host and provide values to the `args` variable that the `Program.cs` file uses to start the app host instance.
 
 ### Lifecycle methods
 
