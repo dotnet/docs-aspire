@@ -221,11 +221,11 @@ You can now specify that a resource should wait for another resource before star
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var queue = builder.AddRabbitMQ("rabbit");
+var rabbit = builder.AddRabbitMQ("rabbit");
 
 builder.AddProject<Projects.WebApplication1>("api")
-       .WithReference(queue)
-       .WaitFor(queue); // Don't start "api" until "queue" is ready...
+       .WithReference(rabbit)
+       .WaitFor(rabbit); // Don't start "api" until "rabbit" is ready...
 
 builder.Build().Run();
 ```
