@@ -109,9 +109,9 @@ To view telemetry for all instances of a resource, select the top-level option i
 
 ### Browser telemetry support
 
-The dashboard now supports OTLP HTTP and CORS. These features unlock the ability to send OpenTelemetry from browser apps to the dashbaord.
+The dashboard now supports OpenTelemetry Protocol (OTLP) over HTTP and cross-origin resource sharing (CORS). These features unlock the ability to send OpenTelemetry from browser apps to the dashbaord.
 
-For example, an app built with React can configure the [JavaScript OTEL SDK](https://opentelemetry.io/docs/languages/js/getting-started/browser/) to send structured logs, traces and metrics created in the browser to the dashboard. Browser telemetry is displayed alongside server telemetry.
+For example, a browser-based single page app (SPA) can configure the [JavaScript OTEL SDK](https://opentelemetry.io/docs/languages/js/getting-started/browser/) to send structured logs, traces and metrics created in the browser to the dashboard. Browser telemetry is displayed alongside server telemetry.
 
 ![Trace detail page with browser telemetry](images/dashboard-browser-telemetry.png)
 
