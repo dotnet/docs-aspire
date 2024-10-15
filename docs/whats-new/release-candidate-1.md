@@ -259,8 +259,17 @@ builder.Build().Run();
 
 The above example adds a health check to the `catalog-api` resource. The app host will wait for the health check to return a healthy status before starting the `store` resource. It'll determine that the resource is ready when the the /healthz endpoint returns a 200 status code.
 
-The health checks mechanism in the app host builds upon the `IHealthChecksBuilder` implementation from the `Microsoft.Extensions.Diagnostics.HealthChecks` namespace. Creating a custom health check is simple, first define a custom
-health check, and then associate the health check name with the resource.
+While `store` is waiting for `catalog-api` to become healthy, the resources in the dashboard will appear as:
+
+![Waiting for an unhealthy resource before starting](images/waiting-for-unhealthy-resource.png)
+
+The app host's health check mechanism builds upon the `IHealthChecksBuilder` implementation from the `Microsoft.Extensions.Diagnostics.HealthChecks` namespace.
+
+Health checks report data, which is displayed in the dashboard:
+
+![Health check details in the dashboard's resource details view](images/health-check-details.png)
+
+Creating a custom health check is simple, first define a custom health check, and then associate the health check name with the resource.
 
 ```C#
 var builder = DistributedApplication.CreateBuilder(args);
