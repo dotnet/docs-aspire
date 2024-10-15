@@ -530,11 +530,11 @@ Redis resources and they'll each be visible on the Redis Insight dashboard.
 
 :::image type="content" source="media/redis-insight.png" lightbox="media/redis-insight.png" alt-text="Redis Insight dashboard showing multiple Redis instances":::
 
-### OpenAI
+### OpenAI (Preview)
 
 Starting with .NET Aspire 9 RC1, an additional OpenAI integration is available which allows to use the latest official OpenAI dotnet library directly. The client integration registers the [OpenAIClient](https://github.com/openai/openai-dotnet?tab=readme-ov-file#using-the-openaiclient-class) as a singleton service in the service collection. The client can be used to interact with the OpenAI REST API.
 
-- [📦 Aspire.OpenAI](https://www.nuget.org/packages/Aspire.OpenAI/9.0.0-preview.4.24511.1)
+- [📦 Aspire.OpenAI (Preview)](https://www.nuget.org/packages/Aspire.OpenAI/9.0.0-preview.4.24511.1)
 
 Moreover, the already available [.NET Aspire Azure OpenAI integration](../azureai/azureai-openai-integration.md) was improved to provide a flexible way to configure an `OpenAIClient` for either an Azure AI OpenAI service or a dedicated OpenAI REST API one with the new `AddOpenAIClientFromConfiguration` builder method. The following example will detect if the connection string is for an Azure AI OpenAI service and register the most appropriate `OpenAIClient` instance automatically.
 
