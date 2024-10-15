@@ -536,7 +536,7 @@ Starting with .NET Aspire 9 RC1, an additional OpenAI integration is available w
 
 - [📦 Aspire.OpenAI](https://www.nuget.org/packages/Aspire.OpenAI/9.0.0-preview.4.24511.1)
 
-Moreover, the already available [Azure AI OpenAI integration](/dotnet/aspire/azureai/azureai-openai-integration) was improved to provide a flexible way to configure an `OpenAIClient` for either an Azure AI OpenAI service or a dedicated OpenAI REST API one with the new `AddOpenAIClientFromConfiguration` builder method. The following example will detect if the connection string is for an Azure AI OpenAI service and register the most appropriate `OpenAIClient` instance automatically.
+Moreover, the already available [.NET Aspire Azure OpenAI integration](../azureai/azureai-openai-integration) was improved to provide a flexible way to configure an `OpenAIClient` for either an Azure AI OpenAI service or a dedicated OpenAI REST API one with the new `AddOpenAIClientFromConfiguration` builder method. The following example will detect if the connection string is for an Azure AI OpenAI service and register the most appropriate `OpenAIClient` instance automatically.
 
 ```csharp
 builder.AddOpenAIClientFromConfiguration("openai");
