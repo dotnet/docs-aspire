@@ -158,8 +158,10 @@ The most requested feature for the dashboard is to manage the life-cycles of you
 
 This feature works for projects, containers, and executables. It enables restarting individual resources without having to restart the entire app host. For projects, if the debugger is attached, it's reattached on restart.
 
-- Responsive design
-- Mobile friendly
+### Mobile and responsive support
+
+The dashboard is now mobile-friendly, responsively adapting to a wide range of screen sizes and enabling on-the-go management of deployed Aspire applications.
+Additional accessibility improvements have been made, including the display of settings and content overflow on mobile.
 
 ### Sensitive properties, volumes, and health checks in resource details
 
