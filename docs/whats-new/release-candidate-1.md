@@ -154,7 +154,7 @@ The [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) continues to 
 
 The most requested feature for the dashboard is to manage the life-cycles of your orchestrated named resources. Specifically, the ability to stop, start, and restart resources. This feature is now available in .NET Aspire 9 RC1.
 
-:::video source="https://github.com/user-attachments/assets/3937ca4e-4ac9-4af7-938d-d016aa6277dc" :::
+> [!VIDEO 3ad0b6db-7027-4ac0-b42e-03cb60644e5e]
 
 This feature works for projects, containers, and executables. It enables restarting individual resources without having to restart the entire app host. For projects, if the debugger is attached, it's reattached on restart.
 
@@ -191,7 +191,7 @@ Traces can now be filtered with attribute values. For example, if you only want 
 
 Telemetry filtering also supports autocomplete of existing values. The **Added filter** dialog provides a combo box for selecting from values that dashboard has received. This feature makes it much easier to filter to real data and helps avoid typos by entered a value yourself.
 
-:::video source="media/trace-filter.mp4":::
+> [!VIDEO 1e158316-4048-4f16-9afa-883c949f8063]
 
 ### Combine telemetry from multiple resources
 
