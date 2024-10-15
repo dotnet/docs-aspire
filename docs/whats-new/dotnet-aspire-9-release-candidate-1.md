@@ -51,9 +51,10 @@ For more information, see [.NET Aspire app host project](../fundamentals/app-hos
 dotnet new install Aspire.ProjectTemplates::9.0.0-rc.1.24511.1
 ```
 
-**Hint:** If you already have the .NET Aspire Workload installed, you need to pass the `--force` flag to overwrite the existing templates.
+> [!TIP]
+> If you already have the .NET Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. Feel free to uninstall the .NET Aspire workload.
 
-This is the output you should see after installing the templates in a machine that has the .NET Aspire Workload installed:
+This is the output you should see after installing the templates in a machine that has the .NET Aspire workload installed:
 
 ```dotnetcli
 > dotnet new install Aspire.ProjectTemplates::9.0.0-rc.1.24511.1 --force
@@ -551,6 +552,19 @@ var db = builder.AddMongo("db", username, password);
 #### Azure resource customization
 
 In .NET Aspire 8, customizing Azure resources was marked experimental because the underlying `Azure.Provisioning` libraries were new and gathering feedback before they could be marked stable. In .NET Aspire 9.0 these APIs have been updated and will remove the experimental attribute.
+
+**Azure Resource Naming Breaking Change**
+
+As part of the update to the `Azure.Provisioning` libraries, the default naming scheme for Azure resources was updated with better support for various naming policies. However, this update resulted in a change to how resources are named that may result in the existing Azure resources being abandoned and new Azure resources being created after updating your .NET Aspire application from 8 to 9. To keep using the same naming policies from .NET Aspire 8, you can add the following code to your AppHost _Program.cs_:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+builder.Services.Configure<AzureResourceOptions>(options =>
+{
+    options.ProvisioningContext.PropertyResolvers.Insert(0, new AspireV8ResourceNamePropertyResolver());
+});
+```
 
 #### Azure SQL, PostgreSQL, and Redis Update
 
