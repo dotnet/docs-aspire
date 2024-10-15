@@ -2,6 +2,7 @@
 title: .NET Aspire 9.0 (Release Candidate 1)
 description: Learn what's new with .NET Aspire 9.0 (Release Candidate 1).
 ms.date: 10/15/2024
+zone_pivot_groups: dev-environment
 ---
 
 # .NET Aspire 9.0 (Release Candidate 1)
@@ -86,7 +87,7 @@ Template Name                    Short Name                                     
 
 Now you have the .NET Aspire 9 RC1 templates installed on your machine. 
 
-:::zone pivot="dotnet-cli"
+:::zone pivot="dotnet-cli,vscode"
 You can create a new .NET Aspire 9 RC1 project by running the following command:
 
 ```dotnetcli
@@ -98,12 +99,13 @@ If you need to target .NET 8, you can do so by passing the `-f net8.0` flag:
 ```dotnetcli
 dotnet new aspire-starter -f net8.0
 ```
-:::zone-end
 
+:::zone-end
 :::zone pivot="visual-studio"
+
 Visual Studio 2022 17.12 or higher supports .NET Aspire 9.
 
-You can create a new .NET Aspire 9 RC1 project by selecting one of the .NET Aspire 9 templates. You can use Aspire 9 to target either .NET 9.0 or .NET 8.0. 
+You can create a new .NET Aspire 9 RC1 project by selecting one of the .NET Aspire 9 templates. You can use Aspire 9 to target either .NET 9.0 or .NET 8.0.
 
 :::image type="content" source="media/create-new-project-vs.png" lightbox="media/create-new-project-vs.png" alt-text="Create New Project":::
 
