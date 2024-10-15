@@ -13,8 +13,8 @@ ms.date: 10/15/2024
 Instructions on how to upgrade are detailed in the following:
 
 - [Install .NET Aspire 9 RC1 templates](#templates)
-- [Upgrade an existing project manually](#upgrade-an-existing-project-to-net-aspire-90-manually)
-- [Upgrade an existing project using the Upgrade Assistant](#upgrade-an-existing-project-to-net-aspire-90-using-the-upgrade-assistant)
+- [Upgrade an existing project manually](#upgrade-an-existing-project-to-net-aspire-9-rc1-manually)
+- [Upgrade an existing project using the Upgrade Assistant](#upgrade-an-existing-project-to-net-aspire-9-rc1-using-the-upgrade-assistant)
 
 ### Acquisition
 
@@ -230,11 +230,11 @@ builder.AddProject<Projects.WebApplication1>("api")
 builder.Build().Run();
 ```
 
-When the app host starts, it waits for the `rabbit` resource to be ready before starting the `api` resource:
+When the app host starts, it waits for the `rabbit` resource to be ready before starting the `api` resource.
 
-<!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD033
 <video controls src="media/waitfor.mp4" title="Title"></video>
-<!-- markdownlint-enable MD033 -->
+     markdownlint-enable MD033 -->
 
 There are two methods exposed to wait for a resource:
 
@@ -265,7 +265,7 @@ The preceding example adds a health check to the `catalog-api` resource. The app
 
 While `store` is waiting for `catalog-api` to become healthy, the resources in the dashboard appear as:
 
-:::image type="content" src="media/waiting-for-unhealthy-resource.png" alt="Waiting for an unhealthy resource before starting":::
+:::image type="content" source="media/waiting-for-unhealthy-resource.png" alt-text="Waiting for an unhealthy resource before starting":::
 
 The app host's health check mechanism builds upon the `IHealthChecksBuilder` implementation from the `Microsoft.Extensions.Diagnostics.HealthChecks` namespace.
 
@@ -389,9 +389,10 @@ These commands can be run from the dashboard:
 
 :::image type="content" source="media/clear-cache-command.png" alt-text="Clear cache command on dashboard":::
 
-<!-- markdownlint-disable MD033 -->
+<!-- markdownlint-disable MD033
 <video controls src="videos/custom-command.mp4" title="Title"></video>
-<!-- markdownlint-enable MD033 -->
+     markdownlint-enable MD033
+-->
 
 ### Container networking
 
