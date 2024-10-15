@@ -424,13 +424,13 @@ This also makes it easier to migrate from docker compose to the app host, as con
 
 The eventing model allows developers to hook into the lifecycle of the application and resources. This is useful for running custom code at specific points in the application lifecycle. There are various ways to subscribe to events, including global events and per-resource events.
 
-- Global events.
+**Global events:**
 
   - `BeforeStartEvent`: An event that is triggered before the application starts. This is the last place that changes to the app model will be observed. This runs in both Run and Publish modes. This is a blocking event, meaning that the application won't start until all handlers have completed.
   - `AfterResourcesCreatedEvent`: An event that is triggered after the resources have been created. This runs in Run mode only.
   - `AfterEndpointsAllocatedEvent`: An event that is triggered after the endpoints have been allocated for all resources. This runs in Run mode only.
 
-- Per-resource events:
+**Per-resource events:**
 
   - `BeforeResourceStartedEvent`: An event that is triggered before a single resource starts. This runs in Run mode only. This is a blocking event, meaning that the resource won't start until all handlers have completed.
   - `ConnectionStringAvailableEvent`: An event that is triggered when a connection string is available for a resource. This runs in Run mode only.
