@@ -267,6 +267,10 @@
     {
       "source_path_from_root": "/docs/messaging/rabbitmq-client-integration.md",
       "redirect_url": "/dotnet/aspire/messaging/rabbitmq-integration"
+    },
+    {
+        "source_path_from_root": "/docs/testing/writing-your-first-test.md",
+        "redirect_url": "/dotnet/aspire/fundamentals/testing"
     }
   ]
 }

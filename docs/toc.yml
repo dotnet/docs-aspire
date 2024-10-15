@@ -62,7 +62,9 @@ items:
         href: fundamentals/dashboard/security-considerations.md
 
   - name: Testing
-    href: fundamentals/testing.md
+    items:
+      - name: Tutorial - Writing your first .NET Aspire test
+        href: testing/writing-your-first-test.md
 
   - name: Fundamentals
     items:
