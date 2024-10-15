@@ -6,7 +6,7 @@ ms.date: 10/11/2024
 
 # .NET Aspire 9.0 (Release Candidate 1)
 
-.NET Aspire 9.0 is the next major release of .NET Aspire; it will support BOTH .NET 8 (LTS) and .NET 9. .NET Aspire 9 addresses some of the most highly requested features and pain points from the community. 
+.NET Aspire 9.0 is the next major release of .NET Aspire; it will support BOTH .NET 8 (LTS) and .NET 9. .NET Aspire 9.0 addresses some of the most highly requested features and pain points from the community. 
 
 ## Upgrading to .NET Aspire 9.0
 
@@ -63,6 +63,52 @@ This feature works for projects, containers and executables. It enables restarti
 
 - Responsive design
 - Mobile friendly
+
+### Sensitive properties, volumes and health checks in resource details
+
+Resource details has seen a lot of improvements:
+
+- Properties can be marked as sensitive, automatically masking them in the dashboard UI. This is a security feature to avoid accidently disclosing keys or passwords when screen sharing the dashboard with other people. For example, container arguments could pass sensitive information and so are masked by default.
+
+- Configured container volumes are listed in resource details.
+
+- Detailed information about resource health checks, a new feature in Aspire 9, are listed in resource details. This information is useful to understand why a resource might be marked as unhealthy. Find out more about health checks [here](#resource-health-checks).
+
+### Coloreful console log
+
+ANSI escape codes are used to add text formatting to text. Foreground and background colors, bold, underline, italics, etc. The dashboard console logs page previously supported one ANSI escape code at a time, but failed when multiple were present. For example, the console logs page could show red text, but it couldn't show text that is red and bold at the same time.
+
+A community contribution from [@mangeg](https://github.com/mangeg) improved support for ANSI escape codes and removed this limitation. Behold:
+
+![Colorful console logs](images/console-logs-ansi-text-format.png)
+
+## Telemetry
+
+### Improve telemetry filtering
+
+Traces can now be filtered with attribute values. For example, if you only want to view traces for one endpoint in your app, the `http.route` attribute on HTTP requests can be filtered to a specified value.
+
+Telemetry filtering also supports auto-complete of existing values. The **Add filter** dialog provides a combo box for selecting from values that dashboard has received. This feature makes it much easier to filter to real data and helps avoid typos by entered a value yourself.
+
+<video controls src="videos/trace-filter.mp4" title="Video of filtering traces"></video>
+
+### Combine telemetry from multiple resources
+
+It's now possible to filter telmetry in the dashboard to all instances of a resource. This is useful if you have multiple replicas for an app and want to view their telemetry together.
+
+To view telemetry for all instances of a resource, select the top-level option in the resource selector that's marked with `(application)`:
+
+![Filter by all instances of a resource](images/telemetry-resource-filter.png)
+
+### Browser telemetry support
+
+The dashboard now supports OTLP HTTP and CORS. These features unlock the ability to send OpenTelemetry from browser apps to the dashbaord.
+
+For example, an app built with React can configure the [JavaScript OTEL SDK](https://opentelemetry.io/docs/languages/js/getting-started/browser/) to send structured logs, traces and metrics created in the browser to the dashboard. Browser telemetry is displayed alongside server telemetry.
+
+![Trace detail page with browser telemetry](images/dashboard-browser-telemetry.png)
+
+For more information on configuring browser telemetry, see [Enable browser telemetry](https://learn.microsoft.com/dotnet/aspire/fundamentals/dashboard/enable-browser-telemetry) documentation.
 
 ## App Host (Orchestration)
 
