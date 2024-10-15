@@ -19,7 +19,7 @@ Instructions on how to upgrade here
 
 ### Acquisition
 
-.NET Aspire 9.0 simplifies acquisition by providing an MSBuild SDK (**Aspire.AppHost.Sdk**) via NuGet. This will no longer require an extra step to acquire the tooling required to build .NET Aspire projects.
+.NET Aspire 9.0 simplifies acquisition by providing a .NET Aspire SDK available as the [📦 `Aspire.AppHost.Sdk`](https://nuget.org/packages/Aspire.AppHost.Sdk) NuGet package. This will no longer require an extra step to acquire the tooling required to build .NET Aspire projects. In other words, starting with .NET Aspire 9—you don't need to install a .NET workload.
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -42,23 +42,27 @@ Instructions on how to upgrade here
 </Project>
 ```
 
+For more information, see [.NET Aspire app host project](../fundamentals/app-host-overview.md#app-host-project).
+
 ### Templates
 
-.NET Aspire 9.0 introduces a new project template for creating .NET Aspire projects. This template is available via the `dotnet new` command. These can be installed by running the following command:
+.NET Aspire 9 introduces a new project template for creating .NET Aspire projects. This template is available from the [`dotnet new` command](/dotnet/core/tools/dotnet-new). These can be installed by running the following command:
 
-```shell
+```dotnetcli
 dotnet new install Aspire.ProjectTemplates::9.0.0-rc.1.24511.1
 ```
 
-![dotnet new templates](images/templates.png)
+TODO: Paste command output here in a triple-back-tick `dotnetcli` code block.
 
 ## Dashboard
 
-### Stop/Start/Restart Resources
+### Manage resource lifecycle
 
-The most requested feature for the dashboard is the ability to stop, start, and restart resources. This feature is now available in .NET Aspire 9.
+The most requested feature for the dashboard is to manage the lifecycles of your orchestrated named resources. Specifically, the ability to stop, start, and restart resources. This feature is now available in .NET Aspire 9.
 
+<!-- markdownlint-disable MD033 -->
 <video controls src="videos/start-stop-restart.mp4" title="Title"></video>
+<!-- markdownlint-enable MD033 -->
 
 This feature works for projects, containers and executables. It enables restarting indidivual resources without having to restart the entire app host. For projects, if the debugger is attached, on restart, the debugger will be re-attached.
 
