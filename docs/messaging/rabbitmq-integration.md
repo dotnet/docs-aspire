@@ -279,7 +279,7 @@ By default, .NET Aspire integrations enable [health checks](../fundamentals/heal
 
 The .NET Aspire RabbitMQ integration:
 
-- Adds the health check when <xref:Aspire.RabbitMQ.Client.RabbitMQClientSettings.DisableHealthChecks?displayProperty=nameWithType> is `true`, which attempts to connect to and create a channel on the RabbitMQ server.
+- Adds the health check when <xref:Aspire.RabbitMQ.Client.RabbitMQClientSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to and create a channel on the RabbitMQ server.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 ### Observability and telemetry

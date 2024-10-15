@@ -154,8 +154,6 @@ builder.AddGarnet("cache");
 :::zone-end
 :::zone pivot="valkey"
 
-[!INCLUDE [valkey-app-host](includes/valkey-app-host.md)]
-
 When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling <xref:Aspire.Hosting.ValkeyBuilderExtensions.AddValkey*>:
 
 ```csharp
@@ -206,28 +204,32 @@ builder.AddRedisClient(
     static settings => settings.DisableTracing = true);
 ```
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+### Client integration health checks
+
+By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
 
 The .NET Aspire Stack Exchange Redis integration handles the following:
 
-- Adds the `StackExchange.Redis` health check, tries to open the connection and throws when it fails.
-- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
+- Adds the health check when <xref:Aspire.StackExchange.Redis.StackExchangeRedisSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the container instance.
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
-[!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
+### Observability and telemetry
 
-### Logging
+.NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations might only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
+
+#### Logging
 
 The .NET Aspire Stack Exchange Redis integration uses the following log categories:
 
 - `Aspire.StackExchange.Redis`
 
-### Tracing
+#### Tracing
 
 The .NET Aspire Stack Exchange Redis integration will emit the following tracing activities using OpenTelemetry:
 
 - `OpenTelemetry.Instrumentation.StackExchangeRedis`
 
-### Metrics
+#### Metrics
 
 The .NET Aspire Stack Exchange Redis integration currently doesn't support metrics by default due to limitations with the `StackExchange.Redis` library.
 
