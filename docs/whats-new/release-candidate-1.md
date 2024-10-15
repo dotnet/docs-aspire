@@ -134,23 +134,23 @@ For this release, we are introducing .NET Aspire support to the Upgrade Assistan
 
 To start the upgrade process, right-click your _*.AppHost_ project in Visual Studio and select the option `Upgrade`.
 
-:::image type="content" src="media/upgrade-assistant-1.png" alt="Upgrade using upgrade assistant" :::
+:::image type="content" source="media/upgrade-assistant-1.png" alt-text="Upgrade using upgrade assistant":::
 :::image type="content" source="" alt-text="{alt-text}":::
 
 
 If you don't yet have the Upgrade Assistant installed, then Visual Studio will guide you to the steps of how to install the extension. Once you have it installed, you will see the following option when you select the `Upgrade` option on your AppHost project:
 
-:::image type="content" src="media/upgrade-assistant-2.png" alt="Upgrade assistant options" :::
+:::image type="content" source="media/upgrade-assistant-2.png" alt-text="Upgrade assistant options":::
 
 This will then do some analysis in your project and provide you with a report similar to the following detailing what will be updated. All you need to do now is to click the `Upgrade Selection` button to start the upgrade process:
 
-:::image type="content" src="media/upgrade-assistant-confirmation.png" alt="Upgrade confirmation" :::
+:::image type="content" source="media/upgrade-assistant-confirmation.png" alt-text="Upgrade confirmation":::
 
 That's it! You have successfully upgraded your project to .NET Aspire 9 RC 1 using the Upgrade Assistant.
 
 ## Dashboard
 
-The .NET Aspire dashboard continues to improve with each release.
+The [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) continues to improve with each release.
 
 ### Manage resource lifecycle
 
@@ -179,11 +179,13 @@ The display of resource details has seen several improvements:
 
 A community contribution from [@mangeg](https://github.com/mangeg) improved support for ANSI escape codes and removed this limitation. Behold:
 
-:::image type="content" src="media/console-logs-ansi-text-format.png" alt="Colorful console logs" :::
+:::image type="content" source="media/console-logs-ansi-text-format.png" alt-text="Colorful console logs":::
 
 Another improvement to console logs is hiding unsupported escape codes. Codes that aren't related to displaying text, such as positioning the cursor or communicating with the operating system don't make sense in this UI, and are hidden.
 
 ## Telemetry
+
+Within .NET Aspire, [Telemetry](../fundamentals/telemetry.md) remains a vital aspect of .NET Aspire. In this release we're introducing a number of new features to the Telemetry service.
 
 ### Improve telemetry filtering
 
@@ -197,7 +199,7 @@ Telemetry filtering also supports auto-complete of existing values. The **Add fi
 
 When a resource has multiple replicas, you can now filter telemetry to view data from all instances at once. Simply select the parent resource, labeled `(application)`.
 
-:::image type="content" src="media/telemetry-resource-filter.png" alt="Filter by all instances of a resource" :::
+:::image type="content" source="media/telemetry-resource-filter.png" alt-text="Filter by all instances of a resource":::
 
 ### Browser telemetry support
 
@@ -205,24 +207,26 @@ The dashboard now supports OpenTelemetry Protocol (OTLP) over HTTP and cross-ori
 
 For example, a browser-based single page app (SPA) can configure the [JavaScript OTEL SDK](https://opentelemetry.io/docs/languages/js/getting-started/browser/) to send structured logs, traces and metrics created in the browser to the dashboard. Browser telemetry is displayed alongside server telemetry.
 
-:::image type="content" src="media/dashboard-browser-telemetry.png" alt="Trace detail page with browser telemetry" :::
+:::image type="content" source="media/dashboard-browser-telemetry.png" alt-text="Trace detail page with browser telemetry":::
 
-For more information on configuring browser telemetry, see Enable browser telemetry documentation.
+For more information on configuring browser telemetry, see [Enable browser telemetry](../fundamentals/dashboard/enable-browser-telemetry.md) documentation.
 
 ## App Host (Orchestration)
+
+The [.NET Aspire app host](../fundamentals/app-host-overview.md) is one of the most important features of .NET Aspire. In this release we're introducing a number of new features to the app host.
 
 ### Waiting for dependencies
 
 You can now specify that a resource should wait for another resource before starting. This can help avoid connection errors during startup by only starting resources when their dependencies are ready.
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var queue = builder.AddRabbitMQ("rabbit");
 
 builder.AddProject<Projects.WebApplication1>("api")
-    .WithReference(queue)
-    .WaitFor(queue); // don't start "api" until "queue" is ready
+       .WithReference(queue)
+       .WaitFor(queue); // Don't start "api" until "queue" is ready...
 
 builder.Build().Run();
 ```
@@ -244,41 +248,44 @@ There are two methods exposed to wait for a resource:
 
 For resources that expose HTTP endpoints, you can easily add a health check that polls a specific path for an HTTP 200 response.
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var catalogApi = builder.AddContainer("catalog-api", "catalog-api")
-                 .WithHttpEndpoint(targetPort: 8080)
-                 .WithHttpHealthCheck("/healthz");
+                        .WithHttpEndpoint(targetPort: 8080)
+                        .WithHttpHealthCheck("/healthz");
 
 builder.AddProject<Projects.WebApplication1>("store")
-    .WithReference(catalogApi.GetEndpoint("http"))
-    .WaitFor(catalogApi);
+       .WithReference(catalogApi.GetEndpoint("http"))
+       .WaitFor(catalogApi);
 
 builder.Build().Run();
 ```
 
-The above example adds a health check to the `catalog-api` resource. The app host will wait for the health check to return a healthy status before starting the `store` resource. It'll determine that the resource is ready when the the /healthz endpoint returns a 200 status code.
+The preceding example adds a health check to the `catalog-api` resource. The app host will wait for the health check to return a healthy status before starting the `store` resource. It'll determine that the resource is ready when the the `/healthz` endpoint returns an HTTP 200 status code.
 
 While `store` is waiting for `catalog-api` to become healthy, the resources in the dashboard will appear as:
 
-:::image type="content" src="media/waiting-for-unhealthy-resource.png" alt="Waiting for an unhealthy resource before starting" :::
+:::image type="content" src="media/waiting-for-unhealthy-resource.png" alt="Waiting for an unhealthy resource before starting":::
 
 The app host's health check mechanism builds upon the `IHealthChecksBuilder` implementation from the `Microsoft.Extensions.Diagnostics.HealthChecks` namespace.
 
 Health checks report data, which is displayed in the dashboard:
 
-:::image type="content" src="media/health-check-details.png" alt="Health check details in the dashboard's resource details view" :::
+:::image type="content" source="media/health-check-details.png" alt-text="Health check details in the dashboard's resource details view":::
 
 Creating a custom health check is simple, first define a custom health check, and then associate the health check name with the resource.
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var healthyAfter = DateTime.Now.AddSeconds(20);
+
 builder.Services.AddHealthChecks().AddCheck(
     "delay20secs",
-    () => DateTime.Now > healthyAfter ? HealthCheckResult.Healthy() : HealthCheckResult.Unhealthy()
+    () => DateTime.Now > healthyAfter 
+        ? HealthCheckResult.Healthy() 
+        : HealthCheckResult.Unhealthy()
     );
 
 var cache = builder.AddRedis("cache")
@@ -298,25 +305,25 @@ The app host now supports persistent containers. This is useful when you want to
 
 To do this, call the `WithLifetime` method and pass in `ContainerLifetime.Persistent`:
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var queue = builder.AddRabbitMQ("rabbit")
                    .WithLifetime(ContainerLifetime.Persistent);
 
 builder.AddProject<Projects.WebApplication1>("api")
-    .WithReference(queue).WaitFor(queue);
+       .WithReference(queue).WaitFor(queue);
 
 builder.Build().Run();
 ```
 
 The dashboard will show persistent containers with a pin icon:
 
-:::image type="content" src="media/persistent-container.png" alt="Persistent containers" :::
+:::image type="content" source="media/persistent-container.png" alt-text="Persistent containers":::
 
 After the app host has stopped, the container will continue to run:
 
-:::image type="content" src="media/persisent-container-dockerdesktop.png" alt="Docker desktop showing rabbit mq" :::
+:::image type="content" source="media/persisent-container-dockerdesktop.png" alt-text="Docker desktop showing rabbit mq":::
 
 The container persistence mechanism attempts to identify when you may wish to recreate the container. For example if the environment
 for the container changes then the container will be restarted so that you don't need to manually stop the container if you have changed
@@ -326,34 +333,38 @@ the input configuration for the resource.
 
 The app host supports adding custom commands to resources. This is useful when you want to run custom commands on a resource. This can be done by calling the `WithCommand` method and passing in the command to run:
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var cache = builder.AddRedis("cache")
                    .WithClearCommand();
 
 builder.AddProject<Projects.WebApplication1>("api")
-    .WithReference(cache)
-    .WaitFor(cache);
+       .WithReference(cache)
+       .WaitFor(cache);
 
 builder.Build().Run();
 ```
 
 The command implementation:
 
-```C#
+```csharp
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using StackExchange.Redis;
 
 public static class RedisCommandExtensions
 {
-    public static IResourceBuilder<RedisResource> WithClearCommand(this IResourceBuilder<RedisResource> builder)
+    public static IResourceBuilder<RedisResource> WithClearCommand(
+        this IResourceBuilder<RedisResource> builder)
     {
-        builder.WithCommand("clear-cache", "Clear Cache",
+        builder.WithCommand(
+            "clear-cache",
+            "Clear Cache",
             async context =>
             {
-                var redisConnectionString = await builder.Resource.GetConnectionStringAsync() 
-                    ?? throw new InvalidOperationException("Unable to get the Redis connection string.");
+                var redisConnectionString = await builder.Resource.GetConnectionStringAsync() ??
+                    throw new InvalidOperationException(
+                        "Unable to get the Redis connection string.");
                 
                 using var connection = ConnectionMultiplexer.Connect(redisConnectionString);
 
@@ -363,10 +374,11 @@ public static class RedisCommandExtensions
             },
             context =>
             {
-                if (context.ResourceSnapshot.HealthStatus == HealthStatus.Healthy)
+                if (context.ResourceSnapshot.HealthStatus is HealthStatus.Healthy)
                 {
                     return ResourceCommandState.Enabled;
                 }
+
                 return ResourceCommandState.Disabled;
             });
         return builder;
@@ -376,7 +388,7 @@ public static class RedisCommandExtensions
 
 These commands can be run from the dashboard:
 
-:::image type="content" src="media/clear-cache-command.png" alt="Clear cache command on dashboard" :::
+:::image type="content" source="media/clear-cache-command.png" alt-text="Clear cache command on dashboard":::
 
 <!-- markdownlint-disable MD033 -->
 <video controls src="videos/custom-command.mp4" title="Title"></video>
@@ -394,11 +406,11 @@ The eventing model allows developers to hook into the lifecycle of the applicati
 
 **Subscribe to a global event**
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Subscribe to a global event
-builder.Eventing.Subscribe<BeforeStartEvent>((evt, token) =>
+builder.Eventing.Subscribe<BeforeStartEvent>((e, token) =>
 {
     Console.WriteLine("Before the application starts!");
 
@@ -410,15 +422,15 @@ builder.Build().Run();
 
 **Subscribe to a per-resource event for a specific resource**
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var cache = builder.AddContainer("cache", "redis")
                    .WithEndpoint(targetPort: 6379);
 
-cache.Subscribe<ResourceReadyEvent>(cache.Resource, (evt, token) =>
+cache.Subscribe<ResourceReadyEvent>(cache.Resource, (e, token) =>
 {
-    Console.WriteLine($"Resource {evt.Resource.Name} is ready!");
+    Console.WriteLine($"Resource {e.Resource.Name} is ready!");
 
     return Task.CompletedTask;
 });
@@ -426,16 +438,16 @@ cache.Subscribe<ResourceReadyEvent>(cache.Resource, (evt, token) =>
 
 **Subscribe to a per-resource event for *all* resources**
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var cache = builder.AddContainer("cache", "redis")
                    .WithEndpoint(targetPort: 6379);
 
 // Subscribe to a per-resource event for *all* resources
-builder.Eventing.Subscribe<BeforeResourceStartedEvent>((evt, token) =>
+builder.Eventing.Subscribe<BeforeResourceStartedEvent>((e, token) =>
 {
-    Console.WriteLine($"Before {evt.Resource.Name}");
+    Console.WriteLine($"Before {e.Resource.Name}");
 
     return Task.CompletedTask;
 });
@@ -445,38 +457,34 @@ builder.Build().Run();
 
 **Global events**
 
-- **BeforeStartEvent** - An event that is triggered before the application starts. This is the last place that changes to the app model will be observed. This runs in both Run and Publish modes. This is a blocking event, meaning that the application will not start until all handlers have completed.
-
-- **AfterResourcesCreatedEvent** - An event that is triggered after the resources have been created. This runs in Run mode only.
-
-- **AfterEndpointsAllocatedEvent** - An event that is triggered after the endpoints have been allocated for all resources. This runs in Run mode only.
+- `BeforeStartEvent`: An event that is triggered before the application starts. This is the last place that changes to the app model will be observed. This runs in both Run and Publish modes. This is a blocking event, meaning that the application will not start until all handlers have completed.
+- `AfterResourcesCreatedEvent`: An event that is triggered after the resources have been created. This runs in Run mode only.
+- `AfterEndpointsAllocatedEvent`: An event that is triggered after the endpoints have been allocated for all resources. This runs in Run mode only.
 
 **Per-resource events**
 
-- **BeforeResourceStartedEvent** - An event that is triggered before a single resource starts. This runs in Run mode only. This is a blocking event, meaning that the resource will not start until all handlers have completed.
-
-- **ConnectionStringAvailableEvent** - An event that is triggered when a connection string is available for a resource. This runs in Run mode only.
-
-- **ResourceReadyEvent** - An event that is triggered when a resource is ready to be used. This runs in Run mode only.
+- `BeforeResourceStartedEvent`: An event that is triggered before a single resource starts. This runs in Run mode only. This is a blocking event, meaning that the resource will not start until all handlers have completed.
+- `ConnectionStringAvailableEvent`: An event that is triggered when a connection string is available for a resource. This runs in Run mode only.
+- `ResourceReadyEvent`: An event that is triggered when a resource is ready to be used. This runs in Run mode only.
 
 The example below demonstrates how to run custom code before a resource starts and when a resource is ready.
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var queue = builder.AddRabbitMQ("rabbit");
 
 // Subscribe to a per-resource event for *all* resources
-builder.Eventing.Subscribe<BeforeResourceStartedEvent>(queue.Resource, (evt, token) =>
+builder.Eventing.Subscribe<BeforeResourceStartedEvent>(queue.Resource, (e, token) =>
 {
-    Console.WriteLine($"Before {evt.Resource.Name}");
+    Console.WriteLine($"Before {e.Resource.Name}");
 
     return Task.CompletedTask;
 });
 
-builder.Eventing.Subscribe<ResourceReadyEvent>(queue.Resource, (evt, token) =>
+builder.Eventing.Subscribe<ResourceReadyEvent>(queue.Resource, (e, token) =>
 {
-    Console.WriteLine($"Resource {evt.Resource.Name} is ready");
+    Console.WriteLine($"Resource {e.Resource.Name} is ready");
     return Task.CompletedTask;
 });
 
@@ -485,22 +493,24 @@ builder.Build().Run();
 
 ## Integrations
 
+[.NET Aspire has a growing list of integrations](../fundamentals/integrations-overview.md) that make it easy to get started with your favorite services and tools. 
+
 ### Redis Insight
 
 A new extension method has been added to support starting up Redis Insight on a Redis resource:
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 builder.AddRedis("redis")
        .WithRedisInsight(); // Starts a Redis Insight container image
-                            // that is preconfigured to work with the
+                            // that is pre-configured to work with the
                             // Redis instance.
 ```
 
 The `WithRedisInsight(...)` extension method can be applied to multiple
 Redis resources and they will each be visible on the Redis Insight dashboard.
 
-:::image type="content" src="media/redis-insight.png" alt="Redis Insight dashboard showing multiple Redis instances" :::
+:::image type="content" source="media/redis-insight.png" alt-text="Redis Insight dashboard showing multiple Redis instances":::
 
 ### Open AI
 
@@ -509,11 +519,13 @@ Redis resources and they will each be visible on the Redis Insight dashboard.
 Added support for specifying the MongoDB username and password when using the `AddMongoDB(...)` extension method. If not specified
 a random username and password will be generated but can be manually specified using parameter resources.
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
+
 var username = builder.AddParameter("mongousername");
 var password = builder.AddParameter("mongopassword", secret: true);
-var db = builder.AddMongo(username, password);
+
+var db = builder.AddMongo("db", username, password);
 ```
 
 ### Azure
@@ -528,9 +540,9 @@ Support for Azure Functions is one of the most widely requested features on the 
 
 To get started, create a new Azure Functions project using the Visual Studio New Project dialogue. When prompted, select the "Enlist in Aspire orchestration" checkbox when creating the project.
 
-![Create project flow](./images/functions-step-1.gif)
+:::image type="content" source="media/functions-step-1.gif" alt-text="Create new .NET Aspire Azure Functions project.":::
 
-In the AppHost project, observe that there is a `PackageReference` to the new `Aspire.Hosting.Azure.Functions` package:
+In the app host project, observe that there is a `PackageReference` to the new [📦 Aspire.Hosting.Azure.Functions](https://nuget.org/packages/Aspire.Hosting.Azure.Functions) NuGet package:
 
 ```xml
 <ItemGroup>
@@ -549,7 +561,7 @@ builder.AddAzureFunctionsProject<Projects.PigLatinApp>("piglatinapp");
 builder.Build().Run();
 ```
 
-Our webhook will be responsible for translating an input string into Pig Latin. Let's update the contents of our trigger with the following code:
+In this example, the webhook is responsible for translating an input string into Pig Latin. Update the contents of our trigger with the following code:
 
 ```csharp
 using Microsoft.AspNetCore.Http;
@@ -567,10 +579,14 @@ public class Function1(ILogger<Function1> logger)
     public record PigLatinText(string Value);
 
     [Function("Function1")]
-    public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequest req, [FromBody] InputText inputText)
+    public IActionResult Run(
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequest req,
+        [FromBody] InputText inputText)
     {
         logger.LogInformation("C# HTTP trigger function processed a request.");
+
         var result = TranslateToPigLatin(inputText.Value);
+
         return new OkObjectResult(new PigLatinText(result));
     }
 
@@ -593,13 +609,14 @@ public class Function1(ILogger<Function1> logger)
             else
             {
                 int vowelIndex = FindFirstVowelIndex(word);
-                if (vowelIndex == -1)
+                if (vowelIndex is -1)
                 {
                     pigLatin.Append(word + "ay ");
                 }
                 else
                 {
-                    pigLatin.Append(word.Substring(vowelIndex) + word.Substring(0, vowelIndex) + "ay ");
+                    pigLatin.Append(
+                        word.Substring(vowelIndex) + word.Substring(0, vowelIndex) + "ay ");
                 }
             }
         }
@@ -619,24 +636,25 @@ public class Function1(ILogger<Function1> logger)
         return -1;
     }
 
-    private static bool IsVowel(char c) => char.ToLower(c) is 'a' or 'e' or 'i' or 'o' or 'u';
+    private static bool IsVowel(char c) =>
+        char.ToLower(c) is 'a' or 'e' or 'i' or 'o' or 'u';
 }
 ```
 
-Set a breakpoint in the first line of the `Run` method and press <kbd>F5</kbd> to start the Functions host. Once the Aspire dashboard launches, you'll observe the following:
+Set a breakpoint in the first line of the `Run` method and press <kbd>F5</kbd> to start the Functions host. Once the .NET Aspire dashboard launches, you'll observe the following:
 
-![Screenshot of the dashboard](./images/functions-dashboard-screenshot.png)
+:::image type="content" source="media/functions-dashboard-screenshot.png" alt-text="Screenshot of the .NET Aspire running with an Azure Function app.":::
 
-Aspire has:
+.NET Aspire has:
 
-- Configured an emulated Azure Storage resource to be used for bookkeeping by the host
-- Launched the Functions host locally with the target as the Functions project registered
-- Wired the port defined in `launchSettings.json` of the functions project for listening
+- Configured an emulated Azure Storage resource to be used for bookkeeping by the host.
+- Launched the Functions host locally with the target as the Functions project registered.
+- Wired the port defined in _launchSettings.json_ of the functions project for listening.
 
 Use your favorite HTTP client of choice to send a request to the trigger and observe the inputs bound from the request body in the debugger.
 
-```
-$ curl --request POST \
+```bash
+curl --request POST \
   --url http://localhost:7282/api/Function1 \
   --header 'Content-Type: application/json' \
   --data '{
@@ -644,9 +662,22 @@ $ curl --request POST \
 }'
 ```
 
-![Screenshot of debugging experience](./images/functions-debug-screenshot.png)
+## [Windows](#tab/windows)
 
-Now we're ready to deploy our application to ACA. Deployment currently depends on preview builds of Azure Functions Worker and Worker SDK packages. If necessary, upgrade the versions referenced in the Functions project:
+```powershell
+curl --request POST `
+  --url http://localhost:7282/api/Function1 `
+  --header 'Content-Type: application/json' `
+  --data '{
+  "value": "Welcome to Azure Functions"
+}'
+```
+
+---
+
+:::image type="content" source="media/functions-debug-screenshot.png" alt-text="Screenshot of the .NET Aspire dashboard: Debugging an Azure Function app.":::
+
+Now you're ready to deploy our application to Azure Container Apps (ACA). Deployment currently depends on preview builds of Azure Functions Worker and Worker SDK packages. If necessary, upgrade the versions referenced in the Functions project:
 
 ```xml
 <ItemGroup>
@@ -655,11 +686,11 @@ Now we're ready to deploy our application to ACA. Deployment currently depends o
 </ItemGroup>
 ```
 
-We'll also need to expose a public endpoint for our Azure Functions project so that requests can be sent to our HTTP trigger:
+You also need to expose a public endpoint for our Azure Functions project so that requests can be sent to our HTTP trigger:
 
 ```csharp
 builder.AddAzureFunctionsProject<Projects.PigLatinApp>("piglatinapp")
-    .WithExternalHttpEndpoints();
+       .WithExternalHttpEndpoints();
 ```
 
 To deploy the application via the `azd` CLI, navigate to the folder containing the AppHost project and run `azd init`:
