@@ -6,7 +6,7 @@ ms.date: 10/11/2024
 
 # .NET Aspire 9.0 (Release Candidate 1)
 
-.NET Aspire 9.0 is the next major release of .NET Aspire; it will support BOTH .NET 8 (LTS) and .NET 9. .NET Aspire 9.0 addresses some of the most highly requested features and pain points from the community. 
+.NET Aspire 9.0 is the next major release of .NET Aspire; it will support BOTH .NET 8 (LTS) and .NET 9. .NET Aspire 9.0 addresses some of the most highly requested features and pain points from the community.
 
 ## Upgrade to .NET Aspire 9.0
 
@@ -18,7 +18,7 @@ Instructions on how to upgrade here
 
 ### Acquisition
 
-.NET Aspire 9.0 simplifies acquisition by providing a .NET Aspire SDK available as the [📦 `Aspire.AppHost.Sdk`](https://nuget.org/packages/Aspire.AppHost.Sdk) NuGet package. This will no longer require an extra step to acquire the tooling required to build .NET Aspire projects. In other words, starting with .NET Aspire 9—you don't need to install a .NET workload.
+.NET Aspire 9.0 makes it simpler to configure your environment to develop Aspire applications. You no longer need a .NET workload. Instead, add the [📦 `Aspire.AppHost.Sdk`](https://nuget.org/packages/Aspire.AppHost.Sdk) MSBuild SDK to your project and it will be downloaded via NuGet automatically.
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -83,7 +83,7 @@ Template Name                    Short Name                                     
 .NET Aspire 9 Test Project (...  aspire-xunit,aspire-xunit-9                      [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
 ```
 
-Now you have the .NET Aspire 9 templates installed on your machine. You can create a new .NET Aspire 9 project by running the following command:
+Now you have the .NET Aspire 9.0 templates installed on your machine. You can create a new .NET Aspire 9.0 project by running the following command:
 
 ```dotnetcli
 dotnet new aspire-starter
@@ -156,24 +156,24 @@ The most requested feature for the dashboard is to manage the lifecycles of your
 <video controls src="https://github.com/user-attachments/assets/3937ca4e-4ac9-4af7-938d-d016aa6277dc" title="Demo of managing resource lifecycle in the dashboard"></video>
 <!-- markdownlint-enable MD033 -->
 
-This feature works for projects, containers and executables. It enables restarting indidivual resources without having to restart the entire app host. For projects, if the debugger is attached, on restart, the debugger will be re-attached.
+This feature works for projects, containers and executables. It enables restarting individual resources without having to restart the entire app host. For projects, if the debugger is attached, it will be re-attached on restart.
 
 - Responsive design
 - Mobile friendly
 
 ### Sensitive properties, volumes and health checks in resource details
 
-Resource details has seen a lot of improvements:
+The display of resource details has seen several improvements:
 
-- Properties can be marked as sensitive, automatically masking them in the dashboard UI. This is a security feature to avoid accidently disclosing keys or passwords when screen sharing the dashboard with other people. For example, container arguments could pass sensitive information and so are masked by default.
+- Properties can be marked as sensitive, automatically masking them in the dashboard UI. This security feature helps to avoid accidently disclosing keys or passwords when screen sharing the dashboard with other people. For example, container arguments could pass sensitive information and so are masked by default.
 
 - Configured container volumes are listed in resource details.
 
-- Detailed information about resource health checks, a new feature in Aspire 9, are listed in resource details. This information is useful to understand why a resource might be marked as unhealthy. Find out more about health checks [here](#resource-health-checks).
+- .NET Aspire 9.0 adds support for health checks. Detailed information about these checks can now be viewed in the resource details pane, showing why a resource might be marked as unhealthy or degraded. Find out more about health checks [here](#resource-health-checks).
 
 ### Colorful console log
 
-[ANSI escape codes](https://wikipedia.org/wiki/ANSI_escape_code) are used to add text formatting to text. For example, foreground and background colors, bold, underline, italics, etc. The dashboard console logs page previously supported rendering one ANSI escape code at a time and failed when they were combined together. The console logs page could show red text, but it couldn't show text that is red and bold at the same time.
+[ANSI escape codes](https://wikipedia.org/wiki/ANSI_escape_code) format text in terminals by controlling colors (foreground and background) and styles like bold, underline and italics. Previously, the dashboard's console logs page could only render one ANSI escape code at a time, failing when multiple codes were combined. For example, it could display red text, but not text that was both red and bold.
 
 A community contribution from [@mangeg](https://github.com/mangeg) improved support for ANSI escape codes and removed this limitation. Behold:
 
@@ -193,9 +193,7 @@ Telemetry filtering also supports auto-complete of existing values. The **Add fi
 
 ### Combine telemetry from multiple resources
 
-It's now possible to filter telmetry in the dashboard to all instances of a resource. This is useful if you have multiple replicas for an app and want to view their telemetry together.
-
-To view telemetry for all instances of a resource, select the top-level option in the resource selector that's marked with `(application)`:
+When a resource has multiple replicas, you can now filter telemetry to view data from all instances at once. Simply select the parent resource, labeled `(application)`.
 
 ![Filter by all instances of a resource](images/telemetry-resource-filter.png)
 
@@ -213,7 +211,7 @@ For more information on configuring browser telemetry, see [Enable browser telem
 
 ### Waiting for dependencies
 
-The app host now supports waiting for dependencies to be ready before starting another resource. This is useful when a resource is taking a long time to start up. The app host will wait for the resource to be ready before starting any dependent resources.
+You can now specify that a resource should wait for another resource before starting. This can help avoid connection errors during startup by only starting resources when their dependencies are ready.
 
 ```C#
 var builder = DistributedApplication.CreateBuilder(args);
@@ -221,7 +219,8 @@ var builder = DistributedApplication.CreateBuilder(args);
 var queue = builder.AddRabbitMQ("rabbit");
 
 builder.AddProject<Projects.WebApplication1>("api")
-    .WithReference(queue).WaitFor(queue);
+    .WithReference(queue)
+    .WaitFor(queue); // don't start "api" until "queue" is ready
 
 builder.Build().Run();
 ```
@@ -241,7 +240,7 @@ There are two methods exposed to wait for a resource:
 
 `WaitFor` uses health checks to determine if a resource is ready. If a resource does not have any health checks, the app host will wait for the resource to be in the "Running" state before starting the dependent resource.
 
-For resources that expose HTTP endpoints we have added a streamlined way to define a health check which polls a specific path for a HTTP 200 response.
+For resources that expose HTTP endpoints, you can easily add a health check that polls a specific path for an HTTP 200 response.
 
 ```C#
 var builder = DistributedApplication.CreateBuilder(args);
@@ -287,9 +286,9 @@ builder.AddProject<Projects.MyApp>("myapp")
        .WithReference(cache).WaitFor(cache);
 ```
 
-The above example shows using a custom health check to blow the start up of the dependent project resource until 20 seconds
-after the apphost starts running. The `WithHealthCheck(...)` mechanism provides a simple mechanism to assocate a resource
-with health checks that are already registered in the health checks system by name (`delay20secs`).
+The above example adds a health check that considers resources unhealthy until 20 seconds after the app host starts, after which it reports them as healthy. This health check is added to the `cache` resource. As `myapp` waits for `cache`, `myapp` won't start until those 20 seconds have elapsed.
+
+The `AddCheck(...)` and `WithHealthCheck(...)` methods provide a simple mechanism to create health checks and associate them with specific resources.
 
 ### Persistent containers
 
