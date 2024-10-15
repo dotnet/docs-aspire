@@ -46,13 +46,43 @@ For more information, see [.NET Aspire app host project](../fundamentals/app-hos
 
 ### Templates
 
-.NET Aspire 9 introduces a new project template for creating .NET Aspire projects. This template is available from the [`dotnet new` command](/dotnet/core/tools/dotnet-new). These can be installed by running the following command:
+.NET Aspire 9 is moving the contents that used to be installed via the SDK Workload into separate NuGet Packages. This includes the templates for creating new .NET Aspire projects. These templates can now be installed using the [`dotnet new install` command](/dotnet/core/tools/dotnet-new). These can be installed by running the following command:
 
 ```dotnetcli
 dotnet new install Aspire.ProjectTemplates::9.0.0-rc.1.24511.1
 ```
 
-TODO: Paste command output here in a triple-back-tick `dotnetcli` code block.
+**Hint:** If you already have the .NET Aspire Workload installed, you will need to pass the `--force` flag to overwrite the existing templates.
+
+This is the output you should see after installing the templates in a machine that has the .NET Aspire Workload installed:
+
+```dotnetcli
+> dotnet new install Aspire.ProjectTemplates::9.0.0-rc.1.24511.1 --force
+The following template packages will be installed:
+   Aspire.ProjectTemplates::9.0.0-rc.1.24511.1
+
+Installing the template package(s) will override the available template package(s).
+The following template package(s) are already available:
+   Aspire.ProjectTemplates::8.2.1
+
+Success: Aspire.ProjectTemplates::9.0.0-rc.1.24511.1 installed the following templates:
+Template Name                    Short Name                                       Language  Tags
+-------------------------------  -----------------------------------------------  --------  -------------------------------------------------------
+.NET Aspire 8 App Host           aspire-apphost-8                                 [C#]      Common/.NET Aspire/Cloud
+.NET Aspire 8 Empty App          aspire-8                                         [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire 8 Service Defaults   aspire-servicedefaults-8                         [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire 8 Starter App        aspire-starter-8                                 [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud
+.NET Aspire 8 Test Project (...  aspire-mstest-8                                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
+.NET Aspire 8 Test Project (...  aspire-nunit-8                                   [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
+.NET Aspire 8 Test Project (...  aspire-xunit-8                                   [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
+.NET Aspire 9 App Host           aspire-apphost,aspire-apphost-9                  [C#]      Common/.NET Aspire/Cloud
+.NET Aspire 9 Empty App          aspire,aspire-9                                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire 9 Service Defaults   aspire-servicedefaults,aspire-servicedefaults-9  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire 9 Starter App        aspire-starter,aspire-starter-9                  [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud
+.NET Aspire 9 Test Project (...  aspire-mstest,aspire-mstest-9                    [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
+.NET Aspire 9 Test Project (...  aspire-nunit,aspire-nunit-9                      [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
+.NET Aspire 9 Test Project (...  aspire-xunit,aspire-xunit-9                      [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
+```
 
 ## Dashboard
 
