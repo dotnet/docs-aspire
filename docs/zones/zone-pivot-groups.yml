@@ -44,8 +44,8 @@ groups:
     - id: dotnet-cli
       title: .NET CLI
 - id: resp-host
-  title: RESP Host
-  prompt: Choose a RESP Hosting resource type
+  title: Hosting resource type
+  prompt: Choose a hosting resource that supports the Redis protocol
   pivots:
     - id: redis
       title: Redis
