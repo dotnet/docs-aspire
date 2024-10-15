@@ -273,7 +273,7 @@ Health checks report data, which is displayed in the dashboard:
 
 :::image type="content" source="media/health-check-details.png" lightbox="media/health-check-details.png" alt-text="Health check details in the dashboard's resource details view":::
 
-Creating a custom health check is simple, first define a custom health check, and then associate the health check name with the resource.
+Creating a custom health check is straightforward. Start by defining the health check, then associate its name with any resources it applies to.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
