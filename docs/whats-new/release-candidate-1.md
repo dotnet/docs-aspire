@@ -6,19 +6,19 @@ ms.date: 10/15/2024
 
 # .NET Aspire 9.0 (Release Candidate 1)
 
-.NET Aspire 9.0 Release Candidate 1 is the next major release of .NET Aspire; it will support _both_ .NET 8 (LTS) and .NET 9. .NET Aspire 9 RC 1 addresses some of the most highly requested features and pain points from the community.
+.NET Aspire 9.0 Release Candidate 1 (RC1) is the next major release of .NET Aspire; it supports _both_ .NET 8 Long Term Support (LTS) and .NET 9 Standard Term Support. .NET Aspire 9 RC1 addresses some of the most highly requested features and pain points from the community. For more information on .NET version support, see the official [.NET support policy](https://dotnet.microsoft.com/platform/support/policy).
 
-## Upgrade to .NET Aspire 9 RC 1
+## Upgrade to .NET Aspire 9 RC1
 
 Instructions on how to upgrade are detailed in the following:
 
-- [Install .NET Aspire 9 RC 1 templates](#templates)
+- [Install .NET Aspire 9 RC1 templates](#templates)
 - [Upgrade an existing project manually](#upgrade-an-existing-project-to-net-aspire-90-manually)
 - [Upgrade an existing project using the Upgrade Assistant](#upgrade-an-existing-project-to-net-aspire-90-using-the-upgrade-assistant)
 
 ### Acquisition
 
-.NET Aspire 9 RC 1 makes it simpler to configure your environment to develop .NET Aspire applications. You no longer need a .NET workload. Instead, add the [📦 `Aspire.AppHost.Sdk`](https://nuget.org/packages/Aspire.AppHost.Sdk) MSBuild SDK to your project and it will be downloaded via NuGet automatically.
+.NET Aspire 9 RC1 makes it simpler to configure your environment to develop .NET Aspire applications. You no longer need a .NET workload. Instead, add the [📦 `Aspire.AppHost.Sdk`](https://nuget.org/packages/Aspire.AppHost.Sdk) MSBuild SDK to your project and it will be downloaded via NuGet automatically.
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -45,13 +45,13 @@ For more information, see [.NET Aspire app host project](../fundamentals/app-hos
 
 ### Templates
 
-.NET Aspire 9 RC 1 is moving the contents that used to be installed via the SDK Workload into separate NuGet Packages. This includes the templates for creating new .NET Aspire projects. These templates can now be installed using the [`dotnet new install` command](/dotnet/core/tools/dotnet-new). These can be installed by running the following command:
+.NET Aspire 9 RC1 is moving the contents that used to be installed via the SDK Workload into separate NuGet Packages. This includes the templates for creating new .NET Aspire projects. These templates can now be installed using the [`dotnet new install` command](/dotnet/core/tools/dotnet-new). These can be installed by running the following command:
 
 ```dotnetcli
 dotnet new install Aspire.ProjectTemplates::9.0.0-rc.1.24511.1
 ```
 
-**Hint:** If you already have the .NET Aspire Workload installed, you will need to pass the `--force` flag to overwrite the existing templates.
+**Hint:** If you already have the .NET Aspire Workload installed, you need to pass the `--force` flag to overwrite the existing templates.
 
 This is the output you should see after installing the templates in a machine that has the .NET Aspire Workload installed:
 
@@ -83,7 +83,7 @@ Template Name                    Short Name                                     
 .NET Aspire 9 Test Project (...  aspire-xunit,aspire-xunit-9                      [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
 ```
 
-Now you have the .NET Aspire 9 RC 1 templates installed on your machine. You can create a new .NET Aspire 9 RC 1 project by running the following command:
+Now you have the .NET Aspire 9 RC1 templates installed on your machine. You can create a new .NET Aspire 9 RC1 project by running the following command:
 
 ```dotnetcli
 dotnet new aspire-starter
@@ -95,9 +95,9 @@ If you need to target .NET 8, you can do so by passing the `-f net8.0` flag:
 dotnet new aspire-starter -f net8.0
 ```
 
-### Upgrade an existing project to .NET Aspire 9 RC 1 manually
+### Upgrade an existing project to .NET Aspire 9 RC1 manually
 
-In order to upgrade an existing project to .NET Aspire 9 RC 1, you will need to update the version of the `Aspire.Hosting.AppHost` package in your project file. In addition to that, you will need to add an SDK reference to the `Aspire.AppHost.Sdk` package. Here is an example of how to upgrade an existing project to .NET Aspire 9 RC 1:
+In order to upgrade an existing project to .NET Aspire 9 RC1, you need to update the version of the `Aspire.Hosting.AppHost` package in your project file. In addition to that, you need to add an SDK reference to the `Aspire.AppHost.Sdk` package. Here's an example of how to upgrade an existing project to .NET Aspire 9 RC1:
 
 ```diff
 <Project Sdk="Microsoft.NET.Sdk">
@@ -126,11 +126,11 @@ In order to upgrade an existing project to .NET Aspire 9 RC 1, you will need to 
 </Project>
 ```
 
-That's it! You've successfully upgraded your project to .NET Aspire 9 RC 1. If you are using Visual Studio, it is recommended to upgrade to version 17.12 Preview 3 or later in order to take advantage of the new features and improvements for .NET Aspire 9 RC 1.
+That's it! You've successfully upgraded your project to .NET Aspire 9 RC1. If you're using Visual Studio, it's recommended to upgrade to version 17.12 Preview 3 or later in order to take advantage of the new features and improvements for .NET Aspire 9 RC1.
 
-### Upgrade an existing project to .NET Aspire 9 RC 1 using the Upgrade Assistant
+### Upgrade an existing project to .NET Aspire 9 RC1 using the Upgrade Assistant
 
-For this release, we are introducing .NET Aspire support to the Upgrade Assistant. The Upgrade Assistant is a tool that helps you upgrade your .NET projects to the latest .NET version. Now you can also use the Upgrade Assistant to upgrade your .NET Aspire projects to 9 RC 1.
+For this release, we're introducing .NET Aspire support to the Upgrade Assistant. The Upgrade Assistant is a tool that helps you upgrade your .NET projects to the latest .NET version. Now you can also use the Upgrade Assistant to upgrade your .NET Aspire projects to 9 RC1.
 
 To start the upgrade process, right-click your _*.AppHost_ project in Visual Studio and select the option `Upgrade`.
 
@@ -138,15 +138,15 @@ To start the upgrade process, right-click your _*.AppHost_ project in Visual Stu
 :::image type="content" source="" alt-text="{alt-text}":::
 
 
-If you don't yet have the Upgrade Assistant installed, then Visual Studio will guide you to the steps of how to install the extension. Once you have it installed, you will see the following option when you select the `Upgrade` option on your AppHost project:
+If you don't yet have the Upgrade Assistant installed, then Visual Studio guides you to the steps of how to install the extension. Once you have it installed, you see the following option when you select the `Upgrade` option on your AppHost project:
 
 :::image type="content" source="media/upgrade-assistant-2.png" alt-text="Upgrade assistant options":::
 
-This will then do some analysis in your project and provide you with a report similar to the following detailing what will be updated. All you need to do now is to click the `Upgrade Selection` button to start the upgrade process:
+This will then do some analysis in your project and provide you with a report similar to the following detailing what will be updated. All you need to do now is to select the `Upgrade Selection` button to start the upgrade process:
 
 :::image type="content" source="media/upgrade-assistant-confirmation.png" alt-text="Upgrade confirmation":::
 
-That's it! You have successfully upgraded your project to .NET Aspire 9 RC 1 using the Upgrade Assistant.
+That's it! You have successfully upgraded your project to .NET Aspire 9 RC1 using the Upgrade Assistant.
 
 ## Dashboard
 
@@ -154,16 +154,16 @@ The [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) continues to 
 
 ### Manage resource lifecycle
 
-The most requested feature for the dashboard is to manage the life-cycles of your orchestrated named resources. Specifically, the ability to stop, start, and restart resources. This feature is now available in .NET Aspire 9 RC 1.
+The most requested feature for the dashboard is to manage the life-cycles of your orchestrated named resources. Specifically, the ability to stop, start, and restart resources. This feature is now available in .NET Aspire 9 RC1.
 
 :::video source="https://github.com/user-attachments/assets/3937ca4e-4ac9-4af7-938d-d016aa6277dc" :::
 
-This feature works for projects, containers and executables. It enables restarting individual resources without having to restart the entire app host. For projects, if the debugger is attached, it will be re-attached on restart.
+This feature works for projects, containers, and executables. It enables restarting individual resources without having to restart the entire app host. For projects, if the debugger is attached, it's reattached on restart.
 
 - Responsive design
 - Mobile friendly
 
-### Sensitive properties, volumes and health checks in resource details
+### Sensitive properties, volumes, and health checks in resource details
 
 The display of resource details has seen several improvements:
 
@@ -171,11 +171,11 @@ The display of resource details has seen several improvements:
 
 - Configured container volumes are listed in resource details.
 
-- .NET Aspire 9 RC 1 adds support for health checks. Detailed information about these checks can now be viewed in the resource details pane, showing why a resource might be marked as unhealthy or degraded. Find out more about health checks [here](#resource-health-checks).
+- .NET Aspire 9 RC1 adds support for health checks. Detailed information about these checks can now be viewed in the resource details pane, showing why a resource might be marked as unhealthy or degraded. Find out more about health checks [here](#resource-health-checks).
 
 ### Colorful console log
 
-[ANSI escape codes](https://wikipedia.org/wiki/ANSI_escape_code) format text in terminals by controlling colors (foreground and background) and styles like bold, underline and italics. Previously, the dashboard's console logs page could only render one ANSI escape code at a time, failing when multiple codes were combined. For example, it could display red text, but not text that was both red and bold.
+[ANSI escape codes](https://wikipedia.org/wiki/ANSI_escape_code) format text in terminals by controlling colors (foreground and background) and styles like bold, underline, and italics. Previously, the dashboard's console logs page could only render one ANSI escape code at a time, failing when multiple codes were combined. For example, it could display red text, but not text that was both red and bold.
 
 A community contribution from [@mangeg](https://github.com/mangeg) improved support for ANSI escape codes and removed this limitation. Behold:
 
@@ -185,19 +185,19 @@ Another improvement to console logs is hiding unsupported escape codes. Codes th
 
 ## Telemetry
 
-Within .NET Aspire, [Telemetry](../fundamentals/telemetry.md) remains a vital aspect of .NET Aspire. In this release we're introducing a number of new features to the Telemetry service.
+Within .NET Aspire, [Telemetry](../fundamentals/telemetry.md) remains a vital aspect of .NET Aspire. In this release we're introducing many new features to the Telemetry service.
 
 ### Improve telemetry filtering
 
 Traces can now be filtered with attribute values. For example, if you only want to view traces for one endpoint in your app, the `http.route` attribute on HTTP requests can be filtered to a specified value.
 
-Telemetry filtering also supports auto-complete of existing values. The **Add filter** dialog provides a combo box for selecting from values that dashboard has received. This feature makes it much easier to filter to real data and helps avoid typos by entered a value yourself.
+Telemetry filtering also supports autocomplete of existing values. The **Added filter** dialog provides a combo box for selecting from values that dashboard has received. This feature makes it much easier to filter to real data and helps avoid typos by entered a value yourself.
 
 :::video source="media/trace-filter.mp4":::
 
 ### Combine telemetry from multiple resources
 
-When a resource has multiple replicas, you can now filter telemetry to view data from all instances at once. Simply select the parent resource, labeled `(application)`.
+When a resource has multiple replicas, you can now filter telemetry to view data from all instances at once. Select the parent resource, labeled `(application)`.
 
 :::image type="content" source="media/telemetry-resource-filter.png" alt-text="Filter by all instances of a resource":::
 
@@ -213,7 +213,7 @@ For more information on configuring browser telemetry, see [Enable browser telem
 
 ## App Host (Orchestration)
 
-The [.NET Aspire app host](../fundamentals/app-host-overview.md) is one of the most important features of .NET Aspire. In this release we're introducing a number of new features to the app host.
+The [.NET Aspire app host](../fundamentals/app-host-overview.md) is one of the most important features of .NET Aspire. In this release we're introducing many new features to the app host.
 
 ### Waiting for dependencies
 
@@ -231,7 +231,7 @@ builder.AddProject<Projects.WebApplication1>("api")
 builder.Build().Run();
 ```
 
-When the app host starts, it will wait for the `rabbit` resource to be ready before starting the `api` resource:
+When the app host starts, it waits for the `rabbit` resource to be ready before starting the `api` resource:
 
 <!-- markdownlint-disable MD033 -->
 <video controls src="media/waitfor.mp4" title="Title"></video>
@@ -244,7 +244,7 @@ There are two methods exposed to wait for a resource:
 
 #### Resource health checks
 
-`WaitFor` uses health checks to determine if a resource is ready. If a resource does not have any health checks, the app host will wait for the resource to be in the "Running" state before starting the dependent resource.
+`WaitFor` uses health checks to determine if a resource is ready. If a resource doesn't have any health checks, the app host waits for the resource to be in the "Running" state before starting the dependent resource.
 
 For resources that expose HTTP endpoints, you can easily add a health check that polls a specific path for an HTTP 200 response.
 
@@ -262,9 +262,9 @@ builder.AddProject<Projects.WebApplication1>("store")
 builder.Build().Run();
 ```
 
-The preceding example adds a health check to the `catalog-api` resource. The app host will wait for the health check to return a healthy status before starting the `store` resource. It'll determine that the resource is ready when the the `/healthz` endpoint returns an HTTP 200 status code.
+The preceding example adds a health check to the `catalog-api` resource. The app host waits for the health check to return a healthy status before starting the `store` resource. It determines that the resource is ready when the the `/healthz` endpoint returns an HTTP 200 status code.
 
-While `store` is waiting for `catalog-api` to become healthy, the resources in the dashboard will appear as:
+While `store` is waiting for `catalog-api` to become healthy, the resources in the dashboard appear as:
 
 :::image type="content" src="media/waiting-for-unhealthy-resource.png" alt="Waiting for an unhealthy resource before starting":::
 
@@ -301,7 +301,7 @@ The `AddCheck(...)` and `WithHealthCheck(...)` methods provide a simple mechanis
 
 ### Persistent containers
 
-The app host now supports persistent containers. This is useful when you want to keep the container running even after the app host has stopped. These containers will not be stopped unless they are stopped manually using the container runtime.
+The app host now supports persistent containers. This is useful when you want to keep the container running even after the app host has stopped. These containers won't be stopped unless they're stopped manually using the container runtime.
 
 To do this, call the `WithLifetime` method and pass in `ContainerLifetime.Persistent`:
 
@@ -317,7 +317,7 @@ builder.AddProject<Projects.WebApplication1>("api")
 builder.Build().Run();
 ```
 
-The dashboard will show persistent containers with a pin icon:
+The dashboard shows persistent containers with a pin icon:
 
 :::image type="content" source="media/persistent-container.png" alt-text="Persistent containers":::
 
@@ -457,13 +457,13 @@ builder.Build().Run();
 
 **Global events**
 
-- `BeforeStartEvent`: An event that is triggered before the application starts. This is the last place that changes to the app model will be observed. This runs in both Run and Publish modes. This is a blocking event, meaning that the application will not start until all handlers have completed.
+- `BeforeStartEvent`: An event that is triggered before the application starts. This is the last place that changes to the app model will be observed. This runs in both Run and Publish modes. This is a blocking event, meaning that the application won't start until all handlers have completed.
 - `AfterResourcesCreatedEvent`: An event that is triggered after the resources have been created. This runs in Run mode only.
 - `AfterEndpointsAllocatedEvent`: An event that is triggered after the endpoints have been allocated for all resources. This runs in Run mode only.
 
 **Per-resource events**
 
-- `BeforeResourceStartedEvent`: An event that is triggered before a single resource starts. This runs in Run mode only. This is a blocking event, meaning that the resource will not start until all handlers have completed.
+- `BeforeResourceStartedEvent`: An event that is triggered before a single resource starts. This runs in Run mode only. This is a blocking event, meaning that the resource won't start until all handlers have completed.
 - `ConnectionStringAvailableEvent`: An event that is triggered when a connection string is available for a resource. This runs in Run mode only.
 - `ResourceReadyEvent`: An event that is triggered when a resource is ready to be used. This runs in Run mode only.
 
@@ -493,7 +493,7 @@ builder.Build().Run();
 
 ## Integrations
 
-[.NET Aspire has a growing list of integrations](../fundamentals/integrations-overview.md) that make it easy to get started with your favorite services and tools. 
+[.NET Aspire has a growing list of integrations](../fundamentals/integrations-overview.md) that make it easy to get started with your favorite services and tools.
 
 ### Redis Insight
 
@@ -508,11 +508,11 @@ builder.AddRedis("redis")
 ```
 
 The `WithRedisInsight(...)` extension method can be applied to multiple
-Redis resources and they will each be visible on the Redis Insight dashboard.
+Redis resources and they'll each be visible on the Redis Insight dashboard.
 
 :::image type="content" source="media/redis-insight.png" alt-text="Redis Insight dashboard showing multiple Redis instances":::
 
-### Open AI
+### OpenAI
 
 ### MongoDB
 
@@ -542,7 +542,7 @@ To get started, create a new Azure Functions project using the Visual Studio New
 
 :::image type="content" source="media/functions-step-1.gif" alt-text="Create new .NET Aspire Azure Functions project.":::
 
-In the app host project, observe that there is a `PackageReference` to the new [📦 Aspire.Hosting.Azure.Functions](https://nuget.org/packages/Aspire.Hosting.Azure.Functions) NuGet package:
+In the app host project, observe that there's a `PackageReference` to the new [📦 Aspire.Hosting.Azure.Functions](https://nuget.org/packages/Aspire.Hosting.Azure.Functions) NuGet package:
 
 ```xml
 <ItemGroup>
@@ -641,7 +641,7 @@ public class Function1(ILogger<Function1> logger)
 }
 ```
 
-Set a breakpoint in the first line of the `Run` method and press <kbd>F5</kbd> to start the Functions host. Once the .NET Aspire dashboard launches, you'll observe the following:
+Set a breakpoint on the first line of the `Run` method and press <kbd>F5</kbd> to start the Functions host. Once the .NET Aspire dashboard launches, you observe the following:
 
 :::image type="content" source="media/functions-dashboard-screenshot.png" alt-text="Screenshot of the .NET Aspire running with an Azure Function app.":::
 
