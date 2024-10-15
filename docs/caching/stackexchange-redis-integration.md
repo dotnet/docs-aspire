@@ -128,11 +128,11 @@ public class ExampleService(
 
 For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
 
-## Configuration
+### Configuration
 
 The .NET Aspire Stack Exchange Redis client integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
 
-### Use a connection string
+#### Use a connection string
 
 :::zone pivot="redis"
 
@@ -174,7 +174,7 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 
 For more information on how to format this connection string, see the [Stack Exchange Redis configuration docs](https://stackexchange.github.io/StackExchange.Redis/Configuration.html#basic-configuration-strings).
 
-### Use configuration providers
+#### Use configuration providers
 
 The .NET Aspire Stack Exchange Redis integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.StackExchange.Redis.StackExchangeRedisSettings> from configuration by using the `Aspire:StackExchange:Redis` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
@@ -194,7 +194,7 @@ The .NET Aspire Stack Exchange Redis integration supports <xref:Microsoft.Extens
 
 For the complete Redis client integration JSON schema, see [Aspire.StackExchange.Redis/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v8.2.1/src/Components/Aspire.StackExchange.Redis/ConfigurationSchema.json).
 
-### Use inline delegates
+#### Use inline delegates
 
 You can also pass the `Action<StackExchangeRedisSettings>` delegate to set up some or all the options inline, for example to configure `DisableTracing`:
 
