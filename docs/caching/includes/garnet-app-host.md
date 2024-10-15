@@ -85,8 +85,7 @@ Data bind mounts rely on the host machine's filesystem to persist the Garnet dat
 
 ### Add Garnet resource with persistence
 
-To add persistence to the Garnet resource, call the <xref:Aspire.Hosting.GarnetBuilderExtensions.WithPersistence*>
-method with either the data volume or data bind mount:
+To add persistence to the Garnet resource, call the <xref:Aspire.Hosting.GarnetBuilderExtensions.WithPersistence*> method with either the data volume or data bind mount:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
