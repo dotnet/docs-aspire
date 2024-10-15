@@ -158,18 +158,6 @@ protected override void OnBuilderCreated(DistributedApplicationBuilder applicati
 }
 ```
 
-## Accessing resources
-
-One of the common goals in an integration test is to interact with the resources that are part of the distributed application. The `DistributedApplication` instance provides a way to access the resources, using the service discovery mechanism that is part of the app host.
-
-### Accessing HTTP resources
-
-To access an HTTP resource, we can use a `HttpClient` to interact with them, performing requests and receiving responses. The `DistributedApplication` and the `DistributionApplicationFactory` both provide a `CreateHttpClient` method that can be used to create an `HttpClient` instance for a specific resource, based off the resource name from the app host. This method also takes an optional `endpointName` parameter, so if the resource has multiple endpoints, we can specify which one to use.
-
-### Accessing other resources
-
-In a test, we may want to access other resources by the connection information they provide, for example, quering a database to verify the state of the data. For this, we can use the `GetConnectionString` method to retrieve the connection string for a resource, and then provide that to a client library within the test to interact with the resource.
-
 ## See also
 
 - [Writing your first .NET Aspire test](./writing-your-first-test.md)
