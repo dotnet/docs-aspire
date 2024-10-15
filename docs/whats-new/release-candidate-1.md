@@ -160,8 +160,7 @@ This feature works for projects, containers, and executables. It enables restart
 
 ### Mobile and responsive support
 
-The dashboard is now mobile-friendly, responsively adapting to a wide range of screen sizes and enabling on-the-go management of deployed Aspire applications.
-Additional accessibility improvements have been made, including the display of settings and content overflow on mobile.
+The .NET Aspire dashboard is now mobile-friendly, responsively adapting to a wide range of screen sizes and enabling on-the-go management of deployed Aspire applications. Additional accessibility improvements have been made, including the display of settings and content overflow on mobile.
 
 ### Sensitive properties, volumes, and health checks in resource details
 
