@@ -171,7 +171,7 @@ Resource details has seen a lot of improvements:
 
 - Detailed information about resource health checks, a new feature in Aspire 9, are listed in resource details. This information is useful to understand why a resource might be marked as unhealthy. Find out more about health checks [here](#resource-health-checks).
 
-### Coloreful console log
+### Colorful console log
 
 [ANSI escape codes](https://wikipedia.org/wiki/ANSI_escape_code) are used to add text formatting to text. For example, foreground and background colors, bold, underline, italics, etc. The dashboard console logs page previously supported rendering one ANSI escape code at a time and failed when they were combined together. The console logs page could show red text, but it couldn't show text that is red and bold at the same time.
 
