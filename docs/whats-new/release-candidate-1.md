@@ -135,8 +135,6 @@ For this release, we're introducing .NET Aspire support to the Upgrade Assistant
 To start the upgrade process, right-click your _*.AppHost_ project in Visual Studio and select the option `Upgrade`.
 
 :::image type="content" source="media/upgrade-assistant-1.png" alt-text="Upgrade using upgrade assistant":::
-:::image type="content" source="" alt-text="{alt-text}":::
-
 
 If you don't yet have the Upgrade Assistant installed, then Visual Studio guides you to the steps of how to install the extension. Once you have it installed, you see the following option when you select the `Upgrade` option on your AppHost project:
 
