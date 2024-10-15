@@ -5,7 +5,7 @@ ms.topic: include
 :::row:::
 :::column:::
 
-<img src="../../fundamentals/media/icons/redis-cube-red_white-rgb.png" alt="Valkey logo." height="128" width="128" />
+<img src="../../fundamentals/media/icons/redis-cube-red_white-rgb.png" alt="Valkey logo." height="96" width="96" />
 
 :::column-end:::
 :::column span="3":::
