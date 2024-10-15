@@ -402,9 +402,17 @@ Redis resources and they will each be visible on the Redis Insight dashboard.
 
 ### Open AI
 
-### Mongo 
+### MongoDB
 
-Password enabled
+Added support for specifying the MongoDB username and password when using the `AddMongoDB(...)` extension method. If not specified
+a random username and password will be generated but can be manually specified using parameter resources.
+
+```C#
+var builder = DistributedApplication.CreateBuilder(args);
+var username = builder.AddParameter("mongousername");
+var password = builder.AddParameter("mongopassword", secret: true);
+var db = builder.AddMongo(username, password);
+```
 
 ### Azure
 
