@@ -1,54 +1,33 @@
 ---
-title: .NET Aspire Stack Exchange Redis distributed caching integration
-description: This article describes the .NET Aspire Stack Exchange Redis distributed caching integration features and capabilities
-ms.topic: how-to
-ms.date: 08/12/2024
+title: .NET Aspire Redis distributed caching integration
+description: Learn how to use the .NET Aspire Redis distributed caching integration, which includes both hosting and client integrations.
+ms.date: 10/15/2024
 zone_pivot_groups: resp-host
 ---
 
-# .NET Aspire Stack Exchange Redis distributed caching integration
+# .NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> distributed caching integration
 
-In this article, you learn how to use the .NET Aspire Stack Exchange Redis distributed caching integration. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache](https://stackexchange.github.io/StackExchange.Redis/Basics) provider for connecting to [Redis](https://redis.io/) server. It enables corresponding health checks, logging and telemetry.
+<a name="heading"></a>
 
-## Get started
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-To get started with the .NET Aspire Stack Exchange Redis distributed caching integration, install the [Aspire.StackExchange.Redis.DistributedCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.DistributedCaching) NuGet package in the client-consuming project, i.e., the project for the application that uses the Stack Exchange Redis distributed caching client.
+:::zone pivot="redis"
 
-### [.NET CLI](#tab/dotnet-cli)
+Learn how to use the .NET Aspire Redis distributed caching integration. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache](https://stackexchange.github.io/StackExchange.Redis/Basics) provider backed by a [Redis](https://redis.io/) server with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
 
-```dotnetcli
-dotnet add package Aspire.StackExchange.Redis.DistributedCaching
-```
+:::zone-end
+:::zone pivot="garnet"
 
-### [PackageReference](#tab/package-reference)
+Learn how to use the .NET Aspire Redis distributed caching integration. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache](https://stackexchange.github.io/StackExchange.Redis/Basics) provider backed by a [Garnet](https://microsoft.github.io/garnet/) server with the [`ghcr.io/microsoft/garnet` container image](https://github.com/microsoft/garnet/pkgs/container/garnet).
 
-```xml
-<PackageReference Include="Aspire.StackExchange.Redis.DistributedCaching"
-                  Version="*" />
-```
+:::zone-end
+:::zone pivot="valkey"
 
----
+Learn how to use the .NET Aspire Redis distributed caching integration. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache](https://stackexchange.github.io/StackExchange.Redis/Basics) provider backed by a [Valkey](https://valkey.io/) server with the [`docker.io/valkey/valkey` container image](https://hub.docker.com/r/valkey/valkey/).
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+:::zone-end
 
-## Example usage
-
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddRedisDistributedCache%2A> extension to register the required services for distributed caching and add a <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use via the dependency injection container.
-
-```csharp
-builder.AddRedisDistributedCache("cache");
-```
-
-You can then retrieve the `IDistributedCache` instance using dependency injection. For example, to retrieve the cache from a service:
-
-```csharp
-public class ExampleService(IDistributedCache cache)
-{
-    // Use cache...
-}
-```
-
-## App host usage
+## Hosting integration
 
 :::zone pivot="redis"
 
@@ -66,16 +45,99 @@ public class ExampleService(IDistributedCache cache)
 
 :::zone-end
 
-## Configuration
+### Hosting integration health checks
 
-The .NET Aspire Stack Exchange Redis distributed caching integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
+[!INCLUDE [redis-hosting-health-checks](includes/redis-hosting-health-checks.md)]
 
-### Use a connection string
+## Client integration
+
+To get started with the .NET Aspire Redis distributed caching integration, install the [📦 Aspire.StackExchange.Redis.DistributedCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.DistributedCaching) NuGet package in the client-consuming project, i.e., the project for the application that uses the Redis distributed caching client.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.StackExchange.Redis.DistributedCaching
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.StackExchange.Redis.DistributedCaching"
+                  Version="*" />
+```
+
+---
+
+## Add Redis client
+
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddRedisDistributedCache%2A> extension to register the required services for distributed caching and add a <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use via the dependency injection container.
+
+```csharp
+builder.AddRedisDistributedCache(connectionName: "cache");
+```
+
+:::zone pivot="redis"
+
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the Redis resource in the app host project. For more information, see [Add Redis resource](#add-redis-resource).
+
+:::zone-end
+:::zone pivot="garnet"
+
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the Garnet resource in the app host project. For more information, see [Add Garnet resource](#add-garnet-resource).
+
+:::zone-end
+:::zone pivot="valkey"
+
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the Valkey resource in the app host project. For more information, see [Add Valkey resource](#add-valkey-resource).
+
+:::zone-end
+
+You can then retrieve the `IDistributedCache` instance using dependency injection. For example, to retrieve the cache from a service:
+
+```csharp
+public class ExampleService(IDistributedCache cache)
+{
+    // Use cache...
+}
+```
+
+For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
+
+### Add keyed Redis client
+
+There might be situations where you want to register multiple `IDistributedCache` instances with different connection names. To register keyed Redis clients, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddKeyedRedisDistributedCache*> method:
+
+```csharp
+builder.AddKeyedRedisDistributedCache(name: "chat");
+builder.AddKeyedRedisDistributedCache(name: "product");
+```
+
+Then you can retrieve the `IDistributedCache` instances using dependency injection. For example, to retrieve the connection from an example service:
+
+```csharp
+public class ExampleService(
+    [FromKeyedServices("chat")] IDistributedCache chatCache,
+    [FromKeyedServices("product")] IDistributedCache productCache)
+{
+    // Use caches...
+}
+```
+
+For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
+
+### Configuration
+
+The .NET Aspire Redis distributed caching integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
+
+#### Use a connection string
 
 When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddRedisDistributedCache`:
 
 ```csharp
-builder.AddRedisDistributedCache("RedisConnection");
+builder.AddRedisDistributedCache("cache");
 ```
 
 And then the connection string will be retrieved from the `ConnectionStrings` configuration section:
@@ -83,35 +145,18 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 ```json
 {
   "ConnectionStrings": {
-    "RedisConnection": "localhost:6379"
+    "cache": "localhost:6379"
   }
 }
 ```
 
 For more information on how to format this connection string, see the [Stack Exchange Redis configuration docs](https://stackexchange.github.io/StackExchange.Redis/Configuration.html#basic-configuration-strings).
 
-### Use configuration providers
+#### Use configuration providers
 
-The .NET Aspire Stack Exchange Redis distributed caching integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.StackExchange.Redis.StackExchangeRedisSettings> from configuration by using the `Aspire:StackExchange:Redis` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
+[!INCLUDE [redis-client-json-settings](includes/redis-client-json-settings.md)]
 
-```json
-{
-  "Aspire": {
-    "StackExchange": {
-      "Redis": {
-        "ConfigurationOptions": {
-          "ConnectTimeout": 3000,
-          "ConnectRetry": 2
-        },
-        "DisableHealthChecks": true,
-        "DisableTracing": false
-      }
-    }
-  }
-}
-```
-
-### Use inline delegates
+#### Use inline delegates
 
 You can also pass the `Action<StackExchangeRedisSettings>` delegate to set up some or all the options inline, for example to configure `DisableTracing`:
 
@@ -126,37 +171,39 @@ You can also set up the [ConfigurationOptions](https://stackexchange.github.io/S
 ```csharp
 builder.AddRedisDistributedCache(
     "cache",
-    configureOptions: options => options.ConnectTimeout = 3000);
+    static settings => settings.ConnectTimeout = 3_000);
 ```
 
 [!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
 
-The .NET Aspire Stack Exchange Redis distributed caching integration handles the following:
+The .NET Aspire Redis distributed caching integration handles the following:
 
 - Adds the `StackExchange.Redis` health check, tries to open the connection and throws when it fails.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
-### Logging
+#### Logging
 
-The .NET Aspire Stack Exchange Redis Distributed Caching integration uses the following Log categories:
+The .NET Aspire Redis Distributed Caching integration uses the following Log categories:
 
 - `Aspire.StackExchange.Redis`
 - `Microsoft.Extensions.Caching.StackExchangeRedis`
 
-### Tracing
+#### Tracing
 
-The .NET Aspire Stack Exchange Redis Distributed Caching integration will emit the following Tracing activities using OpenTelemetry:
+The .NET Aspire Redis Distributed Caching integration will emit the following Tracing activities using OpenTelemetry:
 
-- "OpenTelemetry.Instrumentation.StackExchangeRedis"
+- `OpenTelemetry.Instrumentation.StackExchangeRedis`
 
-### Metrics
+#### Metrics
 
-The .NET Aspire Stack Exchange Redis Distributed Caching integration currently doesn't support metrics by default due to limitations with the `StackExchange.Redis` library.
+The .NET Aspire Redis Distributed Caching integration currently doesn't support metrics by default due to limitations with the `StackExchange.Redis` library.
 
 ## See also
 
 - [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+
+> **<a name="registered">*</a>**: _Redis is a registered trademark of Redis Ltd. Any rights therein are reserved to Redis Ltd. [Return to top](#heading)?_

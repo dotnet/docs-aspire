@@ -13,17 +13,17 @@ zone_pivot_groups: resp-host
 
 :::zone pivot="redis"
 
-[!INCLUDE [redis-intro](includes/redis-intro.md)]
+[Redis](https://redis.io/) is the world's fastest data platform for caching, vector search, and NoSQL databases. The .NET Aspire Redis integration enables you to connect to existing Redis instances, or create new instances from .NET with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
 
 :::zone-end
 :::zone pivot="garnet"
 
-[!INCLUDE [garnet-intro](includes/garnet-intro.md)]
+[Garnet](https://microsoft.github.io/garnet/) is a a high-performance cache-store from Microsoft Research and complies with the [Redis serialization protocol](../stackexchange-redis-caching-overview.md#redis-serialization-protocol-resp) (RESP). The .NET Aspire Redis integration enables you to connect to existing Garnet instances, or create new instances from .NET with the [`ghcr.io/microsoft/garnet` container image](https://github.com/microsoft/garnet/pkgs/container/garnet).
 
 :::zone-end
 :::zone pivot="valkey"
 
-[!INCLUDE [valkey-intro](includes/valkey-intro.md)]
+[Valkey](https://valkey.io/) is a Redis fork and complies with the [Redis serialization protocol](../stackexchange-redis-caching-overview.md#redis-serialization-protocol-resp) (RESP). It's a high-performance key/value datastore that supports a variety of workloads such as caching, message queues, and can act as a primary database. The .NET Aspire Redis integration enables you to connect to existing Valkey instances, or create new instances from .NET with the [`docker.io/valkey/valkey` container image](https://hub.docker.com/r/valkey/valkey/).
 
 :::zone-end
 
@@ -47,9 +47,7 @@ zone_pivot_groups: resp-host
 
 ### Hosting integration health checks
 
-The Redis hosting integration automatically adds a health check for the appropriate resource type. The health check verifies that the server is running and that a connection can be established to it.
-
-The hosting integration relies on the [📦 AspNetCore.HealthChecks.Redis](https://www.nuget.org/packages/AspNetCore.HealthChecks.Redis) NuGet package.
+[!INCLUDE [redis-hosting-health-checks](includes/redis-hosting-health-checks.md)]
 
 ## Client integration
 
@@ -178,23 +176,7 @@ For more information on how to format this connection string, see the [Stack Exc
 
 #### Use configuration providers
 
-The .NET Aspire Stack Exchange Redis integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.StackExchange.Redis.StackExchangeRedisSettings> from configuration by using the `Aspire:StackExchange:Redis` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
-
-```json
-{
-  "Aspire": {
-    "StackExchange": {
-      "Redis": {
-        "ConnectionString": "localhost:6379",
-        "DisableHealthChecks": true,
-        "DisableTracing": false
-      }
-    }
-  }
-}
-```
-
-For the complete Redis client integration JSON schema, see [Aspire.StackExchange.Redis/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v8.2.1/src/Components/Aspire.StackExchange.Redis/ConfigurationSchema.json).
+[!INCLUDE [redis-client-json-settings](includes/redis-client-json-settings.md)]
 
 #### Use inline delegates
 
