@@ -119,7 +119,7 @@ For more information on configuring browser telemetry, see [Enable browser telem
 
 ### Waiting for dependencies
 
-The app host now supports waiting for dependencies to be ready before starting another resource. This is useful when a resource sources take a long time to start up. The app host will wait for the resource to be ready before starting the dependent resource.
+The app host now supports waiting for dependencies to be ready before starting another resource. This is useful when a resource is taking a long time to start up. The app host will wait for the resource to be ready before starting any dependent resources.
 
 ```C#
 var builder = DistributedApplication.CreateBuilder(args);
@@ -134,14 +134,16 @@ builder.Build().Run();
 
 When the app host starts, it will wait for the `rabbit` resource to be ready before starting the `api` resource:
 
-<video controls src="videos/waitfor.mp4" title="Title"></video>
+<!-- markdownlint-disable MD033 -->
+<video controls src="media/waitfor.mp4" title="Title"></video>
+<!-- markdownlint-enable MD033 -->
 
-There are 2 methods exposed to wait for a resource:
+There are two methods exposed to wait for a resource:
 
-1. `WaitFor` - Wait for a resource to be ready before starting another resource.
-2. `WaitForCompletion` - Wait for a resource to complete before starting another resource.
+1. `WaitFor`: Wait for a resource to be ready before starting another resource.
+1. `WaitForCompletion`: Wait for a resource to complete before starting another resource.
 
-#### Resource Health Checks
+#### Resource health checks
 
 `WaitFor` uses health checks to determine if a resource is ready. If a resource does not have any health checks, the app host will wait for the resource to be in the "Running" state before starting the dependent resource.
 
@@ -163,7 +165,7 @@ builder.Build().Run();
 
 The above example adds a health check to the `catalog-api` resource. The app host will wait for the health check to return a healthy status before starting the `store` resource. It'll determine that the resource is ready when the the /healthz endpoint returns a 200 status code.
 
-### Persistent Containers
+### Persistent containers
 
 The app host now supports persistent containers. This is useful when you want to keep the container running even after the app host has stopped. These containers will not be stopped unless they are stopped manually using the container runtime.
 
@@ -245,11 +247,13 @@ These commands can be run from the dashboard:
 
 ![Clear cache command on dashboard](images/clear-cache-command.png)
 
+<!-- markdownlint-disable MD033 -->
 <video controls src="videos/custom-command.mp4" title="Title"></video>
+<!-- markdownlint-enable MD033 -->
 
-### Container Networking
+### Container networking
 
-The app host now adds all containers to a common network (`default-aspire-network`). This is useful when you want to communicate between containers without going through the host network. 
+The app host now adds all containers to a common network (`default-aspire-network`). This is useful when you want to communicate between containers without going through the host network.
 
 This also makes it easier to migrate from docker compose to the app host, as containers can communicate with each other using the container name.
 
@@ -610,13 +614,14 @@ Add the package reference to your project file:
 
 ```xml
 <ItemGroup>
-<PackageReference Include="Aspire.Hosting.Azure.AppContainers" Version="9.0.0-rc.1.24511.1" />
+  <PackageReference Include="Aspire.Hosting.Azure.AppContainers"
+                    Version="9.0.0-rc.1.24511.1" />
 </ItemGroup>
 ```
 
-The example below demonstrates how to scale an Azure Container App to 0 replicas:
+The example below demonstrates how to scale an Azure Container App to zero (`0`) replicas:
 
-```C#
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var db = builder.AddAzurePostgresFlexibleServer("pg")
@@ -639,5 +644,5 @@ builder.AddProject<Projects.WebApplication1>("api")
 builder.Build().Run();
 ```
 
-The above example will defer generation of the Azure Container App definition to the app host. This allows you to customize the Azure Container App definition without needing to run `azd infra synth` and unsafely modifying the generated bicep files.
+The preceding code example defers generation of the Azure Container App definition to the app host. This allows you to customize the Azure Container App definition without needing to run `azd infra synth` and unsafely modifying the generated bicep files.
 
