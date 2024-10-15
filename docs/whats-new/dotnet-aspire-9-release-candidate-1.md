@@ -176,7 +176,7 @@ The [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) continues to 
 
 The most requested feature for the dashboard is to manage the life-cycles of your orchestrated named resources. Specifically, the ability to stop, start, and restart resources. This feature is now available in .NET Aspire 9 RC1.
 
-> [!VIDEO 3ad0b6db-7027-4ac0-b42e-03cb60644e5e]
+<!-- > [!VIDEO 3ad0b6db-7027-4ac0-b42e-03cb60644e5e] -->
 
 This feature works for projects, containers, and executables. It enables restarting individual resources without having to restart the entire app host. For projects, if the debugger is attached, it's reattached on restart.
 
@@ -214,7 +214,7 @@ Traces can now be filtered with attribute values. For example, if you only want 
 
 Telemetry filtering also supports autocomplete of existing values. The **Added filter** dialog provides a combo box for selecting from values that dashboard has received. This feature makes it much easier to filter to real data and helps avoid typos by entered a value yourself.
 
-> [!VIDEO 1e158316-4048-4f16-9afa-883c949f8063]
+<!-- > [!VIDEO 1e158316-4048-4f16-9afa-883c949f8063] -->
 
 ### Combine telemetry from multiple resources
 
@@ -254,7 +254,7 @@ builder.Build().Run();
 
 When the app host starts, it waits for the `rabbit` resource to be ready before starting the `api` resource.
 
-> [!VIDEO d3636113-9e0d-4796-879c-4b80275c644d]
+<!-- > [!VIDEO d3636113-9e0d-4796-879c-4b80275c644d] -->
 
 There are two methods exposed to wait for a resource:
 
@@ -407,7 +407,7 @@ These commands can be run from the dashboard:
 
 :::image type="content" source="media/clear-cache-command.png" lightbox="media/clear-cache-command.png" alt-text="Clear cache command on dashboard":::
 
-> [!VIDEO 7fc32183-7342-4e79-a30a-c977e5b1d005]
+<!-- > [!VIDEO 7fc32183-7342-4e79-a30a-c977e5b1d005] -->
 
 > [!NOTE]
 > These .NET Aspire dashboard commands are only available when running the dashboard locally. They are not available when running the dashboard in Azure Container Apps.
