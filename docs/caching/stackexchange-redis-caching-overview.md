@@ -70,4 +70,4 @@ Output caching is a type of caching that stores the output of a web page or API 
 - [Distributed caching in ASP.NET Core](/aspnet/core/performance/caching/distributed)
 - [Output caching middleware in ASP.NET Core](/aspnet/core/performance/caching/output)
 
-> **<a name="registered">*</a>**: _Redis is a registered trademark of Redis Ltd. Any rights therein are reserved to Redis Ltd. [Return to top](#heading)?_
+[!INCLUDE [redis-trademark](includes/redis-trademark.md)]

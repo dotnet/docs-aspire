@@ -206,4 +206,4 @@ The .NET Aspire Redis Distributed Caching integration currently doesn't support 
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
 
-> **<a name="registered">*</a>**: _Redis is a registered trademark of Redis Ltd. Any rights therein are reserved to Redis Ltd. [Return to top](#heading)?_
+[!INCLUDE [redis-trademark](includes/redis-trademark.md)]
