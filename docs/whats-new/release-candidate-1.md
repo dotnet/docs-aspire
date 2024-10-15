@@ -81,11 +81,13 @@ Resource details has seen a lot of improvements:
 
 ### Coloreful console log
 
-ANSI escape codes are used to add text formatting to text. Foreground and background colors, bold, underline, italics, etc. The dashboard console logs page previously supported one ANSI escape code at a time, but failed when multiple were present. For example, the console logs page could show red text, but it couldn't show text that is red and bold at the same time.
+[ANSI escape codes](https://wikipedia.org/wiki/ANSI_escape_code) are used to add text formatting to text. For example, foreground and background colors, bold, underline, italics, etc. The dashboard console logs page previously supported rendering one ANSI escape code at a time and failed when they were combined together. The console logs page could show red text, but it couldn't show text that is red and bold at the same time.
 
 A community contribution from [@mangeg](https://github.com/mangeg) improved support for ANSI escape codes and removed this limitation. Behold:
 
 ![Colorful console logs](images/console-logs-ansi-text-format.png)
+
+Another improvement to console logs is hiding unsupported escape codes. Codes that aren't related to displaying text, such as positioning the cursor or communicating with the operating system don't make sense in this UI, and are hidden.
 
 ## Telemetry
 
