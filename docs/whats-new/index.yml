@@ -13,7 +13,7 @@ landingContent:
   - linkListType: whats-new
     links:
     - text: .NET Aspire 9.0 (Release Candidate 1)
-      url: release-candidate-1.md
+      url: dotnet-aspire-9-release-candidate-1.md
     - text: Announcing .NET Aspire 8.2
       url: https://devblogs.microsoft.com/dotnet/announcing-dotnet-aspire-8-2/
     - text: What's new in .NET Aspire 8.1
