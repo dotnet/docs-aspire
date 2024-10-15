@@ -388,7 +388,7 @@ These commands can be run from the dashboard:
 > [!VIDEO 7fc32183-7342-4e79-a30a-c977e5b1d005]
 
 > [!NOTE]
-> These .NET Aspire dashboard commands are only available when running the dashboard locally. They are not available when running the dashboard in Azure on ACA.
+> These .NET Aspire dashboard commands are only available when running the dashboard locally. They are not available when running the dashboard in Azure Container Apps.
 
 ### Container networking
 
