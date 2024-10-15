@@ -653,6 +653,8 @@ Set a breakpoint on the first line of the `Run` method and press <kbd>F5</kbd> t
 
 Use your favorite HTTP client of choice to send a request to the trigger and observe the inputs bound from the request body in the debugger.
 
+## [Unix](#tab/unix)
+
 ```bash
 curl --request POST \
   --url http://localhost:7282/api/Function1 \
