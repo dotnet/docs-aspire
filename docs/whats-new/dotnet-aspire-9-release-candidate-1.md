@@ -85,7 +85,7 @@ Template Name                    Short Name                                     
 .NET Aspire 9 Test Project (...  aspire-xunit,aspire-xunit-9                      [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
 ```
 
-Now you have the .NET Aspire 9 RC1 templates installed on your machine. 
+Now you have the .NET Aspire 9 RC1 templates installed on your machine.
 
 :::zone pivot="dotnet-cli,vscode"
 You can create a new .NET Aspire 9 RC1 project by running the following command:
