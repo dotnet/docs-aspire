@@ -536,13 +536,15 @@ Starting with .NET Aspire 9 RC1, an additional OpenAI integration is available w
 
 - [📦 Aspire.OpenAI](https://www.nuget.org/packages/Aspire.OpenAI/9.0.0-preview.4.24511.1)
 
-Moreover, the already available Azure AI OpenAI integration was improved to provide a flexible way to configure an `OpenAIClient` for either an Azure AI OpenAI service or a dedicated OpenAI REST API one with the new `AddOpenAIClientFromConfiguration` builder method. The following example will detect if the connection string is for an Azure AI OpenAI service and register the most apropriate `OpenAIClient` instance automatically.
+Moreover, the already available Azure AI OpenAI integration was improved to provide a flexible way to configure an `OpenAIClient` for either an Azure AI OpenAI service or a dedicated OpenAI REST API one with the new `AddOpenAIClientFromConfiguration` builder method. The following example will detect if the connection string is for an Azure AI OpenAI service and register the most appropriate `OpenAIClient` instance automatically.
 
 ```csharp
 builder.AddOpenAIClientFromConfiguration("openai");
 ```
 
-For instance, if the `openai` connection looked like `Endpoint=https://{account}.azure.com;Key={key};` it would guess it can register an Azure AI OpenAI client because of the domain name. Otherwise a common `OpenAIClient` See [Azure-agnostic client resolution](https://github.com/dotnet/aspire/blob/release/9.0-rc1/src/Components/Aspire.Azure.AI.OpenAI/README.md#azure-agnostic-client-resolution) for more details.
+For instance, if the `openai` connection looked like `Endpoint=https://{account}.azure.com;Key={key};` it would guess it can register an Azure AI OpenAI client because of the domain name. Otherwise a common `OpenAIClient` would be used.
+
+Read [Azure-agnostic client resolution](https://github.com/dotnet/aspire/blob/release/9.0-rc1/src/Components/Aspire.Azure.AI.OpenAI/README.md#azure-agnostic-client-resolution) for more details.
 
 ### MongoDB
 
