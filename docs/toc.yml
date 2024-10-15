@@ -65,6 +65,8 @@ items:
     items:
       - name: Tutorial - Writing your first .NET Aspire test
         href: testing/writing-your-first-test.md
+      - name: Managing the App Host
+        href: testing/manage-app-host.md
 
   - name: Fundamentals
     items:
