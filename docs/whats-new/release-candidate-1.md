@@ -8,7 +8,7 @@ ms.date: 10/11/2024
 
 .NET Aspire 9.0 is the next major release of .NET Aspire; it will support BOTH .NET 8 (LTS) and .NET 9. .NET Aspire 9.0 addresses some of the most highly requested features and pain points from the community. 
 
-## Upgrading to .NET Aspire 9.0
+## Upgrade to .NET Aspire 9.0
 
 Instructions on how to upgrade here
 - Visual Studio
