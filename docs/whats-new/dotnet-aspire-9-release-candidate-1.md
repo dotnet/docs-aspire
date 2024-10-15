@@ -533,6 +533,19 @@ var db = builder.AddMongo("db", username, password);
 
 In .NET Aspire 8, customizing Azure resources was marked experimental because the underlying `Azure.Provisioning` libraries were new and gathering feedback before they could be marked stable. In .NET Aspire 9.0 these APIs have been updated and will remove the experimental attribute.
 
+**Azure Resource Naming Breaking Change**
+
+As part of the update to the `Azure.Provisioning` libraries, the default naming scheme for Azure resources was updated with better support for various naming policies. However, this update resulted in a change to how resources are named that may result in the existing Azure resources being abandoned and new Azure resources being created after updating your .NET Aspire application from 8 to 9. To keep using the same naming policies from .NET Aspire 8, you can add the following code to your AppHost _Program.cs_:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+builder.Services.Configure<AzureResourceOptions>(options =>
+{
+    options.ProvisioningContext.PropertyResolvers.Insert(0, new AspireV8ResourceNamePropertyResolver());
+});
+```
+
 #### Azure SQL, PostgreSQL, and Redis Update
 
 Azure SQL, PostgreSQL, and Redis resources are different than other Azure resources because there are local container resources for these technologies. In .NET Aspire 8, in order to create these Azure resources you needed to start with a local container resource and then either "As" or "PublishAs" it to an Azure resource. This design introduced problems and didn't fit with other APIs.
