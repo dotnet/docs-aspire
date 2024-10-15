@@ -7,6 +7,8 @@ zone_pivot_groups: resp-host
 
 # .NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> integration
 
+<a name="heading"></a>
+
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
 :::zone pivot="redis"
@@ -239,4 +241,4 @@ The .NET Aspire Stack Exchange Redis integration currently doesn't support metri
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
 
-**<a name="registered">*</a>**: _Redis is a registered trademark of Redis Ltd. Any rights therein are reserved to Redis Ltd. [Return to top](#net-aspire-redisregsupregisteredsup-integration)?_
+> **<a name="registered">*</a>**: _Redis is a registered trademark of Redis Ltd. Any rights therein are reserved to Redis Ltd. [Return to top](#heading)?_
