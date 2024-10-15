@@ -153,7 +153,7 @@ That's it! You have successfully upgraded your project to .NET Aspire 9.0 RC 1 u
 The most requested feature for the dashboard is to manage the lifecycles of your orchestrated named resources. Specifically, the ability to stop, start, and restart resources. This feature is now available in .NET Aspire 9.
 
 <!-- markdownlint-disable MD033 -->
-<video controls src="videos/start-stop-restart.mp4" title="Title"></video>
+<video controls src="https://github.com/user-attachments/assets/3937ca4e-4ac9-4af7-938d-d016aa6277dc" title="Demo of managing resource lifecycle in the dashboard"></video>
 <!-- markdownlint-enable MD033 -->
 
 This feature works for projects, containers and executables. It enables restarting indidivual resources without having to restart the entire app host. For projects, if the debugger is attached, on restart, the debugger will be re-attached.
