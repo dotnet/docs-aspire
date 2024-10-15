@@ -134,15 +134,15 @@ For this release, we're introducing .NET Aspire support to the Upgrade Assistant
 
 To start the upgrade process, right-click your _*.AppHost_ project in Visual Studio and select the option `Upgrade`.
 
-:::image type="content" source="media/upgrade-assistant-1.png" alt-text="Upgrade using upgrade assistant":::
+:::image type="content" source="media/upgrade-assistant-1.png" lightbox="media/upgrade-assistant-1.png" alt-text="Upgrade using upgrade assistant":::
 
 If you don't yet have the Upgrade Assistant installed, then Visual Studio guides you to the steps of how to install the extension. Once you have it installed, you see the following option when you select the `Upgrade` option on your AppHost project:
 
-:::image type="content" source="media/upgrade-assistant-2.png" alt-text="Upgrade assistant options":::
+:::image type="content" source="media/upgrade-assistant-2.png" lightbox="media/upgrade-assistant-2.png" alt-text="Upgrade assistant options":::
 
 This will then do some analysis in your project and provide you with a report similar to the following detailing what will be updated. All you need to do now is to select the `Upgrade Selection` button to start the upgrade process:
 
-:::image type="content" source="media/upgrade-assistant-confirmation.png" alt-text="Upgrade confirmation":::
+:::image type="content" source="media/upgrade-assistant-confirmation.png" lightbox="media/upgrade-assistant-confirmation.png" alt-text="Upgrade confirmation":::
 
 That's it! You have successfully upgraded your project to .NET Aspire 9 RC1 using the Upgrade Assistant.
 
@@ -178,7 +178,7 @@ The display of resource details has seen several improvements:
 
 A community contribution from [@mangeg](https://github.com/mangeg) improved support for ANSI escape codes and removed this limitation. Behold:
 
-:::image type="content" source="media/console-logs-ansi-text-format.png" alt-text="Colorful console logs":::
+:::image type="content" source="media/console-logs-ansi-text-format.png" lightbox="media/console-logs-ansi-text-format.png" alt-text="Colorful console logs":::
 
 Another improvement to console logs is hiding unsupported escape codes. Codes that aren't related to displaying text, such as positioning the cursor or communicating with the operating system don't make sense in this UI, and are hidden.
 
@@ -198,7 +198,7 @@ Telemetry filtering also supports autocomplete of existing values. The **Added f
 
 When a resource has multiple replicas, you can now filter telemetry to view data from all instances at once. Select the parent resource, labeled `(application)`.
 
-:::image type="content" source="media/telemetry-resource-filter.png" alt-text="Filter by all instances of a resource":::
+:::image type="content" source="media/telemetry-resource-filter.png" lightbox="media/telemetry-resource-filter.png" alt-text="Filter by all instances of a resource":::
 
 ### Browser telemetry support
 
@@ -206,7 +206,7 @@ The dashboard now supports OpenTelemetry Protocol (OTLP) over HTTP and cross-ori
 
 For example, a browser-based single page app (SPA) can configure the [JavaScript OTEL SDK](https://opentelemetry.io/docs/languages/js/getting-started/browser/) to send structured logs, traces and metrics created in the browser to the dashboard. Browser telemetry is displayed alongside server telemetry.
 
-:::image type="content" source="media/dashboard-browser-telemetry.png" alt-text="Trace detail page with browser telemetry":::
+:::image type="content" source="media/dashboard-browser-telemetry.png" lightbox="media/dashboard-browser-telemetry.png" alt-text="Trace detail page with browser telemetry":::
 
 For more information on configuring browser telemetry, see [Enable browser telemetry](../fundamentals/dashboard/enable-browser-telemetry.md) documentation.
 
@@ -265,13 +265,13 @@ The preceding example adds a health check to the `catalog-api` resource. The app
 
 While `store` is waiting for `catalog-api` to become healthy, the resources in the dashboard appear as:
 
-:::image type="content" source="media/waiting-for-unhealthy-resource.png" alt-text="Waiting for an unhealthy resource before starting":::
+:::image type="content" source="media/waiting-for-unhealthy-resource.png" lightbox="media/waiting-for-unhealthy-resource.png" alt-text="Waiting for an unhealthy resource before starting":::
 
 The app host's health check mechanism builds upon the `IHealthChecksBuilder` implementation from the `Microsoft.Extensions.Diagnostics.HealthChecks` namespace.
 
 Health checks report data, which is displayed in the dashboard:
 
-:::image type="content" source="media/health-check-details.png" alt-text="Health check details in the dashboard's resource details view":::
+:::image type="content" source="media/health-check-details.png" lightbox="media/health-check-details.png" alt-text="Health check details in the dashboard's resource details view":::
 
 Creating a custom health check is simple, first define a custom health check, and then associate the health check name with the resource.
 
@@ -318,15 +318,13 @@ builder.Build().Run();
 
 The dashboard shows persistent containers with a pin icon:
 
-:::image type="content" source="media/persistent-container.png" alt-text="Persistent containers":::
+:::image type="content" source="media/persistent-container.png" lightbox="media/persistent-container.png" alt-text="Persistent containers":::
 
 After the app host has stopped, the container will continue to run:
 
-:::image type="content" source="media/persisent-container-dockerdesktop.png" alt-text="Docker desktop showing rabbit mq":::
+:::image type="content" source="media/persistent-container-docker-desktop.png" lightbox="media/persistent-container-docker-desktop.png" alt-text="Docker desktop showing RabbitMQ.":::
 
-The container persistence mechanism attempts to identify when you may wish to recreate the container. For example if the environment
-for the container changes then the container will be restarted so that you don't need to manually stop the container if you have changed
-the input configuration for the resource.
+The container persistence mechanism attempts to identify when you may wish to recreate the container. For example if the environment for the container changes then the container will be restarted so that you don't need to manually stop the container if you have changed the input configuration for the resource.
 
 ### Resource commands
 
@@ -387,7 +385,7 @@ public static class RedisCommandExtensions
 
 These commands can be run from the dashboard:
 
-:::image type="content" source="media/clear-cache-command.png" alt-text="Clear cache command on dashboard":::
+:::image type="content" source="media/clear-cache-command.png" lightbox="media/clear-cache-command.png" alt-text="Clear cache command on dashboard":::
 
 <!-- markdownlint-disable MD033
 <video controls src="videos/custom-command.mp4" title="Title"></video>
@@ -510,14 +508,17 @@ builder.AddRedis("redis")
 The `WithRedisInsight(...)` extension method can be applied to multiple
 Redis resources and they'll each be visible on the Redis Insight dashboard.
 
-:::image type="content" source="media/redis-insight.png" alt-text="Redis Insight dashboard showing multiple Redis instances":::
+:::image type="content" source="media/redis-insight.png" lightbox="media/redis-insight.png" alt-text="Redis Insight dashboard showing multiple Redis instances":::
 
 ### OpenAI
 
+Starting with .NET Aspire 9 RC1, you can use the latest OpenAI integration. The client integration registers the [OpenAIClient](https://github.com/openai/openai-dotnet?tab=readme-ov-file#using-the-openaiclient-class) as a singleton service in the service collection. The client can be used to interact with the OpenAI REST API.
+
+- [📦 Aspire.OpenAI](https://www.nuget.org/packages/Aspire.OpenAI/9.0.0-preview.4.24511.1)
+
 ### MongoDB
 
-Added support for specifying the MongoDB username and password when using the `AddMongoDB(...)` extension method. If not specified
-a random username and password will be generated but can be manually specified using parameter resources.
+Added support for specifying the MongoDB username and password when using the `AddMongoDB(...)` extension method. If not specified a random username and password will be generated but can be manually specified using parameter resources.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -536,11 +537,11 @@ var db = builder.AddMongo("db", username, password);
 
 ### Azure Functions Support (Preview)
 
-Support for Azure Functions is one of the most widely requested features on the Aspire issue tracker and we're excited to introduce preview support for it in this release. To demonstrate this support, let's use Aspire to create and deploy Functions application for a popular scenario: a webhook.
+Support for [Azure Functions](/azure/azure-functions/functions-overview?pivots=programming-language-csharp) is one of the most widely requested features on the .NET Aspire issue tracker and we're excited to introduce preview support for it in this release. To demonstrate this support, let's use Aspire to create and deploy Functions application for a popular scenario: a webhook.
 
-To get started, create a new Azure Functions project using the Visual Studio New Project dialogue. When prompted, select the "Enlist in Aspire orchestration" checkbox when creating the project.
+To get started, create a new Azure Functions project using the **Visual Studio New Project** dialog. When prompted, select the **Enlist in Aspire orchestration** checkbox when creating the project.
 
-:::image type="content" source="media/functions-step-1.gif" alt-text="Create new .NET Aspire Azure Functions project.":::
+:::image type="content" source="media/functions-step-1.gif" lightbox="media/functions-step-1.gif" alt-text="Create new .NET Aspire Azure Functions project.":::
 
 In the app host project, observe that there's a `PackageReference` to the new [📦 Aspire.Hosting.Azure.Functions](https://nuget.org/packages/Aspire.Hosting.Azure.Functions) NuGet package:
 
@@ -551,7 +552,7 @@ In the app host project, observe that there's a `PackageReference` to the new [�
 </ItemGroup>
 ```
 
-This package provides an `AddAzureFunctionsProject` API that can be invoked in the AppHost to configure Azure Functions projects within an Aspire host:
+This package provides an `AddAzureFunctionsProject` API that can be invoked in the app host to configure Azure Functions projects within an .NET Aspire host:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -643,7 +644,7 @@ public class Function1(ILogger<Function1> logger)
 
 Set a breakpoint on the first line of the `Run` method and press <kbd>F5</kbd> to start the Functions host. Once the .NET Aspire dashboard launches, you observe the following:
 
-:::image type="content" source="media/functions-dashboard-screenshot.png" alt-text="Screenshot of the .NET Aspire running with an Azure Function app.":::
+:::image type="content" source="media/functions-dashboard-screenshot.png" lightbox="media/functions-dashboard-screenshot.png" alt-text="Screenshot of the .NET Aspire running with an Azure Function app.":::
 
 .NET Aspire has:
 
@@ -677,7 +678,7 @@ curl --request POST `
 
 ---
 
-:::image type="content" source="media/functions-debug-screenshot.png" alt-text="Screenshot of the .NET Aspire dashboard: Debugging an Azure Function app.":::
+:::image type="content" source="media/functions-debug-screenshot.png" lightbox="media/functions-debug-screenshot.png" alt-text="Screenshot of the .NET Aspire dashboard: Debugging an Azure Function app.":::
 
 Now you're ready to deploy our application to Azure Container Apps (ACA). Deployment currently depends on preview builds of Azure Functions Worker and Worker SDK packages. If necessary, upgrade the versions referenced in the Functions project:
 
