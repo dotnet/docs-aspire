@@ -699,7 +699,9 @@ builder.AddAzureFunctionsProject<Projects.PigLatinApp>("piglatinapp")
        .WithExternalHttpEndpoints();
 ```
 
-To deploy the application via the `azd` CLI, navigate to the folder containing the AppHost project and run `azd init`:
+To deploy the application with [the `azd` CLI](/azure/developer/azure-developer-cli/install-azd), you'll need get the latest version first. To install the latest version, you'll see a warning if your version is out of date. Follow the instructions to update to the latest version.
+
+After it's installed, navigate to the folder containing the app host project and run `azd init`:
 
 ```azdeveloper
 $ azd init
@@ -810,7 +812,7 @@ Add the package reference to your project file:
 </ItemGroup>
 ```
 
-The example below demonstrates how to scale an Azure Container App to zero (`0`) replicas:
+The following example demonstrates how to scale an Azure Container App to zero (`0`) replicas:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
