@@ -299,7 +299,22 @@ builder.Build().Run();
 
 ## Integrations
 
-### Redis Insights
+### Redis Insight
+
+A new extension method has been added to support starting up Redis Insight on a Redis resource:
+
+```C#
+var builder = DistributedApplication.CreateBuilder(args);
+builder.AddRedis("redis")
+       .WithRedisInsight(); // Starts a Redis Insight container image
+                            // that is preconfigured to work with the
+                            // Redis instance.
+```
+
+The `WithRedisInsight(...)` extension method can be applied to multiple
+Redis resources and they will each be visible on the Redis Insight dashboard.
+
+![Redis Insight dashboard showing multiple Redis instances](images/redis-insight.png)
 
 ### Open AI
 
