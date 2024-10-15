@@ -426,15 +426,15 @@ The eventing model allows developers to hook into the lifecycle of the applicati
 
 **Global events:**
 
-  - `BeforeStartEvent`: An event that is triggered before the application starts. This is the last place that changes to the app model will be observed. This runs in both Run and Publish modes. This is a blocking event, meaning that the application won't start until all handlers have completed.
-  - `AfterResourcesCreatedEvent`: An event that is triggered after the resources have been created. This runs in Run mode only.
-  - `AfterEndpointsAllocatedEvent`: An event that is triggered after the endpoints have been allocated for all resources. This runs in Run mode only.
+- `BeforeStartEvent`: An event that is triggered before the application starts. This is the last place that changes to the app model will be observed. This runs in both Run and Publish modes. This is a blocking event, meaning that the application won't start until all handlers have completed.
+- `AfterResourcesCreatedEvent`: An event that is triggered after the resources have been created. This runs in Run mode only.
+- `AfterEndpointsAllocatedEvent`: An event that is triggered after the endpoints have been allocated for all resources. This runs in Run mode only.
 
 **Per-resource events:**
 
-  - `BeforeResourceStartedEvent`: An event that is triggered before a single resource starts. This runs in Run mode only. This is a blocking event, meaning that the resource won't start until all handlers have completed.
-  - `ConnectionStringAvailableEvent`: An event that is triggered when a connection string is available for a resource. This runs in Run mode only.
-  - `ResourceReadyEvent`: An event that is triggered when a resource is ready to be used. This runs in Run mode only.
+- `BeforeResourceStartedEvent`: An event that is triggered before a single resource starts. This runs in Run mode only. This is a blocking event, meaning that the resource won't start until all handlers have completed.
+- `ConnectionStringAvailableEvent`: An event that is triggered when a connection string is available for a resource. This runs in Run mode only.
+- `ResourceReadyEvent`: An event that is triggered when a resource is ready to be used. This runs in Run mode only.
 
 Here are some code examples of subscribing to events:
 
