@@ -68,7 +68,7 @@ dotnet add package Aspire.StackExchange.Redis.DistributedCaching
 
 ---
 
-## Add Redis client
+### Add Redis client
 
 In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddRedisDistributedCache%2A> extension to register the required services for distributed caching and add a <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use via the dependency injection container.
 

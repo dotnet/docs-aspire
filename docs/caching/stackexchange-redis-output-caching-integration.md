@@ -68,7 +68,7 @@ dotnet add package Aspire.StackExchange.Redis.OutputCaching
 
 ---
 
-## Add output caching
+### Add output caching
 
 In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register the required services for output caching.
 
