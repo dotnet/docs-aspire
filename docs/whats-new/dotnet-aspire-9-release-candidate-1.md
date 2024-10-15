@@ -620,6 +620,54 @@ In order to make .NET Aspire applications more secure, Azure Database for Postgr
 - [Azure Database for PostgreSQL](https://devblogs.microsoft.com/dotnet/using-postgre-sql-with-dotnet-and-entra-id/)
 - [Azure Cache for Redis](https://github.com/Azure/Microsoft.Azure.StackExchangeRedis)
 
+The following is example code for how to configure your application to connect to the Azure resource using Microsoft Entra ID:
+
+**Azure Database for PostgreSQL**
+
+```csharp
+using Azure.Core;
+using Azure.Identity;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.AddServiceDefaults();
+
+builder.AddNpgsqlDataSource("db1", configureDataSourceBuilder: dataSourceBuilder =>
+{
+    if (string.IsNullOrEmpty(dataSourceBuilder.ConnectionStringBuilder.Password))
+    {
+        dataSourceBuilder.UsePeriodicPasswordProvider(async (_, ct) =>
+        {
+            var credentials = new DefaultAzureCredential();
+            var token = await credentials.GetTokenAsync(new TokenRequestContext(["https://ossrdbms-aad.database.windows.net/.default"]), ct);
+            return token.Token;
+        }, TimeSpan.FromHours(24), TimeSpan.FromSeconds(10));
+    }
+});
+```
+
+**Azure Cache for Redis**
+
+```csharp
+using Azure.Identity;
+using StackExchange.Redis;
+using StackExchange.Redis.Configuration;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.AddServiceDefaults();
+
+var azureOptionsProvider = new AzureOptionsProvider();
+var configurationOptions = ConfigurationOptions.Parse(builder.Configuration.GetConnectionString("cache") ?? throw new InvalidOperationException("Could not find a 'cache' connection string."));
+if (configurationOptions.EndPoints.Any(azureOptionsProvider.IsMatch))
+{
+    await configurationOptions.ConfigureForAzureWithTokenCredentialAsync(new DefaultAzureCredential());
+}
+
+builder.AddRedisClient("cache", configureOptions: options =>
+{
+    options.Defaults = configurationOptions.Defaults;
+});
+```
+
 If you need to use password or access key authentication (not recommended), you can opt-in with the following code:
 
 ```csharp
