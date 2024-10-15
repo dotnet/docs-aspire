@@ -147,7 +147,7 @@ There are two methods exposed to wait for a resource:
 
 `WaitFor` uses health checks to determine if a resource is ready. If a resource does not have any health checks, the app host will wait for the resource to be in the "Running" state before starting the dependent resource.
 
-You can now attach health checks to resources. These health checks use the `IHealthCheck` interface from the `Microsoft.Extensions.Diagnostics.HealthChecks` namespace.
+For resources that expose HTTP endpoints we have added a streamlined way to define a health check which polls a specific path for a HTTP 200 response.
 
 ```C#
 var builder = DistributedApplication.CreateBuilder(args);
@@ -164,6 +164,29 @@ builder.Build().Run();
 ```
 
 The above example adds a health check to the `catalog-api` resource. The app host will wait for the health check to return a healthy status before starting the `store` resource. It'll determine that the resource is ready when the the /healthz endpoint returns a 200 status code.
+
+The health checks mechanism in the app host builds upon the `IHealthChecksBuilder` implementation from the `Microsoft.Extensions.Diagnostics.HealthChecks` namespace. Creating a custom health check is simple, first define a custom
+health check, and then associate the health check name with the resource.
+
+```C#
+var builder = DistributedApplication.CreateBuilder(args);
+
+var healthyAfter = DateTime.Now.AddSeconds(20);
+builder.Services.AddHealthChecks().AddCheck(
+    "delay20secs",
+    () => DateTime.Now > healthyAfter ? HealthCheckResult.Healthy() : HealthCheckResult.Unhealthy()
+    );
+
+var cache = builder.AddRedis("cache")
+                   .WithHealthCheck("delay20secs");
+
+builder.AddProject<Projects.MyApp>("myapp")
+       .WithReference(cache).WaitFor(cache);
+```
+
+The above example shows using a custom health check to blow the start up of the dependent project resource until 20 seconds
+after the apphost starts running. The `WithHealthCheck(...)` mechanism provides a simple mechanism to assocate a resource
+with health checks that are already registered in the health checks system by name (`delay20secs`).
 
 ### Persistent containers
 
