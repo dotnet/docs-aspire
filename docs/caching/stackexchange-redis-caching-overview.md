@@ -1,10 +1,12 @@
 ---
 title: Stack Exchange Redis caching overview
 description: Learn about Stack Exchange Redis caching and how to use it in your applications.
-ms.date: 08/12/2024
+ms.date: 10/15/2024
 ---
 
-# Stack Exchange Redis caching overview
+# Stack Exchange Redis&reg;<sup>**[*](#registered)**</sup> caching overview
+
+<a name="heading"></a>
 
 With .NET Aspire, there are several ways to use caching in your applications. One popular option is to use [Stack Exchange Redis](https://stackexchange.github.io/StackExchange.Redis), which is a high-performance data store that can be used to store frequently accessed data. This article provides an overview of Stack Exchange Redis caching and links to resources that help you use it in your applications.
 
@@ -67,3 +69,5 @@ Output caching is a type of caching that stores the output of a web page or API 
 - [Distributed caching in .NET](/dotnet/core/extensions/caching#distributed-caching)
 - [Distributed caching in ASP.NET Core](/aspnet/core/performance/caching/distributed)
 - [Output caching middleware in ASP.NET Core](/aspnet/core/performance/caching/output)
+
+[!INCLUDE [redis-trademark](includes/redis-trademark.md)]

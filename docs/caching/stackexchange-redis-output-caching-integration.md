@@ -1,61 +1,33 @@
 ---
-title: .NET Aspire Stack Exchange Redis output caching Component
-description: This article describes the .NET Aspire Stack Exchange Redis output caching integration features and capabilities
-ms.topic: how-to
-ms.date: 08/12/2024
+title: .NET Aspire Redis output caching integration
+description: Learn how to use the .NET Aspire  Redis output caching integration to register an ASP.NET Core Output Caching provider backed by a Redis server.
+ms.date: 10/15/2024
 zone_pivot_groups: resp-host
 ---
 
-# .NET Aspire Stack Exchange Redis output caching integration
+# .NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> output caching integration
 
-In this article, you learn how to use the .NET Aspire Stack Exchange Redis output caching integration. The `Aspire.StackExchange.Redis.OutputCaching` library is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Redis](https://redis.io/) server. It enables corresponding health check, logging, and telemetry..
+<a name="heading"></a>
 
-## Get started
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-To get started with the .NET Aspire Stack Exchange Redis output caching integration, install the [Aspire.StackExchange.Redis.OutputCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.OutputCaching) NuGet package in the client-consuming project, i.e., the project for the application that uses the Stack Exchange Redis output caching client.
+:::zone pivot="redis"
 
-### [.NET CLI](#tab/dotnet-cli)
+Learn how to use the .NET Aspire Redis output caching integration. The `Aspire.StackExchange.Redis.OutputCaching` client integration is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Redis](https://redis.io/) server with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
 
-```dotnetcli
-dotnet add package Aspire.StackExchange.Redis.OutputCaching
-```
+:::zone-end
+:::zone pivot="garnet"
 
-### [PackageReference](#tab/package-reference)
+Learn how to use the .NET Aspire Redis output caching integration. The `Aspire.StackExchange.Redis.OutputCaching` client integration is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Garnet](https://microsoft.github.io/garnet/) server with the [`ghcr.io/microsoft/garnet` container image](https://github.com/microsoft/garnet/pkgs/container/garnet).
 
-```xml
-<PackageReference Include="Aspire.StackExchange.Redis.OutputCache"
-                  Version="*" />
-```
+:::zone-end
+:::zone pivot="valkey"
 
----
+Learn how to use the .NET Aspire Redis output caching integration. The `Aspire.StackExchange.Redis.OutputCaching` client integration is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Valkey](https://valkey.io/) server with the [`docker.io/valkey/valkey` container image](https://hub.docker.com/r/valkey/valkey/).
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+:::zone-end
 
-## Example usage
-
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> extension to register the required services for output caching.
-
-```csharp
-builder.AddRedisOutputCache("cache");
-```
-
-Add the middleware to the request processing pipeline by calling [UseOutputCache](/dotnet/api/microsoft.aspnetcore.builder.outputcacheapplicationbuilderextensions.useoutputcache).
-
-```csharp
-var app = builder.Build();
-app.UseOutputCache();
-```
-
-For minimal API apps, configure an endpoint to do caching by calling <xref:Microsoft.Extensions.DependencyInjection.OutputCacheConventionBuilderExtensions.CacheOutput%2A>, or by applying the <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheAttribute>, as shown in the following examples:
-
-```csharp
-app.MapGet("/cached", () => { return "Hello world!"; }).CacheOutput();
-app.MapGet("/attribute", [OutputCache] () => { return "Hello world!"; });
-```
-
-For apps with controllers, apply the `[OutputCache]` attribute to the action method. For Razor Pages apps, apply the attribute to the Razor page class.
-
-## App host usage
+## Hosting integration
 
 :::zone pivot="redis"
 
@@ -73,52 +45,106 @@ For apps with controllers, apply the `[OutputCache]` attribute to the action met
 
 :::zone-end
 
-## Configuration
+### Hosting integration health checks
+
+[!INCLUDE [redis-hosting-health-checks](includes/redis-hosting-health-checks.md)]
+
+## Client integration
+
+To get started with the .NET Aspire Stack Exchange Redis output caching client integration, install the [📦 Aspire.StackExchange.Redis.OutputCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.OutputCaching) NuGet package in the client-consuming project, that is, the project for the application that uses the output caching client.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.StackExchange.Redis.OutputCaching
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.StackExchange.Redis.OutputCache"
+                  Version="*" />
+```
+
+---
+
+### Add output caching
+
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register the required services for output caching.
+
+```csharp
+builder.AddRedisOutputCache(connectionName: "cache");
+```
+
+:::zone pivot="redis"
+
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the Redis resource in the app host project. For more information, see [Add Redis resource](#add-redis-resource).
+
+:::zone-end
+:::zone pivot="garnet"
+
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the Garnet resource in the app host project. For more information, see [Add Garnet resource](#add-garnet-resource).
+
+:::zone-end
+:::zone pivot="valkey"
+
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the Valkey resource in the app host project. For more information, see [Add Valkey resource](#add-valkey-resource).
+
+:::zone-end
+
+Add the middleware to the request processing pipeline by calling <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache(Microsoft.AspNetCore.Builder.IApplicationBuilder)>:
+
+```csharp
+var app = builder.Build();
+
+app.UseOutputCache();
+```
+
+For [minimal API apps](/aspnet/core/fundamentals/minimal-apis/overview), configure an endpoint to do caching by calling <xref:Microsoft.Extensions.DependencyInjection.OutputCacheConventionBuilderExtensions.CacheOutput%2A>, or by applying the <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheAttribute>, as shown in the following examples:
+
+```csharp
+app.MapGet("/cached", () => "Hello world!")
+   .CacheOutput();
+
+app.MapGet(
+    "/attribute",
+    [OutputCache] () => "Hello world!");
+```
+
+For apps with controllers, apply the `[OutputCache]` attribute to the action method. For Razor Pages apps, apply the attribute to the Razor page class.
+
+### Configuration
 
 The .NET Aspire Stack Exchange Redis output caching integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
 
-### Use a connection string
+#### Use a connection string
 
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddRedisOutputCache`:
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache*>:
 
 ```csharp
-builder.AddRedisOutputCache("RedisConnection");
+builder.AddRedisOutputCache(connectionName: "cache");
 ```
 
-And then the connection string will be retrieved from the `ConnectionStrings` configuration section:
+Then the connection string will be retrieved from the `ConnectionStrings` configuration section:
 
 ```json
 {
   "ConnectionStrings": {
-    "RedisConnection": "localhost:6379"
+    "cache": "localhost:6379"
   }
 }
 ```
 
 For more information on how to format this connection string, see the [Stack Exchange Redis configuration docs](https://stackexchange.github.io/StackExchange.Redis/Configuration.html#basic-configuration-strings).
 
-### Use configuration providers
+#### Use configuration providers
 
-The .NET Aspire Stack Exchange Redis output caching integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.StackExchange.Redis.StackExchangeRedisSettings> from configuration by using the `Aspire:StackExchange:Redis` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
+[!INCLUDE [redis-client-json-settings](includes/redis-client-json-settings.md)]
 
-```json
-{
-  "Aspire": {
-    "StackExchange": {
-      "Redis": {
-        "ConfigurationOptions": {
-          "ConnectTimeout": 3000,
-          "ConnectRetry": 2
-        },
-        "DisableHealthChecks": true,
-        "DisableTracing": false
-      }
-    }
-  }
-}
-```
-
-### Use inline delegates
+#### Use inline delegates
 
 You can also pass the `Action<StackExchangeRedisSettings> configurationSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
 
@@ -133,7 +159,7 @@ You can also set up the [ConfigurationOptions](https://stackexchange.github.io/S
 ```csharp
 builder.AddRedisOutputCache(
     "cache",
-    static configureOptions: options => options.ConnectTimeout = 3000);
+    static settings => settings.ConnectTimeout = 3_000);
 ```
 
 [!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
@@ -145,20 +171,20 @@ The .NET Aspire Stack Exchange Redis output caching integration handles the foll
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
-### Logging
+#### Logging
 
 The .NET Aspire Stack Exchange Redis output caching integration uses the following Log categories:
 
 - `Aspire.StackExchange.Redis`
 - `Microsoft.AspNetCore.OutputCaching.StackExchangeRedis`
 
-### Tracing
+#### Tracing
 
 The .NET Aspire Stack Exchange Redis output caching integration will emit the following Tracing activities using OpenTelemetry:
 
-- "OpenTelemetry.Instrumentation.StackExchangeRedis"
+- `OpenTelemetry.Instrumentation.StackExchangeRedis`
 
-### Metrics
+#### Metrics
 
 The .NET Aspire Stack Exchange Redis output caching integration currently doesn't support metrics by default due to limitations with the `StackExchange.Redis` library.
 
@@ -167,3 +193,5 @@ The .NET Aspire Stack Exchange Redis output caching integration currently doesn'
 - [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+
+[!INCLUDE [redis-trademark](includes/redis-trademark.md)]
