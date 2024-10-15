@@ -588,7 +588,7 @@ Azure SQL, PostgreSQL, and Redis resources are different than other Azure resour
 var builder = DistributedApplication.CreateBuilder(args);
 
 var sql = builder.AddSqlServer("sql")
-                   .PublishAsAzureSqlDatabase();
+                 .PublishAsAzureSqlDatabase();
 var pgsql = builder.AddPostgres("pgsql")
                    .PublishAsAzurePostgresFlexibleServer();
 var cache = builder.AddRedis("cache")
@@ -603,7 +603,7 @@ In .NET Aspire 9 these APIs have been obsoleted and a new API pattern implemente
 var builder = DistributedApplication.CreateBuilder(args);
 
 var sql = builder.AddAzureSqlServer("sql")
-                   .RunAsContainer();
+                 .RunAsContainer();
 var pgsql = builder.AddAzurePostgresFlexibleServer("pgsql")
                    .RunAsContainer();
 var cache = builder.AddAzureRedis("cache")
