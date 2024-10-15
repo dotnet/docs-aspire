@@ -569,8 +569,8 @@ var cache = builder.AddAzureRedis("cache")
 
 In order to make .NET Aspire applications more secure, Azure Database for PostgreSQL and Azure Cache for Redis resources were updated to use Microsoft Entra ID by default. This requires changes to applications that need to connect to these resources. See the following for updating applications to use Microsoft Entra ID to connect to these resources:
 
-* [Azure Database for PostgreSQL](https://devblogs.microsoft.com/dotnet/using-postgre-sql-with-dotnet-and-entra-id/)
-* [Azure Cache for Redis](https://github.com/Azure/Microsoft.Azure.StackExchangeRedis)
+- [Azure Database for PostgreSQL](https://devblogs.microsoft.com/dotnet/using-postgre-sql-with-dotnet-and-entra-id/)
+- [Azure Cache for Redis](https://github.com/Azure/Microsoft.Azure.StackExchangeRedis)
 
 If you need to use password/access key authentication (not recommended), you can opt-in with the following code:
 
