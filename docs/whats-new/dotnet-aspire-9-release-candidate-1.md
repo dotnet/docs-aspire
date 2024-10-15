@@ -83,7 +83,10 @@ Template Name                    Short Name                                     
 .NET Aspire 9 Test Project (...  aspire-xunit,aspire-xunit-9                      [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
 ```
 
-Now you have the .NET Aspire 9 RC1 templates installed on your machine. You can create a new .NET Aspire 9 RC1 project by running the following command:
+Now you have the .NET Aspire 9 RC1 templates installed on your machine. 
+
+:::zone pivot="dotnet-cli"
+You can create a new .NET Aspire 9 RC1 project by running the following command:
 
 ```dotnetcli
 dotnet new aspire-starter
@@ -94,6 +97,22 @@ If you need to target .NET 8, you can do so by passing the `-f net8.0` flag:
 ```dotnetcli
 dotnet new aspire-starter -f net8.0
 ```
+:::zone-end
+
+:::zone pivot="visual-studio"
+Visual Studio 2022 17.12 or higher supports .NET Aspire 9.
+
+You can create a new .NET Aspire 9 RC1 project by selecting one of the .NET Aspire 9 templates. You can use Aspire 9 to target either .NET 9.0 or .NET 8.0. 
+
+:::image type="content" source="media/create-new-project-vs.png" lightbox="media/create-new-project-vs.png" alt-text="Create New Project":::
+
+:::image type="content" source="media/create-aspire9-starterapp.png" lightbox="media/create-aspire9-starterapp.png" alt-text="Create New Aspire 9 Starter App":::
+
+If you want to use the older .NET Aspire 8 project templates, those are still available and you can target .NET 8.0.
+
+:::image type="content" source="media/create-aspire8-starterapp.png" lightbox="media/create-aspire8-starterapp.png" alt-text="Create New Aspire 8 Starter App":::
+
+:::zone-end
 
 ### Upgrade an existing project to .NET Aspire 9 RC1 manually
 
