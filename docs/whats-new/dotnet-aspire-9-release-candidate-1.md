@@ -19,7 +19,7 @@ Instructions on how to upgrade are detailed in the following:
 
 ### Acquisition
 
-.NET Aspire 9 RC1 makes it simpler to configure your environment to develop .NET Aspire applications. You no longer need a .NET workload. Instead, add the [📦 `Aspire.AppHost.Sdk`](https://nuget.org/packages/Aspire.AppHost.Sdk) MSBuild SDK to your project and it will be downloaded via NuGet automatically.
+.NET Aspire 9 RC1 makes it simpler to configure your environment to develop .NET Aspire applications. You no longer need a .NET workload. Instead, add the [📦 `Aspire.AppHost.Sdk`](https://www.nuget.org/packages/Aspire.AppHost.Sdk) MSBuild SDK to your project and it will be downloaded via NuGet automatically.
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -626,7 +626,7 @@ To get started, create a new Azure Functions project using the **Visual Studio N
 
 :::image type="content" source="media/functions-step-1.gif" lightbox="media/functions-step-1.gif" alt-text="Create new .NET Aspire Azure Functions project.":::
 
-In the app host project, observe that there's a `PackageReference` to the new [📦 Aspire.Hosting.Azure.Functions](https://nuget.org/packages/Aspire.Hosting.Azure.Functions) NuGet package:
+In the app host project, observe that there's a `PackageReference` to the new [📦 Aspire.Hosting.Azure.Functions](https://www.nuget.org/packages/Aspire.Hosting.Azure.Functions) NuGet package:
 
 ```xml
 <ItemGroup>
