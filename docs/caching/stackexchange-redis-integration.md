@@ -5,7 +5,7 @@ ms.date: 10/14/2024
 zone_pivot_groups: resp-host
 ---
 
-# .NET Aspire Redis integration
+# .NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
