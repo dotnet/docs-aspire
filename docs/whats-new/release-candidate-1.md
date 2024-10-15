@@ -416,7 +416,6 @@ public class Function1(ILogger<Function1> logger)
 
 Set a breakpoint in the first line of the `Run` method and press <kbd>F5</kbd> to start the Functions host. Once the Aspire dashboard launches, you'll observe the following:
 
-
 ![Screenshot of the dashboard](./images/functions-dashboard-screenshot.png)
 
 Aspire has:
@@ -526,7 +525,6 @@ $ curl --request POST \
   "value": "Welcome to Azure Functions"
 }'
 ```
-
 
 Support for Azure Functions in Aspire is still in preview with support for a limited set of triggers including:
 
