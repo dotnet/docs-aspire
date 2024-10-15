@@ -529,11 +529,61 @@ var db = builder.AddMongo("db", username, password);
 
 ### Azure
 
-- AzurePostgres
-- AzureRedis
-- AzureSql
+#### Azure resource customization
 
-### Azure Functions Support (Preview)
+In .NET Aspire 8, customizing Azure resources was marked experimental because the underlying `Azure.Provisioning` libraries were new and gathering feedback before they could be marked stable. In .NET Aspire 9.0 these APIs have been updated and will remove the experimental attribute.
+
+#### Azure SQL, PostgreSQL, and Redis Update
+
+Azure SQL, PostgreSQL, and Redis resources are different than other Azure resources because there are local container resources for these technologies. In .NET Aspire 8, in order to create these Azure resources you needed to start with a local container resource and then either "As" or "PublishAs" it to an Azure resource. This design introduced problems and didn't fit with other APIs.
+
+**.NET Aspire 8**
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var sql = builder.AddSqlServer("sql")
+                   .PublishAsAzureSqlDatabase();
+var pgsql = builder.AddPostgres("pgsql")
+                   .PublishAsAzurePostgresFlexibleServer();
+var cache = builder.AddRedis("cache")
+                   .PublishAsAzureSqlDatabase();
+```
+
+In .NET Aspire 9 these APIs have been obsoleted and a new API pattern implemented:
+
+**.NET Aspire 9**
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var sql = builder.AddAzureSqlServer("sql")
+                   .RunAsContainer();
+var pgsql = builder.AddAzurePostgresFlexibleServer("pgsql")
+                   .RunAsContainer();
+var cache = builder.AddAzureRedis("cache")
+                   .RunAsContainer();
+```
+
+##### Microsoft Entra ID by default
+
+In order to make .NET Aspire applications more secure, Azure Database for PostgreSQL and Azure Cache for Redis resources were updated to use Microsoft Entra ID by default. This requires changes to applications that need to connect to these resources. See the following for updating applications to use Microsoft Entra ID to connect to these resources:
+
+* [Azure Database for PostgreSQL](https://devblogs.microsoft.com/dotnet/using-postgre-sql-with-dotnet-and-entra-id/)
+* [Azure Cache for Redis](https://github.com/Azure/Microsoft.Azure.StackExchangeRedis)
+
+If you need to use password/access key authentication (not recommended), you can opt-in with the following code:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var pgsql = builder.AddAzurePostgresFlexibleServer("pgsql")
+                   .WithPasswordAuthentication();
+var cache = builder.AddAzureRedis("cache")
+                   .WithAccessKeyAuthentication();
+```
+
+#### Azure Functions Support (Preview)
 
 Support for [Azure Functions](/azure/azure-functions/functions-overview?pivots=programming-language-csharp) is one of the most widely requested features on the .NET Aspire issue tracker and we're excited to introduce preview support for it in this release. To demonstrate this support, let's use Aspire to create and deploy Functions application for a popular scenario: a webhook.
 
@@ -794,7 +844,7 @@ Support for Azure Functions in .NET Aspire is still in preview with support for 
 
 For the latest information on features support by the Azure Functions integration, see [the tracking issue](https://github.com/dotnet/aspire/issues/920).
 
-### Customization of Azure Container Apps
+#### Customization of Azure Container Apps
 
 One of the most requested features is the ability to customize the Azure Container Apps that are created by the app host without dropping to bicep. This is now possible by using the `PublishAsAzureContainerApp` method in `Aspire.Hosting.Azure.AppContainers` namespace. This method allows you to customize the Azure Container App definition that is created by the app host.
 
