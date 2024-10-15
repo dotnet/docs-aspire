@@ -11,6 +11,7 @@ ms.date: 10/11/2024
 ## Upgrade to .NET Aspire 9.0
 
 Instructions on how to upgrade here
+
 - Visual Studio
 - Visual Studio Code
 - Command Line
