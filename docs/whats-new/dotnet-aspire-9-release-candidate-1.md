@@ -300,7 +300,7 @@ The `AddCheck(...)` and `WithHealthCheck(...)` methods provide a simple mechanis
 
 ### Persistent containers
 
-The app host now supports persistent containers. This is useful when you want to keep the container running even after the app host has stopped. These containers won't be stopped unless they're stopped manually using the container runtime.
+The app host now supports persistent containers. This is useful when you want to keep the container running even after the app host has stopped. These containers won't be stopped until they're stopped manually using the container runtime.
 
 To do this, call the `WithLifetime` method and pass in `ContainerLifetime.Persistent`:
 
@@ -391,6 +391,9 @@ These commands can be run from the dashboard:
 <video controls src="videos/custom-command.mp4" title="Title"></video>
      markdownlint-enable MD033
 -->
+
+> [!NOTE]
+> These .NET Aspire dashboard commands are only available when running the dashboard locally. They are not available when running the dashboard in Azure on ACA.
 
 ### Container networking
 
