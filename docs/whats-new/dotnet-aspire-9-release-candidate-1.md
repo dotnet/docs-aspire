@@ -533,6 +533,8 @@ The `WithRedisInsight` extension method can be applied to multiple Redis resourc
 
 :::image type="content" source="media/redis-insight.png" lightbox="media/redis-insight.png" alt-text="Redis Insight dashboard showing multiple Redis instances":::
 
+For more information, see [Add Redis resource with Redis Insights](../caching/stackexchange-redis-integration.md?pivots=redis#add -redis-resource-with-redis-insights).
+
 ### OpenAI (Preview)
 
 Starting with .NET Aspire 9 RC1, an additional OpenAI integration is available which allows to use the latest official OpenAI dotnet library directly. The client integration registers the [OpenAIClient](https://github.com/openai/openai-dotnet?tab=readme-ov-file#using-the-openaiclient-class) as a singleton service in the service collection. The client can be used to interact with the OpenAI REST API.

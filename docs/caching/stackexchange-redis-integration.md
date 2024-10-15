@@ -1,54 +1,33 @@
 ---
-title: .NET Aspire Stack Exchange Redis integration
-description: This article describes the .NET Aspire Stack Exchange Redis integration features and capabilities
-ms.topic: how-to
-ms.date: 08/12/2024
+title: .NET Aspire Redis integration
+description: Learn how to use the .NET Aspire Redis integration, which includes both hosting and client integrations.
+ms.date: 10/14/2024
 zone_pivot_groups: resp-host
 ---
 
-# .NET Aspire Stack Exchange Redis integration
+# .NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> integration
 
-In this article, you learn how to use the .NET Aspire Stack Exchange Redis integration. The `Aspire.StackExchange.Redis` library is used to register an [IConnectionMultiplexer](https://stackexchange.github.io/StackExchange.Redis/Basics) in the DI container for connecting to a [Redis](https://redis.io/) server. It enables corresponding health checks, logging and telemetry.
+<a name="heading"></a>
 
-## Get started
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-To get started with the .NET Aspire Stack Exchange Redis integration, install the [Aspire.StackExchange.Redis](https://www.nuget.org/packages/Aspire.StackExchange.Redis) NuGet package in the client-consuming project, i.e., the project for the application that uses the Stack Exchange Redis client.
+:::zone pivot="redis"
 
-### [.NET CLI](#tab/dotnet-cli)
+[!INCLUDE [redis-intro](includes/redis-intro.md)]
 
-```dotnetcli
-dotnet add package Aspire.StackExchange.Redis
-```
+:::zone-end
+:::zone pivot="garnet"
 
-### [PackageReference](#tab/package-reference)
+[!INCLUDE [garnet-intro](includes/garnet-intro.md)]
 
-```xml
-<PackageReference Include="Aspire.StackExchange.Redis"
-                  Version="*" />
-```
+:::zone-end
+:::zone pivot="valkey"
 
----
+[!INCLUDE [valkey-intro](includes/valkey-intro.md)]
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+:::zone-end
 
-## Example usage
-
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisExtensions.AddRedisClient%2A> extension to register a `IConnectionMultiplexer` for use via the dependency injection container.
-
-```csharp
-builder.AddRedisClient("cache");
-```
-
-You can then retrieve the `IConnectionMultiplexer` instance using dependency injection. For example, to retrieve the connection multiplexer from a service:
-
-```csharp
-public class ExampleService(IConnectionMultiplexer connectionMultiplexer)
-{
-    // Use connection multiplexer...
-}
-```
-
-## App host usage
+## Hosting integration
 
 :::zone pivot="redis"
 
@@ -66,15 +45,100 @@ public class ExampleService(IConnectionMultiplexer connectionMultiplexer)
 
 :::zone-end
 
-## Configuration
+### Hosting integration health checks
 
-The .NET Aspire Stack Exchange Redis integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
+The Redis hosting integration automatically adds a health check for the appropriate resource type. The health check verifies that the server is running and that a connection can be established to it.
 
-### Use a connection string
+The hosting integration relies on the [📦 AspNetCore.HealthChecks.Redis](https://www.nuget.org/packages/AspNetCore.HealthChecks.Redis) NuGet package.
+
+## Client integration
+
+To get started with the .NET Aspire Stack Exchange Redis client integration, install the [📦 Aspire.StackExchange.Redis](https://www.nuget.org/packages/Aspire.StackExchange.Redis) NuGet package in the client-consuming project, that is, the project for the application that uses the Redis client. The Redis client integration registers an  an [IConnectionMultiplexer](https://stackexchange.github.io/StackExchange.Redis/Basics) instance that you can use to interact with Redis.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.StackExchange.Redis
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.StackExchange.Redis"
+                  Version="*" />
+```
+
+---
+
+### Add Redis client
+
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisExtensions.AddRedisClient*> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register an `IConnectionMultiplexer` for use via the dependency injection container. The method takes a connection name parameter.
+
+```csharp
+builder.AddRedisClient(connectionName: "cache");
+```
 
 :::zone pivot="redis"
 
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddRedis`:
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the Redis resource in the app host project. For more information, see [Add Redis resource](#add-redis-resource).
+
+:::zone-end
+:::zone pivot="garnet"
+
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the Garnet resource in the app host project. For more information, see [Add Garnet resource](#add-garnet-resource).
+
+:::zone-end
+:::zone pivot="valkey"
+
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the Valkey resource in the app host project. For more information, see [Add Valkey resource](#add-valkey-resource).
+
+:::zone-end
+
+You can then retrieve the `IConnection` instance using dependency injection. For example, to retrieve the connection from an example service:
+
+```csharp
+public class ExampleService(IConnectionMultiplexer connectionMux)
+{
+    // Use connection multiplexer...
+}
+```
+
+For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
+
+### Add keyed Redis client
+
+There might be situations where you want to register multiple `IConnectionMultiplexer` instances with different connection names. To register keyed Redis clients, call the <xref:Microsoft.Extensions.Hosting.AspireRedisExtensions.AddKeyedRedisClient*> method:
+
+```csharp
+builder.AddKeyedRedisClient(name: "chat");
+builder.AddKeyedRedisClient(name: "queue");
+```
+
+Then you can retrieve the `IConnectionMultiplexer` instances using dependency injection. For example, to retrieve the connection from an example service:
+
+```csharp
+public class ExampleService(
+    [FromKeyedServices("chat")] IConnectionMultiplexer chatConnectionMux,
+    [FromKeyedServices("queue")] IConnectionMultiplexer queueConnectionMux)
+{
+    // Use connections...
+}
+```
+
+For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
+
+### Configuration
+
+The .NET Aspire Stack Exchange Redis client integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
+
+#### Use a connection string
+
+:::zone pivot="redis"
+
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis*>:
 
 ```csharp
 builder.AddRedis("cache");
@@ -83,7 +147,7 @@ builder.AddRedis("cache");
 :::zone-end
 :::zone pivot="garnet"
 
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddGarnet`:
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling <xref:Aspire.Hosting.GarnetBuilderExtensions.AddGarnet*>:
 
 ```csharp
 builder.AddGarnet("cache");
@@ -92,9 +156,7 @@ builder.AddGarnet("cache");
 :::zone-end
 :::zone pivot="valkey"
 
-[!INCLUDE [valkey-app-host](includes/valkey-app-host.md)]
-
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddValkey`:
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling <xref:Aspire.Hosting.ValkeyBuilderExtensions.AddValkey*>:
 
 ```csharp
 builder.AddValkey("cache");
@@ -102,7 +164,7 @@ builder.AddValkey("cache");
 
 :::zone-end
 
-And then the connection string will be retrieved from the `ConnectionStrings` configuration section:
+Then the connection string will be retrieved from the `ConnectionStrings` configuration section:
 
 ```json
 {
@@ -114,7 +176,7 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 
 For more information on how to format this connection string, see the [Stack Exchange Redis configuration docs](https://stackexchange.github.io/StackExchange.Redis/Configuration.html#basic-configuration-strings).
 
-### Use configuration providers
+#### Use configuration providers
 
 The .NET Aspire Stack Exchange Redis integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.StackExchange.Redis.StackExchangeRedisSettings> from configuration by using the `Aspire:StackExchange:Redis` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
@@ -123,10 +185,7 @@ The .NET Aspire Stack Exchange Redis integration supports <xref:Microsoft.Extens
   "Aspire": {
     "StackExchange": {
       "Redis": {
-        "ConfigurationOptions": {
-          "ConnectTimeout": 3000,
-          "ConnectRetry": 2
-        },
+        "ConnectionString": "localhost:6379",
         "DisableHealthChecks": true,
         "DisableTracing": false
       }
@@ -135,62 +194,44 @@ The .NET Aspire Stack Exchange Redis integration supports <xref:Microsoft.Extens
 }
 ```
 
-### Use inline delegates
+For the complete Redis client integration JSON schema, see [Aspire.StackExchange.Redis/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v8.2.1/src/Components/Aspire.StackExchange.Redis/ConfigurationSchema.json).
+
+#### Use inline delegates
 
 You can also pass the `Action<StackExchangeRedisSettings>` delegate to set up some or all the options inline, for example to configure `DisableTracing`:
 
-:::zone pivot="redis"
-
 ```csharp
-builder.AddRedis(
+builder.AddRedisClient(
     "cache",
-    settings => settings.DisableTracing = true);
+    static settings => settings.DisableTracing = true);
 ```
 
-:::zone-end
-:::zone pivot="garnet"
+### Client integration health checks
 
-```csharp
-builder.AddGarnet(
-    "cache",
-    settings => settings.DisableTracing = true);
-```
-
-:::zone-end
-:::zone pivot="valkey"
-
-[!INCLUDE [valkey-app-host](includes/valkey-app-host.md)]
-
-```csharp
-builder.AddValkey(
-    "cache",
-    settings => settings.DisableTracing = true);
-```
-
-:::zone-end
-
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
 
 The .NET Aspire Stack Exchange Redis integration handles the following:
 
-- Adds the `StackExchange.Redis` health check, tries to open the connection and throws when it fails.
-- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
+- Adds the health check when <xref:Aspire.StackExchange.Redis.StackExchangeRedisSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the container instance.
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
-[!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
+### Observability and telemetry
 
-### Logging
+.NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations might only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
+
+#### Logging
 
 The .NET Aspire Stack Exchange Redis integration uses the following log categories:
 
 - `Aspire.StackExchange.Redis`
 
-### Tracing
+#### Tracing
 
 The .NET Aspire Stack Exchange Redis integration will emit the following tracing activities using OpenTelemetry:
 
-- "OpenTelemetry.Instrumentation.StackExchangeRedis"
+- `OpenTelemetry.Instrumentation.StackExchangeRedis`
 
-### Metrics
+#### Metrics
 
 The .NET Aspire Stack Exchange Redis integration currently doesn't support metrics by default due to limitations with the `StackExchange.Redis` library.
 
@@ -199,3 +240,5 @@ The .NET Aspire Stack Exchange Redis integration currently doesn't support metri
 - [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+
+> **<a name="registered">*</a>**: _Redis is a registered trademark of Redis Ltd. Any rights therein are reserved to Redis Ltd. [Return to top](#heading)?_
