@@ -130,7 +130,7 @@ That's it! You've successfully upgraded your project to .NET Aspire 9 RC1. If yo
 
 ### Upgrade an existing project to .NET Aspire 9 RC1 using the Upgrade Assistant
 
-For this release, we're introducing .NET Aspire support to the Upgrade Assistant. The Upgrade Assistant is a tool that helps you upgrade your .NET projects to the latest .NET version. Now you can also use the Upgrade Assistant to upgrade your .NET Aspire projects to 9 RC1.
+For this release, we're introducing .NET Aspire support to the [Upgrade Assistant](/dotnet/core/porting/upgrade-assistant-overview). The Upgrade Assistant is a tool that helps you upgrade your .NET projects to the latest .NET version. Now you can also use the Upgrade Assistant to upgrade your .NET Aspire projects to 9 RC1.
 
 To start the upgrade process, right-click your _*.AppHost_ project in Visual Studio and select the option `Upgrade`.
 
@@ -232,9 +232,7 @@ builder.Build().Run();
 
 When the app host starts, it waits for the `rabbit` resource to be ready before starting the `api` resource.
 
-<!-- markdownlint-disable MD033
-<video controls src="media/waitfor.mp4" title="Title"></video>
-     markdownlint-enable MD033 -->
+> [!VIDEO d3636113-9e0d-4796-879c-4b80275c644d]
 
 There are two methods exposed to wait for a resource:
 
@@ -387,10 +385,7 @@ These commands can be run from the dashboard:
 
 :::image type="content" source="media/clear-cache-command.png" lightbox="media/clear-cache-command.png" alt-text="Clear cache command on dashboard":::
 
-<!-- markdownlint-disable MD033
-<video controls src="videos/custom-command.mp4" title="Title"></video>
-     markdownlint-enable MD033
--->
+> [!VIDEO 7fc32183-7342-4e79-a30a-c977e5b1d005]
 
 > [!NOTE]
 > These .NET Aspire dashboard commands are only available when running the dashboard locally. They are not available when running the dashboard in Azure on ACA.
