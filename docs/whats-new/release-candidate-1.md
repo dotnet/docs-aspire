@@ -216,6 +216,10 @@ After the app host has stopped, the container will continue to run:
 
 ![Docker desktop showing rabbit mq](images/persisent-container-dockerdesktop.png)
 
+The container persistence mechanism attempts to identify when you may wish to recreate the container. For example if the environment
+for the container changes then the container will be restarted so that you don't need to manually stop the container if you have changed
+the input configuration for the resource.
+
 ### Resource commands
 
 The app host supports adding custom commands to resources. This is useful when you want to run custom commands on a resource. This can be done by calling the `WithCommand` method and passing in the command to run:
