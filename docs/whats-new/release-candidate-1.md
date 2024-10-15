@@ -12,10 +12,9 @@ ms.date: 10/11/2024
 
 Instructions on how to upgrade here
 
-- Visual Studio
-- Visual Studio Code
-- Command Line
-- Upgrade assistant ???
+- [Install .NET Aspire 9.0 templates](#templates)
+- [Upgrade an existing project manually](#upgrade-an-existing-project-to-net-aspire-90-manually)
+- [Upgrade an existing project using the Upgrade Assistant](#upgrade-an-existing-project-to-net-aspire-90-using-the-upgrade-assistant)
 
 ### Acquisition
 
@@ -83,6 +82,69 @@ Template Name                    Short Name                                     
 .NET Aspire 9 Test Project (...  aspire-nunit,aspire-nunit-9                      [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
 .NET Aspire 9 Test Project (...  aspire-xunit,aspire-xunit-9                      [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
 ```
+
+Now you have the .NET Aspire 9 templates installed on your machine. You can create a new .NET Aspire 9 project by running the following command:
+
+```dotnetcli
+dotnet new aspire-starter
+```
+
+If you need to target .NET 8, you can do so by passing the `-f net8.0` flag:
+
+```dotnetcli
+dotnet new aspire-starter -f net8.0
+```
+
+### Upgrade an existing project to .NET Aspire 9.0 manually
+
+In order to upgrade an existing project to .NET Aspire 9.0, you will need to update the version of the `Aspire.Hosting.AppHost` package in your project file. In addition to that, you will need to add an SDK reference to the `Aspire.AppHost.Sdk` package. Here is an example of how to upgrade an existing project to .NET Aspire 9.0:
+
+```diff
+<Project Sdk="Microsoft.NET.Sdk">
++
++  <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0-rc.1.24511.1" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>84e68884-8bc6-4b5b-9880-9544745c89e1</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyApiService\MyApiService.csproj" />
+    <ProjectReference Include="..\MyWebFrontend\MyWebFrontend.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+-    <PackageReference Include="Aspire.Hosting.AppHost" Version="8.2.1" />
++    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0-rc.1.24511.1" />
+  </ItemGroup>
+
+</Project>
+```
+
+That's it! You have successfully upgraded your project to .NET Aspire 9.0 RC 1. If you are using Visual Studio, it is recommended to upgrade to version 17.12 Preview 3 or later in order to take advantage of the new features and improvements for .NET Aspire 9.0.
+
+### Upgrade an existing project to .NET Aspire 9.0 using the Upgrade Assistant
+
+For this release, we are introducing .NET Aspire support to the Upgrade Assistant. The Upgrade Assistant is a tool that helps you upgrade your .NET projects to the latest .NET version. Now you can also use the Upgrade Assistant to upgrade your .NET Aspire projects to 9.0 RC 1.
+
+To start the upgrade process, right-click your AppHost project in Visual Studio and select the option `Upgrade`.
+
+![Upgrade using upgrade assistant](images/upgrade-assistant-1.png)
+
+If you don't yet have the Upgrade Assistant installed, then Visual Studio will guide you to the steps of how to install the extension. Once you have it installed, you will see the following option when you select the `Upgrade` option on your AppHost project:
+
+![Upgrade assistant options](images/upgrade-assistant-2.png)
+
+This will then do some analysis in your project and provide you with a report similar to the following detailing what will be updated. All you need to do now is to click the `Upgrade Selection` button to start the upgrade process:
+
+![Upgrade confirmation](images/upgrade-assistant-confirmation.png)
+
+That's it! You have successfully upgraded your project to .NET Aspire 9.0 RC 1 using the Upgrade Assistant.
 
 ## Dashboard
 
