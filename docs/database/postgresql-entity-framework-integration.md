@@ -1,30 +1,31 @@
 ---
 title: .NET Aspire PostgreSQL Entity Framework Core integration
-description: This article describes the .NET Aspire PostgreSQL Entity Framework Core integration.
-ms.topic: how-to
-ms.date: 08/22/2024
+description: Learn how to integrate PostgreSQL with .NET Aspire applications using Entity Framework Core, using both hosting and client integrations.
+ms.date: 10/16/2024
+uid: database/postgresql-ef-core-integration
 ---
 
 # .NET Aspire PostgreSQL Entity Framework Core integration
 
-In this article, you learn how to use the .NET Aspire PostgreSQL Entity Framework Core integration. The `Aspire.Npgsql.EntityFrameworkCore.PostgreSQL` library is used to register a <xref:Microsoft.EntityFrameworkCore.DbContext> service for connecting to a PostgreSQL database. It also enables corresponding health checks, logging and telemetry.
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-PostgreSQL is a powerful, open source, object-relational database system. The .NET Aspire PostgreSQL Entity Framework integration streamlines essential database context and connection configurations for you by handling the following concerns:
+[PostgreSQL](https://www.postgresql.org/) is a powerful, open source object-relational database system with many years of active development that has earned it a strong reputation for reliability, feature robustness, and performance. The .NET Aspire PostgreSQL Entity Framework Core integration provides a way to connect to existing PostgreSQL databases, or create new instances from .NET with the [`docker.io/library/postgres` container image](https://hub.docker.com/_/postgres).
 
-- Registers [EntityFrameworkCore](/ef/core/)  in the DI container for connecting to PostgreSQL database.
-- Automatically configures the following:
-  - Connection pooling to efficiently managed HTTP requests and database connections
-  - Automatic retries to increase app resiliency
-  - Health checks, logging and telemetry to improve app monitoring and diagnostics
+## Hosting integration
 
-## Prerequisites
+[!INCLUDE [postgresql-app-host](includes/postgresql-app-host.md)]
 
-- Azure subscription: [create one for free](https://azure.microsoft.com/free/)
-- Azure Postgresql Database: learn more about how to [create an Azure Database for PostgreSQL](/azure/postgresql/flexible-server/quickstart-create-server-portal).
+[!INCLUDE [postgresql-flexible-server](includes/postgresql-flexible-server.md)]
 
-## Get started
+### Hosting integration health checks
 
-To get started with the .NET Aspire PostgreSQL Entity Framework Core integration, install the [Aspire.Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL) NuGet package in the client-consuming project, i.e., the project for the application that uses the PostgreSQL Entity Framework Core client.
+The PostgreSQL hosting integration automatically adds a health check for the PostgreSQL server resource. The health check verifies that the PostgreSQL server is running and that a connection can be established to it.
+
+The hosting integration relies on the [📦 AspNetCore.HealthChecks.Npgsql](https://www.nuget.org/packages/AspNetCore.HealthChecks.Npgsql) NuGet package.
+
+## Client integration
+
+To get started with the .NET Aspire PostgreSQL Entity Framework Core client integration, install the [📦 Aspire.Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL) NuGet package in the client-consuming project, that is, the project for the application that uses the PostgreSQL client. The .NET Aspire PostgreSQL Entity Framework Core client integration registers your desired `DbContext` subclass instances that you can use to interact with PostgreSQL.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -41,17 +42,18 @@ dotnet add package Aspire.Npgsql.EntityFrameworkCore.PostgreSQL
 
 ---
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+### Add Npgsql database context
 
-## Example usage
-
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A> extension to register a <xref:System.Data.Entity.DbContext> for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register your <xref:System.Data.Entity.DbContext> subclass for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
-builder.AddNpgsqlDbContext<YourDbContext>("postgresdb");
+builder.AddNpgsqlDbContext<YourDbContext>(connectionName: "postgresdb");
 ```
 
-You can then retrieve the `YourDbContext` instance using dependency injection. For example, to retrieve the client from a service:
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the PostgreSQL server resource in the app host project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
+
+After adding `YourDbContext` to the builder, you can get the `YourDbContext` instance using dependency injection. For example, to retrieve your data source object from an example service define it as a constructor parameter and ensure the `ExampleService` class is registered with the dependency injection container:
 
 ```csharp
 public class ExampleService(YourDbContext context)
@@ -60,38 +62,34 @@ public class ExampleService(YourDbContext context)
 }
 ```
 
-## App host usage
+For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
 
-[!INCLUDE [postgresql-app-host](includes/postgresql-app-host.md)]
+### Add Npgsql database context with enrichment
+
+To enrich the `DbContext` with additional services, such as automatic retries, health checks, logging and telemetry, call the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.EnrichNpgsqlDbContext*> method:
 
 ```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var postgres = builder.AddPostgres("postgres");
-var postgresdb = postgres.AddDatabase("postgresdb");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(postgresdb);
+builder.EnrichNpgsqlDbContext<YourDbContext>(
+    connectionName: "postgresdb",
+    configureSettings: settings =>
+    {
+        settings.DisableRetry = false;
+        settings.CommandTimeout = 30;
+    });
 ```
 
-[!INCLUDE [postgresql-explicit-username-password](includes/postgresql-explicit-username-password.md)]
+The `settings` parameter is an instance of the <xref:Aspire.Npgsql.EntityFrameworkCore.PostgreSQL.NpgsqlEntityFrameworkCorePostgreSQLSettings> class.
 
-[!INCLUDE [postgresql-pgweb](includes/postgresql-pgweb.md)]
-
-[!INCLUDE [postgresql-pgadmin](includes/postgresql-pgadmin.md)]
-
-[!INCLUDE [postgresql-flexible-server](includes/postgresql-flexible-server.md)]
-
-## Configuration
+### Configuration
 
 The .NET Aspire PostgreSQL Entity Framework Core integration provides multiple configuration approaches and options to meet the requirements and conventions of your project.
 
-### Use a connection string
+#### Use a connection string
 
-When using a connection string from the `ConnectionStrings` configuration section, you provide the name of the connection string when calling `AddNpgsqlDbContext`:
+When using a connection string from the `ConnectionStrings` configuration section, you provide the name of the connection string when calling the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext*> method:
 
 ```csharp
-builder.AddNpgsqlDbContext<MyDbContext>("myConnection");
+builder.AddNpgsqlDbContext<MyDbContext>("pgdb");
 ```
 
 The connection string is retrieved from the `ConnectionStrings` configuration section:
@@ -99,16 +97,16 @@ The connection string is retrieved from the `ConnectionStrings` configuration se
 ```json
 {
   "ConnectionStrings": {
-    "myConnection": "Host=myserver;Database=test"
+    "pgdb": "Host=myserver;Database=test"
   }
 }
 ```
 
-The `EnrichNpgsqlDbContext` won't make use of the `ConnectionStrings` configuration section since it expects a `DbContext` to be registered at the point it is called.
+The `EnrichNpgsqlDbContext` won't make use of the `ConnectionStrings` configuration section since it expects a `DbContext` to be registered at the point it's called.
 
 For more information, see the [ConnectionString](https://www.npgsql.org/doc/connection-string-parameters.html).
 
-### Use configuration providers
+#### Use configuration providers
 
 The .NET Aspire PostgreSQL Entity Framework Core integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Npgsql.EntityFrameworkCore.PostgreSQL.NpgsqlEntityFrameworkCorePostgreSQLSettings> from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` key. If you have set up your configurations in the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` section you can just call the method without passing any parameter.
 
@@ -120,7 +118,7 @@ The following example shows an _:::no-loc text="appsettings.json":::_ file that 
     "Npgsql": {
       "EntityFrameworkCore": {
         "PostgreSQL": {
-          "ConnectionString": "YOUR_CONNECTIONSTRING",
+          "ConnectionString": "Host=myserver;Database=postgresdb",
           "DbContextPooling": true,
           "DisableHealthChecks": true,
           "DisableTracing": true
@@ -131,17 +129,19 @@ The following example shows an _:::no-loc text="appsettings.json":::_ file that 
 }
 ```
 
-### Use inline delegates
+For the complete PostgreSQL Entity Framework Core client integration JSON schema, see [Aspire.Npgsql.EntityFrameworkCore.PostgreSQL/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v8.2.1/src/Components/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL/ConfigurationSchema.json).
+
+#### Use inline delegates
 
 You can also pass the `Action<NpgsqlEntityFrameworkCorePostgreSQLSettings>` delegate to set up some or all the options inline, for example to set the `ConnectionString`:
 
 ```csharp
 builder.AddNpgsqlDbContext<YourDbContext>(
-    "db",
-    static settings => settings.ConnectionString = "YOUR_CONNECTIONSTRING");
+    "pgdb",
+    static settings => settings.ConnectionString = "<YOUR CONNECTION STRING>");
 ```
 
-### Configure multiple DbContext classes
+#### Configure multiple DbContext classes
 
 If you want to register more than one <xref:Microsoft.EntityFrameworkCore.DbContext> with different configuration, you can use `$"Aspire:Npgsql:EntityFrameworkCore:PostgreSQL:{typeof(TContext).Name}"` configuration section name. The json configuration would look like:
 
@@ -151,12 +151,12 @@ If you want to register more than one <xref:Microsoft.EntityFrameworkCore.DbCont
     "Npgsql": {
       "EntityFrameworkCore": {
         "PostgreSQL": {
-          "ConnectionString": "YOUR_CONNECTIONSTRING",
+          "ConnectionString": "<YOUR CONNECTION STRING>",
           "DbContextPooling": true,
           "DisableHealthChecks": true,
           "DisableTracing": true,
           "AnotherDbContext": {
-            "ConnectionString": "AnotherDbContext_CONNECTIONSTRING",
+            "ConnectionString": "<ANOTHER CONNECTION STRING>",
             "DisableTracing": false
           }
         }
@@ -172,18 +172,6 @@ Then calling the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions
 builder.AddNpgsqlDbContext<AnotherDbContext>();
 ```
 
-### Configuration options
-
-Here are the configurable options with corresponding default values:
-
-| Name                  | Description                                                                                            |
-|-----------------------|--------------------------------------------------------------------------------------------------------|
-| `ConnectionString`    | The connection string of the PostgreSQL database to connect to.                                        |
-| `MaxRetryCount`       | The maximum number of retry attempts. Default value is 6, set it to 0 to disable the retry mechanism.  |
-| `DisableHealthChecks` | A boolean value that indicates whether the database health check is disabled or not.                   |
-| `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not.                   |
-| `DisableMetrics`      | A boolean value that indicates whether the OpenTelemetry metrics are disabled or not.                  |
-
 [!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
 
 By default, the .NET Aspire PostgreSQL Entity Framework Core integrations handles the following:
@@ -193,7 +181,7 @@ By default, the .NET Aspire PostgreSQL Entity Framework Core integrations handle
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
-### Logging
+#### Logging
 
 The .NET Aspire PostgreSQL Entity Framework Core integration uses the following Log categories:
 
@@ -209,39 +197,39 @@ The .NET Aspire PostgreSQL Entity Framework Core integration uses the following 
 - `Microsoft.EntityFrameworkCore.Query`
 - `Microsoft.EntityFrameworkCore.Update`
 
-### Tracing
+#### Tracing
 
 The .NET Aspire PostgreSQL Entity Framework Core integration will emit the following Tracing activities using OpenTelemetry:
 
-- "Npgsql"
+- `Npgsql`
 
-### Metrics
+#### Metrics
 
 The .NET Aspire PostgreSQL Entity Framework Core integration will emit the following metrics using OpenTelemetry:
 
 - Microsoft.EntityFrameworkCore:
-  - ec_Microsoft_EntityFrameworkCore_active_db_contexts
-  - ec_Microsoft_EntityFrameworkCore_total_queries
-  - ec_Microsoft_EntityFrameworkCore_queries_per_second
-  - ec_Microsoft_EntityFrameworkCore_total_save_changes
-  - ec_Microsoft_EntityFrameworkCore_save_changes_per_second
-  - ec_Microsoft_EntityFrameworkCore_compiled_query_cache_hit_rate
-  - ec_Microsoft_Entity_total_execution_strategy_operation_failures
-  - ec_Microsoft_E_execution_strategy_operation_failures_per_second
-  - ec_Microsoft_EntityFramew_total_optimistic_concurrency_failures
-  - ec_Microsoft_EntityF_optimistic_concurrency_failures_per_second
+  - `ec_Microsoft_EntityFrameworkCore_active_db_contexts`
+  - `ec_Microsoft_EntityFrameworkCore_total_queries`
+  - `ec_Microsoft_EntityFrameworkCore_queries_per_second`
+  - `ec_Microsoft_EntityFrameworkCore_total_save_changes`
+  - `ec_Microsoft_EntityFrameworkCore_save_changes_per_second`
+  - `ec_Microsoft_EntityFrameworkCore_compiled_query_cache_hit_rate`
+  - `ec_Microsoft_Entity_total_execution_strategy_operation_failures`
+  - `ec_Microsoft_E_execution_strategy_operation_failures_per_second`
+  - `ec_Microsoft_EntityFramew_total_optimistic_concurrency_failures`
+  - `ec_Microsoft_EntityF_optimistic_concurrency_failures_per_second`
 
 - Npgsql:
-  - ec_Npgsql_bytes_written_per_second
-  - ec_Npgsql_bytes_read_per_second
-  - ec_Npgsql_commands_per_second
-  - ec_Npgsql_total_commands
-  - ec_Npgsql_current_commands
-  - ec_Npgsql_failed_commands
-  - ec_Npgsql_prepared_commands_ratio
-  - ec_Npgsql_connection_pools
-  - ec_Npgsql_multiplexing_average_commands_per_batch
-  - ec_Npgsql_multiplexing_average_write_time_per_batch
+  - `ec_Npgsql_bytes_written_per_second`
+  - `ec_Npgsql_bytes_read_per_second`
+  - `ec_Npgsql_commands_per_second`
+  - `ec_Npgsql_total_commands`
+  - `ec_Npgsql_current_commands`
+  - `ec_Npgsql_failed_commands`
+  - `ec_Npgsql_prepared_commands_ratio`
+  - `ec_Npgsql_connection_pools`
+  - `ec_Npgsql_multiplexing_average_commands_per_batch`
+  - `ec_Npgsql_multiplexing_average_write_time_per_batch`
 
 ## See also
 

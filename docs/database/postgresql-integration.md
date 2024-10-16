@@ -1,17 +1,31 @@
 ---
 title: .NET Aspire PostgreSQL integration
-description: This article describes the .NET Aspire PostgreSQL integration.
-ms.date: 08/22/2024
-ms.topic: how-to
+description: Learn how to integrate PostgreSQL with .NET Aspire applications, using both hosting and client integrations.
+ms.date: 10/16/2024
+uid: database/postgresql-integration
 ---
 
 # .NET Aspire PostgreSQL integration
 
-In this article, you learn how to use the .NET Aspire PostgreSQL integration. The `Aspire.Npgsql` library is used to register a [NpgsqlDataSource](https://www.npgsql.org/doc/api/Npgsql.NpgsqlDataSource.html) in the DI container for connecting to a PostgreSQL database. It also enables corresponding health checks, logging and telemetry.
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-## Get started
+[PostgreSQL](https://www.postgresql.org/) is a powerful, open source object-relational database system with many years of active development that has earned it a strong reputation for reliability, feature robustness, and performance. The .NET Aspire PostgreSQL integration provides a way to connect to existing PostgreSQL databases, or create new instances from .NET with the [`docker.io/library/postgres` container image](https://hub.docker.com/_/postgres).
 
-To get started with the .NET Aspire PostgreSQL integration, install the [Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package in the client-consuming project, i.e., the project for the application that uses the PostgreSQL client.
+## Hosting integration
+
+[!INCLUDE [postgresql-app-host](includes/postgresql-app-host.md)]
+
+[!INCLUDE [postgresql-flexible-server](includes/postgresql-flexible-server.md)]
+
+### Hosting integration health checks
+
+The PostgreSQL hosting integration automatically adds a health check for the PostgreSQL server resource. The health check verifies that the PostgreSQL server is running and that a connection can be established to it.
+
+The hosting integration relies on the [📦 AspNetCore.HealthChecks.Npgsql](https://www.nuget.org/packages/AspNetCore.HealthChecks.Npgsql) NuGet package.
+
+## Client integration
+
+To get started with the .NET Aspire PostgreSQL client integration, install the [📦 Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package in the client-consuming project, that is, the project for the application that uses the PostgreSQL client. The PostgreSQL client integration registers an [NpgsqlDataSource](https://www.npgsql.org/doc/api/Npgsql.NpgsqlDataSource.html) instance that you can use to interact with PostgreSQL.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -27,17 +41,18 @@ dotnet add package Aspire.Npgsql
 
 ---
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+### Add Npgsql client
 
-## Example usage
-
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension to register an `NpgsqlDataSource` for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register an `NpgsqlDataSource` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
-builder.AddNpgsqlDataSource("postgresdb");
+builder.AddNpgsqlDataSource(connectionName: "postgresdb");
 ```
 
-After adding `NpgsqlDataSource` to the builder, you can get the `NpgsqlDataSource` instance using dependency injection. For example, to retrieve your context object from service:
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the PostgreSQL server resource in the app host project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
+
+After adding `NpgsqlDataSource` to the builder, you can get the `NpgsqlDataSource` instance using dependency injection. For example, to retrieve your data source object from an example service define it as a constructor parameter and ensure the `ExampleService` class is registered with the dependency injection container:
 
 ```csharp
 public class ExampleService(NpgsqlDataSource dataSource)
@@ -46,53 +61,82 @@ public class ExampleService(NpgsqlDataSource dataSource)
 }
 ```
 
-## App host usage
+For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
 
-[!INCLUDE [postgresql-app-host](includes/postgresql-app-host.md)]
+### Add keyed Npgsql client
+
+There might be situations where you want to register multiple `NpgsqlDataSource` instances with different connection names. To register keyed Npgsql clients, call the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddKeyedNpgsqlDataSource*> method:
 
 ```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var postgres = builder.AddPostgres("postgres");
-var postgresdb = postgres.AddDatabase("postgresdb");
-
-var exampleProject = builder.AddProject<Projects.ExampleProject>()
-                            .WithReference(postgresdb);
+builder.AddKeyedNpgsqlDataSource(name: "chat");
+builder.AddKeyedNpgsqlDataSource(name: "queue");
 ```
 
-[!INCLUDE [postgresql-explicit-username-password](includes/postgresql-explicit-username-password.md)]
+Then you can retrieve the `NpgsqlDataSource` instances using dependency injection. For example, to retrieve the connection from an example service:
 
-[!INCLUDE [postgresql-pgweb](includes/postgresql-pgweb.md)]
+```csharp
+public class ExampleService(
+    [FromKeyedServices("chat")] NpgsqlDataSource chatDataSource,
+    [FromKeyedServices("queue")] NpgsqlDataSource queueDataSource)
+{
+    // Use data sources...
+}
+```
 
-[!INCLUDE [postgresql-pgadmin](includes/postgresql-pgadmin.md)]
+For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
 
-[!INCLUDE [postgresql-flexible-server](includes/postgresql-flexible-server.md)]
+### Add Azure authenticated Npgsql client
 
-## Configuration
+In the _:::no-loc text="Program.cs":::_ file of client-consuming project, the database connection can be consumed using both the client integration `Aspire.Npgsql` and [Azure.Identity](https://www.nuget.org/packages/Azure.Identity), consider the following sample code:
+
+```csharp
+builder.AddNpgsqlDataSource(
+    "postgresdb",
+    configureDataSourceBuilder: dataSourceBuilder =>
+{
+    if (string.IsNullOrEmpty(dataSourceBuilder.ConnectionStringBuilder.Password))
+    {
+        dataSourceBuilder.UsePeriodicPasswordProvider(async (_, ct) =>
+        {
+            var credentials = new DefaultAzureCredential();
+            var token = await credentials.GetTokenAsync(
+                new TokenRequestContext(["https://ossrdbms-aad.database.windows.net/.default"]), ct);
+            
+            return token.Token;
+        },
+        TimeSpan.FromHours(24),
+        TimeSpan.FromSeconds(10));
+    }
+});
+```
+
+The preceding code snippet demonstrates how to use the `DefaultAzureCredential` class from the `Azure.Identity` package to authenticate with [Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication) and retrieve a token to connect to the PostgreSQL database. The [UsePeriodicPasswordProvider](https://www.npgsql.org/doc/api/Npgsql.NpgsqlDataSourceBuilder.html#Npgsql_NpgsqlDataSourceBuilder_UsePeriodicPasswordProvider_System_Func_Npgsql_NpgsqlConnectionStringBuilder_System_Threading_CancellationToken_System_Threading_Tasks_ValueTask_System_String___System_TimeSpan_System_TimeSpan_) method is used to provide the token to the connection string builder.
+
+### Configuration
 
 The .NET Aspire PostgreSQL integration provides multiple configuration approaches and options to meet the requirements and conventions of your project.
 
-### Use a connection string
+#### Use a connection string
 
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource%2A>:
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling the <xref:Microsoft.Extensions.Hosting.AspirePostgreSqlNpgsqlExtensions.AddNpgsqlDataSource*> method:
 
 ```csharp
-builder.AddNpgsqlDataSource("NpgsqlConnection");
+builder.AddNpgsqlDataSource("postgresdb");
 ```
 
-And then the connection string will be retrieved from the `ConnectionStrings` configuration section:
+Then the connection string will be retrieved from the `ConnectionStrings` configuration section:
 
 ```json
 {
   "ConnectionStrings": {
-    "NpgsqlConnection": "Host=myserver;Database=postgresdb"
+    "postgresdb": "Host=myserver;Database=postgresdb"
   }
 }
 ```
 
 For more information, see the [ConnectionString](https://www.npgsql.org/doc/connection-string-parameters.html).
 
-### Use configuration providers
+#### Use configuration providers
 
 The .NET Aspire PostgreSQL integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Npgsql.NpgsqlSettings> from _:::no-loc text="appsettings.json":::_ or other configuration files by using the `Aspire:Npgsql` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
@@ -102,21 +146,25 @@ The following example shows an _:::no-loc text="appsettings.json":::_ file that 
 {
   "Aspire": {
     "Npgsql": {
-      "DisableHealthChecks": true,
-      "DisableTracing": true
+      "ConnectionString": "Host=myserver;Database=postgresdb",
+      "DisableHealthChecks": false,
+      "DisableTracing": true,
+      "DisableMetrics": false
     }
   }
 }
 ```
 
-### Use inline delegates
+For the complete PostgreSQL client integration JSON schema, see [Aspire.Npgsql/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v8.2.1/src/Components/Aspire.Npgsql/ConfigurationSchema.json).
+
+#### Use inline delegates
 
 You can also pass the `Action<NpgsqlSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks:
 
 ```csharp
 builder.AddNpgsqlDataSource(
     "postgresdb",
-     settings => settings.DisableHealthChecks  = true);
+     static settings => settings.DisableHealthChecks = true);
 ```
 
 [!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
@@ -126,9 +174,9 @@ builder.AddNpgsqlDataSource(
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
-### Logging
+#### Logging
 
-The .NET Aspire PostgreSQL integration uses the following Log categories:
+The .NET Aspire PostgreSQL integration uses the following log categories:
 
 - `Npgsql.Connection`
 - `Npgsql.Command`
@@ -137,13 +185,13 @@ The .NET Aspire PostgreSQL integration uses the following Log categories:
 - `Npgsql.Replication`
 - `Npgsql.Exception`
 
-### Tracing
+#### Tracing
 
 The .NET Aspire PostgreSQL integration will emit the following Tracing activities using OpenTelemetry:
 
-- "Npgsql"
+- `Npgsql`
 
-### Metrics
+#### Metrics
 
 The .NET Aspire PostgreSQL integration will emit the following metrics using OpenTelemetry:
 

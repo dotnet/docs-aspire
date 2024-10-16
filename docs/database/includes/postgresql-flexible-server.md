@@ -1,6 +1,10 @@
-### Azure app host usage
+---
+ms.topic: include
+---
 
-To deploy your PostgreSQL resources to Azure, you need to install the appropriate .NET Aspire hosting package:
+## Azure hosting integration
+
+To deploy your PostgreSQL resources to Azure, install the [📦 Aspire.Hosting.Azure.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.Azure.PostgreSQL) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -17,18 +21,21 @@ dotnet add package Aspire.Hosting.Azure.PostgreSQL
 
 ---
 
-After you've installed this package, you specify that your PostgreSQL resources will be hosted in Azure by calling the <xref:Aspire.Hosting.AzurePostgresExtensions.PublishAsAzurePostgresFlexibleServer%2A> extension method in your app host project:
+### Add Azure PostgreSQL server resource
+
+After you've installed the .NET Aspire hosting Azure PostgreSQL package, call the `AddAzurePostgresFlexibleServer` extension method in your app host project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var postgres = builder.AddPostgres("postgres")
-                      .PublishAsAzurePostgresFlexibleServer();
-
+var postgres = builder.AddAzurePostgresFlexibleServer("postgres");
 var postgresdb = postgres.AddDatabase("postgresdb");
 
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(postgresdb);
 ```
 
-The preceding call to `PublishAsAzurePostgresFlexibleServer` configures Postgres Server resource to be deployed as Azure Postgres Flexible Server. For more information, see [Azure Postgres Flexible Server](/azure/postgresql/flexible-server/overview).
+The preceding call to `AddAzurePostgresFlexibleServer` configures the PostgresSQL server resource to be deployed as [Azure Postgres Flexible Server](/azure/postgresql/flexible-server/overview).
+
+> [!IMPORTANT]
+> By default, `AddAzurePostgresFlexibleServer` configures [Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication) authentication. This requires changes to applications that need to connect to these resources. For more information, see [Client integration](#client-integration).
