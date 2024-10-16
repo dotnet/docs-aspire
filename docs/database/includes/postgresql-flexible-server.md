@@ -2,7 +2,7 @@
 ms.topic: include
 ---
 
-## Azure hosting integration
+### Azure hosting integration
 
 To deploy your PostgreSQL resources to Azure, install the [📦 Aspire.Hosting.Azure.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.Azure.PostgreSQL) NuGet package:
 
@@ -21,7 +21,7 @@ dotnet add package Aspire.Hosting.Azure.PostgreSQL
 
 ---
 
-### Add Azure PostgreSQL server resource
+#### Add Azure PostgreSQL server resource
 
 After you've installed the .NET Aspire hosting Azure PostgreSQL package, call the `AddAzurePostgresFlexibleServer` extension method in your app host project:
 

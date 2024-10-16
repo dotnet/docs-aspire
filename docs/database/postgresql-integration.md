@@ -15,7 +15,7 @@ uid: database/postgresql-integration
 
 [!INCLUDE [postgresql-app-host](includes/postgresql-app-host.md)]
 
-[!INCLUDE [postgresql-flexible-server](includes/postgresql-flexible-server.md)]
+[!INCLUDE [postgresql-flexible-server](./includes/postgresql-flexible-server.md)]
 
 ### Hosting integration health checks
 
