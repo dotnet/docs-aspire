@@ -49,6 +49,8 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 When adding PostgreSQL resources to the `builder` with the `AddPostgres` method, you can chain calls to `WithPgAdmin` to add the [**dpage/pgadmin4**](https://www.pgadmin.org/) container. This container is a cross-platform client for PostgreSQL databases, that serves a web-based admin dashboard. Consider the following example:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var postgres = builder.AddPostgres("postgres")
                       .WithPgAdmin();
 
@@ -56,13 +58,19 @@ var postgresdb = postgres.AddDatabase("postgresdb");
 
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(postgresdb);
+
+// After adding all resources, run the app...
 ```
+
+The preceding code adds a container based on the `docker.io/dpage/pgadmin4` image. The container is used to manage the PostgreSQL server and database resources. The `WithPgAdmin` method adds a container that serves a web-based admin dashboard for PostgreSQL databases.
 
 ### Add PostgreSQL pgWeb resource
 
 When adding PostgreSQL resources to the `builder` with the `AddPostgres` method, you can chain calls to `WithPgWeb` to add the [**sosedoff/pgweb**](https://sosedoff.github.io/pgweb/) container. This container is a cross-platform client for PostgreSQL databases, that serves a web-based admin dashboard. Consider the following example:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var postgres = builder.AddPostgres("postgres")
                       .WithPgWeb();
 
@@ -70,9 +78,11 @@ var postgresdb = postgres.AddDatabase("postgresdb");
 
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(postgresdb);
+
+// After adding all resources, run the app...
 ```
 
-All registered `PostgresDatabaseResource` instances are used to create a configuration file per instance, and each config is bound to the **pgweb** container bookmark directory. For more information, see [PgWeb docs: Server connection bookmarks](https://github.com/sosedoff/pgweb/wiki/Server-Connection-Bookmarks).
+The preceding code adds a container based on the `docker.io/sosedoff/pgweb` image. All registered <xref:Aspire.Hosting.ApplicationModel.PostgresDatabaseResource> instances are used to create a configuration file per instance, and each config is bound to the **pgweb** container bookmark directory. For more information, see [PgWeb docs: Server connection bookmarks](https://github.com/sosedoff/pgweb/wiki/Server-Connection-Bookmarks).
 
 ### Add PostgreSQL server resource with data volume
 
