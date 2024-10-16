@@ -1,7 +1,7 @@
 ---
 title: Build your first .NET Aspire solution
 description: Learn how to build your first .NET Aspire solution using the .NET Aspire Started Application template.
-ms.date: 09/27/2024
+ms.date: 10/16/2024
 ms.topic: quickstart
 zone_pivot_groups: dev-environment
 ---
@@ -66,9 +66,19 @@ For more information, see [Troubleshoot untrusted localhost certificate in .NET 
 :::zone-end
 :::zone pivot="vscode"
 
-In Visual Studio Code, press <kbd>F5</kbd> to launch the app. You're prompted to select which language, and C# is suggested. Select C# and then select the **AspireSample.AppHost** project with the **Default Configuration**:
+In Visual Studio Code, press <kbd>F5</kbd> to launch the app. You're prompted to select which language, and C# is suggested. Select **C#** and then select the **AspireSample.AppHost** project with the **Default Configuration**:
 
 :::image type="content" loc-scope="vs-code" source="media/vscode-run.png" lightbox="media/vscode-run.png" alt-text="A screenshot of the Visual Studio Code launch configuration for the AspireSample.AppHost project.":::
+
+If this is the first time you're running .NET Aspire, or it's a new machine with a new .NET installation, you're prompted to install a self-signed localhost certificate—and the project will fail to launch:
+
+:::image type="content" loc-scope="vs-code" source="media/vscode-run-accept-cert.png" lightbox="media/vscode-run-accept-cert.png" alt-text="A screenshot of the Visual Studio Code breaking on an exception and prompting to create a trusted self-signed certificate.":::
+
+Select **Yes**, and you see an informational message indicating that the **Self-signed certificate successfully created**:
+
+:::image type="content" loc-scope="vs-code" source="media/vscode-run-cert-created.png" lightbox="media/vscode-run-cert-created.png" alt-text="A screenshot of the Visual Studio Code success message for creating a self-signed certificate.":::
+
+If you're still seeing having an issue, close all browser windows and then try again. For more information, see [Troubleshoot untrusted localhost certificate in .NET Aspire](../troubleshooting/untrusted-localhost-certificate.md).
 
 > [!TIP]
 > If you're on MacOS and using Safari, when your browser opens if the page is blank, you might need to manually refresh the page.
