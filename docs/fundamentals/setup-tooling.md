@@ -25,13 +25,13 @@ To work with .NET Aspire, you'll need the following installed locally:
 - An OCI compliant container runtime, such as:
   - [Docker Desktop](https://www.docker.com/products/docker-desktop) or [Podman](https://podman.io/). For more information, see [Container runtime](#container-runtime).
 - An Integrated Developer Environment (IDE) or code editor, such as:
-  - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.10 or higher (Optional)
+  - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.12 or higher (Optional)
   - [Visual Studio Code](https://code.visualstudio.com/) (Optional)
     - [C# Dev Kit: Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) (Optional)
 
 :::zone pivot="visual-studio"
 
-Visual Studio 2022 17.10 or higher includes the latest **.NET Aspire** workload by default. To verify that you have the .NET Aspire workload installed, run the following command:
+Visual Studio 2022 17.12 or higher includes the latest **.NET Aspire** workload by default. To verify that you have the .NET Aspire workload installed, run the following command:
 
 ```dotnetcli
 dotnet workload list
@@ -105,8 +105,7 @@ For more information, see [Install Podman on Linux](https://podman.io/docs/insta
 ## [Windows](#tab/windows)
 
 ```powershell
-[System.Environment]::SetEnvironmentVariable( `
-    'DOTNET_ASPIRE_CONTAINER_RUNTIME', 'podman')
+[System.Environment]::SetEnvironmentVariable('DOTNET_ASPIRE_CONTAINER_RUNTIME', 'podman')
 ```
 
 For more information, see [Install Podman on Windows](https://podman.io/docs/installation#installing-on-mac--windows).
@@ -128,15 +127,12 @@ There are currently four project templates available:
 - **.NET Aspire Empty App**: A minimal .NET Aspire project that includes the following:
 
   - **AspireSample.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app.
-
   - **AspireSample.ServiceDefaults**: A .NET Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](./telemetry.md).
 
 - **.NET Aspire Starter Application**: In addition to the **.AppHost** and **.ServiceDefaults** projects, the .NET Aspire Starter Application also includes the following—assuming the solution is named _AspireSample_:
 
   - **AspireSample.ApiService**: An ASP.NET Core Minimal API project is used to provide data to the frontend. This project depends on the shared **AspireSample.ServiceDefaults** project.
-
   - **AspireSample.Web**: An ASP.NET Core Blazor App project with default .NET Aspire service configurations, this project depends on the **AspireSample.ServiceDefaults** project.
-
   - **AspireSample.Test**: Either an MSTest, NUnit, or xUnit test project with project references to the **AspireSample.AppHost** and an example _WebTests.cs_ file demonstrating an integration test.
 
 - **.NET Aspire App Host**: A standalone **.AppHost** project that can be used to orchestrate and manage the different projects and services of your app.

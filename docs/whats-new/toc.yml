@@ -19,6 +19,8 @@ items:
   - name: GitHub releases
     expanded: true
     items:
+    - name: .NET Aspire 9.0 RC1
+      href: https://github.com/dotnet/aspire/releases/tag/v9.0.0-rc.1.24511.1
     - name: .NET Aspire 8.2.1
       href: https://github.com/dotnet/aspire/releases/tag/v8.2.1
     - name: .NET Aspire 8.2.0
