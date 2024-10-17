@@ -8,7 +8,7 @@ To work with .NET Aspire, you need the following installed locally:
 - An OCI compliant container runtime, such as:
   - [Docker Desktop](https://www.docker.com/products/docker-desktop) or [Podman](https://podman.io/).
 - An Integrated Developer Environment (IDE) or code editor, such as:
-  - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.10 or higher (Optional)
+  - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.12 or higher (Optional)
   - [Visual Studio Code](https://code.visualstudio.com/) (Optional)
     - [C# Dev Kit: Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) (Optional)
 

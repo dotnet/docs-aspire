@@ -49,7 +49,7 @@ public class ExampleService(QdrantClient client)
 
 ## App host usage
 
-To model the Qdrant server resource in the app host, install the [Aspire.Hosting.Qdrant](https://www.nuget.org/packages/Aspire.Hosting.Qdrant) NuGet package in the [app host](xref:aspire/app-host) project.
+To model the Qdrant server resource in the app host, install the [Aspire.Hosting.Qdrant](https://www.nuget.org/packages/Aspire.Hosting.Qdrant) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

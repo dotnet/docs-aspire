@@ -1,4 +1,4 @@
-To model the PostgreSQL server resource in the app host, install the [Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL) NuGet package in the [app host](xref:aspire/app-host) project.
+To model the PostgreSQL server resource in the app host, install the [Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

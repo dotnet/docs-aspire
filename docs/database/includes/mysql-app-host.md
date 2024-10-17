@@ -1,4 +1,4 @@
-To model the MySql resource in the app host, install the [Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql) NuGet package in the [app host](xref:aspire/app-host) project.
+To model the MySql resource in the app host, install the [Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

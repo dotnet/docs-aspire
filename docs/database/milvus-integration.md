@@ -44,7 +44,7 @@ builder.AddMilvusClient("milvus");
 
 ## App host usage
 
-To model the Milvus resource in the app host, install the [Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus) NuGet package in the [app host](xref:aspire/app-host) project.
+To model the Milvus resource in the app host, install the [Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
