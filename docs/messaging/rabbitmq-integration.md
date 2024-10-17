@@ -215,7 +215,7 @@ The .NET Aspire RabbitMQ integration provides multiple options to configure the 
 
 #### Use a connection string
 
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddRabbitMQClient`:
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling the <xref:Microsoft.Extensions.Hosting.AspireRabbitMQExtensions.AddRabbitMQClient*> method:
 
 ```csharp
 builder.AddRabbitMQClient(connectionName: "messaging");
