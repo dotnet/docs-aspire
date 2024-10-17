@@ -326,6 +326,8 @@ items:
     items:
       - name: Diagnostics overview
         href: diagnostics/overview.md
+      - name: .NET Aspire SDK
+        href: fundamentals/dotnet-aspire-sdk.md
       - name: .NET Aspire API reference
         href:  /dotnet/api?view=dotnet-aspire-8.0&preserve-view=true
       - name: .NET Aspire FAQ

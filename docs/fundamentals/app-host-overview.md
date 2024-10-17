@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs for adding resources and expressing dependencies.
-ms.date: 09/25/2024
+ms.date: 10/17/2024
 ms.topic: overview
 uid: aspire/app-host
 ---
@@ -277,6 +277,7 @@ This logic can easily be inverted to connect to an existing Redis resource when 
 ## See also
 
 - [.NET Aspire integrations overview](integrations-overview.md)
+- [.NET Aspire SDK](dotnet-aspire-sdk.md)
 - [Service discovery in .NET Aspire](../service-discovery/overview.md)
 - [.NET Aspire service defaults](service-defaults.md)
 - [Expressing external parameters](external-parameters.md)

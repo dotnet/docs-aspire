@@ -1,14 +1,14 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 09/24/2024
+ms.date: 10/17/2024
 zone_pivot_groups: dev-environment
 uid: aspire/setup-tooling
 ---
 
 # .NET Aspire setup and tooling
 
-.NET Aspire includes tooling to help you create and configure cloud-native apps. The tooling includes useful starter project templates and other features to streamline getting started with .NET Aspire for Visual Studio, Visual Studio Code, and CLI workflows. In the sections ahead, you'll learn how to work with .NET Aspire tooling and explore the following tasks:
+.NET Aspire includes tooling to help you create and configure cloud-native apps. The tooling includes useful starter project templates and other features to streamline getting started with .NET Aspire for Visual Studio, Visual Studio Code, and CLI workflows. In the sections ahead, you learn how to work with .NET Aspire tooling and explore the following tasks:
 
 > [!div class="checklist"]
 >
@@ -21,16 +21,13 @@ uid: aspire/setup-tooling
 
 To work with .NET Aspire, you'll need the following installed locally:
 
-- [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0).
-- .NET Aspire workload (installed either Visual Studio or the .NET CLI).
+- [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0) or [.NET 9.0](https://dotnet.microsoft.com/download/dotnet/9.0).
 - An OCI compliant container runtime, such as:
   - [Docker Desktop](https://www.docker.com/products/docker-desktop) or [Podman](https://podman.io/). For more information, see [Container runtime](#container-runtime).
 - An Integrated Developer Environment (IDE) or code editor, such as:
   - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.10 or higher (Optional)
   - [Visual Studio Code](https://code.visualstudio.com/) (Optional)
     - [C# Dev Kit: Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) (Optional)
-
-The .NET Aspire workload installs internal dependencies and makes available other tooling, such as project templates and Visual Studio features. There are two ways to install the .NET Aspire workload. If you prefer to use Visual Studio Code, follow the .NET CLI instructions:
 
 :::zone pivot="visual-studio"
 
@@ -108,7 +105,8 @@ For more information, see [Install Podman on Linux](https://podman.io/docs/insta
 ## [Windows](#tab/windows)
 
 ```powershell
-$env:DOTNET_ASPIRE_CONTAINER_RUNTIME = "podman"
+[System.Environment]::SetEnvironmentVariable( `
+    'DOTNET_ASPIRE_CONTAINER_RUNTIME', 'podman')
 ```
 
 For more information, see [Install Podman on Windows](https://podman.io/docs/installation#installing-on-mac--windows).
@@ -117,7 +115,13 @@ For more information, see [Install Podman on Windows](https://podman.io/docs/ins
 
 ## .NET Aspire project templates
 
-The .NET Aspire workload makes available .NET Aspire project templates. These project templates allow you to create new apps pre-configured with the .NET Aspire project structure and default settings. These projects also provide a unified debugging experience across the different resources of your app.
+The .NET Aspire project templates are installed from the .NET CLI. To install these templates, use the [dotnet new install](/dotnet/core/tools/dotnet-new-install) command, passing in the `Aspire.ProjectTemplates` NuGet identifier.
+
+```dotnetcli
+dotnet new install Aspire.ProjectTemplates
+```
+
+These project templates allow you to create new apps pre-configured with the .NET Aspire project structure and default settings. These projects also provide a unified debugging experience across the different resources of your app.
 
 There are currently four project templates available:
 
@@ -140,9 +144,7 @@ There are currently four project templates available:
 - **.NET Aspire Test projects**: These project templates are used to create test projects for your .NET Aspire app, and they're intended to represent functional and integration tests. The test projects include the following templates:
 
   - **MSTest**: A project that contains MSTest integration of a .NET Aspire AppHost project.
-
   - **NUnit**: A project that contains NUnit integration of a .NET Aspire AppHost project.
-
   - **xUnit**: A project that contains xUnit.net integration of a .NET Aspire AppHost project.
 
 - **.NET Aspire Service Defaults**: A standalone **.ServiceDefaults** project that can be used to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](./telemetry.md).
