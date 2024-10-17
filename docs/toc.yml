@@ -16,6 +16,8 @@ items:
         href: fundamentals/setup-tooling.md
       - name: What's new in .NET Aspire
         href: whats-new/index.yml
+      - name: Upgrade to .NET Aspire 9.0
+        href: get-started/upgrade-to-aspire-9.md
 
   - name: App Host (Orchestration)
     items:
