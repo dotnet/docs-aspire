@@ -37,7 +37,7 @@ Visual Studio 2022 17.12 or higher includes the latest **.NET Aspire** workload 
 dotnet workload list
 ```
 
-If you have an earlier version of Visual Studio 2022, you can either upgrade to Visual Studio 2022 17.10 or you can install the .NET Aspire workload using the following steps:
+If you have an earlier version of Visual Studio 2022, you can either upgrade to Visual Studio 2022 17.12 or you can install the .NET Aspire workload using the following steps:
 
 To install the .NET Aspire workload in Visual Studio 2022, use the Visual Studio installer.
 
@@ -114,88 +114,7 @@ For more information, see [Install Podman on Windows](https://podman.io/docs/ins
 
 ## .NET Aspire project templates
 
-The .NET Aspire project templates are installed from the .NET CLI. To install these templates, use the [dotnet new install](/dotnet/core/tools/dotnet-new-install) command, passing in the `Aspire.ProjectTemplates` NuGet identifier.
-
-```dotnetcli
-dotnet new install Aspire.ProjectTemplates
-```
-
-These project templates allow you to create new apps pre-configured with the .NET Aspire project structure and default settings. These projects also provide a unified debugging experience across the different resources of your app.
-
-There are currently four project templates available:
-
-- **.NET Aspire Empty App**: A minimal .NET Aspire project that includes the following:
-
-  - **AspireSample.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app.
-  - **AspireSample.ServiceDefaults**: A .NET Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](./telemetry.md).
-
-- **.NET Aspire Starter Application**: In addition to the **.AppHost** and **.ServiceDefaults** projects, the .NET Aspire Starter Application also includes the following—assuming the solution is named _AspireSample_:
-
-  - **AspireSample.ApiService**: An ASP.NET Core Minimal API project is used to provide data to the frontend. This project depends on the shared **AspireSample.ServiceDefaults** project.
-  - **AspireSample.Web**: An ASP.NET Core Blazor App project with default .NET Aspire service configurations, this project depends on the **AspireSample.ServiceDefaults** project.
-  - **AspireSample.Test**: Either an MSTest, NUnit, or xUnit test project with project references to the **AspireSample.AppHost** and an example _WebTests.cs_ file demonstrating an integration test.
-
-- **.NET Aspire App Host**: A standalone **.AppHost** project that can be used to orchestrate and manage the different projects and services of your app.
-
-- **.NET Aspire Test projects**: These project templates are used to create test projects for your .NET Aspire app, and they're intended to represent functional and integration tests. The test projects include the following templates:
-
-  - **MSTest**: A project that contains MSTest integration of a .NET Aspire AppHost project.
-  - **NUnit**: A project that contains NUnit integration of a .NET Aspire AppHost project.
-  - **xUnit**: A project that contains xUnit.net integration of a .NET Aspire AppHost project.
-
-- **.NET Aspire Service Defaults**: A standalone **.ServiceDefaults** project that can be used to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](./telemetry.md).
-
-  > [!IMPORTANT]
-  > The service defaults project template takes a `FrameworkReference` dependency on `Microsoft.AspNetCore.App`. This may not be ideal for some project types. For more information, see [.NET Aspire service defaults](service-defaults.md).
-
-Use Visual Studio, Visual Studio Code, or the .NET CLI to create new apps using these project templates. Explore additional .NET Aspire project templates in the [.NET Aspire samples](https://github.com/dotnet/aspire-samples) repository.
-
-:::zone pivot="visual-studio"
-
-To create a .NET Aspire project using Visual Studio, search for *Aspire* in the Visual Studio new project window and select your desired template.
-
-:::image type="content" loc-scope="visual-studio" source="../media/aspire-templates.png" lightbox="../media/aspire-templates.png" alt-text="The .NET Aspire project templates in Visual Studio.":::
-
-:::zone-end
-:::zone pivot="vscode,dotnet-cli"
-
-To see which .NET Aspire project templates are available, use the [dotnet new list](/dotnet/core/tools/dotnet-new-list) command, passing in the search term `aspire`:
-
-```dotnetcli
-dotnet new list aspire
-```
-
-When the .NET Aspire workload is installed, you'll see the following .NET Aspire templates:
-
-```Output
-These templates matched your input: 'aspire'
-
-Template Name                      Short Name              Language  Tags
----------------------------------  ----------------------  --------  -------------------------------------------------------
-.NET Aspire App Host               aspire-apphost          [C#]      Common/.NET Aspire/Cloud
-.NET Aspire Empty App              aspire                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
-.NET Aspire Service Defaults       aspire-servicedefaults  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
-.NET Aspire Starter App            aspire-starter          [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud
-.NET Aspire Test Project (MSTest)  aspire-mstest           [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
-.NET Aspire Test Project (NUnit)   aspire-nunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
-.NET Aspire Test Project (xUnit)   aspire-xunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
-```
-
-To create a .NET Aspire project using the .NET CLI, use the `dotnet new` command and specify which template you would like to create.
-
-To create a basic .NET Aspire project:
-
-```dotnetcli
-dotnet new aspire
-```
-
-To create a .NET Aspire project with a sample UI and API included:
-
-```dotnetcli
-dotnet new aspire-starter
-```
-
-:::zone-end
+:
 
 ## .NET Aspire dashboard
 
