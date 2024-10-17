@@ -59,7 +59,7 @@ builder.EnrichOracleDatabaseDbContext<MyDbContext>();
 
 ## App host usage
 
-To model the Oracle server resource in the app host, install the [Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle) NuGet package in the [app host](xref:aspire/app-host) project.
+To model the Oracle server resource in the app host, install the [Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

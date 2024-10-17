@@ -10,6 +10,8 @@ uid: dotnet/aspire/templates
 
 There are a number of .NET Aspire project templates available to you. You can use these templates to create full .NET Aspire solutions, or add individual projects to existing .NET Aspire solutions.
 
+The .NET Aspire templates are available in the [📦 Aspire.ProjectTemplates](https://www.nuget.org/packages/Aspire.ProjectTemplates) NuGet package.
+
 ## Install the .NET Aspire templates
 
 ::zone pivot="visual-studio"

@@ -2,7 +2,7 @@
 ms.topic: include
 ---
 
-The PostgreSQL hosting integration models a PostgreSQL server as the <xref:Aspire.Hosting.ApplicationModel.PostgresServerResource> type. To access this type and APIs that allow you to add it to your [app model](xref:aspire/app-host#define-the-app-model), install the [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL) NuGet package in the [app host](xref:aspire/app-host) project.
+The PostgreSQL hosting integration models a PostgreSQL server as the <xref:Aspire.Hosting.ApplicationModel.PostgresServerResource> type. To access this type and APIs that allow you to add it to your [app model](xref:aspire/app-host#define-the-app-model), install the [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
