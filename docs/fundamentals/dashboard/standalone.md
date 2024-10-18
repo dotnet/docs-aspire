@@ -24,6 +24,7 @@ The dashboard is started using the Docker command line.
 docker run --rm -it -d \
     -p 18888:18888 \
     -p 4317:18889 \
+    -e DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS=true \
     --name aspire-dashboard \
     mcr.microsoft.com/dotnet/aspire-dashboard:8.2
 ```
@@ -34,6 +35,7 @@ docker run --rm -it -d \
 docker run --rm -it -d `
     -p 18888:18888 `
     -p 4317:18889 `
+    -e DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS=true `
     --name aspire-dashboard `
     mcr.microsoft.com/dotnet/aspire-dashboard:8.2
 ```
