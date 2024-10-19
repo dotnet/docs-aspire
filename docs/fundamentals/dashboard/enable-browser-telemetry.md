@@ -6,7 +6,7 @@ ms.date: 10/11/2024
 
 # Enable browser telemetry
 
-The .NET Aspire dashboard can be configure to receive telemetry sent from browser apps. This feature is useful for monitoring client-side performance and user interactions. Browser telemetry requires additional dashboard configuration, and [JavaScript OTEL SDK](https://opentelemetry.io/docs/languages/js/getting-started/browser/) to be added to browser apps.
+The .NET Aspire dashboard can be configured to receive telemetry sent from browser apps. This feature is useful for monitoring client-side performance and user interactions. Browser telemetry requires additional dashboard configuration and that the [JavaScript OTEL SDK](https://opentelemetry.io/docs/languages/js/getting-started/browser/) is added to the browser apps.
 
 This article discusses how to enable browser telemetry in the .NET Aspire dashboard.
 
@@ -15,7 +15,7 @@ This article discusses how to enable browser telemetry in the .NET Aspire dashbo
 Browser telemetry requires the dashboard to enable these features:
 
 - OTLP HTTP endpoint. This endpoint is used by the dashboard to receive telemetry from browser apps.
-- Cross-origin resource sharing (CORS). CORS allows a browser apps to make requests to the dashboard.
+- Cross-origin resource sharing (CORS). CORS allows browser apps to make requests to the dashboard.
 
 ### OTLP configuration
 
