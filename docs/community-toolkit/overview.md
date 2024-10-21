@@ -32,6 +32,6 @@ If you've proposed an integration on the `dotnet/aspire` repository, you can sti
 
 ### Finding Community Toolkit Integrations
 
-Integrations from the .NET Aspire Community Toolkit appear in the **Add Aspire Integration** dialog in Visual Studio under the namespace `Aspire.CommunityToolkit.*`.
+Integrations from the .NET Aspire Community Toolkit appear in the **Add Aspire Integration** dialog in Visual Studio under the namespace `CommunityToolkit.Aspire.*`.
 
 [github-repo]: https://github.com/CommunityToolkit/Aspire
