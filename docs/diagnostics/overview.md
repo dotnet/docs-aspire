@@ -28,3 +28,24 @@ Alternatively, you can suppress this diagnostic with preprocessor directive by a
         // API that is causing the warning.
 #pragma warning restore AZPROVISION001
 ```
+
+## ASPIREACADOMAINS001
+
+.NET Aspire 9.0 introduces the ability to customize container app resources using the `PublishAsAzureContainerApp(...)` extension method. When using this method the Azure Developer CLI (`azd`) can no longer preserve custom domains. Instead use the `ConfigureCustomDomain` method to configure a custom domain within the .NET Aspire app host. The `ConfigureCustomDomain(...)` extension method is experimental. To suppress the compiler error/warning use the following code:
+
+To suppress this diagnostic with the `SuppressMessageAttribute`, add the following code to your project:
+
+```csharp
+using System.Diagnostics.CodeAnalysis;
+
+[assembly: SuppressMessage("ASPIREACADOMAINS001", "Justification")]
+```
+
+Alternatively, you can suppress this diagnostic with preprocessor directive by adding the following code to your project:
+
+```csharp
+#pragma warning disable ASPIREACADOMAINS001
+        // API that is causing the warning.
+#pragma warning restore ASPIREACADOMAINS001
+```
+
