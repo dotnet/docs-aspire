@@ -129,7 +129,7 @@ The constructor requires the type of the app host project reference as a paramet
 
 ### Lifecycle methods
 
-The `DistributionApplicationFactory` class provides several lifecycle methods that can be overridden to provide custom behavior throughout the preperation and creation of the app host. The available methods are `OnBuilderCreating`, `OnBuilderCreated`, `OnBuilding` and `OnBuilt`. 
+The `DistributionApplicationFactory` class provides several lifecycle methods that can be overridden to provide custom behavior throughout the preperation and creation of the app host. The available methods are `OnBuilderCreating`, `OnBuilderCreated`, `OnBuilding` and `OnBuilt`.
 
 For example, we can use the `OnBuilderCreating` method to set environment variables, such as the subscription and resource group information for Azure, before the app host is created and any dependent Azure resources are provisioned, resulting in our tests using the correct Azure environment.
 
