@@ -48,4 +48,3 @@ Alternatively, you can suppress this diagnostic with preprocessor directive by a
         // API that is causing the warning.
 #pragma warning restore ASPIREACADOMAINS001
 ```
-
