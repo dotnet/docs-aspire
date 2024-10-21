@@ -68,7 +68,7 @@ items:
       - name: Managing the app host
         href: testing/manage-app-host.md
       - name: Accessing resources in tests
-        href: testing/access-resources.md
+        href: testing/accessing-resources.md
 
   - name: Fundamentals
     items:
