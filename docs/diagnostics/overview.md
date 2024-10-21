@@ -2,7 +2,7 @@
 title: .NET Aspire diagnostics overview
 description: Learn about the diagnostics tools and features available in .NET Aspire.
 ms.topic: overview
-ms.date: 03/25/2024
+ms.date: 10/21/2024
 ---
 
 # .NET Aspire diagnostics overview
