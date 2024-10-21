@@ -18,7 +18,7 @@ In this article, you learn about the .NET Aspire Community Toolkit Node.js hosti
 
 ## Hosting integration
 
-To get started with the .NET Aspire Community Toolkit Node.js hosting extensions, install the [📦 Aspire.CommunityToolkit.Hosting.NodeJS.Extensions](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.Hosting.NodeJS.Extensions) NuGet package in the AppHost project.
+To get started with the .NET Aspire Community Toolkit Node.js hosting extensions, install the [📦 Aspire.CommunityToolkit.Hosting.NodeJS.Extensions](https://dev.azure.com/dotnet/CommunityToolkit/_artifacts/feed/CommunityToolkit-MainLatest/NuGet/Aspire.CommunityToolkit.Hosting.NodeJS.Extensions) NuGet package in the AppHost project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

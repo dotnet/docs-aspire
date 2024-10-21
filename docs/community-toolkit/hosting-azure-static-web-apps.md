@@ -16,7 +16,7 @@ This integration requires the [Azure Static Web Apps CLI](/azure/static-web-apps
 
 ## Hosting integration
 
-To get started with the .NET Aspire Azure Static Web Apps emulator hosting integration, install the [📦 Aspire.CommunityToolkit.Hosting.Azure.StaticWebApps](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.Hosting.Azure.StaticWebApps) NuGet package in the AppHost project.
+To get started with the .NET Aspire Azure Static Web Apps emulator hosting integration, install the [📦 Aspire.CommunityToolkit.Hosting.Azure.StaticWebApps](https://dev.azure.com/dotnet/CommunityToolkit/_artifacts/feed/CommunityToolkit-MainLatest/NuGet/Aspire.CommunityToolkit.Hosting.Azure.StaticWebApps) NuGet package in the AppHost project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
