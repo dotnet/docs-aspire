@@ -15,7 +15,7 @@ In this article, you learn how to use the .NET Aspire Go hosting integration to 
 
 ## Hosting integration
 
-To get started with the .NET Aspire Go hosting integration, install the [📦 Aspire.CommunityToolkit.Hosting.Go](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.Hosting.Golang) NuGet package in the AppHost project.
+To get started with the .NET Aspire Go hosting integration, install the [📦 Aspire.CommunityToolkit.Hosting.Go](https://dev.azure.com/dotnet/CommunityToolkit/_artifacts/feed/CommunityToolkit-MainLatest/NuGet/Aspire.CommunityToolkit.Hosting.Golang) NuGet package in the AppHost project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
