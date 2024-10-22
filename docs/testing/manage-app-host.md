@@ -125,6 +125,7 @@ public class TestingAspireAppHost
     // override methods here
 }
 ```
+
 The constructor requires the type of the app host project reference as a parameter. Optionally, you can provide arguments to the underlying host application builder. These arguments control how the app host starts and provide values to the args variable used by the _Program.cs_ file to start the app host instance.
 
 ### Lifecycle methods
