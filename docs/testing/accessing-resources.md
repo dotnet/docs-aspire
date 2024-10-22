@@ -1,7 +1,7 @@
 ---
 title: Access resources in .NET Aspire tests
 description: Learn how to access the resources from the .NET Aspire app host in your tests.
-ms.date: 11/09/2024
+ms.date: 10/21/2024
 zone_pivot_groups: unit-testing-framework
 ---
 
