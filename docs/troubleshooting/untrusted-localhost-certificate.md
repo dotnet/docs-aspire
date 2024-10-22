@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot untrusted localhost certificate in .NET Aspire
 description: Explore strategies for troubleshooting issues when working with untrusted localhost certificates in .NET Aspire.
-ms.date: 05/15/2024
+ms.date: 10/16/2024
 ---
 
 # Troubleshoot untrusted localhost certificate in .NET Aspire
@@ -20,22 +20,23 @@ Additionally, there are warning messages from Kestrel written to the console tha
 
 ## Possible solutions
 
-Close all browser windows and try again. If you're still experiencing the issue, then attempt to resolve this by trusting the self-signed development certificate with the .NET CLI. To trust the certificate, run the following commands. First, remove the existing certificates.
+1. **Close all browser windows** and _try again_.
+1. If you're still experiencing the issue, then attempt to resolve this by trusting the self-signed development certificate with the .NET CLI. To trust the certificate, run the following commands. First, remove the existing certificates.
 
-> [!NOTE]
-> This will remove all existing development certificates on the local machine.
+    > [!NOTE]
+    > This will remove all existing development certificates on the local machine.
 
-```dotnetcli
-dotnet dev-certs https --clean
-```
+    ```dotnetcli
+    dotnet dev-certs https --clean
+    ```
 
-To trust the certificate:
+    To trust the certificate:
 
-```dotnetcli
-dotnet dev-certs https --trust
-```
+    ```dotnetcli
+    dotnet dev-certs https --trust
+    ```
 
-For more troubleshooting, see [Troubleshoot certificate problems such as certificate not trusted](/aspnet/core/security/enforcing-ssl#troubleshoot-certificate-problems-such-as-certificate-not-trusted).
+    For more troubleshooting, see [Troubleshoot certificate problems such as certificate not trusted](/aspnet/core/security/enforcing-ssl#troubleshoot-certificate-problems-such-as-certificate-not-trusted).
 
 ## See also
 
