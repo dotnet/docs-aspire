@@ -1,11 +1,11 @@
 ---
-title: Writing your first .NET Aspire test
+title: Write your first .NET Aspire test
 description: Learn how to test your .NET Aspire solutions using the xUnit, NUnit, and MSTest testing frameworks.
-ms.date: 09/09/2024
+ms.date: 10/21/2024
 zone_pivot_groups: unit-testing-framework
 ---
 
-# Tutorial: Writing your first .NET Aspire test
+# Write your first .NET Aspire test
 
 In this article, you learn how to create a test project, write tests, and run them for your .NET Aspire solutions. The tests in this article aren't unit tests, but rather functional or integration tests. .NET Aspire includes several variations of [testing project templates](../fundamentals/setup-tooling.md#net-aspire-project-templates) that you can use to test your .NET Aspire resource dependencies—and their communications. The testing project templates are available for MSTest, NUnit, and xUnit testing frameworks and include a sample test that you can use as a starting point for your tests.
 
