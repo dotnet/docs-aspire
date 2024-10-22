@@ -14,18 +14,18 @@ In this article, you learn how to use the .NET Aspire Ollama hosting integration
 
 ## Hosting integration
 
-To model the Ollama server, install the [📦 Aspire.CommunityToolkit.Hosting.Ollama](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.Hosting.Ollama) NuGet package in the [app host](xref:aspire/app-host) project.
+To model the Ollama server, install the [📦 CommunityToolkit.Aspire.Hosting.Ollama](https://dev.azure.com/dotnet/CommunityToolkit/_artifacts/feed/CommunityToolkit-MainLatest/NuGet/CommunityToolkit.Aspire.Hosting.Ollama) NuGet package in the [app host](xref:aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.CommunityToolkit.Hosting.Ollama
+dotnet add package CommunityToolkit.Aspire.Hosting.Ollama
 ```
 
 ### [PackageReference](#tab/package-reference)
 
 ```xml
-<PackageReference Include="Aspire.CommunityToolkit.Hosting.Ollama"
+<PackageReference Include="CommunityToolkit.Aspire.Hosting.Ollama"
                   Version="*" />
 ```
 
@@ -73,18 +73,18 @@ var ollama = builder.AddOllama("ollama")
 
 ## Client integration
 
-To get started with the .NET Aspire OllamaSharp integration, install the [Aspire.CommunityToolkit.OllamaSharp](https://github.com/orgs/CommunityToolkit/packages/nuget/package/Aspire.CommunityToolkit.OllamaSharp) NuGet package in the client-consuming project, that is, the project for the application that uses the Ollama client.
+To get started with the .NET Aspire OllamaSharp integration, install the [CommunityToolkit.Aspire.OllamaSharp](https://dev.azure.com/dotnet/CommunityToolkit/_artifacts/feed/CommunityToolkit-MainLatest/NuGet/CommunityToolkit.Aspire.OllamaSharp) NuGet package in the client-consuming project, that is, the project for the application that uses the Ollama client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.CommunityToolkit.OllamaSharp
+dotnet add package CommunityToolkit.Aspire.OllamaSharp
 ```
 
 ### [PackageReference](#tab/package-reference)
 
 ```xml
-<PackageReference Include="Aspire.CommunityToolkit.OllamaSharp"
+<PackageReference Include="CommunityToolkit.Aspire.OllamaSharp"
                   Version="*" />
 ```
 
