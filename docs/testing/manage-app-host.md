@@ -13,7 +13,7 @@ For writing tests with .NET Aspire, you use the [📦 `Aspire.Hosting.Testing`](
 
 ## Use the `DistributedApplicationTestingBuilder` class
 
-In the [tutorial on writing your first test](./writing-your-first-test.md), you were introduced to the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> class which can be used to create the app host instance:
+In the [tutorial on writing your first test](./write-your-first-test.md), you were introduced to the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> class which can be used to create the app host instance:
 
 ```csharp
 var appHost = await DistributedApplicationTestingBuilder
