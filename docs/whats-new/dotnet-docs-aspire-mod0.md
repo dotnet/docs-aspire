@@ -40,7 +40,7 @@ Welcome to what's new in the .NET Aspire docs for September 2024. This article l
 - [Explore the .NET Aspire dashboard](../fundamentals/dashboard/explore.md) - Added text visualizer details.
 - [External parameters](../fundamentals/external-parameters.md) - Addressing several issues
 - [Health checks in .NET Aspire](../fundamentals/health-checks.md) - Address feedback in #1670
-- [Testing .NET Aspire solutions](../fundamentals/testing.md) - Initial updates
+- [Write your first .NET Aspire test](../testing/write-your-first-test.md) - Initial updates
 
 ## Database
 

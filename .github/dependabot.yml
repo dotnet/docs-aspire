@@ -174,7 +174,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per solution update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/testing/mstest" #AspireApp.sln
+    directory: "/docs/testing/snippets/testing/mstest" #AspireApp.sln
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -185,7 +185,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per solution update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/testing/nunit" #AspireApp.sln
+    directory: "/docs/testing/snippets/testing/nunit" #AspireApp.sln
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -196,7 +196,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per solution update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/testing/xunit" #AspireApp.sln
+    directory: "/docs/testing/snippets/testing/xunit" #AspireApp.sln
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -768,7 +768,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/testing/mstest/AspireApp.AppHost" #AspireApp.AppHost.csproj
+    directory: "/docs/testing/snippets/testing/mstest/AspireApp.AppHost" #AspireApp.AppHost.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -779,7 +779,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/testing/mstest/AspireApp.ServiceDefaults" #AspireApp.ServiceDefaults.csproj
+    directory: "/docs/testing/snippets/testing/mstest/AspireApp.ServiceDefaults" #AspireApp.ServiceDefaults.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -790,7 +790,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/testing/mstest/AspireApp.Tests" #AspireApp.Tests.csproj
+    directory: "/docs/testing/snippets/testing/mstest/AspireApp.Tests" #AspireApp.Tests.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -801,7 +801,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/testing/nunit/AspireApp.AppHost" #AspireApp.AppHost.csproj
+    directory: "/docs/testing/snippets/testing/nunit/AspireApp.AppHost" #AspireApp.AppHost.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -812,7 +812,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/testing/nunit/AspireApp.ServiceDefaults" #AspireApp.ServiceDefaults.csproj
+    directory: "/docs/testing/snippets/testing/nunit/AspireApp.ServiceDefaults" #AspireApp.ServiceDefaults.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -823,7 +823,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/testing/nunit/AspireApp.Tests" #AspireApp.Tests.csproj
+    directory: "/docs/testing/snippets/testing/nunit/AspireApp.Tests" #AspireApp.Tests.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -834,7 +834,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/testing/xunit/AspireApp.AppHost" #AspireApp.AppHost.csproj
+    directory: "/docs/testing/snippets/testing/xunit/AspireApp.AppHost" #AspireApp.AppHost.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -845,7 +845,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/testing/xunit/AspireApp.ServiceDefaults" #AspireApp.ServiceDefaults.csproj
+    directory: "/docs/testing/snippets/testing/xunit/AspireApp.ServiceDefaults" #AspireApp.ServiceDefaults.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -856,7 +856,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/fundamentals/snippets/testing/xunit/AspireApp.Tests" #AspireApp.Tests.csproj
+    directory: "/docs/testing/snippets/testing/xunit/AspireApp.Tests" #AspireApp.Tests.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
