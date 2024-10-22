@@ -62,7 +62,13 @@ items:
         href: fundamentals/dashboard/security-considerations.md
 
   - name: Testing
-    href: fundamentals/testing.md
+    items:
+      - name: Write your first .NET Aspire test
+        href: testing/write-your-first-test.md
+      - name: Managing the app host
+        href: testing/manage-app-host.md
+      - name: Accessing resources in tests
+        href: testing/accessing-resources.md
 
   - name: Fundamentals
     items:

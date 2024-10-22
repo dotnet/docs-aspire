@@ -275,7 +275,7 @@ When you're using Visual Studio, and you select the **.NET Aspire Start Applicat
 
 :::image type="content" source="media/setup-tooling/create-test-projects-template.png" lightbox="media/setup-tooling/create-test-projects-template.png" alt-text="A screenshot of Visual Studio displaying the option to create a test project.":::
 
-For more information, see [Testing .NET Aspire projects](testing.md).
+For more information, see [Write your first .NET Aspire test](../testing/write-your-first-test.md).
 
 :::zone-end
 :::zone pivot="vscode"
