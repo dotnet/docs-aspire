@@ -78,7 +78,7 @@ Select **Yes**, and you see an informational message indicating that the **Self-
 
 :::image type="content" loc-scope="vs-code" source="media/vscode-run-cert-created.png" lightbox="media/vscode-run-cert-created.png" alt-text="A screenshot of the Visual Studio Code success message for creating a self-signed certificate.":::
 
-If you're still seeing having an issue, close all browser windows and then try again. For more information, see [Troubleshoot untrusted localhost certificate in .NET Aspire](../troubleshooting/untrusted-localhost-certificate.md).
+If you're still having an issue, close all browser windows and try again. For more information, see [Troubleshoot untrusted localhost certificate in .NET Aspire](../troubleshooting/untrusted-localhost-certificate.md).
 
 > [!TIP]
 > If you're on MacOS and using Safari, when your browser opens if the page is blank, you might need to manually refresh the page.
