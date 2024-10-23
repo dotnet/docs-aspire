@@ -35,6 +35,8 @@ items:
       - name: Networking overview
         displayName: inner loop,local networking
         href: fundamentals/networking-overview.md
+      - name: Eventing in .NET Aspire
+        href: app-host/eventing.md
       - name: Use external parameters
         displayName: external parameters,configuration
         href: fundamentals/external-parameters.md
