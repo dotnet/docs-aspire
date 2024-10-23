@@ -59,11 +59,18 @@ In addition to the app host events, you can also subscribe to resource events. R
 
 ## Event dispatch behavior
 
-When events are dispatched, you can control how the events are dispatched to subscribers. The event dispatch behavior is controlled by the <xref:Aspire.Hosting.Eventing.EventDispatchBehavior> enumeration. The following behaviors are available:
+When events are dispatched, you can control how the events are dispatched to subscribers. The event dispatch behavior is controlled by the `EventDispatchBehavior` enum. The following behaviors are available:
 
+<!--
 - <xref:Aspire.Hosting.Eventing.EventDispatchBehavior.BlockingSequential>: Fires events sequentially and blocks until they're all processed.
 - <xref:Aspire.Hosting.Eventing.EventDispatchBehavior.BlockingConcurrent>: Fires events concurrently and blocks until they are all processed.
 - <xref:Aspire.Hosting.Eventing.EventDispatchBehavior.NonBlockingSequential>: Fires events sequentially but doesn't block.
 - <xref:Aspire.Hosting.Eventing.EventDispatchBehavior.NonBlockingConcurrent>: Fires events concurrently but doesn't block.
+-->
 
-The default behavior is <xref:Aspire.Hosting.Eventing.EventDispatchBehavior.BlockingSequential>. To override this behavior, when calling a publishing API such as <xref:Aspire.Hosting.Eventing.IDistributedApplicationEventing.PublishAsync*>, provide the desired behavior as an argument.
+- `EventDispatchBehavior.BlockingSequential`: Fires events sequentially and blocks until they're all processed.
+- `EventDispatchBehavior.BlockingConcurrent`: Fires events concurrently and blocks until they are all processed.
+- `EventDispatchBehavior.NonBlockingSequential`: Fires events sequentially but doesn't block.
+- `EventDispatchBehavior.NonBlockingConcurrent`: Fires events concurrently but doesn't block.
+
+The default behavior is `EventDispatchBehavior.BlockingSequential`. To override this behavior, when calling a publishing API such as <xref:Aspire.Hosting.Eventing.IDistributedApplicationEventing.PublishAsync*>, provide the desired behavior as an argument.
