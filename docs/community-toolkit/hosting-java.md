@@ -40,7 +40,7 @@ Invoke-WebRequest `
 
 ## Get started
 
-To get started with the .NET Aspire Azure Static Web Apps emulator integration, install the [📦 CommunityToolkit.Aspire.Hosting.Java](https://dev.azure.com/dotnet/CommunityToolkit/_artifacts/feed/CommunityToolkit-MainLatest/NuGet/CommunityToolkit.Aspire.Hosting.Java) NuGet package in the AppHost project.
+To get started with the .NET Aspire Azure Static Web Apps emulator integration, install the [📦 CommunityToolkit.Aspire.Hosting.Java](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Java) NuGet package in the AppHost project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
