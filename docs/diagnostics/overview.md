@@ -13,12 +13,12 @@ Several APIs of .NET Aspire are decorated with the <xref:System.Diagnostics.Code
 
 .NET Aspire provides various overloads for Azure Provisioning resource types (from the `Azure.Provisioning` package). The overloads are used to create resources with different configurations. The overloads are experimental and may be removed or changed in future versions of .NET Aspire.
 
-To suppress this diagnostic with the `SuppressMessageAttribute`, add the following code to your project:
+To suppress this diagnostic with the `SuppressMessageAttribute`, add the following code to your project file:
 
-```csharp
-using System.Diagnostics.CodeAnalysis;
-
-[assembly: SuppressMessage("AZPROVISION001", "Justification")]
+```xml
+<PropertyGroup>
+  <NoWarn>$(NoWarn);ASPIREHOSTINGPYTHON001</NoWarn>
+<PropertyGroup>
 ```
 
 Alternatively, you can suppress this diagnostic with preprocessor directive by adding the following code to your project:
