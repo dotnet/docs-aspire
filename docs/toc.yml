@@ -246,6 +246,8 @@ items:
             href: community-toolkit/hosting-nodejs-extensions.md
           - name: Ollama
             href: community-toolkit/ollama.md
+          - name: Meilisearch
+            href: community-toolkit/hosting-meilisearch.md
 
   - name: Custom integrations
     items:
