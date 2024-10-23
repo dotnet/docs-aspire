@@ -13,12 +13,12 @@ Several APIs of .NET Aspire are decorated with the <xref:System.Diagnostics.Code
 
 .NET Aspire provides various overloads for Azure Provisioning resource types (from the `Azure.Provisioning` package). The overloads are used to create resources with different configurations. The overloads are experimental and may be removed or changed in future versions of .NET Aspire.
 
-To suppress this diagnostic with the `SuppressMessageAttribute`, add the following code to your project file:
+To suppress this diagnostic with the `SuppressMessageAttribute`, add the following code to your project:
 
-```xml
-<PropertyGroup>
-  <NoWarn>$(NoWarn);ASPIREHOSTINGPYTHON001</NoWarn>
-<PropertyGroup>
+```csharp
+using System.Diagnostics.CodeAnalysis;
+
+[assembly: SuppressMessage("AZPROVISION001", "Justification")]
 ```
 
 Alternatively, you can suppress this diagnostic with preprocessor directive by adding the following code to your project:
@@ -53,12 +53,12 @@ Alternatively, you can suppress this diagnostic with preprocessor directive by a
 
 .NET Aspire provides a way to add Python executables or applications to the .NET Aspire app host. Since the shape of this API is expected to change in the future, it has been marked as _Experimental_. To suppress the compiler error/warning use the following code:
 
-To suppress this diagnostic with the `SuppressMessageAttribute`, add the following code to your project:
+To suppress this diagnostic with the `SuppressMessageAttribute`, add the following code to your project file:
 
-```csharp
-using System.Diagnostics.CodeAnalysis;
-
-[assembly: SuppressMessage("ASPIREHOSTINGPYTHON001", "Justification")]
+```xml
+<PropertyGroup>
+  <NoWarn>$(NoWarn);ASPIREHOSTINGPYTHON001</NoWarn>
+<PropertyGroup>
 ```
 
 Alternatively, you can suppress this diagnostic with preprocessor directive by adding the following code to your project:
