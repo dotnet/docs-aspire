@@ -53,7 +53,7 @@ For more information, see [Container resource lifecycle](../fundamentals/app-hos
 
 ### Add Meilisearch resource with data volume
 
-To add a data volume to the Meilisearch resource, call the <xref:Aspire.Hosting.MeilisearchBuilderExtensions.WithDataVolume*> method on the Meilisearch resource:
+To add a data volume to the Meilisearch resource, call the `Aspire.Hosting.MeilisearchBuilderExtensions.WithDataVolume` method on the Meilisearch resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -71,7 +71,7 @@ The data volume is used to persist the Meilisearch data outside the lifecycle of
 
 ### Add Meilisearch resource with data bind mount
 
-To add a data bind mount to the Meilisearch resource, call the <xref:Aspire.Hosting.MeilisearchBuilderExtensions.WithDataBindMount*> method:
+To add a data bind mount to the Meilisearch resource, call the `Aspire.Hosting.MeilisearchBuilderExtensions.WithDataBindMount` method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -129,7 +129,7 @@ dotnet add package CommunityToolkit.Aspire.Meilisearch
 
 ### Add Meilisearch client
 
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireMeilisearchExtensions.AddMeilisearchClient*> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register an `MeilisearchClient` for use via the dependency injection container. The method takes a connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the `Microsoft.Extensions.Hosting.AspireMeilisearchExtensions.AddMeilisearchClient` extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register an `MeilisearchClient` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddMeilisearchClient(connectionName: "meilisearch");
@@ -149,7 +149,7 @@ public class ExampleService(MeilisearchClient client)
 
 ### Add keyed Meilisearch client
 
-There might be situations where you want to register multiple `MeilisearchClient` instances with different connection names. To register keyed Meilisearch clients, call the <xref:Microsoft.Extensions.Hosting.AspireMeilisearchExtensions.AddKeyedMeilisearchClient*>:
+There might be situations where you want to register multiple `MeilisearchClient` instances with different connection names. To register keyed Meilisearch clients, call the `Microsoft.Extensions.Hosting.AspireMeilisearchExtensions.AddKeyedMeilisearchClient`
 
 ```csharp
 builder.AddKeyedMeilisearchClient(name: "products");
@@ -193,7 +193,7 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 
 #### Use configuration providers
 
-The .NET Aspire Meilisearch Client integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:CommunityToolkit.Aspire.Meilisearch.MeilisearchClientSettings> from configuration by using the `Aspire:Meilisearch:Client` key. Consider the following example _appsettings.json_ that configures some of the options:
+The .NET Aspire Meilisearch Client integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `CommunityToolkit.Aspire.Meilisearch.MeilisearchClientSettings` from configuration by using the `Aspire:Meilisearch:Client` key. Consider the following example _appsettings.json_ that configures some of the options:
 
 ```json
 {
