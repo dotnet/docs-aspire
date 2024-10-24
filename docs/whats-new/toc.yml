@@ -6,7 +6,6 @@ items:
   expanded: true
   items:
   - name: Latest product updates
-    expanded: true
     items:
     - name: .NET Aspire 9.0 (Release Candidate 1)
       href: dotnet-aspire-9-release-candidate-1.md
@@ -16,8 +15,9 @@ items:
       href: https://devblogs.microsoft.com/dotnet/whats-new-in-aspire-8-1/
     - name: .NET Aspire 8.0 (General Availability)
       href: https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability/
+  - name: Breaking changes
+    href: ../compatibility/breaking-changes.md
   - name: GitHub releases
-    expanded: true
     items:
     - name: .NET Aspire 9.0 RC1
       href: https://github.com/dotnet/aspire/releases/tag/v9.0.0-rc.1.24511.1

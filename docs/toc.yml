@@ -328,6 +328,8 @@ items:
 
   - name: Reference
     items:
+      - name: Breaking changes
+        href: compatibility/breaking-changes.md
       - name: Diagnostics overview
         href: diagnostics/overview.md
       - name: .NET Aspire SDK
