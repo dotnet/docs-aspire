@@ -61,6 +61,16 @@ var ollama = builder.AddOllama("ollama")
                     .WithDataVolume();
 ```
 
+### Use GPUs when available
+
+One or more LLMs are downloaded into the container which Ollama is running from, and by default this container runs on CPU. If you need to run the container in GPU you need to pass a parameter to the container runtime args.
+
+```csharp
+var ollama = builder.AddOllama("ollama")
+                    .AddModel("llama3")
+                    .WithContainerRuntimeArgs("--gpus=all");
+```
+
 ### Open WebUI support
 
 The Ollama integration also provided support for running [Open WebUI](https://openwebui.com/) and having it communicate with the Ollama container.
