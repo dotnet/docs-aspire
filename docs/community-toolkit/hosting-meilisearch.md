@@ -49,6 +49,7 @@ builder.AddProject<Projects.ExampleProject>()
 ```
 
 When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/getmeili/meilisearch` image, it creates a new Meilisearch instance on your local machine. A reference to your Meilisearch resource (the `meilisearch` variable) is added to the `ExampleProject`. The Meilisearch resource includes a randomly generated `master key` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method when a master key wasn't provided.
+
 For more information, see [Container resource lifecycle](../fundamentals/app-host-overview.md#container-resource-lifecycle).
 
 ### Add Meilisearch resource with data volume
@@ -59,10 +60,10 @@ To add a data volume to the Meilisearch resource, call the `Aspire.Hosting.Meili
 var builder = DistributedApplication.CreateBuilder(args);
 
 var meilisearch = builder.AddMeilisearch("meilisearch")
-                           .WithDataVolume();
+                         .WithDataVolume();
 
 builder.AddProject<Projects.ExampleProject>()
-        .WithReference(meilisearch);
+       .WithReference(meilisearch);
 
 // After adding all resources, run the app...
 ```
@@ -77,11 +78,11 @@ To add a data bind mount to the Meilisearch resource, call the `Aspire.Hosting.M
 var builder = DistributedApplication.CreateBuilder(args);
 
 var meilisearch = builder.AddMeilisearch("meilisearch")
-                           .WithDataBindMount(
-                               source: @"C:\Meilisearch\Data");
+                         .WithDataBindMount(
+                             source: @"C:\Meilisearch\Data");
 
 builder.AddProject<Projects.ExampleProject>()
-        .WithReference(meilisearch);
+       .WithReference(meilisearch);
 
 // After adding all resources, run the app...
 ```
@@ -110,7 +111,7 @@ For more information on providing parameters, see [External parameters](../funda
 
 ## Client integration
 
-To get started with the .NET Aspire Meilisearch client integration, install the [CommunityToolkit.Aspire.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Meilisearch) NuGet package in the client-consuming project, that is, the project for the application that uses the Meilisearch client.
+To get started with the .NET Aspire Meilisearch client integration, install the [📦 CommunityToolkit.Aspire.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Meilisearch) NuGet package in the client-consuming project, that is, the project for the application that uses the Meilisearch client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -213,7 +214,9 @@ The .NET Aspire Meilisearch Client integration supports <xref:Microsoft.Extensio
 Also you can pass the `Action<MeilisearchClientSettings> configureSettings` delegate to set up some or all the options inline, for example to set the API key from code:
 
 ```csharp
-builder.AddMeilisearchClient("meilisearch", settings => settings.MasterKey = "123456!@#$%");
+builder.AddMeilisearchClient(
+    "meilisearch",
+    static settings => settings.MasterKey = "123456!@#$%");
 ```
 
 #### Client integration health checks
