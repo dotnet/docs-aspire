@@ -359,3 +359,6 @@ items:
         href: https://github.com/dotnet/extensions
       - name: ASP.NET Core
         href: https://github.com/dotnet/aspnetcore
+
+  - name: Official support policy
+    href: https://dotnet.microsoft.com/platform/support/policy/aspire

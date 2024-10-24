@@ -22,7 +22,7 @@ All of the preceding events are analogous to the [app host life cycles](xref:dot
 
 ### Subscribe to app host events
 
-To subscribe to the built-in app host events, use the eventing API. After you have a distributed application builder instance, walk up to the <xref:Aspire.Hosting.IDistributedApplicationBuilder.Eventing?displayProperty=nameWithType> property and call the <xref:Aspire.Hosting.Eventing.IDistributedApplicationEventing.Subscribe*?displayProperty=nameWithType> API. Consider the following sample app host _Program.cs_ file:
+To subscribe to the built-in app host events, use the eventing API. After you have a distributed application builder instance, walk up to the <xref:Aspire.Hosting.IDistributedApplicationBuilder.Eventing?displayProperty=nameWithType> property and call the <xref:Aspire.Hosting.Eventing.IDistributedApplicationEventing.Subscribe``1(System.Func{``0,System.Threading.CancellationToken,System.Threading.Tasks.Task})> API. Consider the following sample app host _Program.cs_ file:
 
 :::code source="snippets/AspireApp/AspireApp.AppHost/Program.cs":::
 
@@ -36,11 +36,33 @@ The log output confirms that event handlers are executed in the order of the app
 
 ## Resource eventing
 
-In addition to the app host events, you can also subscribe to resource events. Resource events are raised when a resource is created, updated, or deleted. The following events are available:
+In addition to the app host events, you can also subscribe to resource events. Resource events are raised specific to an individual resource. Resource events are defined as implementations of the <xref:Aspire.Hosting.Eventing.IDistributedApplicationResourceEvent> interface. The following resource events are available in the listed order:
 
-<xref:Aspire.Hosting.Eventing.IDistributedApplicationResourceEvent>
+1. `ConnectionStringAvailableEvent`: This event is raised when a connection string becomes available for a resource.
+1. <xref:Aspire.Hosting.ApplicationModel.BeforeResourceStartedEvent>: This event is raised by orchestrators before they have started a new resource.
 
-## Event dispatch behavior
+### Subscribe to resource events
+
+To subscribe to resource events, use the eventing API. After you have a distributed application builder instance, walk up to the <xref:Aspire.Hosting.IDistributedApplicationBuilder.Eventing?displayProperty=nameWithType> property and call the <xref:Aspire.Hosting.Eventing.IDistributedApplicationEventing.Subscribe``1(Aspire.Hosting.ApplicationModel.IResource,System.Func{``0,System.Threading.CancellationToken,System.Threading.Tasks.Task})> API. Consider the following sample app host _Program.cs_ file:
+
+:::code source="snippets/AspireApp/AspireApp.ResourceAppHost/Program.cs":::
+
+The preceding code subscribes to the `ConnectionStringAvailableEvent` and `BeforeResourceStartedEvent` events on the `cache` resource. When <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis*> is called, it returns an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is a <xref:Aspire.Hosting.ApplicationModel.RedisResource>. The resource builder exposes the resource as the <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1.Resource?displayProperty=nameWithType> property. This resource is then passed to the `Subscribe` API to subscribe to the events on the resource.
+
+When the app host is run, by the time the .NET Aspire dashboard is displayed, you should see the following log output in the console:
+
+:::code language="Output" source="snippets/AspireApp/AspireApp.ResourceAppHost/Console.txt" highlight="8,10":::
+
+## Publish events
+
+When subscribing to any of the built-in events, you don't need to publish the event yourself as the app host orchestrator does this for you. However, you can publish custom events with the eventing API. To publish an event, you have to first define an event as an implementation of either the <xref:Aspire.Hosting.Eventing.IDistributedApplicationEvent> or <xref:Aspire.Hosting.Eventing.IDistributedApplicationResourceEvent> interface. You need to determine which interface to implement based on whether the event is a global app host event or a resource-specific event.
+
+Then, you can subscribe and publish the event by calling the either of the following APIs:
+
+- <xref:Aspire.Hosting.Eventing.IDistributedApplicationEventing.PublishAsync``1(``0,System.Threading.CancellationToken)>: Publishes an event to all subscribes of the specific event type.
+- `PublishAsync<T>(T @event, EventDispatchBehavior, CancellationToken)`: Publishes an event to all subscribes of the specific event type with a specified dispatch behavior.
+
+### Event dispatch behavior
 
 When events are dispatched, you can control how the events are dispatched to subscribers. The event dispatch behavior is controlled by the `EventDispatchBehavior` enum. The following behaviors are available:
 

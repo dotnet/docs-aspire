@@ -368,4 +368,4 @@ additionalContent:
           summary: API reference documentation for ASP.NET Core
           url: /dotnet/api?view=aspnetcore-8.0&preserve-view=true
 
-  footer: "Are you interested in contributing to the .NET Aspire docs? For more information, see our [contributor guide](/contribute/dotnet/dotnet-contribute)."
+  footer: "Are you interested in contributing to the .NET Aspire docs? For more information, see our [contributor guide](/contribute/dotnet/dotnet-contribute). Interested in the official support policy, see [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire)."
