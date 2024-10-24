@@ -25,6 +25,10 @@ The [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk)
         <!-- Omitted for brevity -->
     </PropertyGroup>
     
+    <ItemGroup>
+        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
+    </ItemGroup>
+
     <!-- Omitted for brevity -->
 </Project>
 ```
@@ -37,13 +41,14 @@ The .NET Aspire SDK provides several key features.
 
 ### Project references
 
-The `ProjectReferences` in the [.NET Aspire app host][app-host] project aren't treated as project references. This feature enables the _app host_ to execute these projects instead as part of its orchestration. The project references are used to populate the named projects with the `static class Projects`, where each project is represented as an <xref:Aspire.Hosting.IProjectMetadata>.
+The `ProjectReference` in the [.NET Aspire app host][app-host] project aren't treated as standard project references. This feature enables the _app host_ to execute these projects instead as part of its orchestration. Each project reference triggers a generator to create a `class` that represents the project as an <xref:Aspire.Hosting.IProjectMetadata>. This metadata is used to populate the named projects in the generated `Projects` namespace. When you call the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject*?displayProperty=fullName> API, the `Projects` namespace is used to reference the project—passing the generated class as a generic-type parameter.
 
-If you have a need to reference a project within the app host, and you want to avoid this functionality, set the `IsAspireProjectResource` attribute on the `ProjectReference` element to `false`. Consider the following example:
-
-```xml
-<ProjectReference Include="..\MyProject\MyProject.csproj" IsAspireProjectResource="false" />
-```
+> [!TIP]
+> If you need to reference a project within the app host and you want to avoid this functionality, set the `IsAspireProjectResource` attribute on the `ProjectReference` element to `false`, as shown in the following example:
+>
+> ```xml
+> <ProjectReference Include="..\MyProject\MyProject.csproj" IsAspireProjectResource="false" />
+> ```
 
 ### Orchestrator dependencies
 
