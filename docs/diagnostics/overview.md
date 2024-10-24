@@ -48,3 +48,23 @@ Alternatively, you can suppress this diagnostic with preprocessor directive by a
         // API that is causing the warning.
 #pragma warning restore ASPIREACADOMAINS001
 ```
+
+## ASPIREHOSTINGPYTHON001
+
+.NET Aspire provides a way to add Python executables or applications to the .NET Aspire app host. Since the shape of this API is expected to change in the future, it has been marked as _Experimental_. To suppress the compiler error/warning use the following code:
+
+To suppress this diagnostic with the `SuppressMessageAttribute`, add the following code to your project file:
+
+```xml
+<PropertyGroup>
+  <NoWarn>$(NoWarn);ASPIREHOSTINGPYTHON001</NoWarn>
+<PropertyGroup>
+```
+
+Alternatively, you can suppress this diagnostic with preprocessor directive by adding the following code to your project:
+
+```csharp
+#pragma warning disable ASPIREHOSTINGPYTHON001
+        // API that is causing the warning.
+#pragma warning restore ASPIREHOSTINGPYTHON001
+```
