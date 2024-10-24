@@ -81,7 +81,7 @@ For more information, see [GPU support in Docker Desktop](https://docs.docker.co
 var ollama = builder.AddOllama("ollama")
                     .AddModel("llama3")
                     .WithContainerRuntimeArgs("--device", "nvidia.com/gpu=all");
-``` 
+```
 
 For more information, see [GPU support in Podman](https://github.com/containers/podman/issues/19005).
 
