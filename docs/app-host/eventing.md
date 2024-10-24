@@ -1,7 +1,7 @@
 ---
 title: Eventing in .NET Aspire
 description: Learn how to use the .NET eventing features with .NET Aspire.
-ms.date: 10/23/2024
+ms.date: 10/24/2024
 ---
 
 # Eventing in .NET Aspire
@@ -12,7 +12,7 @@ In this article, you learn how to use the eventing features in .NET Aspire.
 
 ## App host eventing
 
-The following events are available in the app host and are raised in the following order:
+The following events are available in the app host and are occur in the following order:
 
 1. <xref:Aspire.Hosting.ApplicationModel.BeforeStartEvent>: This event is raised before the app host starts.
 1. <xref:Aspire.Hosting.ApplicationModel.AfterEndpointsAllocatedEvent>: This event is raised after the app host has allocated endpoints.
@@ -30,26 +30,9 @@ The preceding code is based on the starter template with the addition of the sub
 
 When the app host is run, by the time the .NET Aspire dashboard is displayed, you should see the following log output in the console:
 
-```Output
-info: Program[0]
-      1. BeforeStartEvent
-info: Aspire.Hosting.DistributedApplication[0]
-      Aspire version: 9.0.0
-info: Aspire.Hosting.DistributedApplication[0]
-      Distributed application starting.
-info: Aspire.Hosting.DistributedApplication[0]
-      Application host directory is: ..\AspireApp\AspireApp.AppHost
-info: Program[0]
-      2. AfterEndpointsAllocatedEvent
-info: Aspire.Hosting.DistributedApplication[0]
-      Now listening on: https://localhost:17178
-info: Aspire.Hosting.DistributedApplication[0]
-      Login to the dashboard at https://localhost:17178/login?t=<YOUR_TOKEN>
-info: Program[0]
-      3. AfterResourcesCreatedEvent
-info: Aspire.Hosting.DistributedApplication[0]
-      Distributed application started. Press Ctrl+C to shut down.
-```
+:::code language="Output" source="snippets/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10,16":::
+
+The log output confirms that event handlers are executed in the order of the app host life cycle events. The subscription order doesn't affect execution order. The `BeforeStartEvent` is triggered first, followed by `AfterEndpointsAllocatedEvent`, and finally `AfterResourcesCreatedEvent`.
 
 ## Resource eventing
 
