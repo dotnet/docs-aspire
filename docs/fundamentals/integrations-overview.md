@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire integrations overview
 description: Explore the fundamental concepts of .NET Aspire integrations and learn how to integrate them into your apps.
-ms.date: 09/25/2024
+ms.date: 10/24/2024
 ms.topic: conceptual
 uid: aspire/integrations
 ---
