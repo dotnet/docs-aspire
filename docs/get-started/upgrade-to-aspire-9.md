@@ -1,12 +1,12 @@
 ---
 title: Upgrade to .NET Aspire 9.0
 description: Learn how to upgrade all your .NET Aspire 8.x projects to .NET Aspire 9.0.
-ms.date: 10/17/2024
+ms.date: 10/24/2024
 ---
 
 # Upgrade to .NET Aspire 9.0
 
-.NET Aspire 9.0 is now generally available. This article will guide you through the steps involved in updating your existing .NET Aspire 8.x projects to .NET Aspire 9.0. There are a few ways in which you can update your projects to .NET Aspire 9.0:
+.NET Aspire 9.0 is now generally available. In this article, you learn the steps involved in updating your existing .NET Aspire 8.x projects to .NET Aspire 9.0. There are a few ways in which you can update your projects to .NET Aspire 9.0:
 
 - Manually upgrade your projects to .NET Aspire 9.0.
 - Use the Upgrade Assistant to upgrade your projects to .NET Aspire 9.0.
@@ -29,7 +29,7 @@ SDK changes/additions in .csproj files
 
 Before you upgrade your projects to .NET Aspire 9.0, ensure that you have the following prerequisites:
 
-- [Install the latest .NET bits](../fundamentals/setup-tooling.md).
+- [Install the latest tooling](../fundamentals/setup-tooling.md).
 
 > [!NOTE]
 > Feel free to uninstall the .NET Aspire workload as you'll no longer need it.
@@ -42,9 +42,9 @@ Before you upgrade your projects to .NET Aspire 9.0, ensure that you have the fo
 
 ## Manually upgrade to .NET Aspire 9.0
 
-To upgrade your projects to .NET Aspire 9.0, you need to manually update your project files. The following steps will guide you through the process:
+To upgrade your projects to .NET Aspire 9.0, you need to update your project files. The following steps will guide you through the process:
 
-- Edit your app host project file to use the new .NET Aspire 9.0 SDK (`Aspire.AppHost.Sdk`).
+- Edit your [app host](xref:dotnet/aspire/app-host) project file to use the new .NET Aspire 9.0 SDK (`Aspire.AppHost.Sdk`).
 - Update the NuGet packages in your project files to the latest versions.
 - Adjust your _Program.cs_ file to use the new API changes.
 
