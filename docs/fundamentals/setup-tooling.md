@@ -26,16 +26,16 @@ To work with .NET Aspire, you need the following installed locally:
 - An OCI compliant container runtime, such as:
   - [Docker Desktop](https://www.docker.com/products/docker-desktop) or [Podman](https://podman.io/). For more information, see [Container runtime](#container-runtime).
 - An Integrated Developer Environment (IDE) or code editor, such as:
-  - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.12 or higher (Optional)
+  - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.9 or higher (Optional)
   - [Visual Studio Code](https://code.visualstudio.com/) (Optional)
     - [C# Dev Kit: Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) (Optional)
   - [JetBrains Rider with .NET Aspire Plugin](https://blog.jetbrains.com/dotnet/2024/02/19/jetbrains-rider-and-the-net-aspire-plugin/)
 
 :::zone pivot="visual-studio"
 
-Visual Studio 2022 17.12 or higher includes the latest [.NET Aspire SDK](dotnet-aspire-sdk.md) by default when you install the Web & Cloud workload. To verify that you have the .NET Aspire SDK installed, ...
+Visual Studio 2022 17.9 or higher includes the latest [.NET Aspire SDK](dotnet-aspire-sdk.md) by default when you install the Web & Cloud workload. To verify that you have the .NET Aspire SDK installed, ...
 
-If you have an earlier version of Visual Studio 2022, you can either upgrade to Visual Studio 2022 17.12 or you can install the .NET Aspire SDK using the following steps:
+If you have an earlier version of Visual Studio 2022, you can either upgrade to Visual Studio 2022 17.9 or you can install the .NET Aspire SDK using the following steps:
 
 To install the .NET Aspire workload in Visual Studio 2022, use the Visual Studio installer.
 

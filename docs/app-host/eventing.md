@@ -24,13 +24,13 @@ All of the preceding events are analogous to the [app host life cycles](xref:dot
 
 To subscribe to the built-in app host events, use the eventing API. After you have a distributed application builder instance, walk up to the <xref:Aspire.Hosting.IDistributedApplicationBuilder.Eventing?displayProperty=nameWithType> property and call the <xref:Aspire.Hosting.Eventing.IDistributedApplicationEventing.Subscribe``1(System.Func{``0,System.Threading.CancellationToken,System.Threading.Tasks.Task})> API. Consider the following sample app host _Program.cs_ file:
 
-:::code source="snippets/AspireApp/AspireApp.AppHost/Program.cs":::
+:::code source="snippets/AspireApp/AspireApp.AppHost/Program.cs" highlight="17-25,27-35,37-45":::
 
 The preceding code is based on the starter template with the addition of the subscribe calls. The `Subscribe<T>` API returns a <xref:Aspire.Hosting.Eventing.DistributedApplicationEventSubscription> instance that you can use to unsubscribe from the event. It's common to discard these, as you don't usually need to unsubscribe from events as the entire app is torn down when the app host is shut down.
 
 When the app host is run, by the time the .NET Aspire dashboard is displayed, you should see the following log output in the console:
 
-:::code language="Output" source="snippets/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10,16":::
+:::code language="plaintext" source="snippets/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10,16":::
 
 The log output confirms that event handlers are executed in the order of the app host life cycle events. The subscription order doesn't affect execution order. The `BeforeStartEvent` is triggered first, followed by `AfterEndpointsAllocatedEvent`, and finally `AfterResourcesCreatedEvent`.
 
@@ -45,7 +45,7 @@ In addition to the app host events, you can also subscribe to resource events. R
 
 To subscribe to resource events, use the eventing API. After you have a distributed application builder instance, walk up to the <xref:Aspire.Hosting.IDistributedApplicationBuilder.Eventing?displayProperty=nameWithType> property and call the <xref:Aspire.Hosting.Eventing.IDistributedApplicationEventing.Subscribe``1(Aspire.Hosting.ApplicationModel.IResource,System.Func{``0,System.Threading.CancellationToken,System.Threading.Tasks.Task})> API. Consider the following sample app host _Program.cs_ file:
 
-:::code source="snippets/AspireApp/AspireApp.ResourceAppHost/Program.cs":::
+:::code source="snippets/AspireApp/AspireApp.ResourceAppHost/Program.cs" highlight="8-17,19-28":::
 
 The preceding code subscribes to the `ConnectionStringAvailableEvent` and `BeforeResourceStartedEvent` events on the `cache` resource. When <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis*> is called, it returns an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is a <xref:Aspire.Hosting.ApplicationModel.RedisResource>. The resource builder exposes the resource as the <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1.Resource?displayProperty=nameWithType> property. This resource is then passed to the `Subscribe` API to subscribe to the events on the resource.
 

@@ -148,7 +148,7 @@ In order to upgrade an existing project to .NET Aspire 9 RC1, you need to update
 </Project>
 ```
 
-That's it! You've successfully upgraded your project to .NET Aspire 9 RC1. If you're using Visual Studio, it's recommended to upgrade to version 17.12 Preview 3 or later in order to take advantage of the new features and improvements for .NET Aspire 9 RC1.
+That's it! You've successfully upgraded your project to .NET Aspire 9 RC1. If you're using Visual Studio, it's recommended to upgrade to version 17.9 Preview 3 or later in order to take advantage of the new features and improvements for .NET Aspire 9 RC1.
 
 ### Upgrade an existing project to .NET Aspire 9 RC1 using the Upgrade Assistant
 
