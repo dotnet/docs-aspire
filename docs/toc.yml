@@ -14,8 +14,12 @@ items:
         href: get-started/add-aspire-existing-app.md
       - name: Setup and tooling
         href: fundamentals/setup-tooling.md
+      - name: .NET Aspire SDK
+        href: fundamentals/dotnet-aspire-sdk.md
       - name: What's new in .NET Aspire
         href: whats-new/index.yml
+      - name: Upgrade to .NET Aspire 9.0
+        href: get-started/upgrade-to-aspire-9.md
 
   - name: App Host (Orchestration)
     items:
@@ -33,6 +37,8 @@ items:
       - name: Networking overview
         displayName: inner loop,local networking
         href: fundamentals/networking-overview.md
+      - name: Eventing in .NET Aspire
+        href: app-host/eventing.md
       - name: Use external parameters
         displayName: external parameters,configuration
         href: fundamentals/external-parameters.md
@@ -322,8 +328,12 @@ items:
 
   - name: Reference
     items:
+      - name: Breaking changes
+        href: compatibility/breaking-changes.md
       - name: Diagnostics overview
         href: diagnostics/overview.md
+      - name: .NET Aspire SDK
+        href: fundamentals/dotnet-aspire-sdk.md
       - name: .NET Aspire API reference
         href:  /dotnet/api?view=dotnet-aspire-8.0&preserve-view=true
       - name: .NET Aspire FAQ
@@ -353,3 +363,6 @@ items:
         href: https://github.com/dotnet/extensions
       - name: ASP.NET Core
         href: https://github.com/dotnet/aspnetcore
+
+  - name: Official support policy
+    href: https://dotnet.microsoft.com/platform/support/policy/aspire

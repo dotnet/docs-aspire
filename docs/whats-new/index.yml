@@ -5,7 +5,7 @@ summary: Welcome to what's new in .NET Aspire docs. Use this page to quickly fin
 metadata:
   title: .NET Aspire what's new?
   description: Learn about new and updated content in .NET Aspire docs.
-  ms.date: 10/11/2024
+  ms.date: 10/17/2024
   ms.topic: landing-page
 landingContent:
 - title: .NET Aspire release documentation
@@ -24,6 +24,8 @@ landingContent:
   linkLists:
   - linkListType: whats-new
     links:
+    - text: .NET Aspire 9.0 RC1
+      url: https://github.com/dotnet/aspire/releases/tag/v9.0.0-rc.1.24511.1
     - text: .NET Aspire 8.2.1
       url: https://github.com/dotnet/aspire/releases/tag/v8.2.1
     - text: .NET Aspire 8.2.0

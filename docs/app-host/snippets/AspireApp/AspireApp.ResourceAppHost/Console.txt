@@ -1,0 +1,16 @@
+info: Aspire.Hosting.DistributedApplication[0]
+      Aspire version: 9.0.0
+info: Aspire.Hosting.DistributedApplication[0]
+      Distributed application starting.
+info: Aspire.Hosting.DistributedApplication[0]
+      Application host directory is: ..\AspireApp\AspireApp.AppHost
+info: Program[0]
+      1. ConnectionStringAvailableEvent
+info: Program[0]
+      2. BeforeResourceStartedEvent
+info: Aspire.Hosting.DistributedApplication[0]
+      Now listening on: https://localhost:17222
+info: Aspire.Hosting.DistributedApplication[0]
+      Login to the dashboard at https://localhost:17222/login?t=<YOUR_TOKEN>
+info: Aspire.Hosting.DistributedApplication[0]
+      Distributed application started. Press Ctrl+C to shut down.

@@ -72,7 +72,7 @@ You can set many other options via the `Action<OpenIdConnectOptions>? configureO
 
 ## App host usage
 
-To model the Keycloak resource in the app host, install the [Aspire.Hosting.Keycloak](https://www.nuget.org/packages/Aspire.Hosting.Keycloak) NuGet package in the [app host](xref:aspire/app-host) project.
+To model the Keycloak resource in the app host, install the [Aspire.Hosting.Keycloak](https://www.nuget.org/packages/Aspire.Hosting.Keycloak) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire overview
 description: Learn about .NET Aspire, an application stack designed to improve the experience of building cloud-native applications.
-ms.date: 09/27/2024
+ms.date: 10/24/2024
 ---
 
 # .NET Aspire overview
@@ -14,7 +14,7 @@ ms.date: 09/27/2024
 :::column-end:::
 :::column span="3":::
 
-.NET Aspire is an opinionated, cloud ready stack for building observable, production ready, distributed applications.​ .NET Aspire is delivered through a collection of NuGet packages that handle specific cloud-native concerns. Cloud-native apps often consist of small, interconnected pieces or microservices rather than a single, monolithic code base. Cloud-native apps generally consume a large number of services, such as databases, messaging, and caching.
+.NET Aspire is an opinionated, cloud ready stack for building observable, production ready, distributed applications.​ .NET Aspire is delivered through a collection of NuGet packages that handle specific cloud-native concerns. Cloud-native apps often consist of small, interconnected pieces or microservices rather than a single, monolithic code base. Cloud-native apps generally consume a large number of services, such as databases, messaging, and caching. For information on support, see the [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire).
 
 :::column-end:::
 :::row-end:::
@@ -80,7 +80,7 @@ A full list of available integrations is detailed on the [.NET Aspire integratio
 
 ## Project templates and tooling
 
-.NET Aspire provides a set of project templates and tooling experiences for Visual Studio, Visual Studio Code, and the [.NET CLI](/dotnet/core/tools/). These templates are designed to help you create and interact with .NET Aspire projects. The templates are opinionated and come with a set of defaults that help you get started quickly. They include boilerplate code and configurations that are common to cloud-native apps, such as telemetry, health checks, and service discovery. For more information, see [.NET Aspire project templates](../fundamentals/setup-tooling.md#net-aspire-project-templates).
+.NET Aspire provides a set of project templates and tooling experiences for Visual Studio, Visual Studio Code, and the [.NET CLI](/dotnet/core/tools/). These templates are designed to help you create and interact with .NET Aspire projects. The templates are opinionated and come with a set of defaults that help you get started quickly. They include boilerplate code and configurations that are common to cloud-native apps, such as telemetry, health checks, and service discovery. For more information, see [.NET Aspire templates](../fundamentals/setup-tooling.md#net-aspire-templates).
 
 .NET Aspire templates also include boilerplate extension methods that handle common service configurations for you:
 

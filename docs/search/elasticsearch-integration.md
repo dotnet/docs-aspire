@@ -13,7 +13,7 @@ uid: search/elasticsearch-integration
 
 ## Hosting integration
 
-The Elasticsearch hosting integration models an Elasticsearch instance as the <xref:Aspire.Hosting.ApplicationModel.ElasticsearchResource> type. To access this type and APIs that allow you to add it to your [app model](xref:aspire/app-host#define-the-app-model), install the [📦 Aspire.Hosting.Elasticsearch](https://www.nuget.org/packages/Aspire.Hosting.Elasticsearch) NuGet package in the [app host](xref:aspire/app-host) project.
+The Elasticsearch hosting integration models an Elasticsearch instance as the <xref:Aspire.Hosting.ApplicationModel.ElasticsearchResource> type. To access this type and APIs that allow you to add it to your [app model](xref:dotnet/aspire/app-host#define-the-app-model), install the [📦 Aspire.Hosting.Elasticsearch](https://www.nuget.org/packages/Aspire.Hosting.Elasticsearch) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

@@ -2,7 +2,7 @@
 ms.topic: include
 ---
 
-The Garnet hosting integration models a Garnet resource as the <xref:Aspire.Hosting.ApplicationModel.GarnetResource> type. To access this type and APIs that allow you to add it to your [app model](xref:aspire/app-host#define-the-app-model), install the [📦 Aspire.Hosting.Garnet](https://www.nuget.org/packages/Aspire.Hosting.Garnet) NuGet package in the [app host](xref:aspire/app-host) project.
+The Garnet hosting integration models a Garnet resource as the <xref:Aspire.Hosting.ApplicationModel.GarnetResource> type. To access this type and APIs that allow you to add it to your [app model](xref:dotnet/aspire/app-host#define-the-app-model), install the [📦 Aspire.Hosting.Garnet](https://www.nuget.org/packages/Aspire.Hosting.Garnet) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
