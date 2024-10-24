@@ -65,27 +65,27 @@ var ollama = builder.AddOllama("ollama")
 
 One or more LLMs are downloaded into the container which Ollama is running from, and by default this container runs on CPU. If you need to run the container in GPU you need to pass a parameter to the container runtime args.
 
- #### [Docker](#tab/docker) 
-  
- ```csharp   
+#### [Docker](#tab/docker)
+
+```csharp
 var ollama = builder.AddOllama("ollama")
                     .AddModel("llama3")
                     .WithContainerRuntimeArgs("--gpus=all");
- ``` 
-  
- For more information, see [GPU support in Docker Desktop](https://docs.docker.com/desktop/gpu/). 
-  
- #### [Podman](#tab/podman) 
-  
- ```csharp 
+```
+
+For more information, see [GPU support in Docker Desktop](https://docs.docker.com/desktop/gpu/).
+
+#### [Podman](#tab/podman)
+
+```csharp
 var ollama = builder.AddOllama("ollama")
                     .AddModel("llama3")
-                    .WithContainerRuntimeArgs("--device", "nvidia.com/gpu=all"); 
- ``` 
-  
- For more information, see [GPU support in Podman](https://github.com/containers/podman/issues/19005). 
-  
- --- 
+                    .WithContainerRuntimeArgs("--device", "nvidia.com/gpu=all");
+``` 
+
+For more information, see [GPU support in Podman](https://github.com/containers/podman/issues/19005).
+
+---
 
 ### Open WebUI support
 
