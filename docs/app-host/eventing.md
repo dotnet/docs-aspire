@@ -30,7 +30,7 @@ The preceding code is based on the starter template with the addition of the sub
 
 When the app host is run, by the time the .NET Aspire dashboard is displayed, you should see the following log output in the console:
 
-:::code language="plaintext" source="snippets/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10,16":::
+:::code language="Plaintext" source="snippets/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10,16":::
 
 The log output confirms that event handlers are executed in the order of the app host life cycle events. The subscription order doesn't affect execution order. The `BeforeStartEvent` is triggered first, followed by `AfterEndpointsAllocatedEvent`, and finally `AfterResourcesCreatedEvent`.
 
@@ -51,7 +51,7 @@ The preceding code subscribes to the `ConnectionStringAvailableEvent` and `Befor
 
 When the app host is run, by the time the .NET Aspire dashboard is displayed, you should see the following log output in the console:
 
-:::code language="Output" source="snippets/AspireApp/AspireApp.ResourceAppHost/Console.txt" highlight="8,10":::
+:::code language="Plaintext" source="snippets/AspireApp/AspireApp.ResourceAppHost/Console.txt" highlight="8,10":::
 
 ## Publish events
 
