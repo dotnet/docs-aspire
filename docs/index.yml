@@ -19,10 +19,10 @@ highlightedContent:
       title: .NET Aspire overview
       url: get-started/aspire-overview.md
     - itemType: quickstart
-      title: Build your first .NET Aspire project
+      title: Build your first .NET Aspire solution
       url: get-started/build-your-first-aspire-app.md
     - itemType: concept
-      title: Distributed app host
+      title: App host orchestration
       url: fundamentals/app-host-overview.md
     - itemType: concept
       title: .NET Aspire integrations
@@ -31,11 +31,11 @@ highlightedContent:
       title: Service discovery
       url: service-discovery/overview.md
     - itemType: deploy
-      title: Deploy a .NET Aspire project
+      title: Deploy a .NET Aspire projects
       url: deployment/overview.md
-    - itemType: reference
-      title: .NET Aspire FAQ
-      url: reference/aspire-faq.yml
+    - itemType: overview
+      title: .NET Aspire dashboard
+      url: fundamentals/dashboard/overview.md
     - itemType: whats-new
       title: What's new in .NET Aspire
       url: whats-new/index.yml
@@ -50,7 +50,7 @@ conceptualContent:
           text: .NET Aspire overview
           url: get-started/aspire-overview.md
         - itemType: quickstart
-          text: Build your first .NET Aspire project
+          text: Build your first .NET Aspire solution
           url: get-started/build-your-first-aspire-app.md
         - itemType: sample
           text: Add a Node.js app to a .NET Aspire project
