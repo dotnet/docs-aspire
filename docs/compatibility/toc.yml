@@ -4,5 +4,10 @@ items:
 - name: Overview
   href: breaking-changes.md
   items:
-  - name: '9.0'
+  - name: '.NET Aspire 9.0'
     href: 9.0/index.md
+    items:
+    - name: Remove default values from AzureOpenAIDeployment ctor
+      href: 9.0/azureopenai-ctor.md
+    - name: Python resources and APIs changed
+      href: 9.0/addpython.md
