@@ -15,17 +15,6 @@ zone_pivot_groups: dev-environment
 > [!TIP]
 > If you're new to .NET Aspire, there's no reason to upgrade anything. For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
 
-<!--
-
-We have a series of changes customers will need to make manually during their update to Aspire 9. Whilst probably not comprehensive, the list of changes would include:
-
-Some API changes in App Host Program.cs
-NuGet package updates
-SDK changes/additions in .csproj files
-[Feel free to add here]
-
--->
-
 ## Prerequisites
 
 Before you upgrade your projects to .NET Aspire 9.0, ensure that you have the following prerequisites:
@@ -188,7 +177,9 @@ The following table lists some of the APIs changes:
 
 | .NET Aspire 8.x API | .NET Aspire 9.0 API |
 |---------------------|---------------------|
-| `SomeOldApi`        | `SomeNewApi`        |
+| `AddPythonProject`  | `AddPythonApp`      |
+
+For the complete list of breaking changes in .NET Aspire 9.0, see [Breaking changes in .NET Aspire 9.0](../compatibility/9.0/index.md).
 
 ## Use the Upgrade Assistant
 
