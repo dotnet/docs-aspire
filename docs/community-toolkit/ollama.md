@@ -1,7 +1,7 @@
 ---
-title: Ollama
+title: .NET Aspire Community Toolkit Ollama integration
 description: Learn how to use the .NET Aspire Ollama hosting and client integration to host Ollama models using the Ollama container and accessing it via the OllamaSharp client.
-ms.date: 10/11/2024
+ms.date: 10/24/2024
 ---
 
 # .NET Aspire Community Toolkit Ollama integration
@@ -60,6 +60,32 @@ var ollama = builder.AddOllama("ollama")
                     .AddModel("llama3")
                     .WithDataVolume();
 ```
+
+### Use GPUs when available
+
+One or more LLMs are downloaded into the container which Ollama is running from, and by default this container runs on CPU. If you need to run the container in GPU you need to pass a parameter to the container runtime args.
+
+#### [Docker](#tab/docker)
+
+```csharp
+var ollama = builder.AddOllama("ollama")
+                    .AddModel("llama3")
+                    .WithContainerRuntimeArgs("--gpus=all");
+```
+
+For more information, see [GPU support in Docker Desktop](https://docs.docker.com/desktop/gpu/).
+
+#### [Podman](#tab/podman)
+
+```csharp
+var ollama = builder.AddOllama("ollama")
+                    .AddModel("llama3")
+                    .WithContainerRuntimeArgs("--device", "nvidia.com/gpu=all");
+```
+
+For more information, see [GPU support in Podman](https://github.com/containers/podman/issues/19005).
+
+---
 
 ### Open WebUI support
 
