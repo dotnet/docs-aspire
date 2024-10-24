@@ -60,7 +60,7 @@ When subscribing to any of the built-in events, you don't need to publish the ev
 Then, you can subscribe and publish the event by calling the either of the following APIs:
 
 - <xref:Aspire.Hosting.Eventing.IDistributedApplicationEventing.PublishAsync``1(``0,System.Threading.CancellationToken)>: Publishes an event to all subscribes of the specific event type.
-- `PublishAsync<T>(T @event, EventDispatchBehavior, CancellationToken)`: Publishes an event to all subscribes of the specific event type with a specified dispatch behavior.
+- `PublishAsync<T>(T, EventDispatchBehavior, CancellationToken)`: Publishes an event to all subscribes of the specific event type with a specified dispatch behavior.
 
 ### Event dispatch behavior
 
