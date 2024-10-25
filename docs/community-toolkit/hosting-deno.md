@@ -1,0 +1,98 @@
+---
+title: Deno
+description: Learn about the .NET Aspire Community Toolkit Deno hosting extensions package which provides functionality to run Deno applications and tasks.
+ms.date: 10/25/2024
+---
+
+# .NET Aspire Community Toolkit Deno Hosting
+
+[!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
+
+[!INCLUDE [banner](includes/banner.md)]
+
+In this article, you learn about the .NET Aspire Community Toolkit Deno package. The extensions package brings the following features:
+
+- Running [Deno](https://deno.com/) applications
+- Running Node.js applications via Deno tasks
+- Ensuring that the packages are installed before running the application via Deno installer
+
+## Hosting integration
+
+To get started with the .NET Aspire Community Toolkit Deno extensions, install the [📦 CommunityToolkit.Aspire.Hosting.Deno](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Deno) NuGet package in the AppHost project.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package CommunityToolkit.Aspire.Hosting.Deno
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="CommunityToolkit.Aspire.Hosting.Deno"
+                  Version="*" />
+```
+
+---
+
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+
+## Example usage
+
+The following sections detail various usages, from running Vite applications to using specific package managers.
+
+### Run Deno apps
+
+This integration extension adds support for running a Deno application defined in a script. Since [Deno is secure by default](https://docs.deno.com/runtime/fundamentals/security), permission flags must be specified in `permissionFlags` argument of `AddDenoApp`.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+builder.AddDenoApp("oak-demo", "main.ts", permissionFlags: ["-E", "--allow-net"])
+    .WithHttpEndpoint(env: "PORT")
+    .WithEndpoint();
+
+builder.Build().Run();
+```
+
+---
+
+### Run Deno tasks
+
+This integration extension adds support for running tasks that are either specified in a `package.json` or `deno.json`.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+builder.AddDenoTask("vite-demo", taskName: "dev")
+    .WithHttpEndpoint(env: "PORT")
+    .WithEndpoint();
+
+builder.Build().Run();
+```
+
+---
+
+### Deno Package Installation
+
+This integration extension adds support for installing dependencies that utilizes `deno install` behind the scenes by simply using
+`WithDenoPackageInstallation`. **This only works with a `deno.lock` file present.**
+
+# [WithDenoPackageInstallation()](#tab/WithDenoPackageInstallation)
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+builder.AddDenoTask("vite-demo", taskName: "dev")
+    .WithDenoPackageInstallation()
+    .WithHttpEndpoint(env: "PORT")
+    .WithEndpoint();
+```
+
+---
+
+## See also
+
+- [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
+- [Sample Deno apps](https://github.com/CommunityToolkit/Aspire/tree/main/examples/deno)
+- [Deno Docs](https://docs.deno.com/)
