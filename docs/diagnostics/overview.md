@@ -11,7 +11,7 @@ Several APIs of .NET Aspire are decorated with the <xref:System.Diagnostics.Code
 
 ## AZPROVISION001
 
-<span name="AZPROVISION001"></span>
+<span id="AZPROVISION001"></span>
 
 .NET Aspire provides various overloads for Azure Provisioning resource types (from the `Azure.Provisioning` package). The overloads are used to create resources with different configurations. The overloads are experimental and may be removed or changed in future versions of .NET Aspire.
 
@@ -33,7 +33,7 @@ Alternatively, you can suppress this diagnostic with preprocessor directive by a
 
 ## ASPIREACADOMAINS001
 
-<span name="ASPIREACADOMAINS001"></span>
+<span id="ASPIREACADOMAINS001"></span>
 
 .NET Aspire 9.0 introduces the ability to customize container app resources using the `PublishAsAzureContainerApp(...)` extension method. When using this method the Azure Developer CLI (`azd`) can no longer preserve custom domains. Instead use the `ConfigureCustomDomain` method to configure a custom domain within the .NET Aspire app host. The `ConfigureCustomDomain(...)` extension method is experimental. To suppress the compiler error/warning use the following code:
 
@@ -55,7 +55,7 @@ Alternatively, you can suppress this diagnostic with preprocessor directive by a
 
 ## ASPIREHOSTINGPYTHON001
 
-<span name="ASPIREHOSTINGPYTHON001"></span>
+<span id="ASPIREHOSTINGPYTHON001"></span>
 
 .NET Aspire provides a way to add Python executables or applications to the .NET Aspire app host. Since the shape of this API is expected to change in the future, it has been marked as _Experimental_. To suppress the compiler error/warning use the following code:
 
