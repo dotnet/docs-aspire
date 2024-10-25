@@ -24,7 +24,13 @@ jobs:
         with:
           script: |
             const nextMonth = new Date();
-            nextMonth.setMonth(nextMonth.getMonth() + 1);
+            const currentMonth = nextMonth.getMonth();
+            if (currentMonth === 11) { // December
+              nextMonth.setMonth(0); // January
+              nextMonth.setFullYear(nextMonth.getFullYear() + 1);
+            } else {
+              nextMonth.setMonth(currentMonth + 1);
+            }
             const monthName = nextMonth.toLocaleString('default', { month: 'short' });
             const year = nextMonth.getFullYear();
             const monthEmojis = ['❄️', '❤️', '🌸', '🌧️', '🌼', '☀️', '🎆', '🌞', '🍂', '🎃', '🍁', '🎄'];
