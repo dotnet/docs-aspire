@@ -69,7 +69,7 @@ For more information, see [Install Podman on Linux](https://podman.io/docs/insta
 ## [Windows](#tab/windows)
 
 ```powershell
-[System.Environment]::SetEnvironmentVariable('DOTNET_ASPIRE_CONTAINER_RUNTIME', 'podman')
+[System.Environment]::SetEnvironmentVariable("DOTNET_ASPIRE_CONTAINER_RUNTIME", "podman", "User")
 ```
 
 For more information, see [Install Podman on Windows](https://podman.io/docs/installation#installing-on-mac--windows).

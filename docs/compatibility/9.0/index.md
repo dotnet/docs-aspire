@@ -21,3 +21,9 @@ If you're migrating an app to .NET 9, the breaking changes listed here might aff
 |--|--|--|
 | [Remove default values from AzureOpenAIDeployment ctor](azureopenai-ctor.md) | Binary incompatible | .NET Aspire 9.0 RC1 |
 | [Python resources and APIs changed](addpython.md) | Source incompatible | .NET Aspire 9.0 RC1 |
+| Updates to implicitly named volumes to avoid collisions | Source incompatible | .NET Aspire 9.0 RC1 |
+| Make unnamed volumes more unique | Source incompatible | .NET Aspire 9.0 RC1 |
+| New `Azure.Provisioning` version | Source incompatible | .NET Aspire 9.0 RC1 |
+| Allow customization of Azure `ProvisioningContext` | Source incompatible | .NET Aspire 9.0 RC1 |
+| Changes to `Azure.Hosting` APIs | Source incompatible | .NET Aspire 9.0 RC1 |
+| Improved Azure resource name scheme | Source incompatible | .NET Aspire 9.0 RC1 |
