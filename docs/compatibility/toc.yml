@@ -1,11 +1,15 @@
 items:
 - name: .NET Aspire
   href: ../index.yml
-- name: Overview
+- name: .NET Aspire overview
+  href: ../get-started/aspire-overview.md
+- name: Breaking changes
   href: breaking-changes.md
+- name: .NET Aspire 9.0
   items:
-  - name: '.NET Aspire 9.0'
+  - name: Overview
     href: 9.0/index.md
+  - name: Breaking changes in 9.0
     items:
     - name: Remove default values from AzureOpenAIDeployment ctor
       href: 9.0/azureopenai-ctor.md
