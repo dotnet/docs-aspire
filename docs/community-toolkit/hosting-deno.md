@@ -79,9 +79,6 @@ builder.AddDenoTask("vite-demo", taskName: "dev")
     .WithHttpEndpoint(env: "PORT")
     .WithEndpoint();
 ```
-
----
-
 ## See also
 
 - [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
