@@ -4,7 +4,7 @@ description: Learn about the .NET Aspire Community Toolkit Deno hosting extensio
 ms.date: 10/25/2024
 ---
 
-# .NET Aspire Community Toolkit Deno Hosting
+# .NET Aspire Community Toolkit Deno hosting integration
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
