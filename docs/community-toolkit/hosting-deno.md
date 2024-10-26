@@ -71,9 +71,6 @@ builder.Build().Run();
 
 This integration extension adds support for installing dependencies that utilizes `deno install` behind the scenes by simply using
 `WithDenoPackageInstallation`. **This only works with a `deno.lock` file present.**
-
-# [WithDenoPackageInstallation()](#tab/WithDenoPackageInstallation)
-
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
