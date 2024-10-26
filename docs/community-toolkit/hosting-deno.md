@@ -54,9 +54,6 @@ builder.AddDenoApp("oak-demo", "main.ts", permissionFlags: ["-E", "--allow-net"]
 
 builder.Build().Run();
 ```
-
----
-
 ### Run Deno tasks
 
 This integration extension adds support for running tasks that are either specified in a _package.json_ or _deno.json_.
