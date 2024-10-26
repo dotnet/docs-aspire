@@ -67,7 +67,7 @@ builder.AddDenoTask("vite-demo", taskName: "dev")
 
 builder.Build().Run();
 ```
-### Deno Package Installation
+### Deno package installation
 
 This integration extension adds support for installing dependencies that utilizes `deno install` behind the scenes by simply using
 `WithDenoPackageInstallation`. **This only works with a `deno.lock` file present.**
