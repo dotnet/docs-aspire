@@ -59,7 +59,7 @@ builder.Build().Run();
 
 ### Run Deno tasks
 
-This integration extension adds support for running tasks that are either specified in a `package.json` or `deno.json`.
+This integration extension adds support for running tasks that are either specified in a _package.json_ or _deno.json_.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
