@@ -1,5 +1,5 @@
 ---
-title: Deno
+title: .NET Aspire Community Toolkit Deno hosting integration
 description: Learn about the .NET Aspire Community Toolkit Deno hosting extensions package which provides functionality to run Deno applications and tasks.
 ms.date: 10/25/2024
 ---
