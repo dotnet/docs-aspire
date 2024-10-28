@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
@@ -8,15 +7,12 @@
     <IsAspireHost>true</IsAspireHost>
     <UserSecretsId>1b1a6997-c2dd-47d0-b3fa-46811f182483</UserSecretsId>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\AspireSample.ApiService\AspireSample.ApiService.csproj" />
     <ProjectReference Include="..\AspireSample.Web\AspireSample.Web.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="8.2.2" />
     <PackageReference Include="Aspire.Hosting.Redis" Version="8.2.2" />
   </ItemGroup>
-
 </Project>

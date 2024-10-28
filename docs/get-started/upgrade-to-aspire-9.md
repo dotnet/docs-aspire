@@ -1,7 +1,7 @@
 ---
 title: Upgrade to .NET Aspire 9.0
 description: Learn how to upgrade all your .NET Aspire 8.x projects to .NET Aspire 9.0.
-ms.date: 10/24/2024
+ms.date: 10/28/2024
 zone_pivot_groups: dev-environment
 ---
 
@@ -171,15 +171,7 @@ The changes include the addition of the `Aspire.AppHost.Sdk` SDK, the update of 
 
 ### Adjust your _Program.cs_ file
 
-With the introduction of .NET Aspire 9.0, there are some breaking API changes. Some APIs were originally marked as experimental and are now removed, and/or replaced with new APIs. You need to adjust your _Program.cs_ file to use the new APIs.
-
-The following table lists some of the APIs changes:
-
-| .NET Aspire 8.x API | .NET Aspire 9.0 API |
-|---------------------|---------------------|
-| `AddPythonProject`  | `AddPythonApp`      |
-
-For the complete list of breaking changes in .NET Aspire 9.0, see [Breaking changes in .NET Aspire 9.0](../compatibility/9.0/index.md).
+With the introduction of .NET Aspire 9.0, there are some breaking API changes. Some APIs were originally marked as experimental and are now removed, and/or replaced with new APIs. You need to adjust your _Program.cs_ file to use the new APIs. For the complete list of breaking changes in .NET Aspire 9.0, see [Breaking changes in .NET Aspire 9.0](../compatibility/9.0/index.md).
 
 ## Use the Upgrade Assistant
 
@@ -189,3 +181,86 @@ The [Upgrade Assistant](/dotnet/core/porting/upgrade-assistant-overview) is a to
 - [The .NET CLI global tool version](/dotnet/core/porting/upgrade-assistant-install#net-global-tool).
 
 Regardless of how you've installed the Upgrade Assistant, you can use it to upgrade your .NET Aspire 8.x projects to .NET Aspire 9.0.
+
+:::zone pivot="visual-studio"
+
+To upgrade the .NET Aspire app host project to .NET Aspire 9.0 with Visual Studio, right-click the project in **Solution Explorer** and select **Upgrade**.
+
+> [!IMPORTANT]
+> If the **Upgrade Assistant** isn't already installed, you'll be prompted to install it.
+
+The Upgrade Assistant displays a welcome package, select the **Aspire upgrades** option:
+
+:::image type="content" source="media/upgrade-assistant-welcome-aspire.png" highlight="media/upgrade-assistant-welcome-aspire.png" alt-text="Visual Studio: Upgrade Assistant welcome page with .NET Aspire app host project.":::
+
+After selecting the **Aspire upgrades** option, the Upgrade Assistant displays the selectable components it will attempt to upgrade. Leave all the options checked and click **Upgrade selection**:
+
+:::image type="content" source="media/upgrade-assistant-aspire-app-host-comps.png" highlight="media/upgrade-assistant-aspire-app-host-comps.png" alt-text="Visual Studio: Upgrade Assistant .NET Aspire selectable components to upgrade.":::
+
+Finally, after selecting the components to upgrade, the Upgrade Assistant displays the results of the upgrade process. If everything was successful, you'll see green check marks next to each component:
+
+:::image type="content" source="media/upgrade-assistant-aspire-upgraded.png" lightbox="media/upgrade-assistant-aspire-upgraded.png" alt-text="Visual Studio: Upgrade Assistant .NET Aspire app host project upgraded successfully.":::
+
+:::zone-end
+:::zone pivot="vscode,dotnet-cli"
+
+To upgrade the .NET Aspire app host project, ensure that you've installed the Upgrade Assistant CLI. Open a terminal session at the root directory of the .NET Aspire app host project file, and run the following command:
+
+```dotnetcli
+upgrade-assistant upgrade
+```
+
+The output is interactive, expecting you to select the upgrade type. Choose the **Aspire upgrades** option:
+
+```dotnetcli
+ Selected options
+────────────────────────────────────────────────────────────────────────────────────
+ Source project     ..\AspireSample\AspireSample.AppHost\AspireSample.AppHost.csproj
+
+ Steps
+────────────────────────────────
+ Source project / Upgrade type
+────────────────────────────────
+
+How do you want to upgrade project AspireSample.AppHost?
+
+> Aspire upgrades
+    Upgrade to latest .NET Aspire version (aspire.latest)
+
+  Upgrade project to a newer .NET version
+    In-place project upgrade (framework.inplace)
+
+  NuGet upgrades
+    NuGet central package management (CPM) (nuget.cpm)
+
+  Navigation
+    Back
+    Exit
+```
+
+After selecting the **Aspire upgrades** option, the Upgrade Assistant prompts for final confirmation. Enter <kbd>Y</kbd> to continue with the upgrade:
+
+```dotnetcli
+ Selected options
+────────────────────────────────────────────────────────────────────────────────────
+ Source project     ..\AspireSample\AspireSample.AppHost\AspireSample.AppHost.csproj
+ Upgrade type       aspire.latest
+
+ Steps
+──────────────────────────────────────────
+ Source project / Upgrade type / Upgrade
+──────────────────────────────────────────
+
+We have gathered all required options and are ready to do the upgrade. Do you want to continue? [y/n] (y):
+```
+
+Finally, after the upgrade process is complete, the Upgrade Assistant displays the results of the upgrade process:
+
+```dotnetcli
+Finalizing operation...
+Complete: 3 succeeded, 0 failed, 7 skipped.
+```
+
+:::zone-end
+
+As with any upgrade, ensure that the app runs as expected and that all tests pass.
