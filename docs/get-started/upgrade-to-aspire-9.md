@@ -191,11 +191,11 @@ To upgrade the .NET Aspire app host project to .NET Aspire 9.0 with Visual Studi
 
 The Upgrade Assistant displays a welcome package, select the **Aspire upgrades** option:
 
-:::image type="content" source="media/upgrade-assistant-welcome-aspire.png" highlight="media/upgrade-assistant-welcome-aspire.png" alt-text="Visual Studio: Upgrade Assistant welcome page with .NET Aspire app host project.":::
+:::image type="content" source="media/upgrade-assistant-welcome-aspire.png" lightbox="media/upgrade-assistant-welcome-aspire.png" alt-text="Visual Studio: Upgrade Assistant welcome page with .NET Aspire app host project.":::
 
 After selecting the **Aspire upgrades** option, the Upgrade Assistant displays the selectable components it will attempt to upgrade. Leave all the options checked and click **Upgrade selection**:
 
-:::image type="content" source="media/upgrade-assistant-aspire-app-host-comps.png" highlight="media/upgrade-assistant-aspire-app-host-comps.png" alt-text="Visual Studio: Upgrade Assistant .NET Aspire selectable components to upgrade.":::
+:::image type="content" source="media/upgrade-assistant-aspire-app-host-comps.png" lightbox="media/upgrade-assistant-aspire-app-host-comps.png" alt-text="Visual Studio: Upgrade Assistant .NET Aspire selectable components to upgrade.":::
 
 Finally, after selecting the components to upgrade, the Upgrade Assistant displays the results of the upgrade process. If everything was successful, you'll see green check marks next to each component:
 
