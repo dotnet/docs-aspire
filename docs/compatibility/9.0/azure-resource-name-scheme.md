@@ -6,7 +6,7 @@ ms.date: 10/28/2024
 
 # Better Azure resource name scheme
 
-.NET Aspire 9.0 GA introduces a new Azure resource naming scheme that is more robust and flexible, but it is a breaking change from the previous version.
+In .NET Aspire 9.0 GA, the Azure resource naming scheme has been updated to a more robust and flexible system. This change addresses issues with the previous naming scheme, which caused problems such as name truncation and invalid deployments.
 
 ## Version introduced
 
@@ -14,8 +14,57 @@ ms.date: 10/28/2024
 
 ## Previous behavior
 
-In .NET Aspire 8.x, an early/alpha version of Azure.Provisioning was used. This version employed a naming scheme for Azure resources that attempted to be the least common denominator of all resources.
+The previous version used an early/alpha version of `Azure.Provisioning`, which employed a naming scheme that attempted to be the least common denominator of all resources. This often resulted in truncated or invalid names.
 
 ```csharp
 protected string GetGloballyUniqueName(string resourceName)
     => $"toLower(take('{resourceName}${{uniqueString(resourceGroup().id)}}', 24))";
+```
+
+## New behavior
+
+The new version of `Azure.Provisioning` uses a more sophisticated naming scheme that considers the specific requirements of each resource type, such as maximum length and valid characters.
+
+```csharp
+public override BicepValue<string>? ResolveName(
+    ProvisioningContext context,
+    Resource resource,
+    ResourceNameRequirements requirements)
+{
+    string prefix = SanitizeText(
+        resource.ResourceName, requirements.ValidCharacters);
+
+    string separator =
+        requirements.ValidCharacters.HasFlag(ResourceNameCharacters.Hyphen) ? "-" :
+        requirements.ValidCharacters.HasFlag(ResourceNameCharacters.Underscore) ? "_" :
+        requirements.ValidCharacters.HasFlag(ResourceNameCharacters.Period) ? "." :
+        "";
+
+    BicepValue<string> suffix = GetUniqueSuffix(context, resource);
+
+    return BicepFunction.Take(
+        BicepFunction.Interpolate(
+            $"{prefix}{separator}{suffix}"), requirements.MaxLength);
+}
+```
+
+## Type of breaking change
+
+This change is a [behavioral change](../categories.md#behavioral-change).
+
+## Recommended action
+
+Users who want to maintain the old naming scheme can customize the Azure CDK `ProvisioningContext` object. This can be done by configuring the `AzureProvisioningOptions` class and inserting the `AzureResourceNamePropertyResolverAspireV8` resolver.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+builder.Services.Configure<AzureProvisioningOptions>(options =>
+{
+    options.ProvisioningContext.PropertyResolvers.Insert(0, new AzureResourceNamePropertyResolverAspireV8());
+});
+```
+
+## Affected APIs
+
+None.

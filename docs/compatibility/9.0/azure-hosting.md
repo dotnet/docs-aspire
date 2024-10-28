@@ -21,7 +21,7 @@ This document outlines the breaking changes in the `Azure.Hosting` APIs for .NET
 
 ## New behavior
 
-- Experimental callbacks are removed. Callers now use `builder.AddAzureStorage("storage").ConfigureConstruct(c => ...)` for customization.
+- Experimental callbacks are removed. Callers now use `builder.AddAzureStorage("storage").ConfigureConstruct(c => /* ... */)` for customization.
 - `ResourceModuleConstruct` is renamed to `AzureResourceInfrastructure`.
 - `AzureConstructResource` is renamed to `AzureProvisioningResource`.
 - `ConfigureConstruct` is renamed to `ConfigureInfrastructure`.
@@ -34,7 +34,7 @@ This change is a [behavioral change](../categories.md#behavioral-change).
 
 Users should update their code to use the new class and method names. Specifically:
 
-- Replace any usage of experimental callbacks with `builder.AddAzureStorage("storage").ConfigureConstruct(c => ...)`.
+- Replace any usage of experimental callbacks with `builder.AddAzureStorage("storage").ConfigureConstruct(c => /* ... */)`.
 - Rename instances of `ResourceModuleConstruct` to `AzureResourceInfrastructure`.
 - Rename instances of `AzureConstructResource` to `AzureProvisioningResource`.
 - Rename instances of `ConfigureConstruct` to `ConfigureInfrastructure`.
