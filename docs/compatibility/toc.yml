@@ -21,11 +21,11 @@ items:
       href: 9.0/unnamed-volumes.md
     - name: Make unnamed volumes more unique
       href: 9.0/make-unnamed-volumes-unique.md
-    - name: Updates from the new `Azure.Provisioning` version
+    - name: Updates from the new Azure.Provisioning version
       href: 9.0/azure-provisioning.md
-    - name: Changes to `Azure.Hosting` APIs
+    - name: Changes to Azure.Hosting APIs
       href: 9.0/azure-hosting.md
-    - name: Allow customization of Azure `ProvisioningContext`
+    - name: Allow customization of Azure ProvisioningContext
       href: 9.0/provisioning-context.md
     - name: Improved Azure resource name scheme
       href: 9.0/azure-resource-name-scheme.md
