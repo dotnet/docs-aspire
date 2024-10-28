@@ -2,6 +2,7 @@
 title: "Better Azure resource name scheme"
 description: This document outlines the breaking changes introduced in .NET Aspire 9.0 GA regarding the Azure resource naming scheme.
 ms.date: 10/28/2024
+ai-usage: ai-assisted
 ---
 
 # Better Azure resource name scheme

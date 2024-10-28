@@ -2,6 +2,7 @@
 title: Changes to `Azure.Hosting` APIs
 description: "This document outlines the breaking changes in the Azure Hosting APIs for .NET Aspire 9.0 GA."
 ms.date: 10/28/2024
+ai-usage: ai-assisted
 ---
 
 # Changes to `Azure.Hosting` APIs

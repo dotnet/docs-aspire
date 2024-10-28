@@ -2,6 +2,7 @@
 title: "Integrate new version of Azure.Provisioning"
 description: Documents the breaking changes introduced by integrating a new version of Azure.Provisioning in .NET Aspire 9.0 GA.
 ms.date: 10/28/2024
+ai-usage: ai-assisted
 ---
 
 # Integrate new version of `Azure.Provisioning`

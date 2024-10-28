@@ -2,6 +2,7 @@
 title: "Make unnamed volume names more unique"
 description: "This document describes the breaking change related to the naming scheme for unnamed volumes in .NET Aspire."
 ms.date: 10/28/2024
+ai-usage: ai-assisted
 ---
 
 # Make unnamed volume names more unique

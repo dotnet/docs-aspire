@@ -2,6 +2,7 @@
 title: "Allow for customization of the Azure ProvisioningContext + Better Azure resource name scheme"
 description: This article describes the breaking changes introduced by allowing customization of the Azure ProvisioningContext and adopting a new Azure resource naming scheme.
 ms.date: 10/28/2024
+ai-usage: ai-assisted
 ---
 
 # Allow for customization of the Azure ProvisioningContext + Better Azure resource name scheme

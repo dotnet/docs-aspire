@@ -2,6 +2,7 @@
 title: "Python resources and APIs changed"
 description: Learn about the breaking change in .NET Aspire 9.0 where Python resources and APIs updated.
 ms.date: 10/24/2024
+ai-usage: ai-assisted
 ---
 
 # Python resources and APIs changed
