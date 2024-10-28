@@ -2,7 +2,7 @@
 title: Updates to implicitly named volumes to avoid collisions
 description: This article describes the breaking change related to the implicit naming of volumes created by the WithDataVolume() method in .NET Aspire.
 ms.date: 10/28/2024
-v
+ai-usage: ai-assisted
 ---
 
 # Updates to implicitly named volumes to avoid collisions
