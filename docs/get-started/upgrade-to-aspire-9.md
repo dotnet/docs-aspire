@@ -270,4 +270,4 @@ Complete: 3 succeeded, 0 failed, 7 skipped.
 
 ## Verify the upgrade
 
-As with any upgrade, ensure that the app runs as expected and that all tests pass. Build the solution and look for suggestions, warnings, or errors in the output window. If you encounter any issues, see the [Troubleshooting](#troubleshooting) section.
+As with any upgrade, ensure that the app runs as expected and that all tests pass. Build the solution and look for suggestions, warnings, or errors in the output window—address anything that wasn't an issue before. If you encounter any issues, please let us know by [filing a GitHub issue](https://github.com/dotnet/aspire/issues/new/choose).
