@@ -31,7 +31,7 @@ Before you upgrade your projects to .NET Aspire 9.0, ensure that you have the fo
 >
 > For more information, see [dotnet workload uninstall](/dotnet/core/tools/dotnet-workload-uninstall).
 
-If you don't uninstall the .NET Aspire workload, and you've installed the [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md) and templates, you will see both .NET Aspire 8.0 and .NET Aspire 9.0 templates.
+If you don't uninstall the .NET Aspire workload, and you're using the new [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md) and templates, you see both .NET Aspire 8.0 and .NET Aspire 9.0 templates.
 
 ## Manually upgrade to .NET Aspire 9.0
 
@@ -43,7 +43,7 @@ To upgrade your projects to .NET Aspire 9.0, you need to update your project fil
 
 ### Edit your app host project file
 
-To upgrade your app host project to .NET Aspire 9.0, you need to update your project file to use the new [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md). Open your project file in a text editor and add an `Sdk` attribute to use the new [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk):
+To upgrade your app host project to .NET Aspire 9.0, you need to update your project file to use the new [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md). Open your project file in a text editor and add an `Sdk` element with the new [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk):
 
 ```diff
 <Project Sdk="Microsoft.NET.Sdk">
@@ -87,7 +87,7 @@ When a package reference already exists, the `dotnet add package` command update
 
 :::zone-end
 
-After updating the app host project, your project file should look like this:
+With the app host project updated, your project file should look like this:
 
 ```diff
 <Project Sdk="Microsoft.NET.Sdk">
@@ -144,7 +144,7 @@ For more information on TFMs, see [Target frameworks in SDK-style projects: Late
 
 ### Overall app host project differences
 
-If you've followed all of the preceding steps, your app host project file should look like this:
+If you followed all of the preceding steps, your app host project file should look like this:
 
 ```diff
 <Project Sdk="Microsoft.NET.Sdk">
@@ -179,12 +179,12 @@ For the complete list of breaking changes in .NET Aspire 9.0, see [Breaking chan
 
 ## Use the Upgrade Assistant
 
-The [Upgrade Assistant](/dotnet/core/porting/upgrade-assistant-overview) is a tool that helps upgrade targeted projects to the latest version. If you've never used the Upgrade Assistant before, there's two modalities to choose from:
+The [Upgrade Assistant](/dotnet/core/porting/upgrade-assistant-overview) is a tool that helps upgrade targeted projects to the latest version. If you're new to the Upgrade Assistant, there's two modalities to choose from:
 
 - [The Visual Studio extension version](/dotnet/core/porting/upgrade-assistant-install#visual-studio-extension).
 - [The .NET CLI global tool version](/dotnet/core/porting/upgrade-assistant-install#net-global-tool).
 
-Regardless of how you've installed the Upgrade Assistant, you can use it to upgrade your .NET Aspire 8.x projects to .NET Aspire 9.0.
+Regardless of how you install the Upgrade Assistant, you can use it to upgrade your .NET Aspire 8.x projects to .NET Aspire 9.0.
 
 :::zone pivot="visual-studio"
 
@@ -197,7 +197,7 @@ The Upgrade Assistant displays a welcome package. Select the **Aspire upgrades**
 
 :::image type="content" source="media/upgrade-assistant-welcome-aspire.png" lightbox="media/upgrade-assistant-welcome-aspire.png" alt-text="Visual Studio: Upgrade Assistant welcome page with .NET Aspire app host project.":::
 
-After selecting the **Aspire upgrades** option, the Upgrade Assistant displays the selectable upgrade target components. Leave all the options checked and select **Upgrade selection**:
+With the **Aspire upgrades** option selected, the Upgrade Assistant displays the selectable upgrade target components. Leave all the options checked and select **Upgrade selection**:
 
 :::image type="content" source="media/upgrade-assistant-aspire-app-host-comps.png" lightbox="media/upgrade-assistant-aspire-app-host-comps.png" alt-text="Visual Studio: Upgrade Assistant .NET Aspire selectable components to upgrade.":::
 
@@ -208,7 +208,7 @@ Finally, after selecting the components to upgrade, the Upgrade Assistant displa
 :::zone-end
 :::zone pivot="vscode,dotnet-cli"
 
-To upgrade the .NET Aspire app host project, ensure that you've installed the Upgrade Assistant CLI. Open a terminal session at the root directory of the .NET Aspire app host project file, and run the following command:
+To upgrade the .NET Aspire app host project, ensure that you installed the Upgrade Assistant CLI. Open a terminal session at the root directory of the .NET Aspire app host project file, and run the following command:
 
 ```dotnetcli
 upgrade-assistant upgrade
@@ -269,4 +269,4 @@ Complete: 3 succeeded, 0 failed, 7 skipped.
 
 ## Verify the upgrade
 
-As with any upgrade, ensure that the app runs as expected and that all tests pass. Build the solution and look for suggestions, warnings, or errors in the output window—address anything that wasn't an issue before. If you encounter any issues, please let us know by [filing a GitHub issue](https://github.com/dotnet/aspire/issues/new/choose).
+As with any upgrade, ensure that the app runs as expected and that all tests pass. Build the solution and look for suggestions, warnings, or errors in the output window—address anything that wasn't an issue before. If you encounter any issues, let us know by [filing a GitHub issue](https://github.com/dotnet/aspire/issues/new/choose).
