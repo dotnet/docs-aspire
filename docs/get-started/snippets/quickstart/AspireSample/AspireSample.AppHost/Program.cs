@@ -1,4 +1,4 @@
-var builder = DistributedApplication.CreateBuilder(args);
+﻿var builder = DistributedApplication.CreateBuilder(args);
 
 var cache = builder.AddRedis("cache");
 
@@ -7,6 +7,8 @@ var apiService = builder.AddProject<Projects.AspireSample_ApiService>("apiservic
 builder.AddProject<Projects.AspireSample_Web>("webfrontend")
     .WithExternalHttpEndpoints()
     .WithReference(cache)
-    .WithReference(apiService);
+    .WaitFor(cache)
+    .WithReference(apiService)
+    .WaitFor(apiService);
 
 builder.Build().Run();
