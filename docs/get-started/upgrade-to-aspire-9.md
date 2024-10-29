@@ -33,7 +33,7 @@ Before you upgrade your projects to .NET Aspire 9.0, ensure that you have the fo
 
 ## Manually upgrade to .NET Aspire 9.0
 
-To upgrade your projects to .NET Aspire 9.0, you need to update your project files. The following steps will guide you through the process:
+To upgrade your projects to .NET Aspire 9.0, you need to update your project files. The following steps guide you through the process:
 
 - Edit your [app host](xref:dotnet/aspire/app-host) project file to use the new .NET Aspire 9.0 SDK (`Aspire.AppHost.Sdk`).
 - Update the NuGet packages in your project files to the latest versions.
@@ -66,11 +66,11 @@ To upgrade your app host project to .NET Aspire 9.0, you need to update your pro
 
 ### Update the NuGet packages
 
-To take advantage of the latest updates in your .NET Aspire solution, update the NuGet packages to the latest versions.
+To take advantage of the latest updates in your .NET Aspire solution, update all NuGet packages to version `9.0.0`.
 
 :::zone pivot="visual-studio"
 
-<!-- TODO: Screen capture this... -->
+:::image type="content" source="media/visual-studio-update-nuget.png" lightbox="media/visual-studio-update-nuget.png" alt-text="Visual Studio: Update all NuGet packages for the .NET Aspire solution.":::
 
 :::zone-end
 :::zone pivot="vscode,dotnet-cli"
@@ -171,7 +171,9 @@ The changes include the addition of the `Aspire.AppHost.Sdk` SDK, the update of 
 
 ### Adjust your _Program.cs_ file
 
-With the introduction of .NET Aspire 9.0, there are some breaking API changes. Some APIs were originally marked as experimental and are now removed, and/or replaced with new APIs. You need to adjust your _Program.cs_ file to use the new APIs. For the complete list of breaking changes in .NET Aspire 9.0, see [Breaking changes in .NET Aspire 9.0](../compatibility/9.0/index.md).
+With the introduction of .NET Aspire 9.0, there are some _breaking changes_. Some APIs were originally marked as experimental and are now removed, while other APIs are now attributed as <xref:System.ObsoleteAttribute> with details on new replacement APIs. You need to adjust your _Program.cs_ file to use the new APIs. If you're using the Upgrade Assistant to upgrade your projects, it automatically adjusts your _Program.cs_ file in most cases.
+
+For the complete list of breaking changes in .NET Aspire 9.0, see [Breaking changes in .NET Aspire 9.0](../compatibility/9.0/index.md).
 
 ## Use the Upgrade Assistant
 
@@ -189,15 +191,15 @@ To upgrade the .NET Aspire app host project to .NET Aspire 9.0 with Visual Studi
 > [!IMPORTANT]
 > If the **Upgrade Assistant** isn't already installed, you'll be prompted to install it.
 
-The Upgrade Assistant displays a welcome package, select the **Aspire upgrades** option:
+The Upgrade Assistant displays a welcome package. Select the **Aspire upgrades** option:
 
 :::image type="content" source="media/upgrade-assistant-welcome-aspire.png" lightbox="media/upgrade-assistant-welcome-aspire.png" alt-text="Visual Studio: Upgrade Assistant welcome page with .NET Aspire app host project.":::
 
-After selecting the **Aspire upgrades** option, the Upgrade Assistant displays the selectable components it will attempt to upgrade. Leave all the options checked and click **Upgrade selection**:
+After selecting the **Aspire upgrades** option, the Upgrade Assistant displays the selectable upgrade target components. Leave all the options checked and select **Upgrade selection**:
 
 :::image type="content" source="media/upgrade-assistant-aspire-app-host-comps.png" lightbox="media/upgrade-assistant-aspire-app-host-comps.png" alt-text="Visual Studio: Upgrade Assistant .NET Aspire selectable components to upgrade.":::
 
-Finally, after selecting the components to upgrade, the Upgrade Assistant displays the results of the upgrade process. If everything was successful, you'll see green check marks next to each component:
+Finally, after selecting the components to upgrade, the Upgrade Assistant displays the results of the upgrade process. If everything was successful, you see green check marks next to each component:
 
 :::image type="content" source="media/upgrade-assistant-aspire-upgraded.png" lightbox="media/upgrade-assistant-aspire-upgraded.png" alt-text="Visual Studio: Upgrade Assistant .NET Aspire app host project upgraded successfully.":::
 
@@ -238,7 +240,7 @@ How do you want to upgrade project AspireSample.AppHost?
     Exit
 ```
 
-After selecting the **Aspire upgrades** option, the Upgrade Assistant prompts for final confirmation. Enter <kbd>Y</kbd> to continue with the upgrade:
+Use your keyboard to navigate up <kbd>↑</kbd> or down <kbd>↓</kbd>, and select the **Aspire upgrades** option. The Upgrade Assistant prompts for final confirmation. Enter <kbd>Y</kbd> to continue with the upgrade:
 
 ```dotnetcli
  Selected options
@@ -263,4 +265,6 @@ Complete: 3 succeeded, 0 failed, 7 skipped.
 
 :::zone-end
 
-As with any upgrade, ensure that the app runs as expected and that all tests pass.
+## Verify the upgrade
+
+As with any upgrade, ensure that the app runs as expected and that all tests pass. Build the solution and look for suggestions, warnings, or errors in the output window. If you encounter any issues, see the [Troubleshooting](#troubleshooting) section.
