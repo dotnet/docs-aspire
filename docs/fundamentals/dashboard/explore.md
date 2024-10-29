@@ -81,21 +81,38 @@ Each resource has a set of available actions that are conditionally enabled base
 
 The .NET Aspire dashboard allows you to stop or start a resource by selecting the **Stop** or **Start** button in the **Actions** column. Consider the following screenshot of the resources page with the **Stop** button selected:
 
-:::image type="content" source="media/explore/resource-stop-action.png" alt-text=".NET Aspire dashboard stop resource.":::
+:::image type="content" source="media/explore/resource-stop-action.png" lightbox="media/explore/resource-stop-action.png" alt-text=".NET Aspire dashboard stop resource.":::
 
 When you select **Stop**, the resource stops running, and the **State** column updates to reflect the change. The **Start** button is then enabled, allowing you to start the resource again. Additionally, the dashboard displays a toast notification of the result of the action:
 
-:::image type="content" source="media/explore/resource-stopped-action.png" alt-text=".NET Aspire dashboard resource stopped.":::
+:::image type="content" source="media/explore/resource-stopped-action.png" lightbox="media/explore/resource-stopped-action.png" alt-text=".NET Aspire dashboard resource stopped.":::
 
 When a resource is in a non-running state, the **Start** button is enabled. Selecting **Start** starts the resource, and the **State** column updates to reflect the change. The **Stop** button is then enabled, allowing you to stop the resource again. The dashboard displays a toast notification of the result of the action:
 
-:::image type="content" source="media/explore/resource-started-action.png" alt-text=".NET Aspire dashboard started resource.":::
+:::image type="content" source="media/explore/resource-started-action.png" lightbox="media/explore/resource-started-action.png" alt-text=".NET Aspire dashboard started resource.":::
+
+> [!TIP]
+> Resources that depend on other resources that are stopped, or restarted, might experience temporary errors. This is expected behavior and is typically resolved when the dependent resources are in a **Running** state once again.
 
 ##### Resource submenu actions
 
 Selecting the horizontal ellipsis icon in the **Actions** column opens a submenu with additional resource-specific actions. Consider the following screenshot of the resource submenu actions:
 
-:::image type="content" source="media/explore/resource-actions.png" alt-text=".NET Aspire dashboard resource submenu actions.":::
+:::image type="content" source="media/explore/resource-actions.png" lightbox="media/explore/resource-actions.png" alt-text=".NET Aspire dashboard resource submenu actions.":::
+
+The following submenu actions are available:
+
+- **View details**: View the resource details.
+- **Console log**: Navigate to the resource's console logs.
+- **Structured logs**: Navigate to the resource's structured logs.
+- **Traces**: Navigate to the resource's traces.
+- **Metrics**: Navigate to the resource's metrics.
+- **Restart**: Stop and then start the resource.
+
+> [!IMPORTANT]
+> There might be some resources that disable some submenu actions, when they're disabled the action is grayed out:
+>
+> :::image type="content" source="media/explore/resource-submenu-actions.png" lightbox="media/explore/resource-submenu-actions.png" alt-text=".NET Aspire dashboard disabled submenu actions.":::
 
 #### Copy or Open in text visualizer
 
