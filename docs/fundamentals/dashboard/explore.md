@@ -1,7 +1,7 @@
 ---
 title: Explore .NET Aspire dashboard
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 09/06/2024
+ms.date: 10/29/2024
 ms.topic: reference
 ---
 
@@ -54,15 +54,50 @@ The dashboard also provides essential details about each resource:
 - **Name**: The name of the resource.
 - **State**: Displays whether or not the resource is currently running.
   - **Errors**: Within the **State** column, errors are displayed as a badge with the error count. It's useful to understand quickly what resources are reporting errors. Selecting the badge takes you to the [semantic logs](#structured-logs-page) for that resource with the filter at an error level.
-- **Start Time**: When the resource started running.
+- **Start time**: When the resource started running.
 - **Source**: The location of the resource on the device.
 - **Endpoints**: The URL(s) to reach the running resource directly.
-- **Environment**: The environment variables that were loaded during startup.
 - **Logs**: A link to the resource logs page.
+- **Actions**: A [set of actions](#resource-actions) that can be performed on the resource:
+  - **Stop / Start**: Stop (or Start) the resource—depending on the current **State**.
+  - **Console logs**: Navigate to the resource's console logs.
+  - **Ellipsis**: A submenu with additional resource specific actions:
+    - **View details**: View the resource details.
+    - **Console log**: Navigate to the resource's console logs.
+    - **Structured logs**: Navigate to the resource's structured logs.
+    - **Traces**: Navigate to the resource's traces.
+    - **Metrics**: Navigate to the resource's metrics.
+    - **Restart**: Stop and then start the resource.
 
  Consider the following screenshot of the resources page:
 
 :::image type="content" source="media/explore/projects.png" lightbox="media/explore/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page.":::
+
+### Resource actions
+
+Each resource has a set of available actions that are conditionally enabled based on the resource's current state. For example, if a resource is running, the **Stop** action is enabled. If the resource is stopped, the **Start** action is enabled. Likewise, some actions are disabled when they're unavailable, for example some resources don't have structured logs. In these situations, the **Structured logs** action is disabled.
+
+#### Stop or Start a resource
+
+The .NET Aspire dashboard allows you to stop or start a resource by selecting the **Stop** or **Start** button in the **Actions** column. Consider the following screenshot of the resources page with the **Stop** button selected:
+
+:::image type="content" source="media/explore/resource-stop-action.png" alt-text=".NET Aspire dashboard stop resource.":::
+
+When you select **Stop**, the resource stops running, and the **State** column updates to reflect the change. The **Start** button is then enabled, allowing you to start the resource again. Additionally, the dashboard displays a toast notification of the result of the action:
+
+:::image type="content" source="media/explore/resource-stopped-action.png" alt-text=".NET Aspire dashboard resource stopped.":::
+
+When a resource is in a non-running state, the **Start** button is enabled. Selecting **Start** starts the resource, and the **State** column updates to reflect the change. The **Stop** button is then enabled, allowing you to stop the resource again. The dashboard displays a toast notification of the result of the action:
+
+:::image type="content" source="media/explore/resource-started-action.png" alt-text=".NET Aspire dashboard started resource.":::
+
+##### Resource submenu actions
+
+Selecting the horizontal ellipsis icon in the **Actions** column opens a submenu with additional resource-specific actions. Consider the following screenshot of the resource submenu actions:
+
+:::image type="content" source="media/explore/resource-actions.png" alt-text=".NET Aspire dashboard resource submenu actions.":::
+
+#### Copy or Open in text visualizer
 
 To view a _text visualizer_ of certain columns, on hover you'll see a vertical ellipsis icon. Select the icon to display the available options:
 
@@ -78,6 +113,8 @@ When you select the **Open in text visualizer** option, a modal dialog opens wit
 :::image type="content" source="media/explore/text-visualizer-resources.png" lightbox="media/explore/text-visualizer-resources.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page, showing the text visualizer.":::
 
 Some values are formatted as JSON or XML. In these cases, the text visualizer enables the **Select format** dropdown to switch between the different formats.
+
+### Resource details
 
 You can obtain full details about each resource by selecting the **View** link in the **Details** column:
 
@@ -291,28 +328,32 @@ If you prefer the Light theme, you can select it from the theme selection dialog
 
 ## Dashboard shortcuts
 
-The .NET Aspire dashboard provides a variety of shortcuts to help you navigate the different parts of the dashboard. To display the keyboard shortcuts, press <kbd>Shift</kbd> + <kbd>?</kbd>. The following shortcuts are available:
+The .NET Aspire dashboard provides a variety of shortcuts to _help_ you navigate and control different parts of the dashboard. To display the keyboard shortcuts, press <kbd>Shift</kbd> + <kbd>?</kbd>, or select the question mark icon in the top-right corner of the dashboard:
+
+:::image type="content" source="media/explore/dashboard-help.png" lightbox="media/explore/dashboard-help.png" alt-text=".NET Aspire dashboard Help modal dialog.":::
+
+The following shortcuts are available:
 
 **Panels**:
 
 - <kbd>+</kbd>: Increase panel size.
 - <kbd>-</kbd>: Decrease panel size.
-- <kbd>Shift</kbd> + <kbd>r</kbd>: Reset panel size.
-- <kbd>Shift</kbd> + <kbd>t</kbd>: Toggle panel orientation.
+- <kbd>Shift</kbd> + <kbd>r</kbd>: <u>R</u>eset panel size.
+- <kbd>Shift</kbd> + <kbd>t</kbd>: <u>T</u>oggle panel orientation.
 - <kbd>Shift</kbd> + <kbd>x</kbd>: Close panel.
 
 **Page navigation**:
 
-- <kbd>r</kbd>: Go to **Resources**.
-- <kbd>c</kbd>: Go to **Console Logs**.
-- <kbd>s</kbd>: Go to **Structured Logs**.
-- <kbd>t</kbd>: Go to **Traces**.
-- <kbd>m</kbd>: Go to **Metrics**.
+- <kbd>r</kbd>: Go to **<u>R</u>esources**.
+- <kbd>c</kbd>: Go to **<u>C</u>onsole Logs**.
+- <kbd>s</kbd>: Go to **<u>S</u>tructured Logs**.
+- <kbd>t</kbd>: Go to **<u>T</u>races**.
+- <kbd>m</kbd>: Go to **<u>M</u>etrics**.
 
 **Site-wide navigation**:
 
 - <kbd>?</kbd>: Got to **Help**.
-- <kbd>Shift</kbd> + <kbd>s</kbd>: Go to **Settings**.
+- <kbd>Shift</kbd> + <kbd>s</kbd>: Go to **<u>S</u>ettings**.
 
 ## Next steps
 

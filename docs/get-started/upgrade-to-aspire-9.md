@@ -31,6 +31,9 @@ Before you upgrade your projects to .NET Aspire 9.0, ensure that you have the fo
 >
 > For more information, see [dotnet workload uninstall](/dotnet/core/tools/dotnet-workload-uninstall).
 
+> [!TIP]
+> If you don't uninstall the .NET Aspire workload, and you've installed the [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md) and templates, you will see both .NET Aspire 8.0 and .NET Aspire 9.0 templates.
+
 ## Manually upgrade to .NET Aspire 9.0
 
 To upgrade your projects to .NET Aspire 9.0, you need to update your project files. The following steps guide you through the process:

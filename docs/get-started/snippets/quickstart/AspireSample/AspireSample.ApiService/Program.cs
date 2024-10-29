@@ -20,7 +20,7 @@ app.MapGet("/weatherforecast", () =>
 {
     if (Random.Shared.NextDouble() > .5)
     {
-        //throw new Exception("This is an example error for demonstration purposes.");
+        // throw new Exception("This is an example error for demonstration purposes.");
     }
 
     var forecast = Enumerable.Range(1, 5).Select(index =>

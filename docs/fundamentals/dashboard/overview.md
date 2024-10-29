@@ -1,17 +1,17 @@
 ---
 title: .NET Aspire dashboard overview
 description: Overview of .NET Aspire dashboard and getting started.
-ms.date: 10/03/2024
+ms.date: 10/29/2024
 ms.topic: reference
 ---
 
 # .NET Aspire dashboard overview
 
-[.NET Aspire](../../get-started/aspire-overview.md) project templates offer a sophisticated dashboard for comprehensive app monitoring and inspection, and it's also available in [standalone mode](#standalone-mode). This dashboard allows you to closely track various aspects of your app, including logs, traces, and environment configurations, in real-time. It's purpose-built to enhance the development experience, providing an insightful overview of your app's state and structure.
+[.NET Aspire](../../get-started/aspire-overview.md) project templates offer a sophisticated dashboard for comprehensive app monitoring and inspection, and it's also available in [standalone mode](#standalone-mode). This dashboard allows you to closely track various aspects of your app, including logs, traces, and environment configurations, in real-time. It's purpose-built to enhance the development experience, providing an insightful overview of your app's state and structure. The dashboard exposes the ability to [stop, start, and restart resources](explore.md#resource-actions), as well as view and interact with logs and telemetry.
 
 ## Use the dashboard with .NET Aspire projects
 
-The dashboard is integrated into the .NET Aspire **AppHost**. During development the dashboard is automatically launched when you start the project. It's configured to display the .NET Aspire project's resources and telemetry.
+The dashboard is integrated into the [.NET Aspire _*.AppHost_](../app-host-overview.md). During development the dashboard is automatically launched when you start the project. It's configured to display the .NET Aspire project's resources and telemetry.
 
 :::image type="content" source="media/explore/projects.png" lightbox="media/explore/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page.":::
 
@@ -25,21 +25,21 @@ The .NET Aspire dashboard is also shipped as a Docker image and can be used stan
 
 ```bash
 docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
-    mcr.microsoft.com/dotnet/aspire-dashboard:8.2
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
 ```
 
 ## [PowerShell](#tab/powershell)
 
 ```powershell
 docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard `
-    mcr.microsoft.com/dotnet/aspire-dashboard:8.2
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
 ```
 
 ---
 
 The preceding Docker command:
 
-- Starts a container from the `mcr.microsoft.com/dotnet/aspire-dashboard:8.2` image.
+- Starts a container from the `mcr.microsoft.com/dotnet/aspire-dashboard:9.0` image.
 - The container publishes exposing two ports:
   - Maps the dashboard's OTLP port `18889` to the host's port `4317`. Port `4317` receives OpenTelemetry data from apps. Apps send data using [OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/).
   - Maps the dashboard's port `18888` to the host's port `18888`. Port `18888` has the dashboard UI. Navigate to `http://localhost:18888` in the browser to view the dashboard.
