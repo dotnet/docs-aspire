@@ -54,6 +54,7 @@ builder.AddDenoApp("oak-demo", "main.ts", permissionFlags: ["-E", "--allow-net"]
 
 builder.Build().Run();
 ```
+
 ### Run Deno tasks
 
 This integration extension adds support for running tasks that are either specified in a _package.json_ or _deno.json_.
@@ -67,6 +68,7 @@ builder.AddDenoTask("vite-demo", taskName: "dev")
 
 builder.Build().Run();
 ```
+
 ### Deno package installation
 
 This integration extension adds support for installing dependencies that utilizes `deno install` behind the scenes by simply using
@@ -74,6 +76,7 @@ This integration extension adds support for installing dependencies that utilize
 
 > [!NOTE]
 > This API only works when a _deno.lock_ file present.
+
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
@@ -82,6 +85,7 @@ builder.AddDenoTask("vite-demo", taskName: "dev")
     .WithHttpEndpoint(env: "PORT")
     .WithEndpoint();
 ```
+
 ## See also
 
 - [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
