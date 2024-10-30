@@ -72,6 +72,7 @@ Alternatively, these same values could be configured using a JSON configuration 
 | `DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` | `false` | Configures the dashboard to not use authentication and accepts anonymous access. This setting is a shortcut to configuring `Dashboard:Frontend:AuthMode` and `Dashboard:Otlp:AuthMode` to `Unsecured`. |
 | `DOTNET_DASHBOARD_CONFIG_FILE_PATH` | `null` | The path for a JSON configuration file. If the dashboard is being run in a Docker container, then this is the path to the configuration file in a mounted volume. This value is optional. |
 | `DOTNET_RESOURCE_SERVICE_ENDPOINT_URL` | `null` | The gRPC endpoint to which the dashboard connects for its data. If this value is unspecified, the dashboard shows telemetry data but no resource list or console logs. This setting is a shortcut to `Dashboard:ResourceServiceClient:Url`. |
+| `ASPNETCORE_FORWARDEDHEADERS_ENABLED` | `null` | If set to `true` this will enable header forwarding to the dashboard. This is often needed when running behind a reverse proxy. |
 
 ## Frontend authentication
 
@@ -91,6 +92,9 @@ Browser token authentication works by the frontend asking for a token. The token
 | `Authentication:Schemes:OpenIdConnect:ClientId` | `null` | Identity of the relying party (RP). |
 | `Authentication:Schemes:OpenIdConnect:ClientSecret` | `null` | A secret that only the real RP would know. |
 | Other properties of <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> | `null` | Values inside configuration section `Authentication:Schemes:OpenIdConnect:*` are bound to `OpenIdConnectOptions`, such as `Scope`. |
+
+> [!NOTE]
+> In case you are using `OpenIdConnect` as authentication mode behind a reverse-proxy that terminates SSL, check if you need `ASPNETCORE_FORWARDEDHEADERS_ENABLED` to be set.
 
 ## OTLP authentication
 
