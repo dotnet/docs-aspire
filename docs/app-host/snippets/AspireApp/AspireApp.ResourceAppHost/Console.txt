@@ -8,6 +8,8 @@ info: Program[0]
       1. ConnectionStringAvailableEvent
 info: Program[0]
       2. BeforeResourceStartedEvent
+info: Program[0]
+      3. ResourceReadyEvent
 info: Aspire.Hosting.DistributedApplication[0]
       Now listening on: https://localhost:17222
 info: Aspire.Hosting.DistributedApplication[0]

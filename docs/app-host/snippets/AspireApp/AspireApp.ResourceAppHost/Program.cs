@@ -5,6 +5,17 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var cache = builder.AddRedis("cache");
 
+_ = builder.Eventing.Subscribe<ResourceReadyEvent>(
+    cache.Resource,
+    static (@event, cancellationToken) =>
+    {
+        var logger = @event.Services.GetRequiredService<ILogger<Program>>();
+
+        logger.LogInformation("3. ResourceReadyEvent");
+
+        return Task.CompletedTask;
+    });
+
 _ = builder.Eventing.Subscribe<BeforeResourceStartedEvent>(
     cache.Resource,
     static (@event, cancellationToken) =>

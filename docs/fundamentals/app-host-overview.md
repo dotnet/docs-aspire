@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs for adding resources and expressing dependencies.
-ms.date: 10/29/2024
+ms.date: 10/30/2024
 ms.topic: overview
 uid: dotnet/aspire/app-host
 ---
@@ -294,6 +294,8 @@ info: LifecycleLogger[0]
 info: Aspire.Hosting.DistributedApplication[0]
       Distributed application started. Press Ctrl+C to shut down.
 ```
+
+The preferred way to hook into the app host life cycle is to use the eventing API. For more information, see [Eventing in .NET Aspire](../app-host/eventing.md).
 
 ## Execution context
 
