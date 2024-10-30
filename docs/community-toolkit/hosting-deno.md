@@ -48,7 +48,11 @@ This integration extension adds support for running a Deno application defined i
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddDenoApp("oak-demo", "main.ts", permissionFlags: ["-E", "--allow-net"])
+builder.AddDenoApp("oak-demo", "main.ts", permissionFlags: ["--allow-env", "--allow-net"])
+    .WithHttpEndpoint(env: "PORT")
+    .WithEndpoint();
+// OR
+builder.AddDenoApp("oak-demo", "main.ts", permissionFlags: ["-E", "-N"])
     .WithHttpEndpoint(env: "PORT")
     .WithEndpoint();
 
