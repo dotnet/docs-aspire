@@ -119,12 +119,6 @@ items:
         href: messaging/kafka-integration.md
       - name: Azure
         items:
-        - name: Azure OpenAI
-          displayName: azure ai,openai
-          href: azureai/azureai-openai-integration.md
-        - name: Azure Search Documents
-          displayName: azure search,search,azure ai
-          href: azureai/azureai-search-document-integration.md
         - name: Azure Blob Storage
           href: storage/azure-storage-blobs-integration.md
         - name: Azure Cosmos DB
@@ -138,12 +132,21 @@ items:
         - name: Azure Event Hubs
           displayName: event hubs,messaging
           href: messaging/azure-event-hubs-integration.md
+        - name: Azure Functions (Preview)
+          displayName: azure functions,serverless
+          href: frameworks/functions.md
         - name: Azure Key Vault
           displayName: key vault,security
           href: security/azure-security-key-vault-integration.md
+        - name: Azure OpenAI
+          displayName: azure ai,openai
+          href: azureai/azureai-openai-integration.md
         - name: Azure SignalR Service
           displayName: azure signalr service,signalr,real-time
           href: real-time/azure-signalr-scenario.md
+        - name: Azure Search Documents
+          displayName: azure search,search,azure ai
+          href: azureai/azureai-search-document-integration.md
         - name: Azure Service Bus
           displayName: service bus,messaging
           href: messaging/azure-service-bus-integration.md

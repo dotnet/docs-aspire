@@ -1,0 +1,41 @@
+﻿<div class="modal-overlay" @onclick="OnCloseAsync"></div>
+<div class="modal fade @(Display ? "show" : "")">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5">@Title</h5>
+                <button type="button" class="btn-close" @onclick="OnCloseAsync" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @BodyContent
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" @onclick="OnCloseAsync">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public required bool Display { get; set; }
+
+    [Parameter, EditorRequired]
+    public required string Title { get; set; }
+
+    [Parameter, EditorRequired]
+    public required RenderFragment BodyContent { get; set; }
+
+    [Parameter, EditorRequired]
+    public EventCallback OnClose { get; set; }
+
+    private async Task OnCloseAsync()
+    {
+        Display = false;
+
+        if (OnClose.HasDelegate)
+        {
+            await OnClose.InvokeAsync();
+        }
+    }
+}
