@@ -14,7 +14,7 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
     .WithReference(apiService)
     .WaitFor(apiService);
 
-_ = builder.Eventing.Subscribe<BeforeStartEvent>(
+builder.Eventing.Subscribe<BeforeStartEvent>(
     static (@event, cancellationToken) =>
     {
         var logger = @event.Services.GetRequiredService<ILogger<Program>>();
@@ -24,7 +24,7 @@ _ = builder.Eventing.Subscribe<BeforeStartEvent>(
         return Task.CompletedTask;
     });
 
-_ = builder.Eventing.Subscribe<AfterEndpointsAllocatedEvent>(
+builder.Eventing.Subscribe<AfterEndpointsAllocatedEvent>(
     static (@event, cancellationToken) =>
     {
         var logger = @event.Services.GetRequiredService<ILogger<Program>>();
@@ -34,7 +34,7 @@ _ = builder.Eventing.Subscribe<AfterEndpointsAllocatedEvent>(
         return Task.CompletedTask;
     });
 
-_ = builder.Eventing.Subscribe<AfterResourcesCreatedEvent>(
+builder.Eventing.Subscribe<AfterResourcesCreatedEvent>(
     static (@event, cancellationToken) =>
     {
         var logger = @event.Services.GetRequiredService<ILogger<Program>>();

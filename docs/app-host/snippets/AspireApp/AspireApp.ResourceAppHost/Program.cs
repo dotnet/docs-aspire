@@ -5,7 +5,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var cache = builder.AddRedis("cache");
 
-_ = builder.Eventing.Subscribe<ResourceReadyEvent>(
+builder.Eventing.Subscribe<ResourceReadyEvent>(
     cache.Resource,
     static (@event, cancellationToken) =>
     {
@@ -16,7 +16,7 @@ _ = builder.Eventing.Subscribe<ResourceReadyEvent>(
         return Task.CompletedTask;
     });
 
-_ = builder.Eventing.Subscribe<BeforeResourceStartedEvent>(
+builder.Eventing.Subscribe<BeforeResourceStartedEvent>(
     cache.Resource,
     static (@event, cancellationToken) =>
     {
@@ -27,7 +27,7 @@ _ = builder.Eventing.Subscribe<BeforeResourceStartedEvent>(
         return Task.CompletedTask;
     });
 
-_ = builder.Eventing.Subscribe<ConnectionStringAvailableEvent>(
+builder.Eventing.Subscribe<ConnectionStringAvailableEvent>(
     cache.Resource,
     static (@event, cancellationToken) =>
     {

@@ -28,7 +28,7 @@ To subscribe to the built-in app host events, use the eventing API. After you ha
 
 :::code source="snippets/AspireApp/AspireApp.AppHost/Program.cs" highlight="17-25,27-35,37-45":::
 
-The preceding code is based on the starter template with the addition of the calls to the `Subscribe` API. The `Subscribe<T>` API returns a <xref:Aspire.Hosting.Eventing.DistributedApplicationEventSubscription> instance that you can use to unsubscribe from the event. It's common to [discard the returned subscription objects](/dotnet/csharp/fundamentals/functional/discards), as you don't usually need to unsubscribe from events as the entire app is torn down when the app host is shut down.
+The preceding code is based on the starter template with the addition of the calls to the `Subscribe` API. The `Subscribe<T>` API returns a <xref:Aspire.Hosting.Eventing.DistributedApplicationEventSubscription> instance that you can use to unsubscribe from the event. It's common to discard the returned subscriptions, as you don't usually need to unsubscribe from events as the entire app is torn down when the app host is shut down.
 
 When the app host is run, by the time the .NET Aspire dashboard is displayed, you should see the following log output in the console:
 
