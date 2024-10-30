@@ -134,7 +134,7 @@ items:
           href: messaging/azure-event-hubs-integration.md
         - name: Azure Functions (Preview)
           displayName: azure functions,serverless
-          href: frameworks/functions.md
+          href: serverless/functions.md
         - name: Azure Key Vault
           displayName: key vault,security
           href: security/azure-security-key-vault-integration.md

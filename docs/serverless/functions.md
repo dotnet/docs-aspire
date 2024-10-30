@@ -1,6 +1,6 @@
 ---
 title: .NET Aspire Azure Functions integration (Preview)
-description:
+description: Learn how to integrate Azure Functions with .NET Aspire.
 ms.date: 10/30/2024
 zone_pivot_groups: dev-environment
 ---
