@@ -2,6 +2,7 @@
 title: .NET Aspire Azure Functions integration (Preview)
 description:
 ms.date: 10/30/2024
+zone_pivot_groups: dev-environment
 ---
 
 # .NET Aspire Azure Functions integration (Preview)
@@ -12,6 +13,52 @@ ms.date: 10/30/2024
 > The .NET Aspire Azure Functions integration is currently in preview and is subject to change.
 
 [Azure Functions](/azure/azure-functions/functions-overview) is a serverless solution that allows you to write less code, maintain less infrastructure, and save on costs. The .NET Aspire Azure Functions integration enables you to develop, debug, and orchestrate an Azure Functions .NET project as part of the app host.
+
+It's expected that you've installed the required Azure tooling:
+
+:::zone pivot="visual-studio"
+
+- [Configure Visual Studio for Azure development with .NET](/dotnet/azure/configure-visual-studio)
+
+:::zone-end
+:::zone pivot="vscode"
+
+- [Configure Visual Studio Code for Azure development with .NET](/dotnet/azure/configure-vs-code)
+
+:::zone-end
+:::zone pivot="dotnet-cli"
+
+- [Install the Azure Functions Core Tools](/azure/azure-functions/functions-run-local?tabs=isolated-process&pivots=programming-language-csharp#install-the-azure-functions-core-tools)
+
+:::zone-end
+
+## Supported scenarios
+
+The .NET Aspire Azure Functions integration has several key supported scenarios. This section outlines the scenarios and provides details related to the implementation of each approach.
+
+### Supported triggers
+
+The following table lists the supported triggers for Azure Functions in the .NET Aspire integration:
+
+| Trigger | Attribute | Details |
+|--|--|--|
+| Azure Event Hubs trigger | `EventHubTrigger` | [📦 Aspire.Hosting.Azure.EventHubs](https://www.nuget.org/packages/Aspire.Hosting.Azure.EventHubs) |
+| Azure Service Bus trigger | `ServiceBusTrigger` | [📦 Aspire.Hosting.Azure.ServiceBus](https://www.nuget.org/packages/Aspire.Hosting.Azure.ServiceBus) |
+| Azure Storage Blobs trigger | `BlobTrigger` | [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) |
+| Azure Storage Queues trigger | `QueueTrigger` | [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) |
+| HTTP trigger | `HttpTrigger` | Supported without any additional resource dependencies. |
+| Timer trigger | `TimerTrigger` | [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) |
+
+> [!IMPORTANT]
+> Other Azure Functions trigger types aren't currently supported in the .NET Aspire Azure Functions integration.
+
+### Deployment
+
+Currently, deployment is supported only to containers on Azure Container Apps (ACA) using the SDK container publish function in `Microsoft.Azure.Functions.Worker.Sdk`. This deployment methodology doesn't currently support KEDA-based autoscaling.
+
+#### Configure external HTTP endpoints
+
+To make HTTP triggers publicly accessible, call the `WithExternalHttpEndpoints` API on the `AzureFunctionsProjectResource`. For more information, see [Add Azure Functions resource](#add-azure-functions-resource).
 
 ## Azure Function project constraints
 
@@ -24,31 +71,7 @@ The .NET Aspire Azure Functions integration has the following project constraint
   - [📦 Microsoft.Azure.Functions.Worker.Sdk](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Sdk): Adds support for `dotnet run` and `azd publish`.
   - [📦 Microsoft.Azure.Functions.Http.AspNetCore](https://www.nuget.org/packages/Microsoft.Azure.Functions.Http.AspNetCore): Adds HTTP trigger-supporting APIs.
 
-## Supported scenarios
-
-The .NET Aspire Azure Functions integration has several key supported scenarios. This section outlines the scenarios and provides details related to the implementation of each approach.
-
-### Supported triggers
-
-The following table lists the supported triggers for Azure Functions in the .NET Aspire integration:
-
-| Trigger | Attribute | Details |
-|--|--|--|
-| Azure Service Bus trigger | `ServiceBusTrigger` | [📦 Aspire.Hosting.Azure.ServiceBus](https://www.nuget.org/packages/Aspire.Hosting.Azure.ServiceBus) |
-| Azure Storage Queues trigger | `QueueTrigger` | [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) |
-| Azure Storage Blobs trigger | `BlobTrigger` | [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) |
-| Azure Event Hubs trigger | `EventHubTrigger` | [📦 Aspire.Hosting.Azure.EventHubs](https://www.nuget.org/packages/Aspire.Hosting.Azure.EventHubs) |
-| Timer trigger | `TimerTrigger` | [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) |
-| HTTP trigger | `HttpTrigger` | Supported without any additional resource dependencies. |
-
-> [!IMPORTANT]
-> Other triggers types are not currently supported in the .NET Aspire Azure Functions integration.
-
-### Deployment
-
-Currently, deployment is supported only to containers on Azure Container Apps (ACA) using the SDK container publish function in `Microsoft.Azure.Functions.Worker.Sdk`. This deployment methodology doesn't currently support KEDA-based autoscaling.
-
-To make HTTP triggers publicly accessible, call the `WithExternalHttpEndpoints` API on the `AzureFunctionsProjectResource`.
+If you're using Visual Studio, you might need to check for updates
 
 ## Hosting integration
 
@@ -112,6 +135,9 @@ builder.AddProject<Projects.ExampleProject>()
 
 The preceding code relies on the [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package to add an Azure Storage resource that runs as an emulator. The `storage` resource is then passed to the `WithHostStorage` API, explicitly setting the host storage to the emulated resource.
 
+> [!NOTE]
+> The `StorageAccountContributor` role is required for deployed instances, it's up to the user to manually configure this role with their resource when they're publishing. This role assignment is included automatically for the implicitly generated host storage.
+
 ### Reference resources in Azure Functions
 
 To reference other Azure resources in an Azure Functions project, chain a call to `WithReference` on the Azure Functions project resource and provide the resource to reference:
@@ -136,3 +162,4 @@ The preceding code adds an Azure Storage resource to the app host and references
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
 - [Azure Functions documentation](/azure/azure-functions/functions-overview)
+<!-- - [.NET Aspire and Functions image gallery sample](/samples/dotnet/aspire-samples/aspire-azure-functions-with-blob-triggers) -->
