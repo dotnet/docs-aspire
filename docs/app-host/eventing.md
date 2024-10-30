@@ -40,9 +40,9 @@ The log output confirms that event handlers are executed in the order of the app
 
 In addition to the app host events, you can also subscribe to resource events. Resource events are raised specific to an individual resource. Resource events are defined as implementations of the <xref:Aspire.Hosting.Eventing.IDistributedApplicationResourceEvent> interface. The following resource events are available in the listed order:
 
-1. `ConnectionStringAvailableEvent`: This event is raised when a connection string becomes available for a resource.
-1. `BeforeResourceStartedEvent`: This event is raised before the orchestrator starts a new resource.
-1. `ResourceReadyEvent`: Event that's raised when a resource initially transitions to a ready state.
+1. `ConnectionStringAvailableEvent`: Raised when a connection string becomes available for a resource.
+1. `BeforeResourceStartedEvent`: Raised before the orchestrator starts a new resource.
+1. `ResourceReadyEvent`: Raised when a resource initially transitions to a ready state.
 
 ### Subscribe to resource events
 
@@ -54,11 +54,11 @@ The preceding code subscribes to the `ResourceReadyEvent`, `ConnectionStringAvai
 
 When the app host is run, by the time the .NET Aspire dashboard is displayed, you should see the following log output in the console:
 
-:::code language="Plaintext" source="snippets/AspireApp/AspireApp.ResourceAppHost/Console.txt" highlight="8,10":::
+:::code language="Plaintext" source="snippets/AspireApp/AspireApp.ResourceAppHost/Console.txt" highlight="8,10,12":::
 
 ## Publish events
 
-When subscribing to any of the built-in events, you don't need to publish the event yourself as the app host orchestrator does this for you. However, you can publish custom events with the eventing API. To publish an event, you have to first define an event as an implementation of either the <xref:Aspire.Hosting.Eventing.IDistributedApplicationEvent> or <xref:Aspire.Hosting.Eventing.IDistributedApplicationResourceEvent> interface. You need to determine which interface to implement based on whether the event is a global app host event or a resource-specific event.
+When subscribing to any of the built-in events, you don't need to publish the event yourself as the app host orchestrator manages to publish built-in events on your behalf. However, you can publish custom events with the eventing API. To publish an event, you have to first define an event as an implementation of either the <xref:Aspire.Hosting.Eventing.IDistributedApplicationEvent> or <xref:Aspire.Hosting.Eventing.IDistributedApplicationResourceEvent> interface. You need to determine which interface to implement based on whether the event is a global app host event or a resource-specific event.
 
 Then, you can subscribe and publish the event by calling the either of the following APIs:
 
