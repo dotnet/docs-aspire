@@ -71,7 +71,17 @@ The .NET Aspire Azure Functions integration has the following project constraint
   - [📦 Microsoft.Azure.Functions.Worker.Sdk](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Sdk): Adds support for `dotnet run` and `azd publish`.
   - [📦 Microsoft.Azure.Functions.Http.AspNetCore](https://www.nuget.org/packages/Microsoft.Azure.Functions.Http.AspNetCore): Adds HTTP trigger-supporting APIs.
 
-If you're using Visual Studio, you might need to check for updates
+:::zone pivot="visual-studio"
+
+If you encounter issues with the Azure Functions project, such as:
+
+> There is no Functions runtime available that matches the version specified in the project
+
+In Visual Studio, try checking for an update on the Azure Functions tooling. Open the **Options** dialog, navigate to **Projects and Solutions**, and then select **Azure Functions**. Select the **Check for updates** button to ensure you have the latest version of the Azure Functions tooling:
+
+:::image type="content" source="media/visual-studio-auzre-functions-options.png" alt-text="Visual Studio: Options / Projects and Solutions / Azure Functions.":::
+
+:::zone-end
 
 ## Hosting integration
 
