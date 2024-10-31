@@ -50,7 +50,7 @@ The following table lists the supported triggers for Azure Functions in the .NET
 | Timer trigger | `TimerTrigger` | [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) |
 
 > [!IMPORTANT]
-> Other Azure Functions trigger types aren't currently supported in the .NET Aspire Azure Functions integration.
+> Other Azure Functions triggers and bindings aren't currently supported in the .NET Aspire Azure Functions integration.
 
 ### Deployment
 
@@ -65,6 +65,7 @@ To make HTTP triggers publicly accessible, call the `WithExternalHttpEndpoints` 
 The .NET Aspire Azure Functions integration has the following project constraints:
 
 - You must target .NET 8.0 or later.
+- You must use a .NET 9 SDK.
 - It currently only supports .NET workers with the [isolated worker model](/azure/azure-functions/dotnet-isolated-process-guide).
 - Requires the following NuGet packages:
   - [📦 Microsoft.Azure.Functions.Worker](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker): Use the `FunctionsApplicationBuilder`.
