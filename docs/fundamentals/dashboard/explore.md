@@ -135,7 +135,7 @@ Some values are formatted as JSON or XML. In these cases, the text visualizer en
 
 You can obtain full details about each resource by selecting the **View** link in the **Details** column:
 
-:::image type="content" source="media/explore/resource-details.png" lightbox="media/explore/resource-details.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page with the details of a selected resource displayed..":::
+:::image type="content" source="media/explore/resource-details.png" lightbox="media/explore/resource-details.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page with the details of a selected resource displayed.":::
 
 The search bar in the upper right of the dashboard also provides the option to filter the list, which is useful for .NET Aspire projects with many resources. To select the types of resources that are displayed, drop down the arrow to the left of the filter textbox:
 
@@ -213,7 +213,7 @@ Consider the following example screenshot of semantic logs:
 
 #### Filter structured logs
 
-The structured logs page also provides a search bar to filter the logs by service, level, or message. You use the **Level** drop down to filter by log level. You can also filter by any log property by selecting the filter icon button, which will open the advanced filter dialog.
+The structured logs page also provides a search bar to filter the logs by service, level, or message. You use the **Level** drop down to filter by log level. You can also filter by any log property by selecting the filter icon button, which opens the advanced filter dialog.
 
 Consider the following screenshots showing the structured logs, filtered to display items with "Hosting" in the message text:
 
@@ -221,7 +221,7 @@ Consider the following screenshots showing the structured logs, filtered to disp
 
 ### Traces page
 
-Navigate to the **Traces** page to view all of the traces for your app. .NET Aspire automatically configures tracing for the different projects in your app. Distributed tracing is a diagnostic technique that helps engineers localize failures and performance issues within applications, especially those that may be distributed across multiple machines or processes. For more information, see [.NET distributed tracing](/dotnet/core/diagnostics/distributed-tracing). This technique tracks requests through an application and correlates work done by different application integrations. Traces also help identify how long different stages of the request took to complete. The traces page displays the following information:
+Navigate to the **Traces** page to view all of the traces for your app. .NET Aspire automatically configures tracing for the different projects in your app. Distributed tracing is a diagnostic technique that helps engineers localize failures and performance issues within applications, especially those that might be distributed across multiple machines or processes. For more information, see [.NET distributed tracing](/dotnet/core/diagnostics/distributed-tracing). This technique tracks requests through an application and correlates work done by different application integrations. Traces also help identify how long different stages of the request took to complete. The traces page displays the following information:
 
 - **Timestamp**: When the trace completed.
 - **Name**: The name of the trace, prefixed with the project name.
@@ -294,7 +294,7 @@ In addition to the metrics chart, the metrics page includes an option to view th
 
 :::image type="content" source="media/explore/metrics-table-view.png" lightbox="media/explore/metrics-table-view.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with the table view selected.":::
 
-Under the chart, there's a list of filters you can apply to focus on the data that interests you. For example, in the following screenshot, the **http.request.method** field has been filtered to show only **GET** requests:
+Under the chart, there's a list of filters you can apply to focus on the data that interests you. For example, in the following screenshot, the **http.request.method** field is filtered to show only **GET** requests:
 
 :::image type="content" source="media/explore/metrics-view-filtered.png" lightbox="media/explore/metrics-view-filtered.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with a filter applied to the chart.":::
 
