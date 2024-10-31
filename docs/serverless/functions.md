@@ -70,7 +70,7 @@ The .NET Aspire Azure Functions integration has the following project constraint
 - Requires the following NuGet packages:
   - [📦 Microsoft.Azure.Functions.Worker](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker): Use the `FunctionsApplicationBuilder`.
   - [📦 Microsoft.Azure.Functions.Worker.Sdk](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Sdk): Adds support for `dotnet run` and `azd publish`.
-  - [📦 Microsoft.Azure.Functions.Http.AspNetCore](https://www.nuget.org/packages/Microsoft.Azure.Functions.Http.AspNetCore): Adds HTTP trigger-supporting APIs.
+  - [📦 Microsoft.Azure.Functions.Http.AspNetCore](https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.Http.AspNetCore): Adds HTTP trigger-supporting APIs.
 
 :::zone pivot="visual-studio"
 

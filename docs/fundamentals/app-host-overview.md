@@ -85,13 +85,15 @@ builder.Build().Run();
 The preceding code:
 
 - Creates a new app model builder using the <xref:Aspire.Hosting.DistributedApplication.CreateBuilder%2A> method.
-- Adds a Redis `cache` resource named "cache" using the <xref:Aspire.Hosting.ResourceBuilderExtensions.AddRedis%2A> method.
+- Adds a Redis `cache` resource named "cache" using the <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis*> method.
 - Adds a project resource named "apiservice" using the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> method.
 - Adds a project resource named "webfrontend" using the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> method.
   - Specifies that the project has external HTTP endpoints using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints%2A> method.
-  - Adds a reference to the `cache` resource and waits for it to be ready using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> and <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor%2A> methods.
-  - Adds a reference to the `apiservice` resource and waits for it to be ready using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> and <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor%2A> methods.
+  - Adds a reference to the `cache` resource and waits for it to be ready using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> and `WaitFor` methods.
+  - Adds a reference to the `apiservice` resource and waits for it to be ready using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> and `WaitFor` methods.
 - Builds and runs the app model using the <xref:Aspire.Hosting.DistributedApplicationBuilder.Build%2A> and <xref:Aspire.Hosting.DistributedApplication.Run%2A> methods.
+
+The example code uses the [.NET Aspire Redis hosting integration](../caching/stackexchange-redis-integration.md#hosting-integration).
 
 To help visualize the relationship between the app host project and the resources it describes, consider the following diagram:
 
