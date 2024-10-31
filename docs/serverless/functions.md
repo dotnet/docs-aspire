@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Functions integration (Preview)
 description: Learn how to integrate Azure Functions with .NET Aspire.
-ms.date: 10/30/2024
+ms.date: 10/31/2024
 zone_pivot_groups: dev-environment
 ---
 
@@ -47,7 +47,7 @@ The following table lists the supported triggers for Azure Functions in the .NET
 | Azure Storage Blobs trigger | `BlobTrigger` | [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) |
 | Azure Storage Queues trigger | `QueueTrigger` | [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) |
 | HTTP trigger | `HttpTrigger` | Supported without any additional resource dependencies. |
-| Timer trigger | `TimerTrigger` | [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) |
+| Timer trigger | `TimerTrigger` | Supported without any additional resource dependencies—relies on implicit host storage. |
 
 > [!IMPORTANT]
 > Other Azure Functions triggers and bindings aren't currently supported in the .NET Aspire Azure Functions integration.
@@ -147,7 +147,7 @@ builder.AddProject<Projects.ExampleProject>()
 The preceding code relies on the [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package to add an Azure Storage resource that runs as an emulator. The `storage` resource is then passed to the `WithHostStorage` API, explicitly setting the host storage to the emulated resource.
 
 > [!NOTE]
-> The `StorageAccountContributor` role is required for deployed instances, it's up to the user to manually configure this role with their resource when they're publishing. This role assignment is included automatically for the implicitly generated host storage.
+> If you're not using the implicit host storage, you must manually assign the `StorageAccountContributor` role to your resource for deployed instances. This role is automatically assigned for the implicitly generated host storage.
 
 ### Reference resources in Azure Functions
 
