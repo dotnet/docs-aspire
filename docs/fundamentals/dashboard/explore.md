@@ -1,13 +1,13 @@
 ---
 title: Explore .NET Aspire dashboard
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 10/29/2024
+ms.date: 10/31/2024
 ms.topic: reference
 ---
 
 # Explore the .NET Aspire dashboard
 
-In the upcoming sections, you'll discover how to create a .NET Aspire project and embark on the following tasks:
+In the upcoming sections, you discover how to create a .NET Aspire project and embark on the following tasks:
 
 > [!div class="checklist"]
 >
@@ -15,7 +15,7 @@ In the upcoming sections, you'll discover how to create a .NET Aspire project an
 >
 > - Delve into the features of the .NET Aspire dashboard app.
 
-The screenshots featured in this article showcase the dark theme. For more details on theme selection, refer to [Theme selection](#theme-selection).
+The screenshots featured in this article showcase the dark theme. For more information on theme selection, see [Theme selection](#theme-selection).
 
 ## Dashboard authentication
 
@@ -23,11 +23,11 @@ When you run a .NET Aspire app host, the orchestrator starts up all the app's de
 
 When the dashboard is launched from Visual Studio or Visual Studio Code (with the [C# Dev Kit extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)), the browser is automatically logged in, and the dashboard opens directly. This is the typical developer <kbd>F5</kbd> experience, and the authentication login flow is automated by the .NET Aspire tooling.
 
-However, if you start the app host from the command line, you're presented with the login page. The console window displays a URL that you can click on to open the dashboard in your browser.
+However, if you start the app host from the command line, you're presented with the login page. The console window displays a URL that you can select on to open the dashboard in your browser.
 
 :::image type="content" source="media/explore/dotnet-run-login-url.png" lightbox="media/explore/dotnet-run-login-url.png" alt-text=".NET CLI run command output, showing the login URL with token query string.":::
 
-The URL contains a token query string (with the token value mapped to the `t` name part) that's used to _log in_ to the dashboard. If your console supports it, you can hold the <kbd>Ctrl</kbd> key and then click the link to open the dashboard in your browser. This method is easier than copying the token from the console and pasting it into the login page. If you end up on the dashboard login page without either of the previously described methods, you can always return to the console to copy the token.
+The URL contains a token query string (with the token value mapped to the `t` name part) that's used to _log in_ to the dashboard. If your console supports it, you can hold the <kbd>Ctrl</kbd> key and then select the link to open the dashboard in your browser. This method is easier than copying the token from the console and pasting it into the login page. If you end up on the dashboard login page without either of the previously described methods, you can always return to the console to copy the token.
 
 :::image type="content" source="media/explore/aspire-login.png" lightbox="media/explore/aspire-login.png" alt-text=".NET Aspire dashboard login page.":::
 
@@ -39,14 +39,14 @@ After copying the token from the console and pasting it into the login page, sel
 
 :::image type="content" source="media/explore/aspire-login-filled.png" lightbox="media/explore/aspire-login-filled.png" alt-text=".NET Aspire dashboard login page with the token pasted into the textbox.":::
 
-The dashboard persists the token as a browser persistent cookie, which remains valid for three days. Persistent cookies have an expiration date and remain valid even after closing the browser. This means that users don't need to log in again if they close and reopen the browser. For more information, refer to the [Security considerations for running the .NET Aspire dashboard](security-considerations.md) documentation.
+The dashboard persists the token as a browser persistent cookie, which remains valid for three days. Persistent cookies have an expiration date and remain valid even after closing the browser. This means that users don't need to log in again if they close and reopen the browser. For more information, see the [Security considerations for running the .NET Aspire dashboard](security-considerations.md) documentation.
 
 ## Resources page
 
-The **Resources** page is the default home page of the .NET Aspire dashboard. This page lists all of the .NET projects, containers, and executables included in your .NET Aspire project. For example, the starter application includes two projects:
+The **Resources** page is the default home page of the .NET Aspire dashboard. This page lists all of the .NET projects, containers, and executables included in your .NET Aspire solution. For example, the starter application includes two projects:
 
-- **apiservice**: A back-end API for the .NET Aspire project built using Minimal APIs.
-- **webfrontend**: The front-end UI for the .NET Aspire project built using Blazor.
+- **apiservice**: A back-end API project built using Minimal APIs.
+- **webfrontend**: The front-end UI project built using Blazor.
 
 The dashboard also provides essential details about each resource:
 
@@ -56,12 +56,12 @@ The dashboard also provides essential details about each resource:
   - **Errors**: Within the **State** column, errors are displayed as a badge with the error count. It's useful to understand quickly what resources are reporting errors. Selecting the badge takes you to the [semantic logs](#structured-logs-page) for that resource with the filter at an error level.
 - **Start time**: When the resource started running.
 - **Source**: The location of the resource on the device.
-- **Endpoints**: The URL(s) to reach the running resource directly.
+- **Endpoints**: One or more URLs to reach the running resource directly.
 - **Logs**: A link to the resource logs page.
 - **Actions**: A [set of actions](#resource-actions) that can be performed on the resource:
   - **Stop / Start**: Stop (or Start) the resource—depending on the current **State**.
   - **Console logs**: Navigate to the resource's console logs.
-  - **Ellipsis**: A submenu with additional resource specific actions:
+  - **Ellipsis**: A submenu with extra resource specific actions:
     - **View details**: View the resource details.
     - **Console log**: Navigate to the resource's console logs.
     - **Structured logs**: Navigate to the resource's structured logs.
@@ -75,7 +75,7 @@ The dashboard also provides essential details about each resource:
 
 ### Resource actions
 
-Each resource has a set of available actions that are conditionally enabled based on the resource's current state. For example, if a resource is running, the **Stop** action is enabled. If the resource is stopped, the **Start** action is enabled. Likewise, some actions are disabled when they're unavailable, for example some resources don't have structured logs. In these situations, the **Structured logs** action is disabled.
+Each resource has a set of available actions that are conditionally enabled based on the resource's current state. For example, if a resource is running, the **Stop** action is enabled. If the resource is stopped, the **Start** action is enabled. Likewise, some actions are disabled when they're unavailable, for example, some resources don't have structured logs. In these situations, the **Structured logs** action is disabled.
 
 #### Stop or Start a resource
 
@@ -87,7 +87,7 @@ When you select **Stop**, the resource stops running, and the **State** column u
 
 :::image type="content" source="media/explore/resource-stopped-action.png" lightbox="media/explore/resource-stopped-action.png" alt-text=".NET Aspire dashboard resource stopped.":::
 
-When a resource is in a non-running state, the **Start** button is enabled. Selecting **Start** starts the resource, and the **State** column updates to reflect the change. The **Stop** button is then enabled, allowing you to stop the resource again. The dashboard displays a toast notification of the result of the action:
+When a resource is in a nonrunning state, the **Start** button is enabled. Selecting **Start** starts the resource, and the **State** column updates to reflect the change. The **Stop** button is then enabled, allowing you to stop the resource again. The dashboard displays a toast notification of the result of the action:
 
 :::image type="content" source="media/explore/resource-started-action.png" lightbox="media/explore/resource-started-action.png" alt-text=".NET Aspire dashboard started resource.":::
 
@@ -110,13 +110,13 @@ The following submenu actions are available:
 - **Restart**: Stop and then start the resource.
 
 > [!IMPORTANT]
-> There might be some resources that disable some submenu actions, when they're disabled the action is grayed out:
+> There might be resources with disabled submenu actions. They're greyed out when they're disabled. For example, the following screenshot shows the submenu actions disabled:
 >
-> :::image type="content" source="media/explore/resource-submenu-actions.png" lightbox="media/explore/resource-submenu-actions.png" alt-text=".NET Aspire dashboard disabled submenu actions.":::
+> :::image type="content" source="media/explore/resource-submenu-actions.png" lightbox="media/explore/resource-submenu-actions.png" border="true" alt-text=".NET Aspire dashboard disabled submenu actions.":::
 
 #### Copy or Open in text visualizer
 
-To view a _text visualizer_ of certain columns, on hover you'll see a vertical ellipsis icon. Select the icon to display the available options:
+To view a _text visualizer_ of certain columns, on hover you see a vertical ellipsis icon. Select the icon to display the available options:
 
 - **Copy to clipboard**
 - **Open in text visualizer**
@@ -145,7 +145,7 @@ In this example, only containers are displayed in the list. For example, if you 
 
 :::image type="content" source="media/explore/resources-filtered-containers.png" lightbox="media/explore/resources-filtered-containers.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page filtered to show only containers.":::
 
-Executables are stand-alone processes. You can configure a .NET Aspire project to run a stand-alone executable during startup, though the default starter templates do not include any executables by default.
+Executables are stand-alone processes. You can configure a .NET Aspire project to run a stand-alone executable during startup, though the default starter templates don't include any executables by default.
 
 The following screenshot shows an example of a project that has errors:
 
@@ -168,11 +168,11 @@ For more information and examples of Structured logs, see the [Structured logs p
 
 ## Monitoring pages
 
-The .NET Aspire dashboard provides a variety of ways to view logs, traces, and metrics for your app. This information enables you to track the behavior and performance of your app and to diagnose any issues that arise.
+The .NET Aspire dashboard provides various ways to view logs, traces, and metrics for your app. This information enables you to track the behavior and performance of your app and to diagnose any issues that arise.
 
 ### Console logs page
 
-The **Console logs** page displays text that each resource in you app has sent to standard output. Logs are a useful way to monitor the health of your app and diagnose issues. Logs are displayed differently depending on the source, such as project, container, or executable.
+The **Console logs** page displays text that each resource in your app has sent to standard output. Logs are a useful way to monitor the health of your app and diagnose issues. Logs are displayed differently depending on the source, such as project, container, or executable.
 
 When you open the Console logs page, you must select a source in the **Select a resource** drop-down list.
 
@@ -198,7 +198,7 @@ The preceding screenshot shows the `catalogservice (application)` project with t
 
 ### Structured logs page
 
-.NET Aspire automatically configures your projects with logging using OpenTelemetry. Navigate to the **Structured logs** page to view the semantic logs for your .NET Aspire project. [Semantic, or structured logging](https://github.com/NLog/NLog/wiki/How-to-use-structured-logging) makes it easier to store and query log-events, as the log-event message-template and message-parameters are preserved, instead of just transforming them into a formatted message. You'll notice a clean structure for the different logs displayed on the page using columns:
+.NET Aspire automatically configures your projects with logging using OpenTelemetry. Navigate to the **Structured logs** page to view the semantic logs for your .NET Aspire project. [Semantic, or structured logging](https://github.com/NLog/NLog/wiki/How-to-use-structured-logging) makes it easier to store and query log-events, as the log-event message-template and message-parameters are preserved, instead of just transforming them into a formatted message. You notice a clean structure for the different logs displayed on the page using columns:
 
 - **Resource**: The resource the log originated from.
 - **Level**: The log level of the entry, such as information, warning, or error.
@@ -256,7 +256,7 @@ The structured logs page is discussed in more detail in the [Structured logs pag
 
 #### Trace examples
 
-Each trace has a color, which is generated to help differentiate between spans — one color for each resource. The colors are reflected in both the _traces page_ and the _trace detail page_. When traces depict an arrow icon, those icons are colorized as well to match the span of the target trace. Consider the following example screenshot of traces:
+Each trace has a color, which is generated to help differentiate between spans—one color for each resource. The colors are reflected in both the _traces page_ and the _trace detail page_. When traces depict an arrow icon, those icons are colorized as well to match the span of the target trace. Consider the following example screenshot of traces:
 
 :::image type="content" source="media/explore/traces.png" lightbox="media/explore/traces.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page.":::
 
@@ -284,7 +284,7 @@ And the corresponding detailed view of the trace with errors:
 
 Navigate to the **Metrics** page to view the metrics for your app. .NET Aspire automatically configures metrics for the different projects in your app. Metrics are a way to measure the health of your application and can be used to monitor the performance of your app over time.
 
-Each metric-publishing project in your app will have its own metrics. The metrics page displays a selection pane for each top-level meter and the corresponding instruments that you can select to view the metric.
+Each metric-publishing project in your app has its own metrics. The metrics page displays a selection pane for each top-level meter and the corresponding instruments that you can select to view the metric.
 
 Consider the following example screenshot of the metrics page, with the `webfrontend` project selected and the `System.Net.Http` meter's `http.client.request.duration` metric selected:
 
@@ -294,7 +294,7 @@ In addition to the metrics chart, the metrics page includes an option to view th
 
 :::image type="content" source="media/explore/metrics-table-view.png" lightbox="media/explore/metrics-table-view.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with the table view selected.":::
 
-Under the chart, there is a list of filters you can apply to focus on the data that interests you. For example, in the following screenshot, the **http.request.method** field has been filtered to show only **GET** requests:
+Under the chart, there's a list of filters you can apply to focus on the data that interests you. For example, in the following screenshot, the **http.request.method** field has been filtered to show only **GET** requests:
 
 :::image type="content" source="media/explore/metrics-view-filtered.png" lightbox="media/explore/metrics-view-filtered.png" alt-text="A screenshot of the .NET Aspire dashboard Metrics page with a filter applied to the chart.":::
 
@@ -333,7 +333,7 @@ For more information, see [OpenTelemetry Docs: Exemplars](https://opentelemetry.
 
 ## Theme selection
 
-By default, the theme is set to follow the System theme, which means the dashboard will use the same theme as your operating system. You can also select the **Light** or **Dark** theme to override the system theme. Theme selections are persisted.
+By default, the theme is set to follow the System theme, which means the dashboard uses the same theme as your operating system. You can also select the **Light** or **Dark** theme to override the system theme. Theme selections are persisted.
 
 The following screenshot shows the theme selection dialog, with the default System theme selected:
 
@@ -345,7 +345,7 @@ If you prefer the Light theme, you can select it from the theme selection dialog
 
 ## Dashboard shortcuts
 
-The .NET Aspire dashboard provides a variety of shortcuts to _help_ you navigate and control different parts of the dashboard. To display the keyboard shortcuts, press <kbd>Shift</kbd> + <kbd>?</kbd>, or select the question mark icon in the top-right corner of the dashboard:
+The .NET Aspire dashboard provides various shortcuts to _help_ you navigate and control different parts of the dashboard. To display the keyboard shortcuts, press <kbd>Shift</kbd> + <kbd>?</kbd>, or select the question mark icon in the top-right corner of the dashboard:
 
 :::image type="content" source="media/explore/dashboard-help.png" lightbox="media/explore/dashboard-help.png" alt-text=".NET Aspire dashboard Help modal dialog.":::
 
