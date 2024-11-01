@@ -56,7 +56,8 @@ When the app host is run, by the time the .NET Aspire dashboard is displayed, yo
 
 :::code language="Plaintext" source="snippets/AspireApp/AspireApp.ResourceAppHost/Console.txt" highlight="8,10,12":::
 
-> NOTE: Some events are blocking. For example when the `BeforeResourceStartEvent` is published, the startup of the resource will be blocked until all subscriptions for that event on a given resource have completed executing. Whether an event is blocking or not depends on how it is published (see following section).
+> [!NOTE]
+> Some events are blocking. For example, when the `BeforeResourceStartEvent` is published, the startup of the resource will be blocked until all subscriptions for that event on a given resource have completed executing. Whether an event is blocking or not depends on how it is published (see the following section).
 
 ## Publish events
 
