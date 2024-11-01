@@ -58,7 +58,7 @@ Next, configure the secrets for these parameters. Right-click on the `MailDevRes
 ```
 
 > [!WARNING]
-> These credentials are for demonstration purposes only and MailDev is intended for local development. These crednetials are fictitious and shouldn't be used in a production environment.
+> These credentials are for demonstration purposes only and MailDev is intended for local development. These credentials are fictitious and shouldn't be used in a production environment.
 
 ## Update the MailKit integration
 
