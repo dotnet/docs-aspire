@@ -92,6 +92,11 @@ Browser token authentication works by the frontend asking for a token. The token
 | `Authentication:Schemes:OpenIdConnect:ClientSecret` | `null` | A secret that only the real RP would know. |
 | Other properties of <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> | `null` | Values inside configuration section `Authentication:Schemes:OpenIdConnect:*` are bound to `OpenIdConnectOptions`, such as `Scope`. |
 
+> [!NOTE]
+> Additional configuration may be required when using `OpenIdConnect` as authentication mode behind a reverse-proxy that terminates SSL. Check if you need `ASPNETCORE_FORWARDEDHEADERS_ENABLED` to be set to `true`.
+>
+> For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](/aspnet/core/host-and-deploy/proxy-load-balancer).
+
 ## OTLP authentication
 
 The OTLP endpoint authentication is configured with `Dashboard:Otlp:AuthMode`. The OTLP endpoint can be secured with an API key or [client certificate](/aspnet/core/security/authentication/certauth) authentication.
