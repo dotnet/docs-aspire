@@ -1,6 +1,6 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
-// Add service defaults & Aspire components.
+// Add service defaults & Aspire client integrations.
 builder.AddServiceDefaults();
 
 // Add services to the container.
@@ -18,11 +18,6 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
-    if (Random.Shared.NextDouble() > .5)
-    {
-        // throw new Exception("This is an example error for demonstration purposes.");
-    }
-
     var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (

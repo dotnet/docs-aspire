@@ -41,6 +41,8 @@ To create a new .NET Aspire Starter Application, you can use either Visual Studi
 
 :::zone-end
 
+For more information on the available templates, see [.NET Aspire templates](../fundamentals/aspire-sdk-templates.md).
+
 ## Test the app locally
 
 The sample app is now ready for testing. You want to verify the following conditions:
@@ -50,7 +52,7 @@ The sample app is now ready for testing. You want to verify the following condit
 
 :::zone pivot="visual-studio"
 
-In Visual Studio, set the **AspireSample.AppHost** project as the startup project by right-clicking on the project in the **Solution Explorer** and selecting **Set as Startup Project**. Then, press <kbd>F5</kbd> to run the app.
+In Visual Studio, set the **AspireSample.AppHost** project as the startup project by right-clicking on the project in the **Solution Explorer** and selecting **Set as Startup Project**. It might already have been automatically set as the startup project. Once set, press <kbd>F5</kbd> or (<kbd>Ctrl</kbd> + <kbd>F5</kbd> to run without debugging) to run the app.
 
 :::zone-end
 :::zone pivot="dotnet-cli"
@@ -163,7 +165,7 @@ Your _AspireSample_ directory should resemble the following structure:
 
 ## Explore the starter projects
 
-Each project in an .NET Aspire solution plays a role in the composition of your app. The _*.Web_ project is a standard ASP.NET Core Blazor App that provides a front end UI. For more information, see [New Blazor Web App template](/aspnet/core/release-notes/aspnetcore-8.0?view=aspnetcore-8.0&preserve-view=true#new-blazor-web-app-template). The _*.ApiService_ project is a standard ASP.NET Core Minimal API template project. Both of these projects depend on the _*.ServiceDefaults_ project, which is a shared project that's used to manage configurations that are reused across projects in your solution.
+Each project in an .NET Aspire solution plays a role in the composition of your app. The _*.Web_ project is a standard ASP.NET Core Blazor App that provides a front end UI. For more information, see [What's new in ASP.NET Core 9.0: Blazor](/aspnet/core/release-notes/aspnetcore-9.0?view=aspnetcore-9.0#blazor). The _*.ApiService_ project is a standard ASP.NET Core Minimal API template project. Both of these projects depend on the _*.ServiceDefaults_ project, which is a shared project that's used to manage configurations that are reused across projects in your solution.
 
 The two projects of interest in this quickstart are the _*.AppHost_ and _*.ServiceDefaults_ projects detailed in the following sections.
 
@@ -182,12 +184,12 @@ If you've used either the [.NET Generic Host](/dotnet/core/extensions/generic-ho
 - Creates an <xref:Aspire.Hosting.IDistributedApplicationBuilder> instance from calling <xref:Aspire.Hosting.DistributedApplication.CreateBuilder?displayProperty=nameWithType>.
 - Calls <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> with the name `"cache"` to add a Redis server to the app, assigning the returned value to a variable named `cache`, which is of type `IResourceBuilder<RedisResource>`.
 - Calls <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> given the generic-type parameter with the project's details, adding the `AspireSample.ApiService` project to the application model. This is one of the fundamental building blocks of .NET Aspire, and it's used to configure service discovery and communication between the projects in your app. The name argument `"apiservice"` is used to identify the project in the application model, and used later by projects that want to communicate with it.
-- Calls `AddProject` again, this time adding the `AspireSample.Web` project to the application model. It also chains multiple calls to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> passing the `cache` and `apiservice` variables. The `WithReference` API is another fundamental API of .NET Aspire, which injects either service discovery information or connection string configuration into the project being added to the application model.
+- Calls `AddProject` again, this time adding the `AspireSample.Web` project to the application model. It also chains multiple calls to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> passing the `cache` and `apiService` variables. The `WithReference` API is another fundamental API of .NET Aspire, which injects either service discovery information or connection string configuration into the project being added to the application model. Additionally, calls to the `WaitFor` API are used to ensure that the `cache` and `apiService` resources are available before the `AspireSample.Web` project is started. For more information, see [.NET Aspire orchestration: Waiting for resources](../fundamentals/app-host-overview.md#waiting-for-resources).
 
-Finally, the app is built and run. The <xref:Aspire.Hosting.DistributedApplication.Run?displayProperty=nameWithType> method is provided by the .NET Aspire SDK, and is responsible for starting the app and all of its dependencies. For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
+Finally, the app is built and run. The <xref:Aspire.Hosting.DistributedApplication.Run?displayProperty=nameWithType> method is responsible for starting the app and all of its dependencies. For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
 
 > [!TIP]
-> The call to `AddRedis` creates a local Redis container for the app to use. If you'd rather simply point to an existing Redis instance, you can use the `AddConnectionString` method to reference an existing connection string. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
+> The call to <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis*> creates a local Redis container for the app to use. If you'd rather simply point to an existing Redis instance, you can use the `AddConnectionString` method to reference an existing connection string. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
 
 ### .NET Aspire service defaults project
 
