@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire templates
 description: Learn how to install the .NET Aspire templates, and how to use them to create new apps.
-ms.date: 10/17/2024
+ms.date: 11/04/2024
 zone_pivot_groups: dev-environment
 uid: dotnet/aspire/templates
 ---

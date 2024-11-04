@@ -1,7 +1,7 @@
 ---
 title: Build your first .NET Aspire solution
 description: Learn how to build your first .NET Aspire solution using the .NET Aspire Started Application template.
-ms.date: 10/16/2024
+ms.date: 11/04/2024
 ms.topic: quickstart
 zone_pivot_groups: dev-environment
 ---

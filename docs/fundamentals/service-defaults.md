@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire service defaults
 description: Learn about the .NET Aspire service defaults project.
-ms.date: 09/24/2024
+ms.date: 11/04/2024
 ms.topic: reference
 uid: dotnet/aspire/service-defaults
 ---
@@ -124,14 +124,14 @@ For more information, see [.NET Aspire health checks](health-checks.md).
 
 If the default service configuration provided by the project template is not sufficient for your needs, you have the option to create your own service defaults project. This is especially useful when your consuming project, such as a Worker project or WinForms project, cannot or does not want to have a `FrameworkReference` dependency on `Microsoft.AspNetCore.App`.
 
-To do this, create a new .NET 8.0 class library project and add the necessary dependencies to the project file, consider the following example:
+To do this, create a new .NET 9.0 class library project and add the necessary dependencies to the project file, consider the following example:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -238,6 +238,8 @@ This is only an example, and you can customize the `AppDefaultsExtensions` class
 This code is derived from the .NET Aspire Starter Application template and is intended as a starting point. You're free to modify this code however you deem necessary to meet your needs. It's important to know that service defaults project and its functionality are automatically applied to all project resources in a .NET Aspire solution.
 
 - [Service discovery in .NET Aspire](../service-discovery/overview.md)
+- [.NET Aspire SDK](dotnet-aspire-sdk.md)
+- [.NET Aspire templates](aspire-sdk-templates.md)
 - [Health checks in .NET Aspire](health-checks.md)
 - [.NET Aspire telemetry](telemetry.md)
 - [Build resilient HTTP apps: Key development patterns](/dotnet/core/resilience/http-resilience)

@@ -47,7 +47,7 @@ With all the refactoring, some APIs are being deprecated or removed.
 
 ## Type of breaking change
 
-This change is a [binary incompatible](../categories.md#binary-incompatible) and [behavioral change](../categories.md#behavioral-change).
+This change is a [binary incompatible](../categories.md#binary-compatibility) and [behavioral change](../categories.md#behavioral-change).
 
 ## Reason for change
 
