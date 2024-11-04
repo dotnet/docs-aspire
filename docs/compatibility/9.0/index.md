@@ -2,12 +2,12 @@
 title: Breaking changes in .NET Aspire 9
 titleSuffix: ""
 description: Navigate to the breaking changes in .NET Aspire 9.
-ms.date: 10/24/2024
+ms.date: 11/04/2024
 ---
 
 # Breaking changes in .NET Aspire 9
 
-If you're migrating an app to .NET 9, the breaking changes listed here might affect you. Changes are grouped by technology area, such as Hosting integration, Client integration, or Dashboard.
+If you're migrating an app to .NET 9, the breaking changes listed here might affect you.
 
 [!INCLUDE [binary-source-behavioral](../includes/binary-source-behavioral.md)]
 
@@ -15,7 +15,7 @@ If you're migrating an app to .NET 9, the breaking changes listed here might aff
 >
 > This article is a work in progress. It's not a complete list of breaking changes in .NET Aspire 9.
 
-## Hosting integrations
+## Breaking changes
 
 | Title | Type of change | Introduced version |
 |--|--|--|
