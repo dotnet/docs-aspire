@@ -641,12 +641,12 @@ The following resources are available in the [Aspire.Hosting.Azure](https://www.
 |--|--|--|
 | <xref:Aspire.Hosting.AzureAppConfigurationExtensions.AddAzureAppConfiguration%2A> | `azure.bicep.v0` | [Azure App Configuration resource types](#azure-app-configuration-resource-type) |
 | <xref:Aspire.Hosting.AzureKeyVaultResourceExtensions.AddAzureKeyVault%2A> | `azure.bicep.v0` | [Azure Key Vault resource type](#azure-key-vault-resource-type) |
-| <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A>`.AsAzureRedis()` | `azure.bicep.v0` | [Azure Redis resource types](#azure-redis-resource-type) |
+| `AddAzureRedis` | `azure.bicep.v0` | [Azure Redis resource types](#azure-redis-resource-type) |
 | <xref:Aspire.Hosting.AzureServiceBusExtensions.AddAzureServiceBus%2A> | `azure.bicep.v0` | [Azure Service Bus resource type](#azure-service-bus-resource-type) |
-| <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A>`.AsAzureSqlDatabase()` | `azure.bicep.v0` | [Azure SQL resource types](#azure-sql-resource-types) |
-| <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A>`.AsAzureSqlDatabase().AddDatabase(...)` | `value.v0` | [Azure SQL resource types](#azure-sql-resource-types) |
-| <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A>`.AsAzurePostgresFlexibleServer(...)` | `azure.bicep.v0` | [Azure Postgres resource types](#azure-postgres-resource-types) |
-| <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A>`.AsAzurePostgresFlexibleServer(...).AddDatabase(...)` | `value.v0` | [Azure Postgres resource types](#azure-postgres-resource-types) |
+| `AddAzureSqlServer(...)` | `azure.bicep.v0` | [Azure SQL resource types](#azure-sql-resource-types) |
+| `AddAzureSqlServer(...).AddDatabase(...)` | `value.v0` | [Azure SQL resource types](#azure-sql-resource-types) |
+| `AddAzurePostgresFlexibleServer(...)` | `azure.bicep.v0` | [Azure Postgres resource types](#azure-postgres-resource-types) |
+| `AddAzurePostgresFlexibleServer(...).AddDatabase(...)` | `value.v0` | [Azure Postgres resource types](#azure-postgres-resource-types) |
 | <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A> | `azure.storage.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
 | <xref:Aspire.Hosting.AzureStorageExtensions.AddBlobs%2A> | `value.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
 | <xref:Aspire.Hosting.AzureStorageExtensions.AddQueues%2A> | `value.v0` | [Azure Storage resource types](#azure-storage-resource-types) |
@@ -779,8 +779,7 @@ Example code:
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddRedis("azredis1")
-       .PublishAsAzureRedis();
+builder.AddAzureRedis("azredis1");
 ```
 
 Example manifest:
@@ -788,13 +787,13 @@ Example manifest:
 ```json
 {
   "resources": {
-    "azredis1": {
+    "azredis": {
       "type": "azure.bicep.v0",
-      "connectionString": "{azredis1.secretOutputs.connectionString}",
-      "path": "aspire.hosting.azure.bicep.redis.bicep",
+      "connectionString": "{azredis.outputs.connectionString}",
+      "path": "azredis.module.bicep",
       "params": {
-        "redisCacheName": "azredis1",
-        "keyVaultName": ""
+        "principalId": "",
+        "principalName": ""
       }
     }
   }
@@ -837,8 +836,7 @@ Example code:
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddSqlServer("sql1")
-       .PublishAsAzureSqlDatabase()
+builder.AddAzureSqlServer("sql")
        .AddDatabase("inventory");
 ```
 
@@ -847,22 +845,18 @@ Example manifest:
 ```json
 {
   "resources": {
-    "sql1": {
+    "sql": {
       "type": "azure.bicep.v0",
-      "connectionString": "Server=tcp:{sql1.outputs.sqlServerFqdn},1433;Encrypt=True;Authentication=\u0022Active Directory Default\u0022",
-      "path": "aspire.hosting.azure.bicep.sql.bicep",
+      "connectionString": "Server=tcp:{sql.outputs.sqlServerFqdn},1433;Encrypt=True;Authentication=\u0022Active Directory Default\u0022",
+      "path": "sql.module.bicep",
       "params": {
-        "serverName": "sql1",
         "principalId": "",
-        "principalName": "",
-        "databases": [
-          "inventory"
-        ]
+        "principalName": ""
       }
     },
     "inventory": {
       "type": "value.v0",
-      "connectionString": "{sql1.connectionString};Database=inventory"
+      "connectionString": "{sql.connectionString};Database=inventory"
     }
   }
 }
@@ -875,14 +869,8 @@ Example code:
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var administratorLogin = builder.AddParameter("administratorLogin");
-var administratorLoginPassword = builder.AddParameter(
-    "administratorLoginPassword", secret: true);
-
-var pg = builder.AddPostgres("postgres")
-                .PublishAsAzurePostgresFlexibleServer(
-                    administratorLogin, administratorLoginPassword)
-                .AddDatabase("db");
+builder.AddAzurePostgresFlexibleServer("postgres")
+       .AddDatabase("db");
 ```
 
 Example manifest:
@@ -890,37 +878,14 @@ Example manifest:
 ```json
 {
   "resources": {
-    "administratorLogin": {
-      "type": "parameter.v0",
-      "value": "{administratorLogin.inputs.value}",
-      "inputs": {
-        "value": {
-          "type": "string"
-        }
-      }
-    },
-    "administratorLoginPassword": {
-      "type": "parameter.v0",
-      "value": "{administratorLoginPassword.inputs.value}",
-      "inputs": {
-        "value": {
-          "type": "string",
-          "secret": true
-        }
-      }
-    },
     "postgres": {
       "type": "azure.bicep.v0",
-      "connectionString": "{postgres.secretOutputs.connectionString}",
-      "path": "aspire.hosting.azure.bicep.postgres.bicep",
+      "connectionString": "{postgres.outputs.connectionString}",
+      "path": "postgres.module.bicep",
       "params": {
-        "serverName": "postgres",
-        "keyVaultName": "",
-        "administratorLogin": "{administratorLogin.value}",
-        "administratorLoginPassword": "{administratorLoginPassword.value}",
-        "databases": [
-          "db"
-        ]
+        "principalId": "",
+        "principalType": "",
+        "principalName": ""
       }
     },
     "db": {
@@ -935,11 +900,11 @@ Example manifest:
 
 The [Azure Developer CLI](/azure/developer/azure-developer-cli/) (azd) is a tool that can be used to deploy .NET Aspire projects to Azure Container Apps. With the `azure.bicep.v0` resource type, cloud-agnostic resource container types can be mapped to Azure-specific resources. The following table lists the resource types that are supported in the Azure Developer CLI:
 
-| Name | Cloud-agnostic API | Configure as Azure resource |
+| Name | Cloud-agnostic API | Azure API |
 | ---- | ---------------------------- | ---------------------------------- |
-| Redis | <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> | `PublishAsAzureRedis` |
-| Postgres | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A> | `PublishAsAzurePostgresFlexibleServer` |
-| SQL Server | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A> | `PublishAsAzureSqlDatabase` |
+| Redis | <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> | `AddAzureRedis` |
+| Postgres | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A> | `AddAzurePostgresFlexibleServer` |
+| SQL Server | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer%2A> | `AddAzureSqlServer` |
 
 When resources as configured as Azure resources, the `azure.bicep.v0` resource type is generated in the manifest. For more information, see [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](azure/aca-deployment-azd-in-depth.md).
 
