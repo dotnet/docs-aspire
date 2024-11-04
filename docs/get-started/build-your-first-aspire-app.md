@@ -45,7 +45,7 @@ For more information on the available templates, see [.NET Aspire templates](../
 
 ## Test the app locally
 
-The sample app is now ready for testing. You want to verify the following conditions:
+The sample app includes a frontend Blazor app that communicates with a Minimal API project. The API project is used to provide _fake_ weather data to the frontend. The frontend app is configured to use service discovery to connect to the API project. The API project is configured to use output caching with Redis. The sample app is now ready for testing. You want to verify the following conditions:
 
 - Weather data is retrieved from the API project using service discovery and displayed on the weather page.
 - Subsequent requests are handled via the output caching configured by the .NET Aspire Redis integration.
