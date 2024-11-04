@@ -23,13 +23,6 @@ body:
         "Propose a location for the article. Use the `/` character to
         define 'sub-folders' in the table of contents. Start with a top-level
         guide, and follow through to the parent folder for the new article."
-  - type: input
-    id: toc-item
-    attributes:
-      label: Location in table of contents.
-      description: Give some indication for the location in the table of contents.
-    validations:
-      required: false
   - type: markdown
     attributes:
       value: >
