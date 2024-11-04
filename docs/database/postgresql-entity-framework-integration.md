@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL Entity Framework Core integration
 description: Learn how to integrate PostgreSQL with .NET Aspire applications using Entity Framework Core, using both hosting and client integrations.
-ms.date: 10/16/2024
+ms.date: 11/04/2024
 uid: database/postgresql-ef-core-integration
 ---
 
@@ -52,6 +52,49 @@ builder.AddNpgsqlDbContext<YourDbContext>(connectionName: "postgresdb");
 
 > [!TIP]
 > The `connectionName` parameter must match the name used when adding the PostgreSQL server resource in the app host project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
+
+### Add Azure authenticated Npgsql client
+
+By default, when you call `AddAzurePostgresFlexibleServer` in your PostgreSQL hosting integration, it configures [Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication) authentication. You need to install the [📦 Azure.Identity](https://www.nuget.org/packages/Azure.Identity) NuGet package to enable authentication:
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Azure.Identity
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Azure.Identity"
+                  Version="*" />
+```
+
+---
+
+The PostgreSQL connection can be consumed using the client integration and `Azure.Identity`:
+
+```csharp
+builder.AddNpgsqlDbContext<YourDbContext>(
+    "postgresdb", 
+    configureDataSourceBuilder: (dataSourceBuilder) =>
+{
+    if (!string.IsNullOrEmpty(dataSourceBuilder.ConnectionStringBuilder.Password))
+    {
+        return;
+    }
+
+    dataSourceBuilder.UsePeriodicPasswordProvider(async (_, ct) =>
+    {
+        var credentials = new DefaultAzureCredential();
+        var token = await credentials.GetTokenAsync(
+            new TokenRequestContext([
+                "https://ossrdbms-aad.database.windows.net/.default"
+            ]), ct);
+        return token.Token;
+    }, TimeSpan.FromHours(24), TimeSpan.FromSeconds(10));
+});
+```
 
 After adding `YourDbContext` to the builder, you can get the `YourDbContext` instance using dependency injection. For example, to retrieve your data source object from an example service define it as a constructor parameter and ensure the `ExampleService` class is registered with the dependency injection container:
 
