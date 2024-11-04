@@ -165,7 +165,7 @@ Your _AspireSample_ directory should resemble the following structure:
 
 ## Explore the starter projects
 
-Each project in an .NET Aspire solution plays a role in the composition of your app. The _*.Web_ project is a standard ASP.NET Core Blazor App that provides a front end UI. For more information, see [What's new in ASP.NET Core 9.0: Blazor](/aspnet/core/release-notes/aspnetcore-9.0?view=aspnetcore-9.0#blazor). The _*.ApiService_ project is a standard ASP.NET Core Minimal API template project. Both of these projects depend on the _*.ServiceDefaults_ project, which is a shared project that's used to manage configurations that are reused across projects in your solution.
+Each project in an .NET Aspire solution plays a role in the composition of your app. The _*.Web_ project is a standard ASP.NET Core Blazor App that provides a front end UI. For more information, see [What's new in ASP.NET Core 9.0: Blazor](/aspnet/core/release-notes/aspnetcore-9.0?view=aspnetcore-9.0&preserve-view=true#blazor). The _*.ApiService_ project is a standard ASP.NET Core Minimal API template project. Both of these projects depend on the _*.ServiceDefaults_ project, which is a shared project that's used to manage configurations that are reused across projects in your solution.
 
 The two projects of interest in this quickstart are the _*.AppHost_ and _*.ServiceDefaults_ projects detailed in the following sections.
 
