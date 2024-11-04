@@ -23,7 +23,8 @@ If you're migrating an app to .NET 9, the breaking changes listed here might aff
 | [Python resources and APIs changed](addpython.md) | Source incompatible | .NET Aspire 9.0 RC1 |
 | [Updates to implicitly named volumes to avoid collisions](unnamed-volumes.md) | Source incompatible | .NET Aspire 9.0 RC1 |
 | [Make unnamed volumes more unique](make-unnamed-volumes-unique.md) | Source incompatible | .NET Aspire 9.0 RC1 |
-| [New `Azure.Provisioning` version | Source incompatible](azure-provisioning.md) | .NET Aspire 9.0 RC1 |
+| [New `Azure.Provisioning` version](azure-provisioning.md) | Source incompatible | .NET Aspire 9.0 RC1 |
 | [Allow customization of Azure `ProvisioningContext`](provisioning-context.md) | Source incompatible | .NET Aspire 9.0 RC1 |
 | [Changes to `Azure.Hosting` APIs](azure-hosting.md) | Source incompatible | .NET Aspire 9.0 RC1 |
-| [Improved Azure resource name scheme | Source incompatible](azure-resource-name-scheme.md) | .NET Aspire 9.0 RC1 |
+| [Improved Azure resource name scheme](azure-resource-name-scheme.md) | Source incompatible | .NET Aspire 9.0 RC1 |
+| [Ollama integration updates](ollama-integration-updates.md) | Binary incompatible, behavioral change | .NET Aspire 9.0 GA |

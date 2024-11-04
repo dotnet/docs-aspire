@@ -29,3 +29,5 @@ items:
       href: 9.0/provisioning-context.md
     - name: Improved Azure resource name scheme
       href: 9.0/azure-resource-name-scheme.md
+    - name: Ollama integration updates
+      href: 9.0/ollama-integration-updates.md
