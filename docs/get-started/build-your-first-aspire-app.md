@@ -173,7 +173,9 @@ The two projects of interest in this quickstart are the _*.AppHost_ and _*.Servi
 
 The _*.AppHost_ project is responsible for acting as the orchestrator, and sets the `IsAspireHost` property of the project file to `true`:
 
-:::code language="xml" source="snippets/quickstart/AspireSample/AspireSample.AppHost/AspireSample.AppHost.csproj" highlight="8":::
+:::code language="xml" source="snippets/quickstart/AspireSample/AspireSample.AppHost/AspireSample.AppHost.csproj" highlight="10":::
+
+For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md) and [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md).
 
 Consider the _:::no-loc text="Program.cs":::_ file of the _AspireSample.AppHost_ project:
 
