@@ -107,17 +107,17 @@ Welcome to what's new in the .NET Aspire docs for October 2024. This article lis
 
 ### Updated articles
 
-- [.NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> distributed caching integration](../caching/stackexchange-redis-distributed-caching-integration.md)
+- [.NET Aspire Redis distributed caching integration](../caching/stackexchange-redis-distributed-caching-integration.md)
   - Updates to other Redis-protocol docs
   - Rewrite the non-Azure messaging integration articles
-- [.NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> integration](../caching/stackexchange-redis-integration.md)
+- [.NET Aspire Redis integration](../caching/stackexchange-redis-integration.md)
   - Updates to other Redis-protocol docs
   - Redis rewrite
   - Rewrite the non-Azure messaging integration articles
-- [.NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> output caching integration](../caching/stackexchange-redis-output-caching-integration.md)
+- [.NET Aspire Redis output caching integration](../caching/stackexchange-redis-output-caching-integration.md)
   - Updates to other Redis-protocol docs
   - Rewrite the non-Azure messaging integration articles
-- [Stack Exchange Redis&reg;<sup>**[*](#registered)**</sup> caching overview](../caching/stackexchange-redis-caching-overview.md) - Updates to other Redis-protocol docs
+- [Stack Exchange Redis caching overview](../caching/stackexchange-redis-caching-overview.md) - Updates to other Redis-protocol docs
 - [Tutorial: Implement caching with .NET Aspire integrations](../caching/caching-integrations.md) - Rewrite the non-Azure messaging integration articles
 
 ## Security
