@@ -31,7 +31,7 @@ dotnet new install Aspire.ProjectTemplates
 
 ## List the .NET Aspire templates
 
-::zone pivot="visual-studio"
+:::zone pivot="visual-studio"
 
 The .NET Aspire templates are installed automatically when you install Visual Studio 17.9 or later. To see what .NET Aspire templates are available, select **File** > **New** > **Project** in Visual Studio, and search for "Aspire" in the search bar (<kbd>Alt</kbd>+<kbd>S</kbd>). You'll see a list of available .NET Aspire project templates:
 
