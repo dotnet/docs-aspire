@@ -155,4 +155,8 @@ dotnet new aspire-starter
 
 :::zone-end
 
-For more information, see [Available templates](#available-templates).
+## See also
+
+- [.NET Aspire SDK](dotnet-aspire-sdk.md)
+- [.NET Aspire setup and tooling](setup-tooling.md)
+- [Testing in .NET Aspire](testing.md)
