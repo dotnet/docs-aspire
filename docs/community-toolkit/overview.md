@@ -32,13 +32,13 @@ The community toolkit is a growing project, publishing a set of NuGet packages. 
   - [📦 CommunityToolkit.Aspire.Hosting.Java](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Java).
 - The [Deno](https://deno.com/) integration provides support for hosting Deno applications and running tasks.
   - [📄 .NET Aspire Deno hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Deno).
-  - [📦 CommunityToolkit.Aspire.Hosting.Deno](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Deno) 
+  - [📦 CommunityToolkit.Aspire.Hosting.Deno](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Deno).
 - The [Ollama](https://ollama.com/) integration provides extensions and resource definitions, and support for downloading models as startup.
-  - [📄 .NET Aspire Ollama hosting integration](ollama.md#hosting-integration)
-  - [📦 CommunityToolkit.Aspire.Hosting.Ollama](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Ollama)
+  - [📄 .NET Aspire Ollama hosting integration](ollama.md#hosting-integration).
+  - [📦 CommunityToolkit.Aspire.Hosting.Ollama](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Ollama).
 - The [Meilisearch](https://www.meilisearch.com) integration enables hosting Meilisearch containers.
-  - [📄 .NET Aspire Meilisearch hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Meilisearch)
-  - [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch)
+  - [📄 .NET Aspire Meilisearch hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Meilisearch).
+  - [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch).
 
 ### Client integrations
 
