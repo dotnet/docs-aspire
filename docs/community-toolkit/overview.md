@@ -6,18 +6,7 @@ ms.date: 11/05/2024
 
 # .NET Aspire Community Toolkit
 
-:::row:::
-:::column:::
-
-:::image type="icon" border="false" source="../media/dotnet-foundation.svg":::
-
-:::column-end:::
-:::column span="3":::
-
 The .NET Aspire Community Toolkit is part of the [.NET Foundation](https://dotnetfoundation.org/projects/project-detail/.net-aspire-community-toolkit). The community toolkit is a collection of integrations and extensions for .NET Aspire created by the community. The .NET Aspire team doesn't officially support the integrations and extensions in the community toolkit. The community provides these tools as-is for everyone to use and contribute to. You can find the source code for the toolkit on [GitHub][github-repo].
-
-:::column-end:::
-:::row-end:::
 
 ## Why use the toolkit?
 
@@ -25,18 +14,7 @@ The community toolkit offers flexible, community-driven integrations that enhanc
 
 ## What's in the toolkit?
 
-:::row:::
-:::column:::
-
-:::image type="icon" border="false" source="/media/logos/logo_nuget.svg":::
-
-:::column-end:::
-:::column span="3":::
-
 The community toolkit is a growing project, publishing a set of NuGet packages. It aims to provide various integrations, both hosting and client alike, that aren't otherwise part of the official .NET Aspire project. Additionally, the community toolkit packages various extensions for popular services and platforms. The following sections detail some of the integrations and extensions currently available in the toolkit.
-
-:::column-end:::
-:::row-end:::
 
 ### Hosting integrations
 
@@ -86,17 +64,6 @@ If you're not seeing an integration or extension you need, you can contribute to
 
 ## How to collaborate
 
-:::row:::
-:::column:::
-
-:::image type="icon" border="false" source="/media/logos/logo_octokitty.svg":::
-
-:::column-end:::
-:::column span="3":::
-
 The community toolkit is an open-source project, and contributions from the community aren't only welcomed, but encouraged. If you're interested in contributing, see the [contributing guidelines](https://github.com/CommunityToolkit/Aspire/blob/main/CONTRIBUTING.md). As part of the .NET Foundation, contributors of the toolkit must adhere to the [.NET Foundation Code of Conduct](https://dotnetfoundation.org/about/policies/code-of-conduct).
-
-:::column-end:::
-:::row-end:::
 
 [github-repo]: https://github.com/CommunityToolkit/Aspire
