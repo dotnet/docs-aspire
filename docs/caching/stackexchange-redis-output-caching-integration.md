@@ -83,7 +83,7 @@ builder.AddRedisOutputCache(connectionName: "cache");
 
 ### Add Azure Cache for Redis client
 
-By default, when you call `AddAzureRedis` in your Redis hosting integration, it configures [Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication) authentication. You need to install the [📦 Microsoft.Azure.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Azure.StackExchangeRedis) NuGet package to enable authentication:
+By default, when you call `AddAzureRedis` in your Redis hosting integration, it configures [Microsoft Entra ID](/azure/azure-cache-for-redis/cache-azure-active-directory-for-authentication) authentication. You need to install the [📦 Microsoft.Azure.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Azure.StackExchangeRedis) NuGet package to enable authentication:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
