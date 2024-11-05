@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire integrations overview
 description: Explore the fundamental concepts of .NET Aspire integrations and learn how to integrate them into your apps.
-ms.date: 10/30/2024
+ms.date: 11/05/2024
 ms.topic: conceptual
 uid: dotnet/aspire/integrations
 ---
@@ -142,4 +142,4 @@ For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.co
 | - **Learn More**: [📄 Meilisearch hosting](../community-toolkit/hosting-meilisearch.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch) <br /> - **Client**: [📦 Aspire.CommunitToolkit.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Meilisearch) | An Aspire component leveraging the [Meilisearch](https://meilisearch.com) container. |
 <!-- markdownlint-enable MD033 MD045 -->
 
-For more information, see [GitHub: CommunityToolkit.Aspire library](https://github.com/CommunityToolkit/Aspire).
+For more information, see [.NET Aspire Community Toolkit](../community-toolkit/overview.md).

@@ -58,7 +58,7 @@ The following client integrations are available in the toolkit:
 
 When you're working with [Node.js](https://nodejs.org/), there are lots of ways to achieve the same thing. To that end, the .NET Aspire Community Toolkit exposes some extensions that include support for alternative package managers ([yarn](https://yarnpkg.com/) and [pnpm](https://pnpm.io/)), and developer workflow improvements.
 
-- [📦 CommunityToolkit.Aspire.Hosting.NodeJs](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.NodeJs)
+- [📦 CommunityToolkit.Aspire.Hosting.NodeJS.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.NodeJS.Extensions)
 
 If you're not seeing an integration or extension you need, you can contribute to the toolkit by creating your own integration and submitting a pull request. For more information, see [How to collaborate](#how-to-collaborate).
 
