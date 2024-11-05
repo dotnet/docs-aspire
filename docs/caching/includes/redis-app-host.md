@@ -181,4 +181,4 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 The preceding call to `AddAzureRedis` configures the Redis server resource to be deployed as an [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-overview).
 
 > [!IMPORTANT]
-> By default, `AddAzureRedis` configures [Microsoft Entra ID](azure/azure-cache-for-redis/cache-azure-active-directory-for-authentication) authentication. This requires changes to applications that need to connect to these resources. For more information, see [Client integration](#client-integration).
+> By default, `AddAzureRedis` configures [Microsoft Entra ID](/azure/azure-cache-for-redis/cache-azure-active-directory-for-authentication) authentication. This requires changes to applications that need to connect to these resources. For more information, see [Client integration](#client-integration).
