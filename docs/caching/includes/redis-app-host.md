@@ -61,8 +61,8 @@ builder.AddProject<Projects.ExampleProject>()
 
 Redis Insights is a free graphical interface for analyzing Redis data across all operating systems and Redis deployments with the help of our AI assistant, Redis Copilot. .NET Aspire adds another container image [`docker.io/redis/redisinsight`](https://hub.docker.com/r/redis/redisinsight) to the app host that runs the commander app.
 
-> [!TIP]
-> To configure the host port for the `RedisInsightResource` call `WithHostPort` and provide the desired port number.
+> [!NOTE]
+> To configure the host port for the `RedisInsightResource` chain a call to the `WithHostPort` API and provide the desired port number.
 
 ### Add Redis resource with Redis Commander
 
@@ -83,7 +83,7 @@ builder.AddProject<Projects.ExampleProject>()
 Redis Commander is a Node.js web application used to view, edit, and manage a Redis Database. .NET Aspire adds another container image [`docker.io/rediscommander/redis-commander`](https://hub.docker.com/r/rediscommander/redis-commander) to the app host that runs the commander app.
 
 > [!TIP]
-> To configure the host port for the <xref:Aspire.Hosting.Redis.RedisCommanderResource> call <xref:Aspire.Hosting.RedisBuilderExtensions.WithHostPort*> and provide the desired port number.
+> To configure the host port for the <xref:Aspire.Hosting.Redis.RedisCommanderResource> chain a call to the <xref:Aspire.Hosting.RedisBuilderExtensions.WithHostPort*> API and provide the desired port number.
 
 ### Add Redis resource with data volume
 
@@ -164,21 +164,3 @@ dotnet add package Aspire.Hosting.Azure.Redis
 ```
 
 ---
-
-#### Add Azure Redis server resource
-
-After you've installed the .NET Aspire hosting Azure Redis package, call the `AddAzureRedis` extension method in your app host project:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var cache = builder.AddAzureRedis("azcache")
-
-var exampleProject = builder.AddProject<Projects.ExampleProject>()
-                            .WithReference(cache);
-```
-
-The preceding call to `AddAzureRedis` configures the Redis server resource to be deployed as an [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-overview).
-
-> [!IMPORTANT]
-> By default, `AddAzureRedis` configures [Microsoft Entra ID](/azure/azure-cache-for-redis/cache-azure-active-directory-for-authentication) authentication. This requires changes to applications that need to connect to these resources. For more information, see [Client integration](#client-integration).

@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Redis distributed caching integration
 description: Learn how to use the .NET Aspire Redis distributed caching integration, which includes both hosting and client integrations.
-ms.date: 11/04/2024
+ms.date: 11/05/2024
 zone_pivot_groups: resp-host
 ---
 
@@ -80,47 +80,6 @@ builder.AddRedisDistributedCache(connectionName: "cache");
 
 > [!TIP]
 > The `connectionName` parameter must match the name used when adding the Redis resource in the app host project. For more information, see [Add Redis resource](#add-redis-resource).
-
-### Add Azure Cache for Redis client
-
-By default, when you call `AddAzureRedis` in your Redis hosting integration, it configures [Microsoft Entra ID](/azure/azure-cache-for-redis/cache-azure-active-directory-for-authentication) authentication. You need to install the [📦 Microsoft.Azure.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Azure.StackExchangeRedis) NuGet package to enable authentication:
-
-### [.NET CLI](#tab/dotnet-cli)
-
-```dotnetcli
-dotnet add package Microsoft.Azure.StackExchangeRedis
-```
-
-### [PackageReference](#tab/package-reference)
-
-```xml
-<PackageReference Include="Microsoft.Azure.StackExchangeRedis"
-                  Version="*" />
-```
-
----
-
-The Redis connection can be consumed using the client integration and `Microsoft.Azure.StackExchangeRedis`:
-
-```csharp
-var azureOptionsProvider = new AzureOptionsProvider();
-var configurationOptions = ConfigurationOptions.Parse(
-    builder.Configuration.GetConnectionString("cache") ?? 
-    throw new InvalidOperationException("Could not find a 'cache' connection string."));
-
-if (configurationOptions.EndPoints.Any(azureOptionsProvider.IsMatch))
-{
-    await configurationOptions.ConfigureForAzureWithTokenCredentialAsync(
-        new DefaultAzureCredential());
-}
-
-builder.AddRedisDistributedCache("cache", configureOptions: options =>
-{
-    options.Defaults = configurationOptions.Defaults;
-});
-```
-
-For more information, see the [Microsoft.Azure.StackExchangeRedis](https://github.com/Azure/Microsoft.Azure.StackExchangeRedis) repo.
 
 :::zone-end
 :::zone pivot="garnet"
@@ -240,6 +199,14 @@ The .NET Aspire Redis Distributed Caching integration will emit the following Tr
 #### Metrics
 
 The .NET Aspire Redis Distributed Caching integration currently doesn't support metrics by default due to limitations with the `StackExchange.Redis` library.
+
+:::zone pivot="redis"
+
+[!INCLUDE [azure-redis-app-host](includes/azure-redis-app-host.md)]
+
+[!INCLUDE [azure-redis-distributed-client](includes/azure-redis-distributed-client.md)]
+
+:::zone-end
 
 ## See also
 
