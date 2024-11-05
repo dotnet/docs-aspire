@@ -23,7 +23,7 @@ dotnet add package Aspire.Hosting.Azure.PostgreSQL
 
 #### Add Azure PostgreSQL server resource
 
-After you've installed the .NET Aspire hosting Azure PostgreSQL package, call the `AddAzurePostgresFlexibleServer` extension method in your app host project:
+After you've installed the .NET Aspire Azure PostgreSQL hosting integration, call the `AddAzurePostgresFlexibleServer` extension method in your app host project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

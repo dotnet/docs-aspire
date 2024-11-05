@@ -2,7 +2,26 @@
 ms.topic: include
 ---
 
-### Add Azure Cache for Redis server resource
+### Azure Redis hosting integration
+
+To deploy your Redis resources to Azure, install the [📦 Aspire.Hosting.Azure.Redis](https://www.nuget.org/packages/Aspire.Hosting.Azure.Redis) NuGet package:
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Azure.Redis
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Azure.Redis"
+                  Version="*" />
+```
+
+---
+
+#### Add Azure Cache for Redis server resource
 
 After you've installed the .NET Aspire hosting Azure Redis package, call the `AddAzureRedis` extension method in your app host project:
 

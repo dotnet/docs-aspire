@@ -145,22 +145,3 @@ builder.AddProject<Projects.ExampleProject>()
 ```
 
 The preceding code adds persistence to the Redis resource by taking snapshots of the Redis data at a specified interval and threshold. The `interval` is time between snapshot exports and the `keysChangedThreshold` is the number of key change operations required to trigger a snapshot. For more information on persistence, see [Redis docs: Persistence](https://redis.io/topics/persistence).
-
-### Azure Redis hosting integration
-
-To deploy your Redis resources to Azure, install the [📦 Aspire.Hosting.Azure.Redis](https://www.nuget.org/packages/Aspire.Hosting.Azure.Redis) NuGet package:
-
-### [.NET CLI](#tab/dotnet-cli)
-
-```dotnetcli
-dotnet add package Aspire.Hosting.Azure.Redis
-```
-
-### [PackageReference](#tab/package-reference)
-
-```xml
-<PackageReference Include="Aspire.Hosting.Azure.Redis"
-                  Version="*" />
-```
-
----
