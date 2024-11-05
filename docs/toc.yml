@@ -13,9 +13,13 @@ items:
       - name: Tutorial - Add .NET Aspire to an existing .NET app
         href: get-started/add-aspire-existing-app.md
       - name: Setup and tooling
-        href: fundamentals/setup-tooling.md
-      - name: .NET Aspire SDK
-        href: fundamentals/dotnet-aspire-sdk.md
+        items:
+        - name: Overview
+          href: fundamentals/setup-tooling.md
+        - name: .NET Aspire templates
+          href: fundamentals/aspire-sdk-templates.md
+        - name: .NET Aspire SDK
+          href: fundamentals/dotnet-aspire-sdk.md
       - name: What's new in .NET Aspire
         href: whats-new/index.yml
       - name: Upgrade to .NET Aspire 9.0
