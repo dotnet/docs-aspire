@@ -40,19 +40,15 @@ The [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) continues to 
 
 ### Manage resource lifecycle
 
-The most requested feature for the dashboard is to manage the life-cycles of your orchestrated named resources. Specifically, the ability to stop, start, and restart resources.
-
-For more information, see [.NET Aspire dashboard: Stop or Start a resource](../fundamentals/dashboard/explore.md#stop-or-start-a-resource).
-
-This feature works for projects, containers, and executables. It enables restarting individual resources without having to restart the entire app host. For projects, if the debugger is attached, it's reattached on restart.
+The most requested feature for the dashboard is to manage the life-cycles of your orchestrated named resources. Specifically, the ability to stop, start, and restart resources. This feature works for projects, containers, and executables. It enables restarting individual resources without having to restart the entire app host. For project resources, when the debugger is attached, it's reattached on restart. For more information, see [.NET Aspire dashboard: Stop or Start a resource](../fundamentals/dashboard/explore.md#stop-or-start-a-resource).
 
 ### Mobile and responsive support
 
-The .NET Aspire dashboard is now mobile-friendly, responsively adapting to a wide range of screen sizes and enabling on-the-go management of deployed .NET Aspire applications. Additional accessibility improvements have been made, including the display of settings and content overflow on mobile.
+The .NET Aspire dashboard is now mobile-friendly, responsively adapting to a wide range of screen sizes and enabling on-the-go management of deployed .NET Aspire applications. Other accessibility improvements were made, including the display of settings and content overflow on mobile.
 
 ### Sensitive properties, volumes, and health checks in resource details
 
-The display of resource details has seen several improvements:
+The display of resource details contains several improvements:
 
 - Properties can be marked as sensitive, automatically masking them in the dashboard UI. This security feature helps to avoid accidentally disclosing keys or passwords when screen sharing the dashboard with other people. For example, container arguments could pass sensitive information and so are masked by default.
 
@@ -72,13 +68,13 @@ Another improvement to console logs is hiding unsupported escape codes. Codes th
 
 ## Telemetry
 
-[Telemetry](../fundamentals/telemetry.md) remains a vital aspect of .NET Aspire. In this release we're introducing many new features to the Telemetry service.
+[Telemetry](../fundamentals/telemetry.md) remains a vital aspect of .NET Aspire. In .NET Aspire 9, many new features were introduced to the Telemetry service.
 
 ### Improved telemetry filtering
 
-Traces can now be filtered with attribute values. For example, if you only want to view traces for one endpoint in your app, the `http.route` attribute on HTTP requests can be filtered to a specified value.
+Traces can be filtered with attribute values. For example, if you only want to view traces for one endpoint in your app, the `http.route` attribute on HTTP requests can be filtered to a specified value.
 
-Telemetry filtering also supports autocomplete of existing values. The **Added filter** dialog provides a combo box for selecting from values that dashboard has received. This feature makes it much easier to filter to real data and helps avoid typos by entered a value yourself.
+Telemetry filtering also supports autocomplete of existing values. The **Add filter** dialog provides a combo box for selecting from values that dashboard has available. This feature makes it much easier to filter to real data and helps avoid typos by entered a value yourself.
 
 For more information, see [.NET Aspire dashboard: Filter traces](../fundamentals/dashboard/explore.md#filter-traces).
 
@@ -90,7 +86,7 @@ When a resource has multiple replicas, you can now filter telemetry to view data
 
 The dashboard supports OpenTelemetry Protocol (OTLP) over HTTP and cross-origin resource sharing (CORS). These features unlock the ability to send OpenTelemetry from browser apps to the .NET Aspire dashboard.
 
-For example, a browser-based single page app (SPA) can configure the [JavaScript OTEL SDK](https://opentelemetry.io/docs/languages/js/getting-started/browser/) to send structured logs, traces, and metrics created in the browser to the dashboard. Browser telemetry is displayed alongside server telemetry.
+For example, a browser-based single page app (SPA) can configure the [JavaScript OpenTelemetry SDK](https://opentelemetry.io/docs/languages/js/getting-started/browser/) to send structured logs, traces, and metrics created in the browser to the dashboard. Browser telemetry is displayed alongside server telemetry.
 
 :::image type="content" source="media/dashboard-browser-telemetry.png" lightbox="media/dashboard-browser-telemetry.png" alt-text="Trace detail page with browser telemetry":::
 
@@ -98,7 +94,7 @@ For more information on configuring browser telemetry, see [Enable browser telem
 
 ## App Host (Orchestration)
 
-The [.NET Aspire app host](../fundamentals/app-host-overview.md) is one of the most important features of .NET Aspire. Starting with .NET Aspire 9, several new features to the app host were added.
+The [.NET Aspire app host](../fundamentals/app-host-overview.md) is one of the most important features of .NET Aspire. In .NET Aspire 9, several new features were added specific to the app host.
 
 ### Waiting for dependencies
 
@@ -179,13 +175,13 @@ builder.AddProject<Projects.MyApp>("myapp")
        .WaitFor(cache);
 ```
 
-The preceding example adds a health check that considers resources unhealthy until 20 seconds after the app host starts, after which it reports them as healthy. This health check is added to the `cache` resource. As `myapp` waits for `cache`, `myapp` won't start until those 20 seconds have elapsed.
+The preceding example adds a health check that considers resources unhealthy until 20 seconds after the app host starts, after which it reports them as healthy. This health check is added to the `cache` resource. As the `myapp` resource waits for the `cache` resource, `myapp` starts only after 20 seconds has elapsed and the `cache` reports as healthy.
 
 The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> and `WithHealthCheck` methods provide a simple mechanism to create health checks and associate them with specific resources.
 
 ### Persistent containers
 
-The app host now supports persistent containers. This is useful when you want to keep the container running even after the app host has stopped. These containers won't be stopped until they're stopped manually using the container runtime.
+The app host now supports persistent containers. This is useful when you want to keep the container running even after the app host has stopped. These containers aren't stopped until they're stopped manually using the container runtime.
 
 To do this, call the `WithLifetime` method and pass in `ContainerLifetime.Persistent`:
 
@@ -206,11 +202,11 @@ The dashboard shows persistent containers with a pin icon:
 
 :::image type="content" source="media/persistent-container.png" lightbox="media/persistent-container.png" alt-text="Persistent containers":::
 
-After the app host has stopped, the container will continue to run:
+After the app host is stopped, the container will continue to run:
 
 :::image type="content" source="media/persistent-container-docker-desktop.png" lightbox="media/persistent-container-docker-desktop.png" alt-text="Docker desktop showing RabbitMQ.":::
 
-The container persistence mechanism attempts to identify when you may wish to recreate the container. For example if the environment for the container changes then the container will be restarted so that you don't need to manually stop the container if you have changed the input configuration for the resource.
+The container persistence mechanism attempts to identify when you might wish to recreate the container. For example, if the environment for the container changes, then the container is restarted so that you don't need to manually stop the container if the input configuration for the resource has changed.
 
 ### Resource commands
 
@@ -219,7 +215,7 @@ The app host supports adding custom commands to resources. This is useful when y
 > [!IMPORTANT]
 > These .NET Aspire dashboard commands are only available when running the dashboard locally. They are not available when running the dashboard in Azure Container Apps.
 
-The following example uses an extension method to add some additional commands.
+The following example uses an extension method to add a custom "Clear" command.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -289,15 +285,15 @@ The eventing model allows developers to hook into the lifecycle of the applicati
 
 **Global events:**
 
-- `BeforeStartEvent`: An event that is triggered before the application starts. This is the last place that changes to the app model will be observed. This runs in both Run and Publish modes. This is a blocking event, meaning that the application won't start until all handlers have completed.
-- `AfterResourcesCreatedEvent`: An event that is triggered after the resources have been created. This runs in Run mode only.
-- `AfterEndpointsAllocatedEvent`: An event that is triggered after the endpoints have been allocated for all resources. This runs in Run mode only.
+- `BeforeStartEvent`: An event that is triggered before the application starts. This is the last place that changes to the app model are observed. This runs in both "Run" and "Publish" modes. This is a blocking event, meaning that the application doesn't start until all handlers have completed.
+- `AfterResourcesCreatedEvent`: An event that is triggered after the resources are created. This runs in Run mode only.
+- `AfterEndpointsAllocatedEvent`: An event that is triggered after the endpoints are allocated for all resources. This runs in Run mode only.
 
 The global events are analogous to the app host life cycle events. For more information, see [App host life cycles](../fundamentals/app-host-overview.md#app-host-life-cycles).
 
 **Per-resource events:**
 
-- `BeforeResourceStartedEvent`: An event that is triggered before a single resource starts. This runs in Run mode only. This is a blocking event, meaning that the resource won't start until all handlers have completed.
+- `BeforeResourceStartedEvent`: An event that is triggered before a single resource starts. This runs in Run mode only. This is a blocking event, meaning that the resource doesn't start until all handlers complete.
 - `ConnectionStringAvailableEvent`: An event that is triggered when a connection string is available for a resource. This runs in Run mode only.
 - `ResourceReadyEvent`: An event that is triggered when a resource is ready to be used. This runs in Run mode only.
 
@@ -309,10 +305,11 @@ For more information, see [Eventing in .NET Aspire](../app-host/eventing.md).
 
 ### Redis Insight
 
-A new extension method has been added to support starting up Redis Insight on a Redis resource:
+Support for [Redis Insights](https://redis.io/insight/) is available on a Redis resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
+
 builder.AddRedis("redis")
        .WithRedisInsight(); // Starts a Redis Insight container image
                             // that is pre-configured to work with the
@@ -331,7 +328,7 @@ Starting with .NET Aspire 9, an additional OpenAI integration is available which
 
 - [📦 Aspire.OpenAI (Preview)](https://www.nuget.org/packages/Aspire.OpenAI/9.0.0-preview.4.24511.1)
 
-Moreover, the already available [.NET Aspire Azure OpenAI integration](../azureai/azureai-openai-integration.md) was improved to provide a flexible way to configure an `OpenAIClient` for either an Azure AI OpenAI service or a dedicated OpenAI REST API one with the new `AddOpenAIClientFromConfiguration` builder method. The following example will detect if the connection string is for an Azure AI OpenAI service and register the most appropriate `OpenAIClient` instance automatically.
+Moreover, the already available [.NET Aspire Azure OpenAI integration](../azureai/azureai-openai-integration.md) was improved to provide a flexible way to configure an `OpenAIClient` for either an Azure AI OpenAI service or a dedicated OpenAI REST API one with the new `AddOpenAIClientFromConfiguration` builder method. The following example detects if the connection string is for an Azure AI OpenAI service and registers the most appropriate `OpenAIClient` instance automatically.
 
 ```csharp
 builder.AddOpenAIClientFromConfiguration("openai");
@@ -343,7 +340,7 @@ Read [Azure-agnostic client resolution](https://github.com/dotnet/aspire/blob/re
 
 ### MongoDB
 
-Added support for specifying the MongoDB username and password when using the `AddMongoDB` extension method. If not specified, a random username and password will be generated but can be manually specified using parameter resources.
+Added support for specifying the MongoDB username and password when using the `AddMongoDB` extension method. If not specified, a random username and password is generated but can be manually specified using parameter resources.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -360,11 +357,11 @@ The following sections describe Azure improvements added in .NET Aspire 9.
 
 #### Azure resource customization
 
-In .NET Aspire 8, customizing Azure resources was marked experimental because the underlying `Azure.Provisioning` libraries were new and gathering feedback before they could be marked stable. In .NET Aspire 9 these APIs have been updated and will remove the experimental attribute.
+In .NET Aspire 8, customizing Azure resources were marked experimental because the underlying `Azure.Provisioning` libraries were new and gathering feedback before they could be marked stable. In .NET Aspire 9 these APIs were updated and removes the experimental attribute.
 
-**Azure Resource Naming Breaking Change**
+**Azure Resource naming breaking change**
 
-As part of the update to the `Azure.Provisioning` libraries, the default naming scheme for Azure resources was updated with better support for various naming policies. However, this update resulted in a change to how resources are named. The new naming policy might result in the existing Azure resources being abandoned and new Azure resources being created, after updating your .NET Aspire application from 8 to 9. To keep using the same naming policies from .NET Aspire 8, you can add the following code to your AppHost _Program.cs_:
+As part of the update to the <xref:Azure.Provisioning> libraries, the default naming scheme for Azure resources was updated with better support for various naming policies. However, this update resulted in a change to how resources are named. The new naming policy might result in the existing Azure resources being abandoned and new Azure resources being created, after updating your .NET Aspire application from 8 to 9. To keep using the same naming policies from .NET Aspire 8, you can add the following code to your AppHost _Program.cs_:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -386,21 +383,25 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var sql = builder.AddSqlServer("sql")
                  .PublishAsAzureSqlDatabase();
+
 var pgsql = builder.AddPostgres("pgsql")
                    .PublishAsAzurePostgresFlexibleServer();
+
 var cache = builder.AddRedis("cache")
                    .PublishAsAzureSqlDatabase();
 ```
 
-In .NET Aspire 9 these APIs have been obsoleted and a new API pattern implemented:
+In .NET Aspire 9 these APIs were marked as obsolete and a new API pattern implemented:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var sql = builder.AddAzureSqlServer("sql")
                  .RunAsContainer();
+
 var pgsql = builder.AddAzurePostgresFlexibleServer("pgsql")
                    .RunAsContainer();
+
 var cache = builder.AddAzureRedis("cache")
                    .RunAsContainer();
 ```
@@ -471,7 +472,7 @@ var cache = builder.AddAzureRedis("cache")
                    .WithAccessKeyAuthentication();
 ```
 
-#### Azure Functions Support (Preview)
+#### Support for Azure Functions (Preview)
 
 Support for [Azure Functions](/azure/azure-functions/functions-overview?pivots=programming-language-csharp) is one of the most widely requested features on the .NET Aspire issue tracker and we're excited to introduce preview support for it in this release. To demonstrate this support, let's use .NET Aspire to create and deploy a webhook.
 
@@ -578,7 +579,7 @@ public class Function1(ILogger<Function1> logger)
 }
 ```
 
-Set a breakpoint on the first line of the `Run` method and press <kbd>F5</kbd> to start the Functions host. Once the .NET Aspire dashboard launches, you observe the following:
+Set a breakpoint on the first `logger.LogInformation` line of the `Run` method and press <kbd>F5</kbd> to start the Functions host. Once the .NET Aspire dashboard launches, you observe the following:
 
 :::image type="content" source="media/functions-dashboard-screenshot.png" lightbox="media/functions-dashboard-screenshot.png" alt-text="Screenshot of the .NET Aspire running with an Azure Function app.":::
 
@@ -632,7 +633,7 @@ builder.AddAzureFunctionsProject<Projects.PigLatinApp>("piglatinapp")
        .WithExternalHttpEndpoints();
 ```
 
-To deploy the application with [the `azd` CLI](/azure/developer/azure-developer-cli/install-azd), you'll need get the latest version first. To install the latest version, you'll see a warning if your version is out of date. Follow the instructions to update to the latest version.
+To deploy the application with [the `azd` CLI](/azure/developer/azure-developer-cli/install-azd), you need get the latest version first. To install the latest version, you see a warning if your version is out of date. Follow the instructions to update to the latest version.
 
 After it's installed, navigate to the folder containing the app host project and run `azd init`:
 
@@ -734,7 +735,7 @@ For the latest information on features support by the Azure Functions integratio
 
 #### Customization of Azure Container Apps
 
-One of the most requested features is the ability to customize the Azure Container Apps that are created by the app host without dropping to bicep. This is now possible by using the `PublishAsAzureContainerApp` method in the `Aspire.Hosting.Azure.AppContainers` namespace. This method customizes the Azure Container App definition that's created by the app host.
+One of the most requested features is the ability to customize the Azure Container Apps that the app host creates without touching Bicep. This is possible by using the `PublishAsAzureContainerApp` method in the `Aspire.Hosting.Azure.AppContainers` namespace. This method customizes the Azure Container App definition that the app host creates.
 
 Add the package reference to your project file:
 

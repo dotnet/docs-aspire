@@ -83,11 +83,16 @@ The .NET Aspire dashboard allows you to stop or start a resource by selecting th
 
 :::image type="content" source="media/explore/resource-stop-action.png" lightbox="media/explore/resource-stop-action.png" alt-text=".NET Aspire dashboard stop resource.":::
 
-When you select **Stop**, the resource stops running, and the **State** column updates to reflect the change. The **Start** button is then enabled, allowing you to start the resource again. Additionally, the dashboard displays a toast notification of the result of the action:
+When you select **Stop**, the resource stops running, and the **State** column updates to reflect the change.
+
+> [!NOTE]
+> For project resources, when the debugger is attached, it's reattached on restart.
+
+The **Start** button is then enabled, allowing you to start the resource again. Additionally, the dashboard displays a toast notification of the result of the action:
 
 :::image type="content" source="media/explore/resource-stopped-action.png" lightbox="media/explore/resource-stopped-action.png" alt-text=".NET Aspire dashboard resource stopped.":::
 
-When a resource is in a nonrunning state, the **Start** button is enabled. Selecting **Start** starts the resource, and the **State** column updates to reflect the change. The **Stop** button is then enabled, allowing you to stop the resource again. The dashboard displays a toast notification of the result of the action:
+When a resource is in a non-running state, the **Start** button is enabled. Selecting **Start** starts the resource, and the **State** column updates to reflect the change. The **Stop** button is then enabled, allowing you to stop the resource again. The dashboard displays a toast notification of the result of the action:
 
 :::image type="content" source="media/explore/resource-started-action.png" lightbox="media/explore/resource-started-action.png" alt-text=".NET Aspire dashboard started resource.":::
 
