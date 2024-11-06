@@ -51,13 +51,11 @@ var builder = DistributedApplication.CreateBuilder(args);
 builder.AddDenoApp("oak-demo", "main.ts", permissionFlags: ["--allow-env", "--allow-net"])
     .WithHttpEndpoint(env: "PORT")
     .WithEndpoint();
-// OR
-builder.AddDenoApp("oak-demo", "main.ts", permissionFlags: ["-E", "-N"])
-    .WithHttpEndpoint(env: "PORT")
-    .WithEndpoint();
 
 builder.Build().Run();
 ```
+
+*The preceding code uses the fully qualified switches. Short hand aliases can be used as well.*
 
 ### Run Deno tasks
 
