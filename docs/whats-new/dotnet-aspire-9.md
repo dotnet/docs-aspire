@@ -23,7 +23,7 @@ To upgrade from earlier versions of .NET Aspire to .NET Aspire 9, follow the ins
 
 ### Templates
 
-.NET Aspire 9 is moving the contents that used to be installed via the workload into separate NuGet packages. This includes the templates for creating new .NET Aspire projects. These templates can now be installed using the [`dotnet new install` command](/dotnet/core/tools/dotnet-new). These can be installed by running the following command:
+.NET Aspire 9 is moving the contents that used to be installed via the workload into separate NuGet packages. This includes the templates for creating new .NET Aspire projects and solutions. These templates are installed using the [`dotnet new install` command](/dotnet/core/tools/dotnet-new). These can be installed by running the following command:
 
 ```dotnetcli
 dotnet new install Aspire.ProjectTemplates::9.0.0

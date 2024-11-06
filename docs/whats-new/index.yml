@@ -12,7 +12,7 @@ landingContent:
   linkLists:
   - linkListType: whats-new
     links:
-    - text: .NET Aspire 9.0
+    - text: What's new in .NET Aspire 9.0
       url: dotnet-aspire-9.md
     - text: Announcing .NET Aspire 8.2
       url: https://devblogs.microsoft.com/dotnet/announcing-dotnet-aspire-8-2/
