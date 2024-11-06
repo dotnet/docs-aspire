@@ -1,14 +1,14 @@
 ---
 title: Add .NET Aspire to an existing .NET app
 description: Learn how to add .NET Aspire integrations, orchestration, and tooling to a microservices app that already exists.
-ms.date: 06/03/2024
+ms.date: 11/06/2024
 ms.topic: how-to
 zone_pivot_groups: dev-environment
 ---
 
 # Tutorial: Add .NET Aspire to an existing .NET app
 
-If you have already created a microservices .NET web app, you can add .NET Aspire to it and get all the included features and benefits. In this article, you'll add .NET Aspire orchestration to a simple, pre-existing .NET 8 project. You'll learn how to:
+If you have existing microservices and .NET web app, you can add .NET Aspire to it and get all the included features and benefits. In this article, you add .NET Aspire orchestration to a simple, preexisting .NET 9 project. You learn how to:
 
 > [!div class="checklist"]
 >
@@ -23,8 +23,8 @@ If you have already created a microservices .NET web app, you can add .NET Aspir
 
 Let's start by obtaining the code for the solution:
 
-1. Open a command prompt and change to a directory where you want to store the code.
-1. To clone to .NET 8 example solution, use this command:
+1. Open a command prompt and change directories to where you want to store the code.
+1. To clone to .NET 9 example solution, use the following `git clone` command:
 
     ```bash
     git clone https://github.com/MicrosoftDocs/mslearn-dotnet-cloudnative-devops.git eShopLite
@@ -32,11 +32,11 @@ Let's start by obtaining the code for the solution:
 
 ## Explore the sample app
 
-This article uses a .NET 8 solution with three projects:
+This article uses a .NET 9 solution with three projects:
 
-- **Data Entities**. This project is an example class library. It defines the `Product` class used in the Web App and Web API.
-- **Products**. This example Web API returns a list of products in the catalog and their properties.
-- **Store**. This example Blazor Web App displays the product catalog to website visitors.
+- **Data Entities**: This project is an example class library. It defines the `Product` class used in the Web App and Web API.
+- **Products**: This example Web API returns a list of products in the catalog and their properties.
+- **Store**: This example Blazor Web App displays the product catalog to website visitors.
 
 Open and start debugging the project to examine its default behavior:
 
@@ -59,7 +59,12 @@ Open and start debugging the project to examine its default behavior:
 :::zone-end
 :::zone pivot="vscode"
 
-1. Start Visual Studio Code and open the folder that you just cloned.
+1. Start Visual Studio Code and open the folder that you cloned. From the terminal where you cloned the repo, run the following command:
+
+    ```bash
+    code .
+    ```
+
 1. Select the **Run and Debug** menu item, or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>.
 1. Select the **create a launch.json file** link.
 
@@ -362,7 +367,7 @@ builder.AddProject<Projects.Store>("store")
 builder.Build().Run();
 ```
 
-You've added a reference to the _Products_ project in the _Store_ project. This reference is used to discover the address of the _Products_ project. Additionally, the _Store_ project is configured to use external HTTP endpoints. If you later choose to deploy this app, you'd need the call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints%2A> to ensure that it's public to the outside world.
+The preceding code expresses that the _Store_ project depends on the _Products_ project. For more information, see [.NET Aspire app host: Reference resources](../fundamentals/app-host-overview.md#reference-resources). This reference is used to discover the address of the _Products_ project. Additionally, the _Store_ project is configured to use external HTTP endpoints. If you later choose to deploy this app, you'd need the call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints%2A> to ensure that it's public to the outside world.
 
 Next, update the _:::no-loc text="appsettings.json":::_ in the _Store_ project with the following JSON:
 
@@ -385,7 +390,7 @@ The addresses for both the endpoints now uses the "products" name that was added
 
 ## Explore the enrolled app
 
-Let's start the solution and examine the new behavior that .NET Aspire has added.
+Let's start the solution and examine the new behavior that .NET Aspire provides.
 
 :::zone pivot="visual-studio"
 
@@ -397,12 +402,12 @@ Let's start the solution and examine the new behavior that .NET Aspire has added
 1. In the dashboard, select the endpoint for the **products** project. A new browser tab appears and displays the product catalog in JSON format.
 1. In the dashboard, select the endpoint for the **store** project. A new browser tab appears and displays the home page for the web app.
 1. In the menu on the left, select **Products**. The product catalog is displayed.
-1. Close the browser to stop debugging.
+1. To stop debugging, close the browser.
 
 :::zone-end
 :::zone pivot="vscode"
 
-You can delete the _launch.json_ file that you created earlier, as it's not needed. Instead, simply start the _app host_ project, which will orchestrate the other projects:
+Delete the _launch.json_ file that you created earlier, it no longer serves a purpose. Instead, start the _app host_ project, which orchestrates the other projects:
 
 1. Start the _app host_ project by right-clicking the **eShopLite.AppHost** project in the **Solution Explorer** and selecting **Debug** > **Start New Instance**:
 
@@ -432,10 +437,10 @@ You can delete the _launch.json_ file that you created earlier, as it's not need
 2. In the dashboard, select the endpoint for the **products** project. A new browser tab appears and displays the product catalog in JSON format.
 3. In the dashboard, select the endpoint for the **store** project. A new browser tab appears and displays the home page for the web app.
 4. In the menu on the left, select **Products**. The product catalog is displayed.
-5. Close the browser to stop debugging.
+5. To stop debugging, close the browser.
 
 <!-- markdownlint-enable MD029 -->
 
 :::zone-end
 
-Congratulations! You have added .NET Aspire orchestration to your pre-existing web app. You can now add .NET Aspire integrations and use the .NET Aspire tooling to streamline your cloud-native web app development.
+Congratulations, you added .NET Aspire orchestration to your pre-existing web app. You can now add .NET Aspire integrations and use the .NET Aspire tooling to streamline your cloud-native web app development.
