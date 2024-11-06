@@ -1,7 +1,7 @@
 ---
 title: Explore .NET Aspire dashboard
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 10/31/2024
+ms.date: 11/06/2024
 ms.topic: reference
 ---
 
@@ -235,6 +235,18 @@ Navigate to the **Traces** page to view all of the traces for your app. .NET Asp
 The traces page also provides a search bar to filter the traces by name or span. Apply a filter, and notice the trace results are updated immediately. Consider the following screenshot of traces with a filter applied to `weather` and notice how the search term is highlighted in the results:
 
 :::image type="content" source="media/explore/trace-view-filter.png" lightbox="media/explore/trace-view-filter.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page, showing a filter applied to show only traces with the term 'weather'.":::
+
+When filtering traces in the **Add filter** dialog, after selecting a **Parameter** and corresponding **Condition**, the **Value** selection is pre-populated with the available values for the selected parameter. Consider the following screenshot of the **Add filter** dialog with the `http.route` parameter selected:
+
+:::image type="content" source="media/explore/traces-filtering.png" lightbox="media/explore/traces-filtering.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page, showing the Add filter dialog with the http.route parameter selected.":::
+
+#### Combine telemetry from multiple resources
+
+When a resource has multiple replicas, you can filter telemetry to view data from all instances at once. Select the parent resource, labeled `(application)`, as shown in the following screenshot:
+
+:::image type="content" source="media/explore/telemetry-resource-filter.png" lightbox="media/explore/telemetry-resource-filter.png" alt-text="Filter by all instances of a resource":::
+
+After selecting the parent resource, the traces page displays telemetry from all instances of the resource.
 
 #### Trace details
 
