@@ -1,7 +1,7 @@
 ---
 title: Build your first .NET Aspire solution
 description: Learn how to build your first .NET Aspire solution using the .NET Aspire Started Application template.
-ms.date: 11/04/2024
+ms.date: 11/07/2024
 ms.topic: quickstart
 zone_pivot_groups: dev-environment
 ---
@@ -131,7 +131,7 @@ Next, investigate the structure and other features of your new .NET Aspire solut
 
 ## Explore the .NET Aspire dashboard
 
-When you run a .NET Aspire project, a dashboard launches that you use to monitor various parts of your app. The dashboard resembles the following screenshot:
+When you run a .NET Aspire project, a [dashboard](../fundamentals/dashboard/overview.md) launches that you use to monitor various parts of your app. The dashboard resembles the following screenshot:
 
 :::image type="content" source="media/aspire-dashboard.png" lightbox="media/aspire-dashboard.png" alt-text="A screenshot of the .NET Aspire Dashboard, depicting the Projects tab.":::
 

@@ -17,9 +17,9 @@ For more information on the official .NET version and .NET Aspire version suppor
 
 To upgrade from earlier versions of .NET Aspire to .NET Aspire 9, follow the instructions in the official [Upgrade to .NET Aspire 9](../get-started/upgrade-to-aspire-9.md) guide.
 
-### Acquisition
+### Tooling
 
-.NET Aspire 9 makes it simpler to configure your environment to develop .NET Aspire applications. You no longer need a .NET workload. Instead, you install the [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md). For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
+.NET Aspire 9 makes it simpler to configure your environment to develop .NET Aspire applications. You no longer need a .NET workload. Instead, you install the new [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md). For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
 
 ### Templates
 
@@ -215,63 +215,7 @@ The app host supports adding custom commands to resources. This is useful when y
 > [!IMPORTANT]
 > These .NET Aspire dashboard commands are only available when running the dashboard locally. They are not available when running the dashboard in Azure Container Apps.
 
-The following example uses an extension method to add a custom "Clear" command.
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var cache = builder.AddRedis("cache")
-                   .WithClearCommand();
-
-builder.AddProject<Projects.WebApplication1>("api")
-       .WithReference(cache)
-       .WaitFor(cache);
-
-builder.Build().Run();
-```
-
-Custom commands can be added by calling the `WithCommand*` method and passing in the command to run:
-
-```csharp
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using StackExchange.Redis;
-
-public static class RedisCommandExtensions
-{
-    public static IResourceBuilder<RedisResource> WithClearCommand(
-        this IResourceBuilder<RedisResource> builder)
-    {
-        builder.WithCommand(
-            "clear-cache",
-            "Clear Cache",
-            async context =>
-            {
-                var redisConnectionString = await builder.Resource.GetConnectionStringAsync() ??
-                    throw new InvalidOperationException(
-                        "Unable to get the Redis connection string.");
-                
-                using var connection = ConnectionMultiplexer.Connect(redisConnectionString);
-
-                await connection.GetDatabase().ExecuteAsync("FLUSHALL");
-
-                return CommandResults.Success();
-            },
-            context =>
-            {
-                return context.ResourceSnapshot.HealthStatus is HealthStatus.Healthy
-                    ? ResourceCommandState.Enabled
-                    : ResourceCommandState.Disabled;
-            });
-        return builder;
-    }
-}
-```
-
-These commands can be run from the dashboard:
-
-:::image type="content" source="media/clear-cache-command.png" lightbox="media/clear-cache-command.png" alt-text="Clear cache command on dashboard":::
-
-<!-- > [!VIDEO 7fc32183-7342-4e79-a30a-c977e5b1d005] -->
+For more information on creating custom resource commands, see [How-to: Create custom resource commands in .NET Aspire](../fundamentals/custom-resource-commands.md).
 
 ### Container networking
 
