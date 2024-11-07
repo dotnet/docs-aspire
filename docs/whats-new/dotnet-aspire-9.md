@@ -353,7 +353,7 @@ var db = builder.AddMongo("db", username, password);
 
 ### Azure
 
-The following sections describe Azure improvements added in .NET Aspire 9.
+The following sections describe Azure improvements added in .NET Aspire 9. For a complete listing of all the breaking changes, see [Breaking changes in .NET Aspire 9](../compatibility/9.0/index.md).
 
 #### Azure resource customization
 
@@ -731,7 +731,7 @@ Support for Azure Functions in .NET Aspire is still in preview with support for 
 - [Azure Service Bus triggers](/azure/azure-functions/functions-bindings-service-bus?pivots=programming-language-csharp)
 - [Azure Event Hubs triggers](/azure/azure-functions/functions-bindings-event-hubs?pivots=programming-language-csharp)
 
-For the latest information on features support by the Azure Functions integration, see [the tracking issue](https://github.com/dotnet/aspire/issues/920).
+For the latest information on features support by the Azure Functions integration, see [the tracking issue](https://github.com/dotnet/aspire/issues/920). For more information, see the official [.NET Aspire Azure Functions integration (Preview)](../serverless/functions.md).
 
 #### Customization of Azure Container Apps
 

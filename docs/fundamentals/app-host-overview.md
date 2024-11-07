@@ -125,7 +125,7 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 
 ## Reference resources
 
-A reference represents a dependency between resources. Consider the following example app host `Program` C# code:
+A reference represents a dependency between resources. For example, you can probably imagine a scenario where you a web frontend depends on a Redis cache. Consider the following example app host `Program` C# code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
