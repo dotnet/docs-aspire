@@ -7,10 +7,10 @@ ms.topic: how-to
 
 # Custom resource commands in .NET Aspire
 
-Each resource in the .NET Aspire [app model](app-host-overview.md#define-the-app-model) is represented as an <xref:Aspire.Hosting.ApplicationModel.IResource> and when added to the [distributed application builder](xref:Aspire.Hosting.IDistributedApplicationBuilder), it's the generic-type parameter of the <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> interface. You use the _resource builder_ API to chain calls, configuring the underlying resource, and in some situations, you might want to add custom commands to the resource. In this article, you learn how to add custom commands to a resource.
+Each resource in the .NET Aspire [app model](app-host-overview.md#define-the-app-model) is represented as an <xref:Aspire.Hosting.ApplicationModel.IResource> and when added to the [distributed application builder](xref:Aspire.Hosting.IDistributedApplicationBuilder), it's the generic-type parameter of the <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> interface. You use the _resource builder_ API to chain calls, configuring the underlying resource, and in some situations, you might want to add custom commands to the resource. Some common scenario for creating a custom command might be running database migrations or seeding/resetting a database. In this article, you learn how to add a custom command to a Redis resource that clears the cache.
 
 > [!IMPORTANT]
-> These .NET Aspire dashboard commands are only available when running the dashboard locally. They're not available when running the dashboard in Azure Container Apps.
+> These [.NET Aspire dashboard](dashboard/overview.md) commands are only available when running the dashboard locally. They're not available when running the dashboard in Azure Container Apps.
 
 ## Add custom commands to a resource
 
@@ -20,8 +20,9 @@ Start by creating a new .NET Aspire Starter App from the [available templates](a
 
 The preceding code:
 
-- Is a `static class` that extends the `IResourceBuilder<RedisResource>`.
-- It defines a single extension method named `WithClearCommand`.
+- Shares the <xref:Aspire.Hosting> namespace so that it's visible to the app host project.
+- Is a `static class` so that it can contain extension methods.
+- It defines a single extension method named `WithClearCommand`, extending the `IResourceBuilder<RedisResource>` interface.
 - The `WithClearCommand` method registers a command named `clear-cache` that clears the cache of the Redis resource.
 - The `WithClearCommand` method returns the `IResourceBuilder<RedisResource>` instance to allow chaining.
 

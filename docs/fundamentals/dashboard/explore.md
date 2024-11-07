@@ -1,7 +1,7 @@
 ---
 title: Explore .NET Aspire dashboard
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 11/06/2024
+ms.date: 11/07/2024
 ms.topic: reference
 ---
 
@@ -138,7 +138,7 @@ Some values are formatted as JSON or XML. In these cases, the text visualizer en
 
 ### Resource details
 
-You can obtain full details about each resource by selecting the **View** link in the **Details** column:
+You can obtain full details about each resource by selecting the ellipsis button in the **Actions** column and then selecting **View details**. The **Details** page provides a comprehensive view of the resource:
 
 :::image type="content" source="media/explore/resource-details.png" lightbox="media/explore/resource-details.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page with the details of a selected resource displayed.":::
 
