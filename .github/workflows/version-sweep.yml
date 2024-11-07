@@ -39,7 +39,7 @@ jobs:
 
       - name: .NET version updater
         id: dotnet-version-updater
-        uses: dotnet/docs-tools/actions/dotnet-version-updater@cf581edfb9f8bbccc3f0476ce1b8369689fb0290 # main
+        uses: dotnet/docs-tools/actions/dotnet-version-updater@main
         with:
           support: ${{ github.event.inputs.support }}
           token: ${{ secrets.GITHUB_TOKEN }}
