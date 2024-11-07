@@ -101,7 +101,7 @@ When a resource is in a non-running state, the **Start** button is enabled. Sele
 
 ##### Resource submenu actions
 
-Selecting the horizontal ellipsis icon in the **Actions** column opens a submenu with additional resource-specific actions. Consider the following screenshot of the resource submenu actions:
+Selecting the horizontal ellipsis icon in the **Actions** column opens a submenu with additional resource-specific actions. In addition to the built-in resource submenu actions, you can also define custom resource actions by defining custom commands. For more information, see [Custom resource commands in .NET Aspire](../custom-resource-commands.md). For the built-in resource submenu actions, consider the following screenshot:
 
 :::image type="content" source="media/explore/resource-actions.png" lightbox="media/explore/resource-actions.png" alt-text=".NET Aspire dashboard resource submenu actions.":::
 
