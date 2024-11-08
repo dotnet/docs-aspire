@@ -142,6 +142,14 @@ Configuring connection string with this method, while functional, requires dupli
     builder.AddRedisDistributedCache("cache");
     ```
 
+1. In the _:::no-loc text="Program.cs":::_ file, add the following `using` statements:
+
+    ```csharp
+    using System.Text;
+    using System.Text.Json;
+    using Microsoft.Extensions.Caching.Distributed;
+    ```
+
 1. In the _:::no-loc text="Program.cs":::_ file, replace the existing `/weatherforecast` endpoint code with the following:
 
     ```csharp
