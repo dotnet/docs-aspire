@@ -1,7 +1,7 @@
 ---
 title: Add .NET Aspire to an existing .NET app
 description: Learn how to add .NET Aspire integrations, orchestration, and tooling to a microservices app that already exists.
-ms.date: 11/06/2024
+ms.date: 11/08/2024
 ms.topic: how-to
 zone_pivot_groups: dev-environment
 ---
