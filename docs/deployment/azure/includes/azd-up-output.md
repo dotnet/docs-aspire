@@ -11,8 +11,6 @@ By default, a service can only be reached from inside the Azure Container Apps e
 Packaging services (azd package)
 
 
-SUCCESS: Your application was packaged for Azure in less than a second.
-
 Provisioning Azure resources (azd provision)
 Provisioning Azure resources can take some time.
 
@@ -20,7 +18,7 @@ Subscription: <YOUR SUBSCRIPTION>
 Location: <YOUR LOCATION>
 
   You can view detailed progress in the Azure Portal:
-<LINK TO DEPLOYMENT>
+  <LINK TO DEPLOYMENT>
 
   (✓) Done: Resource group: <YOUR RESOURCE GROUP>
   (✓) Done: Container Registry: <ID>
@@ -39,10 +37,7 @@ Deploying services (azd deploy)
   (✓) Done: Deploying service webfrontend
   - Endpoint: <YOUR UNIQUE webfrontend APP>.azurecontainerapps.io/
 
-
-SUCCESS: Your application was deployed to Azure in 1 minute 39 seconds.
-You can view the resources created under the resource group <YOUR RESOURCE GROUP> in Azure Portal:
-<LINK TO RESOURCE GROUP OVERVIEW>
+Aspire Dashboard: <LINK TO DEPLOYED .NET ASPIRE DASHBOARD>
 
 SUCCESS: Your up workflow to provision and deploy to Azure completed in 3 minutes 50 seconds.
 ```

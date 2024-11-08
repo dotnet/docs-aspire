@@ -1,7 +1,7 @@
 ---
 title: Deploy a ASP.NET Core app that connects to SQL Server to Azure
 description: Learn how to deploy a ASP.NET Core app that connects to SQL Server to Azure
-ms.date: 08/12/2024
+ms.date: 11/08/2024
 ms.topic: how-to
 ---
 
