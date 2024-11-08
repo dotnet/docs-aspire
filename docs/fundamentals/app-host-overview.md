@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs for adding resources and expressing dependencies.
-ms.date: 10/31/2024
+ms.date: 11/08/2024
 ms.topic: overview
 uid: dotnet/aspire/app-host
 ---
@@ -218,19 +218,19 @@ The preceding code adds a container resource named "ollama" with the image "olla
 
 #### Container resource lifecycle
 
-When the app host is run, the container resource is used to determine what container image to create and start. Under the hood, .NET Aspire runs the container using the defined container image by delegating calls to the appropriate OCI-compliant container runtime, either Docker or Podman. The following commands are used:
+When the app host is run, the <xref:Aspire.Hosting.ApplicationModel.ContainerResource> is used to determine what container image to create and start. Under the hood, .NET Aspire runs the container using the defined container image by delegating calls to the appropriate OCI-compliant container runtime, either Docker or Podman. The following commands are used:
 
 #### [Docker](#tab/docker)
 
-- `docker container create`: Create the container.
-- `docker container start`: Start the container.
+- [docker container create](https://docs.docker.com/reference/cli/docker/container/create/): Creates a new container from the specified image, without starting it.
+- [docker container start](https://docs.docker.com/reference/cli/docker/container/start/): Start one or more stopped containers.
 
 These commands are used instead of `docker run` to manage attached container networks, volumes, and ports. Calling these commands in this order allows any IP (network configuration) to already be present at initial startup.
 
 #### [Podman](#tab/podman)
 
-- `podman container create`: Create the container.
-- `podman container start`: Start the container.
+- [podman container create](https://docs.podman.io/en/latest/markdown/podman-create.1.html): Creates a writable container layer over the specified image and prepares it for running.
+- [podman container start](https://docs.podman.io/en/latest/markdown/podman-start.1.html): Start one or more stopped containers.
 
 These commands are used instead of `podman run` to manage attached container networks, volumes, and ports. Calling these commands in this order allows any IP (network configuration) to already be present at initial startup.
 
@@ -419,6 +419,7 @@ This logic can easily be inverted to connect to an existing Redis resource when 
 
 - [.NET Aspire integrations overview](integrations-overview.md)
 - [.NET Aspire SDK](dotnet-aspire-sdk.md)
+- [Eventing in .NET Aspire](../app-host/eventing.md)
 - [Service discovery in .NET Aspire](../service-discovery/overview.md)
 - [.NET Aspire service defaults](service-defaults.md)
 - [Expressing external parameters](external-parameters.md)
