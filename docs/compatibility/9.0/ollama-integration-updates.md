@@ -7,11 +7,11 @@ ai-usage: ai-assisted
 
 # Ollama integration updates
 
-The .NET Aspire 9.0 release of the Ollama Community Toolkit integrations introduces significant changes. These updates enhance functionality and better integrate with the .NET Aspire API design.
+The .NET Aspire Community Toolkit 9.0 release of the Ollama integrations introduces significant changes. These updates enhance functionality and better integrate with the .NET Aspire API design.
 
 ## Version introduced
 
-.NET Aspire 9.0 GA
+.NET Aspire Community Toolkit 9.0 GA
 
 ## Previous behavior
 
