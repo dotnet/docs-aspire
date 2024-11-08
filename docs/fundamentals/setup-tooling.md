@@ -33,7 +33,7 @@ To work with .NET Aspire, you need the following installed locally:
 
 :::zone pivot="visual-studio"
 
-Visual Studio 2022 17.9 or higher includes the latest [.NET Aspire SDK](dotnet-aspire-sdk.md) by default when you install the Web & Cloud workload. To verify that you have the .NET Aspire SDK installed, ...
+Visual Studio 2022 17.9 or higher includes the latest [.NET Aspire SDK](dotnet-aspire-sdk.md) by default when you install the Web & Cloud workload.
 
 If you have an earlier version of Visual Studio 2022, you can either upgrade to Visual Studio 2022 17.9 or you can install the .NET Aspire SDK using the following steps:
 

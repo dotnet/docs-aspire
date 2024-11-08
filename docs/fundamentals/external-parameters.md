@@ -2,7 +2,7 @@
 title: External parameters
 description: Learn how to express parameters such as secrets, connection strings, and other configuration values that might vary between environments.
 ms.topic: how-to
-ms.date: 09/27/2024
+ms.date: 11/08/2024
 ---
 
 # External parameters
@@ -11,21 +11,27 @@ Environments provide context for the application to run in. Parameters express t
 
 ## Parameter values
 
-Parameter values are read from the `Parameters` section of the app host's configuration and are used to provide values to the app while running locally. When you publish the app, if the value isn't available you're prompted to provide it.
+Parameter values are read from the `Parameters` section of the app host's configuration and are used to provide values to the app while running locally. When you publish the app, if the value isn't configured you're prompted to provide it.
 
-Consider the following app host _:::no-loc text="Program.cs":::_ example file:
+Consider the following example app host _:::no-loc text="Program.cs":::_ file:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Add a parameter
+// Add a parameter named "value"
 var value = builder.AddParameter("value");
 
 builder.AddProject<Projects.ApiService>("api")
        .WithEnvironment("EXAMPLE_VALUE", value);
 ```
 
-Now consider the following app host configuration file _:::no-loc text="appsettings.json":::_:
+The preceding code adds a parameter named `value` to the app host. The parameter is then passed to the `Projects.ApiService` project as an environment variable named `EXAMPLE_VALUE`.
+
+### Configure parameter values
+
+Adding parameters to the builder is only one aspect of the configuration. You must also provide the value for the parameter. The value can be provided in the app host configuration file, set as a user secret, or configured in any [other standard configuration](/dotnet/core/extensions/configuration). When parameter values aren't found, they're prompted for when publishing the app.
+
+Consider the following app host configuration file _:::no-loc text="appsettings.json":::_:
 
 ```json
 {
@@ -35,7 +41,21 @@ Now consider the following app host configuration file _:::no-loc text="appsetti
 }
 ```
 
-Parameters are represented in the manifest as a new primitive called `parameter.v0`:
+The preceding JSON configures a parameter in the `Parameters` section of the app host configuration. In other words, that app host is able to find the parameter as its configured. For example, you could walk up to the <xref:Aspire.Hosting.IDistributedApplicationBuilder.Configuration?displayProperty=nameWithType> and access the value using the `Parameters:value` key:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var key = $"Parameters:value";
+var value = builder.Configuration[key]; // value = "local-value"
+```
+
+> [!IMPORTANT]
+> However, you don't need to access this configuration value yourself in the app host. Instead, the <xref:Aspire.Hosting.ApplicationModel.ParameterResource> is used to pass the parameter value to dependent resources. Most often as an environment variable.
+
+### Parameter representation in the manifest
+
+.NET Aspire uses a [deployment manifest](../deployment/manifest-format.md) to represent the app's resources and their relationships. Parameters are represented in the manifest as a new primitive called `parameter.v0`:
 
 ```json
 {
@@ -57,12 +77,12 @@ Parameters are represented in the manifest as a new primitive called `parameter.
 
 Parameters can be used to model secrets. When a parameter is marked as a secret, it serves as a hint to the manifest that the value should be treated as a secret. When you publish the app, the value is prompted for and stored in a secure location. When you run the app locally, the value is read from the `Parameters` section of the app host configuration.
 
-Consider the following app host _:::no-loc text="Program.cs":::_ example file:
+Consider the following example app host _:::no-loc text="Program.cs":::_ file:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Add a secret parameter
+// Add a secret parameter named "secret"
 var secret = builder.AddParameter("secret", secret: true);
 
 builder.AddProject<Projects.ApiService>("api")
@@ -107,7 +127,7 @@ Parameters can be used to model connection strings. When you publish the app, th
 > [!NOTE]
 > Connection strings are used to represent a wide range of connection information including database connections, message brokers, and other services. In .NET Aspire nomenclature, the term "connection string" is used to represent any kind of connection information.
 
-Consider the following app host _:::no-loc text="Program.cs":::_ example file:
+Consider the following example app host _:::no-loc text="Program.cs":::_ file:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
