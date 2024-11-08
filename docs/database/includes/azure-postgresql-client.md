@@ -4,7 +4,7 @@ ms.topic: include
 
 ### Add Azure authenticated Npgsql client
 
-By default, when you call `AddAzurePostgresFlexibleServer` in your PostgreSQL hosting integration, it configures [Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication) authentication. You need to install the [📦 Azure.Identity](https://www.nuget.org/packages/Azure.Identity) NuGet package to enable authentication:
+By default, when you call `AddAzurePostgresFlexibleServer` in your PostgreSQL hosting integration, it configures [📦 Azure.Identity](https://www.nuget.org/packages/Azure.Identity) NuGet package to enable authentication:
 
 ### [.NET CLI](#tab/dotnet-cli)
 

@@ -86,7 +86,7 @@ In Visual Studio, try checking for an update on the Azure Functions tooling. Ope
 
 ## Hosting integration
 
-The Azure Functions hosting integration models an Azure Functions resource as the `AzureFunctionsProjectResource` (subtype of <xref:Aspire.Hosting.ApplicationModel.ProjectResource>) type. To access this type and APIs that allow you to add it to your [app model](xref:dotnet/aspire/app-host#define-the-app-model), install the [📦 Aspire.Hosting.Azure.Functions](https://www.nuget.org/packages/Aspire.Hosting.Azure.Functions) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The Azure Functions hosting integration models an Azure Functions resource as the `AzureFunctionsProjectResource` (subtype of <xref:Aspire.Hosting.ApplicationModel.ProjectResource>) type. To access this type and APIs that allow you to add it to your [📦 Aspire.Hosting.Azure.Functions) NuGet package in the [app host](xref:dotnet/aspire/app-host](https://www.nuget.org/packages/Aspire.Hosting.Azure.Functions) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

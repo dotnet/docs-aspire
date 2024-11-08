@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire Seq integration to add Ope
 
 ## Get started
 
-To get started with the .NET Aspire Seq integration, install the [Aspire.Seq](https://www.nuget.org/packages/Aspire.Seq) NuGet package in the client-consuming project, i.e., the project for the application that uses the Seq client.
+To get started with the .NET Aspire Seq integration, install the [📦 Aspire.Seq](https://www.nuget.org/packages/Aspire.Seq) NuGet package in the client-consuming project, i.e., the project for the application that uses the Seq client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -42,7 +42,7 @@ builder.AddSeqEndpoint("seq");
 
 ## App host usage
 
-To model the Seq resource in the app host, install the [Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+To model the Seq resource in the app host, install the [📦 Aspire.Hosting.Seq) NuGet package in the [app host](xref:dotnet/aspire/app-host](https://www.nuget.org/packages/Aspire.Hosting.Seq) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

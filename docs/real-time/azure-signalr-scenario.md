@@ -15,7 +15,7 @@ The hub host project is where you host your SignalR hub, the project that calls 
 
 ### Install the NuGet package
 
-You need to install the [Microsoft.Azure.SignalR](https://www.nuget.org/packages/Microsoft.Azure.SignalR) NuGet package.
+You need to install the [📦 Microsoft.Azure.SignalR](https://www.nuget.org/packages/Microsoft.Azure.SignalR) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

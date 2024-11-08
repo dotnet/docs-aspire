@@ -57,7 +57,7 @@ The following example test project was created as part of the **.NET Aspire Star
 
 :::zone-end
 
-The preceding project file is fairly standard. There's a `PackageReference` to the [Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package, which includes the required types to write tests for .NET Aspire projects.
+The preceding project file is fairly standard. There's a `PackageReference` to the [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package, which includes the required types to write tests for .NET Aspire projects.
 
 The template test project includes a `WebTests` class with a single test. The test verifies the following scenario:
 

@@ -34,7 +34,7 @@ For more information, see [Provided extension methods](#provided-extension-metho
 
 ## Project characteristics
 
-The _YourAppName.ServiceDefaults_ project is a .NET 8.0 library that contains the following XML:
+The _YourAppName.ServiceDefaults_ project is a .NET 9.0 library that contains the following XML:
 
 :::code language="xml" source="snippets/template/YourAppName/YourAppName.ServiceDefaults.csproj" highlight="11":::
 

@@ -232,7 +232,7 @@ extensions developed by the .NET Aspire team:
 
 ### Cloud-agnostic resource types
 
-These resources are available in the [Aspire.Hosting](https://www.nuget.org/packages/Aspire.Hosting) NuGet package.
+These resources are available in the [📦 Aspire.Hosting](https://www.nuget.org/packages/Aspire.Hosting) NuGet package.
 
 | App model usage | Manifest resource type | Heading link |
 |--|--|--|
@@ -635,7 +635,7 @@ Example manifest:
 
 ### Azure-specific resource types
 
-The following resources are available in the [Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure) NuGet package.
+The following resources are available in the [📦 Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure) NuGet package.
 
 | App Model usage | Manifest resource type | Heading link |
 |--|--|--|

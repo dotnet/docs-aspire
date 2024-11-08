@@ -30,7 +30,7 @@ In this tutorial, you learn to configure an ASP.NET Core app with a SQL Server D
     - Enter a **Project Name** of **AspireSQL**.
     - Leave the rest of the values at their defaults and select **Next**.
 1. On the **Additional information** screen:
-    - Verify that **.NET 8.0** is selected and choose **Create**.
+    - Verify that **.NET 9.0** is selected and choose **Create**.
 
 Visual Studio creates a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:
 
@@ -69,7 +69,7 @@ Add the appropriate .NET Aspire integration to the _AspireSQL.AppHost_ project f
 
 # [Azure SQL Database](#tab/azure-sql)
 
-Add the [Aspire.Hosting.Azure.Sql](https://www.nuget.org/packages/Aspire.Hosting.Azure.Sql) package to the _AspireSQL.AppHost_ project:
+Add the [📦 Aspire.Hosting.Azure.Sql](https://www.nuget.org/packages/Aspire.Hosting.Azure.Sql) NuGet package to the _AspireSQL.AppHost_ project:
 
 ```dotnetcli
 dotnet add package Aspire.Hosting.Azure.Sql
@@ -77,7 +77,7 @@ dotnet add package Aspire.Hosting.Azure.Sql
 
 ## [SQL Server Container](#tab/sql-container)
 
-Add the [Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer) package to the _AspireSQL.AppHost_ project:
+Add the [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer) NuGet package to the _AspireSQL.AppHost_ project:
 
 ```dotnetcli
 dotnet add package Aspire.Hosting.SqlServer

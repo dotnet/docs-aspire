@@ -21,7 +21,7 @@ For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-
 
 ## Get started
 
-To get started, you need to add the Orleans hosting package to your app host project by installing the [Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans) NuGet package.
+To get started, you need to add the Orleans hosting package to your app host project by installing the [📦 Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

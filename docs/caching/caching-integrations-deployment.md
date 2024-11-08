@@ -36,7 +36,7 @@ Add the appropriate .NET Aspire integration to the _AspireRedis.AppHost_ project
 
 # [Azure Cache for Redis](#tab/azure-redis)
 
-Add the [Aspire.Hosting.Azure.Redis](https://www.nuget.org/packages/Aspire.Hosting.Azure.Redis) package to the _AspireRedis.AppHost_ project:
+Add the [📦 Aspire.Hosting.Azure.Redis](https://www.nuget.org/packages/Aspire.Hosting.Azure.Redis) NuGet package to the _AspireRedis.AppHost_ project:
 
 ```dotnetcli
 dotnet add package Aspire.Hosting.Azure.Redis
@@ -44,7 +44,7 @@ dotnet add package Aspire.Hosting.Azure.Redis
 
 ## [Redis Container](#tab/redis-container)
 
-Add the [Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis) package to the _AspireRedis.AppHost_ project:
+Add the [📦 Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis) NuGet package to the _AspireRedis.AppHost_ project:
 
 ```dotnetcli
 dotnet add package Aspire.Hosting.Redis

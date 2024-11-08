@@ -43,7 +43,7 @@ To upgrade your projects to .NET Aspire 9.0, you need to update your project fil
 
 ### Edit your app host project file
 
-To upgrade your app host project to .NET Aspire 9.0, you need to update your project file to use the new [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md). Open your project file in a text editor and add an `Sdk` element with the new [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk):
+To upgrade your app host project to .NET Aspire 9.0, you need to update your project file to use the new [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk):
 
 ```diff
 <Project Sdk="Microsoft.NET.Sdk">

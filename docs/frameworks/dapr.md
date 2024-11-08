@@ -28,7 +28,7 @@ To install Dapr, see [Install the Dapr CLI](https://docs.dapr.io/getting-started
 
 ## Get started
 
-To get started you need to add the Dapr hosting package to your app host project by installing the [Aspire.Hosting.Dapr](https://www.nuget.org/packages/Aspire.Hosting.Dapr) NuGet package.
+To get started you need to add the Dapr hosting package to your app host project by installing the [📦 Aspire.Hosting.Dapr](https://www.nuget.org/packages/Aspire.Hosting.Dapr) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -72,10 +72,10 @@ The .NET Aspire dashboard shows the Dapr sidecar as a resource, with its status 
 
 ## Adding the Dapr SDK
 
-To use Dapr APIs from .NET Aspire resources, you can use the [Dapr SDK for ASP.NET Core (`Dapr.AspNetCore`) library](https://www.nuget.org/packages/Dapr.AspNetCore/). The Dapr SDK provides a set of APIs to interact with Dapr sidecars.
+To use Dapr APIs from .NET Aspire resources, you can use the [📦 Dapr.AspNetCore/](https://www.nuget.org/packages/Dapr.AspNetCore/). The Dapr SDK provides a set of APIs to interact with Dapr sidecars.
 
 > [!NOTE]
-> Use the `Dapr.AspNetCore` library for the Dapr integration with ASP.NET (DI integration, registration of subscriptions, etc.). Non-ASP.NET apps (such as console apps) can just use the [`Dapr.Client` library](https://www.nuget.org/packages/Dapr.Client) to make calls through the Dapr sidecar.
+> Use the `Dapr.AspNetCore` library for the Dapr integration with ASP.NET (DI integration, registration of subscriptions, etc.). Non-ASP.NET apps (such as console apps) can just use the [📦 Dapr.Client](https://www.nuget.org/packages/Dapr.Client) to make calls through the Dapr sidecar.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

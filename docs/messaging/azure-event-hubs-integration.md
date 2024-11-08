@@ -24,7 +24,7 @@ These type are registered in the DI container for connecting to [Azure Event Hub
 
 ## Get started
 
-To get started with the .NET Aspire Azure Event Hubs integration, install the [Aspire.Azure.Messaging.EventHubs](https://www.nuget.org/packages/Aspire.Azure.Messaging.EventHubs) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Event Hubs client.
+To get started with the .NET Aspire Azure Event Hubs integration, install the [📦 Aspire.Azure.Messaging.EventHubs](https://www.nuget.org/packages/Aspire.Azure.Messaging.EventHubs) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Event Hubs client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -80,7 +80,7 @@ For more information, see the [Azure.Messaging.EventHubs documentation](https://
 
 ## App host usage
 
-To add Azure Event Hub hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.EventHubs](https://www.nuget.org/packages/Aspire.Hosting.Azure.EventHubs) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+To add Azure Event Hub hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [📦 Aspire.Hosting.Azure.EventHubs) NuGet package in the [app host](xref:dotnet/aspire/app-host](https://www.nuget.org/packages/Aspire.Hosting.Azure.EventHubs) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

@@ -4,7 +4,7 @@ ms.topic: include
 
 ### Add Azure Cache for Redis distributed client
 
-By default, when you call `AddAzureRedis` in your Redis hosting integration, it configures [Microsoft Entra ID](/azure/azure-cache-for-redis/cache-azure-active-directory-for-authentication) authentication. To connect your client integration to an Azure Cache for Redis instance, you need to install the [📦 Microsoft.Azure.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Azure.StackExchangeRedis) NuGet package to enable authentication:
+By default, when you call `AddAzureRedis` in your Redis hosting integration, it configures [📦 Microsoft.Azure.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Azure.StackExchangeRedis) NuGet package to enable authentication:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
