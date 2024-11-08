@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire templates
 description: Learn how to install the .NET Aspire templates, and how to use them to create new apps.
-ms.date: 11/04/2024
+ms.date: 11/08/2024
 zone_pivot_groups: dev-environment
 uid: dotnet/aspire/templates
 ---
@@ -26,6 +26,15 @@ To install these templates, use the [dotnet new install](/dotnet/core/tools/dotn
 ```dotnetcli
 dotnet new install Aspire.ProjectTemplates
 ```
+
+To install a specific version, append the version number to the package name:
+
+```dotnetcli
+dotnet new install Aspire.ProjectTemplates::9.0.0
+```
+
+> [!TIP]
+> If you already have the .NET Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. Feel free to uninstall the .NET Aspire workload.
 
 :::zone-end
 

@@ -39,7 +39,7 @@ Originally the "connection string" from an Ollama resource was just the HTTP end
 
 ### OllamaSharp 4 and Microsoft.Extensions.AI
 
-OllamaSharp updated to a new major version and now supports the interfaces from [Microsoft.Extensions.AI](https://devblogs.microsoft.com/dotnet/introducing-microsoft-extensions-ai-preview/). You can register the `IOllamaApiClient` (native OllamaSharp client), or from M.E.AI `IChatClient` and `IEmbeddingGenerator` (depending on your model type). Using these new interfaces makes code more portable across LLM/SLM options.
+OllamaSharp updated to a new major version and now supports the interfaces from [Microsoft.Extensions.AI](https://devblogs.microsoft.com/dotnet/introducing-microsoft-extensions-ai-preview/). You can register the `IOllamaApiClient` (native OllamaSharp client), or from M.E.AI <xref:Microsoft.Extensions.AI.IChatClient> and <xref:Microsoft.Extensions.AI.IEmbeddingGenerator`2> (depending on your model type). Using these new interfaces makes code more portable across LLM/SLM options.
 
 ### API deprecations and removals
 
