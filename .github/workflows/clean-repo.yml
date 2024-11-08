@@ -27,7 +27,7 @@ jobs:
       # Call clean repo
       - name: Clean repo
         id: clean-repo-step
-        uses: dotnet/docs-tools/cleanrepo@2a815a6c0976e888a49264f513dc230008b4a1f2
+        uses: dotnet/docs-tools/cleanrepo@main
         with:
           docfx_directory: "."
           articles_directory: "docs"

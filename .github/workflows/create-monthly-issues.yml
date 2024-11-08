@@ -3,6 +3,7 @@ name: Create monthly issues
 on:
   schedule:
     - cron: '0 0 24 * *' # Runs at midnight on the 24th of each month
+  workflow_dispatch:
 
 permissions:
   contents: read
