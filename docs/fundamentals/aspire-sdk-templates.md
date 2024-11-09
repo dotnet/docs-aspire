@@ -82,9 +82,6 @@ Your console output should look like the following:
 
 :::zone-end
 
-> [!NOTE]
-> If you still have .NET Aspire 8.0 templates installed (from the workload), you'll see both .NET Aspire 8.0 and .NET Aspire 9.0 templates in the list. They can be distinguished by the version number in the template name.
-
 ## Available templates
 
 The .NET Aspire templates allow you to create new apps pre-configured with the .NET Aspire solutions structure and default settings. These projects also provide a unified debugging experience across the different resources of your app.
