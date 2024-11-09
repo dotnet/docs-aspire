@@ -63,7 +63,7 @@ To view the available templates in Visual Studio Code with the C# DevKit install
 
 :::image type="content" source="media/vscode-create-dotnet-proj.png" alt-text="Visual Studio Code: Create .NET Project button." lightbox="media/vscode-create-dotnet-proj.png":::
 
-Then, search for "Aspire 9" in the search bar to see the available .NET Aspire project templates:
+Then, search for "Aspire" in the search bar to see the available .NET Aspire project templates:
 
 :::image type="content" source="media/vscode-create-dotnet-aspire-proj.png" alt-text="Visual Studio Code: Create new project and search for 'Aspire'." lightbox="media/vscode-create-dotnet-aspire-proj.png":::
 
