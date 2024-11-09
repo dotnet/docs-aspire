@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire templates
 description: Learn how to install the .NET Aspire templates, and how to use them to create new apps.
-ms.date: 11/08/2024
+ms.date: 11/09/2024
 zone_pivot_groups: dev-environment
 uid: dotnet/aspire/templates
 ---
@@ -22,9 +22,9 @@ To install the .NET Aspire templates in Visual Studio, you need to manually inst
 2. Go to **Tools** > **NuGet Package Manager** > **Package Manager Console**.
 3. Run the following command to install the templates:
 
-  ```powershell
+  ```dotnetcli
   dotnet new install Aspire.ProjectTemplates
-  `` ****(add an extra backtick here. I ommited it so suggestion wouldn't look cropped.)****
+  ```
 
 For Visual Studio 17.12 or later, the .NET Aspire templates are installed automatically.
 
