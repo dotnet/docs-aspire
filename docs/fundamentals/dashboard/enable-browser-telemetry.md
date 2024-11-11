@@ -1,7 +1,7 @@
 ---
 title: Enable browser telemetry
 description: Learn how to enable browser telemetry in the .NET Aspire dashboard.
-ms.date: 10/29/2024
+ms.date: 11/11/2024
 ---
 
 # Enable browser telemetry
