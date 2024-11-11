@@ -1,7 +1,7 @@
 ---
 title: Upgrade to .NET Aspire 9.0
 description: Learn how to upgrade all your .NET Aspire 8.x projects to .NET Aspire 9.0.
-ms.date: 10/28/2024
+ms.date: 11/11/2024
 zone_pivot_groups: dev-environment
 ---
 
@@ -10,7 +10,7 @@ zone_pivot_groups: dev-environment
 .NET Aspire 9.0 is now generally available. In this article, you learn the steps involved in updating your existing .NET Aspire 8.x projects to .NET Aspire 9.0. There are a few ways in which you can update your projects to .NET Aspire 9.0:
 
 - Manually upgrade your projects to .NET Aspire 9.0.
-- Use the Upgrade Assistant to upgrade your projects to .NET Aspire 9.0.
+- Use the **Upgrade Assistant** to upgrade your projects to .NET Aspire 9.0.
 
 > [!TIP]
 > If you're new to .NET Aspire, there's no reason to upgrade anything. For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
@@ -65,54 +65,6 @@ To upgrade your app host project to .NET Aspire 9.0, you need to update your pro
 
 </Project>
 ```
-
-### Update the NuGet packages
-
-To take advantage of the latest updates in your .NET Aspire solution, update all NuGet packages to version `9.0.0`.
-
-:::zone pivot="visual-studio"
-
-:::image type="content" source="media/visual-studio-update-nuget.png" lightbox="media/visual-studio-update-nuget.png" alt-text="Visual Studio: Update all NuGet packages for the .NET Aspire solution.":::
-
-:::zone-end
-:::zone pivot="vscode,dotnet-cli"
-
-To update your app host project, use the following .NET CLI command to update the `Aspire.Hosting.AppHost` package to version `9.0.0`:
-
-```dotnetcli
-dotnet add package Aspire.Hosting.AppHost --version 9.0.0
-```
-
-When a package reference already exists, the `dotnet add package` command updates the reference to the specified version. For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package).
-
-:::zone-end
-
-With the app host project updated, your project file should look like this:
-
-```diff
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <IsAspireHost>true</IsAspireHost>
-    <UserSecretsId>0afc20a6-cd99-4bf7-aae1-1359b0d45189</UserSecretsId>
-  </PropertyGroup>
-
-  <ItemGroup>
--   <PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.0" />
-+   <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
-  </ItemGroup>
-
-</Project>
-```
-
-> [!TIP]
-> You'll want to also update the NuGet packages in your other projects to the latest versions.
 
 ### Optionally upgrade the target framework moniker (TFM)
 
@@ -169,11 +121,11 @@ If you followed all of the preceding steps, your app host project file should lo
 </Project>
 ```
 
-The changes include the addition of the `Aspire.AppHost.Sdk` SDK, the update of the `TargetFramework` property to `net9.0`, and the update of the `Aspire.Hosting.AppHost` package to version `9.0.0`.
+The changes include the addition of the `Aspire.AppHost.Sdk`, the update of the `TargetFramework` property to `net9.0`, and the update of the `Aspire.Hosting.AppHost` package to version `9.0.0`.
 
 ### Adjust your _Program.cs_ file
 
-With the introduction of .NET Aspire 9.0, there are some _breaking changes_. Some APIs were originally marked as experimental and are now removed, while other APIs are now attributed as <xref:System.ObsoleteAttribute> with details on new replacement APIs. You need to adjust your _Program.cs_ file to use the new APIs. If you're using the Upgrade Assistant to upgrade your projects, it automatically adjusts your _Program.cs_ file in most cases.
+With the introduction of .NET Aspire 9.0, there are some _breaking changes_. Some APIs were originally marked as experimental (with the <xref:System.Diagnostics.CodeAnalysis.ExperimentalAttribute>) and are now removed, while other APIs are now attributed as <xref:System.ObsoleteAttribute> with details on new replacement APIs. You need to adjust your _Program.cs_ file (and potentially other affected APIs) to use the new APIs. If you're using the Upgrade Assistant to upgrade your projects, it automatically adjusts your _Program.cs_ file in most cases.
 
 For the complete list of breaking changes in .NET Aspire 9.0, see [Breaking changes in .NET Aspire 9.0](../compatibility/9.0/index.md).
 
@@ -266,6 +218,54 @@ Complete: 3 succeeded, 0 failed, 7 skipped.
 ```
 
 :::zone-end
+
+### Update the NuGet packages
+
+To take advantage of the latest updates in your .NET Aspire solution, update all NuGet packages to version `9.0.0`.
+
+:::zone pivot="visual-studio"
+
+:::image type="content" source="media/visual-studio-update-nuget.png" lightbox="media/visual-studio-update-nuget.png" alt-text="Visual Studio: Update all NuGet packages for the .NET Aspire solution.":::
+
+:::zone-end
+:::zone pivot="vscode,dotnet-cli"
+
+To update your app host project, use the following .NET CLI command to update the `Aspire.Hosting.AppHost` package to version `9.0.0`:
+
+```dotnetcli
+dotnet add package Aspire.Hosting.AppHost --version 9.0.0
+```
+
+When a package reference already exists, the `dotnet add package` command updates the reference to the specified version. For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package).
+
+:::zone-end
+
+With the app host project updated, your project file should look like this:
+
+```diff
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>0afc20a6-cd99-4bf7-aae1-1359b0d45189</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+-   <PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.0" />
++   <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
+  </ItemGroup>
+
+</Project>
+```
+
+> [!TIP]
+> You'll want to also update the NuGet packages in your other projects to the latest versions.
 
 ## Verify the upgrade
 

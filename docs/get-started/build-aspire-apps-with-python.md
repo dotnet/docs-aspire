@@ -1,12 +1,12 @@
 ---
 title: Orchestrate Python apps in .NET Aspire
-description: Learn how to integrate Python apps into a .NET Aspire App Host project.
-ms.date: 07/23/2024
+description: Learn how to integrate Python apps into a .NET Aspire app host project.
+ms.date: 11/11/2024
 ---
 
 # Orchestrate Python apps in .NET Aspire
 
-In this article, you learn how to use Python apps in a .NET Aspire project. The sample app in this article demonstrates launching a Python application. The Python extension for .NET Aspire requires the use of virtual environments.
+In this article, you learn how to use Python apps in a .NET Aspire app host. The sample app in this article demonstrates launching a Python application. The Python extension for .NET Aspire requires the use of virtual environments.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
@@ -44,7 +44,7 @@ dotnet run --project PythonSample.AppHost/PythonSample.AppHost.csproj
 
 Once the app host starts it should be possible to click on the dashboard link in the console output. At this point the dashboard will not show any resources. Stop the app host by pressing <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal.
 
-## Prepare a Python project
+## Prepare a Python app
 
 From your previous terminal session where you created the .NET Aspire solution, create a new directory to contain the Python source code.
 
@@ -60,7 +60,7 @@ cd hello-python
 
 ### Initialize the Python virtual environment
 
-To work with Python projects, they need to be within a virtual environment. To create a virtual environment, run the following command:
+To work with Python apps, they need to be within a virtual environment. To create a virtual environment, run the following command:
 
 ```python
 python -m venv .venv
@@ -128,35 +128,19 @@ The preceding code creates a simple Flask app that listens on port 8111 and retu
 Install the Python hosting package by running the following command:
 
 ```dotnetcli
-dotnet add ../PythonSample.AppHost/PythonSample.AppHost.csproj package Aspire.Hosting.Python --version 8.1.0
+dotnet add ../PythonSample.AppHost/PythonSample.AppHost.csproj package Aspire.Hosting.Python --version 9.0.0
 ```
 
 After the package is installed, the project XML should have a new package reference similar to the following:
 
-```xml
-<Project Sdk="Microsoft.NET.Sdk">
+:::code language="xml" source="snippets/PythonSample/PythonSample.AppHost/PythonSample.AppHost.csproj":::
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <IsAspireHost>true</IsAspireHost>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="8.1.0" />
-
-    <!-- Add this reference to PythonSample.AppHost.csproj -->
-    <PackageReference Include="Aspire.Hosting.Python" Version="8.1.0" />
-  </ItemGroup>
-
-</Project>
-```
-
-Update the app host _Program.cs_ file to include the Python project, by calling the `AddPythonProject` API and specifying the project name, project path, and the entry point file:
+Update the app host _Program.cs_ file to include the Python project, by calling the `AddPythonApp` API and specifying the project name, project path, and the entry point file:
 
 :::code source="snippets/PythonSample/PythonSample.AppHost/Program.cs":::
+
+> [!IMPORTANT]
+> The `AddPythonApp` API is experimental and may change in future releases. For more information, see [ASPIREHOSTINGPYTHON001](../diagnostics/overview.md#aspirehostingpython001).
 
 ## Run the app
 
@@ -180,7 +164,7 @@ Stop the app host by pressing <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal.
 
 To add a bit of observability, add telemetry to help monitor the dependant Python app. In the Python project, add the following OpenTelemetry package as a dependency in the _requirements.txt_ file:
 
-:::code language="python" source="snippets/PythonSample/hello-python/requirements.txt" highlight="2":::
+:::code language="python" source="snippets/PythonSample/hello-python/requirements.txt" highlight="2-5":::
 
 The preceding requirement update, adds the OpenTelemetry package and the OTLP exporter. Next, re-install the Python app requirements into the virtual environment by running the following command:
 
@@ -208,4 +192,8 @@ Once the app host has launched navigate to the dashboard and note that in additi
 
 ## Summary
 
-While there are several considerations that are beyond the scope of this article, you learned how to build .NET Aspire solution that integrates with Python. You also learned how to use the `AddPythonProject` API to host Python apps.
+While there are several considerations that are beyond the scope of this article, you learned how to build .NET Aspire solution that integrates with Python. You also learned how to use the `AddPythonApp` API to host Python apps.
+
+## See also
+
+- [GitHub: .NET Aspire Samples—Python hosting integration](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithPython)

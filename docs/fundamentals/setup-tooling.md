@@ -167,7 +167,7 @@ For more information, see [Write your first .NET Aspire test](../testing/write-y
 
 You can use Visual Studio Code, with the [C# Dev Kit extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit), to create and develop .NET Aspire projects. To create a new .NET Aspire project in Visual Studio Code, select the **Create .NET Project** button in the **Explorer** view, then select one of the .NET Aspire templates:
 
-:::image type="content" source="media/setup-tooling/vscode-create-project.png" lightbox="media/setup-tooling/vscode-create-project.png" alt-text="A screenshot showing how to create a new .NET Aspire project in Visual Studio Code.":::
+:::image type="content" source="media/vscode-create-dotnet-aspire-proj.png" lightbox="media/vscode-create-dotnet-aspire-proj.png" alt-text="A screenshot showing how to create a new .NET Aspire project in Visual Studio Code.":::
 
 Once you create a new .NET Aspire project, you run and debug the app, stepping through breakpoints, and inspecting variables using the Visual Studio Code debugger:
 

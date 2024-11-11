@@ -1,8 +1,8 @@
 ﻿namespace AspireApp.Tests;
 
-public class WebTests
+public class IntegrationTest1
 {
-    [Fact]
+    [Test]
     public async Task GetWebResourceRootReturnsOkStatusCode()
     {
         // Arrange
@@ -13,9 +13,6 @@ public class WebTests
         {
             clientBuilder.AddStandardResilienceHandler();
         });
-
-        // To output logs to the xUnit.net ITestOutputHelper, 
-        // consider adding a package from https://www.nuget.org/packages?q=xunit+logging
 
         await using var app = await appHost.BuildAsync();
 
@@ -28,7 +25,7 @@ public class WebTests
         var httpClient = app.CreateHttpClient("webfrontend");
 
         await resourceNotificationService.WaitForResourceAsync(
-                "webfrontend", 
+                "webfrontend",
                 KnownResourceStates.Running
             )
             .WaitAsync(TimeSpan.FromSeconds(30));
@@ -36,6 +33,6 @@ public class WebTests
         var response = await httpClient.GetAsync("/");
 
         // Assert
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
     }
 }

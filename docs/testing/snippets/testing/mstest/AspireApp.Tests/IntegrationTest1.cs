@@ -1,7 +1,7 @@
-namespace AspireApp.Tests;
+﻿namespace AspireApp.Tests;
 
 [TestClass]
-public class WebTests
+public class IntegrationTest1
 {
     [TestMethod]
     public async Task GetWebResourceRootReturnsOkStatusCode()

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Azure.Storage.Blobs" Version="8.2.2" />
-    <PackageReference Include="Aspire.Azure.Storage.Queues" Version="8.2.2" />
+    <PackageReference Include="Aspire.Azure.Storage.Blobs" Version="9.0.0" />
+    <PackageReference Include="Aspire.Azure.Storage.Queues" Version="9.0.0" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,6 @@
-﻿namespace AspireApp.Tests;
+﻿using Aspire.Hosting;
+
+namespace AspireApp.Tests;
 
 [TestClass]
 public class EnvVarTests
