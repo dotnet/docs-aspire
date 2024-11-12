@@ -249,7 +249,7 @@ items:
           - name: Meilisearch
             href: community-toolkit/hosting-meilisearch.md
           - name: SQL Database Projects
-            href: community-toolkit/hosting-sql-projects.md
+            href: community-toolkit/hosting-sql-database-projects.md
 
   - name: Custom integrations
     items:
