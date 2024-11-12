@@ -1,27 +1,35 @@
 ---
 title: What's new in .NET Aspire 9.0
 description: Learn what's new in the official general availability version of .NET Aspire 9.0.
-ms.date: 11/06/2024
+ms.date: 11/11/2024
 ---
 
 # What's new in .NET Aspire 9.0
 
-.NET Aspire 9.0 is the next major general availability (GA) release of .NET Aspire; it supports _both_ .NET 8.0 Long Term Support (LTS) and .NET 9.0 Standard Term Support (STS). .NET Aspire 9 addresses some of the most highly requested features and pain points from the community. Join the community on [Discord](https://discord.com/invite/h87kDAHQgJ) and [GitHub](https://github.com/dotnet/aspire).
+📢 .NET Aspire 9.0 is the next major general availability (GA) release of .NET Aspire; it supports _both_:
+
+- .NET 8.0 Long Term Support (LTS) _or_
+- .NET 9.0 Standard Term Support (STS).
+
+> [!NOTE]
+> You're able to use .NET Aspire 9.0 with either .NET 8 or .NET 9! 🤯
+
+This release addresses some of the most highly requested features and pain points from the community. The best features are community-driven! To join the community on, visit us on [:::image type="icon" source="../media/discord-icon.svg" border="false"::: Discord](https://discord.com/invite/h87kDAHQgJ) to chat with team members and collaborate with us on [:::image type="icon" source="../media/github-mark.svg" border="false"::: GitHub](https://github.com/dotnet/aspire).
 
 For more information on the official .NET version and .NET Aspire version support, see:
 
-- [.NET support policy](https://dotnet.microsoft.com/platform/support/policy).
-- [.NET Aspire support policy](https://dotnet.microsoft.com/platform/support/policy/aspire).
+- [.NET support policy](https://dotnet.microsoft.com/platform/support/policy): Definitions for LTS and STS.
+- [.NET Aspire support policy](https://dotnet.microsoft.com/platform/support/policy/aspire): Important unique product life cycle details.
 
 ## Upgrade to .NET Aspire 9
 
-To upgrade from earlier versions of .NET Aspire to .NET Aspire 9, follow the instructions in the official [Upgrade to .NET Aspire 9](../get-started/upgrade-to-aspire-9.md) guide.
+To upgrade from earlier versions of .NET Aspire to .NET Aspire 9, follow the instructions in the official [Upgrade to .NET Aspire 9](../get-started/upgrade-to-aspire-9.md) guide. The guide provides detailed instructions on how to upgrade your existing .NET Aspire solutions to .NET Aspire 9. Regardless of you're doing it manually, or using the Upgrade Assistant, the guide makes short work of the process.
 
-### Tooling
+### Tooling improvements
 
-.NET Aspire 9 makes it simpler to configure your environment to develop .NET Aspire applications. You no longer need a .NET workload. Instead, you install the new [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md). For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
+.NET Aspire 9 makes it simpler to configure your environment to develop .NET Aspire applications. You no longer need a .NET workload. Instead, you install the new [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md) into the app host project of your .NET Aspire solutions. For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
 
-### Templates
+### Templates have moved
 
 .NET Aspire 9 is moving the contents that used to be installed via the workload into separate NuGet packages. This includes the templates for creating new .NET Aspire projects and solutions. These templates are installed using the [`dotnet new install` command](/dotnet/core/tools/dotnet-new). These can be installed by running the following command:
 
@@ -34,7 +42,7 @@ dotnet new install Aspire.ProjectTemplates::9.0.0
 
 For more information, see [.NET Aspire templates](../fundamentals/aspire-sdk-templates.md).
 
-## Dashboard
+## Dashboard UX enhancements and new interactivity features
 
 The [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) continues to improve with each release.
 
@@ -66,7 +74,7 @@ A community contribution from [@mangeg](https://github.com/mangeg) improved supp
 
 Another improvement to console logs is hiding unsupported escape codes. Codes that aren't related to displaying text, such as positioning the cursor or communicating with the operating system don't make sense in this UI, and are hidden.
 
-## Telemetry
+## Telemetry user-centric additions
 
 [Telemetry](../fundamentals/telemetry.md) remains a vital aspect of .NET Aspire. In .NET Aspire 9, many new features were introduced to the Telemetry service.
 
@@ -94,11 +102,11 @@ For more information on configuring browser telemetry, see [Enable browser telem
 
 ## App Host (Orchestration)
 
-The [.NET Aspire app host](../fundamentals/app-host-overview.md) is one of the most important features of .NET Aspire. In .NET Aspire 9, several new features were added specific to the app host.
+The [.NET Aspire app host](../fundamentals/app-host-overview.md) is one of the **most important** features of .NET Aspire. In .NET Aspire 9, several new features were added specific to the app host.
 
 ### Waiting for dependencies
 
-You can now specify that a resource should wait for another resource before starting. This can help avoid connection errors during startup by only starting resources when their dependencies are ready.
+If you've been following along with .NET Aspire, you already know that your app host project is where you define your app model. You create a distributed application builder, add and configure resources, and express their dependencies. Now, you can specify that a resource should _wait_ for another resource before starting. This can help avoid connection errors during startup by only starting resources when their dependencies are "ready."
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -114,6 +122,8 @@ builder.Build().Run();
 
 When the app host starts, it waits for the `rabbit` resource to be ready before starting the `api` resource.
 
+<!-- TODO: xref -->
+
 There are two methods exposed to wait for a resource:
 
 - `WaitFor`: Wait for a resource to be ready before starting another resource.
@@ -123,7 +133,9 @@ For more information, see [.NET Aspire app host: Waiting for resources](../funda
 
 #### Resource health checks
 
-The `WaitFor` API uses health checks to determine if a resource is ready. If a resource doesn't have health checks, the app host waits for the resource to be in the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running> state before starting the dependent resource.
+The `WaitFor` API uses standard [.NET health checks](../fundamentals/health-checks.md) to determine if a resource is ready. But what does "a resource being ready" mean? The best part is, that's configurable by the consumer beyond their default values.
+
+When a resource doesn't expose any health checks (no health checks registered in the app), the app host waits for the resource to be in the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running> state before starting the dependent resource.
 
 For resources that expose HTTP endpoints, you can easily add a health check that polls a specific path for an HTTP 200 response.
 
@@ -175,15 +187,24 @@ builder.AddProject<Projects.MyApp>("myapp")
        .WaitFor(cache);
 ```
 
-The preceding example adds a health check that considers resources unhealthy until 20 seconds after the app host starts, after which it reports them as healthy. This health check is added to the `cache` resource. As the `myapp` resource waits for the `cache` resource, `myapp` starts only after 20 seconds has elapsed and the `cache` reports as healthy.
+The preceding example adds a health check to the `cache` resource, which reports it as unhealthy for the first 20 seconds after the app host starts. So, the `myapp` resource waits for 20 seconds before starting, ensuring the `cache` resource is healthy.
+
+<!-- TODO: xref -->
 
 The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> and `WithHealthCheck` methods provide a simple mechanism to create health checks and associate them with specific resources.
 
 ### Persistent containers
 
-The app host now supports persistent containers. This is useful when you want to keep the container running even after the app host has stopped. These containers aren't stopped until they're stopped manually using the container runtime.
+The app host now supports _persistent_ containers. Persistent containers deviate from the [typical container life cycle of .NET Aspire orchestrated apps](../fundamentals/app-host-overview.md#container-resource-lifecycle). While they're _created_ and _started_ (when not already available) by the .NET Aspire orchestrator, they're not destroyed by .NET Aspire.
 
-To do this, call the `WithLifetime` method and pass in `ContainerLifetime.Persistent`:
+This is useful when you want to keep the container running even after the app host has stopped.
+
+> [!IMPORTANT]
+> To delete these containers, you must manually stop them using the container runtime.
+
+<!-- TODO: xref -->
+
+To define an `IResourceBuilder<ContainerResource>` with a persistent lifetime, call the `WithLifetime` method and pass in `ContainerLifetime.Persistent`:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -210,22 +231,24 @@ The container persistence mechanism attempts to identify when you might wish to 
 
 ### Resource commands
 
-The app host supports adding custom commands to resources. This is useful when you want to run custom commands on a resource.
+The app host supports adding custom commands to resources. This is useful when you want to run custom commands on a resource. There's likely many opportunities to custom extension methods on resources to expose custom commands. The [.NET Aspire Community Toolkit](../community-toolkit/overview.md) might be a good place to share these extensions.
+
+When you define a custom command, it's available in the dashboard as a user experience feature.
 
 > [!IMPORTANT]
-> These .NET Aspire dashboard commands are only available when running the dashboard locally. They are not available when running the dashboard in Azure Container Apps.
+> These .NET Aspire dashboard commands are only available when running the dashboard locally. They're not available when running the dashboard in Azure Container Apps.
 
 For more information on creating custom resource commands, see [How-to: Create custom resource commands in .NET Aspire](../fundamentals/custom-resource-commands.md).
 
 ### Container networking
 
-The app host now adds all containers to a common network named `default-aspire-network`. This is useful when you want to communicate between containers without going through the host network.
-
-This also makes it easier to migrate from docker compose to the app host, as containers can communicate with each other using the container name.
+The app host now adds all containers to a common network named `default-aspire-network`. This is useful when you want to communicate between containers without going through the host network. This also makes it easier to migrate from docker compose to the app host, as containers can communicate with each other using the container name.
 
 ### Eventing model
 
 The eventing model allows developers to hook into the lifecycle of the application and resources. This is useful for running custom code at specific points in the application lifecycle. There are various ways to subscribe to events, including global events and per-resource events.
+
+<!-- TODO: xref -->
 
 **Global events:**
 
@@ -260,6 +283,8 @@ builder.AddRedis("redis")
                             // Redis instance.
 ```
 
+<!-- TODO: xref -->
+
 The `WithRedisInsight` extension method can be applied to multiple Redis resources and they'll each be visible on the Redis Insight dashboard.
 
 :::image type="content" source="media/redis-insight.png" lightbox="media/redis-insight.png" alt-text="Redis Insight dashboard showing multiple Redis instances":::
@@ -270,7 +295,9 @@ For more information, see [Add Redis resource with Redis Insights](../caching/st
 
 Starting with .NET Aspire 9, an additional OpenAI integration is available which allows to use the latest official OpenAI dotnet library directly. The client integration registers the [OpenAIClient](https://github.com/openai/openai-dotnet?tab=readme-ov-file#using-the-openaiclient-class) as a singleton service in the service collection. The client can be used to interact with the OpenAI REST API.
 
-- [📦 Aspire.OpenAI (Preview)](https://www.nuget.org/packages/Aspire.OpenAI/9.0.0-preview.4.24511.1)
+- [📦 Aspire.OpenAI (Preview)](https://www.nuget.org/packages/Aspire.OpenAI/9.0.0)
+
+<!-- TODO: xref -->
 
 Moreover, the already available [.NET Aspire Azure OpenAI integration](../azureai/azureai-openai-integration.md) was improved to provide a flexible way to configure an `OpenAIClient` for either an Azure AI OpenAI service or a dedicated OpenAI REST API one with the new `AddOpenAIClientFromConfiguration` builder method. The following example detects if the connection string is for an Azure AI OpenAI service and registers the most appropriate `OpenAIClient` instance automatically.
 
@@ -284,6 +311,8 @@ Read [Azure-agnostic client resolution](https://github.com/dotnet/aspire/blob/re
 
 ### MongoDB
 
+<!-- TODO: xref -->
+
 Added support for specifying the MongoDB username and password when using the `AddMongoDB` extension method. If not specified, a random username and password is generated but can be manually specified using parameter resources.
 
 ```csharp
@@ -295,7 +324,7 @@ var password = builder.AddParameter("mongopassword", secret: true);
 var db = builder.AddMongo("db", username, password);
 ```
 
-### Azure
+### Important Azure improvements
 
 The following sections describe Azure improvements added in .NET Aspire 9. For a complete listing of all the breaking changes, see [Breaking changes in .NET Aspire 9](../compatibility/9.0/index.md).
 
@@ -312,7 +341,8 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 builder.Services.Configure<AzureResourceOptions>(options =>
 {
-    options.ProvisioningContext.PropertyResolvers.Insert(0, new AspireV8ResourceNamePropertyResolver());
+    options.ProvisioningContext.PropertyResolvers.Insert(
+        0, new AspireV8ResourceNamePropertyResolver());
 });
 ```
 
