@@ -1,7 +1,7 @@
 ---
 title: SQL Database Projects hosting
 author: erikej
-description: A .NET Aspire hosting integration for publishing SQL Database Projects from your apphost.
+description: A .NET Aspire hosting integration for publishing SQL Database Projects from your AppHost.
 ms.date: 11/12/2024
 ---
 
@@ -76,6 +76,10 @@ builder.AddSqlProject("mysqlproj")
        .WithDacpac("path/to/mysqlproj.dacpac")
        .WithReference(sql);
 ```
+
+### Redeploy support
+
+If you make changes to your SQL Database project while the AppHost is running, you can use the `Redeploy` custom action on the Aspire Dashboard to redeploy your updates without having to restart the AppHost.
 
 ## See also
 
