@@ -12,7 +12,7 @@ ms.date: 11/11/2024
 - .NET 9.0 Standard Term Support (STS).
 
 > [!NOTE]
-> You're able to use .NET Aspire 9.0 with either .NET 8 or .NET 9! 🤯
+> You're able to use .NET Aspire 9.0 with either .NET 8 or .NET 9!
 
 This release addresses some of the most highly requested features and pain points from the community. The best features are community-driven! To join the community on, visit us on [:::image type="icon" source="../media/discord-icon.svg" border="false"::: Discord](https://discord.com/invite/h87kDAHQgJ) to chat with team members and collaborate with us on [:::image type="icon" source="../media/github-mark.svg" border="false"::: GitHub](https://github.com/dotnet/aspire).
 
