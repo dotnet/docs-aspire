@@ -15,6 +15,5 @@ Deleting your resources can take some time.
 
   (✓) Done: Deleting resource group: <YOUR RESOURCE GROUP>
 
-
 SUCCESS: Your application was removed from Azure in 9 minutes 59 seconds.
 ```

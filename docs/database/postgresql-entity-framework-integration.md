@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL Entity Framework Core integration
 description: Learn how to integrate PostgreSQL with .NET Aspire applications using Entity Framework Core, using both hosting and client integrations.
-ms.date: 10/16/2024
+ms.date: 11/05/2024
 uid: database/postgresql-ef-core-integration
 ---
 
@@ -14,8 +14,6 @@ uid: database/postgresql-ef-core-integration
 ## Hosting integration
 
 [!INCLUDE [postgresql-app-host](includes/postgresql-app-host.md)]
-
-[!INCLUDE [postgresql-flexible-server](includes/postgresql-flexible-server.md)]
 
 ### Hosting integration health checks
 
@@ -230,6 +228,10 @@ The .NET Aspire PostgreSQL Entity Framework Core integration will emit the follo
   - `ec_Npgsql_connection_pools`
   - `ec_Npgsql_multiplexing_average_commands_per_batch`
   - `ec_Npgsql_multiplexing_average_write_time_per_batch`
+
+[!INCLUDE [postgresql-flexible-server](includes/postgresql-flexible-server.md)]
+
+[!INCLUDE [azure-postgresql-ef-client](includes/azure-postgresql-ef-client.md)]
 
 ## See also
 

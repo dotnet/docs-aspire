@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL integration
 description: Learn how to integrate PostgreSQL with .NET Aspire applications, using both hosting and client integrations.
-ms.date: 10/16/2024
+ms.date: 11/05/2024
 uid: database/postgresql-integration
 ---
 
@@ -14,8 +14,6 @@ uid: database/postgresql-integration
 ## Hosting integration
 
 [!INCLUDE [postgresql-app-host](includes/postgresql-app-host.md)]
-
-[!INCLUDE [postgresql-flexible-server](./includes/postgresql-flexible-server.md)]
 
 ### Hosting integration health checks
 
@@ -84,33 +82,6 @@ public class ExampleService(
 ```
 
 For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
-
-### Add Azure authenticated Npgsql client
-
-In the _:::no-loc text="Program.cs":::_ file of client-consuming project, the database connection can be consumed using both the client integration `Aspire.Npgsql` and [Azure.Identity](https://www.nuget.org/packages/Azure.Identity), consider the following sample code:
-
-```csharp
-builder.AddNpgsqlDataSource(
-    "postgresdb",
-    configureDataSourceBuilder: dataSourceBuilder =>
-{
-    if (string.IsNullOrEmpty(dataSourceBuilder.ConnectionStringBuilder.Password))
-    {
-        dataSourceBuilder.UsePeriodicPasswordProvider(async (_, ct) =>
-        {
-            var credentials = new DefaultAzureCredential();
-            var token = await credentials.GetTokenAsync(
-                new TokenRequestContext(["https://ossrdbms-aad.database.windows.net/.default"]), ct);
-            
-            return token.Token;
-        },
-        TimeSpan.FromHours(24),
-        TimeSpan.FromSeconds(10));
-    }
-});
-```
-
-The preceding code snippet demonstrates how to use the `DefaultAzureCredential` class from the `Azure.Identity` package to authenticate with [Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication) and retrieve a token to connect to the PostgreSQL database. The [UsePeriodicPasswordProvider](https://www.npgsql.org/doc/api/Npgsql.NpgsqlDataSourceBuilder.html#Npgsql_NpgsqlDataSourceBuilder_UsePeriodicPasswordProvider_System_Func_Npgsql_NpgsqlConnectionStringBuilder_System_Threading_CancellationToken_System_Threading_Tasks_ValueTask_System_String___System_TimeSpan_System_TimeSpan_) method is used to provide the token to the connection string builder.
 
 ### Configuration
 
@@ -206,6 +177,10 @@ The .NET Aspire PostgreSQL integration will emit the following metrics using Ope
   - `ec_Npgsql_connection_pools`
   - `ec_Npgsql_multiplexing_average_commands_per_batch`
   - `ec_Npgsql_multiplexing_average_write_time_per_batch`
+
+[!INCLUDE [postgresql-flexible-server](includes/postgresql-flexible-server.md)]
+
+[!INCLUDE [azure-postgresql-client](includes/azure-postgresql-client.md)]
 
 ## See also
 

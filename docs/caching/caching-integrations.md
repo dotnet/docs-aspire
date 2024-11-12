@@ -1,7 +1,7 @@
 ---
 title: Implement caching with .NET Aspire integrations
 description: Learn how to connect to Redis and cache data using .NET Aspire integrations.
-ms.date: 08/12/2024
+ms.date: 11/08/2024
 ms.topic: tutorial
 ---
 
@@ -30,7 +30,7 @@ This article explores how to use two different types of ASP.NET Core caching usi
     - Enter a **Project name** of **AspireRedis**.
     - Leave the rest of the values at their defaults and select **Next**.
 1. On the **Additional information** screen:
-    - Make sure **.NET 8.0** is selected.
+    - Make sure **.NET 9.0** is selected.
     - Uncheck **Use Redis for caching**. You will implement your own caching setup.
     - Select **Create**.
 
@@ -43,7 +43,7 @@ Visual Studio creates a new .NET Aspire solution that consists of the following 
 
 ## Configure the App Host project
 
-1. Add the [.NET Aspire Hosting Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis) package to the `AspireRedis.AppHost` project:
+1. Add the [📦 Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis) NuGet package to the `AspireRedis.AppHost` project:
 
     ### [.NET CLI](#tab/dotnet-cli)
 
@@ -140,6 +140,14 @@ Configuring connection string with this method, while functional, requires dupli
 
     ```csharp
     builder.AddRedisDistributedCache("cache");
+    ```
+
+1. In the _:::no-loc text="Program.cs":::_ file, add the following `using` statements:
+
+    ```csharp
+    using System.Text;
+    using System.Text.Json;
+    using Microsoft.Extensions.Caching.Distributed;
     ```
 
 1. In the _:::no-loc text="Program.cs":::_ file, replace the existing `/weatherforecast` endpoint code with the following:

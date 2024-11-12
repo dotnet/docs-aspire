@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard configuration
 description: .NET Aspire dashboard configuration options
-ms.date: 10/03/2024
+ms.date: 10/29/2024
 ms.topic: reference
 ---
 
@@ -26,7 +26,7 @@ docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
     -e DASHBOARD__TELEMETRYLIMITS__MAXLOGCOUNT='1000' \
     -e DASHBOARD__TELEMETRYLIMITS__MAXTRACECOUNT='1000' \
     -e DASHBOARD__TELEMETRYLIMITS__MAXMETRICSCOUNT='1000' \
-    mcr.microsoft.com/dotnet/aspire-dashboard:8.2
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
 ```
 
 ## [PowerShell](#tab/powershell)
@@ -36,7 +36,7 @@ docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard `
     -e DASHBOARD__TELEMETRYLIMITS__MAXLOGCOUNT='1000' `
     -e DASHBOARD__TELEMETRYLIMITS__MAXTRACECOUNT='1000' `
     -e DASHBOARD__TELEMETRYLIMITS__MAXMETRICSCOUNT='1000' `
-    mcr.microsoft.com/dotnet/aspire-dashboard:8.2
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
 ```
 
 ---

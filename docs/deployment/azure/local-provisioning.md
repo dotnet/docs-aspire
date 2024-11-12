@@ -1,7 +1,7 @@
 ---
 title: Local Azure provisioning
 description: Learn how to use Azure resources in your local development environment.
-ms.date: 09/23/2024
+ms.date: 10/31/2024
 ---
 
 # Local Azure provisioning
@@ -12,7 +12,7 @@ In this article you learn how to provision Azure resources from your local devel
 
 ## Requirements
 
-This article assumes that you have an Azure account and subscription. If you don't have an Azure account, you can create a free one at [Azure Free Account](https://azure.microsoft.com/free/). For provisioning functionality to work correctly, you'll need to be authenticated with Azure. Additionally, you'll need to provide some configuration values so that the provisioning logic can create resources on your behalf.
+This article assumes that you have an Azure account and subscription. If you don't have an Azure account, you can create a free one at [Azure Free Account](https://azure.microsoft.com/free/). For provisioning functionality to work correctly, you'll need to be authenticated with Azure. Ensure that you have the [Azure Developer CLI](/cli/azure/install-azure-cli) installed. Additionally, you'll need to provide some configuration values so that the provisioning logic can create resources on your behalf.
 
 ## App host provisioning APIs
 

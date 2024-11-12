@@ -88,7 +88,7 @@ To run the migrations at startup, you need to create a service that applies the 
     dotnet add SupportTicketApi.MigrationService reference SupportTicketApi.ServiceDefaults
     ```
 
-1. Add the [Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) NuGet package reference to the *:::no-loc text="SupportTicketApi.MigrationService":::* project using Visual Studio or the command line:
+1. Add the [📦 Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) NuGet package reference to the *:::no-loc text="SupportTicketApi.MigrationService":::* project using Visual Studio or the command line:
 
     ```dotnetcli
     dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer

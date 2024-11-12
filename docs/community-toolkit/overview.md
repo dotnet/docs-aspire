@@ -1,37 +1,69 @@
 ---
 title: Overview
 description: An overview of the .NET Aspire Community Toolkit project.
-ms.date: 10/11/2024
+ms.date: 11/05/2024
 ---
 
 # .NET Aspire Community Toolkit
 
-The .NET Aspire Community Toolkit is a collection of integrations and extensions for .NET Aspire created by the community. These integrations aren't officially supported by the .NET Aspire team, and are provided as-is for the community to use and contribute to. The source code for the toolkit is available on [GitHub][github-repo].
+The .NET Aspire Community Toolkit is part of the [.NET Foundation](https://dotnetfoundation.org/projects/project-detail/.net-aspire-community-toolkit). The community toolkit is a collection of integrations and extensions for .NET Aspire created by the community. The .NET Aspire team doesn't officially support the integrations and extensions in the community toolkit. The community provides these tools as-is for everyone to use and contribute to. You can find the source code for the toolkit on [GitHub][github-repo].
 
-## Frequently Asked Questions
+## Why use the toolkit?
 
-The following section answers some frequently asked questions about the .NET Aspire Community Toolkit.
+The community toolkit offers flexible, community-driven integrations that enhance the .NET Aspire ecosystem. By contributing, you help shape tools that make building cloud-native applications easier and more versatile.
 
-### What is the purpose of this project?
+## What's in the toolkit?
 
-The goal of the project is to be a centralized home for extensions and integrations for [.NET Aspire](/dotnet/aspire), helping to provide consistency in the way that integrations are built and maintained, as well as easier discoverability for users.
+The community toolkit is a growing project, publishing a set of NuGet packages. It aims to provide various integrations, both hosting and client alike, that aren't otherwise part of the official .NET Aspire project. Additionally, the community toolkit packages various extensions for popular services and platforms. The following sections detail some of the integrations and extensions currently available in the toolkit.
 
-### How is this project different from the official .NET Aspire project?
+### Hosting integrations
 
-The .NET Aspire Community Toolkit is a community-driven project that's maintained by the community and isn't officially supported by the .NET Aspire team. The toolkit is a collection of integrations and extensions that are built on top of the .NET Aspire project.
+- The [Azure Static Web Apps](/azure/static-web-apps/static-web-apps-cli-overview) integration enables local emulator support:
+  - [📄 .NET Aspire Azure Static Web Apps emulator integration](hosting-azure-static-web-apps.md).
+  - [📦 CommunityToolkit.Aspire.Hosting.Azure.StaticWebApps](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Azure.StaticWebApps).
+- The [Azure Data API Builder](/azure/data-api-builder/overview) integration enables seamless API creation for your data:
+  - [📄 .NET Aspire Azure Data API Builder integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder).
+  - [📦 CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder).
+- The [Golang apps](https://go.dev/) integration provides support for hosting Go applications:
+  - [📄 .NET Aspire Go integration](hosting-golang.md).
+  - [📦 CommunityToolkit.Aspire.Hosting.Golang](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Golang).
+- The [Java](https://www.java.com/) integration runs Java code with a local Java Development Kit (JDK) or using a container:
+  - [📄 .NET Aspire Java/Spring hosting integration](hosting-java.md).
+  - [📦 CommunityToolkit.Aspire.Hosting.Java](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Java).
+- The [Deno](https://deno.com/) integration provides support for hosting Deno applications and running tasks.
+  - [📄 .NET Aspire Deno hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Deno).
+  - [📦 CommunityToolkit.Aspire.Hosting.Deno](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Deno).
+- The [Ollama](https://ollama.com/) integration provides extensions and resource definitions, and support for downloading models as startup.
+  - [📄 .NET Aspire Ollama hosting integration](ollama.md#hosting-integration).
+  - [📦 CommunityToolkit.Aspire.Hosting.Ollama](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Ollama).
+- The [Meilisearch](https://www.meilisearch.com) integration enables hosting Meilisearch containers.
+  - [📄 .NET Aspire Meilisearch hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Meilisearch).
+  - [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch).
 
-### How can I contribute to the project?
+### Client integrations
 
-Anyone can contribute to the .NET Aspire Community Toolkit and before you get started, be sure to read the [Contributing Guide](https://github.com/CommunityToolkit/Aspire/blob/main/CONTRIBUTING.md) to learn how to contribute to the project.
+The following client integrations are available in the toolkit:
 
-### Should I propose a new integration on the Community Toolkit or the `dotnet/aspire` repo?
+- **OllamaSharp** is a .NET client for the Ollama API:
+  - [📄 .NET Aspire Ollama client integration](ollama.md#client-integration)
+  - [📦 CommunityToolkit.Aspire.OllamaSharp](https://nuget.org/packages/CommunityToolkit.Aspire.OllamaSharp)
+- **Meilisearch** is a .NET client for the Meilisearch API:
+  - [📄 .NET Aspire Meilisearch client integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Meilisearch)
+  - [📦 CommunityToolkit.Aspire.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Meilisearch)
 
-If you have an idea for a new integration, you should propose it on the [.NET Aspire Community Toolkit repository][github-repo], rather than [`dotnet/aspire`](https://github.com/dotnet/aspire), as the official .NET Aspire project is focused on the core functionality of the .NET Aspire project.
+> [!TIP]
+> Always check the [GitHub repository][github-repo] for the most up-to-date information on the toolkit.
 
-If you've proposed an integration on the `dotnet/aspire` repository, you can still propose it in the Community Toolkit, but link to the existing issue on the `dotnet/aspire` repository to provide context.
+### Extensions
 
-### Finding Community Toolkit Integrations
+When you're working with [Node.js](https://nodejs.org/), there are lots of ways to achieve the same thing. To that end, the .NET Aspire Community Toolkit exposes some extensions that include support for alternative package managers ([yarn](https://yarnpkg.com/) and [pnpm](https://pnpm.io/)), and developer workflow improvements.
 
-Integrations from the .NET Aspire Community Toolkit appear in the **Add Aspire Integration** dialog in Visual Studio under the namespace `CommunityToolkit.Aspire.*`.
+- [📦 CommunityToolkit.Aspire.Hosting.NodeJS.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.NodeJS.Extensions)
+
+If you're not seeing an integration or extension you need, you can contribute to the toolkit by creating your own integration and submitting a pull request. For more information, see [How to collaborate](#how-to-collaborate).
+
+## How to collaborate
+
+The community toolkit is an open-source project, and contributions from the community aren't only welcomed, but encouraged. If you're interested in contributing, see the [contributing guidelines](https://github.com/CommunityToolkit/Aspire/blob/main/CONTRIBUTING.md). As part of the .NET Foundation, contributors of the toolkit must adhere to the [.NET Foundation Code of Conduct](https://dotnetfoundation.org/about/policies/code-of-conduct).
 
 [github-repo]: https://github.com/CommunityToolkit/Aspire

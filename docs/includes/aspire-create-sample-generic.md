@@ -8,7 +8,7 @@ Visual Studio provides app templates to get started with Aspire that handle some
     - Enter a **Project Name** of **AspireSample**.
     - Leave the rest of the values at their defaults and select **Next**.
 1. On the **Additional information** screen:
-    - Make sure **.NET 8.0** is selected.
+    - Make sure **.NET 9.0** is selected.
     - Ensure that **Enlist in Aspire orchestration** is checked and select **Next**.
 
 Visual Studio will create a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:

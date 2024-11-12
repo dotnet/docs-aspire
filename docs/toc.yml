@@ -13,26 +13,41 @@ items:
       - name: Tutorial - Add .NET Aspire to an existing .NET app
         href: get-started/add-aspire-existing-app.md
       - name: Setup and tooling
-        href: fundamentals/setup-tooling.md
-      - name: What's new in .NET Aspire
-        href: whats-new/index.yml
+        items:
+        - name: Overview
+          href: fundamentals/setup-tooling.md
+        - name: .NET Aspire SDK
+          href: fundamentals/dotnet-aspire-sdk.md
+        - name: .NET Aspire templates
+          href: fundamentals/aspire-sdk-templates.md
+      - name: What's new in .NET Aspire 9.0
+        href: whats-new/dotnet-aspire-9.md
+      - name: Upgrade to .NET Aspire 9.0
+        href: get-started/upgrade-to-aspire-9.md
 
   - name: App Host (Orchestration)
     items:
       - name: Overview
         displayName: orchestration,aspire apphost,aspire app
         href: fundamentals/app-host-overview.md
-      - name: Orchestrate Node.js apps in .NET Aspire
-        href: get-started/build-aspire-apps-with-nodejs.md
-        displayName: node.js,node,express,typescript,javascript,spa,client-side,server-side
-      - name: Orchestrate Python apps in .NET Aspire
-        href: get-started/build-aspire-apps-with-python.md
+      - name: Orchestrate
+        items:
+        - name: Node.js apps in .NET Aspire
+          href: get-started/build-aspire-apps-with-nodejs.md
+          displayName: node.js,node,express,typescript,javascript,spa,client-side,server-side
+        - name: Python apps in .NET Aspire
+          displayName: python,flask,fastapi
+          href: get-started/build-aspire-apps-with-python.md
+      - name: Custom resource commands
+        href: fundamentals/custom-resource-commands.md
       - name: Add Dockerfiles to the app model
         href: app-host/withdockerfile.md
         displayName: dockerfile,docker
       - name: Networking overview
         displayName: inner loop,local networking
         href: fundamentals/networking-overview.md
+      - name: Eventing in .NET Aspire
+        href: app-host/eventing.md
       - name: Use external parameters
         displayName: external parameters,configuration
         href: fundamentals/external-parameters.md
@@ -113,12 +128,6 @@ items:
         href: messaging/kafka-integration.md
       - name: Azure
         items:
-        - name: Azure OpenAI
-          displayName: azure ai,openai
-          href: azureai/azureai-openai-integration.md
-        - name: Azure Search Documents
-          displayName: azure search,search,azure ai
-          href: azureai/azureai-search-document-integration.md
         - name: Azure Blob Storage
           href: storage/azure-storage-blobs-integration.md
         - name: Azure Cosmos DB
@@ -132,12 +141,21 @@ items:
         - name: Azure Event Hubs
           displayName: event hubs,messaging
           href: messaging/azure-event-hubs-integration.md
+        - name: Azure Functions (Preview)
+          displayName: azure functions,serverless
+          href: serverless/functions.md
         - name: Azure Key Vault
           displayName: key vault,security
           href: security/azure-security-key-vault-integration.md
+        - name: Azure OpenAI
+          displayName: azure ai,openai
+          href: azureai/azureai-openai-integration.md
         - name: Azure SignalR Service
           displayName: azure signalr service,signalr,real-time
           href: real-time/azure-signalr-scenario.md
+        - name: Azure Search Documents
+          displayName: azure search,search,azure ai
+          href: azureai/azureai-search-document-integration.md
         - name: Azure Service Bus
           displayName: service bus,messaging
           href: messaging/azure-service-bus-integration.md
@@ -322,8 +340,12 @@ items:
 
   - name: Reference
     items:
+      - name: Breaking changes
+        href: compatibility/breaking-changes.md
       - name: Diagnostics overview
         href: diagnostics/overview.md
+      - name: .NET Aspire SDK
+        href: fundamentals/dotnet-aspire-sdk.md
       - name: .NET Aspire API reference
         href:  /dotnet/api?view=dotnet-aspire-8.0&preserve-view=true
       - name: .NET Aspire FAQ
@@ -353,3 +375,6 @@ items:
         href: https://github.com/dotnet/extensions
       - name: ASP.NET Core
         href: https://github.com/dotnet/aspnetcore
+
+  - name: Official support policy
+    href: https://dotnet.microsoft.com/platform/support/policy/aspire

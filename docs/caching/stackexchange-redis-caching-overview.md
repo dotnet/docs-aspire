@@ -1,7 +1,7 @@
 ---
 title: Stack Exchange Redis caching overview
 description: Learn about Stack Exchange Redis caching and how to use it in your applications.
-ms.date: 10/15/2024
+ms.date: 11/05/2024
 ---
 
 # Stack Exchange Redis&reg;<sup>**[*](#registered)**</sup> caching overview

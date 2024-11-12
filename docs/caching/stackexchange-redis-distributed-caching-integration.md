@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Redis distributed caching integration
 description: Learn how to use the .NET Aspire Redis distributed caching integration, which includes both hosting and client integrations.
-ms.date: 10/15/2024
+ms.date: 11/05/2024
 zone_pivot_groups: resp-host
 ---
 
@@ -199,6 +199,14 @@ The .NET Aspire Redis Distributed Caching integration will emit the following Tr
 #### Metrics
 
 The .NET Aspire Redis Distributed Caching integration currently doesn't support metrics by default due to limitations with the `StackExchange.Redis` library.
+
+:::zone pivot="redis"
+
+[!INCLUDE [azure-redis-app-host](includes/azure-redis-app-host.md)]
+
+[!INCLUDE [azure-redis-distributed-client](includes/azure-redis-distributed-client.md)]
+
+:::zone-end
 
 ## See also
 

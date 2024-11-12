@@ -4,6 +4,7 @@ var sql = builder.AddSqlServer("sql")
                  .AddDatabase("sqldata");
 
 builder.AddProject<Projects.AspireSQLEFCore>("aspiresql")
-       .WithReference(sql);
+       .WithReference(sql)
+       .WaitFor(sql);
 
 builder.Build().Run();

@@ -1,9 +1,9 @@
 ---
 title: .NET Aspire integrations overview
 description: Explore the fundamental concepts of .NET Aspire integrations and learn how to integrate them into your apps.
-ms.date: 10/24/2024
+ms.date: 11/05/2024
 ms.topic: conceptual
-uid: aspire/integrations
+uid: dotnet/aspire/integrations
 ---
 
 # .NET Aspire integrations overview
@@ -102,6 +102,7 @@ Azure integrations configure applications to use Azure resources. These hosting 
 | - **Learn more**: [📄 Azure Cosmos DB - EF Core](../database/azure-cosmos-db-entity-framework-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB)<br>- **Client**: [📦 Aspire.Microsoft.EntityFrameworkCore.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.Cosmos) | A library for accessing Azure Cosmos DB databases with [Entity Framework Core](/ef/core/providers/cosmos/). |
 | - **Learn more**: [📄 Azure Cosmos DB](../database/azure-cosmos-db-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB)<br>- **Client**: [📦 Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) | A library for accessing [Azure Cosmos DB](/azure/cosmos-db/introduction) databases. |
 | - **Learn more**: [📄 Azure Event Hubs](../messaging/azure-event-hubs-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.EventHubs](https://www.nuget.org/packages/Aspire.Hosting.Azure.EventHubs)<br>- **Client**: [📦 Aspire.Azure.Messaging.EventHubs](https://www.nuget.org/packages/Aspire.Azure.Messaging.EventHubs) | A library for accessing [Azure Event Hubs](/azure/event-hubs/event-hubs-about). |
+| - **Learn more**: [📄 Azure Functions](../serverless/functions.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.Functions](https://www.nuget.org/packages/Aspire.Hosting.Azure.Functions)<br>- **Client**: N/A | A library for integrating with [Azure Functions](/azure/azure-functions/). |
 | - **Learn more**: [📄 Azure Key Vault](../security/azure-security-key-vault-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.KeyVault](https://www.nuget.org/packages/Aspire.Hosting.Azure.KeyVault)<br>- **Client**: [📦 Aspire.Azure.Security.KeyVault](https://www.nuget.org/packages/Aspire.Azure.Security.KeyVault) | A library for accessing [Azure Key Vault](/azure/key-vault/general/overview). |
 | - **Learn more**: [📄 Azure Operational Insights](https://github.com/dotnet/aspire/blob/main/src/Aspire.Hosting.Azure.OperationalInsights/README.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.OperationalInsights](https://www.nuget.org/packages/Aspire.Hosting.Azure.OperationalInsights)<br>- **Client**: N/A | A library for interacting with [Azure Operational Insights](/azure/azure-monitor/logs/log-analytics-workspace-overview). |
 | - **Learn more**: [📄 Azure AI OpenAI](../azureai/azureai-openai-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices)<br>- **Client**: [📦 Aspire.Azure.AI.OpenAI](https://www.nuget.org/packages/Aspire.Azure.AI.OpenAI) | A library for accessing [Azure AI OpenAI](/azure/ai-services/openai/overview) or OpenAI functionality. |
@@ -141,4 +142,4 @@ For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.co
 | - **Learn More**: [📄 Meilisearch hosting](../community-toolkit/hosting-meilisearch.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch) <br /> - **Client**: [📦 Aspire.CommunitToolkit.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Meilisearch) | An Aspire component leveraging the [Meilisearch](https://meilisearch.com) container. |
 <!-- markdownlint-enable MD033 MD045 -->
 
-For more information, see [GitHub: CommunityToolkit.Aspire library](https://github.com/CommunityToolkit/Aspire).
+For more information, see [.NET Aspire Community Toolkit](../community-toolkit/overview.md).

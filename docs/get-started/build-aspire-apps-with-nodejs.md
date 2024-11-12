@@ -1,7 +1,7 @@
 ---
 title: Orchestrate Node.js apps in .NET Aspire
 description: Learn how to integrate Node.js and npm apps into a .NET Aspire App Host project.
-ms.date: 10/16/2024
+ms.date: 11/11/2024
 ---
 
 # Orchestrate Node.js apps in .NET Aspire
@@ -93,7 +93,7 @@ For more information on the React app, see [explore the React client](#explore-t
 npm i ./AspireJavaScript.Vue/
 ```
 
-For more information on the Vue app, see [Vue client](#explore-the-vue-client).
+For more information on the Vue app, see [explore the Vue client](#explore-the-vue-client).
 
 ## Run the sample app
 
@@ -115,9 +115,9 @@ In the same terminal session that you used to run the app, press <kbd>Ctrl</kbd>
 
 To help understand how each client app resource is orchestrated, look to the app host project. The app host requires the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package to host Node.js apps:
 
-:::code language="xml" highlight="13,20-28" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.AppHost/AspireJavaScript.AppHost.csproj":::
+:::code language="xml" highlight="15,22-30" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.AppHost/AspireJavaScript.AppHost.csproj":::
 
-The project file also defines a build target that ensures that the npm dependencies are installed before the app host is built. The app host code (_Program.cs_) declares the client app resources using the `AddNpmApp` API.
+The project file also defines a build target that ensures that the npm dependencies are installed before the app host is built. The app host code (_Program.cs_) declares the client app resources using the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp(Aspire.Hosting.IDistributedApplicationBuilder,System.String,System.String,System.String,System.String[])> API.
 
 :::code source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.AppHost/Program.cs":::
 
@@ -128,7 +128,7 @@ The preceding code:
   - Marks the HTTP endpoints as external.
 - With a reference to the "weatherapi" service, adds the "angular", "react", and "vue" client apps as npm apps.
   - Each client app is configured to run on a different container port, and uses the `PORT` environment variable to determine the port.
-  - All client apps also rely on a _Dockerfile_ to build their container image and are configured to express themselves in the publishing manifest as a container from the `PublishAsDockerfile`.
+  - All client apps also rely on a _Dockerfile_ to build their container image and are configured to express themselves in the publishing manifest as a container from the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.PublishAsDockerFile*> API.
 
 For more information on inner-loop networking, see [.NET Aspire inner-loop networking overview](../fundamentals/networking-overview.md). For more information on deploying apps, see [.NET Aspire manifest format for deployment tool builders](../deployment/manifest-format.md).
 
