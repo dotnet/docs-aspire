@@ -387,53 +387,10 @@ In order to make .NET Aspire applications more secure, Azure Database for Postgr
 - [Azure Database for PostgreSQL](https://devblogs.microsoft.com/dotnet/using-postgre-sql-with-dotnet-and-entra-id/)
 - [Azure Cache for Redis](https://github.com/Azure/Microsoft.Azure.StackExchangeRedis)
 
-The following is example code for how to configure your application to connect to the Azure resource using Microsoft Entra ID:
+The following examples demonstrate how to configure your application to connect to the Azure resources using Microsoft Entra ID:
 
-**Azure Database for PostgreSQL**
-
-```csharp
-using Azure.Core;
-using Azure.Identity;
-
-var builder = WebApplication.CreateBuilder(args);
-builder.AddServiceDefaults();
-
-builder.AddNpgsqlDataSource("db1", configureDataSourceBuilder: dataSourceBuilder =>
-{
-    if (string.IsNullOrEmpty(dataSourceBuilder.ConnectionStringBuilder.Password))
-    {
-        dataSourceBuilder.UsePeriodicPasswordProvider(async (_, ct) =>
-        {
-            var credentials = new DefaultAzureCredential();
-            var token = await credentials.GetTokenAsync(new TokenRequestContext(["https://ossrdbms-aad.database.windows.net/.default"]), ct);
-            return token.Token;
-        }, TimeSpan.FromHours(24), TimeSpan.FromSeconds(10));
-    }
-});
-```
-
-**Azure Cache for Redis**
-
-```csharp
-using Azure.Identity;
-using StackExchange.Redis;
-using StackExchange.Redis.Configuration;
-
-var builder = WebApplication.CreateBuilder(args);
-builder.AddServiceDefaults();
-
-var azureOptionsProvider = new AzureOptionsProvider();
-var configurationOptions = ConfigurationOptions.Parse(builder.Configuration.GetConnectionString("cache") ?? throw new InvalidOperationException("Could not find a 'cache' connection string."));
-if (configurationOptions.EndPoints.Any(azureOptionsProvider.IsMatch))
-{
-    await configurationOptions.ConfigureForAzureWithTokenCredentialAsync(new DefaultAzureCredential());
-}
-
-builder.AddRedisClient("cache", configureOptions: options =>
-{
-    options.Defaults = configurationOptions.Defaults;
-});
-```
+- [.NET Aspire: Azure PostgreSQL hosting integration](../database/postgresql-integration.md#azure-postgresql-hosting-integration).
+- [.NET Aspire: Azure Redis hosting integration](../caching/stackexchange-redis-integration.md#azure-redis-hosting-integration).
 
 If you need to use password or access key authentication (not recommended), you can opt-in with the following code:
 
@@ -442,6 +399,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var pgsql = builder.AddAzurePostgresFlexibleServer("pgsql")
                    .WithPasswordAuthentication();
+
 var cache = builder.AddAzureRedis("cache")
                    .WithAccessKeyAuthentication();
 ```
@@ -458,10 +416,12 @@ In the app host project, observe that there's a `PackageReference` to the new [ð
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0-rc.1.24511.1" />
-    <PackageReference Include="Aspire.Hosting.Azure.Functions" Version="9.0.0-preview.5.24513.1" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.Functions" Version="9.0.0" />
 </ItemGroup>
 ```
+
+<!-- TODO: xref -->
 
 This package provides an `AddAzureFunctionsProject` API that can be invoked in the app host to configure Azure Functions projects within an .NET Aspire host:
 
@@ -595,7 +555,7 @@ Now you're ready to deploy our application to Azure Container Apps (ACA). Deploy
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="2.0.0-preview1" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="2.0.0-preview2" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.0.0-preview2" />
 </ItemGroup>
 ```
@@ -705,9 +665,11 @@ Support for Azure Functions in .NET Aspire is still in preview with support for 
 - [Azure Service Bus triggers](/azure/azure-functions/functions-bindings-service-bus?pivots=programming-language-csharp)
 - [Azure Event Hubs triggers](/azure/azure-functions/functions-bindings-event-hubs?pivots=programming-language-csharp)
 
-For the latest information on features support by the Azure Functions integration, see [the tracking issue](https://github.com/dotnet/aspire/issues/920). For more information, see the official [.NET Aspire Azure Functions integration (Preview)](../serverless/functions.md).
+For more information, see the official [.NET Aspire Azure Functions integration (Preview)](../serverless/functions.md).
 
 #### Customization of Azure Container Apps
+
+<!-- TODO: xref -->
 
 One of the most requested features is the ability to customize the Azure Container Apps that the app host creates without touching Bicep. This is possible by using the `PublishAsAzureContainerApp` method in the `Aspire.Hosting.Azure.AppContainers` namespace. This method customizes the Azure Container App definition that the app host creates.
 
@@ -746,3 +708,13 @@ builder.Build().Run();
 ```
 
 The preceding code example defers generation of the Azure Container App definition to the app host. This allows you to customize the Azure Container App definition without needing to run `azd infra synth` and unsafely modifying the generated bicep files.
+
+## See also
+
+- [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md)
+- [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md)
+- [.NET Aspire templates](../fundamentals/aspire-sdk-templates.md)
+- [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)
+- [Eventing in .NET Aspire](../app-host/eventing.md)
+- [.NET Aspire dashboard overview](../fundamentals/dashboard/overview.md)
+- [Explore the .NET Aspire dashboard](../fundamentals/dashboard/explore.md)
