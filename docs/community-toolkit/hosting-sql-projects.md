@@ -15,7 +15,7 @@ In this article, you learn how to use the .NET Aspire SQL Database Projects host
 
 ## Prerequisites
 
-This integration requires a SQL Database Project based on either [MSBuild.Sdk.SqlProj](https://github.com/rr-wfm/MSBuild.Sdk.SqlProj) and [Microsoft.Build.Sql](https://github.com/microsoft/DacFx).
+This integration requires a SQL Database Project based on either [MSBuild.Sdk.SqlProj](https://github.com/rr-wfm/MSBuild.Sdk.SqlProj) or [Microsoft.Build.Sql](https://github.com/microsoft/DacFx).
 
 ## Hosting integration
 
