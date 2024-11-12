@@ -1,0 +1,33 @@
+items:
+- name: .NET Aspire
+  href: ../index.yml
+- name: .NET Aspire overview
+  href: ../get-started/aspire-overview.md
+- name: Breaking changes
+  href: breaking-changes.md
+- name: .NET Aspire 9.0
+  expanded: true
+  items:
+  - name: Overview
+    href: 9.0/index.md
+  - name: Breaking changes in 9.0
+    expanded: true
+    items:
+    - name: Remove default values from the AzureOpenAIDeployment constructor
+      href: 9.0/azureopenai-ctor.md
+    - name: Introduce new Python resource type and APIs changes
+      href: 9.0/addpython.md
+    - name:  Updates to implicitly named volumes to avoid collisions
+      href: 9.0/unnamed-volumes.md
+    - name: Make unnamed volumes more unique
+      href: 9.0/make-unnamed-volumes-unique.md
+    - name: Updates from the new Azure.Provisioning version
+      href: 9.0/azure-provisioning.md
+    - name: Changes to Azure.Hosting APIs
+      href: 9.0/azure-hosting.md
+    - name: Allow customization of Azure ProvisioningContext
+      href: 9.0/provisioning-context.md
+    - name: Improved Azure resource name scheme
+      href: 9.0/azure-resource-name-scheme.md
+    - name: Ollama integration updates
+      href: 9.0/ollama-integration-updates.md

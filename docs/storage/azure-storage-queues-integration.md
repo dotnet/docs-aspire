@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire Azure Queue Storage integr
 
 ## Get started
 
-To get started with the .NET Aspire Azure Queue Storage integration, install the [Aspire.Azure.Storage.Queues](https://www.nuget.org/packages/Aspire.Azure.Storage.Queues) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Queue Storage client.
+To get started with the .NET Aspire Azure Queue Storage integration, install the [📦 Aspire.Azure.Storage.Queues](https://www.nuget.org/packages/Aspire.Azure.Storage.Queues) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Queue Storage client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -49,7 +49,7 @@ public class ExampleService(QueueServiceClient client)
 
 ## App host usage
 
-To add Azure Storage hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package in the [app host](xref:aspire/app-host) project.
+To add Azure Storage hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [📦 Aspire.Hosting.Azure.Storage) NuGet package in the [app host](xref:dotnet/aspire/app-host](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire overview
 description: Learn about .NET Aspire, an application stack designed to improve the experience of building cloud-native applications.
-ms.date: 09/27/2024
+ms.date: 11/12/2024
 ---
 
 # .NET Aspire overview
@@ -14,7 +14,7 @@ ms.date: 09/27/2024
 :::column-end:::
 :::column span="3":::
 
-.NET Aspire is an opinionated, cloud ready stack for building observable, production ready, distributed applications.​ .NET Aspire is delivered through a collection of NuGet packages that handle specific cloud-native concerns. Cloud-native apps often consist of small, interconnected pieces or microservices rather than a single, monolithic code base. Cloud-native apps generally consume a large number of services, such as databases, messaging, and caching.
+.NET Aspire is a set of powerful tools, templates, and packages for building observable, production ready apps.​​ .NET Aspire is delivered through a collection of NuGet packages that handle specific cloud-native concerns. Cloud-native apps often consist of small, interconnected pieces or microservices rather than a single, monolithic code base. Cloud-native apps generally consume a large number of services, such as databases, messaging, and caching. For information on support, see the [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire).
 
 :::column-end:::
 :::row-end:::
@@ -38,7 +38,7 @@ In .NET Aspire, orchestration primarily focuses on enhancing the _local developm
 - **App composition**: Specify the .NET projects, containers, executables, and cloud resources that make up the application.
 - **Service discovery and connection string management**: The app host manages to inject the right connection strings or network configurations and service discovery information to simplify the developer experience.
 
-For example, using .NET Aspire, the following code creates a local Redis container resource and configures the appropriate connection string in the `"frontend"` project with only two helper method calls:
+For example, using .NET Aspire, the following code creates a local Redis container resource, waits for it to become available, and then configures the appropriate connection string in the `"frontend"` project with a few helper method calls:
 
 ```csharp
 // Create a distributed application builder given the command line arguments.
@@ -50,13 +50,14 @@ var cache = builder.AddRedis("cache");
 // Add the frontend project to the application and configure it to use the 
 // Redis server, defined as a referenced dependency.
 builder.AddProject<Projects.MyFrontend>("frontend")
-       .WithReference(cache);
+       .WithReference(cache)
+       .WaitFor(cache);
 ```
 
 For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
 
 > [!IMPORTANT]
-> The call to `AddRedis` creates a new Redis container in your local dev environment. If you'd rather use an existing Redis instance, you can use the `AddConnectionString` method to reference an existing connection string. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
+> The call to <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis*> creates a new Redis container in your local dev environment. If you'd rather use an existing Redis instance, you can use the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> method to reference an existing connection string. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
 
 ## .NET Aspire integrations
 
@@ -73,14 +74,14 @@ builder.AddAzureServiceBusClient("servicebus");
 The <xref:Microsoft.Extensions.Hosting.AspireServiceBusExtensions.AddAzureServiceBusClient%2A> method handles the following concerns:
 
 - Registers a <xref:Azure.Messaging.ServiceBus.ServiceBusClient> as a singleton in the DI container for connecting to Azure Service Bus.
-- Applies `ServiceBusClient` configurations either inline through code or through configuration.
+- Applies <xref:Azure.Messaging.ServiceBus.ServiceBusClient> configurations either inline through code or through configuration.
 - Enables corresponding health checks, logging, and telemetry specific to the Azure Service Bus usage.
 
 A full list of available integrations is detailed on the [.NET Aspire integrations](../fundamentals/integrations-overview.md) overview page.
 
 ## Project templates and tooling
 
-.NET Aspire provides a set of project templates and tooling experiences for Visual Studio, Visual Studio Code, and the [.NET CLI](/dotnet/core/tools/). These templates are designed to help you create and interact with .NET Aspire projects. The templates are opinionated and come with a set of defaults that help you get started quickly. They include boilerplate code and configurations that are common to cloud-native apps, such as telemetry, health checks, and service discovery. For more information, see [.NET Aspire project templates](../fundamentals/setup-tooling.md#net-aspire-project-templates).
+.NET Aspire provides a set of project templates and tooling experiences for Visual Studio, Visual Studio Code, and the [.NET CLI](/dotnet/core/tools/). These templates are designed to help you create and interact with .NET Aspire projects. The templates are opinionated and come with a set of defaults that help you get started quickly. They include boilerplate code and configurations that are common to cloud-native apps, such as telemetry, health checks, and service discovery. For more information, see [.NET Aspire templates](../fundamentals/setup-tooling.md#net-aspire-templates).
 
 .NET Aspire templates also include boilerplate extension methods that handle common service configurations for you:
 

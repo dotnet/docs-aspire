@@ -91,7 +91,7 @@ Next, add a Worker Service project to the solution to retrieve and process messa
 1. Search for and select the **Worker Service** template and choose **Next**.
 1. For the **Project name**, enter *AspireSample.WorkerService* and select **Next**.
 1. On the **Additional information** screen:
-    - Make sure **.NET 8.0** is selected.
+    - Make sure **.NET 9.0** is selected.
     - Make sure **Enlist in .NET Aspire orchestration** is checked and select **Create**.
 
 Visual Studio adds the project to your solution and updates the _:::no-loc text="Program.cs":::_ file of the `AspireSample.AppHost` project with a new line of code:

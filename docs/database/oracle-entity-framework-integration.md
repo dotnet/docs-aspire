@@ -10,7 +10,7 @@ In this article, you learn how to use the The .NET Aspire Oracle Entity Framewor
 
 ## Get started
 
-You need an Oracle database and connection string for accessing the database. To get started with the The .NET Aspire Oracle Entity Framework Core integration, install the [Aspire.Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Aspire.Oracle.EntityFrameworkCore) NuGet package in the consuming client project.
+You need an Oracle database and connection string for accessing the database. To get started with the The .NET Aspire Oracle Entity Framework Core integration, install the [📦 Aspire.Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Aspire.Oracle.EntityFrameworkCore) NuGet package in the consuming client project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -59,7 +59,7 @@ builder.EnrichOracleDatabaseDbContext<MyDbContext>();
 
 ## App host usage
 
-To model the Oracle server resource in the app host, install the [Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle) NuGet package in the [app host](xref:aspire/app-host) project.
+To model the Oracle server resource in the app host, install the [📦 Aspire.Hosting.Oracle) NuGet package in the [app host](xref:dotnet/aspire/app-host](https://www.nuget.org/packages/Aspire.Hosting.Oracle) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

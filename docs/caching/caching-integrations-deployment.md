@@ -36,7 +36,7 @@ Add the appropriate .NET Aspire integration to the _AspireRedis.AppHost_ project
 
 # [Azure Cache for Redis](#tab/azure-redis)
 
-Add the [Aspire.Hosting.Azure.Redis](https://www.nuget.org/packages/Aspire.Hosting.Azure.Redis) package to the _AspireRedis.AppHost_ project:
+Add the [📦 Aspire.Hosting.Azure.Redis](https://www.nuget.org/packages/Aspire.Hosting.Azure.Redis) NuGet package to the _AspireRedis.AppHost_ project:
 
 ```dotnetcli
 dotnet add package Aspire.Hosting.Azure.Redis
@@ -44,7 +44,7 @@ dotnet add package Aspire.Hosting.Azure.Redis
 
 ## [Redis Container](#tab/redis-container)
 
-Add the [Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis) package to the _AspireRedis.AppHost_ project:
+Add the [📦 Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis) NuGet package to the _AspireRedis.AppHost_ project:
 
 ```dotnetcli
 dotnet add package Aspire.Hosting.Redis
@@ -63,8 +63,7 @@ Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _Aspire
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var cache = builder.AddRedis("cache")
-                   .PublishAsAzureRedis();
+var cache = builder.AddAzureRedis("cache");
 
 var apiService = builder.AddProject<Projects.AspireRedis_ApiService>("apiservice")
                         .WithReference(cache);
@@ -72,12 +71,14 @@ var apiService = builder.AddProject<Projects.AspireRedis_ApiService>("apiservice
 builder.AddProject<Projects.AspireRedis_Web>("webfrontend")
     .WithExternalHttpEndpoints()
     .WithReference(cache)
-    .WithReference(apiService);
+    .WaitFor(cache)
+    .WithReference(apiService)
+    .WaitFor(apiService);
 
 builder.Build().Run();
 ```
 
-The preceding code adds an Azure Cache for Redis resource to your app and configures a connection called `cache`. The `PublishAsAzureRedis` method ensures that tools such as the Azure Developer CLI or Visual Studio create an Azure Cache for Redis resource during the deployment process.
+The preceding code adds an Azure Cache for Redis resource to your app and configures a connection called `cache`. The `AddAzureRedis` method ensures that tools such as the Azure Developer CLI or Visual Studio create an Azure Cache for Redis resource during the deployment process.
 
 ## [Redis Container](#tab/redis-container)
 
@@ -94,7 +95,9 @@ var apiService = builder.AddProject<Projects.RedisSample_ApiService>("apiservice
 builder.AddProject<Projects.RedisSample_Web>("webfrontend")
     .WithExternalHttpEndpoints()
     .WithReference(cache)
-    .WithReference(apiService);
+    .WaitFor(cache)
+    .WithReference(apiService)
+    .WaitFor(apiService);
 
 builder.Build().Run();
 ```

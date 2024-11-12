@@ -1,8 +1,5 @@
 ---
-title: .NET Aspire Starter Application directory structure
-description: An include file that contains the directory structure of the .NET Aspire Starter Application.
 ms.topic: include
-ms.date: 05/13/2024
 ---
 
 ```Directory

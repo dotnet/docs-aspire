@@ -19,7 +19,7 @@ In this article, you learn how to use the .NET Aspire MySQL database integration
 
 ## Get started
 
-To get started with the .NET Aspire MySQL database integration, install the [Aspire.MySqlConnector](https://www.nuget.org/packages/Aspire.MySqlConnector) NuGet package.
+To get started with the .NET Aspire MySQL database integration, install the [📦 Aspire.MySqlConnector](https://www.nuget.org/packages/Aspire.MySqlConnector) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

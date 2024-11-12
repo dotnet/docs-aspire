@@ -8,7 +8,7 @@ public static class MailDevResourceBuilderExtensions
 {
     /// <summary>
     /// Adds the <see cref="MailDevResource"/> to the given
-    /// <paramref name="builder"/> instance. Uses the "2.0.2" tag.
+    /// <paramref name="builder"/> instance. Uses the "2.1.0" tag.
     /// </summary>
     /// <param name="builder">The <see cref="IDistributedApplicationBuilder"/>.</param>
     /// <param name="name">The name of the resource.</param>
@@ -53,5 +53,5 @@ internal static class MailDevContainerImageTags
 
     internal const string Image = "maildev/maildev";
 
-    internal const string Tag = "2.0.2";
+    internal const string Tag = "2.1.0";
 }

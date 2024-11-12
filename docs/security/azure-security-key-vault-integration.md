@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire Azure Key Vault integratio
 
 ## Get started
 
-To get started with the .NET Aspire Azure Key Vault integration, install the [Aspire.Azure.Security.KeyVault](https://www.nuget.org/packages/Aspire.Azure.Security.KeyVault) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Key Vault client.
+To get started with the .NET Aspire Azure Key Vault integration, install the [📦 Aspire.Azure.Security.KeyVault](https://www.nuget.org/packages/Aspire.Azure.Security.KeyVault) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Key Vault client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -71,7 +71,7 @@ public class ExampleService(SecretClient client)
 
 ## App host usage
 
-To add Azure Key Vault hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.KeyVault](https://www.nuget.org/packages/Aspire.Hosting.Azure.KeyVault) NuGet package in the [app host](xref:aspire/app-host) project.
+To add Azure Key Vault hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [📦 Aspire.Hosting.Azure.KeyVault) NuGet package in the [app host](xref:dotnet/aspire/app-host](https://www.nuget.org/packages/Aspire.Hosting.Azure.KeyVault) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

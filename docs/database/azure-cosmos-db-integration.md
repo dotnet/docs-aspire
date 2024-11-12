@@ -11,7 +11,7 @@ In this article, you learn how to use the .NET Aspire Azure Cosmos DB integratio
 
 ## Get started
 
-To get started with the .NET Aspire Azure Cosmos DB integration, install the [Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Cosmos DB client.
+To get started with the .NET Aspire Azure Cosmos DB integration, install the [📦 Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Cosmos DB client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -51,7 +51,7 @@ For more information on using the <xref:Microsoft.Azure.Cosmos.CosmosClient>, se
 
 ## App host usage
 
-To add Azure Cosmos DB hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB) NuGet package in the [app host](xref:aspire/app-host) project. This is helpful if you want Aspire to provision a new Azure Cosmos DB account for you, or if you want to use the Azure Cosmos DB emulator. If you want to use an Azure Cosmos DB account that is already provisioned, there's no need to add it to the app host project.
+To add Azure Cosmos DB hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [📦 Aspire.Hosting.Azure.CosmosDB) NuGet package in the [app host](xref:dotnet/aspire/app-host](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB) NuGet package in the [app host](xref:dotnet/aspire/app-host) project. This is helpful if you want Aspire to provision a new Azure Cosmos DB account for you, or if you want to use the Azure Cosmos DB emulator. If you want to use an Azure Cosmos DB account that is already provisioned, there's no need to add it to the app host project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

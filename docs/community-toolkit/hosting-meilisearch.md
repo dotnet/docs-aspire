@@ -1,7 +1,7 @@
 ---
-title: Meilisearch hosting
+title: .NET Aspire Community Toolkit Meilisearch integration
 description: Learn how to use the .NET Aspire Meilisearch hosting and client integration to run the Meilisearch container and accessing it via the Meilisearch client.
-ms.date: 10/23/2024
+ms.date: 10/24/2024
 ---
 
 # .NET Aspire Community Toolkit Meilisearch integration
@@ -14,7 +14,7 @@ In this article, you learn how to use the .NET Aspire Meilisearch hosting integr
 
 ## Hosting integration
 
-To run the Meilisearch container, install the [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch) NuGet package in the [app host](xref:aspire/app-host) project.
+To run the Meilisearch container, install the [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

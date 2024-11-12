@@ -1,8 +1,17 @@
-﻿var builder = DistributedApplication.CreateBuilder(args);
+﻿using Microsoft.Extensions.Hosting;
 
-builder.AddPythonProject("hello-python", "../hello-python", "main.py")
-       .WithEndpoint(targetPort: 8111, scheme: "http", env: "PORT")
-       //.WithEnvironment("OTEL_PYTHON_OTLP_TRACES_SSL", "false")
-       ;
+var builder = DistributedApplication.CreateBuilder(args);
+
+#pragma warning disable ASPIREHOSTINGPYTHON001
+var pythonapp = builder.AddPythonApp("hello-python", "../hello-python", "main.py")
+       .WithHttpEndpoint(env: "PORT")
+       .WithExternalHttpEndpoints()
+       .WithOtlpExporter();
+#pragma warning restore ASPIREHOSTINGPYTHON001
+
+if (builder.ExecutionContext.IsRunMode && builder.Environment.IsDevelopment())
+{
+    pythonapp.WithEnvironment("DEBUG", "True");
+}
 
 builder.Build().Run();

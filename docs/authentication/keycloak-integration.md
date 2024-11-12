@@ -18,7 +18,7 @@ In this article, you learn how to use the .NET Aspire Keycloak integration. The 
 
 ## Get started
 
-To get started with the .NET Aspire Keycloak integration, install the [Aspire.Keycloak.Authentication](https://www.nuget.org/packages/Aspire.Keycloak.Authentication) NuGet package in the client-consuming project, i.e., the project for the application that uses the Keycloak client.
+To get started with the .NET Aspire Keycloak integration, install the [📦 Aspire.Keycloak.Authentication](https://www.nuget.org/packages/Aspire.Keycloak.Authentication) NuGet package in the client-consuming project, i.e., the project for the application that uses the Keycloak client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -72,7 +72,7 @@ You can set many other options via the `Action<OpenIdConnectOptions>? configureO
 
 ## App host usage
 
-To model the Keycloak resource in the app host, install the [Aspire.Hosting.Keycloak](https://www.nuget.org/packages/Aspire.Hosting.Keycloak) NuGet package in the [app host](xref:aspire/app-host) project.
+To model the Keycloak resource in the app host, install the [📦 Aspire.Hosting.Keycloak) NuGet package in the [app host](xref:dotnet/aspire/app-host](https://www.nuget.org/packages/Aspire.Hosting.Keycloak) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

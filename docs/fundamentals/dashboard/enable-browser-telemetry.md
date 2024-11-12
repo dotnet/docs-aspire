@@ -1,7 +1,7 @@
 ---
 title: Enable browser telemetry
 description: Learn how to enable browser telemetry in the .NET Aspire dashboard.
-ms.date: 10/11/2024
+ms.date: 11/11/2024
 ---
 
 # Enable browser telemetry
@@ -50,7 +50,7 @@ docker run --rm -it -d \
     -p 4317:18889 \
     -p 4318:18890 \
     --name aspire-dashboard \
-    mcr.microsoft.com/dotnet/aspire-dashboard:8.2
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -61,7 +61,7 @@ docker run --rm -it -d `
     -p 4317:18889 `
     -p 4318:18890 `
     --name aspire-dashboard `
-    mcr.microsoft.com/dotnet/aspire-dashboard:8.2
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
 ```
 
 ---
@@ -85,7 +85,7 @@ docker run --rm -it -d \
     -p 4318:18890 \
     -e DASHBOARD__OTLP__CORS__ALLOWEDORIGINS=https://localhost:8080 \
     --name aspire-dashboard \
-    mcr.microsoft.com/dotnet/aspire-dashboard:8.2
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -97,7 +97,7 @@ docker run --rm -it -d `
     -p 4318:18890 `
     -e DASHBOARD__OTLP__CORS__ALLOWEDORIGINS=https://localhost:8080 `
     --name aspire-dashboard `
-    mcr.microsoft.com/dotnet/aspire-dashboard:8.2
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
 ```
 
 ---

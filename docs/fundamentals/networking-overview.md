@@ -1,24 +1,24 @@
 ---
 title: .NET Aspire inner loop networking overview
-description: Learn how .NET Aspire handles networking and service bindings, and how you can use them in your app code.
-ms.date: 08/20/2024
+description: Learn how .NET Aspire handles networking and endpoints, and how you can use them in your app code.
+ms.date: 10/29/2024
 ms.topic: overview
 ---
 
 # .NET Aspire inner-loop networking overview
 
-One of the advantages of developing with .NET Aspire is that it enables you to develop, test, and debug cloud-native apps locally. Inner-loop networking is a key aspect of .NET Aspire that allows your apps to communicate with each other in your development environment. In this article, you learn how .NET Aspire handles various networking scenarios with proxies, service bindings, endpoint configurations, and launch profiles.
+One of the advantages of developing with .NET Aspire is that it enables you to develop, test, and debug cloud-native apps locally. Inner-loop networking is a key aspect of .NET Aspire that allows your apps to communicate with each other in your development environment. In this article, you learn how .NET Aspire handles various networking scenarios with proxies, endpoints, endpoint configurations, and launch profiles.
 
 ## Networking in the inner loop
 
 The inner loop is the process of developing and testing your app locally before deploying it to a target environment. .NET Aspire provides several tools and features to simplify and enhance the networking experience in the inner loop, such as:
 
-- **Launch profiles**: Launch profiles are configuration files that specify how to run your app locally. You can use launch profiles (such as the _launchSettings.json_ file) to define the service bindings, environment variables, and launch settings for your app.
-- **Kestrel configuration**: Kestrel configuration allows you to specify the endpoints that the Kestrel web server listens on. You can configure Kestrel endpoints in your app settings, and .NET Aspire automatically uses these settings to create service bindings.
-- **Service bindings/Endpoint configurations**: Service bindings are the connections between your app and the services it depends on, such as databases, message queues, or APIs. Service bindings provide information such as the service name, host port, scheme, and environment variable. You can add service bindings to your app either implicitly (via launch profiles) or explicitly by calling <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint%2A>.
+- **Launch profiles**: Launch profiles are configuration files that specify how to run your app locally. You can use launch profiles (such as the _launchSettings.json_ file) to define the endpoints, environment variables, and launch settings for your app.
+- **Kestrel configuration**: Kestrel configuration allows you to specify the endpoints that the Kestrel web server listens on. You can configure Kestrel endpoints in your app settings, and .NET Aspire automatically uses these settings to create endpoints.
+- **Endpoints/Endpoint configurations**: Endpoints are the connections between your app and the services it depends on, such as databases, message queues, or APIs. Endpoints provide information such as the service name, host port, scheme, and environment variable. You can add endpoints to your app either implicitly (via launch profiles) or explicitly by calling <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint%2A>.
 - **Proxies**: .NET Aspire automatically launches a proxy for each service binding you add to your app, and assigns a port for the proxy to listen on. The proxy then forwards the requests to the port that your app listens on, which might be different from the proxy port. This way, you can avoid port conflicts and access your app and services using consistent and predictable URLs.
 
-## How service bindings work
+## How endpoints work
 
 A service binding in .NET Aspire involves two integrations: a **service** representing an external resource your app requires (for example, a database, message queue, or API), and a **binding** that establishes a connection between your app and the service and provides necessary information.
 
@@ -26,13 +26,13 @@ A service binding in .NET Aspire involves two integrations: a **service** repres
 
 Upon creating a binding, whether implicit or explicit, .NET Aspire launches a lightweight reverse proxy on a specified port, handling routing and load balancing for requests from your app to the service. The proxy is a .NET Aspire implementation detail, requiring no configuration or management concern.
 
-To help visualize how service bindings work, consider the .NET Aspire starter templates inner-loop networking diagram:
+To help visualize how endpoints work, consider the .NET Aspire starter templates inner-loop networking diagram:
 
 :::image type="content" source="media/networking/networking-proxies-1x.png" lightbox="media/networking/networking-proxies.png" alt-text=".NET Aspire Starter Application template inner loop networking diagram.":::
 
 ## Launch profiles
 
-When you call <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, the app host looks for _Properties/launchSettings.json_ to determine the default set of service bindings. The app host selects a specific launch profile using the following rules:
+When you call <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, the app host looks for _Properties/launchSettings.json_ to determine the default set of endpoints. The app host selects a specific launch profile using the following rules:
 
 1. An explicit `launchProfileName` argument passed when calling `AddProject`.
 1. The `DOTNET_LAUNCH_PROFILE` environment variable. For more information, see [.NET environment variables](/dotnet/core/tools/dotnet-environment-variables).
@@ -48,7 +48,7 @@ For the remainder of this article, imagine that you've created an <xref:Aspire.H
 var builder = DistributedApplication.CreateBuilder(args);
 ```
 
-To specify the **http** and **https** launch profiles, configure the `applicationUrl` values for both in the _launchSettings.json_ file. These URLs are used to create service bindings for this project. This is the equivalent of:
+To specify the **http** and **https** launch profiles, configure the `applicationUrl` values for both in the _launchSettings.json_ file. These URLs are used to create endpoints for this project. This is the equivalent of:
 
 :::code source="snippets/networking/Networking.AppHost/Program.WithLaunchProfile.cs" id="verbose":::
 

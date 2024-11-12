@@ -10,11 +10,11 @@ ms.date: 10/24/2024
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you learn how to use the .NET Aspire Ollama hosting integration to host [Ollama](https://ollama.com) models using the Ollama container and accessing it via the [OllamaSharp](https://www.nuget.org/packages/OllamaSharp) client.
+In this article, you learn how to use the .NET Aspire Ollama hosting integration to host [📦 OllamaSharp](https://www.nuget.org/packages/OllamaSharp) client.
 
 ## Hosting integration
 
-To model the Ollama server, install the [📦 CommunityToolkit.Aspire.Hosting.Ollama](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Ollama) NuGet package in the [app host](xref:aspire/app-host) project.
+To model the Ollama server, install the [📦 CommunityToolkit.Aspire.Hosting.Ollama](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Ollama) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
