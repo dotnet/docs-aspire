@@ -46,11 +46,6 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      # Install workload
-      - name: Install .NET Aspire workload
-        run: |
-          dotnet workload install aspire
-
       # Print dotnet info
       - name: Display .NET info
         run: |
