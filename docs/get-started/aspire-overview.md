@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire overview
 description: Learn about .NET Aspire, an application stack designed to improve the experience of building cloud-native applications.
-ms.date: 11/04/2024
+ms.date: 11/12/2024
 ---
 
 # .NET Aspire overview
@@ -14,7 +14,7 @@ ms.date: 11/04/2024
 :::column-end:::
 :::column span="3":::
 
-.NET Aspire is an opinionated, cloud ready stack for building observable, production ready, distributed applications.​ .NET Aspire is delivered through a collection of NuGet packages that handle specific cloud-native concerns. Cloud-native apps often consist of small, interconnected pieces or microservices rather than a single, monolithic code base. Cloud-native apps generally consume a large number of services, such as databases, messaging, and caching. For information on support, see the [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire).
+.NET Aspire is a set of powerful tools, templates, and packages for building observable, production ready apps.​​ .NET Aspire is delivered through a collection of NuGet packages that handle specific cloud-native concerns. Cloud-native apps often consist of small, interconnected pieces or microservices rather than a single, monolithic code base. Cloud-native apps generally consume a large number of services, such as databases, messaging, and caching. For information on support, see the [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire).
 
 :::column-end:::
 :::row-end:::
