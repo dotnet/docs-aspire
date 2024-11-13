@@ -1,7 +1,7 @@
 ---
 title: What's new in .NET Aspire 9.0
 description: Learn what's new in the official general availability version of .NET Aspire 9.0.
-ms.date: 11/11/2024
+ms.date: 11/13/2024
 ---
 
 # What's new in .NET Aspire 9.0
@@ -122,12 +122,10 @@ builder.Build().Run();
 
 When the app host starts, it waits for the `rabbit` resource to be ready before starting the `api` resource.
 
-<!-- TODO: xref -->
-
 There are two methods exposed to wait for a resource:
 
-- `WaitFor`: Wait for a resource to be ready before starting another resource.
-- `WaitForCompletion`: Wait for a resource to complete before starting another resource.
+- <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*>: Wait for a resource to be ready before starting another resource.
+- <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitForCompletion*>: Wait for a resource to complete before starting another resource.
 
 For more information, see [.NET Aspire app host: Waiting for resources](../fundamentals/app-host-overview.md#waiting-for-resources).
 
@@ -189,9 +187,7 @@ builder.AddProject<Projects.MyApp>("myapp")
 
 The preceding example adds a health check to the `cache` resource, which reports it as unhealthy for the first 20 seconds after the app host starts. So, the `myapp` resource waits for 20 seconds before starting, ensuring the `cache` resource is healthy.
 
-<!-- TODO: xref -->
-
-The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> and `WithHealthCheck` methods provide a simple mechanism to create health checks and associate them with specific resources.
+The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> and <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHealthCheck*> methods provide a simple mechanism to create health checks and associate them with specific resources.
 
 ### Persistent containers
 
@@ -202,9 +198,7 @@ This is useful when you want to keep the container running even after the app ho
 > [!IMPORTANT]
 > To delete these containers, you must manually stop them using the container runtime.
 
-<!-- TODO: xref -->
-
-To define an `IResourceBuilder<ContainerResource>` with a persistent lifetime, call the `WithLifetime` method and pass in `ContainerLifetime.Persistent`:
+To define an `IResourceBuilder<ContainerResource>` with a persistent lifetime, call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithLifetime*> method and pass in <xref:Aspire.Hosting.ApplicationModel.ContainerLifetime.Persistent?displayProperty=nameWithType>:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -248,21 +242,19 @@ The app host now adds all containers to a common network named `default-aspire-n
 
 The eventing model allows developers to hook into the lifecycle of the application and resources. This is useful for running custom code at specific points in the application lifecycle. There are various ways to subscribe to events, including global events and per-resource events.
 
-<!-- TODO: xref -->
-
 **Global events:**
 
-- `BeforeStartEvent`: An event that is triggered before the application starts. This is the last place that changes to the app model are observed. This runs in both "Run" and "Publish" modes. This is a blocking event, meaning that the application doesn't start until all handlers have completed.
-- `AfterResourcesCreatedEvent`: An event that is triggered after the resources are created. This runs in Run mode only.
-- `AfterEndpointsAllocatedEvent`: An event that is triggered after the endpoints are allocated for all resources. This runs in Run mode only.
+- <xref:Aspire.Hosting.ApplicationModel.BeforeStartEvent>: An event that is triggered before the application starts. This is the last place that changes to the app model are observed. This runs in both "Run" and "Publish" modes. This is a blocking event, meaning that the application doesn't start until all handlers have completed.
+- <xref:Aspire.Hosting.ApplicationModel.AfterResourcesCreatedEvent>: An event that is triggered after the resources are created. This runs in Run mode only.
+- <xref:Aspire.Hosting.ApplicationModel.AfterEndpointsAllocatedEvent>: An event that is triggered after the endpoints are allocated for all resources. This runs in Run mode only.
 
 The global events are analogous to the app host life cycle events. For more information, see [App host life cycles](../fundamentals/app-host-overview.md#app-host-life-cycles).
 
 **Per-resource events:**
 
-- `BeforeResourceStartedEvent`: An event that is triggered before a single resource starts. This runs in Run mode only. This is a blocking event, meaning that the resource doesn't start until all handlers complete.
-- `ConnectionStringAvailableEvent`: An event that is triggered when a connection string is available for a resource. This runs in Run mode only.
-- `ResourceReadyEvent`: An event that is triggered when a resource is ready to be used. This runs in Run mode only.
+- <xref:Aspire.Hosting.ApplicationModel.BeforeResourceStartedEvent>: An event that is triggered before a single resource starts. This runs in Run mode only. This is a blocking event, meaning that the resource doesn't start until all handlers complete.
+- <xref:Aspire.Hosting.ApplicationModel.ConnectionStringAvailableEvent>: An event that is triggered when a connection string is available for a resource. This runs in Run mode only.
+- <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent>: An event that is triggered when a resource is ready to be used. This runs in Run mode only.
 
 For more information, see [Eventing in .NET Aspire](../app-host/eventing.md).
 
@@ -283,9 +275,7 @@ builder.AddRedis("redis")
                             // Redis instance.
 ```
 
-<!-- TODO: xref -->
-
-The `WithRedisInsight` extension method can be applied to multiple Redis resources and they'll each be visible on the Redis Insight dashboard.
+The <xref:Aspire.Hosting.RedisBuilderExtensions.WithRedisInsight*> extension method can be applied to multiple Redis resources and they'll each be visible on the Redis Insight dashboard.
 
 :::image type="content" source="media/redis-insight.png" lightbox="media/redis-insight.png" alt-text="Redis Insight dashboard showing multiple Redis instances":::
 
@@ -297,9 +287,7 @@ Starting with .NET Aspire 9, an additional OpenAI integration is available which
 
 - [ðŸ“¦ Aspire.OpenAI (Preview)](https://www.nuget.org/packages/Aspire.OpenAI/9.0.0)
 
-<!-- TODO: xref -->
-
-Moreover, the already available [.NET Aspire Azure OpenAI integration](../azureai/azureai-openai-integration.md) was improved to provide a flexible way to configure an `OpenAIClient` for either an Azure AI OpenAI service or a dedicated OpenAI REST API one with the new `AddOpenAIClientFromConfiguration` builder method. The following example detects if the connection string is for an Azure AI OpenAI service and registers the most appropriate `OpenAIClient` instance automatically.
+Moreover, the already available [.NET Aspire Azure OpenAI integration](../azureai/azureai-openai-integration.md) was improved to provide a flexible way to configure an `OpenAIClient` for either an Azure AI OpenAI service or a dedicated OpenAI REST API one with the new <xref:Microsoft.Extensions.Hosting.AspireConfigurableOpenAIExtensions.AddOpenAIClientFromConfiguration(Microsoft.Extensions.Hosting.IHostApplicationBuilder,System.String)> builder method. The following example detects if the connection string is for an Azure AI OpenAI service and registers the most appropriate `OpenAIClient` instance automatically.
 
 ```csharp
 builder.AddOpenAIClientFromConfiguration("openai");
@@ -311,9 +299,7 @@ Read [Azure-agnostic client resolution](https://github.com/dotnet/aspire/blob/re
 
 ### MongoDB
 
-<!-- TODO: xref -->
-
-Added support for specifying the MongoDB username and password when using the `AddMongoDB` extension method. If not specified, a random username and password is generated but can be manually specified using parameter resources.
+Added support for specifying the MongoDB username and password when using the <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddMongoDB(Aspire.Hosting.IDistributedApplicationBuilder,System.String,System.Nullable{System.Int32},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource})> extension method. If not specified, a random username and password is generated but can be manually specified using parameter resources.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -421,9 +407,7 @@ In the app host project, observe that there's a `PackageReference` to the new [ð
 </ItemGroup>
 ```
 
-<!-- TODO: xref -->
-
-This package provides an `AddAzureFunctionsProject` API that can be invoked in the app host to configure Azure Functions projects within an .NET Aspire host:
+This package provides an <xref:Aspire.Hosting.AzureFunctionsProjectResourceExtensions.AddAzureFunctionsProject``1(Aspire.Hosting.IDistributedApplicationBuilder,System.String)> API that can be invoked in the app host to configure Azure Functions projects within an .NET Aspire host:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -669,16 +653,14 @@ For more information, see the official [.NET Aspire Azure Functions integration 
 
 #### Customization of Azure Container Apps
 
-<!-- TODO: xref -->
-
-One of the most requested features is the ability to customize the Azure Container Apps that the app host creates without touching Bicep. This is possible by using the `PublishAsAzureContainerApp` method in the `Aspire.Hosting.Azure.AppContainers` namespace. This method customizes the Azure Container App definition that the app host creates.
+One of the most requested features is the ability to customize the Azure Container Apps that the app host creates without touching Bicep. This is possible by using the <xref:Aspire.Hosting.AzureContainerAppProjectExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})> and <xref:Aspire.Hosting.AzureContainerAppContainerExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})> APIs in the `Aspire.Hosting.Azure.AppContainers` namespace. These methods customizes the Azure Container App definition that the app host creates.
 
 Add the package reference to your project file:
 
 ```xml
 <ItemGroup>
   <PackageReference Include="Aspire.Hosting.Azure.AppContainers"
-                    Version="9.0.0-rc.1.24511.1" />
+                    Version="9.0.0" />
 </ItemGroup>
 ```
 
