@@ -231,7 +231,7 @@ The container persistence mechanism attempts to identify when you might wish to 
 
 ### Resource commands
 
-The app host supports adding custom commands to resources. This is useful when you want to run custom commands on a resource. There's likely many opportunities to custom extension methods on resources to expose custom commands. The [.NET Aspire Community Toolkit](../community-toolkit/overview.md) might be a good place to share these extensions.
+The app host supports adding custom commands to resources. This is useful when you want to add custom functionality that is not natively supported by the app host. There's likely many opportunities where exposing custom extension methods on resources will be useful. The [.NET Aspire Community Toolkit](../community-toolkit/overview.md) might be a good place to share these extensions.
 
 When you define a custom command, it's available in the dashboard as a user experience feature.
 
