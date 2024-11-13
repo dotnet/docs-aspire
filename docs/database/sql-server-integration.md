@@ -42,7 +42,7 @@ dotnet add package Aspire.Microsoft.Data.SqlClient
 
 ### Add SQL Server client
 
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerExtensions.AddSqlServerClient%2A> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a `SqlConnection` for use via the dependency injection container. The method takes a connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerSqlClientExtensions.AddSqlServerClient*> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a `SqlConnection` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddSqlServerClient(connectionName: "sql");
@@ -64,7 +64,7 @@ For more information on dependency injection, see [.NET dependency injection](/d
 
 ### Add keyed SQL Server client
 
-There might be situations where you want to register multiple `SqlConnection` instances with different connection names. To register keyed SQL Server clients, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerExtensions.AddKeyedSqlServerClient*> method:
+There might be situations where you want to register multiple `SqlConnection` instances with different connection names. To register keyed SQL Server clients, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerSqlClientExtensions.AddKeyedSqlServerClient*> method:
 
 ```csharp
 builder.AddKeyedSqlServerClient(name: "mainDb");
@@ -90,7 +90,7 @@ The .NET Aspire SQL Server integration provides multiple options to configure th
 
 #### Use a connection string
 
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling the <xref:Microsoft.Extensions.Hosting.AspireSqlServerExtensions.AddSqlServerClient*> method:
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling the <xref:Microsoft.Extensions.Hosting.AspireSqlServerSqlClientExtensions.AddSqlServerClient*> method:
 
 ```csharp
 builder.AddSqlServerClient(connectionName: "sql");
@@ -110,7 +110,7 @@ For more information on how to format this connection string, see the [Connectio
 
 #### Use configuration providers
 
-The .NET Aspire SQL Server integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Microsoft.Data.SqlClient.SqlClientSettings> from configuration by using the `Aspire:Microsoft:Data:SqlClient` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
+The .NET Aspire SQL Server integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Microsoft.Data.SqlClient.MicrosoftDataSqlClientSettings> from configuration by using the `Aspire:Microsoft:Data:SqlClient` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
@@ -132,7 +132,7 @@ For the complete SQL Server client integration JSON schema, see [Aspire.Microsof
 
 #### Use inline delegates
 
-Also you can pass the `Action<SqlClientSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
+Also you can pass the `Action<MicrosoftDataSqlClientSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:
 
 ```csharp
 builder.AddSqlServerClient(
@@ -146,14 +146,14 @@ By default, .NET Aspire integrations enable [health checks](../fundamentals/heal
 
 The .NET Aspire SQL Server integration:
 
-- Adds the health check when <xref:Aspire.Microsoft.Data.SqlClient.SqlClientSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the SQL Server.
+- Adds the health check when <xref:Aspire.Microsoft.Data.SqlClient.MicrosoftDataSqlClientSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the SQL Server.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
 #### Logging
 
-The .NET Aspire SQL Server integration currently doesn't enable logging by default due to limitations of the `SqlClient`.
+The .NET Aspire SQL Server integration currently doesn't enable logging by default due to limitations of the <xref:Microsoft.Data.SqlClient>.
 
 #### Tracing
 
