@@ -89,8 +89,8 @@ The preceding code:
 - Adds a project resource named "apiservice" using the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> method.
 - Adds a project resource named "webfrontend" using the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> method.
   - Specifies that the project has external HTTP endpoints using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints%2A> method.
-  - Adds a reference to the `cache` resource and waits for it to be ready using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> and `WaitFor` methods.
-  - Adds a reference to the `apiservice` resource and waits for it to be ready using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> and `WaitFor` methods.
+  - Adds a reference to the `cache` resource and waits for it to be ready using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> and <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> methods.
+  - Adds a reference to the `apiservice` resource and waits for it to be ready using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> and <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> methods.
 - Builds and runs the app model using the <xref:Aspire.Hosting.DistributedApplicationBuilder.Build%2A> and <xref:Aspire.Hosting.DistributedApplication.Run%2A> methods.
 
 The example code uses the [.NET Aspire Redis hosting integration](../caching/stackexchange-redis-integration.md#hosting-integration).
@@ -140,7 +140,7 @@ The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExte
 
 ### Waiting for resources
 
-In some cases, you might want to wait for a resource to be ready before starting another resource. For example, you might want to wait for a database to be ready before starting an API that depends on it. To express this dependency, use the `WaitFor` method:
+In some cases, you might want to wait for a resource to be ready before starting another resource. For example, you might want to wait for a database to be ready before starting an API that depends on it. To express this dependency, use the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -155,7 +155,7 @@ builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 
 In the preceding code, the "apiservice" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType>. The example code shows the [.NET Aspire PostgreSQL integration](../database/postgresql-integration.md), but the same pattern can be applied to other resources.
 
-Other cases might warrant waiting for a resource to run to completion, either <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Exited?displayProperty=nameWithType> or <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Finished?displayProperty=nameWithType> before the dependent resource starts. To wait for a resource to run to completion, use the `WaitForCompletion` method:
+Other cases might warrant waiting for a resource to run to completion, either <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Exited?displayProperty=nameWithType> or <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Finished?displayProperty=nameWithType> before the dependent resource starts. To wait for a resource to run to completion, use the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitForCompletion*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -222,12 +222,16 @@ When the app host is run, the <xref:Aspire.Hosting.ApplicationModel.ContainerRes
 
 #### [Docker](#tab/docker)
 
+First, the container is created using the `docker container create` command. Then, the container is started using the `docker container start` command.
+
 - [docker container create](https://docs.docker.com/reference/cli/docker/container/create/): Creates a new container from the specified image, without starting it.
 - [docker container start](https://docs.docker.com/reference/cli/docker/container/start/): Start one or more stopped containers.
 
 These commands are used instead of `docker run` to manage attached container networks, volumes, and ports. Calling these commands in this order allows any IP (network configuration) to already be present at initial startup.
 
 #### [Podman](#tab/podman)
+
+First, the container is created using the `podman container create` command. Then, the container is started using the `podman container start` command.
 
 - [podman container create](https://docs.podman.io/en/latest/markdown/podman-create.1.html): Creates a writable container layer over the specified image and prepares it for running.
 - [podman container start](https://docs.podman.io/en/latest/markdown/podman-start.1.html): Start one or more stopped containers.
@@ -291,7 +295,7 @@ The `port` parameter is the port that the container is listening on. For more in
 
 ### Service endpoint environment variable format
 
-In the preceding section, the `WithReference` method is used to express dependencies between resources. When service endpoints result in environment variables being injected into the dependent resource, the format might not be obvious. This section provides details on this format.
+In the preceding section, the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method is used to express dependencies between resources. When service endpoints result in environment variables being injected into the dependent resource, the format might not be obvious. This section provides details on this format.
 
 When one resource depends on another resource, the app host injects environment variables into the dependent resource. These environment variables configure the dependent resource to connect to the resource it depends on. The format of the environment variables is specific to .NET Aspire and expresses service endpoints in a way that is compatible with [Service Discovery](../service-discovery/overview.md).
 
