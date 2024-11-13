@@ -325,10 +325,9 @@ As part of the update to the <xref:Azure.Provisioning> libraries, the default na
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.Services.Configure<AzureResourceOptions>(options =>
+builder.Services.Configure<AzureProvisioningOptions>(options =>
 {
-    options.ProvisioningContext.PropertyResolvers.Insert(
-        0, new AspireV8ResourceNamePropertyResolver());
+    options.ProvisioningBuildOptions.InfrastructureResolvers.Insert(0, new AspireV8ResourceNamePropertyResolver());
 });
 ```
 
