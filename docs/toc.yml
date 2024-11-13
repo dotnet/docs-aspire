@@ -97,6 +97,7 @@ items:
       - name: Health checks
         href: fundamentals/health-checks.md
       - name: Telemetry
+        displayName: otel,otlp,telemetry,grpc,opentelemetry,protobuf,traceparent
         href: fundamentals/telemetry.md
 
   - name: Integrations
