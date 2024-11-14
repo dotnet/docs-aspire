@@ -62,7 +62,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 builder.Services.Configure<AzureProvisioningOptions>(options =>
 {
-    options.ProvisioningContext.PropertyResolvers.Insert(0, new AzureResourceNamePropertyResolverAspireV8());
+    options.ProvisioningBuildOptions.InfrastructureResolvers.Insert(0, new AspireV8ResourceNamePropertyResolver());
 });
 ```
 

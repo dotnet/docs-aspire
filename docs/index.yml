@@ -11,7 +11,7 @@ metadata:
   description: Learn about .NET Aspire, a cloud-ready stack for building distributed applications. Browse API reference, tutorials, and more.
   ms.topic: hub-page
   ms.service: dotnet-aspire
-  ms.date: 10/23/2024
+  ms.date: 11/13/2024
 
 highlightedContent:
   items:
@@ -247,6 +247,9 @@ conceptualContent:
         - itemType: training
           text: Send messages with RabbitMQ in a .NET Aspire project
           url: /training/modules/send-messages-rabbitmq-dotnet-aspire-app/
+        - itemType: architecture
+          text: .NET Aspire Credential (Applied Skill)
+          url: /credentials/applied-skills/build-distributed-apps-with-dotnet-aspire/
 
 additionalContent:
   sections:

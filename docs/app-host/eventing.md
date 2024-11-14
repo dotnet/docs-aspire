@@ -1,7 +1,7 @@
 ---
 title: Eventing in .NET Aspire
 description: Learn how to use the .NET eventing features with .NET Aspire.
-ms.date: 10/30/2024
+ms.date: 11/13/2024
 ---
 
 # Eventing in .NET Aspire
@@ -40,9 +40,9 @@ The log output confirms that event handlers are executed in the order of the app
 
 In addition to the app host events, you can also subscribe to resource events. Resource events are raised specific to an individual resource. Resource events are defined as implementations of the <xref:Aspire.Hosting.Eventing.IDistributedApplicationResourceEvent> interface. The following resource events are available in the listed order:
 
-1. `ConnectionStringAvailableEvent`: Raised when a connection string becomes available for a resource.
-1. `BeforeResourceStartedEvent`: Raised before the orchestrator starts a new resource.
-1. `ResourceReadyEvent`: Raised when a resource initially transitions to a ready state.
+1. <xref:Aspire.Hosting.ApplicationModel.ConnectionStringAvailableEvent>: Raised when a connection string becomes available for a resource.
+1. <xref:Aspire.Hosting.ApplicationModel.BeforeResourceStartedEvent>: Raised before the orchestrator starts a new resource.
+1. <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent>: Raised when a resource initially transitions to a ready state.
 
 ### Subscribe to resource events
 
@@ -66,22 +66,15 @@ When subscribing to any of the built-in events, you don't need to publish the ev
 Then, you can subscribe and publish the event by calling the either of the following APIs:
 
 - <xref:Aspire.Hosting.Eventing.IDistributedApplicationEventing.PublishAsync``1(``0,System.Threading.CancellationToken)>: Publishes an event to all subscribes of the specific event type.
-- `PublishAsync<T>(T, EventDispatchBehavior, CancellationToken)`: Publishes an event to all subscribes of the specific event type with a specified dispatch behavior.
+- <xref:Aspire.Hosting.Eventing.IDistributedApplicationEventing.PublishAsync``1(``0,Aspire.Hosting.Eventing.EventDispatchBehavior,System.Threading.CancellationToken)>: Publishes an event to all subscribes of the specific event type with a specified dispatch behavior.
 
 ### Provide an `EventDispatchBehavior`
 
 When events are dispatched, you can control how the events are dispatched to subscribers. The event dispatch behavior is specified with the `EventDispatchBehavior` enum. The following behaviors are available:
 
-<!--
-- <xref:Aspire.Hosting.Eventing.EventDispatchBehavior.BlockingSequential>: Fires events sequentially and blocks until they're all processed.
-- <xref:Aspire.Hosting.Eventing.EventDispatchBehavior.BlockingConcurrent>: Fires events concurrently and blocks until they are all processed.
-- <xref:Aspire.Hosting.Eventing.EventDispatchBehavior.NonBlockingSequential>: Fires events sequentially but doesn't block.
-- <xref:Aspire.Hosting.Eventing.EventDispatchBehavior.NonBlockingConcurrent>: Fires events concurrently but doesn't block.
--->
-
-- `EventDispatchBehavior.BlockingSequential`: Fires events sequentially and blocks until they're all processed.
-- `EventDispatchBehavior.BlockingConcurrent`: Fires events concurrently and blocks until they're all processed.
-- `EventDispatchBehavior.NonBlockingSequential`: Fires events sequentially but doesn't block.
-- `EventDispatchBehavior.NonBlockingConcurrent`: Fires events concurrently but doesn't block.
+- <xref:Aspire.Hosting.Eventing.EventDispatchBehavior.BlockingSequential?displayProperty=nameWithType>: Fires events sequentially and blocks until they're all processed.
+- <xref:Aspire.Hosting.Eventing.EventDispatchBehavior.BlockingConcurrent?displayProperty=nameWithType>: Fires events concurrently and blocks until they are all processed.
+- <xref:Aspire.Hosting.Eventing.EventDispatchBehavior.NonBlockingSequential?displayProperty=nameWithType>: Fires events sequentially but doesn't block.
+- <xref:Aspire.Hosting.Eventing.EventDispatchBehavior.NonBlockingConcurrent?displayProperty=nameWithType>: Fires events concurrently but doesn't block.
 
 The default behavior is `EventDispatchBehavior.BlockingSequential`. To override this behavior, when calling a publishing API such as <xref:Aspire.Hosting.Eventing.IDistributedApplicationEventing.PublishAsync*>, provide the desired behavior as an argument.

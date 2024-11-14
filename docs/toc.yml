@@ -97,6 +97,7 @@ items:
       - name: Health checks
         href: fundamentals/health-checks.md
       - name: Telemetry
+        displayName: otel,otlp,telemetry,grpc,opentelemetry,protobuf,traceparent
         href: fundamentals/telemetry.md
 
   - name: Integrations
@@ -365,6 +366,8 @@ items:
     items:
       - name: .NET Aspire
         href: https://github.com/dotnet/aspire
+      - name: .NET Aspire Credential
+        href: /credentials/applied-skills/build-distributed-apps-with-dotnet-aspire/
       - name: .NET Aspire samples
         href: https://github.com/dotnet/aspire-samples
       - name: .NET Aspire samples browser
