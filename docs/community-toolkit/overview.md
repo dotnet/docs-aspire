@@ -39,6 +39,9 @@ The community toolkit is a growing project, publishing a set of NuGet packages. 
 - The [Meilisearch](https://www.meilisearch.com) integration enables hosting Meilisearch containers.
   - [📄 .NET Aspire Meilisearch hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Meilisearch).
   - [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch).
+- The [Rust apps](https://www.rust-lang.org/) integration provides support for hosting Rust applications.
+  - [📄 .NET Aspire Rust hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Rust).
+  - [📦 CommunityToolkit.Aspire.Hosting.Rust](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Rust).
 
 ### Client integrations
 
