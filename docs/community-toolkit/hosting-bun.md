@@ -15,7 +15,7 @@ ms.date: 11/15/2024
 
 ## Hosting integration
 
-The Bun hosting integration models a Bun application as the <xref:Aspire.Hosting.ApplicationModel.BunAppResource> type. To access this type and APIs that allow you to add it to your app host project, install the [📦 CommunityToolkit.Aspire.Hosting.Bun](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Bun) NuGet package in the app host project.
+The Bun hosting integration models a Bun application as the `Aspire.Hosting.ApplicationModel.BunAppResource` type. To access this type and APIs that allow you to add it to your app host project, install the [📦 CommunityToolkit.Aspire.Hosting.Bun](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Bun) NuGet package in the app host project.
 
 This integration expects that the Bun executable has already been installed on the host machine, and that it is available in the system path.
 
@@ -38,7 +38,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Add a Bun resource
 
-In your app host projec, call the <xref:Aspire.Hosting.BunAppExtensions.AddBunApp*> on the `builder` instance to add a Bun application resource as shown in the following example:
+In your app host projec, call the `Aspire.Hosting.BunAppExtensions.AddBunApp` on the `builder` instance to add a Bun application resource as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -63,7 +63,7 @@ The Bun application can be added as a reference to other resources in the app ho
 
 ### Ensuring packages are installed
 
-To ensure that the Bun application has all the dependencies installed as defined in the lockfile, you can use the <xref:Aspire.Hosting.BunAppExtensions.WithBunPackageInstaller> method to ensure that package installation is run before the application is started.
+To ensure that the Bun application has all the dependencies installed as defined in the lockfile, you can use the `Aspire.Hosting.BunAppExtensions.WithBunPackageInstaller` method to ensure that package installation is run before the application is started.
 
 ```csharp
 var api = builder.AddBunApp("api")
