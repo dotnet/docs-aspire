@@ -16,7 +16,7 @@ In this article, you learn how to use the .NET Aspire Azure Web PubSub integrati
 
 ## Get started
 
-To get started with the .NET Aspire Azure Web PubSub integration, install the [Aspire.Azure.Messaging.WebPubSub](https://www.nuget.org/packages/Aspire.Azure.Messaging.WebPubSub) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Web PubSub client.
+To get started with the .NET Aspire Azure Web PubSub integration, install the [📦 Aspire.Azure.Messaging.WebPubSub](https://www.nuget.org/packages/Aspire.Azure.Messaging.WebPubSub) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Web PubSub client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -56,7 +56,7 @@ For more information, see the [Azure.Messaging.WebPubSub documentation](https://
 
 ## App host usage
 
-To add Azure Web PubSub hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [Aspire.Hosting.Azure.WebPubSub](https://www.nuget.org/packages/Aspire.Hosting.Azure.WebPubSub) NuGet package in the [app host](xref:aspire/app-host) project.
+To add Azure Web PubSub hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [📦 Aspire.Hosting.Azure.WebPubSub) NuGet package in the [app host](xref:dotnet/aspire/app-host](https://www.nuget.org/packages/Aspire.Hosting.Azure.WebPubSub) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

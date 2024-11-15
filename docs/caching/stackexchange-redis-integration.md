@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Redis integration
 description: Learn how to use the .NET Aspire Redis integration, which includes both hosting and client integrations.
-ms.date: 10/14/2024
+ms.date: 11/05/2024
 zone_pivot_groups: resp-host
 ---
 
@@ -216,6 +216,14 @@ The .NET Aspire Stack Exchange Redis integration will emit the following tracing
 #### Metrics
 
 The .NET Aspire Stack Exchange Redis integration currently doesn't support metrics by default due to limitations with the `StackExchange.Redis` library.
+
+:::zone pivot="redis"
+
+[!INCLUDE [azure-redis-app-host](includes/azure-redis-app-host.md)]
+
+[!INCLUDE [azure-redis-client](includes/azure-redis-client.md)]
+
+:::zone-end
 
 ## See also
 

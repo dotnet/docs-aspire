@@ -8,6 +8,7 @@ var sqlServer2 = builder.AddSqlServer("sqlserver")
 
 builder.AddProject<Projects.AspireSql_Web>("webfrontend")
     .WithExternalHttpEndpoints()
-    .WithReference(apiService);
+    .WithReference(apiService)
+    .WaitFor(apiService);
 
 builder.Build().Run();

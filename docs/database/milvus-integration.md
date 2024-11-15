@@ -15,7 +15,7 @@ In this article, you learn how to use the .NET Aspire Milvus database integratio
 
 ## Get started
 
-To get started with the .NET Aspire Milvus database integration, install the [Aspire.Milvus.Client](https://www.nuget.org/packages/Aspire.Milvus.Client) NuGet package in the client-consuming project, i.e., the project for the application that uses the Milvus database client.
+To get started with the .NET Aspire Milvus database integration, install the [📦 Aspire.Milvus.Client](https://www.nuget.org/packages/Aspire.Milvus.Client) NuGet package in the client-consuming project, i.e., the project for the application that uses the Milvus database client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -44,7 +44,7 @@ builder.AddMilvusClient("milvus");
 
 ## App host usage
 
-To model the Milvus resource in the app host, install the [Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus) NuGet package in the [app host](xref:aspire/app-host) project.
+To model the Milvus resource in the app host, install the [📦 Aspire.Hosting.Milvus) NuGet package in the [app host](xref:dotnet/aspire/app-host](https://www.nuget.org/packages/Aspire.Hosting.Milvus) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

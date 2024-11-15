@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35410.144
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireApp.AppHost", "AspireApp.AppHost\AspireApp.AppHost.csproj", "{FD17AF69-CFD3-4211-8695-A828E29B46D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireApp.ServiceDefaults", "AspireApp.ServiceDefaults\AspireApp.ServiceDefaults.csproj", "{969A365E-41B0-4A8D-ABBA-09A1A594A4B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD17AF69-CFD3-4211-8695-A828E29B46D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD17AF69-CFD3-4211-8695-A828E29B46D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD17AF69-CFD3-4211-8695-A828E29B46D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD17AF69-CFD3-4211-8695-A828E29B46D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{969A365E-41B0-4A8D-ABBA-09A1A594A4B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{969A365E-41B0-4A8D-ABBA-09A1A594A4B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{969A365E-41B0-4A8D-ABBA-09A1A594A4B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{969A365E-41B0-4A8D-ABBA-09A1A594A4B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

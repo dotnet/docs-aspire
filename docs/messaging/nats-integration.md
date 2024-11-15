@@ -13,7 +13,7 @@ uid: messaging/nats-integration
 
 ## Hosting integration
 
-NATS hosting integration for .NET Aspire models a NATS server as the <xref:Aspire.Hosting.ApplicationModel.NatsServerResource> type. To access this type, install the [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats) NuGet package in the [app host](xref:aspire/app-host) project, then add it with the builder.
+NATS hosting integration for .NET Aspire models a NATS server as the <xref:Aspire.Hosting.ApplicationModel.NatsServerResource> type. To access this type, install the [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats) NuGet package in the [app host](xref:dotnet/aspire/app-host) project, then add it with the builder.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

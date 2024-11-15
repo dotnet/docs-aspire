@@ -80,11 +80,11 @@ The same pattern applies to the other server-based resource types, such as those
 
 | Resource type | Hosting package | Example resource name | Override key |
 |--|--|--|
-| MySQL | [Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql) | `mysql` | `Parameters:mysql-password` |
-| Oracle | [Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle) | `oracle` | `Parameters:oracle-password` |
-| PostgreSQL | [Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL) | `postgresql` | `Parameters:postgresql-password` |
-| RabbitMQ | [Aspire.Hosting.RabbitMq](https://www.nuget.org/packages/Aspire.Hosting.RabbitMq) | `rabbitmq` | `Parameters:rabbitmq-password` |
-| SQL Server | [Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer) | `sql` | `Parameters:sql-password` |
+| MySQL | [📦 Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql) | `mysql` | `Parameters:mysql-password` |
+| Oracle | [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle) | `oracle` | `Parameters:oracle-password` |
+| PostgreSQL | [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL) | `postgresql` | `Parameters:postgresql-password` |
+| RabbitMQ | [📦 Aspire.Hosting.RabbitMq](https://www.nuget.org/packages/Aspire.Hosting.RabbitMq) | `rabbitmq` | `Parameters:rabbitmq-password` |
+| SQL Server | [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer) | `sql` | `Parameters:sql-password` |
 
 By overriding the generated password, you can ensure that the password remains consistent between app launches, thus creating a persistent password. An alternative approach is to use the `AddParameter` method to create a parameter that can be used as a password. The following code demonstrates how to create a persistent password for a SQL Server resource:
 

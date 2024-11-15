@@ -1,7 +1,7 @@
 ---
 title: Create custom .NET Aspire hosting integrations
 description: Learn how to create a custom .NET Aspire hosting integration for an existing containerized application.
-ms.date: 09/12/2024
+ms.date: 11/11/2024
 ms.topic: how-to
 ---
 
@@ -73,7 +73,7 @@ The console output should look similar to the following:
 ```dotnetcli
 Building...
 info: Aspire.Hosting.DistributedApplication[0]
-      Aspire version: 8.0.0+d215c528c07c7919c3ac30b35d92f4e51a60523b
+      Aspire version: 9.0.0
 info: Aspire.Hosting.DistributedApplication[0]
       Distributed application starting.
 info: Aspire.Hosting.DistributedApplication[0]
@@ -106,7 +106,7 @@ Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to shut down the app (you can close the brows
 1. Add `Aspire.Hosting` to the class library as a package reference.
 
     ```dotnetcli
-    dotnet add ./MailDev.Hosting/MailDev.Hosting.csproj package Aspire.Hosting --version 8.0.0
+    dotnet add ./MailDev.Hosting/MailDev.Hosting.csproj package Aspire.Hosting --version 9.0.0
     ```
 
     > [!IMPORTANT]
@@ -133,7 +133,7 @@ dotnet run --project ./MailDevResource.AppHost/MailDevResource.AppHost.csproj
 This results in a warning being displayed to the console:
 
 ```Output
-.\.nuget\packages\aspire.hosting.apphost\8.0.0\build\Aspire.Hosting.AppHost.targets(174,5): warning ASPIRE004: '..\MailDev.Hosting\MailDev.Hosting.csproj' is referenced by an A
+.\.nuget\packages\aspire.hosting.apphost\9.0.0\build\Aspire.Hosting.AppHost.targets(174,5): warning ASPIRE004: '..\MailDev.Hosting\MailDev.Hosting.csproj' is referenced by an A
 spire Host project, but it is not an executable. Did you mean to set IsAspireProjectResource="false"? [D:\source\repos\docs-aspire\docs\extensibility\snippets\MailDevResource\MailDevResource.AppHost\MailDevRe
 source.AppHost.csproj]
 ```
@@ -398,7 +398,7 @@ This command produces a manifest file like the following:
     "maildev": {
       "type": "container.v0",
       "connectionString": "smtp://{maildev.bindings.smtp.host}:{maildev.bindings.smtp.port}",
-      "image": "docker.io/maildev/maildev:2.0.2",
+      "image": "docker.io/maildev/maildev:2.1.0",
       "bindings": {
         "http": {
           "scheme": "http",

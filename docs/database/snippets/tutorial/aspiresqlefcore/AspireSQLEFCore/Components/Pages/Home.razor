@@ -37,8 +37,9 @@
 </div>
 
 @code {
-    [SupplyParameterFromForm]
+    [SupplyParameterFromForm(FormName = "Tickets")]
     private SupportTicket Ticket { get; set; } = new();
+
     private List<SupportTicket> Tickets = [];
 
     private void ClearForm() => Ticket = new();
@@ -51,7 +52,11 @@
     private async Task HandleValidSubmit()
     {
         context.Tickets.Add(Ticket);
+
         await context.SaveChangesAsync();
+
         Tickets = await context.Tickets.ToListAsync();
+
+        ClearForm();
     }
 }

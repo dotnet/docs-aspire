@@ -271,6 +271,10 @@
     {
       "source_path_from_root": "/docs/fundamentals/testing.md",
       "redirect_url": "/dotnet/aspire/testing/write-your-first-test"
+    },
+    {
+      "source_path_from_root": "/docs/whats-new/dotnet-aspire-9-release-candidate-1.md",
+      "redirect_url": "/dotnet/aspire/whats-new/dotnet-aspire-9"
     }
   ]
 }

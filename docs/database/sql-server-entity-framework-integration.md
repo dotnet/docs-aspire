@@ -20,7 +20,7 @@ In this article, you learn how to use the .NET Aspire SqlServer Entity Framework
 
 ## Get started
 
-To get started with the .NET Aspire SQL Server Entity Framework Core integration, install the [Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) NuGet package in the client-consuming project, i.e., the project for the application that uses the SQL Server Entity Framework Core client.
+To get started with the .NET Aspire SQL Server Entity Framework Core integration, install the [📦 Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) NuGet package in the client-consuming project, i.e., the project for the application that uses the SQL Server Entity Framework Core client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

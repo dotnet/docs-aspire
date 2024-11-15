@@ -2,7 +2,7 @@
 ms.topic: include
 ---
 
-The Redis hosting integration models a Redis resource as the <xref:Aspire.Hosting.ApplicationModel.RedisResource> type. To access this type and APIs that allow you to add it to your [app model](xref:aspire/app-host#define-the-app-model), install the [📦 Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis) NuGet package in the [app host](xref:aspire/app-host) project.
+The Redis hosting integration models a Redis resource as the <xref:Aspire.Hosting.ApplicationModel.RedisResource> type. To access this type and APIs that allow you to add it to your [📦 Aspire.Hosting.Redis) NuGet package in the [app host](xref:dotnet/aspire/app-host](https://www.nuget.org/packages/Aspire.Hosting.Redis) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -45,13 +45,13 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 
 ### Add Redis resource with Redis Insights
 
-To add the [Redis Insights](https://redis.io/insight/) to the Redis resource, call the `WithRedisInsights` method:
+To add the [Redis Insights](https://redis.io/insight/) to the Redis resource, call the `WithRedisInsight` method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var cache = builder.AddRedis("cache")
-                   .WithRedisInsights();
+                   .WithRedisInsight();
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(cache);
@@ -61,8 +61,8 @@ builder.AddProject<Projects.ExampleProject>()
 
 Redis Insights is a free graphical interface for analyzing Redis data across all operating systems and Redis deployments with the help of our AI assistant, Redis Copilot. .NET Aspire adds another container image [`docker.io/redis/redisinsight`](https://hub.docker.com/r/redis/redisinsight) to the app host that runs the commander app.
 
-> [!TIP]
-> To configure the host port for the `RedisInsightResource` call `WithHostPort` and provide the desired port number.
+> [!NOTE]
+> To configure the host port for the `RedisInsightResource` chain a call to the `WithHostPort` API and provide the desired port number.
 
 ### Add Redis resource with Redis Commander
 
@@ -83,7 +83,7 @@ builder.AddProject<Projects.ExampleProject>()
 Redis Commander is a Node.js web application used to view, edit, and manage a Redis Database. .NET Aspire adds another container image [`docker.io/rediscommander/redis-commander`](https://hub.docker.com/r/rediscommander/redis-commander) to the app host that runs the commander app.
 
 > [!TIP]
-> To configure the host port for the <xref:Aspire.Hosting.Redis.RedisCommanderResource> call <xref:Aspire.Hosting.RedisBuilderExtensions.WithHostPort*> and provide the desired port number.
+> To configure the host port for the <xref:Aspire.Hosting.Redis.RedisCommanderResource> chain a call to the <xref:Aspire.Hosting.RedisBuilderExtensions.WithHostPort*> API and provide the desired port number.
 
 ### Add Redis resource with data volume
 
