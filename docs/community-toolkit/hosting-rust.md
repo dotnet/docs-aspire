@@ -2,7 +2,7 @@
 title: Rust hosting
 author: Alirexaa
 description: Learn how to use the .NET Aspire Rust hosting integration to host Rust applications.
-ms.date: 11/12/2024
+ms.date: 11/15/2024
 ---
 
 # .NET Aspire Rust hosting
