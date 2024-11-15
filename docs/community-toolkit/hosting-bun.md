@@ -1,5 +1,5 @@
 ---
-title: Bun hosting
+title: .NET Aspire Bun hosting integration
 author: aaronpowell
 description: Learn how to use the .NET Aspire Bun hosting integration to host Bun applications.
 ms.date: 11/15/2024
@@ -11,11 +11,13 @@ ms.date: 11/15/2024
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you learn how to use the .NET Aspire Bun hosting integration to host [Bun](https://bun.sh) applications.
+[Bun](https://bun.sh) is a modern, fast, and lightweight framework for building web applications with TypeScript. The .NET Aspire Bun hosting integration allows you to host Bun applications in your .NET Aspire app host project, and provide it to other resources in your application.
 
 ## Hosting integration
 
-To get started with the .NET Aspire Bun hosting integration, install the [📦 CommunityToolkit.Aspire.Hosting.Bun](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Bun) NuGet package in the AppHost project.
+The Bun hosting integration models a Bun application as the <xref:Aspire.Hosting.ApplicationModel.BunAppResource> type. To access this type and APIs that allow you to add it to your app host project, install the [📦 CommunityToolkit.Aspire.Hosting.Bun](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Bun) NuGet package in the app host project.
+
+This integration expects that the Bun executable has already been installed on the host machine, and that it is available in the system path.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -34,13 +36,20 @@ dotnet add package CommunityToolkit.Aspire.Hosting.Bun
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-## Example usage
+## Add a Bun resource
 
-In the _:::no-loc text="Program.cs":::_ file of your app host project, call the `AddBunApp` method to add a Bun application to the builder.
+In your app host projec, call the <xref:Aspire.Hosting.BunAppExtensions.AddBunApp*> on the `builder` instance to add a Bun application resource as shown in the following example:
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var api = builder.AddBunApp("api")
-    .WithHttpEndpoint(env: "PORT");
+                 .WithHttpEndpoint(env: "PORT");
+
+var exampleProject = builder.AddProject<Projects.ExampleProject>()
+                            .WithReference(api);
+
+// After adding all resources, run the app...
 ```
 
 By default the working directory of the application will be a sibling folder to the app host matching the name provided to the resource, and the entrypoint will be _:::no-loc text="index.ts"::_. Both of these can be customized by passing additional parameters to the `AddBunApp` method.
@@ -51,6 +60,16 @@ var api = builder.AddBunApp("api", "../api-service", "start")
 ```
 
 The Bun application can be added as a reference to other resources in the app host project.
+
+### Ensuring packages are installed
+
+To ensure that the Bun application has all the dependencies installed as defined in the lockfile, you can use the <xref:Aspire.Hosting.BunAppExtensions.WithBunPackageInstaller> method to ensure that package installation is run before the application is started.
+
+```csharp
+var api = builder.AddBunApp("api")
+                 .WithHttpEndpoint(env: "PORT")
+                 .WithBunPackageInstaller();
+```
 
 ## See also
 
