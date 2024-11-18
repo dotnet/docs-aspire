@@ -65,7 +65,7 @@ Now when you run your .NET Aspire AppHost project you will see the SQL Database 
 
 ### Local .dacpac file support
 
-If you are sourcing your .dacpac file from somewhere other than a project reference, you can also specify the path to the .dacpac file directly:
+If you are sourcing your _.dacpac_ file from somewhere other than a project reference, you can also specify the path to the _.dacpac_ file directly:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
