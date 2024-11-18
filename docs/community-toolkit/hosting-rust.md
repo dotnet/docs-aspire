@@ -52,6 +52,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 
 // After adding all resources, run the app...
 ```
+
 The working directory of the application should be the root of Rust application directory.
 Also you can customize running behavior by passing args parameter to the `AddRustApp` method.
 
