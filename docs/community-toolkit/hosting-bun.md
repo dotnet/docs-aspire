@@ -17,7 +17,7 @@ ms.date: 11/15/2024
 
 The Bun hosting integration models a Bun application as the `Aspire.Hosting.ApplicationModel.BunAppResource` type. To access this type and APIs that allow you to add it to your app host project, install the [📦 CommunityToolkit.Aspire.Hosting.Bun](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Bun) NuGet package in the app host project.
 
-This integration expects that the Bun executable has already been installed on the host machine, and that it is available in the system path.
+This integration expects that the Bun executable has already been installed on the host machine, and that it's available in the system path.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -38,7 +38,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Add a Bun resource
 
-In your app host projec, call the `Aspire.Hosting.BunAppExtensions.AddBunApp` on the `builder` instance to add a Bun application resource as shown in the following example:
+In your app host project, call the `Aspire.Hosting.BunAppExtensions.AddBunApp` on the `builder` instance to add a Bun application resource as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
