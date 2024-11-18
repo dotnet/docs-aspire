@@ -55,7 +55,7 @@ builder.AddDenoApp("oak-demo", "main.ts", permissionFlags: ["--allow-env", "--al
 builder.Build().Run();
 ```
 
-*The preceding code uses the fully qualified switches. Short hand aliases can be used as well.*
+The preceding code uses the fully qualified switches. Alternatively, you can use the equivalent alias as well. For more information, see [Deno docs: Security and permissions](https://docs.deno.com/runtime/fundamentals/security/#permissions).
 
 ### Run Deno tasks
 
