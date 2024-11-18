@@ -47,7 +47,7 @@ dotnet add reference ../MySqlProj/MySqlProj.csproj
 ```
 
 > [!NOTE]
-> Adding this reference will currently result in warning ASPIRE004 on the project due to how references are parsed. The .NET Aspire team is aware of this and we're working on a cleaner solution.
+> Adding this reference will currently result in warning `ASPIRE004` on the project due to how references are parsed. The .NET Aspire team is aware of this and we're working on a cleaner solution.
 
 Add the project as a resource to your .NET Aspire AppHost:
 
