@@ -257,6 +257,8 @@ items:
             href: community-toolkit/overview.md
           - name: Azure Static Web Apps
             href: community-toolkit/hosting-azure-static-web-apps.md
+          - name: Deno
+            href: community-toolkit/hosting-deno.md
           - name: Go apps
             href: community-toolkit/hosting-golang.md
           - name: Java/Spring
