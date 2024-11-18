@@ -271,6 +271,8 @@ items:
             href: community-toolkit/ollama.md
           - name: Meilisearch
             href: community-toolkit/hosting-meilisearch.md
+          - name: Rust apps
+            href: community-toolkit/hosting-rust.md
           - name: SQL Database Projects
             href: community-toolkit/hosting-sql-database-projects.md
 

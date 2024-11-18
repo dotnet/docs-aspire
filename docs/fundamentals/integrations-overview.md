@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire integrations overview
 description: Explore the fundamental concepts of .NET Aspire integrations and learn how to integrate them into your apps.
-ms.date: 11/05/2024
+ms.date: 11/18/2024
 ms.topic: conceptual
 uid: dotnet/aspire/integrations
 ---
@@ -142,6 +142,7 @@ For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.co
 | - **Learn More**: [📄 Node.js hosting extensions](../community-toolkit/hosting-nodejs-extensions.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.NodeJs.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.NodeJS.Extensions) <br /> - **Client**: N/A  | An integration that contains some additional extensions for running Node.js applications |
 | - **Learn More**: [📄 Ollama](../community-toolkit/ollama.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Ollama](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Ollama) <br /> - **Client**: [📦 Aspire.CommunitToolkit.OllamaSharp](https://nuget.org/packages/CommunityToolkit.Aspire.OllamaSharp) | An Aspire component leveraging the [Ollama](https://ollama.com) container with support for downloading a model on startup. |
 | - **Learn More**: [📄 Meilisearch hosting](../community-toolkit/hosting-meilisearch.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch) <br /> - **Client**: [📦 Aspire.CommunitToolkit.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Meilisearch) | An Aspire component leveraging the [Meilisearch](https://meilisearch.com) container. |
+| - **Learn More**: [📄 Rust hosting](../community-toolkit/hosting-rust.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Rust](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Rust) <br /> - **Client**: N/A | A hosting integration for Rust apps. |
 | - **Learn More**: [📄 SQL Database projects hosting](../community-toolkit/hosting-sql-database-projects.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.SqlDatabaseProjects](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SqlDatabaseProjects) <br /> - **Client**: N/A | An Aspire hosting integration for SQL Database Projects. |
 <!-- markdownlint-enable MD033 MD045 -->
 
