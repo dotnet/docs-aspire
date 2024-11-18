@@ -192,7 +192,7 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 }
 ```
 
-### Integration with Microsoft.Extensions.AI
+### Integration with `Microsoft.Extensions.AI`
 
 The Microsoft.Extensions.AI library provides an abstraction over the Ollama client API, using generic interfaces. OllamaSharp supports these interfaces, and they can be registered using the `AddOllamaSharpChatClient` and `AddOllamaSharpEmbeddingGenerator` extension methods. These methods will also register the `IOllamaClientApi` instances with the dependency injection container, and have keyed versions for multiple instances.
 
