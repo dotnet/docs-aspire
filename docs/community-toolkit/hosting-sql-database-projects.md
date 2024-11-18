@@ -61,7 +61,7 @@ builder.AddSqlProject<Projects.MySqlProj>("mysqlproj")
        .WithReference(sql);
 ```
 
-Now when you run your .NET Aspire AppHost project you will see the SQL Database Project being published to the specified SQL Server.
+Now when you run your .NET Aspire app host project you see the SQL Database Project being published to the specified SQL Server.
 
 ### Local .dacpac file support
 
