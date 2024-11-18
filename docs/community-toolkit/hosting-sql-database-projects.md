@@ -80,7 +80,7 @@ builder.AddSqlProject("mysqlproj")
 
 ### Redeploy support
 
-If you make changes to your SQL Database project while the AppHost is running, you can use the `Redeploy` custom action on the Aspire Dashboard to redeploy your updates without having to restart the AppHost.
+If you make changes to your SQL Database project while the app host is running, you can use the `Redeploy` custom action on the .NET Aspire dashboard to redeploy your updates without having to restart the app host.
 
 ## See also
 
