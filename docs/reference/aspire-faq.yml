@@ -97,8 +97,7 @@ sections:
       - question: |
           Are Azure Functions supported in .NET Aspire?
         answer: |
-          We have no specific support for Azure Functions thus far in .NET Aspire, however it's a target
-          execution environment for deployment that we are planning to support in future.
+          .NET Aspire has [preview support for integrating Azure Functions into your app](../serverless/functions.md).
 
       - question: |
           I want to run my web apps locally on IIS or IIS Express, does .NET Aspire support this?
