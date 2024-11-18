@@ -43,7 +43,7 @@ var golang = builder.AddGolangApp("golang", "../gin-api")
     .WithHttpEndpoint(env: "PORT");
 ```
 
-The `PORT` environment variable is used to determine the port the Golang application should listen on. It is randomly assigned by the .NET Aspire. The name of the environment variable can be changed by passing a different value to the `WithHttpEndpoint` method.
+The `PORT` environment variable is used to determine the port the Go application should listen on. By default, this port is randomly assigned by .NET Aspire. The name of the environment variable can be changed by passing a different value to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpEndpoint*> method.
 
 The Go application can be added as a reference to other resources in the AppHost project.
 
