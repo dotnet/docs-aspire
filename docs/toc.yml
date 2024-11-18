@@ -269,6 +269,8 @@ items:
             href: community-toolkit/ollama.md
           - name: Meilisearch
             href: community-toolkit/hosting-meilisearch.md
+          - name: SQL Database Projects
+            href: community-toolkit/hosting-sql-database-projects.md
 
   - name: Custom integrations
     items:
