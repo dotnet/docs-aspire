@@ -51,9 +51,11 @@ builder.Build().Run();
 
 ### Configuration
 
-- `name` - The name of the resource.
-- `configFilePaths` - Opiotnal paths to the config/schema file(s) for Data API builder. Default is `./dab-config.json`.
-- `httpPort` - The port number for the Data API Builder container. Defaults to `null` so that Aspire can assign a random port.
+| Parameter | Description |
+|--|--|--|
+| `name` | The name of the resource is a required `string` and it's validated by the <xref: Aspire.Hosting.ApplicationModel.ResourceNameAttribute>. |
+| `configFilePaths` | The paths to the configuration or schema file(s) for Data API builder. These are optional and are available as a `params string[]`, meaning you can omit them altogether, or provide one or more path inline. When omitted, it defaults to `"./dab-config.json"`. |
+| `httpPort` | The port number for the Data API Builder container is represented as a an `int?`. By default, the port is `null`, .NET Aspire assigns a port when this isn't otherwise provided. |
 
 ### Data API Builder Container Image Configuration
 
