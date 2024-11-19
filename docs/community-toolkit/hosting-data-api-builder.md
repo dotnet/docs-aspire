@@ -36,14 +36,23 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Usage
 
-In the `Program.cs` file of your app host project, call the `AddDataAPIBuilder` method to add a Go application to the builder.
+ In the app host project, register and consume the Data API Builder integration using the `AddDataAPIBuilder` extension method to add the Data API Builder container to the application builder. 
 
 ```csharp
+ var builder = DistributedApplication.CreateBuilder(); 
+
 // Add Data API Builder using dab-config.json 
 var dab = builder.AddDataAPIBuilder("dab")
     .WithReference(sqlDatabase)
     .WaitFor(sqlServer);
+
+builder.AddProject<Projects.ExampleProject>() 
+        .WithReference(dab); 
+
+ // After adding all resources, run the app... 
 ```
+
+When the .NET Aspire adds a container image to the app host, as shown in the preceding example with the `mcr.microsoft.com/azure-databases/data-api-builder` image, it creates a new Data API Builder instance on your local machin. A reference to the DAB resource (the `dab` variable) is added to the `ExampleProject` project.
 
 ### Configuration
 
