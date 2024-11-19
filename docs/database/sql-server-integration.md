@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire SQL Server integration
 description: Learn how to use the .NET Aspire SQL Server integration, which includes both hosting and client integrations.
-ms.date: 11/13/2024
+ms.date: 11/19/2024
 uid: database/sql-server-integration
 ---
 
@@ -45,11 +45,11 @@ dotnet add package Aspire.Microsoft.Data.SqlClient
 In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerSqlClientExtensions.AddSqlServerClient*> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a `SqlConnection` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
-builder.AddSqlServerClient(connectionName: "sql");
+builder.AddSqlServerClient(connectionName: "database");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the SQL Server resource in the app host project. For more information, see [Add SQL Server resource and database resource](#add-sql-server-resource-and-database-resource).
+> The `connectionName` parameter must match the name used when adding the SQL Server database resource in the app host project. For more information, see [Add SQL Server resource and database resource](#add-sql-server-resource-and-database-resource).
 
 You can then retrieve the `SqlConnection` instance using dependency injection. For example, to retrieve the connection from an example service:
 
@@ -70,6 +70,13 @@ There might be situations where you want to register multiple `SqlConnection` in
 builder.AddKeyedSqlServerClient(name: "mainDb");
 builder.AddKeyedSqlServerClient(name: "loggingDb");
 ```
+
+> [!IMPORTANT]
+> When using keyed services, it's expected that your SQL Server resource configured two named databases, one for the `mainDb` and one for the `loggingDb`.
+
+Then you can retrieve the `SqlConnection` instances using dependency injection. For example, to retrieve the connection from an example service:
+
+```csharp
 
 Then you can retrieve the `SqlConnection` instances using dependency injection. For example, to retrieve the connection from an example service:
 
