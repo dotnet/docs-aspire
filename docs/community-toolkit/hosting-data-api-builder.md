@@ -59,7 +59,13 @@ builder.Build().Run();
 
 ### Data API Builder container image configuration
 
-You can specify custom registry/image/tag values by using the `WithImageRegistry`/`WithImage`/`WithImageTag` methods:
+You can specify custom container `registry/image/tag` values by using the following APIs chained to the `IResourceBuilder<DataApiBuilderContainerResource>`:
+
+- `WithImageRegistry`: Pass the desired registry name, such as `ghcr.io` for the GitHub Container Registry or `docker.io` for Docker.
+- `WithImage`: Provide the name of the image, such as `azure-databases/data-api-builder`.
+- `WithImageTag`: Specify an image tag to use other than `latest`, which is the default in most cases.
+
+Consider the following example that demonstrates chaining these APIs together, to fluently express that the Data API Builder's container image is fully qualified as `mcr.microsoft.com/azure-databases/data-api-builder:latest`:
 
 ```csharp
 var dab = builder.AddDataAPIBuilder("dab")
