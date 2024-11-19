@@ -77,7 +77,6 @@ var dab = builder.AddDataAPIBuilder("dab")
 ### Database Configuration
 
 In the following example, you use a generated password for the database and aren't persisting the data. In a production scenario, you probably want to specify the password and persist the data, so it doesn't get lost when the container restarts. Consider the following C# code that defines a password parameter named `sql-password`:
-Here is an example of how you can configure the database:
 
 ```csharp
 // Add a SQL Server container
