@@ -39,14 +39,10 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 In the `Program.cs` file of your app host project, call the `AddDataAPIBuilder` method to add a Go application to the builder.
 
 ```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
 // Add Data API Builder using dab-config.json 
 var dab = builder.AddDataAPIBuilder("dab")
     .WithReference(sqlDatabase)
     .WaitFor(sqlServer);
-
-builder.Build().Run();
 ```
 
 ### Configuration
@@ -74,33 +70,9 @@ var dab = builder.AddDataAPIBuilder("dab")
     .WithImageTag("latest");
 ```
 
-### Database Configuration
-
-In the following example, you use a generated password for the database and aren't persisting the data. In a production scenario, you probably want to specify the password and persist the data, so it doesn't get lost when the container restarts. Consider the following C# code that defines a password parameter named `sql-password`:
+### Using multiple data sources
 
 ```csharp
-// Add a SQL Server container
-var sqlPassword = builder.AddParameter("sql-password");
-
-var sqlServer = builder.AddSqlServer("sql", sqlPassword)
-                       .WithDataVolume("MyDataVolume");
-
-var sqlDatabase = sqlServer.AddDatabase("your-database-name");
-```
-
-### Example 2: Multiple data sources
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var sqlDatabase1 = builder
-    .AddSqlServer("your-server-name")
-    .AddDatabase("your-database-name");
-
-var sqlDatabase2 = builder
-    .AddSqlServer("your-server-name")
-    .AddDatabase("your-database-name");
-
 var dab = builder.AddDataAPIBuilder("dab", 
         "./dab-config-1.json", 
         "./dab-config-2.json")
@@ -108,12 +80,6 @@ var dab = builder.AddDataAPIBuilder("dab",
     .WaitFor(sqlDatabase1)
     .WithReference(sqlDatabase2)
     .WaitFor(sqlDatabase2);
-
-var app = builder
-    .AddProject<Projects.Client>()
-    .WithReference(dab);
-
-builder.Build().Run();
 ```
 
 > [!NOTE] 
