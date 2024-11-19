@@ -57,7 +57,7 @@ builder.Build().Run();
 | `configFilePaths` | The paths to the configuration or schema file(s) for Data API builder. These are optional and are available as a `params string[]`, meaning you can omit them altogether, or provide one or more path inline. When omitted, it defaults to `"./dab-config.json"`. |
 | `httpPort` | The port number for the Data API Builder container is represented as a an `int?`. By default, the port is `null`, .NET Aspire assigns a port when this isn't otherwise provided. |
 
-### Data API Builder Container Image Configuration
+### Data API Builder container image configuration
 
 You can specify custom registry/image/tag values by using the `WithImageRegistry`/`WithImage`/`WithImageTag` methods:
 
