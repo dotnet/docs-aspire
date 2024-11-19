@@ -100,8 +100,8 @@ var dab = builder.AddDataAPIBuilder("dab",
         "./dab-config-1.json", 
         "./dab-config-2.json")
     .WithReference(sqlDatabase1)
-    .WithReference(sqlDatabase2)
     .WaitFor(sqlDatabase1)
+    .WithReference(sqlDatabase2)
     .WaitFor(sqlDatabase2);
 
 var app = builder
