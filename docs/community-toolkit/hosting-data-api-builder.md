@@ -81,9 +81,9 @@ In the following example, you use a generated password for the database and aren
 ```csharp
 // Add a SQL Server container
 var sqlPassword = builder.AddParameter("sql-password");
-var sqlServer = builder
-    .AddSqlServer("sql", sqlPassword)
-    .WithDataVolume("MyDataVolume");
+
+var sqlServer = builder.AddSqlServer("sql", sqlPassword)
+                       .WithDataVolume("MyDataVolume");
 
 var sqlDatabase = sqlServer.AddDatabase("your-database-name");
 ```
