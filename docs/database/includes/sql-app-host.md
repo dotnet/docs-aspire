@@ -71,7 +71,7 @@ To add a data bind mount to the SQL Server resource, call the <xref:Aspire.Hosti
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var sql = builder.AddSqlServer("database")
+var sql = builder.AddSqlServer("sql")
                  .WithDataBindMount(
                      source: @"C:\SqlServer\Data",
                      isReadOnly: false);
