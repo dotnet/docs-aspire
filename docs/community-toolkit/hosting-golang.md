@@ -39,8 +39,11 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 In the _:::no-loc text="Program.cs":::_ file of your app host project, call the `AddGolangApp` method to add a Go application to the builder.
 
 ```csharp
-var golang = builder.AddGolangApp("golang", "../go-service");
+var golang = builder.AddGolangApp("golang", "../gin-api")
+    .WithHttpEndpoint(env: "PORT");
 ```
+
+The `PORT` environment variable is used to determine the port the Go application should listen on. By default, this port is randomly assigned by .NET Aspire. The name of the environment variable can be changed by passing a different value to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpEndpoint*> method.
 
 The Go application can be added as a reference to other resources in the AppHost project.
 

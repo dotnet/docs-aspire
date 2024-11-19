@@ -80,8 +80,7 @@ To change the Kafka UI host port, chain a call to the <xref:Aspire.Hosting.Kafka
 var builder = DistributedApplication.CreateBuilder(args);
 
 var kafka = builder.AddKafka("kafka")
-                   .WithKafkaUI()
-                   .WithHostPort(9100);
+                   .WithKafkaUI(kafkaUI => kafkaUI.WithHostPort(9100));
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(kafka);

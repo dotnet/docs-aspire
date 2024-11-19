@@ -275,6 +275,8 @@ items:
             href: community-toolkit/hosting-rust.md
           - name: SQL Database Projects
             href: community-toolkit/hosting-sql-database-projects.md
+          - name: Data API Builder
+            href: community-toolkit/hosting-data-api-builder.md
 
   - name: Custom integrations
     items:
