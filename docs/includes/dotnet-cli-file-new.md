@@ -1,4 +1,8 @@
 ```dotnetcli
+dotnet new install Aspire.ProjectTemplates
+```
+
+```dotnetcli
 dotnet new aspire-starter --use-redis-cache --output AspireSample
 ```
 
