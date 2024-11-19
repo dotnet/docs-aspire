@@ -111,7 +111,8 @@ var app = builder
 builder.Build().Run();
 ```
 
-> Note: All files are mounted/copied to the same `/App` folder.
+> [!NOTE] 
+> All files are mounted/copied to the same `/App` folder.
 
 ## See also
 
