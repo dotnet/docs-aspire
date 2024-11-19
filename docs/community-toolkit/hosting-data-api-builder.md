@@ -1,7 +1,7 @@
 ---
 title: Community Toolkit Azure Data API Builder hosting integration
 author: tommasodotNET
-description: Learn how to use the .NET Aspire Data API Builder hosting integration to host DAB as a container.
+description: Learn how to use the .NET Aspire Community Toolkit Azure Data API Builder hosting integration to host DAB as a container.
 ms.date: 11/18/2024
 ---
 
