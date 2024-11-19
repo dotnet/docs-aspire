@@ -5,7 +5,7 @@ description: Learn how to use the .NET Aspire Community Toolkit Azure Data API B
 ms.date: 11/18/2024
 ---
 
-# .NET Aspire Data API Builder hosting
+# Community Toolkit Azure Data API Builder hosting integration
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
