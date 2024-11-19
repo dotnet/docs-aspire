@@ -96,9 +96,7 @@ Next, update the `dab-config.json` file to include the connection string for the
 
 ```json
 "data-source": {
-    ...
     "connection-string": "@env('ConnectionStrings__<DATABASE_RESOURCE_NAME>')",
-    ...
 }
 ```
 
