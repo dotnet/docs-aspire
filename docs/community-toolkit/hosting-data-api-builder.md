@@ -15,7 +15,7 @@ In this article, you learn how to use the .NET Aspire Data API Builder hosting i
 
 ## Hosting integration
 
-To get started with the .NET Aspire Go hosting integration, install the [📦 CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder) NuGet package in the AppHost project.
+To get started with the .NET Aspire Azure Data API Builder hosting integration, install the [📦 CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
