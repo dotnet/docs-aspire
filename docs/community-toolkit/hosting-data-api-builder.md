@@ -42,9 +42,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
  var builder = DistributedApplication.CreateBuilder(); 
 
 // Add Data API Builder using dab-config.json 
-var dab = builder.AddDataAPIBuilder("dab")
-    .WithReference(sqlDatabase)
-    .WaitFor(sqlServer);
+var dab = builder.AddDataAPIBuilder("dab");
 
 builder.AddProject<Projects.ExampleProject>() 
         .WithReference(dab); 
@@ -79,7 +77,34 @@ var dab = builder.AddDataAPIBuilder("dab")
     .WithImageTag("latest");
 ```
 
+### Database Configuration
+
+If you need to configure your own local database, you can refer to the [SQL Server integration](../database/sql-server-integration.md) documentation.
+
+Once you have your database added as a resource, you can reference it using the following APIs chained to the `IResourceBuilder<DataApiBuilderContainerResource>`:
+
+```csharp
+var dab = builder.AddDataAPIBuilder("dab")
+    .WithReference(sqlDatabase)
+    .WaitFor(sqlDatabase);
+```
+
+The `WaitFor` method ensures that the database is ready before starting the Data API Builder container.
+
+Referencing the `sqlDatabase` resource will inject its connection string into the Data API Builder container with the name `ConnectionStrings__<DATABASE_RESOURCE_NAME>`.
+Next, update the `dab-config.json` file to include the connection string for the database:
+
+```json
+"data-source": {
+    ...
+    "connection-string": "@env('ConnectionStrings__<DATABASE_RESOURCE_NAME>')",
+    ...
+}
+```
+
 ### Using multiple data sources
+
+You can pass multiple configuration files to the `AddDataAPIBuilder` method:
 
 ```csharp
 var dab = builder.AddDataAPIBuilder("dab", 
@@ -98,3 +123,4 @@ var dab = builder.AddDataAPIBuilder("dab",
 
 - [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
 - [Sample DAB](https://github.com/CommunityToolkit/Aspire/tree/main/examples/data-api-builder)
+- [Further usage examples](https://github.com/CommunityToolkit/Aspire/blob/main/src/CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder/README.md#usage)
