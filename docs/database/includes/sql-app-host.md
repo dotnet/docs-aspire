@@ -67,7 +67,7 @@ To add a data volume to the SQL Server resource, call the <xref:Aspire.Hosting.S
 var builder = DistributedApplication.CreateBuilder(args);
 
 var sql = builder.AddSqlServer("sql")
-                 .WithDataVolume(isReadOnly: false);
+                 .WithDataVolume();
 
 var db = sql.AddDatabase("database");
 
@@ -90,9 +90,7 @@ To add a data bind mount to the SQL Server resource, call the <xref:Aspire.Hosti
 var builder = DistributedApplication.CreateBuilder(args);
 
 var sql = builder.AddSqlServer("sql")
-                 .WithDataBindMount(
-                     source: @"C:\SqlServer\Data",
-                     isReadOnly: false);
+                 .WithDataBindMount(source: @"C:\SqlServer\Data");
 
 var db = sql.AddDatabase("database");
 
