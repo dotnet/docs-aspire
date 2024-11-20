@@ -77,10 +77,6 @@ builder.AddKeyedSqlServerClient(name: "loggingDb");
 Then you can retrieve the `SqlConnection` instances using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
-
-Then you can retrieve the `SqlConnection` instances using dependency injection. For example, to retrieve the connection from an example service:
-
-```csharp
 public class ExampleService(
     [FromKeyedServices("mainDb")] SqlConnection mainDbConnection,
     [FromKeyedServices("loggingDb")] SqlConnection loggingDbConnection)
