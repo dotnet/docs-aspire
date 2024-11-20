@@ -23,7 +23,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add SQL Server resource and database resource
 
-In your app host project, call <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*> and <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*> on the `builder` instance to add a SQL Server resource and SQL Server database resource, respectively.
+In your app host project, call <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*> to add and return a SQL Server resource builder. Chain a call to the returned resource build to <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*>, to add SQL Server database resource.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -42,7 +42,17 @@ builder.AddProject<Projects.ExampleProject>()
 > [!NOTE]
 > The SQL Server container is slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../../fundamentals/app-host-overview.md#container-resource-lifetime).
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `mcr.microsoft.com/mssql/server` image, it creates a new SQL Server instance on your local machine. A reference to your SQL Server (the `sql` variable) is added to the `ExampleProject`. The SQL Server resource includes default credentials with a `username` of `sa` and a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
+When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `mcr.microsoft.com/mssql/server` image, it creates a new SQL Server instance on your local machine. A reference to your SQL Server resource builder (the `sql` variable) is used to add a database. The database is named `database` and then added to the `ExampleProject`. The SQL Server resource includes default credentials with a `username` of `sa` and a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
+
+When the app host runs, the password is stored in the app host's secret store. It's added to the `Parameters` section, for example:
+
+```json
+{
+  "Parameters:sql-password": "<THE_GENERATED_PASSWORD>"
+}
+```
+
+The name of the parameter is `sql-password`, but really it's just formatting the resource name with a `-password` suffix. For more information, see [Safe storage of app secrets in development in ASP.NET Core](/aspnet/core/security/app-secrets) and [Add SQL Server resource with parameters](#add-sql-server-resource-with-parameters).
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `database`.
 
