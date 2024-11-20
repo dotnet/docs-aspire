@@ -120,19 +120,19 @@ For more information on providing parameters, see [External parameters](../../fu
 
 When running the .NET Aspire app host, the server's database resources can be accessed from external tools, such as [SQL Server Management Studio (SSMS)](/sql/ssms/download-sql-server-management-studio-ssms) or [Azure Data Studio](/azure-data-studio/download-azure-data-studio). The connection string for the database resource is available in the dependent resources environment variables and is accessed using the [.NET Aspire dashboard: Resource details](../../fundamentals/dashboard/explore.md#resource-details) pane. The environment variable is named `ConnectionStrings__{name}` where `{name}` is the name of the database resource, in this example it's `database`. Use the connection string to connect to the database resource from external tools. Imagine that you have a database named `todos` with a single `dbo.Todos` table.
 
-#### [SSMS](#tab/ssms)
+#### [SQL Server Management Studio](#tab/ssms)
 
-To connect to the database resource from SQL Server Management Studio (SSMS), follow these steps:
+To connect to the database resource from SQL Server Management Studio, follow these steps:
 
 1. Open SSMS.
 1. In the **Connect to Server** dialog, select the **Additional Connection Parameters** tab.
 1. Paste the connection string into the **Additional Connection Parameters** field and select **Connect**.
 
-:::image type="content" source="media/ssms-new-connection.png" lightbox="media/ssms-new-connection.png" alt-text="SQL Server Management Studio: Connect to Server dialog.":::
+    :::image type="content" source="media/ssms-new-connection.png" lightbox="media/ssms-new-connection.png" alt-text="SQL Server Management Studio: Connect to Server dialog.":::
 
-If you're connected, you can see the database resource in the **Object Explorer**:
+1. If you're connected, you can see the database resource in the **Object Explorer**:
 
-:::image type="content" source="media/ssms-connected.png" lightbox="media/ssms-connected.png" alt-text="SQL Server Management Studio: Connected to database.":::
+    :::image type="content" source="media/ssms-connected.png" lightbox="media/ssms-connected.png" alt-text="SQL Server Management Studio: Connected to database.":::
 
 For more information on connecting to SQL Server from SSMS, see [SQL Server Management Studio: Connect to a server](/sql/ssms/quickstarts/ssms-connect-query-sql-server).
 
@@ -143,16 +143,16 @@ To connect to the database resource from Azure Data Studio, follow these steps:
 1. Open Azure Data Studio.
 1. Select the **New** dropdown and choose **New connection**.
 
-:::image type="content" source="media/ads-new-connection.png" lightbox="media/ads-new-connection.png" alt-text="Azure Data Studio: New / New connection screen capture.":::
+    :::image type="content" source="media/ads-new-connection.png" lightbox="media/ads-new-connection.png" alt-text="Azure Data Studio: New / New connection screen capture.":::
 
 1. Change the **Input type** to **Connection string** and paste the connection string into the **Connection string** field.
 1. Select **Connect**.
 
-:::image type="content" source="media/ads-connect-details.png" lightbox="media/ads-connect-details.png" alt-text="Azure Data Studio: Connection string input details.":::
+    :::image type="content" source="media/ads-connect-details.png" lightbox="media/ads-connect-details.png" alt-text="Azure Data Studio: Connection string input details.":::
 
-If you're connected, you can see the database resource in the active tab:
+1. If you're connected, you can see the database resource in the active tab:
 
-:::image type="content" source="media/ads-connected.png" lightbox="media/ads-connected.png" alt-text="Azure Data Studio: Connected to database.":::
+    :::image type="content" source="media/ads-connected.png" lightbox="media/ads-connected.png" alt-text="Azure Data Studio: Connected to database.":::
 
 For more information on connecting to SQL Server from Azure Data Studio, see [Azure Data Studio: Connect to SQL Server](/azure-data-studio/quickstart-sql-server).
 
