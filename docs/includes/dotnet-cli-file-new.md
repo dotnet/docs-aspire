@@ -1,6 +1,10 @@
+If you haven't already installed the [.NET Aspire templates](../fundamentals/aspire-sdk-templates.md#install-the-net-aspire-templates), run the following `dotnet new install` command:
+
 ```dotnetcli
 dotnet new install Aspire.ProjectTemplates
 ```
+
+The preceding .NET CLI command ensures that you have the .NET Aspire templates available. To create the .NET Aspire Starter App from the template, run the following `dotnet new` command:
 
 ```dotnetcli
 dotnet new aspire-starter --use-redis-cache --output AspireSample
