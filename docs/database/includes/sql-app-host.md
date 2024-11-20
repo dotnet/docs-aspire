@@ -134,7 +134,7 @@ To connect to the database resource from SQL Server Management Studio, follow th
 
     :::image type="content" source="media/ssms-connected.png" lightbox="media/ssms-connected.png" alt-text="SQL Server Management Studio: Connected to database.":::
 
-For more information on connecting to SQL Server from SSMS, see [SQL Server Management Studio: Connect to a server](/sql/ssms/quickstarts/ssms-connect-query-sql-server).
+For more information, see [SQL Server Management Studio: Connect to a server](/sql/ssms/quickstarts/ssms-connect-query-sql-server).
 
 #### [Azure Data Studio](#tab/azure-data-studio)
 
@@ -154,6 +154,6 @@ To connect to the database resource from Azure Data Studio, follow these steps:
 
     :::image type="content" source="media/ads-connected.png" lightbox="media/ads-connected.png" alt-text="Azure Data Studio: Connected to database.":::
 
-For more information on connecting to SQL Server from Azure Data Studio, see [Azure Data Studio: Connect to SQL Server](/azure-data-studio/quickstart-sql-server).
+For more information, see [Azure Data Studio: Connect to SQL Server](/azure-data-studio/quickstart-sql-server).
 
 ---
