@@ -190,5 +190,6 @@ The .NET Aspire SQL Server integration will emit the following metrics using Ope
 
 - [Azure SQL Database](/azure/azure-sql/database)
 - [SQL Server](/sql/sql-server)
+- [.NET Aspire database containers sample](/samples/dotnet/aspire-samples/aspire-database-containers/)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
