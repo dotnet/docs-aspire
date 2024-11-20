@@ -257,6 +257,10 @@ items:
             href: community-toolkit/overview.md
           - name: Azure Static Web Apps
             href: community-toolkit/hosting-azure-static-web-apps.md
+          - name: Bun apps
+            href: community-toolkit/hosting-bun.md
+          - name: Deno apps
+            href: community-toolkit/hosting-deno.md
           - name: Go apps
             href: community-toolkit/hosting-golang.md
           - name: Java/Spring
@@ -267,6 +271,12 @@ items:
             href: community-toolkit/ollama.md
           - name: Meilisearch
             href: community-toolkit/hosting-meilisearch.md
+          - name: Rust apps
+            href: community-toolkit/hosting-rust.md
+          - name: SQL Database Projects
+            href: community-toolkit/hosting-sql-database-projects.md
+          - name: Data API Builder
+            href: community-toolkit/hosting-data-api-builder.md
 
   - name: Custom integrations
     items:

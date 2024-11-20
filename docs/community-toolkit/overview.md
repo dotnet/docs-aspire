@@ -24,6 +24,9 @@ The community toolkit is a growing project, publishing a set of NuGet packages. 
 - The [Azure Data API Builder](/azure/data-api-builder/overview) integration enables seamless API creation for your data:
   - [📄 .NET Aspire Azure Data API Builder integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder).
   - [📦 CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder).
+- The [Bun](https://bun.sh) integration provides support for hosting Bun applications:
+  - [📄 .NET Aspire Bun hosting integration](hosting-bun.md).
+  - [📦 CommunityToolkit.Aspire.Hosting.Bun](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Bun).
 - The [Golang apps](https://go.dev/) integration provides support for hosting Go applications:
   - [📄 .NET Aspire Go integration](hosting-golang.md).
   - [📦 CommunityToolkit.Aspire.Hosting.Golang](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Golang).
@@ -39,6 +42,9 @@ The community toolkit is a growing project, publishing a set of NuGet packages. 
 - The [Meilisearch](https://www.meilisearch.com) integration enables hosting Meilisearch containers.
   - [📄 .NET Aspire Meilisearch hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Meilisearch).
   - [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch).
+- The [Rust apps](https://www.rust-lang.org/) integration provides support for hosting Rust applications.
+  - [📄 .NET Aspire Rust hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Rust).
+  - [📦 CommunityToolkit.Aspire.Hosting.Rust](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Rust).
 
 ### Client integrations
 
