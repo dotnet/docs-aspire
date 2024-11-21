@@ -1,7 +1,7 @@
 ---
 title: Orchestrate Node.js apps in .NET Aspire
 description: Learn how to integrate Node.js and npm apps into a .NET Aspire App Host project.
-ms.date: 11/11/2024
+ms.date: 11/20/2024
 ---
 
 # Orchestrate Node.js apps in .NET Aspire
@@ -21,7 +21,7 @@ The difference between these two APIs is that the former is used to host Node.js
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
-Additionally, you need to install [Node.js](https://nodejs.org/en/download/) on your machine. The sample app in this article was built with Node.js version 20.12.2 and npm version 10.5.1. To verify your Node.js and npm versions, run the following commands:
+Additionally, you need to install [Node.js](https://nodejs.org/en/download/package-manager) on your machine. The sample app in this article was built with Node.js version 20.12.2 and npm version 10.5.1. To verify your Node.js and npm versions, run the following commands:
 
 ```nodejs
 node --version
@@ -31,7 +31,7 @@ node --version
 npm --version
 ```
 
-To download Node.js (including `npm`), see the [Node.js download page](https://nodejs.org/en/download/).
+To download Node.js (including `npm`), see the [Node.js download page](https://nodejs.org/en/download/package-manager).
 
 ## Clone sample source code
 
