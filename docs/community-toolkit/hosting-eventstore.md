@@ -60,7 +60,7 @@ To add a data volume to the EventStore resource, call the `Aspire.Hosting.EventS
 var builder = DistributedApplication.CreateBuilder(args);
 
 var eventstore = builder.AddEventStore("eventstore")
-                         .WithDataVolume();
+                        .WithDataVolume();
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(eventstore);
