@@ -242,6 +242,19 @@ These commands are used instead of `podman run` to manage attached container net
 
 Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectResource>, <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, and <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, .NET Aspire provides extension methods to add common resources to your app model. For more information, see [Hosting integrations](integrations-overview.md#hosting-integrations).
 
+#### Container resource lifetime
+
+By default, container resources use the _session_ container lifetime. This means that every time the app host process is started, the container is created and started. When the app host stops, the container is stopped and removed. Container resources can opt-in to a _persistent_ lifetime to avoid unnecessary restarts and leverage persisted container state. To achieve this, chain a call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithLifetime*?displayProperty=nameWithType> API and pass <xref:Aspire.Hosting.ApplicationModel.ContainerLifetime.Persistent?displayProperty=nameWithType>:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var ollama = builder.AddContainer("ollama", "ollama/ollama")
+    .WithLifetime(ContainerLifetime.Persistent);
+```
+
+The preceding code adds a container resource named "ollama" with the image "ollama/ollama" and a persistent lifetime.
+
 ### Connection string and endpoint references
 
 It's common to express dependencies between project resources. Consider the following example code:
