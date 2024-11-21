@@ -11,7 +11,7 @@ ms.date: 11/18/2024
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you learn how to use the .NET Aspire Data API Builder hosting integration to run [Data API Builder](https://learn.microsoft.com/azure/data-api-builder/overview) as a container.
+In this article, you learn how to use the .NET Aspire Data API Builder hosting integration to run [Data API Builder](/azure/data-api-builder/overview) as a container.
 
 ## Hosting integration
 

@@ -42,7 +42,7 @@ builder.AddSeqEndpoint("seq");
 
 ## App host usage
 
-To model the Seq resource in the app host, install the [📦 Aspire.Hosting.Seq) NuGet package in the [app host](xref:dotnet/aspire/app-host](https://www.nuget.org/packages/Aspire.Hosting.Seq) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+To model the Seq resource in the app host, install the [📦 Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
