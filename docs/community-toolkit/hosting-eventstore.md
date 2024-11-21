@@ -78,8 +78,7 @@ To add a data bind mount to the EventStore resource, call the `Aspire.Hosting.Ev
 var builder = DistributedApplication.CreateBuilder(args);
 
 var eventstore = builder.AddEventStore("eventstore")
-                         .WithDataBindMount(
-                             source: @"C:\EventStore\Data");
+                        .WithDataBindMount(source: @"C:\EventStore\Data");
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(eventstore);
@@ -117,8 +116,7 @@ To add a log bind mount to the EventStore resource, call the `Aspire.Hosting.Eve
 var builder = DistributedApplication.CreateBuilder(args);
 
 var eventstore = builder.AddEventStore("eventstore")
-                         .WithLogBindMount(
-                             source: @"C:\EventStore\Logs");
+                        .WithLogBindMount(source: @"C:\EventStore\Logs");
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(eventstore);
