@@ -97,6 +97,7 @@ items:
       - name: Health checks
         href: fundamentals/health-checks.md
       - name: Telemetry
+        displayName: otel,otlp,telemetry,grpc,opentelemetry,protobuf,traceparent
         href: fundamentals/telemetry.md
 
   - name: Integrations
@@ -256,6 +257,10 @@ items:
             href: community-toolkit/overview.md
           - name: Azure Static Web Apps
             href: community-toolkit/hosting-azure-static-web-apps.md
+          - name: Bun apps
+            href: community-toolkit/hosting-bun.md
+          - name: Deno apps
+            href: community-toolkit/hosting-deno.md
           - name: Go apps
             href: community-toolkit/hosting-golang.md
           - name: Java/Spring
@@ -266,6 +271,12 @@ items:
             href: community-toolkit/ollama.md
           - name: Meilisearch
             href: community-toolkit/hosting-meilisearch.md
+          - name: Rust apps
+            href: community-toolkit/hosting-rust.md
+          - name: SQL Database Projects
+            href: community-toolkit/hosting-sql-database-projects.md
+          - name: Data API Builder
+            href: community-toolkit/hosting-data-api-builder.md
 
   - name: Custom integrations
     items:
@@ -342,8 +353,6 @@ items:
         href: compatibility/breaking-changes.md
       - name: Diagnostics overview
         href: diagnostics/overview.md
-      - name: .NET Aspire SDK
-        href: fundamentals/dotnet-aspire-sdk.md
       - name: .NET Aspire API reference
         href:  /dotnet/api?view=dotnet-aspire-9.0&preserve-view=true
       - name: .NET Aspire FAQ
@@ -363,6 +372,8 @@ items:
     items:
       - name: .NET Aspire
         href: https://github.com/dotnet/aspire
+      - name: .NET Aspire Credential
+        href: /credentials/applied-skills/build-distributed-apps-with-dotnet-aspire/
       - name: .NET Aspire samples
         href: https://github.com/dotnet/aspire-samples
       - name: .NET Aspire samples browser

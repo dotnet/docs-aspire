@@ -45,13 +45,13 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 
 ### Add Redis resource with Redis Insights
 
-To add the [Redis Insights](https://redis.io/insight/) to the Redis resource, call the `WithRedisInsights` method:
+To add the [Redis Insights](https://redis.io/insight/) to the Redis resource, call the `WithRedisInsight` method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var cache = builder.AddRedis("cache")
-                   .WithRedisInsights();
+                   .WithRedisInsight();
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(cache);

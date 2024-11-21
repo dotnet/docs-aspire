@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Functions integration (Preview)
 description: Learn how to integrate Azure Functions with .NET Aspire.
-ms.date: 10/31/2024
+ms.date: 11/13/2024
 zone_pivot_groups: dev-environment
 ---
 
@@ -58,7 +58,7 @@ Currently, deployment is supported only to containers on Azure Container Apps (A
 
 #### Configure external HTTP endpoints
 
-To make HTTP triggers publicly accessible, call the `WithExternalHttpEndpoints` API on the `AzureFunctionsProjectResource`. For more information, see [Add Azure Functions resource](#add-azure-functions-resource).
+To make HTTP triggers publicly accessible, call the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints*> API on the <xref:Aspire.Hosting.Azure.AzureFunctionsProjectResource>. For more information, see [Add Azure Functions resource](#add-azure-functions-resource).
 
 ## Azure Function project constraints
 
@@ -86,7 +86,7 @@ In Visual Studio, try checking for an update on the Azure Functions tooling. Ope
 
 ## Hosting integration
 
-The Azure Functions hosting integration models an Azure Functions resource as the `AzureFunctionsProjectResource` (subtype of <xref:Aspire.Hosting.ApplicationModel.ProjectResource>) type. To access this type and APIs that allow you to add it to your [📦 Aspire.Hosting.Azure.Functions) NuGet package in the [app host](xref:dotnet/aspire/app-host](https://www.nuget.org/packages/Aspire.Hosting.Azure.Functions) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The Azure Functions hosting integration models an Azure Functions resource as the <xref:Aspire.Hosting.Azure.AzureFunctionsProjectResource> (subtype of <xref:Aspire.Hosting.ApplicationModel.ProjectResource>) type. To access this type and APIs that allow you to add it to your [app host](xref:dotnet/aspire/app-host) project install the [📦 Aspire.Hosting.Azure.Functions](https://www.nuget.org/packages/Aspire.Hosting.Azure.Functions) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -107,7 +107,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Azure Functions resource
 
-In your app host project, call `AddAzureFunctionsProject` on the `builder` instance to add an Azure Functions resource:
+In your app host project, call <xref:Aspire.Hosting.AzureFunctionsProjectResourceExtensions.AddAzureFunctionsProject*> on the `builder` instance to add an Azure Functions resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -126,7 +126,7 @@ When .NET Aspire adds an Azure Functions project resource the app host, as shown
 
 ### Add Azure Functions resource with host storage
 
-If you want to modify the default host storage account that the Azure Functions host uses, call the `WithHostStorage` method on the Azure Functions project resource:
+If you want to modify the default host storage account that the Azure Functions host uses, call the <xref:Aspire.Hosting.AzureFunctionsProjectResourceExtensions.WithHostStorage*> method on the Azure Functions project resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -173,4 +173,4 @@ The preceding code adds an Azure Storage resource to the app host and references
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
 - [Azure Functions documentation](/azure/azure-functions/functions-overview)
-<!-- - [.NET Aspire and Functions image gallery sample](/samples/dotnet/aspire-samples/aspire-azure-functions-with-blob-triggers) -->
+- [.NET Aspire and Functions image gallery sample](/samples/dotnet/aspire-samples/aspire-azure-functions-with-blob-triggers)
