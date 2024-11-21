@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard security considerations
 description: Security considerations for running the .NET Aspire dashboard
-ms.date: 10/29/2024
+ms.date: 11/20/2024
 ms.topic: reference
 ---
 
@@ -92,6 +92,6 @@ The dashboard stores external information it receives in memory, such as resourc
 
 ### Telemetry limits
 
-To help prevent memory exhaustion, the dashboard limits how much telemetry it stores by default. For example, there is a maximum of 10,000 structured log entries per resource. Once the limit is reached, each new new log entry received causes an old entry to be removed.
+To help prevent memory exhaustion, the dashboard limits how much telemetry it stores by default. For example, there is a maximum of 10,000 structured log entries per resource. Once the limit is reached, each new log entry received causes an old entry to be removed.
 
 Configuration can customize telemetry limits.
