@@ -341,8 +341,6 @@ items:
         href: troubleshooting/container-runtime-unhealthy.md
       - name: The connection string is missing
         href: troubleshooting/connection-string-missing.md
-      - name: .NET Aspire GitHub repository
-        href: https://github.com/dotnet/aspire
       - name: Ask questions on Discord
         displayName: discord,community
         href: https://aka.ms/aspire/discord
@@ -356,7 +354,7 @@ items:
       - name: Diagnostics overview
         href: diagnostics/overview.md
       - name: .NET Aspire API reference
-        href:  /dotnet/api?view=dotnet-aspire-8.0&preserve-view=true
+        href:  /dotnet/api?view=dotnet-aspire-9.0&preserve-view=true
       - name: .NET Aspire FAQ
         displayName: iis,functions,deploy,azure,kubernetes
         href: reference/aspire-faq.yml
