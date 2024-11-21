@@ -11,7 +11,7 @@ metadata:
   description: Learn about .NET Aspire, a cloud-ready stack for building distributed applications. Browse API reference, tutorials, and more.
   ms.topic: hub-page
   ms.service: dotnet-aspire
-  ms.date: 10/23/2024
+  ms.date: 11/21/2024
 
 highlightedContent:
   items:
@@ -357,15 +357,15 @@ additionalContent:
       items:
         - title: ".NET Aspire API reference"
           summary: API reference documentation for .NET Aspire
-          url: /dotnet/api?view=dotnet-aspire-8.0&preserve-view=true
+          url: /dotnet/api?view=dotnet-aspire-9.0&preserve-view=true
         - title: ".NET Platform Extensions API reference"
           summary: API reference documentation for .NET Platform Extensions
-          url: /dotnet/api?view=dotnet-plat-ext-8.0&preserve-view=true
+          url: /dotnet/api?view=dotnet-plat-ext-9.0&preserve-view=true
         - title: ".NET API reference"
           summary: API reference documentation for .NET
-          url: /dotnet/api?view=net-8.0&preserve-view=true
+          url: /dotnet/api?view=net-9.0&preserve-view=true
         - title: "ASP.NET Core API reference"
           summary: API reference documentation for ASP.NET Core
-          url: /dotnet/api?view=aspnetcore-8.0&preserve-view=true
+          url: /dotnet/api?view=aspnetcore-9.0&preserve-view=true
 
   footer: "Are you interested in contributing to the .NET Aspire docs? For more information, see our [contributor guide](/contribute/dotnet/dotnet-contribute). Interested in the official support policy, see [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire)."
