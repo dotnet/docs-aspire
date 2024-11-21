@@ -11,21 +11,6 @@ items:
             tocHref: /dotnet/aspire/
             topicHref: /dotnet/aspire/index
             items:
-              - name: Get started
-                tocHref: /dotnet/aspire/get-started/
-                topicHref: /dotnet/aspire/get-started/build-your-first-aspire-app.md
-              - name: Deployment
-                tocHref: /dotnet/aspire/deployment/
-                topicHref: /dotnet/aspire/deployment/overview
-              - name: Dashboard
-                tocHref: /dotnet/aspire/fundamentals/dashboard
-                topicHref: /dotnet/aspire/fundamentals/dashboard/overview
-              - name: Orchestration
-                tocHref: /dotnet/aspire/fundamentals/
-                topicHref: /dotnet/aspire/fundamentals/app-host-overview
-              - name: Integrations
-                tocHref: /dotnet/aspire/integrations/
-                topicHref: /dotnet/aspire/fundamentals/integrations-overview
               - name: What's new in .NET Aspire
                 tocHref: /dotnet/aspire/whats-new/
                 topicHref: ../whats-new/index.yml
