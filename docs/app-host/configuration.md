@@ -1,6 +1,6 @@
 ---
 title: .NET Aspire app host configuration
-description: .NET Aspire app host configuration options
+description: Learn about the .NET Aspire app host configuration options.
 ms.date: 11/21/2024
 ms.topic: reference
 ---
@@ -12,10 +12,10 @@ The app host project configures and starts your distributed application (<xref:A
 Configuration includes:
 
 - Settings for hosting the resource service, such as the address and authentication options.
-- Settings used to start the [Aspire dashboard](../fundamentals/dashboard/overview.md), such the dashboard's frontend and OpenTelemetry Protocol (OTLP) addresses.
-- Internal settings that Aspire uses to run the app host. These are set internally but can be accessed by integrations that extend Aspire.
+- Settings used to start the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md), such the dashboard's frontend and OpenTelemetry Protocol (OTLP) addresses.
+- Internal settings that .NET Aspire uses to run the app host. These are set internally but can be accessed by integrations that extend .NET Aspire.
 
-App host configuration is provided by the app host launch profile. The app host has a launch settings file call `launchSettings.json` which has a list of launch profiles. Each launch profile is a collection of related options which defines how you would like `dotnet` to start your application.
+App host configuration is provided by the app host launch profile. The app host has a launch settings file call _launchSettings.json_ which has a list of launch profiles. Each launch profile is a collection of related options which defines how you would like `dotnet` to start your application.
 
 ```json
 {
@@ -37,12 +37,12 @@ App host configuration is provided by the app host launch profile. The app host 
 }
 ```
 
-The proceeding launch settings file:
+The preceding launch settings file:
 
-- Has one launch profile called `https`.
+- Has one launch profile named `https`.
 - Configures an .NET Aspire app host project:
   - The `applicationUrl` property configures the dashboard launch address (`ASPNETCORE_URLS`).
-  - Env vars such as `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL` and `DOTNET_RESOURCE_SERVICE_ENDPOINT_URL` are set on the app host.
+  - Environment variables such as `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL` and `DOTNET_RESOURCE_SERVICE_ENDPOINT_URL` are set on the app host.
 
 For more information, see [.NET Aspire and launch profiles](../fundamentals/launch-profiles.md).
 
@@ -51,26 +51,26 @@ For more information, see [.NET Aspire and launch profiles](../fundamentals/laun
 
 ## Common configuration
 
-| Option | Default Value | Description |
+| Option | Default value | Description |
 |--|--|--|
 | `ASPIRE_ALLOW_UNSECURED_TRANSPORT` | `false` | Allows communication with the app host without https. `ASPNETCORE_URLS` (dashboard address) and `DOTNET_RESOURCE_SERVICE_ENDPOINT_URL` (app host resource service address) must be secured with HTTPS unless true. |
 
 ## Resource service
 
-| Option | Default Value | Description |
+| Option | Default value | Description |
 |--|--|--|
-| `DOTNET_RESOURCE_SERVICE_ENDPOINT_URL` | Automatically generated 128-bit entropy token. | Configures the address of the resource service hosted by the app host. Automatically generated with `launchSettings.json` to have a random port on localhost. For example, `https://localhost:17037`. |
+| `DOTNET_RESOURCE_SERVICE_ENDPOINT_URL` | Automatically generated 128-bit entropy token. | Configures the address of the resource service hosted by the app host. Automatically generated with _launchSettings.json_ to have a random port on localhost. For example, `https://localhost:17037`. |
 | `DOTNET_DASHBOARD_RESOURCESERVICE_APIKEY` | `null` | The API key used to authenticate requests made to the app host's resource service. The API key is required if the app host is in run mode, the dashboard isn't disabled, and the dashboard isn't configured to allow anonymous access with `DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS`. |
 
 ## Dashboard
 
 By default, the dashboard is automatically started by the app host. The dashboard supports [its own set of configuration](../fundamentals/dashboard/configuration.md), and some settings can be configured from the app host.
 
-| Option | Default Value | Description |
+| Option | Default value | Description |
 |--|--|--|
-| `ASPNETCORE_URLS` | `null` | Dashboard address. Must be https unless `ASPIRE_ALLOW_UNSECURED_TRANSPORT` or `DistributedApplicationOptions.AllowUnsecuredTransport` is true. Automatically generated with `launchSettings.json` to have a random port on localhost. The value in launch settings is set on the `applicationUrls` property. |
-| `ASPNETCORE_ENVIRONMENT` | `Production` | Configures the environment the dashboard runs as. For more information, see [Use multiple environments in ASP.NET Core](https://learn.microsoft.com/aspnet/core/fundamentals/environments). |
-| `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL` | `http://localhost:18889` if no gRPC endpoint is configured. | Configures the dashboard OTLP gRPC address. Used by the dashboard to receive telemetry over OTLP. Set on resources as the `OTEL_EXPORTER_OTLP_ENDPOINT` env var. The `OTEL_EXPORTER_OTLP_PROTOCOL` env var is `grpc`.  Automatically generated with `launchSettings.json` to have a random port on localhost. |
+| `ASPNETCORE_URLS` | `null` | Dashboard address. Must be `https` unless `ASPIRE_ALLOW_UNSECURED_TRANSPORT` or `DistributedApplicationOptions.AllowUnsecuredTransport` is true. Automatically generated with _launchSettings.json_ to have a random port on localhost. The value in launch settings is set on the `applicationUrls` property. |
+| `ASPNETCORE_ENVIRONMENT` | `Production` | Configures the environment the dashboard runs as. For more information, see [Use multiple environments in ASP.NET Core](/aspnet/core/fundamentals/environments). |
+| `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL` | `http://localhost:18889` if no gRPC endpoint is configured. | Configures the dashboard OTLP gRPC address. Used by the dashboard to receive telemetry over OTLP. Set on resources as the `OTEL_EXPORTER_OTLP_ENDPOINT` env var. The `OTEL_EXPORTER_OTLP_PROTOCOL` env var is `grpc`.  Automatically generated with _launchSettings.json_ to have a random port on localhost. |
 | `DOTNET_DASHBOARD_OTLP_HTTP_ENDPOINT_URL` | `null` | Configures the dashboard OTLP HTTP address. Used by the dashboard to receive telemetry over OTLP. If only `DOTNET_DASHBOARD_OTLP_HTTP_ENDPOINT_URL` is configured then it is set on resources as the `OTEL_EXPORTER_OTLP_ENDPOINT` env var. The `OTEL_EXPORTER_OTLP_PROTOCOL` env var is `http/protobuf`. |
 | `DOTNET_DASHBOARD_FRONTEND_BROWSERTOKEN` | Automatically generated 128-bit entropy token. | Configures the frontend browser token. This is the value that must be entered to access the dashboard when the auth mode is BrowserToken. If no browser token is specified then a new token is generated each time the app host is launched. |
 
@@ -78,9 +78,9 @@ By default, the dashboard is automatically started by the app host. The dashboar
 
 Internal settings are used by the app host and integrations. Internal settings aren't designed to be configured directly.
 
-| Option | Default Value | Description |
+| Option | Default value | Description |
 |--|--|--|
-| `AppHost:Directory` | The content root if there's no project. | Directory of the project where the app host is located. |
+| `AppHost:Directory` | The content root if there's no project. | Directory of the project where the app host is located. Accessible from the <xref:Aspire.Hosting.IDistributedApplicationBuilder.AppHostDirectory?displayProperty=nameWithType>. |
 | `AppHost:Path` | The directory combined with the application name. | The path to the app host. It combines the directory with the application name. |
 | `AppHost:Sha256` | It is created from the app host name when the app host is in publish mode. Otherwise it is created from the app host path. | Hex encoded hash for the current application. The hash is based on the location of the app on the current machine so it is stable between launches of the app host. |
 | `AppHost:OtlpApiKey` | Automatically generated 128-bit entropy token. | The API key used to authenticate requests sent to the dashboard OTLP service. The value is present if needed: the app host is in run mode, the dashboard isn't disabled, and the dashboard isn't configured to allow anonymous access with `DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS`. |
