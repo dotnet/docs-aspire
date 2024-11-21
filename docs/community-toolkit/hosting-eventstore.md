@@ -99,7 +99,7 @@ To add a log volume to the EventStore resource, call the `Aspire.Hosting.EventSt
 var builder = DistributedApplication.CreateBuilder(args);
 
 var eventstore = builder.AddEventStore("eventstore")
-                         .WithLogVolume();
+                        .WithLogVolume();
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(eventstore);
