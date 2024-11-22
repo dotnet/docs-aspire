@@ -57,7 +57,7 @@ For more information, see [.NET Aspire and launch profiles](../fundamentals/laun
 
 ## Resource service
 
-A resource service is hosted by the app host. The resource service is used by the .NET Aspire Dashboard to fetch information about resources which are being orchestrated by .NET Aspire.
+A resource service is hosted by the app host. The resource service is used by the dashboard to fetch information about resources which are being orchestrated by .NET Aspire.
 
 | Option | Default value | Description |
 |--|--|--|
