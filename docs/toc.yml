@@ -38,6 +38,8 @@ items:
         - name: Python apps in .NET Aspire
           displayName: python,flask,fastapi
           href: get-started/build-aspire-apps-with-python.md
+      - name: Configuration
+        href: app-host/configuration.md
       - name: Custom resource commands
         href: fundamentals/custom-resource-commands.md
       - name: Add Dockerfiles to the app model
@@ -277,6 +279,8 @@ items:
             href: community-toolkit/hosting-sql-database-projects.md
           - name: Data API Builder
             href: community-toolkit/hosting-data-api-builder.md
+          - name: EventStore
+            href: community-toolkit/hosting-eventstore.md
 
   - name: Custom integrations
     items:
