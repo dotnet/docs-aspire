@@ -62,9 +62,12 @@ Alternatively, these same values could be configured using a JSON configuration 
 >
 > For more information, see [dashboard security](security-considerations.md).
 
+> [!NOTE]
+> Configuration described on this page is for the standalone dashboard. To configure an .NET Aspire app host project, see [App host configuration](../../app-host/configuration.md).
+
 ## Common configuration
 
-| Option | Default Value | Description |
+| Option | Default value | Description |
 |--|--|--|
 | `ASPNETCORE_URLS` | `http://localhost:18888` | One or more HTTP endpoints through which the dashboard frontend is served. The frontend endpoint is used to view the dashboard in a browser. When the dashboard is launched by the .NET Aspire app host this address is secured with HTTPS. Securing the dashboard with HTTPS is recommended. |
 | `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL` | `http://localhost:18889` | The [OTLP/gRPC](https://opentelemetry.io/docs/specs/otlp/#otlpgrpc) endpoint. This endpoint hosts an OTLP service and receives telemetry using gRPC. When the dashboard is launched by the .NET Aspire app host this address is secured with HTTPS. Securing the dashboard with HTTPS is recommended. |
@@ -79,7 +82,7 @@ The dashboard frontend endpoint authentication is configured with `Dashboard:Fro
 
 Browser token authentication works by the frontend asking for a token. The token can either be entered in the UI or provided as a query string value to the login page. For example, `https://localhost:1234/login?t=TheToken`. When the token is successfully authenticated an auth cookie is persisted to the browser, and the browser is redirected to the app.
 
-| Option | Default Value | Description |
+| Option | Default value | Description |
 |--|--|--|
 | `Dashboard:Frontend:AuthMode` | `BrowserToken` | Can be set to `BrowserToken`, `OpenIdConnect` or `Unsecured`. `Unsecured` should only be used during local development. It's not recommended when hosting the dashboard publicly or in other settings. |
 | `Dashboard:Frontend:BrowserToken` | `null` | Specifies the browser token. If the browser token isn't specified, then the dashboard generates one. Tooling that wants to automate logging in with browser token authentication can specify a token and open a browser with the token in the query string. A new token should be generated each time the dashboard is launched. |
@@ -103,7 +106,7 @@ The OTLP endpoint authentication is configured with `Dashboard:Otlp:AuthMode`. T
 
 API key authentication works by requiring each OTLP request to have a valid `x-otlp-api-key` header value. It must match either the primary or secondary key.
 
-| Option | Default Value | Description |
+| Option | Default value | Description |
 |--|--|--|
 | `Dashboard:Otlp:AuthMode` | `Unsecured` | Can be set to `ApiKey`, `Certificate` or `Unsecured`. `Unsecured` should only be used during local development. It's not recommended when hosting the dashboard publicly or in other settings. |
 | `Dashboard:Otlp:PrimaryApiKey` | `null` | Specifies the primary API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended. This value is required if auth mode is API key. |
@@ -129,7 +132,7 @@ By default, browser apps are restricted from making cross domain API calls. This
 
 Consider the following configuration options:
 
-| Option | Default Value | Description |
+| Option | Default value | Description |
 |--|--|--|
 | `Dashboard:Otlp:Cors:AllowedOrigins` | `null` | Specifies the allowed origins for CORS. It's a comma-delimited string and can include the `*` wildcard to allow any domain. This option is optional and can be set using the `DASHBOARD__OTLP__CORS__ALLOWEDORIGINS` environment variable. |
 | `Dashboard:Otlp:Cors:AllowedHeaders` | `null` | A comma-delimited string representing the allowed headers for CORS. This setting is optional and can be set using the `DASHBOARD__OTLP__CORS__ALLOWEDHEADERS` environment variable. |
@@ -143,7 +146,7 @@ The dashboard connects to a resource service to load and display resource inform
 
 The resource service client authentication is configured with `Dashboard:ResourceServiceClient:AuthMode`. The client can be configured to support API key or client certificate authentication.
 
-| Option | Default Value | Description |
+| Option | Default value | Description |
 |--|--|--|
 | `Dashboard:ResourceServiceClient:Url` | `null` | The gRPC endpoint to which the dashboard connects for its data. If this value is unspecified, the dashboard shows telemetry data but no resource list or console logs. |
 | `Dashboard:ResourceServiceClient:AuthMode` | `null` | Can be set to `ApiKey`, `Certificate` or `Unsecured`. `Unsecured` should only be used during local development. It's not recommended when hosting the dashboard publicly or in other settings. This value is required if a resource service URL is specified. |
@@ -164,7 +167,7 @@ Telemetry limits have different scopes depending upon the telemetry type:
 - `MaxLogCount` and `MaxTraceCount` are shared across resources. For example, a `MaxLogCount` value of 5,000 configures the dashboard to store up to 5,000 total log entries for all resources.
 - `MaxMetricsCount` is per-resource. For example, a `MaxMetricsCount` value of 10,000 configures the dashboard to store up to 10,000 metrics data points per-resource.
 
-| Option | Default Value | Description |
+| Option | Default value | Description |
 |--|--|--|
 | `Dashboard:TelemetryLimits:MaxLogCount` | 10,000 | The maximum number of log entries. Limit is shared across resources. |
 | `Dashboard:TelemetryLimits:MaxTraceCount` | 10,000 | The maximum number of log traces. Limit is shared across resources. |
@@ -175,7 +178,7 @@ Telemetry limits have different scopes depending upon the telemetry type:
 
 ## Other
 
-| Option | Default Value | Description |
+| Option | Default value | Description |
 |--|--|--|
 | `Dashboard:ApplicationName` | `Aspire` | The application name to be displayed in the UI. This applies only when no resource service URL is specified. When a resource service exists, the service specifies the application name. |
 
