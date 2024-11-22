@@ -2,7 +2,7 @@
 title: .NET Aspire MySQL database integration
 description: This article describes the .NET Aspire MySQL database integration.
 ms.topic: how-to
-ms.date: 08/12/2024
+ms.date: 11/22/2024
 ---
 
 # .NET Aspire MySQL database integration
@@ -94,7 +94,7 @@ The .NET Aspire MySQL database integration provides multiple configuration appro
 When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddMySqlDataSource()`:
 
 ```csharp
-builder.AddMySqlDataSource("MySqConnection");
+builder.AddMySqlDataSource("mysql");
 ```
 
 Then the connection string will be retrieved from the `ConnectionStrings` configuration section:
@@ -102,7 +102,7 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 ```json
 {
   "ConnectionStrings": {
-    "MySqConnection": "Server=mysql;Database=mysqldb"
+    "mysql": "Server=mysql;Database=mysqldb"
   }
 }
 ```
