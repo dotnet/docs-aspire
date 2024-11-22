@@ -10,7 +10,7 @@ ms.date: 11/19/2024
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you learn about the .NET Aspire Community Toolkit Python hosting extensions package which provides extra functionality to the .NET Aspire [Python hosting package](https://nuget.org/packages/Aspire.Hosting.Python). 
+In this article, you learn about the .NET Aspire Community Toolkit Python hosting extensions package which provides extra functionality to the .NET Aspire [Python hosting package](https://nuget.org/packages/Aspire.Hosting.Python).
 The extensions package lets you run [Uvicorn](https://www.uvicorn.org/) applications.
 
 ## Hosting integration
