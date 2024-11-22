@@ -90,7 +90,9 @@ In .NET Aspire, the AppHost is just a .NET application. As a result it has a `la
 }
 ```
 
-The .NET Aspire templates have a very similar set of _launch profiles_ to a regular ASP.NET Core application. When the .NET Aspire project launches it hosts a web-server which is used by the .NET Aspire Dashboard to fetch information about resources which are being orchestrated by .NET Aspire. There are some additional environment variables which are defined which are covered in [.NET Aspire dashboard configuration](./dashboard/configuration.md).
+The .NET Aspire templates have a very similar set of _launch profiles_ to a regular ASP.NET Core application. When the .NET Aspire app project launches, it starts a <xref:Aspire.Hosting.DistributedApplication> and hosts a web-server which is used by the .NET Aspire Dashboard to fetch information about resources which are being orchestrated by .NET Aspire.
+
+For information about app host configuration options, see [.NET Aspire app host configuration](../app-host/configuration.md).
 
 ## Relationship between app host launch profiles and service projects
 
