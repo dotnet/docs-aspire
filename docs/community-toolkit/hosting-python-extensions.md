@@ -1,5 +1,5 @@
 ---
-title: Python hosting extensions
+title: Community Toolkit Python hosting extensions
 description: Learn about the .NET Aspire Community Toolkit Python hosting extensions package which provides extra functionality to the .NET Aspire Python hosting package.
 ms.date: 11/19/2024
 ---
