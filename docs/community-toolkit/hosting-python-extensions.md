@@ -43,8 +43,14 @@ In the _:::no-loc text="Program.cs":::_ file of your app host project, call the 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var uvicorn = builder.AddUvicornApp("uvicornapp", "../uvicornapp-api", "main:app")
+var uvicorn = builder.AddUvicornApp(
+        name: "uvicornapp",
+        projectDirectory: "../uvicornapp-api",
+        appName: "main:app"
+    )
     .WithHttpEndpoint(env: "PORT");
+
+builder.Build().Run();
 ```
 
 The `PORT` environment variable is used to determine the port the Uvicorn application should listen on. By default, this port is randomly assigned by .NET Aspire. The name of the environment variable can be changed by passing a different value to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpEndpoint*> method.
