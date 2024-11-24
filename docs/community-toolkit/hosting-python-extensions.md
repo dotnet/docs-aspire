@@ -4,7 +4,7 @@ description: Learn about the .NET Aspire Community Toolkit Python hosting extens
 ms.date: 11/19/2024
 ---
 
-# .NET Aspire Community Toolkit Python hosting extensions
+# Community Toolkit Python hosting extensions
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
