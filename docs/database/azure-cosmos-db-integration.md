@@ -87,9 +87,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 > cosmosdb.RunAsEmulator();
 > ```
 >
-> Starting the Cosmos DB emulator can take some time to start. If you have code in your service code that needs Cosmos to be
-> running you can use <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor%2A> to delay the start of your .NET project code
-> until the emulator is running and *ready to serve requests*.
+> Starting the Cosmos DB emulator may take some time. Use <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor%2A> to delay your .NET project's code execution until the emulator is running and ready to serve requests.
 >
 > ```csharp
 > var exampleProject = builder.AddProject<Projects.ExampleProject>()
