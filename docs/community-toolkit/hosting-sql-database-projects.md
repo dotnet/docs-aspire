@@ -78,6 +78,23 @@ builder.AddSqlProject("mysqlproj")
        .WithReference(sql);
 ```
 
+### Deployment options support
+
+Define options that affect the behavior of package deployment.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var sql = builder.AddSqlServer("sql")
+                 .AddDatabase("test");
+
+builder.AddSqlProject("mysqlproj")
+       .WithConfigureDacDeployOptions(options => options.IncludeCompositeObjects = true)
+       .WithReference(sql);
+
+builder.Build().Run();
+```
+
 ### Redeploy support
 
 If you make changes to your SQL Database project while the app host is running, you can use the `Redeploy` custom action on the .NET Aspire dashboard to redeploy your updates without having to restart the app host.
