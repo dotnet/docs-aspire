@@ -92,7 +92,7 @@ Data bind mounts rely on the host machine's filesystem to persist the EventStore
 
 ### Add EventStore resource with log volume
 
-To add a log volume to the EventStore resource, call the `Aspire.Hosting.ContainerResourceBuilderExtensions.WithVolume` extension method on the EventStore resource:
+To add a log volume to the EventStore resource, call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithVolume> extension method on the EventStore resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -108,17 +108,17 @@ builder.AddProject<Projects.ExampleProject>()
 
 The data volume is used to persist the EventStore logs outside the lifecycle of its container. The data volume must be mounted at the `/var/log/eventstore` target path in the EventStore container and when a `name` parameter isn't provided, the name is generated at random. For more information on data volumes and details on why they're preferred over [bind mounts](#add-eventstore-resource-with-log-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
 
-For more information about EventStore logs location, you can refer to the [EventStore Resources: Logs](https://developers.eventstore.com/server/v24.10/diagnostics/logs.html#logs-location) page.
+For more information about EventStore logs location, see [EventStore Resources: Logs](https://developers.eventstore.com/server/v24.10/diagnostics/logs.html#logs-location).
 
 ### Add EventStore resource with log bind mount
 
-To add a log bind mount to the EventStore resource, call the `Aspire.Hosting.ContainerResourceBuilderExtensions.WithBindMount` extension method on the EventStore resource:
+To add a log bind mount to the EventStore resource, call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithBindMount> extension method on the EventStore resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var eventstore = builder.AddEventStore("eventstore")
-                        .WithBindMount(source: @"C:\EventStore\Logs", target: "/var/log/eventstore");
+                        .WithBindMount(@"C:\EventStore\Logs", "/var/log/eventstore");
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(eventstore);
@@ -130,7 +130,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 Data bind mounts rely on the host machine's filesystem to persist the EventStore logs across container restarts. The data bind mount is mounted at the `C:\EventStore\Logs` on Windows (or `/EventStore/Logs` on Unix) path on the host machine in the EventStore container. The target path must be set to the log folder used by the EventStore container (`/var/log/eventstore`).
 
-For more information about EventStore logs location, you can refer to the [EventStore Resources: Logs](https://developers.eventstore.com/server/v24.10/diagnostics/logs.html#logs-location) page.
+For more information about EventStore logs location, see [EventStore Resources: Logs](https://developers.eventstore.com/server/v24.10/diagnostics/logs.html#logs-location).
 
 For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
 
