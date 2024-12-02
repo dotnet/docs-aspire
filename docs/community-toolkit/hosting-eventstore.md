@@ -14,7 +14,7 @@ In this article, you learn how to use the .NET Aspire EventStore hosting integra
 
 ## Hosting integration
 
-To run the EventStore container, install the [📦 CommunityToolkit.Aspire.Hosting.EventStore](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.EventStore) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+To run the EventStore container, install the [📦 CommunityToolkit.Aspire.Hosting.EventStore][hosting-nuget-link] NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -92,7 +92,7 @@ Data bind mounts rely on the host machine's filesystem to persist the EventStore
 
 ### Add EventStore resource with log volume
 
-To add a log volume to the EventStore resource, call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithVolume> extension method on the EventStore resource:
+To add a log volume to the EventStore resource, call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithVolume*> extension method on the EventStore resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -112,7 +112,7 @@ For more information about EventStore logs location, see [EventStore Resources: 
 
 ### Add EventStore resource with log bind mount
 
-To add a log bind mount to the EventStore resource, call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithBindMount> extension method on the EventStore resource:
+To add a log bind mount to the EventStore resource, call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithBindMount*> extension method on the EventStore resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -136,7 +136,7 @@ For more information on data bind mounts, see [Docker docs: Bind mounts](https:/
 
 ## Client integration
 
-To get started with the .NET Aspire EventStore client integration, install the [📦 CommunityToolkit.Aspire.EventStore](https://nuget.org/packages/CommunityToolkit.Aspire.EventStore) NuGet package in the client-consuming project, that is, the project for the application that uses the EventStore client.
+To get started with the .NET Aspire EventStore client integration, install the [📦 CommunityToolkit.Aspire.EventStore][client-nuget-link] NuGet package in the client-consuming project, that is, the project for the application that uses the EventStore client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -253,3 +253,11 @@ The .NET Aspire EventStore integration uses the configured client to perform a `
 - [EventStore](https://eventstore.com)
 - [EventStore Client](https://github.com/EventStore/EventStore-Client-Dotnet)
 - [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
+
+<!--
+TODO: Fix these links once NuGet packages are published.
+- https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.EventStore
+- https://nuget.org/packages/CommunityToolkit.Aspire.EventStore
+-->
+[hosting-nuget-link]: https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.EventStore
+[client-nuget-link]: https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.EventStore
