@@ -80,7 +80,7 @@ builder.AddSqlProject("mysqlproj")
 
 ### Deployment options support
 
-Define options that affect the behavior of package deployment.
+To define options that affect the behavior of package deployment, call the `WithConfigureDacDeployOptions` API:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -94,6 +94,12 @@ builder.AddSqlProject("mysqlproj")
 
 builder.Build().Run();
 ```
+
+The preceding code:
+
+- Adds a SQL server resource named `sql` and adds a `test` database resource to it.
+- Adds a SQL project resource named `mysqlproj` and then configures the <xref:Microsoft.SqlServer.Dac.DacDeployOptions>.
+- The SQL project resource depends on the database resource.
 
 ### Redeploy support
 
