@@ -9,7 +9,7 @@ uid: database/sql-server-integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[SQL Server](https://www.microsoft.com/en-us/sql-server) is a relational database management system developed by Microsoft. The .NET Aspire SQL Server integration enables you to connect to existing SQL Server instances or create new instances from .NET with the [`mcr.microsoft.com/mssql/server` container image](https://hub.docker.com/_/microsoft-mssql-server).
+[SQL Server](https://www.microsoft.com/sql-server) is a relational database management system developed by Microsoft. The .NET Aspire SQL Server integration enables you to connect to existing SQL Server instances or create new instances from .NET with the [`mcr.microsoft.com/mssql/server` container image](https://hub.docker.com/_/microsoft-mssql-server).
 
 ## Hosting integration
 
@@ -49,7 +49,7 @@ builder.AddSqlServerClient(connectionName: "database");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the SQL Server database resource in the app host project In other words, when you call `AddDatabase` and provide a name of `myDatabase` that same name should be used when calling `AddSqlServerClient`. For more information, see [Add SQL Server resource and database resource](#add-sql-server-resource-and-database-resource).
+> The `connectionName` parameter must match the name used when adding the SQL Server database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `database` that same name should be used when calling `AddSqlServerClient`. For more information, see [Add SQL Server resource and database resource](#add-sql-server-resource-and-database-resource).
 
 You can then retrieve the <xref:Microsoft.Data.SqlClient.SqlConnection> instance using dependency injection. For example, to retrieve the connection from an example service:
 
