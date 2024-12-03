@@ -78,6 +78,29 @@ builder.AddSqlProject("mysqlproj")
        .WithReference(sql);
 ```
 
+### Deployment options support
+
+To define options that affect the behavior of package deployment, call the `WithConfigureDacDeployOptions` API:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var sql = builder.AddSqlServer("sql")
+                 .AddDatabase("test");
+
+builder.AddSqlProject("mysqlproj")
+       .WithConfigureDacDeployOptions(options => options.IncludeCompositeObjects = true)
+       .WithReference(sql);
+
+builder.Build().Run();
+```
+
+The preceding code:
+
+- Adds a SQL server resource named `sql` and adds a `test` database resource to it.
+- Adds a SQL project resource named `mysqlproj` and then configures the <xref:Microsoft.SqlServer.Dac.DacDeployOptions>.
+- The SQL project resource depends on the database resource.
+
 ### Redeploy support
 
 If you make changes to your SQL Database project while the app host is running, you can use the `Redeploy` custom action on the .NET Aspire dashboard to redeploy your updates without having to restart the app host.

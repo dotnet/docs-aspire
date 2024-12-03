@@ -14,7 +14,7 @@ In this article, you learn how to use the .NET Aspire EventStore hosting integra
 
 ## Hosting integration
 
-To run the EventStore container, install the [📦 CommunityToolkit.Aspire.Hosting.EventStore](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.EventStore) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+To run the EventStore container, install the [📦 CommunityToolkit.Aspire.Hosting.EventStore][hosting-nuget-link] NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -92,13 +92,13 @@ Data bind mounts rely on the host machine's filesystem to persist the EventStore
 
 ### Add EventStore resource with log volume
 
-To add a log volume to the EventStore resource, call the `Aspire.Hosting.EventStoreBuilderExtensions.WithLogVolume` method on the EventStore resource:
+To add a log volume to the EventStore resource, call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithVolume*> extension method on the EventStore resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var eventstore = builder.AddEventStore("eventstore")
-                        .WithLogVolume();
+                        .WithVolume(name: "eventstore_logs", target: "/var/log/eventstore");
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(eventstore);
@@ -106,17 +106,19 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The data volume is used to persist the EventStore logs outside the lifecycle of its container. The data volume is mounted at the `/var/logs/eventstore` path in the EventStore container and when a `name` parameter isn't provided, the name is generated at random. For more information on data volumes and details on why they're preferred over [bind mounts](#add-eventstore-resource-with-log-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
+The data volume is used to persist the EventStore logs outside the lifecycle of its container. The data volume must be mounted at the `/var/log/eventstore` target path in the EventStore container and when a `name` parameter isn't provided, the name is generated at random. For more information on data volumes and details on why they're preferred over [bind mounts](#add-eventstore-resource-with-log-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
+
+For more information about EventStore logs location, see [EventStore Resources: Logs](https://developers.eventstore.com/server/v24.10/diagnostics/logs.html#logs-location).
 
 ### Add EventStore resource with log bind mount
 
-To add a log bind mount to the EventStore resource, call the `Aspire.Hosting.EventStoreBuilderExtensions.WithLogBindMount` method:
+To add a log bind mount to the EventStore resource, call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithBindMount*> extension method on the EventStore resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var eventstore = builder.AddEventStore("eventstore")
-                        .WithLogBindMount(source: @"C:\EventStore\Logs");
+                        .WithBindMount(@"C:\EventStore\Logs", "/var/log/eventstore");
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(eventstore);
@@ -126,11 +128,15 @@ builder.AddProject<Projects.ExampleProject>()
 
 [!INCLUDE [data-bind-mount-vs-volumes](../includes/data-bind-mount-vs-volumes.md)]
 
-Data bind mounts rely on the host machine's filesystem to persist the EventStore logs across container restarts. The data bind mount is mounted at the `C:\EventStore\Logs` on Windows (or `/EventStore/Logs` on Unix) path on the host machine in the EventStore container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
+Data bind mounts rely on the host machine's filesystem to persist the EventStore logs across container restarts. The data bind mount is mounted at the `C:\EventStore\Logs` on Windows (or `/EventStore/Logs` on Unix) path on the host machine in the EventStore container. The target path must be set to the log folder used by the EventStore container (`/var/log/eventstore`).
+
+For more information about EventStore logs location, see [EventStore Resources: Logs](https://developers.eventstore.com/server/v24.10/diagnostics/logs.html#logs-location).
+
+For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
 
 ## Client integration
 
-To get started with the .NET Aspire EventStore client integration, install the [📦 CommunityToolkit.Aspire.EventStore](https://nuget.org/packages/CommunityToolkit.Aspire.EventStore) NuGet package in the client-consuming project, that is, the project for the application that uses the EventStore client.
+To get started with the .NET Aspire EventStore client integration, install the [📦 CommunityToolkit.Aspire.EventStore][client-nuget-link] NuGet package in the client-consuming project, that is, the project for the application that uses the EventStore client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -247,3 +253,11 @@ The .NET Aspire EventStore integration uses the configured client to perform a `
 - [EventStore](https://eventstore.com)
 - [EventStore Client](https://github.com/EventStore/EventStore-Client-Dotnet)
 - [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
+
+<!--
+TODO: Fix these links once NuGet packages are published.
+- https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.EventStore
+- https://nuget.org/packages/CommunityToolkit.Aspire.EventStore
+-->
+[hosting-nuget-link]: https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.EventStore
+[client-nuget-link]: https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.EventStore

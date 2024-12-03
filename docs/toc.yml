@@ -269,6 +269,8 @@ items:
             href: community-toolkit/hosting-java.md
           - name: Node.js extensions
             href: community-toolkit/hosting-nodejs-extensions.md
+          - name: Python extensions
+            href: community-toolkit/hosting-python-extensions.md
           - name: Ollama
             href: community-toolkit/ollama.md
           - name: Meilisearch
