@@ -23,7 +23,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add SQL Server resource and database resource
 
-In your app host project, call <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*> to add and return a SQL Server resource builder. Chain a call to the returned resource build to <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*>, to add SQL Server database resource.
+In your app host project, call <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*> to add and return a SQL Server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*>, to add SQL Server database resource.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -34,7 +34,8 @@ var sql = builder.AddSqlServer("sql")
 var db = sql.AddDatabase("database");
 
 builder.AddProject<Projects.ExampleProject>()
-       .WithReference(db);
+       .WithReference(db)
+       .WaitFor(db);
 
 // After adding all resources, run the app...
 ```
@@ -72,7 +73,8 @@ var sql = builder.AddSqlServer("sql")
 var db = sql.AddDatabase("database");
 
 builder.AddProject<Projects.ExampleProject>()
-       .WithReference(db);
+       .WithReference(db)
+       .WaitFor(db);
 
 // After adding all resources, run the app...
 ```
@@ -95,7 +97,8 @@ var sql = builder.AddSqlServer("sql")
 var db = sql.AddDatabase("database");
 
 builder.AddProject<Projects.ExampleProject>()
-       .WithReference(db);
+       .WithReference(db)
+       .WaitFor(db);
 
 // After adding all resources, run the app...
 ```
@@ -117,7 +120,8 @@ var sql = builder.AddSqlServer("sql", password);
 var db = sql.AddDatabase("database");
 
 builder.AddProject<Projects.ExampleProject>()
-       .WithReference(db);
+       .WithReference(db)
+       .WaitFor(db);
 
 // After adding all resources, run the app...
 ```

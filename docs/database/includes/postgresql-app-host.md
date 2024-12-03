@@ -136,7 +136,7 @@ To add an init bind mount to the PostgreSQL server resource, call the <xref:Aspi
 var builder = DistributedApplication.CreateBuilder(args);
 
 var postgres = builder.AddPostgres("postgres")
-                      .WithInitBindMount(source: @"C:\PostgreSQL\Init");
+                      .WithInitBindMount(@"C:\PostgreSQL\Init");
 
 var postgresdb = postgres.AddDatabase("postgresdb");
 
@@ -146,7 +146,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The init bind mount relies on the host machine's filesystem to initialize the PostgreSQL server database with the containers _init_ folder. This folder is used for initialization, running any executable shell scripts or _.sql_ command files after the _postgres-data_ folder is created. The init bind mount is mounted at the `C:\PostgreSQL\Data` on Windows (or `/PostgreSQL/Data` on Unix) path on the host machine in the PostgreSQL server container.
+The init bind mount relies on the host machine's filesystem to initialize the PostgreSQL server database with the containers _init_ folder. This folder is used for initialization, running any executable shell scripts or _.sql_ command files after the _postgres-data_ folder is created. The init bind mount is mounted at the `C:\PostgreSQL\Init` on Windows (or `/PostgreSQL/Init` on Unix) path on the host machine in the PostgreSQL server container.
 
 ### Add PostgreSQL server resource with parameters
 
