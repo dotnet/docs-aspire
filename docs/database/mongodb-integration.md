@@ -52,7 +52,7 @@ builder.AddProject<Projects.ExampleProject>()
 ```
 
 > [!NOTE]
-> The MongoDB container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../../fundamentals/app-host-overview.md#container-resource-lifetime).
+> The MongoDB container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/app-host-overview.md#container-resource-lifetime).
 
 When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/mongo` image, it creates a new MongoDB instance on your local machine. A reference to your MongoDB server resource builder (the `mongo` variable) is used to add a database. The database is named `mongodb` and then added to the `ExampleProject`. The MongoDB server resource includes default credentials:
 
@@ -123,13 +123,13 @@ Data bind mounts rely on the host machine's filesystem to persist the MongoDB se
 
 ### Add MongoDB server resource with initialization data bind mount
 
-To add an initialization folder data bind mount to the MongoDB server resource, call the <xref:Aspire.Hosting.MongoDBBuilderExtensions.WithInitDataBindMount*> method:
+To add an initialization folder data bind mount to the MongoDB server resource, call the <xref:Aspire.Hosting.MongoDBBuilderExtensions.WithInitBindMount*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var mongo = builder.AddMongoDB("mongo")
-                   .WithInitDataBindMount(@"C:\MongoDB\Init");
+                   .WithInitBindMount(@"C:\MongoDB\Init");
 
 var mongodb = mongo.AddDatabase("mongodb");
 
