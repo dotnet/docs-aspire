@@ -174,6 +174,7 @@ dotnet new aspire-starter
 
 > [!TIP]
 > .NET Aspire templates default to using the latest .NET version, even when using an earlier version of the .NET CLI. To manually specify the .NET version, use the `--framework <tfm>` option, e.g. to create a basic [.NET Aspire app host](app-host-overview.md) project targeting .NET 8:
+>
 > ```dotnetcli
 > dotnet new aspire-apphost --framework net8.0
 > ```
