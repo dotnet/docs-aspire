@@ -9,7 +9,7 @@ uid: database/mongodb-integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[MongoDB](https://www.mongodb.com) is a NoSQL database that provides high performance, high availability, and easy scalability. The .NET Aspire MongoDB integration enables you to connect to existing MongoDB instances or create new instances from .NET with the [`docker.io/library/mongo` container image](https://hub.docker.com/_/mongo).
+[MongoDB](https://www.mongodb.com) is a NoSQL database that provides high performance, high availability, and easy scalability. The .NET Aspire MongoDB integration enables you to connect to existing MongoDB instances (including [MongoDB Atlas](https://mdb.link/atlas)) or create new instances from .NET with the [`docker.io/library/mongo` container image](https://hub.docker.com/_/mongo)
 
 ## Hosting integration
 
