@@ -6,11 +6,11 @@ ms.date: 08/12/2024
 
 # .NET Aspire Oracle Entity Framework Component
 
-In this article, you learn how to use the The .NET Aspire Oracle Entity Framework Core integration. The `Aspire.Oracle.EntityFrameworkCore` library is used to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> as a singleton in the DI container for connecting to Oracle databases. It also enables connection pooling, retries, health checks, logging and telemetry.
+In this article, you learn how to use the .NET Aspire Oracle Entity Framework Core integration. The `Aspire.Oracle.EntityFrameworkCore` library is used to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> as a singleton in the DI container for connecting to Oracle databases. It also enables connection pooling, retries, health checks, logging and telemetry.
 
 ## Get started
 
-You need an Oracle database and connection string for accessing the database. To get started with the The .NET Aspire Oracle Entity Framework Core integration, install the [📦 Aspire.Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Aspire.Oracle.EntityFrameworkCore) NuGet package in the consuming client project.
+You need an Oracle database and connection string for accessing the database. To get started with the .NET Aspire Oracle Entity Framework Core integration, install the [📦 Aspire.Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Aspire.Oracle.EntityFrameworkCore) NuGet package in the consuming client project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -172,13 +172,13 @@ builder.EnrichOracleDatabaseDbContext<MyDbContext>(
 
 [!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
 
-The The .NET Aspire Oracle Entity Framework Core integration registers a basic health check that checks the database connection given a `TContext`. The health check is enabled by default and can be disabled using the `DisableHealthChecks` property in the configuration.
+The .NET Aspire Oracle Entity Framework Core integration registers a basic health check that checks the database connection given a `TContext`. The health check is enabled by default and can be disabled using the `DisableHealthChecks` property in the configuration.
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
 ### Logging
 
-The The .NET Aspire Oracle Entity Framework Core integration uses the following log categories:
+The .NET Aspire Oracle Entity Framework Core integration uses the following log categories:
 
 - `Microsoft.EntityFrameworkCore.Database.Command.CommandCreated`
 - `Microsoft.EntityFrameworkCore.Database.Command.CommandExecuting`
@@ -187,13 +187,13 @@ The The .NET Aspire Oracle Entity Framework Core integration uses the following 
 
 ### Tracing
 
-The The .NET Aspire Oracle Entity Framework Core integration will emit the following tracing activities using OpenTelemetry:
+The .NET Aspire Oracle Entity Framework Core integration will emit the following tracing activities using OpenTelemetry:
 
 - OpenTelemetry.Instrumentation.EntityFrameworkCore
 
 ### Metrics
 
-The The .NET Aspire Oracle Entity Framework Core integration currently supports the following metrics:
+The .NET Aspire Oracle Entity Framework Core integration currently supports the following metrics:
 
 - Microsoft.EntityFrameworkCore
 
