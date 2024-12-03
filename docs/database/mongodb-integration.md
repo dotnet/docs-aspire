@@ -69,7 +69,7 @@ When the app host runs, the password is stored in the app host's secret store. I
 
 The name of the parameter is `mongo-password`, but really it's just formatting the resource name with a `-password` suffix. For more information, see [Safe storage of app secrets in development in ASP.NET Core](/aspnet/core/security/app-secrets) and [Add MongoDB server resource with parameters](#add-mongodb-server-resource-with-parameters).
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `mongodb`.
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `mongodb` and the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> instructs the app host to not start the dependant service until the `mongodb` resource is ready.
 
 > [!TIP]
 > If you'd rather connect to an existing MongoDB server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
@@ -106,9 +106,9 @@ To add a data bind mount to the MongoDB server resource, call the <xref:Aspire.H
 var builder = DistributedApplication.CreateBuilder(args);
 
 var mongo = builder.AddMongoDB("mongo")
-                   .WithDataVolume();
+                   .WithDataBindMount(@"C:\MongoDB\Data");
 
-var mongodb = mongo.WithDataBindMount(@"C:\MongoDB\Data");
+var mongodb = mongo.AddDatabase("mongodb");
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(mongodb)
