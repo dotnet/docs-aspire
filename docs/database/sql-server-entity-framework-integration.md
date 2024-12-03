@@ -1,26 +1,29 @@
 ---
-title: .NET Aspire SqlServer Entity Framework Core integration
-description: This article describes the .NET Aspire SQL Server Entity Framework Core integration.
-ms.topic: how-to
-ms.date: 08/12/2024
+title: .NET Aspire SQL Server Entity Framework Core integration
+description: Learn how to use the .NET Aspire SQL Server Entity Framework integration, which includes both hosting and client integrations.
+ms.date: 12/02/2024
+uid: database/sql-server-ef-core-integration
 ---
 
-# .NET Aspire SqlServer Entity Framework Core integration
+# .NET Aspire SQL Server Entity Framework Core integration
 
-In this article, you learn how to use the .NET Aspire SqlServer Entity Framework Core integration. The `Aspire.Microsoft.EntityFrameworkCore.SqlServer` library is used to:
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-- Registers [EntityFrameworkCore](/ef/core/) <xref:Microsoft.EntityFrameworkCore.DbContext> service for connecting to a SQL database.
-- Automatically configures the following:
-  - Connection pooling to efficiently managed HTTP requests and database connections
-  - Health checks, logging and telemetry to improve app monitoring and diagnostics
+[SQL Server](https://www.microsoft.com/sql-server) is a relational database management system developed by Microsoft. The .NET Aspire SQL Server Entity Framework Core integration enables you to connect to existing SQL Server instances or create new instances from .NET with the [`mcr.microsoft.com/mssql/server` container image](https://hub.docker.com/_/microsoft-mssql-server).
 
-## Prerequisites
+## Hosting integration
 
-- SQL database and connection string for accessing the database.
+[!INCLUDE [sql-app-host](includes/sql-app-host.md)]
 
-## Get started
+### Hosting integration health checks
 
-To get started with the .NET Aspire SQL Server Entity Framework Core integration, install the [📦 Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) NuGet package in the client-consuming project, i.e., the project for the application that uses the SQL Server Entity Framework Core client.
+The SQL Server hosting integration automatically adds a health check for the SQL Server resource. The health check verifies that the SQL Server is running and that a connection can be established to it.
+
+The hosting integration relies on the [📦 AspNetCore.HealthChecks.SqlServer](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer) NuGet package.
+
+## Client integration
+
+To get started with the .NET Aspire SQL Server Entity Framework Core integration, install the [📦 Aspire.Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.SqlServer) NuGet package in the client-consuming project, that is, the project for the application that uses the SQL Server Entity Framework Core client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -39,47 +42,54 @@ dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-## Example usage
+### Add SQL Server database context
 
-In the _:::no-loc text="Program.cs":::_ file of your integration-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension to register a `DbContext` for use via the dependency injection container.
+In the :::no-loc text="Program.cs"::: file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a <xref:Microsoft.EntityFrameworkCore.DbContext> for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
-builder.AddSqlServerDbContext<YourDbContext>("sqldb");
+builder.AddSqlServerDbContext<ExampleDbContext>(connectionName: "database");
 ```
 
-To retrieve `YourDbContext` object from a service:
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the SQL Server database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `database` that same name should be used when calling `AddSqlServerDbContext`. For more information, see [Add SQL Server resource and database resource](#add-sql-server-resource-and-database-resource).
+
+To retrieve `ExampleDbContext` object from a service:
 
 ```csharp
-public class ExampleService(YourDbContext client)
+public class ExampleService(ExampleDbContext context)
 {
-    // Use client...
+    // Use context...
 }
 ```
 
-## App host usage
+For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
 
-[!INCLUDE [sql-app-host](includes/sql-app-host.md)]
+### Add SQL Server database context with enrichment
+
+To enrich the `DbContext` with additional services, such as automatic retries, health checks, logging and telemetry, call the <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.EnrichSqlServerDbContext*> method:
 
 ```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var sql = builder.AddSqlServer("sql");
-var sqldb = sql.AddDatabase("sqldb");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(sqldb);
+builder.EnrichSqlServerDbContext<ExampleDbContext>(
+    connectionName: "database",
+    configureSettings: settings =>
+    {
+        settings.DisableRetry = false;
+        settings.CommandTimeout = 30 // seconds
+    });
 ```
 
-## Configuration
+The `settings` parameter is an instance of the <xref:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings> class.
+
+### Configuration
 
 The .NET Aspire SQL Server Entity Framework Core integration provides multiple configuration approaches and options to meet the requirements and conventions of your project.
 
-### Use connection string
+#### Use connection string
 
 When using a connection string from the `ConnectionStrings` configuration section, you provide the name of the connection string when calling `builder.AddSqlServerDbContext<TContext>()`:
 
 ```csharp
-builder.AddSqlServerDbContext<MyDbContext>("myConnection");
+builder.AddSqlServerDbContext<ExampleDbContext>("sql");
 ```
 
 The connection string is retrieved from the `ConnectionStrings` configuration section:
@@ -87,7 +97,7 @@ The connection string is retrieved from the `ConnectionStrings` configuration se
 ```json
 {
   "ConnectionStrings": {
-    "myConnection": "Data Source=myserver;Initial Catalog=master"
+    "sql": "Data Source=myserver;Initial Catalog=master"
   }
 }
 ```
@@ -96,7 +106,7 @@ The `EnrichSqlServerDbContext` won't make use of the `ConnectionStrings` configu
 
 For more information, see the [ConnectionString](/dotnet/api/system.data.sqlclient.sqlconnection.connectionstring#remarks).
 
-### Use configuration providers
+#### Use configuration providers
 
 The .NET Aspire SQL Server Entity Framework Core integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.EntityFrameworkCore.SqlServer.MicrosoftEntityFrameworkCoreSqlServerSettings> from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:Microsoft:EntityFrameworkCore:SqlServer` key. If you have set up your configurations in the `Aspire:Microsoft:EntityFrameworkCore:SqlServer` section you can just call the method without passing any parameter.
 
@@ -120,7 +130,7 @@ The following is an example of an _:::no-loc text="appsettings.json":::_ file th
 }
 ```
 
-### Use inline configurations
+#### Use inline configurations
 
 You can also pass the `Action<MicrosoftEntityFrameworkCoreSqlServerSettings>` delegate to set up some or all the options inline, for example to turn off the metrics:
 
@@ -131,7 +141,7 @@ builder.AddSqlServerDbContext<YourDbContext>(
         settings.DisableMetrics = true);
 ```
 
-### Configure multiple DbContext connections
+#### Configure multiple DbContext connections
 
 If you want to register more than one `DbContext` with different configuration, you can use `$"Aspire.Microsoft.EntityFrameworkCore.SqlServer:{typeof(TContext).Name}"` configuration section name. The json configuration would look like:
 
@@ -163,7 +173,7 @@ Then calling the `AddSqlServerDbContext` method with `AnotherDbContext` type par
 builder.AddSqlServerDbContext<AnotherDbContext>("another-sql");
 ```
 
-### Configuration options
+#### Configuration options
 
 Here are the configurable options with corresponding default values:
 
@@ -186,7 +196,7 @@ By default, the .NET Aspire Sql Server Entity Framework Core integration handles
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
-### Logging
+#### Logging
 
 The .NET Aspire SQL Server Entity Framework Core integration uses the following Log categories:
 
@@ -201,13 +211,13 @@ The .NET Aspire SQL Server Entity Framework Core integration uses the following 
 - `Microsoft.EntityFrameworkCore.Query`
 - `Microsoft.EntityFrameworkCore.Update`
 
-### Tracing
+#### Tracing
 
 The .NET Aspire SQL Server Entity Framework Core integration will emit the following Tracing activities using OpenTelemetry:
 
 - "OpenTelemetry.Instrumentation.EntityFrameworkCore"
 
-### Metrics
+#### Metrics
 
 The .NET Aspire SQL Server Entity Framework Core integration will emit the following metrics using OpenTelemetry:
 
@@ -222,6 +232,8 @@ The .NET Aspire SQL Server Entity Framework Core integration will emit the follo
   - `ec_Microsoft_E_execution_strategy_operation_failures_per_second`
   - `ec_Microsoft_EntityFramew_total_optimistic_concurrency_failures`
   - `ec_Microsoft_EntityF_optimistic_concurrency_failures_per_second`
+
+## See also
 
 - [Azure SQL Database documentation](/azure/azure-sql/)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
