@@ -98,14 +98,14 @@ builder.AddProject<Projects.Keycloak_Web>("webfrontend")
 // After adding all resources, run the app...
 ```
 
-The data volume is used to persist the Keycloak data outside the lifecycle of its container. The data volume is mounted at the `/opt/keycloak/data` path in the Keycloak container and when a `name` parameter isn't provided, the name is generated at random. For more information on data volumes and details on why they're preferred over [bind mounts](#add-mongodb-server-resource-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
+The data volume is used to persist the Keycloak data outside the lifecycle of its container. The data volume is mounted at the `/opt/keycloak/data` path in the Keycloak container and when a `name` parameter isn't provided, the name is generated at random. For more information on data volumes and details on why they're preferred over [bind mounts](#add-keycloak-resource-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
 
 > [!WARNING]
 > The admin credentials are stored in the data volume. When using a data volume and if the credentials change, it will not work until you delete the volume.
 
 ### Add Keycloak resource with data bind mount
 
-To add a data bind mount to the Keycloak resource, call the <xref:Aspire.Hosting.MongoDBBuilderExtensions.WithDataBindMount*> method:
+To add a data bind mount to the Keycloak resource, call the <xref:Aspire.Hosting.KeycloakResourceBuilderExtensions.WithDataBindMount*> method:
 
 ```csharp
 var keycloak = builder.AddKeycloak("keycloak", 8080)
