@@ -267,10 +267,10 @@ The preceding ASP.NET Core Blazor `Program` class:
 - Adds the `HttpContextAccessor` to the DI container with the <xref:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddHttpContextAccessor*> API.
 - Adds a custom `AuthorizationHandler` as a transient service to the DI container with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddTransient``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)> API.
 - Adds an <xref:System.Net.Http.HttpClient> to the `WeatherApiClient` service with the <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)> API and configuring it's base address with [service discovery](../service-discovery/overview.md) semantics that resolves to the `apiservice`.
-  - Chains a call to the <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryExtensions.AddHttpMessageHandler*> API to add a `AuthorizationHandler` to the `HttpClient` pipeline.
+  - Chains a call to the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> API to add a `AuthorizationHandler` to the `HttpClient` pipeline.
 - Adds authentication services to the DI container with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> API passing int the OpenId Connect default authentication scheme.
 - Calls <xref:Microsoft.Extensions.DependencyInjection.AspireKeycloakExtensions.AddKeycloakOpenIdConnect*> and configures the `serviceName` as `keycloak`, the `realm` as `WeatherShop`, and the `options` object with various settings.
-- Adds cascading authentication state to the Blazor app with the <xref:Microsoft.AspNetCore.Components.AuthorizationComponentServiceCollectionExtensions.AddCascadingAuthenticationState*> API.
+- Adds cascading authentication state to the Blazor app with the <xref:Microsoft.Extensions.DependencyInjection.CascadingAuthenticationStateServiceCollectionExtensions.AddCascadingAuthenticationState*> API.
 
 The final callout is the `MapLoginAndLogout` extension method that adds login and logout routes to the Blazor app. This is defined as follows:
 
