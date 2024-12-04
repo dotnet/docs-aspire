@@ -237,6 +237,8 @@ The preceding ASP.NET Core Minimal API `Program` class demonstrates:
 - Adds authorization services to the DI container with the <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder*> API.
 - Calls the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> API to require authorization on the `/weatherforecast` endpoint.
 
+For the complete sample, 
+
 ### Add OpenId Connect authentication
 
 In the _:::no-loc text="Program.cs":::_ file of your API-consuming project (for example, Blazor), call the <xref:Microsoft.Extensions.DependencyInjection.AspireKeycloakExtensions.AddKeycloakOpenIdConnect*> extension method to add OpenId Connect authentication, using a connection name, realm and any required OpenId Connect options:
@@ -261,6 +263,30 @@ You can set many other options via the `Action<OpenIdConnectOptions>? configureO
 To further exemplify the OpenId Connect authentication, consider the following example:
 
 :::code language="csharp" source="snippets/AspireApp/AspireApp.Web/Program.cs" highlight="21-22,24-30,32,34-45,47,70":::
+
+The preceding ASP.NET Core Blazor `Program` class:
+
+- Adds the `HttpContextAccessor` to the DI container with the <xref:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddHttpContextAccessor*> API.
+- Adds a custom `AuthorizationHandler` as a transient service to the DI container with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddTransient``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)> API.
+- Adds an <xref:System.Net.Http.HttpClient> to the `WeatherApiClient` service with the <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient``1(Microsoft.Extensions.DependencyInjection.IServiceCollection)> API and configuring it's base address with [service discovery](../service-discovery/overview.md) semantics that resolves to the `apiservice`.
+  - Chains a call to the <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryExtensions.AddHttpMessageHandler*> API to add a `AuthorizationHandler` to the `HttpClient` pipeline.
+- Adds authentication services to the DI container with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> API passing int the OpenId Connect default authentication scheme.
+- Calls <xref:Microsoft.Extensions.DependencyInjection.AspireKeycloakExtensions.AddKeycloakOpenIdConnect*> and configures the `serviceName` as `keycloak`, the `realm` as `WeatherShop`, and the `options` object with various settings.
+- Adds cascading authentication state to the Blazor app with the <xref:Microsoft.AspNetCore.Components.AuthorizationComponentServiceCollectionExtensions.AddCascadingAuthenticationState*> API.
+
+The final callout is the `MapLoginAndLogout` extension method that adds login and logout routes to the Blazor app. This is defined as follows:
+
+:::code language="csharp" source="snippets/AspireApp/AspireApp.Web/LoginLogoutEndpointRouteBuilderExtensions.cs":::
+
+The preceding code:
+
+- Maps a group for the `authentication` route and maps two endpoints for the `login` and `logout` routes:
+  - Maps a `GET` request to the `/login` route that's handler is the `OnLogin` method—this is an anonymous endpoint.
+  - Maps a `GET` request to the `/logout` route that's handler is the `OnLogout` method.
+
+The `AuthorizationHandler` is a custom handler that adds the `Bearer` header to the `HttpClient` request. The handler is defined as follows:
+
+:::code language="csharp" source="snippets/AspireApp/AspireApp.Web/AuthorizationHandler.cs":::
 
 ## See also
 
