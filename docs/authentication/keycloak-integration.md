@@ -237,8 +237,6 @@ The preceding ASP.NET Core Minimal API `Program` class demonstrates:
 - Adds authorization services to the DI container with the <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder*> API.
 - Calls the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> API to require authorization on the `/weatherforecast` endpoint.
 
-For the complete sample, 
-
 ### Add OpenId Connect authentication
 
 In the _:::no-loc text="Program.cs":::_ file of your API-consuming project (for example, Blazor), call the <xref:Microsoft.Extensions.DependencyInjection.AspireKeycloakExtensions.AddKeycloakOpenIdConnect*> extension method to add OpenId Connect authentication, using a connection name, realm and any required OpenId Connect options:
