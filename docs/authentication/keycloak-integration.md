@@ -163,8 +163,11 @@ To import a realm into Keycloak, call the <xref:Aspire.Hosting.KeycloakResourceB
 
 The realm import files are mounted at `/opt/keycloak/data/import` in the Keycloak container. Realm import files are JSON files that represent the realm configuration. For more information on realm import, see [Keycloak docs: Importing a realm](https://www.keycloak.org/docs/latest/server_admin/index.html#_import).
 
+<!-- markdownlint-disable MD012 -->
 As an example, the following JSON file could be added to the app host project in a _/Realms_ folder—to serve as a source realm configuration file:
 
+
+<!-- markdownlint-restore MD012 -->
 <!-- markdownlint-disable MD033 -->
 <details>
 <summary id="realm-json">Expand to view the example realm JSON.</summary>
@@ -201,7 +204,7 @@ dotnet add package Aspire.Keycloak.Authentication
 
 ---
 
-### JWT Bearer authentication usage example
+### Add JWT bearer authentication
 
 In the _:::no-loc text="Program.cs":::_ file of your ASP.NET Core API project, call the <xref:Microsoft.Extensions.DependencyInjection.AspireKeycloakExtensions.AddKeycloakJwtBearer*> extension method to add JwtBearer authentication, using a connection name, realm and any required JWT Bearer options:
 
@@ -209,33 +212,55 @@ In the _:::no-loc text="Program.cs":::_ file of your ASP.NET Core API project, c
 builder.Services.AddAuthentication()
                 .AddKeycloakJwtBearer(
                     serviceName: "keycloak",
-                    realm: "WeatherShop",
+                    realm: "api",
                     options =>
                     {
-                        options.Audience = "weather.api";
+                        options.Audience = "store.api";
                     });
 ```
 
 You can set many other options via the `Action<JwtBearerOptions> configureOptions` delegate.
 
-### OpenId Connect authentication usage example
+#### JWT bearer authentication example
+
+To further exemplify the JWT bearer authentication, consider the following example:
+
+:::code language="csharp" source="snippets/AspireApp/AspireApp.ApiService/Program.cs" highlight="12-20,22,49":::
+
+The preceding ASP.NET Core Minimal API `Program` class demonstrates:
+
+- Adding authentication services to the DI container with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> API.
+- Adding JWT bearer authentication with the <xref:Microsoft.Extensions.DependencyInjection.AspireKeycloakExtensions.AddKeycloakJwtBearer*> API and configuring:
+  - The `serviceName` as `keycloak`.
+  - The `realm` as `WeatherShop`.
+  - The `options` with the `Audience` set to `weather.api` and sets `RequireHttpsMetadata` to `false`.
+- Adds authorization services to the DI container with the <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder*> API.
+- Calls the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> API to require authorization on the `/weatherforecast` endpoint.
+
+### Add OpenId Connect authentication
 
 In the _:::no-loc text="Program.cs":::_ file of your API-consuming project (for example, Blazor), call the <xref:Microsoft.Extensions.DependencyInjection.AspireKeycloakExtensions.AddKeycloakOpenIdConnect*> extension method to add OpenId Connect authentication, using a connection name, realm and any required OpenId Connect options:
 
 ```csharp
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
                 .AddKeycloakOpenIdConnect(
-                    "keycloak", 
-                    realm: "WeatherShop", 
+                    serviceName: "keycloak",
+                    realm: "api",
                     options =>
                     {
-                        options.ClientId = "WeatherWeb";
+                        options.ClientId = "StoreWeb";
                         options.ResponseType = OpenIdConnectResponseType.Code;
-                        options.Scope.Add("weather:all");
+                        options.Scope.Add("store:all");
                     });
 ```
 
 You can set many other options via the `Action<OpenIdConnectOptions>? configureOptions` delegate.
+
+#### OpenId Connect authentication example
+
+To further exemplify the OpenId Connect authentication, consider the following example:
+
+:::code language="csharp" source="snippets/AspireApp/AspireApp.Web/Program.cs" highlight="21-22,24-30,32,34-45,47,70":::
 
 ## See also
 
