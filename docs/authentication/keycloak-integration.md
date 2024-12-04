@@ -163,15 +163,11 @@ To import a realm into Keycloak, call the <xref:Aspire.Hosting.KeycloakResourceB
 
 The realm import files are mounted at `/opt/keycloak/data/import` in the Keycloak container. Realm import files are JSON files that represent the realm configuration. For more information on realm import, see [Keycloak docs: Importing a realm](https://www.keycloak.org/docs/latest/server_admin/index.html#_import).
 
-As an example, the following JSON file could be added to the app host project in a _/Realms_ folder—to serve as a source realm configuration file.
+As an example, the following JSON file could be added to the app host project in a _/Realms_ folder—to serve as a source realm configuration file:
 
 <!-- markdownlint-disable MD033 -->
 <details>
-<summary id="realm-json">
-
-**Expand to view the example realm JSON.**
-
-</summary>
+<summary id="realm-json">Expand to view the example realm JSON.</summary>
 
 <p aria-labelledby="realm-json">
 
