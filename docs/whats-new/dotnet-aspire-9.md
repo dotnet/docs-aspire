@@ -151,7 +151,7 @@ builder.AddProject<Projects.WebApplication1>("store")
 builder.Build().Run();
 ```
 
-The preceding example adds a health check to the `catalog-api` resource. The app host waits for the health check to return a healthy status before starting the `store` resource. It determines that the resource is ready when the the `/health` endpoint returns an HTTP 200 status code.
+The preceding example adds a health check to the `catalog-api` resource. The app host waits for the health check to return a healthy status before starting the `store` resource. It determines that the resource is ready when the `/health` endpoint returns an HTTP 200 status code.
 
 While `store` is waiting for `catalog-api` to become healthy, the resources in the dashboard appear as:
 
