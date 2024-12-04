@@ -291,5 +291,6 @@ The `AuthorizationHandler` is a custom handler that adds the `Bearer` header to 
 ## See also
 
 - [Keycloak](https://www.keycloak.org/)
+- [.NET Aspire playground: Keycloak integration](https://github.com/dotnet/aspire/tree/01ed51919f8df692ececce51048a140615dc759d/playground/keycloak)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
