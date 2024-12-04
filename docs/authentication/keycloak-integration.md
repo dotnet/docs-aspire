@@ -237,6 +237,8 @@ The preceding ASP.NET Core Minimal API `Program` class demonstrates:
 - Adds authorization services to the DI container with the <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder*> API.
 - Calls the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> API to require authorization on the `/weatherforecast` endpoint.
 
+For a complete working sample, see [.NET Aspire playground: Keycloak integration](https://github.com/dotnet/aspire/tree/01ed51919f8df692ececce51048a140615dc759d/playground/keycloak).
+
 ### Add OpenId Connect authentication
 
 In the _:::no-loc text="Program.cs":::_ file of your API-consuming project (for example, Blazor), call the <xref:Microsoft.Extensions.DependencyInjection.AspireKeycloakExtensions.AddKeycloakOpenIdConnect*> extension method to add OpenId Connect authentication, using a connection name, realm and any required OpenId Connect options:
@@ -282,9 +284,22 @@ The preceding code:
   - Maps a `GET` request to the `/login` route that's handler is the `OnLogin` method—this is an anonymous endpoint.
   - Maps a `GET` request to the `/logout` route that's handler is the `OnLogout` method.
 
-The `AuthorizationHandler` is a custom handler that adds the `Bearer` header to the `HttpClient` request. The handler is defined as follows:
+The `AuthorizationHandler` is a custom handler that adds the `Bearer` token to the `HttpClient` request. The handler is defined as follows:
 
 :::code language="csharp" source="snippets/AspireApp/AspireApp.Web/AuthorizationHandler.cs":::
+
+The preceding code:
+
+- Is a subclass of the <xref:System.Net.Http.DelegatingHandler> class.
+- Injects the `IHttpContextAccessor` service in the primary constructor.
+- Overrides the `SendAsync` method to add the `Bearer` token to the `HttpClient` request:
+  - The `access_token` is retrieved from the `HttpContext` and added to the `Authorization` header.
+
+To help visualize the auth flow, consider the following sequence diagram:
+
+:::image type="content" source="media/auth-flow-diagram.png" lightbox="media/auth-flow-diagram.png" alt-text="Authentication flow diagam—demonstrating a user request for an access token, Keycloak returning a JWT, and the token being forward to the API.":::
+
+For a complete working sample, see [.NET Aspire playground: Keycloak integration](https://github.com/dotnet/aspire/tree/01ed51919f8df692ececce51048a140615dc759d/playground/keycloak).
 
 ## See also
 
