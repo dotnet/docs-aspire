@@ -1,7 +1,7 @@
 ---
 title: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core
 description: Learn how to connect an ASP.NET Core app to to SQL Server using .NET Aspire and Entity Framework Core.
-ms.date: 11/08/2024
+ms.date: 12/02/2024
 ms.topic: tutorial
 ---
 
@@ -96,7 +96,7 @@ For more information about creating forms in Blazor, see [ASP.NET Core Blazor fo
 
 The _AspireSQLEFCore.AppHost_ project is the orchestrator for your app. It's responsible for connecting and configuring the different projects and services of your app. The orchestrator should be set as the startup project.
 
-Add the [.NET Aspire Hosting Sql Server](sql-server-entity-framework-integration.md#app-host-usage) NuGet package to your _AspireStorage.AppHost_ project:
+Add the [.NET Aspire Hosting Sql Server](sql-server-entity-framework-integration.md#hosting-integration) NuGet package to your _AspireStorage.AppHost_ project:
 
 ```dotnetcli
 dotnet add package Aspire.Hosting.SqlServer
