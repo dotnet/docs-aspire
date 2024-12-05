@@ -13,6 +13,7 @@ builder.AddAzureSearch("search");
 builder.AddAzureServiceBus("service-bus");
 builder.AddAzureSignalR("signalr");
 builder.AddAzureSqlServer("sql");
+builder.AddAzureStorage("storage");
 builder.AddAzureStorage("blob-storage").AddBlobs("blobs");
 builder.AddAzureStorage("queue-storage").AddQueues("queues");
 builder.AddAzureStorage("table-storage").AddTables("tables");

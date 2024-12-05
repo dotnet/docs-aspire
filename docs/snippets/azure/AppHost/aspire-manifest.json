@@ -1,42 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/aspire-8.0.json",
   "resources": {
-    "blob-storage": {
-      "type": "azure.bicep.v0",
-      "path": "blob-storage.module.bicep",
-      "params": {
-        "principalId": "",
-        "principalType": ""
-      }
-    },
-    "blobs": {
-      "type": "value.v0",
-      "connectionString": "{blob-storage.outputs.blobEndpoint}"
-    },
-    "queue-storage": {
-      "type": "azure.bicep.v0",
-      "path": "queue-storage.module.bicep",
-      "params": {
-        "principalId": "",
-        "principalType": ""
-      }
-    },
-    "queues": {
-      "type": "value.v0",
-      "connectionString": "{queue-storage.outputs.queueEndpoint}"
-    },
-    "table-storage": {
-      "type": "azure.bicep.v0",
-      "path": "table-storage.module.bicep",
-      "params": {
-        "principalId": "",
-        "principalType": ""
-      }
-    },
-    "tables": {
-      "type": "value.v0",
-      "connectionString": "{table-storage.outputs.tableEndpoint}"
-    },
     "config": {
       "type": "azure.bicep.v0",
       "connectionString": "{config.outputs.appConfigEndpoint}",
@@ -147,6 +111,50 @@
         "principalId": "",
         "principalName": ""
       }
+    },
+    "storage": {
+      "type": "azure.bicep.v0",
+      "path": "storage.module.bicep",
+      "params": {
+        "principalId": "",
+        "principalType": ""
+      }
+    },
+    "blob-storage": {
+      "type": "azure.bicep.v0",
+      "path": "blob-storage.module.bicep",
+      "params": {
+        "principalId": "",
+        "principalType": ""
+      }
+    },
+    "blobs": {
+      "type": "value.v0",
+      "connectionString": "{blob-storage.outputs.blobEndpoint}"
+    },
+    "queue-storage": {
+      "type": "azure.bicep.v0",
+      "path": "queue-storage.module.bicep",
+      "params": {
+        "principalId": "",
+        "principalType": ""
+      }
+    },
+    "queues": {
+      "type": "value.v0",
+      "connectionString": "{queue-storage.outputs.queueEndpoint}"
+    },
+    "table-storage": {
+      "type": "azure.bicep.v0",
+      "path": "table-storage.module.bicep",
+      "params": {
+        "principalId": "",
+        "principalType": ""
+      }
+    },
+    "tables": {
+      "type": "value.v0",
+      "connectionString": "{table-storage.outputs.tableEndpoint}"
     },
     "web-pub-sub": {
       "type": "azure.bicep.v0",

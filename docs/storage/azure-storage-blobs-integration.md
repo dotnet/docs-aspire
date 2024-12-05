@@ -2,16 +2,48 @@
 title: .NET Aspire Azure Blob Storage integration
 description: This article describes the .NET Aspire Azure Blob Storage integration features and capabilities.
 ms.topic: how-to
-ms.date: 08/12/2024
+ms.date: 12/05/2024
+uid: storage/azure-blob-storage-integration
 ---
 
 # .NET Aspire Azure Blob Storage integration
 
-In this article, you learn how to use the .NET Aspire Azure Blob Storage integration. The `Aspire.Azure.Storage.Blobs` library is used to register a <xref:Azure.Storage.Blobs.BlobServiceClient> in the DI container for connecting to Azure Blob Storage. It also enables corresponding health checks, logging and telemetry.
+[Azure Blob Storage](https://azure.microsoft.com/services/storage/blobs/) is a service for storing large amounts of unstructured data. The .NET Aspire Azure Blob Storage integration enables you to connect to existing Azure Blob Storage instances or create new instances from .NET applications.
 
-## Get started
+## Hosting integration
 
-To get started with the .NET Aspire Azure Blob Storage integration, install the [📦 Aspire.Azure.Storage.Blobs](https://www.nuget.org/packages/Aspire.Azure.Storage.Blobs) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Blob Storage client.
+[!INCLUDE [storage-app-host](includes/storage-app-host.md)]
+
+### Add Azure Blob Storage resource
+
+In your app host project, register the Azure Blob Storage integration and consume the service using the following methods, such as <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A>:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var blobs = builder.AddAzureStorage("storage")
+                   .RunAsEmulator();
+                   .AddBlobs("blobs");
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(blobs)
+       .WaitFor(blobs);
+
+// After adding all resources, run the app...
+```
+
+The preceding code:
+
+- Adds an Azure Storage resource named `storage`.
+- Chains a call to <xref:Aspire.Hosting.AzureStorageExtensions.RunAsEmulator*> to configure the storage resource to run locally using an emulator. The emulator in this case is [Azurite](/azure/storage/common/storage-use-azurite).
+- Adds a blob container named `blobs` to the storage resource.
+- Adds the `storage` resource to the `ExampleProject` and waits for it to be ready before starting the project.
+
+[!INCLUDE [storage-hosting-health-checks](includes/storage-hosting-health-checks.md)]
+
+## Client integration
+
+To get started with the .NET Aspire Azure Blob Storage client integration, install the [📦 Aspire.Azure.Storage.Blobs](https://www.nuget.org/packages/Aspire.Azure.Storage.Blobs) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure Blob Storage client. The Azure Blob Storage client integration registers a <xref:Azure.Storage.Blobs.BlobServiceClient> instance that you can use to interact with Azure Blob Storage.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -28,11 +60,9 @@ dotnet add package Aspire.Azure.Storage.Blobs
 
 ---
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+### Add Azure Blob Storage client
 
-## Example usage
-
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireBlobStorageExtensions.AddAzureBlobClient%2A> extension to register a `BlobServiceClient` for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireBlobStorageExtensions.AddAzureBlobClient%2A> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a `BlobServiceClient` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddAzureBlobClient("blobs");
@@ -47,48 +77,11 @@ public class ExampleService(BlobServiceClient client)
 }
 ```
 
-## App host usage
-
-To add Azure Storage hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
-
-### [.NET CLI](#tab/dotnet-cli)
-
-```dotnetcli
-dotnet add package Aspire.Hosting.Azure.Storage
-```
-
-### [PackageReference](#tab/package-reference)
-
-```xml
-<PackageReference Include="Aspire.Hosting.Azure.Storage"
-                  Version="*" />
-```
-
----
-
-In your app host project, register the Azure Blob Storage integration and consume the service using the following methods, such as <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A>:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var blobs = builder.AddAzureStorage("storage")
-                   .AddBlobs("blobs");
-
-var exampleProject = builder.AddProject<Projects.ExampleProject>()
-                            .WithReference(blobs);
-```
-
-The <xref:Aspire.Hosting.AzureStorageExtensions.AddBlobs%2A> method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:blobs` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named blobs in the `ExampleProject` project. In the _:::no-loc text="Program.cs":::_ file of `ExampleProject`, the connection can be consumed using:
-
-```csharp
-builder.AddAzureBlobClient("blobs");
-```
-
-## Configuration
+### Configuration
 
 The .NET Aspire Azure Blob Storage integration provides multiple options to configure the `BlobServiceClient` based on the requirements and conventions of your project.
 
-### Use a connection string
+#### Use a connection string
 
 When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddAzureBlobClient`:
 
@@ -98,7 +91,7 @@ builder.AddAzureBlobClient("blobs");
 
 And then the connection string will be retrieved from the `ConnectionStrings` configuration section. Two connection formats are supported:
 
-#### Service URI
+##### Service URI
 
 The recommended approach is to use a `ServiceUri`, which works with the <xref:Aspire.Azure.Storage.Blobs.AzureStorageBlobsSettings.Credential?displayProperty=nameWithType> property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential?displayProperty=fullName> is used.
 
@@ -110,7 +103,7 @@ The recommended approach is to use a `ServiceUri`, which works with the <xref:As
 }
 ```
 
-#### Connection string
+##### Connection string
 
 Alternatively, an [Azure Storage connection string](/azure/storage/common/storage-configure-connection-string) can be used.
 
@@ -122,7 +115,7 @@ Alternatively, an [Azure Storage connection string](/azure/storage/common/storag
 }
 ```
 
-### Use configuration providers
+#### Use configuration providers
 
 The .NET Aspire Azure Blob Storage integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Storage.Blobs.AzureStorageBlobsSettings> and <xref:Azure.Storage.Blobs.BlobClientOptions> from configuration by using the `Aspire:Azure:Storage:Blobs` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
@@ -146,7 +139,7 @@ The .NET Aspire Azure Blob Storage integration supports <xref:Microsoft.Extensio
 }
 ```
 
-### Use inline delegates
+#### Use inline delegates
 
 You can also pass the `Action<AzureStorageBlobsSettings> configureSettings` delegate to set up some or all the options inline, for example to configure health checks:
 
@@ -166,12 +159,14 @@ builder.AddAzureBlobClient(
             static options => options.Diagnostics.ApplicationId = "myapp"));
 ```
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+### Client integration health checks
 
-The .NET Aspire Azure Blob Storage integration handles the following:
+By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-- Adds the `AzureBlobStorageHealthCheck` health check, which attempts to connect to and query blob storage
-- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
+The .NET Aspire Azure Blob Storage integration:
+
+- Adds the health check when <xref:Aspire.Azure.Storage.Blobs.AzureStorageBlobsSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the Azure Blob Storage.
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
@@ -186,7 +181,7 @@ The .NET Aspire Azure Blob Storage integration uses the following log categories
 
 The .NET Aspire Azure Blob Storage integration will emit the following tracing activities using OpenTelemetry:
 
-- "Azure.Storage.Blobs.BlobContainerClient"
+- `Azure.Storage.Blobs.BlobContainerClient`
 
 ### Metrics
 
