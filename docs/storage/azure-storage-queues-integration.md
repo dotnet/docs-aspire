@@ -37,6 +37,22 @@ The preceding code:
 - Adds a queue named `queues` to the storage resource.
 - Adds the `storage` resource to the `ExampleProject` and waits for it to be ready before starting the project.
 
+#### Azure Queue Storage Bicep
+
+When you add an Azure Queue Storage resource to your app host project, .NET Aspire generates the following Bicep:
+
+<!-- markdownlint-disable MD033 -->
+<br/>
+<details>
+<summary id="queue-storage-bicep"><strong>Toggle Azure Queue Storage Bicep.</strong></summary>
+<p aria-labelledby="queue-storage-bicep">
+
+:::code language="bicep" source="../snippets/azure/AppHost/queue-storage.module.bicep":::
+
+</p>
+</details>
+<!-- markdownlint-enable MD033 -->
+
 [!INCLUDE [storage-hosting-health-checks](includes/storage-hosting-health-checks.md)]
 
 ## Client integration

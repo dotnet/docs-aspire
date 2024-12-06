@@ -40,6 +40,22 @@ The preceding code:
 - Adds a blob container named `blobs` to the storage resource.
 - Adds the `storage` resource to the `ExampleProject` and waits for it to be ready before starting the project.
 
+#### Azure Blob Storage Bicep
+
+When you add an Azure Blob Storage resource to your app host project, .NET Aspire generates the following Bicep:
+
+<!-- markdownlint-disable MD033 -->
+<br/>
+<details>
+<summary id="blob-storage-bicep"><strong>Toggle Azure Blob Storage Bicep.</strong></summary>
+<p aria-labelledby="blob-storage-bicep">
+
+:::code language="bicep" source="../snippets/azure/AppHost/blob-storage.module.bicep":::
+
+</p>
+</details>
+<!-- markdownlint-enable MD033 -->
+
 [!INCLUDE [storage-hosting-health-checks](includes/storage-hosting-health-checks.md)]
 
 ## Client integration

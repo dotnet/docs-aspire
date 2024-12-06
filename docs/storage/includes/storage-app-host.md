@@ -58,7 +58,7 @@ If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a d
 <!-- markdownlint-disable MD033 -->
 <br/>
 <details>
-<summary id="storage-bicep"><strong>Toggle Azure Storage bicep.</strong></summary>
+<summary id="storage-bicep"><strong>Toggle Azure Storage Bicep.</strong></summary>
 <p aria-labelledby="storage-json">
 
 :::code language="bicep" source="../../snippets/azure/AppHost/storage.module.bicep":::
