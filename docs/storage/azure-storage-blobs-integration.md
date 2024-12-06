@@ -167,7 +167,7 @@ You can also pass the `Action<AzureStorageBlobsSettings> configureSettings` dele
 ```csharp
 builder.AddAzureBlobClient(
     "blobs",
-    static settings => settings.DisableHealthChecks  = true);
+    settings => settings.DisableHealthChecks  = true);
 ```
 
 You can also set up the <xref:Azure.Storage.Blobs.BlobClientOptions> using `Action<IAzureClientBuilder<BlobServiceClient, BlobClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureBlobClient` method. For example, to set the first part of user-agent headers for all requests issues by this client:
@@ -175,9 +175,9 @@ You can also set up the <xref:Azure.Storage.Blobs.BlobClientOptions> using `Acti
 ```csharp
 builder.AddAzureBlobClient(
     "blobs",
-    static configureClientBuilder: clientBuilder =>
+    configureClientBuilder: clientBuilder =>
         clientBuilder.ConfigureOptions(
-            static options => options.Diagnostics.ApplicationId = "myapp"));
+            options => options.Diagnostics.ApplicationId = "myapp"));
 ```
 
 ### Client integration health checks

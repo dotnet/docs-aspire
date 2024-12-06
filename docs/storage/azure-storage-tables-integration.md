@@ -128,7 +128,7 @@ You can also pass the `Action<AzureDataTablesSettings> configureSettings` delega
 ```csharp
 builder.AddAzureTableClient(
     "tables",
-    static settings => settings.ServiceUri = new Uri("YOUR_SERVICEURI"));
+    settings => settings.ServiceUri = new Uri("YOUR_SERVICEURI"));
 ```
 
 You can also set up the <xref:Azure.Data.Tables.TableClientOptions> using `Action<IAzureClientBuilder<TableServiceClient, TableClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureTableClient` method. For example, to set the `TableServiceClient` ID to identify the client:
@@ -136,9 +136,9 @@ You can also set up the <xref:Azure.Data.Tables.TableClientOptions> using `Actio
 ```csharp
 builder.AddAzureTableClient(
     "tables",
-    static configureClientBuilder: clientBuilder =>
+    configureClientBuilder: clientBuilder =>
         clientBuilder.ConfigureOptions(
-            static options => options.EnableTenantDiscovery = true));
+            options => options.EnableTenantDiscovery = true));
 ```
 
 ### Client integration health checks

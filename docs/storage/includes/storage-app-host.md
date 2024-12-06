@@ -153,7 +153,7 @@ The port that they're listening on is dynamic by default. To configure the endpo
 var builder = DistributedApplication.CreateBuilder(args);
 
 var storage = builder.AddAzureStorage("storage").RunAsEmulator(
-                     static azurite =>
+                     azurite =>
                      {
                          azurite.WithBlobPort("blob", 27000)
                                 .WithQueuePort("queue", 27001)
@@ -173,7 +173,7 @@ To configure the Azurite container with a persistent lifetime, call the <xref:As
 var builder = DistributedApplication.CreateBuilder(args);
 
 var storage = builder.AddAzureStorage("storage").RunAsEmulator(
-                     static azurite =>
+                     azurite =>
                      {
                          azurite.WithLifetime(ContainerLifetime.Persistent);
                      });
@@ -191,7 +191,7 @@ To add a data volume to the Azure Storage emulator resource, call the <xref:Aspi
 var builder = DistributedApplication.CreateBuilder(args);
 
 var storage = builder.AddAzureStorage("storage").RunAsEmulator(
-                     static azurite =>
+                     azurite =>
                      {
                          azurite.WithDataVolume();
                      });
@@ -209,7 +209,7 @@ To add a data bind mount to the Azure Storage emulator resource, call the <xref:
 var builder = DistributedApplication.CreateBuilder(args);
 
 var storage = builder.AddAzureStorage("storage").RunAsEmulator(
-                     static azurite =>
+                     azurite =>
                      {
                          azurite.WithDataBindMount(@"C:\Azurite\Data");
                      });
