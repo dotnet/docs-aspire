@@ -141,9 +141,11 @@ There are various configurations available to container resources, for example, 
 
 By default, the Azurite container exposes the following endpoints:
 
-- `blob`: Targeting port `10000`.
-- `queue`: Targeting port `10001`.
-- `table`: Targeting port `10002`.
+| Endpoint | Target port |
+|----------|-------------|
+| `blob`   | 10000       |
+| `queue`  | 10001       |
+| `table`  | 10002       |
 
 The port that they're listening on is dynamic by default. To configure the endpoint ports, chain calls on the container resource builder provided by the `RunAsEmulator` method as shown in the following example:
 
@@ -218,3 +220,17 @@ var storage = builder.AddAzureStorage("storage").RunAsEmulator(
 [!INCLUDE [data-bind-mount-vs-volumes](../../includes/data-bind-mount-vs-volumes.md)]
 
 Data bind mounts rely on the host machine's filesystem to persist the Azurite data across container restarts. The data bind mount is mounted at the `C:\Azurite\Data` on Windows (or `/Azurite/Data` on Unix) path on the host machine in the Azurite container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
+
+### Connect to storage resources
+
+When the .NET Aspire app host runs, the storage resources can be accessed by external tools, such as the [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/). If your storage resource is running locally using Azurite, it will automatically be picked up by the Azure Storage Explorer.
+
+To connect to the storage resource from Azure Storage Explorer, follow these steps:
+
+1. Run the .NET Aspire app host.
+1. Open the Azure Storage Explorer.
+1. View the **Explorer** pane.
+1. Select the **Refresh all** link to refresh the list of storage accounts.
+1. Look under the **Emulator & Attached** node you should see a storage account with your resource's name as a prefix:
+
+:::image type="content" source="../media/azure-storage-explorer.png" lightbox="../media/azure-storage-explorer.png" alt-text="Azure Storage Explorer: Azurite storage resource discovered.":::
