@@ -133,7 +133,7 @@ When .NET Aspire adds a container to the app host, as shown in the preceding exa
 
 #### Configure Azurite container
 
-There are various configures available to container resources, for example, you can configure the container's ports, environment variables, and more.
+There are various configurations available to container resources, for example, you can configure the container's ports, environment variables, it's [lifetime](../../fundamentals/app-host-overview.md#container-resource-lifetime), and more.
 
 ##### Configure Azurite container ports
 
@@ -155,9 +155,29 @@ var storage = builder.AddAzureStorage("storage").RunAsEmulator(
                                 .WithQueuePort("queue", 27001)
                                 .WithTablePort("table", 27002);
                      });
+
+// After adding all resources, run the app...
 ```
 
 The preceding code configures the Azurite container's existing `blob`, `queue`, and `table` endpoints to listen on ports `27000`, `27001`, and `27002`, respectively.
+
+##### Configure Azurite container with persistent lifetime
+
+To configure the Azurite container with a persistent lifetime, call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithLifetime*> method on the Azurite container resource and pass <xref:Aspire.Hosting.ApplicationModel.ContainerLifetime.Persistent?displayProperty=nameWithType>:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var storage = builder.AddAzureStorage("storage").RunAsEmulator(
+                     static azurite =>
+                     {
+                         azurite.WithLifetime(ContainerLifetime.Persistent);
+                     });
+
+// After adding all resources, run the app...
+```
+
+For more information, see [Container resource lifetime](../../fundamentals/app-host-overview.md#container-resource-lifetime).
 
 ##### Configure Azurite container with data volume
 
