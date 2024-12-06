@@ -8,6 +8,8 @@ uid: storage/azure-blob-storage-integration
 
 # .NET Aspire Azure Blob Storage integration
 
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
+
 [Azure Blob Storage](https://azure.microsoft.com/services/storage/blobs/) is a service for storing large amounts of unstructured data. The .NET Aspire Azure Blob Storage integration enables you to connect to existing Azure Blob Storage instances or create new instances from .NET applications.
 
 ## Hosting integration
