@@ -50,7 +50,7 @@ var storage = builder.AddAzureStorage("storage");
 When you add an `AzureStorageResource` to the app host, it exposes other useful APIS to add Azure Blob, Queue, and Table storage resources. In other words, you must add an `AzureStorageResource` before adding any of the other storage resources.
 
 > [!IMPORTANT]
-> When you call `AddAzureStorage`, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location.
+> When you call <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location.
 
 #### Generated provisioning Bicep
 
@@ -68,7 +68,7 @@ If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a d
 </details>
 <!-- markdownlint-enable MD033 -->
 
-The preceding Bicep is a module that provisions an Azure Storage account and it defines several default resources:
+The preceding Bicep is a module that provisions an Azure Storage account with the following defaults:
 
 - `kind`: The kind of storage account. The default is `StorageV2`.
 - `sku`: The SKU of the storage account. The default is `Standard_GRS`.
