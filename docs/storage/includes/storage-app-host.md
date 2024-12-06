@@ -37,7 +37,6 @@ In your app host project, call <xref:Aspire.Hosting.AzureStorageExtensions.AddAz
 var builder = DistributedApplication.CreateBuilder(args);
 
 var storage = builder.AddAzureStorage("storage");
-
 // An Azure Storage resource is required to add any of the following:
 //
 // - Azure Blob storage resource.
@@ -47,7 +46,7 @@ var storage = builder.AddAzureStorage("storage");
 // After adding all resources, run the app...
 ```
 
-When you add an `AzureStorageResource` to the app host, it exposes other useful APIS to add Azure Blob, Queue, and Table storage resources. In other words, you must add an `AzureStorageResource` before adding any of the other storage resources.
+When you add an `AzureStorageResource` to the app host, it exposes other useful APIs to add Azure Blob, Queue, and Table storage resources. In other words, you must add an `AzureStorageResource` before adding any of the other storage resources.
 
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location.
@@ -86,6 +85,35 @@ In addition to the storage account, it also provisions a blob container. The fol
 
 The generated Bicep is a starting point and can be customized to meet your specific requirements. For more information on provisioning, see [Local Azure provisioning](../../deployment/azure/local-provisioning.md).
 
+### Connect to an existing Azure Storage account
+
+You might have an existing Azure Storage account that you want to connect to. Instead of representing a new Azure Storage resource, you can add a connection string to the app host. To add a connection to an existing Azure Storage account, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> method:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var blobs = builder.AddConnectionString("blobs");
+
+builder.AddProject<Projects.WebApplication>("web")
+       .WithReference(blobs);
+
+// After adding all resources, run the app...
+```
+
+[!INCLUDE [connection-strings-alert](../../includes/connection-strings-alert.md)]
+
+The connection string is stored in the app host's secret store. It's added to the `ConnectionStrings` section of the app host configuration and injected as an environment variable into all dependent resource, for example:
+
+```json
+{
+    "ConnectionStrings": {
+        "blobs": "<THE_CONNECTION_STRING>"
+    }
+}
+```
+
+The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.IConfiguration.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"blobs"`.
+
 ### Add Azure Storage emulator resource
 
 To add an Azure Storage emulator resource, chain a call on an `IResourceBuilder<AzureStorageResource>` to the <xref:Aspire.Hosting.AzureStorageExtensions.RunAsEmulator*> API:
@@ -103,7 +131,35 @@ When you call `RunAsEmulator`, it configures your storage resources to run local
 
 When .NET Aspire adds a container to the app host, as shown in the preceding example with the `mcr.microsoft.com/azure-storage/azurite` image, it creates a new Azurite instance on your local machine.
 
-### Add Azure Storage emulator resource with data volume
+#### Configure Azurite container
+
+There are various configures available to container resources, for example, you can configure the container's ports, environment variables, and more.
+
+##### Configure Azurite container ports
+
+By default, the Azurite container exposes the following endpoints:
+
+- `blob`: Targeting port `10000`.
+- `queue`: Targeting port `10001`.
+- `table`: Targeting port `10002`.
+
+The port that they're listening on is dynamic, but can be configured by chaining calls on the container resource builder provided by the `RunAsEmulator` method:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var storage = builder.AddAzureStorage("storage").RunAsEmulator(
+                     static azurite =>
+                     {
+                         azurite.WithBlobPort("blob", 27000)
+                                .WithQueuePort("queue", 27001)
+                                .WithTablePort("table", 27002);
+                     });
+```
+
+The preceding code configures the Azurite container's existing `blob`, `queue`, and `table` endpoints to listen on ports `27000`, `27001`, and `27002`, respectively.
+
+##### Configure Azurite container with data volume
 
 To add a data volume to the Azure Storage emulator resource, call the <xref:Aspire.Hosting.AzureStorageExtensions.WithDataVolume*> method on the Azure Storage emulator resource:
 
@@ -121,7 +177,7 @@ var storage = builder.AddAzureStorage("storage").RunAsEmulator(
 
 The data volume is used to persist the Azurite data outside the lifecycle of its container. The data volume is mounted at the `/data` path in the Azurite container and when a `name` parameter isn't provided, the name is formatted as `.azurite/{resource name}`. For more information on data volumes and details on why they're preferred over [bind mounts](#add-azure-storage-emulator-resource-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
 
-### Add Azure Storage emulator resource with data bind mount
+##### Configure Azurite container with data bind mount
 
 To add a data bind mount to the Azure Storage emulator resource, call the <xref:Aspire.Hosting.AzureStorageExtensions.WithDataBindMount*> method:
 
