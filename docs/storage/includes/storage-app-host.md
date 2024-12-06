@@ -59,8 +59,9 @@ If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a d
 When you add an Azure Storage resource, the following Bicep is generated:
 
 <!-- markdownlint-disable MD033 -->
+<br/>
 <details>
-<summary id="storage-bicep">Expand the Azure Storage bicep.</summary>
+<summary id="storage-bicep"><strong>Expand the Azure Storage bicep.</strong></summary>
 <p aria-labelledby="storage-json">
 
 :::code language="bicep" source="../../snippets/azure/AppHost/storage.module.bicep":::
