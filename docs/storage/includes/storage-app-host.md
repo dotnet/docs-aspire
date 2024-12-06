@@ -231,6 +231,10 @@ To connect to the storage resource from Azure Storage Explorer, follow these ste
 1. Open the Azure Storage Explorer.
 1. View the **Explorer** pane.
 1. Select the **Refresh all** link to refresh the list of storage accounts.
-1. Look under the **Emulator & Attached** node you should see a storage account with your resource's name as a prefix:
+1. Expand the **Emulator & Attached** node.
+1. Expand the **Storage Accounts** node.
+1. You should see a storage account with your resource's name as a prefix:
 
-:::image type="content" source="../media/azure-storage-explorer.png" lightbox="../media/azure-storage-explorer.png" alt-text="Azure Storage Explorer: Azurite storage resource discovered.":::
+  :::image type="content" source="../media/azure-storage-explorer.png" lightbox="../media/azure-storage-explorer.png" alt-text="Azure Storage Explorer: Azurite storage resource discovered.":::
+
+You're free to explore the storage account and its contents using the Azure Storage Explorer.
