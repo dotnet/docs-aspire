@@ -4,11 +4,11 @@ ms.topic: include
 
 The .NET Aspire [Azure Storage](/azure/storage/) hosting integration models the various storage resources as the following types:
 
-- <xref:Aspire.Hosting.Azure.AzureStorageResource>
-- <xref:Aspire.Hosting.Azure.AzureStorageEmulatorResource>
-- <xref:Aspire.Hosting.Azure.AzureBlobStorageResource>
-- <xref:Aspire.Hosting.Azure.AzureQueueStorageResource>
-- <xref:Aspire.Hosting.Azure.AzureTableStorageResource>
+- <xref:Aspire.Hosting.Azure.AzureStorageResource>: Represents an Azure Storage resource.
+- <xref:Aspire.Hosting.Azure.AzureStorageEmulatorResource>: Represents an Azure Storage emulator resource (Azurite).
+- <xref:Aspire.Hosting.Azure.AzureBlobStorageResource>: Represents an Azure Blob storage resource.
+- <xref:Aspire.Hosting.Azure.AzureQueueStorageResource>: Represents an Azure Queue storage resource.
+- <xref:Aspire.Hosting.Azure.AzureTableStorageResource>: Represents an Azure Table storage resource.
 
 To access these types and APIs for expressing them, add the [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
@@ -68,13 +68,23 @@ If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a d
 </details>
 <!-- markdownlint-enable MD033 -->
 
-The preceding Bicep is a module that provisions an Azure Storage account and it defines several default resources. In addition to the storage account, it also provisions a blob container. The following role assignments are also added, where all roles are scoped to the storage account—and the roles are [built-in Azure role-based access control (Azure RBAC) roles](/azure/role-based-access-control/built-in-roles#storage):
+The preceding Bicep is a module that provisions an Azure Storage account and it defines several default resources:
+
+- `kind`: The kind of storage account. The default is `StorageV2`.
+- `sku`: The SKU of the storage account. The default is `Standard_GRS`.
+- `properties`: The properties of the storage account:
+  - `accessTier`: The access tier of the storage account. The default is `Hot`.
+  - `allowSharedKeyAccess`: A boolean value that indicates whether the storage account permits requests to be authorized with the account access key. The default is `false`.
+  - `minimumTlsVersion`: The minimum supported TLS version for the storage account. The default is `TLS1_2`.
+  - `networkAcls`: The network ACLs for the storage account. The default is `{ defaultAction: 'Allow' }`.
+
+In addition to the storage account, it also provisions a blob container. The following role assignments are also added, where all roles are scoped to the storage account—and the roles are [built-in Azure role-based access control (Azure RBAC) roles](/azure/role-based-access-control/built-in-roles#storage):
 
 - Storage Blob Data Contributor `(ba92f5b4-2d11-453d-a403-e96b0029c9fe)`: Read, write, and delete Azure Storage containers and blobs.
 - Storage Table Data Contributor `(0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3)`: Read, write and delete Azure Storage tables and entities.
 - Storage Queue Data Contributor `(974c5e8b-45b9-4653-ba55-5f855dd0fb88)`: Read, write, and delete Azure Storage queues and queue messages.
 
-For more information on provisioning, see [Local Azure provisioning](../../deployment/azure/local-provisioning.md).
+The generated Bicep is a starting point and can be customized to meet your specific requirements. For more information on provisioning, see [Local Azure provisioning](../../deployment/azure/local-provisioning.md).
 
 ### Add Azure Storage emulator resource
 
@@ -109,7 +119,7 @@ var storage = builder.AddAzureStorage("storage").RunAsEmulator(
 // After adding all resources, run the app...
 ```
 
-The data volume is used to persist the Azurite data outside the lifecycle of its container. The data volume is mounted at the `/data` path in the Azurite container and when a `name` parameter isn't provided, the name is formatted as `.azurite/{resource name}`. For more information on data volumes and details on why they're preferred over [bind mounts](#add-azure-storage-resource-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
+The data volume is used to persist the Azurite data outside the lifecycle of its container. The data volume is mounted at the `/data` path in the Azurite container and when a `name` parameter isn't provided, the name is formatted as `.azurite/{resource name}`. For more information on data volumes and details on why they're preferred over [bind mounts](#add-azure-storage-emulator-resource-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
 
 ### Add Azure Storage emulator resource with data bind mount
 

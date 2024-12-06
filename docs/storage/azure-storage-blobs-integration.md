@@ -1,8 +1,8 @@
 ---
 title: .NET Aspire Azure Blob Storage integration
-description: This article describes the .NET Aspire Azure Blob Storage integration features and capabilities.
+description: Learn how to use the .NET Aspire Azure Blob Storage integration, which includes both hosting and client integrations.
 ms.topic: how-to
-ms.date: 12/05/2024
+ms.date: 12/06/2024
 uid: storage/azure-blob-storage-integration
 ---
 
