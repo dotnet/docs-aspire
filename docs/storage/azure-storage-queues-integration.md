@@ -17,7 +17,7 @@ uid: storage/azure-queue-storage-integration
 
 ### Add Azure Queue Storage resource
 
-In your app host project, register the Azure Queue Storage integration and consume the service using the following methods, such as <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A>:
+In your app host project, register the Azure Queue Storage integration by chaining a call to <xref:Aspire.Hosting.AzureStorageExtensions.AddQueues*> on the `IResourceBuilder<IAzureStorageResource>` instance returned by <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>. The following example demonstrates how to add an Azure Queue Storage resource named `storage` and a queue resource named `queues`:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -138,6 +138,8 @@ The .NET Aspire Azure Queue Storage integration supports <xref:Microsoft.Extensi
   }
 }
 ```
+
+For the complete Azure Storage Queues client integration JSON schema, see [Aspire.Azure.Data.Queues/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Azure.Data.Queues/ConfigurationSchema.json).
 
 #### Use inline delegates
 

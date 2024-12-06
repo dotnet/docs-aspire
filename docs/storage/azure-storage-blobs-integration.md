@@ -17,7 +17,7 @@ uid: storage/azure-blob-storage-integration
 
 ### Add Azure Blob Storage resource
 
-In your app host project, register the Azure Blob Storage integration and consume the service using the following methods, such as <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A>:
+In your app host project, register the Azure Blob Storage integration by chaining a call to <xref:Aspire.Hosting.AzureStorageExtensions.AddBlobs*> on the `IResourceBuilder<IAzureStorageResource>` instance returned by <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>. The following example demonstrates how to add an Azure Blob Storage resource named `storage` and a blob container named `blobs`:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
