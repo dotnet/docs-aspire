@@ -79,9 +79,11 @@ The preceding Bicep is a module that provisions an Azure Storage account with th
 
 In addition to the storage account, it also provisions a blob container. The following role assignments are also added, where all roles are scoped to the storage account—and the roles are [built-in Azure role-based access control (Azure RBAC) roles](/azure/role-based-access-control/built-in-roles#storage):
 
-- Storage Blob Data Contributor `(ba92f5b4-2d11-453d-a403-e96b0029c9fe)`: Read, write, and delete Azure Storage containers and blobs.
-- Storage Table Data Contributor `(0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3)`: Read, write, and delete Azure Storage tables and entities.
-- Storage Queue Data Contributor `(974c5e8b-45b9-4653-ba55-5f855dd0fb88)`: Read, write, and delete Azure Storage queues and queue messages.
+| Role | Description | ID |
+|------|-------------|----|
+| Storage Blob Data Contributor | Read, write, and delete Azure Storage containers and blobs. | `ba92f5b4-2d11-453d-a403-e96b0029c9fe` |
+| Storage Table Data Contributor | Read, write, and delete Azure Storage tables and entities. | `0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3` |
+| Storage Queue Data Contributor | Read, write, and delete Azure Storage queues and queue messages. | `974c5e8b-45b9-4653-ba55-5f855dd0fb88` |
 
 The generated Bicep is a starting point and can be customized to meet your specific requirements. For more information on provisioning, see [Local Azure provisioning](../../deployment/azure/local-provisioning.md).
 
@@ -102,7 +104,7 @@ builder.AddProject<Projects.WebApplication>("web")
 
 [!INCLUDE [connection-strings-alert](../../includes/connection-strings-alert.md)]
 
-The connection string is stored in the app host's secret store. It's added to the `ConnectionStrings` section of the app host configuration and injected as an environment variable into all dependent resource, for example:
+The connection string is configured in the app host's secret store under the `ConnectionStrings` section. The app host injects this connection string as an environment variable into all dependent resources, for example:
 
 ```json
 {
@@ -112,7 +114,7 @@ The connection string is stored in the app host's secret store. It's added to th
 }
 ```
 
-The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"blobs"`.
+The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"blobs"`. The `GetConnectionString` API is shorthand for `IConfiguration.GetSection("ConnectionStrings")[name]`.
 
 ### Add Azure Storage emulator resource
 
@@ -143,7 +145,7 @@ By default, the Azurite container exposes the following endpoints:
 - `queue`: Targeting port `10001`.
 - `table`: Targeting port `10002`.
 
-The port that they're listening on is dynamic, but can be configured by chaining calls on the container resource builder provided by the `RunAsEmulator` method:
+The port that they're listening on is dynamic by default. To configure the endpoint ports, chain calls on the container resource builder provided by the `RunAsEmulator` method as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
