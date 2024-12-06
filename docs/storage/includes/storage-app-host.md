@@ -81,7 +81,7 @@ The preceding Bicep is a module that provisions an Azure Storage account and it 
 In addition to the storage account, it also provisions a blob container. The following role assignments are also added, where all roles are scoped to the storage account—and the roles are [built-in Azure role-based access control (Azure RBAC) roles](/azure/role-based-access-control/built-in-roles#storage):
 
 - Storage Blob Data Contributor `(ba92f5b4-2d11-453d-a403-e96b0029c9fe)`: Read, write, and delete Azure Storage containers and blobs.
-- Storage Table Data Contributor `(0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3)`: Read, write and delete Azure Storage tables and entities.
+- Storage Table Data Contributor `(0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3)`: Read, write, and delete Azure Storage tables and entities.
 - Storage Queue Data Contributor `(974c5e8b-45b9-4653-ba55-5f855dd0fb88)`: Read, write, and delete Azure Storage queues and queue messages.
 
 The generated Bicep is a starting point and can be customized to meet your specific requirements. For more information on provisioning, see [Local Azure provisioning](../../deployment/azure/local-provisioning.md).
@@ -99,7 +99,7 @@ var storage = builder.AddAzureStorage("storage")
 // After adding all resources, run the app...
 ```
 
-When you call `RunAsEmulator`, it configures your storage resources to run locally using an emulator. The emulator in this case is [Azurite](/azure/storage/common/storage-use-azurite). The Azurite open-source emulator provides a free local environment for testing your Azure Blob, Queue Storage, and Table Storage apps and it's a perfect companion to the .NET Aspire Azure hosting integration. Azurite is not installed, instead it's delivered as a container.
+When you call `RunAsEmulator`, it configures your storage resources to run locally using an emulator. The emulator in this case is [Azurite](/azure/storage/common/storage-use-azurite). The Azurite open-source emulator provides a free local environment for testing your Azure Blob, Queue Storage, and Table Storage apps and it's a perfect companion to the .NET Aspire Azure hosting integration. Azurite isn't installed, instead it's accessible to .NET Aspire as a container.
 
 When .NET Aspire adds a container to the app host, as shown in the preceding example with the `mcr.microsoft.com/azure-storage/azurite` image, it creates a new Azurite instance on your local machine.
 

@@ -85,13 +85,13 @@ The .NET Aspire Azure Blob Storage integration provides multiple options to conf
 
 #### Use a connection string
 
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddAzureBlobClient`:
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling <xref:Microsoft.Extensions.Hosting.AspireBlobStorageExtensions.AddAzureBlobClient*>:
 
 ```csharp
 builder.AddAzureBlobClient("blobs");
 ```
 
-And then the connection string will be retrieved from the `ConnectionStrings` configuration section. Two connection formats are supported:
+Then the connection string is retrieved from the `ConnectionStrings` configuration section, and two connection formats are supported:
 
 ##### Service URI
 
@@ -100,7 +100,7 @@ The recommended approach is to use a `ServiceUri`, which works with the <xref:As
 ```json
 {
   "ConnectionStrings": {
-    "blobsConnectionName": "https://{account_name}.blob.core.windows.net/"
+    "blobs": "https://{account_name}.blob.core.windows.net/"
   }
 }
 ```
@@ -112,14 +112,16 @@ Alternatively, an [Azure Storage connection string](/azure/storage/common/storag
 ```json
 {
   "ConnectionStrings": {
-    "blobsConnectionName": "AccountName=myaccount;AccountKey=myaccountkey"
+    "blobs": "AccountName=myaccount;AccountKey=myaccountkey"
   }
 }
 ```
 
+For more information, see [Configure Azure Storage connection strings](/azure/storage/common/storage-configure-connection-string).
+
 #### Use configuration providers
 
-The .NET Aspire Azure Blob Storage integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Storage.Blobs.AzureStorageBlobsSettings> and <xref:Azure.Storage.Blobs.BlobClientOptions> from configuration by using the `Aspire:Azure:Storage:Blobs` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
+The .NET Aspire Azure Blob Storage integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Storage.Blobs.AzureStorageBlobsSettings> and <xref:Azure.Storage.Blobs.BlobClientOptions> from configuration by using the `Aspire:Azure:Storage:Blobs` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
@@ -141,6 +143,8 @@ The .NET Aspire Azure Blob Storage integration supports <xref:Microsoft.Extensio
 }
 ```
 
+For the complete Azure Blob Storage client integration JSON schema, see [Aspire.Azure.Storage.Blobs/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Azure.Storage.Blobs/ConfigurationSchema.json).
+
 #### Use inline delegates
 
 You can also pass the `Action<AzureStorageBlobsSettings> configureSettings` delegate to set up some or all the options inline, for example to configure health checks:
@@ -151,7 +155,7 @@ builder.AddAzureBlobClient(
     static settings => settings.DisableHealthChecks  = true);
 ```
 
-You can also set up the `BlobClientOptions` using `Action<IAzureClientBuilder<BlobServiceClient, BlobClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureBlobClient` method. For example, to set the first part of user-agent headers for all requests issues by this client:
+You can also set up the <xref:Azure.Storage.Blobs.BlobClientOptions> using `Action<IAzureClientBuilder<BlobServiceClient, BlobClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureBlobClient` method. For example, to set the first part of user-agent headers for all requests issues by this client:
 
 ```csharp
 builder.AddAzureBlobClient(
@@ -181,13 +185,13 @@ The .NET Aspire Azure Blob Storage integration uses the following log categories
 
 ### Tracing
 
-The .NET Aspire Azure Blob Storage integration will emit the following tracing activities using OpenTelemetry:
+The .NET Aspire Azure Blob Storage integration emits the following tracing activities using OpenTelemetry:
 
 - `Azure.Storage.Blobs.BlobContainerClient`
 
 ### Metrics
 
-The .NET Aspire Azure Blob Storage integration currently does not support metrics by default due to limitations with the Azure SDK.
+The .NET Aspire Azure Blob Storage integration currently doesn't support metrics by default due to limitations with the Azure SDK.
 
 ## See also
 
