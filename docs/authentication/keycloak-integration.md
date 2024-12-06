@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Keycloak integration (Preview)
 description: Learn how to use the .NET Aspire Keycloak integration, which includes both hosting and client integrations.
-ms.date: 12/04/2024
+ms.date: 12/06/2024
 uid: authentication/keycloak-integration
 ---
 
@@ -163,21 +163,17 @@ To import a realm into Keycloak, call the <xref:Aspire.Hosting.KeycloakResourceB
 
 The realm import files are mounted at `/opt/keycloak/data/import` in the Keycloak container. Realm import files are JSON files that represent the realm configuration. For more information on realm import, see [Keycloak docs: Importing a realm](https://www.keycloak.org/docs/latest/server_admin/index.html#_import).
 
-<!-- markdownlint-disable MD012 -->
 As an example, the following JSON file could be added to the app host project in a _/Realms_ folder—to serve as a source realm configuration file:
 
-
-<!-- markdownlint-restore MD012 -->
 <!-- markdownlint-disable MD033 -->
+<br/>
 <details>
-<summary id="realm-json">Expand to view the example realm JSON.</summary>
-
-<p aria-labelledby="realm-json">
+<summary id='realm-json'><strong>Toggle realm JSON example.</strong></summary>
+<p aria-labelledby='realm-json'>
 
 :::code language="json" source="snippets/AspireApp/AspireApp.AppHost/Realms/weathershop-realm.json":::
 
 </p>
-
 </details>
 <!-- markdownlint-enable MD033 -->
 
@@ -297,7 +293,7 @@ The preceding code:
 
 To help visualize the auth flow, consider the following sequence diagram:
 
-:::image type="content" source="media/auth-flow-diagram.png" lightbox="media/auth-flow-diagram.png" alt-text="Authentication flow diagam—demonstrating a user request for an access token, Keycloak returning a JWT, and the token being forward to the API.":::
+:::image type="content" source="media/auth-flow-diagram.png" lightbox="media/auth-flow-diagram.png" alt-text="Authentication flow diagram—demonstrating a user request for an access token, Keycloak returning a JWT, and the token being forward to the API.":::
 
 For a complete working sample, see [.NET Aspire playground: Keycloak integration](https://github.com/dotnet/aspire/tree/01ed51919f8df692ececce51048a140615dc759d/playground/keycloak).
 
