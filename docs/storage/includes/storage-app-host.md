@@ -112,7 +112,7 @@ The connection string is stored in the app host's secret store. It's added to th
 }
 ```
 
-The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.IConfiguration.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"blobs"`.
+The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"blobs"`.
 
 ### Add Azure Storage emulator resource
 
