@@ -1,25 +1,48 @@
 ---
 title: .NET Aspire Azure Data Tables integration
-description: This article describes the .NET Aspire Azure Data Tables integration features and capabilities.
+description: Learn how to use the .NET Aspire Azure Data Tables integration, which includes both hosting and client integrations.
 ms.date: 08/12/2024
 ms.topic: how-to
 ---
 
 # .NET Aspire Azure Data Tables integration
 
-In this article, you learn how to use the .NET Aspire Azure Data Tables integration. The `Aspire.Azure.Data.Tables` library is used to:
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-- Registers a <xref:Azure.Data.Tables.TableServiceClient> as a singleton in the DI container for connecting to Azure Table storage.
-- Enables corresponding health checks, logging and telemetry.
+[Azure Table Storage](https://azure.microsoft.com/services/storage/tables/) is a service for storing structured NoSQL data. The .NET Aspire Azure Data Tables integration enables you to connect to existing Azure Table Storage instances or create new instances from .NET applications.
 
-## Prerequisites
+## Hosting integration
 
-- Azure subscription - [create one for free](https://azure.microsoft.com/free/)
-- An Azure storage account or Azure Cosmos DB database with Azure Table API specified. - [create a storage account](/azure/storage/common/storage-account-create)
+[!INCLUDE [storage-app-host](includes/storage-app-host.md)]
 
-## Get started
+### Add Azure Table Storage resource
 
-To get started with the .NET Aspire Azure Data Tables integration, install the [📦 Aspire.Azure.Data.Tables](https://www.nuget.org/packages/Aspire.Azure.Data.Tables) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Data Tables client.
+In your app host project, register the Azure Table Storage integration and consume the service using the following methods, such as <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A>:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var tables = builder.AddAzureStorage("storage")
+                    .AddTables("tables");
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(tables)
+       .WaitFor(tables);
+
+// After adding all resources, run the app...
+```
+
+The preceding code:
+
+- Adds an Azure Storage resource named `storage`.
+- Adds a table storage resource named `tables` to the storage resource.
+- Adds the `storage` resource to the `ExampleProject` and waits for it to be ready before starting the project.
+
+[!INCLUDE [storage-hosting-health-checks](includes/storage-hosting-health-checks.md)]
+
+## Client integration
+
+To get started with the .NET Aspire Azure Data Tables client integration, install the [📦 Aspire.Azure.Data.Tables](https://www.nuget.org/packages/Aspire.Azure.Data.Tables) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure Data Tables client. The Azure Data Tables client integration registers a <xref:Azure.Data.Tables.TableServiceClient> instance that you can use to interact with Azure Table Storage.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -36,17 +59,15 @@ dotnet add package Aspire.Azure.Data.Tables
 
 ---
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+### Add Azure Table Storage client
 
-## Example usage
-
-In the _:::no-loc text="Program.cs":::_ file of your integration-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireTablesExtensions.AddAzureTableClient%2A> extension to register a `TableServiceClient` for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireTablesExtensions.AddAzureTableClient%2A> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a `TableServiceClient` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddAzureTableClient("tables");
 ```
 
-To retrieve the `TableServiceClient` instance using dependency injection, define it as a constructor parameter. Consider the following example service:
+You can then retrieve the `TableServiceClient` instance using dependency injection. For example, to retrieve the client from a service:
 
 ```csharp
 public class ExampleService(TableServiceClient client)
@@ -55,50 +76,17 @@ public class ExampleService(TableServiceClient client)
 }
 ```
 
-## App host usage
-
-To add Azure Storage hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
-
-### [.NET CLI](#tab/dotnet-cli)
-
-```dotnetcli
-dotnet add package Aspire.Hosting.Azure.Storage
-```
-
-### [PackageReference](#tab/package-reference)
-
-```xml
-<PackageReference Include="Aspire.Hosting.Azure.Storage"
-                  Version="*" />
-```
-
----
-
-In your app host project, register the Azure Table Storage integration and consume the service using the following methods:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var tables = builder.AddAzureStorage("storage")
-                    .AddTables("tables");
-
-Builder.AddProject<MyApp.ExampleProject>() 
-       .WithReference(tables)
-```
-
-For more information, see <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A>.
-
-## Configuration
+### Configuration
 
 The .NET Aspire Azure Table Storage integration provides multiple options to configure the `TableServiceClient` based on the requirements and conventions of your project.
 
-### Use configuration providers
+#### Use configuration providers
 
-The .NET Aspire Azure Table Storage integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings> from _:::no-loc text="appsettings.json":::_ or other configuration files using `Aspire:Azure:Data:Tables` key.
+The .NET Aspire Azure Table Storage integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings> and <xref:Azure.Data.Tables.TableClientOptions> from configuration by using the `Aspire:Azure:Data:Tables` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
-  "Aspire":{
+  "Aspire": {
     "Azure": {
       "Data": {
         "Tables": {
@@ -106,7 +94,7 @@ The .NET Aspire Azure Table Storage integration supports <xref:Microsoft.Extensi
           "DisableHealthChecks": true,
           "DisableTracing": false,
           "ClientOptions": {
-          "EnableTenantDiscovery": true
+            "EnableTenantDiscovery": true
           }
         }
       }
@@ -115,11 +103,11 @@ The .NET Aspire Azure Table Storage integration supports <xref:Microsoft.Extensi
 }
 ```
 
-If you have set up your configurations in the `Aspire:Azure:Data:Tables` section of your _:::no-loc text="appsettings.json":::_ file you can just call the method `AddAzureTableClient` without passing any parameters.
+For the complete Azure Data Tables client integration JSON schema, see [Aspire.Azure.Data.Tables/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Azure.Data.Tables/ConfigurationSchema.json).
 
-### Use inline delegates
+#### Use inline delegates
 
-You can also pass the `Action<AzureDataTablesSettings>` delegate to set up some or all the options inline, for example to set the `ServiceUri`:
+You can also pass the `Action<AzureDataTablesSettings> configureSettings` delegate to set up some or all the options inline, for example to configure the `ServiceUri`:
 
 ```csharp
 builder.AddAzureTableClient(
@@ -127,33 +115,24 @@ builder.AddAzureTableClient(
     static settings => settings.ServiceUri = new Uri("YOUR_SERVICEURI"));
 ```
 
-You can also set up the <xref:Azure.Data.Tables.TableClientOptions> using `Action<IAzureClientBuilder<TableServiceClient, TableClientOptions>>` delegate, the second parameter of the <xref:Microsoft.Extensions.Hosting.AspireTablesExtensions.AddAzureTableClient%2A> method. For example to set the `TableServiceClient` ID to identify the client:
+You can also set up the <xref:Azure.Data.Tables.TableClientOptions> using `Action<IAzureClientBuilder<TableServiceClient, TableClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureTableClient` method. For example, to set the `TableServiceClient` ID to identify the client:
 
 ```csharp
 builder.AddAzureTableClient(
     "tables",
-    static clientBuilder =>
+    static configureClientBuilder: clientBuilder =>
         clientBuilder.ConfigureOptions(
             static options => options.EnableTenantDiscovery = true));
 ```
 
-### Configuration options
+### Client integration health checks
 
-The following configurable options are exposed through the <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings> class:
+By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-| Name                  | Description                                                                               |
-|-----------------------|-------------------------------------------------------------------------------------------|
-| `ServiceUri`          | A "Uri" referencing the Table service.                                                    |
-| `Credential`          | The credential used to authenticate to the Table Storage.                                 |
-| `DisableHealthChecks` | A boolean value that indicates whether the Table Storage health check is disabled or not. |
-| `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not.      |
+The .NET Aspire Azure Data Tables integration:
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
-
-By default, The .NET Aspire Azure Data Tables integration handles the following:
-
-- Adds the `AzureTableStorageHealthCheck` health check, which attempts to connect to and query table storage
-- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
+- Adds the health check when <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the Azure Table Storage.
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
@@ -166,13 +145,13 @@ The .NET Aspire Azure Data Tables integration uses the following log categories:
 
 ### Tracing
 
-The .NET Aspire Azure Data Tables integration will emit the following tracing activities using OpenTelemetry:
+The .NET Aspire Azure Data Tables integration emits the following tracing activities using OpenTelemetry:
 
-- "Azure.Data.Tables.TableServiceClient"
+- `Azure.Data.Tables.TableServiceClient`
 
 ### Metrics
 
-The .NET Aspire Azure Data Tables integration currently does not support metrics by default due to limitations with the Azure SDK.
+The .NET Aspire Azure Data Tables integration currently doesn't support metrics by default due to limitations with the Azure SDK.
 
 ## See also
 

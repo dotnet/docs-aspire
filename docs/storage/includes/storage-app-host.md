@@ -79,11 +79,11 @@ The preceding Bicep is a module that provisions an Azure Storage account with th
 
 In addition to the storage account, it also provisions a blob container. The following role assignments are also added, where all roles are scoped to the storage account—and the roles are [built-in Azure role-based access control (Azure RBAC) roles](/azure/role-based-access-control/built-in-roles#storage):
 
-| Role | Description | ID |
-|------|-------------|----|
-| Storage Blob Data Contributor | Read, write, and delete Azure Storage containers and blobs. | `ba92f5b4-2d11-453d-a403-e96b0029c9fe` |
-| Storage Table Data Contributor | Read, write, and delete Azure Storage tables and entities. | `0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3` |
-| Storage Queue Data Contributor | Read, write, and delete Azure Storage queues and queue messages. | `974c5e8b-45b9-4653-ba55-5f855dd0fb88` |
+| Role / ID | Description |
+|------|-------------|
+| Storage Blob Data Contributor<br/>`ba92f5b4-2d11-453d-a403-e96b0029c9fe` | Read, write, and delete Azure Storage containers and blobs. |
+| Storage Table Data Contributor<br/>`0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3` | Read, write, and delete Azure Storage tables and entities. |
+| Storage Queue Data Contributor<br/>`974c5e8b-45b9-4653-ba55-5f855dd0fb88` | Read, write, and delete Azure Storage queues and queue messages. |
 
 The generated Bicep is a starting point and can be customized to meet your specific requirements. For more information on provisioning, see [Local Azure provisioning](../../deployment/azure/local-provisioning.md).
 
@@ -139,13 +139,13 @@ There are various configurations available to container resources, for example, 
 
 ##### Configure Azurite container ports
 
-By default, the Azurite container exposes the following endpoints:
+By default, the Azurite container when configured by .NET Aspire, exposes the following endpoints:
 
-| Endpoint | Target port |
-|----------|-------------|
-| `blob`   | 10000       |
-| `queue`  | 10001       |
-| `table`  | 10002       |
+| Endpoint | Container port | Host port |
+|----------|----------------|-----------|
+| `blob`   | 10000          | dynamic   |
+| `queue`  | 10001          | dynamic   |
+| `table`  | 10002          | dynamic   |
 
 The port that they're listening on is dynamic by default. To configure the endpoint ports, chain calls on the container resource builder provided by the `RunAsEmulator` method as shown in the following example:
 

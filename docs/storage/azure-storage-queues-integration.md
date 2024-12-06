@@ -1,17 +1,47 @@
 ---
 title: .NET Aspire Azure Queue Storage integration
-description: This article describes the .NET Aspire Azure Queue Storage integration features and capabilities
-ms.topic: how-to
-ms.date: 08/12/2024
+description: This article describes the .NET Aspire Azure Queue Storage integration features and capabilities.
+ms.date: 12/06/2024
+uid: storage/azure-queue-storage-integration
 ---
 
 # .NET Aspire Azure Queue Storage integration
 
-In this article, you learn how to use the .NET Aspire Azure Queue Storage integration. The `Aspire.Azure.Storage.Queues` library is used to register a <xref:Azure.Storage.Queues.QueueServiceClient> in the DI container for connecting to Azure Queue Storage. It also enables corresponding health checks, logging and telemetry.
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-## Get started
+[Azure Queue Storage](https://azure.microsoft.com/services/storage/queues/) is a service for storing large numbers of messages that can be accessed from anywhere in the world via authenticated calls. The .NET Aspire Azure Queue Storage integration enables you to connect to existing Azure Queue Storage instances or create new instances from .NET applications.
 
-To get started with the .NET Aspire Azure Queue Storage integration, install the [📦 Aspire.Azure.Storage.Queues](https://www.nuget.org/packages/Aspire.Azure.Storage.Queues) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Queue Storage client.
+## Hosting integration
+
+[!INCLUDE [storage-app-host](includes/storage-app-host.md)]
+
+### Add Azure Queue Storage resource
+
+In your app host project, register the Azure Queue Storage integration and consume the service using the following methods, such as <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A>:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var queues = builder.AddAzureStorage("storage")
+                    .AddQueues("queues");
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(queues);
+
+// After adding all resources, run the app...
+```
+
+The preceding code:
+
+- Adds an Azure Storage resource named `storage`.
+- Adds a queue named `queues` to the storage resource.
+- Adds the `storage` resource to the `ExampleProject` and waits for it to be ready before starting the project.
+
+[!INCLUDE [storage-hosting-health-checks](includes/storage-hosting-health-checks.md)]
+
+## Client integration
+
+To get started with the .NET Aspire Azure Queue Storage client integration, install the [📦 Aspire.Azure.Storage.Queues](https://www.nuget.org/packages/Aspire.Azure.Storage.Queues) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure Queue Storage client. The Azure Queue Storage client integration registers a <xref:Azure.Storage.Queues.QueueServiceClient> instance that you can use to interact with Azure Queue Storage.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -28,17 +58,15 @@ dotnet add package Aspire.Azure.Storage.Queues
 
 ---
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+### Add Azure Queue Storage client
 
-## Example usage
-
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueClient%2A> extension to register a `QueueServiceClient` for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueClient%2A> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a `QueueServiceClient` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddAzureQueueClient("queue");
 ```
 
-You can then retrieve the `QueueServiceClient` instance using dependency injection. For example, to retrieve the client from an example service:
+You can then retrieve the `QueueServiceClient` instance using dependency injection. For example, to retrieve the client from a service:
 
 ```csharp
 public class ExampleService(QueueServiceClient client)
@@ -47,84 +75,49 @@ public class ExampleService(QueueServiceClient client)
 }
 ```
 
-## App host usage
+### Configuration
 
-To add Azure Storage hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The .NET Aspire Azure Queue Storage integration provides multiple options to configure the `QueueServiceClient` based on the requirements and conventions of your project.
 
-### [.NET CLI](#tab/dotnet-cli)
+#### Use a connection string
 
-```dotnetcli
-dotnet add package Aspire.Hosting.Azure.Storage
-```
-
-### [PackageReference](#tab/package-reference)
-
-```xml
-<PackageReference Include="Aspire.Hosting.Azure.Storage"
-                  Version="*" />
-```
-
----
-
-In your app host project, add a Storage Queue connection and consume the connection using the following methods, such as <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage%2A>:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var queues = builder.AddAzureStorage("storage")
-                    .AddQueues("queues");
-
-var exampleProject = builder.AddProject<Projects.ExampleProject>()
-                            .WithReference(queues);
-```
-
-The <xref:Aspire.Hosting.AzureStorageExtensions.AddQueues%2A> method will read connection information from the AppHost's configuration (for example, from "user secrets") under the `ConnectionStrings:queue` config key. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes that connection information into a connection string named queue in the `ExampleProject` project. In the _:::no-loc text="Program.cs":::_ file of `ExampleProject`, the connection can be consumed using:
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueClient*>:
 
 ```csharp
 builder.AddAzureQueueClient("queue");
 ```
 
-### Use a connection string
+Then the connection string is retrieved from the `ConnectionStrings` configuration section, and two connection formats are supported:
 
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddAzureQueueClient`:
-
-```csharp
-builder.AddAzureQueueClient("queueConnectionName");
-```
-
-And then the connection string will be retrieved from the `ConnectionStrings` configuration section. Two connection formats are supported:
-
-#### Service URI
+##### Service URI
 
 The recommended approach is to use a `ServiceUri`, which works with the <xref:Aspire.Azure.Storage.Queues.AzureStorageQueuesSettings.Credential?displayProperty=nameWithType> property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential?displayProperty=fullName> is used.
 
 ```json
 {
   "ConnectionStrings": {
-    "queueConnectionName": "https://{account_name}.queue.core.windows.net/"
+    "queue": "https://{account_name}.queue.core.windows.net/"
   }
 }
 ```
 
-#### Connection string
+##### Connection string
 
 Alternatively, an [Azure Storage connection string](/azure/storage/common/storage-configure-connection-string) can be used.
 
 ```json
 {
   "ConnectionStrings": {
-    "queueConnectionName": "AccountName=myaccount;AccountKey=myaccountkey"
+    "queue": "AccountName=myaccount;AccountKey=myaccountkey"
   }
 }
 ```
 
-## Configuration
+For more information, see [Configure Azure Storage connection strings](/azure/storage/common/storage-configure-connection-string).
 
-The .NET Aspire Azure Queue Storage integration provides multiple options to configure the `QueueServiceClient` based on the requirements and conventions of your project.
+#### Use configuration providers
 
-### Use configuration providers
-
-The .NET Aspire Azure Queue Storage integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Storage.Queues.AzureStorageQueuesSettings> and <xref:Azure.Storage.Queues.QueueClientOptions> from configuration by using the `Aspire:Azure:Storage:Queues` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
+The .NET Aspire Azure Queue Storage integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Storage.Queues.AzureStorageQueuesSettings> and <xref:Azure.Storage.Queues.QueueClientOptions> from configuration by using the `Aspire:Azure:Storage:Queues` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
@@ -146,9 +139,9 @@ The .NET Aspire Azure Queue Storage integration supports <xref:Microsoft.Extensi
 }
 ```
 
-### Use inline delegates
+#### Use inline delegates
 
-You can also pass the `Action<AzureStorageQueuesSettings> configureSettings` delegate to set up some or all the options inline, for example to disable the health check:
+You can also pass the `Action<AzureStorageQueuesSettings> configureSettings` delegate to set up some or all the options inline, for example to configure health checks:
 
 ```csharp
 builder.AddAzureQueueClient(
@@ -156,23 +149,24 @@ builder.AddAzureQueueClient(
     static settings => settings.DisableHealthChecks  = true);
 ```
 
-You can also set up the `QueueClientOptions` using `Action<IAzureClientBuilder<QueueServiceClient, QueueClientOptions>> configureClientBuilder` delegate, the second parameter of the <xref:Microsoft.Extensions.Hosting.AspireQueueStorageExtensions.AddAzureQueueClient%2A> method. For example, to set the first part of user-agent headers for all requests issues by this client:
+You can also set up the <xref:Azure.Storage.Queues.QueueClientOptions> using `Action<IAzureClientBuilder<QueueServiceClient, QueueClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureQueueClient` method. For example, to set the first part of user-agent headers for all requests issues by this client:
 
 ```csharp
 builder.AddAzureQueueClient(
     "queue",
-    configureClientBuilder:
-        static clientBuilder => clientBuilder.ConfigureOptions(
-            static options =>
-                options.Diagnostics.ApplicationId = "myapp"));
+    static configureClientBuilder: clientBuilder =>
+        clientBuilder.ConfigureOptions(
+            static options => options.Diagnostics.ApplicationId = "myapp"));
 ```
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+### Client integration health checks
 
-The .NET Aspire Azure Queue Storage integration handles the following:
+By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-- Adds the `AzureQueueStorageHealthCheck` health check, which attempts to connect to and query the storage queue
-- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
+The .NET Aspire Azure Queue Storage integration:
+
+- Adds the health check when <xref:Aspire.Azure.Storage.Queues.AzureStorageQueuesSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the Azure Queue Storage.
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
@@ -185,16 +179,16 @@ The .NET Aspire Azure Queue Storage integration uses the following log categorie
 
 ### Tracing
 
-The .NET Aspire Azure Queue Storage integration will emit the following tracing activities using OpenTelemetry:
+The .NET Aspire Azure Queue Storage integration emits the following tracing activities using OpenTelemetry:
 
-- "Azure.Storage.Queues.QueueClient"
+- `Azure.Storage.Queues.QueueClient`
 
 ### Metrics
 
-The .NET Aspire Azure Queue Storage integration currently does not support metrics by default due to limitations with the Azure SDK.
+The .NET Aspire Azure Queue Storage integration currently doesn't support metrics by default due to limitations with the Azure SDK.
 
 ## See also
 
-- [Azure Queues Storage docs](/azure/storage/queues/)
+- [Azure Queue Storage docs](/azure/storage/queues/)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
