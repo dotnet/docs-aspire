@@ -2,7 +2,7 @@
 ms.topic: include
 ---
 
-The [Azure Storage](/azure/storage/) hosting integration models the various storage resources as the following types:
+The .NET Aspire [Azure Storage](/azure/storage/) hosting integration models the various storage resources as the following types:
 
 - <xref:Aspire.Hosting.Azure.AzureStorageResource>
 - <xref:Aspire.Hosting.Azure.AzureStorageEmulatorResource>
