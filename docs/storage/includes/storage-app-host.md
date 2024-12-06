@@ -54,24 +54,27 @@ When you add an `AzureStorageResource` to the app host, it exposes other useful 
 
 #### Generated provisioning Bicep
 
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file.
-
-When you add an Azure Storage resource, the following Bicep is generated:
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Storage resource, the following Bicep is generated:
 
 <!-- markdownlint-disable MD033 -->
 <br/>
 <details>
-<summary id="storage-bicep"><strong>Expand the Azure Storage bicep.</strong></summary>
+<summary id="storage-bicep"><strong>Toggle Azure Storage bicep.</strong></summary>
 <p aria-labelledby="storage-json">
 
 :::code language="bicep" source="../../snippets/azure/AppHost/storage.module.bicep":::
 
 </p>
-
 </details>
 <!-- markdownlint-enable MD033 -->
 
-For more information, see [.NET Aspire manifest format for deployment tool builders](../../deployment/manifest-format.md).
+The preceding Bicep is a module that provisions an Azure Storage account and it defines several default resources. In addition to the storage account, it also provisions a blob container. The following role assignments are also added, where all roles are scoped to the storage account—and the roles are [built-in Azure role-based access control (Azure RBAC) roles](/azure/role-based-access-control/built-in-roles#storage):
+
+- Storage Blob Data Contributor `(ba92f5b4-2d11-453d-a403-e96b0029c9fe)`: Read, write, and delete Azure Storage containers and blobs.
+- Storage Table Data Contributor `(0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3)`: Read, write and delete Azure Storage tables and entities.
+- Storage Queue Data Contributor `(974c5e8b-45b9-4653-ba55-5f855dd0fb88)`: Read, write, and delete Azure Storage queues and queue messages.
+
+For more information on provisioning, see [Local Azure provisioning](../../deployment/azure/local-provisioning.md).
 
 ### Add Azure Storage emulator resource
 
@@ -90,9 +93,9 @@ When you call `RunAsEmulator`, it configures your storage resources to run local
 
 When .NET Aspire adds a container to the app host, as shown in the preceding example with the `mcr.microsoft.com/azure-storage/azurite` image, it creates a new Azurite instance on your local machine.
 
-### Add Azure Storage resource with data volume
+### Add Azure Storage emulator resource with data volume
 
-To add a data volume to the Azure Storage resource, call the <xref:Aspire.Hosting.AzureStorageExtensions.WithDataVolume*> method on the Azure Storage emulator resource:
+To add a data volume to the Azure Storage emulator resource, call the <xref:Aspire.Hosting.AzureStorageExtensions.WithDataVolume*> method on the Azure Storage emulator resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -108,9 +111,9 @@ var storage = builder.AddAzureStorage("storage").RunAsEmulator(
 
 The data volume is used to persist the Azurite data outside the lifecycle of its container. The data volume is mounted at the `/data` path in the Azurite container and when a `name` parameter isn't provided, the name is formatted as `.azurite/{resource name}`. For more information on data volumes and details on why they're preferred over [bind mounts](#add-azure-storage-resource-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
 
-### Add Azure Storage resource with data bind mount
+### Add Azure Storage emulator resource with data bind mount
 
-To add a data bind mount to the Azure Storage resource, call the <xref:Aspire.Hosting.AzureStorageExtensions.WithDataBindMount*> method:
+To add a data bind mount to the Azure Storage emulator resource, call the <xref:Aspire.Hosting.AzureStorageExtensions.WithDataBindMount*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

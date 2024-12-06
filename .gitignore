@@ -38,6 +38,7 @@ _dependentPackages/
 **/.vscode/
 .vscode/
 !.vscode/extensions.json
+!.vscode/*.code-snippets
 
 # Visual Studio 2019
 .vs
