@@ -104,17 +104,11 @@
       },
       "author": {
         "docs/**/*.*": "IEvangelist",
-        "docs/community-toolkit/**/*.*": "aaronpowell",
-        "docs/database/**/*.*": "CamSoper",
-        "docs/storage/**/*.*": "CamSoper",
-        "docs/deployment/**/*.*": "CamSoper"
+        "docs/community-toolkit/**/*.*": "aaronpowell"
       },
       "ms.author": {
         "docs/**/*.*": "dapine",
-        "docs/community-toolkit/**/*.*": "aapowell",
-        "docs/database/**/*.*": "casoper",
-        "docs/storage/**/*.*": "casoper",
-        "docs/deployment/**/*.*": "casoper"
+        "docs/community-toolkit/**/*.*": "aapowell"
       },
       "ms.collection": {
         "docs/azureai/**/*.md": "ce-skilling-ai-copilot"
