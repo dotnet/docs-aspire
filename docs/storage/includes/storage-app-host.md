@@ -98,7 +98,7 @@ The preceding code:
 
 - Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
   - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
-  - The provisionable resources are retrieved by calling the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure.GetProvisionableResources*> method.
+  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
   - The first <xref:Azure.Provisioning.Storage.StorageAccount> named `storage` is retrieved, or an exception is thrown if it doesn't exist.
   - The <xref:Azure.Provisioning.Storage.StorageAccount.AccessTier?displayProperty=nameWithType> is assigned to <xref:Azure.Provisioning.Storage.StorageAccountAccessTier.Cool?displayProperty=nameWithType>.
   - The <xref:Azure.Provisioning.Storage.StorageAccount.Sku?displayProperty=nameWithType> is assigned to a new <xref:Azure.Provisioning.Storage.StorageSku> with a `name` of <xref:Azure.Provisioning.Storage.StorageSkuName.PremiumZrs>.
