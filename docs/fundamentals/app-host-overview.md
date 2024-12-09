@@ -232,7 +232,7 @@ The preceding code adds a container resource named "ollama" with the image `olla
 
 All <xref:Aspire.Hosting.ApplicationModel.ContainerResource> subclasses can be customized to meet your specific requirements. This can be useful when using a [hosting integration](integrations-overview.md#hosting-integrations) that models a container resource, but requires modifications. When you have an `IResourceBuilder<ContainerResource>` you can chain calls to any of the available APIs to modify the container resource. .NET Aspire container resources typically point to pinned tags, but you might want to use the `latest` tag instead.
 
-To help exemplify this, imagine a scenario where you're using the [.NET Aspire Redis integration](../caching/stackexchange-redis-integration.md). At one point in time, the Redis integration relied on the `7.4` tag, but you want to use the `latest` tag instead. To achieve this, you can chain a call to the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithImageTag*> API:
+To help exemplify this, imagine a scenario where you're using the [.NET Aspire Redis integration](../caching/stackexchange-redis-integration.md). If the Redis integration relies on the `7.4` tag, you want to use the `latest` tag instead. To achieve this, you can chain a call to the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithImageTag*> API:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -245,8 +245,6 @@ var cache = builder.AddRedis("cache")
 ```
 
 For more information and additional APIs available, see <xref:Aspire.Hosting.ContainerResourceBuilderExtensions#methods>.
-
-<xref:Aspire.Hosting.ContainerResourceExtensions>
 
 #### Container resource lifecycle
 
@@ -276,7 +274,7 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 
 #### Container resource lifetime
 
-By default, container resources use the _session_ container lifetime. This means that every time the app host process is started, the container is created and started. When the app host stops, the container is stopped and removed. Container resources can opt-in to a _persistent_ lifetime to avoid unnecessary restarts and leverage persisted container state. To achieve this, chain a call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithLifetime*?displayProperty=nameWithType> API and pass <xref:Aspire.Hosting.ApplicationModel.ContainerLifetime.Persistent?displayProperty=nameWithType>:
+By default, container resources use the _session_ container lifetime. This means that every time the app host process is started, the container is created and started. When the app host stops, the container is stopped and removed. Container resources can opt-in to a _persistent_ lifetime to avoid unnecessary restarts and use persisted container state. To achieve this, chain a call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithLifetime*?displayProperty=nameWithType> API and pass <xref:Aspire.Hosting.ApplicationModel.ContainerLifetime.Persistent?displayProperty=nameWithType>:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
