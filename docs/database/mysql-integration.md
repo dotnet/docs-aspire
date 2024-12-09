@@ -1,17 +1,52 @@
 ---
 title: .NET Aspire MySQL database integration
-description: This article describes the .NET Aspire MySQL database integration.
-ms.topic: how-to
-ms.date: 11/22/2024
+description: Learn how to use the .NET Aspire MySQL database integration, which includes both hosting and client integrations.
+ms.date: 12/09/2024
+uid: storage/mysql-integration
 ---
 
 # .NET Aspire MySQL database integration
 
-In this article, you learn how to use the .NET Aspire MySQL database integration. The `Aspire.MySqlConnector` library:
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-- Registers a [MySqlDataSource](https://mysqlconnector.net/api/mysqlconnector/mysqldatasourcetype) in the DI container for connecting MySQL database.
-- Automatically configures the following:
-  - Health checks, logging and telemetry to improve app monitoring and diagnostics
+[MySQL](https://www.mysql.com/) is an open-source Relational Database Management System (RDBMS) that uses Structured Query Language (SQL) to manage and manipulate data. It's employed in a many different environments, from small projects to large-scale enterprise systems and it's a popular choice to host data that underpins microservices in a cloud-native application. The .NET Aspire MySQL database integration enables you to connect to existing MySQL Server databases or create new instances from .NET with the [`mysql` container image](https://hub.docker.com/_/mysql).
+
+## Hosting integration
+
+[!INCLUDE [mysql-app-host](includes/mysql-app-host.md)]
+
+> AJMTODO: Integrate the following into the previous include?
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var mysql = builder.AddMySql("mysql");
+var mysqldb = mysql.AddDatabase("mysqldb");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(mysqldb);
+```
+
+When you want to explicitly provide a root MySQL password, you can provide it as a parameter. Consider the following alternative example:
+
+```csharp
+var password = builder.AddParameter("password", secret: true);
+
+var mysql = builder.AddMySql("mysql", password);
+var mysqldb = mysql.AddDatabase("mysqldb");
+
+var myService = builder.AddProject<Projects.MyService>()
+                       .WithReference(mysqldb);
+```
+
+For more information, see [External parameters](../fundamentals/external-parameters.md).
+
+> AJMTODO Other host integration stuff?
+
+## Client integration
+
+
+
 
 ## Prerequisites
 
@@ -56,34 +91,6 @@ public class ExampleService(MySqlDataSource dataSource)
 ```
 
 After adding a `MySqlDataSource`, you can require the `MySqlDataSource` instance using DI.
-
-## App host usage
-
-[!INCLUDE [mysql-app-host](includes/mysql-app-host.md)]
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var mysql = builder.AddMySql("mysql");
-var mysqldb = mysql.AddDatabase("mysqldb");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(mysqldb);
-```
-
-When you want to explicitly provide a root MySQL password, you can provide it as a parameter. Consider the following alternative example:
-
-```csharp
-var password = builder.AddParameter("password", secret: true);
-
-var mysql = builder.AddMySql("mysql", password);
-var mysqldb = mysql.AddDatabase("mysqldb");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(mysqldb);
-```
-
-For more information, see [External parameters](../fundamentals/external-parameters.md).
 
 ## Configuration
 
@@ -158,5 +165,6 @@ By default, the .NET Aspire MySQL database integration handles the following:
 ## See also
 
 - [MySQL database](https://mysqlconnector.net/)
+- [.NET Aspire database containers sample](/samples/dotnet/aspire-samples/aspire-database-containers/)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
