@@ -263,4 +263,4 @@ To connect to the storage resource from Azure Storage Explorer, follow these ste
 
     :::image type="content" source="../media/azure-storage-explorer.png" lightbox="../media/azure-storage-explorer.png" alt-text="Azure Storage Explorer: Azurite storage resource discovered.":::
 
-You're free to explore the storage account and its contents using the Azure Storage Explorer.
+You're free to explore the storage account and its contents using the Azure Storage Explorer. For more information on using the Azure Storage Explorer, see [Get started with Storage Explorer](/azure/storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer).
