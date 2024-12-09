@@ -169,7 +169,7 @@ By default, the Azurite container when configured by .NET Aspire, exposes the fo
 | `queue`  | 10001          | dynamic   |
 | `table`  | 10002          | dynamic   |
 
-The port that they're listening on is dynamic by default. To configure the endpoint ports, chain calls on the container resource builder provided by the `RunAsEmulator` method as shown in the following example:
+The port that they're listening on is dynamic by default. When the container starts, the ports are mapped to a random port on the host machine. To configure the endpoint ports, chain calls on the container resource builder provided by the `RunAsEmulator` method as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -185,7 +185,11 @@ var storage = builder.AddAzureStorage("storage").RunAsEmulator(
 // After adding all resources, run the app...
 ```
 
-The preceding code configures the Azurite container's existing `blob`, `queue`, and `table` endpoints to listen on ports `27000`, `27001`, and `27002`, respectively.
+The preceding code configures the Azurite container's existing `blob`, `queue`, and `table` endpoints to listen on ports `27000`, `27001`, and `27002`, respectively. The Azurite container's ports are mapped to the host ports as follows, `container:host`:
+
+- `blob`: `10000:27000`
+- `queue`: `10001:27001`
+- `table`: `10002:27002`
 
 ##### Configure Azurite container with persistent lifetime
 
