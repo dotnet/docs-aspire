@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs for adding resources and expressing dependencies.
-ms.date: 11/08/2024
+ms.date: 12/09/2024
 ms.topic: overview
 uid: dotnet/aspire/app-host
 ---
@@ -122,6 +122,18 @@ var builder = DistributedApplication.CreateBuilder(args);
 // Adds the project "apiservice" of type "Projects.AspireApp_ApiService".
 var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice");
 ```
+
+Projects can be replicated and scaled out by adding multiple instances of the same project to the app model. To configure replicas, use the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithReplicas*> method:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Adds the project "apiservice" of type "Projects.AspireApp_ApiService".
+var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
+                        .WithReplicas(3);
+```
+
+The preceding code adds three replicas of the "apiservice" project resource to the app model.
 
 ## Reference resources
 
