@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Data Tables integration
 description: Learn how to use the .NET Aspire Azure Data Tables integration, which includes both hosting and client integrations.
-ms.date: 12/06/2024
+ms.date: 12/09/2024
 uid: storage/azure-data-tables-integration
 ---
 

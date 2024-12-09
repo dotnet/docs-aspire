@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Queue Storage integration
 description: This article describes the .NET Aspire Azure Queue Storage integration features and capabilities.
-ms.date: 12/06/2024
+ms.date: 12/09/2024
 uid: storage/azure-queue-storage-integration
 ---
 
