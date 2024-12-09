@@ -133,7 +133,7 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
                         .WithReplicas(3);
 ```
 
-The preceding code adds three replicas of the "apiservice" project resource to the app model.
+The preceding code adds three replicas of the "apiservice" project resource to the app model. For more information, see [.NET Aspire dashboard: Resource replicas](dashboard/explore.md#resource-replicas).
 
 ## Reference resources
 
