@@ -226,7 +226,27 @@ For more information, see [GPU support in Podman](https://github.com/containers/
 
 ---
 
-The preceding code adds a container resource named "ollama" with the image "ollama/ollama". The container resource is configured with multiple bind mounts, a named HTTP endpoint, an entrypoint that resolves to Unix shell script, and container run arguments with the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithContainerRuntimeArgs%2A> method.
+The preceding code adds a container resource named "ollama" with the image `ollama/ollama`. The container resource is configured with multiple bind mounts, a named HTTP endpoint, an entrypoint that resolves to Unix shell script, and container run arguments with the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithContainerRuntimeArgs%2A> method.
+
+#### Customize container resources
+
+All <xref:Aspire.Hosting.ApplicationModel.ContainerResource> subclasses can be customized to meet your specific requirements. This can be useful when using a [hosting integration](integrations-overview.md#hosting-integrations) that models a container resource, but requires modifications. When you have an `IResourceBuilder<ContainerResource>` you can chain calls to any of the available APIs to modify the container resource. .NET Aspire container resources typically point to pinned tags, but you might want to use the `latest` tag instead.
+
+To help exemplify this, imagine a scenario where you're using the [.NET Aspire Redis integration](../caching/stackexchange-redis-integration.md). At one point in time, the Redis integration relied on the `7.4` tag, but you want to use the `latest` tag instead. To achieve this, you can chain a call to the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithImageTag*> API:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var cache = builder.AddRedis("cache")
+                   .WithImageTag("latest");
+
+// Instead of using the "7.4" tag, the "cache" 
+// container resource now uses the "latest" tag.
+```
+
+For more information and additional APIs available, see <xref:Aspire.Hosting.ContainerResourceBuilderExtensions#methods>.
+
+<xref:Aspire.Hosting.ContainerResourceExtensions>
 
 #### Container resource lifecycle
 
