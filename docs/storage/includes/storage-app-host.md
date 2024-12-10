@@ -88,7 +88,7 @@ The following role assignments are added to the storage account to grant your ap
 | Storage Table Data Contributor<br/>`0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3` | Read, write, and delete Azure Storage tables and entities. |
 | Storage Queue Data Contributor<br/>`974c5e8b-45b9-4653-ba55-5f855dd0fb88` | Read, write, and delete Azure Storage queues and queue messages. |
 
-The generated Bicep is a starting point and can be customized to meet your specific requirements. For more information on provisioning, see [Local Azure provisioning](../../deployment/azure/local-provisioning.md).
+The generated Bicep is a starting point and can be customized to meet your specific requirements.
 
 #### Customize provisioning infrastructure
 
@@ -101,13 +101,12 @@ The preceding code:
 - Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
   - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
   - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
-  - The first <xref:Azure.Provisioning.Storage.StorageAccount> named `storage` is retrieved, or an exception is thrown if it doesn't exist.
+  - The single <xref:Azure.Provisioning.Storage.StorageAccount> is retrieved.
   - The <xref:Azure.Provisioning.Storage.StorageAccount.AccessTier?displayProperty=nameWithType> is assigned to <xref:Azure.Provisioning.Storage.StorageAccountAccessTier.Cool?displayProperty=nameWithType>.
-  - The <xref:Azure.Provisioning.Storage.StorageAccount.Sku?displayProperty=nameWithType> is assigned to a new <xref:Azure.Provisioning.Storage.StorageSku> with a `name` of <xref:Azure.Provisioning.Storage.StorageSkuName.PremiumZrs>.
-  - The <xref:Azure.Provisioning.Storage.StorageAccount.Location?displayProperty=nameWithType> is assigned to <xref:Azure.Core.AzureLocation.CentralUS>.
+  - The <xref:Azure.Provisioning.Storage.StorageAccount.Sku?displayProperty=nameWithType> is assigned to a new <xref:Azure.Provisioning.Storage.StorageSku> with a `Name` of <xref:Azure.Provisioning.Storage.StorageSkuName.PremiumZrs>.
   - A tag is added to the storage account with a key of `ExampleKey` and a value of `Example value`.
 
-There are many more configuration options available to customize the Azure Storage resource. For more information, see [Azure Provisioning client library for .NET](https://azuresdkdocs.blob.core.windows.net/$web/dotnet/Azure.Provisioning.Storage/1.0.0/index.html) and <xref:Azure.Provisioning.Storage>.
+There are many more configuration options available to customize the Azure Storage resource. For more information, see <xref:Azure.Provisioning.Storage>.
 
 <!-- TODO: Add link to generic doc covering configuring infra -->
 
@@ -239,7 +238,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var storage = builder.AddAzureStorage("storage").RunAsEmulator(
                      azurite =>
                      {
-                         azurite.WithDataBindMount(@"C:\Azurite\Data");
+                         azurite.WithDataBindMount("../Azurite/Data");
                      });
 
 // After adding all resources, run the app...
@@ -247,7 +246,7 @@ var storage = builder.AddAzureStorage("storage").RunAsEmulator(
 
 [!INCLUDE [data-bind-mount-vs-volumes](../../includes/data-bind-mount-vs-volumes.md)]
 
-Data bind mounts rely on the host machine's filesystem to persist the Azurite data across container restarts. The data bind mount is mounted at the `C:\Azurite\Data` on Windows (or `/Azurite/Data` on Unix) path on the host machine in the Azurite container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
+Data bind mounts rely on the host machine's filesystem to persist the Azurite data across container restarts. The data bind mount is mounted at the `../Azurite/Data` path on the host machine relative to the app host directory (<xref:Aspire.Hosting.IDistributedApplicationBuilder.AppHostDirectory?displayProperty=nameWithType>) in the Azurite container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
 
 ### Connect to storage resources
 

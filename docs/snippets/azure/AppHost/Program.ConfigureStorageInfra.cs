@@ -9,13 +9,9 @@ internal static partial class Program
         builder.AddAzureStorage("storage")
             .ConfigureInfrastructure(infra =>
             {
-                var resources = infra.GetProvisionableResources();
-
-                var storageAccount = resources.OfType<StorageAccount>()
-                                              .FirstOrDefault(r => r.BicepIdentifier is "storage")
-                    ?? throw new InvalidOperationException("""
-                        Could not find configured storage account with name 'storage'
-                        """);
+                var storageAccount = infra.GetProvisionableResources()
+                                          .OfType<StorageAccount>()
+                                          .Single();
 
                 storageAccount.AccessTier = StorageAccountAccessTier.Cool;
                 storageAccount.Sku = new StorageSku { Name = StorageSkuName.PremiumZrs };
