@@ -152,9 +152,7 @@ var storage = builder.AddAzureStorage("storage")
 // After adding all resources, run the app...
 ```
 
-When you call `RunAsEmulator`, it configures your storage resources to run locally using an emulator. The emulator in this case is [Azurite](/azure/storage/common/storage-use-azurite). The Azurite open-source emulator provides a free local environment for testing your Azure Blob, Queue Storage, and Table Storage apps and it's a perfect companion to the .NET Aspire Azure hosting integration. Azurite isn't installed, instead it's accessible to .NET Aspire as a container.
-
-When .NET Aspire adds a container to the app host, as shown in the preceding example with the `mcr.microsoft.com/azure-storage/azurite` image, it creates a new Azurite instance on your local machine.
+When you call `RunAsEmulator`, it configures your storage resources to run locally using an emulator. The emulator in this case is [Azurite](/azure/storage/common/storage-use-azurite). The Azurite open-source emulator provides a free local environment for testing your Azure Blob, Queue Storage, and Table Storage apps and it's a perfect companion to the .NET Aspire Azure hosting integration. Azurite isn't installed, instead, it's accessible to .NET Aspire as a container. When you add a container to the app host, as shown in the preceding example with the `mcr.microsoft.com/azure-storage/azurite` image, it creates and starts the container when the app host starts. For more information, see [Container resource lifecycle](../../fundamentals/app-host-overview.md#container-resource-lifecycle).
 
 #### Configure Azurite container
 
@@ -186,11 +184,13 @@ var storage = builder.AddAzureStorage("storage").RunAsEmulator(
 // After adding all resources, run the app...
 ```
 
-The preceding code configures the Azurite container's existing `blob`, `queue`, and `table` endpoints to listen on ports `27000`, `27001`, and `27002`, respectively. The Azurite container's ports are mapped to the host ports as follows, `container:host`:
+The preceding code configures the Azurite container's existing `blob`, `queue`, and `table` endpoints to listen on ports `27000`, `27001`, and `27002`, respectively. The Azurite container's ports are mapped to the host ports as shown in the following table:
 
-- `blob`: `10000:27000`
-- `queue`: `10001:27001`
-- `table`: `10002:27002`
+| Endpoint name | Port mapping (`container:host`) |
+|--------------:|---------------------------------|
+| `blob`        | `10000:27000`                   |
+| `queue`       | `10001:27001`                   |
+| `table`       | `10002:27002`                   |
 
 ##### Configure Azurite container with persistent lifetime
 
@@ -251,6 +251,9 @@ Data bind mounts rely on the host machine's filesystem to persist the Azurite da
 ### Connect to storage resources
 
 When the .NET Aspire app host runs, the storage resources can be accessed by external tools, such as the [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/). If your storage resource is running locally using Azurite, it will automatically be picked up by the Azure Storage Explorer.
+
+> [!NOTE]
+> The Azure Storage Explorer discovers Azurite storage resources assuming the default ports are used. If you've [configured the Azurite container to use different ports](#configure-azurite-container-ports), you'll need to configure the Azure Storage Explorer to connect to the correct ports.
 
 To connect to the storage resource from Azure Storage Explorer, follow these steps:
 
