@@ -10,8 +10,8 @@ uid: dotnet/aspire/service-defaults
 
 In this article, you learn about the .NET Aspire service defaults project, a set of extension methods that:
 
-* Connect [telemetry](telemetry.md), [health checks](health-checks.md), [service discovery](../service-discovery/overview.md) to your app.
-* Are customizable and extensible.
+- Connect [telemetry](telemetry.md), [health checks](health-checks.md), [service discovery](../service-discovery/overview.md) to your app.
+- Are customizable and extensible.
 
 Cloud-native applications often require extensive configurations to ensure they work across different environments reliably and securely. .NET Aspire provides many helper methods and tools to streamline the management of configurations for OpenTelemetry, health checks, environment variables, and more.
 
