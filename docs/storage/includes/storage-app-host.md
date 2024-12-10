@@ -50,7 +50,7 @@ var storage = builder.AddAzureStorage("storage");
 When you add an `AzureStorageResource` to the app host, it exposes other useful APIs to add Azure Blob, Queue, and Table storage resources. In other words, you must add an `AzureStorageResource` before adding any of the other storage resources.
 
 > [!IMPORTANT]
-> When you call <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location.
+> When you call <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../../deployment/azure/local-provisioning.md#configuration).
 
 #### Generated provisioning Bicep
 
@@ -78,7 +78,9 @@ The preceding Bicep is a module that provisions an Azure Storage account with th
   - `minimumTlsVersion`: The minimum supported TLS version for the storage account. The default is `TLS1_2`.
   - `networkAcls`: The network ACLs for the storage account. The default is `{ defaultAction: 'Allow' }`.
 
-In addition to the storage account, it also provisions a blob container. The following role assignments are also added, where all roles are scoped to the storage account—and the roles are [built-in Azure role-based access control (Azure RBAC) roles](/azure/role-based-access-control/built-in-roles#storage):
+In addition to the storage account, it also provisions a blob container.
+
+The following role assignments are added to the storage account to grant your application access. See the [built-in Azure role-based access control (Azure RBAC) roles](/azure/role-based-access-control/built-in-roles#storage) for more information:
 
 | Role / ID | Description |
 |------|-------------|
@@ -126,12 +128,12 @@ builder.AddProject<Projects.WebApplication>("web")
 
 [!INCLUDE [connection-strings-alert](../../includes/connection-strings-alert.md)]
 
-The connection string is configured in the app host's secret store under the `ConnectionStrings` section. The app host injects this connection string as an environment variable into all dependent resources, for example:
+The connection string is configured in the app host's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section. The app host injects this connection string as an environment variable into all dependent resources, for example:
 
 ```json
 {
     "ConnectionStrings": {
-        "blobs": "<THE_CONNECTION_STRING>"
+        "blobs": "https://{account_name}.blob.core.windows.net/"
     }
 }
 ```

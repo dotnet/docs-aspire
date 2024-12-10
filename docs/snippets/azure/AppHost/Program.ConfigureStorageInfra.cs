@@ -19,7 +19,6 @@ internal static partial class Program
 
                 storageAccount.AccessTier = StorageAccountAccessTier.Cool;
                 storageAccount.Sku = new StorageSku { Name = StorageSkuName.PremiumZrs };
-                storageAccount.Location = AzureLocation.CentralUS;
                 storageAccount.Tags.Add("Environment", "Production");
                 storageAccount.EnableHttpsTrafficOnly = true;
             });

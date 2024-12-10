@@ -38,7 +38,7 @@ The preceding code:
 - Adds an Azure Storage resource named `storage`.
 - Chains a call to <xref:Aspire.Hosting.AzureStorageExtensions.RunAsEmulator*> to configure the storage resource to run locally using an emulator. The emulator in this case is [Azurite](/azure/storage/common/storage-use-azurite).
 - Adds a blob container named `blobs` to the storage resource.
-- Adds the `storage` resource to the `ExampleProject` and waits for it to be ready before starting the project.
+- Adds the `blobs` resource to the `ExampleProject` and waits for it to be ready before starting the project.
 
 #### Azure Blob Storage Bicep
 
@@ -167,10 +167,10 @@ You can also pass the `Action<AzureStorageBlobsSettings> configureSettings` dele
 ```csharp
 builder.AddAzureBlobClient(
     "blobs",
-    settings => settings.DisableHealthChecks  = true);
+    settings => settings.DisableHealthChecks = true);
 ```
 
-You can also set up the <xref:Azure.Storage.Blobs.BlobClientOptions> using `Action<IAzureClientBuilder<BlobServiceClient, BlobClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureBlobClient` method. For example, to set the first part of user-agent headers for all requests issues by this client:
+You can also set up the <xref:Azure.Storage.Blobs.BlobClientOptions> using the `Action<IAzureClientBuilder<BlobServiceClient, BlobClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureBlobClient` method. For example, to set the first part of user-agent headers for all requests issues by this client:
 
 ```csharp
 builder.AddAzureBlobClient(
