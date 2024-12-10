@@ -8,7 +8,10 @@ uid: dotnet/aspire/service-defaults
 
 # .NET Aspire service defaults
 
-In this article, you learn about the .NET Aspire service defaults project, a set of extension methods that wire up [telemetry](telemetry.md), [health checks](health-checks.md), [service discovery](../service-discovery/overview.md), and are designed to be customizable and extensible.
+In this article, you learn about the .NET Aspire service defaults project, a set of extension methods that:
+
+* Connect [telemetry](telemetry.md), [health checks](health-checks.md), [service discovery](../service-discovery/overview.md) to your app.
+* Are customizable and extensible.
 
 Cloud-native applications often require extensive configurations to ensure they work across different environments reliably and securely. .NET Aspire provides many helper methods and tools to streamline the management of configurations for OpenTelemetry, health checks, environment variables, and more.
 
@@ -20,17 +23,17 @@ When you either [**Enlist in .NET Aspire orchestration**](setup-tooling.md#enlis
 builder.AddServiceDefaults();
 ```
 
-The `AddServiceDefaults` method handles the following concerns for you:
+The `AddServiceDefaults` method handles the following tasks:
 
 - Configures OpenTelemetry metrics and tracing.
-- Add default health check endpoints.
-- Add service discovery functionality.
+- Adds default health check endpoints.
+- Adds service discovery functionality.
 - Configures <xref:System.Net.Http.HttpClient> to work with service discovery.
 
 For more information, see [Provided extension methods](#provided-extension-methods) for details on the `AddServiceDefaults` method.
 
 > [!IMPORTANT]
-> The .NET Aspire service defaults project is specifically designed for sharing the _Extensions.cs_ file and its functionality. Please refrain from including other shared functionality or models in this project, use a conventional shared class library project for those purposes.
+> The .NET Aspire service defaults project is specifically designed for sharing the _Extensions.cs_ file and its functionality. Don't include other shared functionality or models in this project. Use a conventional shared class library project for those purposes.
 
 ## Project characteristics
 
