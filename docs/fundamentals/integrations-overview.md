@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire integrations overview
 description: Explore the fundamental concepts of .NET Aspire integrations and learn how to integrate them into your apps.
-ms.date: 11/18/2024
+ms.date: 12/09/2024
 ms.topic: conceptual
 uid: dotnet/aspire/integrations
 ---
@@ -21,13 +21,15 @@ Most .NET Aspire integrations are made up of two separate libraries, each with a
 
 Hosting integrations configure applications by provisioning resources (like containers or cloud resources) or pointing to existing instances (such as a local SQL server). These packages model various services, platforms, or capabilities, including caches, databases, logging, storage, and messaging systems.
 
-Hosting integrations extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface, enabling the _app host_ project to express resources within its [_app model_](app-host-overview.md#terminology). The official [hosting integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+hosting+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `hosting`.
+Hosting integrations extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface, enabling the _app host_ project to express resources within its [_app model_](app-host-overview.md#terminology). The official [hosting integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+hosting+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `hosting`. In addition to the official hosting integrations, the [community has created hosting integrations](../community-toolkit/overview.md) for various services and platforms as part of the Community Toolkit.
 
 For information on creating a custom _hosting integration_, see [Create custom .NET Aspire hosting integration](../extensibility/custom-hosting-integration.md).
 
 ### Client integrations
 
-Client integrations wire up client libraries to dependency injection (DI), define configuration schema, and add health checks, resiliency, and telemetry where applicable. These packages configure existing client libraries to connect to hosting integrations. They extend the <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> interface allowing client-consuming projects, such as your web app or API, to use the connected resource. The official [client integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+client+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `client`.
+Client integrations wire up client libraries to [dependency injection (DI)](/dotnet/core/extensions/dependency-injection), define configuration schema, and add [health checks](health-checks.md), [resiliency](/dotnet/core/resilience), and [telemetry](telemetry.md) where applicable. .NET Aspire client integration libraries are prefixed with `Aspire.` and then include the full package name that they integrate with, such as `Aspire.StackExchange.Redis`.
+
+These packages configure existing client libraries to connect to hosting integrations. They extend the <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> interface allowing client-consuming projects, such as your web app or API, to use the connected resource. The official [client integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+client+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `client`. In addition to the official client integrations, the [community has created client integrations](../community-toolkit/overview.md) for various services and platforms as part of the Community Toolkit.
 
 For more information on creating a custom client integration, see [Create custom .NET Aspire client integrations](../extensibility/custom-client-integration.md).
 
