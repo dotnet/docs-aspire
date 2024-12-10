@@ -148,7 +148,7 @@ You can also pass the `Action<AzureStorageQueuesSettings> configureSettings` del
 ```csharp
 builder.AddAzureQueueClient(
     "queue",
-    settings => settings.DisableHealthChecks  = true);
+    settings => settings.DisableHealthChecks = true);
 ```
 
 You can also set up the <xref:Azure.Storage.Queues.QueueClientOptions> using `Action<IAzureClientBuilder<QueueServiceClient, QueueClientOptions>> configureClientBuilder` delegate, the second parameter of the `AddAzureQueueClient` method. For example, to set the first part of user-agent headers for all requests issues by this client:
