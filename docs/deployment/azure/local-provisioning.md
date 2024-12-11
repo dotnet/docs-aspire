@@ -1,7 +1,7 @@
 ---
 title: Local Azure provisioning
 description: Learn how to use Azure resources in your local development environment.
-ms.date: 10/31/2024
+ms.date: 12/10/2024
 ---
 
 # Local Azure provisioning
@@ -30,7 +30,7 @@ When the app host starts, the following provisioning logic is executed:
 
 The app host automatically manages provisioning of Azure resources. The first time the app host runs, it provisions the resources specified in the app host. Subsequent runs don't provision the resources again unless the app host configuration changes.
 
-If you've already provisioned Azure resources outside of the app host and want to use them, you can provide the connection string with the `AddConnectionString` API as shown in the following Azure Key Vault example:
+If you've already provisioned Azure resources outside of the app host and want to use them, you can provide the connection string with the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> API as shown in the following Azure Key Vault example:
 
 ```csharp
 // Service registration
@@ -43,7 +43,7 @@ builder.AddProject<Projects.ExampleProject>()
        .WithReference(secrets)
 ```
 
-The preceding code snippet shows how to add an Azure Key Vault to the app host. The `AddAzureKeyVault` API is used to add the Azure Key Vault to the app host. The `AddConnectionString` API is used to provide the connection string to the app host.
+The preceding code snippet shows how to add an Azure Key Vault to the app host. The <xref:Aspire.Hosting.AzureKeyVaultResourceExtensions.AddAzureKeyVault*> API is used to add the Azure Key Vault to the app host. The `AddConnectionString` API is used to provide the connection string to the app host.
 
 Alternatively, for some Azure resources, you can opt-in to running them as an emulator with the `RunAsEmulator` API. This API is available for Azure Cosmos DB and Azure Storage. For example, to run Azure Cosmos DB as an emulator, you can use the following code snippet:
 
@@ -57,30 +57,6 @@ The `RunAsEmulator` API configures an Azure Cosmos DB resource to be emulated us
 ### .NET Aspire Azure hosting integrations
 
 If you're using Azure resources in your app host, you're using one or more of the .NET Aspire Azure hosting integrations. These hosting libraries provide extension methods to the `IDistributedApplicationBuilder` interface to add Azure resources to your app host.
-
-### Azure provisioning integrations
-
-The following Azure provisioning libraries are available:
-
-- [📦 Azure.Provisioning.AppConfiguration](https://www.nuget.org/packages/Azure.Provisioning.AppConfiguration)
-- [📦 Azure.Provisioning.ApplicationInsights](https://www.nuget.org/packages/Azure.Provisioning.ApplicationInsights)
-- [📦 Azure.Provisioning.CognitiveServices](https://www.nuget.org/packages/Azure.Provisioning.CognitiveServices)
-- [📦 Azure.Provisioning.CosmosDB](https://www.nuget.org/packages/Azure.Provisioning.CosmosDB)
-- [📦 Azure.Provisioning.EventHubs](https://www.nuget.org/packages/Azure.Provisioning.EventHubs)
-- [📦 Azure.Provisioning.KeyVault](https://www.nuget.org/packages/Azure.Provisioning.KeyVault)
-- [📦 Azure.Provisioning.OperationalInsights](https://www.nuget.org/packages/Azure.Provisioning.OperationalInsights)
-- [📦 Azure.Provisioning.PostgreSql](https://www.nuget.org/packages/Azure.Provisioning.PostgreSql)
-- [📦 Azure.Provisioning.Redis](https://www.nuget.org/packages/Azure.Provisioning.Redis)
-- [📦 Azure.Provisioning.Resources](https://www.nuget.org/packages/Azure.Provisioning.Resources)
-- [📦 Azure.Provisioning.Search](https://www.nuget.org/packages/Azure.Provisioning.Search)
-- [📦 Azure.Provisioning.ServiceBus](https://www.nuget.org/packages/Azure.Provisioning.ServiceBus)
-- [📦 Azure.Provisioning.SignalR](https://www.nuget.org/packages/Azure.Provisioning.SignalR)
-- [📦 Azure.Provisioning.Sql](https://www.nuget.org/packages/Azure.Provisioning.Sql)
-- [📦 Azure.Provisioning.Storage](https://www.nuget.org/packages/Azure.Provisioning.Storage)
-- [📦 Azure.Provisioning](https://www.nuget.org/packages/Azure.Provisioning)
-
-> [!TIP]
-> You shouldn't need to install these packages manually in your projects, as they're transitive dependencies of the corresponding .NET Aspire Azure hosting libraries.
 
 ## Configuration
 

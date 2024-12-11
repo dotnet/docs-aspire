@@ -1,7 +1,9 @@
 ﻿var builder = DistributedApplication.CreateBuilder(args);
 
+AddAzureInfrastructure(builder);
+
 builder.AddAzureAppConfiguration("config");
-builder.AddAzureApplicationInsights("insights");
+builder.AddAzureApplicationInsights("app-insights");
 builder.AddAzureCosmosDB("cosmos");
 builder.AddAzureEventHubs("event-hubs");
 builder.AddAzureKeyVault("key-vault");
