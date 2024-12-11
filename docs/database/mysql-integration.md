@@ -17,7 +17,7 @@ uid: storage/mysql-integration
 
 ## Client integration
 
-To get started with the .NET Aspire MySQL database integration, install the [📦 Aspire.MySqlConnector](https://www.nuget.org/packages/Aspire.MySqlConnector) NuGet package in the client-consuming project, that is, the project for the application that uses the MySQL client. The MySQL client integration registers a <xref:MySqlConnector.MySqlDataSource> instance that you can use to interact with the MySQL server.
+To get started with the .NET Aspire MySQL database integration, install the [📦 Aspire.MySqlConnector](https://www.nuget.org/packages/Aspire.MySqlConnector) NuGet package in the client-consuming project, that is, the project for the application that uses the MySQL client. The MySQL client integration registers a `MySqlConnector.MySqlDataSource` instance that you can use to interact with the MySQL server.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -47,7 +47,7 @@ builder.AddMySqlDataSource(connectionName: "mysqldb");
 > [!TIP]
 > The `connectionName` parameter must match the name used when adding the MySQL database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `mysqldb` that same name should be used when calling `AddMySqlDataSource`. For more information, see [Add MySQL server resource and database resource](#add-mysql-server-resource-and-database-resource).
 
-You can then retrieve the <xref:MySqlConnector.MySqlDataSource> instance using dependency injection. For example, to retrieve the data source from an example service:
+You can then retrieve the `MySqlConnector.MySqlDataSource` instance using dependency injection. For example, to retrieve the data source from an example service:
 
 ```csharp
 public class ExampleService(MySqlDataSource dataSource)

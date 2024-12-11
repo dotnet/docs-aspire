@@ -37,7 +37,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add a MySQL database context
 
-In the :::no-loc text="Program.cs"::: file of your client-consuming project, call the <xref:Microsoft.Extensions.HostingAspireEFMySqlExtensions.AddMySqlDbContext%2A> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a <xref:Microsoft.EntityFrameworkCore.DbContext> for use through the dependency injection container. The method takes a connection name parameter.
+In the :::no-loc text="Program.cs"::: file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireEFMySqlExtensions.AddMySqlDbContext%2A> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a <xref:Microsoft.EntityFrameworkCore.DbContext> for use through the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddMySqlDbContext<ExampleDbContext>(connectionName: "mysqldb");
@@ -71,7 +71,7 @@ builder.EnrichMySqlDbContext<ExampleDbContext>(
     });
 ```
 
-The `settings` parameter is an instance of the <xref:Aspire.Pomelo.EntityFrameworkCore.MySqlPomeloEntityFrameworkCoreMySqlSettings> class.
+The `settings` parameter is an instance of the <xref:Aspire.Pomelo.EntityFrameworkCore.MySql.PomeloEntityFrameworkCoreMySqlSettings> class.
 
 ### Configuration
 
