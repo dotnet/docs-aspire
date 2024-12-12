@@ -43,14 +43,14 @@ All .NET Aspire Azure hosting integrations expose Azure resources and by convent
 
 When your .NET Aspire app host contains Azure resources, and you run it locally (typical developer <kbd>F5</kbd> experience), the Azure resources are provisioned in your Azure subscription. However, they're not yet deployed. Instead, they're running locally in the context of your app host.
 
-.NET Aspire optimizes for "as free as possible" with its Azure integrations—defaulting to Basic and Standard SKUs in most cases. Additionally, some Azure integrations support [emulators](#local-emulators) or [containers](#local-containers), which enables compelling scenarios for local development, testing, and debugging. When you run your app locally, the Azure resources are configured to use the actual Azure service by default. However, you can configure them to use local emulators or containers instead. This means that you avoid any costs associated with running the actual Azure service for local development.
+.NET Aspire aims to minimize costs by defaulting to Basic and Standard SKUs for its Azure integrations. While these sensible defaults are provided, you can [customize the Azure resources](#azure-provisioning-customization) to suit your needs. Additionally, some integrations support [emulators](#local-emulators) or [containers](#local-containers), which are useful for local development, testing, and debugging. By default, when you run your app locally, the Azure resources use the actual Azure service. However, you can configure them to use local emulators or containers, avoiding costs associated with the actual Azure service during local development.
 
 ### Local emulators
 
 Some Azure services can be run locally in emulators. Currently, .NET Aspire supports the following Azure emulators:
 
-| Integration | Description |
-|----------|-------------|
+| Hosting integration | Description |
+|--|--|
 | Azure Cosmos DB | Call <xref:Aspire.Hosting.AzureCosmosExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureCosmosDBResource>` to configure the Cosmos DB resource to be [emulated with the NoSQL API](/azure/cosmos-db/how-to-develop-emulator). |
 | Azure Event Hubs | Call <xref:Aspire.Hosting.AzureEventHubsExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureEventHubsResource>` to configure the Event Hubs resource to be [emulated](/azure/event-hubs/overview-emulator). |
 | Azure Storage | Call <xref:Aspire.Hosting.AzureStorageExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureStorageResource>` to configure the Storage resource to be [emulated with Azurite](/azure/storage/common/storage-use-azurite). |
@@ -58,7 +58,7 @@ Some Azure services can be run locally in emulators. Currently, .NET Aspire supp
 To have your Azure resources use the local emulators, chain a call the `RunAsEmulator` method on the Azure resource builder. This method configures the Azure resource to use the local emulator instead of the actual Azure service.
 
 > [!IMPORTANT]
-> Calling `RunAsEmulator` on an Azure resource builder doesn't impact the publishing manifest. When you publish your app, the generated Bicep file will reflect the actual Azure service, not the local emulator.
+> Calling any of the available `RunAsEmulator` APIs on an Azure resource builder doesn't impact the [publishing manifest](../deployment/manifest-format.md). When you publish your app, the generated Bicep file will reflect the actual Azure service, not the local emulator.
 
 ### Local containers
 
@@ -66,22 +66,46 @@ Some Azure services can be run locally in containers. To run an Azure service lo
 
 Currently, .NET Aspire supports the following Azure services as containers:
 
-| Integration | Details |
-|---------------|---------|
+| Hosting integration | Details |
+|--|--|
 | Azure Cache for Redis | Call <xref:Aspire.Hosting.AzureRedisExtensions.RunAsContainer*?displayProperty=nameWithType> on the `IResourceBuilder<AzureRedisCacheResource>` to configure it to run locally in a container, based on the `docker.io/library/redis` image. |
-| Azure PostgreSQL Flexible Server  | Call <xref:Aspire.Hosting.AzurePostgresExtensions.RunAsContainer*?displayProperty=nameWithType> on the `IResourceBuilder<AzurePostgresFlexibleServerResource>` to configure it to run locally in a container, based on the `docker.io/library/postgres` image. |
+| Azure PostgreSQL Flexible Server | Call <xref:Aspire.Hosting.AzurePostgresExtensions.RunAsContainer*?displayProperty=nameWithType> on the `IResourceBuilder<AzurePostgresFlexibleServerResource>` to configure it to run locally in a container, based on the `docker.io/library/postgres` image. |
 | Azure SQL Server | Call <xref:Aspire.Hosting.AzureSqlExtensions.RunAsContainer*?displayProperty=nameWithType> on the `IResourceBuilder<AzureSqlServerResource>` to configure it to run locally in a container, based on the `mcr.microsoft.com/mssql/server` image. |
 
 > [!NOTE]
-> Like emulators, calling `RunAsContainer` on an Azure resource builder doesn't impact the publishing manifest. When you publish your app, the generated Bicep file will reflect the actual Azure service, not the local container.
+> Like emulators, calling `RunAsContainer` on an Azure resource builder has no affect on the [publishing manifest](../deployment/manifest-format.md). When you publish your app, the generated Bicep file will reflect the actual Azure service, not the local container.
+
+### Common APIs and patterns
+
+.NET Aspire's strength lies in its ability to provide an amazing developer inner-loop. The Azure integrations are no different. They provide a set of common APIs and patterns that are shared across all Azure resources. These APIs and patterns are designed to make it easy to work with Azure resources in a consistent manner.
+
+In the preceding containers section, you saw how to run Azure services locally in containers. If you're familiar with .NET Aspire, you might wonder how calling `AddAzureRedis("redis").RunAsContainer()` to get a local `docker.io/library/redis` container differs from `AddRedis("redis")`—as they both result in the same local container.
+
+The answer is that they're not different, when running locally. However, when you publish these you get different resources:
+
+| API | Local | Published |
+|--|--|--|
+| `AddAzureRedis("redis").RunAsContainer()` | Local Redis container | Azure Cache for Redis |
+| `AddRedis("redis")` | Local Redis container | Azure Container App with Redis image |
+
+The same is true for SQL and PostgreSQL services:
+
+| API | Local | Published |
+|--|--|--|
+| `AddAzurePostgresFlexibleServer("postgres").RunAsContainer()` | Local PostgreSQL container | Azure PostgreSQL Flexible Server |
+| `AddPostgres("postgres")` | Local PostgreSQL container | Azure Container App with PostgreSQL image |
+| `AddAzureSqlServer("sql").RunAsContainer()` | Local SQL Server container | Azure SQL Server |
+| `AddSql("sql")` | Local SQL Server container | Azure Container App with SQL Server image |
 
 ## Infrastructure as code
 
 The Azure SDK for .NET provides the [📦 Azure.Provisioning](https://www.nuget.org/packages/Azure.Provisioning) NuGet package and a suite of service-specific [Azure provisioning packages](#azure-provisioning-packages). These Azure provisioning libraries make it easy to declaratively specify Azure infrastructure natively in .NET.
 
+<!-- TODO: Add link from here to the Azure docs when they're written. -->
+
 While it's possible to provision Azure resources manually, .NET Aspire simplifies the process by providing a set of APIs to express Azure resources. These APIs are available as extension methods in .NET Aspire Azure hosting libraries, extending the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. When you add Azure resources to your app host, they add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
 
-Since .NET Aspire models Azure resources within Azure hosting integrations, the Azure SDK is used to provision these resources. The Azure SDK generates Bicep files that define the Azure resources you need. If you're unfamiliar with Bicep, it's a domain-specific language used to describe and provision Azure resources. The generated Bicep files are output alongside the manifest file when you publish your app. For more information, see [Azure provisioning Bicep](#azure-provisioning-bicep).
+Since .NET Aspire models Azure resources within Azure hosting integrations, the Azure SDK is used to provision these resources. The Azure SDK generates Bicep files that define the Azure resources you need. If you're unfamiliar with Bicep, it's a domain-specific language used to describe and provision Azure resources. The generated Bicep files are output alongside the manifest file when you publish your app.
 
 ### Azure provisioning customization
 
@@ -133,6 +157,39 @@ The preceding code:
 - Chains a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEnvironment*> to set the `ACR_REGISTRY_NAME` environment variable in the project to the value of the `registryName` output.
 
 This example demonstrates how to add Azure infrastructure to your app host project, even if the Azure service isn't directly exposed as a .NET Aspire integration. It further shows how to flow the output of the Azure Container Registry into the environment of a project.
+
+### Azure provisioning packages
+
+The following Azure provisioning libraries are available:
+
+- [📦 Azure.Provisioning.AppConfiguration](https://www.nuget.org/packages/Azure.Provisioning.AppConfiguration)
+- [📦 Azure.Provisioning.AppContainers](https://www.nuget.org/packages/Azure.Provisioning.AppContainers)
+- [📦 Azure.Provisioning.AppService](https://www.nuget.org/packages/Azure.Provisioning.AppService)
+- [📦 Azure.Provisioning.ApplicationInsights](https://www.nuget.org/packages/Azure.Provisioning.ApplicationInsights)
+- [📦 Azure.Provisioning.CognitiveServices](https://www.nuget.org/packages/Azure.Provisioning.CognitiveServices)
+- [📦 Azure.Provisioning.Communication](https://www.nuget.org/packages/Azure.Provisioning.Communication)
+- [📦 Azure.Provisioning.ContainerRegistry](https://www.nuget.org/packages/Azure.Provisioning.ContainerRegistry)
+- [📦 Azure.Provisioning.ContainerService](https://www.nuget.org/packages/Azure.Provisioning.ContainerService)
+- [📦 Azure.Provisioning.CosmosDB](https://www.nuget.org/packages/Azure.Provisioning.CosmosDB)
+- [📦 Azure.Provisioning.Deployment](https://www.nuget.org/packages/Azure.Provisioning.Deployment)
+- [📦 Azure.Provisioning.EventGrid](https://www.nuget.org/packages/Azure.Provisioning.EventGrid)
+- [📦 Azure.Provisioning.EventHubs](https://www.nuget.org/packages/Azure.Provisioning.EventHubs)
+- [📦 Azure.Provisioning.KeyVault](https://www.nuget.org/packages/Azure.Provisioning.KeyVault)
+- [📦 Azure.Provisioning.Kubernetes](https://www.nuget.org/packages/Azure.Provisioning.Kubernetes)
+- [📦 Azure.Provisioning.KubernetesConfiguration](https://www.nuget.org/packages/Azure.Provisioning.KubernetesConfiguration)
+- [📦 Azure.Provisioning.OperationalInsights](https://www.nuget.org/packages/Azure.Provisioning.OperationalInsights)
+- [📦 Azure.Provisioning.PostgreSql](https://www.nuget.org/packages/Azure.Provisioning.PostgreSql)
+- [📦 Azure.Provisioning.Redis](https://www.nuget.org/packages/Azure.Provisioning.Redis)
+- [📦 Azure.Provisioning.Search](https://www.nuget.org/packages/Azure.Provisioning.Search)
+- [📦 Azure.Provisioning.ServiceBus](https://www.nuget.org/packages/Azure.Provisioning.ServiceBus)
+- [📦 Azure.Provisioning.SignalR](https://www.nuget.org/packages/Azure.Provisioning.SignalR)
+- [📦 Azure.Provisioning.Sql](https://www.nuget.org/packages/Azure.Provisioning.Sql)
+- [📦 Azure.Provisioning.Storage](https://www.nuget.org/packages/Azure.Provisioning.Storage)
+- [📦 Azure.Provisioning.WebPubSub](https://www.nuget.org/packages/Azure.Provisioning.WebPubSub)
+- [📦 Azure.Provisioning](https://www.nuget.org/packages/Azure.Provisioning)
+
+> [!TIP]
+> You don't need to install these packages manually in your app host projects, as they're transitive dependencies of the corresponding .NET Aspire Azure hosting integrations your app host references.
 
 ## Publishing
 
