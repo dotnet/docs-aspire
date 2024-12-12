@@ -11,7 +11,7 @@ When you're targeting Azure as your desired cloud provider, you can use Bicep to
 While .NET Aspire provides a set of pre-built Bicep templates so that you don't need to write them, there might be times when you either want to customize the templates or create your own. This article explains the concepts and corresponding APIs that you can use to customize the Bicep templates.
 
 > [!IMPORTANT]
-> This article is not intended to teach Bicep, but rather to provide guidance on how to create customize Bicep templates for use with .NET Aspire.
+> This article is not intended to teach Bicep, but rather to provide guidance on how to create custom Bicep templates for use with .NET Aspire.
 
 As part of the Azure deployment story for .NET Aspire, the Azure Developer CLI (`azd`) provides an understanding of your .NET Aspire project and the ability to deploy it to Azure. The `azd` CLI uses the Bicep templates to deploy the application to Azure.
 

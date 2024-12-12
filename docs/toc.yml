@@ -180,6 +180,10 @@ items:
           href: deployment/azure/local-provisioning.md
         - name: Use custom Bicep templates
           href: deployment/azure/custom-bicep-templates.md
+        - name: Hosting API reference
+          href: /dotnet/api/?term=Aspire.Hosting.Azure
+        - name: Client API reference
+          href: /dotnet/api/?term=Aspire.Azure
       - name: Dapr
         items:
           - name: Overview
