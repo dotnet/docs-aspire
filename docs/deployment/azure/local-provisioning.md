@@ -16,7 +16,7 @@ This article assumes that you have an Azure account and subscription. If you don
 
 ## App host provisioning APIs
 
-The app host provides a set of APIs to express Azure resources. These APIs are available as extension methods in .NET Aspire Azure hosting libraries, extending the `IDistributedApplicationBuilder` interface. When you add Azure resources to your app host, they'll add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
+The app host provides a set of APIs to express Azure resources. These APIs are available as extension methods in .NET Aspire Azure hosting libraries, extending the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. When you add Azure resources to your app host, they'll add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
 
 When the app host starts, the following provisioning logic is executed:
 
@@ -45,14 +45,14 @@ builder.AddProject<Projects.ExampleProject>()
 
 The preceding code snippet shows how to add an Azure Key Vault to the app host. The <xref:Aspire.Hosting.AzureKeyVaultResourceExtensions.AddAzureKeyVault*> API is used to add the Azure Key Vault to the app host. The `AddConnectionString` API is used to provide the connection string to the app host.
 
-Alternatively, for some Azure resources, you can opt-in to running them as an emulator with the `RunAsEmulator` API. This API is available for Azure Cosmos DB and Azure Storage. For example, to run Azure Cosmos DB as an emulator, you can use the following code snippet:
+Alternatively, for some Azure resources, you can opt-in to running them as an emulator with the `RunAsEmulator` API. This API is available for [Azure Cosmos DB](../../database/azure-cosmos-db-integration.md) and [Azure Storage](../../storage/azure-storage-integrations.md) integrations. For example, to run Azure Cosmos DB as an emulator, you can use the following code snippet:
 
 ```csharp
 var cosmos = builder.AddAzureCosmosDB("cosmos")
                     .RunAsEmulator();
 ```
 
-The `RunAsEmulator` API configures an Azure Cosmos DB resource to be emulated using the Azure Cosmos DB emulator with the NoSQL API.
+The <xref:Aspire.Hosting.AzureCosmosExtensions.RunAsEmulator*> API configures an Azure Cosmos DB resource to be emulated using the Azure Cosmos DB emulator with the NoSQL API.
 
 ### .NET Aspire Azure hosting integrations
 
@@ -89,7 +89,7 @@ After you've configured the necessary values, you can start provisioning Azure r
 
 The .NET Aspire app host uses a credential store for Azure resource authentication and authorization. Depending on your subscription, the correct credential store may be needed for multi-tenant provisioning scenarios.
 
-With the [Aspire.Hosting.Azure](https://nuget.org/packages/Aspire.Hosting.Azure) NuGet package installed, and if your app host depends on Azure resources, the default Azure credential store relies on the <xref:Azure.Identity.DefaultAzureCredential>. To change this behavior, you can set the credential store value in the _:::no-loc text="appsettings.json":::_ file, as shown in the following example:
+With the [📦 Aspire.Hosting.Azure](https://nuget.org/packages/Aspire.Hosting.Azure) NuGet package installed, and if your app host depends on Azure resources, the default Azure credential store relies on the <xref:Azure.Identity.DefaultAzureCredential>. To change this behavior, you can set the credential store value in the _:::no-loc text="appsettings.json":::_ file, as shown in the following example:
 
 ```json
 {
