@@ -9,46 +9,13 @@ uid: azure-integrations-overview
 
 [Azure](/azure) is the most popular cloud platform for building and deploying [.NET applications](/dotnet/azure).  The Azure SDK for .NET allows for easy management and use of Azure services. .NET Aspire provides a set of integrations with Azure services. This article details some common aspects of all Azure integrations in .NET Aspire and aims to help you understand how to use them.
 
-## Provisioning
-
-While it's possible to provision Azure resources manually, .NET Aspire simplifies the process by providing a set of APIs to express Azure resources. These APIs are available as extension methods in .NET Aspire Azure hosting libraries, extending the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. When you add Azure resources to your app host, they'll add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
+## Infrastructure as code
 
 The **Azure SDK for .NET**, provides the [📦 Azure.Provisioning](https://www.nuget.org/packages/Azure.Provisioning) NuGet package and a suite of [Azure provisioning packages](#azure-provisioning-packages). These Azure provisioning libraries make it easy to declaratively specify Azure infrastructure natively in .NET.
 
+While it's possible to provision Azure resources manually, .NET Aspire simplifies the process by providing a set of APIs to express Azure resources. These APIs are available as extension methods in .NET Aspire Azure hosting libraries, extending the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. When you add Azure resources to your app host, they'll add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
+
 Since .NET Aspire models Azure resources within Azure hosting integrations, the Azure SDK is used to provision these resources. The Azure SDK generates Bicep files that define the Azure resources you need. If you're unfamiliar with Bicep, it's a domain-specific language used to describe and provision Azure resources. The generated Bicep files are output alongside the manifest file when you publish your app. For more information, see [Azure provisioning Bicep](#azure-provisioning-bicep).
-
-### Azure provisioning packages
-
-The following Azure provisioning libraries are available:
-
-- [📦 Azure.Provisioning.AppConfiguration](https://www.nuget.org/packages/Azure.Provisioning.AppConfiguration)
-- [📦 Azure.Provisioning.AppContainers](https://www.nuget.org/packages/Azure.Provisioning.AppContainers)
-- [📦 Azure.Provisioning.AppService](https://www.nuget.org/packages/Azure.Provisioning.AppService)
-- [📦 Azure.Provisioning.ApplicationInsights](https://www.nuget.org/packages/Azure.Provisioning.ApplicationInsights)
-- [📦 Azure.Provisioning.CognitiveServices](https://www.nuget.org/packages/Azure.Provisioning.CognitiveServices)
-- [📦 Azure.Provisioning.Communication](https://www.nuget.org/packages/Azure.Provisioning.Communication)
-- [📦 Azure.Provisioning.ContainerRegistry](https://www.nuget.org/packages/Azure.Provisioning.ContainerRegistry)
-- [📦 Azure.Provisioning.ContainerService](https://www.nuget.org/packages/Azure.Provisioning.ContainerService)
-- [📦 Azure.Provisioning.CosmosDB](https://www.nuget.org/packages/Azure.Provisioning.CosmosDB)
-- [📦 Azure.Provisioning.Deployment](https://www.nuget.org/packages/Azure.Provisioning.Deployment)
-- [📦 Azure.Provisioning.EventGrid](https://www.nuget.org/packages/Azure.Provisioning.EventGrid)
-- [📦 Azure.Provisioning.EventHubs](https://www.nuget.org/packages/Azure.Provisioning.EventHubs)
-- [📦 Azure.Provisioning.KeyVault](https://www.nuget.org/packages/Azure.Provisioning.KeyVault)
-- [📦 Azure.Provisioning.Kubernetes](https://www.nuget.org/packages/Azure.Provisioning.Kubernetes)
-- [📦 Azure.Provisioning.KubernetesConfiguration](https://www.nuget.org/packages/Azure.Provisioning.KubernetesConfiguration)
-- [📦 Azure.Provisioning.OperationalInsights](https://www.nuget.org/packages/Azure.Provisioning.OperationalInsights)
-- [📦 Azure.Provisioning.PostgreSql](https://www.nuget.org/packages/Azure.Provisioning.PostgreSql)
-- [📦 Azure.Provisioning.Redis](https://www.nuget.org/packages/Azure.Provisioning.Redis)
-- [📦 Azure.Provisioning.Search](https://www.nuget.org/packages/Azure.Provisioning.Search)
-- [📦 Azure.Provisioning.ServiceBus](https://www.nuget.org/packages/Azure.Provisioning.ServiceBus)
-- [📦 Azure.Provisioning.SignalR](https://www.nuget.org/packages/Azure.Provisioning.SignalR)
-- [📦 Azure.Provisioning.Sql](https://www.nuget.org/packages/Azure.Provisioning.Sql)
-- [📦 Azure.Provisioning.Storage](https://www.nuget.org/packages/Azure.Provisioning.Storage)
-- [📦 Azure.Provisioning.WebPubSub](https://www.nuget.org/packages/Azure.Provisioning.WebPubSub)
-- [📦 Azure.Provisioning](https://www.nuget.org/packages/Azure.Provisioning)
-
-> [!TIP]
-> You don't need to install these packages manually in your app host projects, as they're transitive dependencies of the corresponding .NET Aspire Azure hosting integrations your app host references.
 
 ### Azure provisioning defaults
 
@@ -354,6 +321,39 @@ The preceding code:
 - Chains a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEnvironment*> to set the `ACR_REGISTRY_NAME` environment variable in the project to the value of the `registryName` output.
 
 This example demonstrates how to add Azure infrastructure to your app host project, even if the Azure service isn't directly exposed as a .NET Aspire integration. It further shows how to flow the output of the Azure Container Registry into the environment of a project.
+
+### Azure provisioning packages
+
+The following Azure provisioning libraries are available:
+
+- [📦 Azure.Provisioning.AppConfiguration](https://www.nuget.org/packages/Azure.Provisioning.AppConfiguration)
+- [📦 Azure.Provisioning.AppContainers](https://www.nuget.org/packages/Azure.Provisioning.AppContainers)
+- [📦 Azure.Provisioning.AppService](https://www.nuget.org/packages/Azure.Provisioning.AppService)
+- [📦 Azure.Provisioning.ApplicationInsights](https://www.nuget.org/packages/Azure.Provisioning.ApplicationInsights)
+- [📦 Azure.Provisioning.CognitiveServices](https://www.nuget.org/packages/Azure.Provisioning.CognitiveServices)
+- [📦 Azure.Provisioning.Communication](https://www.nuget.org/packages/Azure.Provisioning.Communication)
+- [📦 Azure.Provisioning.ContainerRegistry](https://www.nuget.org/packages/Azure.Provisioning.ContainerRegistry)
+- [📦 Azure.Provisioning.ContainerService](https://www.nuget.org/packages/Azure.Provisioning.ContainerService)
+- [📦 Azure.Provisioning.CosmosDB](https://www.nuget.org/packages/Azure.Provisioning.CosmosDB)
+- [📦 Azure.Provisioning.Deployment](https://www.nuget.org/packages/Azure.Provisioning.Deployment)
+- [📦 Azure.Provisioning.EventGrid](https://www.nuget.org/packages/Azure.Provisioning.EventGrid)
+- [📦 Azure.Provisioning.EventHubs](https://www.nuget.org/packages/Azure.Provisioning.EventHubs)
+- [📦 Azure.Provisioning.KeyVault](https://www.nuget.org/packages/Azure.Provisioning.KeyVault)
+- [📦 Azure.Provisioning.Kubernetes](https://www.nuget.org/packages/Azure.Provisioning.Kubernetes)
+- [📦 Azure.Provisioning.KubernetesConfiguration](https://www.nuget.org/packages/Azure.Provisioning.KubernetesConfiguration)
+- [📦 Azure.Provisioning.OperationalInsights](https://www.nuget.org/packages/Azure.Provisioning.OperationalInsights)
+- [📦 Azure.Provisioning.PostgreSql](https://www.nuget.org/packages/Azure.Provisioning.PostgreSql)
+- [📦 Azure.Provisioning.Redis](https://www.nuget.org/packages/Azure.Provisioning.Redis)
+- [📦 Azure.Provisioning.Search](https://www.nuget.org/packages/Azure.Provisioning.Search)
+- [📦 Azure.Provisioning.ServiceBus](https://www.nuget.org/packages/Azure.Provisioning.ServiceBus)
+- [📦 Azure.Provisioning.SignalR](https://www.nuget.org/packages/Azure.Provisioning.SignalR)
+- [📦 Azure.Provisioning.Sql](https://www.nuget.org/packages/Azure.Provisioning.Sql)
+- [📦 Azure.Provisioning.Storage](https://www.nuget.org/packages/Azure.Provisioning.Storage)
+- [📦 Azure.Provisioning.WebPubSub](https://www.nuget.org/packages/Azure.Provisioning.WebPubSub)
+- [📦 Azure.Provisioning](https://www.nuget.org/packages/Azure.Provisioning)
+
+> [!TIP]
+> You don't need to install these packages manually in your app host projects, as they're transitive dependencies of the corresponding .NET Aspire Azure hosting integrations your app host references.
 
 ## Publishing
 
