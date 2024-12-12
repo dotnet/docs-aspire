@@ -16,7 +16,7 @@ ms.date: 12/09/2024
 
 ## Client integration
 
-To get started with the .NET Aspire Pomelo MySQL Entity Framework integration, install the [📦 Aspire.Pomelo.EntityFrameworkCore.MySql](https://www.nuget.org/packages/Aspire.Pomelo.EntityFrameworkCore.MySql) NuGet package in the client-consuming project, that is, the project for the application that uses the MySQL Entity Framework Core client. 
+To get started with the .NET Aspire Pomelo MySQL Entity Framework integration, install the [📦 Aspire.Pomelo.EntityFrameworkCore.MySql](https://www.nuget.org/packages/Aspire.Pomelo.EntityFrameworkCore.MySql) NuGet package in the client-consuming project, that is, the project for the application that uses the MySQL Entity Framework Core client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
