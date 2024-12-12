@@ -52,7 +52,7 @@ The following Azure provisioning libraries are available:
 
 ### Azure provisioning defaults
 
-The Azure provisioning libraries provide default values for Azure resources. These defaults are only a starting point and aren't intended for all use cases. You can customize these defaults in multiple ways to meet your specific requirements. For more information, see [Azure SDK customization](#azure-SDK-customization) and [Use custom Bicep templates](../deployment/azure/custom-bicep-templates.md).
+The Azure provisioning libraries provide default values for Azure resources. These defaults are only a starting point and aren't intended for all use cases. You can customize these defaults in multiple ways to meet your specific requirements. For more information, see [Azure provisioning customization](#azure-provisioning-customization) and [Use custom Bicep templates](../deployment/azure/custom-bicep-templates.md).
 
 #### Azure role assignment defaults
 
@@ -78,7 +78,7 @@ By default, the Azure provisioning libraries assign the following roles to the c
 
 ### Azure provisioning Bicep
 
-The Azure provisioning libraries generate Bicep files that define the Azure resources in your app host. The generated Bicep files are output alongside the manifest file when you publish your app. The generated Bicep is a starting point and can be customized to meet your specific requirements. For more information, see [Customize provisioning infrastructure](#customize-provisioning-infrastructure).
+The Azure provisioning libraries generate Bicep files that define the Azure resources in your app host. The generated Bicep files are output alongside the manifest file when you publish your app. The generated Bicep is a starting point and can be customized to meet your specific requirements. For more information, see [Azure provisioning customization](#azure-provisioning-customization).
 
 #### Azure App Configuration defaults
 
@@ -304,7 +304,7 @@ The [Azure Web PubSub integration](../messaging/azure-web-pubsub-integration.md)
 </details>
 <!-- markdownlint-enable MD033 -->
 
-### Azure SDK customization
+### Azure provisioning customization
 
 All .NET Aspire Azure hosting integrations expose various Azure resources, and they're all subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type—which itself is a subclass of the <xref:Aspire.Hosting.Azure.AzureBicepResource>. This enables extensions that are generically type-constrained to this type, allowing for a fluent API to customize the infrastructure to your liking. While the Azure SDK relies on defaults, you're free to influence the generated Bicep using these APIs.
 
@@ -357,4 +357,4 @@ This example demonstrates how to add Azure infrastructure to your app host proje
 
 ## Publishing
 
-When you publish your app, the Azure provisioning generated Bicep is used by the Azure Developer CLI to create the Azure resources in your Azure subscription. The Azure Developer CLI is a command-line tool that provides a set of commands to manage Azure resources. For more information, see [Azure Developer CLI](/cli/azure/azure-cli).
+When you publish your app, the Azure provisioning generated Bicep is used by the Azure Developer CLI to create the Azure resources in your Azure subscription. The Azure Developer CLI is a command-line tool that provides a set of commands to manage Azure resources. For more information, see [Azure Developer CLI](/azure/developer/azure-developer-cli).
