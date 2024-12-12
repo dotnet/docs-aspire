@@ -183,7 +183,7 @@ items:
       - name: Elasticsearch
         displayName: elasticsearch,search
         href: search/elasticsearch-integration.md
-      - name: Keycloak
+      - name: Keycloak (Preview)
         displayName: security,openid connect,single sign-on,sso,identity,federation,account management
         href: authentication/keycloak-integration.md
       - name: Milvus
