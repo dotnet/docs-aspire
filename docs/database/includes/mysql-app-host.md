@@ -68,7 +68,7 @@ To add a data volume to the SQL Server resource, call the <xref:Aspire.Hosting.M
 var builder = DistributedApplication.CreateBuilder(args);
 
 var mysql = builder.AddMySql("mysql")
-                 .WithDataVolume();
+                   .WithDataVolume();
 
 var mysqldb = mysql.AddDatabase("mysqldb");
 
@@ -92,7 +92,7 @@ To add a data bind mount to the MySQL resource, call the <xref:Aspire.Hosting.My
 var builder = DistributedApplication.CreateBuilder(args);
 
 var mysql = builder.AddMySql("mysql")
-                 .WithDataBindMount(source: @"C:\MySql\Data");
+                   .WithDataBindMount(source: @"C:\MySql\Data");
 
 var db = sql.AddDatabase("mysqldb");
 
@@ -134,7 +134,7 @@ For more information, see [External parameters](../../fundamentals/external-para
 var builder = DistributedApplication.CreateBuilder(args);
 
 var mysql = builder.AddMySql("mysql")
-                 .WithPhpMyAdmin();
+                   .WithPhpMyAdmin();
 
 var db = sql.AddDatabase("mysqldb");
 

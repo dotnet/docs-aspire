@@ -44,7 +44,7 @@ builder.AddMySqlDbContext<ExampleDbContext>(connectionName: "mysqldb");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the SQL Server database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `mysqldb` that same name should be used when calling `AddMySqlDbContext`. For more information, see [Add SQL Server resource and database resource](#add-mysql-server-resource-and-database-resource).
+> The `connectionName` parameter must match the name used when adding the SQL Server database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `mysqldb` that same name should be used when calling `AddMySqlDbContext`. For more information, see [Add MySQL server resource and database resource](#add-mysql-server-resource-and-database-resource).
 
 To retrieve `ExampleDbContext` object from a service:
 
