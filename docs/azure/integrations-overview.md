@@ -37,21 +37,23 @@ Ties back to deployment:
 
 ## Add Azure resources
 
-All .NET Aspire Azure hosting integrations expose Azure resources and by convention are added using `AddAzure*` APIs. When you add these resources to your .NET Aspire app host, they represent an Azure service. The `AddAzure*` API returns an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is the type of Azure resource. These `IResourceBuilder<T>` (builder) interfaces provide a fluent API that allow you to configure the underlying Azure resource within the [app model](xref:dotnet/aspire/app-host#terminology).
+All .NET Aspire Azure hosting integrations expose Azure resources and by convention are added using `AddAzure*` APIs. When you add these resources to your .NET Aspire app host, they represent an Azure service. The `AddAzure*` API returns an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is the type of Azure resource. These `IResourceBuilder<T>` (builder) interfaces provide a fluent API that allows you to configure the underlying Azure resource within the [app model](xref:dotnet/aspire/app-host#terminology).
 
 ### Typical developer experience
 
 When your .NET Aspire app host contains Azure resources, and you run it locally (typical developer <kbd>F5</kbd> experience), the Azure resources are provisioned in your Azure subscription. However, they're not yet deployed. Instead, they're running locally in the context of your app host.
 
-.NET Aspire optimizes for "as free as possible", with its Azure integrations—defaulting to Basic and Standard SKUs in most cases. Additionally, some Azure integrations provide support [emulators](#local-emulators) or [containers](#local-containers), which enables compelling scenarios for local development, testing, and debugging. When you run your app locally, the Azure resources are configured to use the actual Azure service by default. However, you can configure them to use local emulators or containers instead. This means that you avoid any costs associated with running the actual Azure service for local development.
+.NET Aspire optimizes for "as free as possible" with its Azure integrations—defaulting to Basic and Standard SKUs in most cases. Additionally, some Azure integrations support [emulators](#local-emulators) or [containers](#local-containers), which enables compelling scenarios for local development, testing, and debugging. When you run your app locally, the Azure resources are configured to use the actual Azure service by default. However, you can configure them to use local emulators or containers instead. This means that you avoid any costs associated with running the actual Azure service for local development.
 
 ### Local emulators
 
 Some Azure services can be run locally in emulators. Currently, .NET Aspire supports the following Azure emulators:
 
-- [Azure Cosmos DB Emulator](/azure/cosmos-db/how-to-develop-emulator): Emulates Azure Cosmos DB—using the <xref:Aspire.Hosting.AzureCosmosExtensions.RunAsEmulator*?displayProperty=nameWithType>.
-- [Azure Event Hubs Emulator](/azure/event-hubs/overview-emulator): Emulates Azure Event Hubs—using the <xref:Aspire.Hosting.AzureEventHubsExtensions.RunAsEmulator*?displayProperty=nameWithType>.
-- [Azure Storage Emulator (Azurite)](/azure/storage/common/storage-use-azurite): Emulates Azure Blob, Queue, and Table storage—using the <xref:Aspire.Hosting.AzureStorageExtensions.RunAsEmulator*?displayProperty=nameWithType>.
+| Integration | Description |
+|----------|-------------|
+| Azure Cosmos DB | Call <xref:Aspire.Hosting.AzureCosmosExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureCosmosDBResource>` to configure the Cosmos DB resource to be [emulated with the NoSQL API](/azure/cosmos-db/how-to-develop-emulator). |
+| Azure Event Hubs | Call <xref:Aspire.Hosting.AzureEventHubsExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureEventHubsResource>` to configure the Event Hubs resource to be [emulated](/azure/event-hubs/overview-emulator). |
+| Azure Storage | Call <xref:Aspire.Hosting.AzureStorageExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureStorageResource>` to configure the Storage resource to be [emulated with Azurite](/azure/storage/common/storage-use-azurite). |
 
 To have your Azure resources use the local emulators, chain a call the `RunAsEmulator` method on the Azure resource builder. This method configures the Azure resource to use the local emulator instead of the actual Azure service.
 
@@ -75,9 +77,9 @@ Currently, .NET Aspire supports the following Azure services as containers:
 
 ## Infrastructure as code
 
-The Azure SDK for .NET, provides the [📦 Azure.Provisioning](https://www.nuget.org/packages/Azure.Provisioning) NuGet package and a suite of service-specific [Azure provisioning packages](#azure-provisioning-packages). These Azure provisioning libraries make it easy to declaratively specify Azure infrastructure natively in .NET.
+The Azure SDK for .NET provides the [📦 Azure.Provisioning](https://www.nuget.org/packages/Azure.Provisioning) NuGet package and a suite of service-specific [Azure provisioning packages](#azure-provisioning-packages). These Azure provisioning libraries make it easy to declaratively specify Azure infrastructure natively in .NET.
 
-While it's possible to provision Azure resources manually, .NET Aspire simplifies the process by providing a set of APIs to express Azure resources. These APIs are available as extension methods in .NET Aspire Azure hosting libraries, extending the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. When you add Azure resources to your app host, they'll add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
+While it's possible to provision Azure resources manually, .NET Aspire simplifies the process by providing a set of APIs to express Azure resources. These APIs are available as extension methods in .NET Aspire Azure hosting libraries, extending the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. When you add Azure resources to your app host, they add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
 
 Since .NET Aspire models Azure resources within Azure hosting integrations, the Azure SDK is used to provision these resources. The Azure SDK generates Bicep files that define the Azure resources you need. If you're unfamiliar with Bicep, it's a domain-specific language used to describe and provision Azure resources. The generated Bicep files are output alongside the manifest file when you publish your app. For more information, see [Azure provisioning Bicep](#azure-provisioning-bicep).
 
