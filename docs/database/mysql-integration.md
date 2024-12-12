@@ -1,25 +1,23 @@
 ---
 title: .NET Aspire MySQL database integration
-description: This article describes the .NET Aspire MySQL database integration.
-ms.topic: how-to
-ms.date: 11/22/2024
+description: Learn how to use the .NET Aspire MySQL database integration, which includes both hosting and client integrations.
+ms.date: 12/09/2024
+uid: storage/mysql-integration
 ---
 
-# .NET Aspire MySQL database integration
+# .NET Aspire MySQL integration
 
-In this article, you learn how to use the .NET Aspire MySQL database integration. The `Aspire.MySqlConnector` library:
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-- Registers a [MySqlDataSource](https://mysqlconnector.net/api/mysqlconnector/mysqldatasourcetype) in the DI container for connecting MySQL database.
-- Automatically configures the following:
-  - Health checks, logging and telemetry to improve app monitoring and diagnostics
+[MySQL](https://www.mysql.com/) is an open-source Relational Database Management System (RDBMS) that uses Structured Query Language (SQL) to manage and manipulate data. It's employed in a many different environments, from small projects to large-scale enterprise systems and it's a popular choice to host data that underpins microservices in a cloud-native application. The .NET Aspire MySQL database integration enables you to connect to existing MySQL databases or create new instances from .NET with the [`mysql` container image](https://hub.docker.com/_/mysql).
 
-## Prerequisites
+## Hosting integration
 
-- MySQL database and connection string for accessing the database.
+[!INCLUDE [mysql-app-host](includes/mysql-app-host.md)]
 
-## Get started
+## Client integration
 
-To get started with the .NET Aspire MySQL database integration, install the [📦 Aspire.MySqlConnector](https://www.nuget.org/packages/Aspire.MySqlConnector) NuGet package.
+To get started with the .NET Aspire MySQL database integration, install the [📦 Aspire.MySqlConnector](https://www.nuget.org/packages/Aspire.MySqlConnector) NuGet package in the client-consuming project, that is, the project for the application that uses the MySQL client. The MySQL client integration registers a `MySqlConnector.MySqlDataSource` instance that you can use to interact with the MySQL server.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -38,15 +36,18 @@ dotnet add package Aspire.MySqlConnector
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-## Example usage
+### Add a MySQL data source
 
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the `AddMySqlDataSource` extension to register a `MySqlDataSource` for use via the dependency injection container.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireMySqlConnectorExtensions.AddMySqlDataSource*> extension method to register a `MySqlDataSource` for use via the dependency injection container. The method takes a `connectionName` parameter.
 
 ```csharp
-builder.AddMySqlDataSource("mysqldb");
+builder.AddMySqlDataSource(connectionName: "mysqldb");
 ```
 
-To retrieve your `MySqlDataSource` object, consider the following example service:
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the MySQL database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `mysqldb` that same name should be used when calling `AddMySqlDataSource`. For more information, see [Add MySQL server resource and database resource](#add-mysql-server-resource-and-database-resource).
+
+You can then retrieve the `MySqlConnector.MySqlDataSource` instance using dependency injection. For example, to retrieve the data source from an example service:
 
 ```csharp
 public class ExampleService(MySqlDataSource dataSource)
@@ -55,49 +56,46 @@ public class ExampleService(MySqlDataSource dataSource)
 }
 ```
 
-After adding a `MySqlDataSource`, you can require the `MySqlDataSource` instance using DI.
+For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
 
-## App host usage
+### Add keyed MySQL data source
 
-[!INCLUDE [mysql-app-host](includes/mysql-app-host.md)]
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var mysql = builder.AddMySql("mysql");
-var mysqldb = mysql.AddDatabase("mysqldb");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(mysqldb);
-```
-
-When you want to explicitly provide a root MySQL password, you can provide it as a parameter. Consider the following alternative example:
+There might be situations where you want to register multiple `MySqlDataSource` instances with different connection names. To register keyed MySQL data sources, call the <xref:Microsoft.Extensions.Hosting.AspireMySqlConnectorExtensions.AddKeyedMySqlDataSource*> method:
 
 ```csharp
-var password = builder.AddParameter("password", secret: true);
-
-var mysql = builder.AddMySql("mysql", password);
-var mysqldb = mysql.AddDatabase("mysqldb");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(mysqldb);
+builder.AddKeyedMySqlDataSource(name: "mainDb");
+builder.AddKeyedMySqlDataSource(name: "loggingDb");
 ```
 
-For more information, see [External parameters](../fundamentals/external-parameters.md).
+> [!IMPORTANT]
+> When using keyed services, it's expected that your MySQL resource configured two named databases, one for the `mainDb` and one for the `loggingDb`.
 
-## Configuration
-
-The .NET Aspire MySQL database integration provides multiple configuration approaches and options to meet the requirements and conventions of your project.
-
-### Use a connection string
-
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddMySqlDataSource()`:
+Then you can retrieve the `MySqlDatSource` instances using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
-builder.AddMySqlDataSource("mysql");
+public class ExampleService(
+    [FromKeyedServices("mainDb")] MySqlDataSource mainDbConnection,
+    [FromKeyedServices("loggingDb")] MySqlDataSource loggingDbConnection)
+{
+    // Use connections...
+}
 ```
 
-Then the connection string will be retrieved from the `ConnectionStrings` configuration section:
+For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
+
+### Configuration
+
+The .NET Aspire MySQL database integration provides multiple options to configure the connection based on the requirements and conventions of your project.
+
+#### Use a connection string
+
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling <xref:Microsoft.Extensions.Hosting.AspireMySqlConnectorExtensions.AddMySqlDataSource*> method:
+
+```csharp
+builder.AddMySqlDataSource(connectionName: "mysql");
+```
+
+Then the connection string is retrieved from the `ConnectionStrings` configuration section:
 
 ```json
 {
@@ -109,16 +107,15 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 
 For more information on how to format this connection string, see [MySqlConnector: ConnectionString documentation](https://mysqlconnector.net/connection-options/).
 
-### Use configuration providers
+#### Use configuration providers
 
-The .NET Aspire MySQL database supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `MySqlConnectorSettings` from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:MySqlConnector` key. If you have set up your configurations in the `Aspire:MySqlConnector` section, you can just call the method without passing any parameter.
-
-The following example shows an _:::no-loc text="appsettings.json":::_ file that configures some of the available options:
+The .NET Aspire MySQL database integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.MySqlConnector.MySqlConnectorSettings> from configuration by using the `Aspire:MySqlConnector` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
   "Aspire": {
     "MySqlConnector": {
+      "ConnectionString": "YOUR_CONNECTIONSTRING",
       "DisableHealthChecks": true,
       "DisableTracing": true
     }
@@ -126,37 +123,63 @@ The following example shows an _:::no-loc text="appsettings.json":::_ file that 
 }
 ```
 
-### Use inline configurations
+For the complete MySQL integration JSON schema, see [Aspire.MySqlConnector/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/main/src/Components/Aspire.MySqlConnector/ConfigurationSchema.json).
 
-You can also pass the `Action<MySqlConnectorSettings>` delegate to set up some or all the options inline, for example to disable health checks from code:
+#### Use inline delegates
+
+Also you can pass the `Action<MySqlConnectorSettings>` delegate to set up some or all the options inline, for example to disable health checks from code:
 
 ```csharp
-builder.AddMySqlDataSource("mysql",
+builder.AddMySqlDataSource(
+    "mysql",
     static settings => settings.DisableHealthChecks  = true);
 ```
 
-### Configuration options
+### Client integration health checks
 
-Here are the configurable options with corresponding default values:
+By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-| Name                  | Description                                                                           |
-|-----------------------|---------------------------------------------------------------------------------------|
-| `ConnectionString`    | The connection string of the MySQL database database to connect to.                   |
-| `DisableHealthChecks` | A boolean value that indicates whether the database health check is disabled or not.  |
-| `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not.  |
-| `DisableMetrics`      | A boolean value that indicates whether the OpenTelemetry metrics are disabled or not. |
+The .NET Aspire MySQL database integration:
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
-
-By default, the .NET Aspire MySQL database integration handles the following:
-
-- Adds a `MySqlHealthCheck`, which verifies that a connection can be made commands can be run against the MySql database.
-- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
+- Adds the health check when <xref:Aspire.MySqlConnector.MySqlConnectorSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which verifies that a connection can be made and commands can be run against the MySQL database.
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
+
+#### Logging
+
+The .NET Aspire MySQL integration uses the following log categories:
+
+- `MySqlConnector.ConnectionPool`
+- `MySqlConnector.MySqlBulkCopy`
+- `MySqlConnector.MySqlCommand`
+- `MySqlConnector.MySqlConnection`
+- `MySqlConnector.MySqlDataSource`
+
+#### Tracing
+
+The .NET Aspire MySQL integration emits the following tracing activities using OpenTelemetry:
+
+- `MySqlConnector`
+
+#### Metrics
+
+The .NET Aspire MySQL integration will emit the following metrics using OpenTelemetry:
+
+- MySqlConnector
+  - `db.client.connections.create_time`
+  - `db.client.connections.use_time`
+  - `db.client.connections.wait_time`
+  - `db.client.connections.idle.max`
+  - `db.client.connections.idle.min`
+  - `db.client.connections.max`
+  - `db.client.connections.pending_requests`
+  - `db.client.connections.timeouts`
+  - `db.client.connections.usage`
 
 ## See also
 
 - [MySQL database](https://mysqlconnector.net/)
+- [.NET Aspire database containers sample](/samples/dotnet/aspire-samples/aspire-database-containers/)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
