@@ -194,12 +194,12 @@ items:
         href: database/mongodb-integration.md
       - name: MySQL
         items:
-          - name: MySQL
-            displayName: mysql,database
-            href: database/mysql-integration.md
           - name: Pomelo MySQL - EF Core
             displayName: pomelo mysql,database
             href: database/mysql-entity-framework-integration.md
+          - name: MySQL
+            displayName: mysql,database
+            href: database/mysql-integration.md
       - name: NATS
         displayName: nats,messaging
         href: messaging/nats-integration.md
