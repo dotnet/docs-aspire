@@ -2,7 +2,7 @@
 title: External parameters
 description: Learn how to express parameters such as secrets, connection strings, and other configuration values that might vary between environments.
 ms.topic: how-to
-ms.date: 11/08/2024
+ms.date: 12/06/2024
 ---
 
 # External parameters
@@ -124,8 +124,7 @@ The manifest representation is as follows:
 
 Parameters can be used to model connection strings. When you publish the app, the value is prompted for and stored in a secure location. When you run the app locally, the value is read from the `ConnectionStrings` section of the app host configuration.
 
-> [!NOTE]
-> Connection strings are used to represent a wide range of connection information including database connections, message brokers, and other services. In .NET Aspire nomenclature, the term "connection string" is used to represent any kind of connection information.
+[!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
 
 Consider the following example app host _:::no-loc text="Program.cs":::_ file:
 
@@ -150,7 +149,7 @@ Now consider the following app host configuration file _:::no-loc text="appsetti
 }
 ```
 
-For more information pertaining to connection strings and their representation in the deployment manifest, see[Connection string and binding references](../deployment/manifest-format.md#connection-string-and-binding-references).
+For more information pertaining to connection strings and their representation in the deployment manifest, see [Connection string and binding references](../deployment/manifest-format.md#connection-string-and-binding-references).
 
 ## Parameter example
 

@@ -131,8 +131,6 @@ items:
         href: messaging/kafka-integration.md
       - name: Azure
         items:
-        - name: Azure Blob Storage
-          href: storage/azure-storage-blobs-integration.md
         - name: Azure Cosmos DB
           items:
             - name: Azure Cosmos DB - EF Core
@@ -162,12 +160,17 @@ items:
         - name: Azure Service Bus
           displayName: service bus,messaging
           href: messaging/azure-service-bus-integration.md
-        - name: Azure Storage Queues
-          displayName: storage queues,azure storage
-          href: storage/azure-storage-queues-integration.md
-        - name: Azure Table Storage
-          displayName: table storage,azure storage
-          href: storage/azure-storage-tables-integration.md
+        - name: Azure Storage
+          items:
+          - name: Azure Blob Storage
+            displayName: blob storage,azure storage
+            href: storage/azure-storage-blobs-integration.md
+          - name: Azure Queue Storage
+            displayName: storage queues,azure storage
+            href: storage/azure-storage-queues-integration.md
+          - name: Azure Table Storage
+            displayName: table storage,azure storage
+            href: storage/azure-storage-tables-integration.md
         - name: Azure Web PubSub
           displayName: web pubsub,real-time,messaging
           href: messaging/azure-web-pubsub-integration.md
@@ -180,7 +183,7 @@ items:
       - name: Elasticsearch
         displayName: elasticsearch,search
         href: search/elasticsearch-integration.md
-      - name: Keycloak
+      - name: Keycloak (Preview)
         displayName: security,openid connect,single sign-on,sso,identity,federation,account management
         href: authentication/keycloak-integration.md
       - name: Milvus

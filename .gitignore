@@ -35,9 +35,9 @@ _dependentPackages/
 !/xml/System.Net.Cache/
 
 # Visual Studio Code
-**/.vscode/
-.vscode/
+.vscode/*
 !.vscode/extensions.json
+!.vscode/*.code-snippets
 
 # Visual Studio 2019
 .vs
