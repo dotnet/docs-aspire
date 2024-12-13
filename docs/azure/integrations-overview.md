@@ -263,7 +263,7 @@ For more information, see [External parameters](../../fundamentals/external-para
 
 To use a well-known parameter, pass the parameter name to the <xref:Aspire.Hosting.AzureBicepResourceExtensions.WithParameter%2A> method, such as `WithParameter(AzureBicepResource.KnownParameters.KeyVaultName)`. You don't pass values for well-known parameters, as they're resolved automatically by .NET Aspire.
 
-Consider an example where you want to setup an Azure Event Grid webhook. You might define the Bicep template as follows:
+Consider an example where you want to set up an Azure Event Grid webhook. You might define the Bicep template as follows:
 
  :::code language="bicep" source="snippets/AppHost.Bicep/event-grid-webhook.bicep" highlight="3-4,27-35":::
 
@@ -276,7 +276,7 @@ This Bicep template defines several parameters, including the `topicName`, `webH
 - The `webHookEndpoint` parameter is passed as an expression that resolves to the URL from the `api` project references' "https" endpoint with the `/hook` route.
 - The `principalId` and `principalType` parameters are passed as well-known parameters.
 
-The well-known parameters are convention-based and shouldn't be accompanied with a corresponding value when passed using the `WithParameter` API. Well-known parameters simplify some common functionality, such as _role assignments_, when added to the Bicep templates, as shown in the preceding example. Role assignments are required for the Event Grid webhook to send events to the specified endpoint. For more information, see [EventGrid Data Sender role assignment](/azure/role-based-access-control/built-in-roles/integration#eventgrid-data-sender).
+The well-known parameters are convention-based and shouldn't be accompanied with a corresponding value when passed using the `WithParameter` API. Well-known parameters simplify some common functionality, such as _role assignments_, when added to the Bicep templates, as shown in the preceding example. Role assignments are required for the Event Grid webhook to send events to the specified endpoint. For more information, see [Event Grid Data Sender role assignment](/azure/role-based-access-control/built-in-roles/integration#eventgrid-data-sender).
 
 ### Get outputs from Bicep references
 
