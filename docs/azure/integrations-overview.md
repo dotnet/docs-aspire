@@ -85,17 +85,17 @@ The answer is that they're not different, when running locally. However, when yo
 
 | API | Run mode | Publish mode |
 |--|--|--|
-| `AddAzureRedis("redis").RunAsContainer()` | Local Redis container | Azure Cache for Redis |
-| `AddRedis("redis")` | Local Redis container | Azure Container App with Redis image |
+| [AddAzureRedis("redis").RunAsContainer()](xref:Aspire.Hosting.AzureRedisExtensions.RunAsContainer*) | Local Redis container | Azure Cache for Redis |
+| [AddRedis("redis")](xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis*) | Local Redis container | Azure Container App with Redis image |
 
 The same is true for SQL and PostgreSQL services:
 
 | API | Run mode | Publish mode |
 |--|--|--|
-| `AddAzurePostgresFlexibleServer("postgres").RunAsContainer()` | Local PostgreSQL container | Azure PostgreSQL Flexible Server |
-| `AddPostgres("postgres")` | Local PostgreSQL container | Azure Container App with PostgreSQL image |
-| `AddAzureSqlServer("sql").RunAsContainer()` | Local SQL Server container | Azure SQL Server |
-| `AddSql("sql")` | Local SQL Server container | Azure Container App with SQL Server image |
+| [AddAzurePostgresFlexibleServer("postgres").RunAsContainer()](xref:Aspire.Hosting.AzurePostgresExtensions.RunAsContainer*) | Local PostgreSQL container | Azure PostgreSQL Flexible Server |
+| [AddPostgres("postgres")](xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres*) | Local PostgreSQL container | Azure Container App with PostgreSQL image |
+| [AddAzureSqlServer("sql").RunAsContainer()](xref:Aspire.Hosting.AzureSqlExtensions.RunAsContainer*) | Local SQL Server container | Azure SQL Server |
+| [AddSqlServer("sql")](xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*) | Local SQL Server container | Azure Container App with SQL Server image |
 
 For more information on the difference between run and publish modes, see [.NET Aspire app host: Execution context](xref:dotnet/aspire/app-host#execution-context).
 
@@ -341,4 +341,6 @@ When this resource is deployed, the underlying deployment mechanism with automat
 
 ## Publishing
 
-When you publish your app, the Azure provisioning generated Bicep is used by the Azure Developer CLI to create the Azure resources in your Azure subscription. The Azure Developer CLI is a command-line tool that provides a set of commands to manage Azure resources. For more information, see [Azure Developer CLI](/azure/developer/azure-developer-cli).
+When you publish your app, the Azure provisioning generated Bicep is used by the Azure Developer CLI to create the Azure resources in your Azure subscription. .NET Aspire outputs a [publishing manifest](../deployment/manifest-format.md), that's also consumed as part of the publishing process. The Azure Developer CLI is a command-line tool that provides a set of commands to manage Azure resources. For more information, see [Azure Developer CLI](/azure/developer/azure-developer-cli).
+
+For more information on publishing and deployment, see [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md).
