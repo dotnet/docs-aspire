@@ -41,9 +41,9 @@ All .NET Aspire Azure hosting integrations expose Azure resources and by convent
 
 ### Typical developer experience
 
-When your .NET Aspire app host contains Azure resources, and you run it locally (typical developer <kbd>F5</kbd> or `dotnet run` experience), the Azure resources are provisioned in your Azure subscription. However, they're not yet deployed. Instead, they're running locally in the context of your app host.
+When your .NET Aspire app host contains Azure resources, and you run it locally (typical developer <kbd>F5</kbd> or `dotnet run` experience), the [Azure resources are provisioned](local-provisioning.md) in your Azure subscription. However, they're not yet deployed. Instead, they're running locally in the context of your app host.
 
-.NET Aspire aims to minimize costs by defaulting to Basic and Standard SKUs for its Azure integrations. While these sensible defaults are provided, you can [customize the Azure resources](#azureprovisioning-customization) to suit your needs. Additionally, some integrations support [emulators](#local-emulators) or [containers](#local-containers), which are useful for local development, testing, and debugging. By default, when you run your app locally, the Azure resources use the actual Azure service. However, you can configure them to use local emulators or containers, avoiding costs associated with the actual Azure service during local development.
+.NET Aspire aims to minimize costs by defaulting to _Basic_ or _Standard_ [Stock Keeping Unit (SKU)](/partner-center/developer/product-resources#sku) for its Azure integrations. While these sensible defaults are provided, you can [customize the Azure resources](#azureprovisioning-customization) to suit your needs. Additionally, some integrations support [emulators](#local-emulators) or [containers](#local-containers), which are useful for local development, testing, and debugging. By default, when you run your app locally, the Azure resources use the actual Azure service. However, you can configure them to use local emulators or containers, avoiding costs associated with the actual Azure service during local development.
 
 ### Local emulators
 
@@ -73,7 +73,7 @@ Currently, .NET Aspire supports the following Azure services as containers:
 | Azure SQL Server | Call <xref:Aspire.Hosting.AzureSqlExtensions.RunAsContainer*?displayProperty=nameWithType> on the `IResourceBuilder<AzureSqlServerResource>` to configure it to run locally in a container, based on the `mcr.microsoft.com/mssql/server` image. |
 
 > [!NOTE]
-> Like emulators, calling `RunAsContainer` on an Azure resource builder has no affect on the [publishing manifest](../deployment/manifest-format.md). When you publish your app, the [generated Bicep file](#infrastructure-as-code) reflects the actual Azure service, not the local container.
+> Like emulators, calling `RunAsContainer` on an Azure resource builder doesn't impact the [publishing manifest](../deployment/manifest-format.md). When you publish your app, the [generated Bicep file](#infrastructure-as-code) reflects the actual Azure service, not the local container.
 
 ### Understand Azure integration APIs
 
@@ -81,7 +81,7 @@ Currently, .NET Aspire supports the following Azure services as containers:
 
 In the preceding containers section, you saw how to run Azure services locally in containers. If you're familiar with .NET Aspire, you might wonder how calling `AddAzureRedis("redis").RunAsContainer()` to get a local `docker.io/library/redis` container differs from `AddRedis("redis")`—as they both result in the same local container.
 
-The answer is that they're not different, when running locally. However, when you publish these you get different resources:
+The answer is that there's no difference when running locally. However, when they're published you get different resources:
 
 | API | Run mode | Publish mode |
 |--|--|--|
@@ -120,11 +120,11 @@ There are several ways to influence the generated Bicep files:
 
 ### Local provisioning and `Azure.Provisioning`
 
-To avoid conflating terms and to help disambiguate "provisioning", it's important to understand the distinction between _local provisioning_ and _Azure provisioning_:
+To avoid conflating terms and to help disambiguate "provisioning," it's important to understand the distinction between _local provisioning_ and _Azure provisioning_:
 
 - **_Local provisioning:_**
 
-  By default, when you call any of the Azure hosting integration APIs to add Azure resources, the <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)> API is called implicitly. This API registers services in the dependency injection (DI) container that are used to provision Azure resources when the app host starts. This is known as _local provisioning_.  For more information, see [Local Azure provisioning](local-provisioning.md).
+  By default, when you call any of the Azure hosting integration APIs to add Azure resources, the <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)> API is called implicitly. This API registers services in the dependency injection (DI) container that are used to provision Azure resources when the app host starts. This concept is known as _local provisioning_.  For more information, see [Local Azure provisioning](local-provisioning.md).
 
 - **_`Azure.Provisioning`:_**
 
@@ -166,24 +166,26 @@ The preceding code:
 
 - Calls <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.AddAzureInfrastructure*> with a name of `acr`.
 - Provides a `configureInfrastructure` delegate to customize the Azure Container Registry infrastructure:
-  - Instantiates an <xref:Azure.Provisioning.ContainerRegistry.ContainerRegistryService> with the name `acr` and a standard SKU.
+  - Instantiates a <xref:Azure.Provisioning.ContainerRegistry.ContainerRegistryService> with the name `acr` and a standard SKU.
   - Adds the Azure Container Registry service to the `infra` variable.
-  - Instantiates an <xref:Azure.Provisioning.ProvisioningOutput> with the name `registryName`, a type of `string`, and a value that corresponds to the name of the Azure Container Registry.
+  - Instantiates a <xref:Azure.Provisioning.ProvisioningOutput> with the name `registryName`, a type of `string`, and a value that corresponds to the name of the Azure Container Registry.
   - Adds the output to the `infra` variable.
 - Adds a project named `worker` to the builder.
 - Chains a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEnvironment*> to set the `ACR_REGISTRY_NAME` environment variable in the project to the value of the `registryName` output.
+
+The functionality demonstrates how to add Azure infrastructure to your app host project, even if the Azure service isn't directly exposed as a .NET Aspire integration. It further shows how to flow the output of the Azure Container Registry into the environment of a dependent project.
 
 Consider the resulting Bicep file:
 
 :::code language="bicep" source="../snippets/azure/AppHost/acr.module.bicep":::
 
-This example demonstrates how to add Azure infrastructure to your app host project, even if the Azure service isn't directly exposed as a .NET Aspire integration. It further shows how to flow the output of the Azure Container Registry into the environment of a project.
+The Bicep file reflects the desired configuration of the Azure Container Registry, as defined by the `AddAzureInfrastructure` API.
 
 ### Use custom Bicep templates
 
 When you're targeting Azure as your desired cloud provider, you can use Bicep to define your infrastructure as code. It aims to drastically simplify the authoring experience with a cleaner syntax and better support for modularity and code reuse.
 
-While .NET Aspire provides a set of prebuilt Bicep templates so that you don't need to write them, there might be times when you either want to customize the templates or create your own. This section explains the concepts and corresponding APIs that you can use to customize the Bicep templates.
+While .NET Aspire provides a set of prebuilt Bicep templates, there might be times when you either want to customize the templates or create your own. This section explains the concepts and corresponding APIs that you can use to customize the Bicep templates.
 
 > [!IMPORTANT]
 > This section isn't intended to teach you Bicep, but rather to provide guidance on how to create custom Bicep templates for use with .NET Aspire.
@@ -218,7 +220,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 #### What to expect from the examples
 
-All of the examples in this section assume that you've installed the `Aspire.Hosting.Azure` package and imported the <xref:Aspire.Hosting.Azure> namespace. Additionally, the examples assume you've created an <xref:Aspire.Hosting.IDistributedApplicationBuilder> instance:
+All the examples in this section assume that you're using the <xref:Aspire.Hosting.Azure> namespace. Additionally, the examples assume you have an <xref:Aspire.Hosting.IDistributedApplicationBuilder> instance:
 
 ```csharp
 using Aspire.Hosting.Azure;
@@ -234,7 +236,7 @@ By default, when you call any of the Bicep-related APIs, a call is also made to 
 
 #### Reference Bicep files
 
-Imagine that you've defined a Bicep template in a file named `storage.bicep` that provisions an Azure Storage Account:
+Imagine that you have a Bicep template in a file named `storage.bicep` that provisions an Azure Storage Account:
 
 :::code language="bicep" source="snippets/AppHost.Bicep/storage.bicep":::
 
@@ -281,7 +283,7 @@ For more information, see [External parameters](../fundamentals/external-paramet
 | <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalName?displayProperty=nameWithType> | The principal name of the current user or managed identity. | `"principalName"` |
 | <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalType?displayProperty=nameWithType> | The principal type of the current user or managed identity. Either `User` or `ServicePrincipal`. | `"principalType"` |
 
-To use a well-known parameter, pass the parameter name to the <xref:Aspire.Hosting.AzureBicepResourceExtensions.WithParameter%2A> method, such as `WithParameter(AzureBicepResource.KnownParameters.KeyVaultName)`. You don't pass values for well-known parameters, as they're resolved automatically by .NET Aspire.
+To use a well-known parameter, pass the parameter name to the <xref:Aspire.Hosting.AzureBicepResourceExtensions.WithParameter%2A> method, such as `WithParameter(AzureBicepResource.KnownParameters.KeyVaultName)`. You don't pass values for well-known parameters, as .NET Aspire resolves them on your behalf.
 
 Consider an example where you want to set up an Azure Event Grid webhook. You might define the Bicep template as follows:
 
@@ -340,13 +342,13 @@ The preceding Bicep template expects a `keyVaultName` parameter, among several o
 
 In the preceding code snippet, the `cosmos` Bicep template is added as a reference to the `builder`. The `connectionString` secret output is retrieved from the Bicep template and stored in a variable. The secret output is then passed as an environment variable (`ConnectionStrings__cosmos`) to the `api` project. This environment variable is used to connect to the Cosmos DB instance.
 
-When this resource is deployed, the underlying deployment mechanism with automatically [Reference secrets from Azure Key Vault](/azure/container-apps/manage-secrets?tabs=azure-portal#reference-secret-from-key-vault). To guarantee secret isolation, .NET Aspire creates a Key Vault per source.
+When this resource is deployed, the underlying deployment mechanism will automatically [Reference secrets from Azure Key Vault](/azure/container-apps/manage-secrets?tabs=azure-portal#reference-secret-from-key-vault). To guarantee secret isolation, .NET Aspire creates a Key Vault per source.
 
 > [!NOTE]
 > In _local provisioning_ mode, the secret is extracted from Key Vault and set it in an environment variable. For more information, see [Local Azure provisioning](local-provisioning.md).
 
 ## Publishing
 
-When you publish your app, the Azure provisioning generated Bicep is used by the Azure Developer CLI to create the Azure resources in your Azure subscription. .NET Aspire outputs a [publishing manifest](../deployment/manifest-format.md), that's also consumed as part of the publishing process. The Azure Developer CLI is a command-line tool that provides a set of commands to manage Azure resources. For more information, see [Azure Developer CLI](/azure/developer/azure-developer-cli).
+When you publish your app, the Azure provisioning generated Bicep is used by the Azure Developer CLI to create the Azure resources in your Azure subscription. .NET Aspire outputs a [publishing manifest](../deployment/manifest-format.md), that's also a vital part of the publishing process. The Azure Developer CLI is a command-line tool that provides a set of commands to manage Azure resources.
 
 For more information on publishing and deployment, see [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md).

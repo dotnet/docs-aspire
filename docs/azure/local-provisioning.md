@@ -9,6 +9,9 @@ uid: dotnet/aspire/local-azure-provisioning
 
 .NET Aspire simplifies local cloud-native app development with its compelling app host model. This model allows you to run your app locally with the same configuration and services as in Azure. In this article you learn how to provision Azure resources from your local development environment through the [.NET Aspire app host](xref:dotnet/aspire/app-host).
 
+> [!NOTE]
+> To be clear, resources are provisioned in Azure, but the provisioning process is initiated from your local development environment. To optimize your local development experience, consider using emulator or containers when available. For more information, see [Typical developer experience](integrations-overview.md#typical-developer-experience).
+
 ## Requirements
 
 This article assumes that you have an Azure account and subscription. If you don't have an Azure account, you can create a free one at [Azure Free Account](https://azure.microsoft.com/free/). For provisioning functionality to work correctly, you'll need to be authenticated with Azure. Ensure that you have the [Azure Developer CLI](/cli/azure/install-azure-cli) installed. Additionally, you'll need to provide some configuration values so that the provisioning logic can create resources on your behalf.
