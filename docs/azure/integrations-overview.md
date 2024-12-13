@@ -111,7 +111,12 @@ Since .NET Aspire models Azure resources within Azure hosting integrations, the 
 
 There are several ways to influence the generated Bicep files:
 
-- [Azure.Provisioning customization](#azureprovisioning-customization)
+- [Azure.Provisioning customization](#azureprovisioning-customization):
+  - [Configure infrastructure](#configure-infrastructure): Customize Azure resource infrastructure.
+  - [Add Azure infrastructure](#add-azure-infrastructure): Manually add Azure infrastructure to your app host.
+- [Use custom Bicep templates](#use-custom-bicep-templates):
+  - [Reference Bicep files](#reference-bicep-files): Add a reference to a Bicep file on disk.
+  - [Reference Bicep inline](#reference-bicep-inline): Add an inline Bicep template.
 
 ### `Azure.Provisioning` customization
 
