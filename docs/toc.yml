@@ -134,7 +134,7 @@ items:
         - name: Overview
           href: azure/integrations-overview.md
         - name: Local Azure provisioning
-          href: deployment/azure/local-provisioning.md
+          href: azure/local-provisioning.md
         - name: Azure Cosmos DB
           items:
             - name: Azure Cosmos DB - EF Core

@@ -2,6 +2,7 @@
 title: Local Azure provisioning
 description: Learn how to use Azure resources in your local development environment.
 ms.date: 12/13/2024
+uid: dotnet/aspire/local-azure-provisioning
 ---
 
 # Local Azure provisioning

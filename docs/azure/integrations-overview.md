@@ -43,7 +43,7 @@ All .NET Aspire Azure hosting integrations expose Azure resources and by convent
 
 When your .NET Aspire app host contains Azure resources, and you run it locally (typical developer <kbd>F5</kbd> or `dotnet run` experience), the Azure resources are provisioned in your Azure subscription. However, they're not yet deployed. Instead, they're running locally in the context of your app host.
 
-.NET Aspire aims to minimize costs by defaulting to Basic and Standard SKUs for its Azure integrations. While these sensible defaults are provided, you can [customize the Azure resources](#azure-provisioning-customization) to suit your needs. Additionally, some integrations support [emulators](#local-emulators) or [containers](#local-containers), which are useful for local development, testing, and debugging. By default, when you run your app locally, the Azure resources use the actual Azure service. However, you can configure them to use local emulators or containers, avoiding costs associated with the actual Azure service during local development.
+.NET Aspire aims to minimize costs by defaulting to Basic and Standard SKUs for its Azure integrations. While these sensible defaults are provided, you can [customize the Azure resources](#azureprovisioning-customization) to suit your needs. Additionally, some integrations support [emulators](#local-emulators) or [containers](#local-containers), which are useful for local development, testing, and debugging. By default, when you run your app locally, the Azure resources use the actual Azure service. However, you can configure them to use local emulators or containers, avoiding costs associated with the actual Azure service during local development.
 
 ### Local emulators
 
@@ -101,7 +101,7 @@ For more information on the difference between run and publish modes, see [.NET 
 
 ## Infrastructure as code
 
-The Azure SDK for .NET provides the [📦 Azure.Provisioning](https://www.nuget.org/packages/Azure.Provisioning) NuGet package and a suite of service-specific [Azure provisioning packages](#azure-provisioning-packages). These Azure provisioning libraries make it easy to declaratively specify Azure infrastructure natively in .NET. Their APIs enable you to write object-oriented infrastructure in C#, resulting in Bicep.
+The Azure SDK for .NET provides the [📦 Azure.Provisioning](https://www.nuget.org/packages/Azure.Provisioning) NuGet package and a suite of service-specific [Azure provisioning packages](https://www.nuget.org/packages?q=owner%3A+azure-sdk+description%3A+declarative+resource+provisioning&sortby=relevance). These Azure provisioning libraries make it easy to declaratively specify Azure infrastructure natively in .NET. Their APIs enable you to write object-oriented infrastructure in C#, resulting in Bicep.
 
 <!-- TODO: Add link from here to the Azure docs when they're written. -->
 
@@ -120,7 +120,7 @@ There are several ways to influence the generated Bicep files:
 
 ### Local provisioning and `Azure.Provisioning`
 
-To avoid conflating terms and to help disambiguate "provisioning", it's important to understand the distinction between _local provisioning_ and _Azure provisioning_.
+To avoid conflating terms and to help disambiguate "provisioning", it's important to understand the distinction between _local provisioning_ and _Azure provisioning_:
 
 **_Local provisioning:_**
 
@@ -260,7 +260,7 @@ The preceding code:
 - Passes the `"storageName"` parameter to the Bicep template with a _hardcoded_ value.
 - Passes the `"tags"` parameter to the Bicep template with an array of strings.
 
-For more information, see [External parameters](../../fundamentals/external-parameters.md).
+For more information, see [External parameters](../fundamentals/external-parameters.md).
 
 ##### Well-known parameters
 

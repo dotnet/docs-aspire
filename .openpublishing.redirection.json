@@ -279,6 +279,11 @@
     {
       "source_path_from_root": "/docs/deployment/azure/custom-bicep-templates.md",
       "redirect_url": "/dotnet/aspire/integrations/azure-overview"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/azure/local-azure-provisioning.md",
+      "redirect_url": "/dotnet/aspire/local-azure-provisioning"
+      
     }
   ]
 }
