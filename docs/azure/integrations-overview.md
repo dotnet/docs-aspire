@@ -122,11 +122,11 @@ There are several ways to influence the generated Bicep files:
 
 To avoid conflating terms and to help disambiguate "provisioning", it's important to understand the distinction between _local provisioning_ and _Azure provisioning_:
 
-**_Local provisioning:_**
+- **_Local provisioning:_**
 
   By default, when you call any of the Azure hosting integration APIs to add Azure resources, the <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)> API is called implicitly. This API registers services in the dependency injection (DI) container that are used to provision Azure resources when the app host starts. This is known as _local provisioning_.  For more information, see [Local Azure provisioning](local-provisioning.md).
 
-**_`Azure.Provisioning`:_**
+- **_`Azure.Provisioning`:_**
 
   `Azure.Provisioning` refers to the NuGet package, and is a set of libraries that lets you use C# to generate Bicep. The Azure hosting integrations in .NET Aspire use these libraries under the covers to generate Bicep files that define the Azure resources you need. For more information, see [`Azure.Provisioning` customization](#azureprovisioning-customization).
 
