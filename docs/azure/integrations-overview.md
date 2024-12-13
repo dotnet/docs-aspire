@@ -1,8 +1,8 @@
 ---
-title: .NET Aspire Azure integrations overview
+title: Azure integrations overview
 description: Overview of the Azure integrations available in the .NET Aspire.
 ms.date: 12/12/2024
-uid: integrations/azure-overview
+uid: dotnet/aspire/integrations/azure-overview
 ---
 
 <!--
