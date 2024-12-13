@@ -1,14 +1,12 @@
 ---
 title: Local Azure provisioning
 description: Learn how to use Azure resources in your local development environment.
-ms.date: 12/10/2024
+ms.date: 12/13/2024
 ---
 
 # Local Azure provisioning
 
-.NET Aspire simplifies local cloud-native app development with its compelling app host model. This model allows you to run your app locally with the same configuration and services as in Azure.
-
-In this article you learn how to provision Azure resources from your local development environment through the [.NET Aspire app host](../../fundamentals/app-host-overview.md). All of this is possible with the help of the `Azure.Provisioning.*` libraries, which provide a set of APIs to provision Azure resources. These packages are transitive dependencies of the .NET Aspire Azure hosting libraries you use in your app host, so you don't need to install them separately.
+.NET Aspire simplifies local cloud-native app development with its compelling app host model. This model allows you to run your app locally with the same configuration and services as in Azure. In this article you learn how to provision Azure resources from your local development environment through the [.NET Aspire app host](../../fundamentals/app-host-overview.md).
 
 ## Requirements
 
@@ -56,7 +54,7 @@ The <xref:Aspire.Hosting.AzureCosmosExtensions.RunAsEmulator*> API configures an
 
 ### .NET Aspire Azure hosting integrations
 
-If you're using Azure resources in your app host, you're using one or more of the .NET Aspire Azure hosting integrations. These hosting libraries provide extension methods to the `IDistributedApplicationBuilder` interface to add Azure resources to your app host.
+If you're using Azure resources in your app host, you're using one or more of the [.NET Aspire Azure hosting integrations](../../azure/integrations-overview.md). These hosting libraries provide extension methods to the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface to add Azure resources to your app host.
 
 ## Configuration
 
@@ -107,6 +105,9 @@ As with all [configuration-based settings](/dotnet/core/extensions/configuration
 - `VisualStudioCode`: Delegates to the <xref:Azure.Identity.VisualStudioCodeCredential>.
 - `AzureDeveloperCli`: Delegates to the <xref:Azure.Identity.AzureDeveloperCliCredential>.
 - `InteractiveBrowser`: Delegates to the <xref:Azure.Identity.InteractiveBrowserCredential>.
+
+> [!TIP]
+> For more information about the Azure SDK authentication and authorization, see [Credential chains in the Azure Identity library for .NET](/dotnet/azure/sdk/authentication/credential-chains?tabs=dac#defaultazurecredential-overview).
 
 ### Tooling support
 

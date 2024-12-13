@@ -118,6 +118,18 @@ There are several ways to influence the generated Bicep files:
   - [Reference Bicep files](#reference-bicep-files): Add a reference to a Bicep file on disk.
   - [Reference Bicep inline](#reference-bicep-inline): Add an inline Bicep template.
 
+### Local provisioning and `Azure.Provisioning`
+
+To avoid conflating terms and to help disambiguate "provisioning", it's important to understand the distinction between _local provisioning_ and _Azure provisioning_.
+
+**_Local provisioning:_**
+
+  By default, when you call any of the Azure hosting integration APIs to add Azure resources, the <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)> API is called implicitly. This API registers services in the dependency injection (DI) container that are used to provision Azure resources when the app host starts. This is known as _local provisioning_.  For more information, see [Local Azure provisioning](../deployment/azure/local-provisioning.md).
+
+**_`Azure.Provisioning`:_**
+
+  `Azure.Provisioning` refers to the NuGet package, and is a set of libraries that lets you use C# to generate Bicep. The Azure hosting integrations in .NET Aspire use these libraries under the covers to generate Bicep files that define the Azure resources you need. For more information, see [`Azure.Provisioning` customization](#azureprovisioning-customization).
+
 ### `Azure.Provisioning` customization
 
 All .NET Aspire Azure hosting integrations expose various Azure resources, and they're all subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type—which itself inherits the <xref:Aspire.Hosting.Azure.AzureBicepResource>. This enables extensions that are generically type-constrained to this type, allowing for a fluent API to customize the infrastructure to your liking. While .NET Aspire provides defaults, you're free to influence the generated Bicep using these APIs.
@@ -180,7 +192,7 @@ As part of the Azure deployment story for .NET Aspire, the Azure Developer CLI (
 
 #### Install App Host package
 
-To use any of this functionality, you must install the [📦 Aspire.Hosting.Azure](https://nuget.org/packages/Aspire.Hosting.Azure) NuGet package:
+To use any of this functionality, the [📦 Aspire.Hosting.Azure](https://nuget.org/packages/Aspire.Hosting.Azure) NuGet package must be installed:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -213,9 +225,6 @@ builder.Build().Run();
 
 > [!TIP]
 > By default, when you call any of the Bicep-related APIs, a call is also made to <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning%2A> that adds support for generating Azure resources dynamically during application startup.
-
-> [!NOTE]
-> The `AddAzureProvisioning` API is not to be confused with the `Azure.Provisioning` libraries. `Azure.Provisioning` is a set of libraries that lets you use C# to generate Bicep, whereas `AddAzureProvisioning` is an API that registers services in DI so when you run, the Azure resources get provisioned.
 
 #### Reference Bicep files
 
