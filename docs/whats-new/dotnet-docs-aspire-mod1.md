@@ -132,7 +132,7 @@ Welcome to what's new in the .NET Aspire docs for October 2024. This article lis
 
 - [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md) - Fix typo in aca-deployment-azd-in-depth.md
 - [Use Application Insights for .NET Aspire telemetry](../deployment/azure/application-insights.md) - Rewrite the non-Azure messaging integration articles
-- [Use custom Bicep templates](../deployment/azure/custom-bicep-templates.md) - Rewrite the non-Azure messaging integration articles
+- [Use custom Bicep templates](../azure/integrations-overview.md#use-custom-bicep-templates) - Rewrite the non-Azure messaging integration articles
 
 ## Community contributors
 

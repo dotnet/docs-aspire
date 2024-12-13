@@ -275,6 +275,10 @@
     {
       "source_path_from_root": "/docs/whats-new/dotnet-aspire-9-release-candidate-1.md",
       "redirect_url": "/dotnet/aspire/whats-new/dotnet-aspire-9"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/azure/custom-bicep-templates.md",
+      "redirect_url": "/dotnet/aspire/integrations/azure-overview"
     }
   ]
 }
