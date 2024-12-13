@@ -41,7 +41,7 @@ All .NET Aspire Azure hosting integrations expose Azure resources and by convent
 
 ### Typical developer experience
 
-When your .NET Aspire app host contains Azure resources, and you run it locally (typical developer <kbd>F5</kbd> experience), the Azure resources are provisioned in your Azure subscription. However, they're not yet deployed. Instead, they're running locally in the context of your app host.
+When your .NET Aspire app host contains Azure resources, and you run it locally (typical developer <kbd>F5</kbd> or `dotnet run` experience), the Azure resources are provisioned in your Azure subscription. However, they're not yet deployed. Instead, they're running locally in the context of your app host.
 
 .NET Aspire aims to minimize costs by defaulting to Basic and Standard SKUs for its Azure integrations. While these sensible defaults are provided, you can [customize the Azure resources](#azure-provisioning-customization) to suit your needs. Additionally, some integrations support [emulators](#local-emulators) or [containers](#local-containers), which are useful for local development, testing, and debugging. By default, when you run your app locally, the Azure resources use the actual Azure service. However, you can configure them to use local emulators or containers, avoiding costs associated with the actual Azure service during local development.
 
@@ -105,7 +105,7 @@ The Azure SDK for .NET provides the [📦 Azure.Provisioning](https://www.nuget.
 
 While it's possible to provision Azure resources manually, .NET Aspire simplifies the process by providing a set of APIs to express Azure resources. These APIs are available as extension methods in .NET Aspire Azure hosting libraries, extending the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. When you add Azure resources to your app host, they add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
 
-Since .NET Aspire models Azure resources within Azure hosting integrations, the Azure SDK is used to provision these resources. The Azure SDK generates Bicep files that define the Azure resources you need. If you're unfamiliar with Bicep, it's a domain-specific language used to describe and provision Azure resources. The generated Bicep files are output alongside the manifest file when you publish your app.
+Since .NET Aspire models Azure resources within Azure hosting integrations, the Azure SDK is used to provision these resources. Bicep files are generated that define the Azure resources you need. If you're unfamiliar with Bicep, it's a domain-specific language used to describe and provision Azure resources. The generated Bicep files are output alongside the manifest file when you publish your app.
 
 ### Azure provisioning customization
 
