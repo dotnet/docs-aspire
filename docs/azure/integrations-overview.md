@@ -199,7 +199,7 @@ When you want to reference Bicep files, it's possible that you're not using any 
 > [!TIP]
 > If you're using any of the Azure hosting integrations, you don't need to install the `Aspire.Hosting.Azure` package, as it's a transitive dependency.
 
-To use any of this functionality, the [📦 Aspire.Hosting.Azure](https://nuget.org/packages/Aspire.Hosting.Azure) NuGet package must be installed:
+To use any of this functionality, the [📦 Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure) NuGet package must be installed:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
