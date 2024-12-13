@@ -216,6 +216,8 @@ dotnet add package Aspire.Hosting.Azure
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
+#### What to expect from the examples
+
 All of the examples in this section assume that you've installed the `Aspire.Hosting.Azure` package and imported the <xref:Aspire.Hosting.Azure> namespace. Additionally, the examples assume you've created an <xref:Aspire.Hosting.IDistributedApplicationBuilder> instance:
 
 ```csharp
@@ -228,8 +230,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 builder.Build().Run();
 ```
 
-> [!TIP]
-> By default, when you call any of the Bicep-related APIs, a call is also made to <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning%2A> that adds support for generating Azure resources dynamically during application startup.
+By default, when you call any of the Bicep-related APIs, a call is also made to <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning%2A> that adds support for generating Azure resources dynamically during application startup. For more information, see [Local provisioning and `Azure.Provisioning`](#local-provisioning-and-azureprovisioning).
 
 #### Reference Bicep files
 
