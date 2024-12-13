@@ -7,7 +7,7 @@ uid: dotnet/aspire/local-azure-provisioning
 
 # Local Azure provisioning
 
-.NET Aspire simplifies local cloud-native app development with its compelling app host model. This model allows you to run your app locally with the same configuration and services as in Azure. In this article you learn how to provision Azure resources from your local development environment through the [.NET Aspire app host](../../fundamentals/app-host-overview.md).
+.NET Aspire simplifies local cloud-native app development with its compelling app host model. This model allows you to run your app locally with the same configuration and services as in Azure. In this article you learn how to provision Azure resources from your local development environment through the [.NET Aspire app host](xref:dotnet/aspire/app-host).
 
 ## Requirements
 
@@ -44,7 +44,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 The preceding code snippet shows how to add an Azure Key Vault to the app host. The <xref:Aspire.Hosting.AzureKeyVaultResourceExtensions.AddAzureKeyVault*> API is used to add the Azure Key Vault to the app host. The `AddConnectionString` API is used to provide the connection string to the app host.
 
-Alternatively, for some Azure resources, you can opt-in to running them as an emulator with the `RunAsEmulator` API. This API is available for [Azure Cosmos DB](../../database/azure-cosmos-db-integration.md) and [Azure Storage](../../storage/azure-storage-integrations.md) integrations. For example, to run Azure Cosmos DB as an emulator, you can use the following code snippet:
+Alternatively, for some Azure resources, you can opt-in to running them as an emulator with the `RunAsEmulator` API. This API is available for [Azure Cosmos DB](../database/azure-cosmos-db-integration.md) and [Azure Storage](../storage/azure-storage-integrations.md) integrations. For example, to run Azure Cosmos DB as an emulator, you can use the following code snippet:
 
 ```csharp
 var cosmos = builder.AddAzureCosmosDB("cosmos")
@@ -55,7 +55,7 @@ The <xref:Aspire.Hosting.AzureCosmosExtensions.RunAsEmulator*> API configures an
 
 ### .NET Aspire Azure hosting integrations
 
-If you're using Azure resources in your app host, you're using one or more of the [.NET Aspire Azure hosting integrations](../../azure/integrations-overview.md). These hosting libraries provide extension methods to the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface to add Azure resources to your app host.
+If you're using Azure resources in your app host, you're using one or more of the [.NET Aspire Azure hosting integrations](integrations-overview.md). These hosting libraries provide extension methods to the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface to add Azure resources to your app host.
 
 ## Configuration
 
@@ -122,7 +122,7 @@ This will open a dialog where you can configure the Azure provisioning settings,
 
 ### Missing configuration value hints
 
-When the `Azure` configuration section is missing, has missing values, or is invalid, the [.NET Aspire dashboard](../../fundamentals/dashboard/overview.md) provides useful hints. For example, consider an app host that's missing the `SubscriptionId` configuration value that's attempting to use an Azure Key Vault resource. The **Resources** page indicates the **State** as **Missing subscription configuration**:
+When the `Azure` configuration section is missing, has missing values, or is invalid, the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) provides useful hints. For example, consider an app host that's missing the `SubscriptionId` configuration value that's attempting to use an Azure Key Vault resource. The **Resources** page indicates the **State** as **Missing subscription configuration**:
 
 :::image type="content" source="media/resources-kv-missing-subscription.png" alt-text=".NET Aspire dashboard: Missing subscription configuration.":::
 

@@ -56,7 +56,7 @@ Welcome to what's new in the .NET Aspire docs for September 2024. This article l
 
 ### Updated articles
 
-- [Local Azure provisioning](../deployment/azure/local-provisioning.md) - Restructure TOC and address "integration" messaging
+- [Local Azure provisioning](../azure/local-provisioning.md) - Restructure TOC and address "integration" messaging
 - [Use Application Insights for .NET Aspire telemetry](../deployment/azure/application-insights.md) - Fix spelling error in the article about Application Insights
 
 ## Reference

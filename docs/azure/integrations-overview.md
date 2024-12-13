@@ -124,7 +124,7 @@ To avoid conflating terms and to help disambiguate "provisioning", it's importan
 
 **_Local provisioning:_**
 
-  By default, when you call any of the Azure hosting integration APIs to add Azure resources, the <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)> API is called implicitly. This API registers services in the dependency injection (DI) container that are used to provision Azure resources when the app host starts. This is known as _local provisioning_.  For more information, see [Local Azure provisioning](../deployment/azure/local-provisioning.md).
+  By default, when you call any of the Azure hosting integration APIs to add Azure resources, the <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)> API is called implicitly. This API registers services in the dependency injection (DI) container that are used to provision Azure resources when the app host starts. This is known as _local provisioning_.  For more information, see [Local Azure provisioning](local-provisioning.md).
 
 **_`Azure.Provisioning`:_**
 
