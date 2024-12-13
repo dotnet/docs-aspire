@@ -281,7 +281,7 @@
       "redirect_url": "/dotnet/aspire/azure/integrations-overview"
     },
     {
-      "source_path_from_root": "/docs/deployment/azure/local-azure-provisioning.md",
+      "source_path_from_root": "/docs/deployment/azure/local-provisioning.md",
       "redirect_url": "/dotnet/aspire/azure/local-provisioning"      
     }
   ]
