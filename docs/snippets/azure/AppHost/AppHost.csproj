@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
 
@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Provisioning.ContainerRegistry" Version="1.0.0" />
     <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
     <PackageReference Include="Aspire.Hosting.Azure.AppConfiguration" Version="9.0.0" />
     <PackageReference Include="Aspire.Hosting.Azure.ApplicationInsights" Version="9.0.0" />
@@ -28,6 +29,10 @@
     <PackageReference Include="Aspire.Hosting.Azure.Sql" Version="9.0.0" />
     <PackageReference Include="Aspire.Hosting.Azure.Storage" Version="9.0.0" />
     <PackageReference Include="Aspire.Hosting.Azure.WebPubSub" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WorkerService\WorkerService.csproj" />
   </ItemGroup>
 
 </Project>

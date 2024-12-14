@@ -1,14 +1,16 @@
 ---
 title: Local Azure provisioning
 description: Learn how to use Azure resources in your local development environment.
-ms.date: 10/31/2024
+ms.date: 12/13/2024
+uid: dotnet/aspire/local-azure-provisioning
 ---
 
 # Local Azure provisioning
 
-.NET Aspire simplifies local cloud-native app development with its compelling app host model. This model allows you to run your app locally with the same configuration and services as in Azure.
+.NET Aspire simplifies local cloud-native app development with its compelling app host model. This model allows you to run your app locally with the same configuration and services as in Azure. In this article you learn how to provision Azure resources from your local development environment through the [.NET Aspire app host](xref:dotnet/aspire/app-host).
 
-In this article you learn how to provision Azure resources from your local development environment through the [.NET Aspire app host](../../fundamentals/app-host-overview.md). All of this is possible with the help of the `Azure.Provisioning.*` libraries, which provide a set of APIs to provision Azure resources. These packages are transitive dependencies of the .NET Aspire Azure hosting libraries you use in your app host, so you don't need to install them separately.
+> [!NOTE]
+> To be clear, resources are provisioned in Azure, but the provisioning process is initiated from your local development environment. To optimize your local development experience, consider using emulator or containers when available. For more information, see [Typical developer experience](integrations-overview.md#typical-developer-experience).
 
 ## Requirements
 
@@ -16,7 +18,7 @@ This article assumes that you have an Azure account and subscription. If you don
 
 ## App host provisioning APIs
 
-The app host provides a set of APIs to express Azure resources. These APIs are available as extension methods in .NET Aspire Azure hosting libraries, extending the `IDistributedApplicationBuilder` interface. When you add Azure resources to your app host, they'll add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
+The app host provides a set of APIs to express Azure resources. These APIs are available as extension methods in .NET Aspire Azure hosting libraries, extending the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. When you add Azure resources to your app host, they'll add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
 
 When the app host starts, the following provisioning logic is executed:
 
@@ -30,7 +32,7 @@ When the app host starts, the following provisioning logic is executed:
 
 The app host automatically manages provisioning of Azure resources. The first time the app host runs, it provisions the resources specified in the app host. Subsequent runs don't provision the resources again unless the app host configuration changes.
 
-If you've already provisioned Azure resources outside of the app host and want to use them, you can provide the connection string with the `AddConnectionString` API as shown in the following Azure Key Vault example:
+If you've already provisioned Azure resources outside of the app host and want to use them, you can provide the connection string with the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> API as shown in the following Azure Key Vault example:
 
 ```csharp
 // Service registration
@@ -43,44 +45,20 @@ builder.AddProject<Projects.ExampleProject>()
        .WithReference(secrets)
 ```
 
-The preceding code snippet shows how to add an Azure Key Vault to the app host. The `AddAzureKeyVault` API is used to add the Azure Key Vault to the app host. The `AddConnectionString` API is used to provide the connection string to the app host.
+The preceding code snippet shows how to add an Azure Key Vault to the app host. The <xref:Aspire.Hosting.AzureKeyVaultResourceExtensions.AddAzureKeyVault*> API is used to add the Azure Key Vault to the app host. The `AddConnectionString` API is used to provide the connection string to the app host.
 
-Alternatively, for some Azure resources, you can opt-in to running them as an emulator with the `RunAsEmulator` API. This API is available for Azure Cosmos DB and Azure Storage. For example, to run Azure Cosmos DB as an emulator, you can use the following code snippet:
+Alternatively, for some Azure resources, you can opt-in to running them as an emulator with the `RunAsEmulator` API. This API is available for [Azure Cosmos DB](../database/azure-cosmos-db-integration.md) and [Azure Storage](../storage/azure-storage-integrations.md) integrations. For example, to run Azure Cosmos DB as an emulator, you can use the following code snippet:
 
 ```csharp
 var cosmos = builder.AddAzureCosmosDB("cosmos")
                     .RunAsEmulator();
 ```
 
-The `RunAsEmulator` API configures an Azure Cosmos DB resource to be emulated using the Azure Cosmos DB emulator with the NoSQL API.
+The <xref:Aspire.Hosting.AzureCosmosExtensions.RunAsEmulator*> API configures an Azure Cosmos DB resource to be emulated using the Azure Cosmos DB emulator with the NoSQL API.
 
 ### .NET Aspire Azure hosting integrations
 
-If you're using Azure resources in your app host, you're using one or more of the .NET Aspire Azure hosting integrations. These hosting libraries provide extension methods to the `IDistributedApplicationBuilder` interface to add Azure resources to your app host.
-
-### Azure provisioning integrations
-
-The following Azure provisioning libraries are available:
-
-- [📦 Azure.Provisioning.AppConfiguration](https://www.nuget.org/packages/Azure.Provisioning.AppConfiguration)
-- [📦 Azure.Provisioning.ApplicationInsights](https://www.nuget.org/packages/Azure.Provisioning.ApplicationInsights)
-- [📦 Azure.Provisioning.CognitiveServices](https://www.nuget.org/packages/Azure.Provisioning.CognitiveServices)
-- [📦 Azure.Provisioning.CosmosDB](https://www.nuget.org/packages/Azure.Provisioning.CosmosDB)
-- [📦 Azure.Provisioning.EventHubs](https://www.nuget.org/packages/Azure.Provisioning.EventHubs)
-- [📦 Azure.Provisioning.KeyVault](https://www.nuget.org/packages/Azure.Provisioning.KeyVault)
-- [📦 Azure.Provisioning.OperationalInsights](https://www.nuget.org/packages/Azure.Provisioning.OperationalInsights)
-- [📦 Azure.Provisioning.PostgreSql](https://www.nuget.org/packages/Azure.Provisioning.PostgreSql)
-- [📦 Azure.Provisioning.Redis](https://www.nuget.org/packages/Azure.Provisioning.Redis)
-- [📦 Azure.Provisioning.Resources](https://www.nuget.org/packages/Azure.Provisioning.Resources)
-- [📦 Azure.Provisioning.Search](https://www.nuget.org/packages/Azure.Provisioning.Search)
-- [📦 Azure.Provisioning.ServiceBus](https://www.nuget.org/packages/Azure.Provisioning.ServiceBus)
-- [📦 Azure.Provisioning.SignalR](https://www.nuget.org/packages/Azure.Provisioning.SignalR)
-- [📦 Azure.Provisioning.Sql](https://www.nuget.org/packages/Azure.Provisioning.Sql)
-- [📦 Azure.Provisioning.Storage](https://www.nuget.org/packages/Azure.Provisioning.Storage)
-- [📦 Azure.Provisioning](https://www.nuget.org/packages/Azure.Provisioning)
-
-> [!TIP]
-> You shouldn't need to install these packages manually in your projects, as they're transitive dependencies of the corresponding .NET Aspire Azure hosting libraries.
+If you're using Azure resources in your app host, you're using one or more of the [.NET Aspire Azure hosting integrations](integrations-overview.md). These hosting libraries provide extension methods to the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface to add Azure resources to your app host.
 
 ## Configuration
 
@@ -113,7 +91,7 @@ After you've configured the necessary values, you can start provisioning Azure r
 
 The .NET Aspire app host uses a credential store for Azure resource authentication and authorization. Depending on your subscription, the correct credential store may be needed for multi-tenant provisioning scenarios.
 
-With the [Aspire.Hosting.Azure](https://nuget.org/packages/Aspire.Hosting.Azure) NuGet package installed, and if your app host depends on Azure resources, the default Azure credential store relies on the <xref:Azure.Identity.DefaultAzureCredential>. To change this behavior, you can set the credential store value in the _:::no-loc text="appsettings.json":::_ file, as shown in the following example:
+With the [📦 Aspire.Hosting.Azure](https://nuget.org/packages/Aspire.Hosting.Azure) NuGet package installed, and if your app host depends on Azure resources, the default Azure credential store relies on the <xref:Azure.Identity.DefaultAzureCredential>. To change this behavior, you can set the credential store value in the _:::no-loc text="appsettings.json":::_ file, as shown in the following example:
 
 ```json
 {
@@ -132,6 +110,9 @@ As with all [configuration-based settings](/dotnet/core/extensions/configuration
 - `AzureDeveloperCli`: Delegates to the <xref:Azure.Identity.AzureDeveloperCliCredential>.
 - `InteractiveBrowser`: Delegates to the <xref:Azure.Identity.InteractiveBrowserCredential>.
 
+> [!TIP]
+> For more information about the Azure SDK authentication and authorization, see [Credential chains in the Azure Identity library for .NET](/dotnet/azure/sdk/authentication/credential-chains?tabs=dac#defaultazurecredential-overview).
+
 ### Tooling support
 
 In Visual Studio, you can use Connected Services to configure the default Azure provisioning settings. Select the app host project, right-click on the **Connected Services** node, and select **Azure Resource Provisioning Settings**:
@@ -144,7 +125,7 @@ This will open a dialog where you can configure the Azure provisioning settings,
 
 ### Missing configuration value hints
 
-When the `Azure` configuration section is missing, has missing values, or is invalid, the [.NET Aspire dashboard](../../fundamentals/dashboard/overview.md) provides useful hints. For example, consider an app host that's missing the `SubscriptionId` configuration value that's attempting to use an Azure Key Vault resource. The **Resources** page indicates the **State** as **Missing subscription configuration**:
+When the `Azure` configuration section is missing, has missing values, or is invalid, the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) provides useful hints. For example, consider an app host that's missing the `SubscriptionId` configuration value that's attempting to use an Azure Key Vault resource. The **Resources** page indicates the **State** as **Missing subscription configuration**:
 
 :::image type="content" source="media/resources-kv-missing-subscription.png" alt-text=".NET Aspire dashboard: Missing subscription configuration.":::
 

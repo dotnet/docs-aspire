@@ -131,6 +131,10 @@ items:
         href: messaging/kafka-integration.md
       - name: Azure
         items:
+        - name: Overview
+          href: azure/integrations-overview.md
+        - name: Local Azure provisioning
+          href: azure/local-provisioning.md
         - name: Azure Cosmos DB
           items:
             - name: Azure Cosmos DB - EF Core
@@ -174,6 +178,10 @@ items:
         - name: Azure Web PubSub
           displayName: web pubsub,real-time,messaging
           href: messaging/azure-web-pubsub-integration.md
+        - name: Aspire.Hosting.Azure API reference
+          href: /dotnet/api/?term=Aspire.Hosting.Azure
+        - name: Aspire.Azure API reference
+          href: /dotnet/api/?term=Aspire.Azure
       - name: Dapr
         items:
           - name: Overview
@@ -327,15 +335,6 @@ items:
             href: caching/caching-integrations-deployment.md
       - name: Tool-builder manifest schemas
         href: deployment/manifest-format.md
-
-  - name: Cloud
-    items:
-      - name: Azure
-        items:
-        - name: Local Azure provisioning
-          href: deployment/azure/local-provisioning.md
-        - name: Use custom Bicep templates
-          href: deployment/azure/custom-bicep-templates.md
 
   - name: Troubleshooting
     items:

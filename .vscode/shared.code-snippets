@@ -1,0 +1,53 @@
+{
+	"Details and summary HTML": {
+		"scope": "markdown",
+		"prefix": "details",
+		"body": [
+			"<!-- markdownlint-disable MD033 -->",
+			"<br/>",
+			"<details>",
+			"<summary id=\"$1\"><strong>Toggle $2.</strong></summary>",
+			"<p aria-labelledby=\"$1\">",
+			"",
+			"$3",
+			"",
+			"</p>",
+			"</details>",
+			"<!-- markdownlint-enable MD033 -->",
+			"$0"
+		],
+		"description": "Details and summary HTML"
+	},
+	"Inline NuGet package reference": {
+		"scope": "markdown",
+		"prefix": "inline nuget",
+		"body": [
+			"[📦 $1](https://www.nuget.org/packages/$1) NuGet package$0"
+		],
+		"description": "Add an inline NuGet package reference"
+	},
+	"Install NuGet package": {
+		"scope": "markdown",
+		"prefix": "intall nuget",
+		"body": [
+			"### [.NET CLI](#tab/dotnet-cli)",
+			"",
+			"```dotnetcli",
+			"dotnet add package $1",
+			"```",
+			"",
+			"### [PackageReference](#tab/package-reference)",
+			"",
+			"```xml",
+			"<PackageReference Include=\"$1\"",
+			"                  Version=\"*\" />",
+			"```",
+			"",
+			"---",
+			"",
+			"For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).",
+			"$0"
+		],
+		"description": "Install NuGet package"
+	},
+}
