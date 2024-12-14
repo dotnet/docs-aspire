@@ -41,7 +41,7 @@ All .NET Aspire Azure hosting integrations expose Azure resources and by convent
 
 ### Typical developer experience
 
-When your .NET Aspire app host contains Azure resources, and you run it locally (typical developer <kbd>F5</kbd> or `dotnet run` experience), the [Azure resources are provisioned](local-provisioning.md) in your Azure subscription. However, they're not yet deployed. Instead, they're running locally in the context of your app host.
+When your .NET Aspire app host contains Azure resources, and you run it locally (typical developer <kbd>F5</kbd> or `dotnet run` experience), the [Azure resources are provisioned](local-provisioning.md) in your Azure subscription. This allows you as the developer to debug against them locally in the context of your app host.
 
 .NET Aspire aims to minimize costs by defaulting to _Basic_ or _Standard_ [Stock Keeping Unit (SKU)](/partner-center/developer/product-resources#sku) for its Azure integrations. While these sensible defaults are provided, you can [customize the Azure resources](#azureprovisioning-customization) to suit your needs. Additionally, some integrations support [emulators](#local-emulators) or [containers](#local-containers), which are useful for local development, testing, and debugging. By default, when you run your app locally, the Azure resources use the actual Azure service. However, you can configure them to use local emulators or containers, avoiding costs associated with the actual Azure service during local development.
 
