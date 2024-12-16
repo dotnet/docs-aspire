@@ -1,11 +1,13 @@
 ---
 title: .NET Aspire Seq integration
 description: Learn how to use the .NET Aspire Seq integration to add OpenTelemetry Protocol (OTLP) exporters that send logs and traces to a Seq Server.
-ms.topic: how-to
 ms.date: 08/12/2024
+uid: logging/seq-integration
 ---
 
 # .NET Aspire Seq integration
+
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
 In this article, you learn how to use the .NET Aspire Seq integration to add OpenTelemetry Protocol (OTLP) exporters that send logs and traces to a Seq Server. The integration supports persistent logs and traces across application restarts via configuration.
 
