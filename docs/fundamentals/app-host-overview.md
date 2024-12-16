@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs for adding resources and expressing dependencies.
-ms.date: 12/09/2024
+ms.date: 12/13/2024
 ms.topic: overview
 uid: dotnet/aspire/app-host
 ---
@@ -461,6 +461,9 @@ In the preceding code:
 - If the app host is running in "publish" mode, a connection string is added.
 
 This logic can easily be inverted to connect to an existing Redis resource when you're running locally, and create a new Redis resource when you're publishing.
+
+> [!IMPORTANT]
+> .NET Aspire provides common APIs to control the modality of resource builders, allowing resources to behave differently based on the execution mode. The fluent APIs are prefixed with `RunAs*` and `PublishAs*`. The `RunAs*` APIs influence the local development (or run mode) behavior, whereas the `PublishAs*` APIs influence the publishing of the resource.
 
 ## See also
 
