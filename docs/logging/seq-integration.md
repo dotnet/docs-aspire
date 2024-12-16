@@ -9,7 +9,58 @@ uid: logging/seq-integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-In this article, you learn how to use the .NET Aspire Seq integration to add OpenTelemetry Protocol (OTLP) exporters that send logs and traces to a Seq Server. The integration supports persistent logs and traces across application restarts via configuration.
+[Seq](https://datalust.co/seq) is a self-hosted search and analysis server that handles structured application logs and trace files. It includes a JSON event store and a simple query language that make it easy to use. You can use the .NET Aspire Seq integration to send OpenTelemetry Protocol (OTLP) data to Seq. The integration supports persistent logs and traces across application restarts.
+
+During development, .NET Aspire runs and connects to the [`datalust/seq` container image](https://hub.docker.com/r/datalust/seq). 
+
+## Hosting integration
+
+The Seq hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.SeqResource> type. To access this type and the API, add the [📦 Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Seq
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Seq"
+                  Version="*" />
+```
+
+---
+
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+
+
+### Add a Seq resource
+
+In your app host project, call <xref:Aspire.Hosting.SeqBuilderExtensions.AddSeq*> to add and return a Seq resource builder.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var seq = builder.AddSeq("seq")
+                 .ExcludeFromManifest()
+                 .WithLifetime(ContainerLifetime.Persistent);
+
+var myService = builder.AddProject<Projects.ExampleProject>()
+                       .WithReference(seq)
+                       .WaitFor(seq);
+
+// After adding all resources, run the app...
+```
+
+> AJMTODO: This is where I got to.
+
+
+> [!IMPORTANT]
+> You must accept the [Seq End User Licence Agreement](https://datalust.co/doc/eula-current.pdf) for Seq to start):
+
+
+
 
 ## Get started
 
