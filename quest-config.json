@@ -9,12 +9,12 @@
     "ParentNodes": [
         {
             "Label": "okr-freshness",
-            "Semester": "Dilithium",
+            "Semester": "Selenium",
             "ParentNodeId": 286034
         },
         {
             "Label": "okr-curation",
-            "Semester": "Dilithium",
+            "Semester": "Selenium",
             "ParentNodeId": 286038
         },
         {
@@ -33,13 +33,13 @@
             "ParentNodeId": 286039
         },
         {
-            "Label": "okr-freshness",
-            "Semester": "Selenium",
-            "ParentNodeId": 237266
-        },
-        {
             "Semester": "Selenium",
             "ParentNodeId": 308203
+        },
+        {
+            "Label": "okr-freshness",
+            "Semester": "Dilithium",
+            "ParentNodeId": 237266
         },
         {
             "Label": "okr-curation",
