@@ -1,39 +1,44 @@
 ---
 title: Azure integrations overview
 description: Overview of the Azure integrations available in the .NET Aspire.
-ms.date: 12/13/2024
+ms.date: 12/17/2024
 uid: dotnet/aspire/integrations/azure-overview
 ---
 
-<!--
-
-Somebody reading the overview is supposed to understand:
-
-- What happens when you add an azure hosing integration and run locally 
-  - What about emulators?
-  - What about redis? I see AddRedis and AddAzureRedis, why do we have 2? (same for SQL and Postgres)
-- How do I customize azure resources?
-- What are these azure resources doing under the covers (leave the specifics for each integration doc, not the overview)
-
-Understanding of the AzureBicepResource and AzureProvisioning resource:
- 
-- Bicep is foundational to understanding how aspire integrates with Azure. You can write bicep in C# with the Azure.Provisioning libraries. Aspire azure integrations use those libraries under the covers.
-- How do users pass Aspire parameter resource to AspireProvisioning resources and how do generally set parameters on resources.
-- How do you get outputs from resources (GetOutput)
-- How do are secrets handled in resources.
-- What are the special parameters that the system provides for me.
-
-Ties back to deployment:
-
-- What happens when these resources are deployed?
-- How does these show up in the manifest?
-- What does azd do here?
-
--->
-
 # .NET Aspire Azure integrations overview
 
-[Azure](/azure) is the most popular cloud platform for building and deploying [.NET applications](/dotnet/azure). The [Azure SDK for .NET](/dotnet/azure/sdk/azure-sdk-for-dotnet) allows for easy management and use of Azure services. .NET Aspire provides a set of integrations with Azure services. This article details some common aspects of all Azure integrations in .NET Aspire and aims to help you understand how to use them.
+[Azure](/azure) is the most popular cloud platform for building and deploying [.NET applications](/dotnet/azure). The [Azure SDK for .NET](/dotnet/azure/sdk/azure-sdk-for-dotnet) allows for easy management and use of Azure services. .NET Aspire provides a set of integrations with Azure services, where you're free to add new resources or connect to existing ones. This article details some common aspects of all Azure integrations in .NET Aspire and aims to help you understand how to use them.
+
+## Add connection to existing Azure resources
+
+.NET Aspire provides the ability to connect to existing Azure resources. This is useful when you have existing Azure resources that you want to use in your .NET Aspire app. The <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> API is used in conjunction with the app host's [execution context](../fundamentals/app-host-overview.md#execution-context) to conditionally add a connection string to the app model.
+
+Consider the following example, where in _publish_ mode you add an Azure Key Vault resource while in _run_ mode you add a connection string to an existing Azure Key Vault:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var keyVault = builder.ExecutionContext.IsPublishMode
+    ? builder.AddKeyVault("kv")
+    : builder.AddConnectionString("kv");
+
+builder.AddProject<Projects.Api>("api")
+       .WithReference(kv);
+
+// After adding all resources, run the app...
+```
+
+The preceding code:
+
+- Creates a new `builder` instance.
+- Adds a Key Vault resource named `kv` in "publish" mode.
+- Adds a connection string to an existing Azure Key Vault in "run" mode.
+- Adds a project named `api` to the builder.
+- References the `kv` resource in the `api` project regardless of the mode.
+
+When in "run" mode, the connection string corresponds to a configuration value visible to the app host. This means, you'd likely configure an environment variable or a user secret to store the connection string. The configuration is resolved from the `ConnectionStrings__kv` (or `ConnectionStrings:kv`) configuration key.
+
+For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
 
 ## Add Azure resources
 
