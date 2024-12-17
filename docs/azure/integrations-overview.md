@@ -11,7 +11,9 @@ uid: dotnet/aspire/integrations/azure-overview
 
 ## Add connection to existing Azure resources
 
-.NET Aspire provides the ability to connect to existing Azure resources. This is useful when you have existing Azure resources that you want to use in your .NET Aspire app. The <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> API is used in conjunction with the app host's [execution context](../fundamentals/app-host-overview.md#execution-context) to conditionally add a connection string to the app model.
+.NET Aspire provides the ability to connect to existing Azure resources. Expressing connection strings is useful when you have existing Azure resources that you want to use in your .NET Aspire app. The <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> API is used with the app host's [execution context](../fundamentals/app-host-overview.md#execution-context) to conditionally add a connection string to the app model.
+
+[!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
 
 Consider the following example, where in _publish_ mode you add an Azure Key Vault resource while in _run_ mode you add a connection string to an existing Azure Key Vault:
 
@@ -32,11 +34,11 @@ The preceding code:
 
 - Creates a new `builder` instance.
 - Adds a Key Vault resource named `kv` in "publish" mode.
-- Adds a connection string to an existing Azure Key Vault in "run" mode.
+- Adds a connection string to an existing Azure Key Vault named `kv` in "run" mode.
 - Adds a project named `api` to the builder.
-- References the `kv` resource in the `api` project regardless of the mode.
+- The `api` project references the `kv` resource regardless of the mode.
 
-When in "run" mode, the connection string corresponds to a configuration value visible to the app host. This means, you'd likely configure an environment variable or a user secret to store the connection string. The configuration is resolved from the `ConnectionStrings__kv` (or `ConnectionStrings:kv`) configuration key.
+The consuming API project uses the connection string information with no knowledge of how the app host configured it. In "publish" mode, the code adds a new Key Vault resource—which would be reflected in the [deployment manifest](../deployment/manifest-format.md) accordingly. When in "run" mode, the connection string corresponds to a configuration value visible to the app host. This means, you'd likely configure an environment variable or a user secret to store the connection string. The configuration is resolved from the `ConnectionStrings__kv` (or `ConnectionStrings:kv`) configuration key.
 
 For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
 
