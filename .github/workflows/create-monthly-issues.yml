@@ -39,11 +39,11 @@ jobs:
             const emoji = monthEmojis[month];
             const issueTitle = `${emoji} Repo chores—${monthName} ${year}`;
             const issueBody = `
-            - [ ] Check *An external link was removed to protect your privacy.* for \`dotnet/docs-aspire\`
-            - [ ] Fix build suggestions in \`dotnet/docs-aspire\`
-            - [ ] Check *An external link was removed to protect your privacy.* for \`dotnet/docs-aspire\`
+            - [ ] Check [UUF feedback](https://aka.ms/uuftriageapp) for `dotnet/docs-aspire`
+            - [ ] Fix build suggestions in `dotnet/docs-aspire`
+            - [ ] Check [broken links report](https://msit.powerbi.com/groups/me/reports/0a1183d7-baae-4d5d-9d71-7bb437e2b2b3/ReportSection5885348483cf9c5a907f?ctid=72f988bf-86f1-41af-91ab-2d7cd011db47&experience=power-bi) for `dotnet/docs-aspire`: #1863
             - [ ] Approve/merge CleanRepo PR
-            - [ ] Clean up hygiene items in *An external link was removed to protect your privacy.*
+            - [ ] Clean up hygiene items in [ADO board](https://dev.azure.com/msft-skilling/Content/_dashboards/dashboard/8132ec13-0654-4ffd-89a1-a1b9bcd77715)
 
             > [!NOTE]  
             > 🤖 This issue was created using [.github/workflows/create-monthly-issues.yml](https://github.com/dotnet/docs-aspire/blob/main/.github/workflows/create-monthly-issues.yml).
