@@ -1,17 +1,29 @@
 ---
 title: .NET Aspire Azure Cosmos DB integration
-description: This article describes the .NET Aspire Azure Cosmos DB integration features and capabilities.
-ms.topic: how-to
-ms.date: 08/12/2024
+description: Learn how to install and configure the .NET Aspire Azure Cosmos DB integration to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
+ms.date: 12/18/2024
+uid: dotnet/aspire/azure-cosmos-db-integration
 ---
 
 # .NET Aspire Azure Cosmos DB integration
 
-In this article, you learn how to use the .NET Aspire Azure Cosmos DB integration. The `Aspire.Microsoft.Azure.Cosmos` library is used to register a <xref:Microsoft.Azure.Cosmos.CosmosClient> as a singleton in the DI container for connecting to Azure Cosmos DB. It also enables corresponding health checks, logging and telemetry.
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-## Get started
+[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) is a fully managed NoSQL database service for modern app development. The .NET Aspire Azure Cosmos DB integration enables you to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
 
-To get started with the .NET Aspire Azure Cosmos DB integration, install the [📦 Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) NuGet package in the client-consuming project, i.e., the project for the application that uses the Azure Cosmos DB client.
+## Hosting integration
+
+[!INCLUDE [cosmos-app-host](includes/cosmos-app-host.md)]
+
+### Hosting integration health checks
+
+The Azure Cosmos DB hosting integration automatically adds a health check for the Cosmos DB resource. The health check verifies that the Cosmos DB is running and that a connection can be established to it.
+
+The hosting integration relies on the [📦 AspNetCore.HealthChecks.CosmosDb](https://www.nuget.org/packages/AspNetCore.HealthChecks.CosmosDb) NuGet package.
+
+## Client integration
+
+To get started with the .NET Aspire Azure Cosmos DB client integration, install the [📦 Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) NuGet package in the client-consuming project, that is, the project for the application that uses the Cosmos DB client. The Cosmos DB client integration registers a <xref:Microsoft.Azure.Cosmos.CosmosClient> instance that you can use to interact with Cosmos DB.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -28,17 +40,18 @@ dotnet add package Aspire.Microsoft.Azure.Cosmos
 
 ---
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+### Add Cosmos DB client
 
-## Example usage
-
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireMicrosoftAzureCosmosExtensions.AddAzureCosmosClient%2A> extension to register a <xref:Microsoft.Azure.Cosmos.CosmosClient?displayProperty=fullName> for use via the dependency injection container.
+In the :::no-loc text="Program.cs"::: file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireMicrosoftAzureCosmosExtensions.AddAzureCosmosClient*> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a <xref:Azure.Cosmos.CosmosClient> for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
-builder.AddAzureCosmosClient("cosmosConnectionName");
+builder.AddAzureCosmosClient(connectionName: "cosmos-db");
 ```
 
-You can then retrieve the `CosmosClient` instance using dependency injection. For example, to retrieve the client from a service:
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the Cosmos DB resource in the app host project. In other words, when you call `AddAzureCosmosDB` and provide a name of `cosmosdb` that same name should be used when calling `AddAzureCosmosClient`. For more information, see [Add Azure Cosmos DB resource](#add-azure-cosmos-db-resource-resource).
+
+You can then retrieve the <xref:Azure.Cosmos.CosmosClient> instance using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
 public class ExampleService(CosmosClient client)
@@ -47,99 +60,60 @@ public class ExampleService(CosmosClient client)
 }
 ```
 
-For more information on using the <xref:Microsoft.Azure.Cosmos.CosmosClient>, see the [Examples for Azure Cosmos DB for NoSQL SDK for .NET](/azure/cosmos-db/nosql/samples-dotnet).
+For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
 
-## App host usage
+### Add keyed Cosmos DB client
 
-To add Azure Cosmos DB hosting support to your <xref:Aspire.Hosting.IDistributedApplicationBuilder>, install the [📦 Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB) NuGet package in the [app host](xref:dotnet/aspire/app-host) project. This is helpful if you want Aspire to provision a new Azure Cosmos DB account for you, or if you want to use the Azure Cosmos DB emulator. If you want to use an Azure Cosmos DB account that is already provisioned, there's no need to add it to the app host project.
-
-### [.NET CLI](#tab/dotnet-cli)
-
-```dotnetcli
-dotnet add package Aspire.Hosting.Azure.CosmosDB
-```
-
-### [PackageReference](#tab/package-reference)
-
-```xml
-<PackageReference Include="Aspire.Hosting.Azure.CosmosDB"
-                  Version="*" />
-```
-
----
-
-In your app host project, register the .NET Aspire Azure Cosmos DB integration and consume the service using the following methods:
+There might be situations where you want to register multiple `CosmosClient` instances with different connection names. To register keyed Cosmos DB clients, call the <xref:Microsoft.Extensions.Hosting.AspireMicrosoftAzureCosmosExtensions.AddKeyedAzureCosmosClient*> method:
 
 ```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var cosmos = builder.AddAzureCosmosDB("myNewCosmosAccountName");
-var cosmosdb = cosmos.AddDatabase("myCosmosDatabaseName");
-
-var exampleProject = builder.AddProject<Projects.ExampleProject>()
-                            .WithReference(cosmosdb);
+builder.AddKeyedAzureCosmosClient(name: "mainDb");
+builder.AddKeyedAzureCosmosClient(name: "loggingDb");
 ```
 
-> [!TIP]
-> To use the Azure Cosmos DB emulator, chain a call to the <xref:Aspire.Hosting.AzureCosmosExtensions.AddAzureCosmosDB%2A> method.
->
-> ```csharp
-> cosmosdb.RunAsEmulator();
-> ```
->
-> Starting the Cosmos DB emulator may take some time. Use <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor%2A> to delay your .NET project's code execution until the emulator is running and ready to serve requests.
->
-> ```csharp
-> var exampleProject = builder.AddProject<Projects.ExampleProject>()
->                             .WithReference(cosmosdb)
->                             .WaitFor(cosmosdb);
-> ```
+> [!IMPORTANT]
+> When using keyed services, it's expected that your Cosmos DB resource configured two named databases, one for the `mainDb` and one for the `loggingDb`.
 
-## Configuration
-
-The .NET Aspire Azure Cosmos DB library provides multiple options to configure the `CosmosClient` connection based on the requirements and conventions of your project.
-
-### Use a connection string
-
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddAzureCosmosClient`:
+Then you can retrieve the `CosmosClient` instances using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
-builder.AddAzureCosmosClient("cosmosConnectionName");
+public class ExampleService(
+    [FromKeyedServices("mainDb")] CosmosClient mainDbClient,
+    [FromKeyedServices("loggingDb")] CosmosClient loggingDbClient)
+{
+    // Use clients...
+}
 ```
 
-And then the connection string will be retrieved from the `ConnectionStrings` configuration section:
+For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
+
+### Configuration
+
+The .NET Aspire Azure Cosmos DB integration provides multiple options to configure the connection based on the requirements and conventions of your project.
+
+#### Use a connection string
+
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling the <xref:Microsoft.Extensions.Hosting.AspireMicrosoftAzureCosmosExtensions.AddAzureCosmosClient*> method:
+
+```csharp
+builder.AddAzureCosmosClient("cosmos-db");
+```
+
+Then the connection string is retrieved from the `ConnectionStrings` configuration section:
 
 ```json
 {
   "ConnectionStrings": {
-    "cosmosConnectionName": "https://{account_name}.documents.azure.com:443/"
+    "cosmos-db": "AccountEndpoint=https://{account_name}.documents.azure.com:443/;AccountKey={account_key};"
   }
 }
 ```
 
-The recommended connection approach is to use an account endpoint, which works with the <xref:Aspire.Microsoft.Azure.Cosmos.MicrosoftAzureCosmosSettings.Credential?displayProperty=nameWithType> property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used:
+For more information on how to format this connection string, see the ConnectionString documentation.
 
-```json
-{
-    "ConnectionStrings": {
-      "cosmosConnectionName": "https://{account_name}.documents.azure.com:443/"
-    }
-}
-```
+#### Use configuration providers
 
-Alternatively, an Azure Cosmos DB connection string can be used:
-
-```json
-{
-    "ConnectionStrings": {
-    "cosmosConnectionName": "AccountEndpoint=https://{account_name}.documents.azure.com:443/;AccountKey={account_key};"
-    }
-}
-```
-
-### Use configuration providers
-
-The .NET Aspire Azure Cosmos DB integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.Azure.Cosmos.MicrosoftAzureCosmosSettings> from _:::no-loc text="appsettings.json":::_ or other configuration files using `Aspire:Microsoft:Azure:Cosmos` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
+The .NET Aspire Azure Cosmos DB integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Microsoft.Azure.Cosmos.MicrosoftAzureCosmosSettings> from configuration by using the `Aspire:Microsoft:Azure:Cosmos` key. The following snippet is an example of a :::no-loc text="appsettings.json"::: file that configures some of the options:
 
 ```json
 {
@@ -155,13 +129,15 @@ The .NET Aspire Azure Cosmos DB integration supports <xref:Microsoft.Extensions.
 }
 ```
 
-### Use inline delegates
+For the complete Cosmos DB client integration JSON schema, see [Aspire.Microsoft.Azure.Cosmos/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Microsoft.Azure.Cosmos/ConfigurationSchema.json).
 
-You can also pass the `Action<MicrosoftAzureCosmosSettings >` delegate to set up some or all the options inline, for example to disable tracing from code:
+#### Use inline delegates
+
+Also you can pass the `Action<MicrosoftAzureCosmosSettings> configureSettings` delegate to set up some or all the options inline, for example to disable tracing from code:
 
 ```csharp
 builder.AddAzureCosmosClient(
-    "cosmosConnectionName",
+    "cosmos-db",
     static settings => settings.DisableTracing = true);
 ```
 
@@ -174,17 +150,22 @@ builder.AddAzureCosmosClient(
         clientOptions => clientOptions.ApplicationName = "myapp");
 ```
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+### Client integration health checks
 
-The .NET Aspire Azure Cosmos DB integration currently doesn't implement health checks, though this may change in future releases.
+By default, .NET Aspire integrations enable health checks for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
+
+The .NET Aspire Azure Cosmos DB integration:
+
+- Adds the health check when <xref:Aspire.Microsoft.Azure.Cosmos.MicrosoftAzureCosmosSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the Cosmos DB.
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
-### Logging
+#### Logging
 
 The .NET Aspire Azure Cosmos DB integration uses the following log categories:
 
-- Azure-Cosmos-Operation-Request-Diagnostics
+- `Azure-Cosmos-Operation-Request-Diagnostics`
 
 In addition to getting Azure Cosmos DB request diagnostics for failed requests, you can configure latency thresholds to determine which successful Azure Cosmos DB request diagnostics will be logged. The default values are 100 ms for point operations and 500 ms for non point operations.
 
@@ -204,24 +185,27 @@ builder.AddAzureCosmosClient(
         });
 ```
 
-### Tracing
+#### Tracing
 
 The .NET Aspire Azure Cosmos DB integration will emit the following tracing activities using OpenTelemetry:
 
-- Azure.Cosmos.Operation
+- `Azure.Cosmos.Operation`
 
-Azure Cosmos DB tracing is currently in preview, so you must set the experimental switch to ensure traces are emitted. [Learn more about tracing in Azure Cosmos DB.](/azure/cosmos-db/nosql/sdk-observability#trace-attributes)
+Azure Cosmos DB tracing is currently in preview, so you must set the experimental switch to ensure traces are emitted.
 
 ```csharp
 AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true);
 ```
 
-### Metrics
+For more information, see [Azure Cosmos DB SDK observability: Trace attributes](/azure/cosmos-db/nosql/sdk-observability?tabs=dotnet#trace-attributes).
+
+#### Metrics
 
 The .NET Aspire Azure Cosmos DB integration currently doesn't support metrics by default due to limitations with the Azure SDK.
 
 ## See also
 
-- [Azure Cosmos DB docs](/azure/cosmos-db/introduction)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
+- [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db)
+- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
+- [.NET Aspire Azure integrations overview](../azure/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
