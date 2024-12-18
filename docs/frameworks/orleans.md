@@ -1,13 +1,13 @@
 ---
 title: Use Orleans with .NET Aspire
-description: Learn how to use Orleans with .NET Aspire
+description: Learn how to use the .NET Aspire Orleans hosting integration, which can configure and orchestrate Orleans from a .NET Aspire app host project.
 ms.date: 11/05/2024
-ms.topic: overview
+uid: frameworks/orleans
 ---
 
 # Use Orleans with .NET Aspire
 
-Orleans has built-in support for .NET Aspire. .NET Aspire's application model lets you describe the services, databases, and other resources/infrastructure in your app and how they relate. Orleans provides a straightforward way to build distributed applications which are elastically scalable and fault-tolerant. .NET Aspire is used to configure and orchestrate Orleans and its dependencies, such as, by providing Orleans with database cluster membership and storage.
+[Orleans](https://github.com/dotnet/orleans) has built-in support for .NET Aspire. .NET Aspire's application model lets you describe the services, databases, and other resources and infrastructure in your app and how they relate to each other. Orleans provides a straightforward way to build distributed applications which are elastically scalable and fault-tolerant. .NET Aspire is used to configure and orchestrate Orleans and its dependencies, such as by providing Orleans with database cluster membership and storage.
 
 Orleans is represented as a resource in .NET Aspire. The Orleans resource includes configuration which your service needs to operate, such as cluster membership providers and storage providers.
 
