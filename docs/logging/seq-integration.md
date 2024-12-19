@@ -43,7 +43,8 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var seq = builder.AddSeq("seq")
                  .ExcludeFromManifest()
-                 .WithLifetime(ContainerLifetime.Persistent);
+                 .WithLifetime(ContainerLifetime.Persistent)
+                 .WithEnvironment("ACCEPT_EULA", "Y");
 
 var myService = builder.AddProject<Projects.ExampleProject>()
                        .WithReference(seq)
@@ -55,8 +56,9 @@ var myService = builder.AddProject<Projects.ExampleProject>()
 > [!NOTE]
 > The Seq container may be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/app-host-overview.md#container-resource-lifetime).
 
-> [!IMPORTANT]
-> You must accept the [Seq End User Licence Agreement](https://datalust.co/doc/eula-current.pdf) for Seq to start.
+#### Accept the Seq End User License Agreement (EULA)
+
+You must accept the [Seq EULA](https://datalust.co/doc/eula-current.pdf) for Seq to start. To accept the agreement in code, pass the environment variable `ACCEPT_EULA` to the Seq container, and set its value to `Y`. The above code passes this variable in the chained call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEnvironment*>.
 
 #### Seq in the .NET Aspire manifest
 
