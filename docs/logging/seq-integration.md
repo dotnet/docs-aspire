@@ -56,11 +56,11 @@ var myService = builder.AddProject<Projects.ExampleProject>()
 > The Seq container may be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/app-host-overview.md#container-resource-lifetime).
 
 > [!IMPORTANT]
-> You must accept the [Seq End User Licence Agreement](https://datalust.co/doc/eula-current.pdf) for Seq to start.
+> You must accept the [Seq End User Licence Agreement](https://datalust.co/doc/eula-current.pdf) for Seq to start. 
 
 #### Seq in the .NET Aspire manifest
 
-Seq shouldn't be part of the .NET Aspire deployment manifest, hence the chained call to `ExcludeFromManifest`. It's recommended you set up a secure production Seq server outside of .NET Aspire for your production environment.
+Seq shouldn't be part of the .NET Aspire [deployment manifest](../deployment/manifest-format.md), hence the chained call to  <xref:Aspire.Hosting.ResourceBuilderExtensions.ExcludeFromManifest*>. It's recommended you set up a secure production Seq server outside of .NET Aspire for your production environment.
 
 ### Persistent logs and traces
 
@@ -117,7 +117,7 @@ Data bind mounts rely on the host machine's filesystem to persist the Seq data a
 
 ## Client integration
 
-To get started with the .NET Aspire Seq integration, install the [📦 Aspire.Seq](https://www.nuget.org/packages/Aspire.Seq) NuGet package in the client-consuming project, that is, the project for the application that uses the Seq client. 
+To get started with the .NET Aspire Seq client integration, install the [📦 Aspire.Seq](https://www.nuget.org/packages/Aspire.Seq) NuGet package in the client-consuming project, that is, the project for the application that uses the Seq client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -133,8 +133,6 @@ dotnet add package Aspire.Seq
 ```
 
 ---
-
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
 ### Add a Seq client
 
@@ -166,7 +164,7 @@ The .NET Aspire Seq integration supports <xref:Microsoft.Extensions.Configuratio
 }
 ```
 
-For the complete Seq client integration JSON schema, see [Aspire.Seq/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v8.2.2/src/Components/Aspire.Microsoft.Data.SqlClient/ConfigurationSchema.json).
+For the complete Seq client integration JSON schema, see [Aspire.Seq/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Microsoft.Data.SqlClient/ConfigurationSchema.json).
 
 #### Use inline delegates
 
