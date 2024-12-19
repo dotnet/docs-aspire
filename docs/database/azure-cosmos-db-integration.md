@@ -49,7 +49,7 @@ builder.AddAzureCosmosClient(connectionName: "cosmos-db");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Cosmos DB resource in the app host project. In other words, when you call `AddAzureCosmosDB` and provide a name of `cosmosdb` that same name should be used when calling `AddAzureCosmosClient`. For more information, see [Add Azure Cosmos DB resource](#add-azure-cosmos-db-resource-resource).
+> The `connectionName` parameter must match the name used when adding the Cosmos DB resource in the app host project. In other words, when you call `AddAzureCosmosDB` and provide a name of `cosmos-db` that same name should be used when calling `AddAzureCosmosClient`. For more information, see [Add Azure Cosmos DB resource](#add-azure-cosmos-db-resource).
 
 You can then retrieve the <xref:Azure.Cosmos.CosmosClient> instance using dependency injection. For example, to retrieve the connection from an example service:
 
@@ -156,7 +156,7 @@ By default, .NET Aspire integrations enable health checks for all services. For 
 
 The .NET Aspire Azure Cosmos DB integration:
 
-- Adds the health check when <xref:Aspire.Microsoft.Azure.Cosmos.MicrosoftAzureCosmosSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the Cosmos DB.
+- Adds the health check when <xref:Aspire.Microsoft.Azure.Cosmos.MicrosoftAzureCosmosSettings.DisableTracing?displayProperty=nameWithType> is `false`, which attempts to connect to the Cosmos DB.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]

@@ -1,10 +1,10 @@
 ---
-ms.include
+ms.topic: include
 ---
 
 The .NET Aspire [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) hosting integration models the various Cosmos DB resources as the following types:
 
-- <xref:Aspire.Hosting.Azure.AzureCosmosDBResource>: Represents an Azure Cosmos DB resource.
+- <xref:Aspire.Hosting.AzureCosmosDBResource>: Represents an Azure Cosmos DB resource.
 - <xref:Aspire.Hosting.Azure.AzureCosmosDBEmulatorResource>: Represents an Azure Cosmos DB emulator resource.
 
 To access these types and APIs for expressing them, add the [📦 Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
@@ -78,9 +78,9 @@ The preceding code:
 - Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
   - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
   - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
-  - The single <xref:Azure.Provisioning.Cosmos.CosmosDBAccount> is retrieved.
-  - The <xref:Azure.Provisioning.Cosmos.CosmosDBAccount.ConsistencyPolicy?displayProperty=nameWithType> is assigned to a <xref:Azure.Provisioning.Cosmos.DefaultConsistencyLevel.Strong?displayProperty=nameWithType>.
-  - The <xref:Azure.Provisioning.Cosmos.CosmosDBAccount.Cors?displayProperty=nameWithType> is configured to allow all origins, headers, and `GET` and `POST` methods.
+  - The single <xref:Azure.Provisioning.CosmosDB.CosmosDBAccount> is retrieved.
+  - The <xref:Azure.Provisioning.CosmosDB.CosmosDBAccount.ConsistencyPolicy?displayProperty=nameWithType> is assigned to a <xref:Azure.Provisioning.CosmosDB.DefaultConsistencyLevel.Strong?displayProperty=nameWithType>.
+  - The <xref:Azure.Provisioning.CosmosDB.CosmosDBAccount.Cors?displayProperty=nameWithType> is configured to allow all origins, headers, and `GET` and `POST` methods.
   - A tag is added to the Cosmos DB account with a key of `ExampleKey` and a value of `Example value`.
 
 There are many more configuration options available to customize the Azure Cosmos DB resource. For more information, see <xref:Azure.Provisioning.CosmosDB>. For more information, see [Azure.Provisioning customization](../../azure/integrations-overview.md#azureprovisioning-customization).
@@ -211,26 +211,6 @@ var cosmos = builder.AddAzureCosmosDB("cosmos-db").RunAsEmulator(
 ```
 
 The data volume is used to persist the Cosmos DB emulator data outside the lifecycle of its container. The data volume is mounted at the `/tmp/cosmos/appdata` path in the Cosmos DB emulator container and when a `name` parameter isn't provided, the name is generated. The emulator has its `AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE` environment variable set to `true`. For more information on data volumes and details on why they're preferred over [bind mounts](#configure-cosmos-db-emulator-container-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
-
-##### Configure Cosmos DB emulator container with data bind mount
-
-To add a data bind mount to the Azure Cosmos DB emulator resource, call the <xref:Aspire.Hosting.AzureCosmosExtensions.WithDataBindMount*> method:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var cosmos = builder.AddAzureCosmosDB("cosmos-db").RunAsEmulator(
-                     emulator =>
-                     {
-                         emulator.WithDataBindMount("../CosmosDB/Data");
-                     });
-
-// After adding all resources, run the app...
-```
-
-[!INCLUDE [data-bind-mount-vs-volumes](../../includes/data-bind-mount-vs-volumes.md)]
-
-Data bind mounts rely on the host machine's filesystem to persist the Cosmos DB emulator data across container restarts. The data bind mount is mounted at the `../CosmosDB/Data` path on the host machine relative to the app host directory (<xref:Aspire.Hosting.IDistributedApplicationBuilder.AppHostDirectory?displayProperty=nameWithType>) in the Cosmos DB emulator container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
 
 #### Configure Cosmos DB emulator container partition count
 
