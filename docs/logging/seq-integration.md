@@ -56,7 +56,7 @@ var myService = builder.AddProject<Projects.ExampleProject>()
 > The Seq container may be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/app-host-overview.md#container-resource-lifetime).
 
 > [!IMPORTANT]
-> You must accept the [Seq End User Licence Agreement](https://datalust.co/doc/eula-current.pdf) for Seq to start. 
+> You must accept the [Seq End User Licence Agreement](https://datalust.co/doc/eula-current.pdf) for Seq to start.
 
 #### Seq in the .NET Aspire manifest
 
