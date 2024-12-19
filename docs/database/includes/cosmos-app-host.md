@@ -129,6 +129,9 @@ var cosmos = builder.AddAzureCosmosDB("cosmos-db")
 
 When you call `AddDatabase`, it configures your Cosmos DB resources to have a database named `db`. The database is created in the Cosmos DB account that's represented by the `AzureCosmosDBResource` that you added earlier. The database is a logical container for collections and users. For more information, see [Databases, containers, and items in Azure Cosmos DB](/azure/cosmos-db/resource-model).
 
+> [!NOTE]
+> When using the `AddDatabase` API to add a database to an Azure Cosmos DB resource, if you're running the emulator, the database isn't actually created in the emulator. This API is intended to include a database in the [Bicep generated](#generated-provisioning-bicep) by the provisioning infrastructure.
+
 ### Add Azure Cosmos DB emulator resource
 
 To add an Azure Cosmos DB emulator resource, chain a call on an `IResourceBuilder<AzureCosmosDBResource>` to the <xref:Aspire.Hosting.AzureCosmosExtensions.RunAsEmulator*> API:
