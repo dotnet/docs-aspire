@@ -80,7 +80,6 @@ The preceding code:
   - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
   - The single <xref:Azure.Provisioning.CosmosDB.CosmosDBAccount> is retrieved.
   - The <xref:Azure.Provisioning.CosmosDB.CosmosDBAccount.ConsistencyPolicy?displayProperty=nameWithType> is assigned to a <xref:Azure.Provisioning.CosmosDB.DefaultConsistencyLevel.Strong?displayProperty=nameWithType>.
-  - The <xref:Azure.Provisioning.CosmosDB.CosmosDBAccount.Cors?displayProperty=nameWithType> is configured to allow all origins, headers, and `GET` and `POST` methods.
   - A tag is added to the Cosmos DB account with a key of `ExampleKey` and a value of `Example value`.
 
 There are many more configuration options available to customize the Azure Cosmos DB resource. For more information, see <xref:Azure.Provisioning.CosmosDB>. For more information, see [Azure.Provisioning customization](../../azure/integrations-overview.md#azureprovisioning-customization).

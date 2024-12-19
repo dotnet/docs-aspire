@@ -17,12 +17,6 @@ internal static partial class Program
                 {
                     DefaultConsistencyLevel = DefaultConsistencyLevel.Strong,
                 };
-                cosmosDbAccount.Cors.Add(new CosmosDBAccountCorsPolicy()
-                {
-                    AllowedOrigins = "*",
-                    AllowedMethods = "GET,POST",
-                    AllowedHeaders = "*"
-                });
                 cosmosDbAccount.Tags.Add("ExampleKey", "Example value");
             });
         // </configure>
