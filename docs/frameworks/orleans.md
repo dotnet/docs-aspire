@@ -1,27 +1,22 @@
 ---
-title: Use Orleans with .NET Aspire
+title: .NET Aspire Orleans integration
 description: Learn how to use the .NET Aspire Orleans hosting integration, which can configure and orchestrate Orleans from a .NET Aspire app host project.
 ms.date: 11/05/2024
 uid: frameworks/orleans
 ---
 
-# Use Orleans with .NET Aspire
+# .NET Aspire Orleans integration
 
-[Orleans](https://github.com/dotnet/orleans) has built-in support for .NET Aspire. .NET Aspire's application model lets you describe the services, databases, and other resources and infrastructure in your app and how they relate to each other. Orleans provides a straightforward way to build distributed applications which are elastically scalable and fault-tolerant. .NET Aspire is used to configure and orchestrate Orleans and its dependencies, such as by providing Orleans with database cluster membership and storage.
+[Orleans](https://github.com/dotnet/orleans) has built-in support for .NET Aspire. .NET Aspire's application model lets you describe the services, databases, and other resources and infrastructure in your app and how they relate to each other. Orleans provides a straightforward way to build distributed applications that are elastically scalable and fault-tolerant. You can use .NET Aspire to configure and orchestrate Orleans and its dependencies, such as by providing Orleans with database cluster membership and storage.
 
-Orleans is represented as a resource in .NET Aspire. The Orleans resource includes configuration which your service needs to operate, such as cluster membership providers and storage providers.
+Orleans is represented as a resource in .NET Aspire. Unlike other integrations, the Orleans integration doesn't create a container and doesn't include a client integration. Instead you complete the Orleans configuration in the .NET Aspire app host project. 
 
-[!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
+> [!NOTE]
+> This integration requires Orleans version 8.1.0 or later.
 
-In addition to the prerequisites for .NET Aspire, you need:
+## Hosting integration
 
-- Orleans version 8.1.0 or later
-
-For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
-
-## Get started
-
-To get started, you need to add the Orleans hosting package to your app host project by installing the [📦 Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans) NuGet package.
+The Orleans hosting integration models an Orleans service as the <xref:Aspire.Hosting.Orleans.OrleansService> type. To access this type and APIs, add the [📦 Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -40,9 +35,32 @@ dotnet add package Aspire.Hosting.Orleans
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-The Orleans resource is added to the .NET Aspire distributed application builder using the `AddOrleans(string name)` method, which returns an Orleans resource builder. The name provided to the Orleans resource is for diagnostic purposes. For most applications, a value of `"default"` suffices.
+
+### Add an Orleans resource
+
+In your app host project, call <xref:Aspire.Hosting.OrleansServiceExtentions.AddOrleans*> to add and return a Orleans service resource builder. The name provided to the Orleans resource is for diagnostic purposes. For most applications, a value of `"default"` suffices.
 
 :::code language="csharp" source="snippets/Orleans/OrleansAppHost/Program.cs" range="12":::
+
+> AJMTODO: Using Azure storage for clustering tables and grain storage
+
+
+> AJMTODO: Participating in an Orleans cluster
+
+> AJMTODO: Referencing the Orleans resource from a frontend project
+
+> AJMTODO: Stuff to do in the Orleans server project
+
+> AJMTODO: Stuff to do in the Orleans client project
+
+> AJMTODO: Enabling OpenTelemetry
+
+> AJMTODO: Supported Orleans providers
+
+> AJMTODO: Next steps
+
+
+> AJMTODO: Old stuff
 
 The Orleans resource builder offers methods to configure your Orleans resource.
 
@@ -66,6 +84,7 @@ dotnet add package Aspire.Hosting.Azure.Storage
 In the following example, the Orleans resource is configured with clustering and grain storage using the `WithClustering` and `WithGrainStorage` methods respectively:
 
 :::code language="csharp" source="snippets/Orleans/OrleansAppHost/Program.cs" range="3-14" highlight="4-5,11-12":::
+
 
 The preceding code tells Orleans that any service referencing it also needs to reference the `clusteringTable` resource.
 
