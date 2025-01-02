@@ -19,7 +19,7 @@ Welcome to what's new in the .NET Aspire docs for December 2024. This article li
   - Azure Storage integration rewrites.
 - [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md) - Update dotnet-aspire-sdk.md
 - [.NET Aspire service defaults](../fundamentals/service-defaults.md) - Update service-defaults.md per MS style guide
-- [.NET Aspire templates](../fundamentals/aspire-sdk-templates.md) - Add tip about --framework option for creating Aspire projects with CLI
+- [.NET Aspire templates](../fundamentals/aspire-sdk-templates.md) - Add tip about `--framework` option for creating Aspire projects with CLI
 - [External parameters](../fundamentals/external-parameters.md) - Azure Storage integration rewrites.
 
 ## Storage
