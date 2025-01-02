@@ -63,6 +63,35 @@ builder.AddSqlProject<Projects.MySqlProj>("mysqlproj")
 
 Now when you run your .NET Aspire app host project you see the SQL Database Project being published to the specified SQL Server.
 
+## NuGet Package support
+
+Starting with version 9.2.0 we now support deploying databases from referenced NuGet packages, such as those produced by [📦 MSBuild.Sdk.SqlProj](https://www.nuget.org/packages/MSBuild.Sdk.SqlProj) or [📦 Microsoft.Build.Sql](https://www.nuget.org/packages/Microsoft.Build.Sql). To use this, first add the NuGet package to your Aspire app host project, for example:
+
+```dotnetcli
+dotnet add package ErikEJ.Dacpac.Chinook
+```
+
+Next, edit your project file to set the `IsAspirePackageResource` flag to `True` for the `PackageReference` you've just added, so for example:
+
+```xml
+<PackageReference Include="ErikEJ.Dacpac.Chinook" Version="1.0.0" IsAspirePackageResource="True" />
+```
+
+Finally add the package as a resource to your .NET Aspire AppHost:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var sql = builder.AddSqlServer("sql")
+                 .AddDatabase("test");
+
+builder.AddSqlPackage<Packages.ErikEJ_Dacpac_Chinook>("chinook")
+       .WithReference(sql);
+```
+
+> [!NOTE]
+> By default the `.dacpac` is expected to be located under `tools/<package-id>.dacpac`, so in this example `tools/ErikEJ.Dacpac.Chinook.dacpac`. If for whatever reason the `.dacpac` is under a different path within the package you can use `WithDacpac("relative/path/to/some.dacpac")` to specify a path relative to the root of the package.
+
 ### Local .dacpac file support
 
 If you are sourcing your _.dacpac_ file from somewhere other than a project reference, you can also specify the path to the _.dacpac_ file directly:
