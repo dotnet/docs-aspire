@@ -123,8 +123,8 @@ When you want to explicitly provide the username and password used by the contai
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var username = builder.AddParameter("username", secret: true);
-var password = builder.AddParameter("password", secret: true);
+var username = builder.AddParameter("username", "myUsername", secret: true);
+var password = builder.AddParameter("password", "myPassword", secret: true);
 
 var rabbitmq = builder.AddRabbitMQ("messaging", username, password);
 
