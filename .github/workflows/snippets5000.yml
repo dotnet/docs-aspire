@@ -42,7 +42,7 @@ jobs:
 
       # Get the latest preview SDK (or sdk not installed by the runner)
       - name: Setup .NET
-        uses: actions/setup-dotnet@3e891b0cb619bf60e2c25674b222b8940e2c1c25 # main
+        uses: actions/setup-dotnet@87b7050bc53ea08284295505d98d2aa94301e852 # main
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
