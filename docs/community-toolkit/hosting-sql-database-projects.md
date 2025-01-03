@@ -74,7 +74,8 @@ dotnet add package ErikEJ.Dacpac.Chinook
 Next, edit your project file to set the `IsAspirePackageResource` flag to `True` for the `PackageReference` you've just added, so for example:
 
 ```xml
-<PackageReference Include="ErikEJ.Dacpac.Chinook" Version="1.0.0" IsAspirePackageResource="True" />
+<PackageReference Include="ErikEJ.Dacpac.Chinook" Version="1.0.0"
+                  IsAspirePackageResource="True" />
 ```
 
 Finally add the package as a resource to your .NET Aspire AppHost:
