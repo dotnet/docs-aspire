@@ -16,7 +16,7 @@ public class AuthorizationHandler(IHttpContextAccessor httpContextAccessor)
 
         var accessToken = await httpContext.GetTokenAsync("access_token");
 
-        if (!string.IsNullOrWhitespace(accessToken))
+        if (!string.IsNullOrWhiteSpace(accessToken))
         {
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
         }
