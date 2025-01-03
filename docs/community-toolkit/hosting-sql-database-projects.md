@@ -91,7 +91,7 @@ builder.AddSqlPackage<Packages.ErikEJ_Dacpac_Chinook>("chinook")
 ```
 
 > [!NOTE]
-> By default the `.dacpac` is expected to be located under `tools/<package-id>.dacpac`, so in this example `tools/ErikEJ.Dacpac.Chinook.dacpac`. If for whatever reason the `.dacpac` is under a different path within the package you can use `WithDacpac("relative/path/to/some.dacpac")` to specify a path relative to the root of the package.
+> By default, the _.dacpac_ is expected to be located under _tools/<package-id>.dacpac_. In the preceding example, the _tools/ErikEJ.Dacpac.Chinook.dacpac_ path is expected. If for whatever reason the _.dacpac_ is under a different path within the package you can use `WithDacpac("relative/path/to/some.dacpac")` API to specify a path relative to the root of app host project directory.
 
 ### Local .dacpac file support
 
