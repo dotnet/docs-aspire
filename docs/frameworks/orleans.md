@@ -156,7 +156,7 @@ Next, in the _:::no-loc text="Program.cs":::_ file of your Orleans client projec
 
 :::code language="csharp" source="snippets/Orleans/OrleansClient/Program.cs" range="6-7" :::
 
-The following code is a complete example of an Orleans client project. It call the `CounterGrain` grain define in the Orleans server example above:
+The following code is a complete example of an Orleans client project. It calls the `CounterGrain` grain defined in the Orleans server example above:
 
 :::code language="csharp" source="snippets/Orleans/OrleansClient/Program.cs" :::
 
