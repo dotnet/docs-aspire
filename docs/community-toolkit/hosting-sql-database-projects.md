@@ -65,7 +65,7 @@ Now when you run your .NET Aspire app host project you see the SQL Database Proj
 
 ## NuGet Package support
 
-Starting with version 9.2.0 we now support deploying databases from referenced NuGet packages, such as those produced by [📦 MSBuild.Sdk.SqlProj](https://www.nuget.org/packages/MSBuild.Sdk.SqlProj) or [📦 Microsoft.Build.Sql](https://www.nuget.org/packages/Microsoft.Build.Sql). To use this, first add the NuGet package to your Aspire app host project, for example:
+Starting with version 9.2.0, you can deploy databases from referenced NuGet packages, such as those produced by [📦 MSBuild.Sdk.SqlProj](https://www.nuget.org/packages/MSBuild.Sdk.SqlProj) or [📦 Microsoft.Build.Sql](https://www.nuget.org/packages/Microsoft.Build.Sql). To deploy, add the NuGet package to your Aspire app host project, for example:
 
 ```dotnetcli
 dotnet add package ErikEJ.Dacpac.Chinook
