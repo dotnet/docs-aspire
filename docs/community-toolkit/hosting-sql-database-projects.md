@@ -71,7 +71,7 @@ Starting with version 9.2.0, you can deploy databases from referenced NuGet pack
 dotnet add package ErikEJ.Dacpac.Chinook
 ```
 
-Next, edit your project file to set the `IsAspirePackageResource` flag to `True` for the `PackageReference` you've just added, so for example:
+Next, edit your project file to set the `IsAspirePackageResource` flag to `True` for the corresponding `PackageReference`, as shown in the following example:
 
 ```xml
 <PackageReference Include="ErikEJ.Dacpac.Chinook" Version="1.0.0"
