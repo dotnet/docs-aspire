@@ -78,7 +78,7 @@ Next, edit your project file to set the `IsAspirePackageResource` flag to `True`
                   IsAspirePackageResource="True" />
 ```
 
-Finally add the package as a resource to your .NET Aspire AppHost:
+Finally, add the package as a resource to your app model:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
