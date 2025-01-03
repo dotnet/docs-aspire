@@ -323,14 +323,9 @@ For more information about metrics, see [Built-in Metrics in .NET](/dotnet/core/
 
 ### Exemplars
 
-The .NET Aspire dashboard supports and displays OpenTelemetry _Exemplars_. An _exemplar_ is a recorded value that contains additional associate context from traces with metric events, making them useful for linking trace signals with metrics.
+The .NET Aspire dashboard supports and displays OpenTelemetry _Exemplars_. An _exemplar_ links a metric data point to the operation that recorded it, serving as a bridge between metrics and traces.
 
-An _exemplar_ is made up of the following data points:
-
-- `trace_id` and `span_id`: (Optional) The trace associated with the recording, identified by trace and span identifiers.
-- `time_unix_nano`: The time of the observation, represented in Unix nanoseconds.
-- `value`: The recorded value.
-- `filtered_attributes`: A set of filtered attributes that provide additional context when the observation was made.
+Exemplars are useful because they provide additional context about why a specific metric value was recorded. For example, if you notice a spike in latency in the `http.client.request.duration` metric, an exemplar could point to a specific trace or span that caused the spike, helping you understand the root cause.
 
 Exemplars are displayed in the metrics chart as a small round dot next to the data point. When you hover over the indicator, a tooltip displays the exemplar details as shown in the following screenshot:
 
