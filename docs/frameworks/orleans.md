@@ -9,7 +9,7 @@ uid: frameworks/orleans
 
 [Orleans](https://github.com/dotnet/orleans) has built-in support for .NET Aspire. .NET Aspire's application model lets you describe the services, databases, and other resources and infrastructure in your app and how they relate to each other. Orleans provides a straightforward way to build distributed applications that are elastically scalable and fault-tolerant. You can use .NET Aspire to configure and orchestrate Orleans and its dependencies, such as by providing Orleans with cluster membership and storage.
 
-Orleans is represented as a resource in .NET Aspire. Unlike other integrations, the Orleans integration doesn't create a container and doesn't include a client integration. Instead you complete the Orleans configuration in the .NET Aspire app host project. 
+Orleans is represented as a resource in .NET Aspire. Unlike other integrations, the Orleans integration doesn't create a container and doesn't include a client integration. Instead you complete the Orleans configuration in the .NET Aspire app host project.
 
 > [!NOTE]
 > This integration requires Orleans version 8.1.0 or later.
@@ -45,7 +45,7 @@ In your app host project, call <xref:Aspire.Hosting.OrleansServiceExtentions.Add
 
 In an Orleans app, the fundamental building block is a **grain**. A grain consists of a user identity, a behavior, and a state. You must often store this state somewhere and, in a .NET Aspire application, **Azure Blob Storage** is one possible location.
 
-Orleans **Silo Membership** is the protocol that governs clusters and their member servers. The protocol stores which servers are members of which silos in a NoSQL table. In a .NET Aspire application, a good service to store this table is **Azure Table Storage**. 
+Orleans **Silo Membership** is the protocol that governs clusters and their member servers. The protocol stores which servers are members of which silos in a NoSQL table. In a .NET Aspire application, a good service to store this table is **Azure Table Storage**.
 
 To configure Orleans with clustering and grain storage in Azure, install the [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package in the app host project:
 
@@ -162,7 +162,7 @@ The following code is a complete example of an Orleans client project. It calls 
 
 ## Enabling OpenTelemetry
 
-By convention, .NET Aspire solutions include a project for defining default configuration and behavior for your service. This project is called the _service default_ project and templates create it with a name ending in _ServiceDefaults_. To configure Orleans for OpenTelemetry in .NET Aspire, apply configuration to your service defaults project following the [Orleans observability](/dotnet/orleans/host/monitoring/) guide. 
+By convention, .NET Aspire solutions include a project for defining default configuration and behavior for your service. This project is called the _service default_ project and templates create it with a name ending in _ServiceDefaults_. To configure Orleans for OpenTelemetry in .NET Aspire, apply configuration to your service defaults project following the [Orleans observability](/dotnet/orleans/host/monitoring/) guide.
 
 Modify the `ConfigureOpenTelemetry` method to add the Orleans _meters_ and _tracing_ instruments. The following code snippet shows the modified _Extensions.cs_ file from a service defaults project that includes metrics and traces from Orleans.
 
@@ -193,4 +193,3 @@ Streaming providers aren't supported as of Orleans version 8.1.0.
 > [!div class="nextstepaction"]
 > [Microsoft Orleans documentation](/dotnet/orleans/)
 > [Explore the Orleans voting sample app](/samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/)
-
