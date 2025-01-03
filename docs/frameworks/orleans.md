@@ -37,7 +37,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Orleans resource
 
-In your app host project, call <xref:Aspire.Hosting.OrleansServiceExtentions.AddOrleans*> to add and return a Orleans service resource builder. The name provided to the Orleans resource is for diagnostic purposes. For most applications, a value of `"default"` suffices.
+In your app host project, call <xref:Aspire.Hosting.OrleansServiceExtensions.AddOrleans*> to add and return a Orleans service resource builder. The name provided to the Orleans resource is for diagnostic purposes. For most applications, a value of `"default"` suffices.
 
 :::code language="csharp" source="snippets/Orleans/OrleansAppHost/Program.cs" range="12":::
 
@@ -64,7 +64,7 @@ dotnet add package Aspire.Hosting.Azure.Storage
 
 ---
 
-In your app host project, after you call <xref:Aspire.Hosting.OrleansServiceExtentions.AddOrleans*>, configure the Orleans resource with clustering and grain storage using the <xref:Aspire.Hosting.OrleansServiceExtentions.WithClustering*> and <xref:Aspire.Hosting.OrleansServiceExtentions.WithGrainStorage*> methods respectively:
+In your app host project, after you call <xref:Aspire.Hosting.OrleansServiceExtensions.AddOrleans*>, configure the Orleans resource with clustering and grain storage using the <xref:Aspire.Hosting.OrleansServiceExtensions.WithClustering*> and <xref:Aspire.Hosting.OrleansServiceExtensions.WithGrainStorage*> methods respectively:
 
 :::code language="csharp" source="snippets/Orleans/OrleansAppHost/Program.cs" range="3-14" highlight="4-5,11-12":::
 
