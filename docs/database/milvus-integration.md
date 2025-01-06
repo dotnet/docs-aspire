@@ -1,13 +1,150 @@
 ---
 title: .NET Aspire Milvus database integration
-description: This article describes the .NET Aspire Milvus database integration.
-ms.topic: how-to
+description: Learn how to use the .NET Aspire Milvus database integration, which includes both hosting and client integrations.
 ms.date: 08/22/2024
+uid: database/milvus-integration
 ---
 
 # .NET Aspire Milvus database integration
 
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
+
+[Milvus](https://milvus.io/) is an open-source vector database system that efficiently stores, indexes, and searches large-scale vector data. It's commonly used in machine learning, artificial intelligence, and data science applications.
+
+Vector data encodes information as mathematical vectors, which are arrays of numbers or coordinates. Machine learning and AI systems often use vectors to represent unstructured objects like images, text, audio, or video. Each dimension in the vector describes a specific characteristic of the object. By comparing them, systems can classify, search, and identify clusters of objects.
+
 In this article, you learn how to use the .NET Aspire Milvus database integration. The `Aspire.Milvus.Client` library registers a [MilvusClient](https://github.com/milvus-io/milvus-sdk-csharp) in the DI container for connecting to a Milvus server.
+
+The .NET Aspire Milvus database integration enables you to connect to existing Milvus databases or create new instances with the [`milvusdb/milvus` container image](https://hub.docker.com/r/milvusdb/milvus).
+
+## Hosting integration
+
+The Milvus database hosting integration models the server as the <xref:Aspire.Hosting.Milvus.MilvusServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.MilvusDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Milvus
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Milvus"
+                  Version="*" />
+```
+
+---
+
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+
+### Add a Milvus server resource and database resource
+
+In your app host project, call <xref:Aspire.Hosting.MilvusBuilderExtensions.AddMilvus*> to add and return a Milvus resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.MilvusBuilderExtensions.AddDatabase*>, to add a Milvus database resource.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var milvus = builder.AddMilvus("milvus")
+                    .WithLifetime(ContainerLifetime.Persistent);
+
+var milvusdb = milvus.AddDatabase("milvusdb");
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(milvusdb)
+       .WaitFor(milvusdb);
+
+// After adding all resources, run the app...
+```
+
+> [!NOTE]
+> The Milvus container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/app-host-overview.md#container-resource-lifetime).
+
+When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `milvusdb/milvus` image, it creates a new Milvus instance on your local machine. A reference to your Milvus resource builder (the `milvus` variable) is used to add a database. The database is named `milvusdb` and then added to the `ExampleProject`. 
+
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `milvusdb`.
+
+> [!TIP]
+> If you'd rather connect to an existing Milvus server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
+
+### Handling credentials for the Milvus resource
+
+The Milvus resource includes default credentials with a `username` of `root` and the password `Milvus`. Milvus supports configuration-based default passwords by using the environment variable `COMMON_SECURITY_DEFAULTROOTPASSWORD`. To change the default password in the container, pass an `apiKey` parameter when calling the `AddMilvus` hosting API:
+
+```csharp
+var apiKey = builder.AddParameter("apiKey");
+
+var milvus = builder.AddMilvus("milvus", apiKey);
+
+var myService = builder.AddProject<Projects.ExampleProject>()
+                       .WithReference(milvus);
+```
+
+The preceding code gets a parameter to pass to the `AddMilvus` API, and internally assigns the parameter to the `COMMON_SECURITY_DEFAULTROOTPASSWORD` environment variable of the Milvus container. The `apiKey` parameter is usually specified as a _user secret_:
+
+```json
+{
+  "Parameters": {
+    "apiKey": "Non-default P@ssw0rd"
+  }
+}
+```
+
+For more information, see [External parameters](../fundamentals/external-parameters.md).
+
+### Add a Milvus resource with a data volume
+
+To add a data volume to the Milvus service resource, call the <xref:Aspire.Hosting.MilvusBuilderExtensions.WithDataVolume*> method on the Milvus resource:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var milvus = builder.AddMilvus("milvus")
+                    .WithDataVolume();
+
+var milvusdb = milvus.AddDatabase("milvusdb");
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(milvusdb)
+       .WaitFor(milvusdb);
+
+// After adding all resources, run the app...
+```
+
+The data volume is used to persist the Milvus data outside the lifecycle of its container. The data volume is mounted at the `/var/lib/milvus` path in the SQL Server container and when a `name` parameter isn't provided, the name is generated at random. For more information on data volumes and details on why they're preferred over [bind mounts](#add-a-milvus-resource-with-a-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
+
+### Add a Milvus resource with a data bind mount
+
+To add a data bind mount to the Milvus resource, call the <xref:Aspire.Hosting.MilvusBuilderExtensions.WithDataBindMount*> method:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var milvus = builder.AddMilvus("milvus")
+                    .WithDataBindMount(source: @"C:\Milvus\Data");
+
+var milvusdb = milvus.AddDatabase("milvusdb");
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(milvusdb)
+       .WaitFor(milvusdb);
+
+// After adding all resources, run the app...
+```
+
+[!INCLUDE [data-bind-mount-vs-volumes](../includes/data-bind-mount-vs-volumes.md)]
+
+Data bind mounts rely on the host machine's filesystem to persist the Milvus data across container restarts. The data bind mount is mounted at the `C:\Milvus\Data` on Windows (or `/Milvus/Data` on Unix) path on the host machine in the Milvus container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
+
+
+
+
+
+
+
+
+
+> AJMTODO: Original from here.
 
 ## Prerequisites
 
