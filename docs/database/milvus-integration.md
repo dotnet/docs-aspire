@@ -67,7 +67,7 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 > [!TIP]
 > If you'd rather connect to an existing Milvus server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
 
-### Handling credentials for the Milvus resource
+### Handling credentials and passing other parameters for the Milvus resource
 
 The Milvus resource includes default credentials with a `username` of `root` and the password `Milvus`. Milvus supports configuration-based default passwords by using the environment variable `COMMON_SECURITY_DEFAULTROOTPASSWORD`. To change the default password in the container, pass an `apiKey` parameter when calling the `AddMilvus` hosting API:
 
@@ -136,7 +136,36 @@ builder.AddProject<Projects.ExampleProject>()
 
 Data bind mounts rely on the host machine's filesystem to persist the Milvus data across container restarts. The data bind mount is mounted at the `C:\Milvus\Data` on Windows (or `/Milvus/Data` on Unix) path on the host machine in the Milvus container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
 
+### Create an Attu resource
 
+[Attu](https://zilliz.com/attu) is a graphical user interface (GUI) and management tool designed to interact with Milvus and its databases. It includes rich visualization features that can help you investigate and understand your vector data. 
+
+If you want to use Attu to manage Milvus in your .NET Aspire solution, call the <xref:Aspire.Hosting.MilvusBuilderExtensions.WithAttu*> extension method on your Milvus resource. The method creates a container from the [`zilliz/attu` image](https://hub.docker.com/r/zilliz/attu):
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var milvus = builder.AddMilvus("milvus")
+                    .WithAttu()
+                    .WithLifetime(ContainerLifetime.Persistent);
+
+var milvusdb = milvus.AddDatabase("milvusdb");
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(milvusdb)
+       .WaitFor(milvusdb);
+
+// After adding all resources, run the app...
+```
+
+When you debug the .NET Aspire solution, you'll see an Attu container listed in the solution's resources. Select the resource's endpoint to open the GUI and start managing databases.
+
+## Client integration
+
+> AJMTODO: 
+> - Installing the package
+> - Adding a client
+> - run a query or something?
 
 
 
@@ -303,6 +332,8 @@ The .NET Aspire Milvus database integration uses standard .NET logging, and you'
 
 ## See also
 
+- [Milvus](https://milvus.io/)
+- [Milvus GitHub repo](https://github.com/milvus-io/milvus)
 - [Milvus .NET SDK](https://github.com/milvus-io/milvus-sdk-csharp)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
