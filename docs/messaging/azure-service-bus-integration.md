@@ -122,9 +122,9 @@ The connection string is configured in the app host's configuration, typically u
 
 The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"messaging"`. The `GetConnectionString` API is shorthand for `IConfiguration.GetSection("ConnectionStrings")[name]`.
 
-### Add Azure Service Bus queue resource
+### Add Azure Service Bus queue
 
-To add an Azure Service Bus queue resource, chain a call on an `IResourceBuilder<AzureServiceBusResource>` to the <xref:Aspire.Hosting.AzureServiceBusExtensions.WithQueue*> API:
+To add an Azure Service Bus queue, chain a call on an `IResourceBuilder<AzureServiceBusResource>` to the <xref:Aspire.Hosting.AzureServiceBusExtensions.WithQueue*> API:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -137,9 +137,9 @@ var serviceBus = builder.AddAzureServiceBus("messaging")
 
 When you call `WithQueue`, it configures your Service Bus resources to have a queue named `queue`. The queue is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier. For more information, see [Queues, topics, and subscriptions in Azure Service Bus](/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
 
-### Add Azure Service Bus topic resource
+### Add Azure Service Bus topic and subscription
 
-To add an Azure Service Bus topic resource, chain a call on an `<IResourceBuilder<AzureServiceBusResource>>` to the <xref:Aspire.Hosting.AzureServiceBusExtensions.WithTopic*> API:
+To add an Azure Service Bus topic, chain a call on an `<IResourceBuilder<AzureServiceBusResource>>` to the <xref:Aspire.Hosting.AzureServiceBusExtensions.WithTopic*> API:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -150,22 +150,46 @@ var serviceBus = builder.AddAzureServiceBus("messaging")
 // After adding all resources, run the app...
 ```
 
-When you call `WithTopic`, it configures your Service Bus resources to have a topic named `topic`. The topic is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier. For more information, see [Queues, topics, and subscriptions in Azure Service Bus](/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
+When you call `WithTopic`, it configures your Service Bus resources to have a topic named `topic`. The topic is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier.
 
-### Add Azure Service Bus subscription resource
-
-To add an Azure Service Bus subscription resource, chain a call on an `<IResourceBuilder<AzureServiceBusResource>>` to the <xref:Aspire.Hosting.AzureServiceBusExtensions.WithSubscription*> API:
+To configure a subscription for the topic, use the overload <xref:Aspire.Hosting.AzureServiceBusExtensions.WithTopic*> API:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var serviceBus = builder.AddAzureServiceBus("messaging")
-                        .WithSubscription("topic", "subscription");
+                        .WithTopic("topic", topic =>
+                        {
+                            var subscription = new ServiceBusSubscription("sub1")
+                            {
+                                MaxDeliveryCount = 10,
+                                Rules =
+                                {
+                                    new ServiceBusRule("app-prop-filter-1")
+                                    {
+                                        CorrelationFilter = new()
+                                        {
+                                            ContentType = "application/text",
+                                            CorrelationId = "id1",
+                                            Subject = "subject1",
+                                            MessageId = "msgid1",
+                                            ReplyTo = "someQueue",
+                                            ReplyToSessionId = "sessionId",
+                                            SessionId = "session1",
+                                            SendTo = "xyz"
+                                        }
+                                    }
+                                }
+                            };
+                            topic.Subscriptions.Add(subscription);
+                        });
 
 // After adding all resources, run the app...
 ```
 
-When you call `WithSubscription`, it configures your Service Bus resources to have a subscription named `subscription` on the topic named `topic`. The subscription is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier. For more information, see [Queues, topics, and subscriptions in Azure Service Bus](/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
+The preceding code not only adds a topic, but creates and configures a subscription named `sub1` for the topic. The subscription has a maximum delivery count of `10` and a rule named `app-prop-filter-1`. The rule is a correlation filter that filters messages based on the `ContentType`, `CorrelationId`, `Subject`, `MessageId`, `ReplyTo`, `ReplyToSessionId`, `SessionId`, and `SendTo` properties.
+
+For more information, see [Queues, topics, and subscriptions in Azure Service Bus](/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
 
 ### Add Azure Service Bus emulator resource
 
