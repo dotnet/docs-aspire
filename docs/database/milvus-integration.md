@@ -162,26 +162,7 @@ When you debug the .NET Aspire solution, you'll see an Attu container listed in 
 
 ## Client integration
 
-> AJMTODO: 
-> - Installing the package
-> - Adding a client
-> - run a query or something?
-
-
-
-
-
-
-
-> AJMTODO: Original from here.
-
-## Prerequisites
-
-- Milvus server and connection string for accessing the server API endpoint.
-
-## Get started
-
-To get started with the .NET Aspire Milvus database integration, install the [📦 Aspire.Milvus.Client](https://www.nuget.org/packages/Aspire.Milvus.Client) NuGet package in the client-consuming project, i.e., the project for the application that uses the Milvus database client.
+To get started with the .NET Aspire Milvus client integration, install the [📦 Aspire.Milvus.Client](https://www.nuget.org/packages/Aspire.Milvus.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the Milvus database client. The Milvus client integration registers a <xref:Milvus.Client.MilvusClient> instance that you can use to interact with Milvus databases.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -198,72 +179,64 @@ dotnet add package Aspire.Milvus.Client
 
 ---
 
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+### Add a Milvus client
 
-## Example usage
-
-In the _Program.cs_ file of your project, call the `AddMilvusClient` extension method to register a `MilvusClient` for use via the dependency injection container. The method takes a connection name parameter.
+In the _Program.cs_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireMilvusExtensions.AddMilvusClient*> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a `MilvusClient` for use through the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
-builder.AddMilvusClient("milvus");
+builder.AddMilvusClient("milvusdb");
 ```
 
-## App host usage
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the Milvus database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `milvusdb` that same name should be used when calling `AddMilvusClient`. For more information, see [Add a Milvus server resource and database resource](#add-a-milvus-server-resource-and-database-resource).
 
-To model the Milvus resource in the app host, install the [📦 Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
-
-### [.NET CLI](#tab/dotnet-cli)
-
-```dotnetcli
-dotnet add package Aspire.Hosting.Milvus
-```
-
-### [PackageReference](#tab/package-reference)
-
-```xml
-<PackageReference Include="Aspire.Hosting.Milvus"
-                  Version="*" />
-```
-
----
-
-In the _Program.cs_ file of `AppHost`, register a Milvus server and consume the connection using the following methods:
+You can then retrieve the <xref:Milvus.Client.MilvusClient> instance using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
-var milvus = builder.AddMilvus("milvus");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(milvus);
-```
-
-The `WithReference` method configures a connection in the `MyService` project named `milvus`. In the _Program.cs_ file of `MyService`, the Milvus connection can be consumed using:
-
-```csharp
-builder.AddMilvusClient("milvus");
-```
-
-Milvus supports configuration-based (environment variable `COMMON_SECURITY_DEFAULTROOTPASSWORD`) default passwords. The default user is `root` and the default password is `Milvus`. To change the default password in the container, pass an `apiKey` parameter when calling the `AddMilvus` hosting API:
-
-```csharp
-var apiKey = builder.AddParameter("apiKey");
-
-var milvus = builder.AddMilvus("milvus", apiKey);
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(milvus);
-```
-
-The preceding code gets a parameter to pass to the `AddMilvus` API, and internally assigns the parameter to the `COMMON_SECURITY_DEFAULTROOTPASSWORD` environment variable of the Milvus container. The `apiKey` parameter is usually specified as a _user secret_:
-
-```json
+public class ExampleService(MilvusClient client)
 {
-  "Parameters": {
-    "apiKey": "Non-default P@ssw0rd"
-  }
+    // Use the Milvus Client...
 }
 ```
 
-For more information, see [External parameters](../fundamentals/external-parameters.md).
+For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
+
+### Add a keyed Milvus client
+
+There might be situations where you want to register multiple `MilvusClient` instances with different connection names. To register keyed Milvus clients, call the <xref:Microsoft.Extensions.Hosting.AspireMilvusExtensions.AddKeyedMilvusClient*> method:
+
+```csharp
+builder.AddKeyedMilvusClient(name: "mainDb");
+builder.AddKeyedMilvusClient(name: "loggingDb");
+```
+
+> [!IMPORTANT]
+> When using keyed services, it's expected that your Milvus resource configured two named databases, one for the `mainDb` and one for the `loggingDb`.
+
+Then you can retrieve the `MilvusClient` instances using dependency injection. For example, to retrieve the connection from an example service:
+
+```csharp
+public class ExampleService(
+    [FromKeyedServices("mainDb")] MilvusClient mainDbClient,
+    [FromKeyedServices("loggingDb")] MilvusClient loggingDbClient)
+{
+    // Use connections...
+}
+```
+
+For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
+
+
+
+
+
+
+
+
+> AJMTODO: Original from here.
+
+
+
 
 ## Configuration
 
