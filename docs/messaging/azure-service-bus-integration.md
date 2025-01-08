@@ -32,6 +32,8 @@ dotnet add package Aspire.Hosting.Azure.ServiceBus
                   Version="*" />
 ```
 
+---
+
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
 ### Add Azure Service Bus resource
