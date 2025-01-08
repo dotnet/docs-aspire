@@ -50,7 +50,8 @@ var serviceBus = builder.AddAzureServiceBus("messaging");
 
 When you add an <xref:Aspire.Hosting.Azure.AzureServiceBusResource> to the app host, it exposes other useful APIs to add queues and topics. In other words, you must add an `AzureServiceBusResource` before adding any of the other Service Bus resources.
 
-> [!IMPORTANT] When you call <xref:Aspire.Hosting.AzureServiceBusExtensions.AddAzureServiceBus*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Configuration](../azure/local-provisioning.md#configuration).
+> [!IMPORTANT]
+> When you call <xref:Aspire.Hosting.AzureServiceBusExtensions.AddAzureServiceBus*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Configuration](../azure/local-provisioning.md#configuration).
 
 #### Generated provisioning Bicep
 
@@ -87,7 +88,7 @@ The preceding code:
   - The infra parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
   - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
   - The single <xref:Azure.Provisioning.ServiceBus.ServiceBusNamespace> is retrieved.
-  - The <xref:Azure.Provisioning.ServiceBus.ServiceBusNamespace.Sku?displayProperty=nameWithType> is assigned to a <xref:Azure.Provisioning.ServiceBus.ServiceBusSku.Premium?displayProperty=nameWithType>.
+  - The <xref:Azure.Provisioning.ServiceBus.ServiceBusNamespace.Sku?displayProperty=nameWithType> created with a <xref:Azure.Provisioning.ServiceBus.ServiceBusSkuTier.Premium?displayProperty=nameWithType>
   - A tag is added to the Service Bus namespace with a key of `ExampleKey` and a value of `Example value`.
 
 There are many more configuration options available to customize the Azure Service Bus resource. For more information, see <xref:Azure.Provisioning.ServiceBus>. For more information, see [Azure.Provisioning customization](../azure/integrations-overview.md#azureprovisioning-customization).
@@ -165,8 +166,6 @@ var serviceBus = builder.AddAzureServiceBus("messaging")
 ```
 
 When you call `WithSubscription`, it configures your Service Bus resources to have a subscription named `subscription` on the topic named `topic`. The subscription is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier. For more information, see [Queues, topics, and subscriptions in Azure Service Bus](/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
-
-<!--
 
 ### Add Azure Service Bus emulator resource
 
@@ -259,8 +258,6 @@ var serviceBus = builder.AddAzureServiceBus("messaging").RunAsEmulator(
 ```
 
 The preceding code retrieves the `UserConfig` node from the default configuration. It then updates the first queue's properties to set the `MaxDeliveryCount` to `5`, `RequiresDuplicateDetection` to `true`, and `DefaultMessageTimeToLive` to `2 hours`.
-
--->
 
 ### Hosting integration health checks
 
