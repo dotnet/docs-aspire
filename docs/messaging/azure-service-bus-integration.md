@@ -233,11 +233,11 @@ var serviceBus = builder.AddAzureServiceBus("messaging").RunAsEmulator(
 // After adding all resources, run the app...
 ```
 
-The preceding code configures the Service Bus emulator container's existing `emulator` endpoint to listen on port `5672`. The Service Bus emulator container's port is mapped to the host port as shown in the following table:
+The preceding code configures the Service Bus emulator container's existing `emulator` endpoint to listen on port `7777`. The Service Bus emulator container's port is mapped to the host port as shown in the following table:
 
 | Endpoint name | Port mapping (`container:host`) |
-|--------------:|---------------------------------|
-| `https`       | `8081:5672`                     |
+|---------------|---------------------------------|
+| `emulator`    | `5672:7777`                     |
 
 ##### Configure Service Bus emulator container JSON configuration
 
