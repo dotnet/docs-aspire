@@ -60,7 +60,7 @@ builder.AddProject<Projects.ExampleProject>()
 > [!NOTE]
 > The Milvus container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/app-host-overview.md#container-resource-lifetime).
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `milvusdb/milvus` image, it creates a new Milvus instance on your local machine. A reference to your Milvus resource builder (the `milvus` variable) is used to add a database. The database is named `milvusdb` and then added to the `ExampleProject`. 
+When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `milvusdb/milvus` image, it creates a new Milvus instance on your local machine. A reference to your Milvus resource builder (the `milvus` variable) is used to add a database. The database is named `milvusdb` and then added to the `ExampleProject`.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `milvusdb`.
 
@@ -85,7 +85,7 @@ The preceding code gets a parameter to pass to the `AddMilvus` API, and internal
 ```json
 {
   "Parameters": {
-    "apiKey": "Non-default P@ssw0rd"
+    "apiKey": "Non-default-P@ssw0rd"
   }
 }
 ```
@@ -138,7 +138,7 @@ Data bind mounts rely on the host machine's filesystem to persist the Milvus dat
 
 ### Create an Attu resource
 
-[Attu](https://zilliz.com/attu) is a graphical user interface (GUI) and management tool designed to interact with Milvus and its databases. It includes rich visualization features that can help you investigate and understand your vector data. 
+[Attu](https://zilliz.com/attu) is a graphical user interface (GUI) and management tool designed to interact with Milvus and its databases. It includes rich visualization features that can help you investigate and understand your vector data.
 
 If you want to use Attu to manage Milvus in your .NET Aspire solution, call the <xref:Aspire.Hosting.MilvusBuilderExtensions.WithAttu*> extension method on your Milvus resource. The method creates a container from the [`zilliz/attu` image](https://hub.docker.com/r/zilliz/attu):
 
@@ -226,26 +226,14 @@ public class ExampleService(
 
 For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
 
+### Configuration
 
-
-
-
-
-
-
-> AJMTODO: Original from here.
-
-
-
-
-## Configuration
-
-The .NET Aspire Milvus Client integration provides multiple options to configure the server connection based on the requirements and conventions of your project.
+The .NET Aspire Milvus client integration provides multiple options to configure the connection to Milvus based on the requirements and conventions of your project.
 
 > [!TIP]
-> The default use is `root` and the default password is `Milvus`. Currently, Milvus doesn't support changing the superuser password at startup. It needs to be manually changed with the client.
+> The default use is `root` and the default password is `Milvus`. To configure a different password in the Milvus container, see [Handling credentials and passing other parameters for the Milvus resource](#handling-credentials-and-passing-other-parameters-for-the-milvus-resource). Use the following techniques to configure consuming client apps in your .NET Aspire solution with the same password or other settings.
 
-### Use a connection string
+#### Use a connection string
 
 When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddMilvusClient()`:
 
@@ -258,50 +246,68 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 ```json
 {
   "ConnectionStrings": {
-    "milvus": "Endpoint=http://localhost:19530/;Key=root:123456!@#$%"
+    "milvus": "Endpoint=http://localhost:19530/;Key=root:Non-default-P@ssw0rd"
   }
 }
 ```
 
 By default the `MilvusClient` uses the gRPC API endpoint.
 
-### Use configuration providers
+#### Use configuration providers
 
-The .NET Aspire Milvus Client integration supports [Microsoft.Extensions.Configuration](/dotnet/api/microsoft.extensions.configuration). It loads the `MilvusSettings` from configuration by using the `Aspire:Milvus:Client` key. Consider the following example _appsettings.json_ that configures some of the options:
+The .NET Aspire Milvus client integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Milvus.Client.MilvusClientSettings> from configuration by using the `Aspire:Milvus:Client` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {
   "Aspire": {
     "Milvus": {
       "Client": {
-        "Key": "root:123456!@#$%"
+        "Endpoint": "http://localhost:19530/",
+        "Database": "milvusdb",
+        "Key": "root:Non-default-P@ssw0rd",
+        "DisableHealthChecks": false
       }
     }
   }
 }
 ```
 
-### Use inline delegates
+For the complete Milvus client integration JSON schema, see [Aspire.Milvus.Client/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/main/src/Components/Aspire.Milvus.Client/ConfigurationSchema.json).
+
+#### Use inline delegates
 
 Also you can pass the `Action<MilvusSettings> configureSettings` delegate to set up some or all the options inline, for example to set the API key from code:
 
 ```csharp
 builder.AddMilvusClient(
     "milvus",
-    settings => settings.Key = "root:12345!@#$%");
+    static settings => settings.Key = "root:Non-default-P@ssw0rd");
 ```
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+### Client integration health checks
 
-The .NET Aspire Milvus database integration uses the configured client to perform a `HealthAsync`. If the result _is healthy_, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
+By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
+
+The .NET Aspire Milvus database integration:
+
+- Adds the health check when <xref:Aspire.Milvus.Client.MilvusClientSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the Milvus server.
+- Uses the configured client to perform a `HealthAsync`. If the result _is healthy_, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
-### Logging
+#### Logging
 
 The .NET Aspire Milvus database integration uses standard .NET logging, and you'll see log entries from the following category:
 
 - `Milvus.Client`
+
+#### Tracing
+
+The .NET Aspire Milvus database integration doesn't currently emit tracing activities because they are not supported by the `Milvus.Client` library.
+
+#### Metrics
+
+The .NET Aspire Milvus database integration doesn't currently emit metrics because they are not supported by the `Milvus.Client` library.
 
 ## See also
 
@@ -310,17 +316,3 @@ The .NET Aspire Milvus database integration uses standard .NET logging, and you'
 - [Milvus .NET SDK](https://github.com/milvus-io/milvus-sdk-csharp)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
-
-<!--
-https://github.com/dotnet/docs-aspire/issues/1039
-
-We added a new Aspire.Milvus.Client integration and Aspire.Hosting.Milvus hosting library in main. See:
-
-Add Milvus Aspire Component aspire#796
-Adds Milvus to the Aspire hosting/integration packages aspire#4179
-https://github.com/dotnet/aspire/tree/main/src/Components/Aspire.Milvus.Client
-
-Include links to:
-- https://milvus.io/
-- https://github.com/milvus-io/milvus
--->
