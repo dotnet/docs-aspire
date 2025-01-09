@@ -162,7 +162,7 @@ When you debug the .NET Aspire solution, you'll see an Attu container listed in 
 
 ## Client integration
 
-To get started with the .NET Aspire Milvus client integration, install the [📦 Aspire.Milvus.Client](https://www.nuget.org/packages/Aspire.Milvus.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the Milvus database client. The Milvus client integration registers a <xref:Milvus.Client.MilvusClient> instance that you can use to interact with Milvus databases.
+To get started with the .NET Aspire Milvus client integration, install the [📦 Aspire.Milvus.Client](https://www.nuget.org/packages/Aspire.Milvus.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the Milvus database client. The Milvus client integration registers a `Milvus.Client.MilvusClient` instance that you can use to interact with Milvus databases.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -190,7 +190,7 @@ builder.AddMilvusClient("milvusdb");
 > [!TIP]
 > The `connectionName` parameter must match the name used when adding the Milvus database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `milvusdb` that same name should be used when calling `AddMilvusClient`. For more information, see [Add a Milvus server resource and database resource](#add-a-milvus-server-resource-and-database-resource).
 
-You can then retrieve the <xref:Milvus.Client.MilvusClient> instance using dependency injection. For example, to retrieve the connection from an example service:
+You can then retrieve the `MilvusClient` instance using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
 public class ExampleService(MilvusClient client)
