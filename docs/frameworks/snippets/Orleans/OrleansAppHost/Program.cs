@@ -13,9 +13,9 @@ var orleans = builder.AddOrleans("default")
                      .WithClustering(clusteringTable)
                      .WithGrainStorage("Default", grainStorage);
 
-// Add our server project and reference your 'orleans' resource from it.
-// it can join the Orleans cluster as a service.
-// This implicitly add references to the required resources.
+// Add your server project and reference your 'orleans' resource from it.
+// It can join the Orleans cluster as a silo.
+// This implicitly adds references to the required resources.
 // In this case, that is the 'clusteringTable' resource declared earlier.
 builder.AddProject<Projects.OrleansServer>("silo")
        .WithReference(orleans)
