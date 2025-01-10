@@ -1,50 +1,23 @@
 ---
 title: .NET Aspire Milvus database integration
-description: This article describes the .NET Aspire Milvus database integration.
-ms.topic: how-to
+description: Learn how to use the .NET Aspire Milvus database integration, which includes both hosting and client integrations.
 ms.date: 08/22/2024
+uid: database/milvus-integration
 ---
 
 # .NET Aspire Milvus database integration
 
-In this article, you learn how to use the .NET Aspire Milvus database integration. The `Aspire.Milvus.Client` library registers a [MilvusClient](https://github.com/milvus-io/milvus-sdk-csharp) in the DI container for connecting to a Milvus server.
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-## Prerequisites
+[Milvus](https://milvus.io/) is an open-source vector database system that efficiently stores, indexes, and searches large-scale vector data. It's commonly used in machine learning, artificial intelligence, and data science applications.
 
-- Milvus server and connection string for accessing the server API endpoint.
+Vector data encodes information as mathematical vectors, which are arrays of numbers or coordinates. Machine learning and AI systems often use vectors to represent unstructured objects like images, text, audio, or video. Each dimension in the vector describes a specific characteristic of the object. By comparing them, systems can classify, search, and identify clusters of objects.
 
-## Get started
+In this article, you learn how to use the .NET Aspire Milvus database integration. The .NET Aspire Milvus database integration enables you to connect to existing Milvus databases or create new instances with the [`milvusdb/milvus` container image](https://hub.docker.com/r/milvusdb/milvus).
 
-To get started with the .NET Aspire Milvus database integration, install the [📦 Aspire.Milvus.Client](https://www.nuget.org/packages/Aspire.Milvus.Client) NuGet package in the client-consuming project, i.e., the project for the application that uses the Milvus database client.
+## Hosting integration
 
-### [.NET CLI](#tab/dotnet-cli)
-
-```dotnetcli
-dotnet add package Aspire.Milvus.Client
-```
-
-### [PackageReference](#tab/package-reference)
-
-```xml
-<PackageReference Include="Aspire.Milvus.Client"
-                  Version="*" />
-```
-
----
-
-For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
-
-## Example usage
-
-In the _Program.cs_ file of your project, call the `AddMilvusClient` extension method to register a `MilvusClient` for use via the dependency injection container. The method takes a connection name parameter.
-
-```csharp
-builder.AddMilvusClient("milvus");
-```
-
-## App host usage
-
-To model the Milvus resource in the app host, install the [📦 Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The Milvus database hosting integration models the server as the <xref:Aspire.Hosting.Milvus.MilvusServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.MilvusDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -61,29 +34,47 @@ dotnet add package Aspire.Hosting.Milvus
 
 ---
 
-In the _Program.cs_ file of `AppHost`, register a Milvus server and consume the connection using the following methods:
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+
+### Add Milvus server and database resources
+
+In your app host project, call <xref:Aspire.Hosting.MilvusBuilderExtensions.AddMilvus*> to add and return a Milvus resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.MilvusBuilderExtensions.AddDatabase*>, to add a Milvus database resource.
 
 ```csharp
-var milvus = builder.AddMilvus("milvus");
+var builder = DistributedApplication.CreateBuilder(args);
 
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(milvus);
+var milvus = builder.AddMilvus("milvus")
+                    .WithLifetime(ContainerLifetime.Persistent);
+
+var milvusdb = milvus.AddDatabase("milvusdb");
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(milvusdb)
+       .WaitFor(milvusdb);
+
+// After adding all resources, run the app...
 ```
 
-The `WithReference` method configures a connection in the `MyService` project named `milvus`. In the _Program.cs_ file of `MyService`, the Milvus connection can be consumed using:
+> [!NOTE]
+> The Milvus container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/app-host-overview.md#container-resource-lifetime).
+
+When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `milvusdb/milvus` image, it creates a new Milvus instance on your local machine. A reference to your Milvus resource builder (the `milvus` variable) is used to add a database. The database is named `milvusdb` and then added to the `ExampleProject`.
+
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `milvusdb`.
+
+> [!TIP]
+> If you'd rather connect to an existing Milvus server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
+
+### Handling credentials and passing other parameters for the Milvus resource
+
+The Milvus resource includes default credentials with a `username` of `root` and the password `Milvus`. Milvus supports configuration-based default passwords by using the environment variable `COMMON_SECURITY_DEFAULTROOTPASSWORD`. To change the default password in the container, pass an `apiKey` parameter when calling the `AddMilvus` hosting API:
 
 ```csharp
-builder.AddMilvusClient("milvus");
-```
-
-Milvus supports configuration-based (environment variable `COMMON_SECURITY_DEFAULTROOTPASSWORD`) default passwords. The default user is `root` and the default password is `Milvus`. To change the default password in the container, pass an `apiKey` parameter when calling the `AddMilvus` hosting API:
-
-```csharp
-var apiKey = builder.AddParameter("apiKey");
+var apiKey = builder.AddParameter("apiKey", secret: true);
 
 var milvus = builder.AddMilvus("milvus", apiKey);
 
-var myService = builder.AddProject<Projects.MyService>()
+var myService = builder.AddProject<Projects.ExampleProject>()
                        .WithReference(milvus);
 ```
 
@@ -92,21 +83,155 @@ The preceding code gets a parameter to pass to the `AddMilvus` API, and internal
 ```json
 {
   "Parameters": {
-    "apiKey": "Non-default P@ssw0rd"
+    "apiKey": "Non-default-P@ssw0rd"
   }
 }
 ```
 
 For more information, see [External parameters](../fundamentals/external-parameters.md).
 
-## Configuration
+### Add a Milvus resource with a data volume
 
-The .NET Aspire Milvus Client integration provides multiple options to configure the server connection based on the requirements and conventions of your project.
+To add a data volume to the Milvus service resource, call the <xref:Aspire.Hosting.MilvusBuilderExtensions.WithDataVolume*> method on the Milvus resource:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var milvus = builder.AddMilvus("milvus")
+                    .WithDataVolume();
+
+var milvusdb = milvus.AddDatabase("milvusdb");
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(milvusdb)
+       .WaitFor(milvusdb);
+
+// After adding all resources, run the app...
+```
+
+The data volume is used to persist the Milvus data outside the lifecycle of its container. The data volume is mounted at the `/var/lib/milvus` path in the SQL Server container and when a `name` parameter isn't provided, the name is generated at random. For more information on data volumes and details on why they're preferred over [bind mounts](#add-a-milvus-resource-with-a-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
+
+### Add a Milvus resource with a data bind mount
+
+To add a data bind mount to the Milvus resource, call the <xref:Aspire.Hosting.MilvusBuilderExtensions.WithDataBindMount*> method:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var milvus = builder.AddMilvus("milvus")
+                    .WithDataBindMount(source: @"C:\Milvus\Data");
+
+var milvusdb = milvus.AddDatabase("milvusdb");
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(milvusdb)
+       .WaitFor(milvusdb);
+
+// After adding all resources, run the app...
+```
+
+[!INCLUDE [data-bind-mount-vs-volumes](../includes/data-bind-mount-vs-volumes.md)]
+
+Data bind mounts rely on the host machine's filesystem to persist the Milvus data across container restarts. The data bind mount is mounted at the `C:\Milvus\Data` on Windows (or `/Milvus/Data` on Unix) path on the host machine in the Milvus container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
+
+### Create an Attu resource
+
+[Attu](https://zilliz.com/attu) is a graphical user interface (GUI) and management tool designed to interact with Milvus and its databases. It includes rich visualization features that can help you investigate and understand your vector data.
+
+If you want to use Attu to manage Milvus in your .NET Aspire solution, call the <xref:Aspire.Hosting.MilvusBuilderExtensions.WithAttu*> extension method on your Milvus resource. The method creates a container from the [`zilliz/attu` image](https://hub.docker.com/r/zilliz/attu):
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var milvus = builder.AddMilvus("milvus")
+                    .WithAttu()
+                    .WithLifetime(ContainerLifetime.Persistent);
+
+var milvusdb = milvus.AddDatabase("milvusdb");
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(milvusdb)
+       .WaitFor(milvusdb);
+
+// After adding all resources, run the app...
+```
+
+When you debug the .NET Aspire solution, you'll see an Attu container listed in the solution's resources. Select the resource's endpoint to open the GUI and start managing databases.
+
+## Client integration
+
+To get started with the .NET Aspire Milvus client integration, install the [📦 Aspire.Milvus.Client](https://www.nuget.org/packages/Aspire.Milvus.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the Milvus database client. The Milvus client integration registers a [Milvus.Client.MilvusClient](https://github.com/milvus-io/milvus-sdk-csharp) instance that you can use to interact with Milvus databases.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Milvus.Client
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Milvus.Client"
+                  Version="*" />
+```
+
+---
+
+### Add a Milvus client
+
+In the _Program.cs_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireMilvusExtensions.AddMilvusClient*> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a `MilvusClient` for use through the dependency injection container. The method takes a connection name parameter.
+
+```csharp
+builder.AddMilvusClient("milvusdb");
+```
 
 > [!TIP]
-> The default use is `root` and the default password is `Milvus`. Currently, Milvus doesn't support changing the superuser password at startup. It needs to be manually changed with the client.
+> The `connectionName` parameter must match the name used when adding the Milvus database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `milvusdb` that same name should be used when calling `AddMilvusClient`. For more information, see [Add a Milvus server resource and database resource](#add-milvus-server-and-database-resources).
 
-### Use a connection string
+You can then retrieve the `MilvusClient` instance using dependency injection. For example, to retrieve the connection from an example service:
+
+```csharp
+public class ExampleService(MilvusClient client)
+{
+    // Use the Milvus Client...
+}
+```
+
+For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
+
+### Add a keyed Milvus client
+
+There might be situations where you want to register multiple `MilvusClient` instances with different connection names. To register keyed Milvus clients, call the <xref:Microsoft.Extensions.Hosting.AspireMilvusExtensions.AddKeyedMilvusClient*> method:
+
+```csharp
+builder.AddKeyedMilvusClient(name: "mainDb");
+builder.AddKeyedMilvusClient(name: "loggingDb");
+```
+
+> [!IMPORTANT]
+> When using keyed services, it's expected that your Milvus resource configured two named databases, one for the `mainDb` and one for the `loggingDb`.
+
+Then you can retrieve the `MilvusClient` instances using dependency injection. For example, to retrieve the connection from an example service:
+
+```csharp
+public class ExampleService(
+    [FromKeyedServices("mainDb")] MilvusClient mainDbClient,
+    [FromKeyedServices("loggingDb")] MilvusClient loggingDbClient)
+{
+    // Use clients...
+}
+```
+
+For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
+
+### Configuration
+
+The .NET Aspire Milvus client integration provides multiple options to configure the connection to Milvus based on the requirements and conventions of your project.
+
+> [!TIP]
+> The default use is `root` and the default password is `Milvus`. To configure a different password in the Milvus container, see [Handling credentials and passing other parameters for the Milvus resource](#handling-credentials-and-passing-other-parameters-for-the-milvus-resource). Use the following techniques to configure consuming client apps in your .NET Aspire solution with the same password or other settings.
+
+#### Use a connection string
 
 When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddMilvusClient()`:
 
@@ -119,67 +244,73 @@ And then the connection string will be retrieved from the `ConnectionStrings` co
 ```json
 {
   "ConnectionStrings": {
-    "milvus": "Endpoint=http://localhost:19530/;Key=root:123456!@#$%"
+    "milvus": "Endpoint=http://localhost:19530/;Key=root:Non-default-P@ssw0rd"
   }
 }
 ```
 
 By default the `MilvusClient` uses the gRPC API endpoint.
 
-### Use configuration providers
+#### Use configuration providers
 
-The .NET Aspire Milvus Client integration supports [Microsoft.Extensions.Configuration](/dotnet/api/microsoft.extensions.configuration). It loads the `MilvusSettings` from configuration by using the `Aspire:Milvus:Client` key. Consider the following example _appsettings.json_ that configures some of the options:
+The .NET Aspire Milvus client integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Milvus.Client.MilvusClientSettings> from configuration by using the `Aspire:Milvus:Client` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {
   "Aspire": {
     "Milvus": {
       "Client": {
-        "Key": "root:123456!@#$%"
+        "Endpoint": "http://localhost:19530/",
+        "Database": "milvusdb",
+        "Key": "root:Non-default-P@ssw0rd",
+        "DisableHealthChecks": false
       }
     }
   }
 }
 ```
 
-### Use inline delegates
+For the complete Milvus client integration JSON schema, see [Aspire.Milvus.Client/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Milvus.Client/ConfigurationSchema.json).
+
+#### Use inline delegates
 
 Also you can pass the `Action<MilvusSettings> configureSettings` delegate to set up some or all the options inline, for example to set the API key from code:
 
 ```csharp
 builder.AddMilvusClient(
     "milvus",
-    settings => settings.Key = "root:12345!@#$%");
+    static settings => settings.Key = "root:Non-default-P@ssw0rd");
 ```
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+### Client integration health checks
 
-The .NET Aspire Milvus database integration uses the configured client to perform a `HealthAsync`. If the result _is healthy_, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
+By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
+
+The .NET Aspire Milvus database integration:
+
+- Adds the health check when <xref:Aspire.Milvus.Client.MilvusClientSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the Milvus server.
+- Uses the configured client to perform a `HealthAsync`. If the result _is healthy_, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
-### Logging
+#### Logging
 
 The .NET Aspire Milvus database integration uses standard .NET logging, and you'll see log entries from the following category:
 
 - `Milvus.Client`
 
+#### Tracing
+
+The .NET Aspire Milvus database integration doesn't currently emit tracing activities because they are not supported by the `Milvus.Client` library.
+
+#### Metrics
+
+The .NET Aspire Milvus database integration doesn't currently emit metrics because they are not supported by the `Milvus.Client` library.
+
 ## See also
 
+- [Milvus](https://milvus.io/)
+- [Milvus GitHub repo](https://github.com/milvus-io/milvus)
 - [Milvus .NET SDK](https://github.com/milvus-io/milvus-sdk-csharp)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
-
-<!--
-https://github.com/dotnet/docs-aspire/issues/1039
-
-We added a new Aspire.Milvus.Client integration and Aspire.Hosting.Milvus hosting library in main. See:
-
-Add Milvus Aspire Component aspire#796
-Adds Milvus to the Aspire hosting/integration packages aspire#4179
-https://github.com/dotnet/aspire/tree/main/src/Components/Aspire.Milvus.Client
-
-Include links to:
-- https://milvus.io/
-- https://github.com/milvus-io/milvus
--->
