@@ -1,11 +1,44 @@
 ---
 title: .NET Aspire Qdrant integration
-description: This article describes the .NET Aspire Qdrant integration.
-ms.topic: how-to
-ms.date: 08/12/2024
+description: Learn how to use the .NET Aspire Qdrant integration, which includes both hosting and client integrations.
+ms.date: 01/13/2025
+uid: database/qdrant-integration
 ---
 
 # .NET Aspire Qdrant integration
+
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
+
+[Qdrant](https://qdrant.tech/) is an open-source vector similarity search engine that efficiently stores, indexes, and searches large-scale vector data. It's commonly used in machine learning, artificial intelligence, and data science applications.
+
+Vector data encodes information as mathematical vectors, which are arrays of numbers or coordinates. Machine learning and AI systems often use vectors to represent unstructured objects like images, text, audio, or video. Each dimension in the vector describes a specific characteristic of the object. By comparing them, systems can classify, search, and identify clusters of objects.
+
+In this article, you learn how to use the .NET Aspire Qdrant integration. The .NET Aspire Qdrant integration enables you to connect to existing Qdrant databases or create new instances with the [`qdrant/qdrant` container image](https://hub.docker.com/r/qdrant/qdrant).
+
+## Hosting integration
+
+The Qdrant hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.QdrantServerResource> type. To access this type and APIs, add the [📦 Aspire.Hosting.Qdrant](https://www.nuget.org/packages/Aspire.Hosting.Qdrant) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Qdrant
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Qdrant"
+                  Version="*" />
+```
+
+---
+
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+
+
+
+> AJMTODO: Original from here
 
 In this article, you learn how to use the .NET Aspire Qdrant integration. Use this integration to register a [QdrantClient](https://github.com/qdrant/qdrant-dotnet) in the DI container for connecting to a Qdrant server.
 
