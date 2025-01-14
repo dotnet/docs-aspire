@@ -93,6 +93,7 @@ In the folder for the Orleans server project, run these commands:
 ```dotnetcli
 dotnet add package Aspire.Azure.Data.Tables
 dotnet add package Aspire.Azure.Storage.Blobs
+dotnet add package Microsoft.Orleans.Server
 dotnet add package Microsoft.Orleans.Persistence.AzureStorage
 dotnet add package Microsoft.Orleans.Clustering.AzureStorage
 ```
@@ -132,6 +133,7 @@ In the Orleans client project, add the same NuGet packages:
 ```dotnetcli
 dotnet add package Aspire.Azure.Data.Tables
 dotnet add package Aspire.Azure.Storage.Blobs
+dotnet add package Microsoft.Orleans.Client
 dotnet add package Microsoft.Orleans.Persistence.AzureStorage
 dotnet add package Microsoft.Orleans.Clustering.AzureStorage
 ```
