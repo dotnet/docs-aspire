@@ -36,6 +36,28 @@ dotnet add package Aspire.Hosting.Qdrant
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
+### Add Qdrant resource
+
+In your app host project, call <xref:Aspire.Hosting.QdrantBuilderExtensions.AddQdrant*> to add and return a Qdrant resource builder.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var qdrant = builder.AddQdrant("qdrant")
+                    .WithLifetime(ContainerLifetime.Persistent);
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(qdrant)
+       .WaitFor(qdrant);
+
+// After adding all resources, run the app...
+```
+
+> [!NOTE]
+> The Qdrant container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/app-host-overview.md#container-resource-lifetime).
+
+
+
 
 
 > AJMTODO: Original from here
