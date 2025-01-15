@@ -259,11 +259,6 @@ builder.AddQdrantClient(
 
 By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-The .NET Aspire Qdrant integration:
-
-- Adds the health check when <xref:Aspire.Qdrant.Client.QdrantClientSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the Qdrant server.
-- Uses the configured client to perform a `HealthAsync`. If the result _is healthy_, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
-
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
 #### Logging
