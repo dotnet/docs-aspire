@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 11/04/2024
+ms.date: 01/17/2025
 zone_pivot_groups: dev-environment
 uid: dotnet/aspire/setup-tooling
 ---
@@ -22,7 +22,6 @@ uid: dotnet/aspire/setup-tooling
 To work with .NET Aspire, you need the following installed locally:
 
 - [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0) or [.NET 9.0](https://dotnet.microsoft.com/download/dotnet/9.0).
-- [.NET Aspire SDK](dotnet-aspire-sdk.md)
 - An OCI compliant container runtime, such as:
   - [Docker Desktop](https://www.docker.com/products/docker-desktop) or [Podman](https://podman.io/). For more information, see [Container runtime](#container-runtime).
 - An Integrated Developer Environment (IDE) or code editor, such as:
@@ -33,9 +32,7 @@ To work with .NET Aspire, you need the following installed locally:
 
 :::zone pivot="visual-studio"
 
-Visual Studio 2022 17.9 or higher includes the latest [.NET Aspire SDK](dotnet-aspire-sdk.md) by default when you install the Web & Cloud workload.
-
-If you have an earlier version of Visual Studio 2022, you can either upgrade to Visual Studio 2022 17.9 or you can install the .NET Aspire SDK using the following steps:
+Visual Studio 2022 17.9 or higher includes the latest [.NET Aspire SDK](dotnet-aspire-sdk.md) by default when you install the Web & Cloud workload. If you have an earlier version of Visual Studio 2022, you can either upgrade to Visual Studio 2022 17.9 or you can install the .NET Aspire SDK using the following steps:
 
 To install the .NET Aspire workload in Visual Studio 2022, use the Visual Studio installer.
 
@@ -50,7 +47,11 @@ To install the .NET Aspire workload in Visual Studio 2022, use the Visual Studio
 :::zone-end
 :::zone pivot="vscode,dotnet-cli"
 
-To ensure that you install the latest version of the .NET Aspire SDK, ...
+<!-- Visual Studio Code and .NET CLI instructions
+
+  Intentionally left blank, as you don't need to do anything extra.
+
+-->
 
 :::zone-end
 
