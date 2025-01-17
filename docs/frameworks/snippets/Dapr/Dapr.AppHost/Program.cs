@@ -8,6 +8,7 @@ var apiService = builder
 
 DaprSidecarOptions sidecarOptions = new()
 {
+    AppId = "FirstSidecar",
     DaprGrpcPort = 50001,
     DaprHttpPort = 3500,
     MetricsPort = 9090
