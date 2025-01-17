@@ -14,16 +14,16 @@ ms.date: 11/12/2024
 :::column-end:::
 :::column span="3":::
 
-.NET Aspire is a set of powerful tools, templates, and packages for building observable, production ready apps.​​ .NET Aspire is delivered through a collection of NuGet packages that bootstrap or improve specific challenges with modern app development. Today's apps generally consume a large number of services, such as databases, messaging, and caching, many of which are supported via [.NET Aspire Integrations](../fundamentals/integrations-overview.md). For information on support, see the [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire).
+.NET Aspire is a set of tools, templates, and packages for building observable, production ready apps.​​ .NET Aspire is delivered through a collection of NuGet packages that bootstrap or improve specific challenges with modern app development. Today's apps generally consume a large number of services, such as databases, messaging, and caching, many of which are supported via [.NET Aspire Integrations](../fundamentals/integrations-overview.md). For information on support, see the [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire).
 
 :::column-end:::
 :::row-end:::
 
 ## Why .NET Aspire?
 
-.NET Aspire is designed to improve the experience of building scalable, resilient, and observable apps. It provides a consistent, opinionated set of tools and patterns that build and run your app without the complex setup and lack of local insight most developers deal with today. .NET Aspire is also designed to be flexible - it won’t lock you into its setup, making it easy to extend or replace parts of it with the tools and workflows you already use. .NET Aspire includes helpful features such as:
+.NET Aspire enhances the experience of building scalable, resilient, and observable apps. It offers a consistent and opinionated set of tools and patterns to build and run your app without complex setup or lack of local insight. Designed for flexibility, .NET Aspire allows you to extend or replace parts with your preferred tools and workflows. Key features include:
 
-- [**Dev-Time Orchestration**](#orchestration): .NET Aspire provides features for running and connecting multi-project applications, container resources, and other dependencies for [local development environments](../fundamentals/networking-overview.md).
+- [**Dev-Time Orchestration**](#dev-time-orchestration): .NET Aspire provides features for running and connecting multi-project applications, container resources, and other dependencies for [local development environments](../fundamentals/networking-overview.md).
 - [**Integrations**](#net-aspire-integrations): .NET Aspire integrations are NuGet packages for commonly used services, such as Redis or Postgres, with standardized interfaces ensuring they connect consistently and seamlessly with your app.
 - [**Tooling**](#project-templates-and-tooling): .NET Aspire comes with project templates and tooling experiences for Visual Studio, Visual Studio Code, and the [.NET CLI](/dotnet/core/tools/) to help you create and interact with .NET Aspire projects.
 
