@@ -196,7 +196,7 @@ public class ExampleService(
     [FromKeyedServices("mainQdrant")] QdrantClient mainQdrantClient,
     [FromKeyedServices("loggingQdrant")] QdrantClient loggingQdrantClient)
 {
-    // Use connections...
+    // Use clients...
 }
 ```
 
