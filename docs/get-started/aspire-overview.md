@@ -1,6 +1,6 @@
 ---
 title: .NET Aspire overview
-description: Learn about .NET Aspire, an application stack designed to improve the experience of building cloud-native applications.
+description: Learn about .NET Aspire, an application stack designed to improve the experience of building distributed applications.
 ms.date: 11/12/2024
 ---
 
@@ -21,7 +21,7 @@ ms.date: 11/12/2024
 
 ## Why .NET Aspire?
 
-.NET Aspire enhances the experience of building scalable, resilient, and observable apps. It offers a consistent and opinionated set of tools and patterns to build and run your app without complex setup or lack of local insight. Designed for flexibility, .NET Aspire allows you to extend or replace parts with your preferred tools and workflows. Key features include:
+.NET Aspire improves the experience of building scalable, resilient, and observable apps. It includes a consistent set of tools and patterns to build and run your app without complex setup, and enhances the amount of insight you get into the app during dev time. Designed for flexibility, .NET Aspire allows you to extend or replace parts with your preferred tools and workflows. Key features include:
 
 - [**Dev-Time Orchestration**](#dev-time-orchestration): .NET Aspire provides features for running and connecting multi-project applications, container resources, and other dependencies for [local development environments](../fundamentals/networking-overview.md).
 - [**Integrations**](#net-aspire-integrations): .NET Aspire integrations are NuGet packages for commonly used services, such as Redis or Postgres, with standardized interfaces ensuring they connect consistently and seamlessly with your app.
