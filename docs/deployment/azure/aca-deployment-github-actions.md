@@ -1,7 +1,7 @@
 ---
 title: Deploy a .NET Aspire project using the Azure Developer CLI and GitHub Actions
 description: Learn how to use `azd` and GitHub Actions to deploy .NET Aspire projects.
-ms.date: 07/08/2024
+ms.date: 01/08/2025
 zone_pivot_groups: deployment-platform
 ms.custom: devx-track-extended-azdevcli
 ---
@@ -109,7 +109,7 @@ Although `azd` generated some essential template files for you, the project stil
             uses: actions/checkout@v4
     
           - name: Install azd
-            uses: Azure/setup-azd@v1.0.0
+            uses: Azure/setup-azd@v2
     
           - name: Install .NET Aspire workload
             run: dotnet workload install aspire
