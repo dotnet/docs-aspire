@@ -15,7 +15,7 @@ In this guide, you'll learn how to take advantage of Dapr's abstraction and .NET
 
 At first sight Dapr and .NET Aspire may look like they have overlapping functionality, and they do. However, they take different approaches. .NET Aspire is opinionated on how to build distributed applications on a cloud platform and focuses on improving the local development experience. Dapr is a runtime that abstracts away the common complexities of the underlying cloud platform both during development and in production. It relies on sidecars to provide abstractions for things like configuration, secret management, and messaging. The underlying technology can be easily switched out through configuration files, while your code does not need to change.
 
-| | .NET Aspire | Dapr |
+| Aspect | .NET Aspire | Dapr |
 | --- | --- | --- |
 | Purpose | Designed to make it easier to develop .NET cloud-native solutions on local development computers. | Designed to make it easier to develop and run distributed apps with common APIs that can be easily swapped. |
 | APIs | Developers must call resource APIs using their specific SDKs | Developers call APIs in the Dapr sidecar, which forwards the call to the correct API. It's easy to swap resource APIs without changing code in your microservices. |
