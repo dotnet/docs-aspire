@@ -152,10 +152,10 @@ items:
     - name: Azure Key Vault
       displayName: key vault,security
       href: security/azure-security-key-vault-integration.md
-    - name: Azure PostgreSQL (Flexible Server) - EF Core
+    - name: Azure PostgreSQL - EF Core
       displayName: postgres,postgresql,database,flexible server,ef core,azure for database
       href: database/azure-postgresql-entity-framework-integration.md
-    - name: Azure PostgreSQL (Flexible Server)
+    - name: Azure PostgreSQL
       displayName: postgres,postgresql,database,flexible server,azure for database
       href: database/azure-postgresql-integration.md
     - name: Azure OpenAI

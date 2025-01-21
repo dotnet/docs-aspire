@@ -27,6 +27,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.Npgsql](http
 
 ## See also
 
-- [Azure Database for PostgreSQL documentation](/azure/postgresql/)
+- [PostgreSQL docs](https://www.npgsql.org/doc/api/Npgsql.html)
+- [.NET Aspire Azure PostgreSQL Entity Framework Core integration](azure-postgresql-entity-framework-integration.md)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
