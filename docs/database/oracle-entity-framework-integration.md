@@ -1,10 +1,89 @@
 ---
-title: Oracle Entity Framework Component
-description: Oracle Entity Framework Component
-ms.date: 08/12/2024
+title: .NET Aspire Oracle Entity Framework Core integration
+description: Learn how to use the .NET Aspire Oracle Entity Framework Core integration, which includes both hosting and client integrations.
+ms.date: 01/21/2025
+uid: database/oracle-entity-framework-integration
 ---
 
-# .NET Aspire Oracle Entity Framework Component
+# .NET Aspire Oracle Entity Framework Core integration
+
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
+
+[Oracle Database](https://www.oracle.com/database/technologies/) is a widely-used relational database management system owned and developed by Oracle. The .NET Aspire Oracle Entity Framework Core integration enables you to connect to existing Oracle servers or create new servers from .NET with the [`container-registry.orcale.com/databse/free` container image](https://container-registry.oracle.com/ords/f?p=113:4:5999388133692:::RP,4:P4_REPOSITORY,AI_REPOSITORY,P4_REPOSITORY_NAME,AI_REPOSITORY_NAME:1863,1863,Oracle%20Database%20Free,Oracle%20Database%20Free&cs=3L7x5hgm9Co0WJN-3xZTrFJkDyCZKiS8wlK1jg7nU2yE65gVGYh4WbMLzmX59tAHoLwbwWeAz-kjraRQzB1V5TA).
+
+## Hosting integration
+
+The .NET Aspire Oracle hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.OracleDatabaseServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.OracleDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Aspire.Hosting.Oracle
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Aspire.Hosting.Oracle"
+                  Version="*" />
+```
+
+---
+
+For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
+
+### Add Oracle server resource and database resource
+
+In your app host project, call <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddOracle*> to add and return an Oracle server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddDatabase*>, to add an Oracle database to the server resource:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var oracle = builder.AddOracle("oracle")
+                    .WithLifetime(ContainerLifetime.Persistent);
+
+var oracledb = oracle.AddDatabase("oracledb");
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(oracledb);
+       .WaitFor(oracledb);
+
+// After adding all resources, run the app...
+```
+
+> [!NOTE]
+> The Oracle database container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/app-host-overview.md#container-resource-lifetime).
+
+When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `container-registry.oracle.com/database/free` image, it creates a new Oracle server on your local machine. A reference to your Oracle resource builder (the `oracle` variable) is used to add a database. The database is named `oracledb` and then added to the `ExampleProject`. The Oracle resource includes a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
+
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"oracledb"`. For more information, see [Container resource lifecycle](../fundamentals/app-host-overview.md#container-resource-lifecycle).
+
+> [!TIP]
+> If you'd rather connect to an existing Oracle server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
+
+### Handling credentials and passing other parameters for the Oracle resource
+
+The Oracle resource includes default credentials with a random password. When you want to explicitly provide a password, you can provide it as a parameter:
+
+```csharp
+var password = builder.AddParameter("password", secret: true);
+
+var oracle = builder.AddOracle("oracle", password)
+                    .WithLifetime(ContainerLifetime.Persistent);
+
+var oracledb = oracle.AddDatabase("oracledb");
+
+var myService = builder.AddProject<Projects.ExampleProject>()
+                       .WithReference(oracledb)
+                       .WaitFor(oracledb);
+```
+
+For more information, see [External parameters](../fundamentals/external-parameters.md).
+
+
+
+
+> AJMTODO: Original from here.
 
 In this article, you learn how to use the .NET Aspire Oracle Entity Framework Core integration. The `Aspire.Oracle.EntityFrameworkCore` library is used to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> as a singleton in the DI container for connecting to Oracle databases. It also enables connection pooling, retries, health checks, logging and telemetry.
 
