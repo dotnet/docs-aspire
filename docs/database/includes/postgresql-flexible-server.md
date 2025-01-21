@@ -30,9 +30,11 @@ For more information, see [Manage package dependencies in .NET applications](/do
 
 ---
 
-The Azure PostgreSQL hosting integration takes a dependency on the [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL) NuGet package, extending it to support Azure. Everything that you can do with the [.NET Aspire PostgreSQL integration](postgresql-integration.md) and [.NET Aspire PostgreSQL Entity Framework Core integration](../postgresql-entity-framework-integration.md) you can also do with this integration.
+The Azure PostgreSQL hosting integration takes a dependency on the [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL) NuGet package, extending it to support Azure. Everything that you can do with the [.NET Aspire PostgreSQL integration](../postgresql-integration.md) and [.NET Aspire PostgreSQL Entity Framework Core integration](../postgresql-entity-framework-integration.md) you can also do with this integration.
 
 ### Add Azure PostgreSQL server resource
+
+<span id="add-postgresql-server-resource"></span>
 
 After you've installed the .NET Aspire Azure PostgreSQL hosting integration, call the <xref:Aspire.Hosting.AzurePostgresExtensions.AddAzurePostgresFlexibleServer*> extension method in your app host project:
 
