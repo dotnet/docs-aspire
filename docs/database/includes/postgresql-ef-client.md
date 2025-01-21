@@ -166,7 +166,7 @@ The .NET Aspire PostgreSQL Entity Framework Core integration uses the following 
 - `Microsoft.EntityFrameworkCore.Database.Command`
 - `Microsoft.EntityFrameworkCore.Database.Connection`
 - `Microsoft.EntityFrameworkCore.Database.Transaction`
-- `Microsoft.EntityFrameworkCore.Infrastructure`
+- `Microsoft.EntityFrameworkCore.Migrations`
 - `Microsoft.EntityFrameworkCore.Infrastructure`
 - `Microsoft.EntityFrameworkCore.Migrations`
 - `Microsoft.EntityFrameworkCore.Model`
