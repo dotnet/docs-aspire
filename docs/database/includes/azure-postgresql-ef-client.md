@@ -1,3 +1,7 @@
+---
+ms.topic: include
+---
+
 ### Add Azure authenticated Npgsql client
 
 By default, when you call `AddAzurePostgresFlexibleServer` in your PostgreSQL hosting integration, it configures [📦 Azure.Identity](https://www.nuget.org/packages/Azure.Identity) NuGet package to enable authentication:
@@ -17,7 +21,7 @@ dotnet add package Azure.Identity
 
 ---
 
-The PostgreSQL connection can be consumed using the client integration and `Azure.Identity`:
+The PostgreSQL connection can be consumed using the client integration and <xref:Azure.Identity>:
 
 ```csharp
 builder.AddNpgsqlDbContext<YourDbContext>(

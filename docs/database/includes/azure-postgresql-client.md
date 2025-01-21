@@ -21,7 +21,7 @@ dotnet add package Azure.Identity
 
 ---
 
-The PostgreSQL connection can be consumed using the client integration and `Azure.Identity`:
+The PostgreSQL connection can be consumed using the client integration and <xref:Azure.Identity>:
 
 ```csharp
 builder.AddNpgsqlDataSource(

@@ -1,0 +1,34 @@
+---
+title: .NET Aspire Azure PostgreSQL Entity Framework Core integration
+description: Learn how to integrate Azure PostgreSQL with .NET Aspire applications, using both hosting and client integrations.
+ms.date: 01/21/2025
+uid: dotnet/aspire/azure-postgresql-entity-framework-integration
+---
+
+# .NET Aspire Azure PostgreSQL Entity Framework Core integration
+
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
+
+[Azure Database for PostgreSQL](/azure/postgresql/)—Flexible Server is a relational database service based on the open-source Postgres database engine. It's a fully managed database-as-a-service that can handle mission-critical workloads with predictable performance, security, high availability, and dynamic scalability. The .NET Aspire Azure PostgreSQL integration provides a way to connect to existing Azure PostgreSQL databases, or create new instances from .NET with the [`docker.io/library/postgres` container image](https://hub.docker.com/_/postgres).
+
+## Hosting integration
+
+[!INCLUDE [postgresql-flexible-server](includes/postgresql-flexible-server.md)]
+
+### Hosting integration health checks
+
+The PostgreSQL hosting integration automatically adds a health check for the PostgreSQL server resource. The health check verifies that the PostgreSQL server is running and that a connection can be established to it.
+
+The hosting integration relies on the [📦 AspNetCore.HealthChecks.Npgsql](https://www.nuget.org/packages/AspNetCore.HealthChecks.Npgsql) NuGet package.
+
+## Client integration
+
+[!INCLUDE [postgresql-ef-client](includes/postgresql-ef-client.md)]
+
+[!INCLUDE [azure-postgresql-client](includes/azure-postgresql-client.md)]
+
+## See also
+
+- [PostgreSQL docs](https://www.npgsql.org/doc/api/Npgsql.html)
+- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
+- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

@@ -2,7 +2,14 @@
 ms.topic: include
 ---
 
-The PostgreSQL hosting integration models a PostgreSQL server as the <xref:Aspire.Hosting.ApplicationModel.PostgresServerResource> type. To access this type and APIs that allow you to add it to your [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The PostgreSQL hosting integration models various PostgreSQL resources as the following types.
+
+- <xref:Aspire.Hosting.ApplicationModel.PostgresServerResource>
+- <xref:Aspire.Hosting.ApplicationModel.PostgresDatabaseResource>
+- <xref:Aspire.Hosting.Postgres.PgAdminContainerResource>
+- <xref:Aspire.Hosting.Postgres.PgWebContainerResource>
+
+To access these types and APIs for expressing them as resources in your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -46,7 +53,7 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 
 ### Add PostgreSQL pgAdmin resource
 
-When adding PostgreSQL resources to the `builder` with the `AddPostgres` method, you can chain calls to `WithPgAdmin` to add the [**dpage/pgadmin4**](https://www.pgadmin.org/) container. This container is a cross-platform client for PostgreSQL databases, that serves a web-based admin dashboard. Consider the following example:
+When adding PostgreSQL resources to the `builder` with the `AddPostgres` method, you can chain calls to <xref:Aspire.Hosting.PostgresBuilderExtensions.WithPgAdmin*> to add the [**dpage/pgadmin4**](https://www.pgadmin.org/) container. This container is a cross-platform client for PostgreSQL databases, that serves a web-based admin dashboard. Consider the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -64,9 +71,29 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 
 The preceding code adds a container based on the `docker.io/dpage/pgadmin4` image. The container is used to manage the PostgreSQL server and database resources. The `WithPgAdmin` method adds a container that serves a web-based admin dashboard for PostgreSQL databases.
 
+#### Configure the pgAdmin host port
+
+To configure the host port for the pgAdmin container, call the <xref:Aspire.Hosting.PostgresBuilderExtensions.WithHostPort*> method on the PostgreSQL server resource. The following example shows how to configure the host port for the pgAdmin container:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var postgres = builder.AddPostgres("postgres")
+                      .WithPgAdmin(pgAdmin => pgAdmin.WithHostPort(5050));
+
+var postgresdb = postgres.AddDatabase("postgresdb");
+
+var exampleProject = builder.AddProject<Projects.ExampleProject>()
+                            .WithReference(postgresdb);
+
+// After adding all resources, run the app...
+```
+
+The preceding code adds and configures the host port for the pgAdmin container. The host port is otherwise randomly assigned.
+
 ### Add PostgreSQL pgWeb resource
 
-When adding PostgreSQL resources to the `builder` with the `AddPostgres` method, you can chain calls to `WithPgWeb` to add the [**sosedoff/pgweb**](https://sosedoff.github.io/pgweb/) container. This container is a cross-platform client for PostgreSQL databases, that serves a web-based admin dashboard. Consider the following example:
+When adding PostgreSQL resources to the `builder` with the `AddPostgres` method, you can chain calls to <xref:Aspire.Hosting.PostgresBuilderExtensions.WithPgWeb*> to add the [**sosedoff/pgweb**](https://sosedoff.github.io/pgweb/) container. This container is a cross-platform client for PostgreSQL databases, that serves a web-based admin dashboard. Consider the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -83,6 +110,26 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 ```
 
 The preceding code adds a container based on the `docker.io/sosedoff/pgweb` image. All registered <xref:Aspire.Hosting.ApplicationModel.PostgresDatabaseResource> instances are used to create a configuration file per instance, and each config is bound to the **pgweb** container bookmark directory. For more information, see [PgWeb docs: Server connection bookmarks](https://github.com/sosedoff/pgweb/wiki/Server-Connection-Bookmarks).
+
+#### Configure the pgWeb host port
+
+To configure the host port for the pgWeb container, call the <xref:Aspire.Hosting.PostgresBuilderExtensions.WithHostPort*> method on the PostgreSQL server resource. The following example shows how to configure the host port for the pgAdmin container:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var postgres = builder.AddPostgres("postgres")
+                      .WithPgAdmin(pgWeb => pgWeb.WithHostPort(5050));
+
+var postgresdb = postgres.AddDatabase("postgresdb");
+
+var exampleProject = builder.AddProject<Projects.ExampleProject>()
+                            .WithReference(postgresdb);
+
+// After adding all resources, run the app...
+```
+
+The preceding code adds and configures the host port for the pgWeb container. The host port is otherwise randomly assigned.
 
 ### Add PostgreSQL server resource with data volume
 
