@@ -374,7 +374,7 @@ In order to make .NET Aspire applications more secure, Azure Database for Postgr
 
 The following examples demonstrate how to configure your application to connect to the Azure resources using Microsoft Entra ID:
 
-- [.NET Aspire: Azure PostgreSQL hosting integration](../database/postgresql-integration.md#azure-postgresql-hosting-integration).
+- [.NET Aspire: Azure PostgreSQL hosting integration](../database/azure-postgresql-integration.md).
 - [.NET Aspire: Azure Redis hosting integration](../caching/stackexchange-redis-integration.md#azure-redis-hosting-integration).
 
 If you need to use password or access key authentication (not recommended), you can opt-in with the following code:
