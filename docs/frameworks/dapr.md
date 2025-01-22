@@ -151,7 +151,6 @@ When the Dapr SDK is used, the Dapr sidecar is called over HTTP. The Dapr sideca
 
 ## Next steps
 
-> [!div class="nextstepaction"]
 > [Dapr](https://dapr.io/)
 > [Dapr documentation](https://docs.dapr.io/)
 > [Dapr GitHub repo](https://github.com/dapr/dapr)
