@@ -17,12 +17,12 @@ At first sight Dapr and .NET Aspire may look like they have overlapping function
 
 | Aspect | .NET Aspire | Dapr |
 | --- | --- | --- |
-| Purpose | Designed to make it easier to develop .NET cloud-native solutions on local development computers. | Designed to make it easier to develop and run distributed apps with common APIs that can be easily swapped. |
+| Purpose | Designed to make it easier to develop cloud-native solutions on local development computers. | Designed to make it easier to develop and run distributed apps with common APIs that can be easily swapped. |
 | APIs | Developers must call resource APIs using their specific SDKs | Developers call APIs in the Dapr sidecar, which forwards the call to the correct API. It's easy to swap resource APIs without changing code in your microservices. |
-| Languages | You write microservices in .NET languages. | You can call Dapr sidecar functions in any language that supports HTTP/gRPC interfaces. |
-| Security policies | Doesn't include security policies to control communication between microservices and resources. | Includes customizable security policies that control which microservices have access to other services or resources. |
-| Deployment | Includes deployment tools for Azure and Kubernetes. | Doesn't include deployment tools. Apps are usually deployed with Continuous Integration/Continuous Development (CI/CD) systems. |
-| Dashboard | Provides a comprehensive view of the resources and their telemetry. | Limited to Dapr resources only. |
+| Languages | You write microservices in .NET languages, Go, Python, Javascript, and others. | You can call Dapr sidecar functions in any language that supports HTTP/gRPC interfaces. |
+| Security policies | Doesn't include security policies but can securely configure connections between inter-dependent resources. | Includes customizable security policies that control which microservices have access to other services or resources. |
+| Deployment | There are deployment tools for Azure and Kubernetes. | Doesn't include deployment tools. Apps are usually deployed with Continuous Integration/Continuous Development (CI/CD) systems. |
+| Dashboard | Provides a comprehensive view of the resources and their telemetry and supports listening on any OTEL supported resource. | Limited to Dapr resources only. |
 
 .NET Aspire makes setting up and debugging Dapr applications easier by providing a straightforward API to configure Dapr sidecars, and by exposing the sidecars as resources in the dashboard.
 
@@ -66,7 +66,7 @@ dotnet add package Aspire.Hosting.Dapr
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-### Add Dapr sidecar to Aspire resources
+### Add Dapr sidecar to .NET Aspire resources
 
 Dapr uses the [sidecar pattern](https://docs.dapr.io/concepts/dapr-services/sidecar/). The Dapr sidecar runs alongside your app as a lightweight, portable, and stateless HTTP server that listens for incoming HTTP requests from your app.
 
@@ -74,7 +74,7 @@ To add a sidecar to a .NET Aspire resource, call the <xref:Aspire.Hosting.IDistr
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="1-7"  highlight="7":::
 
-### Configuring Dapr sidecars
+### Configure Dapr sidecars
 
 The `WithDaprSidecar` method offers overloads to configure your Dapr sidecar options like `AppId` and various ports. In the following example, the Dapr sidecar is configured with specific ports for GRPC, HTTP, metrics, and a specific app ID.
 
@@ -93,7 +93,7 @@ When you start the .NET Aspire solution, the dashboard shows the Dapr sidecar as
 
 :::image type="content" source="media/aspire-dashboard-dapr-sidecar-resources.png" lightbox="media/aspire-dashboard-dapr-sidecar-resources.png" alt-text=".NET Aspire dashboard showing Dapr sidecar resources":::
 
-## Using Dapr sidecars in consuming .NET Aspire projects
+## Use Dapr sidecars in consuming .NET Aspire projects
 
 To use Dapr APIs from .NET Aspire resources, you can use the [📦 Dapr.AspNetCore/](https://www.nuget.org/packages/Dapr.AspNetCore/) NuGet package. The Dapr SDK provides a set of APIs to interact with Dapr sidecars.
 
