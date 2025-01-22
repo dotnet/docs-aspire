@@ -151,9 +151,9 @@ When the Dapr SDK is used, the Dapr sidecar is called over HTTP. The Dapr sideca
 
 ## Next steps
 
-> [Dapr](https://dapr.io/)
-> [Dapr documentation](https://docs.dapr.io/)
-> [Dapr GitHub repo](https://github.com/dapr/dapr)
-> [.NET Aspire Dapr sample app](/samples/dotnet/aspire-samples/aspire-dapr/)
-> [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-> [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Dapr](https://dapr.io/)
+- [Dapr documentation](https://docs.dapr.io/)
+- [Dapr GitHub repo](https://github.com/dapr/dapr)
+- [.NET Aspire Dapr sample app](/samples/dotnet/aspire-samples/aspire-dapr/)
+- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
+- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
