@@ -361,9 +361,6 @@ additionalContent:
         - title: ".NET Aspire API reference"
           summary: API reference documentation for .NET Aspire
           url: /dotnet/api?view=dotnet-aspire-9.0&preserve-view=true
-        - title: ".NET Platform Extensions API reference"
-          summary: API reference documentation for .NET Platform Extensions
-          url: /dotnet/api?view=dotnet-plat-ext-9.0&preserve-view=true
         - title: ".NET API reference"
           summary: API reference documentation for .NET
           url: /dotnet/api?view=net-9.0&preserve-view=true
