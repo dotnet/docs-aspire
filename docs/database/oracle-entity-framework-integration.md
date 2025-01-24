@@ -9,7 +9,7 @@ uid: database/oracle-entity-framework-integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Oracle Database](https://www.oracle.com/database/technologies/) is a widely-used relational database management system owned and developed by Oracle. The .NET Aspire Oracle Entity Framework Core integration enables you to connect to existing Oracle servers or create new servers from .NET with the [`container-registry.orcale.com/databse/free` container image](https://container-registry.oracle.com/ords/f?p=113:4:5999388133692:::RP,4:P4_REPOSITORY,AI_REPOSITORY,P4_REPOSITORY_NAME,AI_REPOSITORY_NAME:1863,1863,Oracle%20Database%20Free,Oracle%20Database%20Free&cs=3L7x5hgm9Co0WJN-3xZTrFJkDyCZKiS8wlK1jg7nU2yE65gVGYh4WbMLzmX59tAHoLwbwWeAz-kjraRQzB1V5TA).
+[Oracle Database](https://www.oracle.com/database/technologies/) is a widely-used relational database management system owned and developed by Oracle. The .NET Aspire Oracle Entity Framework Core integration enables you to connect to existing Oracle servers or create new servers from .NET with the [container-registry.orcale.com/databse/free](https://container-registry.oracle.com/ords/f?p=113:4:5999388133692:::RP,4:P4_REPOSITORY,AI_REPOSITORY,P4_REPOSITORY_NAME,AI_REPOSITORY_NAME:1863,1863,Oracle%20Database%20Free,Oracle%20Database%20Free&cs=3L7x5hgm9Co0WJN-3xZTrFJkDyCZKiS8wlK1jg7nU2yE65gVGYh4WbMLzmX59tAHoLwbwWeAz-kjraRQzB1V5TA) container image.
 
 ## Hosting integration
 
@@ -32,7 +32,7 @@ dotnet add package Aspire.Hosting.Oracle
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-### Add Oracle server resource and database resource
+### Add Oracle server and database resources
 
 In your app host project, call <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddOracle*> to add and return an Oracle server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddDatabase*>, to add an Oracle database to the server resource:
 
@@ -61,7 +61,7 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 > [!TIP]
 > If you'd rather connect to an existing Oracle server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
 
-### Handling credentials and passing other parameters for the Oracle resource
+### Add Oracle resource with password parameter
 
 The Oracle resource includes default credentials with a random password. Oracle supports configuration-based default passwords by using the environment variable `ORACLE_PWD`. When you want to provide a password explicitly, you can provide it as a parameter:
 
@@ -272,13 +272,13 @@ builder.EnrichOracleDatabaseDbContext<ExampleDbContext>(
 
 Here are the configurable options with corresponding default values:
 
-| Name                  | Description                                                                                                          |
-|-----------------------|----------------------------------------------------------------------------------------------------------------------|
-| `ConnectionString`    | The connection string of the Oracle database to connect to.                                                          |
-| `DisableHealthChecks` | A boolean value that indicates whether the database health check is disabled or not.                                 |
-| `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not.                                 |
-| `DisableRetry`        | A boolean value that indicates whether command retries should be disabled or not.                                    |
-| `CommandTimeout`      | The time in seconds to wait for the command to execute.                                                              |
+| Name                  | Description                                                                          |
+|-----------------------|--------------------------------------------------------------------------------------|
+| `ConnectionString`    | The connection string of the Oracle database to connect to.                          |
+| `DisableHealthChecks` | A boolean value that indicates whether the database health check is disabled or not. |
+| `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not. |
+| `DisableRetry`        | A boolean value that indicates whether command retries should be disabled or not.    |
+| `CommandTimeout`      | The time in seconds to wait for the command to execute.                              |
 
 [!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
 
