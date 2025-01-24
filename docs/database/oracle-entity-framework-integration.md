@@ -172,7 +172,7 @@ builder.AddOracleDatabaseDbContext<ExampleDbContext>(connectionName: "oracledb")
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Oracle database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `oracledb` that same name should be used when calling `AddOracleDatabaseDbContext`. For more information, see [Add Oracle server resource and database resource](#add-oracle-server-resource-and-database-resource).
+> The `connectionName` parameter must match the name used when adding the Oracle database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `oracledb` that same name should be used when calling `AddOracleDatabaseDbContext`. For more information, see [Add Oracle server and database resources](#add-oracle-server-and-database-resources).
 
 You can then retrieve the <xref:Microsoft.EntityFrameworkCore.DbContext> instance using dependency injection. For example, to retrieve the connection from an example service:
 
