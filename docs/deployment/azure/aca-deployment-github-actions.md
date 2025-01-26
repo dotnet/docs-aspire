@@ -1,21 +1,20 @@
 ---
-title: Deploy a .NET Aspire project using the Azure Developer CLI and GitHub Actions
-description: Learn how to use `azd` and GitHub Actions to deploy .NET Aspire projects.
+title: Deploy a .NET Aspire project using the Azure Developer CLI
+description: Learn how to use `azd` to deploy .NET Aspire projects.
 ms.date: 01/08/2025
 zone_pivot_groups: deployment-platform
 ms.custom: devx-track-extended-azdevcli
 ---
 
-# Tutorial: Deploy a .NET Aspire project using the Azure Developer CLI and GitHub Actions
+# Tutorial: Deploy a .NET Aspire project using the Azure Developer CLI
 
-The Azure Developer CLI (`azd`) enables you to deploy .NET Aspire projects using GitHub Actions by automatically configuring the required authentication and environment settings. This article walks you through the process of creating and deploying a .NET Aspire project on Azure Container Apps using `azd` and GitHub Actions. You learn the following concepts:
+The Azure Developer CLI (`azd`) enables you to deploy .NET Aspire projects using GitHub Actions or Azure Devops pipelines by automatically configuring the required authentication and environment settings. This article walks you through the process of creating and deploying a .NET Aspire project on Azure Container Apps using `azd`. You learn the following concepts:
 
 > [!div class="checklist"]
 >
-> - Explore how `azd` integration works with .NET Aspire projects and GitHub Actions
-> - Create and configure a GitHub repository for a .NET Aspire project using `azd`
-> - Add a GitHub Actions workflow file to your .NET Aspire solution
-> - Monitor and explore GitHub Actions workflow executions and Azure deployments
+> - Explore how `azd` integration works with .NET Aspire projects
+> - Create and configure a GitHub or Azure DevOps repository for a .NET Aspire project using `azd`
+> - Monitor and explore GitHub Actions workflow or Azure DevOps pipeline executions and Azure deployments
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
@@ -62,97 +61,6 @@ As a starting point, this article assumes that you've created a .NET Aspire solu
 
 :::zone pivot="github-actions"
 
-## Add the GitHub Actions workflow file
-
-Although `azd` generated some essential template files for you, the project still needs a GitHub Actions workflow file to support provisioning and deployments using CI/CD.
-
-1. Create an empty _.github_ folder at the root of your project. `azd` uses this directory by default to discover GitHub Actions workflow files.
-
-    > [!TIP]
-    > If you're on macOS user and you're struggling to create a folder with a leading `.`, you can use the terminal to create the folder. Open the terminal and navigate to the root of your project. Run the following command to create the folder:
-    >
-    > ```bash
-    > mkdir .github
-    > ```
-
-1. Inside the new _.github_ folder, create another folder called _workflows_ (you'll end up with _.github/workflows_).
-
-1. Add a new GitHub Actions workflow file into the new folder named _azure-dev.yml_. The `azd` starter template provides a [Sample GitHub Actions workflow file](https://github.com/Azure-Samples/azd-starter-bicep/blob/main/.github/workflows/azure-dev.yml) that you can copy into your project.
-
-1. Update the sample GitHub Actions workflow to include a step to install the .NET Aspire workload. This ensures the .NET Aspire tooling and commands are available to the job running your GitHub Actions. The completed workflow file should match the following:
-
-    ```yml
-    on:
-      workflow_dispatch:
-      push:
-        # Run when commits are pushed to mainline branch (main or master)
-        # Set this to the mainline branch you are using
-        branches:
-          - main
-    
-    permissions:
-      id-token: write
-      contents: read
-    
-    jobs:
-      build:
-        runs-on: ubuntu-latest
-        env:
-          AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
-          AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
-          AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
-          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-          AZURE_ENV_NAME: ${{ vars.AZURE_ENV_NAME }}
-          AZURE_LOCATION: ${{ vars.AZURE_LOCATION }}
-        steps:
-          - name: Checkout
-            uses: actions/checkout@v4
-    
-          - name: Install azd
-            uses: Azure/setup-azd@v2
-    
-          - name: Install .NET Aspire workload
-            run: dotnet workload install aspire
-    
-          - name: Log in with Azure (Federated Credentials)
-            if: ${{ env.AZURE_CLIENT_ID != '' }}
-            run: |
-              azd auth login `
-                --client-id "$Env:AZURE_CLIENT_ID" `
-                --federated-credential-provider "github" `
-                --tenant-id "$Env:AZURE_TENANT_ID"
-            shell: pwsh
-    
-          - name: Log in with Azure (Client Credentials)
-            if: ${{ env.AZURE_CREDENTIALS != '' }}
-            run: |
-              $info = $Env:AZURE_CREDENTIALS | ConvertFrom-Json -AsHashtable;
-              Write-Host "::add-mask::$($info.clientSecret)"
-    
-              azd auth login `
-                --client-id "$($info.clientId)" `
-                --client-secret "$($info.clientSecret)" `
-                --tenant-id "$($info.tenantId)"
-            shell: pwsh
-    
-          - name: Provision Infrastructure
-            run: azd provision --no-prompt
-            # Required when 
-            # env:
-            #   AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
-
-          # Required when provisioning and deploying are defined in separate jobs.
-          # - name: Refresh azd env (pulls latest infrastructure provision)
-          #  run: azd env refresh
-          #  env:
-          #    AZURE_LOCATION: ${{ env.AZURE_LOCATION }}
-
-          - name: Deploy Application
-            run: azd deploy --no-prompt
-    ```
-
-Additionally, you may notice that the provisioning and deployment steps are combined into a single job. If you prefer to separate these steps into different jobs, you can do so by creating two separate jobs in the workflow file. The provisioning job should run first, followed by the deployment job. The deployment job should include the `AZD_INITIAL_ENVIRONMENT_CONFIG` secret to ensure the deployment job has access to the environment configuration. You'd also need to uncomment the `azd env refresh` step in the deployment job to ensure the deployment job has access to the latest infrastructure provision.
-
 ## Create the GitHub repository and pipeline
 
 The Azure Developer CLI enables you to automatically create CI/CD pipelines with the correct configurations and permissions to provision and deploy resources to Azure. `azd` can also create a GitHub repository for your app if it doesn't exist already.
@@ -197,74 +105,6 @@ Congratulations! You successfully deployed a .NET Aspire project using the Azure
 :::zone-end
 
 :::zone pivot="azure-pipelines"
-
-## Configure the workflow file
-
-Although `azd` generated some essential template files for you, the project still needs an Azure Pipelines workflow file to support provisioning and deployments using CI/CD.
-
-1. Create an empty _.azdo_ folder at the root of your project. `azd` uses this directory by default to discover Azure Pipelines workflow files.
-
-1. Inside the new _.azdo_ folder, create another folder called _pipelines_ (you'll end up with _.azdo/pipelines_).
-
-1. Add a new Azure Pipelines workflow file into the new folder named _azure-dev.yml_. The `azd` starter template provides a [Sample Azure Pipelines workflow file](https://github.com/Azure-Samples/azd-starter-bicep/blob/main/.azdo/pipelines/azure-dev.yml) that you can copy into your project.
-
-1. Update the sample Azure Pipelines workflow to include a step to install the .NET Aspire workload. The completed workflow file should match the following:
-
-```yml
-trigger:
-  - main
-  - master
-
-pool:
-  vmImage: ubuntu-latest
-
-steps:
-
-  - task: Bash@3
-    displayName: Install azd
-    inputs:
-      targetType: 'inline'
-      script: |
-        curl -fsSL https://aka.ms/install-azd.sh | bash
-
-  # azd delegate auth to az to use service connection with AzureCLI@2
-  - pwsh: |
-      azd config set auth.useAzCliAuth "true"
-    displayName: Configure `azd` to Use AZ CLI Authentication.
-
-  - task: Bash@3
-    displayName: Install .NET Aspire workload
-    inputs:
-      targetType: 'inline'
-      script: |
-        dotnet workload install aspire
-
-  - task: AzureCLI@2
-    displayName: Provision Infrastructure
-    inputs:
-      azureSubscription: azconnection
-      scriptType: bash
-      scriptLocation: inlineScript
-      inlineScript: |
-        azd provision --no-prompt
-    env:
-      AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
-      AZURE_ENV_NAME: $(AZURE_ENV_NAME)
-      AZURE_LOCATION: $(AZURE_LOCATION)
-
-  - task: AzureCLI@2
-    displayName: Deploy Application
-    inputs:
-      azureSubscription: azconnection
-      scriptType: bash
-      scriptLocation: inlineScript
-      inlineScript: |
-        azd deploy --no-prompt
-    env:
-      AZURE_SUBSCRIPTION_ID: $(AZURE_SUBSCRIPTION_ID)
-      AZURE_ENV_NAME: $(AZURE_ENV_NAME)
-      AZURE_LOCATION: $(AZURE_LOCATION)
-```
 
 ## Create the Azure DevOps repository and pipeline
 
