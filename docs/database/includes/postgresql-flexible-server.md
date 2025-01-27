@@ -131,3 +131,45 @@ The connection string is configured in the app host's configuration, typically u
 ```
 
 The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"postgres"`. The `GetConnectionString` API is shorthand for `IConfiguration.GetSection("ConnectionStrings")[name]`.
+
+### Run Azure PostgreSQL resource as a container
+
+The Azure PostgreSQL hosting integration supports running the PostgreSQL server as a local container. To run the PostgreSQL server as a container, call the <xref:Aspire.Hosting.AzurePostgresExtensions.RunAsContainer*> method:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var postgres = builder.AddAzurePostgresFlexibleServer("postgres")
+                      .RunAsContainer();
+
+var postgresdb = postgres.AddDatabase("postgresdb");
+
+var exampleProject = builder.AddProject<Projects.ExampleProject>()
+                            .WithReference(postgresdb);
+```
+
+The preceding code configures an Azure PostgreSQL Flexible Server resource to run locally in a container.
+
+> [!TIP]
+> The `RunAsContainer` method is useful for local development and testing. The API exposes an optional delegate that enables you to customize the underlying <xref:Aspire.Hosting.ApplicationModel.PostgresServerResource> configuration, such adding pgAdmin, pgWeb, adding a data volume or data bind mount, and adding an init bind mount. For more information, see the [.NET Aspire PostgreSQL hosting integration](../postgresql-integration.md#add-postgresql-pgadmin-resource) section.
+
+### Configure the Azure PostgreSQL server to use password authentication
+
+By default, the Azure PostgreSQL server is configured to use [Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication) authentication. If you want to use password authentication, you can configure the server to use password authentication by calling the <xref:Aspire.Hosting.AzurePostgresExtensions.WithPasswordAuthentication*> method:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var username = builder.AddParameter("username", secret: true);
+var password = builder.AddParameter("password", secret: true);
+
+var postgres = builder.AddAzurePostgresFlexibleServer("postgres")
+                      .WithPasswordAuthentication(username, password);
+
+var postgresdb = postgres.AddDatabase("postgresdb");
+
+var exampleProject = builder.AddProject<Projects.ExampleProject>()
+                            .WithReference(postgresdb);
+```
+
+The preceding code configures the Azure PostgreSQL server to use password authentication. The `username` and `password` parameters are added to the app host as parameters, and the `WithPasswordAuthentication` method is called to configure the Azure PostgreSQL server to use password authentication. For more information, see [External parameters](../../fundamentals/external-parameters.md).
