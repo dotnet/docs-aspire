@@ -1,6 +1,6 @@
 ## Initialize the template
 
-1. Open a new terminal window and `cd` into the  _AppHost_ project directory of your .NET Aspire solution.
+1. Open a new terminal window and `cd` into the directory of your .NET Aspire solution.
 
 1. Execute the `azd init` command to initialize your project with `azd`, which will inspect the local directory structure and determine the type of app.
 
