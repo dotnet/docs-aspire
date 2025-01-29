@@ -15,12 +15,6 @@ uid: dotnet/aspire/azure-postgresql-integration
 
 [!INCLUDE [postgresql-flexible-server](includes/postgresql-flexible-server.md)]
 
-### Hosting integration health checks
-
-The PostgreSQL hosting integration automatically adds a health check for the PostgreSQL server resource. The health check verifies that the PostgreSQL server is running and that a connection can be established to it.
-
-The hosting integration relies on the [📦 AspNetCore.HealthChecks.Npgsql](https://www.nuget.org/packages/AspNetCore.HealthChecks.Npgsql) NuGet package.
-
 ## Client integration
 
 [!INCLUDE [postgresql-client](includes/postgresql-client.md)]

@@ -134,7 +134,9 @@ The dependent resource can access the injected connection string by calling the 
 
 ### Run Azure PostgreSQL resource as a container
 
-The Azure PostgreSQL hosting integration supports running the PostgreSQL server as a local container. To run the PostgreSQL server as a container, call the <xref:Aspire.Hosting.AzurePostgresExtensions.RunAsContainer*> method:
+The Azure PostgreSQL hosting integration supports running the PostgreSQL server as a local container. This is beneficial for situations where you want to run the PostgreSQL server locally for development and testing purposes, avoiding the need to provision an Azure resource or connect to an existing Azure PostgreSQL server.
+
+To run the PostgreSQL server as a container, call the <xref:Aspire.Hosting.AzurePostgresExtensions.RunAsContainer*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
