@@ -174,7 +174,7 @@ The .NET Aspire PostgreSQL Entity Framework Core integration uses the following 
 
 #### Tracing
 
-The .NET Aspire PostgreSQL Entity Framework Core integration will emit the following Tracing activities using OpenTelemetry:
+The .NET Aspire PostgreSQL Entity Framework Core integration will emit the following tracing activities using OpenTelemetry:
 
 - `Npgsql`
 
