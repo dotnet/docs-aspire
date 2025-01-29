@@ -96,7 +96,6 @@ The following example shows an _:::no-loc text="appsettings.json":::_ file that 
       "EntityFrameworkCore": {
         "PostgreSQL": {
           "ConnectionString": "Host=myserver;Database=postgresdb",
-          "DbContextPooling": true,
           "DisableHealthChecks": true,
           "DisableTracing": true
         }
@@ -129,7 +128,6 @@ If you want to register more than one <xref:Microsoft.EntityFrameworkCore.DbCont
       "EntityFrameworkCore": {
         "PostgreSQL": {
           "ConnectionString": "<YOUR CONNECTION STRING>",
-          "DbContextPooling": true,
           "DisableHealthChecks": true,
           "DisableTracing": true,
           "AnotherDbContext": {

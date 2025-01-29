@@ -54,7 +54,7 @@ The preceding call to `AddAzurePostgresFlexibleServer` configures the PostgresSQ
 > By default, `AddAzurePostgresFlexibleServer` configures [Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication) authentication. This requires changes to applications that need to connect to these resources. For more information, see [Client integration](#client-integration).
 
 > [!TIP]
-> When you call <xref:Aspire.Hosting.AzureCosmosExtensions.AddAzureCosmosDB*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../../azure/local-provisioning.md#configuration).
+> When you call <xref:Aspire.Hosting.AzurePostgresExtensions.AddAzurePostgresFlexibleServer*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../../azure/local-provisioning.md#configuration).
 
 #### Generated provisioning Bicep
 
@@ -81,7 +81,7 @@ The preceding Bicep is a module that provisions an Azure PostgreSQL flexible ser
 - `storage`: The storage configuration of the PostgreSQL server. The default is `StorageSizeGB` set to `32`.
 - `version`: The version of the PostgreSQL server. The default is `16`.
 - `sku`: The SKU of the PostgreSQL server. The default is `Standard_B1ms`.
-- `tags`: The tags of the PostgreSQL server. The default is `aspire-resource-name` set to `postgres-flexible`.
+- `tags`: The tags of the PostgreSQL server. The default is `aspire-resource-name` set to the name of the Aspire resource, in this case `postgres-flexible`.
 
 In addition to the PostgreSQL flexible server, it also provisions an Azure Firewall rule to allow all Azure IP addresses. Finally, an administrator is created for the PostgreSQL server, and the connection string is outputted as an output variable. The generated Bicep is a starting point and can be customized to meet your specific requirements.
 
