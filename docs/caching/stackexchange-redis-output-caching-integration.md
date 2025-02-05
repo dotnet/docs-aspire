@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Redis output caching integration
 description: Learn how to use the .NET Aspire  Redis output caching integration to register an ASP.NET Core Output Caching provider backed by a Redis server.
-ms.date: 11/05/2024
+ms.date: 02/05/2025
 zone_pivot_groups: resp-host
 ---
 
@@ -51,22 +51,7 @@ Learn how to use the .NET Aspire Redis output caching integration. The `Aspire.S
 
 ## Client integration
 
-To get started with the .NET Aspire Stack Exchange Redis output caching client integration, install the [📦 Aspire.StackExchange.Redis.OutputCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.OutputCaching) NuGet package in the client-consuming project, that is, the project for the application that uses the output caching client.
-
-### [.NET CLI](#tab/dotnet-cli)
-
-```dotnetcli
-dotnet add package Aspire.StackExchange.Redis.OutputCaching
-```
-
-### [PackageReference](#tab/package-reference)
-
-```xml
-<PackageReference Include="Aspire.StackExchange.Redis.OutputCache"
-                  Version="*" />
-```
-
----
+[!INCLUDE [redis-output-client-nuget](includes/redis-output-client-nuget.md)]
 
 ### Add output caching
 
@@ -187,14 +172,6 @@ The .NET Aspire Stack Exchange Redis output caching integration will emit the fo
 #### Metrics
 
 The .NET Aspire Stack Exchange Redis output caching integration currently doesn't support metrics by default due to limitations with the `StackExchange.Redis` library.
-
-:::zone pivot="redis"
-
-[!INCLUDE [azure-redis-app-host](includes/azure-redis-app-host.md)]
-
-[!INCLUDE [azure-redis-output-client](includes/azure-redis-output-client.md)]
-
-:::zone-end
 
 ## See also
 

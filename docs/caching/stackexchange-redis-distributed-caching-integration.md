@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Redis distributed caching integration
 description: Learn how to use the .NET Aspire Redis distributed caching integration, which includes both hosting and client integrations.
-ms.date: 11/05/2024
+ms.date: 02/05/2025
 zone_pivot_groups: resp-host
 ---
 
@@ -51,22 +51,7 @@ Learn how to use the .NET Aspire Redis distributed caching integration. The `Asp
 
 ## Client integration
 
-To get started with the .NET Aspire Redis distributed caching integration, install the [📦 Aspire.StackExchange.Redis.DistributedCaching](https://www.nuget.org/packages/Aspire.StackExchange.Redis.DistributedCaching) NuGet package in the client-consuming project, i.e., the project for the application that uses the Redis distributed caching client.
-
-### [.NET CLI](#tab/dotnet-cli)
-
-```dotnetcli
-dotnet add package Aspire.StackExchange.Redis.DistributedCaching
-```
-
-### [PackageReference](#tab/package-reference)
-
-```xml
-<PackageReference Include="Aspire.StackExchange.Redis.DistributedCaching"
-                  Version="*" />
-```
-
----
+[!INCLUDE [redis-distributed-client-nuget](includes/redis-distributed-client-nuget.md)]
 
 ### Add Redis client
 
@@ -199,14 +184,6 @@ The .NET Aspire Redis Distributed Caching integration will emit the following Tr
 #### Metrics
 
 The .NET Aspire Redis Distributed Caching integration currently doesn't support metrics by default due to limitations with the `StackExchange.Redis` library.
-
-:::zone pivot="redis"
-
-[!INCLUDE [azure-redis-app-host](includes/azure-redis-app-host.md)]
-
-[!INCLUDE [azure-redis-distributed-client](includes/azure-redis-distributed-client.md)]
-
-:::zone-end
 
 ## See also
 
