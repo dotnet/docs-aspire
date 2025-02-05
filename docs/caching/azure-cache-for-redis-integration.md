@@ -1,5 +1,5 @@
 ---
-title: .NET Aspire Azure Cache for Redis integration
+title: Azure Cache for Redis integration
 description: Learn how to integrate Azure Cache for Redis with the .NET Aspire stack.
 ms.date: 02/05/2025
 ---
@@ -16,10 +16,10 @@ The .NET Aspire Azure Cache for Redis integration enables you to connect to exis
 
 ## Hosting integration
 
-
+[!INCLUDE [azure-redis-app-host](includes/azure-redis-app-host.md)]
 
 ## Client integration
 
-
+[!INCLUDE [redis-client-nuget](includes/redis-client-nuget.md)]
 
 [!INCLUDE [redis-trademark](includes/redis-trademark.md)]
