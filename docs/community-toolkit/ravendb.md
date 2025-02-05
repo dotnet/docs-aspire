@@ -50,7 +50,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 // After adding all resources, build and run the app...
 ```
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > A valid RavenDB license is required.  If you don’t have one yet, you can request a free Community license [here](https://ravendb.net/license/request/community).
 
 When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/ravendb/ravendb` image, it creates a new RavenDB instance on your local machine. A reference to your RavenDB database resource (the `ravendb` variable) is added to the `ExampleProject`.
@@ -113,7 +113,7 @@ builder.AddProject<Projects.ExampleProject>()
        .WithReference(ravendb)
        .WaitFor(ravendb);
 ```
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Ensure the certificate path is accessible to the container by bind-mounting it to `/etc/ravendb/security`.
 
 ### Hosting integration health checks
@@ -213,7 +213,7 @@ public class ExampleService(
 
 For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
 
-### Configuration 
+### Configuration
 
 The .NET Aspire RavenDB Client integration provides multiple configuration approaches and options to meet the requirements and conventions of your project.
 
@@ -285,7 +285,6 @@ The .NET Aspire RavenDB client integration provides flexible configuration optio
 | `HealthCheckTimeout`  | An `int?` value that indicates the RavenDB health check timeout in milliseconds.      |
 | `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not.  |
 
-
 #### Client integration health checks
 
 The .NET Aspire RavenDB client integration uses the configured client to perform a `IsHealthyAsync`. If the result is `true`, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
@@ -293,7 +292,7 @@ The .NET Aspire RavenDB client integration uses the configured client to perform
 ## See also
 
 - [RavenDB](https://ravendb.net/)
-- [ Running in a Docker Container](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/running-in-docker-container)
+- [Running in a Docker Container](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/running-in-docker-container)
 - [RavenDB Code](https://github.com/ravendb/ravendb)
 - [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
 
