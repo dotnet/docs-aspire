@@ -56,48 +56,6 @@ If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a d
 
 :::code language="bicep" source="../../snippets/azure/AppHost/redis.module.bicep":::
 
-```bicep
-@description('The location for the resource(s) to be deployed.')
-param location string = resourceGroup().location
-
-param principalId string
-
-param principalName string
-
-resource redis 'Microsoft.Cache/redis@2024-03-01' = {
-  name: take('redis-${uniqueString(resourceGroup().id)}', 63)
-  location: location
-  properties: {
-    sku: {
-      name: 'Basic'
-      family: 'C'
-      capacity: 1
-    }
-    enableNonSslPort: false
-    disableAccessKeyAuthentication: true
-    minimumTlsVersion: '1.2'
-    redisConfiguration: {
-      'aad-enabled': 'true'
-    }
-  }
-  tags: {
-    'aspire-resource-name': 'redis'
-  }
-}
-
-resource redis_contributor 'Microsoft.Cache/redis/accessPolicyAssignments@2024-03-01' = {
-  name: take('rediscontributor${uniqueString(resourceGroup().id)}', 24)
-  properties: {
-    accessPolicyName: 'Data Contributor'
-    objectId: principalId
-    objectIdAlias: principalName
-  }
-  parent: redis
-}
-
-output connectionString string = '${redis.properties.hostName},ssl=true'
-```
-
 </p>
 </details>
 <!-- markdownlint-enable MD033 -->
@@ -123,25 +81,6 @@ In addition to the Azure Cache for Redis, it also provisions an Azure Firewall r
 All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `kind`, `consistencyPolicy`, `locations`, and more. The following example demonstrates how to customize the Azure Cache for Redis resource:
 
 :::code language="csharp" source="../../snippets/azure/AppHost/Program.ConfigureRedisInfra.cs" id="configure":::
-
-```csharp
-builder.AddAzureRedis("redis")
-    .ConfigureInfrastructure(infra =>
-    {
-        var redis = infra.GetProvisionableResources()
-                         .OfType<RedisResource>()
-                         .Single();
-
-        redis.RedisVersion = "6.0";
-        redis.Sku = new()
-        {
-            Family = RedisSkuFamily.BasicOrStandard,
-            Name = RedisSkuName.Standard,
-            Capacity = 1,                    
-        };
-        redis.Tags.Add("ExampleKey", "Example value");
-    });
-```
 
 The preceding code:
 
