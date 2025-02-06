@@ -127,7 +127,7 @@ For more information on how to format this connection string, see the [Stack Exc
 
 #### Use configuration providers
 
-[!INCLUDE [redis-client-json-settings](includes/redis-client-json-settings.md)]
+[!INCLUDE [redis-output-client-json-settings](includes/redis-output-client-json-settings.md)]
 
 #### Use inline delegates
 

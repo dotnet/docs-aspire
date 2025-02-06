@@ -94,7 +94,7 @@ For more information on how to format this connection string, see the [Stack Exc
 
 #### Use configuration providers
 
-[!INCLUDE [redis-client-json-settings](includes/redis-client-json-settings.md)]
+[!INCLUDE [redis-distributed-client-json-settings](includes/redis-distributed-client-json-settings.md)]
 
 #### Use inline delegates
 

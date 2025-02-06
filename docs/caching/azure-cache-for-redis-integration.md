@@ -106,4 +106,6 @@ builder.AddRedisClient(
     static settings => settings.DisableTracing = true);
 ```
 
+[!INCLUDE [redis-client-health-checks-and-diagnostics](includes/redis-client-health-checks-and-diagnostics.md)]
+
 [!INCLUDE [redis-trademark](includes/redis-trademark.md)]
