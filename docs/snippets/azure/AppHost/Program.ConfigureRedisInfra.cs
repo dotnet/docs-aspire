@@ -7,6 +7,7 @@ internal static partial class Program
     {
         // <configure>
         builder.AddAzureRedis("redis")
+            .WithAccessKeyAuthentication()
             .ConfigureInfrastructure(infra =>
             {
                 var redis = infra.GetProvisionableResources()
