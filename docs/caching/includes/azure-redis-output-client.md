@@ -2,7 +2,7 @@
 ms.topic: include
 ---
 
-### Add Azure Cache for Redis output client
+### Add Azure Cache for Redis authenticated output client
 
 By default, when you call `AddAzureRedis` in your Redis hosting integration, it configures [📦 Microsoft.Azure.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Azure.StackExchangeRedis) NuGet package to enable authentication:
 
