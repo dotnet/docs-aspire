@@ -46,6 +46,7 @@ The following table lists the supported triggers for Azure Functions in the .NET
 | Azure Service Bus trigger | `ServiceBusTrigger` | [📦 Aspire.Hosting.Azure.ServiceBus](https://www.nuget.org/packages/Aspire.Hosting.Azure.ServiceBus) |
 | Azure Storage Blobs trigger | `BlobTrigger` | [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) |
 | Azure Storage Queues trigger | `QueueTrigger` | [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) |
+| Azure CosmosDB trigger | `CosmosDbTrigger` | [📦 Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB), Aspire 9.1+ |
 | HTTP trigger | `HttpTrigger` | Supported without any additional resource dependencies. |
 | Timer trigger | `TimerTrigger` | Supported without any additional resource dependencies—relies on implicit host storage. |
 
