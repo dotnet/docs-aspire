@@ -117,7 +117,7 @@ builder.AddNpgsqlDataSource(
      static settings => settings.DisableHealthChecks = true);
 ```
 
-[!INCLUDE [integration-health-checks](../../includes/integration-health-checks.md)]
+[!INCLUDE [client-integration-health-checks](../../includes/client-integration-health-checks.md)]
 
 - Adds the [`NpgSqlHealthCheck`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/blob/master/src/HealthChecks.NpgSql/NpgSqlHealthCheck.cs), which verifies that commands can be successfully executed against the underlying Postgres database.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic

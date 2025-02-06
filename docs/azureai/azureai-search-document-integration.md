@@ -186,7 +186,7 @@ builder.AddAzureSearch(
         static options => options.Diagnostics.ApplicationId = "CLIENT_ID"));
 ```
 
-[!INCLUDE [client-integration-health-checks](../../includes/client-integration-health-checks.md)]
+[!INCLUDE [client-integration-health-checks](../includes/client-integration-health-checks.md)]
 
 The .NET Aspire Azure AI Search Documents integration implements a single health check, that calls the <xref:Azure.Search.Documents.Indexes.SearchIndexClient.GetServiceStatisticsAsync%2A> method on the `SearchIndexClient` to verify that the service is available.
 

@@ -180,7 +180,7 @@ builder.AddSeqEndpoint("seq", static settings =>
 });
 ```
 
-[!INCLUDE [client-integration-health-checks](../../includes/client-integration-health-checks.md)]
+[!INCLUDE [client-integration-health-checks](../includes/client-integration-health-checks.md)]
 
 The .NET Aspire Seq integration handles the following:
 

@@ -187,7 +187,7 @@ Here are the configurable options with corresponding default values:
 | `DisableMetrics`      | A boolean value that indicates whether the OpenTelemetry metrics are disabled or not.                                |
 | `Timeout`             | The time in seconds to wait for the command to execute.                                                              |
 
-[!INCLUDE [client-integration-health-checks](../../includes/client-integration-health-checks.md)]
+[!INCLUDE [client-integration-health-checks](../includes/client-integration-health-checks.md)]
 
 By default, the .NET Aspire Sql Server Entity Framework Core integration handles the following:
 

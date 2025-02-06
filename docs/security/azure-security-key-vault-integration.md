@@ -166,7 +166,7 @@ The following configurable options are exposed through the <xref:Aspire.Azure.Se
 | `DisableHealthChecks` | A boolean value that indicates whether the Key Vault health check is disabled or not.        |
 | `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not.         |
 
-[!INCLUDE [client-integration-health-checks](../../includes/client-integration-health-checks.md)]
+[!INCLUDE [client-integration-health-checks](../includes/client-integration-health-checks.md)]
 
 The .NET Aspire Azure Key Vault integration includes the following health checks:
 
