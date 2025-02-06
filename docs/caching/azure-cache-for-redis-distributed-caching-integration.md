@@ -22,7 +22,7 @@ The .NET Aspire Azure Cache for Redis integration enables you to connect to exis
 
 [!INCLUDE [redis-distributed-client-nuget](includes/redis-distributed-client-nuget.md)]
 
-### Add Redis client
+### Add Redis distributed cache client
 
 In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddRedisDistributedCache%2A> extension to register the required services for distributed caching and add a <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use via the dependency injection container.
 
@@ -113,5 +113,14 @@ builder.AddRedisDistributedCache(
     "cache",
     static settings => settings.ConnectTimeout = 3_000);
 ```
+
+[!INCLUDE [redis-distributed-client-health-checks-and-diagnostics](includes/redis-distributed-client-health-checks-and-diagnostics.md)]
+
+## See also
+
+- [Azure Cache for Redis docs](/azure/azure-cache-for-redis/)
+- [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
+- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
+- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
 
 [!INCLUDE [redis-trademark](includes/redis-trademark.md)]

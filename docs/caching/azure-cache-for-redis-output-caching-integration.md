@@ -20,7 +20,7 @@ The .NET Aspire Azure Cache for Redis integration enables you to connect to exis
 
 ## Client integration
 
-[!INCLUDE [azure-redis-output-client](includes/azure-redis-output-client.md)]
+[!INCLUDE [redis-output-client-nuget](includes/redis-output-client-nuget.md)]
 
 ### Add output caching
 
@@ -101,5 +101,14 @@ builder.AddRedisOutputCache(
     "cache",
     static settings => settings.ConnectTimeout = 3_000);
 ```
+
+[!INCLUDE [redis-output-client-health-checks-and-diagnostics](includes/redis-output-client-health-checks-and-diagnostics.md)]
+
+## See also
+
+- [Azure Cache for Redis docs](/azure/azure-cache-for-redis/)
+- [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
+- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
+- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
 
 [!INCLUDE [redis-trademark](includes/redis-trademark.md)]

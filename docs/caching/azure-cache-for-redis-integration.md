@@ -108,4 +108,11 @@ builder.AddRedisClient(
 
 [!INCLUDE [redis-client-health-checks-and-diagnostics](includes/redis-client-health-checks-and-diagnostics.md)]
 
+## See also
+
+- [Azure Cache for Redis docs](/azure/azure-cache-for-redis/)
+- [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
+- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
+- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+
 [!INCLUDE [redis-trademark](includes/redis-trademark.md)]
