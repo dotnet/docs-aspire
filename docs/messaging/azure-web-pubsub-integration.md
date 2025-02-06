@@ -166,7 +166,7 @@ builder.AddAzureWebPubSubServiceClient(
         clientBuilder.ConfigureOptions(options => options.Retry.MaxRetries = 5));
 ```
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+[!INCLUDE [client-integration-health-checks](../../includes/client-integration-health-checks.md)]
 
 The .NET Aspire Azure Web PubSub integration handles exposes a configurable health check that reports as _healthy_, when the client can successfully connect to the Azure Web PubSub service.
 

@@ -159,31 +159,7 @@ builder.AddRedisDistributedCache(
     static settings => settings.ConnectTimeout = 3_000);
 ```
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
-
-The .NET Aspire Redis distributed caching integration handles the following:
-
-- Adds the `StackExchange.Redis` health check, tries to open the connection and throws when it fails.
-- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
-
-[!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
-
-#### Logging
-
-The .NET Aspire Redis Distributed Caching integration uses the following Log categories:
-
-- `Aspire.StackExchange.Redis`
-- `Microsoft.Extensions.Caching.StackExchangeRedis`
-
-#### Tracing
-
-The .NET Aspire Redis Distributed Caching integration will emit the following Tracing activities using OpenTelemetry:
-
-- `OpenTelemetry.Instrumentation.StackExchangeRedis`
-
-#### Metrics
-
-The .NET Aspire Redis Distributed Caching integration currently doesn't support metrics by default due to limitations with the `StackExchange.Redis` library.
+[!INCLUDE [redis-distributed-client-health-checks-and-diagnostics](includes/redis-distributed-client-health-checks-and-diagnostics.md)]
 
 ## See also
 

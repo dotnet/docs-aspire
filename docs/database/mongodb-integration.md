@@ -340,7 +340,7 @@ Here are the configurable options with corresponding default values:
 | `HealthCheckTimeout`  | An `int?` value that indicates the MongoDB health check timeout in milliseconds.      |
 | `DisableTracing`      | A boolean value that indicates whether the OpenTelemetry tracing is disabled or not.  |
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+[!INCLUDE [client-integration-health-checks](../../includes/client-integration-health-checks.md)]
 
 By default, the .NET Aspire MongoDB client integration handles the following scenarios:
 
