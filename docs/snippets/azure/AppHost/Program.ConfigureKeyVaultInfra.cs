@@ -1,5 +1,4 @@
-﻿using Azure.Provisioning.KeyVault;
-
+using Azure.Provisioning.KeyVault;
 internal static partial class Program
 {
     public static void ConfigureKeyVaultInfra(IDistributedApplicationBuilder builder)
