@@ -41,7 +41,7 @@ public class ExampleService(YourDbContext context)
 
 For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
 
-### Add Npgsql database context with enrichment
+### Enrich an Npgsql database context
 
 You may prefer to use the standard Entity Framework method to obtain a database context and add it to the dependency injection container:
 
