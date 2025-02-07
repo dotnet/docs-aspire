@@ -231,7 +231,7 @@ Additional `AddAzureKeyVaultSecrets` API parameters are available optionally for
 
 - `Action<AzureSecurityKeyVaultSettings>? configureSettings`: To set up some or all the options inline.
 - `Action<SecretClientOptions>? configureClientOptions`: To set up the <xref:Azure.Security.KeyVault.Secrets.SecretClientOptions> inline.
-- `AzureKeyVaultConfigurationOptions? options`: To configure the <xref:Aspire.Azure.Security.KeyVault.AzureKeyVaultConfigurationOptions> inline.
+- `AzureKeyVaultConfigurationOptions? options`: To configure the <xref:Azure.Extensions.AspNetCore.Configuration.Secrets.AzureKeyVaultConfigurationOptions> inline.
 
 ### Add an Azure Secret client
 
@@ -370,5 +370,6 @@ The .NET Aspire Azure Key Vault integration currently does not support metrics b
 
 - [Azure Key Vault docs](/azure/key-vault/general/)
 - [Video: Introduction to Azure Key Vault and .NET Aspire](https://www.youtube.com/watch?v=1K5riRctUIg)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
+- [.NET Aspire Azure integrations overview](../azure/integrations-overview.md)
+- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
