@@ -43,10 +43,20 @@ For more information on dependency injection, see [.NET dependency injection](/d
 
 ### Add Npgsql database context with enrichment
 
-To enrich the `DbContext` with additional services, such as automatic retries, health checks, logging and telemetry, call the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.EnrichNpgsqlDbContext*> method after you call the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A> method:
+You may prefer to use the standard Entity Framework method to obtain a database context and add it to the dependency injection container:
 
 ```csharp
-builder.AddNpgsqlDbContext<YourDbContext>(connectionName: "postgresdb");
+builder.Services.AddDbContext<YourDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")
+        ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");));
+```
+
+> [!NOTE]
+> The above code obtains a connection string named `DefaultConnection` from configuration files.
+
+If you use this method, you can enhance the database context with .NET Aspire-style retries, health checks, logging, and telemetry features by calling the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.EnrichNpgsqlDbContext*> method:
+
+```csharp
 builder.EnrichNpgsqlDbContext<YourDbContext>(
     configureSettings: settings =>
     {
