@@ -130,7 +130,7 @@ For more information on providing parameters, see [External parameters](../../fu
 
 ### Connect to database resources
 
-When the .NET Aspire app host runs, the server's database resources can be accessed from external tools, such as [SQL Server Management Studio (SSMS)](/sql/ssms/download-sql-server-management-studio-ssms) or [Azure Data Studio](/azure-data-studio/download-azure-data-studio). The connection string for the database resource is available in the dependent resources environment variables and is accessed using the [.NET Aspire dashboard: Resource details](../../fundamentals/dashboard/explore.md#resource-details) pane. The environment variable is named `ConnectionStrings__{name}` where `{name}` is the name of the database resource, in this example it's `database`. Use the connection string to connect to the database resource from external tools. Imagine that you have a database named `todos` with a single `dbo.Todos` table.
+When the .NET Aspire app host runs, the server's database resources can be accessed from external tools, such as [SQL Server Management Studio (SSMS)](/sql/ssms/download-sql-server-management-studio-ssms) or [MSSQL for Visual Studio Code](/sql/tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code). The connection string for the database resource is available in the dependent resources environment variables and is accessed using the [.NET Aspire dashboard: Resource details](../../fundamentals/dashboard/explore.md#resource-details) pane. The environment variable is named `ConnectionStrings__{name}` where `{name}` is the name of the database resource, in this example it's `database`. Use the connection string to connect to the database resource from external tools. Imagine that you have a database named `todos` with a single `dbo.Todos` table.
 
 #### [SQL Server Management Studio](#tab/ssms)
 
@@ -148,24 +148,24 @@ To connect to the database resource from SQL Server Management Studio, follow th
 
 For more information, see [SQL Server Management Studio: Connect to a server](/sql/ssms/quickstarts/ssms-connect-query-sql-server).
 
-#### [Azure Data Studio](#tab/azure-data-studio)
+#### [MSSQL for Visual Studio Code](#tab/mssql-vscode)
 
-To connect to the database resource from Azure Data Studio, follow these steps:
+To connect to the database resource from MSSQL for Visual Studio Code, follow these steps:
 
-1. Open Azure Data Studio.
-1. Select the **New** dropdown and choose **New connection**.
+1. Open the **SQL SERVER** extension.
+1. Select the **Add Connection** option under **CONNECTIONS**.
 
-    :::image type="content" source="media/ads-new-connection.png" lightbox="media/ads-new-connection.png" alt-text="Azure Data Studio: New / New connection screen capture.":::
+    :::image type="content" source="media/mssql-vscode-add-connection.png" lightbox="media/mssql-vscode-add-connection.png" alt-text="MSSQL for Visual Studio Code: Connections / add connection screen capture.":::
 
 1. Change the **Input type** to **Connection string** and paste the connection string into the **Connection string** field.
 1. Select **Connect**.
 
-    :::image type="content" source="media/ads-connect-details.png" lightbox="media/ads-connect-details.png" alt-text="Azure Data Studio: Connection string input details.":::
+    :::image type="content" source="media/mssql-vscode-connection-details.png" lightbox="media/mssql-vscode-connection-details.png" alt-text="MSSQL for Visual Studio Code: Connection string input details.":::
 
-1. If you're connected, you can see the database resource in the active tab:
+1. Once you're connected, you can see the database resource in the active tab—and run queries against it:
 
-    :::image type="content" source="media/ads-connected.png" lightbox="media/ads-connected.png" alt-text="Azure Data Studio: Connected to database.":::
+    :::image type="content" source="media/mssql-vscode-connected.png" lightbox="media/mssql-vscode-connected.png" alt-text="MSSQL for Visual Studio Code: Connected to database.":::
 
-For more information, see [Azure Data Studio: Connect to SQL Server](/azure-data-studio/quickstart-sql-server).
+For more information, see [MSSQL for Visual Studio Code](/sql/tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code).
 
 ---

@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL integration
 description: Learn how to integrate PostgreSQL with .NET Aspire applications, using both hosting and client integrations.
-ms.date: 11/05/2024
+ms.date: 02/07/2025
 uid: database/postgresql-integration
 ---
 
