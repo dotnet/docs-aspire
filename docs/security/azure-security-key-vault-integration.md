@@ -102,24 +102,6 @@ All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure
 
 :::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureKeyVaultInfra.cs" id="configure":::
 
-```csharp
-builder.AddAzureKeyVault("key-vault")
-    .ConfigureInfrastructure(infra =>
-    {
-        var keyVault = infra.GetProvisionableResources()
-                            .OfType<KeyVaultService>()
-                            .Single();
-
-        keyVault.Properties.Sku = new()
-        {
-            Family = KeyVaultSkuFamily.A,
-            Name = KeyVaultSkuName.Premium,
-        };
-        keyVault.Properties.EnableRbacAuthorization = true;
-        keyVault.Tags.Add("ExampleKey", "Example value");
-    });
-```
-
 The preceding code:
 
 - Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
