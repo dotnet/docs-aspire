@@ -7,6 +7,8 @@ uid: security/azure-security-key-vault-integration
 
 # .NET Aspire Azure Key Vault integration
 
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
+
 [Azure Key Vault](/azure/key-vault/) is a cloud service for securely storing and accessing secrets. The .NET Aspire Azure Key Vault integration enables you to connect to Azure Key Vault instances from your .NET applications.
 
 ## Hosting integration
