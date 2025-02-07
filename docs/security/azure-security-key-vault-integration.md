@@ -193,8 +193,7 @@ public class ExampleService(IConfiguration configuration)
 }
 ```
 
-> [!TIP]
-> The preceding example assumes that you've also registered the `IConfiguration` instance for dependency injection. For more information, see [Dependency injection in .NET](/dotnet/core/extensions/dependency-injection).
+The preceding example assumes that you've also registered the `IConfiguration` instance for dependency injection. For more information, see [Dependency injection in .NET](/dotnet/core/extensions/dependency-injection).
 
 #### Retrieve `IOptions<T>` instance
 
@@ -206,8 +205,7 @@ public class ExampleService(IOptions<SecretOptions> options)
 }
 ```
 
-> [!TIP]
-> The preceding example assumes that you've configured a `SecretOptions` class for use with the options pattern. For more information, see [Options pattern in .NET](/dotnet/core/extensions/options).
+The preceding example assumes that you've configured a `SecretOptions` class for use with the options pattern. For more information, see [Options pattern in .NET](/dotnet/core/extensions/options).
 
 Additional `AddAzureKeyVaultSecrets` API parameters are available optionally for the following scenarios:
 
