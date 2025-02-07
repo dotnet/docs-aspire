@@ -23,7 +23,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Azure Cache for Redis resource
 
-In your app host project, call <xref:Aspire.Hosting.AzureRedisExtensions.AddAzureRedis*> on the `builder` instance to add an Azure Cache for Redis resource as shown in the following example:
+In your app host project, call <xref:Aspire.Hosting.AzureRedisExtensions.AddAzureRedis*> on the `builder` instance to add an Azure Cache for Redis resource, as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -127,7 +127,7 @@ The dependent resource can access the injected connection string by calling the 
 
 The Azure Cache for Redis hosting integration supports running the Redis server as a local container. This is beneficial for situations where you want to run the Redis server locally for development and testing purposes, avoiding the need to provision an Azure resource or connect to an existing Azure Cache for Redis server.
 
-To make use of the [`docker.io/library/redis`](https://hub.docker.com/_/redis/) container image, and run the Azure Cache for Redis instance as a container locally, chain a call to <xref:Aspire.Hosting.AzureRedisExtensions.RunAsContainer*> as shown in the following example:
+To make use of the [`docker.io/library/redis`](https://hub.docker.com/_/redis/) container image, and run the Azure Cache for Redis instance as a container locally, chain a call to <xref:Aspire.Hosting.AzureRedisExtensions.RunAsContainer*>, as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
