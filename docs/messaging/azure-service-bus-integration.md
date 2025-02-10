@@ -287,7 +287,7 @@ The preceding code retrieves the `UserConfig` node from the default configuratio
 
 The Azure Service Bus hosting integration automatically adds a health check for the Service Bus resource. The health check verifies that the Service Bus is running and that a connection can be established to it.
 
-The hosting integration relies on the [📦 AspNetCore.HealthChecks.ServiceBus](https://www.nuget.org/packages/AspNetCore.HealthChecks.ServiceBus) NuGet package.
+The hosting integration relies on the [📦 AspNetCore.HealthChecks.AzureServiceBus](https://www.nuget.org/packages/AspNetCore.HealthChecks.AzureServiceBus) NuGet package.
 
 ## Client integration
 
