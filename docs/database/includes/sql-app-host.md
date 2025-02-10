@@ -162,7 +162,7 @@ To connect to the database resource from MSSQL for Visual Studio Code, follow th
 
     :::image type="content" source="media/mssql-vscode-connection-details.png" lightbox="media/mssql-vscode-connection-details.png" alt-text="MSSQL for Visual Studio Code: Connection string input details.":::
 
-1. Once you're connected, you can see the database resource in the active tab—and run queries against it:
+1. Once you're connected, you can see the database resource in the active tab and run queries against it:
 
     :::image type="content" source="media/mssql-vscode-connected.png" lightbox="media/mssql-vscode-connected.png" alt-text="MSSQL for Visual Studio Code: Connected to database.":::
 
