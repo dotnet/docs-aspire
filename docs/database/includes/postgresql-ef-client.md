@@ -221,4 +221,3 @@ The .NET Aspire PostgreSQL Entity Framework Core integration will emit the follo
   - `ec_Npgsql_connection_pools`
   - `ec_Npgsql_multiplexing_average_commands_per_batch`
   - `ec_Npgsql_multiplexing_average_write_time_per_batch`
-  
