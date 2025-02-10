@@ -81,7 +81,7 @@ The preceding Bicep is a module that provisions an Azure Event Hubs resource wit
 - `principalType`: The principal type of the Event Hubs resource.
 - `event_hubs`: The Event Hubs resource.
 - `event_hubs_AzureEventHubsDataOwner`: The Event Hubs resource owner, based on the build-in `Azure Event Hubs Data Owner` role. For more information, see [Azure Event Hubs Data Owner](azure/role-based-access-control/built-in-roles/analytics#azure-event-hubs-data-owner).
-- `eventHubsEndpoint`: The service bus endpoint of the Event Hubs resource.
+- `eventHubsEndpoint`: The endpoint of the Event Hubs resource.
 
 The generated Bicep is a starting point and can be customized to meet your specific requirements.
 
