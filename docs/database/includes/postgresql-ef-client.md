@@ -48,11 +48,17 @@ You may prefer to use the standard Entity Framework method to obtain a database 
 ```csharp
 builder.Services.AddDbContext<YourDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")
-        ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");));
+        ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 ```
 
 > [!NOTE]
 > The above code obtains a connection string named `DefaultConnection` from configuration files.
+
+You have more flexibility when you create the database context in this way, for example:
+
+- You can reuse existing configuration code for the database context without rewriting it for .NET Aspire.
+- You can use Entity Framework Core interceptors to modify database operations.
+- You can choose not to use Entity Framework Core context pooling, which may perform better in some circumstances.
 
 If you use this method, you can enhance the database context with .NET Aspire-style retries, health checks, logging, and telemetry features by calling the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.EnrichNpgsqlDbContext*> method:
 
