@@ -23,7 +23,7 @@ In your app host project, register the Azure Blob Storage integration by chainin
 var builder = DistributedApplication.CreateBuilder(args);
 
 var blobs = builder.AddAzureStorage("storage")
-                   .RunAsEmulator();
+                   .RunAsEmulator()
                    .AddBlobs("blobs");
 
 builder.AddProject<Projects.ExampleProject>()
