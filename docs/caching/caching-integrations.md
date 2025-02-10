@@ -1,7 +1,7 @@
 ---
 title: Implement caching with .NET Aspire integrations
 description: Learn how to connect to Redis and cache data using .NET Aspire integrations.
-ms.date: 11/08/2024
+ms.date: 02/05/2025
 ms.topic: tutorial
 ---
 
@@ -172,7 +172,7 @@ Configuring connection string with this method, while functional, requires dupli
             await cache.SetAsync("forecast", Encoding.UTF8.GetBytes(JsonSerializer.Serialize(forecast)), new ()
             {
                 AbsoluteExpiration = DateTime.Now.AddSeconds(10)
-            }); ;
+            });
 
             return forecast;
         }

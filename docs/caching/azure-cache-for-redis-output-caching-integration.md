@@ -1,53 +1,22 @@
 ---
-title: .NET Aspire Redis output caching integration
-description: Learn how to use the .NET Aspire  Redis output caching integration to register an ASP.NET Core Output Caching provider backed by a Redis server.
+title: Azure Cache for Redis output caching integration
+description: Learn how to integrate Azure Cache for Redis as an output caching solution with the .NET Aspire stack.
 ms.date: 02/05/2025
-zone_pivot_groups: resp-host
 ---
 
-# .NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> output caching integration
+# .NET Aspire Azure Cache for Redis&reg;<sup>**[*](#registered)**</sup> output caching integration
 
 <a name="heading"></a>
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-:::zone pivot="redis"
+[!INCLUDE [azure-redis-intro](includes/azure-redis-intro.md)]
 
-Learn how to use the .NET Aspire Redis output caching integration. The `Aspire.StackExchange.Redis.OutputCaching` client integration is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Redis](https://redis.io/) server with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
-
-:::zone-end
-:::zone pivot="garnet"
-
-Learn how to use the .NET Aspire Redis output caching integration. The `Aspire.StackExchange.Redis.OutputCaching` client integration is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Garnet](https://microsoft.github.io/garnet/) server with the [`ghcr.io/microsoft/garnet` container image](https://github.com/microsoft/garnet/pkgs/container/garnet).
-
-:::zone-end
-:::zone pivot="valkey"
-
-Learn how to use the .NET Aspire Redis output caching integration. The `Aspire.StackExchange.Redis.OutputCaching` client integration is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Valkey](https://valkey.io/) server with the [`docker.io/valkey/valkey` container image](https://hub.docker.com/r/valkey/valkey/).
-
-:::zone-end
+The .NET Aspire Azure Cache for Redis integration enables you to connect to existing Azure Cache for Redis instances, or create new instances from .NET with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
 
 ## Hosting integration
 
-:::zone pivot="redis"
-
-[!INCLUDE [redis-app-host](includes/redis-app-host.md)]
-
-:::zone-end
-:::zone pivot="garnet"
-
-[!INCLUDE [garnet-app-host](includes/garnet-app-host.md)]
-
-:::zone-end
-:::zone pivot="valkey"
-
-[!INCLUDE [valkey-app-host](includes/valkey-app-host.md)]
-
-:::zone-end
-
-### Hosting integration health checks
-
-[!INCLUDE [redis-hosting-health-checks](includes/redis-hosting-health-checks.md)]
+[!INCLUDE [azure-redis-app-host](includes/azure-redis-app-host.md)]
 
 ## Client integration
 
@@ -61,24 +30,8 @@ In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, c
 builder.AddRedisOutputCache(connectionName: "cache");
 ```
 
-:::zone pivot="redis"
-
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Redis resource in the app host project. For more information, see [Add Redis resource](#add-redis-resource).
-
-:::zone-end
-:::zone pivot="garnet"
-
-> [!TIP]
-> The `connectionName` parameter must match the name used when adding the Garnet resource in the app host project. For more information, see [Add Garnet resource](#add-garnet-resource).
-
-:::zone-end
-:::zone pivot="valkey"
-
-> [!TIP]
-> The `connectionName` parameter must match the name used when adding the Valkey resource in the app host project. For more information, see [Add Valkey resource](#add-valkey-resource).
-
-:::zone-end
+> The `connectionName` parameter must match the name used when adding the Azure Cache for Redis resource in the app host project. For more information, see [Add Azure Cache for Redis resource](#add-azure-cache-for-redis-resource).
 
 Add the middleware to the request processing pipeline by calling <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache(Microsoft.AspNetCore.Builder.IApplicationBuilder)>:
 
@@ -100,6 +53,8 @@ app.MapGet(
 ```
 
 For apps with controllers, apply the `[OutputCache]` attribute to the action method. For Razor Pages apps, apply the attribute to the Razor page class.
+
+[!INCLUDE [azure-redis-output-client](includes/azure-redis-output-client.md)]
 
 ### Configuration
 
@@ -151,6 +106,7 @@ builder.AddRedisOutputCache(
 
 ## See also
 
+- [Azure Cache for Redis docs](/azure/azure-cache-for-redis/)
 - [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

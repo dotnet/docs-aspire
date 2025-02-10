@@ -280,7 +280,7 @@ Here are the configurable options with corresponding default values:
 | `DisableRetry`        | A boolean value that indicates whether command retries should be disabled or not.    |
 | `CommandTimeout`      | The time in seconds to wait for the command to execute.                              |
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+[!INCLUDE [client-integration-health-checks](../includes/client-integration-health-checks.md)]
 
 By default, the .NET Aspire Oracle Entity Framework Core integration handles the following:
 
