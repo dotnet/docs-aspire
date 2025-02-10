@@ -47,12 +47,12 @@ You may prefer to use the standard Entity Framework method to obtain a database 
 
 ```csharp
 builder.Services.AddDbContext<YourDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")
-        ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("postgresdb")
+        ?? throw new InvalidOperationException("Connection string 'postgresdb' not found.")));
 ```
 
 > [!NOTE]
-> The above code obtains a connection string named `DefaultConnection` from configuration files.
+> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.GetConnectionString*> method must match the name used when adding the PostgreSQL server resource in the app host project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
 
 You have more flexibility when you create the database context in this way, for example:
 
