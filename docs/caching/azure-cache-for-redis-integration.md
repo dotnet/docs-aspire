@@ -1,53 +1,22 @@
 ---
-title: .NET Aspire Redis integration
-description: Learn how to use the .NET Aspire Redis integration, which includes both hosting and client integrations.
+title: Azure Cache for Redis integration
+description: Learn how to integrate Azure Cache for Redis with the .NET Aspire stack.
 ms.date: 02/05/2025
-zone_pivot_groups: resp-host
 ---
 
-# .NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> integration
+# .NET Aspire Azure Cache for Redis&reg;<sup>**[*](#registered)**</sup> integration
 
 <a name="heading"></a>
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-:::zone pivot="redis"
+[!INCLUDE [azure-redis-intro](includes/azure-redis-intro.md)]
 
-[Redis](https://redis.io/) is the world's fastest data platform for caching, vector search, and NoSQL databases. The .NET Aspire Redis integration enables you to connect to existing Redis instances, or create new instances from .NET with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
-
-:::zone-end
-:::zone pivot="garnet"
-
-[Garnet](https://microsoft.github.io/garnet/) is a a high-performance cache-store from Microsoft Research and complies with the [Redis serialization protocol](stackexchange-redis-caching-overview.md#redis-serialization-protocol-resp) (RESP). The .NET Aspire Redis integration enables you to connect to existing Garnet instances, or create new instances from .NET with the [`ghcr.io/microsoft/garnet` container image](https://github.com/microsoft/garnet/pkgs/container/garnet).
-
-:::zone-end
-:::zone pivot="valkey"
-
-[Valkey](https://valkey.io/) is a Redis fork and complies with the [Redis serialization protocol](stackexchange-redis-caching-overview.md#redis-serialization-protocol-resp) (RESP). It's a high-performance key/value datastore that supports a variety of workloads such as caching, message queues, and can act as a primary database. The .NET Aspire Redis integration enables you to connect to existing Valkey instances, or create new instances from .NET with the [`docker.io/valkey/valkey` container image](https://hub.docker.com/r/valkey/valkey/).
-
-:::zone-end
+The .NET Aspire Azure Cache for Redis integration enables you to connect to existing Azure Cache for Redis instances, or create new instances, or run as a container locally from .NET with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
 
 ## Hosting integration
 
-:::zone pivot="redis"
-
-[!INCLUDE [redis-app-host](includes/redis-app-host.md)]
-
-:::zone-end
-:::zone pivot="garnet"
-
-[!INCLUDE [garnet-app-host](includes/garnet-app-host.md)]
-
-:::zone-end
-:::zone pivot="valkey"
-
-[!INCLUDE [valkey-app-host](includes/valkey-app-host.md)]
-
-:::zone-end
-
-### Hosting integration health checks
-
-[!INCLUDE [redis-hosting-health-checks](includes/redis-hosting-health-checks.md)]
+[!INCLUDE [azure-redis-app-host](includes/azure-redis-app-host.md)]
 
 ## Client integration
 
@@ -61,26 +30,10 @@ In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, c
 builder.AddRedisClient(connectionName: "cache");
 ```
 
-:::zone pivot="redis"
-
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Redis resource in the app host project. For more information, see [Add Redis resource](#add-redis-resource).
+> The `connectionName` parameter must match the name used when adding the Azure Cache for Redis resource in the app host project. For more information, see [Add Azure Cache for Redis resource](#add-azure-cache-for-redis-resource).
 
-:::zone-end
-:::zone pivot="garnet"
-
-> [!TIP]
-> The `connectionName` parameter must match the name used when adding the Garnet resource in the app host project. For more information, see [Add Garnet resource](#add-garnet-resource).
-
-:::zone-end
-:::zone pivot="valkey"
-
-> [!TIP]
-> The `connectionName` parameter must match the name used when adding the Valkey resource in the app host project. For more information, see [Add Valkey resource](#add-valkey-resource).
-
-:::zone-end
-
-You can then retrieve the `IConnection` instance using dependency injection. For example, to retrieve the connection from an example service:
+You can then retrieve the `IConnectionMultiplexer` instance using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
 public class ExampleService(IConnectionMultiplexer connectionMux)
@@ -90,6 +43,8 @@ public class ExampleService(IConnectionMultiplexer connectionMux)
 ```
 
 For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
+
+[!INCLUDE [azure-redis-client](includes/azure-redis-client.md)]
 
 ### Add keyed Redis client
 
@@ -119,33 +74,11 @@ The .NET Aspire Stack Exchange Redis client integration provides multiple option
 
 #### Use a connection string
 
-:::zone pivot="redis"
-
 When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis*>:
 
 ```csharp
 builder.AddRedis("cache");
 ```
-
-:::zone-end
-:::zone pivot="garnet"
-
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling <xref:Aspire.Hosting.GarnetBuilderExtensions.AddGarnet*>:
-
-```csharp
-builder.AddGarnet("cache");
-```
-
-:::zone-end
-:::zone pivot="valkey"
-
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling <xref:Aspire.Hosting.ValkeyBuilderExtensions.AddValkey*>:
-
-```csharp
-builder.AddValkey("cache");
-```
-
-:::zone-end
 
 Then the connection string will be retrieved from the `ConnectionStrings` configuration section:
 
@@ -177,6 +110,7 @@ builder.AddRedisClient(
 
 ## See also
 
+- [Azure Cache for Redis docs](/azure/azure-cache-for-redis/)
 - [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

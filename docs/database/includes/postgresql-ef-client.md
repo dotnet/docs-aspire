@@ -147,7 +147,7 @@ Then calling the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions
 builder.AddNpgsqlDbContext<AnotherDbContext>();
 ```
 
-[!INCLUDE [integration-health-checks](../../includes/integration-health-checks.md)]
+[!INCLUDE [client-integration-health-checks](../../includes/client-integration-health-checks.md)]
 
 By default, the .NET Aspire PostgreSQL Entity Framework Core integrations handles the following:
 

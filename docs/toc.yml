@@ -135,6 +135,14 @@ items:
       href: azure/integrations-overview.md
     - name: Local Azure provisioning
       href: azure/local-provisioning.md
+    - name: Azure Cache for Redis
+      items:
+      - name: Azure Cache for Redis
+        href: caching/azure-cache-for-redis-integration.md
+      - name: Azure Cache for Redis distributed cache
+        href: caching/azure-cache-for-redis-distributed-caching-integration.md
+      - name: Azure Cache for Redis output caching
+        href: caching/azure-cache-for-redis-output-caching-integration.md
     - name: Azure Cosmos DB
       items:
       - name: Azure Cosmos DB - EF Core
@@ -152,12 +160,14 @@ items:
     - name: Azure Key Vault
       displayName: key vault,security
       href: security/azure-security-key-vault-integration.md
-    - name: Azure PostgreSQL - EF Core
-      displayName: postgres,postgresql,database,flexible server,ef core,azure for database
-      href: database/azure-postgresql-entity-framework-integration.md
     - name: Azure PostgreSQL
-      displayName: postgres,postgresql,database,flexible server,azure for database
-      href: database/azure-postgresql-integration.md
+      items:
+      - name: Azure PostgreSQL - EF Core
+        displayName: postgres,postgresql,database,flexible server,ef core,azure for database
+        href: database/azure-postgresql-entity-framework-integration.md
+      - name: Azure PostgreSQL
+        displayName: postgres,postgresql,database,flexible server,azure for database
+        href: database/azure-postgresql-integration.md
     - name: Azure OpenAI
       displayName: azure ai,openai
       href: azureai/azureai-openai-integration.md
