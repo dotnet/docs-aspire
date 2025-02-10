@@ -208,7 +208,7 @@ When you call `RunAsEmulator`, it configures your Service Bus resources to run l
 
 #### Configure Service Bus emulator container
 
-There are various configurations available to container resources, for example, you can configure the container's ports or providing a wholistic JSON configuration which overrides everything.
+There are various configurations available for container resources, for example, you can configure the container's ports or providing a wholistic JSON configuration which overrides everything.
 
 ##### Configure Service Bus emulator container host port
 
