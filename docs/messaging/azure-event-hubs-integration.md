@@ -6,7 +6,7 @@ ms.date: 02/10/2025
 
 # .NET Aspire Azure Event Hubs integration
 
-[Azure Event Hubs](/azure/event-hubs/event-hubs-abous) is a native data-streaming service in the cloud that can stream millions of events per second, with low latency, from any source to any destination. The .NET Aspire Azure Event Hubs integration enables you to connect to Azure Event Hubs instances from your .NET applications.
+[Azure Event Hubs](/azure/event-hubs/event-hubs-about) is a native data-streaming service in the cloud that can stream millions of events per second, with low latency, from any source to any destination. The .NET Aspire Azure Event Hubs integration enables you to connect to Azure Event Hubs instances from your .NET applications.
 
 ## Hosting integration
 
