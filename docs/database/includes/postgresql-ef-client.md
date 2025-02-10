@@ -52,7 +52,7 @@ builder.Services.AddDbContext<YourDbContext>(options =>
 ```
 
 > [!NOTE]
-> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.GetConnectionString*> method must match the name used when adding the PostgreSQL server resource in the app host project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
+> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method must match the name used when adding the PostgreSQL server resource in the app host project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
 
 You have more flexibility when you create the database context in this way, for example:
 
