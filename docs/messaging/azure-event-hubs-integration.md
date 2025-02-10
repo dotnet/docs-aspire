@@ -6,7 +6,7 @@ ms.date: 02/10/2025
 
 # .NET Aspire Azure Event Hubs integration
 
-[Azure Event Hubs](/azure/event-hubs/event-hubs-aboust) is a native data-streaming service in the cloud that can stream millions of events per second, with low latency, from any source to any destination. The .NET Aspire Azure Event Hubs integration enables you to connect to Azure Event Hubs instances from your .NET applications.
+[Azure Event Hubs](/azure/event-hubs/event-hubs-abous) is a native data-streaming service in the cloud that can stream millions of events per second, with low latency, from any source to any destination. The .NET Aspire Azure Event Hubs integration enables you to connect to Azure Event Hubs instances from your .NET applications.
 
 ## Hosting integration
 
@@ -80,7 +80,7 @@ The preceding Bicep is a module that provisions an Azure Event Hubs resource wit
 - `principalId`: The principal ID of the Event Hubs resource.
 - `principalType`: The principal type of the Event Hubs resource.
 - `event_hubs`: The Event Hubs resource.
-- `event_hubs_AzureEventHubsDataOwner`: The Event Hubs resource owner, based on the build-in `Azure Event Hubs Data Owner` role. For more information, see [Azure Event Hubs Data Owner](azure/role-based-access-control/built-in-roles/analytics#azure-event-hubs-data-owner).
+- `event_hubs_AzureEventHubsDataOwner`: The Event Hubs resource owner, based on the build-in `Azure Event Hubs Data Owner` role. For more information, see [Azure Event Hubs Data Owner](/azure/role-based-access-control/built-in-roles/analytics#azure-event-hubs-data-owner).
 - `eventHubsEndpoint`: The endpoint of the Event Hubs resource.
 
 The generated Bicep is a starting point and can be customized to meet your specific requirements.
@@ -227,7 +227,7 @@ builder.AddProject<Projects.ExampleService>()
 // After adding all resources, run the app...
 ```
 
-The data volume is used to persist the Event Hubs emulator data outside the lifecycle of its container. The data volume is mounted at the `/data` path in the container. A name is generated at random unless you provide a set the `name` parameter. For more information on data volumes and details on why they're preferred over [bind mounts](#add-nats-server-resource-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
+The data volume is used to persist the Event Hubs emulator data outside the lifecycle of its container. The data volume is mounted at the `/data` path in the container. A name is generated at random unless you provide a set the `name` parameter. For more information on data volumes and details on why they're preferred over [bind mounts](#add-event-hubs-emulator-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
 
 ##### Add Event Hubs emulator with data bind mount
 
@@ -307,7 +307,7 @@ The preceding code retrieves the `UserConfig` node from the default configuratio
 
 The Azure Event Hubs hosting integration automatically adds a health check for the Event Hubs resource. The health check verifies that the Event Hubs is running and that a connection can be established to it.
 
-The hosting integration relies on the [📦 https://www.nuget.org/packages/AspNetCore.HealthChecks.Azure.Messaging.EventHubs](https://www.nuget.org/packages/https://www.nuget.org/packages/AspNetCore.HealthChecks.Azure.Messaging.EventHubs) NuGet package.
+The hosting integration relies on the [📦 AspNetCore.HealthChecks.Azure.Messaging.EventHubs](https://www.nuget.org/packages/AspNetCore.HealthChecks.Azure.Messaging.EventHubs) NuGet package.
 
 ## Client integration
 
