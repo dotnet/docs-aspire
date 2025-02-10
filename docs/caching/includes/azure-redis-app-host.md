@@ -74,7 +74,7 @@ The preceding Bicep is a module that provisions an Azure Cache for Redis with th
 - `redis_contributor`: The contributor of the Azure Cache for Redis resource, with an access policy name of `Data Contributor`.
 - `connectionString`: The connection string of the Azure Cache for Redis resource.
 
-In addition to the Azure Cache for Redis, it also provisions an Azure Firewall rule to allow all Azure IP addresses. Finally, an administrator is created for the Redis server, and the connection string is outputted as an output variable. The generated Bicep is a starting point and can be customized to meet your specific requirements.
+In addition to the Azure Cache for Redis, it also provisions an access policy assignment to the application access to the cache. The generated Bicep is a starting point and can be customized to meet your specific requirements.
 
 #### Customize provisioning infrastructure
 
@@ -88,7 +88,6 @@ The preceding code:
   - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
   - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
   - The single <xref:Azure.Provisioning.Redis.RedisResource> is retrieved.
-  - The `RedisVersion` is set to `"6.0"`.
   - The `Sku` is set with a family of `BasicOrStandard`, a name of `Standard`, and a capacity of `1`.
   - A tag is added to the Redis resource with a key of `ExampleKey` and a value of `Example value`.
 
@@ -116,7 +115,7 @@ The connection string is configured in the app host's configuration, typically u
 ```json
 {
     "ConnectionStrings": {
-        "azure-redis": "localhost:6379,ssl=true,abortConnect=False"
+        "azure-redis": "<your-redis-name>.redis.cache.windows.net:6380,ssl=true,abortConnect=False"
     }
 }
 ```
@@ -141,14 +140,14 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The preceding code configures an Azure Cache for Redis resource to run locally in a container.
+The preceding code configures the Redis resource to run locally in a container.
 
 > [!TIP]
-> The `RunAsContainer` method is useful for local development and testing. The API exposes an optional delegate that enables you to customize the underlying <xref:Aspire.Hosting.Azure.AzureRedisCacheResource> configuration, such adding [Redis Insights](https://redis.io/insight/), [Redis Commander](https://joeferner.github.io/redis-commander/), adding a data volume or data bind mount. For more information, see the [.NET Aspire Redis hosting integration](../stackexchange-redis-integration.md#add-redis-resource-with-redis-insights).
+> The `RunAsContainer` method is useful for local development and testing. The API exposes an optional delegate that enables you to customize the underlying <xref:Aspire.Hosting.ApplicationModel.RedisResource> configuration, such adding [Redis Insights](https://redis.io/insight/), [Redis Commander](https://joeferner.github.io/redis-commander/), adding a data volume or data bind mount. For more information, see the [.NET Aspire Redis hosting integration](../stackexchange-redis-integration.md#add-redis-resource-with-redis-insights).
 
 ### Configure the Azure Cache for Redis resource to use access key authentication
 
-By default, the Azure Cache for Redis resource is configured to use [Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication) authentication. If you want to use password authentication, you can configure the server to use password authentication by calling the <xref:Aspire.Hosting.AzureRedisExtensions.WithAccessKeyAuthentication*> method:
+By default, the Azure Cache for Redis resource is configured to use [Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication) authentication. If you want to use password authentication (not recommended), you can configure the server to use password authentication by calling the <xref:Aspire.Hosting.AzureRedisExtensions.WithAccessKeyAuthentication*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

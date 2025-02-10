@@ -14,7 +14,6 @@ internal static partial class Program
                                  .OfType<RedisResource>()
                                  .Single();
 
-                redis.RedisVersion = "6.0";
                 redis.Sku = new()
                 {
                     Family = RedisSkuFamily.BasicOrStandard,
