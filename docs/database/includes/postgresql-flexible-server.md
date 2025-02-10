@@ -58,7 +58,7 @@ The preceding call to `AddAzurePostgresFlexibleServer` configures the PostgresSQ
 
 #### Generated provisioning Bicep
 
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure PostgreSQL resource, the following Bicep is generated:
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by hand, because the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure PostgreSQL resource, the following Bicep is generated:
 
 <!-- markdownlint-disable MD033 -->
 <br/>
@@ -87,7 +87,7 @@ In addition to the PostgreSQL flexible server, it also provisions an Azure Firew
 
 #### Customize provisioning infrastructure
 
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `kind`, `consistencyPolicy`, `locations`, and more. The following example demonstrates how to customize the PostgreSQL server resource:
+All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources by using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `kind`, `consistencyPolicy`, `locations`, and more. The following example demonstrates how to customize the PostgreSQL server resource:
 
 :::code language="csharp" source="../../snippets/azure/AppHost/Program.ConfigurePostgresSQLInfra.cs" id="configure":::
 
@@ -153,7 +153,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 The preceding code configures an Azure PostgreSQL Flexible Server resource to run locally in a container.
 
 > [!TIP]
-> The `RunAsContainer` method is useful for local development and testing. The API exposes an optional delegate that enables you to customize the underlying <xref:Aspire.Hosting.ApplicationModel.PostgresServerResource> configuration, such adding pgAdmin, pgWeb, adding a data volume or data bind mount, and adding an init bind mount. For more information, see the [.NET Aspire PostgreSQL hosting integration](../postgresql-integration.md#add-postgresql-pgadmin-resource) section.
+> The `RunAsContainer` method is useful for local development and testing. The API exposes an optional delegate that enables you to customize the underlying <xref:Aspire.Hosting.ApplicationModel.PostgresServerResource> configuration. For example, you can add pgAdmin and pgWeb, add a data volume or data bind mount, and add an init bind mount. For more information, see the [.NET Aspire PostgreSQL hosting integration](../postgresql-integration.md#add-postgresql-pgadmin-resource) section.
 
 ### Configure the Azure PostgreSQL server to use password authentication
 
