@@ -185,13 +185,29 @@ public class ExampleService(ExampleDbContext context)
 
 For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
 
-### Add Oracle database context with enrichment
+### Enrich Oracle database context
 
-To enrich the `DbContext` with additional services, such as automatic retries, health checks, logging and telemetry, call the <xref:Microsoft.Extensions.Hosting.AspireOracleEFCoreExtensions.EnrichOracleDatabaseDbContext*> method:
+You may prefer to use the standard Entity Framework method to obtain a database context and add it to the dependency injection container:
+
+```csharp
+builder.Services.AddDbContext<ExampleDbContext>(options =>
+    options.UseOracle(builder.Configuration.GetConnectionString("oracledb")
+        ?? throw new InvalidOperationException("Connection string 'oracledb' not found.")));
+```
+
+> [!NOTE]
+> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method must match the name used when adding the Oracle resource in the app host project. For more information, see [Add Oracle server and database resources](#add-oracle-server-and-database-resources).
+
+You have more flexibility when you create the database context in this way, for example:
+
+- You can reuse existing configuration code for the database context without rewriting it for .NET Aspire.
+- You can use Entity Framework Core interceptors to modify database operations.
+- You can choose not to use Entity Framework Core context pooling, which may perform better in some circumstances.
+
+If you use this method, you can enhance the database context with .NET Aspire-style retries, health checks, logging, and telemetry features by calling the <xref:Microsoft.Extensions.Hosting.AspireOracleEFCoreExtensions.EnrichOracleDatabaseDbContext*> method:
 
 ```csharp
 builder.EnrichOracleDatabaseDbContext<ExampleDbContext>(
-    connectionName: "oracledb",
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
