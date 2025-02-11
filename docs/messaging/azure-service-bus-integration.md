@@ -487,7 +487,7 @@ Azure Service Bus tracing is currently in preview, so you must set the experimen
 AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true);
 ```
 
-For more information, see [Azure Service Bus SDK observability: Trace attributes](/azure/service-bus/nosql/sdk-observability?tabs=dotnet#trace-attributes).
+For more information, see [Azure Service Bus: Distributed tracing and correlation through Service Bus messaging](/azure/service-bus-messaging/service-bus-end-to-end-tracing).
 
 #### Metrics
 
