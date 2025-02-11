@@ -19,17 +19,24 @@ In a test, you might want to access other resources by the connection informatio
 
 ## Ensure resources are available
 
-Starting with .NET Aspire 9, there's support for waiting on dependent resources to be available (via the [health check](../fundamentals/health-checks.md) mechanism). This is useful in tests that ensure a resource is available before attempting to access it. The <xref:Aspire.Hosting.ApplicationModel.ResourceNotificationService> class provides a <xref:Aspire.Hosting.ApplicationModel.ResourceNotificationService.WaitForResourceAsync*?displayProperty=nameWithType> method that's used to wait for a named resource to be available. This method takes the resource name and the desired state of the resource as parameters and returns a `Task` that yields back when the resource is available.
+Starting with .NET Aspire 9, there's support for waiting on dependent resources to be available (via the [health check](../fundamentals/health-checks.md) mechanism). This is useful in tests that ensure a resource is available before attempting to access it. The <xref:Aspire.Hosting.ApplicationModel.ResourceNotificationService> class provides a <xref:Aspire.Hosting.ApplicationModel.ResourceNotificationService.WaitForResourceAsync*?displayProperty=nameWithType> method that's used to wait for a named resource to be available. This method takes the resource name and the desired state of the resource as parameters and returns a `Task` that yields back when the resource is available. You can access the <xref:Aspire.Hosting.ApplicationModel.ResourceNotificationService> via <xref:Aspire.Hosting.DistributedApplication.ResourceNotifications?displayProperty=nameWithType>, as in the following example.
 
 > [!NOTE]
 > It's recommended to provide a timeout when waiting for resources, to prevent the test from hanging indefinitely in situations where a resource never becomes available.
 
 ```csharp
-await resourceNotificationService.WaitForResourceAsync(
+using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+await app.ResourceNotifications.WaitForResourceAsync(
         "webfrontend",  
-        KnownResourceStates.Running  
-    )  
-    .WaitAsync(TimeSpan.FromSeconds(30));  
+        KnownResourceStates.Running,
+        cts.Token); 
+```
+
+A resource enters the "Running" state as soon as it starts executing, but this does not mean that it is ready to serve requests. If you want to wait for the resource to be ready to serve requests, and your resource has health checks, you can wait for the resource to become healthy by using the <xref:Aspire.Hosting.ApplicationModel.ResourceNotificationService.WaitForResourceHealthyAsync*?displayProperty=nameWithType> method.
+
+```csharp
+using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+await app.ResourceNotifications.WaitForResourceHealthyAsync("webfrontend", cts.Token);
 ```
 
 This resource-notification pattern ensures that the resources are available before running the tests, avoiding potential issues with the tests failing due to the resources not being ready.
