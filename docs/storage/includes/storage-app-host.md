@@ -176,9 +176,9 @@ var builder = DistributedApplication.CreateBuilder(args);
 var storage = builder.AddAzureStorage("storage").RunAsEmulator(
                      azurite =>
                      {
-                         azurite.WithBlobPort("blob", 27000)
-                                .WithQueuePort("queue", 27001)
-                                .WithTablePort("table", 27002);
+                         azurite.WithBlobPort(27000)
+                                .WithQueuePort(27001)
+                                .WithTablePort(27002);
                      });
 
 // After adding all resources, run the app...

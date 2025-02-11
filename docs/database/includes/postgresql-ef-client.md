@@ -41,13 +41,29 @@ public class ExampleService(YourDbContext context)
 
 For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
 
-### Add Npgsql database context with enrichment
+### Enrich an Npgsql database context
 
-To enrich the `DbContext` with additional services, such as automatic retries, health checks, logging and telemetry, call the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.EnrichNpgsqlDbContext*> method:
+You may prefer to use the standard Entity Framework method to obtain a database context and add it to the dependency injection container:
+
+```csharp
+builder.Services.AddDbContext<YourDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("postgresdb")
+        ?? throw new InvalidOperationException("Connection string 'postgresdb' not found.")));
+```
+
+> [!NOTE]
+> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method must match the name used when adding the PostgreSQL server resource in the app host project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
+
+You have more flexibility when you create the database context in this way, for example:
+
+- You can reuse existing configuration code for the database context without rewriting it for .NET Aspire.
+- You can use Entity Framework Core interceptors to modify database operations.
+- You can choose not to use Entity Framework Core context pooling, which may perform better in some circumstances.
+
+If you use this method, you can enhance the database context with .NET Aspire-style retries, health checks, logging, and telemetry features by calling the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.EnrichNpgsqlDbContext*> method:
 
 ```csharp
 builder.EnrichNpgsqlDbContext<YourDbContext>(
-    connectionName: "postgresdb",
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
@@ -147,7 +163,7 @@ Then calling the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions
 builder.AddNpgsqlDbContext<AnotherDbContext>();
 ```
 
-[!INCLUDE [integration-health-checks](../../includes/integration-health-checks.md)]
+[!INCLUDE [client-integration-health-checks](../../includes/client-integration-health-checks.md)]
 
 By default, the .NET Aspire PostgreSQL Entity Framework Core integrations handles the following:
 
@@ -205,4 +221,3 @@ The .NET Aspire PostgreSQL Entity Framework Core integration will emit the follo
   - `ec_Npgsql_connection_pools`
   - `ec_Npgsql_multiplexing_average_commands_per_batch`
   - `ec_Npgsql_multiplexing_average_write_time_per_batch`
-  

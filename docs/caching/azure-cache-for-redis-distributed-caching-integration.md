@@ -1,59 +1,28 @@
 ---
-title: .NET Aspire Redis distributed caching integration
-description: Learn how to use the .NET Aspire Redis distributed caching integration, which includes both hosting and client integrations.
+title: Azure Cache for Redis distributed caching integration
+description: Learn how to integrate Azure Cache for Redis as a distributed caching solution with the .NET Aspire stack.
 ms.date: 02/05/2025
-zone_pivot_groups: resp-host
 ---
 
-# .NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> distributed caching integration
+# .NET Aspire Azure Cache for Redis&reg;<sup>**[*](#registered)**</sup> distributed caching integration
 
 <a name="heading"></a>
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-:::zone pivot="redis"
+[!INCLUDE [azure-redis-intro](includes/azure-redis-intro.md)]
 
-Learn how to use the .NET Aspire Redis distributed caching integration. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache](https://stackexchange.github.io/StackExchange.Redis/Basics) provider backed by a [Redis](https://redis.io/) server with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
-
-:::zone-end
-:::zone pivot="garnet"
-
-Learn how to use the .NET Aspire Redis distributed caching integration. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache](https://stackexchange.github.io/StackExchange.Redis/Basics) provider backed by a [Garnet](https://microsoft.github.io/garnet/) server with the [`ghcr.io/microsoft/garnet` container image](https://github.com/microsoft/garnet/pkgs/container/garnet).
-
-:::zone-end
-:::zone pivot="valkey"
-
-Learn how to use the .NET Aspire Redis distributed caching integration. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache](https://stackexchange.github.io/StackExchange.Redis/Basics) provider backed by a [Valkey](https://valkey.io/) server with the [`docker.io/valkey/valkey` container image](https://hub.docker.com/r/valkey/valkey/).
-
-:::zone-end
+The .NET Aspire Azure Cache for Redis integration enables you to connect to existing Azure Cache for Redis instances, or create new instances from .NET with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
 
 ## Hosting integration
 
-:::zone pivot="redis"
-
-[!INCLUDE [redis-app-host](includes/redis-app-host.md)]
-
-:::zone-end
-:::zone pivot="garnet"
-
-[!INCLUDE [garnet-app-host](includes/garnet-app-host.md)]
-
-:::zone-end
-:::zone pivot="valkey"
-
-[!INCLUDE [valkey-app-host](includes/valkey-app-host.md)]
-
-:::zone-end
-
-### Hosting integration health checks
-
-[!INCLUDE [redis-hosting-health-checks](includes/redis-hosting-health-checks.md)]
+[!INCLUDE [azure-redis-app-host](includes/azure-redis-app-host.md)]
 
 ## Client integration
 
 [!INCLUDE [redis-distributed-client-nuget](includes/redis-distributed-client-nuget.md)]
 
-### Add Redis client
+### Add Redis distributed cache client
 
 In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddRedisDistributedCache%2A> extension to register the required services for distributed caching and add a <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use via the dependency injection container.
 
@@ -61,24 +30,8 @@ In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, c
 builder.AddRedisDistributedCache(connectionName: "cache");
 ```
 
-:::zone pivot="redis"
-
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Redis resource in the app host project. For more information, see [Add Redis resource](#add-redis-resource).
-
-:::zone-end
-:::zone pivot="garnet"
-
-> [!TIP]
-> The `connectionName` parameter must match the name used when adding the Garnet resource in the app host project. For more information, see [Add Garnet resource](#add-garnet-resource).
-
-:::zone-end
-:::zone pivot="valkey"
-
-> [!TIP]
-> The `connectionName` parameter must match the name used when adding the Valkey resource in the app host project. For more information, see [Add Valkey resource](#add-valkey-resource).
-
-:::zone-end
+> The `connectionName` parameter must match the name used when adding the Azure Cache for Redis resource in the app host project. For more information, see [Add Azure Cache for Redis resource](#add-azure-cache-for-redis-resource).
 
 You can then retrieve the `IDistributedCache` instance using dependency injection. For example, to retrieve the cache from a service:
 
@@ -90,6 +43,8 @@ public class ExampleService(IDistributedCache cache)
 ```
 
 For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
+
+[!INCLUDE [azure-redis-distributed-client](includes/azure-redis-distributed-client.md)]
 
 ### Add keyed Redis client
 
@@ -163,6 +118,7 @@ builder.AddRedisDistributedCache(
 
 ## See also
 
+- [Azure Cache for Redis docs](/azure/azure-cache-for-redis/)
 - [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

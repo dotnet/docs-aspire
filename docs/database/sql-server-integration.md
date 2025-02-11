@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire SQL Server integration
 description: Learn how to use the .NET Aspire SQL Server integration, which includes both hosting and client integrations.
-ms.date: 11/20/2024
+ms.date: 02/07/2025
 uid: database/sql-server-integration
 ---
 

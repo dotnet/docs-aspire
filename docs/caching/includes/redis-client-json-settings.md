@@ -9,7 +9,10 @@ The .NET Aspire Stack Exchange Redis integration supports <xref:Microsoft.Extens
   "Aspire": {
     "StackExchange": {
       "Redis": {
-        "ConnectionString": "localhost:6379",
+        "ConfigurationOptions": {
+          "ConnectTimeout": 3000,
+          "ConnectRetry": 2
+        },
         "DisableHealthChecks": true,
         "DisableTracing": false
       }

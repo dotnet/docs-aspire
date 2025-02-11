@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire SQL Server Entity Framework Core integration
 description: Learn how to use the .NET Aspire SQL Server Entity Framework integration, which includes both hosting and client integrations.
-ms.date: 12/02/2024
+ms.date: 02/07/2025
 uid: database/sql-server-ef-core-integration
 ---
 
@@ -187,7 +187,7 @@ Here are the configurable options with corresponding default values:
 | `DisableMetrics`      | A boolean value that indicates whether the OpenTelemetry metrics are disabled or not.                                |
 | `Timeout`             | The time in seconds to wait for the command to execute.                                                              |
 
-[!INCLUDE [integration-health-checks](../includes/integration-health-checks.md)]
+[!INCLUDE [client-integration-health-checks](../includes/client-integration-health-checks.md)]
 
 By default, the .NET Aspire Sql Server Entity Framework Core integration handles the following:
 
