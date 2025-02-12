@@ -119,7 +119,7 @@ To configure the host port for the pgWeb container, call the <xref:Aspire.Hostin
 var builder = DistributedApplication.CreateBuilder(args);
 
 var postgres = builder.AddPostgres("postgres")
-                      .WithPgAdmin(pgWeb => pgWeb.WithHostPort(5050));
+                      .WithPgWeb(pgWeb => pgWeb.WithHostPort(5050));
 
 var postgresdb = postgres.AddDatabase("postgresdb");
 
