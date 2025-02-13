@@ -38,12 +38,76 @@ If your project file doesn't have `Aspire.AppHost.Sdk`, you might still be using
 
 ### Resource relationships
 
+The dashboard now has the concept of a "parent" and "child" resource. For example, if you create a Postgres instance with multiple databases, they'll now be nested in the Resource page in the same instance.
 
-### Papercuts
+![A screenshot of the aspire dashboard showing the Postgres resource with multiple databases nested underneath it](./media/dashboard-parentchild.png)
 
+### Localization overrides
 
-## App model and orchestration
+The dashboard defaults to the lanugage that your browser is in. In this release, we added the ability to override that and change the language the dashboard is in separately from the browser language.
+
+![A screenshot of the aspire dashboard showing the new flyout menu to change language](./media/dashboard-language.png)
+
+### Filtering
+
+You can now filter what you see in the Resource view by type, state, and health status.
+
+### More resource details
+
+When you click on a resource in the dashboard, more data now appears in the details pane, including references, back references, and volumes with their mount types.
+
+![A screenshot of the aspire dashboard with references and back references showing](dashboard-resourcedetails.png)
+
+### CORS support for custom local domains
+
+You can now set the "DOTNET_DASHBOARD_CORS_ALLOWED_ORIGINS" environment variable to allow the dashboard to receive telemetry from other browser apps, such as if you have resources running on custom localhost domains.
+
+### Various UX improvements
+
+There are a bunch of new features in 9.1 that streamline and polish popular tasks, including:
+
+- Start/Stop button now also appears on the console logs page
+- Download console logs to a file
+- Turn on/off timestamps in logs
+- Single click to open in text visualizer
+- URLs are automatically clickable, and there are no more commas separating endpoints
+
+...and, most importantly, your scroll position now resets when you click between different resources 🥳
+
+There are many more small tweaks that add up to a smoother dashboard experience - for some others, you can check out [James Newton-King](https://bsky.app/profile/james.newtonking.com) on Bluesky, who has been posting new dashboard features daily for the last few weeks!
+
+## Local dev
+
+### Start resources on demand
+
+You can now tell resources not to start with the rest of your app by using `WithExplicitStart()` on the resource in your app host. Then, you can start it whenever you're ready from inside the dashboard.
+
+### Better Docker integration
+
+We added the ability to `PublishAsDockerfile()` for any project or container resource, and you can overload existing Dockerfiles to customize them further in the app host.
+
+### Cleaning up Docker networks
+
+We fixed [an annoying bug](https://github.com/dotnet/aspire/issues/6504) in 9.1 where Docker networks created by Aspire would stay alive even after you stopped running the app. We now clean up after ourselves!
+
+## Integrations
+
+### Azure CosmosDB, SignalR, Functions, and more
+
+We did a lot of work this release to improve various Azure integrations:
+
+- CosmosDB now supports managed identity for authentication
+- SignalR resources now let you `RunAsEmulator()`
+- It's much simpler to connect to existing Azure resources in the app host
+
+### Even more integration updates
+
+Many other integrations got updates, fixes, and new features - check out our [GitHub release](https://github.com/dotnet/aspire/releases) for details!
 
 ## Deployment
 
-## Integrations
+We continued improving the Azure Container Apps deployment story, both in azd and with app host options. One top requested feature - allowing npm apps to deploy to ACA like other resources - is now supported!
+
+## Upgrade today
+
+Follow the directions above to make the switch to 9.1 and take advantage of all these new features today! As always, we'll be listening for your feedback on [GitHub](https://github.com/dotnet/aspire/issues) - and looking out for what you want to see in 9.2 ☺️
