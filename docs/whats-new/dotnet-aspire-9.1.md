@@ -1,7 +1,7 @@
 ---
 title: What's new in .NET Aspire 9.1
 description: Learn what's new in the official general availability release of .NET Aspire 9.1.
-ms.date: 2/18/2024
+ms.date: 02/18/2024
 ---
 
 # What's new in .NET Aspire 9.1
@@ -44,8 +44,7 @@ The dashboard now has the concept of a "parent" and "child" resource. For exampl
 
 ### Localization overrides
 
-The dashboard defaults to the lanugage that your browser is in. In this release, we added the ability to override that and change the language the dashboard is in separately from the browser language.
-
+The dashboard defaults to the language that your browser is in. In this release, we added the ability to override that and change the language the dashboard is in separately from the browser language.
 ![A screenshot of the aspire dashboard showing the new flyout menu to change language](./media/dashboard-language.png)
 
 ### Filtering
