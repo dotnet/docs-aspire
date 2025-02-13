@@ -24,7 +24,7 @@ Previously, `IDistributedApplicationTestingBuilder` inherited from nothing.
 
 ## Type of breaking change
 
-This change is a [binary incompatible](../categories.md#binary-incompatible) change.
+This change is a [binary incompatible](../categories.md#binary-compatibility) change.
 
 ## Reason for change
 

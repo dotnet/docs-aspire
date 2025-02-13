@@ -24,7 +24,7 @@ Parameter names on methods and constructors in the Python hosting integration pr
 
 ## Type of breaking change
 
-This change is a [source incompatible](../categories.md#source-incompatible).
+This change is a [source incompatible](../categories.md#source-compatibility).
 
 ## Reason for change
 

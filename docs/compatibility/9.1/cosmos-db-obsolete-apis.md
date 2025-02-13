@@ -40,7 +40,7 @@ var cosmosdb = builder.AddAzureCosmosDB("cosmos")
 
 ## Type of breaking change
 
-This change is a [source incompatible](../categories.md#source-incompatible) and [behavioral change](../categories.md#behavioral-change).
+This change is a [source incompatible](../categories.md#source-compatibility) and [behavioral change](../categories.md#behavioral-change).
 
 ## Reason for change
 

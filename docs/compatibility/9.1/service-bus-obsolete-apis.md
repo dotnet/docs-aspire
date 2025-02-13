@@ -50,7 +50,7 @@ The `configure` parameter is optional. If not provided, the default configuratio
 
 ## Type of breaking change
 
-This change is a [source incompatible](../categories.md#source-incompatible).
+This change is a [source incompatible](../categories.md#source-compatibility).
 
 ## Reason for change
 
