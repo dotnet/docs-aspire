@@ -108,6 +108,22 @@ builder.AddSqlProject("mysqlproj")
        .WithReference(sql);
 ```
 
+## Support for existing SQL Server instances
+
+Starting with version 9.2.0, you can publish the SQL Database project to an existing SQL Server instance by using a connection string:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Get an existing SQL Server connection string from the configuration
+var connection = builder.AddConnectionString("Aspire");
+
+builder.AddSqlProject<Projects.SdkProject>("mysqlproj")
+       .WithReference(connection);
+
+builder.Build().Run();
+```
+
 ### Deployment options support
 
 To define options that affect the behavior of package deployment, call the `WithConfigureDacDeployOptions` API:
