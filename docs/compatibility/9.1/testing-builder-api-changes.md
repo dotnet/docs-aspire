@@ -1,6 +1,6 @@
 ---
 title: IDistributedApplicationTestingBuilder API changes
-description: `IDistributedApplicationTestingBuilder` now inherits from `IDistributedApplicationBuilder`, `IAsyncDisposable`, and `IDisposable`.
+description: "IDistributedApplicationTestingBuilder now inherits from IDistributedApplicationBuilder, IAsyncDisposable, and IDisposable."
 ms.date: 2/13/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/2616
