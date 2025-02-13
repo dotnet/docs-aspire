@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Blazor.LocalStorage" Version="9.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="9.0.2" />
   </ItemGroup>
 
   <ItemGroup>
