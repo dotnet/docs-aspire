@@ -28,7 +28,7 @@ For more information on the official .NET version and .NET Aspire version suppor
 Moving between minor releases of .NET Aspire is simple:
 
 1. In your app host project file (ie, MyApp.AppHost.csproj), update the Aspire.AppHost.Sdk version to 9.1.0
-`<Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />`
+`<Sdk Name="Aspire.AppHost.Sdk" Version="9.1.0" />`
 1. Check for any NuGet package updates, either using the NuGet Package Manager in Visual Studio or the "Update NuGet Package" command in VS Code.
 1. Update to the latest .NET Aspire templates by running `dotnet new update` in the command line.
 
@@ -96,12 +96,13 @@ We fixed [an annoying bug](https://github.com/dotnet/aspire/issues/6504) in 9.1 
 We did a lot of work this release to improve various Azure integrations:
 
 - CosmosDB now supports managed identity for authentication
-- SignalR resources now let you `RunAsEmulator()`
+    - Support for the [vnext-preview emulator](https://learn.microsoft.com/azure/cosmos-db/emulator-linux)
+- Service Bus and SignalR resources now let you `RunAsEmulator()`
 - It's much simpler to connect to existing Azure resources in the app host
 
 ### Even more integration updates
 
-Many other integrations got updates, fixes, and new features - check out our [GitHub release](https://github.com/dotnet/aspire/releases) for details!
+Microsoft.Extensions.AI is now supported in OpenAI, RabbitMQ was updated to v7, and MongoDB was updated to v3. Many other integrations got updates, fixes, and new features. Check out our [GitHub release](https://github.com/dotnet/aspire/releases) for details and more!
 
 ## Deployment
 
