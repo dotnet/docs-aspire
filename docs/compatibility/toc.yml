@@ -5,8 +5,25 @@ items:
   href: ../get-started/aspire-overview.md
 - name: Breaking changes
   href: breaking-changes.md
-- name: .NET Aspire 9.0
+- name: .NET Aspire 9.1
   expanded: true
+  items:
+  - name: Overview
+    href: 9.1/index.md
+  - name: Breaking changes in 9.1
+    expanded: true
+    items:
+    - name: Container image name and tag updates
+      href: 9.1/container-image-name-and-tag-updates.md
+    - name: Cosmos DB hosting integration obsolete API and default managed identity support
+      href: 9.1/cosmos-db-obsolete-apis.md
+    - name: Python hosting integration API changes
+      href: 9.1/python-hosting-integration-api-changes.md
+    - name: Service Bus hosting integration obsolete APIs
+      href: 9.1/service-bus-obsolete-apis.md
+    - name: Testing builder API changes
+      href: 9.1/testing-builder-api-changes.md
+- name: .NET Aspire 9.0
   items:
   - name: Overview
     href: 9.0/index.md
@@ -17,7 +34,7 @@ items:
       href: 9.0/azureopenai-ctor.md
     - name: Introduce new Python resource type and APIs changes
       href: 9.0/addpython.md
-    - name:  Updates to implicitly named volumes to avoid collisions
+    - name: Updates to implicitly named volumes to avoid collisions
       href: 9.0/unnamed-volumes.md
     - name: Make unnamed volumes more unique
       href: 9.0/make-unnamed-volumes-unique.md
