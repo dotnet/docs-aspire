@@ -12,7 +12,6 @@ If you're migrating an app to .NET 9, the breaking changes listed here might aff
 [!INCLUDE [binary-source-behavioral](../includes/binary-source-behavioral.md)]
 
 > [!NOTE]
->
 > This article is a work in progress. It's not a complete list of breaking changes in .NET Aspire 9.
 
 ## Breaking changes
