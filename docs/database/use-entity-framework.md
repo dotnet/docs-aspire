@@ -22,6 +22,11 @@ Developers use ORM frameworks to work with databases using code objects instead 
 > [!NOTE]
 > In .NET Aspire, EF is implemented by client integrations, not hosting integrations. So, for example, to use EF with a SQL Server database, you'd use the SQL Server hosting integration to create the SQL Server container and add a database to it. In the consuming microservices, when you want to use EF, choose the SQL Server Entity Framework Core integration instead of the SQL Server client integration.
 
+
+## Stuff in the App Host
+
+Is there stuff to do in the App Host that only applies to EF?
+
 ## Install the client integration
 
 > Either repeat this here or link to the individual articles
@@ -30,22 +35,60 @@ Developers use ORM frameworks to work with databases using code objects instead 
 
 In EF, a [database context](/ef/core/dbcontext-configuration/) is a class used to interact with the database. Database contexts inherit from the `DbContext` class. They provide access to the database through properties of type `DbSet<T>`, where each `DbSet` represents a table or collection of entities in the database. The context also manages database connections, tracks changes to entities, and handles operations like saving data and executing queries.
 
+The EF client integrations each include an extension method named `Add\<DatabaseSystem\>DbContext`, where **\<DatabaseSystem\>** is a string identifying the database product you are using. For example, for the SQL Server client extension, the method is named <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> and for the PostgreSQL client extension, the method is named <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A>.
 
-What does the aspire AddXDbContext method do?
+These .NET Aspire add context methods:
 
-Why is this good?
+- Check that a database context of the same type is not already registered in the Dependency Injection (DI) container.
+- Use the connection name you pass to the method to get the connection string from the application builder. This connection name must match the name used when adding the corresponding resource to the app host project.
+- Apply an EF settings object, if you passed one.
+- Add a database context pool to the DI container.
+- Configure instrumentation, such as tracing and health checks.
 
-Link to individual articles
+Use these .NET Aspire add context methods when you want a simple way to create the database context and don't need to implement advanced EF techniques.
+
+> AJMTODO: Link to individual articles?
 
 ## Enrich an Entity Framework database context
 
-Use the standard EF way to create a context and add it to the DI container
+Alternatively, you create a database context and add it to the DI container using the standard entity `AddDbContext` method, as used in non-.NET Aspire projects:
 
-Use the Enrich method to add Aspire stuff to it
+> AJMTODO: pivots here?
 
-Why do it this way?
+```csharp
+builder.Services.AddDbContext<ExampleDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("database")
+        ?? throw new InvalidOperationException("Connection string 'database' not found.")));
+```
 
-Example with interceptors
+You have more flexibility when you create the database context in this way, for example:
+
+- You can reuse existing configuration code for the database context without rewriting it for .NET Aspire.
+- You can use Entity Framework Core interceptors to modify database operations.
+- You can choose not to use Entity Framework Core context pooling, which may perform better in some circumstances.
+
+
+By default, a database context create this way doesn't include .NET Aspire features,  such as telemetry and health checks. To add those features, each .NET Aspire EF client integration includes a method named `Enrich\<DatabaseSystem\>DbContext`. These enrich context methods:
+
+- Apply an EF settings object, if you passed one.
+- Configure connection retry settings.
+- Configure instrumentation, such as tracing and health checks.
+
+> [!NOTE]
+> You must have already added a database context to the DI container before you call an enrich method.
+
+> AJMTODO: pivots here?
+
+```csharp
+builder.EnrichSqlServerDbContext<ExampleDbContext>(
+    configureSettings: settings =>
+    {
+        settings.DisableRetry = false;
+        settings.CommandTimeout = 30 // seconds
+    });
+```
+
+> AJMTODO: Example with interceptors
 
 ## Use Entity Framework context factories in .NET Aspire
 
