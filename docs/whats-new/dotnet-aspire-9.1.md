@@ -99,14 +99,18 @@ We fixed [an annoying bug](https://github.com/dotnet/aspire/issues/6504) in 9.1 
 
 We did a lot of work this release to improve various Azure integrations:
 
-- CosmosDB now supports managed identity for authentication
+- CosmosDB now supports Microsoft Entra ID for authentication
   - Support for the [vnext-preview emulator](/azure/cosmos-db/emulator-linux)
 - Service Bus and SignalR resources now let you `RunAsEmulator()`
 - It's much simpler to connect to existing Azure resources in the app host
+- Experimental support for configuring custom domains in Azure Container Apps.
 
 ### Even more integration updates
 
-Microsoft.Extensions.AI is now supported in OpenAI, RabbitMQ was updated to v7, and MongoDB was updated to v3. Many other integrations got updates, fixes, and new features. Check out our [GitHub release](https://github.com/dotnet/aspire/releases) for details and more!
+ - Microsoft.Extensions.AI is now supported in OpenAI
+ - RabbitMQ was updated to v7, and MongoDB was updated to v3.
+ - Dapr has migrated to the [CommunityToolkit](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Dapr) to allow it to innovate faster.
+ - Many other integrations got updates, fixes, and new features. Check out our [GitHub release](https://github.com/dotnet/aspire/releases) for details and more!
 
 ## Deployment
 
