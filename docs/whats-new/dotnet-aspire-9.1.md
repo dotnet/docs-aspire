@@ -87,7 +87,7 @@ You can now tell resources not to start with the rest of your app by using `With
 
 ### Better Docker integration
 
-We added the ability to `PublishAsDockerfile()` for any project or container resource, and you can overload existing Dockerfiles to customize them further in the app host.
+We added the ability to `PublishAsDockerfile()` for any projects and executable resources. This enables full customization of the docker container and docker file used in publish mode.
 
 ### Cleaning up Docker networks
 
