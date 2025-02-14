@@ -71,7 +71,7 @@ The console log page has two new options. You're now able to download your logs 
 
 There are a bunch of new features in 9.1 that streamline and polish popular tasks, including:
 
-- Start/Stop button now also appears on the console logs page
+- Resource commands, such as Start/Stop buttons, now also appears on the console logs page
 - Single click to open in text visualizer
 - URLs are automatically clickable, and there are no more commas separating endpoints
 
@@ -100,7 +100,7 @@ We fixed [an annoying bug](https://github.com/dotnet/aspire/issues/6504) in 9.1 
 We did a lot of work this release to improve various Azure integrations:
 
 - CosmosDB now supports managed identity for authentication
-    - Support for the [vnext-preview emulator](https://learn.microsoft.com/azure/cosmos-db/emulator-linux)
+  - Support for the [vnext-preview emulator](/azure/cosmos-db/emulator-linux)
 - Service Bus and SignalR resources now let you `RunAsEmulator()`
 - It's much simpler to connect to existing Azure resources in the app host
 
