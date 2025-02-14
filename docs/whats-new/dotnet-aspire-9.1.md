@@ -55,11 +55,11 @@ You can now filter what you see in the Resource view by type, state, and health 
 
 When you click on a resource in the dashboard, more data now appears in the details pane, including references, back references, and volumes with their mount types.
 
-![A screenshot of the aspire dashboard with references and back references showing](dashboard-resourcedetails.png)
+![A screenshot of the aspire dashboard with references and back references showing](./media/dashboard-resourcedetails.png)
 
 ### CORS support for custom local domains
 
-You can now set the "DOTNET_DASHBOARD_CORS_ALLOWED_ORIGINS" environment variable to allow the dashboard to receive telemetry from other browser apps, such as if you have resources running on custom localhost domains.
+You can now set the `DOTNET_DASHBOARD_CORS_ALLOWED_ORIGINS` environment variable to allow the dashboard to receive telemetry from other browser apps, such as if you have resources running on custom localhost domains.
 
 ### Various UX improvements
 
