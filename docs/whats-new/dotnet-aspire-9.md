@@ -401,7 +401,7 @@ In the app host project, observe that there's a `PackageReference` to the new [ð
 
 ```xml
 <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
     <PackageReference Include="Aspire.Hosting.Azure.Functions" Version="9.0.0" />
 </ItemGroup>
 ```
