@@ -1,11 +1,11 @@
 ---
-title: .NET Aspire Elasticsearch integration
+title: .NET Aspire Elasticsearch integration (Preview)
 description: Learn how to use the .NET Aspire Elasticsearch integration, which includes both hosting and client integrations.
-ms.date: 10/11/2024
+ms.date: 02/14/2025
 uid: search/elasticsearch-integration
 ---
 
-# .NET Aspire Elasticsearch integration
+# .NET Aspire Elasticsearch integration (Preview)
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
