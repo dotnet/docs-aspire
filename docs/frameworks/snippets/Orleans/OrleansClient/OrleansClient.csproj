@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Azure.Data.Tables" Version="9.0.0" />
+    <PackageReference Include="Aspire.Azure.Data.Tables" Version="9.1.0" />
     <PackageReference Include="Microsoft.Orleans.Client" Version="9.0.1" />
     <PackageReference Include="Microsoft.Orleans.Clustering.AzureStorage" Version="9.0.1" />
     <ProjectReference Include="..\OrleansContracts\OrleansContracts.csproj" />
