@@ -61,13 +61,17 @@ When you click on a resource in the dashboard, more data now appears in the deta
 
 You can now set the `DOTNET_DASHBOARD_CORS_ALLOWED_ORIGINS` environment variable to allow the dashboard to receive telemetry from other browser apps, such as if you have resources running on custom localhost domains.
 
+### Flexibility with console logs
+
+The console log page has two new options. You're now able to download your logs so you can view them in your own diagnostics tools. Plus, you can turn timestamps on or off to reduce visual clutter when needed.
+
+![A screenshot of the console logs page with the download button, turn off timestamps button, and logs that do not show timestamps](./media/consolelogs-download.png)
+
 ### Various UX improvements
 
 There are a bunch of new features in 9.1 that streamline and polish popular tasks, including:
 
 - Start/Stop button now also appears on the console logs page
-- Download console logs to a file
-- Turn on/off timestamps in logs
 - Single click to open in text visualizer
 - URLs are automatically clickable, and there are no more commas separating endpoints
 
