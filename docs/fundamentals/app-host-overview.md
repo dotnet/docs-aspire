@@ -186,6 +186,10 @@ builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 
 In the preceding code, the "apiservice" project resource waits for the "migration" project resource to run to completion before starting. The "migration" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType>. This can be useful in scenarios where you want to run a database migration before starting the API service, for example.
 
+#### Forcing resource start in the dashboard
+
+Waiting for a resource can be bypassed using the "Start" command in the dashboard. Clicking "Start" on a waiting resource in the dashboard instructs it to start immediately without waiting for the resource to be healthy or completed. This can be useful when you want to test a resource immediately and don't want to wait for the app to be in the right state.
+
 ### APIs for adding and expressing resources
 
 .NET Aspire [hosting integrations](integrations-overview.md#hosting-integrations) and [client integrations](integrations-overview.md#client-integrations) are both delivered as NuGet packages, but they serve different purposes. While _client integrations_ provide client library configuration for consuming apps outside the scope of the app host, _hosting integrations_ provide APIs for expressing resources and dependencies within the app host. For more information, see [.NET Aspire integrations overview: Integration responsibilities](integrations-overview.md#integration-responsibilities).
