@@ -152,8 +152,7 @@ builder.AddProject<Projects.AspireApp_DbMigration>("dbmigration")
 
 In the preceeding code the "dbmigration" resource is configured to not automatically start with the distributed application.
 
-Resources with explicit start can be started from the .NET Aspire dashboard by clicking the "Start" command. For more information, see [.NET Aspire dashboard: Stop or Start a resource
-](dashboard/explore#stop-or-start-a-resource).
+Resources with explicit start can be started from the .NET Aspire dashboard by clicking the "Start" command. For more information, see [.NET Aspire dashboard: Stop or Start a resource](dashboard/explore#stop-or-start-a-resource).
 
 ## Reference resources
 
