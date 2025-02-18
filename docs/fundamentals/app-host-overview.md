@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs for adding resources and expressing dependencies.
-ms.date: 12/13/2024
+ms.date: 02/18/2025
 ms.topic: overview
 uid: dotnet/aspire/app-host
 ---
@@ -152,7 +152,7 @@ builder.AddProject<Projects.AspireApp_DbMigration>("dbmigration")
 
 In the preceeding code the "dbmigration" resource is configured to not automatically start with the distributed application.
 
-Resources with explicit start can be started from the .NET Aspire dashboard by clicking the "Start" command. For more information, see [.NET Aspire dashboard: Stop or Start a resource](dashboard/explore#stop-or-start-a-resource).
+Resources with explicit start can be started from the .NET Aspire dashboard by clicking the "Start" command. For more information, see [.NET Aspire dashboard: Stop or Start a resource](dashboard/explore.md#stop-or-start-a-resource).
 
 ## Reference resources
 
