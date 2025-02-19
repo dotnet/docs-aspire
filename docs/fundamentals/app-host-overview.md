@@ -488,6 +488,32 @@ This logic can easily be inverted to connect to an existing Redis resource when 
 > [!IMPORTANT]
 > .NET Aspire provides common APIs to control the modality of resource builders, allowing resources to behave differently based on the execution mode. The fluent APIs are prefixed with `RunAs*` and `PublishAs*`. The `RunAs*` APIs influence the local development (or run mode) behavior, whereas the `PublishAs*` APIs influence the publishing of the resource.
 
+## Resource relationships
+
+Resource relationships link resources together and they are displayed in the dashboard. Relationships are visible in the [dashboard's resource details](./dashboard/explore.md#resource-details), and `Parent` relationships are used to control resource nesting on the resources page.
+
+Relationship have a descriptive type and they're automatically created by some app model APIs. For example:
+
+* <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> adds a relationship to the target resource with the type `Reference`.
+* <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> adds a relationship to the target resource with the type `WaitFor`.
+* Adding a database to a DB container adds a relationship from the database to the container with the type `Parent`
+
+Relationships can also be explicitly added to the app model using `WithRelationship` and `WithParentRelationship`:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var catalogDb = builder.AddPostgres("postgres")
+                       .WithDataVolume()
+                       .AddDatabase("catalogdb");
+
+builder.AddProject<Projects.AspireApp_CatalogDbMigration>("migration")
+       .WithReference(catalogDb)
+       .WithParentRelationship(catalogDb);
+
+builder.Build().Run();
+```
+
 ## See also
 
 - [.NET Aspire integrations overview](integrations-overview.md)
