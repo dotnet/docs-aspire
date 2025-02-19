@@ -2,7 +2,6 @@
 title: .NET Aspire and GitHub Codespaces
 description: Learn how to use .NET Aspire with GitHub Codespaces.
 ms.date: 02/19/2025
-zone_pivot_groups: dev-environment
 ---
 
 # .NET Aspire and GitHub Codespaces
