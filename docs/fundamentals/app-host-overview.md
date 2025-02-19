@@ -490,15 +490,15 @@ This logic can easily be inverted to connect to an existing Redis resource when 
 
 ## Resource Relationships  
 
-Resource relationships link resources together and are displayed in the dashboard. These relationships are visible in the [dashboard's resource details](./dashboard/explore.md#resource-details), and `Parent` relationships control resource nesting on the resources page.  
+Resource relationships link resources together. Relationships are informational and don’t impact an app’s runtime behavior. Instead, they’re used when displaying details about resources in the dashboard. For example, relationships are visible in the [dashboard's resource details](./dashboard/explore.md#resource-details), and `Parent` relationships control resource nesting on the resources page.
 
-Each relationship has a descriptive type and is automatically created by some app model APIs. For example:  
+Relationships are automatically created by some app model APIs. For example:
 
-- <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> adds a relationship to the target resource with the type `Reference`.  
-- <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> adds a relationship to the target resource with the type `WaitFor`.  
-- Adding a database to a DB container creates a relationship from the database to the container with the type `Parent`.  
+- <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> adds a relationship to the target resource with the type `Reference`.
+- <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> adds a relationship to the target resource with the type `WaitFor`.
+- Adding a database to a DB container creates a relationship from the database to the container with the type `Parent`.
 
-Relationships can also be explicitly added to the app model using `WithRelationship` and `WithParentRelationship`.  
+Relationships can also be explicitly added to the app model using `WithRelationship` and `WithParentRelationship`.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
