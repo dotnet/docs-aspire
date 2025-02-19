@@ -24,8 +24,8 @@ The following table summarizes the naming conventions used to express Azure reso
 | `PublishAsConnectionString` | Changes the resource to be published as a connection string reference in the manifest. |
 | `PublishAsContainer` | Changes the resource to be published as a container in the manifest. |
 | `PublishAsExisting` | Marks the resource as an existing resource when the application is deployed. |
-| `RunAsContainer` | Configures the Azure resource to run locally in a container. |
-| `RunAsEmulator` | Configures the Azure resource to be emulated. |
+| `RunAsContainer` | Configures the Azure resource to run locally in a container. For more information, see [Local containers](#local-containers). |
+| `RunAsEmulator` | Configures the Azure resource to be emulated. For more information, see [Local emulators](#local-emulators). |
 | `RunAsExisting` | Marks the resource as an existing resource when the application is running. |
 
 > [!NOTE]
@@ -68,7 +68,7 @@ The consuming API project uses the connection string information with no knowled
 
 In addition to the pre-existing <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> API, .NET Aspire provides expanded support for referencing existing Azure resources. This is achieved through the `PublishAsExisting`, `RunAsExisting`, and `AsExisting` APIs. These APIs allow developers to reference already-deployed Azure resources, configure them, and generate appropriate deployment manifests using Bicep templates.
 
-### Run existing Azure resources
+### Express existing Azure resources for run mode
 
 The `RunAsExisting` method is used when a distributed application is executing in "run" mode. In this mode, it assumes that the referenced Azure resource already exists and integrates with it during execution without provisioning the resource. To mark an Azure resource as existing, call the `RunAsExisting` method on the resource builder. Consider the following example:
 
@@ -90,7 +90,7 @@ The preceding code:
 - Calls the `RunAsExisting` method on the `serviceBus` resource builder, passing the `existingResourceName` parameter.
 - Adds a queue named `queue` to the `serviceBus` resource.
 
-### Publish existing Azure resources
+### Express existing Azure resources for publish mode
 
 The `PublishAsExisting` method is used in "publish" mode when the intent is to declare and reference an already-existing Azure resource during publish mode. This API facilitates the creation of manifests and templates that include resource definitions that map to existing resources in Bicep.
 
@@ -129,6 +129,8 @@ After the app host is executed in publish mode, the generated manifest file will
 }
 ```
 
+For more information on the manifest file, see [.NET Aspire manifest format for deployment tool builders](../deployment/manifest-format.md).
+
 Additionally, the generated Bicep template will include the `existingResourceName` parameter, which can be used to reference the existing Azure resource. Consider the following generated Bicep template:
 
 ```bicep
@@ -146,7 +148,9 @@ resource messaging 'Microsoft.ServiceBus/namespaces@2024-01-01' existing = {
 output serviceBusEndpoint string = messaging.properties.serviceBusEndpoint
 ```
 
-### Add existing Azure resources
+For more information on the generated Bicep template, see [Infrastructure as code](#infrastructure-as-code).
+
+### Express existing Azure resources
 
 The `AsExisting` method is used when the distributed application is running in "run" or "publish" mode. Because the `AsExisting` method can operate in both scenarios, it can only support a parameterized reference to the resource name or resource group name.
 
