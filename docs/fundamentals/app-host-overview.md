@@ -494,9 +494,9 @@ Resource relationships link resources together and they are displayed in the das
 
 Relationship have a descriptive type and they're automatically created by some app model APIs. For example:
 
-* <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> adds a relationship to the target resource with the type `Reference`.
-* <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> adds a relationship to the target resource with the type `WaitFor`.
-* Adding a database to a DB container adds a relationship from the database to the container with the type `Parent`
+- <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> adds a relationship to the target resource with the type `Reference`.
+- <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> adds a relationship to the target resource with the type `WaitFor`.
+- Adding a database to a DB container adds a relationship from the database to the container with the type `Parent`
 
 Relationships can also be explicitly added to the app model using `WithRelationship` and `WithParentRelationship`:
 
