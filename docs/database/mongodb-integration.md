@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire MongoDB database integration
 description: Learn how to use the .NET Aspire MongoDB database integration, which includes both hosting and client integrations.
-ms.date: 12/03/2024
+ms.date: 02/19/2025
 uid: database/mongodb-integration
 ---
 
@@ -220,6 +220,9 @@ dotnet add package Aspire.MongoDB.Driver
 ```
 
 ---
+
+> [!IMPORTANT]
+> The `Aspire.MongoDB.Driver` NuGet package depends on the `MongoDB.Driver` NuGet package. With the release of version 3.0.0 of `MongoDB.Driver`, a binary breaking change was introduced. To address this, a new client integration package, `Aspire.MongoDB.Driver.v3`, was created. The original `Aspire.MongoDB.Driver` package continues to reference `MongoDB.Driver` version 2.30.0, ensuring compatibility with previous versions of the RabbitMQ client integration. The new `Aspire.MongoDB.Driver.v3` package references `MongoDB.Driver` version 3.0.0.
 
 ### Add MongoDB client
 

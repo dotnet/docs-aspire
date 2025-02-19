@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire RabbitMQ integration
 description: Learn how to use the .NET Aspire RabbitMQ message-broker integration, which includes both hosting and client integrations.
-ms.date: 10/11/2024
+ms.date: 02/19/2025
 uid: messaging/rabbitmq-integration
 ---
 
@@ -164,6 +164,9 @@ dotnet add package Aspire.RabbitMQ.Client
 ```
 
 ---
+
+> [!IMPORTANT]
+> The `Aspire.RabbitMQ.Client` NuGet package depends on the `RabbitMQ.Client` NuGet package. With the release of version 7.0.0 of `RabbitMQ.Client`, a binary breaking change was introduced. To address this, a new client integration package, `Aspire.RabbitMQ.Client.v7`, was created. The original `Aspire.RabbitMQ.Client` package continues to reference `RabbitMQ.Client` version 6.8.1, ensuring compatibility with previous versions of the RabbitMQ client integration. The new `Aspire.RabbitMQ.Client.v7` package references `RabbitMQ.Client` version 7.0.0.
 
 ### Add RabbitMQ client
 
