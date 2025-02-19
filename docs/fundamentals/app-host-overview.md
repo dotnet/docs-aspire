@@ -490,7 +490,7 @@ This logic can easily be inverted to connect to an existing Redis resource when 
 
 ## Resource Relationships  
 
-Resource relationships link resources together. Relationships are informational and don’t impact an app’s runtime behavior. Instead, they’re used when displaying details about resources in the dashboard. For example, relationships are visible in the [dashboard's resource details](./dashboard/explore.md#resource-details), and `Parent` relationships control resource nesting on the resources page.
+Resource relationships link resources together. Relationships are informational and don't impact an app's runtime behavior. Instead, they're used when displaying details about resources in the dashboard. For example, relationships are visible in the [dashboard's resource details](./dashboard/explore.md#resource-details), and `Parent` relationships control resource nesting on the resources page.
 
 Relationships are automatically created by some app model APIs. For example:
 
