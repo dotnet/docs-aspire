@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs for adding resources and expressing dependencies.
-ms.date: 02/18/2025
+ms.date: 02/19/2025
 ms.topic: overview
 uid: dotnet/aspire/app-host
 ---
@@ -135,25 +135,6 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 
 The preceding code adds three replicas of the "apiservice" project resource to the app model. For more information, see [.NET Aspire dashboard: Resource replicas](dashboard/explore.md#resource-replicas).
 
-## Configure explicit resource start
-
-Project, executable and container resources are automatically started with your distributed application by default. A resource can be configured to wait for an explicit startup instruction with the `WithExplicitStart()` method. A resource configured with `WithExplicitStart()` is initialized with `KnownResourceStates.NotStarted`.
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var postgres = builder.AddPostgres("postgres");
-var postgresdb = postgres.AddDatabase("postgresdb");
-
-builder.AddProject<Projects.AspireApp_DbMigration>("dbmigration")
-       .WithReference(postgresdb)
-       .WithExplicitStart();
-```
-
-In the preceeding code the "dbmigration" resource is configured to not automatically start with the distributed application.
-
-Resources with explicit start can be started from the .NET Aspire dashboard by clicking the "Start" command. For more information, see [.NET Aspire dashboard: Stop or Start a resource](dashboard/explore.md#stop-or-start-a-resource).
-
 ## Reference resources
 
 A reference represents a dependency between resources. For example, you can probably imagine a scenario where you a web frontend depends on a Redis cache. Consider the following example app host `Program` C# code:
@@ -204,6 +185,25 @@ builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 ```
 
 In the preceding code, the "apiservice" project resource waits for the "migration" project resource to run to completion before starting. The "migration" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType>. This can be useful in scenarios where you want to run a database migration before starting the API service, for example.
+
+### Configure explicit resource start
+
+Project, executable and container resources are automatically started with your distributed application by default. A resource can be configured to wait for an explicit startup instruction with the `WithExplicitStart()` method. A resource configured with `WithExplicitStart()` is initialized with `KnownResourceStates.NotStarted`.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var postgres = builder.AddPostgres("postgres");
+var postgresdb = postgres.AddDatabase("postgresdb");
+
+builder.AddProject<Projects.AspireApp_DbMigration>("migration")
+       .WithReference(postgresdb)
+       .WithExplicitStart();
+```
+
+In the preceding code the `migration` resource is configured to not automatically start with the distributed application.
+
+Resources with explicit start can be started from the .NET Aspire dashboard by clicking the "Start" command. For more information, see [.NET Aspire dashboard: Stop or Start a resource](dashboard/explore.md#stop-or-start-a-resource).
 
 #### Forcing resource start in the dashboard
 

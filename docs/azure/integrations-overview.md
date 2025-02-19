@@ -1,13 +1,37 @@
 ---
 title: Azure integrations overview
 description: Overview of the Azure integrations available in the .NET Aspire.
-ms.date: 12/17/2024
+ms.date: 02/19/2025
 uid: dotnet/aspire/integrations/azure-overview
 ---
 
 # .NET Aspire Azure integrations overview
 
 [Azure](/azure) is the most popular cloud platform for building and deploying [.NET applications](/dotnet/azure). The [Azure SDK for .NET](/dotnet/azure/sdk/azure-sdk-for-dotnet) allows for easy management and use of Azure services. .NET Aspire provides a set of integrations with Azure services, where you're free to add new resources or connect to existing ones. This article details some common aspects of all Azure integrations in .NET Aspire and aims to help you understand how to use them.
+
+## Naming conventions and APIs for expressing Azure resources
+
+The distributed application builder, part of the [app host](../fundamentals/app-host-overview.md), employs the builder pattern, allowing consumers to `AddAzure*` resources to the [_app model_](../fundamentals/app-host-overview.md#terminology). Azure hosting integrations provide APIs to specify how these resources should be "published" or "run".
+
+### App host run modes
+
+When the app host executes, the [_execution context_](../fundamentals/app-host-overview.md#execution-context) determines whether the app host is in _run_ or _publish_ mode. The naming conventions for these APIs indicate the intended action for the resource. For more information on execution modes, see [Execution context](../fundamentals/app-host-overview.md#execution-context).
+
+The following table summarizes the naming conventions used to express Azure resources:
+
+| API | Description |
+|--|--|
+| `PublishAsConnectionString` | Changes the resource to be published as a connection string reference in the manifest. |
+| `PublishAsContainer` | Changes the resource to be published as a container in the manifest. |
+| `PublishAsExisting` | Marks the resource as an existing resource when the application is deployed. |
+| `RunAsContainer` | Configures the Azure resource to run locally in a container. |
+| `RunAsEmulator` | Configures the Azure resource to be emulated. |
+| `RunAsExisting` | Marks the resource as an existing resource when the application is running. |
+
+> [!NOTE]
+> Not all APIs are available on all Azure resources. For example, some Azure resources can be containerized or emulated, while others cannot.
+
+When it comes to specifying whether an Azure resource in the app model is an existing resource, you can use the `AsExisting` API. The `AsExisting` method marks the resource as an existing resource in both run and publish modes. You can query whether a resource has been marked as an existing resource, by calling the `IsExisting` extension method on the <xref:Aspire.Hosting.ApplicationModel.IResource>. For more information, see [Mark Azure resources as existing](#mark-azure-resources-as-existing).
 
 ## Add connection to existing Azure resources
 
@@ -39,6 +63,112 @@ The preceding code:
 - The `api` project references the `storage` resource regardless of the mode.
 
 The consuming API project uses the connection string information with no knowledge of how the app host configured it. In "publish" mode, the code adds a new Azure Storage resource—which would be reflected in the [deployment manifest](../deployment/manifest-format.md) accordingly. When in "run" mode, the connection string corresponds to a configuration value visible to the app host. It's assumed that any and all role assignments for the target resource have been configured. This means, you'd likely configure an environment variable or a user secret to store the connection string. The configuration is resolved from the `ConnectionStrings__storage` (or `ConnectionStrings:storage`) configuration key. These configuration values can be viewed when the app runs. For more information, see [Resource details](../fundamentals/dashboard/explore.md#resource-details).
+
+## Mark Azure resources as existing
+
+In addition to the pre-existing <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> API, .NET Aspire provides expanded support for referencing existing Azure resources. This is achieved through the `PublishAsExisting`, `RunAsExisting`, and `AsExisting` APIs. These APIs allow developers to reference already-deployed Azure resources, configure them, and generate appropriate deployment manifests using Bicep templates.
+
+### Run existing Azure resources
+
+The `RunAsExisting` method is used when a distributed application is executing in "run" mode. In this mode, it assumes that the referenced Azure resource already exists and integrates with it during execution without provisioning the resource. To mark an Azure resource as existing, call the `RunAsExisting` method on the resource builder. Consider the following example:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder();
+
+var existingResourceName = builder.AddParameter("existingResourceName");
+
+var serviceBus = builder.AddAzureServiceBus("messaging")
+    .RunAsExisting(existingResourceName)
+    .WithQueue("queue");
+```
+
+The preceding code:
+
+- Creates a new `builder` instance.
+- Adds a parameter named `existingResourceName` to the builder.
+- Adds an Azure Service Bus resource named `messaging` to the builder.
+- Calls the `RunAsExisting` method on the `serviceBus` resource builder, passing the `existingResourceName` parameter.
+- Adds a queue named `queue` to the `serviceBus` resource.
+
+### Publish existing Azure resources
+
+The `PublishAsExisting` method is used in "publish" mode when the intent is to declare and reference an already-existing Azure resource during publish mode. This API facilitates the creation of manifests and templates that include resource definitions that map to existing resources in Bicep.
+
+To mark an Azure resource as existing in for the "publish" mode, call the `PublishAsExisting` method on the resource builder. Consider the following example:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder();
+
+var existingResourceName = builder.AddParameter("existingResourceName");
+
+var serviceBus = builder.AddAzureServiceBus("messaging")
+    .PublishAsExisting(existingResourceName)
+    .WithQueue("queue");
+```
+
+The preceding code:
+
+- Creates a new `builder` instance.
+- Adds a parameter named `existingResourceName` to the builder.
+- Adds an Azure Service Bus resource named `messaging` to the builder.
+- Calls the `PublishAsExisting` method on the `serviceBus` resource builder, passing the `existingResourceName` parameter.
+- Adds a queue named `queue` to the `serviceBus` resource.
+
+After the app host is executed in publish mode, the generated manifest file will include the `existingResourceName` parameter, which can be used to reference the existing Azure resource. Consider the following generated manifest file:
+
+```json
+{
+  "type": "azure.bicep.v0",
+  "connectionString": "{messaging.outputs.serviceBusEndpoint}",
+  "path": "messaging.module.bicep",
+  "params": {
+    "existingResourceName": "{existingResourceName.value}",
+    "principalType": "",
+    "principalId": ""
+  }
+}
+```
+
+Additionally, the generated Bicep template will include the `existingResourceName` parameter, which can be used to reference the existing Azure resource. Consider the following generated Bicep template:
+
+```bicep
+@description('The location for the resource(s) to be deployed.')
+param location string = resourceGroup().location
+
+param existingResourceName string
+param principalType string
+param principalId string
+
+resource messaging 'Microsoft.ServiceBus/namespaces@2024-01-01' existing = {
+  name: existingResourceName
+}
+
+output serviceBusEndpoint string = messaging.properties.serviceBusEndpoint
+```
+
+### Add existing Azure resources
+
+The `AsExisting` method is used when the distributed application is running in "run" or "publish" mode. Because the `AsExisting` method can operate in both scenarios, it can only support a parameterized reference to the resource name or resource group name.
+
+To mark an Azure resource as existing, call the `AsExisting` method on the resource builder. Consider the following example:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder();
+
+var existingResourceName = builder.AddParameter("existingResourceName");
+
+var serviceBus = builder.AddAzureServiceBus("messaging")
+    .AsExisting(existingResourceName)
+    .WithQueue("queue");
+```
+
+The preceding code:
+
+- Creates a new `builder` instance.
+- Adds a parameter named `existingResourceName` to the builder.
+- Adds an Azure Service Bus resource named `messaging` to the builder.
+- Calls the `AsExisting` method on the `serviceBus` resource builder, passing the `existingResourceName` parameter.
+- Adds a queue named `queue` to the `serviceBus` resource.
 
 ## Add Azure resources
 
