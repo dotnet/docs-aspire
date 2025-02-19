@@ -514,7 +514,7 @@ builder.AddProject<Projects.AspireApp_CatalogDbMigration>("migration")
 builder.Build().Run();
 ```
 
-The preceding example configures the `migration` project to have the `catalogdb` database resource as its parent. The `Parent` relationship is special because it controls resource nesting on the resource page. In this example, `migration` is nested under `catalogdb`.
+The preceding example uses `WithParentRelationship` to configure `catalogdb` database as the `migration` project's parent. The `Parent` relationship is special because it controls resource nesting on the resource page. In this example, `migration` is nested under `catalogdb`.
 
 > [!NOTE]
 > There is validation for parent relationships to prevent a resource from having multiple parents or creating a circular reference. These configurations can't be rendered in the UI, and the app model will throw an error.
