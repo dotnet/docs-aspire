@@ -488,17 +488,17 @@ This logic can easily be inverted to connect to an existing Redis resource when 
 > [!IMPORTANT]
 > .NET Aspire provides common APIs to control the modality of resource builders, allowing resources to behave differently based on the execution mode. The fluent APIs are prefixed with `RunAs*` and `PublishAs*`. The `RunAs*` APIs influence the local development (or run mode) behavior, whereas the `PublishAs*` APIs influence the publishing of the resource.
 
-## Resource relationships
+## Resource Relationships  
 
-Resource relationships link resources together and they are displayed in the dashboard. Relationships are visible in the [dashboard's resource details](./dashboard/explore.md#resource-details), and `Parent` relationships are used to control resource nesting on the resources page.
+Resource relationships link resources together and are displayed in the dashboard. These relationships are visible in the [dashboard's resource details](./dashboard/explore.md#resource-details), and `Parent` relationships control resource nesting on the resources page.  
 
-Relationship have a descriptive type and they're automatically created by some app model APIs. For example:
+Each relationship has a descriptive type and is automatically created by some app model APIs. For example:  
 
-- <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> adds a relationship to the target resource with the type `Reference`.
-- <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> adds a relationship to the target resource with the type `WaitFor`.
-- Adding a database to a DB container adds a relationship from the database to the container with the type `Parent`
+- <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> adds a relationship to the target resource with the type `Reference`.  
+- <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> adds a relationship to the target resource with the type `WaitFor`.  
+- Adding a database to a DB container creates a relationship from the database to the container with the type `Parent`.  
 
-Relationships can also be explicitly added to the app model using `WithRelationship` and `WithParentRelationship`:
+Relationships can also be explicitly added to the app model using `WithRelationship` and `WithParentRelationship`.  
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -513,6 +513,11 @@ builder.AddProject<Projects.AspireApp_CatalogDbMigration>("migration")
 
 builder.Build().Run();
 ```
+
+The preceding example configures the `migration` project to have the `catalogdb` database resource as its parent. The `Parent` relationship is special because it controls resource nesting on the resource page. In this example, `migration` is nested under `catalogdb`.
+
+> [!NOTE]
+> There is validation for parent relationships to prevent a resource from having multiple parents or creating a circular reference. These configurations can't be rendered in the UI, and the app model will throw an error.
 
 ## See also
 
