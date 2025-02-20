@@ -94,7 +94,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-For more information, see [External parameters](../../fundamentals/external-parameters.md).
+For more information, see [External parameters](../fundamentals/external-parameters.md).
 
 ### Add NATS server resource with data volume
 
