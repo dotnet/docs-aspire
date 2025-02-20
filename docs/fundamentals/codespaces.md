@@ -6,7 +6,7 @@ ms.date: 02/19/2025
 
 # .NET Aspire and GitHub Codespaces
 
-GitHub Codespaces provides a cloud hosted development environment based on Visual Studio Code which can be used from a web-browser or from Visual Studio Code locally (where Visual Studio Code becomes a client connecting to a backend hosting in the cloud. With .NET Aspire 9.1 we have added logic to better support GitHub Codespaces including:
+[GitHub Codespaces](https://github.com/features/codespaces) offers a cloud-hosted development environment based on Visual Studio Code. It can be accessed directly from a web browser or through Visual Studio Code locally, where Visual Studio Code acts as a client connecting to a cloud-hosted backend. With .NET Aspire 9.1, comes logic to better support GitHub Codespaces including:
 
 * Automatically configure port forwarding with the correct protocol.
 * Automatically translate URLs in the .NET Aspire dashboard.
