@@ -6,7 +6,7 @@ ms.date: 02/19/2025
 
 # .NET Aspire and Visual Studio Code Devcontainers
 
-The Devcontainers extension in Visual Studio Code provides a way for development teams to develop within a containerized environment where all dependencies are preconfigured. With .NET Aspire 9.1 we have added logic to better support working with .NET Aspire within a Devcontainer environment by automatically configuring port forwarding.
+The [Devcontainers Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) provides a way for development teams to develop within a containerized environment where all dependencies are preconfigured. With .NET Aspire 9.1, there's added logic to better support working with .NET Aspire within a Devcontainer environment by automatically configuring port forwarding.
 
 Prior to .NET Aspire 9.1 it was still possible to use .NET Aspire within a Devcontainer, however more manual configuration was required.
 
