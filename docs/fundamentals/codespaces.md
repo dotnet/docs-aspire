@@ -19,7 +19,7 @@ GitHub Codespaces builds upon Visual Studio Code and the [Devcontainers specific
 
 ## Quick start using template repository
 
-Configuration of GitHub Codespaces is controlled by a a `.devcontainer/devcontainer.json` file in your own repository. The easiest way to get started using .NET Aspire in GitHub Codespaces is to create a new repository using our [template repository](https://github.com/dotnet/aspire-devcontainer) by following the following steps:
+To configure GitHub Codespaces for .NET Aspire, use the _.devcontainer/devcontainer.json_ file in your repository. The simplest way to get started is by creating a new repository from our [template repository](https://github.com/dotnet/aspire-devcontainer). Consider the following steps:
 
 1. [Create a new repository](https://github.com/new?template_name=aspire-devcontainer&template_owner=dotnet) using our template.
 
