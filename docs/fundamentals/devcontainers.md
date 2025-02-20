@@ -1,5 +1,5 @@
 ---
-title: .NET Aspire and Devcontainers in Visual Studio Code
+title: Devcontainers in Visual Studio Code
 description: Learn how to use .NET Aspire with Devcontainers in Visual Studio Code.
 ms.date: 02/19/2025
 ---
