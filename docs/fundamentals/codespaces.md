@@ -27,7 +27,7 @@ To configure GitHub Codespaces for .NET Aspire, use the _.devcontainer/devcontai
 
 Once you provide the details and click _Create repository_ the repository will be created and you will be shown the repository in GitHub.
 
-2. From the new repository click on the Code button and select the Codespaces tab and then click _Create codespace on main_.
+1. From the new repository click on the Code button and select the Codespaces tab and then select **Create codespace on main**.
 
 ![Create codespace](media/create-codespace-from-repository.png)
 
