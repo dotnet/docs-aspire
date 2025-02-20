@@ -5,6 +5,8 @@ ms.date: 02/12/2025
 uid: database/use-entity-framework
 ---
 
+> AJMTODO: Is this title right? How about "Advanced EF usage..." or something?
+
 # Use Entity Framework with .NET Aspire
 
 In a cloud-native solution, such as those .NET Aspire is built to create, microservices often need to store data in relational databases. .NET Aspire includes integrations that you can use to ease that task, some of which use the Entity Framework (EF) Object-Relational Mapping (ORM) framework to streamline to process further.
@@ -31,6 +33,8 @@ Is there stuff to do in the App Host that only applies to EF?
 > Either repeat this here or link to the individual articles
 
 ## Use a .NET Aspire database context
+
+> AJMTODO: Is this title correct?
 
 In EF, a [database context](/ef/core/dbcontext-configuration/) is a class used to interact with the database. Database contexts inherit from the <xref:Microsoft.EntityFrameworkCore.DbContext> class. They provide access to the database through properties of type `DbSet<T>`, where each `DbSet` represents a table or collection of entities in the database. The context also manages database connections, tracks changes to entities, and handles operations like saving data and executing queries.
 
@@ -80,6 +84,10 @@ You have more flexibility when you create the database context in this way, for 
 
 - You can reuse existing configuration code for the database context without rewriting it for .NET Aspire.
 - You can choose not to use Entity Framework Core context pooling, which may perform better in some circumstances.
+- You can use dynamic connection strings.
+
+   > AJMTODO: Can you? Add an example. Base it on this: https://gavilan.blog/2020/07/09/configuring-entity-framework-core-with-dynamic-connection-strings-asp-net-core/
+
 - You can use [Entity Framework Core interceptors](/ef/core/logging-events-diagnostics/interceptors) to modify database operations.
 
     ```csharp
@@ -166,7 +174,7 @@ Database context pooling is a feature of Entity Framework. Database contexts are
 
 In a .NET Aspire consuming project, there are three ways to use context pooling:
 
-- If you use the .NET Aspire `Add\<DatabaseSystem\>DbContext` methods, a context pool is automatically used.
+- Use the .NET Aspire `Add\<DatabaseSystem\>DbContext` methods. These methods create a context pool automatically.
 - Call the <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextPool> method instead of the Entity Framework <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext> method.
 
     ```csharp
@@ -183,21 +191,35 @@ In a .NET Aspire consuming project, there are three ways to use context pooling:
             ?? throw new InvalidOperationException("Connection string 'database' not found.")));
     ```
 
+Remember to enrich the database context after using the last two methods, as described above.
+
 ## Entity Framework approaches
 
 Model first, database-first, code-first
 
 Migrations are for the last one only.
 
-## Use Entity Framework migrations
 
-Intro - what is a migration? How does it work outside of Aspire
+## External databases
 
-Link to EF documentation
+Databases that are not running in Aspire-managed containers.
+
+## Manage schemas in .NET Aspire projects with Entity Framework migrations
+
+In a cloud-native solution, such as those .NET Aspire is designed to create, each microservice can use a separate database. As you evolve your microservice and add features, you must make matching changes to the database schema. For example, in your **Customers** microservice, if you build a feature to enable users to store the credit card details, you'll need new columns in your database tables. In Entity Framework, instead of manually implementing schema changes with Data Definition Language (DDL) queries, you can just add properties to the `Customer` class. Create an EF **migration** to propagate those properties to the database. Migrations can add, modify, or delete tables, columns, or relationships in the database schema. Because each migration is a generated code file, it can be included seamlessly in version control with the rest of your code.
+
+> [!NOTE]
+> This article discusses how to use EF migrations in .NET Aspire. For more information about migrations, see [Migrations Overview](/ef/core/managing-schemas/migrations)
+
+How to use 'em in Aspire?
+
 
 ### Create a migrations service
 
 Is this the best way to do it? Refer to the migration tutorial
+
+> AJMTODO: Use the DbContent.Database.Migrate() method? This article says don't: https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/applying?tabs=dotnet-core-cli
+
 
 ### Migrations and transactions
 
