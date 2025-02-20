@@ -12,4 +12,4 @@ Prior to .NET Aspire 9.1 it was still possible to use .NET Aspire within a Devco
 
 ## Devcontainers vs. GitHub Codespaces
 
-Using Devcontainers in Visual Studio Code is very similar to using GitHub Codespaces. In addition to supporting Devcontainers in Visual Studio Code, .NET Aspire 9.1 also improves support for using GitHub Codespaces. While the experience is similar between each approach there are some differences and so we have prepared separate documentation. If you want to use .NET Aspire with GitHub Codespaces see [.NET Aspire and GitHub Codespaces](codespaces.md).
+Using Devcontainers in Visual Studio Code is quite similar to using GitHub Codespaces. With the release of .NET Aspire 9.1, support for both Devcontainers in Visual Studio Code and GitHub Codespaces has been enhanced. Although the experiences are similar, there are some differences. For more information on using .NET Aspire with GitHub Codespaces, see [.NET Aspire and GitHub Codespaces](codespaces.md).
