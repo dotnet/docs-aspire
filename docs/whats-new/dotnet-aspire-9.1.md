@@ -67,6 +67,14 @@ The dashboard defaults to the language set in your browser. This release introdu
 
 :::image type="content" source="media/dashboard-language.png" lightbox="media/dashboard-language.png" alt-text="A screenshot of the .NET Aspire dashboard showing the new flyout menu to change language.":::
 
+### Clear logs and telemetry from the dashboard
+
+Buttons have been added to the console logs and telemetry pages to clear data. Now you can reset the dashboard to a blank slate, test your app, view only the relevant logs and telemetry, and repeat.
+
+:::image type="content" source="media/dashboard-remove-telemetry.png" lightbox="media/dashboard-remove-telemetry.png" alt-text="A screenshot of the .NET Aspire dashboard showing the remove button on the structured logs page.":::
+
+This feature is a community contribution from [@Daluur](https://github.com/Daluur).
+
 ### Filtering
 
 You can now filter what you see in the **Resource** page by **Resource type**, **State**, and **Health state**. Consider the following screen capture, which demonstrates the addition of the filter options in the dashboard:
