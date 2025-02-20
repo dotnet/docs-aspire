@@ -1,7 +1,7 @@
 ---
 title: Azure integrations overview
 description: Overview of the Azure integrations available in the .NET Aspire.
-ms.date: 02/19/2025
+ms.date: 02/20/2025
 uid: dotnet/aspire/integrations/azure-overview
 ---
 
@@ -11,11 +11,11 @@ uid: dotnet/aspire/integrations/azure-overview
 
 ## Naming conventions and APIs for expressing Azure resources
 
-The distributed application builder, part of the [app host](../fundamentals/app-host-overview.md), employs the builder pattern, allowing consumers to `AddAzure*` resources to the [_app model_](../fundamentals/app-host-overview.md#terminology). Azure hosting integrations provide APIs to specify how these resources should be "published" or "run".
+The distributed application builder, part of the [app host](../fundamentals/app-host-overview.md), employs the builder pattern, allowing consumers to `AddAzure*` resources to the [_app model_](../fundamentals/app-host-overview.md#terminology). In addition to simply adding resources, developers can also express configuration and how said resource behave in various execution contexts. Azure hosting integrations provide APIs to specify how these resources should be "published" and "run".
 
 ### App host run modes
 
-When the app host executes, the [_execution context_](../fundamentals/app-host-overview.md#execution-context) determines whether the app host is in _run_ or _publish_ mode. The naming conventions for these APIs indicate the intended action for the resource. For more information on execution modes, see [Execution context](../fundamentals/app-host-overview.md#execution-context).
+When the app host executes, the [_execution context_](../fundamentals/app-host-overview.md#execution-context) determines whether the app host is in <xref:Aspire.Hosting.DistributedApplicationOperation.Run> or <xref:Aspire.Hosting.DistributedApplicationOperation.Publish> mode. The naming conventions for these APIs indicate the intended action for the resource. For more information on execution modes, see [Execution context](../fundamentals/app-host-overview.md#execution-context).
 
 The following table summarizes the naming conventions used to express Azure resources:
 
@@ -33,7 +33,7 @@ The following table summarizes the naming conventions used to express Azure reso
 
 When it comes to specifying whether an Azure resource in the app model is an existing resource, you can use the `AsExisting` API. The `AsExisting` method marks the resource as an existing resource in both run and publish modes. You can query whether a resource has been marked as an existing resource, by calling the `IsExisting` extension method on the <xref:Aspire.Hosting.ApplicationModel.IResource>. For more information, see [Mark Azure resources as existing](#mark-azure-resources-as-existing).
 
-## Add connection to existing Azure resources
+## Add existing Azure resources with connection strings
 
 .NET Aspire provides the ability to [connect to existing resources](../fundamentals/app-host-overview.md#reference-existing-resources), including Azure resources. Expressing connection strings is useful when you have existing Azure resources that you want to use in your .NET Aspire app. The <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> API is used with the app host's [execution context](../fundamentals/app-host-overview.md#execution-context) to conditionally add a connection string to the app model.
 
@@ -68,7 +68,7 @@ The consuming API project uses the connection string information with no knowled
 
 In addition to the pre-existing <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> API, .NET Aspire provides expanded support for referencing existing Azure resources. This is achieved through the `PublishAsExisting`, `RunAsExisting`, and `AsExisting` APIs. These APIs allow developers to reference already-deployed Azure resources, configure them, and generate appropriate deployment manifests using Bicep templates.
 
-### Express existing Azure resources for run mode
+### Configure existing Azure resources for run mode
 
 The `RunAsExisting` method is used when a distributed application is executing in "run" mode. In this mode, it assumes that the referenced Azure resource already exists and integrates with it during execution without provisioning the resource. To mark an Azure resource as existing, call the `RunAsExisting` method on the resource builder. Consider the following example:
 
@@ -90,7 +90,7 @@ The preceding code:
 - Calls the `RunAsExisting` method on the `serviceBus` resource builder, passing the `existingResourceName` parameter.
 - Adds a queue named `queue` to the `serviceBus` resource.
 
-### Express existing Azure resources for publish mode
+### Configure existing Azure resources for publish mode
 
 The `PublishAsExisting` method is used in "publish" mode when the intent is to declare and reference an already-existing Azure resource during publish mode. This API facilitates the creation of manifests and templates that include resource definitions that map to existing resources in Bicep.
 
@@ -150,7 +150,10 @@ output serviceBusEndpoint string = messaging.properties.serviceBusEndpoint
 
 For more information on the generated Bicep template, see [Infrastructure as code](#infrastructure-as-code).
 
-### Express existing Azure resources
+> [!WARNING]
+> Some APIs are incompatible with existing Azure resources. For example, you cannot call `UseAccessKeyAuthentication` on an existing Azure Cache for Redis resource. Likewise, you cannot call `UsePasswordAuthentication` on an existing Azure PostgreSQL resource.
+
+### Configure existing Azure resources
 
 The `AsExisting` method is used when the distributed application is running in "run" or "publish" mode. Because the `AsExisting` method can operate in both scenarios, it can only support a parameterized reference to the resource name or resource group name.
 
