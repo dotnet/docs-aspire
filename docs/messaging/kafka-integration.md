@@ -334,14 +334,15 @@ The .NET Aspire Apache Kafka integration dos not emit distributed traces.
 
 The .NET Aspire Apache Kafka integration emits the following metrics using OpenTelemetry:
 
-- `messaging.kafka.network.tx`
-- `messaging.kafka.network.transmitted`
-- `messaging.kafka.network.rx`
-- `messaging.kafka.network.received`
-- `messaging.publish.messages`
-- `messaging.kafka.message.transmitted`
-- `messaging.receive.messages`
-- `messaging.kafka.message.received`
+- `Aspire.Confluent.Kafka`
+    - `messaging.kafka.network.tx`
+    - `messaging.kafka.network.transmitted`
+    - `messaging.kafka.network.rx`
+    - `messaging.kafka.network.received`
+    - `messaging.publish.messages`
+    - `messaging.kafka.message.transmitted`
+    - `messaging.receive.messages`
+    - `messaging.kafka.message.received`
 
 ## See also
 
