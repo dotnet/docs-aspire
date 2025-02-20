@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire NATS integration
 description: Learn how to use the .NET Aspire NATS integration to send logs and traces to a NATS Server.
-ms.date: 10/11/2024
+ms.date: 02/20/2025
 uid: messaging/nats-integration
 ---
 
@@ -70,7 +70,31 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The NATS JetStream functionality provides a built-in persistence engine called JetStream which enables messages to be stored and replayed at a later time. You can optionally provide a `srcMountPath` parameter to specify the path to the JetStream data directory on the host machine (the provided mount path maps to the container's `-sd` argument).
+The NATS JetStream functionality provides a built-in persistence engine called JetStream which enables messages to be stored and replayed at a later time.
+
+### Add NETS server resource with authentication parameters
+
+When you want to explicitly provide the username and password, you can provide those as parameters. Consider the following alternative example:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var username = builder.AddParameter("username", secret: true);
+var password = builder.AddParameter("password", secret: true);
+
+var nats = builder.AddNats(
+    name: "nats",
+    userName: username,
+    password: password);
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(nats);
+
+
+// After adding all resources, run the app...
+```
+
+For more information, see [External parameters](../fundamentals/external-parameters.md).
 
 ### Add NATS server resource with data volume
 
