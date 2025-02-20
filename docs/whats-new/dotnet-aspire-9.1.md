@@ -1,7 +1,7 @@
 ---
 title: What's new in .NET Aspire 9.1
 description: Learn what's new in the official general availability release of .NET Aspire 9.1.
-ms.date: 02/18/2024
+ms.date: 02/20/2025
 ---
 
 # What's new in .NET Aspire 9.1
@@ -57,7 +57,7 @@ With every release of .NET Aspire, the [dashboard](../fundamentals/dashboard/ove
 
 ### Resource relationships
 
-The dashboard now reflects the concept of a "parent" and "child" resource relationship. For example, if you create a Postgres instance with multiple databases, they're now be nested in the **Resource** page in the same instance.
+The dashboard now supports "parent" and "child" resource relationships. For instance, when you create a Postgres instance with multiple databases, these databases are nested under the same instance on the **Resource** page.
 
 :::image type="content" source="media/dashboard-parentchild.png" lightbox="media/dashboard-parentchild.png" alt-text="A screenshot of the .NET Aspire dashboard showing the Postgres resource with a database nested underneath it.":::
 
@@ -69,7 +69,7 @@ The dashboard defaults to the language set in your browser. This release introdu
 
 ### Clear logs and telemetry from the dashboard
 
-Buttons have been added to the console logs and telemetry pages to clear data. Now you can reset the dashboard to a blank slate, test your app, view only the relevant logs and telemetry, and repeat.
+New buttons were added to the **Console logs** and **Traces** pages to clear data. Now you can reset the dashboard to a blank slate, test your app, view only the relevant logs and telemetry, and repeat.
 
 :::image type="content" source="media/dashboard-remove-telemetry.png" lightbox="media/dashboard-remove-telemetry.png" alt-text="A screenshot of the .NET Aspire dashboard showing the remove button on the structured logs page.":::
 
@@ -135,19 +135,21 @@ In 9.1, we addressed a persistent issue where Docker networks created by .NET As
 
 This release also focused on improving various [Azure integrations](../azure/integrations-overview.md):
 
-- The Azure Cosmos DB integration now supports Microsoft Entra ID for authentication and supports the [vnext-preview emulator](/azure/cosmos-db/emulator-linux).
-- Service Bus and SignalR resources now let you `RunAsEmulator()`
-- It's simpler to connect to existing Azure resources in the app host
-- Experimental support for configuring custom domains in Azure Container Apps.
+- The Azure Cosmos DB integration now supports Microsoft Entra ID for authentication and added support for the [vnext-preview](/azure/cosmos-db/emulator-linux) emulator.
+- Emulator support—`RunAsEmulator` APIs were added to the following integrations:
+  - [Add Azure Service Bus emulator resource](../messaging/azure-service-bus-integration.md#add-azure-service-bus-emulator-resource).
+  - [Add Azure Event Hubs emulator resource](../messaging/azure-event-hubs-integration.md#add-azure-event-hubs-emulator-resource).
+- It's simpler to connect to existing Azure resources in the app host.
+- Experimental support for configuring custom domains in Azure Container Apps (ACA) was added.
 
 ### Even more integration updates
 
-- OpenAI now supports [📦 Microsoft.Extensions.AI](https://www.nuget.org/packages/Microsoft.Extensions.AI) NuGet package.
-- RabbitMQ was updated to v7, and MongoDB was updated to v3. These client integration updates introduced breaking changes. A decision was made to release them as new packages, with the specific version number in the package name as a suffix, while the nonsuffixed packages continue to use the previous versions:
-  - [📦 Aspire.RabbitMQ.Client.v7](https://www.nuget.org/packages/Aspire.RabbitMQ.Client.v7) NuGet package.
-  - [📦 Aspire.MongoDB.Driver.v3](https://www.nuget.org/packages/Aspire.MongoDB.Driver.v3) NuGet package.
-- Dapr migrated to the [CommunityToolkit](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Dapr) to allow it to innovate faster.
-- Many other integrations got updates, fixes, and new features. Check out our [GitHub release](https://github.com/dotnet/aspire/releases) for details and more!
+- OpenAI now supports the [📦 Microsoft.Extensions.AI](https://www.nuget.org/packages/Microsoft.Extensions.AI) NuGet package.
+- RabbitMQ updated to version 7, and MongoDB to version 3. These updates introduced breaking changes, leading to the release of new packages with version-specific suffixes. The original packages continue to use the previous versions:
+  - [📦 Aspire.RabbitMQ.Client.v7](https://www.nuget.org/packages/Aspire.RabbitMQ.Client.v7) NuGet package. For more information, see the [.NET Aspire RabbitMQ client integration](../messaging/rabbitmq-integration.md#client-integration) documentation.
+  - [📦 Aspire.MongoDB.Driver.v3](https://www.nuget.org/packages/Aspire.MongoDB.Driver.v3) NuGet package. For more information, see the [.NET Aspire MongoDB client integration](../database/mongodb-integration.md#client-integration) documentation.
+- Dapr migrated to the [CommunityToolkit](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Dapr) to facilitate faster innovation.
+- Numerous other integrations received updates, fixes, and new features. For detailed information, refer to our [GitHub release notes](https://github.com/dotnet/aspire/releases).
 
 The [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS) NuGet package and source code migrated under [AWS ownership](https://github.com/aws/integrations-on-dotnet-aspire-for-aws). This migration happened as part of .NET Aspire 9.0, we're just restating that change here.
 
