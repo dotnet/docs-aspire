@@ -23,6 +23,13 @@ For more information on the official .NET version and .NET Aspire version suppor
 - [.NET support policy](https://dotnet.microsoft.com/platform/support/policy): Definitions for LTS and STS.
 - [.NET Aspire support policy](https://dotnet.microsoft.com/platform/support/policy/aspire): Important unique product life cycle details.
 
+## Improved onboarding experience
+
+The onboarding experience for .NET Aspire has been improved in 9.1. The team has worked on creating a GitHub Codespaces template that installs all the necessary dependencies for .NET Aspire, making it easier to get started, including the templates and the ASP.NET Core developer certificate. Additionally, there's support for Dev Containers. For more information, see:
+
+- [.NET Aspire and GitHub Codespaces](../get-started/github-codespaces.md)
+- [.NET Aspire and Visual Studio Code Dev Containers](../get-started/dev-containers.md)
+
 ## Upgrade to .NET Aspire 9.1
 
 Moving between minor releases of .NET Aspire is simple:
