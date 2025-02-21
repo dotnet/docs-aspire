@@ -1,9 +1,9 @@
 @description('The location for the resource(s) to be deployed.')
 param location string = resourceGroup().location
 
-param principalId string
-
 param principalType string
+
+param principalId string
 
 resource config 'Microsoft.AppConfiguration/configurationStores@2024-05-01' = {
   name: take('config-${uniqueString(resourceGroup().id)}', 50)

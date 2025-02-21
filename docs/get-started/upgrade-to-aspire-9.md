@@ -86,7 +86,7 @@ To upgrade your app host project to .NET Aspire 9.0, you need to update your pro
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
   </ItemGroup>
 
 </Project>
@@ -115,7 +115,7 @@ If you followed all of the preceding steps, your app host project file should lo
 
   <ItemGroup>
 -   <PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.0" />
-+   <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
++   <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
   </ItemGroup>
 
 </Project>
@@ -258,7 +258,7 @@ With the app host project updated, your project file should look like this:
 
   <ItemGroup>
 -   <PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.0" />
-+   <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
++   <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
   </ItemGroup>
 
 </Project>

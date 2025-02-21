@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Milvus database integration
 description: Learn how to use the .NET Aspire Milvus database integration, which includes both hosting and client integrations.
-ms.date: 08/22/2024
+ms.date: 02/14/2025
 uid: database/milvus-integration
 ---
 
@@ -158,7 +158,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 When you debug the .NET Aspire solution, you'll see an Attu container listed in the solution's resources. Select the resource's endpoint to open the GUI and start managing databases.
 
-## Client integration
+## Client integration (Preview)
 
 To get started with the .NET Aspire Milvus client integration, install the [📦 Aspire.Milvus.Client](https://www.nuget.org/packages/Aspire.Milvus.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the Milvus database client. The Milvus client integration registers a [Milvus.Client.MilvusClient](https://github.com/milvus-io/milvus-sdk-csharp) instance that you can use to interact with Milvus databases.
 

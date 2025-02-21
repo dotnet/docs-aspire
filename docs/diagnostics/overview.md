@@ -74,3 +74,25 @@ Alternatively, you can suppress this diagnostic with preprocessor directive by a
         // API that is causing the warning.
 #pragma warning restore ASPIREHOSTINGPYTHON001
 ```
+
+## ASPIRECOSMOSDB001
+
+<span id="ASPIRECOSMOSDB001"></span>
+
+.NET Aspire provides a way to use the CosmosDB Linux-based (preview) emulator. Since this emulator is in preview and the shape of this API is expected to change in the future, it has been marked as _Experimental_. To suppress the compiler error/warning use the following code:
+
+To suppress this diagnostic with the `SuppressMessageAttribute`, add the following code to your project file:
+
+```xml
+<PropertyGroup>
+  <NoWarn>$(NoWarn);ASPIRECOSMOSDB001</NoWarn>
+<PropertyGroup>
+```
+
+Alternatively, you can suppress this diagnostic with preprocessor directive by adding the following code to your project:
+
+```csharp
+#pragma warning disable ASPIRECOSMOSDB001
+        // API that is causing the warning.
+#pragma warning restore ASPIRECOSMOSDB001
+```

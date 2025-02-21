@@ -20,8 +20,8 @@ items:
       href: fundamentals/dotnet-aspire-sdk.md
     - name: .NET Aspire templates
       href: fundamentals/aspire-sdk-templates.md
-  - name: What's new in .NET Aspire 9.0
-    href: whats-new/dotnet-aspire-9.md
+  - name: What's new in .NET Aspire 9.1
+    href: whats-new/dotnet-aspire-9.1.md
   - name: Upgrade to .NET Aspire 9.0
     href: get-started/upgrade-to-aspire-9.md
 
