@@ -38,8 +38,8 @@ var builder = DistributedApplication.CreateBuilder(args);
 var serviceBus = builder.AddAzureServiceBus("messaging");
 
 var queue = serviceBus.AddServiceBusQueue("queueName");
-
 var topic = serviceBus.AddServiceBusTopic("topicName");
+topic.AddServiceBusSubscription("subscriptionName");
 ```
 
 ## Type of breaking change
