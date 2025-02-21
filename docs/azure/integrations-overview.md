@@ -99,7 +99,7 @@ The following table summarizes the naming conventions used to express Azure reso
 
 Use `RunAsExisting` when you need to dynamically interact with an existing resource during runtime without needing to deploy or update it. Use `PublishAsExisting` when declaring existing resources as part of a deployment configuration, ensuring the correct scopes and permissions are applied. Finally, use `AsExisting` when declaring existing resources in both configurations, with a requirement to parameterize the references.
 
-You can query whether a resource is marked as an existing resource, by calling the `IsExisting` extension method on the <xref:Aspire.Hosting.ApplicationModel.IResource>. For more information, see [Mark Azure resources as existing](#mark-azure-resources-as-existing).
+You can query whether a resource is marked as an existing resource, by calling the `IsExisting` extension method on the <xref:Aspire.Hosting.ApplicationModel.IResource>. For more information, see [Use existing Azure resources](#use-existing-azure-resources).
 
 ## Use existing Azure resources
 
