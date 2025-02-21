@@ -156,7 +156,6 @@ The preceding code:
 - Calls the `PublishAsExisting` method on the `serviceBus` resource builder, passing the `existingServiceBusName` parameter—alternatively, you can use the `string` parameter overload.
 - Adds a queue named `queue` to the `serviceBus` resource.
 
-
 After the app host is executed in publish mode, the generated manifest file will include the `existingResourceName` parameter, which can be used to reference the existing Azure resource. Consider the following generated partial snippet of the manifest file:
 
 ```json
