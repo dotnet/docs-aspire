@@ -11,7 +11,7 @@ ms.date: 02/21/2025
 - Automatically configure port forwarding with the correct protocol.
 - Automatically translate URLs in the .NET Aspire dashboard.
 
-Prior to .NET Aspire 9.1 it was still possible to use .NET Aspire within a GitHub Codespace, however more manual configuration was required.
+Before .NET Aspire 9.1 it was still possible to use .NET Aspire within a GitHub Codespace, however more manual configuration was required.
 
 ## GitHub Codespaces vs. Dev Containers
 
@@ -27,19 +27,19 @@ To configure GitHub Codespaces for .NET Aspire, use the _.devcontainer/devcontai
 
     Once you provide the details and select **Create repository**, the repository is created and shown in GitHub.
 
-1. From the new repository click on the Code button and select the Codespaces tab and then select **Create codespace on main**.
+1. From the new repository, select on the Code button and select the Codespaces tab and then select **Create codespace on main**.
 
     :::image source="media/create-codespace-from-repository.png" lightbox="media/create-codespace-from-repository.png" alt-text="Create codespace":::
 
-    Once you select the **Create codespace on main** button, you navigate to a web-based version of Visual Studio Code. Before using the Codespace, the containerized development environment needs to be prepared. This process happens automatically on the server and you can review progress by selecting the **Building codespace** link on the notification in the bottom right of the browser window.
+    After you select **Create codespace on main**, you navigate to a web-based version of Visual Studio Code. Before you use the Codespace, the containerized development environment needs to be prepared. This process happens automatically on the server and you can review progress by selecting the **Building codespace** link on the notification in the bottom right of the browser window.
 
     :::image source="media/building-codespace-image.png" lightbox="media/building-codespace-image.png" alt-text="Building codespace":::
 
-    Once the container image has finished being built the **Terminal** prompt appears which signals that the environment is ready to be interacted with.
+    When the container image has finished being built the **Terminal** prompt appears which signals that the environment is ready to be interacted with.
 
     :::image source="media/codespace-terminal.png" lightbox="media/codespace-terminal.png" alt-text="Codespace terminal prompt":::
 
-    At this point the .NET Aspire templates has been pre-installed and the ASP.NET Core developer certificate has been pre-configured.
+    At this point, the .NET Aspire templates have been installed and the ASP.NET Core developer certificate has been added and accepted.
 
 1. Create a new .NET Aspire project using the starter template.
 
@@ -47,7 +47,7 @@ To configure GitHub Codespaces for .NET Aspire, use the _.devcontainer/devcontai
     dotnet new aspire-starter --name HelloAspire
     ```
 
-    This results in a number of files and folders being created in the repository, which are visible in the **Explorer** panel on the left side of the window.
+    This results in many files and folders being created in the repository, which are visible in the **Explorer** panel on the left side of the window.
 
     :::image source="media/codespaces-explorer-panel.png" lightbox="media/codespaces-explorer-panel.png" alt-text="Codespaces Explorer panel":::
 
@@ -61,26 +61,26 @@ To configure GitHub Codespaces for .NET Aspire, use the _.devcontainer/devcontai
 
 1. Open the .NET Aspire dashboard by selecting the dashboard URL in the **Debug Console**. This opens the .NET Aspire dashboard in a separate tab within your browser.
 
-    You'll notice on the dashboard that all HTTP/HTTPS endpoints defined on resources have had their typical `localhost` address translated to a unique fully qualified subdomain on the `app.github.dev` domain.
+    You notice on the dashboard that all HTTP/HTTPS endpoints defined on resources have had their typical `localhost` address translated to a unique fully qualified subdomain on the `app.github.dev` domain.
 
     :::image source="media/codespaces-translated-urls.png" lightbox="media/codespaces-translated-urls.png" alt-text="Codespaces translated URLs":::
 
     Traffic to each of these endpoints is automatically forwarded to the underlying process or container running within the Codespace. This includes development time tools such as PgAdmin and Redis Insight.
 
     > [!NOTE]
-    > In addition to the authentication token embedded within the URL of the dashboard link of the **Debug Console**, endpoints also require authentication via your GitHub identity to avoid port forwarded endpoints being accessible to everyone. For more information on port forwarding in GitHub Codespaces see [Forwarding ports in your codespace](https://docs.github.com/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace?tool=webui).
+    > In addition to the authentication token embedded within the URL of the dashboard link of the **Debug Console**, endpoints also require authentication via your GitHub identity to avoid port forwarded endpoints being accessible to everyone. For more information on port forwarding in GitHub Codespaces, see [Forwarding ports in your codespace](https://docs.github.com/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace?tool=webui).
 
 1. Commit changes to the GitHub repository.
 
     GitHub Codespaces doesn't automatically commit your changes to the branch you're working on in GitHub. You have to use the **Source Control** panel to stage and commit the changes and push them back to the repository.
 
-    Working in a GitHub Codespace is very similar to working with Visual Studio Code on your own machine. You can checkout different branches and push changes just like you normally would. In addition, you can easily spin up multiple Codespaces simultaneously if you want to quickly work on another branch without disrupting your existing debug session. For more information, see [Developing in a codespace](https://docs.github.com/codespaces/developing-in-a-codespace/developing-in-a-codespace?tool=webui).
+    Working in a GitHub Codespace is similar to working with Visual Studio Code on your own machine. You can checkout different branches and push changes just like you normally would. In addition, you can easily spin up multiple Codespaces simultaneously if you want to quickly work on another branch without disrupting your existing debug session. For more information, see [Developing in a codespace](https://docs.github.com/codespaces/developing-in-a-codespace/developing-in-a-codespace?tool=webui).
 
 1. Clean up your Codespace.
 
-    GitHub Codespaces are temporary development environments and whilst you might use one for an extended period of time, they should be considered a disposable resource that you recreate as needed (with all of the customization/setup contained within the _devcontainer.json_ and associated configuration files).
+    GitHub Codespaces are temporary development environments and while you might use one for an extended period of time, they should be considered a disposable resource that you recreate as needed (with all of the customization/setup contained within the _devcontainer.json_ and associated configuration files).
 
-    To delete your GitHub Codespace visit the GitHub Codespaces page. This shows you a list of all of your Codespaces. From here you can perform management operations on each Codespace, including deleting them.
+    To delete your GitHub Codespace, visit the GitHub Codespaces page. This shows you a list of all of your Codespaces. From here you can perform management operations on each Codespace, including deleting them.
 
     GitHub charges for the use of Codespaces. For more information, see [Managing the cost of GitHub Codespaces in your organization](https://docs.github.com/codespaces/managing-codespaces-for-your-organization/choosing-who-owns-and-pays-for-codespaces-in-your-organization).
 
@@ -89,13 +89,17 @@ To configure GitHub Codespaces for .NET Aspire, use the _.devcontainer/devcontai
 
 ## Manually configuring _devcontainer.json_
 
-The preceding walkthrough demonstrates the streamlined process of creating a GitHub Codespace using the .NET Aspire Devcontainer template. If you already have an existing repository and wish to utilize Devcontainer functionality with .NET Aspire, simply add a _devcontainer.json_ file to the _.devcontainer_ folder within your repository.
+The preceding walkthrough demonstrates the streamlined process of creating a GitHub Codespace using the .NET Aspire Devcontainer template. If you already have an existing repository and wish to utilize Devcontainer functionality with .NET Aspire, add a _devcontainer.json_ file to the _.devcontainer_ folder within your repository:
 
-The [template repository](https://github.com/dotnet/aspire-devcontainer) contains a copy of the _devcontainer.json_ file that you can use as a starting point, which should be sufficient for .NET Aspire. The following is the latest version of the _.devcontainer/devcontainer.json_ file from the template:
+```Directory
+└───📂 .devcontainer
+     └─── devcontainer.json
+```
+
+The [template repository](https://github.com/dotnet/aspire-devcontainer) contains a copy of the _devcontainer.json_ file that you can use as a starting point, which should be sufficient for .NET Aspire. The following JSON represents the latest version of the _.devcontainer/devcontainer.json_ file from the template:
 
 :::code language="json" source="~/aspire-devcontainer/.devcontainer/devcontainer.json":::
 
 ## Speed up Codespace creation
 
-Creating a GitHub Codespace can take some time as it prepares the underlying container image. To expedite this process, you can utilize _pre-builds_ to significantly reduce the creation time to approximately 30-60 seconds (exact timing might vary). For more information on GitHub Codespaces pre-builds, see [GitHub Codespaces prebuilds](https://docs.github.com/codespaces/prebuilding-your-codespaces/about-github-codespaces-prebuilds).
-
+Creating a GitHub Codespace can take some time as it prepares the underlying container image. To expedite this process, you can utilize _prebuilds_ to significantly reduce the creation time to approximately 30-60 seconds (exact timing might vary). For more information on GitHub Codespaces prebuilds, see [GitHub Codespaces prebuilds](https://docs.github.com/codespaces/prebuilding-your-codespaces/about-github-codespaces-prebuilds).
