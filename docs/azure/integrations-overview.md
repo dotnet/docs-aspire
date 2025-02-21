@@ -89,8 +89,8 @@ The following table summarizes the naming conventions used to express Azure reso
 | Publish | `PublishAsExisting` | Uses an existing Azure resource when the application is deployed instead of creating a new one. |
 | Run | `RunAsContainer` | Configures an equivalent container to run locally. For more information, see [Local containers](#local-containers). |
 | Run | `RunAsEmulator` | Configures the Azure resource to be emulated. For more information, see [Local emulators](#local-emulators). |
-| Run | `RunAsExisting` | Marks the resource as an existing resource when the application is running. |
-| Publish and Run | `AsExisting` | Marks the resource as an existing resource regardless of the operation. |
+| Run | `RunAsExisting` | Uses an existing resource when the application is running instead of creating a new one. |
+| Publish and Run | `AsExisting` | Uses an existing resource regardless of the operation. |
 
 > [!NOTE]
 > Not all APIs are available on all Azure resources. For example, some Azure resources can be containerized or emulated, while others can't.
@@ -101,9 +101,9 @@ Use `RunAsExisting` when you need to dynamically interact with an existing resou
 
 You can query whether a resource is marked as an existing resource, by calling the `IsExisting` extension method on the <xref:Aspire.Hosting.ApplicationModel.IResource>. For more information, see [Mark Azure resources as existing](#mark-azure-resources-as-existing).
 
-## Mark Azure resources as existing
+## Use existing Azure resources
 
-In addition to the preexisting <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> API, .NET Aspire provides expanded support for referencing existing Azure resources. You mark an existing resource through the `PublishAsExisting`, `RunAsExisting`, and `AsExisting` APIs. These APIs allow developers to reference already-deployed Azure resources, configure them, and generate appropriate deployment manifests using Bicep templates.
+.NET Aspire provides support for referencing existing Azure resources. You mark an existing resource through the `PublishAsExisting`, `RunAsExisting`, and `AsExisting` APIs. These APIs allow developers to reference already-deployed Azure resources, configure them, and generate appropriate deployment manifests using Bicep templates.
 
 ### Configure existing Azure resources for run mode
 
