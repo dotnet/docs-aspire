@@ -5,7 +5,7 @@ AddAzureInfrastructure(builder);
 builder.AddAzureAppConfiguration("config");
 builder.AddAzureApplicationInsights("app-insights");
 builder.AddAzureCosmosDB("cosmos");
-builder.AddAzureEventHubs("event-hubs");
+builder.AddAzureEventHubs("event-hubs").AddHub("messages");
 builder.AddAzureKeyVault("key-vault");
 builder.AddAzureLogAnalyticsWorkspace("log-analytics-workspace");
 builder.AddAzureOpenAI("openai");
