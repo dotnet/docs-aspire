@@ -157,18 +157,22 @@ The preceding code:
 - Adds a queue named `queue` to the `serviceBus` resource.
 
 
-After the app host is executed in publish mode, the generated manifest file will include the `existingResourceName` parameter, which can be used to reference the existing Azure resource. Consider the following generated manifest file:
+After the app host is executed in publish mode, the generated manifest file will include the `existingResourceName` parameter, which can be used to reference the existing Azure resource. Consider the following generated partial snippet of the manifest file:
 
 ```json
-{
+"messaging": {
   "type": "azure.bicep.v0",
   "connectionString": "{messaging.outputs.serviceBusEndpoint}",
   "path": "messaging.module.bicep",
   "params": {
-    "existingResourceName": "{existingResourceName.value}",
+    "existingServiceBusName": "{existingServiceBusName.value}",
     "principalType": "",
     "principalId": ""
   }
+},
+"queue": {
+  "type": "value.v0",
+  "connectionString": "{messaging.outputs.serviceBusEndpoint}"
 }
 ```
 
@@ -180,12 +184,29 @@ Additionally, the generated Bicep template includes the `existingResourceName` p
 @description('The location for the resource(s) to be deployed.')
 param location string = resourceGroup().location
 
-param existingResourceName string
+param existingServiceBusName string
+
 param principalType string
+
 param principalId string
 
 resource messaging 'Microsoft.ServiceBus/namespaces@2024-01-01' existing = {
-  name: existingResourceName
+  name: existingServiceBusName
+}
+
+resource messaging_AzureServiceBusDataOwner 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(messaging.id, principalId, subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '090c5cfd-751d-490a-894a-3ce6f1109419'))
+  properties: {
+    principalId: principalId
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '090c5cfd-751d-490a-894a-3ce6f1109419')
+    principalType: principalType
+  }
+  scope: messaging
+}
+
+resource queue 'Microsoft.ServiceBus/namespaces/queues@2024-01-01' = {
+  name: 'queue'
+  parent: messaging
 }
 
 output serviceBusEndpoint string = messaging.properties.serviceBusEndpoint
