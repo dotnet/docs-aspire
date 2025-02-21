@@ -22,7 +22,6 @@ The following table summarizes the naming conventions used to express Azure reso
 | API | Description |
 |--|--|
 | `PublishAsConnectionString` | Changes the resource to be published as a connection string reference in the manifest. |
-| `PublishAsContainer` | Changes the resource to be published as a container in the manifest. |
 | `PublishAsExisting` | Uses an existing Azure resource when the application is deployed instead of creating a new one. |
 | `RunAsContainer` | Configures an equivalent container to run locally. For more information, see [Local containers](#local-containers). |
 | `RunAsEmulator` | Configures the Azure resource to be emulated. For more information, see [Local emulators](#local-emulators). |
