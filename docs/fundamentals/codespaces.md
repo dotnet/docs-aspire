@@ -41,7 +41,7 @@ Once the container image has finished being built the _Terminal_ prompt appears 
 
 At this point the .NET Aspire templates have been pre-installed and the ASP.NET Core developer certificate has been pre-configured.
 
-3. Create a new .NET Aspire project using the starter template.
+1. Create a new .NET Aspire project using the starter template.
 
 ```dotnetcli
 dotnet new aspire-starter --name HelloAspire
@@ -51,7 +51,7 @@ This will result in a number of files and folders being created in the repositor
 
 ![Codespaces Explorer panel](media/codespaces-explorer-panel.png)
 
-4. Launch the app host via the `HelloAspire.AppHost/Program.cs` file.
+1. Launch the app host via the `HelloAspire.AppHost/Program.cs` file.
 
 ![Launch AppHost in Codespace](media/codespace-launch-apphost.png)
 
@@ -59,7 +59,7 @@ After a few moments the _Debug Console_ panel will become visible and it will sh
 
 ![Codespaces debug console](media/codespaces-debug-console.png)
 
-5. Open the .NET Aspire dashboard by clicking on the dashboard URL in the debug console. This will cause the .NET Aspire dashboard to be opened in a separate tab within your browser.
+1. Open the .NET Aspire dashboard by clicking on the dashboard URL in the debug console. This will cause the .NET Aspire dashboard to be opened in a separate tab within your browser.
 
 Notice in the dashboard that all HTTP/HTTPS endpoints defined on resources have had their typical `localhost` address translated to a unique fully qualified domain on the `app.github.dev` domain.
 
@@ -69,13 +69,13 @@ Traffic to each of these endpoints will be automatically forwarded to the underl
 
 > NOTE: In addition to the authentication token embedded within the URL of the dashboard link of the _Debug Console_, endpoints also require authentication via your GitHub identity to avoid port forwarded endpoints being accessible to everyone. For more information on port forwarding in GitHub Codespaces see [Forwarding ports in your codespace](https://docs.github.com/en/codespaces/developing-in-a-codespace/forwarding-ports-in-your-codespace?tool=webui).
 
-6. Commit changes to the GitHub repository.
+1. Commit changes to the GitHub repository.
 
 GitHub Codespaces does not automatically commit changes you make in the Codespace to the branch you are working on in GitHub. Use the Source Control panel to stage and commit the changes and push them back to the repository.
 
 Working in a GitHub Codespace is very similar to working with Visual Studio Code on your own PC. You can checkout different branches and push changes just like you normally would. In addition you can easily spin up multiple Codespaces simultaneously if you want to quickly work on another branch without disrumpting your existing debug session. See [Developing in a codespace](https://docs.github.com/en/codespaces/developing-in-a-codespace/developing-in-a-codespace?tool=webui) for more information.
 
-7. Cleaning up your codespace
+1. Cleaning up your codespace
 
 GitHub Codespaces are temporary development environments and whilst you might use one for an extended period of time they should be considered a disposable resource that you recreate when you need it (with all of the customization/setup contained within `devcontainer.json` and associated configuration files).
 
@@ -93,34 +93,34 @@ The template repository contains a copy of the `devcontainer.json` file that you
 
 ```json
 {
-	"name": ".NET Aspire",
-	"image": "mcr.microsoft.com/devcontainers/dotnet:dev-9.0-bookworm",
-	"features": {
-		"ghcr.io/devcontainers/features/azure-cli:1": {},
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
-		"ghcr.io/devcontainers/features/powershell:1": {},
-		"ghcr.io/azure/azure-dev/azd:0": {}
-	},
+    "name": ".NET Aspire",
+    "image": "mcr.microsoft.com/devcontainers/dotnet:dev-9.0-bookworm",
+    "features": {
+        "ghcr.io/devcontainers/features/azure-cli:1": {},
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/devcontainers/features/powershell:1": {},
+        "ghcr.io/azure/azure-dev/azd:0": {}
+    },
 
-	"hostRequirements": {
-		"cpus": 8,
-		"memory": "32gb",
-		"storage": "64gb"
-	},
+    "hostRequirements": {
+        "cpus": 8,
+        "memory": "32gb",
+        "storage": "64gb"
+    },
 
-	"onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.1.0 --force",
-	"postStartCommand": "dotnet dev-certs https --trust",
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"ms-dotnettools.csdevkit",
-				"ms-azuretools.vscode-bicep",
-				"ms-azuretools.azure-dev",
-				"GitHub.copilot-chat",
-				"GitHub.copilot"
-			]
-		}
-	}
+    "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.1.0 --force",
+    "postStartCommand": "dotnet dev-certs https --trust",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-dotnettools.csdevkit",
+                "ms-azuretools.vscode-bicep",
+                "ms-azuretools.azure-dev",
+                "GitHub.copilot-chat",
+                "GitHub.copilot"
+            ]
+        }
+    }
 }
 ```
 
