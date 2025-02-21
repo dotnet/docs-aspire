@@ -155,11 +155,11 @@ These new emulators work side-by-side with the existing emulators for:
 
 Along with support for the new emulator, Cosmos DB added the following features.
 
-1. Support for Entra ID authentication by default
+##### Support for Entra ID authentication by default
 
 Previously, the Cosmos DB integration used access keys and a Key Vault secret to connect to the service. .NET Aspire 9.1 added support for using more secure authentication using managed identities by default. If you need to keep using access key authentication, you can get back to the previous behavior by calling `.WithAccessKeyAuthentication()`.
 
-2. Support for modeling Database and Containers in the AppHost
+##### Support for modeling Database and Containers in the AppHost
 
 You can define CosmosDB database and containers in the AppHost and these resources will be available when you run the application in both the emulator and in Azure. This allows you to define these resources up front and no longer need to create them from the application, which may not have permissions to create them.
 
