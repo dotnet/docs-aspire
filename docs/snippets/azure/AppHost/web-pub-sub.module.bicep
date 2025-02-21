@@ -5,9 +5,9 @@ param sku string = 'Free_F1'
 
 param capacity int = 1
 
-param principalId string
-
 param principalType string
+
+param principalId string
 
 resource web_pub_sub 'Microsoft.SignalRService/webPubSub@2024-03-01' = {
   name: take('webpubsub-${uniqueString(resourceGroup().id)}', 63)
