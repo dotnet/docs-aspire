@@ -140,9 +140,10 @@ To mark an Azure resource as existing in for the "publish" mode, call the `Publi
 var builder = DistributedApplication.CreateBuilder();
 
 var existingServiceBusName = builder.AddParameter("existingServiceBusName");
+var existingServiceBusResourceGroup = builder.AddParameter("existingServiceBusResourceGroup");
 
 var serviceBus = builder.AddAzureServiceBus("messaging")
-                        .PublishAsExisting(existingServiceBusName);
+                        .PublishAsExisting(existingServiceBusName, existingServiceBusResourceGroup);
 
 serviceBus.AddServiceBusQueue("queue");
 ```
@@ -155,7 +156,6 @@ The preceding code:
 - Calls the `PublishAsExisting` method on the `serviceBus` resource builder, passing the `existingServiceBusName` parameter—alternatively, you can use the `string` parameter overload.
 - Adds a queue named `queue` to the `serviceBus` resource.
 
-By default, the Service Bus parameter reference is assumed to be in the same Azure resource group. However, if it's in a different resource group, you can pass the resource group explicitly as a parameter to correctly specify the appropriate resource grouping.
 
 After the app host is executed in publish mode, the generated manifest file will include the `existingResourceName` parameter, which can be used to reference the existing Azure resource. Consider the following generated manifest file:
 
@@ -198,7 +198,7 @@ For more information on the generated Bicep template, see [Infrastructure as cod
 
 ### Configure existing Azure resources
 
-The `AsExisting` method is used when the distributed application is running in "run" or "publish" mode. Because the `AsExisting` method can operate in both scenarios, it can only support a parameterized reference to the resource name or resource group name.
+The `AsExisting` method is used when the distributed application is running in "run" or "publish" mode. Because the `AsExisting` method operates in both scenarios, it only supports a parameterized reference to the resource name or resource group name. This approach helps prevent the use of the same resource in both testing and production environments.
 
 To mark an Azure resource as existing, call the `AsExisting` method on the resource builder. Consider the following example:
 
@@ -206,9 +206,10 @@ To mark an Azure resource as existing, call the `AsExisting` method on the resou
 var builder = DistributedApplication.CreateBuilder();
 
 var existingServiceBusName = builder.AddParameter("existingServiceBusName");
+var existingServiceBusResourceGroup = builder.AddParameter("existingServiceBusResourceGroup");
 
 var serviceBus = builder.AddAzureServiceBus("messaging")
-                        .AsExisting(existingServiceBusName);
+                        .AsExisting(existingServiceBusName, existingServiceBusResourceGroup);
 
 serviceBus.AddServiceBusQueue("queue");
 ```
