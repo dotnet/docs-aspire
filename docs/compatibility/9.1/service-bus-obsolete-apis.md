@@ -30,23 +30,17 @@ serviceBus.AddSubscription("topicName", "subscriptionName");
 
 ## New behavior
 
-The new methods use the `With` prefix to indicate that no specific resource is created, aligning with the intended usage.
+The new methods use the `AddServiceBus` prefix. The `Add` prefix indicates that a child resource is created and returned, aligning with the intended usage.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var serviceBus = builder.AddAzureServiceBus("messaging");
 
-serviceBus.WithQueue(
-    name: "queueName", 
-    configure: (ServiceBusQueue queue) => { /* configure queue */ });
+var queue = serviceBus.AddServiceBusQueue("queueName");
 
-serviceBus.WithTopic(
-    name: "topicName",
-    configure: (ServiceBusTopic topic) => { /* configure topic */ });
+var topic = serviceBus.AddServiceBusTopic("topicName");
 ```
-
-The `configure` parameter is optional. If not provided, the default configuration is used.
 
 ## Type of breaking change
 
@@ -54,7 +48,7 @@ This change is a [source incompatible](../categories.md#source-compatibility).
 
 ## Reason for change
 
-A better API is provided, as the names `With` reflect that no specific resource is created. `Add` should be used when it returns an actual resource (not a resource builder). For more information, see [Add Service Bus emulator support](https://github.com/dotnet/aspire/pull/6737).
+A better API is provided, as the names `Add` reflect that a child resource is created and returned. `Add` should be used when it returns the new resource (not the parent resource). For more information, see [EventHubs, ServiceBus, and CosmosDB Hosting integrations should create Resources for children](https://github.com/dotnet/aspire/issues/7407).
 
 ## Recommended action
 
@@ -65,8 +59,8 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var serviceBus = builder.AddAzureServiceBus("messaging");
 
-serviceBus.WithQueue("queueName");
-serviceBus.WithTopic("topicName");
+serviceBus.AddServiceBusQueue("queueName");
+serviceBus.AddServiceBusTopic("topicName");
 ```
 
 ## Affected APIs
