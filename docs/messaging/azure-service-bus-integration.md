@@ -124,70 +124,68 @@ The dependent resource can access the injected connection string by calling the 
 
 ### Add Azure Service Bus queue
 
-To add an Azure Service Bus queue, chain a call on an `IResourceBuilder<AzureServiceBusResource>` to the <xref:Aspire.Hosting.AzureServiceBusExtensions.WithQueue*> API:
+To add an Azure Service Bus queue, call the <xref:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusQueue*> method on the `IResourceBuilder<AzureServiceBusResource>`:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var serviceBus = builder.AddAzureServiceBus("messaging")
-                        .WithQueue("queue");
+var serviceBus = builder.AddAzureServiceBus("messaging");
+serviceBus.AddServiceBusQueue("queue");
 
 // After adding all resources, run the app...
 ```
 
-When you call `WithQueue`, it configures your Service Bus resources to have a queue named `queue`. The queue is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier. For more information, see [Queues, topics, and subscriptions in Azure Service Bus](/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
+When you call `AddServiceBusQueue`, it configures your Service Bus resources to have a queue named `queue`. The queue is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier. For more information, see [Queues, topics, and subscriptions in Azure Service Bus](/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
 
 ### Add Azure Service Bus topic and subscription
 
-To add an Azure Service Bus topic, chain a call on an `<IResourceBuilder<AzureServiceBusResource>>` to the <xref:Aspire.Hosting.AzureServiceBusExtensions.WithTopic*> API:
+To add an Azure Service Bus topic, call the <xref:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusTopic*> method on the `IResourceBuilder<AzureServiceBusResource>`:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var serviceBus = builder.AddAzureServiceBus("messaging")
-                        .WithTopic("topic");
+var serviceBus = builder.AddAzureServiceBus("messaging");
+serviceBus.AddServiceBusTopic("topic");
 
 // After adding all resources, run the app...
 ```
 
-When you call `WithTopic`, it configures your Service Bus resources to have a topic named `topic`. The topic is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier.
+When you call `AddServiceBusTopic`, it configures your Service Bus resources to have a topic named `topic`. The topic is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier.
 
-To configure a subscription for the topic, use the overload <xref:Aspire.Hosting.AzureServiceBusExtensions.WithTopic*> API:
+To add a subscription for the topic, call the <xref:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusSubscription*> method on the `IResourceBuilder<AzureServiceBusTopicResource>` and configure it using the <xref:Aspire.Hosting.AzureServiceBusExtensions.WithProperties*> method:
 
 ```csharp
+using Aspire.Hosting.Azure;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
-var serviceBus = builder.AddAzureServiceBus("messaging")
-                        .WithTopic("topic", topic =>
-                        {
-                            var subscription = new ServiceBusSubscription("sub1")
-                            {
-                                MaxDeliveryCount = 10,
-                                Rules =
-                                {
-                                    new ServiceBusRule("app-prop-filter-1")
-                                    {
-                                        CorrelationFilter = new()
-                                        {
-                                            ContentType = "application/text",
-                                            CorrelationId = "id1",
-                                            Subject = "subject1",
-                                            MessageId = "msgid1",
-                                            ReplyTo = "someQueue",
-                                            ReplyToSessionId = "sessionId",
-                                            SessionId = "session1",
-                                            SendTo = "xyz"
-                                        }
-                                    }
-                                }
-                            };
-                            topic.Subscriptions.Add(subscription);
-                        });
+var serviceBus = builder.AddAzureServiceBus("messaging");
+var topic = serviceBus.AddServiceBusTopic("topic");
+topic.AddServiceBusSubscription("sub1")
+     .WithProperties(subscription =>
+     {
+         subscription.MaxDeliveryCount = 10;
+         subscription.Rules.Add(
+             new AzureServiceBusRule("app-prop-filter-1")
+             {
+                 CorrelationFilter = new()
+                 {
+                     ContentType = "application/text",
+                     CorrelationId = "id1",
+                     Subject = "subject1",
+                     MessageId = "msgid1",
+                     ReplyTo = "someQueue",
+                     ReplyToSessionId = "sessionId",
+                     SessionId = "session1",
+                     SendTo = "xyz"
+                 }
+             });
+     });
 
 // After adding all resources, run the app...
 ```
 
-The preceding code not only adds a topic, but creates and configures a subscription named `sub1` for the topic. The subscription has a maximum delivery count of `10` and a rule named `app-prop-filter-1`. The rule is a correlation filter that filters messages based on the `ContentType`, `CorrelationId`, `Subject`, `MessageId`, `ReplyTo`, `ReplyToSessionId`, `SessionId`, and `SendTo` properties.
+The preceding code not only adds a topic and creates and configures a subscription named `sub1` for the topic. The subscription has a maximum delivery count of `10` and a rule named `app-prop-filter-1`. The rule is a correlation filter that filters messages based on the `ContentType`, `CorrelationId`, `Subject`, `MessageId`, `ReplyTo`, `ReplyToSessionId`, `SessionId`, and `SendTo` properties.
 
 For more information, see [Queues, topics, and subscriptions in Azure Service Bus](/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
 

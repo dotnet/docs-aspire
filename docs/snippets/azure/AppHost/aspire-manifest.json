@@ -50,6 +50,10 @@
         "principalId": ""
       }
     },
+    "messages": {
+      "type": "value.v0",
+      "connectionString": "Endpoint={event-hubs.outputs.eventHubsEndpoint};EntityPath=messages"
+    },
     "key-vault": {
       "type": "azure.bicep.v0",
       "connectionString": "{key-vault.outputs.vaultUri}",

@@ -65,7 +65,7 @@ The preceding Bicep is a module that provisions an Azure Cosmos DB account with 
 - `consistencyPolicy`: The consistency policy of the Cosmos DB account. The default is `Session`.
 - `locations`: The locations for the Cosmos DB account. The default is the resource group's location.
 
-In addition to the Cosmos DB account, it also provisions an Azure Key Vault resource. This is used to store the Cosmos DB account's connection string securely. The generated Bicep is a starting point and can be customized to meet your specific requirements.
+In addition to the Cosmos DB account, it also adds the current application to the `Data Contributor` role for the Cosmos DB account. The generated Bicep is a starting point and can be customized to meet your specific requirements.
 
 #### Customize provisioning infrastructure
 
@@ -115,21 +115,18 @@ The dependent resource can access the injected connection string by calling the 
 
 ### Add Azure Cosmos DB database resource
 
-To add an Azure Cosmos DB database resource, chain a call on an `IResourceBuilder<AzureCosmosDBResource>` to the <xref:Aspire.Hosting.AzureCosmosExtensions.AddDatabase*> API:
+To add an Azure Cosmos DB database resource, chain a call on an `IResourceBuilder<AzureCosmosDBResource>` to the <xref:Aspire.Hosting.AzureCosmosExtensions.AddCosmosDatabase*> API:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var cosmos = builder.AddAzureCosmosDB("cosmos-db")
-                    .AddDatabase("db");
+var cosmos = builder.AddAzureCosmosDB("cosmos-db");
+cosmos.AddCosmosDatabase("db");
 
 // After adding all resources, run the app...
 ```
 
-When you call `AddDatabase`, it configures your Cosmos DB resources to have a database named `db`. The database is created in the Cosmos DB account that's represented by the `AzureCosmosDBResource` that you added earlier. The database is a logical container for collections and users. For more information, see [Databases, containers, and items in Azure Cosmos DB](/azure/cosmos-db/resource-model).
-
-> [!NOTE]
-> When using the `AddDatabase` API to add a database to an Azure Cosmos DB resource, if you're running the emulator, the database isn't actually created in the emulator. This API is intended to include a database in the [Bicep generated](#generated-provisioning-bicep) by the provisioning infrastructure.
+When you call `AddCosmosDatabase`, it configures your Cosmos DB resources to have a database named `db`. The database is created in the Cosmos DB account that's represented by the `AzureCosmosDBResource` that you added earlier. The database is a logical container for collections and users. For more information, see [Databases, containers, and items in Azure Cosmos DB](/azure/cosmos-db/resource-model).
 
 ### Add Azure Cosmos DB emulator resource
 

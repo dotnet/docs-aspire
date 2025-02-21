@@ -38,13 +38,13 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Azure Event Hubs resource
 
-To add an <xref:Aspire.Hosting.Azure.AzureEventHubsResource> to your app host project, call the <xref:Aspire.Hosting.AzureEventHubsExtensions.AddAzureEventHubs*> method providing a name, and then chain a call to <xref:Aspire.Hosting.AzureEventHubsExtensions.AddHub*>:
+To add an <xref:Aspire.Hosting.Azure.AzureEventHubsResource> to your app host project, call the <xref:Aspire.Hosting.AzureEventHubsExtensions.AddAzureEventHubs*> method providing a name, and then call <xref:Aspire.Hosting.AzureEventHubsExtensions.AddHub*>:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var eventHubs = builder.AddAzureEventHubs("event-hubs")
-                       .AddHub("messages");
+var eventHubs = builder.AddAzureEventHubs("event-hubs");
+eventHubs.AddHub("messages");
 
 builder.AddProject<Projects.ExampleService>()
        .WithReference(eventHubs);
@@ -79,8 +79,9 @@ The preceding Bicep is a module that provisions an Azure Event Hubs resource wit
 - `sku`: The SKU of the Event Hubs resource, defaults to `Standard`.
 - `principalId`: The principal ID of the Event Hubs resource.
 - `principalType`: The principal type of the Event Hubs resource.
-- `event_hubs`: The Event Hubs resource.
+- `event_hubs`: The Event Hubs namespace resource.
 - `event_hubs_AzureEventHubsDataOwner`: The Event Hubs resource owner, based on the build-in `Azure Event Hubs Data Owner` role. For more information, see [Azure Event Hubs Data Owner](/azure/role-based-access-control/built-in-roles/analytics#azure-event-hubs-data-owner).
+- `messages`: The Event Hub resource.
 - `eventHubsEndpoint`: The endpoint of the Event Hubs resource.
 
 The generated Bicep is a starting point and can be customized to meet your specific requirements.
@@ -139,8 +140,9 @@ To add a consumer group, chain a call on an `IResourceBuilder<AzureEventHubsReso
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var eventHubs = builder.AddAzureEventHubs("event-hubs")
-                       .AddConsumerGroup("messages");
+var eventHubs = builder.AddAzureEventHubs("event-hubs");
+var messages = eventHubs.AddHub("messages");
+messages.AddConsumerGroup("messagesConsumer");
 
 builder.AddProject<Projects.ExampleService>()
        .WithReference(eventHubs);
@@ -148,7 +150,7 @@ builder.AddProject<Projects.ExampleService>()
 // After adding all resources, run the app...
 ```
 
-When you call `AddConsumerGroup`, it configures your Event Hubs resource to have a consumer group named `messages`. The consumer group is created in the Azure Event Hubs namespace that's represented by the `AzureEventHubsResource` that you added earlier. For more information, see [Azure Event Hubs: Consumer groups](/azure/event-hubs/event-hubs-features#consumer-groups).
+When you call `AddConsumerGroup`, it configures your `messages` Event Hub resource to have a consumer group named `messagesConsumer`. The consumer group is created in the Azure Event Hubs namespace that's represented by the `AzureEventHubsResource` that you added earlier. For more information, see [Azure Event Hubs: Consumer groups](/azure/event-hubs/event-hubs-features#consumer-groups).
 
 ### Add Azure Event Hubs emulator resource
 
@@ -160,8 +162,9 @@ To run the Event Hubs resource as an emulator, call the <xref:Aspire.Hosting.Azu
 var builder = DistributedApplication.CreateBuilder(args);
 
 var eventHubs = builder.AddAzureEventHubs("event-hubs")
-                       .AddHub("messages")
                        .RunAsEmulator();
+
+eventHubs.AddHub("messages");
 
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(eventHubs);
@@ -189,11 +192,12 @@ The port that it's listening on is dynamic by default. When the container starts
 var builder = DistributedApplication.CreateBuilder(args);
 
 var eventHubs = builder.AddAzureEventHubs("event-hubs")
-                       .AddHub("messages")
                        .RunAsEmulator(emulator =>
                        {
                            emulator.WithHostPort(7777);
                        });
+
+eventHubs.AddHub("messages");
 
 builder.AddProject<Projects.ExampleService>()
        .WithReference(eventHubs);
@@ -215,11 +219,12 @@ To add a data volume to the Event Hubs emulator resource, call the <xref:Aspire.
 var builder = DistributedApplication.CreateBuilder(args);
 
 var eventHubs = builder.AddAzureEventHubs("event-hubs")
-                       .AddHub("messages")
                        .RunAsEmulator(emulator =>
                        {
                            emulator.WithDataVolume();
                        });
+
+eventHubs.AddHub("messages");
 
 builder.AddProject<Projects.ExampleService>()
        .WithReference(eventHubs);
@@ -237,11 +242,12 @@ The add a bind mount to the Event Hubs emulator container, chain a call to the <
 var builder = DistributedApplication.CreateBuilder(args);
 
 var eventHubs = builder.AddAzureEventHubs("event-hubs")
-                       .AddHub("messages")
                        .RunAsEmulator(emulator =>
                        {
                            emulator.WithDataBindMount("/path/to/data");
                        });
+
+eventHubs.AddHub("messages");
 
 builder.AddProject<Projects.ExampleService>()
        .WithReference(eventHubs);
@@ -263,11 +269,12 @@ To provide a custom JSON configuration file, call the <xref:Aspire.Hosting.Azure
 var builder = DistributedApplication.CreateBuilder(args);
 
 var eventHubs = builder.AddAzureEventHubs("event-hubs")
-                       .AddHub("messages")
                        .RunAsEmulator(emulator =>
                        {
                            emulator.WithConfigurationFile("./messaging/custom-config.json");
                        });
+
+eventHubs.AddHub("messages");
 
 builder.AddProject<Projects.ExampleService>()
        .WithReference(eventHubs);
@@ -281,7 +288,6 @@ The preceding code configures the Event Hubs emulator container to use a custom 
 var builder = DistributedApplication.CreateBuilder(args);
 
 var eventHubs = builder.AddAzureEventHubs("event-hubs")
-                       .AddHub("messages")
                        .RunAsEmulator(emulator =>
                        {
                            emulator.WithConfiguration(
@@ -294,6 +300,8 @@ var eventHubs = builder.AddAzureEventHubs("event-hubs")
                                    firstEntity["PartitionCount"] = 5;
                                });
                        });
+
+eventHubs.AddHub("messages");
 
 builder.AddProject<Projects.ExampleService>()
        .WithReference(eventHubs);
