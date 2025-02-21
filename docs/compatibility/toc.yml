@@ -17,12 +17,14 @@ items:
       href: 9.1/container-image-name-and-tag-updates.md
     - name: Cosmos DB hosting integration obsolete API and default managed identity support
       href: 9.1/cosmos-db-obsolete-apis.md
-    - name: Python hosting integration API changes
-      href: 9.1/python-hosting-integration-api-changes.md
     - name: Service Bus hosting integration obsolete APIs
       href: 9.1/service-bus-obsolete-apis.md
+    - name: Event Hubs hosting integration obsolete APIs
+      href: 9.1/event-hubs-obsolete-apis.md
     - name: Testing builder API changes
       href: 9.1/testing-builder-api-changes.md
+    - name: Python hosting integration API changes
+      href: 9.1/python-hosting-integration-api-changes.md
 - name: .NET Aspire 9.0
   items:
   - name: Overview

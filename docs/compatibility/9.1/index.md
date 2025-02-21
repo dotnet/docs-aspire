@@ -20,6 +20,7 @@ If you're migrating an app to .NET Aspire 9.1, the breaking changes listed here 
 |--|--|--|
 | [Default container image name and tag changed](container-image-name-and-tag-updates.md) | Behavioral change | .NET Aspire 9.1 |
 | [Cosmos DB hosting integration obsolete API and default managed identity support](cosmos-db-obsolete-apis.md) | Source incompatible, behavioral change | .NET Aspire 9.1 |
-| [Python hosting integration parameter name changes](python-hosting-integration-api-changes.md) | Source incompatible | .NET Aspire 9.1 |
 | [Azure Service Bus hosting integration obsolete APIs](service-bus-obsolete-apis.md) | Source incompatible | .NET Aspire 9.1 |
+| [Azure Event Hubs hosting integration obsolete APIs](event-hubs-obsolete-apis.md) | Source incompatible | .NET Aspire 9.1 |
 | [IDistributedApplicationTestingBuilder API changes](testing-builder-api-changes.md) | Binary incompatible | .NET Aspire 9.1 |
+| [Python hosting integration parameter name changes](python-hosting-integration-api-changes.md) | Source incompatible | .NET Aspire 9.1 |
