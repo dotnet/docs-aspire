@@ -6,7 +6,7 @@ ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/2327
 ---
 
-# Azure Service Bus hosting integration obsolete APIs
+# Azure Event Hubs hosting integration obsolete APIs
 
 In .NET Aspire 9.1, the method `AddEventHub` is being obsoleted. This change introduces new methods that better reflect the intended usage and improve the API's clarity.
 
@@ -21,9 +21,9 @@ Previously, the method `AddEventHub` was used to add a hub to the Azure Event Hu
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var serviceBus = builder.AddAzureEventHubs("hubs");
+var eventHubs = builder.AddAzureEventHubs("hubs");
 
-serviceBus.AddEventHub("myhub");
+eventHubs.AddEventHub("myhub");
 ```
 
 ## New behavior
@@ -35,7 +35,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var eventHubs = builder.AddAzureEventHubs("hubs");
 
-var myhub = serviceBus.AddHub("myhub");
+var myhub = eventHubs.AddHub("myhub");
 ```
 
 ## Type of breaking change
@@ -53,9 +53,9 @@ Replace any usage of the obsolete methods with the new methods.
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var serviceBus = builder.AddAzureEventHubs("messaging");
+var eventHubs = builder.AddAzureEventHubs("hubs");
 
-serviceBus.AddHub("myhub");
+eventHubs.AddHub("myhub");
 ```
 
 ## Affected APIs
