@@ -151,7 +151,7 @@ output serviceBusEndpoint string = messaging.properties.serviceBusEndpoint
 For more information on the generated Bicep template, see [Infrastructure as code](#infrastructure-as-code).
 
 > [!WARNING]
-> Some APIs are incompatible with existing Azure resources. For example, you cannot call `UseAccessKeyAuthentication` on an existing Azure Cache for Redis resource. Likewise, you cannot call `UsePasswordAuthentication` on an existing Azure PostgreSQL resource.
+> When interacting with existing resources that require authentication, ensure the authentication strategy that you're configuring in the .NET Aspire application model aligns with the authentication strategy allowed by the existing resource. For example, it's not possible to use managed identity against an existing Azure PostgreSQL resource that isn't configured to allow managed identity. Similarly, if an existing Azure Redis resource disabled access keys, it's not possible to use access key authentication.
 
 ### Configure existing Azure resources
 
