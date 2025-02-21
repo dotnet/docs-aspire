@@ -69,7 +69,9 @@ The dashboard defaults to the language set in your browser. This release introdu
 
 ### Clear logs and telemetry from the dashboard
 
-New buttons were added to the **Console logs** and **Traces** pages to clear data. Now you can reset the dashboard to a blank slate, test your app, view only the relevant logs and telemetry, and repeat.
+New buttons were added to the **Console logs**, **Structured logs**, **Traces** and **Metrics** pages to clear data. There is also a "Remove all" button in the settings popup to remove everything with one action.
+
+Now you use this feature to reset the dashboard to a blank slate, test your app, view only the relevant logs and telemetry, and repeat.
 
 :::image type="content" source="media/dashboard-remove-telemetry.png" lightbox="media/dashboard-remove-telemetry.png" alt-text="A screenshot of the .NET Aspire dashboard showing the remove button on the structured logs page.":::
 
