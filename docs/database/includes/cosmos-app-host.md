@@ -231,3 +231,27 @@ var cosmos = builder.AddAzureCosmosDB("cosmos-db").RunAsEmulator(
 ```
 
 The preceding code configures the Cosmos DB emulator container to have a partition count of `100`. This is a shorthand for setting the `AZURE_COSMOS_EMULATOR_PARTITION_COUNT` environment variable.
+
+#### Use Linux-based emulator (preview)
+
+The [next generation of the Azure Cosmos DB emulator](/azure/cosmos-db/emulator-linux) is entirely Linux-based and is available as a Docker container. It supports running on a wide variety of processors and operating systems.
+
+To use the preview version of the Cosmos DB emulator, call the <xref:Aspire.Hosting.AzureCosmosExtensions.RunAsPreviewEmulator*> method. Since this feature is in preview, you need to explicitly opt into the preview feature by suppressing the `ASPIRECOSMOSDB001` experimental diagnostic.
+
+The preview emulator also supports exposing a "Data Explorer" endpoint which allows you to view the data stored in the Cosmos DB emulator via a web UI. To enable the Data Explorer, call the <xref:Aspire.Hosting.AzureCosmosExtensions.WithDataExplorer*> method.
+
+```csharp
+#pragma warning disable ASPIRECOSMOSDB001
+
+var builder = DistributedApplication.CreateBuilder(args);
+
+var cosmos = builder.AddAzureCosmosDB("cosmos-db").RunAsPreviewEmulator(
+                     emulator =>
+                     {
+                         emulator.WithDataExplorer();
+                     });
+
+// After adding all resources, run the app...
+```
+
+The preceding code configures the Linux-based preview Cosmos DB emulator container, with the Data Explorer endpoint, to use at run time.
