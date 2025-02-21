@@ -45,6 +45,9 @@ The community toolkit is a growing project, publishing a set of NuGet packages. 
 - The [Rust apps](https://www.rust-lang.org/) integration provides support for hosting Rust applications.
   - [📄 .NET Aspire Rust hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Rust).
   - [📦 CommunityToolkit.Aspire.Hosting.Rust](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Rust).
+- The [RavenDB](https://ravendb.net/) integration enables hosting RavenDB containers.
+  - [📄 .NET Aspire RavenDB hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.RavenDB).
+  - [📦 CommunityToolkit.Aspire.Hosting.RavenDB](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.RavenDB).
 
 ### Client integrations
 
@@ -56,6 +59,9 @@ The following client integrations are available in the toolkit:
 - **Meilisearch** is a .NET client for the Meilisearch API:
   - [📄 .NET Aspire Meilisearch client integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Meilisearch)
   - [📦 CommunityToolkit.Aspire.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Meilisearch)
+- **RavenDB.Client** is a .NET client for the RavenDB Client API:
+  - [📄 .NET Aspire RavenDB client integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.RavenDB.Client)
+  - [📦 CommunityToolkit.Aspire.RavenDB.Client](https://nuget.org/packages/CommunityToolkit.Aspire.RavenDB.Client)
 
 > [!TIP]
 > Always check the [GitHub repository][github-repo] for the most up-to-date information on the toolkit.
