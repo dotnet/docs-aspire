@@ -21,7 +21,7 @@ When your .NET Aspire app host contains Azure resources, and you run it locally 
 
 ### Local emulators
 
-Some Azure services can be run locally in emulators. Currently, .NET Aspire supports the following Azure emulators:
+Some Azure services can be emulated to run locally. Currently, .NET Aspire supports the following Azure emulators:
 
 | Hosting integration | Description |
 |--|--|
@@ -38,7 +38,7 @@ To have your Azure resources use the local emulators, chain a call the `RunAsEmu
 
 ### Local containers
 
-Some Azure services can be run locally in containers. To run an Azure service locally in a container, chain a call to the `RunAsContainer` method on the Azure resource builder. This method configures the Azure resource to run locally in a container instead of the actual Azure service.
+Some Azure resources can be substituted locally using open-source or on-premises containers. To substitute an Azure resource locally in a container, chain a call to the `RunAsContainer` method on the Azure resource builder. This method configures the Azure resource to use a containerized version of the service for local development and testing, rather than the actual Azure service.
 
 Currently, .NET Aspire supports the following Azure services as containers:
 
