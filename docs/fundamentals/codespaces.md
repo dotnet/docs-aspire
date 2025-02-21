@@ -127,4 +127,3 @@ The template repository contains a copy of the `devcontainer.json` file that you
 ## Speed up Codespace creation
 
 Creating a GitHub Codespace can take some time as it prepares the underlying container image. To expedite this process, you can utilize _pre-builds_ to significantly reduce the creation time to approximately 30-60 seconds (exact timing might vary). For more information on GitHub Codespaces pre-builds, see [GitHub Codespaces prebuilds](https://docs.github.com/codespaces/prebuilding-your-codespaces/about-github-codespaces-prebuilds).
-
