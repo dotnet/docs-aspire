@@ -186,6 +186,8 @@ This code will read the name and resource group from the parameters, and connect
 Experimental support for configuring custom domains in Azure Container Apps (ACA) was added. For example:
 
 ```csharp
+#pragma warning disable ASPIREACADOMAINS001
+
 var customDomain = builder.AddParameter("customDomain");
 var certificateName = builder.AddParameter("certificateName");
 
