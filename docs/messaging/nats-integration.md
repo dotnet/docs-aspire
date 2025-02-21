@@ -72,14 +72,14 @@ builder.AddProject<Projects.ExampleProject>()
 
 The NATS JetStream functionality provides a built-in persistence engine called JetStream which enables messages to be stored and replayed at a later time.
 
-### Add NETS server resource with authentication parameters
+### Add NATS server resource with authentication parameters
 
 When you want to explicitly provide the username and password, you can provide those as parameters. Consider the following alternative example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var username = builder.AddParameter("username", secret: true);
+var username = builder.AddParameter("username");
 var password = builder.AddParameter("password", secret: true);
 
 var nats = builder.AddNats(
