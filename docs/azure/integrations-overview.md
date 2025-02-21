@@ -73,21 +73,24 @@ The `RunAsExisting` method is used when a distributed application is executing i
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder();
-
-var existingResourceName = builder.AddParameter("existingResourceName");
+	
+var existingServiceBusName = builder.AddParameter("existingServiceBusName");
 
 var serviceBus = builder.AddAzureServiceBus("messaging")
-    .RunAsExisting(existingResourceName)
-    .WithQueue("queue");
+	  .RunAsExisting(existingServiceBusName);
+
+serviceBus.AddServiceBusQueue("queue");
 ```
 
 The preceding code:
 
 - Creates a new `builder` instance.
-- Adds a parameter named `existingResourceName` to the builder.
+- Adds a parameter named `existingServiceBusName` to the builder.
 - Adds an Azure Service Bus resource named `messaging` to the builder.
-- Calls the `RunAsExisting` method on the `serviceBus` resource builder, passing the `existingResourceName` parameter—alternatively, you can use the `string` parameter overload.
+- Calls the `RunAsExisting` method on the `serviceBus` resource builder, passing the `existingServiceBusName` parameter—alternatively, you can use the `string` parameter overload.
 - Adds a queue named `queue` to the `serviceBus` resource.
+
+By default, the Service Bus parameter reference is assumed to be in the same Azure resource group. However, if it's in a different resource group, you can pass the resource group explicitly as a parameter to correctly specify the appropriate resource grouping.
 
 ### Configure existing Azure resources for publish mode
 
@@ -98,20 +101,23 @@ To mark an Azure resource as existing in for the "publish" mode, call the `Publi
 ```csharp
 var builder = DistributedApplication.CreateBuilder();
 
-var existingResourceName = builder.AddParameter("existingResourceName");
+var existingServiceBusName = builder.AddParameter("existingServiceBusName");
 
 var serviceBus = builder.AddAzureServiceBus("messaging")
-    .PublishAsExisting(existingResourceName)
-    .WithQueue("queue");
+    .PublishAsExisting(existingServiceBusName);
+
+serviceBus.AddServiceBusQueue("queue");
 ```
 
 The preceding code:
 
 - Creates a new `builder` instance.
-- Adds a parameter named `existingResourceName` to the builder.
+- Adds a parameter named `existingServiceBusName` to the builder.
 - Adds an Azure Service Bus resource named `messaging` to the builder.
-- Calls the `PublishAsExisting` method on the `serviceBus` resource builder, passing the `existingResourceName` parameter—alternatively, you can use the `string` parameter overload.
+- Calls the `PublishAsExisting` method on the `serviceBus` resource builder, passing the `existingServiceBusName` parameter—alternatively, you can use the `string` parameter overload.
 - Adds a queue named `queue` to the `serviceBus` resource.
+
+By default, the Service Bus parameter reference is assumed to be in the same Azure resource group. However, if it's in a different resource group, you can pass the resource group explicitly as a parameter to correctly specify the appropriate resource grouping.
 
 After the app host is executed in publish mode, the generated manifest file will include the `existingResourceName` parameter, which can be used to reference the existing Azure resource. Consider the following generated manifest file:
 
