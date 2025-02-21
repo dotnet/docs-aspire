@@ -133,16 +133,69 @@ In 9.1, we addressed a persistent issue where Docker networks created by .NET As
 
 .NET Aspire thrives on [its integrations](../fundamentals/integrations-overview.md) with other platforms. This release has numerous updates to existing integrations, and details about migrations of ownership.
 
-### Azure Cosmos DB, SignalR, Functions, and more
+### Azure updates
 
 This release also focused on improving various [Azure integrations](../azure/integrations-overview.md):
 
-- The Azure Cosmos DB integration now supports Microsoft Entra ID for authentication and added support for the [vnext-preview](/azure/cosmos-db/emulator-linux) emulator.
-- Emulator support—`RunAsEmulator` APIs were added to the following integrations:
-  - [Add Azure Service Bus emulator resource](../messaging/azure-service-bus-integration.md#add-azure-service-bus-emulator-resource).
-  - [Add Azure Event Hubs emulator resource](../messaging/azure-event-hubs-integration.md#add-azure-event-hubs-emulator-resource).
-- It's simpler to connect to existing Azure resources in the app host.
-- Experimental support for configuring custom domains in Azure Container Apps (ACA) was added.
+#### New emulators
+
+We are very excited to bring new emulators for making local development much easier. The following integrations got new emulators in this release:
+
+- [Azure Service Bus](../messaging/azure-service-bus-integration.md#add-azure-service-bus-emulator-resource)
+- [Azure Cosmos DB Linux-based (preview)](../database/includes/cosmos-app-host.md#use-linux-based-emulator-preview)
+- [Azure SignalR](/azure/azure-signalr/signalr-howto-emulator)
+
+These new emulators work side-by-side with the existing emulators for:
+
+- [Azure Storage](../storage/azure-storage-integrations.md)
+- [Azure EventHubs](../messaging/azure-event-hubs-integration.md#add-azure-event-hubs-emulator-resource)
+- [Azure Cosmos DB](../database/includes/cosmos-app-host.md#add-azure-cosmos-db-emulator-resource)
+
+#### Cosmos DB
+
+Along with support for the new emulator, Cosmos DB added the following features.
+
+1. Support for Entra ID authentication by default
+
+Previously, the Cosmos DB integration used access keys and a Key Vault secret to connect to the service. .NET Aspire 9.1 added support for using more secure authentication using managed identities by default. If you need to keep using access key authentication, you can get back to the previous behavior by calling `.WithAccessKeyAuthentication()`.
+
+2. Support for modeling Database and Containers in the AppHost
+
+You can define CosmosDB database and containers in the AppHost and these resources will be available when you run the application in both the emulator and in Azure. This allows you to define these resources up front and no longer need to create them from the application, which may not have permissions to create them.
+
+#### Service Bus and Event Hubs
+
+Similar to Cosmos DB above, the Service Bus and Event Hubs integrations allow you to model Azure Service Bus queues, topics, and subscriptions, and Azure Event Hubs hub instances and consumer groups in AppHost code. These resources can now be created outside of the applications that use them, simplifying app logic.
+
+#### Working with existing resources
+
+We've heard a lot of feedback to make it easier to connect to existing Azure resources in .NET Aspire. With 9.1, you can now easily connect to an existing Azure resource either directly with strings, or via app model parameters which can be changed at deployment time. For example to connect to an Azure Service Bus account, we can use the following code:
+
+```csharp
+var serviceBusName = builder.AddParameter("serviceBusName");
+var serviceBusResourceGroup = builder.AddParameter("serviceBusResourceGroup");
+
+var serviceBus = builder.AddAzureServiceBus("messaging")
+                        .AsExisting(existingServiceBusName, existingServiceBusResourceGroup);
+```
+
+This code will read the name and resource group from the parameters, and connect to the existing resource when the application is run or deployed. For more information see [use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
+
+#### Azure Container Apps
+
+Experimental support for configuring custom domains in Azure Container Apps (ACA) was added. For example:
+
+```csharp
+var customDomain = builder.AddParameter("customDomain");
+var certificateName = builder.AddParameter("certificateName");
+
+builder.AddProject<Projects.AzureContainerApps_ApiService>("api")
+       .WithExternalHttpEndpoints()
+       .PublishAsAzureContainerApp((infra, app) =>
+       {
+           app.ConfigureCustomDomain(customDomain, certificateName);
+       });
+```
 
 ### Even more integration updates
 

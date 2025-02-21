@@ -113,9 +113,10 @@ The `RunAsExisting` method is used when a distributed application is executing i
 var builder = DistributedApplication.CreateBuilder();
 
 var existingServiceBusName = builder.AddParameter("existingServiceBusName");
+var existingServiceBusResourceGroup = builder.AddParameter("existingServiceBusResourceGroup");
 
 var serviceBus = builder.AddAzureServiceBus("messaging")
-                        .RunAsExisting(existingServiceBusName);
+                        .RunAsExisting(existingServiceBusName, existingServiceBusResourceGroup);
 
 serviceBus.AddServiceBusQueue("queue");
 ```
