@@ -28,4 +28,9 @@ resource event_hubs_AzureEventHubsDataOwner 'Microsoft.Authorization/roleAssignm
   scope: event_hubs
 }
 
+resource messages 'Microsoft.EventHub/namespaces/eventhubs@2024-01-01' = {
+  name: 'messages'
+  parent: event_hubs
+}
+
 output eventHubsEndpoint string = event_hubs.properties.serviceBusEndpoint
