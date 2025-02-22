@@ -139,7 +139,7 @@ This release also focused on improving various [Azure integrations](../azure/int
 
 #### New emulators
 
-We are very excited to bring new emulators for making local development much easier. The following integrations got new emulators in this release:
+We're very excited to bring new emulators for making local development much easier. The following integrations got new emulators in this release:
 
 - [Azure Service Bus](../messaging/azure-service-bus-integration.md#add-azure-service-bus-emulator-resource)
 - [Azure Cosmos DB Linux-based (preview)](../database/includes/cosmos-app-host.md#use-linux-based-emulator-preview)
@@ -161,11 +161,11 @@ Previously, the Cosmos DB integration used access keys and a Key Vault secret to
 
 ##### Support for modeling Database and Containers in the AppHost
 
-You can define CosmosDB database and containers in the AppHost and these resources will be available when you run the application in both the emulator and in Azure. This allows you to define these resources up front and no longer need to create them from the application, which may not have permission to create them.
+You can define Cosmos DB database and containers in the app host and these resources will be available when you run the application in both the emulator and in Azure. This allows you to define these resources up front and no longer need to create them from the application, which may not have permission to create them.
 
-##### Support for CosmosDB-based triggers in Azure Functions
+##### Support for Cosmos DB-based triggers in Azure Functions
 
-The CosmosDB resource has been modifed to support consumption in Azure Functions applications that uses the CosmosDB trigger. A CosmosDB resource can be inititalized and added as a reference to an Azure Functions resource with the following code:
+The Cosmos DB resource has been modified to support consumption in Azure Functions applications that uses the Cosmos DB trigger. A Cosmos DB resource can be initialized and added as a reference to an Azure Functions resource with the following code:
 
 ```csharp
 var cosmosDb = builder.AddAzureCosmosDB("cosmosdb")
@@ -196,7 +196,7 @@ public class MyCosmosDbTrigger(ILogger<MyCosmosDbTrigger> logger)
 
 #### Service Bus and Event Hubs
 
-Similar to Cosmos DB above, the Service Bus and Event Hubs integrations allow you to model Azure Service Bus queues, topics, and subscriptions, and Azure Event Hubs hub instances and consumer groups in AppHost code. These resources can now be created outside of the applications that use them, simplifying app logic.
+Similar to Cosmos DB, the Service Bus and Event Hubs integrations allow you to model Azure Service Bus queues, topics, and subscriptions, and Azure Event Hubs hub instances and consumer groups in app host code. These resources can now be created outside of the applications that use them, simplifying app logic.
 
 #### Working with existing resources
 
