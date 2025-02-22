@@ -127,6 +127,10 @@ The `PublishAsDockerfile()` feature was introduced for all projects and executab
 
 In 9.1, we addressed a persistent issue where Docker networks created by .NET Aspire would remain active even after the application was stopped. This bug, tracked in [issue #6504](https://github.com/dotnet/aspire/issues/6504), is resolved. Now, Docker networks are properly cleaned up, ensuring a more efficient and tidy development environment.
 
+### GitHub Codespaces support
+
+.NET Aspire 9.1 introduces support for developing in a [GitHub Codespace](https://github.com/features/codespaces). Now, the dashboard and your resources will run in the same VM the Codespace creates, so you can develop, debug, and test your end-to-end all within a browser.
+
 ## Integrations
 
 .NET Aspire thrives on [its integrations](../fundamentals/integrations-overview.md) with other platforms. This release has numerous updates to existing integrations, and details about migrations of ownership.
@@ -139,8 +143,40 @@ This release also focused on improving various [Azure integrations](../azure/int
 - Emulator support—`RunAsEmulator` APIs were added to the following integrations:
   - [Add Azure Service Bus emulator resource](../messaging/azure-service-bus-integration.md#add-azure-service-bus-emulator-resource).
   - [Add Azure Event Hubs emulator resource](../messaging/azure-event-hubs-integration.md#add-azure-event-hubs-emulator-resource).
-- It's simpler to connect to existing Azure resources in the app host.
 - Experimental support for configuring custom domains in Azure Container Apps (ACA) was added.
+
+#### Leverage existing Azure resources
+
+We added 3 new APIs in .NET Aspire 9.1 to let you define how to run and publish Azure resources that already exist. These APIs, in addition to the existing `AddConnectionString()` method, make it significantly easier to set up and understand how your app is running.
+
+Use the `RunAsExisting()` API to tell .NET Aspire to use an existing cloud resource during development/debug time, instead of provisioning a new one or running in a container.
+
+```csharp
+using var builder = DistributedApplication.CreateBuilder();
+
+var existingAzureResource = builder.AddParameter("myExistingAzureResourceName");
+var serviceBus = builder.AddAzureServiceBus("messaging")
+  .RunAsExisting(existingAzureResource)
+  .WithQueue("queue");
+
+# Omitted for brevity  
+```
+
+Similarly, you can use `PublishAsExisting()` to direct .NET Aspire to update an existing resource when using `azd` instead of provisioning and deploying a new one. In the following example, .NET Aspire will run Azure Service Bus in the emulator during development, and at deploy time publish it to an existing Service Bus resource.
+
+```csharp
+using var builder = DistributedApplication.CreateBuilder();
+
+var existingAzureResource = builder.AddParameter("myExistingAzureResourceName");
+var serviceBus = builder.AddAzureServiceBus("messaging")
+  .RunAsEmulator()
+  .PublishAsExisting(existingAzureResource)
+  .WithQueue("queue");
+
+# Omitted for brevity  
+```
+
+If you want to both run as and publish to an exiting Azure resource, you can simply use `AsExisting()` instead of both individual commands.
 
 ### Even more integration updates
 
