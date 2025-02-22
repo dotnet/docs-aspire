@@ -161,7 +161,38 @@ Previously, the Cosmos DB integration used access keys and a Key Vault secret to
 
 ##### Support for modeling Database and Containers in the AppHost
 
-You can define CosmosDB database and containers in the AppHost and these resources will be available when you run the application in both the emulator and in Azure. This allows you to define these resources up front and no longer need to create them from the application, which may not have permissions to create them.
+You can define CosmosDB database and containers in the AppHost and these resources will be available when you run the application in both the emulator and in Azure. This allows you to define these resources up front and no longer need to create them from the application, which may not have permission to create them.
+
+##### Support for CosmosDB-based triggers in Azure Functions
+
+The CosmosDB resource has been modifed to support consumption in Azure Functions applications that uses the CosmosDB trigger. A CosmosDB resource can be inititalized and added as a reference to an Azure Functions resource with the following code:
+
+```csharp
+var cosmosDb = builder.AddAzureCosmosDB("cosmosdb")
+                      .RunAsEmulator();
+var database = cosmosDb.AddCosmosDatabase("mydatabase");
+database.AddContainer("mycontainer", "/id");
+
+var funcApp = builder.AddAzureFunctionsProject<Projects.AzureFunctionsEndToEnd_Functions>("funcapp")
+  .WithReference(cosmosDb).WaitFor(cosmosDb);
+```
+
+The resource can be used in the Azure Functions trigger as follows:
+
+```csharp
+public class MyCosmosDbTrigger(ILogger<MyCosmosDbTrigger> logger)
+{
+    [Function(nameof(MyCosmosDbTrigger))]
+    public void Run([CosmosDBTrigger(
+        databaseName: "mydatabase",
+        containerName: "mycontainer",
+        CreateLeaseContainerIfNotExists = true,
+        Connection = "cosmosdb")] IReadOnlyList<Document> input)
+    {
+        logger.LogInformation("C# cosmosdb trigger function processed: {Count} messages", input.Count);
+    }
+}
+```
 
 #### Service Bus and Event Hubs
 
