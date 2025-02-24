@@ -114,17 +114,20 @@ public class WebTests
 
 By capturing the app host in a field when the test run is started, you can access it in each test without the need to recreate it, decreasing the time it takes to run the tests. Then, when the test run has completed, the app host is disposed, which will clean up any resources that were created during the test run, such as containers.
 
-## Passing arguments to your app host
+## Pass arguments to your app host
 
-You can access the args from your app host via the `args` parameter. Arguments are also passed to .NET's configuration system, so you can override many configuration settings this way. In the following example, we override the [environment](/aspnet/core/fundamentals/environments) by specifying it as a command line option:
+You can access the arguments from your app host with the `args` parameter. Arguments are also passed to [.NET's configuration system](/dotnet/core/extensions/configuration), so you can override many configuration settings this way. In the following example, you override the [environment](/aspnet/core/fundamentals/environments) by specifying it as a command line option:
 
 ```csharp
-var builder = await DistributedApplicationTestingBuilder.CreateAsync<Projects.MyAppHost>(["--environment=Testing"]);
+var builder = await DistributedApplicationTestingBuilder.CreateAsync<Projects.MyAppHost>(
+    [
+        "--environment=Testing"
+    ]);
 ```
 
-Other arguments can be passed to your app host program and made available in your app host. In the next example, we pass an argument to the app host and use it to control whether we add data volumes to a postgres instance.
+Other arguments can be passed to your app host `Program` and made available in your app host. In the next example, you pass an argument to the app host and use it to control whether you add data volumes to a Postgres instance.
 
-In the app host program, we use configuration to support enabling or disabling volumes:
+In the app host `Program`, you use configuration to support enabling or disabling volumes:
 
 ```csharp
 var postgres = builder.AddPostgres("postgres1");
@@ -134,13 +137,16 @@ if (builder.Configuration.GetValue("UseVolumes", true))
 }
 ```
 
-In test code, we pass `"UseVolumes=false"` in the args to the app host:
+In test code, you pass `"UseVolumes=false"` in the `args` to the app host:
 
 ```csharp
 public async Task DisableVolumesFromTest()
 {
     // Disable volumes in the test builder via arguments:
-    using var builder = await DistributedApplicationTestingBuilder.CreateAsync<Projects.TestingAppHost1_AppHost>(["UseVolumes=false"]);
+    using var builder = await DistributedApplicationTestingBuilder.CreateAsync<Projects.TestingAppHost1_AppHost>(
+        [
+            "UseVolumes=false"
+        ]);
 
     // The container will have no volume annotation since we disabled volumes by passing UseVolumes=false
     var postgres = builder.Resources.Single(r => r.Name == "postgres1");

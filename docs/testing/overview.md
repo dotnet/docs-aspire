@@ -11,23 +11,28 @@ zone_pivot_groups: unit-testing-framework
 
 To get started writing your first integration test with .NET Aspire, see the [Write your first .NET Aspire test](./write-your-first-test.md) article.
 
-## Disabling port randomization
+## Disable port randomization
 
-The testing builder will randomize port assignment for proxied endpoints by default during testing to allow multiple instances of your app to run concurrently without interfering with each other, relying on [.NET Aspire's service discovery](../service-discovery/overview.md) mechanism so that applications are able to find each other's endpoints. To disable port randomization, pass `"DcpPublisher:RandomizePorts=false"` as an argument when constructing your testing builder, as in the following snippet:
+By default, during testing, the builder randomizes port assignments for proxied endpoints. This allows multiple instances of your application to run concurrently without interference. It leverages [.NET Aspire's service discovery](../service-discovery/overview.md) mechanism to ensure that applications can locate each other's endpoints. To disable port randomization, pass `"DcpPublisher:RandomizePorts=false"` as an argument when constructing your testing builder, as shown in the following snippet:
 
 ```csharp
-var builder = await DistributedApplicationTestingBuilder.CreateAsync<Projects.MyAppHost>(["DcpPublisher:RandomizePorts=false"]);
+var builder = await DistributedApplicationTestingBuilder.CreateAsync<Projects.MyAppHost>(
+    [
+        "DcpPublisher:RandomizePorts=false"
+    ]);
 ```
 
-## Enabling the dashboard
+## Enable the dashboard
 
-The testing builder disables the [.NET Aspire dashboard](../fundamentals/dashboard) by default. To enable it, you can set the `DisableDashboard` property to `false`, when creating your testing builder as in this snippet:
+The testing builder disables the [.NET Aspire dashboard](../fundamentals/dashboard) by default. To enable it, you can set the `DisableDashboard` property to `false`, when creating your testing builder as shown in the following snippet:
 
 ```csharp
-var builder = await DistributedApplicationTestingBuilder.CreateAsync<Projects.MyAppHost>(args: [], configureBuilder: (appOptions, hostSettings) =>
-{
-    appOptions.DisableDashboard = false;
-});
+var builder = await DistributedApplicationTestingBuilder.CreateAsync<Projects.MyAppHost>(
+    args: [],
+    configureBuilder: (appOptions, hostSettings) =>
+    {
+        appOptions.DisableDashboard = false;
+    });
 ```
 
 ## See also
