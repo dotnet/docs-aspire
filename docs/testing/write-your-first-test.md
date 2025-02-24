@@ -1,7 +1,7 @@
 ---
 title: Write your first .NET Aspire test
 description: Learn how to test your .NET Aspire solutions using the xUnit, NUnit, and MSTest testing frameworks.
-ms.date: 11/11/2024
+ms.date: 2/24/2025
 zone_pivot_groups: unit-testing-framework
 ---
 

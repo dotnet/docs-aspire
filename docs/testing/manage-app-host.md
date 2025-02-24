@@ -1,7 +1,7 @@
 ---
 title: Manage the app host in .NET Aspire tests
 description: Learn how to manage the app host in .NET Aspire tests.
-ms.date: 10/21/2024
+ms.date: 2/24/2025
 zone_pivot_groups: unit-testing-framework
 ---
 

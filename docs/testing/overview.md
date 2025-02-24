@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire testing overview
 description: Learn how .NET Aspire helps you to test your applications.
-ms.date: 2/18/2025
+ms.date: 2/24/2025
 zone_pivot_groups: unit-testing-framework
 ---
 
