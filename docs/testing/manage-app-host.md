@@ -1,7 +1,7 @@
 ---
 title: Manage the app host in .NET Aspire tests
 description: Learn how to manage the app host in .NET Aspire tests.
-ms.date: 10/21/2024
+ms.date: 2/24/2025
 zone_pivot_groups: unit-testing-framework
 ---
 
@@ -113,6 +113,46 @@ public class WebTests
 :::zone-end
 
 By capturing the app host in a field when the test run is started, you can access it in each test without the need to recreate it, decreasing the time it takes to run the tests. Then, when the test run has completed, the app host is disposed, which will clean up any resources that were created during the test run, such as containers.
+
+## Pass arguments to your app host
+
+You can access the arguments from your app host with the `args` parameter. Arguments are also passed to [.NET's configuration system](/dotnet/core/extensions/configuration), so you can override many configuration settings this way. In the following example, you override the [environment](/aspnet/core/fundamentals/environments) by specifying it as a command line option:
+
+```csharp
+var builder = await DistributedApplicationTestingBuilder.CreateAsync<Projects.MyAppHost>(
+    [
+        "--environment=Testing"
+    ]);
+```
+
+Other arguments can be passed to your app host `Program` and made available in your app host. In the next example, you pass an argument to the app host and use it to control whether you add data volumes to a Postgres instance.
+
+In the app host `Program`, you use configuration to support enabling or disabling volumes:
+
+```csharp
+var postgres = builder.AddPostgres("postgres1");
+if (builder.Configuration.GetValue("UseVolumes", true))
+{
+    postgres.WithDataVolume();
+}
+```
+
+In test code, you pass `"UseVolumes=false"` in the `args` to the app host:
+
+```csharp
+public async Task DisableVolumesFromTest()
+{
+    // Disable volumes in the test builder via arguments:
+    using var builder = await DistributedApplicationTestingBuilder.CreateAsync<Projects.TestingAppHost1_AppHost>(
+        [
+            "UseVolumes=false"
+        ]);
+
+    // The container will have no volume annotation since we disabled volumes by passing UseVolumes=false
+    var postgres = builder.Resources.Single(r => r.Name == "postgres1");
+    Assert.Empty(postgres.Annotations.OfType<ContainerMountAnnotation>());
+}
+```
 
 ## Use the `DistributedApplicationFactory` class
 
