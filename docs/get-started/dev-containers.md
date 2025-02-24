@@ -101,10 +101,8 @@ And use this instead of the hardcoded JSON below:
     // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
     "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
     "features": {
-        "ghcr.io/devcontainers/features/azure-cli:1": {},
         "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-        "ghcr.io/devcontainers/features/powershell:1": {},
-        "ghcr.io/azure/azure-dev/azd:0": {}
+        "ghcr.io/devcontainers/features/powershell:1": {}
     },
 
     "hostRequirements": {
@@ -129,8 +127,6 @@ And use this instead of the hardcoded JSON below:
         "vscode": {
             "extensions": [
                 "ms-dotnettools.csdevkit",
-                "ms-azuretools.vscode-bicep",
-                "ms-azuretools.azure-dev",
                 "GitHub.copilot-chat",
                 "GitHub.copilot"
             ]
