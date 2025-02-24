@@ -142,14 +142,14 @@ This release also focused on improving various [Azure integrations](../azure/int
 We're very excited to bring new emulators for making local development much easier. The following integrations got new emulators in this release:
 
 - [Azure Service Bus](../messaging/azure-service-bus-integration.md#add-azure-service-bus-emulator-resource)
-- [Azure Cosmos DB Linux-based (preview)](../database/includes/cosmos-app-host.md#use-linux-based-emulator-preview)
+- [Azure Cosmos DB Linux-based (preview)](../database/azure-cosmos-db-integration.md#use-linux-based-emulator-preview)
 - [Azure SignalR](/azure/azure-signalr/signalr-howto-emulator)
 
 These new emulators work side-by-side with the existing emulators for:
 
 - [Azure Storage](../storage/azure-storage-integrations.md)
 - [Azure EventHubs](../messaging/azure-event-hubs-integration.md#add-azure-event-hubs-emulator-resource)
-- [Azure Cosmos DB](../database/includes/cosmos-app-host.md#add-azure-cosmos-db-emulator-resource)
+- [Azure Cosmos DB](../database/azure-cosmos-db-integration.md#add-azure-cosmos-db-emulator-resource)
 
 #### Cosmos DB
 
