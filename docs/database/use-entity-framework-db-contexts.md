@@ -1,4 +1,5 @@
 ---
+title: Use Entity Framework database contexts with .NET Aspire
 description: Learn how to optimize the performance of .NET Aspire Entity Framework integrations using their database context objects.
 ms.date: 02/21/2025
 uid: database/use-entity-framework-db-contexts
@@ -134,7 +135,7 @@ You have more flexibility when you create the database context in this way, for 
 - You can reuse existing configuration code for the database context without rewriting it for .NET Aspire.
 - You can choose not to use EF Core context pooling, which may perform better in some circumstances. For more information, see [Use EF context pooling in .NET Aspire](#use-ef-context-pooling-in-net-aspire)
 - You can use dynamic connection strings. For more information, see [Use EF with dynamic connection strings in .NET Aspire](#use-ef-with-dynamic-connection-strings-in-net-aspire)
-- You can use [EF Core interceptors](/ef/core/logging-events-diagnostics/interceptors) to modify database operations. For more information, see [Use EF interceptors in .NET Aspire](#use-ef-inteceptors-in-net-aspire)
+- You can use [EF Core interceptors](/ef/core/logging-events-diagnostics/interceptors) to modify database operations. For more information, see [Use EF interceptors in .NET Aspire](#use-ef-interceptors-in-net-aspire)
 
 By default, a database context created this way doesn't include .NET Aspire features, such as telemetry and health checks. To add those features, each .NET Aspire EF client integration includes a method named `Enrich\<DatabaseSystem\>DbContext`. These enrich context methods:
 
@@ -207,7 +208,7 @@ public class ExampleService(ExampleDbContext context)
 
 EF interceptors allow developers to hook into and modify database operations at various points during the execution of database queries and commands. You can use them to log, modify, or suppress operations with your own code. Your interceptor must implement one or more interface from the <xref:Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor> interface.
 
-Again, interceptors are not supported by the .NET Aspire `Add\<DatabaseSystem\>DbContext` methods. Use the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*> method and call the <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.AddInterceptors> method in the options builder:
+Again, interceptors are not supported by the .NET Aspire `Add\<DatabaseSystem\>DbContext` methods. Use the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*> method and call the <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.AddInterceptors*> method in the options builder:
 
 :::zone-pivot="sql-server-ef"
 
@@ -381,7 +382,7 @@ The above code replaces the place holder `{DatabaseName}` in the connection stri
 
 An EF database context is an object designed to be used for a single unit of work. For example, if you want to add a new customer to the database, you might need to add a row in the **Customers** table and a row in the **Addresses** table. You should create the EF context, add the new customer and address entities to it, call <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges*> or <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync*>, and then dispose the context.
 
-In many types of web application, such as ASP.NET applications, each HTTP request closely corresponds to a single unit of work against the database. If your .NET Aspire microservice is an ASP.NET application or a similar web application, you can use the standard EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext> method described above to create a context that is tied to the current HTTP request. Remember to call the .NET Aspire `Enrich\<DatabaseSystem\>DbContext` method to gain health checks, tracing, and other features. When you use this approach, the database context lifetime is tied to the web request. You don't have to call the <xref:Microsoft.EntityFrameworkCore.DbContext.Dispose*> method when the unit of work is complete.
+In many types of web application, such as ASP.NET applications, each HTTP request closely corresponds to a single unit of work against the database. If your .NET Aspire microservice is an ASP.NET application or a similar web application, you can use the standard EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*> method described above to create a context that is tied to the current HTTP request. Remember to call the .NET Aspire `Enrich\<DatabaseSystem\>DbContext` method to gain health checks, tracing, and other features. When you use this approach, the database context lifetime is tied to the web request. You don't have to call the <xref:Microsoft.EntityFrameworkCore.DbContext.Dispose*> method when the unit of work is complete.
 
 Other types of application, such as ASP.NET Core Blazor, don't necessarily align each request with a unit of work, because they use dependency injection with a different service scope. In such apps, you may need to perform multiple units of work, each with a different database context, within a single HTTP request and response. To implement this approach, use a you can create a factory for database contexts, by calling the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory*> method. This method partners well with the .NET Aspire `Enrich\<DatabaseSystem\>DbContext` methods:
 
@@ -473,7 +474,7 @@ Database context pooling is a feature of EF Core. Database contexts are created 
 In a .NET Aspire consuming project, there are three ways to use context pooling:
 
 - Use the .NET Aspire `Add\<DatabaseSystem\>DbContext` methods to create the database context. These methods create a context pool automatically.
-- Call the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextPool> method instead of the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext> method.
+- Call the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextPool*> method instead of the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*> method.
 
     :::zone pivot="sql-server-ef"
 
@@ -512,7 +513,7 @@ In a .NET Aspire consuming project, there are three ways to use context pooling:
 
     :::zone-end
 
-- Call the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbPooledContextFactory> method instead of the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory> method.
+- Call the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbPooledContextFactory*> method instead of the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory*> method.
 
     :::zone pivot="sql-server-ef"
 
@@ -558,7 +559,6 @@ Remember to enrich the database context after using the last two methods, as des
 - [Entity Framework documentation hub](/ef)
 - [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](/dotnet/aspire/database/sql-server-integrations)
 - [Apply Entity Framework Core migrations in .NET Aspire](/dotnet/aspire/database/ef-core-migrations)
-- [Seed data in a database using .NET Aspire](/aspire/database/seed-database-data)
 - [DbContext Lifetime, Configuration, and Initialization](/ef/core/dbcontext-configuration/)
 - [Advanced Performance Topics](/ef/core/performance/advanced-performance-topics)
 - [Entity Framework Interceptors](/ef/core/logging-events-diagnostics/interceptors)
