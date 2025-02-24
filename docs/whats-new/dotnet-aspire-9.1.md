@@ -25,7 +25,7 @@ For more information on the official .NET version and .NET Aspire version suppor
 
 ## Improved onboarding experience
 
-The onboarding experience for .NET Aspire has been improved in 9.1. The team has worked on creating a GitHub Codespaces template that installs all the necessary dependencies for .NET Aspire, making it easier to get started, including the templates and the ASP.NET Core developer certificate. Additionally, there's support for Dev Containers. For more information, see:
+The onboarding experience for .NET Aspire is improved with 9.1. The team worked on creating a GitHub Codespaces template that installs all the necessary dependencies for .NET Aspire, making it easier to get started, including the templates and the ASP.NET Core developer certificate. Additionally, there's support for Dev Containers. For more information, see:
 
 - [.NET Aspire and GitHub Codespaces](../get-started/github-codespaces.md)
 - [.NET Aspire and Visual Studio Code Dev Containers](../get-started/dev-containers.md)
@@ -70,13 +70,13 @@ The dashboard now supports "parent" and "child" resource relationships. For inst
 
 ### Localization overrides
 
-The dashboard defaults to the language set in your browser. This release introduces the ability to override this setting and change the dashboard language independently from the browser language. Consider the following screen capture, that demonstrates the addition of the language dropdown in the dashboard:
+The dashboard defaults to the language set in your browser. This release introduces the ability to override this setting and change the dashboard language independently from the browser language. Consider the following screen capture that demonstrates the addition of the language dropdown in the dashboard:
 
 :::image type="content" source="media/dashboard-language.png" lightbox="media/dashboard-language.png" alt-text="A screenshot of the .NET Aspire dashboard showing the new flyout menu to change language.":::
 
 ### Clear logs and telemetry from the dashboard
 
-New buttons were added to the **Console logs**, **Structured logs**, **Traces** and **Metrics** pages to clear data. There is also a "Remove all" button in the settings popup to remove everything with one action.
+New buttons were added to the **Console logs**, **Structured logs**, **Traces** and **Metrics** pages to clear data. There's also a "Remove all" button in the settings popup to remove everything with one action.
 
 Now you use this feature to reset the dashboard to a blank slate, test your app, view only the relevant logs and telemetry, and repeat.
 
@@ -146,7 +146,7 @@ This release also focused on improving various [Azure integrations](../azure/int
 
 #### New emulators
 
-We're very excited to bring new emulators for making local development much easier. The following integrations got new emulators in this release:
+We're excited to bring new emulators for making local development easier. The following integrations got new emulators in this release:
 
 - [Azure Service Bus](../messaging/azure-service-bus-integration.md#add-azure-service-bus-emulator-resource)
 - [Azure Cosmos DB Linux-based (preview)](../database/azure-cosmos-db-integration.md#use-linux-based-emulator-preview)
@@ -155,7 +155,7 @@ We're very excited to bring new emulators for making local development much easi
 These new emulators work side-by-side with the existing emulators for:
 
 - [Azure Storage](../storage/azure-storage-integrations.md)
-- [Azure EventHubs](../messaging/azure-event-hubs-integration.md#add-azure-event-hubs-emulator-resource)
+- [Azure Event Hubs](../messaging/azure-event-hubs-integration.md#add-azure-event-hubs-emulator-resource)
 - [Azure Cosmos DB](../database/azure-cosmos-db-integration.md#add-azure-cosmos-db-emulator-resource)
 
 #### Cosmos DB
@@ -168,11 +168,11 @@ Previously, the Cosmos DB integration used access keys and a Key Vault secret to
 
 ##### Support for modeling Database and Containers in the AppHost
 
-You can define Cosmos DB database and containers in the app host and these resources will be available when you run the application in both the emulator and in Azure. This allows you to define these resources up front and no longer need to create them from the application, which may not have permission to create them.
+You can define a Cosmos DB database and containers in the app host and these resources are available when you run the application in both the emulator and in Azure. This allows you to define these resources up front and no longer need to create them from the application, which might not have permission to create them.
 
 ##### Support for Cosmos DB-based triggers in Azure Functions
 
-The Cosmos DB resource has been modified to support consumption in Azure Functions applications that uses the Cosmos DB trigger. A Cosmos DB resource can be initialized and added as a reference to an Azure Functions resource with the following code:
+The <xref:Aspire.Hosting.AzureCosmosDBResource> was modified to support consumption in Azure Functions applications that uses the Cosmos DB trigger. A Cosmos DB resource can be initialized and added as a reference to an Azure Functions resource with the following code:
 
 ```csharp
 var cosmosDb = builder.AddAzureCosmosDB("cosmosdb")
@@ -181,7 +181,8 @@ var database = cosmosDb.AddCosmosDatabase("mydatabase");
 database.AddContainer("mycontainer", "/id");
 
 var funcApp = builder.AddAzureFunctionsProject<Projects.AzureFunctionsEndToEnd_Functions>("funcapp")
-  .WithReference(cosmosDb).WaitFor(cosmosDb);
+    .WithReference(cosmosDb)
+    .WaitFor(cosmosDb);
 ```
 
 The resource can be used in the Azure Functions trigger as follows:
@@ -196,7 +197,9 @@ public class MyCosmosDbTrigger(ILogger<MyCosmosDbTrigger> logger)
         CreateLeaseContainerIfNotExists = true,
         Connection = "cosmosdb")] IReadOnlyList<Document> input)
     {
-        logger.LogInformation("C# cosmosdb trigger function processed: {Count} messages", input.Count);
+        logger.LogInformation(
+            "C# cosmosdb trigger function processed: {Count} messages",
+            input.Count);
     }
 }
 ```
@@ -207,7 +210,7 @@ Similar to Cosmos DB, the Service Bus and Event Hubs integrations allow you to m
 
 #### Working with existing resources
 
-We've heard a lot of feedback to make it easier to connect to existing Azure resources in .NET Aspire. With 9.1, you can now easily connect to an existing Azure resource either directly with strings, or via app model parameters which can be changed at deployment time. For example to connect to an Azure Service Bus account, we can use the following code:
+There's consistent feedback about making it easier to connect to existing Azure resources in .NET Aspire. With 9.1, you can now easily connect to an existing Azure resource either directly with strings, or via app model parameters which can be changed at deployment time. For example to connect to an Azure Service Bus account, we can use the following code:
 
 ```csharp
 var serviceBusName = builder.AddParameter("serviceBusName");
@@ -217,7 +220,7 @@ var serviceBus = builder.AddAzureServiceBus("messaging")
                         .AsExisting(existingServiceBusName, existingServiceBusResourceGroup);
 ```
 
-This code will read the name and resource group from the parameters, and connect to the existing resource when the application is run or deployed. For more information see [use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
+The preceding code reads the name and resource group from the parameters, and connects to the existing resource when the application is run or deployed. For more information, see [use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
 #### Azure Container Apps
 
@@ -246,7 +249,7 @@ builder.AddProject<Projects.AzureContainerApps_ApiService>("api")
 - Dapr migrated to the [CommunityToolkit](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Dapr) to facilitate faster innovation.
 - Numerous other integrations received updates, fixes, and new features. For detailed information, refer to our [GitHub release notes](https://github.com/dotnet/aspire/releases).
 
-The [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS) NuGet package and source code migrated under [AWS ownership](https://github.com/aws/integrations-on-dotnet-aspire-for-aws). This migration happened as part of .NET Aspire 9.0, we're just restating that change here.
+The [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS) NuGet package and source code migrated under [Amazon Web Services (AWS)) ownership](https://github.com/aws/integrations-on-dotnet-aspire-for-aws). This migration happened as part of .NET Aspire 9.0, we're just restating that change here.
 
 ## Deployment
 
