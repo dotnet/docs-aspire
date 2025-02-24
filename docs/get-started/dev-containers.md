@@ -27,7 +27,7 @@ To configure Dev Containers in Visual Studio Code, use the _.devcontainer/devcon
 1. Clone the repository to your local developer workstation using the following command:
 
     ```dotnetcli
-    git clone https://github.com/<org/username>/<repository>
+    git clone https://github.com/<org>/<username>/<repository>
     ```
 
 1. Open the repository in Visual Studio Code. After a few moments Visual Studio Code detects the _.devcontainer/devcontainer.json_ file and prompt to open the repository inside a container. Select whichever option is most appropriate for your workflow.
@@ -38,7 +38,7 @@ To configure Dev Containers in Visual Studio Code, use the _.devcontainer/devcon
 
     :::image source="media/devcontainer-build-completed.png" lightbox="media/devcontainer-build-completed.png" alt-text="Dev Container build completed.":::
 
-1. Open a new terminal window in Visual Studio Code <kbd>Ctrl</kbd>+(<kbd>Shift</kbd>+<kbd>\`</kbd>) and create a new .NET Aspire project using the `dotnet` command-line.
+1. Open a new terminal window in Visual Studio Code (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\`</kbd>) and create a new .NET Aspire project using the `dotnet` command-line.
 
     ```dotnetcli
     dotnet new aspire-starter -n HelloAspire
