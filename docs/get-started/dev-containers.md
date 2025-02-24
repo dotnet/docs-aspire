@@ -38,7 +38,7 @@ After a few moments the list of files will become visible and the local build of
 
 ![Devcontainer build completed](media/devcontainer-build-completed.png)
 
-1. Open a new terminal window in VS Code <kbd>Ctrl</kbd>+(<kbd>Shift</kbd>+<kbd>`</kbd>) and create a new .NET Aspire project using the `dotnet` command-line.
+1. Open a new terminal window in VS Code <kbd>Ctrl</kbd>+(<kbd>Shift</kbd>+<kbd>\`</kbd>) and create a new .NET Aspire project using the `dotnet` command-line.
 
 ```dotnetcli
 dotnet new aspire-starter -n HelloAspire
