@@ -21,7 +21,7 @@ Consider the following example, where in _publish_ mode you add an Azure Storage
 var builder = DistributedApplication.CreateBuilder(args);
 
 var storage = builder.ExecutionContext.IsPublishMode
-    ? builder.AddAzureStorage("storage")
+    ? builder.AddAzureStorage("storage").AddBlobs("blobs")
     : builder.AddConnectionString("storage");
 
 builder.AddProject<Projects.Api>("api")
