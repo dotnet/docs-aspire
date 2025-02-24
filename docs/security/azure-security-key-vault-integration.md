@@ -59,7 +59,7 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Key Vault resource, the following Bicep is generated:
 
-::code language="bicep" source="../snippets/azure/AppHost/key-vault.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/key-vault.module.bicep":::
 
 The preceding Bicep is a module that provisions an Azure Key Vault resource with the following defaults:
 
