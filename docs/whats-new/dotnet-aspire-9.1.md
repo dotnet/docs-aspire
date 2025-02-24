@@ -153,7 +153,7 @@ We're excited to bring new emulators for making local development easier. The fo
 - [Azure SignalR](/azure/azure-signalr/signalr-howto-emulator)
 
 ```csharp
-var serviceBus = builder.AddAzureServiceBus("sbemulator")
+var serviceBus = builder.AddAzureServiceBus("servicebus")
                         .RunAsEmulator();
 
 #pragma warning disable ASPIRECOSMOSDB001
