@@ -56,17 +56,7 @@ When you add an `AzureStorageResource` to the app host, it exposes other useful 
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Storage resource, the following Bicep is generated:
 
-<!-- markdownlint-disable MD033 -->
-<br/>
-<details>
-<summary id="storage-bicep"><strong>Toggle Azure Storage Bicep.</strong></summary>
-<p aria-labelledby="storage-json">
-
-:::code language="bicep" source="../../snippets/azure/AppHost/storage.module.bicep":::
-
-</p>
-</details>
-<!-- markdownlint-enable MD033 -->
+::code language="bicep" source="../../snippets/azure/AppHost/storage.module.bicep":::
 
 The preceding Bicep is a module that provisions an Azure Storage account with the following defaults:
 

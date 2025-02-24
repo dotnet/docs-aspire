@@ -57,17 +57,7 @@ When you add an <xref:Aspire.Hosting.Azure.AzureServiceBusResource> to the app h
 
 If you're new to Bicep, it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Service Bus resource, the following Bicep is generated:
 
-<!-- markdownlint-disable MD033 -->
-<br/>
-<details>
-<summary id="service-bus-bicep"><strong>Toggle Azure Service Bus Bicep.</strong></summary>
-<p aria-labelledby="service-bus-bicep">
-
-:::code language="bicep" source="../snippets/azure/AppHost/service-bus.module.bicep":::
-
-</p>
-</details>
-<!-- markdownlint-enable MD033 -->
+::code language="bicep" source="../snippets/azure/AppHost/service-bus.module.bicep":::
 
 The preceding Bicep is a module that provisions an Azure Service Bus namespace with the following defaults:
 

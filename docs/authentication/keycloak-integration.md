@@ -165,17 +165,7 @@ The realm import files are mounted at `/opt/keycloak/data/import` in the Keycloa
 
 As an example, the following JSON file could be added to the app host project in a _/Realms_ folder—to serve as a source realm configuration file:
 
-<!-- markdownlint-disable MD033 -->
-<br/>
-<details>
-<summary id='realm-json'><strong>Toggle realm JSON example.</strong></summary>
-<p aria-labelledby='realm-json'>
-
-:::code language="json" source="snippets/AspireApp/AspireApp.AppHost/Realms/weathershop-realm.json":::
-
-</p>
-</details>
-<!-- markdownlint-enable MD033 -->
+::code language="json" source="snippets/AspireApp/AspireApp.AppHost/Realms/weathershop-realm.json":::
 
 ### Hosting integration health checks
 

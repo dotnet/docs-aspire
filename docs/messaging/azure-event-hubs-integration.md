@@ -61,17 +61,7 @@ When you add an Azure Event Hubs resource to the app host, it exposes other usef
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Event Hubs resource, the following Bicep is generated:
 
-<!-- markdownlint-disable MD033 -->
-<br/>
-<details>
-<summary id="azure-event-hubs"><strong>Toggle Azure Event Hubs Bicep.</strong></summary>
-<p aria-labelledby="azure-event-hubs">
-
 :::code language="bicep" source="../snippets/azure/AppHost/event-hubs.module.bicep":::
-
-</p>
-</details>
-<!-- markdownlint-enable MD033 -->
 
 The preceding Bicep is a module that provisions an Azure Event Hubs resource with the following defaults:
 
