@@ -150,7 +150,6 @@ And use this instead of the hardcoded JSON below:
         "vscode": {
             "extensions": [
                 "ms-dotnettools.csdevkit",
-                "ms-azuretools.vscode-bicep",
                 "GitHub.copilot-chat",
                 "GitHub.copilot"
             ]
