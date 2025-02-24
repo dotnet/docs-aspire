@@ -513,12 +513,12 @@ In a .NET Aspire consuming project, there are three ways to use context pooling:
 
     :::zone-end
 
-- Call the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbPooledContextFactory*> method instead of the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory*> method.
+- Call the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddPooledDbContextFactory*> method instead of the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory*> method.
 
     :::zone pivot="sql-server-ef"
 
     ```csharp
-    builder.Services.AddDbPooledContextFactory<ExampleDbContext>(options =>
+    builder.Services.AddPooledDbContextFactory<ExampleDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("database")
             ?? throw new InvalidOperationException("Connection string 'database' not found.")));
     ```
@@ -527,7 +527,7 @@ In a .NET Aspire consuming project, there are three ways to use context pooling:
     :::zone pivot="postgresql-ef"
 
     ```csharp
-    builder.Services.AddDbPooledContextFactory<ExampleDbContext>(options =>
+    builder.Services.AddPooledDbContextFactory<ExampleDbContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("database")
             ?? throw new InvalidOperationException("Connection string 'database' not found.")));
     ```
@@ -536,7 +536,7 @@ In a .NET Aspire consuming project, there are three ways to use context pooling:
     :::zone pivot="oracle-ef"
 
     ```csharp
-    builder.Services.AddDbPooledContextFactory<ExampleDbContext>(options =>
+    builder.Services.AddPooledDbContextFactory<ExampleDbContext>(options =>
         options.UseOracle(builder.Configuration.GetConnectionString("database")
             ?? throw new InvalidOperationException("Connection string 'database' not found.")));
     ```
@@ -545,7 +545,7 @@ In a .NET Aspire consuming project, there are three ways to use context pooling:
     :::zone pivot="mysql-ef"
 
     ```csharp
-    builder.Services.AddDbPooledContextFactory<ExampleDbContext>(options =>
+    builder.Services.AddPooledDbContextFactory<ExampleDbContext>(options =>
         options.UseMySql(builder.Configuration.GetConnectionString("database")
             ?? throw new InvalidOperationException("Connection string 'database' not found.")));
     ```
