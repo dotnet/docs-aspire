@@ -113,7 +113,7 @@ The connection string is configured in the app host's configuration, typically u
 
 The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"cosmos-db"`. The `GetConnectionString` API is shorthand for `IConfiguration.GetSection("ConnectionStrings")[name]`.
 
-### Add Azure Cosmos DB database resource
+### Add Azure Cosmos DB database and container resources
 
 To add an Azure Cosmos DB database resource, chain a call on an `IResourceBuilder<AzureCosmosDBResource>` to the <xref:Aspire.Hosting.AzureCosmosExtensions.AddCosmosDatabase*> API:
 
@@ -126,7 +126,25 @@ cosmos.AddCosmosDatabase("db");
 // After adding all resources, run the app...
 ```
 
-When you call `AddCosmosDatabase`, it configures your Cosmos DB resources to have a database named `db`. The database is created in the Cosmos DB account that's represented by the `AzureCosmosDBResource` that you added earlier. The database is a logical container for collections and users. For more information, see [Databases, containers, and items in Azure Cosmos DB](/azure/cosmos-db/resource-model).
+When you call `AddCosmosDatabase`, it configures your Cosmos DB resources to have a database named `db`. The database is created in the Cosmos DB account that's represented by the `AzureCosmosDBResource` that you added earlier. The database is a logical container for collections and users.
+
+An Azure Cosmos DB container is where data is stored. When you create a container, you need to supply a partition key.
+
+To add an Azure Cosmos DB container resource, chain a call on an `IResourceBuilder<AzureCosmosDBDatabaseResource>` to the <xref:Aspire.Hosting.AzureCosmosExtensions.AddContainer*> API:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var cosmos = builder.AddAzureCosmosDB("cosmos-db");
+var db = cosmos.AddCosmosDatabase("db");
+db.AddContainer("entries", "/id");
+
+// After adding all resources, run the app...
+```
+
+The container is created in the database that's represented by the `AzureCosmosDBDatabaseResource` that you added earlier.
+
+For more information, see [Databases, containers, and items in Azure Cosmos DB](/azure/cosmos-db/resource-model).
 
 ### Add Azure Cosmos DB emulator resource
 
