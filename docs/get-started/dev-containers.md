@@ -24,13 +24,13 @@ To configure Devcontainers in Visual Studio Code, use the _.devcontainer/devcont
 
     Once you provide the details and select **Create repository**, the repository is created and shown in GitHub.
 
-2. Clone the repository to your local developer workstation using the following command:
+1. Clone the repository to your local developer workstation using the following command:
 
 ```dotnetcli
 git clone https://github.com/<org/username>/<repository>
 ```
 
-3. Open the repository in Visual Studio Code. After a few moments Visual Studio Code will detect the _.devcontainer/devcontainer.json_ file and prompt to open the repository inside a container. Select whichever option is most appropriate for your workflow.
+1. Open the repository in Visual Studio Code. After a few moments Visual Studio Code will detect the _.devcontainer/devcontainer.json_ file and prompt to open the repository inside a container. Select whichever option is most appropriate for your workflow.
 
 ![Prompt to open repository inside a container](media/reopen-in-container.png)
 
@@ -38,7 +38,7 @@ After a few moments the list of files will become visible and the local build of
 
 ![Devcontainer build completed](media/devcontainer-build-completed.png)
 
-4. Open a new terminal window in VSCode (``` CTRL-SHIFT-` ```) and create a new .NET Aspire project using the `dotnet` command-line.
+1. Open a new terminal window in VS Code <kbd>Ctrl</kbd>+(<kbd>Shift</kbd>+<kbd>`</kbd>) and create a new .NET Aspire project using the `dotnet` command-line.
 
 ```dotnetcli
 dotnet new aspire-starter -n HelloAspire
@@ -46,7 +46,7 @@ dotnet new aspire-starter -n HelloAspire
 
 After a few moments the project will be created and initial dependencies restored.
 
-5. Open the `ProjectName.AppHost/Program.cs` file in the editor and click the run button on the top right hand corner of the editor window.
+1. Open the _ProjectName.AppHost/Program.cs_ file in the editor and select the run button on the top right corner of the editor window.
 
 ![Run button in editor](media/vscode-run-button.png)
 
@@ -60,7 +60,7 @@ This is expected. Once you have confirmed that the URL being requested correspon
 
 .NET Aspire will automatically configure forwarded ports so that when you click on the endpoints in the .NET Aspire dashboard they will be tunneled to processes and nested containers within the Devcontainer.
 
-6. Commit changes to the GitHub repository
+1. Commit changes to the GitHub repository
 
 Once you have successfully created the .NET Aspire project and verified that it launches and you can access the dashboard it is a good idea to commit the changes to the repository.
 
