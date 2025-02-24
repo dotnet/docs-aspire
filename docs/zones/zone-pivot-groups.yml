@@ -63,3 +63,15 @@ groups:
       title: MSTest
     - id: nunit
       title: NUnit
+- id: entity-framework-client-integration
+  title: .NET Aspire Entity Framework client integration
+  prompt: Choose a .NET Aspire Entity Framework client integration
+  pivots:
+    - id: sql-server-ef
+      title: SQL Server Entity Framework Core
+    - id: postgresql-ef
+      title: PostgreSQL Entity Framework Core
+    - id: oracle-ef
+      title: Oracle Entity Framework Core
+    - id: mysql-ef
+      title: Pomelo MySQL Entity Framework Core
