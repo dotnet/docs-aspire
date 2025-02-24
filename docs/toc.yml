@@ -84,6 +84,9 @@ items:
 
 - name: Testing
   items:
+  - name: Overview
+    displayName: aspire testing,testing
+    href: testing/overview.md
   - name: Write your first .NET Aspire test
     href: testing/write-your-first-test.md
   - name: Managing the app host
