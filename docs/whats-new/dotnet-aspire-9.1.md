@@ -152,6 +152,18 @@ We're excited to bring new emulators for making local development easier. The fo
 - [Azure Cosmos DB Linux-based (preview)](../database/azure-cosmos-db-integration.md#use-linux-based-emulator-preview)
 - [Azure SignalR](/azure/azure-signalr/signalr-howto-emulator)
 
+```csharp
+var serviceBus = builder.AddAzureServiceBus("sbemulator")
+                        .RunAsEmulator();
+
+#pragma warning disable ASPIRECOSMOSDB001
+var cosmosDb = builder.AddAzureCosmosDB("cosmosdb")
+                      .RunAsPreviewEmulator();
+
+var signalr = builder.AddAzureSignalR("signalr", AzureSignalRServiceMode.Serverless)
+                     .RunAsEmulator();
+```
+
 These new emulators work side-by-side with the existing emulators for:
 
 - [Azure Storage](../storage/azure-storage-integrations.md)
