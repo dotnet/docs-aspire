@@ -15,7 +15,7 @@ Before .NET Aspire 9.1 it was still possible to use .NET Aspire within a GitHub 
 
 ## GitHub Codespaces vs. Dev Containers
 
-GitHub Codespaces builds upon Visual Studio Code and the [Dev Containers specification](https://containers.dev/implementors/spec/). In addition to supporting GitHub Codespaces, .NET Aspire 9.1 enhances support for using Visual Studio Code and locally hosted Dev Containers. While the experiences are similar, there are some differences. For more information, see [.NET Aspire with Dev Containers in Visual Studio Code](dev-ontainers.md).
+GitHub Codespaces builds upon Visual Studio Code and the [Dev Containers specification](https://containers.dev/implementors/spec/). In addition to supporting GitHub Codespaces, .NET Aspire 9.1 enhances support for using Visual Studio Code and locally hosted Dev Containers. While the experiences are similar, there are some differences. For more information, see [.NET Aspire and Visual Studio Code Dev Containers](dev-containers.md).
 
 ## Quick start using template repository
 

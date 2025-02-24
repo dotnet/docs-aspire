@@ -49,7 +49,7 @@ Moving between minor releases of .NET Aspire is simple:
     > [!NOTE]
     > The `dotnet new update` command updates all of your templates to the latest version.
 
-If your app host project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.1, you can follow [the documentation from last release](../get-started/upgrade-to-aspire-9).
+If your app host project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.0, you can follow [the documentation from last release](../get-started/upgrade-to-aspire-9.md).
 
 ## Improved onboarding experience
 

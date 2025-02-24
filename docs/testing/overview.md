@@ -26,7 +26,7 @@ var builder = await DistributedApplicationTestingBuilder
 
 ## Enable the dashboard
 
-The testing builder disables the [.NET Aspire dashboard](../fundamentals/dashboard) by default. To enable it, you can set the `DisableDashboard` property to `false`, when creating your testing builder as shown in the following snippet:
+The testing builder disables the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) by default. To enable it, you can set the `DisableDashboard` property to `false`, when creating your testing builder as shown in the following snippet:
 
 ```csharp
 var builder = await DistributedApplicationTestingBuilder
