@@ -1,7 +1,7 @@
 ---
 title: What's new in .NET Aspire 9.1
 description: Learn what's new in the official general availability release of .NET Aspire 9.1.
-ms.date: 02/24/2025
+ms.date: 02/25/2025
 ---
 
 # What's new in .NET Aspire 9.1
@@ -18,12 +18,14 @@ As always, we focused on highly requested features and pain points from the comm
 
 If you have feedback, questions, or want to contribute to .NET Aspire, collaborate with us on [:::image type="icon" source="../media/github-mark.svg" border="false"::: GitHub](https://github.com/dotnet/aspire) or join us on [:::image type="icon" source="../media/discord-icon.svg" border="false"::: Discord](https://discord.com/invite/h87kDAHQgJ) to chat with team members.
 
+Whether you're new to .NET Aspire, or you've been following along with us since the preview bits, it's worth reiterating that .NET Aspire releases out-of-band from .NET releases. While .NET Aspire major versions will align with .NET major versions, minor versions of .NET Aspire will be much more frequently.
+
 For more information on the official .NET version and .NET Aspire version support, see:
 
 - [.NET support policy](https://dotnet.microsoft.com/platform/support/policy): Definitions for LTS and STS.
 - [.NET Aspire support policy](https://dotnet.microsoft.com/platform/support/policy/aspire): Important unique product life cycle details.
 
-## 🔄 Upgrade to .NET Aspire 9.1
+## ⬆️ Upgrade to .NET Aspire 9.1
 
 Moving between minor releases of .NET Aspire is simple:
 
@@ -310,7 +312,7 @@ Significant improvements to the Azure Container Apps (ACA) deployment process ar
 
 We recognize there's more work to be done in the area of deployment. Future releases will continue to address these opportunities for improvement. For more information on deploying .NET Aspire to ACA, see [Deploy a .NET Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md).
 
-## ⬆️ Upgrade today
+## 🆙 Upgrade today
 
 Follow the directions outlined in the [Upgrade to .NET Aspire 9.1](#-upgrade-to-net-aspire-91) section to make the switch to 9.1 and take advantage of all these new features today! As always, we're listening for your feedback on [GitHub](https://github.com/dotnet/aspire/issues)-and looking out for what you want to see in 9.2 ☺️.
 
