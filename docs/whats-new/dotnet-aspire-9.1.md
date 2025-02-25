@@ -62,7 +62,7 @@ The onboarding experience for .NET Aspire is improved with 9.1. The team worked 
 
 With every release of .NET Aspire, the [dashboard](../fundamentals/dashboard/overview.md) gets more powerful and customizable.
 
-### Resource relationships
+### 🧩 Resource relationships
 
 The dashboard now supports "parent" and "child" resource relationships. For instance, when you create a Postgres instance with multiple databases, these databases are nested under the same instance on the **Resource** page.
 
@@ -74,7 +74,7 @@ The dashboard defaults to the language set in your browser. This release introdu
 
 :::image type="content" source="media/dashboard-language.png" lightbox="media/dashboard-language.png" alt-text="A screenshot of the .NET Aspire dashboard showing the new flyout menu to change language.":::
 
-### Clear logs and telemetry from the dashboard
+### 🗑️ Clear logs and telemetry from the dashboard
 
 New buttons were added to the **Console logs**, **Structured logs**, **Traces** and **Metrics** pages to clear data. There's also a "Remove all" button in the settings popup to remove everything with one action.
 
@@ -82,7 +82,10 @@ Now you use this feature to reset the dashboard to a blank slate, test your app,
 
 :::image type="content" source="media/dashboard-remove-telemetry.png" lightbox="media/dashboard-remove-telemetry.png" alt-text="A screenshot of the .NET Aspire dashboard showing the remove button on the structured logs page.":::
 
-We 💜 love the developer community and thrive on its feedback, collaboration, and contributions. This feature is a community contribution from [@Daluur](https://github.com/Daluur), please join us in thanking them!
+We 💜 love the developer community and thrive on its feedback, collaboration, and contributions. This feature is a community contribution from [@Daluur](https://github.com/Daluur). Join us in celebrating their contribution by using the feature!
+
+> [!TIP]
+> If you're interested in contributing to .NET Aspire, look for issues labeled with [good first issue](https://github.com/dotnet/aspire/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22) and follow the [contributor guide](https://github.com/dotnet/aspire/blob/main/docs/contributing.md).
 
 ### 🔢 New filtering
 
@@ -90,21 +93,21 @@ You can now filter what you see in the **Resource** page by **Resource type**, *
 
 :::image type="content" source="media/dashboard-filter.png" lightbox="media/dashboard-filter.png" alt-text="A screenshot of the .NET Aspire dashboard showing the new filter options.":::
 
-### More resource details
+### 📝 More resource details
 
-When you select a resource in the dashboard, the details pane now displays additional data points, including **References**, **Back references**, and **Volumes** with their mount types. This enhancement provides a clearer and more comprehensive view of your resources, improving the overall user experience by making relevant details more accessible.
+When you select a resource in the dashboard, the details pane now displays new data points, including **References**, **Back references**, and **Volumes** with their mount types. This enhancement provides a clearer and more comprehensive view of your resources, improving the overall user experience by making relevant details more accessible.
 
 :::image type="content" source="media/dashboard-resourcedetails.png" lightbox="media/dashboard-resourcedetails.png" alt-text="A screenshot of the .NET Aspire dashboard with references and back references showing.":::
 
 For more information, see [.NET Aspire dashboard: Resources page](../fundamentals/dashboard/explore.md#resources-page).
 
-### CORS support for custom local domains
+### 🛡️ CORS support for custom local domains
 
 You can now set the `DOTNET_DASHBOARD_CORS_ALLOWED_ORIGINS` environment variable to allow the dashboard to receive telemetry from other browser apps, such as if you have resources running on custom localhost domains.
 
 For more information, see [.NET Aspire app host: Dashboard configuration](../app-host/configuration.md#dashboard).
 
-### Flexibility with console logs
+### 🪵 Flexibility with console logs
 
 The console log page has two new options. You're now able to download your logs so you can view them in your own diagnostics tools. Plus, you can turn timestamps on or off to reduce visual clutter when needed.
 
@@ -112,7 +115,7 @@ The console log page has two new options. You're now able to download your logs 
 
 For more information, see [.NET Aspire dashboard: Console logs page](../fundamentals/dashboard/explore.md#console-logs-page).
 
-### Various UX improvements
+### 🎨 Various UX improvements
 
 Several new features in .NET Aspire 9.1 enhance and streamline the following popular tasks:
 
@@ -126,7 +129,7 @@ For more details on the latest dashboard enhancements, check out [James Newton-K
 
 ## ⚙️ Local development enhancements
 
-In .NET Aspire 9.1, we've introduced several improvements to streamline your local development experience. These enhancements are designed to provide greater flexibility, better integration with Docker, and more efficient resource management. Here are some of the key updates:
+In .NET Aspire 9.1, several improvements to streamline your local development experience were an emphasis. These enhancements are designed to provide greater flexibility, better integration with Docker, and more efficient resource management. Here are some of the key updates:
 
 ### ▶️ Start resources on demand
 
@@ -134,43 +137,29 @@ You can now tell resources not to start with the rest of your app by using `With
 
 For more information, see [Configure explicit resource start](../fundamentals/app-host-overview.md#configure-explicit-resource-start).
 
-### Better Docker integration
+### 🐳 Better Docker integration
 
 The `PublishAsDockerfile()` feature was introduced for all projects and executable resources. This enhancement allows for complete customization of the Docker container and Dockerfile used during the publish process.
 
 While this API was available in previous versions, it couldn't be used with <xref:Aspire.Hosting.ApplicationModel.ProjectResource> or <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> types.
 
-### Cleaning up Docker networks
-
-In 9.1, we addressed a persistent issue where Docker networks created by .NET Aspire would remain active even after the application was stopped. This bug, tracked in [.NET Aspire GitHub issue #6504](https://github.com/dotnet/aspire/issues/6504), is resolved. Now, Docker networks are properly cleaned up, ensuring a more efficient and tidy development environment.Local development enhancements
-
-In .NET Aspire 9.1, we've introduced several improvements to streamline your local development experience. These enhancements are designed to provide greater flexibility, better integration with Docker, and more efficient resource management. Here are some of the key updates:
-
-### ▶️ Start resources on demand
-
-You can now tell resources not to start with the rest of your app by using `WithExplicitStart()` on the resource in your app host. Then, you can start it whenever you're ready from inside the dashboard.
-
-For more information, see [Configure explicit resource start](../fundamentals/app-host-overview.md#configure-explicit-resource-start).
-
-### Better Docker integration
-
-The `PublishAsDockerfile()` feature was introduced for all projects and executable resources. This enhancement allows for complete customization of the Docker container and Dockerfile used during the publish process.
-
-While this API was available in previous versions, it couldn't be used with <xref:Aspire.Hosting.ApplicationModel.ProjectResource> or <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> types.
-
-### Cleaning up Docker networks
+### 🧹 Cleaning up Docker networks
 
 In 9.1, we addressed a persistent issue where Docker networks created by .NET Aspire would remain active even after the application was stopped. This bug, tracked in [.NET Aspire GitHub issue #6504](https://github.com/dotnet/aspire/issues/6504), is resolved. Now, Docker networks are properly cleaned up, ensuring a more efficient and tidy development environment.
+
+### ✅ Socket address issues fixed
+
+Several users reported issues ([#6693](https://github.com/dotnet/aspire/issues/6693) and [#7095](https://github.com/dotnet/aspire/issues/7095)) indicated there were problems with restarting the .NET Aspire app host. This release introduces a more robust approach to managing socket addresses, ensuring that only one instance of each socket address is used at a time. This change enhances the stability and reliability of the app host, particularly during development and testing scenarios.
 
 ## 🔌 Integration updates
 
 .NET Aspire continues to excel through its [integrations](../fundamentals/integrations-overview.md) with various platforms. This release includes numerous updates to existing integrations and details about ownership migrations, enhancing the overall functionality and user experience.
 
-### Azure updates
+### ☁️ Azure updates
 
 This release also focused on improving various [Azure integrations](../azure/integrations-overview.md):
 
-#### New emulators
+#### 🆕 New emulators
 
 We're excited to bring new emulators for making local development easier. The following integrations got new emulators in this release:
 
@@ -196,19 +185,24 @@ These new emulators work side-by-side with the existing emulators for:
 - [Azure Event Hubs](../messaging/azure-event-hubs-integration.md#add-azure-event-hubs-emulator-resource)
 - [Azure Cosmos DB](../database/azure-cosmos-db-integration.md#add-azure-cosmos-db-emulator-resource)
 
-#### Cosmos DB
+#### 🌌 Cosmos DB
 
 Along with support for the new emulator, Cosmos DB added the following features.
 
-##### Support for Entra ID authentication by default
+##### 🔒 Support for Entra ID authentication by default
 
 Previously, the Cosmos DB integration used access keys and a Key Vault secret to connect to the service. .NET Aspire 9.1 added support for using more secure authentication using managed identities by default. If you need to keep using access key authentication, you can get back to the previous behavior by calling `.WithAccessKeyAuthentication()`.
 
-##### Support for modeling Database and Containers in the AppHost
+##### 💽 Support for modeling Database and Containers in the app host
 
 You can define a Cosmos DB database and containers in the app host and these resources are available when you run the application in both the emulator and in Azure. This allows you to define these resources up front and no longer need to create them from the application, which might not have permission to create them.
 
-##### Support for Cosmos DB-based triggers in Azure Functions
+For example API usage to add database and containers, see the following related articles:
+
+- [.NET Aspire Azure Cosmos DB integration](../database/azure-cosmos-db-integration.md#add-azure-cosmos-db-database-and-container-resources)
+- [.NET Aspire Cosmos DB Entity Framework Core integration](../database/azure-cosmos-db-entity-framework-integration.md#add-azure-cosmos-db-database-and-container-resources)
+
+##### ⚡ Support for Cosmos DB-based triggers in Azure Functions
 
 The <xref:Aspire.Hosting.AzureCosmosDBResource> was modified to support consumption in Azure Functions applications that uses the Cosmos DB trigger. A Cosmos DB resource can be initialized and added as a reference to an Azure Functions resource with the following code:
 
@@ -242,13 +236,20 @@ public class MyCosmosDbTrigger(ILogger<MyCosmosDbTrigger> logger)
 }
 ```
 
-#### Service Bus and Event Hubs
+For more information using Azure Functions with .NET Aspire, see [.NET Aspire Azure Functions integration (Preview)](../serverless/functions.md).
+
+#### 🚚 Service Bus and Event Hubs
 
 Similar to Cosmos DB, the Service Bus and Event Hubs integrations now allow you to define Azure Service Bus queues, topics, subscriptions, and Azure Event Hubs instances and consumer groups directly in your app host code. This enhancement simplifies your application logic by enabling the creation and management of these resources outside the application itself.
 
-#### Working with existing resources
+For more information, see the following updated articles:
 
-There's consistent feedback about making it easier to connect to existing Azure resources in .NET Aspire. With 9.1, you can now easily connect to an existing Azure resource either directly with strings, or via app model parameters which can be changed at deployment time. For example to connect to an Azure Service Bus account, we can use the following code:
+- [.NET Aspire Azure Service Bus integration](../messaging/azure-service-bus-integration.md)
+- [.NET Aspire Azure Event Hubs integration](../messaging/azure-event-hubs-integration.md)
+
+#### ♻️ Working with existing resources
+
+There's consistent feedback about making it easier to connect to existing Azure resources in .NET Aspire. With 9.1, you can now easily connect to an existing Azure resource either directly by `string` name, or with [app model parameters](../fundamentals/external-parameters.md) which can be changed at deployment time. For example to connect to an Azure Service Bus account, we can use the following code:
 
 ```csharp
 var serviceBusName = builder.AddParameter("serviceBusName");
@@ -260,7 +261,7 @@ var serviceBus = builder.AddAzureServiceBus("messaging")
 
 The preceding code reads the name and resource group from the parameters, and connects to the existing resource when the application is run or deployed. For more information, see [use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
-#### ☁️ Azure Container Apps
+#### 🌍 Azure Container Apps
 
 Experimental support for configuring custom domains in Azure Container Apps (ACA) was added. For example:
 
@@ -293,7 +294,9 @@ The [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS)
 
 .NET Aspire 9.1 simplifies writing cross-functional integration tests with a robust approach. The app host allows you to create, evaluate, and manage containerized environments seamlessly within a test run. This functionality supports popular testing frameworks like xUnit, NUnit, and MSTest, enhancing your testing capabilities and efficiency.
 
-Now, you're able to disable port randomization or enable the [dashboad](../fundamentals/dashboard/overview.md). For more information, see [.NET Aspire testing overview](../testing/overview.md). Additionally, you can now [Pass arguments to your app host](../testing/manage-app-host.md#pass-arguments-to-your-app-host).
+Now, you're able to disable port randomization or enable the [dashboard](../fundamentals/dashboard/overview.md). For more information, see [.NET Aspire testing overview](../testing/overview.md). Additionally, you can now [Pass arguments to your app host](../testing/manage-app-host.md#pass-arguments-to-your-app-host).
+
+Some of these enhancements were introduced as a result of stability issues that were reported, such as [.NET Aspire GitHub issue #6678](https://github.com/dotnet/aspire/issues/6678)—where some resources failed to start do to "address in use" errors.
 
 ## 🚀 Deployment
 
@@ -304,3 +307,5 @@ We recognize there's more work to be done in the area of deployment. Future rele
 ## ⬆️ Upgrade today
 
 Follow the directions outlined in the [Upgrade to .NET Aspire 9.1](#-upgrade-to-net-aspire-91) section to make the switch to 9.1 and take advantage of all these new features today! As always, we're listening for your feedback on [GitHub](https://github.com/dotnet/aspire/issues)-and looking out for what you want to see in 9.2 ☺️.
+
+For a complete list of issues addressed in this release, see [.NET Aspire GitHub repository—9.1 milestone](https://github.com/dotnet/aspire/issues?q=is%3Aissue%20state%3Aclosed%20milestone%3A9.1%20).
