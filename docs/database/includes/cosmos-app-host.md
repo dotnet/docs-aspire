@@ -105,7 +105,7 @@ The dependent resource can access the injected connection string by calling the 
 
 ### Add Azure Cosmos DB database and container resources
 
-To add an Azure Cosmos DB database resource, chain a call on an `IResourceBuilder<AzureCosmosDBResource>` to the <xref:Aspire.Hosting.AzureCosmosExtensions.AddCosmosDatabase*> API:
+To add an Azure Cosmos DB database resource, call the <xref:Aspire.Hosting.AzureCosmosExtensions.AddCosmosDatabase*> method on an `IResourceBuilder<AzureCosmosDBResource>` instance:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -116,11 +116,11 @@ cosmos.AddCosmosDatabase("db");
 // After adding all resources, run the app...
 ```
 
-When you call `AddCosmosDatabase`, it configures your Cosmos DB resources to have a database named `db`. The database is created in the Cosmos DB account that's represented by the `AzureCosmosDBResource` that you added earlier. The database is a logical container for collections and users.
+When you call `AddCosmosDatabase`, it adds a database named `db` to your Cosmos DB resources and returns the newly created database resource. The database is created in the Cosmos DB account that's represented by the `AzureCosmosDBResource` that you added earlier. The database is a logical container for collections and users.
 
 An Azure Cosmos DB container is where data is stored. When you create a container, you need to supply a partition key.
 
-To add an Azure Cosmos DB container resource, chain a call on an `IResourceBuilder<AzureCosmosDBDatabaseResource>` to the <xref:Aspire.Hosting.AzureCosmosExtensions.AddContainer*> API:
+To add an Azure Cosmos DB container resource, call the <xref:Aspire.Hosting.AzureCosmosExtensions.AddContainer*> method on an `IResourceBuilder<AzureCosmosDBDatabaseResource>` instance:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
