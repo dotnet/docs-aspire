@@ -23,7 +23,7 @@ For more information on the official .NET version and .NET Aspire version suppor
 - [.NET support policy](https://dotnet.microsoft.com/platform/support/policy): Definitions for LTS and STS.
 - [.NET Aspire support policy](https://dotnet.microsoft.com/platform/support/policy/aspire): Important unique product life cycle details.
 
-## ⬆️ Upgrade to .NET Aspire 9.1
+## 🔄 Upgrade to .NET Aspire 9.1
 
 Moving between minor releases of .NET Aspire is simple:
 
@@ -124,7 +124,25 @@ Additionally, the 🖱️ scroll position resets when switching between differen
 
 For more details on the latest dashboard enhancements, check out [James Newton-King on :::image type="icon" source="../media/bluesky-icon.svg" border="false"::: Bluesky](https://bsky.app/profile/james.newtonking.com), where he's been sharing new features daily.
 
-## Local development enhancements
+## ⚙️ Local development enhancements
+
+In .NET Aspire 9.1, we've introduced several improvements to streamline your local development experience. These enhancements are designed to provide greater flexibility, better integration with Docker, and more efficient resource management. Here are some of the key updates:
+
+### ▶️ Start resources on demand
+
+You can now tell resources not to start with the rest of your app by using `WithExplicitStart()` on the resource in your app host. Then, you can start it whenever you're ready from inside the dashboard.
+
+For more information, see [Configure explicit resource start](../fundamentals/app-host-overview.md#configure-explicit-resource-start).
+
+### Better Docker integration
+
+The `PublishAsDockerfile()` feature was introduced for all projects and executable resources. This enhancement allows for complete customization of the Docker container and Dockerfile used during the publish process.
+
+While this API was available in previous versions, it couldn't be used with <xref:Aspire.Hosting.ApplicationModel.ProjectResource> or <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> types.
+
+### Cleaning up Docker networks
+
+In 9.1, we addressed a persistent issue where Docker networks created by .NET Aspire would remain active even after the application was stopped. This bug, tracked in [.NET Aspire GitHub issue #6504](https://github.com/dotnet/aspire/issues/6504), is resolved. Now, Docker networks are properly cleaned up, ensuring a more efficient and tidy development environment.Local development enhancements
 
 In .NET Aspire 9.1, we've introduced several improvements to streamline your local development experience. These enhancements are designed to provide greater flexibility, better integration with Docker, and more efficient resource management. Here are some of the key updates:
 
@@ -144,7 +162,7 @@ While this API was available in previous versions, it couldn't be used with <xre
 
 In 9.1, we addressed a persistent issue where Docker networks created by .NET Aspire would remain active even after the application was stopped. This bug, tracked in [.NET Aspire GitHub issue #6504](https://github.com/dotnet/aspire/issues/6504), is resolved. Now, Docker networks are properly cleaned up, ensuring a more efficient and tidy development environment.
 
-## Integration updates
+## 🔌 Integration updates
 
 .NET Aspire continues to excel through its [integrations](../fundamentals/integrations-overview.md) with various platforms. This release includes numerous updates to existing integrations and details about ownership migrations, enhancing the overall functionality and user experience.
 
@@ -277,12 +295,12 @@ The [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS)
 
 Now, you're able to disable port randomization or enable the [dashboad](../fundamentals/dashboard/overview.md). For more information, see [.NET Aspire testing overview](../testing/overview.md). Additionally, you can now [Pass arguments to your app host](../testing/manage-app-host.md#pass-arguments-to-your-app-host).
 
-## Deployment
+## 🚀 Deployment
 
 Significant improvements to the Azure Container Apps (ACA) deployment process are included in .NET Aspire 9.1, enhancing both the `azd` CLI and app host options. One of the most requested features—support for deploying `npm` applications to ACA—is now implemented. This new capability allows `npm` apps to be deployed to ACA just like other resources, streamlining the deployment process and providing greater flexibility for developers.
 
 We recognize there's more work to be done in the area of deployment. Future releases will continue to address these opportunities for improvement. For more information on deploying .NET Aspire to ACA, see [Deploy a .NET Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md).
 
-## Upgrade today
+## ⬆️ Upgrade today
 
 Follow the directions outlined in the [Upgrade to .NET Aspire 9.1](#upgrade-to-net-aspire-91) section to make the switch to 9.1 and take advantage of all these new features today! As always, we're listening for your feedback on [GitHub](https://github.com/dotnet/aspire/issues)-and looking out for what you want to see in 9.2 ☺️.
