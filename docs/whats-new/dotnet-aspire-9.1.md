@@ -82,7 +82,7 @@ Now you use this feature to reset the dashboard to a blank slate, test your app,
 
 :::image type="content" source="media/dashboard-remove-telemetry.png" lightbox="media/dashboard-remove-telemetry.png" alt-text="A screenshot of the .NET Aspire dashboard showing the remove button on the structured logs page.":::
 
-We 💜 love the developer community and thrive on it's feedback, collaboration, and contributions. This feature is a community contribution from [@Daluur](https://github.com/Daluur), please join us in thanking them!
+We 💜 love the developer community and thrive on its feedback, collaboration, and contributions. This feature is a community contribution from [@Daluur](https://github.com/Daluur), please join us in thanking them!
 
 ### 🔢 New filtering
 
