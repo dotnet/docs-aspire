@@ -137,13 +137,16 @@ In .NET Aspire 9.1, several improvements to streamline your local development ex
 
 ### ▶️ Start resources on demand
 
-You can now tell resources not to start with the rest of your app by using `WithExplicitStart()` on the resource in your app host. Then, you can start it whenever you're ready from inside the dashboard.
+You can now tell resources not to start with the rest of your app by using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> on the resource in your app host. Then, you can start it whenever you're ready from inside the dashboard.
 
 For more information, see [Configure explicit resource start](../fundamentals/app-host-overview.md#configure-explicit-resource-start).
 
 ### 🐳 Better Docker integration
 
 The `PublishAsDockerfile()` feature was introduced for all projects and executable resources. This enhancement allows for complete customization of the Docker container and Dockerfile used during the publish process.
+
+- <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.PublishAsDockerfile*>
+- <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.PublishAsDockerfile*>
 
 While this API was available in previous versions, it couldn't be used with <xref:Aspire.Hosting.ApplicationModel.ProjectResource> or <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> types.
 
@@ -197,7 +200,7 @@ Along with support for the new emulator, Cosmos DB added the following features.
 
 ##### 🔒 Support for Entra ID authentication by default
 
-Previously, the Cosmos DB integration used access keys and a Key Vault secret to connect to the service. .NET Aspire 9.1 added support for using more secure authentication using managed identities by default. If you need to keep using access key authentication, you can get back to the previous behavior by calling `.WithAccessKeyAuthentication()`.
+Previously, the Cosmos DB integration used access keys and a Key Vault secret to connect to the service. .NET Aspire 9.1 added support for using more secure authentication using managed identities by default. If you need to keep using access key authentication, you can get back to the previous behavior by calling <xref:Aspire.Hosting.AzureCosmosExtensions.WithAccessKeyAuthentication*>.
 
 ##### 💽 Support for modeling Database and Containers in the app host
 
@@ -290,7 +293,7 @@ For more information, see [.NET Aspire diagnostics overview](../diagnostics/over
 ### ➕ Even more integration updates
 
 - OpenAI now supports the [📦 Microsoft.Extensions.AI](https://www.nuget.org/packages/Microsoft.Extensions.AI) NuGet package.
-- RabbitMQ updated to version 7, and MongoDB to version 3. These updates introduced breaking changes, leading to the release of new packages with version-specific suffixes. The original packages continue to use the previous versions:
+- RabbitMQ updated to version 7, and MongoDB to version 3. These updates introduced breaking changes, leading to the release of new packages with version-specific suffixes. The original packages continue to use the previous versions, while the new packages are as follows:
   - [📦 Aspire.RabbitMQ.Client.v7](https://www.nuget.org/packages/Aspire.RabbitMQ.Client.v7) NuGet package. For more information, see the [.NET Aspire RabbitMQ client integration](../messaging/rabbitmq-integration.md#client-integration) documentation.
   - [📦 Aspire.MongoDB.Driver.v3](https://www.nuget.org/packages/Aspire.MongoDB.Driver.v3) NuGet package. For more information, see the [.NET Aspire MongoDB client integration](../database/mongodb-integration.md#client-integration) documentation.
 - Dapr migrated to the [CommunityToolkit](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Dapr) to facilitate faster innovation.

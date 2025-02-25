@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs for adding resources and expressing dependencies.
-ms.date: 02/18/2025
+ms.date: 02/25/2025
 ms.topic: overview
 uid: dotnet/aspire/app-host
 ---
@@ -137,7 +137,7 @@ The preceding code adds three replicas of the "apiservice" project resource to t
 
 ## Configure explicit resource start
 
-Project, executable and container resources are automatically started with your distributed application by default. A resource can be configured to wait for an explicit startup instruction with the `WithExplicitStart()` method. A resource configured with `WithExplicitStart()` is initialized with `KnownResourceStates.NotStarted`.
+Project, executable and container resources are automatically started with your distributed application by default. A resource can be configured to wait for an explicit startup instruction with the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> method. A resource configured with <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> is initialized with <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.NotStarted?displayProperty=nameWithType>.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -339,7 +339,7 @@ To get specific endpoints from a <xref:Aspire.Hosting.ApplicationModel.Container
 - <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpEndpoint*>
 - <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpsEndpoint*>
 
-Then call the <xref:Aspire.Hosting.ResourceBuilderExtensions.GetEndpoint*> API to get the endpoint which can be used to reference the endpoint in the `WithReference` method:
+Then call the <xref:Aspire.Hosting.ResourceBuilderExtensions.GetEndpoint*> API to get the endpoint which can be used to reference the endpoint in the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -486,7 +486,7 @@ In the preceding code:
 This logic can easily be inverted to connect to an existing Redis resource when you're running locally, and create a new Redis resource when you're publishing.
 
 > [!IMPORTANT]
-> .NET Aspire provides common APIs to control the modality of resource builders, allowing resources to behave differently based on the execution mode. The fluent APIs are prefixed with `RunAs*` and `PublishAs*`. The `RunAs*` APIs influence the local development (or run mode) behavior, whereas the `PublishAs*` APIs influence the publishing of the resource.
+> .NET Aspire provides common APIs to control the modality of resource builders, allowing resources to behave differently based on the execution mode. The fluent APIs are prefixed with `RunAs*` and `PublishAs*`. The `RunAs*` APIs influence the local development (or run mode) behavior, whereas the `PublishAs*` APIs influence the publishing of the resource. For more information on how the Azure resources use these APIs, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
 ## Resource relationships  
 
@@ -498,7 +498,7 @@ Relationships are automatically created by some app model APIs. For example:
 - <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> adds a relationship to the target resource with the type `WaitFor`.
 - Adding a database to a DB container creates a relationship from the database to the container with the type `Parent`.
 
-Relationships can also be explicitly added to the app model using `WithRelationship` and `WithParentRelationship`.
+Relationships can also be explicitly added to the app model using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithRelationship*> and <xref:Aspire.Hosting.ResourceBuilderExtensions.WithParentRelationship*>.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -514,7 +514,7 @@ builder.AddProject<Projects.AspireApp_CatalogDbMigration>("migration")
 builder.Build().Run();
 ```
 
-The preceding example uses `WithParentRelationship` to configure `catalogdb` database as the `migration` project's parent. The `Parent` relationship is special because it controls resource nesting on the resource page. In this example, `migration` is nested under `catalogdb`.
+The preceding example uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithParentRelationship*> to configure `catalogdb` database as the `migration` project's parent. The `Parent` relationship is special because it controls resource nesting on the resource page. In this example, `migration` is nested under `catalogdb`.
 
 > [!NOTE]
 > There's validation for parent relationships to prevent a resource from having multiple parents or creating a circular reference. These configurations can't be rendered in the UI, and the app model will throw an error.
