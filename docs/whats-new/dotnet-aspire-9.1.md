@@ -18,9 +18,7 @@ As always, we focused on highly requested features and pain points from the comm
 
 If you have feedback, questions, or want to contribute to .NET Aspire, collaborate with us on [:::image type="icon" source="../media/github-mark.svg" border="false"::: GitHub](https://github.com/dotnet/aspire) or join us on [:::image type="icon" source="../media/discord-icon.svg" border="false"::: Discord](https://discord.com/invite/h87kDAHQgJ) to chat with team members.
 
-Whether you're new to .NET Aspire, or you've been following along with us since the preview bits, it's worth reiterating that .NET Aspire releases out-of-band from .NET releases. While .NET Aspire major versions will align with .NET major versions, minor versions of .NET Aspire will be much more frequently.
-
-For more information on the official .NET version and .NET Aspire version support, see:
+Whether you're new to .NET Aspire or have been with us since the preview, it's important to note that .NET Aspire releases out-of-band from .NET releases. While major versions of .NET Aspire align with .NET major versions, minor versions are released more frequently. For more details on .NET and .NET Aspire version support, see:
 
 - [.NET support policy](https://dotnet.microsoft.com/platform/support/policy): Definitions for LTS and STS.
 - [.NET Aspire support policy](https://dotnet.microsoft.com/platform/support/policy/aspire): Important unique product life cycle details.
@@ -286,6 +284,8 @@ builder.AddProject<Projects.AzureContainerApps_ApiService>("api")
            app.ConfigureCustomDomain(customDomain, certificateName);
        });
 ```
+
+For more information, see [.NET Aspire diagnostics overview](../diagnostics/overview.md).
 
 ### ➕ Even more integration updates
 

@@ -98,70 +98,7 @@ The preceding walkthrough demonstrates the streamlined process of creating a Git
 
 The [template repository](https://github.com/dotnet/aspire-devcontainer) contains a copy of the _devcontainer.json_ file that you can use as a starting point, which should be sufficient for .NET Aspire. The following JSON represents the latest version of the _.devcontainer/devcontainer.json_ file from the template:
 
-<!-- 
-When https://github.com/dotnet/aspire-devcontainer is public, add the following JSON to the openpublishing.publish.config.json file:
-
-```json
-    {
-      "path_to_root": "aspire-devcontainer",
-      "url": "https://github.com/dotnet/aspire-devcontainer",
-      "branch": "main",
-      "branch_mapping": {}
-    },
-```
-
-And use this instead of the hardcoded JSON below:
-
 :::code language="json" source="~/aspire-devcontainer/.devcontainer/devcontainer.json":::
-
--->
-
-```json
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/dotnet
-{
-    "name": ".NET Aspire",
-    // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-    "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
-    "features": {
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-        "ghcr.io/devcontainers/features/powershell:1": {}
-    },
-
-    "hostRequirements": {
-        "cpus": 8,
-        "memory": "32gb",
-        "storage": "64gb"
-    },
-
-    // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    // "forwardPorts": [5000, 5001],
-    // "portsAttributes": {
-    //        "5001": {
-    //            "protocol": "https"
-    //        }
-    // }
-
-    // Use 'postCreateCommand' to run commands after the container is created.
-    // "postCreateCommand": "dotnet restore",
-    "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.0.0 --force",
-    "postStartCommand": "dotnet dev-certs https --trust",
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "ms-dotnettools.csdevkit",
-                "GitHub.copilot-chat",
-                "GitHub.copilot"
-            ]
-        }
-    }
-    // Configure tool-specific properties.
-    // "customizations": {},
-
-    // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-    // "remoteUser": "root"
-}
-```
 
 ## Speed up Codespace creation
 
