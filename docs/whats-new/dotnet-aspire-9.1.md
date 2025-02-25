@@ -303,4 +303,4 @@ We recognize there's more work to be done in the area of deployment. Future rele
 
 ## ⬆️ Upgrade today
 
-Follow the directions outlined in the [Upgrade to .NET Aspire 9.1](#upgrade-to-net-aspire-91) section to make the switch to 9.1 and take advantage of all these new features today! As always, we're listening for your feedback on [GitHub](https://github.com/dotnet/aspire/issues)-and looking out for what you want to see in 9.2 ☺️.
+Follow the directions outlined in the [Upgrade to .NET Aspire 9.1](#-upgrade-to-net-aspire-91) section to make the switch to 9.1 and take advantage of all these new features today! As always, we're listening for your feedback on [GitHub](https://github.com/dotnet/aspire/issues)-and looking out for what you want to see in 9.2 ☺️.
