@@ -142,24 +142,6 @@ While this API was available in previous versions, it couldn't be used with <xre
 
 ### Cleaning up Docker networks
 
-In 9.1, we addressed a persistent issue where Docker networks created by .NET Aspire would remain active even after the application was stopped. This bug, tracked in [.NET Aspire GitHub issue #6504](https://github.com/dotnet/aspire/issues/6504), is resolved. Now, Docker networks are properly cleaned up, ensuring a more efficient and tidy development environment.Local development enhancements
-
-In .NET Aspire 9.1, we've introduced several improvements to streamline your local development experience. These enhancements are designed to provide greater flexibility, better integration with Docker, and more efficient resource management. Here are some of the key updates:
-
-### ▶️ Start resources on demand
-
-You can now tell resources not to start with the rest of your app by using `WithExplicitStart()` on the resource in your app host. Then, you can start it whenever you're ready from inside the dashboard.
-
-For more information, see [Configure explicit resource start](../fundamentals/app-host-overview.md#configure-explicit-resource-start).
-
-### Better Docker integration
-
-The `PublishAsDockerfile()` feature was introduced for all projects and executable resources. This enhancement allows for complete customization of the Docker container and Dockerfile used during the publish process.
-
-While this API was available in previous versions, it couldn't be used with <xref:Aspire.Hosting.ApplicationModel.ProjectResource> or <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> types.
-
-### Cleaning up Docker networks
-
 In 9.1, we addressed a persistent issue where Docker networks created by .NET Aspire would remain active even after the application was stopped. This bug, tracked in [.NET Aspire GitHub issue #6504](https://github.com/dotnet/aspire/issues/6504), is resolved. Now, Docker networks are properly cleaned up, ensuring a more efficient and tidy development environment.
 
 ## 🔌 Integration updates
