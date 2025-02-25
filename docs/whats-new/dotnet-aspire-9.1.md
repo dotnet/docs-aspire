@@ -312,6 +312,16 @@ Significant improvements to the Azure Container Apps (ACA) deployment process ar
 
 We recognize there's more work to be done in the area of deployment. Future releases will continue to address these opportunities for improvement. For more information on deploying .NET Aspire to ACA, see [Deploy a .NET Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md).
 
+## ⚠️ Breaking changes
+
+.NET Aspire is moving quickly, and with that comes breaking changes. Breaking are categorized as either:
+
+- **Binary incompatible**: The assembly version has changed, and you need to recompile your code.
+- **Source incompatible**: The source code has changed, and you need to change your code.
+- **Behavioral change**: The code behaves differently, and you need to change your code.
+
+Typically APIs are decorated with the <xref:System.ObsoleteAttribute> giving you a warning when you compile, and an opportunity to adjust your code. For an overview of breaking changes in .NET Aspire 9.1, see [Breaking changes in .NET Aspire 9.1](../compatibility/9.1/index.md).
+
 ## 🎯 Upgrade today
 
 Follow the directions outlined in the [Upgrade to .NET Aspire 9.1](#-upgrade-to-net-aspire-91) section to make the switch to 9.1 and take advantage of all these new features today! As always, we're listening for your feedback on [GitHub](https://github.com/dotnet/aspire/issues)-and looking out for what you want to see in 9.2 ☺️.
