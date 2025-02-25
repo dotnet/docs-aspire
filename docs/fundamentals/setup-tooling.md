@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 01/17/2025
+ms.date: 02/24/2025
 zone_pivot_groups: dev-environment
 uid: dotnet/aspire/setup-tooling
 ---
@@ -29,6 +29,9 @@ To work with .NET Aspire, you need the following installed locally:
   - [Visual Studio Code](https://code.visualstudio.com/) (Optional)
     - [C# Dev Kit: Extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) (Optional)
   - [JetBrains Rider with .NET Aspire plugin](https://blog.jetbrains.com/dotnet/2024/02/19/jetbrains-rider-and-the-net-aspire-plugin/) (Optional)
+
+> [!TIP]
+> Alternatively, you can develop .NET Aspire solutions using [GitHub Codespaces](../get-started/github-codespaces.md) or [Dev Containers](../get-started/dev-containers.md).
 
 :::zone pivot="visual-studio"
 

@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs for adding resources and expressing dependencies.
-ms.date: 12/13/2024
+ms.date: 02/25/2025
 ms.topic: overview
 uid: dotnet/aspire/app-host
 ---
@@ -45,7 +45,7 @@ The app host project handles running all of the projects that are part of the .N
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.1.0" />
     
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -55,7 +55,7 @@ The app host project handles running all of the projects that are part of the .N
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
+        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
     </ItemGroup>
 
     <!-- Omitted for brevity -->
@@ -135,6 +135,25 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 
 The preceding code adds three replicas of the "apiservice" project resource to the app model. For more information, see [.NET Aspire dashboard: Resource replicas](dashboard/explore.md#resource-replicas).
 
+## Configure explicit resource start
+
+Project, executable and container resources are automatically started with your distributed application by default. A resource can be configured to wait for an explicit startup instruction with the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> method. A resource configured with <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> is initialized with <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.NotStarted?displayProperty=nameWithType>.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var postgres = builder.AddPostgres("postgres");
+var postgresdb = postgres.AddDatabase("postgresdb");
+
+builder.AddProject<Projects.AspireApp_DbMigration>("dbmigration")
+       .WithReference(postgresdb)
+       .WithExplicitStart();
+```
+
+In the preceeding code the "dbmigration" resource is configured to not automatically start with the distributed application.
+
+Resources with explicit start can be started from the .NET Aspire dashboard by clicking the "Start" command. For more information, see [.NET Aspire dashboard: Stop or Start a resource](dashboard/explore.md#stop-or-start-a-resource).
+
 ## Reference resources
 
 A reference represents a dependency between resources. For example, you can probably imagine a scenario where you a web frontend depends on a Redis cache. Consider the following example app host `Program` C# code:
@@ -185,6 +204,10 @@ builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 ```
 
 In the preceding code, the "apiservice" project resource waits for the "migration" project resource to run to completion before starting. The "migration" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType>. This can be useful in scenarios where you want to run a database migration before starting the API service, for example.
+
+#### Forcing resource start in the dashboard
+
+Waiting for a resource can be bypassed using the "Start" command in the dashboard. Clicking "Start" on a waiting resource in the dashboard instructs it to start immediately without waiting for the resource to be healthy or completed. This can be useful when you want to test a resource immediately and don't want to wait for the app to be in the right state.
 
 ### APIs for adding and expressing resources
 
@@ -316,7 +339,7 @@ To get specific endpoints from a <xref:Aspire.Hosting.ApplicationModel.Container
 - <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpEndpoint*>
 - <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpsEndpoint*>
 
-Then call the <xref:Aspire.Hosting.ResourceBuilderExtensions.GetEndpoint*> API to get the endpoint which can be used to reference the endpoint in the `WithReference` method:
+Then call the <xref:Aspire.Hosting.ResourceBuilderExtensions.GetEndpoint*> API to get the endpoint which can be used to reference the endpoint in the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -463,7 +486,38 @@ In the preceding code:
 This logic can easily be inverted to connect to an existing Redis resource when you're running locally, and create a new Redis resource when you're publishing.
 
 > [!IMPORTANT]
-> .NET Aspire provides common APIs to control the modality of resource builders, allowing resources to behave differently based on the execution mode. The fluent APIs are prefixed with `RunAs*` and `PublishAs*`. The `RunAs*` APIs influence the local development (or run mode) behavior, whereas the `PublishAs*` APIs influence the publishing of the resource.
+> .NET Aspire provides common APIs to control the modality of resource builders, allowing resources to behave differently based on the execution mode. The fluent APIs are prefixed with `RunAs*` and `PublishAs*`. The `RunAs*` APIs influence the local development (or run mode) behavior, whereas the `PublishAs*` APIs influence the publishing of the resource. For more information on how the Azure resources use these APIs, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
+
+## Resource relationships  
+
+Resource relationships link resources together. Relationships are informational and don't impact an app's runtime behavior. Instead, they're used when displaying details about resources in the dashboard. For example, relationships are visible in the [dashboard's resource details](./dashboard/explore.md#resource-details), and `Parent` relationships control resource nesting on the resources page.
+
+Relationships are automatically created by some app model APIs. For example:
+
+- <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> adds a relationship to the target resource with the type `Reference`.
+- <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> adds a relationship to the target resource with the type `WaitFor`.
+- Adding a database to a DB container creates a relationship from the database to the container with the type `Parent`.
+
+Relationships can also be explicitly added to the app model using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithRelationship*> and <xref:Aspire.Hosting.ResourceBuilderExtensions.WithParentRelationship*>.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var catalogDb = builder.AddPostgres("postgres")
+                       .WithDataVolume()
+                       .AddDatabase("catalogdb");
+
+builder.AddProject<Projects.AspireApp_CatalogDbMigration>("migration")
+       .WithReference(catalogDb)
+       .WithParentRelationship(catalogDb);
+
+builder.Build().Run();
+```
+
+The preceding example uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithParentRelationship*> to configure `catalogdb` database as the `migration` project's parent. The `Parent` relationship is special because it controls resource nesting on the resource page. In this example, `migration` is nested under `catalogdb`.
+
+> [!NOTE]
+> There's validation for parent relationships to prevent a resource from having multiple parents or creating a circular reference. These configurations can't be rendered in the UI, and the app model will throw an error.
 
 ## See also
 

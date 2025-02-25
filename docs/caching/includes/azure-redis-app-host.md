@@ -48,17 +48,7 @@ The preceding call to `AddAzureRedis` configures the Redis server resource to be
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Cache for Redis resource, the following Bicep is generated:
 
-<!-- markdownlint-disable MD033 -->
-<br/>
-<details>
-<summary id="azure-redis"><strong>Toggle Azure Cache for Redis Bicep.</strong></summary>
-<p aria-labelledby="azure-redis">
-
 :::code language="bicep" source="../../snippets/azure/AppHost/redis.module.bicep":::
-
-</p>
-</details>
-<!-- markdownlint-enable MD033 -->
 
 The preceding Bicep is a module that provisions an Azure Cache for Redis with the following defaults:
 
