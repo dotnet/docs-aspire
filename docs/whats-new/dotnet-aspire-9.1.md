@@ -23,7 +23,7 @@ For more information on the official .NET version and .NET Aspire version suppor
 - [.NET support policy](https://dotnet.microsoft.com/platform/support/policy): Definitions for LTS and STS.
 - [.NET Aspire support policy](https://dotnet.microsoft.com/platform/support/policy/aspire): Important unique product life cycle details.
 
-## Upgrade to .NET Aspire 9.1
+## ⬆️ Upgrade to .NET Aspire 9.1
 
 Moving between minor releases of .NET Aspire is simple:
 
@@ -51,14 +51,14 @@ Moving between minor releases of .NET Aspire is simple:
 
 If your app host project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.0, you can follow [the documentation from last release](../get-started/upgrade-to-aspire-9.md).
 
-## Improved onboarding experience
+## 🏁 Improved onboarding experience
 
 The onboarding experience for .NET Aspire is improved with 9.1. The team worked on creating a GitHub Codespaces template that installs all the necessary dependencies for .NET Aspire, making it easier to get started, including the templates and the ASP.NET Core developer certificate. Additionally, there's support for Dev Containers. For more information, see:
 
 - [.NET Aspire and GitHub Codespaces](../get-started/github-codespaces.md)
 - [.NET Aspire and Visual Studio Code Dev Containers](../get-started/dev-containers.md)
 
-## Dashboard UX and customization
+## 🔧 Dashboard UX and customization
 
 With every release of .NET Aspire, the [dashboard](../fundamentals/dashboard/overview.md) gets more powerful and customizable.
 
@@ -68,7 +68,7 @@ The dashboard now supports "parent" and "child" resource relationships. For inst
 
 :::image type="content" source="media/dashboard-parentchild.png" lightbox="media/dashboard-parentchild.png" alt-text="A screenshot of the .NET Aspire dashboard showing the Postgres resource with a database nested underneath it.":::
 
-### Localization overrides
+### 🔤 Localization overrides
 
 The dashboard defaults to the language set in your browser. This release introduces the ability to override this setting and change the dashboard language independently from the browser language. Consider the following screen capture that demonstrates the addition of the language dropdown in the dashboard:
 
@@ -82,9 +82,9 @@ Now you use this feature to reset the dashboard to a blank slate, test your app,
 
 :::image type="content" source="media/dashboard-remove-telemetry.png" lightbox="media/dashboard-remove-telemetry.png" alt-text="A screenshot of the .NET Aspire dashboard showing the remove button on the structured logs page.":::
 
-This feature is a community contribution from [@Daluur](https://github.com/Daluur).
+We 💜 love the developer community and thrive on it's feedback, collaboration, and contributions. This feature is a community contribution from [@Daluur](https://github.com/Daluur), please join us in thanking them!
 
-### Filtering
+### 🔢 New filtering
 
 You can now filter what you see in the **Resource** page by **Resource type**, **State**, and **Health state**. Consider the following screen capture, which demonstrates the addition of the filter options in the dashboard:
 
@@ -92,9 +92,11 @@ You can now filter what you see in the **Resource** page by **Resource type**, *
 
 ### More resource details
 
-When you select a resource in the dashboard, more data points are now available in the details pane, including **References**, **Back references**, and **Volumes** with their mount types.
+When you select a resource in the dashboard, the details pane now displays additional data points, including **References**, **Back references**, and **Volumes** with their mount types. This enhancement provides a clearer and more comprehensive view of your resources, improving the overall user experience by making relevant details more accessible.
 
 :::image type="content" source="media/dashboard-resourcedetails.png" lightbox="media/dashboard-resourcedetails.png" alt-text="A screenshot of the .NET Aspire dashboard with references and back references showing.":::
+
+For more information, see [.NET Aspire dashboard: Resources page](../fundamentals/dashboard/explore.md#resources-page).
 
 ### CORS support for custom local domains
 
@@ -108,21 +110,25 @@ The console log page has two new options. You're now able to download your logs 
 
 :::image type="content" source="media/consolelogs-download.png" lightbox="media/consolelogs-download.png" alt-text="A screenshot of the console logs page with the download button, turn off timestamps button, and logs that don't show timestamps.":::
 
+For more information, see [.NET Aspire dashboard: Console logs page](../fundamentals/dashboard/explore.md#console-logs-page).
+
 ### Various UX improvements
 
-Several new features in .NET Aspire 9.1 enhance and streamline popular tasks:
+Several new features in .NET Aspire 9.1 enhance and streamline the following popular tasks:
 
-- Resource commands, such as **Start** and **Stop** buttons, are now available on the **Console logs** page.
-- Single selection to open in the _text visualizer_.
-- URLs within logs are now automatically clickable, with commas removed from endpoints.
+- ▶️ Resource commands, such as **Start** and **Stop** buttons, are now available on the **Console logs** page.
+- 🔍 Single selection to open in the _text visualizer_.
+- 🔗 URLs within logs are now automatically clickable, with commas removed from endpoints.
 
-Additionally, the scrolled position now resets when switching between different resources.
+Additionally, the 🖱️ scroll position resets when switching between different resources—this helps to visually reset the current resource view.  
 
-For more details on the latest dashboard enhancements, check out [James Newton-King](https://bsky.app/profile/james.newtonking.com) on Bluesky, where he's been sharing new features daily.
+For more details on the latest dashboard enhancements, check out [James Newton-King on :::image type="icon" source="../media/bluesky-icon.svg" border="false"::: Bluesky](https://bsky.app/profile/james.newtonking.com), where he's been sharing new features daily.
 
-## Local dev
+## Local development enhancements
 
-### Start resources on demand
+In .NET Aspire 9.1, we've introduced several improvements to streamline your local development experience. These enhancements are designed to provide greater flexibility, better integration with Docker, and more efficient resource management. Here are some of the key updates:
+
+### ▶️ Start resources on demand
 
 You can now tell resources not to start with the rest of your app by using `WithExplicitStart()` on the resource in your app host. Then, you can start it whenever you're ready from inside the dashboard.
 
@@ -132,13 +138,15 @@ For more information, see [Configure explicit resource start](../fundamentals/ap
 
 The `PublishAsDockerfile()` feature was introduced for all projects and executable resources. This enhancement allows for complete customization of the Docker container and Dockerfile used during the publish process.
 
+While this API was available in previous versions, it couldn't be used with <xref:Aspire.Hosting.ApplicationModel.ProjectResource> or <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> types.
+
 ### Cleaning up Docker networks
 
-In 9.1, we addressed a persistent issue where Docker networks created by .NET Aspire would remain active even after the application was stopped. This bug, tracked in [issue #6504](https://github.com/dotnet/aspire/issues/6504), is resolved. Now, Docker networks are properly cleaned up, ensuring a more efficient and tidy development environment.
+In 9.1, we addressed a persistent issue where Docker networks created by .NET Aspire would remain active even after the application was stopped. This bug, tracked in [.NET Aspire GitHub issue #6504](https://github.com/dotnet/aspire/issues/6504), is resolved. Now, Docker networks are properly cleaned up, ensuring a more efficient and tidy development environment.
 
-## Integrations
+## Integration updates
 
-.NET Aspire thrives on [its integrations](../fundamentals/integrations-overview.md) with other platforms. This release has numerous updates to existing integrations, and details about migrations of ownership.
+.NET Aspire continues to excel through its [integrations](../fundamentals/integrations-overview.md) with various platforms. This release includes numerous updates to existing integrations and details about ownership migrations, enhancing the overall functionality and user experience.
 
 ### Azure updates
 
@@ -218,7 +226,7 @@ public class MyCosmosDbTrigger(ILogger<MyCosmosDbTrigger> logger)
 
 #### Service Bus and Event Hubs
 
-Similar to Cosmos DB, the Service Bus and Event Hubs integrations allow you to model Azure Service Bus queues, topics, and subscriptions, and Azure Event Hubs hub instances and consumer groups in app host code. These resources can now be created outside of the applications that use them, simplifying app logic.
+Similar to Cosmos DB, the Service Bus and Event Hubs integrations now allow you to define Azure Service Bus queues, topics, subscriptions, and Azure Event Hubs instances and consumer groups directly in your app host code. This enhancement simplifies your application logic by enabling the creation and management of these resources outside the application itself.
 
 #### Working with existing resources
 
@@ -234,7 +242,7 @@ var serviceBus = builder.AddAzureServiceBus("messaging")
 
 The preceding code reads the name and resource group from the parameters, and connects to the existing resource when the application is run or deployed. For more information, see [use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
-#### Azure Container Apps
+#### ☁️ Azure Container Apps
 
 Experimental support for configuring custom domains in Azure Container Apps (ACA) was added. For example:
 
@@ -252,7 +260,7 @@ builder.AddProject<Projects.AzureContainerApps_ApiService>("api")
        });
 ```
 
-### Even more integration updates
+### ➕ Even more integration updates
 
 - OpenAI now supports the [📦 Microsoft.Extensions.AI](https://www.nuget.org/packages/Microsoft.Extensions.AI) NuGet package.
 - RabbitMQ updated to version 7, and MongoDB to version 3. These updates introduced breaking changes, leading to the release of new packages with version-specific suffixes. The original packages continue to use the previous versions:
@@ -263,9 +271,17 @@ builder.AddProject<Projects.AzureContainerApps_ApiService>("api")
 
 The [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS) NuGet package and source code migrated under [Amazon Web Services (AWS)) ownership](https://github.com/aws/integrations-on-dotnet-aspire-for-aws). This migration happened as part of .NET Aspire 9.0, we're just restating that change here.
 
+## 🧪 Testing in .NET Aspire
+
+.NET Aspire 9.1 simplifies writing cross-functional integration tests with a robust approach. The app host allows you to create, evaluate, and manage containerized environments seamlessly within a test run. This functionality supports popular testing frameworks like xUnit, NUnit, and MSTest, enhancing your testing capabilities and efficiency.
+
+Now, you're able to disable port randomization or enable the [dashboad](../fundamentals/dashboard/overview.md). For more information, see [.NET Aspire testing overview](../testing/overview.md). Additionally, you can now [Pass arguments to your app host](../testing/manage-app-host.md#pass-arguments-to-your-app-host).
+
 ## Deployment
 
-Significant improvements to the Azure Container Apps (ACA) deployment process can be found in 9.1, enhancing both the `azd` CLI and app host options. One of the most requested features—support for deploying npm applications to ACA—is now implemented. This new capability allows npm applications to be deployed to ACA just like other resources, streamlining the deployment process and providing greater flexibility for developers.
+Significant improvements to the Azure Container Apps (ACA) deployment process are included in .NET Aspire 9.1, enhancing both the `azd` CLI and app host options. One of the most requested features—support for deploying `npm` applications to ACA—is now implemented. This new capability allows `npm` apps to be deployed to ACA just like other resources, streamlining the deployment process and providing greater flexibility for developers.
+
+We recognize there's more work to be done in the area of deployment. Future releases will continue to address these opportunities for improvement. For more information on deploying .NET Aspire to ACA, see [Deploy a .NET Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md).
 
 ## Upgrade today
 
