@@ -55,7 +55,7 @@ Moving between minor releases of .NET Aspire is simple:
 
 If your app host project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.0, you can follow [the documentation from last release](../get-started/upgrade-to-aspire-9.md).
 
-## 🏁 Improved onboarding experience
+## 🌱 Improved onboarding experience
 
 The onboarding experience for .NET Aspire is improved with 9.1. The team worked on creating a GitHub Codespaces template that installs all the necessary dependencies for .NET Aspire, making it easier to get started, including the templates and the ASP.NET Core developer certificate. Additionally, there's support for Dev Containers. For more information, see:
 
@@ -312,7 +312,7 @@ Significant improvements to the Azure Container Apps (ACA) deployment process ar
 
 We recognize there's more work to be done in the area of deployment. Future releases will continue to address these opportunities for improvement. For more information on deploying .NET Aspire to ACA, see [Deploy a .NET Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md).
 
-## 🆙 Upgrade today
+## 🎯 Upgrade today
 
 Follow the directions outlined in the [Upgrade to .NET Aspire 9.1](#-upgrade-to-net-aspire-91) section to make the switch to 9.1 and take advantage of all these new features today! As always, we're listening for your feedback on [GitHub](https://github.com/dotnet/aspire/issues)-and looking out for what you want to see in 9.2 ☺️.
 
