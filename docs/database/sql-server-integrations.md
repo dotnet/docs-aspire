@@ -146,7 +146,7 @@ Developers often prefer their data to persist across restarts in the development
     var sql = builder.AddSqlServer("sql")
                      .WithDataVolume()
                      .AddDatabase("sqldata");
-	```
+    ```
 
 ## Run and test the data persistence
 
