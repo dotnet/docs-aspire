@@ -20,8 +20,8 @@
       "connectionString": "{config.outputs.appConfigEndpoint}",
       "path": "config.module.bicep",
       "params": {
-        "principalId": "",
-        "principalType": ""
+        "principalType": "",
+        "principalId": ""
       }
     },
     "app-insights": {
@@ -34,10 +34,11 @@
     },
     "cosmos": {
       "type": "azure.bicep.v0",
-      "connectionString": "{cosmos.secretOutputs.connectionString}",
+      "connectionString": "{cosmos.outputs.connectionString}",
       "path": "cosmos.module.bicep",
       "params": {
-        "keyVaultName": ""
+        "principalType": "",
+        "principalId": ""
       }
     },
     "event-hubs": {
@@ -45,17 +46,21 @@
       "connectionString": "{event-hubs.outputs.eventHubsEndpoint}",
       "path": "event-hubs.module.bicep",
       "params": {
-        "principalId": "",
-        "principalType": ""
+        "principalType": "",
+        "principalId": ""
       }
+    },
+    "messages": {
+      "type": "value.v0",
+      "connectionString": "Endpoint={event-hubs.outputs.eventHubsEndpoint};EntityPath=messages"
     },
     "key-vault": {
       "type": "azure.bicep.v0",
       "connectionString": "{key-vault.outputs.vaultUri}",
       "path": "key-vault.module.bicep",
       "params": {
-        "principalId": "",
-        "principalType": ""
+        "principalType": "",
+        "principalId": ""
       }
     },
     "log-analytics-workspace": {
@@ -67,8 +72,8 @@
       "connectionString": "{openai.outputs.connectionString}",
       "path": "openai.module.bicep",
       "params": {
-        "principalId": "",
-        "principalType": ""
+        "principalType": "",
+        "principalId": ""
       }
     },
     "postgres-flexible": {
@@ -95,8 +100,8 @@
       "connectionString": "{search.outputs.connectionString}",
       "path": "search.module.bicep",
       "params": {
-        "principalId": "",
-        "principalType": ""
+        "principalType": "",
+        "principalId": ""
       }
     },
     "service-bus": {
@@ -104,8 +109,8 @@
       "connectionString": "{service-bus.outputs.serviceBusEndpoint}",
       "path": "service-bus.module.bicep",
       "params": {
-        "principalId": "",
-        "principalType": ""
+        "principalType": "",
+        "principalId": ""
       }
     },
     "signalr": {
@@ -113,8 +118,8 @@
       "connectionString": "Endpoint=https://{signalr.outputs.hostName};AuthType=azure",
       "path": "signalr.module.bicep",
       "params": {
-        "principalId": "",
-        "principalType": ""
+        "principalType": "",
+        "principalId": ""
       }
     },
     "sql": {
@@ -130,8 +135,8 @@
       "type": "azure.bicep.v0",
       "path": "storage.module.bicep",
       "params": {
-        "principalId": "",
-        "principalType": ""
+        "principalType": "",
+        "principalId": ""
       }
     },
     "web-pub-sub": {
@@ -139,8 +144,8 @@
       "connectionString": "{web-pub-sub.outputs.endpoint}",
       "path": "web-pub-sub.module.bicep",
       "params": {
-        "principalId": "",
-        "principalType": ""
+        "principalType": "",
+        "principalId": ""
       }
     }
   }
