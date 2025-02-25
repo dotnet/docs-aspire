@@ -27,7 +27,7 @@ For more information on the official .NET version and .NET Aspire version suppor
 
 Moving between minor releases of .NET Aspire is simple:
 
-1. In your app host project file (that is, _MyApp.AppHost.csproj_), update the `Aspire.AppHost.Sdk` version to `9.1.0`:
+1. In your app host project file (that is, _MyApp.AppHost.csproj_), update the [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk) NuGet package to version `9.1.0`:
 
     ```xml
     <Project Sdk="Microsoft.NET.Sdk">
@@ -39,8 +39,10 @@ Moving between minor releases of .NET Aspire is simple:
     </Project>
     ```
 
+    For more information, see [.NET Aspire SDK](xref:dotnet/aspire/sdk).
+
 1. Check for any NuGet package updates, either using the NuGet Package Manager in Visual Studio or the **Update NuGet Package** command in VS Code.
-1. Update to the latest .NET Aspire templates by running the following .NET command line:
+1. Update to the latest [.NET Aspire templates](../fundamentals/aspire-sdk-templates.md) by running the following .NET command line:
 
     ```dotnetcli
     dotnet new update
@@ -60,13 +62,15 @@ The onboarding experience for .NET Aspire is improved with 9.1. The team worked 
 
 ## 🔧 Dashboard UX and customization
 
-With every release of .NET Aspire, the [dashboard](../fundamentals/dashboard/overview.md) gets more powerful and customizable.
+With every release of .NET Aspire, the [dashboard](../fundamentals/dashboard/overview.md) gets more powerful and customizable, this release is no exception. The following features were added to the dashboard in .NET Aspire 9.1:
 
 ### 🧩 Resource relationships
 
 The dashboard now supports "parent" and "child" resource relationships. For instance, when you create a Postgres instance with multiple databases, these databases are nested under the same instance on the **Resource** page.
 
 :::image type="content" source="media/dashboard-parentchild.png" lightbox="media/dashboard-parentchild.png" alt-text="A screenshot of the .NET Aspire dashboard showing the Postgres resource with a database nested underneath it.":::
+
+For more information, see [Explore the .NET Aspire dashboard](../fundamentals/dashboard/explore.md).
 
 ### 🔤 Localization overrides
 

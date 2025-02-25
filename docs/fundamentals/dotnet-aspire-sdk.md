@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire SDK
 description: Learn
-ms.date: 11/09/2024
+ms.date: 02/25/2025
 uid: dotnet/aspire/sdk
 ---
 
