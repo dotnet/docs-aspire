@@ -145,9 +145,6 @@ For more information, see [Configure explicit resource start](../fundamentals/ap
 
 The `PublishAsDockerfile()` feature was introduced for all projects and executable resources. This enhancement allows for complete customization of the Docker container and Dockerfile used during the publish process.
 
-- <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.PublishAsDockerfile*>
-- <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.PublishAsDockerfile*>
-
 While this API was available in previous versions, it couldn't be used with <xref:Aspire.Hosting.ApplicationModel.ProjectResource> or <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> types.
 
 ### 🧹 Cleaning up Docker networks
