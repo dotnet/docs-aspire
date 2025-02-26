@@ -64,14 +64,14 @@ groups:
     - id: nunit
       title: NUnit
 - id: entity-framework-client-integration
-  title: .NET Aspire Entity Framework client integration
-  prompt: Choose a .NET Aspire Entity Framework client integration
+  title: .NET Aspire Entity Framework Core client integration
+  prompt: Choose a .NET Aspire Entity Framework Core client integration
   pivots:
     - id: sql-server-ef
-      title: SQL Server Entity Framework Core
+      title: SQL Server
     - id: postgresql-ef
-      title: PostgreSQL Entity Framework Core
+      title: PostgreSQL
     - id: oracle-ef
-      title: Oracle Entity Framework Core
+      title: Oracle
     - id: mysql-ef
-      title: Pomelo MySQL Entity Framework Core
+      title: Pomelo MySQL

@@ -217,7 +217,7 @@ EF interceptors allow developers to hook into and modify database operations at 
 
 Interceptors that depend on DI services are not supported by the .NET Aspire `Add\<DatabaseSystem\>DbContext` methods. Use the EF <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextPool*> method and call the <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.AddInterceptors*> method in the options builder:
 
-:::zone-pivot="sql-server-ef"
+:::zone pivot="sql-server-ef"
 
 ```csharp
 builder.Services.AddDbContextPool<ExampleDbContext>((serviceProvider, options) =>
@@ -235,7 +235,7 @@ builder.EnrichSqlServerDbContext<ExampleDbContext>(
 ```
 
 :::zone-end
-:::zone-pivot="postgresql-ef"
+:::zone pivot="postgresql-ef"
 
 ```csharp
 builder.Services.AddDbContextPool<ExampleDbContext>((serviceProvider, options) =>
@@ -253,7 +253,7 @@ builder.EnrichNpgsqlDbContext<ExampleDbContext>(
 ```
 
 :::zone-end
-:::zone-pivot="oracle-ef"
+:::zone pivot="oracle-ef"
 
 ```csharp
 builder.Services.AddDbContextPool<ExampleDbContext>((serviceProvider, options) =>
@@ -271,7 +271,7 @@ builder.EnrichOracleDatabaseDbContext<ExampleDbContext>(
 ```
 
 :::zone-end
-:::zone-pivot="mysql-ef"
+:::zone pivot="mysql-ef"
 
 ```csharp
 builder.Services.AddDbContextPool<ExampleDbContext>((serviceProvider, options) =>
