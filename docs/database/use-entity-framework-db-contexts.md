@@ -139,7 +139,7 @@ You have more flexibility when you create the database context in this way, for 
 - You can choose not to use EF Core context pooling, which may be necessary in some circumstances. For more information, see [Use EF context pooling in .NET Aspire](#use-ef-context-pooling-in-net-aspire)
 - You can use EF Core context factories or change the lifetime for the EF services. For more information, see [Use EF Core context factories in .NET Aspire](#use-ef-core-context-factories-in-net-aspire)
 - You can use dynamic connection strings. For more information, see [Use EF with dynamic connection strings in .NET Aspire](#use-ef-with-dynamic-connection-strings-in-net-aspire)
-- You can use [EF Core interceptors](/ef/core/logging-events-diagnostics/interceptors) that depend on DI services to modify database operations. For more information, see [Use EF interceptors in .NET Aspire](#use-ef-interceptors-in-net-aspire)
+- You can use [EF Core interceptors](/ef/core/logging-events-diagnostics/interceptors) that depend on DI services to modify database operations. For more information, see [Use EF interceptors in .NET Aspire](#use-ef-interceptors-with-net-aspire)
 
 By default, a context configured this way doesn't include .NET Aspire features, such as telemetry and health checks. To add those features, each .NET Aspire EF client integration includes a method named `Enrich\<DatabaseSystem\>DbContext`. These enrich context methods:
 
