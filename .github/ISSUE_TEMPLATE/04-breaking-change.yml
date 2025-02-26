@@ -23,6 +23,10 @@ body:
       options:
         - .NET Aspire 9.0 GA
         - .NET Aspire 9.0 RC1
+        - .NET Aspire 9.1
+        - .NET Aspire 9.2
+        - .NET Aspire 9.3
+        - .NET Aspire 10 Preview
         - Other (please put exact version in description textbox)
     validations:
       required: true
