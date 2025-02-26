@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Service Bus integration
 description: Learn how to install and configure the .NET Aspire Azure Service Bus integration to connect to Azure Service Bus instances from .NET applications.
-ms.date: 01/08/2025
+ms.date: 02/25/2025
 ---
 
 # .NET Aspire Azure Service Bus integration
@@ -125,7 +125,7 @@ serviceBus.AddServiceBusQueue("queue");
 // After adding all resources, run the app...
 ```
 
-When you call `AddServiceBusQueue`, it configures your Service Bus resources to have a queue named `queue`. The queue is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier. For more information, see [Queues, topics, and subscriptions in Azure Service Bus](/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
+When you call <xref:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusQueue(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},System.String,System.String)>, it configures your Service Bus resources to have a queue named `queue`. The queue is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier. For more information, see [Queues, topics, and subscriptions in Azure Service Bus](/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
 
 ### Add Azure Service Bus topic and subscription
 
@@ -140,7 +140,7 @@ serviceBus.AddServiceBusTopic("topic");
 // After adding all resources, run the app...
 ```
 
-When you call `AddServiceBusTopic`, it configures your Service Bus resources to have a topic named `topic`. The topic is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier.
+When you call <xref:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusTopic(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},System.String,System.String)>, it configures your Service Bus resources to have a topic named `topic`. The topic is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier.
 
 To add a subscription for the topic, call the <xref:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusSubscription*> method on the `IResourceBuilder<AzureServiceBusTopicResource>` and configure it using the <xref:Aspire.Hosting.AzureServiceBusExtensions.WithProperties*> method:
 
@@ -181,7 +181,7 @@ For more information, see [Queues, topics, and subscriptions in Azure Service Bu
 
 ### Add Azure Service Bus emulator resource
 
-To add an Azure Service Bus emulator resource, chain a call on an `<IResourceBuilder<AzureServiceBusResource>>` to the `RunAsEmulator` API:
+To add an Azure Service Bus emulator resource, chain a call on an `<IResourceBuilder<AzureServiceBusResource>>` to the <xref:Aspire.Hosting.AzureServiceBusExtensions.RunAsEmulator*> API:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -207,7 +207,7 @@ By default, the Service Bus emulator container when configured by .NET Aspire, e
 | `emulator` | `mcr.microsoft.com/azure-messaging/servicebus-emulator` | 5672 | dynamic |
 | `tcp` | `mcr.microsoft.com/azure-sql-edge` | 1433 | dynamic |
 
-The port that it's listening on is dynamic by default. When the container starts, the port is mapped to a random port on the host machine. To configure the endpoint port, chain calls on the container resource builder provided by the `RunAsEmulator` method as shown in the following example:
+The port that it's listening on is dynamic by default. When the container starts, the port is mapped to a random port on the host machine. To configure the endpoint port, chain calls on the container resource builder provided by the `RunAsEmulator` method and then the <xref:Aspire.Hosting.AzureServiceBusExtensions.WithHostPort(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusEmulatorResource},System.Nullable{System.Int32})> as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -231,7 +231,7 @@ The preceding code configures the Service Bus emulator container's existing `emu
 
 The Service Bus emulator container runs with a default [_config.json_](https://github.com/Azure/azure-service-bus-emulator-installer/blob/main/ServiceBus-Emulator/Config/Config.json) file. You can override this file entirely, or update the JSON configuration with a <xref:System.Text.Json.Nodes.JsonNode> representation of the configuration.
 
-To provide a custom JSON configuration file, call the `WithConfigurationFile` method:
+To provide a custom JSON configuration file, call the <xref:Aspire.Hosting.AzureServiceBusExtensions.WithConfigurationFile(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusEmulatorResource},System.String)> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -244,7 +244,7 @@ var serviceBus = builder.AddAzureServiceBus("messaging").RunAsEmulator(
                          });
 ```
 
-The preceding code configures the Service Bus emulator container to use a custom JSON configuration file located at `./messaging/custom-config.json`. To instead override specific properties in the default configuration, call the `WithConfiguration` method:
+The preceding code configures the Service Bus emulator container to use a custom JSON configuration file located at `./messaging/custom-config.json`. To instead override specific properties in the default configuration, call the <xref:Aspire.Hosting.AzureServiceBusExtensions.WithConfiguration(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusEmulatorResource},System.Action{System.Text.Json.Nodes.JsonNode})> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
