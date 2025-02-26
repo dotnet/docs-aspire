@@ -105,7 +105,7 @@ You can query whether a resource is marked as an existing resource, by calling t
 
 .NET Aspire provides support for referencing existing Azure resources. You mark an existing resource through the `PublishAsExisting`, `RunAsExisting`, and `AsExisting` APIs. These APIs allow developers to reference already-deployed Azure resources, configure them, and generate appropriate deployment manifests using Bicep templates.
 
-Existing resources referenced with these APIs can be enhanced with role assignments and other customizations that are available via Aspire's [infrastructure as code capabailities](#infrastructure-as-code). These APIs are limited to Azure resources that can be deployed with Bicep templates.
+Existing resources referenced with these APIs can be enhanced with role assignments and other customizations that are available with .NET Aspire's [infrastructure as code capabilities](#infrastructure-as-code). These APIs are limited to Azure resources that can be deployed with Bicep templates.
 
 ### Configure existing Azure resources for run mode
 
