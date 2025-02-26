@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Event Hubs integration
 description: This article describes the .NET Aspire Azure Event Hubs integration features and capabilities.
-ms.date: 02/10/2025
+ms.date: 02/25/2025
 ---
 
 # .NET Aspire Azure Event Hubs integration
@@ -176,7 +176,7 @@ By default, the Event Hubs emulator container when configured by .NET Aspire, ex
 |--|--|--|--|
 | `emulator` | `mcr.microsoft.com/azure-messaging/eventhubs-emulator/latest` | 5672 | dynamic |
 
-The port that it's listening on is dynamic by default. When the container starts, the port is mapped to a random port on the host machine. To configure the endpoint port, chain calls on the container resource builder provided by the `RunAsEmulator` method as shown in the following example:
+The port that it's listening on is dynamic by default. When the container starts, the port is mapped to a random port on the host machine. To configure the endpoint port, chain calls on the container resource builder provided by the `RunAsEmulator` method and then the <xref:Aspire.Hosting.AzureEventHubsExtensions.WithHostPort(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureEventHubsEmulatorResource},System.Nullable{System.Int32})> as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -253,7 +253,7 @@ Data bind mounts rely on the host machine's filesystem to persist the Azure Even
 
 The Event Hubs emulator container runs with a default [_config.json_](https://github.com/Azure/azure-event-hubs-emulator-installer/blob/main/EventHub-Emulator/Config/Config.json) file. You can override this file entirely, or update the JSON configuration with a <xref:System.Text.Json.Nodes.JsonNode> representation of the configuration.
 
-To provide a custom JSON configuration file, call the <xref:Aspire.Hosting.AzureEventHubsExtensions.WithConfigurationFile*> method:
+To provide a custom JSON configuration file, call the <xref:Aspire.Hosting.AzureEventHubsExtensions.WithConfigurationFile(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureEventHubsEmulatorResource},System.String)> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -272,7 +272,7 @@ builder.AddProject<Projects.ExampleService>()
 // After adding all resources, run the app...
 ```
 
-The preceding code configures the Event Hubs emulator container to use a custom JSON configuration file located at `./messaging/custom-config.json`. This will be mounted at the `/Eventhubs_Emulator/ConfigFiles/Config.json` path on the container, as a read-only file. To instead override specific properties in the default configuration, call the <xref:Aspire.Hosting.AzureEventHubsExtensions.WithConfiguration*> method:
+The preceding code configures the Event Hubs emulator container to use a custom JSON configuration file located at `./messaging/custom-config.json`. This will be mounted at the `/Eventhubs_Emulator/ConfigFiles/Config.json` path on the container, as a read-only file. To instead override specific properties in the default configuration, call the <xref:Aspire.Hosting.AzureEventHubsExtensions.WithConfiguration(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureEventHubsEmulatorResource},System.Action{System.Text.Json.Nodes.JsonNode})> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
