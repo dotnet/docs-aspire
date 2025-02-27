@@ -175,15 +175,17 @@ The constructor requires the type of the app host project reference as a paramet
 
 The `DistributionApplicationFactory` class provides several lifecycle methods that can be overridden to provide custom behavior throughout the preparation and creation of the app host. The available methods are `OnBuilderCreating`, `OnBuilderCreated`, `OnBuilding`, and `OnBuilt`.
 
-For example, we can use the `OnBuilderCreating` method to set environment variables, such as the subscription and resource group information for Azure, before the app host is created and any dependent Azure resources are provisioned, resulting in our tests using the correct Azure environment.
+For example, we can use the `OnBuilderCreating` method to set configuration, such as the subscription and resource group information for Azure, before the app host is created and any dependent Azure resources are provisioned, resulting in our tests using the correct Azure environment.
 
 ```csharp
 public class TestingAspireAppHost : DistributedApplicationFactory(typeof(Projects.AspireApp_AppHost))
 {
     protected override void OnBuilderCreating(DistributedApplicationOptions applicationOptions, HostApplicationBuilderSettings hostOptions)
     {
-        builder.EnvironmentVariables["AZURE_SUBSCRIPTION_ID"] = "00000000-0000-0000-0000-000000000000";
-        builder.EnvironmentVariables["AZURE_RESOURCE_GROUP"] = "my-resource-group";
+        hostOptions.Configuration ??= new();
+        hostOptions.Configuration["environment"] = "Development";
+        hostOptions.Configuration["AZURE_SUBSCRIPTION_ID"] = "00000000-0000-0000-0000-000000000000";
+        hostOptions.Configuration["AZURE_RESOURCE_GROUP"] = "my-resource-group";
     }
 }
 ```
