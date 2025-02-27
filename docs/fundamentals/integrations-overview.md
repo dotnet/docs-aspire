@@ -58,7 +58,7 @@ When you add a client integration to a project within your .NET Aspire solution,
 
 ## Versioning considerations
 
-Hosting and client integrations are updated each release to target the latest stable versions of dependent resources. When container images are updated with new image versions, the hosting integrations update to these new versions. Similarly, when a new NuGet version is available for a dependent client library, the corresponding client integration updates to the new version. This ensures the latest features and security updates are available to applications.
+Hosting and client integrations are updated each release to target the latest stable versions of dependent resources. When container images are updated with new image versions, the hosting integrations update to these new versions. Similarly, when a new NuGet version is available for a dependent client library, the corresponding client integration updates to the new version. This ensures the latest features and security updates are available to applications. The .NET Aspire update type (major, minor, patch) does not necessarily indicate the type of update in dependent resources. For example, a new major version of a dependent resource may be updated in a .NET Aspire patch release, if deemed necessary.
 
 When major breaking changes happen in dependent resources, integrations may temporarily split into version-dependent packages to ease updating across the breaking change. For more information, see the [first example of such a breaking change](https://github.com/dotnet/aspire/issues/3956).
 
