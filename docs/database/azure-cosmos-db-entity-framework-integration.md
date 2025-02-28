@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Cosmos DB Entity Framework Core integration
 description: Learn how to install and configure the .NET Aspire Cosmos DB Entity Framework Core integration to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
-ms.date: 02/24/2025
+ms.date: 02/26/2025
 uid: dotnet/aspire/azure-cosmos-db-entity-framework-integration
 ---
 
@@ -117,8 +117,6 @@ builder.AddCosmosDbContext<MyDbContext>(
 ```
 
 ### Client integration health checks
-
-By default, .NET Aspire integrations enable health checks for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
 
 The .NET Aspire Microsoft Entity Framework Core Cosmos DB integration currently doesn't implement health checks, though this may change in future releases.
 
