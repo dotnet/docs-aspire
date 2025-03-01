@@ -148,7 +148,13 @@ There are several key modifications from the original Angular template. The firs
 
 The .NET Aspire app host sets the `services__weatherapi__http__0` environment variable, which is used to resolve the "weatherapi" service endpoint. The preceding configuration proxies HTTP requests that start with `/api` to the target URL specified in the environment variable.
 
-The second update is to the _package.json_ file. This file is used to configure the Angular client to run on a different port than the default port. This is achieved by using the `PORT` environment variable, and the `run-script-os` npm package to set the port.
+Then include the proxy file to in the _angular.json_ file.
+Update the `serve` target to include the `proxyConfig` option, referencing to the created _proxy.conf.js_ file.
+The Angular CLI will now use the proxy configuration while serving the Angular client app.
+
+:::code language="javascript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/angular.json" range="59-73" highlight="13":::
+
+The third update is to the _package.json_ file. This file is used to configure the Angular client to run on a different port than the default port. This is achieved by using the `PORT` environment variable, and the `run-script-os` npm package to set the port.
 
 :::code language="json" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/package.json":::
 
