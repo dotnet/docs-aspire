@@ -59,16 +59,16 @@ Welcome to what's new in the .NET Aspire docs for February 2025. This article li
 
 ### New articles
 
-- [.NET Aspire Azure Cache for Redis](#registered)**</sup> distributed caching integration](../caching/azure-cache-for-redis-distributed-caching-integration.md)
-- [.NET Aspire Azure Cache for Redis](#registered)**</sup> integration](../caching/azure-cache-for-redis-integration.md)
-- [.NET Aspire Azure Cache for Redis](#registered)**</sup> output caching integration](../caching/azure-cache-for-redis-output-caching-integration.md)
+- [.NET Aspire Azure Cache for Redis distributed caching integration](../caching/azure-cache-for-redis-distributed-caching-integration.md)
+- [.NET Aspire Azure Cache for Redis integration](../caching/azure-cache-for-redis-integration.md)
+- [.NET Aspire Azure Cache for Redis output caching integration](../caching/azure-cache-for-redis-output-caching-integration.md)
 
 ### Updated articles
 
-- [.NET Aspire Redis](#registered)**</sup> distributed caching integration](../caching/stackexchange-redis-distributed-caching-integration.md) - Add Azure Cache for Redis standalone content
-- [.NET Aspire Redis](#registered)**</sup> integration](../caching/stackexchange-redis-integration.md) - Add Azure Cache for Redis standalone content
-- [.NET Aspire Redis](#registered)**</sup> output caching integration](../caching/stackexchange-redis-output-caching-integration.md) - Add Azure Cache for Redis standalone content
-- [Stack Exchange Redis](#registered)**</sup> caching overview](../caching/stackexchange-redis-caching-overview.md) - Add Azure Cache for Redis standalone content
+- [.NET Aspire Redis distributed caching integration](../caching/stackexchange-redis-distributed-caching-integration.md) - Add Azure Cache for Redis standalone content
+- [.NET Aspire Redis integration](../caching/stackexchange-redis-integration.md) - Add Azure Cache for Redis standalone content
+- [.NET Aspire Redis output caching integration](../caching/stackexchange-redis-output-caching-integration.md) - Add Azure Cache for Redis standalone content
+- [Stack Exchange Redis caching overview](../caching/stackexchange-redis-caching-overview.md) - Add Azure Cache for Redis standalone content
 - [Tutorial: Implement caching with .NET Aspire integrations](../caching/caching-integrations.md) - Add Azure Cache for Redis standalone content
 
 ## Security
