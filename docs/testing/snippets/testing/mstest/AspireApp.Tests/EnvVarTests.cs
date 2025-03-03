@@ -9,14 +9,13 @@ public class EnvVarTests
     public async Task WebResourceEnvVarsResolveToApiService()
     {
         // Arrange
-        var appHost = await DistributedApplicationTestingBuilder
+        var builder = await DistributedApplicationTestingBuilder
             .CreateAsync<Projects.AspireApp_AppHost>();
 
-        var frontend = (IResourceWithEnvironment)appHost.Resources
-            .Single(static r => r.Name == "webfrontend");
+        var frontend = builder.CreateResourceBuilder<ProjectResource>("webfrontend");
 
         // Act
-        var envVars = await frontend.GetEnvironmentVariableValuesAsync(
+        var envVars = await frontend.Resource.GetEnvironmentVariableValuesAsync(
             DistributedApplicationOperation.Publish);
 
         // Assert
