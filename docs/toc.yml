@@ -318,8 +318,6 @@ items:
       href: community-toolkit/hosting-data-api-builder.md
     - name: EventStore
       href: community-toolkit/hosting-eventstore.md
-  - name: Use Entity Framework Core for database interaction
-    href: database/use-entity-framework-db-contexts.md
 
   - name: Aspire.Hosting API reference
     href: /dotnet/api/?term=Aspire.Hosting&view=dotnet-aspire-9.1&preserve-view=true
