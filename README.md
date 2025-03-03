@@ -11,8 +11,7 @@
 
 This repository contains the conceptual documentation for .NET Aspire. The [.NET Aspire documentation site](https://learn.microsoft.com/dotnet/aspire).
 
-![.NET Aspire](assets/dotnet-aspire.png#gh-light-mode-only)
-![.NET Aspire](assets/dotnet-aspire-dark.png#gh-dark-mode-only)
+![.NET Aspire](assets/dotnet-aspire-color.png)
 
 ## :purple_heart: Contribute
 
@@ -33,7 +32,6 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 - [![Live branch protection](https://github.com/dotnet/docs-aspire/actions/workflows/live-protection.yml/badge.svg)](https://github.com/dotnet/docs-aspire/actions/workflows/live-protection.yml): Adds a comment to PRs that were not automated, but rather manually created that target the `live` branch.
 - [![Close stale issues](https://github.com/dotnet/docs-aspire/actions/workflows/stale.yml/badge.svg)](https://github.com/dotnet/docs-aspire/actions/workflows/stale.yml):  Closes stale issues that have not been updated in 180 days.
 - [![Markdownlint](https://github.com/dotnet/docs-aspire/actions/workflows/markdownlint.yml/badge.svg)](https://github.com/dotnet/docs-aspire/actions/workflows/markdownlint.yml):  The current status for the entire repositories Markdown linter status.
-- [![No response](https://github.com/dotnet/docs-aspire/actions/workflows/no-response.yml/badge.svg)](https://github.com/dotnet/docs-aspire/actions/workflows/no-response.yml):  If an issue is labeled with `needs-more-info` and the op doesn't respond within 14 days, the issue is closed.
 - [![OPS status checker](https://github.com/dotnet/docs-aspire/actions/workflows/check-for-build-warnings.yml/badge.svg)](https://github.com/dotnet/docs-aspire/actions/workflows/check-for-build-warnings.yml):  Builds the site for the PR in context, and verifies the build reporting either, `success,` `warnings`, or `error`.
 - [![Snippets 5000](https://github.com/dotnet/docs-aspire/actions/workflows/snippets5000.yml/badge.svg)](https://github.com/dotnet/docs-aspire/actions/workflows/snippets5000.yml):  Custom .NET build validation, locates code impacted by a PR, and builds.
 - [![Target supported version](https://github.com/dotnet/docs-aspire/actions/workflows/version-sweep.yml/badge.svg)](https://github.com/dotnet/docs-aspire/actions/workflows/version-sweep.yml):  Runs monthly, creating issues on projects that target .NET versions that are out of support.

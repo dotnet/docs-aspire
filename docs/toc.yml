@@ -20,8 +20,12 @@ items:
       href: fundamentals/dotnet-aspire-sdk.md
     - name: .NET Aspire templates
       href: fundamentals/aspire-sdk-templates.md
-  - name: What's new in .NET Aspire 9.0
-    href: whats-new/dotnet-aspire-9.md
+    - name: GitHub Codespaces
+      href: get-started/github-codespaces.md
+    - name: Dev Containers
+      href: get-started/dev-containers.md
+  - name: What's new in .NET Aspire 9.1
+    href: whats-new/dotnet-aspire-9.1.md
   - name: Upgrade to .NET Aspire 9.0
     href: get-started/upgrade-to-aspire-9.md
 
@@ -80,6 +84,9 @@ items:
 
 - name: Testing
   items:
+  - name: Overview
+    displayName: aspire testing,testing
+    href: testing/overview.md
   - name: Write your first .NET Aspire test
     href: testing/write-your-first-test.md
   - name: Managing the app host
@@ -179,9 +186,9 @@ items:
       displayName: web pubsub,real-time,messaging
       href: messaging/azure-web-pubsub-integration.md
     - name: Aspire.Hosting.Azure API reference
-      href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.0&preserve-view=true
+      href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.1&preserve-view=true
     - name: Aspire.Azure API reference
-      href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.0&preserve-view=true
+      href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.1&preserve-view=true
   - name: Entity Framework Core integrations
     displayName: ef core,entity framework core,database
     items:
@@ -315,7 +322,7 @@ items:
     href: database/use-entity-framework-db-contexts.md
 
   - name: Aspire.Hosting API reference
-    href: /dotnet/api/?term=Aspire.Hosting&view=dotnet-aspire-9.0&preserve-view=true
+    href: /dotnet/api/?term=Aspire.Hosting&view=dotnet-aspire-9.1&preserve-view=true
 
 - name: Custom integrations
   items:
@@ -384,7 +391,7 @@ items:
   - name: Diagnostics overview
     href: diagnostics/overview.md
   - name: .NET Aspire API reference
-    href: /dotnet/api?view=dotnet-aspire-9.0&preserve-view=true
+    href: /dotnet/api?view=dotnet-aspire-9.1&preserve-view=true
   - name: .NET Aspire FAQ
     displayName: iis,functions,deploy,azure,kubernetes
     href: reference/aspire-faq.yml

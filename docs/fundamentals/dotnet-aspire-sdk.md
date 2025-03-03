@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire SDK
 description: Learn
-ms.date: 11/09/2024
+ms.date: 02/25/2025
 uid: dotnet/aspire/sdk
 ---
 
@@ -16,7 +16,7 @@ The [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk)
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.1.0" />
     
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -26,7 +26,7 @@ The [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk)
     </PropertyGroup>
     
     <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
+        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
     </ItemGroup>
 
     <!-- Omitted for brevity -->

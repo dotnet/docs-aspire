@@ -1,11 +1,11 @@
 ---
-title: .NET Aspire Azure OpenAI integration
+title: .NET Aspire Azure OpenAI integration (Preview)
 description: Learn how to use the .NET Aspire Azure OpenAI integration.
 ms.topic: how-to
-ms.date: 09/27/2024
+ms.date: 02/14/2025
 ---
 
-# .NET Aspire Azure OpenAI integration
+# .NET Aspire Azure OpenAI integration (Preview)
 
 In this article, you learn how to use the .NET Aspire Azure OpenAI client. The `Aspire.Azure.AI.OpenAI` library is used to register an `OpenAIClient` in the dependency injection (DI) container for consuming Azure OpenAI or OpenAI functionality. It enables corresponding logging and telemetry.
 
