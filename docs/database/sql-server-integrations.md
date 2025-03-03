@@ -120,6 +120,48 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 1. Enter sample data into the `Title` and `Description` form fields.
 1. Select the **Submit** button, and the form submits the support ticket for processing — (then select **Clear** to clear the form).
 1. The data you submitted displays in the table at the bottom of the page when the page reloads.
+1. Close the web browser tabs that display the **AspireSQL** web app and the .NET Aspire dashboard.
+1. Switch to Visual Studio and, to stop debugging, select the stop button or press <kbd>Shift + F5</kbd>.
+1. To start debugging a second time, select the run button at the top of Visual Studio (or <kbd>F5</kbd>).
+1. In the .NET Aspire dashboard, on the projects page, in the **AspireSQLEFCore** row, click the link in the **Endpoints** column to open the UI of your app.
+1. Notice that the page doesn't display the ticket you created in the previous run.
+1. Close the web browser tabs that display the **AspireSQL** web app and the .NET Aspire dashboard.
+1. Switch to Visual Studio and, to stop debugging, select the stop button or press <kbd>Shift + F5</kbd>.
+
+## Persist data across restarts
+
+Developers often prefer their data to persist across restarts in the development environment for a more realistic database to run code against. To implement persistence in .NET Aspire, use the <xref:Aspire.Hosting.SqlServerBuilderExtensions.WithDataVolume*> method. This methods adds a Docker volume to your database container, which won't be destroyed every time you restart debugging.
+
+1. In Visual Studio, in the _AspireSQLEFCore.AppHost_ project, double-click the _Program.cs_ code file.
+1. Locate the following code:
+
+    ```csharp
+    var sql = builder.AddSqlServer("sql")
+                     .AddDatabase("sqldata");
+    ```
+
+1. Modify that code to match the following:
+
+    ```csharp
+    var sql = builder.AddSqlServer("sql")
+                     .WithDataVolume()
+                     .AddDatabase("sqldata");
+    ```
+
+## Run and test the data persistence
+
+Let's examine how the data volume changes the behavior of the solution:
+
+1. Select the run button at the top of Visual Studio (or <kbd>F5</kbd>) to launch your .NET Aspire project dashboard in the browser.
+1. On the projects page, in the **AspireSQLEFCore** row, click the link in the **Endpoints** column to open the UI of your app.
+1. Enter sample data into the `Title` and `Description` form fields.
+1. Select the **Submit** button, and the form submits the support ticket for processing — (then select **Clear** to clear the form).
+1. The data you submitted displays in the table at the bottom of the page when the page reloads.
+1. Close the web browser tabs that display the **AspireSQL** web app and the .NET Aspire dashboard.
+1. Switch to Visual Studio and, to stop debugging, select the stop button or press <kbd>Shift + F5</kbd>.
+1. To start debugging a second time, select the run button at the top of Visual Studio (or <kbd>F5</kbd>).
+1. In the .NET Aspire dashboard, on the projects page, in the **AspireSQLEFCore** row, click the link in the **Endpoints** column to open the UI of your app.
+1. Notice that the page now displays the ticket you created in the previous run.
 
 ## See also
 
