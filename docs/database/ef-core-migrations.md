@@ -12,8 +12,6 @@ Since .NET Aspire projects use a containerized architecture, databases are ephem
 
 In this tutorial, you learn how to configure .NET Aspire projects to run EF Core migrations during app startup.
 
-> AJMTODO: This tutorial is actually written for .NET 8.0 (including ef core) and .NET Aspire 9.1.0. Do we need to change the prereqs?
-
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
 ## Obtain the starter app
