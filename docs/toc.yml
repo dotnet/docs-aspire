@@ -194,7 +194,7 @@ items:
     items:
     - name: Overview
       href: database/entity-framework-core-integration-overview.md
-    - name: Entity Framework Core migrations
+    - name: Apply migrations
       href: database/ef-core-migrations.md
     - name: Seed data in a database
       displayName: seed data,ef core,scripts,entrypoint,init
