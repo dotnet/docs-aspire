@@ -117,12 +117,6 @@ items:
       href: database/sql-server-integrations.md
     - name: Connect to storage
       href: storage/azure-storage-integrations.md
-    - name: Database initialization and maintenance
-      items:
-      - name: Entity Framework Core migrations
-        href: database/ef-core-migrations.md
-      - name: Seed data in a database
-        href: database/seed-database-data.md
     - name: Messaging using .NET Aspire integrations
       displayName: messaging
       href: messaging/messaging-integrations.md
@@ -144,13 +138,8 @@ items:
       - name: Azure Cache for Redis output caching
         href: caching/azure-cache-for-redis-output-caching-integration.md
     - name: Azure Cosmos DB
-      items:
-      - name: Azure Cosmos DB - EF Core
-        displayName: cosmos db,database,ef core
-        href: database/azure-cosmos-db-entity-framework-integration.md
-      - name: Azure Cosmos DB
-        displayName: cosmos db,database
-        href: database/azure-cosmos-db-integration.md
+      displayName: cosmos db,database
+      href: database/azure-cosmos-db-integration.md
     - name: Azure Event Hubs
       displayName: event hubs,messaging
       href: messaging/azure-event-hubs-integration.md
@@ -161,13 +150,8 @@ items:
       displayName: key vault,security
       href: security/azure-security-key-vault-integration.md
     - name: Azure PostgreSQL
-      items:
-      - name: Azure PostgreSQL - EF Core
-        displayName: postgres,postgresql,database,flexible server,ef core,azure for database
-        href: database/azure-postgresql-entity-framework-integration.md
-      - name: Azure PostgreSQL
-        displayName: postgres,postgresql,database,flexible server,azure for database
-        href: database/azure-postgresql-integration.md
+      displayName: postgres,postgresql,database,flexible server,azure for database
+      href: database/azure-postgresql-integration.md
     - name: Azure OpenAI
       displayName: azure ai,openai
       href: azureai/azureai-openai-integration.md
@@ -198,6 +182,34 @@ items:
       href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.0&preserve-view=true
     - name: Aspire.Azure API reference
       href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.0&preserve-view=true
+  - name: Entity Framework Core integrations
+    displayName: ef core,entity framework core,database
+    items:
+    - name: Overview
+      href: database/entity-framework-core-integration-overview.md
+    - name: Entity Framework Core migrations
+      href: database/ef-core-migrations.md
+    - name: Seed data in a database
+      displayName: seed data,ef core,scripts,entrypoint,init
+      href: database/seed-database-data.md
+    - name: Azure Cosmos DB Entity Framework Core integration
+      displayName: cosmos db,database,ef core
+      href: database/azure-cosmos-db-entity-framework-integration.md
+    - name: Azure PostgreSQL Entity Framework Core integration
+      displayName: postgresql,ef core
+      href: database/azure-postgresql-entity-framework-integration.md
+    - name: MySQL Pomelo Entity Framework Core integration
+      displayName: mysql pomelo,ef core
+      href: database/mysql-entity-framework-integration.md
+    - name: Oracle Entity Framework Core integration
+      displayName: oracle,ef core
+      href: database/oracle-entity-framework-integration.md
+    - name: PostgreSQL Entity Framework Core integration
+      displayName: postgresql,ef core
+      href: database/postgresql-entity-framework-integration.md
+    - name: SQL Server Entity Framework Core integration
+      displayName: sql server,ef core
+      href: database/sql-server-entity-framework-integration.md
   - name: Dapr
     items:
     - name: Overview
@@ -217,19 +229,11 @@ items:
     displayName: mongodb,database
     href: database/mongodb-integration.md
   - name: MySQL
-    items:
-    - name: Pomelo MySQL - EF Core
-      displayName: pomelo mysql,database
-      href: database/mysql-entity-framework-integration.md
-    - name: MySQL
-      displayName: mysql,database
-      href: database/mysql-integration.md
+    displayName: mysql,database
+    href: database/mysql-integration.md
   - name: NATS
     displayName: nats,messaging
     href: messaging/nats-integration.md
-  - name: Oracle - EF Core
-    displayName: oracle,database,ef core
-    href: database/oracle-entity-framework-integration.md
   - name: Orleans
     items:
     - name: Overview
@@ -275,13 +279,8 @@ items:
     displayName: seq,logging
     href: logging/seq-integration.md
   - name: SQL Server
-    items:
-    - name: SQL Database - EF Core
-      displayName: sql server,sql database,ef core
-      href: database/sql-server-entity-framework-integration.md
-    - name: SQL Database
-      displayName: sql server,sql database
-      href: database/sql-server-integration.md
+    displayName: sql server,sql database
+    href: database/sql-server-integration.md
   - name: Community Toolkit
     items:
     - name: Overview

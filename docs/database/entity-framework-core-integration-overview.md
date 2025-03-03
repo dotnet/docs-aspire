@@ -1,12 +1,12 @@
 ---
-title: Use Entity Framework Core with .NET Aspire
-description: Learn how to optimize the performance of .NET Aspire Entity Framework integrations using their context objects.
-ms.date: 02/21/2025
+title: Entity Framework Core overview
+description: Learn how to optimize the performance of .NET Aspire Entity Framework Core integrations using their context objects.
+ms.date: 03/03/2025
 uid: database/use-entity-framework-db-contexts
 zone_pivot_groups: entity-framework-client-integration
 ---
 
-# Use Entity Framework Core with .NET Aspire
+# Entity Framework Core overview
 
 In a cloud-native solution, such as those .NET Aspire is built to create, microservices often need to store data in relational databases. .NET Aspire includes integrations that you can use to ease that task, some of which use the Entity Framework Core(EF Core) object-relational mapper (O/RM) approach to streamline the process.
 
@@ -102,7 +102,7 @@ Alternatively, you can add a context to the DI container using the standard EF C
 builder.Services.AddDbContextPool<ExampleDbContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
-	options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString));
 ```
 
 :::zone-end
@@ -112,7 +112,7 @@ builder.Services.AddDbContextPool<ExampleDbContext>(options =>
 builder.Services.AddDbContextPool<ExampleDbContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
-	options.UseNpgsql(connectionString));
+    options.UseNpgsql(connectionString));
 ```
 
 :::zone-end
@@ -122,7 +122,7 @@ builder.Services.AddDbContextPool<ExampleDbContext>(options =>
 builder.Services.AddDbContextPool<ExampleDbContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
-	options.UseOracle(connectionString));
+    options.UseOracle(connectionString));
 ```
 
 :::zone-end
@@ -132,7 +132,7 @@ builder.Services.AddDbContextPool<ExampleDbContext>(options =>
 builder.Services.AddDbContextPool<ExampleDbContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
-	options.UseMySql(connectionString));
+    options.UseMySql(connectionString));
 ```
 
 :::zone-end
@@ -310,7 +310,7 @@ For these requirements, you can use code to formulate a **dynamic connection str
 
 ```csharp
 var connectionStringWithPlaceHolder = builder.Configuration.GetConnectionString("database")
-        ?? throw new InvalidOperationException("Connection string 'database' not found.");
+    ?? throw new InvalidOperationException("Connection string 'database' not found.");
 
 connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
 
@@ -331,7 +331,7 @@ builder.EnrichSqlServerDbContext<ExampleDbContext>(
 
 ```csharp
 var connectionStringWithPlaceHolder = builder.Configuration.GetConnectionString("database")
-        throw new InvalidOperationException("Connection string 'database' not found.");
+    throw new InvalidOperationException("Connection string 'database' not found.");
 
 connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
 
@@ -352,7 +352,7 @@ builder.EnrichNpgsqlDbContext<ExampleDbContext>(
 
 ```csharp
 var connectionStringWithPlaceHolder = builder.Configuration.GetConnectionString("database")
-        throw new InvalidOperationException("Connection string 'database' not found.");
+    throw new InvalidOperationException("Connection string 'database' not found.");
 
 connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
 
@@ -373,7 +373,7 @@ builder.EnrichOracleDatabaseDbContext<ExampleDbContext>(
 
 ```csharp
 var connectionStringWithPlaceHolder = builder.Configuration.GetConnectionString("database")
-        throw new InvalidOperationException("Connection string 'database' not found.");
+    throw new InvalidOperationException("Connection string 'database' not found.");
 
 connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
 
@@ -574,7 +574,7 @@ Remember to enrich the context after using the last two methods, as described ab
 
 ## See also
 
-- [Entity Framework documentation hub](/ef)
+- [Entity Framework Core documentation hub](/ef/core)
 - [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](/dotnet/aspire/database/sql-server-integrations)
 - [Apply Entity Framework Core migrations in .NET Aspire](/dotnet/aspire/database/ef-core-migrations)
 - [DbContext Lifetime, Configuration, and Initialization](/ef/core/dbcontext-configuration/)
