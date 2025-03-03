@@ -189,6 +189,15 @@ items:
       href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.1&preserve-view=true
     - name: Aspire.Azure API reference
       href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.1&preserve-view=true
+  - name: Dapr
+    items:
+    - name: Overview
+      href: frameworks/dapr.md
+    - name: Dapr integration sample
+      href: /samples/dotnet/aspire-samples/aspire-dapr/
+  - name: Elasticsearch
+    displayName: elasticsearch,search
+    href: search/elasticsearch-integration.md
   - name: Entity Framework Core
     displayName: ef core,entity framework core,database
     items:
@@ -217,15 +226,6 @@ items:
     - name: SQL Server EF Core integration
       displayName: sql server,ef core
       href: database/sql-server-entity-framework-integration.md
-  - name: Dapr
-    items:
-    - name: Overview
-      href: frameworks/dapr.md
-    - name: Dapr integration sample
-      href: /samples/dotnet/aspire-samples/aspire-dapr/
-  - name: Elasticsearch
-    displayName: elasticsearch,search
-    href: search/elasticsearch-integration.md
   - name: Keycloak (Preview)
     displayName: security,openid connect,single sign-on,sso,identity,federation,account management
     href: authentication/keycloak-integration.md
