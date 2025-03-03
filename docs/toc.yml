@@ -189,7 +189,7 @@ items:
       href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.1&preserve-view=true
     - name: Aspire.Azure API reference
       href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.1&preserve-view=true
-  - name: Entity Framework Core integrations
+  - name: Entity Framework Core
     displayName: ef core,entity framework core,database
     items:
     - name: Overview
@@ -199,22 +199,22 @@ items:
     - name: Seed data in a database
       displayName: seed data,ef core,scripts,entrypoint,init
       href: database/seed-database-data.md
-    - name: Azure Cosmos DB Entity Framework Core integration
+    - name: Azure Cosmos DB EF Core integration
       displayName: cosmos db,database,ef core
       href: database/azure-cosmos-db-entity-framework-integration.md
-    - name: Azure PostgreSQL Entity Framework Core integration
+    - name: Azure PostgreSQL EF Core integration
       displayName: postgresql,ef core
       href: database/azure-postgresql-entity-framework-integration.md
-    - name: MySQL Pomelo Entity Framework Core integration
+    - name: MySQL Pomelo EF Core integration
       displayName: mysql pomelo,ef core
       href: database/mysql-entity-framework-integration.md
-    - name: Oracle Entity Framework Core integration
+    - name: Oracle EF Core integration
       displayName: oracle,ef core
       href: database/oracle-entity-framework-integration.md
-    - name: PostgreSQL Entity Framework Core integration
+    - name: PostgreSQL EF Core integration
       displayName: postgresql,ef core
       href: database/postgresql-entity-framework-integration.md
-    - name: SQL Server Entity Framework Core integration
+    - name: SQL Server EF Core integration
       displayName: sql server,ef core
       href: database/sql-server-entity-framework-integration.md
   - name: Dapr
