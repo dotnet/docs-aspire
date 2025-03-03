@@ -132,7 +132,7 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 
 Developers often prefer their data to persist across restarts in the development environment for a more realistic database to run code against. To implement persistence in .NET Aspire, use the <xref:Aspire.Hosting.SqlServerBuilderExtensions.WithDataVolume*> method. This methods adds a Docker volume to your database container, which won't be destroyed every time you restart debugging.
 
-1. In Visual Studio, in the **AspireSQLEFCore.AppHost** project, double-click the **Program.cs** code file.
+1. In Visual Studio, in the _AspireSQLEFCore.AppHost_ project, double-click the _Program.cs_ code file.
 1. Locate the following code:
 
     ```csharp
