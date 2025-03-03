@@ -206,6 +206,7 @@ The .NET Aspire Azure Cosmos DB integration currently doesn't support metrics by
 ## See also
 
 - [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db)
+- [.NET Aspire Cosmos DB Entity Framework Core integration](azure-cosmos-db-entity-framework-integration.md)
 - [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
 - [.NET Aspire Azure integrations overview](../azure/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
