@@ -3,6 +3,7 @@ title: Apply EF Core migrations in .NET Aspire
 description: Learn about how to to apply Entity Framework Core migrations in .NET Aspire
 ms.date: 07/31/2024
 ms.topic: how-to
+uid: database/ef-core-migrations
 ---
 
 # Apply Entity Framework Core migrations in .NET Aspire
@@ -10,6 +11,8 @@ ms.topic: how-to
 Since .NET Aspire projects use a containerized architecture, databases are ephemeral and can be recreated at any time. Entity Framework Core (EF Core) uses a feature called [migrations](/ef/core/managing-schemas/migrations) to create and update database schemas. Since databases are recreated when the app starts, you need to apply migrations to initialize the database schema each time your app starts. This is accomplished by registering a migration service project in your app that runs migrations during startup.
 
 In this tutorial, you learn how to configure .NET Aspire projects to run EF Core migrations during app startup.
+
+> AJMTODO: This tutorial is actually written for .NET 8.0 (including ef core) and .NET Aspire 9.1.0. Do we need to change the prereqs?
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
@@ -24,11 +27,11 @@ git clone https://github.com/MicrosoftDocs/aspire-docs-samples/
 The sample app is in the *SupportTicketApi* folder. Open the solution in Visual Studio or VS Code and take a moment to review the sample app and make sure it runs before proceeding. The sample app is a rudimentary support ticket API, and it contains the following projects:
 
 - **SupportTicketApi.Api**: The ASP.NET Core project that hosts the API.
-- **SupportTicketApi.Data**: Contains the EF Core contexts and models.
 - **SupportTicketApi.AppHost**: Contains the .NET Aspire app host and configuration.
+- **SupportTicketApi.Data**: Contains the EF Core contexts and models.
 - **SupportTicketApi.ServiceDefaults**: Contains the default service configurations.
 
-Run the app to ensure it works as expected. From the .NET Aspire dashboard, select the **https** Swagger endpoint and test the API's **GET /api/SupportTickets** endpoint by expanding the operation and selecting **Try it out**. Select **Execute** to send the request and view the response:
+Run the app to ensure it works as expected. In the .NET Aspire dashboard, wait until all resources are running and healthy. Then select the **https** Swagger endpoint and test the API's **GET /api/SupportTickets** endpoint by expanding the operation and selecting **Try it out**. Select **Execute** to send the request and view the response:
 
 ```json
 [
@@ -40,12 +43,14 @@ Run the app to ensure it works as expected. From the .NET Aspire dashboard, sele
 ]
 ```
 
+Close the browser tabs that display the Swagger endpoint and the .NET Aspire dashboard and then stop debugging.
+
 ## Create migrations
 
 Start by creating some migrations to apply.
 
 1. Open a terminal (<kbd>Ctrl</kbd>+<kbd>\`</kbd> in Visual Studio).
-1. Set *:::no-loc text="SupportTicketApi\SupportTicketApi.Api":::* as the current directory.
+1. Set *:::no-loc text="SupportTicketApi\\SupportTicketApi.Api":::* as the current directory.
 1. Use the [`dotnet ef` command-line tool](/ef/core/managing-schemas/migrations/#install-the-tools) to create a new migration to capture the initial state of the database schema:
 
     ```dotnetcli
@@ -58,7 +63,7 @@ Start by creating some migrations to apply.
       - Creates a migration named *InitialCreate*.
       - Creates the migration in the in the *Migrations* folder in the *SupportTicketApi.Data* project.
 
-1. Modify the model so that it includes a new property. Open *:::no-loc text="SupportTicketApi.Data\Models\SupportTicket.cs":::* and add a new property to the `SupportTicket` class:
+1. Modify the model so that it includes a new property. Open *:::no-loc text="SupportTicketApi.Data\\Models\\SupportTicket.cs":::* and add a new property to the `SupportTicket` class:
 
     :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.Data/Models/SupportTicket.cs" range="5-13" highlight="8" :::
 
