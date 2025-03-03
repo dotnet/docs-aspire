@@ -208,22 +208,22 @@ items:
     - name: Seed data in a database
       displayName: seed data,ef core,scripts,entrypoint,init
       href: database/seed-database-data.md
-    - name: Azure Cosmos DB EF Core integration
+    - name: Azure Cosmos DB
       displayName: cosmos db,database,ef core
       href: database/azure-cosmos-db-entity-framework-integration.md
-    - name: Azure PostgreSQL EF Core integration
+    - name: Azure PostgreSQL
       displayName: postgresql,ef core
       href: database/azure-postgresql-entity-framework-integration.md
-    - name: MySQL Pomelo EF Core integration
+    - name: MySQL Pomelo
       displayName: mysql pomelo,ef core
       href: database/mysql-entity-framework-integration.md
-    - name: Oracle EF Core integration
+    - name: Oracle
       displayName: oracle,ef core
       href: database/oracle-entity-framework-integration.md
-    - name: PostgreSQL EF Core integration
+    - name: PostgreSQL
       displayName: postgresql,ef core
       href: database/postgresql-entity-framework-integration.md
-    - name: SQL Server EF Core integration
+    - name: SQL Server
       displayName: sql server,ef core
       href: database/sql-server-entity-framework-integration.md
   - name: Keycloak (Preview)
