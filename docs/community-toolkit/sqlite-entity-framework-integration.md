@@ -94,7 +94,7 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 
 #### Use configuration providers
 
-The SQLite client integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `Microsoft.Extensions.Hosting.SqliteConnectionSettings` from the _:::no-loc text="appsettings.json"::: or other configuration providers by using the `Aspire:Sqlite:EntityFrameworkCore:Sqlite` key. Example _:::no-loc text="appsettings.json"::: that configures some of the options:
+The SQLite client integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `Microsoft.Extensions.Hosting.SqliteConnectionSettings` from the _:::no-loc text="appsettings.json":::_ or other configuration providers by using the `Aspire:Sqlite:EntityFrameworkCore:Sqlite` key. Example _:::no-loc text="appsettings.json"::: that configures some of the options:
 
 ```json
 {

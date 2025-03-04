@@ -75,6 +75,7 @@ public class ExampleService(
     // Use connections...
 }
 ```
+
 ### Configuration
 
 The SQLite client integration provides multiple configuration approaches and options to meet the requirements and conventions of your project.
@@ -99,7 +100,7 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 
 #### Use configuration providers
 
-The SQLite client integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `Microsoft.Extensions.Hosting.SqliteConnectionSettings` from the _:::no-loc text="appsettings.json"::: or other configuration providers by using the `Aspire:Sqlite:Client` key. Example _:::no-loc text="appsettings.json"::: that configures some of the options:
+The SQLite client integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `Microsoft.Extensions.Hosting.SqliteConnectionSettings` from the _:::no-loc text="appsettings.json":::_ or other configuration providers by using the `Aspire:Sqlite:Client` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {
