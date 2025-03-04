@@ -159,7 +159,7 @@ items:
     - name: Azure PostgreSQL
       displayName: postgres,postgresql,database,flexible server,azure for database
       href: database/azure-postgresql-integration.md
-    - name: Azure OpenAI
+    - name: Azure OpenAI (Preview)
       displayName: azure ai,openai
       href: azureai/azureai-openai-integration.md
     - name: Azure SignalR Service
