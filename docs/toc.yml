@@ -320,10 +320,12 @@ items:
       href: community-toolkit/hosting-eventstore.md
     - name: SQLite
       items:
-        - name: SQLite - EF Core
-          href: community-toolkit/sqlite-entity-framework-integration.md
-        - name: SQLite
-          href: community-toolkit/sqlite.md
+      - name: SQLite - EF Core
+        displayName: sqlite,database,ef core
+        href: community-toolkit/sqlite-entity-framework-integration.md
+      - name: SQLite
+        displayName: sqlite,database
+        href: community-toolkit/sqlite.md
     - name: SQL Server Extensions
       href: community-toolkit/hosting-sql-server-extensions.md
     - name: MongoDB Extensions
