@@ -318,7 +318,12 @@ items:
       href: community-toolkit/hosting-data-api-builder.md
     - name: EventStore
       href: community-toolkit/hosting-eventstore.md
-
+    - name: SQLite
+      items:
+        - name: SQLite - EF Core
+          href: community-toolkit/sqlite-entity-framework-integration.md
+        - name: SQLite
+          href: community-toolkit/sqlite.md
   - name: Aspire.Hosting API reference
     href: /dotnet/api/?term=Aspire.Hosting&view=dotnet-aspire-9.1&preserve-view=true
 

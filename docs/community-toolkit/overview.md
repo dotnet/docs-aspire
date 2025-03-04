@@ -45,6 +45,12 @@ The community toolkit is a growing project, publishing a set of NuGet packages. 
 - The [Rust apps](https://www.rust-lang.org/) integration provides support for hosting Rust applications.
   - [📄 .NET Aspire Rust hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Rust).
   - [📦 CommunityToolkit.Aspire.Hosting.Rust](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Rust).
+- The [SQlite](https://www.sqlite.org/index.html) integration provides support for hosting SQLite databases.
+  - [📄 .NET Aspire SQLite hosting integration](sqlite.md#hosting-integration)
+  - [📦 CommunityToolkit.Aspire.Hosting.SQLite](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SQLite).
+- The [SQLite Entity Framework](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite) integration provides support for hosting SQLite databases with Entity Framework.
+  - [📄 .NET Aspire SQLite EF hosting integration](sqlite-entity-framework-integration.md#hosting-integration)
+  - [📦 CommunityToolkit.Aspire.Microsoft.EntityFrameworkCore.Sqlite](https://nuget.org/packages/CommunityToolkit.Aspire.Microsoft.EntityFrameworkCore.Sqlite).
 
 ### Client integrations
 
