@@ -11,7 +11,7 @@ Azure OpenAI Service provides access to OpenAI's powerful language models includ
 
 ## Hosting integration
 
-The .NET Aspire [Azure OpenAI](/azure/ai-services/openai/) hosting integration models Azure OpenAI resources as <xref:Aspire.Hosting.Azure.AzureOpenAIResource>.
+The .NET Aspire [Azure OpenAI](/azure/ai-services/openai/) hosting integration models Azure OpenAI resources as <xref:Aspire.Hosting.ApplicationModel.AzureOpenAIResource>.
 
 To access these types and APIs for expressing them within your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices) NuGet package:
 
@@ -34,7 +34,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Azure OpenAI resource
 
-To add an <xref:Aspire.Hosting.Azure.AzureOpenAIResource> to your app host project, call the <xref:Aspire.Hosting.AzureOpenAIExtensions.AddAzureOpenAI%2A> method:
+To add an <xref:Aspire.Hosting.ApplicationModel.AzureOpenAIResource> to your app host project, call the <xref:Aspire.Hosting.AzureOpenAIExtensions.AddAzureOpenAI%2A> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -101,7 +101,7 @@ The generated Bicep is a starting point and can be customized to meet your speci
 
 ### Customize provisioning infrastructure
 
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure%601(Aspire.Hosting.ApplicationModel.IResourceBuilder{%600},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
+All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
 
 :::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureOpenAIInfra.cs" id="configure":::
 
@@ -190,7 +190,7 @@ dotnet add package Aspire.Azure.AI.OpenAI
 
 ### Add an Azure OpenAI client
 
-In the _Program.cs_ file of your client-consuming project, use the <xref:Microsoft.Extensions.Hosting.AspireOpenAIExtensions.AddAzureOpenAIClient%2A> method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register an `OpenAIClient` for dependency injection (DI). The `AzureOpenAIClient` is a subclass of `OpenAIClient`, allowing you to request either type from DI. This ensures code not dependent on Azure-specific features remains generic. The `AddAzureOpenAIClient` method requires a connection name parameter.
+In the _Program.cs_ file of your client-consuming project, use the <xref:Microsoft.Extensions.Hosting.AspireAzureOpenAIExtensions.AddAzureOpenAIClient(Microsoft.Extensions.Hosting.IHostApplicationBuilder,System.String,System.Action{Aspire.Azure.AI.OpenAI.AzureOpenAISettings},System.Action{Azure.Core.Extensions.IAzureClientBuilder{Azure.AI.OpenAI.AzureOpenAIClient,Azure.AI.OpenAI.AzureOpenAIClientOptions}})> method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register an `OpenAIClient` for dependency injection (DI). The `AzureOpenAIClient` is a subclass of `OpenAIClient`, allowing you to request either type from DI. This ensures code not dependent on Azure-specific features remains generic. The `AddAzureOpenAIClient` method requires a connection name parameter.
 
 ```csharp
 builder.AddAzureOpenAIClient(connectionName: "openai");
@@ -268,13 +268,12 @@ builder.AddAzureOpenAIClient(
     {
         clientBuilder.ConfigureOptions(options =>
         {
-            options.Diagnostics.ApplicationId = "CLIENT_ID";
-            options.Diagnostics.LogLevel = LogLevel.Information;
+            options.UserAgentApplicationId = "CLIENT_ID";
         });
     });
 ```
 
-The client builder is an instance of the <xref:Microsoft.Extensions.Hosting.Azure.IAzureClientBuilder%601> type, which provides a fluent API to configure the client options. The preceding code sets the <xref:Azure.AI.OpenAI.AzureOpenAIClientOptions.Diagnostics.ApplicationId?displayProperty=nameWithType> property to `CLIENT_ID` and the <xref:Azure.AI.OpenAI.AzureOpenAIClientOptions.Diagnostics.LogLevel?displayProperty=nameWithType> property to `LogLevel.Information`. For more information, see <xref:Microsoft.Extensions.AI.ConfigureOptionsChatClientBuilderExtensions.ConfigureOptions(Microsoft.Extensions.AI.ChatClientBuilder,System.Action{Microsoft.Extensions.AI.ChatOptions})>.
+The client builder is an instance of the <xref:Azure.Core.Extensions.IAzureClientBuilder`2> type, which provides a fluent API to configure the client options. The preceding code sets the <xref:Azure.AI.OpenAI.AzureOpenAIClientOptions.UserAgentApplicationId?displayProperty=nameWithType> property to `CLIENT_ID`. For more information, see <xref:Microsoft.Extensions.AI.ConfigureOptionsChatClientBuilderExtensions.ConfigureOptions(Microsoft.Extensions.AI.ChatClientBuilder,System.Action{Microsoft.Extensions.AI.ChatOptions})>.
 
 ### Add Azure OpenAI client from configuration
 
