@@ -71,9 +71,18 @@ The following client integrations are available in the toolkit:
 
 ### Extensions
 
-When you're working with [Node.js](https://nodejs.org/), there are lots of ways to achieve the same thing. To that end, the .NET Aspire Community Toolkit exposes some extensions that include support for alternative package managers ([yarn](https://yarnpkg.com/) and [pnpm](https://pnpm.io/)), and developer workflow improvements.
+To expand the functionality provided by the .NET Aspire integrations, the Community Toolkit also provides extension packages for some hosting integrations. The following extensions are available in the toolkit:
 
 - [📦 CommunityToolkit.Aspire.Hosting.NodeJS.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.NodeJS.Extensions)
+    - [📄 Docs](hosting-nodejs-extensions)
+- [📦 CommunityToolkit.Aspire.Hosting.SqlServer.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SqlServer.Extensions)
+    - [📄 Docs](hosting-sqlserver-extensions)
+- [📦 CommunityToolkit.Aspire.Hosting.PostgreSQL.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.PostgreSQL.Extensions)
+    - [📄 Docs](hosting-postgresql-extensions)
+- [📦 CommunityToolkit.Aspire.Hosting.Redis.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Redis.Extensions)
+    - [📄 Docs](hosting-redis-extensions)
+- [📦 CommunityToolkit.Aspire.Hosting.MongoDB.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.MongoDB.Extensions)
+    - [📄 Docs](hosting-mongodb-extensions)
 
 If you're not seeing an integration or extension you need, you can contribute to the toolkit by creating your own integration and submitting a pull request. For more information, see [How to collaborate](#how-to-collaborate).
 
