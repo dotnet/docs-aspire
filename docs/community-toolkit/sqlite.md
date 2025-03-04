@@ -36,7 +36,7 @@ dotnet add package CommunityToolkit.Aspire.Microsoft.Data.Sqlite
 
 ### Add Sqlite client
 
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the `Microsoft.Extensions.Hosting.AspireSqliteExtensions.AddSqliteConnection%2A> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a `SqliteConnection` for use via the dependency injection container. The method takes a connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the `Microsoft.Extensions.Hosting.AspireSqliteExtensions.AddSqliteConnection` extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a `SqliteConnection` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddSqliteConnection(connectionName: "sqlite");
