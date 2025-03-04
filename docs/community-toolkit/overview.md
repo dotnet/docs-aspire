@@ -40,17 +40,14 @@ The community toolkit is a growing project, publishing a set of NuGet packages. 
   - [📄 .NET Aspire Ollama hosting integration](ollama.md#hosting-integration).
   - [📦 CommunityToolkit.Aspire.Hosting.Ollama](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Ollama).
 - The [Meilisearch](https://www.meilisearch.com) integration enables hosting Meilisearch containers.
-  - [📄 .NET Aspire Meilisearch hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Meilisearch).
+  - [📄 .NET Aspire Meilisearch hosting integration](hosting-meilisearch#hosting-integration).
   - [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch).
 - The [Rust apps](https://www.rust-lang.org/) integration provides support for hosting Rust applications.
-  - [📄 .NET Aspire Rust hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Rust).
+  - [📄 .NET Aspire Rust hosting integration](hosting-rust#hosting-integration).
   - [📦 CommunityToolkit.Aspire.Hosting.Rust](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Rust).
 - The [SQlite](https://www.sqlite.org/index.html) integration provides support for hosting SQLite databases.
   - [📄 .NET Aspire SQLite hosting integration](sqlite.md#hosting-integration)
   - [📦 CommunityToolkit.Aspire.Hosting.SQLite](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SQLite).
-- The [SQLite Entity Framework](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite) integration provides support for hosting SQLite databases with Entity Framework.
-  - [📄 .NET Aspire SQLite EF hosting integration](sqlite-entity-framework-integration.md#hosting-integration)
-  - [📦 CommunityToolkit.Aspire.Microsoft.EntityFrameworkCore.Sqlite](https://nuget.org/packages/CommunityToolkit.Aspire.Microsoft.EntityFrameworkCore.Sqlite).
 
 ### Client integrations
 
@@ -62,6 +59,12 @@ The following client integrations are available in the toolkit:
 - **Meilisearch** is a .NET client for the Meilisearch API:
   - [📄 .NET Aspire Meilisearch client integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Meilisearch)
   - [📦 CommunityToolkit.Aspire.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Meilisearch)
+- The [SQlite](https://www.sqlite.org/index.html) integration provides support for hosting SQLite databases.
+  - [📄 .NET Aspire SQLite hosting integration](sqlite.md#client-integration)
+  - [📦 CommunityToolkit.Aspire.Hosting.SQLite](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SQLite).
+- The [SQLite Entity Framework](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite) integration provides support for hosting SQLite databases with Entity Framework.
+  - [📄 .NET Aspire SQLite EF hosting integration](sqlite-entity-framework-integration.md#client-integration)
+  - [📦 CommunityToolkit.Aspire.Microsoft.EntityFrameworkCore.Sqlite](https://nuget.org/packages/CommunityToolkit.Aspire.Microsoft.EntityFrameworkCore.Sqlite).
 
 > [!TIP]
 > Always check the [GitHub repository][github-repo] for the most up-to-date information on the toolkit.
