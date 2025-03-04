@@ -3,7 +3,7 @@ metadata:
   title: Frequently asked questions about .NET Aspire
   description: Answers to some of the most common questions and scenarios for .NET Aspire.
   ms.topic: faq
-  ms.date: 11/18/2024
+  ms.date: 03/03/2025
 title: Frequently asked questions about .NET Aspire
 summary: |
   This article lists frequently asked questions about .NET Aspire. For a more comprehensive overview, see [.NET Aspire overview](../get-started/aspire-overview.md).
@@ -27,6 +27,15 @@ sections:
           How to deploy .NET Aspire without target cloud-provider tooling?
         answer: |
           .NET Aspire doesn't constrain deployment of any existing project or solution. .NET Aspire exposes a [deployment manifest](../deployment/manifest-format.md) that's used by tool authors to produce artifacts for deployment to any cloud provider. However, unfortunately, not all cloud providers offer tooling for deployments based on this manifest. The manifest is a simple JSON file that describes the resources of your app and the dependencies between them. The manifest is used by the Azure Developer CLI to deploy to Azure. Likewise, Aspir8 uses the manifest to deploy to Kubernetes. You can use the manifest to deploy to any cloud provider that supports the resources you're using.
+
+      - question: |
+          If .NET Aspire is mainly for local development, why are client integrations in my project?
+        answer: |
+          .NET Aspire's client integrations simplify your development process. They're lightweight wrappers around popular libraries like StackExchange.Redis and Npgsql, adding features such as telemetry, health checks, and resilience.
+
+          Even if you use .NET Aspire only for local development, these integrations provide reasonable defaults, seamless dependency injection, and consistent APIs.
+
+          You're not locked into .NET Aspire's ecosystem. These integrations are just libraries, and you can configure them as you would with the underlying libraries, using environment variables or your preferred methods.
 
       - question: |
           Can .NET Aspire apps be built without Azure dependencies and deployed elsewhere?
