@@ -249,7 +249,7 @@ The `Config` properties of both  `Aspire:Confluent:Kafka:Producer` and `Aspire.C
 
 `Confluent.Kafka.Consumer<TKey, TValue>` requires the `ClientId` property to be set to let the broker track consumed message offsets.
 
-For the complete Kafka client integration JSON schema, see [Aspire.Confluent.Kafka/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Confluent.Kafka/ConfigurationSchema.json).
+For the complete Kafka client integration JSON schema, see [Aspire.Confluent.Kafka/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Confluent.Kafka/ConfigurationSchema.json).
 
 #### Use inline delegates
 
