@@ -57,5 +57,5 @@ This code adds a container based on  `ghcr.io/coleifer/sqlite-web` to the app ho
 
 SQLite supports extensions that can be added to the SQLite database. Extensions can either be provided via a NuGet package, or via a location on disk. Use either the `WithNuGetExtension` or `WithLocalExtension` extension methods to add extensions to the SQLite database.
 
-!> [!NOTE]
-!> The SQLite extensions support is considered experimental and produces a `CTASPIRE002` warning.
+> [!NOTE]
+> The SQLite extensions support is considered experimental and produces a `CTASPIRE002` warning.
