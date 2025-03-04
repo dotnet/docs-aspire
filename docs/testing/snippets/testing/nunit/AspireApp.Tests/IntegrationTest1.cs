@@ -6,29 +6,25 @@ public class IntegrationTest1
     public async Task GetWebResourceRootReturnsOkStatusCode()
     {
         // Arrange
-        var appHost = await DistributedApplicationTestingBuilder
+        var builder = await DistributedApplicationTestingBuilder
             .CreateAsync<Projects.AspireApp_AppHost>();
 
-        appHost.Services.ConfigureHttpClientDefaults(clientBuilder =>
+        builder.Services.ConfigureHttpClientDefaults(clientBuilder =>
         {
             clientBuilder.AddStandardResilienceHandler();
         });
 
-        await using var app = await appHost.BuildAsync();
-
-        var resourceNotificationService = app.Services
-            .GetRequiredService<ResourceNotificationService>();
+        await using var app = await builder.BuildAsync();
 
         await app.StartAsync();
 
         // Act
         var httpClient = app.CreateHttpClient("webfrontend");
 
-        await resourceNotificationService.WaitForResourceAsync(
+        using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+        await app.ResourceNotifications.WaitForResourceHealthyAsync(
                 "webfrontend",
-                KnownResourceStates.Running
-            )
-            .WaitAsync(TimeSpan.FromSeconds(30));
+                cts.Token);
         
         var response = await httpClient.GetAsync("/");
 

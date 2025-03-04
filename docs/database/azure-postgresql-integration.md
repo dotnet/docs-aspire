@@ -25,6 +25,7 @@ uid: dotnet/aspire/azure-postgresql-integration
 
 - [PostgreSQL docs](https://www.npgsql.org/doc/api/Npgsql.html)
 - [Azure Database for PostgreSQL](/azure/postgresql/)
+- [.NET Aspire Azure PostgreSQL Entity Framework Core integration](azure-postgresql-entity-framework-integration.md)
 - [.NET Aspire PostgreSQL integration](postgresql-integration.md)
 - [.NET Aspire integrations](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
