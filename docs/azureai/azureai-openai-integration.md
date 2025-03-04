@@ -54,7 +54,7 @@ The preceding code adds an Azure OpenAI resource named `openai` to the app host 
 
 ### Add an Azure OpenAI deployment resource
 
-To add an Azure OpenAI deployment resource, call the <xref:Aspire.Hosting.AzureOpenAIExtensions.AddAzureOpenAIDeployment%2A> method:
+To add an Azure OpenAI deployment resource, call the <xref:Aspire.Hosting.AzureOpenAIExtensions.AddDeployment(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.AzureOpenAIResource},Aspire.Hosting.ApplicationModel.AzureOpenAIDeployment)> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
