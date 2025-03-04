@@ -327,7 +327,7 @@ items:
         displayName: sqlite,database
         href: community-toolkit/sqlite.md
     - name: SQL Server Extensions
-      href: community-toolkit/hosting-sql-server-extensions.md
+      href: community-toolkit/hosting-sqlserver-extensions.md
     - name: MongoDB Extensions
       href: community-toolkit/hosting-mongodb-extensions.md
     - name: Redis Extensions
