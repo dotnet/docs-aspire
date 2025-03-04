@@ -1,10 +1,10 @@
 ---
-title: .NET Aspire Community Toolkit SQLite integration
-description: Learn how to use the .NET Aspire SQLite integration for efficient data management within your applications.
+title: .NET Aspire Community Toolkit SQLite Entity Framework integration
+description: Learn how to use the .NET Aspire SQLite Entity Framework integration for efficient data management within your applications.
 ms.date: 03/04/2025
 ---
 
-# .NET Aspire Community Toolkit SQLite integration
+# .NET Aspire Community Toolkit SQLite Entity Framework integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
@@ -36,7 +36,7 @@ dotnet add package CommunityToolkit.Aspire.Microsoft.EntityFrameworkCore.Sqlite
 
 ### Add Sqlite client
 
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireEFSqliteExtensions.AddSqliteDbContext%2A> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register your <xref:System.Data.Entity.DbContext> subclass for use via the dependency injection container. The method takes a connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the `Microsoft.Extensions.Hosting.AspireEFSqliteExtensions.AddSqliteDbContext` extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register your <xref:System.Data.Entity.DbContext> subclass for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddSqliteDbContext<YourDbContext>(connectionName: "sqlite");
@@ -68,7 +68,7 @@ builder.Services.AddDbContext<YourDbContext>(options =>
 ```
 
 > [!NOTE]
-> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method must match the name used when adding the PostgreSQL server resource in the app host project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
+> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method must match the name used when adding the SQLite resource in the app host project. For more information, see [Add SQLite resource](#add-sqlite-resource).
 
 ### Configuration
 
@@ -76,10 +76,10 @@ The SQLite client integration provides multiple configuration approaches and opt
 
 ### Use a connection string
 
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling the <xref:Microsoft.Extensions.Hosting.AspireSqliteExtensions.AddSqliteConnection%2A> method:
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling the `Microsoft.Extensions.Hosting.AspireEFSqliteExtensions.AddSqliteDbContext` method:
 
 ```csharp
-builder.AddSqliteConnection("sqlite");
+builder.AddSqliteDbContext<YourDbContext>("sqlite");
 ```
 
 Then the connection string will be retrieved from the `ConnectionStrings` configuration section.
