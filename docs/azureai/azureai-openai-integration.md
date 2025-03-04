@@ -105,26 +105,6 @@ All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure
 
 :::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureOpenAIInfra.cs" id="configure":::
 
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-builder.AddAzureOpenAI("openai")
-    .ConfigureInfrastructure(infra =>
-    {
-        var resources = infra.GetProvisionableResources();
-        var account = resources.OfType<CognitiveServicesAccount>().Single();
-
-        account.Sku = new CognitiveServicesSku
-        {
-            Tier = CognitiveServicesSkuTier.Enterprise,
-            Name = "E0"
-        };
-        account.Tags.Add("ExampleKey", "Example value");
-    });
-
-// After adding all resources, run the app...
-```
-
 The preceding code:
 
 - Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
