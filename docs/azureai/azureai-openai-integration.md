@@ -6,7 +6,9 @@ ms.date: 03/04/2025
 
 # .NET Aspire Azure OpenAI integration (Preview)
 
-Azure OpenAI Service provides access to OpenAI's powerful language models including GPT-4, GPT-3.5-Turbo, and Embeddings model series with the security and enterprise promise of Azure. The .NET Aspire Azure OpenAI integration enables you to connect to Azure OpenAI Service or OpenAI's API from your .NET applications.
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
+
+[Azure OpenAI Service](https://azure.microsoft.com/products/ai-services/openai-service) provides access to OpenAI's powerful language models including GPT-4, GPT-3.5-Turbo, and Embeddings model series with the security and enterprise promise of Azure. The .NET Aspire Azure OpenAI integration enables you to connect to Azure OpenAI Service or OpenAI's API from your .NET applications.
 
 ## Hosting integration
 
