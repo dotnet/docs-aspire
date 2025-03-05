@@ -10,9 +10,7 @@ ms.date: 03/05/2025
 
 ## Hosting integration
 
-The .NET Aspire Azure AI Search hosting integration models the Azure AI Search resource as the <xref:Aspire.Hosting.Azure.AzureSearchResource> type.
-
-To access this type and APIs for expressing them within your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.Search](https://www.nuget.org/packages/Aspire.Hosting.Azure.Search) NuGet package:
+The .NET Aspire Azure AI Search hosting integration models the Azure AI Search resource as the <xref:Aspire.Hosting.Azure.AzureSearchResource> type. To access this type and APIs for expressing them within your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.Search](https://www.nuget.org/packages/Aspire.Hosting.Azure.Search) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -80,21 +78,6 @@ The generated Bicep is a starting point and can be customized to meet your speci
 All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the search service SKU, network access policies, and more:
 
 :::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureSearchInfra.cs" id="configure":::
-
-```csharp
-builder.AddAzureSearch("search")
-    .ConfigureInfrastructure(infra =>
-    {
-        var searchService = infra.GetProvisionableResources()
-                                  .OfType<SearchService>()
-                                  .Single();
-
-        searchService.PartitionCount = 6;
-        searchService.ReplicaCount = 3;
-        searchService.SearchSkuName = SearchServiceSkuName.Standard3;
-        searchService.Tags.Add("ExampleKey", "Example value");
-    });
-```
 
 The preceding code:
 
