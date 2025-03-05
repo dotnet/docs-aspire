@@ -58,7 +58,8 @@ To add an Azure OpenAI deployment resource, call the <xref:Aspire.Hosting.AzureO
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var openai = builder.AddAzureOpenAI("openai").AddDeployment(
+var openai = builder.AddAzureOpenAI("openai");
+openai.AddDeployment(
     new AzureOpenAIDeployment(
         name: "preview",
         modelName: "gpt-4.5-preview",
