@@ -142,7 +142,7 @@ For more information on conditional configuration, see [APIs for expressing Azur
 
 ### Hosting integration health checks
 
-The Azure AI Search hosting integration doesn't currently implement any health checks. This limitation is subject to change in future releases. As always, feel free to [open an issue](www://github.com/dotnet/aspire/issues) if you have any suggestions or feedback.
+The Azure AI Search hosting integration doesn't currently implement any health checks. This limitation is subject to change in future releases. As always, feel free to [open an issue](https://github.com/dotnet/aspire/issues) if you have any suggestions or feedback.
 
 ## Client integration
 
@@ -329,7 +329,7 @@ The .NET Aspire Azure AI Search Documents integration emits tracing activities u
 
 ## See also
 
-- [Azure AI Search](https://azure.microsoft.com/en-us/products/ai-services/ai-search)
+- [Azure AI Search](https://azure.microsoft.com/products/ai-services/ai-search)
 - [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
 - [.NET Aspire Azure integrations overview](../azure/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
