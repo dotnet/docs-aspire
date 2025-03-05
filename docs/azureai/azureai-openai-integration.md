@@ -1,7 +1,6 @@
 ---
 title: .NET Aspire Azure OpenAI integration (Preview)
 description: Learn how to use the .NET Aspire Azure OpenAI integration.
-ms.topic: how-to
 ms.date: 03/04/2025
 ---
 
