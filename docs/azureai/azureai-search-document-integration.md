@@ -6,6 +6,8 @@ ms.date: 03/05/2025
 
 # .NET Aspire Azure AI Search integration
 
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
+
 [Azure AI Search](/azure/search/search-what-is-azure-search) (formerly Azure Cognitive Search) is an enterprise-ready information retrieval system for your heterogeneous content that you ingest into a search index, and surface to users through queries and apps. It comes with a comprehensive set of advanced search technologies, built for high-performance applications at any scale. The .NET Aspire Azure AI Search Documents integration enables you to connect to Azure AI Search services from your .NET applications.
 
 ## Hosting integration
