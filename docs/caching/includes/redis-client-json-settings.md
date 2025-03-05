@@ -21,4 +21,4 @@ The .NET Aspire Stack Exchange Redis integration supports <xref:Microsoft.Extens
 }
 ```
 
-For the complete Redis client integration JSON schema, see [Aspire.StackExchange.Redis/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.StackExchange.Redis/ConfigurationSchema.json).
+For the complete Redis client integration JSON schema, see [Aspire.StackExchange.Redis/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.StackExchange.Redis/ConfigurationSchema.json).

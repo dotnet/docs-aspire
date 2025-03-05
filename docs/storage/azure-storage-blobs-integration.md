@@ -142,7 +142,7 @@ The .NET Aspire Azure Blob Storage integration supports <xref:Microsoft.Extensio
 }
 ```
 
-For the complete Azure Blob Storage client integration JSON schema, see [Aspire.Azure.Storage.Blobs/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Azure.Storage.Blobs/ConfigurationSchema.json).
+For the complete Azure Blob Storage client integration JSON schema, see [Aspire.Azure.Storage.Blobs/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Storage.Blobs/ConfigurationSchema.json).
 
 #### Use inline delegates
 

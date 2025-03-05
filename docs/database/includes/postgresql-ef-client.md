@@ -121,7 +121,7 @@ The following example shows an _:::no-loc text="appsettings.json":::_ file that 
 }
 ```
 
-For the complete PostgreSQL Entity Framework Core client integration JSON schema, see [Aspire.Npgsql.EntityFrameworkCore.PostgreSQL/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL/ConfigurationSchema.json).
+For the complete PostgreSQL Entity Framework Core client integration JSON schema, see [Aspire.Npgsql.EntityFrameworkCore.PostgreSQL/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL/ConfigurationSchema.json).
 
 #### Use inline delegates
 

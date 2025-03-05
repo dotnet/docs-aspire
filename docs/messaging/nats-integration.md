@@ -247,7 +247,7 @@ The .NET Aspire NATS integration supports <xref:Microsoft.Extensions.Configurati
 }
 ```
 
-For the complete NATS client integration JSON schema, see [Aspire.NATS.Net/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.NATS.Net/ConfigurationSchema.json).
+For the complete NATS client integration JSON schema, see [Aspire.NATS.Net/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.NATS.Net/ConfigurationSchema.json).
 
 #### Use inline delegates
 

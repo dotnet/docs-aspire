@@ -386,7 +386,7 @@ The .NET Aspire Azure Service Bus integration supports <xref:Microsoft.Extension
 }
 ```
 
-For the complete Service Bus client integration JSON schema, see [Aspire.Azure.Messaging.ServiceBus/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Azure.Messaging.ServiceBus/ConfigurationSchema.json).
+For the complete Service Bus client integration JSON schema, see [Aspire.Azure.Messaging.ServiceBus/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Messaging.ServiceBus/ConfigurationSchema.json).
 
 #### Use inline delegates
 

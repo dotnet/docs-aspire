@@ -139,7 +139,7 @@ The .NET Aspire Azure Queue Storage integration supports <xref:Microsoft.Extensi
 }
 ```
 
-For the complete Azure Storage Queues client integration JSON schema, see [Aspire.Azure.Data.Queues/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Azure.Data.Queues/ConfigurationSchema.json).
+For the complete Azure Storage Queues client integration JSON schema, see [Aspire.Azure.Data.Queues/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Data.Queues/ConfigurationSchema.json).
 
 #### Use inline delegates
 

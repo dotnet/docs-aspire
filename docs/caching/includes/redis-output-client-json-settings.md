@@ -21,4 +21,4 @@ The .NET Aspire Stack Exchange Redis output caching integration supports <xref:M
 }
 ```
 
-For the complete Redis output caching client integration JSON schema, see [Aspire.StackExchange.Redis.OutputCaching/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.StackExchange.Redis.OutputCaching/ConfigurationSchema.json).
+For the complete Redis output caching client integration JSON schema, see [Aspire.StackExchange.Redis.OutputCaching/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.StackExchange.Redis.OutputCaching/ConfigurationSchema.json).

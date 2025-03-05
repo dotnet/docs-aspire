@@ -104,7 +104,7 @@ The .NET Aspire Microsoft Entity Framework Core Cosmos DB integration supports <
 }
 ```
 
-For the complete Cosmos DB client integration JSON schema, see [Aspire.Microsoft.EntityFrameworkCore.Cosmos/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Microsoft.EntityFrameworkCore.Cosmos/ConfigurationSchema.json).
+For the complete Cosmos DB client integration JSON schema, see [Aspire.Microsoft.EntityFrameworkCore.Cosmos/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Microsoft.EntityFrameworkCore.Cosmos/ConfigurationSchema.json).
 
 #### Use inline delegates
 

@@ -159,7 +159,7 @@ items:
     - name: Azure PostgreSQL
       displayName: postgres,postgresql,database,flexible server,azure for database
       href: database/azure-postgresql-integration.md
-    - name: Azure OpenAI
+    - name: Azure OpenAI (Preview)
       displayName: azure ai,openai
       href: azureai/azureai-openai-integration.md
     - name: Azure SignalR Service
@@ -248,13 +248,8 @@ items:
     - name: Orleans voting sample
       href: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
   - name: PostgreSQL
-    items:
-    - name: PostgreSQL - EF Core
-      displayName: postgresql,database,ef core
-      href: database/postgresql-entity-framework-integration.md
-    - name: PostgreSQL
-      displayName: postgresql,database
-      href: database/postgresql-integration.md
+    displayName: postgresql,database
+    href: database/postgresql-integration.md
   - name: Qdrant
     href: database/qdrant-integration.md
   - name: RabbitMQ service broker

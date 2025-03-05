@@ -129,7 +129,7 @@ The .NET Aspire Azure Cosmos DB integration supports <xref:Microsoft.Extensions.
 }
 ```
 
-For the complete Cosmos DB client integration JSON schema, see [Aspire.Microsoft.Azure.Cosmos/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Microsoft.Azure.Cosmos/ConfigurationSchema.json).
+For the complete Cosmos DB client integration JSON schema, see [Aspire.Microsoft.Azure.Cosmos/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Microsoft.Azure.Cosmos/ConfigurationSchema.json).
 
 #### Use inline delegates
 
