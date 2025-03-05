@@ -165,8 +165,8 @@ items:
     - name: Azure SignalR Service
       displayName: azure signalr service,signalr,real-time
       href: real-time/azure-signalr-scenario.md
-    - name: Azure Search Documents
-      displayName: azure search,search,azure ai
+    - name: Azure AI Search
+      displayName: azure search,search,azure ai,cognitive search,cognitive services
       href: azureai/azureai-search-document-integration.md
     - name: Azure Service Bus
       displayName: service bus,messaging
