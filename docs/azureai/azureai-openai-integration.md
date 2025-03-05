@@ -12,9 +12,7 @@ ms.date: 03/04/2025
 
 ## Hosting integration
 
-The .NET Aspire [Azure OpenAI](/azure/ai-services/openai/) hosting integration models Azure OpenAI resources as <xref:Aspire.Hosting.ApplicationModel.AzureOpenAIResource>.
-
-To access these types and APIs for expressing them within your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices) NuGet package:
+The .NET Aspire [Azure OpenAI](/azure/ai-services/openai/) hosting integration models Azure OpenAI resources as <xref:Aspire.Hosting.ApplicationModel.AzureOpenAIResource>. To access these types and APIs for expressing them within your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
