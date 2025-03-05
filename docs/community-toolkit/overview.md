@@ -40,11 +40,14 @@ The community toolkit is a growing project, publishing a set of NuGet packages. 
   - [📄 .NET Aspire Ollama hosting integration](ollama.md#hosting-integration).
   - [📦 CommunityToolkit.Aspire.Hosting.Ollama](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Ollama).
 - The [Meilisearch](https://www.meilisearch.com) integration enables hosting Meilisearch containers.
-  - [📄 .NET Aspire Meilisearch hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Meilisearch).
+  - [📄 .NET Aspire Meilisearch hosting integration](hosting-meilisearch.md#hosting-integration).
   - [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch).
 - The [Rust apps](https://www.rust-lang.org/) integration provides support for hosting Rust applications.
-  - [📄 .NET Aspire Rust hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Rust).
+  - [📄 .NET Aspire Rust hosting integration](hosting-rust.md#hosting-integration).
   - [📦 CommunityToolkit.Aspire.Hosting.Rust](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Rust).
+- The [SQLite](https://www.sqlite.org/index.html) integration provides support for hosting SQLite databases.
+  - [📄 .NET Aspire SQLite hosting integration](sqlite.md#hosting-integration)
+  - [📦 CommunityToolkit.Aspire.Hosting.SQLite](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SQLite).
 
 ### Client integrations
 
@@ -54,17 +57,32 @@ The following client integrations are available in the toolkit:
   - [📄 .NET Aspire Ollama client integration](ollama.md#client-integration)
   - [📦 CommunityToolkit.Aspire.OllamaSharp](https://nuget.org/packages/CommunityToolkit.Aspire.OllamaSharp)
 - **Meilisearch** is a .NET client for the Meilisearch API:
-  - [📄 .NET Aspire Meilisearch client integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Meilisearch)
+  - [📄 .NET Aspire Meilisearch client integration](hosting-meilisearch.md#client-integration)
   - [📦 CommunityToolkit.Aspire.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Meilisearch)
+- The [SQLite](https://www.sqlite.org/index.html) integration provides support for hosting SQLite databases.
+  - [📄 .NET Aspire SQLite hosting integration](sqlite.md#client-integration)
+  - [📦 CommunityToolkit.Aspire.Hosting.SQLite](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SQLite).
+- The [SQLite Entity Framework](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite) integration provides support for hosting SQLite databases with Entity Framework.
+  - [📄 .NET Aspire SQLite EF hosting integration](sqlite-entity-framework-integration.md#client-integration)
+  - [📦 CommunityToolkit.Aspire.Microsoft.EntityFrameworkCore.Sqlite](https://nuget.org/packages/CommunityToolkit.Aspire.Microsoft.EntityFrameworkCore.Sqlite).
 
 > [!TIP]
 > Always check the [GitHub repository][github-repo] for the most up-to-date information on the toolkit.
 
 ### Extensions
 
-When you're working with [Node.js](https://nodejs.org/), there are lots of ways to achieve the same thing. To that end, the .NET Aspire Community Toolkit exposes some extensions that include support for alternative package managers ([yarn](https://yarnpkg.com/) and [pnpm](https://pnpm.io/)), and developer workflow improvements.
+To expand the functionality provided by the .NET Aspire integrations, the Community Toolkit also provides extension packages for some hosting integrations. The following extensions are available in the toolkit:
 
 - [📦 CommunityToolkit.Aspire.Hosting.NodeJS.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.NodeJS.Extensions)
+  - [📄 Docs](hosting-nodejs-extensions.md)
+- [📦 CommunityToolkit.Aspire.Hosting.SqlServer.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SqlServer.Extensions)
+  - [📄 Docs](hosting-sqlserver-extensions.md)
+- [📦 CommunityToolkit.Aspire.Hosting.PostgreSQL.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.PostgreSQL.Extensions)
+  - [📄 Docs](hosting-postgresql-extensions.md)
+- [📦 CommunityToolkit.Aspire.Hosting.Redis.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Redis.Extensions)
+  - [📄 Docs](hosting-redis-extensions.md)
+- [📦 CommunityToolkit.Aspire.Hosting.MongoDB.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.MongoDB.Extensions)
+  - [📄 Docs](hosting-mongodb-extensions.md)
 
 If you're not seeing an integration or extension you need, you can contribute to the toolkit by creating your own integration and submitting a pull request. For more information, see [How to collaborate](#how-to-collaborate).
 

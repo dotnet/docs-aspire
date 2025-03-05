@@ -258,8 +258,8 @@ For more information, see the following updated articles:
 There's consistent feedback about making it easier to connect to existing Azure resources in .NET Aspire. With 9.1, you can now easily connect to an existing Azure resource either directly by `string` name, or with [app model parameters](../fundamentals/external-parameters.md) which can be changed at deployment time. For example to connect to an Azure Service Bus account, we can use the following code:
 
 ```csharp
-var serviceBusName = builder.AddParameter("serviceBusName");
-var serviceBusResourceGroup = builder.AddParameter("serviceBusResourceGroup");
+var existingServiceBusName = builder.AddParameter("serviceBusName");
+var existingServiceBusResourceGroup = builder.AddParameter("serviceBusResourceGroup");
 
 var serviceBus = builder.AddAzureServiceBus("messaging")
                         .AsExisting(existingServiceBusName, existingServiceBusResourceGroup);

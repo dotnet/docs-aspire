@@ -1,7 +1,7 @@
 ---
 title: Add .NET Aspire to an existing .NET app
 description: Learn how to add .NET Aspire integrations, orchestration, and tooling to a microservices app that already exists.
-ms.date: 11/08/2024
+ms.date: 03/03/2025
 ms.topic: how-to
 zone_pivot_groups: dev-environment
 ---
@@ -353,7 +353,7 @@ The preceding code:
 
 ## Service Discovery
 
-At this point, both projects are part of .NET Aspire orchestration, but the _Store_ needs to be able to discover the **Products** backend address through [.NET Aspire's service discovery](../service-discovery/overview.md). To enable service discovery, open the _:::no-loc text="Program.cs":::_ file in **eShopLite.AppHost** and update the code that the _Store_ adds a reference to the _Products_ project:
+At this point, both projects are part of .NET Aspire orchestration, but the _Store_ project needs to rely on the **Products** backend address through [.NET Aspire's service discovery](../service-discovery/overview.md). To enable service discovery, open the _:::no-loc text="Program.cs":::_ file in **eShopLite.AppHost** project and update the code so that the `builder` adds a reference to the _Products_ project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -367,7 +367,7 @@ builder.AddProject<Projects.Store>("store")
 builder.Build().Run();
 ```
 
-The preceding code expresses that the _Store_ project depends on the _Products_ project. For more information, see [.NET Aspire app host: Reference resources](../fundamentals/app-host-overview.md#reference-resources). This reference is used to discover the address of the _Products_ project. Additionally, the _Store_ project is configured to use external HTTP endpoints. If you later choose to deploy this app, you'd need the call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints%2A> to ensure that it's public to the outside world.
+The preceding code expresses that the _Store_ project depends on the _Products_ project. For more information, see [.NET Aspire app host: Reference resources](../fundamentals/app-host-overview.md#reference-resources). This reference is used to discover the address of the _Products_ project at run time. Additionally, the _Store_ project is configured to use external HTTP endpoints. If you later choose to deploy this app, you'd need the call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints%2A> to ensure that it's public to the outside world.
 
 Next, update the _:::no-loc text="appsettings.json":::_ in the _Store_ project with the following JSON:
 
