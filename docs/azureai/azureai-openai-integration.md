@@ -432,7 +432,10 @@ The .NET Aspire Azure OpenAI integration uses the following log categories:
 
 ### Tracing
 
-The .NET Aspire Azure OpenAI integration emits tracing activities using OpenTelemetry for operations performed with the `OpenAIClient`. Tracing is currently experimental with this integration. To opt-in to it, set either the `OPENAI_EXPERIMENTAL_ENABLE_OPEN_TELEMETRY` environment variable to `true` or `1`, or by call `AppContext.SetSwitch("OpenAI.Experimental.EnableOpenTelemetry", true))` during app startup.
+The .NET Aspire Azure OpenAI integration emits tracing activities using OpenTelemetry for operations performed with the `OpenAIClient`.
+
+> [!IMPORTANT]
+> Tracing is currently experimental with this integration. To opt-in to it, set either the `OPENAI_EXPERIMENTAL_ENABLE_OPEN_TELEMETRY` environment variable to `true` or `1`, or call `AppContext.SetSwitch("OpenAI.Experimental.EnableOpenTelemetry", true))` during app startup.
 
 ## See also
 
