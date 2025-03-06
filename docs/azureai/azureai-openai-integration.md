@@ -145,10 +145,6 @@ The connection string is configured in the app host's configuration, typically u
 
 For more information on treating Azure OpenAI resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
-### Hosting integration health checks
-
-The Azure OpenAI hosting integration automatically adds a health check for the OpenAI resource. The health check verifies that the Azure OpenAI service is available and accessible.
-
 ## Client integration
 
 To get started with the .NET Aspire Azure OpenAI client integration, install the [📦 Aspire.Azure.AI.OpenAI](https://www.nuget.org/packages/Aspire.Azure.AI.OpenAI) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure OpenAI client.
@@ -205,14 +201,14 @@ For example, consider the following C# code that adds an `IChatClient` to the DI
 
 ```csharp
 builder.AddAzureOpenAIClient(connectionName: "openai")
-       .AddChatClient();
+       .AddChatClient("deploymentName");
 ```
 
 Similarly, you can add a keyed `IChatClient` with the following C# code:
 
 ```csharp
 builder.AddAzureOpenAIClient(connectionName: "openai")
-       .AddKeyedChatClient();
+       .AddKeyedChatClient("serviceKey", "deploymentName");
 ```
 
 For more information on the `IChatClient` and its corresponding library, see [Artificial intelligence in .NET (Preview)](/dotnet/core/extensions/artificial-intelligence).
