@@ -40,7 +40,7 @@ public sealed partial class Home : IAsyncDisposable
     {
         if (firstRender)
         {
-            _username = await Storage.GetItemAsync(UsernameKey)
+            _username = await Storage.GetItemAsync<string>(UsernameKey)
                 ?? Guid.NewGuid().ToString();
         }
     }
