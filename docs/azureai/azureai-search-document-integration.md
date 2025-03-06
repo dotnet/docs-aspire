@@ -96,14 +96,35 @@ There are many more configuration options available to customize the Azure AI Se
 
 ### Connect to an existing Azure AI Search service
 
-You might have an existing Azure AI Search service that you want to connect to. To add a connection to an existing service, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> method:
+You might have an existing Azure AI Search service that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureSearchResource> is an existing resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var search = builder.AddConnectionString("search");
+var existingSearchName = builder.AddParameter("existingSearchName");
+var existingSearchResourceGroup = builder.AddParameter("existingSearchResourceGroup");
 
-builder.AddProject<Projects.MyService>()
+var search = builder.AddAzureSearch("search")
+                    .AsExisting(existingSearchName, existingSearchResourceGroup);
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(search);
+
+// After adding all resources, run the app...
+```
+
+For more information on treating Azure AI Search resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
+
+Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the app host. Which is a weakly-typed approach that's based solely on a `string` value. To add a connection to an existing Azure AI Search service, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString%2A> method:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var search = builder.ExecutionContext.IsPublishMode
+    ? builder.AddAzureSearch("search")
+    : builder.AddConnectionString("search");
+
+builder.AddProject<Projects.ExampleProject>()
        .WithReference(search);
 
 // After adding all resources, run the app...
@@ -116,12 +137,12 @@ The connection string is configured in the app host's configuration, typically u
 ```json
 {
   "ConnectionStrings": {
-    "search": "https://{search_service}.search.windows.net/"
+    "search": "https://{account_name}.search.azure.com/"
   }
 }
 ```
 
-The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"search"`. The `GetConnectionString` API is shorthand for `IConfiguration.GetSection("ConnectionStrings")[name]`.
+For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Conditional configuration based on execution mode
 
