@@ -32,4 +32,20 @@ resource openai_CognitiveServicesOpenAIContributor 'Microsoft.Authorization/role
   scope: openai
 }
 
+resource preview 'Microsoft.CognitiveServices/accounts/deployments@2024-10-01' = {
+  name: 'preview'
+  properties: {
+    model: {
+      format: 'OpenAI'
+      name: 'gpt-4.5-preview'
+      version: '2025-02-27'
+    }
+  }
+  sku: {
+    name: 'Standard'
+    capacity: 8
+  }
+  parent: openai
+}
+
 output connectionString string = 'Endpoint=${openai.properties.endpoint}'

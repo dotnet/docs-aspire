@@ -224,7 +224,7 @@ The .NET Aspire Elasticsearch Client integration supports <xref:Microsoft.Extens
 }
 ```
 
-For the complete Elasticsearch client integration JSON schema, see [Aspire.Elastic.Clients.Elasticsearch/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Elastic.Clients.Elasticsearch/ConfigurationSchema.json).
+For the complete Elasticsearch client integration JSON schema, see [Aspire.Elastic.Clients.Elasticsearch/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Elastic.Clients.Elasticsearch/ConfigurationSchema.json).
 
 #### Use inline delegates
 
