@@ -8,7 +8,7 @@ ms.date: 03/06/2025
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure OpenAI Service](https://azure.microsoft.com/products/ai-services/openai-service) provides access to OpenAI's powerful language models including GPT-4, GPT-3.5-Turbo, and Embeddings model series with the security and enterprise promise of Azure. The .NET Aspire Azure OpenAI integration enables you to connect to Azure OpenAI Service or OpenAI's API from your .NET applications.
+[Azure OpenAI Service](https://azure.microsoft.com/products/ai-services/openai-service) provides access to OpenAI's powerful language and embedding models with the security and enterprise promise of Azure. The .NET Aspire Azure OpenAI integration enables you to connect to Azure OpenAI Service or OpenAI's API from your .NET applications.
 
 ## Hosting integration
 
@@ -127,8 +127,11 @@ You might have an existing Azure OpenAI service that you want to connect to. You
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
+var existingOpenAIName = builder.AddParameter("existingOpenAIName");
+var existingOpenAIResourceGroup = builder.AddParameter("existingOpenAIResourceGroup");
+
 var openai = builder.AddAzureOpenAI("openai")
-                    .AsExisting();
+                    .AsExisting(existingOpenAIName, existingOpenAIResourceGroup);
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(openai);
@@ -214,7 +217,7 @@ For more information, see:
 
 ### Add Azure OpenAI client with registered `IChatClient`
 
-If you're interested in using the new <xref:Microsoft.Extensions.AI.IChatClient> interface, with the OpenAI client, simply chain either of the following APIs to the `AddAzureOpenAIClient` method:
+If you're interested in using the <xref:Microsoft.Extensions.AI.IChatClient> interface, with the OpenAI client, simply chain either of the following APIs to the `AddAzureOpenAIClient` method:
 
 - <xref:Microsoft.Extensions.Hosting.AspireOpenAIClientBuilderChatClientExtensions.AddChatClient(Aspire.OpenAI.AspireOpenAIClientBuilder,System.String)>: Registers a singleton `IChatClient` in the services provided by the <xref:Aspire.OpenAI.AspireOpenAIClientBuilder>.
 - <xref:Microsoft.Extensions.Hosting.AspireOpenAIClientBuilderChatClientExtensions.AddKeyedChatClient(Aspire.OpenAI.AspireOpenAIClientBuilder,System.String,System.String)>: Registers a keyed singleton `IChatClient` in the services provided by the <xref:Aspire.OpenAI.AspireOpenAIClientBuilder>.
@@ -429,7 +432,7 @@ The .NET Aspire Azure OpenAI integration uses the following log categories:
 
 ### Tracing
 
-The .NET Aspire Azure OpenAI integration emits tracing activities using OpenTelemetry for operations performed with the `OpenAIClient`.
+The .NET Aspire Azure OpenAI integration emits tracing activities using OpenTelemetry for operations performed with the `OpenAIClient`. Tracing is currently experimental with this integration. To opt-in to it, set either the `OPENAI_EXPERIMENTAL_ENABLE_OPEN_TELEMETRY` environment variable to `true` or `1`, or by call `AppContext.SetSwitch("OpenAI.Experimental.EnableOpenTelemetry", true))` during app startup.
 
 ## See also
 
