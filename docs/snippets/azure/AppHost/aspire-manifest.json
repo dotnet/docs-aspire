@@ -41,6 +41,10 @@
         "principalId": ""
       }
     },
+    "database": {
+      "type": "value.v0",
+      "connectionString": "{cosmos.outputs.connectionString}"
+    },
     "event-hubs": {
       "type": "azure.bicep.v0",
       "connectionString": "{event-hubs.outputs.eventHubsEndpoint}",

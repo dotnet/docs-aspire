@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure OpenAI integration (Preview)
 description: Learn how to use the .NET Aspire Azure OpenAI integration.
-ms.date: 03/04/2025
+ms.date: 03/06/2025
 ---
 
 # .NET Aspire Azure OpenAI integration (Preview)
@@ -66,7 +66,8 @@ openai.AddDeployment(
         modelVersion: "2025-02-27"));
 
 builder.AddProject<Projects.ExampleProject>()
-       .WithReference(openai);
+       .WithReference(openai)
+       .WaitFor(openai);
 
 // After adding all resources, run the app...
 ```
@@ -95,6 +96,11 @@ The preceding Bicep is a module that provisions an Azure Cognitive Services reso
     - `disableLocalAuth`: Set to `true`.
   - `sku`: The SKU of the resource, set to `S0`.
 - `openai_CognitiveServicesOpenAIContributor`: The Cognitive Services resource owner, based on the build-in `Azure Cognitive Services OpenAI Contributor` role. For more information, see [Azure Cognitive Services OpenAI Contributor](/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-openai-contributor).
+- `preview`: The deployment resource, based on the `preview` name.
+  - `properties`: The properties of the deployment resource.
+    - `format`: The format of the deployment resource, set to `OpenAI`.
+    - `modelName`: The model name of the deployment resource, set to `gpt-4.5-preview`.
+    - `modelVersion`: The model version of the deployment resource, set to `2025-02-27`.
 - `connectionString`: The connection string, containing the endpoint of the Cognitive Services resource.
 
 The generated Bicep is a starting point and can be customized to meet your specific requirements.
@@ -116,7 +122,23 @@ The preceding code:
 
 ### Connect to an existing Azure OpenAI service
 
-You might have an existing Azure OpenAI service that you want to connect to. Instead of representing a new Azure OpenAI resource, you can add a connection string to the app host. To add a connection to an existing Azure OpenAI service, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString%2A> method:
+You might have an existing Azure OpenAI service that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.ApplicationModel.AzureOpenAIResource> is an existing resource:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var openai = builder.AddAzureOpenAI("openai")
+                    .AsExisting();
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(openai);
+
+// After adding all resources, run the app...
+```
+
+For more information on treating Azure OpenAI resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
+
+Alternatively, instead of representing an Azure OpenAI resource, you can add a connection string to the app host. Which is a weakly-typed approach that's based solely on a `string` value. To add a connection to an existing Azure OpenAI service, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString%2A> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -143,7 +165,7 @@ The connection string is configured in the app host's configuration, typically u
 }
 ```
 
-For more information on treating Azure OpenAI resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
+For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ## Client integration
 
