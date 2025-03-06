@@ -6,8 +6,7 @@ builder.AddAzureAppConfiguration("config");
 
 builder.AddAzureApplicationInsights("app-insights");
 
-var cosmos = builder.AddAzureCosmosDB("cosmos");
-cosmos.AddCosmosDatabase("database");
+builder.AddAzureCosmosDB("cosmos");
 
 var eventHubs = builder.AddAzureEventHubs("event-hubs");
 eventHubs.AddHub("messages");

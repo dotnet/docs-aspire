@@ -27,17 +27,6 @@ resource cosmos 'Microsoft.DocumentDB/databaseAccounts@2024-08-15' = {
   }
 }
 
-resource database 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2024-08-15' = {
-  name: 'database'
-  location: location
-  properties: {
-    resource: {
-      id: 'database'
-    }
-  }
-  parent: cosmos
-}
-
 resource cosmos_roleDefinition 'Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions@2024-08-15' existing = {
   name: '00000000-0000-0000-0000-000000000002'
   parent: cosmos
