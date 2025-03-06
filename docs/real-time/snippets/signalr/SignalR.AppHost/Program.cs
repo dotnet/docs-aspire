@@ -1,6 +1,8 @@
-﻿var builder = DistributedApplication.CreateBuilder(args);
+﻿using Aspire.Hosting.Azure;
 
-var signalR = builder.AddAzureSignalR("signalr")
+var builder = DistributedApplication.CreateBuilder(args);
+
+var signalR = builder.AddAzureSignalR("signalr", AzureSignalRServiceMode.Serverless)
                      .RunAsEmulator();
 
 var apiService = builder.AddProject<Projects.SignalR_ApiService>("apiservice")

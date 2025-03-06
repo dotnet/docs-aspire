@@ -1,10 +1,12 @@
 ---
 title: .NET Aspire Azure SignalR Service integration
 description: Learn how to integrate Azure SignalR Service with .NET Aspire.
-ms.date: 03/05/2025
+ms.date: 03/06/2025
 ---
 
 # .NET Aspire Azure SignalR Service integration
+
+[!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 [Azure SignalR Service](/azure/azure-signalr/signalr-overview) is a fully managed real-time messaging service that simplifies adding real-time web functionality to your applications. The .NET Aspire Azure SignalR Service integration enables you to easily provision, configure, and connect your .NET applications to Azure SignalR Service instances.
 
@@ -17,7 +19,7 @@ The .NET Aspire Azure SignalR Service hosting integration models Azure SignalR r
 - <xref:Aspire.Hosting.Azure.AzureSignalRResource>: Represents an Azure SignalR Service resource, including connection information to the underlying Azure resource.
 - <xref:Aspire.Hosting.Azure.AzureSignalREmulatorResource>: Represents an emulator for Azure SignalR Service, allowing local development and testing without requiring an Azure subscription.
 
-To access the hosting APIs, install the [📦 Aspire.Hosting.Azure.SignalR](https://www.nuget.org/packages/Aspire.Hosting.Azure.SignalR) NuGet package in your [app host](../fundamentals/app-host-overview.md#app-host-project) project:
+To access the hosting types and APIs for expressing these resources in the distributed application builder, install the [📦 Aspire.Hosting.Azure.SignalR](https://www.nuget.org/packages/Aspire.Hosting.Azure.SignalR) NuGet package in your [app host](../fundamentals/app-host-overview.md#app-host-project) project:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -38,7 +40,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Azure SignalR Service resource
 
-To add an Azure SignalR Service resource to your app host project, call the `AddAzureSignalR` method:
+To add an Azure SignalR Service resource to your app host project, call the <xref:Aspire.Hosting.AzureSignalRExtensions.AddAzureSignalR*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -128,7 +130,7 @@ var signalR = builder.AddAzureSignalR("signalr")
                      .ConfigureInfrastructure(infra =>
                      {
                          var resources = infra.GetProvisionableResources();
-                         var signalRResource = resources.OfType<Azure.Provisioning.SignalR.SignalRService>().Single();
+                         var signalRResource = resources.OfType<SignalRService>().Single();
 
                          signalRResource.Sku.Name = "Premium_P1";
                          signalRResource.Sku.Capacity = 2;
@@ -139,18 +141,41 @@ var signalR = builder.AddAzureSignalR("signalr")
 
 ### Connect to an existing Azure SignalR Service
 
-To connect to an existing Azure SignalR Service, use the `AddConnectionString` method:
+You might have an existing Azure SignalR Service that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.ApplicationModel.AzureSignalRResource> is an existing resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var signalR = builder.AddConnectionString("signalr");
+var existingSignalRName = builder.AddParameter("existingSignalRName");
+var existingSignalRResourceGroup = builder.AddParameter("existingSignalRResourceGroup");
 
-builder.AddProject<Projects.ApiService>("apiService")
-       .WithReference(signalR);
+var signalr = builder.AddAzureSignalR("signalr")
+                     .AsExisting(existingSignalRName, existingSignalRResourceGroup);
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(signalr);
+
+// After adding all resources, run the app...
 ```
 
-The connection string is configured in the app host's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets):
+For more information on treating Azure SignalR resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
+
+Alternatively, instead of representing an Azure SignalR resource, you can add a connection string to the app host. Which is a weakly-typed approach that's based solely on a `string` value. To add a connection to an existing Azure SignalR Service, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString%2A> method:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var signalr = builder.ExecutionContext.IsPublishMode
+    ? builder.AddAzureSignalR("signalr")
+    : builder.AddConnectionString("signalr");
+
+builder.AddProject<Projects.ApiService>("apiService")
+       .WithReference(signalr);
+```
+
+[!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
+
+The connection string is configured in the app host's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section:
 
 ```json
 {
@@ -160,13 +185,34 @@ The connection string is configured in the app host's configuration, typically u
 }
 ```
 
+For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+
+### Add an Azure SignalR Service emulator resource
+
+The Azure SignalR Service emulator is a local development and testing tool that emulates the behavior of Azure SignalR Service. This emulator only supports [Serverless_ mode](/azure/azure-signalr/concept-service-mode#serverless-mode), which requires a specific configuration when using the emulator.
+
+To use the emulator, chain a call to the <xref:Aspire.Hosting.AzureSignalRExtensions.RunAsEmulator(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.AzureSignalRResource},System.Action{Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureSignalREmulatorResource}})> method:
+
+```csharp
+using Aspire.Hosting.Azure;
+
+var builder = DistributedApplication.CreateBuilder(args);
+
+var signalR = builder.AddAzureSignalR("signalr", AzureSignalRServiceMode.Serverless)
+                     .RunAsEmulator();
+
+builder.AddProject<Projects.ApiService>("apiService")
+       .WithReference(signalR)
+       .WaitFor(signalR);
+
+// After adding all resources, run the app...
+```
+
+In the preceding example, the `RunAsEmulator` method configures the Azure SignalR Service resource to run as an emulator. The emulator is started when the app host is run, and it will be stopped when the app host is stopped.
+
 ## Client integration
 
-The client integration enables your ASP.NET Core application to use Azure SignalR Service for real-time messaging.
-
-### Install the NuGet package
-
-Install the [📦 Microsoft.Azure.SignalR](https://www.nuget.org/packages/Microsoft.Azure.SignalR) NuGet package in the project hosting your SignalR hub:
+There isn't an official .NET Aspire Azure SignalR client integration. However, there is limited support for similar experiences. There are two specific packages available for [.NET from the Azure team](https://github.com/Azure/azure-signalr) that enable scenarios such as managing the client connection to Azure SignalR Service, and hooking up to the Azure SignalR Service resource. To get started, install the [📦 Microsoft.Azure.SignalR](https://www.nuget.org/packages/Microsoft.Azure.SignalR) NuGet package in the project hosting your SignalR hub.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -178,6 +224,23 @@ dotnet add package Microsoft.Azure.SignalR
 
 ```xml
 <PackageReference Include="Microsoft.Azure.SignalR"
+                  Version="*" />
+```
+
+---
+
+If you're app host is using the Azure SignalR emulator, you'll also need to install the [📦 Microsoft.Azure.SignalR.Management](https://www.nuget.org/packages/Microsoft.Azure.SignalR.Management) NuGet package.
+
+### [.NET CLI](#tab/dotnet-cli)
+
+```dotnetcli
+dotnet add package Microsoft.Azure.SignalR.Management
+```
+
+### [PackageReference](#tab/package-reference)
+
+```xml
+<PackageReference Include="Microsoft.Azure.SignalR.Management"
                   Version="*" />
 ```
 
