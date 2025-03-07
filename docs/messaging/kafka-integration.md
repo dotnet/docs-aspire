@@ -56,7 +56,7 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 
 ### Add Kafka UI
 
-To add the [Kafka UI](https://hub.docker.com/r/provectuslabs/kafka-ui) to the Kafka server resource, call the <xref:Aspire.Hosting.KafkaBuilderExtensions.WithKafkaUI*> method:
+To add the [Kafka UI](https://hub.docker.com/r/kafbat/kafka-ui) to the Kafka server resource, call the <xref:Aspire.Hosting.KafkaBuilderExtensions.WithKafkaUI*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -70,7 +70,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The Kafka UI is a free, open-source web UI to monitor and manage Apache Kafka clusters. .NET Aspire adds another container image [`docker.io/provectuslabs/kafka-ui`](https://hub.docker.com/r/provectuslabs/kafka-ui) to the app host that runs the Kafka UI.
+The Kafka UI is a free, open-source web UI to monitor and manage Apache Kafka clusters. .NET Aspire adds another container image [`docker.io/kafbat/kafka-ui`](https://hub.docker.com/r/kafbat/kafka-ui) to the app host that runs the Kafka UI.
 
 ### Change the Kafka UI host port
 
