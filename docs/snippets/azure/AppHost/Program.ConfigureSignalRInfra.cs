@@ -9,14 +9,12 @@ internal static partial class Program
             .ConfigureInfrastructure(infra =>
             {
                 var signalRService = infra.GetProvisionableResources()
-                                           .OfType<SignalRService>()
-                                           .Single();
+                                          .OfType<SignalRService>()
+                                          .Single();
 
-                signalRService.Kind = CosmosDBAccountKind.MongoDB;
-                signalRService.ConsistencyPolicy = new()
-                {
-                    DefaultConsistencyLevel = DefaultConsistencyLevel.Strong,
-                };
+                signalRService.Sku.Name = "Premium_P1";
+                signalRService.Sku.Capacity = 10;
+                signalRService.PublicNetworkAccess = "Enabled";
                 signalRService.Tags.Add("ExampleKey", "Example value");
             });
         // </configure>

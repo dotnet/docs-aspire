@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure SignalR Service integration
 description: Learn how to integrate Azure SignalR Service with .NET Aspire.
-ms.date: 03/06/2025
+ms.date: 03/07/2025
 ---
 
 # .NET Aspire Azure SignalR Service integration
@@ -16,7 +16,7 @@ This article describes how to integrate Azure SignalR Service into your .NET Asp
 
 The .NET Aspire Azure SignalR Service hosting integration models Azure SignalR resources as the following type:
 
-- <xref:Aspire.Hosting.Azure.AzureSignalRResource>: Represents an Azure SignalR Service resource, including connection information to the underlying Azure resource.
+- <xref:Aspire.Hosting.ApplicationModel.AzureSignalRResource>: Represents an Azure SignalR Service resource, including connection information to the underlying Azure resource.
 - <xref:Aspire.Hosting.Azure.AzureSignalREmulatorResource>: Represents an emulator for Azure SignalR Service, allowing local development and testing without requiring an Azure subscription.
 
 To access the hosting types and APIs for expressing these resources in the distributed application builder, install the [📦 Aspire.Hosting.Azure.SignalR](https://www.nuget.org/packages/Aspire.Hosting.Azure.SignalR) NuGet package in your [app host](../fundamentals/app-host-overview.md#app-host-project) project:
@@ -47,13 +47,13 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var signalR = builder.AddAzureSignalR("signalr");
 
-builder.AddProject<Projects.ApiService>("apiService")
-       .WithReference(signalR)
-       .WaitFor(signalR);
+var api = builder.AddProject<Projects.ApiService>("api")
+                .WithReference(signalR)
+                .WaitFor(signalR);
 
 builder.AddProject<Projects.WebApp>("webapp")
-       .WithReference(signalR)
-       .WaitFor(signalR);
+       .WithReference(api)
+       .WaitFor(api);
 
 // Continue configuring and run the app...
 ```
@@ -70,74 +70,25 @@ In the preceding example:
 
 When you add an Azure SignalR Service resource, .NET Aspire generates provisioning infrastructure using [Bicep](/azure/azure-resource-manager/bicep/overview). The generated Bicep includes defaults for location, SKU, and role assignments:
 
-```bicep
-@description('The location for the resource(s) to be deployed.')
-param location string = resourceGroup().location
-
-param principalType string
-
-param principalId string
-
-resource signalr 'Microsoft.SignalRService/signalR@2024-03-01' = {
-  name: take('signalr-${uniqueString(resourceGroup().id)}', 63)
-  location: location
-  properties: {
-    cors: {
-      allowedOrigins: [
-        '*'
-      ]
-    }
-    features: [
-      {
-        flag: 'ServiceMode'
-        value: 'Default'
-      }
-    ]
-  }
-  kind: 'SignalR'
-  sku: {
-    name: 'Free_F1'
-    capacity: 1
-  }
-  tags: {
-    'aspire-resource-name': 'signalr'
-  }
-}
-
-resource signalr_SignalRAppServer 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(signalr.id, principalId, subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '420fcaa2-552c-430f-98ca-3264be4806c7'))
-  properties: {
-    principalId: principalId
-    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '420fcaa2-552c-430f-98ca-3264be4806c7')
-    principalType: principalType
-  }
-  scope: signalr
-}
-
-output hostName string = signalr.properties.hostName
-```
+:::code language="bicep" source="../snippets/azure/AppHost/signalr.module.bicep":::
 
 The generated Bicep provides a starting point and can be customized further.
 
 ### Customize provisioning infrastructure
 
-You can customize the generated Bicep using the `ConfigureInfrastructure` API:
+All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
 
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
+:::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureSignalRInfra.cs" id="configure":::
 
-var signalR = builder.AddAzureSignalR("signalr")
-                     .ConfigureInfrastructure(infra =>
-                     {
-                         var resources = infra.GetProvisionableResources();
-                         var signalRResource = resources.OfType<SignalRService>().Single();
+The preceding code:
 
-                         signalRResource.Sku.Name = "Premium_P1";
-                         signalRResource.Sku.Capacity = 2;
-                         signalRResource.PublicNetworkAccess = "Enabled";
-                         signalRResource.AddTag("Environment", "Production");
-                     });
-```
+- Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
+  - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
+  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
+  - The single <xref:Azure.Provisioning.SignalR.SignalRService> resource is retrieved.
+  - The <xref:Azure.Provisioning.SignalR.SignalRService.Sku?displayProperty=nameWithType> property is assigned a name of `Premium_P1` and a capacity of `10`.
+  - The <xref:Azure.Provisioning.SignalR.SignalRService.PublicNetworkAccess?displayProperty=nameWithType> property is set to `Enabled`.
+  - A tag is added to the SignalR service resource with a key of `ExampleKey` and a value of `Example value`.
 
 ### Connect to an existing Azure SignalR Service
 
@@ -189,7 +140,7 @@ For more information, see [Add existing Azure resources with connection strings]
 
 ### Add an Azure SignalR Service emulator resource
 
-The Azure SignalR Service emulator is a local development and testing tool that emulates the behavior of Azure SignalR Service. This emulator only supports [Serverless_ mode](/azure/azure-signalr/concept-service-mode#serverless-mode), which requires a specific configuration when using the emulator.
+The Azure SignalR Service emulator is a local development and testing tool that emulates the behavior of Azure SignalR Service. This emulator only supports [_Serverless_ mode](/azure/azure-signalr/concept-service-mode#serverless-mode), which requires a specific configuration when using the emulator.
 
 To use the emulator, chain a call to the <xref:Aspire.Hosting.AzureSignalRExtensions.RunAsEmulator(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.AzureSignalRResource},System.Action{Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureSignalREmulatorResource}})> method:
 
@@ -208,7 +159,16 @@ builder.AddProject<Projects.ApiService>("apiService")
 // After adding all resources, run the app...
 ```
 
-In the preceding example, the `RunAsEmulator` method configures the Azure SignalR Service resource to run as an emulator. The emulator is started when the app host is run, and it will be stopped when the app host is stopped.
+In the preceding example, the `RunAsEmulator` method configures the Azure SignalR Service resource to run as an emulator. The emulator is based on the [mcr.microsoft.com/signalr/signalr-emulator:latest](https://mcr.microsoft.com/signalr/signalr-emulator:latest) container image. The emulator is started when the app host is run, and it will be stopped when the app host is stopped.
+
+#### Azure SignalR Service modes
+
+While the Azure SignalR Service emulator only supports the _Serverless_ mode, the Azure SignalR Service resource can be configured to use either of the following modes:
+
+- <xref:Aspire.Hosting.ApplicationModel.AzureSignalRServiceMode.Default?displayProperty=nameWithType>
+- <xref:Aspire.Hosting.ApplicationModel.AzureSignalRServiceMode.Serverless?displayProperty=nameWithType>
+
+The _Default_ mode is the "default" configuration for Azure SignalR Service. Each mode has its own set of features and limitations. For more information, see [Azure SignalR Service modes](/azure/azure-signalr/concept-service-mode).
 
 ## Client integration
 
