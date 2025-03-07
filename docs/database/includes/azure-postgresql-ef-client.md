@@ -21,9 +21,9 @@ dotnet add package Azure.Identity
 
 ---
 
-The PostgreSQL connection can be consumed using the client integration and <xref:Azure.Identity>. Depending on which version Entity Framework Core you are using, the code is slightly different.
+The PostgreSQL connection can be consumed using the client integration and <xref:Azure.Identity>. Using newer versions of Entity Framework Core can help simplify the code.
 
-### EntityFramweork Core version 8
+### EntityFramework Core version 8
 
 ```csharp
 var dsBuilder = new NpgsqlDataSourceBuilder(builder.Configuration.GetConnectionString("postgresdb"));
@@ -42,7 +42,9 @@ builder.AddNpgsqlDbContext<MyDb1Context>(
     configureDbContextOptions: (options) => options.UseNpgsql(dsBuilder.Build()));
 ```
 
-### EntityFramweork Core version 9
+### EntityFramework Core version 9+
+
+With version 9+, you can use the new `ConfigureDataSource` method to configure the NpgsqlDataSourceBuilder that is used by the integration instead of building one outside of the integration and passing it in.
 
 ```csharp
 builder.AddNpgsqlDbContext<MyDb1Context>(
