@@ -61,7 +61,8 @@ builder.AddProject<Projects.WebApp>("webapp")
 In the preceding example:
 
 - An Azure SignalR Service resource named `signalr` is added.
-- The resource is referenced by the consuming projects (`apiService` and `webapp`), providing them with the necessary connection information.
+- The `signalr` resource is referenced by the `api` project.
+- The `api` project is referenced by the `webapp` project.
 
 > [!IMPORTANT]
 > Calling `AddAzureSignalR` implicitly enables Azure provisioning support. Ensure your app host is configured with the appropriate Azure subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration).
@@ -159,7 +160,7 @@ builder.AddProject<Projects.ApiService>("apiService")
 // After adding all resources, run the app...
 ```
 
-In the preceding example, the `RunAsEmulator` method configures the Azure SignalR Service resource to run as an emulator. The emulator is based on the [mcr.microsoft.com/signalr/signalr-emulator:latest](https://mcr.microsoft.com/signalr/signalr-emulator:latest) container image. The emulator is started when the app host is run, and it will be stopped when the app host is stopped.
+In the preceding example, the `RunAsEmulator` method configures the Azure SignalR Service resource to run as an emulator. The emulator is based on the `mcr.microsoft.com/signalr/signalr-emulator:latest` container image. The emulator is started when the app host is run, and it will be stopped when the app host is stopped.
 
 #### Azure SignalR Service modes
 
@@ -169,6 +170,9 @@ While the Azure SignalR Service emulator only supports the _Serverless_ mode, th
 - <xref:Aspire.Hosting.ApplicationModel.AzureSignalRServiceMode.Serverless?displayProperty=nameWithType>
 
 The _Default_ mode is the "default" configuration for Azure SignalR Service. Each mode has its own set of features and limitations. For more information, see [Azure SignalR Service modes](/azure/azure-signalr/concept-service-mode).
+
+> [!IMPORTANT]
+> The Azure SignalR Service emulator only works in _Serverless_ mode and the `AddNamedAzureSignalR` method doesn't support _Serverless_ mode.
 
 ## Client integration
 
@@ -189,6 +193,30 @@ dotnet add package Microsoft.Azure.SignalR
 
 ---
 
+### Configure the SignalR client
+
+In your SignalR hub host project, configure Azure SignalR Service using the `AddNamedAzureSignalR` extension method chained to <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR*>:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSignalR()
+                .AddNamedAzureSignalR("signalr");
+
+var app = builder.Build();
+
+app.MapHub<ChatHub>("/chat");
+
+app.Run();
+```
+
+The `AddNamedAzureSignalR` method configures the client to use the Azure SignalR Service resource named `signalr`. The connection string is read from the configuration key `ConnectionStrings:signalr`, and additional settings are loaded from the `Azure:SignalR:signalr` configuration section.
+
+> [!NOTE]
+> If you're using the Azure SignalR emulator, you cannot use the `AddNamedAzureSignalR` method.
+
+### Configure the SignalR client when using the emulator
+
 If you're app host is using the Azure SignalR emulator, you'll also need to install the [📦 Microsoft.Azure.SignalR.Management](https://www.nuget.org/packages/Microsoft.Azure.SignalR.Management) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
@@ -206,15 +234,21 @@ dotnet add package Microsoft.Azure.SignalR.Management
 
 ---
 
-### Configure the SignalR client
-
-In your SignalR hub host project, configure Azure SignalR Service using the `AddNamedAzureSignalR` extension method chained to `AddSignalR`:
+In the project that's defining the SignalR <xref:Microsoft.AspNetCore.SignalR.Hub> or consuming an <xref:Microsoft.AspNetCore.SignalR.IHubContext>, configure the Azure SignalR Service emulator by first calling <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR*> and then registering the `ServiceManager` from the `signalr` connection string:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSignalR()
-                .AddNamedAzureSignalR("signalr");
+builder.Services.AddSignalR();
+builder.Services.AddSingleton(sp =>
+{
+   return new ServiceManagerBuilder()
+       .WithOptions(options =>
+       {
+           options.ConnectionString = builder.Configuration.GetConnectionString("signalr");
+       })
+       .BuildServiceManager();
+});
 
 var app = builder.Build();
 
@@ -223,44 +257,7 @@ app.MapHub<ChatHub>("/chat");
 app.Run();
 ```
 
-The `AddNamedAzureSignalR` method configures the client to use the Azure SignalR Service resource named `signalr`. The connection string is read from the configuration key `ConnectionStrings:signalr`, and additional settings are loaded from the `Azure:SignalR:signalr` configuration section.
-
-### Configuration options
-
-You can configure additional SignalR client options through configuration providers or code:
-
-```json
-{
-  "Azure": {
-    "SignalR": {
-      "signalr": {
-        "ServiceMode": "Default",
-        "ServerStickyMode": "Required",
-        "ConnectionCount": 5
-      }
-    }
-  }
-```
-
-Alternatively, configure options in code:
-
-```csharp
-builder.Services.AddSignalR()
-                .AddNamedAzureSignalR("signalr", options =>
-                {
-                    options.ServiceMode = ServiceMode.Default;
-                    options.ServerStickyMode = ServerStickyMode.Required;
-                    options.ConnectionCount = 5;
-                });
-```
-
-### Hosting integration health checks
-
-The Azure SignalR Service hosting integration automatically adds health checks to verify connectivity and service availability. It relies on the [📦 AspNetCore.HealthChecks.AzureSignalR](https://www.nuget.org/packages/AspNetCore.HealthChecks.AzureSignalR) NuGet package.
-
-## Observability and telemetry
-
-The Azure SignalR Service integration provides built-in support for observability and telemetry through logging, tracing, and metrics.
+The preceding code configures the Azure SignalR Service emulator using the `ServiceManagerBuilder` class. The connection string is read from the configuration key `ConnectionStrings:signalr`. When using the emulator, only the HTTP endpoint is available.
 
 ### Logging
 

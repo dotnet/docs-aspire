@@ -7,8 +7,6 @@ builder.AddServiceDefaults();
 builder.Services.AddProblemDetails();
 
 builder.Services.AddSignalR();
-                //.AddNamedAzureSignalR("signalr");
-
 builder.Services.AddSingleton(sp =>
 {
     return new ServiceManagerBuilder()
