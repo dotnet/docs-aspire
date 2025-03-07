@@ -162,7 +162,7 @@ public async Task DisableVolumesFromTest()
 While the `DistributedApplicationTestingBuilder` class is useful for many scenarios, there might be situations where you want more control over starting the app host, such as executing code before the builder is created or after the app host is built. In these cases, you implement your own version of the <xref:Aspire.Hosting.Testing.DistributedApplicationFactory> class. This is what the `DistributedApplicationTestingBuilder` uses internally.
 
 ```csharp
-public class TestingAspireAppHost
+public class TestingAspireAppHost()
     : DistributedApplicationFactory(typeof(Projects.AspireApp_AppHost))
 {
     // override methods here
@@ -178,7 +178,7 @@ The `DistributionApplicationFactory` class provides several lifecycle methods th
 For example, we can use the `OnBuilderCreating` method to set configuration, such as the subscription and resource group information for Azure, before the app host is created and any dependent Azure resources are provisioned, resulting in our tests using the correct Azure environment.
 
 ```csharp
-public class TestingAspireAppHost : DistributedApplicationFactory(typeof(Projects.AspireApp_AppHost))
+public class TestingAspireAppHost() : DistributedApplicationFactory(typeof(Projects.AspireApp_AppHost))
 {
     protected override void OnBuilderCreating(DistributedApplicationOptions applicationOptions, HostApplicationBuilderSettings hostOptions)
     {

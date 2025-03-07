@@ -270,7 +270,7 @@ The .NET Aspire Milvus client integration supports <xref:Microsoft.Extensions.Co
 }
 ```
 
-For the complete Milvus client integration JSON schema, see [Aspire.Milvus.Client/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Milvus.Client/ConfigurationSchema.json).
+For the complete Milvus client integration JSON schema, see [Aspire.Milvus.Client/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Milvus.Client/ConfigurationSchema.json).
 
 #### Use inline delegates
 
