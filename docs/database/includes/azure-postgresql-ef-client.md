@@ -21,7 +21,9 @@ dotnet add package Azure.Identity
 
 ---
 
-The PostgreSQL connection can be consumed using the client integration and <xref:Azure.Identity>. Using newer versions of Entity Framework Core can help simplify the code.
+The PostgreSQL connection can be consumed using the client integration and <xref:Azure.Identity>.
+
+The following code snippets demonstrate how to use the <xref:Azure.Identity.DefaultAzureCredential> class from the <xref:Azure.Identity> package to authenticate with [Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication) and retrieve a token to connect to the PostgreSQL database. The [UsePasswordProvider](https://www.npgsql.org/doc/api/Npgsql.NpgsqlDataSourceBuilder.html#Npgsql_NpgsqlDataSourceBuilder_UsePasswordProvider_System_Func_Npgsql_NpgsqlConnectionStringBuilder_System_String__System_Func_Npgsql_NpgsqlConnectionStringBuilder_System_Threading_CancellationToken_System_Threading_Tasks_ValueTask_System_String___) method is used to provide the token to the data source builder.
 
 ### EntityFramework Core version 8
 
@@ -44,7 +46,7 @@ builder.AddNpgsqlDbContext<MyDb1Context>(
 
 ### EntityFramework Core version 9+
 
-With version 9+, you can use the new `ConfigureDataSource` method to configure the NpgsqlDataSourceBuilder that is used by the integration instead of building one outside of the integration and passing it in.
+With EntityFramework Core version 9, you can use the new `ConfigureDataSource` method to configure the NpgsqlDataSourceBuilder that is used by the integration instead of building one outside of the integration and passing it in.
 
 ```csharp
 builder.AddNpgsqlDbContext<MyDb1Context>(
@@ -64,4 +66,3 @@ builder.AddNpgsqlDbContext<MyDb1Context>(
         })));
 ```
 
-The preceding code snippet demonstrates how to use the <xref:Azure.Identity.DefaultAzureCredential> class from the <xref:Azure.Identity> package to authenticate with [Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication) and retrieve a token to connect to the PostgreSQL database. The [UsePasswordProvider](https://www.npgsql.org/doc/api/Npgsql.NpgsqlDataSourceBuilder.html#Npgsql_NpgsqlDataSourceBuilder_UsePasswordProvider_System_Func_Npgsql_NpgsqlConnectionStringBuilder_System_String__System_Func_Npgsql_NpgsqlConnectionStringBuilder_System_Threading_CancellationToken_System_Threading_Tasks_ValueTask_System_String___) method is used to provide the token to the data source builder.
