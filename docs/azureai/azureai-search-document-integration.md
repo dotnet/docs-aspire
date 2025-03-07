@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure AI Search integration
 description: Learn how to integrate Azure AI Search with .NET Aspire.
-ms.date: 03/05/2025
+ms.date: 03/07/2025
 ---
 
 # .NET Aspire Azure AI Search integration
@@ -40,13 +40,13 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var search = builder.AddAzureSearch("search");
 
-builder.AddProject<Projects.MyService>()
+builder.AddProject<Projects.ExampleProject>()
        .WithReference(search);
 
 // After adding all resources, run the app...
 ```
 
-When you add an Azure AI Search resource to the app host, it exposes other useful APIs to express explicit provisioning configuration. The preceding code adds an Azure AI Search resource named `search` to the app host project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `MyService` project.
+The preceding code adds an Azure AI Search resource named `search` to the app host project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
 
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureSearchExtensions.AddAzureSearch*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see Local provisioning: Configuration
@@ -143,25 +143,6 @@ The connection string is configured in the app host's configuration, typically u
 ```
 
 For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
-
-### Conditional configuration based on execution mode
-
-If you want to use Azure AI Search when publishing to Azure but use a connection string during local development, you can use the `ExecutionContext.IsPublishMode` property:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var search = builder.ExecutionContext.IsPublishMode
-    ? builder.AddAzureSearch("search")
-    : builder.AddConnectionString("search");
-
-var myService = builder.AddProject<Projects.MyService>()
-                       .WithReference(search);
-
-// After adding all resources, run the app...
-```
-
-For more information on conditional configuration, see [APIs for expressing Azure resources in different modes](../azure/integrations-overview.md#apis-for-expressing-azure-resources-in-different-modes).
 
 ### Hosting integration health checks
 
