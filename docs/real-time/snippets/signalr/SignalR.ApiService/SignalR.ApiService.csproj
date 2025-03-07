@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.SignalR" Version="1.30.2" />
+    <PackageReference Include="Microsoft.Azure.SignalR.Management" Version="1.30.2" />
   </ItemGroup>
 
   <ItemGroup>
