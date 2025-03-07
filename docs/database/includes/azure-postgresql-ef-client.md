@@ -21,31 +21,45 @@ dotnet add package Azure.Identity
 
 ---
 
-The PostgreSQL connection can be consumed using the client integration and <xref:Azure.Identity>:
+The PostgreSQL connection can be consumed using the client integration and <xref:Azure.Identity>. Depending on which version Entity Framework Core you are using, the code is slightly different.
+
+### EntityFramweork Core version 8
 
 ```csharp
-builder.AddNpgsqlDbContext<YourDbContext>(
-    "postgresdb", 
-    configureDataSourceBuilder: (dataSourceBuilder) =>
+var dsBuilder = new NpgsqlDataSourceBuilder(builder.Configuration.GetConnectionString("postgresdb"));
+if (string.IsNullOrEmpty(dsBuilder.ConnectionStringBuilder.Password))
 {
-    if (!string.IsNullOrEmpty(dataSourceBuilder.ConnectionStringBuilder.Password))
-    {
-        return;
-    }
+    var credentials = new DefaultAzureCredential();
+    var tokenRequest = new TokenRequestContext(["https://ossrdbms-aad.database.windows.net/.default"]);
 
-    dataSourceBuilder.UsePeriodicPasswordProvider(async (_, ct) =>
-    {
-        var credentials = new DefaultAzureCredential();
-        var token = await credentials.GetTokenAsync(
-            new TokenRequestContext([
-                "https://ossrdbms-aad.database.windows.net/.default"
-            ]), ct);
+    dsBuilder.UsePasswordProvider(
+        passwordProvider: _ => credentials.GetToken(tokenRequest).Token,
+        passwordProviderAsync: async (_, ct) => (await credentials.GetTokenAsync(tokenRequest, ct)).Token);
+}
 
-        return token.Token;
-    },
-    TimeSpan.FromHours(24),
-    TimeSpan.FromSeconds(10));
-});
+builder.AddNpgsqlDbContext<MyDb1Context>(
+    "postgresdb",
+    configureDbContextOptions: (options) => options.UseNpgsql(dsBuilder.Build()));
 ```
 
-The preceding code snippet demonstrates how to use the <xref:Azure.Identity.DefaultAzureCredential> class from the <xref:Azure.Identity> package to authenticate with [Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication) and retrieve a token to connect to the PostgreSQL database. The [UsePeriodicPasswordProvider](https://www.npgsql.org/doc/api/Npgsql.NpgsqlDataSourceBuilder.html#Npgsql_NpgsqlDataSourceBuilder_UsePeriodicPasswordProvider_System_Func_Npgsql_NpgsqlConnectionStringBuilder_System_Threading_CancellationToken_System_Threading_Tasks_ValueTask_System_String___System_TimeSpan_System_TimeSpan_) method is used to provide the token to the connection string builder.
+### EntityFramweork Core version 9
+
+```csharp
+builder.AddNpgsqlDbContext<MyDb1Context>(
+    "postgresdb",
+    configureDbContextOptions: (options) => options.UseNpgsql(npgsqlOptions =>
+        npgsqlOptions.ConfigureDataSource(dsBuilder =>
+        {
+            if (string.IsNullOrEmpty(dsBuilder.ConnectionStringBuilder.Password))
+            {
+                var credentials = new DefaultAzureCredential();
+                var tokenRequest = new TokenRequestContext(["https://ossrdbms-aad.database.windows.net/.default"]);
+
+                dsBuilder.UsePasswordProvider(
+                    passwordProvider: _ => credentials.GetToken(tokenRequest).Token,
+                    passwordProviderAsync: async (_, ct) => (await credentials.GetTokenAsync(tokenRequest, ct)).Token);
+            }
+        })));
+```
+
+The preceding code snippet demonstrates how to use the <xref:Azure.Identity.DefaultAzureCredential> class from the <xref:Azure.Identity> package to authenticate with [Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication) and retrieve a token to connect to the PostgreSQL database. The [UsePasswordProvider](https://www.npgsql.org/doc/api/Npgsql.NpgsqlDataSourceBuilder.html#Npgsql_NpgsqlDataSourceBuilder_UsePasswordProvider_System_Func_Npgsql_NpgsqlConnectionStringBuilder_System_String__System_Func_Npgsql_NpgsqlConnectionStringBuilder_System_Threading_CancellationToken_System_Threading_Tasks_ValueTask_System_String___) method is used to provide the token to the data source builder.

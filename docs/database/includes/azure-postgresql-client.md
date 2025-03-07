@@ -28,23 +28,15 @@ builder.AddNpgsqlDataSource(
     "postgresdb", 
     configureDataSourceBuilder: (dataSourceBuilder) =>
 {
-    if (!string.IsNullOrEmpty(dataSourceBuilder.ConnectionStringBuilder.Password))
-    {
-        return;
-    }
-
-    dataSourceBuilder.UsePeriodicPasswordProvider(async (_, ct) =>
+    if (string.IsNullOrEmpty(dataSourceBuilder.ConnectionStringBuilder.Password))
     {
         var credentials = new DefaultAzureCredential();
-        var token = await credentials.GetTokenAsync(
-            new TokenRequestContext([
-                "https://ossrdbms-aad.database.windows.net/.default"
-            ]), ct);
+        var tokenRequest = new TokenRequestContext(["https://ossrdbms-aad.database.windows.net/.default"]);
 
-        return token.Token;
-    },
-    TimeSpan.FromHours(24),
-    TimeSpan.FromSeconds(10));
+        dataSourceBuilder.UsePasswordProvider(
+            passwordProvider: _ => credentials.GetToken(tokenRequest).Token,
+            passwordProviderAsync: async (_, ct) => (await credentials.GetTokenAsync(tokenRequest, ct)).Token);
+    }
 });
 ```
 
