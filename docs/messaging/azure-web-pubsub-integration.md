@@ -344,7 +344,7 @@ The .NET Aspire Azure Web PubSub integration uses the following log categories:
 
 The .NET Aspire Azure Web PubSub integration will emit the following tracing activities using OpenTelemetry:
 
-- "Azure.Messaging.WebPubSub.*"
+- `Azure.Messaging.WebPubSub.*`
 
 #### Metrics
 
