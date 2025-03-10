@@ -1,10 +1,12 @@
 ---
 title: .NET Aspire Azure Event Hubs integration
 description: This article describes the .NET Aspire Azure Event Hubs integration features and capabilities.
-ms.date: 02/25/2025
+ms.date: 03/10/2025
 ---
 
 # .NET Aspire Azure Event Hubs integration
+
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
 [Azure Event Hubs](/azure/event-hubs/event-hubs-about) is a native data-streaming service in the cloud that can stream millions of events per second, with low latency, from any source to any destination. The .NET Aspire Azure Event Hubs integration enables you to connect to Azure Event Hubs instances from your .NET applications.
 
@@ -483,6 +485,8 @@ The .NET Aspire Azure Event Hubs library supports <xref:Microsoft.Extensions.Con
   }
 }
 ```
+
+For the complete Azure Event Hubs client integration JSON schema, see [Aspire.Azure.Messaging.EventHubs/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Messaging.EventHubs/ConfigurationSchema.json).
 
 You can also setup the Options type using the optional `Action<IAzureClientBuilder<EventProcessorClient, EventProcessorClientOptions>> configureClientBuilder` parameter of the `AddAzureEventProcessorClient` method. For example, to set the processor's client ID for this client:
 
