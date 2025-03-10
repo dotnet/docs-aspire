@@ -65,4 +65,3 @@ builder.AddNpgsqlDbContext<MyDb1Context>(
             }
         })));
 ```
-
