@@ -21,4 +21,4 @@ The .NET Aspire Stack Exchange Redis distributed caching integration supports <x
 }
 ```
 
-For the complete Redis distributed caching client integration JSON schema, see [Aspire.StackExchange.Redis.DistributedCaching/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.StackExchange.Redis.DistributedCaching/ConfigurationSchema.json).
+For the complete Redis distributed caching client integration JSON schema, see [Aspire.StackExchange.Redis.DistributedCaching/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.StackExchange.Redis.DistributedCaching/ConfigurationSchema.json).

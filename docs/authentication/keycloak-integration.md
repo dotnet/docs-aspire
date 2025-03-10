@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Keycloak integration (Preview)
 description: Learn how to use the .NET Aspire Keycloak integration, which includes both hosting and client integrations.
-ms.date: 12/06/2024
+ms.date: 03/06/2025
 uid: authentication/keycloak-integration
 ---
 
@@ -178,7 +178,7 @@ To get started with the .NET Aspire Keycloak client integration, install the [ðŸ
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Keycloak.Authentication
+dotnet add package Aspire.Keycloak.Authentication --prerelease
 ```
 
 ### [PackageReference](#tab/package-reference)

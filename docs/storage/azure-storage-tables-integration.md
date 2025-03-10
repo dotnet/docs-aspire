@@ -103,7 +103,7 @@ The .NET Aspire Azure Table Storage integration supports <xref:Microsoft.Extensi
 }
 ```
 
-For the complete Azure Data Tables client integration JSON schema, see [Aspire.Azure.Data.Tables/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Azure.Data.Tables/ConfigurationSchema.json).
+For the complete Azure Data Tables client integration JSON schema, see [Aspire.Azure.Data.Tables/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Data.Tables/ConfigurationSchema.json).
 
 #### Use inline delegates
 

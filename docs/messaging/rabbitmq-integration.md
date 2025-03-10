@@ -255,7 +255,7 @@ The .NET Aspire RabbitMQ integration supports <xref:Microsoft.Extensions.Configu
 }
 ```
 
-For the complete RabbitMQ client integration JSON schema, see [Aspire.RabbitMQ.Client/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.RabbitMQ.Client/ConfigurationSchema.json).
+For the complete RabbitMQ client integration JSON schema, see [Aspire.RabbitMQ.Client/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.RabbitMQ.Client/ConfigurationSchema.json).
 
 #### Use inline delegates
 

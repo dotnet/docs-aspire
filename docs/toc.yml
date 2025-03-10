@@ -136,6 +136,9 @@ items:
       href: azure/integrations-overview.md
     - name: Local Azure provisioning
       href: azure/local-provisioning.md
+    - name: Azure AI Search
+      displayName: azure search,search,azure ai,cognitive search,cognitive services
+      href: azureai/azureai-search-document-integration.md
     - name: Azure Cache for Redis
       items:
       - name: Azure Cache for Redis
@@ -159,15 +162,12 @@ items:
     - name: Azure PostgreSQL
       displayName: postgres,postgresql,database,flexible server,azure for database
       href: database/azure-postgresql-integration.md
-    - name: Azure OpenAI
+    - name: Azure OpenAI (Preview)
       displayName: azure ai,openai
       href: azureai/azureai-openai-integration.md
     - name: Azure SignalR Service
       displayName: azure signalr service,signalr,real-time
       href: real-time/azure-signalr-scenario.md
-    - name: Azure Search Documents
-      displayName: azure search,search,azure ai
-      href: azureai/azureai-search-document-integration.md
     - name: Azure Service Bus
       displayName: service bus,messaging
       href: messaging/azure-service-bus-integration.md
@@ -248,13 +248,8 @@ items:
     - name: Orleans voting sample
       href: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
   - name: PostgreSQL
-    items:
-    - name: PostgreSQL - EF Core
-      displayName: postgresql,database,ef core
-      href: database/postgresql-entity-framework-integration.md
-    - name: PostgreSQL
-      displayName: postgresql,database
-      href: database/postgresql-integration.md
+    displayName: postgresql,database
+    href: database/postgresql-integration.md
   - name: Qdrant
     href: database/qdrant-integration.md
   - name: RabbitMQ service broker
