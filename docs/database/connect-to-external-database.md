@@ -1,7 +1,7 @@
 ---
 title: Connect a .NET Aspire microservice to an external database
 description: Learn how to configure a .NET Aspire solution with a connection to an external database that isn't hosted in a .NET Aspire container.
-ms.date: 03/07/2025
+ms.date: 03/13/2025
 ms.topic: tutorial
 uid: database/connect-to-external-database
 ---
@@ -55,7 +55,7 @@ First, install EF Core in the *AspireExternalDB.ApiService* project.
 
 1. In **Solution Explorer**, right-click the *AspireExternalDB.ApiService* project, and then select **Manage NuGet Packages**.
 1. Select the **Browse** tab, and then search for **EntityFrameworkCore**.
-1. Select the **Microsoft.EntityFrameworkCore** package, and then select **Install**.
+1. Select the **Aspire.Microsoft.EntityFrameworkCore.SqlServer** package, and then select **Install**.
 1. If the **Preview Changes** dialog appears, select **Apply**.
 1. In the **License Acceptance** dialog, select **I Accept**.
 
@@ -92,4 +92,141 @@ namespace AspireExternalDB.ApiService
     }
 }
 ```
+
+## Configure a connection string in the App Host project
+
+Usually, when you create a cloud-native solution with .NET Aspire, you call the <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*> method to initiate a container that runs the SQL Server instance. You pass that resource to other projects in your solution that need access to the database.
+
+In this case, however, you want to work with a pre-existing database outside of any container. There are three differences in the App Host project:
+
+- You don't need to install the `Aspire.Hosting.SqlServer` hosting integration.
+- You add a connection string in a configuration file, such as **appsetting.json**.
+- You call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> to create a resource that you pass to other projects. Those projects use this resource to connect to the existing database.
+
+Let's implement that configuration:
+
+1. In Visual Studio, in the **AspireExternalDB.AppHost** project, open the **appsetting.json** file.
+1. Replace the entire contents of the file with the following code:
+
+    ```json
+    {
+        "ConnectionStrings": {
+            "sql": "Server=localhost;Trusted_Connection=True;TrustServerCertificate=True;Initial Catalog=WeatherForecasts;"
+        },
+        "Logging": {
+            "LogLevel": {
+                "Default": "Information",
+                "Microsoft.AspNetCore": "Warning",
+                "Aspire.Hosting.Dcp": "Warning"
+            }
+        }
+    }
+    ```
+
+1. In the **AspireExternalDB.AppHost** project, open the **Program.cs** file.
+1. Locate the following line of code:
+
+    ```csharp
+    var builder = DistributedApplication.CreateBuilder(args);
+    ```
+
+1. Immediately after that line, add this line of code, which obtains the connection string from the configuration file:
+
+    ```csharp
+    var connectionString = builder.AddConnectionString("sql");
+    ```
+
+1. Locate the following line of code, which creates a resource for the **AspireExternalDB.ApiService** project:
+
+    ```csharp
+    var apiService = builder.AddProject<Projects.AspireExternalDB_ApiService>("apiservice");
+    ```
+
+1. Modify that line to match the following, which creates the resource and passes the connection string to it:
+
+    ```csharp
+    var apiService = builder.AddProject<Projects.AspireExternalDB_ApiService>("apiservice")
+                            .WithReference(connectionString);
+    ```
+
+1. To save your changes, select **File** > **Save All**.
+
+## Use the database in the API project
+
+Returning to the **AspireExternalDB.ApiService** project, you must obtain the connection string resource from the App Host, and then use it to create the database in the instance of SQL Server:
+
+1. In Visual Studio, in the **AspireExternalDB.ApiService** project, open the **Program.cs** file.
+1. Locate the following line of code:
+
+    ```csharp
+    var builder = WebApplication.CreateBuilder(args);
+    ```
+
+1. Immediately after that line, add this line of code:
+
+    ```csharp
+    builder.AddSqlServerDbContext<WeatherDbContext>("sql");
+    ```
+
+1. Locate the following line of code:
+
+    ```csharp
+    app.MapDefaultEndpoints();
+    ```
+
+1. Immediately after that line, add this code, which connects to the database and creates it if it doesn't already exist:
+
+    ```csharp
+    if (app.Environment.IsDevelopment())
+    {
+        using (var scope = app.Services.CreateScope())
+        {
+            var context = scope.ServiceProvider.GetRequiredService<WeatherDbContext>();
+            context.Database.EnsureCreated();
+        }
+    }
+    else
+    {
+        app.UseExceptionHandler("/Error", createScopeForErrors: true);
+        app.UseHsts();
+    }
+    ```
+
+The preceding code:
+
+- Checks if the app is running in a development environment.
+- If it is, it retrieves the `WeatherDbContext` service from the DI container and calls `Database.EnsureCreated()` to create the database if it doesn't already exist.
+
+> [!NOTE]
+> Note that `EnsureCreated()` is not suitable for production environments, and it only creates the database as defined in the context. It doesn't apply any migrations. For more information on Entity Framework Core migrations in .NET Aspire, see [Apply Entity Framework Core migrations in .NET Aspire](ef-core-migrations.md).
+
+## Run and test the app locally
+
+The sample app is ready to test. Before you start debugging, make sure that:
+
+- Docker Desktop or Podman is running to host containers for the solution.
+- SQL Server is running to host the database.
+
+Let's connect to the SQL Server instance and check the databases that exist.
+
+1. Start **Microsoft SQL Server Management Studio**.
+1. Connect to the SQL Server instance on the local machine. Ensure that **Trust server certificate** is selected.
+
+    :::image type="content" source="media/connect-to-external-database/connect-ssms.png" lightbox="media/connect-to-external-database/connect-ssms.png" alt-text="A screenshot showing how to connect to a local instance of SQL Server in SQL Server Management Studio.":::
+
+1. In the **Object Explorer** expand **Databases**. There is no database named **WeatherForecasts**.
+
+Now, let's test the solution:
+
+1. In Visual Studio, select the run button (or press <kbd>F5</kbd>) to launch your .NET Aspire project dashboard in the browser.
+1. In the navigation on the left, select **Console**.
+1. In the **Resource** drop down list, select **apiservice**. Notice the `CREATE TABLE` SQL command, which has created the **Forecasts** table in the **WeatherForecasts** database.
+1. Switch to SQL Server Management Studio. In the **Object Explorer**, right-click **Databases** and then select **Refresh**.
+1. Expand the new **WeatherForecasts** and then expand **Tables**. Notice the **dbo.Forecasts** table.
+
+> AJMTODO: create one or more records in the database table.
+
+> AJMTODO: Add See also links at the end.
+
+
 
