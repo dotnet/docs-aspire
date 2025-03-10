@@ -15,7 +15,7 @@ ms.date: 03/10/2025
 
 The .NET Aspire [Azure Web PubSub](https://azure.microsoft.com/products/web-pubsub) hosting integration models the Web PubSub resources as the following types:
 
-- <xref:Aspire.Hosting.Azure.AzureWebPubSubResource>: Represents an Azure Web PubSub resource, including connection information to the underlying Azure resource.
+- <xref:Aspire.Hosting.ApplicationModel.AzureWebPubSubResource>: Represents an Azure Web PubSub resource, including connection information to the underlying Azure resource.
 - <xref:Aspire.Hosting.ApplicationModel.AzureWebPubSubHubResource>: Represents a Web PubSub hub resource, which is a logical grouping of Web PubSub connections. The hub resource is used to group multiple Web PubSub connections together.
 
 To access these types and APIs for expressing them within your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.WebPubSub](https://www.nuget.org/packages/Aspire.Hosting.Azure.WebPubSub) NuGet package:
