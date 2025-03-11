@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire testing overview
 description: Learn how .NET Aspire helps you to test your applications.
-ms.date: 02/24/2025
+ms.date: 03/11/2025
 ---
 
 # .NET Aspire testing overview
@@ -11,6 +11,21 @@ ms.date: 02/24/2025
 By default, the testing builder disables the dashboard and randomizes the ports of proxied resources to enable multiple instances of your application to run concurrently. Once your test completes, disposing of the application or testing builder cleans up your app resources.
 
 To get started writing your first integration test with .NET Aspire, see the [Write your first .NET Aspire test](./write-your-first-test.md) article.
+
+## Testing .NET Aspire solutions
+
+.NET Aspire's testing capabilities are designed specifically for black-box integration testing of your entire distributed application. Unlike unit tests or white-box integration tests, which typically run individual components in isolation, .NET Aspire testing launches your complete application as separate processes, closely simulating real-world scenarios.
+
+Use .NET Aspire testing when you want to:
+
+- Verify end-to-end functionality of your distributed application.
+- Ensure interactions between multiple services and resources (such as databases) behave correctly in realistic conditions.
+- Confirm data persistence and integration with real external dependencies, like a PostgreSQL database.
+
+If your goal is to test a single project in isolation, run components in-memory, or mock external dependencies, consider using the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> instead.
+
+> [!NOTE]
+> .NET Aspire tests run your application as separate processes, meaning you won't have direct access to internal services or components from your test code. You can influence application behavior through environment variables or configuration settings, but internal state and services remain encapsulated within their respective processes.
 
 ## Disable port randomization
 
