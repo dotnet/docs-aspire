@@ -20,10 +20,11 @@ Consider the following diagram that helps illustrate how the .NET Aspire testing
 
 :::image type="content" source="media/testing-diagram-thumb.png" alt-text=".NET Aspire testing diagram" lightbox="media/testing-diagram.png":::
 
-The preceding diagram shows the following:
+1. The **test project** starts the app host.
+1. The **app host** process starts.
+1. The **app host** orchestrates the application and its resources.
 
-- The **test project** is responsible for starting the app host.
-- The **app host** is responsible for starting the applications and its resources.
+The diagram illustrates that the **test project** starts the app host, which then orchestrates the application and its resources. The test project can send an HTTP request to the frontend app, which depends on an API app. A successful request confirms that the frontend app can communicate with the API app.
 
 Use .NET Aspire testing when you want to:
 
