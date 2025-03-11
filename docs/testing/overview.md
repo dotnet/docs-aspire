@@ -16,6 +16,15 @@ To get started writing your first integration test with .NET Aspire, see the [Wr
 
 .NET Aspire's testing capabilities are designed specifically for black-box integration testing of your entire distributed application. Unlike unit tests or white-box integration tests, which typically run individual components in isolation, .NET Aspire testing launches your complete application as separate processes, closely simulating real-world scenarios.
 
+Consider the following diagram that helps illustrate how the .NET Aspire testing project is responsible for starting the app host, and then the app host is responsible for starting the application and its resources:
+
+:::image type="content" source="media/testing-diagram-thumb.png" alt-text=".NET Aspire testing diagram" lightbox="media/testing-diagram.png":::
+
+The preceding diagram shows the following:
+
+- The **test project** is responsible for starting the app host.
+- The **app host** is responsible for starting the applications and its resources.
+
 Use .NET Aspire testing when you want to:
 
 - Verify end-to-end functionality of your distributed application.
