@@ -273,25 +273,6 @@ app.Run();
 
 The preceding code configures the Azure SignalR Service using the `ServiceManagerBuilder` class. You might have noticed that it doesn't call `AddSignalR` nor does it call `MapHub`—this is intentional, as _Serverless_ mode doesn't require one. The connection string is read from the configuration key `ConnectionStrings:signalr`. When using the emulator, only the HTTP endpoint is available. Within the app, you can use the `ServiceManager` instance to create a `ServiceHubContext`. The `ServiceHubContext` is used to broadcast messages and manage connections to clients. For more information, see [Use Azure SignalR Management SDK](/azure/azure-signalr/signalr-howto-use-management-sdk).
 
-### Logging
-
-The integration uses the following log categories:
-
-- `Microsoft.Azure.SignalR`
-- `Azure.Core`
-- `Azure.Identity`
-
-### Tracing
-
-The integration emits tracing activities using OpenTelemetry:
-
-- `Azure.SignalR.*`
-- `Microsoft.Azure.SignalR.*`
-
-### Metrics
-
-Metrics are provided for monitoring connection counts, message throughput, and service health.
-
 ## See also
 
 - [Azure SignalR Service overview](/azure/azure-signalr/signalr-overview)
