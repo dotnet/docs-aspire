@@ -12,7 +12,7 @@ internal static partial class Program
                                             .OfType<WebPubSubService>()
                                             .Single();
 
-                webPubSubService.Sku.Name = "Standard_S5";
+                webPubSubService.Sku.Name = "Standard_S1";
                 webPubSubService.Sku.Capacity = 5;
                 webPubSubService.Tags.Add("ExampleKey", "Example value");
             });

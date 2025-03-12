@@ -16,7 +16,7 @@ ms.date: 03/10/2025
 The .NET Aspire [Azure Web PubSub](https://azure.microsoft.com/products/web-pubsub) hosting integration models the Web PubSub resources as the following types:
 
 - <xref:Aspire.Hosting.ApplicationModel.AzureWebPubSubResource>: Represents an Azure Web PubSub resource, including connection information to the underlying Azure resource.
-- <xref:Aspire.Hosting.ApplicationModel.AzureWebPubSubHubResource>: Represents a Web PubSub hub resource, which is a logical grouping of Web PubSub connections. The hub resource is used to group multiple Web PubSub connections together.
+- <xref:Aspire.Hosting.ApplicationModel.AzureWebPubSubHubResource>: Represents a Web PubSub hub settings resource, which contains the settings for a hub. For example, you can specify if the hub allows anonymous connections or add event handlers to the hub.
 
 To access these types and APIs for expressing them within your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.WebPubSub](https://www.nuget.org/packages/Aspire.Hosting.Azure.WebPubSub) NuGet package:
 
@@ -69,10 +69,6 @@ var worker = builder.AddProject<Projects.WorkerService>("worker")
 
 var webPubSub = builder.AddAzureWebPubSub("web-pubsub");
 var messagesHub = webPubSub.AddHub("messages");
-
-messagesHub.AddEventHandler(
-    $"{worker.GetEndpoint("https")}/eventhandler/",
-    systemEvents: ["connected"]);
 
 // After adding all resources, run the app...
 ```
@@ -129,10 +125,10 @@ The preceding code:
   - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
   - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
   - The single <xref:Azure.Provisioning.WebPubSub.WebPubSubService> resource is retrieved.
-  - The <xref:Azure.Provisioning.WebPubSub.WebPubSubService.Sku?displayProperty=nameWithType> object has its name and capacity properties set to `Standard_S5` and `5`, respectively.
+  - The <xref:Azure.Provisioning.WebPubSub.WebPubSubService.Sku?displayProperty=nameWithType> object has its name and capacity properties set to `Standard_S1` and `5`, respectively.
   - A tag is added to the Web PubSub resource with a key of `ExampleKey` and a value of `Example value`.
 
-There are many more configuration options available to customize the Web PubSub resource resource. For more information, see <xref:Azure.Provisioning.PostgreSql>. For more information, see [`Azure.Provisioning` customization](../azure/integrations-overview.md#azureprovisioning-customization).
+There are many more configuration options available to customize the Web PubSub resource resource. For more information, see <xref:Azure.Provisioning.WebPubSub>. For more information, see [`Azure.Provisioning` customization](../azure/integrations-overview.md#azureprovisioning-customization).
 
 ### Connect to an existing Azure Web PubSub instance
 
@@ -186,7 +182,7 @@ For more information, see [Add existing Azure resources with connection strings]
 
 ## Client integration
 
-To get started with the .NET Aspire Azure Web PubSub client integration, install the [📦 Aspire.Azure.Messaging.WebPubSub](https://www.nuget.org/packages/Aspire.Azure.Messaging.WebPubSub) NuGet package in the client-consuming project, that is, the project for the application that uses the Web PubSub client.
+To get started with the .NET Aspire Azure Web PubSub service client integration, install the [📦 Aspire.Azure.Messaging.WebPubSub](https://www.nuget.org/packages/Aspire.Azure.Messaging.WebPubSub) NuGet package in the application.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
