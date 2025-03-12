@@ -1,45 +1,64 @@
-﻿using Microsoft.Azure.SignalR.Management;
-
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
 builder.Services.AddProblemDetails();
 
-builder.Services.AddSignalR();
-builder.Services.AddSingleton(sp =>
+var isServerlessMode = builder.Configuration.GetValue<bool>("IS_SERVERLESS");
+
+if (isServerlessMode)
 {
-    return new ServiceManagerBuilder()
-        .WithOptions(options =>
-        {
-            options.ConnectionString = builder.Configuration.GetConnectionString("signalr");
-        })
-        .WithLoggerFactory(sp.GetRequiredService<ILoggerFactory>())
-        .BuildServiceManager();
-});
+    builder.Services.AddSingleton(sp =>
+    {
+        return new ServiceManagerBuilder()
+            .WithOptions(options =>
+            {
+                options.ConnectionString = builder.Configuration.GetConnectionString("signalr");
+            })
+            .WithLoggerFactory(sp.GetRequiredService<ILoggerFactory>())
+            .BuildServiceManager();
+    });
+}
+else
+{
+    builder.Services.AddSignalR()
+                    .AddNamedAzureSignalR("signalr");
+}
 
 var app = builder.Build();
 
 app.UseExceptionHandler();
 
-app.MapHub<ChatHub>(HubEndpoints.ChatHub);
-
-app.MapPost("/negotiate", async (ServiceManager serviceManager, string? userId) =>
+if (isServerlessMode)
 {
-    var healthy = await serviceManager.IsServiceHealthy(CancellationToken.None);
-    if (healthy is false)
+    app.MapPost("/negotiate", async (ServiceManager serviceManager, string? userId) =>
     {
-        return Results.Problem("SignalR service is not healthy.");
-    }
+        var healthy = await serviceManager.IsServiceHealthy(CancellationToken.None);
+        if (healthy is false)
+        {
+            return Results.Problem("SignalR service is not healthy.");
+        }
 
-    var hubContext = await serviceManager.CreateHubContextAsync(HubEndpoints.ChatHub, default);
-    var negotiateResponse = await hubContext.NegotiateAsync(new NegotiationOptions
-    {
-        UserId = userId ?? "user1"
+        var hubContext = await serviceManager.CreateHubContextAsync(HubEndpoints.ChatHubWithoutRouteSlash, CancellationToken.None);
+        var negotiateResponse = await hubContext.NegotiateAsync(new NegotiationOptions
+        {
+            UserId = userId ?? "user1"
+        });
+
+        return Results.Ok(negotiateResponse);
     });
 
-    return Results.Ok(negotiateResponse);
-});
+    var serviceManager = app.Services.GetRequiredService<ServiceManager>();
+    var context = await serviceManager.CreateHubContextAsync(HubEndpoints.ChatHubWithoutRouteSlash, CancellationToken.None);
+
+    await context.Clients.All.SendAsync(
+        HubEventNames.MessageReceived,
+        new UserMessage("server", "Started..."));
+}
+else
+{
+    app.MapHub<ChatHub>(HubEndpoints.ChatHub);
+}
 
 app.MapDefaultEndpoints();
 

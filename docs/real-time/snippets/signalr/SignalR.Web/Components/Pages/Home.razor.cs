@@ -47,7 +47,9 @@ public sealed partial class Home : IAsyncDisposable
 
     protected override async Task OnInitializedAsync()
     {
-        var api = Configuration.GetServiceHttpsUri("apiservice");
+        var api = Configuration.GetValue<bool>("IS_SERVERLESS")
+            ? Configuration.GetUriFromConnectionString("signalr")
+            : Configuration.GetServiceHttpsUri("apiservice");
 
         var builder = new UriBuilder(api)
         {
@@ -56,6 +58,7 @@ public sealed partial class Home : IAsyncDisposable
 
         _hubConnection = new HubConnectionBuilder()
             .WithUrl(builder.Uri)
+            .WithStatefulReconnect()
             .WithAutomaticReconnect()
             .Build();
 
@@ -70,7 +73,6 @@ public sealed partial class Home : IAsyncDisposable
         _hubRegistrations.Add(
             _hubConnection.On<UserAction>(
                 HubEventNames.UserTypingChanged, OnUserTypingAsync));
-
 
         await _hubConnection.StartAsync();
 
