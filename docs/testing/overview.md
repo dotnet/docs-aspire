@@ -27,6 +27,9 @@ Consider the following diagram that helps illustrate how the .NET Aspire testing
 
 The diagram illustrates that the **test project** starts the app host, which then orchestrates the all dependent app resources—regardless of their type. The test project is able to send an HTTP request to the `Frontend` app, which depends on an `API` app, and the `API` app depends on a `Database`. A successful request confirms that the `Frontend` app can communicate with the `API` app, and that the `API` app can successfully get data from the `Database`. For more information on seeing this approach in action, see the [Write your first .NET Aspire test](write-your-first-test.md) article.
 
+> [!IMPORTANT]
+> .NET Aspire tests don't allow you to mock services or apps.
+
 Use .NET Aspire testing when you want to:
 
 - Verify end-to-end functionality of your distributed application.
