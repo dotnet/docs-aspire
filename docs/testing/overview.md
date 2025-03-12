@@ -16,13 +16,13 @@ To get started writing your first integration test with .NET Aspire, see the [Wr
 
 .NET Aspire's testing capabilities are designed specifically for black-box integration testing of your entire distributed application. Unlike unit tests or white-box integration tests, which typically run individual components in isolation, .NET Aspire tests launch your complete solution (the app host and all its resources) as separate processes, closely simulating real-world scenarios.
 
-Consider the following diagram that helps illustrate how the .NET Aspire testing project is responsible for starting the app host, and then the app host is responsible for starting the application and its resources:
+Consider the following diagram that shows how the .NET Aspire testing project starts the app host, which then starts the application and its resources:
 
 :::image type="content" source="media/testing-diagram-thumb.png" alt-text=".NET Aspire testing diagram" lightbox="media/testing-diagram.png":::
 
 1. The **test project** starts the app host.
 1. The **app host** process starts.
-1. The **app host** runs the, `Database`, `API`, and `Frontend` applications.
+1. The **app host** runs the `Database`, `API`, and `Frontend` applications.
 1. The **test project** sends an HTTP request to the `Frontend` application.
 
 The diagram illustrates that the **test project** starts the app host, which then orchestrates the all dependent app resources—regardless of their type. The test project is able to send an HTTP request to the `Frontend` app, which depends on an `API` app, and the `API` app depends on a `Database`. A successful request confirms that the `Frontend` app can communicate with the `API` app, and that the `API` app can successfully get data from the `Database`. For more information on seeing this approach in action, see the [Write your first .NET Aspire test](write-your-first-test.md) article.
@@ -36,10 +36,10 @@ Use .NET Aspire testing when you want to:
 - Ensure interactions between multiple services and resources (such as databases) behave correctly in realistic conditions.
 - Confirm data persistence and integration with real external dependencies, like a PostgreSQL database.
 
-If your goal is to test a single project in isolation, run components in-memory, or mock external dependencies, consider using the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> instead.
+If your goal is to test a single project in isolation, run components in-memory, or mock external dependencies, consider using <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> instead.
 
 > [!NOTE]
-> .NET Aspire tests run your application as separate processes, meaning you won't have direct access to internal services or components from your test code. You can influence application behavior through environment variables or configuration settings, but internal state and services remain encapsulated within their respective processes.
+> .NET Aspire tests run your application as separate processes, meaning you don't have direct access to internal services or components from your test code. You can influence application behavior through environment variables or configuration settings, but internal state and services remain encapsulated within their respective processes.
 
 ## Disable port randomization
 
