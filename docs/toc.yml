@@ -124,7 +124,7 @@ items:
       href: database/sql-server-integrations.md
     - name: Connect to an external SQL Server database
       displayName: database, sql server, ef core
-      href: database/connect-to-external-database.md
+      href: database/connect-to-existing-database.md
     - name: Connect to storage
       href: storage/azure-storage-integrations.md
     - name: Messaging using .NET Aspire integrations
