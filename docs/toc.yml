@@ -194,7 +194,7 @@ items:
     - name: Overview
       href: frameworks/dapr.md
     - name: Dapr integration sample
-      href: /samples/dotnet/aspire-samples/aspire-dapr/
+      href: https://github.com/CommunityToolkit/Aspire/tree/main/examples/dapr
   - name: Elasticsearch
     displayName: elasticsearch,search
     href: search/elasticsearch-integration.md
