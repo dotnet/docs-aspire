@@ -1,4 +1,8 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Http.Connections;
+
+var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
@@ -6,7 +10,12 @@ builder.Services.AddProblemDetails();
 
 var isServerlessMode = builder.Configuration.GetValue<bool>("IS_SERVERLESS");
 
-if (isServerlessMode)
+if (!isServerlessMode)
+{
+    builder.Services.AddSignalR()
+                    .AddNamedAzureSignalR("signalr");
+}
+else
 {
     builder.Services.AddSingleton(sp =>
     {
@@ -19,41 +28,38 @@ if (isServerlessMode)
             .BuildServiceManager();
     });
 }
-else
-{
-    builder.Services.AddSignalR()
-                    .AddNamedAzureSignalR("signalr");
-}
-
 var app = builder.Build();
 
 app.UseExceptionHandler();
 
+var options = new JsonSerializerOptions(JsonSerializerDefaults.Web)
+{
+    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+};
+
 if (isServerlessMode)
 {
-    app.MapPost("/negotiate", async (ServiceManager serviceManager, string? userId) =>
+    app.MapPost("/chathub/negotiate", async (ServiceManager sm, ILogger<Program> logger) =>
     {
-        var healthy = await serviceManager.IsServiceHealthy(CancellationToken.None);
-        if (healthy is false)
-        {
-            return Results.Problem("SignalR service is not healthy.");
-        }
+        var hubContext = await sm.CreateHubContextAsync("chathub", CancellationToken.None);
 
-        var hubContext = await serviceManager.CreateHubContextAsync(HubEndpoints.ChatHubWithoutRouteSlash, CancellationToken.None);
-        var negotiateResponse = await hubContext.NegotiateAsync(new NegotiationOptions
+        NegotiationResponse negotiateResponse = await hubContext.NegotiateAsync();
+
+        return Results.Json(negotiateResponse, new JsonSerializerOptions(JsonSerializerDefaults.Web)
         {
-            UserId = userId ?? "user1"
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         });
-
-        return Results.Ok(negotiateResponse);
     });
 
-    var serviceManager = app.Services.GetRequiredService<ServiceManager>();
-    var context = await serviceManager.CreateHubContextAsync(HubEndpoints.ChatHubWithoutRouteSlash, CancellationToken.None);
+    // try in the command line `CURL -X POST https://localhost:53282/broadcast` to broadcast messages to the clients
+    app.MapPost("/broadcast", async (ServiceManager sm) =>
+    {
+        var hubContext = await sm.CreateHubContextAsync("chathub", CancellationToken.None);
 
-    await context.Clients.All.SendAsync(
-        HubEventNames.MessageReceived,
-        new UserMessage("server", "Started..."));
+        await hubContext.Clients.All.SendAsync(
+            HubEventNames.MessageReceived,
+            new UserMessage("server", "Started..."));
+    });
 }
 else
 {
