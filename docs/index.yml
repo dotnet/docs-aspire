@@ -247,7 +247,6 @@ conceptualContent:
     - itemType: training
       text: Send messages with RabbitMQ in a .NET Aspire project
       url: /training/modules/send-messages-rabbitmq-dotnet-aspire-app/
-    - itemType: architecture
 
 additionalContent:
   sections:
