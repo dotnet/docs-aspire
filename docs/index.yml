@@ -180,7 +180,7 @@ conceptualContent:
       url: frameworks/dapr.md
     - itemType: sample
       text: Dapr integration sample
-      url: /samples/dotnet/aspire-samples/aspire-dapr/
+      url: https://github.com/CommunityToolkit/Aspire/tree/main/examples/dapr
 
   - title: Deployment
     links:
