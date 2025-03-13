@@ -248,8 +248,6 @@ conceptualContent:
       text: Send messages with RabbitMQ in a .NET Aspire project
       url: /training/modules/send-messages-rabbitmq-dotnet-aspire-app/
     - itemType: architecture
-      text: .NET Aspire Credential (Applied Skill)
-      url: /credentials/applied-skills/build-distributed-apps-with-dotnet-aspire/
 
 additionalContent:
   sections:

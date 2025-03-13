@@ -419,8 +419,6 @@ items:
   items:
   - name: .NET Aspire
     href: https://github.com/dotnet/aspire
-  - name: .NET Aspire Credential
-    href: /credentials/applied-skills/build-distributed-apps-with-dotnet-aspire/
   - name: .NET Aspire samples
     href: https://github.com/dotnet/aspire-samples
   - name: .NET Aspire samples browser
