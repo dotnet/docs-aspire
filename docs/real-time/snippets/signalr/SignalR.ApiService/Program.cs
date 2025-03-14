@@ -1,12 +1,11 @@
-﻿using System.Text.Json;
-using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Http.Connections;
-
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
+builder.Services.AddMemoryCache();
+builder.Services.AddSingleton<ServiceHubContextFactory>();
 builder.Services.AddProblemDetails();
+builder.Services.AddOpenApi();
 
 var isServerlessMode = builder.Configuration.GetValue<bool>("IS_SERVERLESS");
 
@@ -30,6 +29,12 @@ else
 }
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+    app.MapScalarApiReference(_ => _.Servers = []);
+}
+
 app.UseExceptionHandler();
 
 var options = new JsonSerializerOptions(JsonSerializerDefaults.Web)
@@ -39,11 +44,14 @@ var options = new JsonSerializerOptions(JsonSerializerDefaults.Web)
 
 if (isServerlessMode)
 {
-    app.MapPost("/chathub/negotiate", async (ServiceManager sm, ILogger<Program> logger) =>
+    app.MapPost("/chathub/negotiate", async (string? userId, ServiceHubContextFactory factory) =>
     {
-        var hubContext = await sm.CreateHubContextAsync("chathub", CancellationToken.None);
+        var hubContext = await factory.GetOrCreateHubContextAsync("chathub", CancellationToken.None);
 
-        NegotiationResponse negotiateResponse = await hubContext.NegotiateAsync();
+        NegotiationResponse negotiateResponse = await hubContext.NegotiateAsync(new()
+        {
+            UserId = userId ?? "user-1",
+        });
 
         return Results.Json(negotiateResponse, new JsonSerializerOptions(JsonSerializerDefaults.Web)
         {
@@ -52,9 +60,9 @@ if (isServerlessMode)
     });
 
     // try in the command line `CURL -X POST https://localhost:53282/broadcast` to broadcast messages to the clients
-    app.MapPost("/broadcast", async (ServiceManager sm) =>
+    app.MapPost("/chathub/broadcast", async (ServiceHubContextFactory factory) =>
     {
-        var hubContext = await sm.CreateHubContextAsync("chathub", CancellationToken.None);
+        var hubContext = await factory.GetOrCreateHubContextAsync("chathub", CancellationToken.None);
 
         await hubContext.Clients.All.SendAsync(
             HubEventNames.MessageReceived,

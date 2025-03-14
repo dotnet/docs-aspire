@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure SignalR Service integration
 description: Learn how to integrate Azure SignalR Service with .NET Aspire.
-ms.date: 03/07/2025
+ms.date: 03/14/2025
 ---
 
 # .NET Aspire Azure SignalR Service integration
@@ -48,8 +48,8 @@ var builder = DistributedApplication.CreateBuilder(args);
 var signalR = builder.AddAzureSignalR("signalr");
 
 var api = builder.AddProject<Projects.ApiService>("api")
-                .WithReference(signalR)
-                .WaitFor(signalR);
+                 .WithReference(signalR)
+                 .WaitFor(signalR);
 
 builder.AddProject<Projects.WebApp>("webapp")
        .WithReference(api)
@@ -63,6 +63,8 @@ In the preceding example:
 - An Azure SignalR Service resource named `signalr` is added.
 - The `signalr` resource is referenced by the `api` project.
 - The `api` project is referenced by the `webapp` project.
+
+This architecture allows the `webapp` project to communicate with the `api` project, which in turn communicates with the Azure SignalR Service resource.
 
 > [!IMPORTANT]
 > Calling `AddAzureSignalR` implicitly enables Azure provisioning support. Ensure your app host is configured with the appropriate Azure subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration).
@@ -245,13 +247,13 @@ dotnet add package Microsoft.Azure.SignalR.Management
 
 ---
 
-Azure SignalR _Serverless_ mode doesn't require a hub server to be running, which is why this mode is named "serverless". The Azure SignalR Service is responsible for maintaining client connections. Consider the following diagram that illustrates the architecture of Azure SignalR Service in _Serverless_ mode:
+Azure SignalR _Serverless_ mode doesn't require a hub server to be running, which is why this mode is named "serverless". The Azure SignalR Service is responsible for maintaining client connections. Additionally, in this mode, your limited to broadcast only—meaning that messages can be broadcast from a `ServiceHubContext` but not a traditional <xref:Microsoft.AspNetCore.SignalR.Hub>, <xref:Microsoft.AspNetCore.SignalR.Hub`1>, or <xref:Microsoft.AspNetCore.SignalR.IHubContext`1>. Consider the following diagram that illustrates the architecture of Azure SignalR Service in _Serverless_ mode:
 
 :::image type="content" source="media/serverless-mode-thumb.png" alt-text="Azure SignalR Service: Serverless mode diagram." lightbox="media/serverless-mode.png":::
 
 For more information on _Serverless_ mode, see [Azure SignalR Service: Serverless mode](/azure/azure-signalr/concept-service-mode#serverless-mode).
 
-In a project that's intended to communicate with the Azure SignalR Service, register the appropriate services by calling <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR*> and then registering the `ServiceManager` using the `signalr` connection string:
+In a project that's intended to communicate with the Azure SignalR Service, register the appropriate services by calling <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR*> and then registering the `ServiceManager` using the `signalr` connection string and add a `/negotiate` endpoint:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -268,10 +270,33 @@ builder.Services.AddSingleton(sp =>
 
 var app = builder.Build();
 
+app.MapPost("/negotiate", async (string? userId, ServiceManager sm, CancellationToken token) =>
+{
+    // The creation of the ServiceHubContext is expensive, so it's recommended to 
+    // only create it once per named context / per app run if possible.
+    var context = await sm.CreateHubContextAsync("messages", token);
+    
+    NegotiationResponse negotiateResponse = await n.NegotiateAsync(new NegotiationOptions
+    {
+        UserId = userId,
+        ClientType = ClientType.JavaScript,
+        HubName = "messages"
+    }, token);
+    
+    return Results.Json(negotiateResponse, new JsonSerializerOptions(JsonSerializerDefaults.Web)
+    {
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+    });
+});
+
 app.Run();
 ```
 
-The preceding code configures the Azure SignalR Service using the `ServiceManagerBuilder` class. You might have noticed that it doesn't call `AddSignalR` nor does it call `MapHub`—this is intentional, as _Serverless_ mode doesn't require one. The connection string is read from the configuration key `ConnectionStrings:signalr`. When using the emulator, only the HTTP endpoint is available. Within the app, you can use the `ServiceManager` instance to create a `ServiceHubContext`. The `ServiceHubContext` is used to broadcast messages and manage connections to clients. For more information, see [Use Azure SignalR Management SDK](/azure/azure-signalr/signalr-howto-use-management-sdk).
+The preceding code configures the Azure SignalR Service using the `ServiceManagerBuilder` class. You might have noticed that it doesn't call `AddSignalR` nor does it call `MapHub`—this is intentional, as _Serverless_ mode doesn't require one. The connection string is read from the configuration key `ConnectionStrings:signalr`. When using the emulator, only the HTTP endpoint is available. Within the app, you can use the `ServiceManager` instance to create a `ServiceHubContext`. The `ServiceHubContext` is used to broadcast messages and manage connections to clients.
+
+The `/negotiate` endpoint is required to establish a connection between the connecting client and the Azure SignalR Service. The `ServiceHubContext` is created using the `ServiceManager.CreateHubContextAsync` method, which takes the hub name as a parameter. The `NegotiateAsync` method is called to negotiate the connection with the Azure SignalR Service, which returns an access token and the URL for the client to connect to.
+
+For more information, see [Use Azure SignalR Management SDK](/azure/azure-signalr/signalr-howto-use-management-sdk).
 
 ## See also
 
