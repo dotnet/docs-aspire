@@ -36,6 +36,11 @@ builder.AddAzureSqlServer("sql");
 
 builder.AddAzureStorage("storage");
 
-builder.AddAzureWebPubSub("web-pub-sub");
+var worker = builder.AddProject<Projects.WorkerService>("wrkr")
+    .WithExternalHttpEndpoints();
+
+var webPubSub = builder.AddAzureWebPubSub("web-pubsub");
+var messagesHub = webPubSub.AddHub("messages");
+messagesHub.AddEventHandler($"{worker.GetEndpoint("https")}/eventhandler/", systemEvents: ["connected"]);
 
 builder.Build().Run();

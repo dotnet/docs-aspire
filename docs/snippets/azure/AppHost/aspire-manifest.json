@@ -139,11 +139,21 @@
         "principalId": ""
       }
     },
-    "web-pub-sub": {
+    "wrkr": {
+      "type": "project.v0",
+      "path": "../WorkerService/WorkerService.csproj",
+      "env": {
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY": "in_memory"
+      }
+    },
+    "web-pubsub": {
       "type": "azure.bicep.v0",
-      "connectionString": "{web-pub-sub.outputs.endpoint}",
-      "path": "web-pub-sub.module.bicep",
+      "connectionString": "{web-pubsub.outputs.endpoint}",
+      "path": "web-pubsub.module.bicep",
       "params": {
+        "messages_url_0": "{wrkr.bindings.https.url}/eventhandler/",
         "principalType": "",
         "principalId": ""
       }
