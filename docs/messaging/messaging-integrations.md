@@ -117,7 +117,7 @@ Visual Studio tooling added this line of code to register your new project with 
 1. Choose the **Worker Service** template and enter the project name as **AspireSample.WorkerService**.
 1. Select **Default directory** to create the project in the same directory as the solution.
 1. Select **Create project** to add the project to the solution.
-1. Right-click on the **AspireSample.AppHost** project in the **Solution Explorer** and select **Add Project Reference**:
+1. Right-click on the **AspireSample.AppHost** project in the **Solution Explorer**, select **Add Project Reference** and then select **AspireSample.WorkerService**:
 
     :::image type="content" source="media/vscode-add-project-reference.png" lightbox="media/vscode-add-project-reference.png" alt-text="Visual Studio Code: Add project reference from AspireSample.AppHost to AspireSample.WorkerService.":::
 
