@@ -180,7 +180,7 @@ conceptualContent:
       url: frameworks/dapr.md
     - itemType: sample
       text: Dapr integration sample
-      url: /samples/dotnet/aspire-samples/aspire-dapr/
+      url: https://github.com/CommunityToolkit/Aspire/tree/main/examples/dapr
 
   - title: Deployment
     links:
@@ -247,9 +247,6 @@ conceptualContent:
     - itemType: training
       text: Send messages with RabbitMQ in a .NET Aspire project
       url: /training/modules/send-messages-rabbitmq-dotnet-aspire-app/
-    - itemType: architecture
-      text: .NET Aspire Credential (Applied Skill)
-      url: /credentials/applied-skills/build-distributed-apps-with-dotnet-aspire/
 
 additionalContent:
   sections:

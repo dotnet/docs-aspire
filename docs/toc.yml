@@ -194,7 +194,7 @@ items:
     - name: Overview
       href: frameworks/dapr.md
     - name: Dapr integration sample
-      href: /samples/dotnet/aspire-samples/aspire-dapr/
+      href: https://github.com/CommunityToolkit/Aspire/tree/main/examples/dapr
   - name: Elasticsearch
     displayName: elasticsearch,search
     href: search/elasticsearch-integration.md
@@ -419,8 +419,6 @@ items:
   items:
   - name: .NET Aspire
     href: https://github.com/dotnet/aspire
-  - name: .NET Aspire Credential
-    href: /credentials/applied-skills/build-distributed-apps-with-dotnet-aspire/
   - name: .NET Aspire samples
     href: https://github.com/dotnet/aspire-samples
   - name: .NET Aspire samples browser
