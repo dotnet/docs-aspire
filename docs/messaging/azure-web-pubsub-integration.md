@@ -3,6 +3,7 @@ title: .NET Aspire Azure Web PubSub integration
 description: This article describes the .NET Aspire Azure Web PubSub integration features and capabilities.
 ms.topic: how-to
 ms.date: 03/10/2025
+no-loc: ["Web PubSub"]
 ---
 
 # .NET Aspire Azure Web PubSub integration
@@ -95,7 +96,9 @@ The preceding code adds a worker service project named `worker` with an external
 
 #### Generated provisioning Bicep
 
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Web PubSub resource, the following Bicep is generated:
+When you publish your app, .NET Aspire provisioning APIs generate Bicep alongside the manifest file. Bicep is a domain-specific language for defining Azure resources. For more information, see [Bicep Overview](/azure/azure-resource-manager/bicep/overview).
+
+When you add an Azure Web PubSub resource, the following Bicep is generated:
 
 :::code language="bicep" source="../snippets/azure/AppHost/web-pubsub.module.bicep":::
 
@@ -128,7 +131,7 @@ The preceding code:
   - The <xref:Azure.Provisioning.WebPubSub.WebPubSubService.Sku?displayProperty=nameWithType> object has its name and capacity properties set to `Standard_S1` and `5`, respectively.
   - A tag is added to the Web PubSub resource with a key of `ExampleKey` and a value of `Example value`.
 
-There are many more configuration options available to customize the Web PubSub resource resource. For more information, see <xref:Azure.Provisioning.WebPubSub>. For more information, see [`Azure.Provisioning` customization](../azure/integrations-overview.md#azureprovisioning-customization).
+There are many more configuration options available to customize the Web PubSub resource. For more information, see <xref:Azure.Provisioning.WebPubSub>. For more information, see [`Azure.Provisioning` customization](../azure/integrations-overview.md#azureprovisioning-customization).
 
 ### Connect to an existing Azure Web PubSub instance
 
