@@ -184,7 +184,7 @@ For more information, see [Add existing Azure resources with connection strings]
 
 ## Client integration
 
-To get started with the .NET Aspire Azure Web PubSub service client integration, install the [📦 Aspire.Azure.Messaging.WebPubSub](https://www.nuget.org/packages/Aspire.Azure.Messaging.WebPubSub) NuGet package in the application.
+The .NET Aspire Azure Web PubSub client integration is used to connect to an Azure Web PubSub service using the <xref:Azure.Messaging.WebPubSub.WebPubSubServiceClient>. To get started with the .NET Aspire Azure Web PubSub service client integration, install the [📦 Aspire.Azure.Messaging.WebPubSub](https://www.nuget.org/packages/Aspire.Azure.Messaging.WebPubSub) NuGet package in the application.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
