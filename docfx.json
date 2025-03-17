@@ -190,6 +190,7 @@
           "Visual Studio",
           "Vue",
           "WASM",
+          "Web PubSub",
           "Worker Service"
         ]
       }

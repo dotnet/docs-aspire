@@ -2,8 +2,7 @@
 title: .NET Aspire Azure Web PubSub integration
 description: This article describes the .NET Aspire Azure Web PubSub integration features and capabilities.
 ms.topic: how-to
-ms.date: 03/10/2025
-no-loc: ["Web PubSub"]
+ms.date: 03/17/2025
 ---
 
 # .NET Aspire Azure Web PubSub integration
@@ -114,7 +113,7 @@ The preceding Bicep is a module that provisions an Azure Web PubSub resource wit
 - `web_pubsub_WebPubSubServiceOwner`: The role assignment for the Web PubSub resource owner. For more information, see [Azure Web PubSub Service Owner](/azure/role-based-access-control/built-in-roles/web-and-mobile#web-pubsub-service-owner).
 - `endpoint`: The endpoint of the Web PubSub resource.
 
-The generated Bicep is a starting point and can be customized to meet your specific requirements.
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 

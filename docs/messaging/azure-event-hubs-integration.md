@@ -76,7 +76,7 @@ The preceding Bicep is a module that provisions an Azure Event Hubs resource wit
 - `messages`: The Event Hub resource.
 - `eventHubsEndpoint`: The endpoint of the Event Hubs resource.
 
-The generated Bicep is a starting point and can be customized to meet your specific requirements.
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 
