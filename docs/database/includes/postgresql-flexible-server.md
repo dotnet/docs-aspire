@@ -73,7 +73,7 @@ The preceding Bicep is a module that provisions an Azure PostgreSQL flexible ser
 - `sku`: The SKU of the PostgreSQL server. The default is `Standard_B1ms`.
 - `tags`: The tags of the PostgreSQL server. The default is `aspire-resource-name` set to the name of the Aspire resource, in this case `postgres-flexible`.
 
-In addition to the PostgreSQL flexible server, it also provisions an Azure Firewall rule to allow all Azure IP addresses. Finally, an administrator is created for the PostgreSQL server, and the connection string is outputted as an output variable. The generated Bicep is a starting point and can be customized to meet your specific requirements.
+In addition to the PostgreSQL flexible server, it also provisions an Azure Firewall rule to allow all Azure IP addresses. Finally, an administrator is created for the PostgreSQL server, and the connection string is outputted as an output variable. The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 
