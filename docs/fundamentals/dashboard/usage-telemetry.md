@@ -20,10 +20,10 @@ Telemetry is collected only when the Aspire dashboard is open in the browser and
 
 To opt out, you may either:
 
-- Uncheck the "Enable dashboard telemetry" setting in the Aspire dashboard settings page. This setting will apply to the current browser and is saved in browser localStorage.
 - Set the `DOTNET_DASHBOARD_ENABLE_TELEMETRY` environment variable to `false`. This will apply to all users accessing the Aspire dashboard.
+- Disable telemetry collection in the host IDE.
 
-#### Configure OTLP HTTP with app host
+#### Disclosure
 
 If the dashboard and your app are started by the app host, the dashboard OTLP endpoints are configured in the app host's _launchSettings.json_ file.
 
