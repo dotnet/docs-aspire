@@ -27,6 +27,8 @@ To opt out, you may either:
 
 If dashboard telemetry is enabled, there will be a disclosure statement at the bottom of the settings panel informing that telemetry is enabled. This statement will appear any time telemetry collection is enabled.
 
+:::image type="content" source="media/explore/dashboard-settings-drawer.png" lightbox="media/explore/dashboard-settings-drawer.png" alt-text="A screenshot of the .NET Aspire dashboard settings drawer.":::
+
 ## Data points
 
 Aspire dashboard telemetry does not collect personal data like IP addresses or use browser fingerprinting. It does not scan your code and does not extract source code, authorship, or deployment configuration. The data is sent securely to Microsoft using [https://azure.microsoft.com/services/monitor/](Azure Monitor) through existing telemetry APIs in Visual Studio and Visual Studio Code.
