@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure SignalR Service integration
 description: Learn how to integrate Azure SignalR Service with .NET Aspire.
-ms.date: 03/14/2025
+ms.date: 03/18/2025
 ---
 
 # .NET Aspire Azure SignalR Service integration
@@ -247,7 +247,7 @@ dotnet add package Microsoft.Azure.SignalR.Management
 
 ---
 
-Azure SignalR _Serverless_ mode doesn't require a hub server to be running, which is why this mode is named "serverless". The Azure SignalR Service is responsible for maintaining client connections. Additionally, in this mode, your limited to broadcast only—meaning that messages can be broadcast from a `ServiceHubContext` but not a traditional <xref:Microsoft.AspNetCore.SignalR.Hub>, <xref:Microsoft.AspNetCore.SignalR.Hub`1>, or <xref:Microsoft.AspNetCore.SignalR.IHubContext`1>. Consider the following diagram that illustrates the architecture of Azure SignalR Service in _Serverless_ mode:
+Azure SignalR _Serverless_ mode doesn't require a hub server to be running, which is why this mode is named "serverless". The Azure SignalR Service is responsible for maintaining client connections. Additionally, in this mode, you cannot use traditional <xref:Microsoft.AspNetCore.SignalR.Hub>, <xref:Microsoft.AspNetCore.SignalR.Hub`1>, or <xref:Microsoft.AspNetCore.SignalR.IHubContext`1>. Instead, you have to [configure an upstream endpoint which is usually an Azure Function SignalR trigger](/azure/azure-signalr/concept-upstream). Consider the following diagram that illustrates the architecture of Azure SignalR Service in _Serverless_ mode:
 
 :::image type="content" source="media/serverless-mode-thumb.png" alt-text="Azure SignalR Service: Serverless mode diagram." lightbox="media/serverless-mode.png":::
 
@@ -276,13 +276,15 @@ app.MapPost("/negotiate", async (string? userId, ServiceManager sm, Cancellation
     // only create it once per named context / per app run if possible.
     var context = await sm.CreateHubContextAsync("messages", token);
     
-    NegotiationResponse negotiateResponse = await n.NegotiateAsync(new NegotiationOptions
+    var negotiateResponse = await context.NegotiateAsync(new NegotiationOptions
     {
-        UserId = userId,
-        ClientType = ClientType.JavaScript,
-        HubName = "messages"
+        UserId = userId
     }, token);
     
+    // The JSON serializer options need to be set to ignore null values, otherwise the
+    // response will contain null values for the properties that are not set.
+    // The .NET SignalR client will not be able to parse the response if the null values are present.
+    // For more information, see https://github.com/dotnet/aspnetcore/issues/60935.
     return Results.Json(negotiateResponse, new JsonSerializerOptions(JsonSerializerDefaults.Web)
     {
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
