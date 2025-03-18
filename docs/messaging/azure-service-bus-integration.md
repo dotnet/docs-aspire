@@ -229,7 +229,7 @@ The preceding code configures the Service Bus emulator container's existing `emu
 
 ##### Configure Service Bus emulator container JSON configuration
 
-The Service Bus emulator container runs with a default [_config.json_](https://github.com/Azure/azure-service-bus-emulator-installer/blob/main/ServiceBus-Emulator/Config/Config.json) file. You can override this file entirely, or update the JSON configuration with a <xref:System.Text.Json.Nodes.JsonNode> representation of the configuration.
+The Service Bus emulator automatically generates a configration similar to this [_config.json_](https://github.com/Azure/azure-service-bus-emulator-installer/blob/main/ServiceBus-Emulator/Config/Config.json) file from the configured resources. You can override this generated file entirely, or update the JSON configuration with a <xref:System.Text.Json.Nodes.JsonNode> representation of the configuration.
 
 To provide a custom JSON configuration file, call the <xref:Aspire.Hosting.AzureServiceBusExtensions.WithConfigurationFile(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusEmulatorResource},System.String)> method:
 
