@@ -84,7 +84,7 @@ The preceding Bicep is a module that provisions an Azure Key Vault resource with
   - `scope`: The scope of the role assignment.
 - `output`: The Azure Key Vault URI.
 
-The generated Bicep is a starting point and can be customized to meet your specific requirements.
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 

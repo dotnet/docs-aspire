@@ -55,7 +55,7 @@ The preceding Bicep is a module that provisions an Azure Cosmos DB account with 
 - `consistencyPolicy`: The consistency policy of the Cosmos DB account. The default is `Session`.
 - `locations`: The locations for the Cosmos DB account. The default is the resource group's location.
 
-In addition to the Cosmos DB account, it also adds the current application to the `Data Contributor` role for the Cosmos DB account. The generated Bicep is a starting point and can be customized to meet your specific requirements.
+In addition to the Cosmos DB account, it also adds the current application to the `Data Contributor` role for the Cosmos DB account. The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 
