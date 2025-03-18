@@ -84,7 +84,7 @@ The preceding Bicep is a module that provisions an Azure Key Vault resource with
   - `scope`: The scope of the role assignment.
 - `output`: The Azure Key Vault URI.
 
-The generated Bicep is a starting point and can be customized to meet your specific requirements.
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 
@@ -277,7 +277,7 @@ The .NET Aspire Azure Key Vault integration supports <xref:Microsoft.Extensions.
 }
 ```
 
-For the complete Azure Key Vault client integration JSON schema, see [Aspire.Azure.Security.KeyVault/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Azure.Security.KeyVault/ConfigurationSchema.json).
+For the complete Azure Key Vault client integration JSON schema, see [Aspire.Azure.Security.KeyVault/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Security.KeyVault/ConfigurationSchema.json).
 
 If you have set up your configurations in the `Aspire:Azure:Security:KeyVault` section of your _:::no-loc text="appsettings.json":::_ file you can just call the method `AddAzureKeyVaultSecrets` without passing any parameters.
 

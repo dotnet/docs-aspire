@@ -1,7 +1,7 @@
 ---
 title: Azure integrations overview
 description: Overview of the Azure integrations available in the .NET Aspire.
-ms.date: 02/25/2025
+ms.date: 03/07/2025
 uid: dotnet/aspire/integrations/azure-overview
 ---
 
@@ -34,7 +34,7 @@ Some Azure services can be emulated to run locally. Currently, .NET Aspire suppo
 To have your Azure resources use the local emulators, chain a call the `RunAsEmulator` method on the Azure resource builder. This method configures the Azure resource to use the local emulator instead of the actual Azure service.
 
 > [!IMPORTANT]
-> Calling any of the available `RunAsEmulator` APIs on an Azure resource builder doesn't impact the [publishing manifest](../deployment/manifest-format.md). When you publish your app, [generated Bicep file](#infrastructure-as-code) reflects the actual Azure service, not the local emulator.
+> Calling any of the available `RunAsEmulator` APIs on an Azure resource builder doesn't effect the [publishing manifest](../deployment/manifest-format.md). When you publish your app, [generated Bicep file](#infrastructure-as-code) reflects the actual Azure service, not the local emulator.
 
 ### Local containers
 
@@ -49,7 +49,7 @@ Currently, .NET Aspire supports the following Azure services as containers:
 | Azure SQL Server | Call <xref:Aspire.Hosting.AzureSqlExtensions.RunAsContainer*?displayProperty=nameWithType> on the `IResourceBuilder<AzureSqlServerResource>` to configure it to run locally in a container, based on the `mcr.microsoft.com/mssql/server` image. |
 
 > [!NOTE]
-> Like emulators, calling `RunAsContainer` on an Azure resource builder doesn't impact the [publishing manifest](../deployment/manifest-format.md). When you publish your app, the [generated Bicep file](#infrastructure-as-code) reflects the actual Azure service, not the local container.
+> Like emulators, calling `RunAsContainer` on an Azure resource builder doesn't effect the [publishing manifest](../deployment/manifest-format.md). When you publish your app, the [generated Bicep file](#infrastructure-as-code) reflects the actual Azure service, not the local container.
 
 ### Understand Azure integration APIs
 
@@ -77,7 +77,7 @@ For more information on the difference between run and publish modes, see [.NET 
 
 ### APIs for expressing Azure resources in different modes
 
-The distributed application builder, part of the [app host](../fundamentals/app-host-overview.md), uses the builder pattern to `AddAzure*` resources to the [_app model_](../fundamentals/app-host-overview.md#terminology). Developers can configure these resources and define their behavior in different execution contexts. Azure hosting integrations provide APIs to specify how these resources should be "published" and "run".
+The distributed application builder, part of the [app host](../fundamentals/app-host-overview.md), uses the builder pattern to `AddAzure*` resources to the [_app model_](../fundamentals/app-host-overview.md#terminology). Developers can configure these resources and define their behavior in different execution contexts. Azure hosting integrations provide APIs to specify how these resources should be "published" and "run."
 
 When the app host executes, the [_execution context_](../fundamentals/app-host-overview.md#execution-context) is used to determine whether the app host is in <xref:Aspire.Hosting.DistributedApplicationOperation.Run> or <xref:Aspire.Hosting.DistributedApplicationOperation.Publish> mode. The naming conventions for these APIs indicate the intended action for the resource.
 
@@ -85,12 +85,12 @@ The following table summarizes the naming conventions used to express Azure reso
 
 | Operation | API | Description |
 |--|--|--|
-| Publish | `PublishAsConnectionString` | Changes the resource to be published as a connection string reference in the manifest. |
-| Publish | `PublishAsExisting` | Uses an existing Azure resource when the application is deployed instead of creating a new one. |
-| Run | `RunAsContainer` | Configures an equivalent container to run locally. For more information, see [Local containers](#local-containers). |
-| Run | `RunAsEmulator` | Configures the Azure resource to be emulated. For more information, see [Local emulators](#local-emulators). |
-| Run | `RunAsExisting` | Uses an existing resource when the application is running instead of creating a new one. |
-| Publish and Run | `AsExisting` | Uses an existing resource regardless of the operation. |
+| Publish | <xref:Aspire.Hosting.AzureResourceExtensions.PublishAsConnectionString``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0})> | Changes the resource to be published as a connection string reference in the manifest. |
+| Publish | <xref:Aspire.Hosting.ExistingAzureResourceExtensions.PublishAsExisting*> | Uses an existing Azure resource when the application is deployed instead of creating a new one. |
+| Run | <xref:Aspire.Hosting.AzureSqlExtensions.RunAsContainer(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureSqlServerResource},System.Action{Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.SqlServerServerResource}})?displayProperty=nameWithType> <br/> <xref:Aspire.Hosting.AzureRedisExtensions.RunAsContainer(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureRedisCacheResource},System.Action{Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.RedisResource}})?displayProperty=nameWithType> <br/> <xref:Aspire.Hosting.AzurePostgresExtensions.RunAsContainer(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzurePostgresFlexibleServerResource},System.Action{Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.PostgresServerResource}})> | Configures an equivalent container to run locally. For more information, see [Local containers](#local-containers). |
+| Run | <xref:Aspire.Hosting.AzureCosmosExtensions.RunAsEmulator(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.AzureCosmosDBResource},System.Action{Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureCosmosDBEmulatorResource}})?displayProperty=nameWithType> <br/> <xref:Aspire.Hosting.AzureSignalRExtensions.RunAsEmulator(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.AzureSignalRResource},System.Action{Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureSignalREmulatorResource}})?displayProperty=nameWithType> <br/> <xref:Aspire.Hosting.AzureStorageExtensions.RunAsEmulator(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureStorageResource},System.Action{Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureStorageEmulatorResource}})?displayProperty=nameWithType> <br/> <xref:Aspire.Hosting.AzureEventHubsExtensions.RunAsEmulator(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureEventHubsResource},System.Action{Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureEventHubsEmulatorResource}})?displayProperty=nameWithType> <br/> <xref:Aspire.Hosting.AzureServiceBusExtensions.RunAsEmulator(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},System.Action{Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusEmulatorResource}})?displayProperty=nameWithType> | Configures the Azure resource to be emulated. For more information, see [Local emulators](#local-emulators). |
+| Run | <xref:Aspire.Hosting.ExistingAzureResourceExtensions.RunAsExisting*> | Uses an existing resource when the application is running instead of creating a new one. |
+| Publish and Run | <xref:Aspire.Hosting.ExistingAzureResourceExtensions.AsExisting``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource})> | Uses an existing resource regardless of the operation. |
 
 > [!NOTE]
 > Not all APIs are available on all Azure resources. For example, some Azure resources can be containerized or emulated, while others can't.
@@ -216,7 +216,7 @@ resource queue 'Microsoft.ServiceBus/namespaces/queues@2024-01-01' = {
 output serviceBusEndpoint string = messaging.properties.serviceBusEndpoint
 ```
 
-For more information on the generated Bicep template, see [Infrastructure as code](#infrastructure-as-code).
+For more information on the generated Bicep templates, see [Infrastructure as code](#infrastructure-as-code) and [consider other publishing APIs](#publish-as-azure-container-app).
 
 > [!WARNING]
 > When interacting with existing resources that require authentication, ensure the authentication strategy that you're configuring in the .NET Aspire application model aligns with the authentication strategy allowed by the existing resource. For example, it's not possible to use managed identity against an existing Azure PostgreSQL resource that isn't configured to allow managed identity. Similarly, if an existing Azure Redis resource disabled access keys, it's not possible to use access key authentication.
@@ -278,7 +278,50 @@ The preceding code:
 
 The consuming API project uses the connection string information with no knowledge of how the app host configured it. In "publish" mode, the code adds a new Azure Storage resource—which would be reflected in the [deployment manifest](../deployment/manifest-format.md) accordingly. When in "run" mode the connection string corresponds to a configuration value visible to the app host. It's assumed that all role assignments for the target resource are configured. This means, you'd likely configure an environment variable or a user secret to store the connection string. The configuration is resolved from the `ConnectionStrings__storage` (or `ConnectionStrings:storage`) configuration key. These configuration values can be viewed when the app runs. For more information, see [Resource details](../fundamentals/dashboard/explore.md#resource-details).
 
-Unlike existing resources modeled with [the first-class `AsExisting` API](#use-existing-azure-resources), existing resource modeled as connection strings cannot be enhanced with additional role assignments or infrastructure customizations.
+Unlike existing resources modeled with [the first-class `AsExisting` API](#use-existing-azure-resources), existing resource modeled as connection strings can't be enhanced with additional role assignments or infrastructure customizations.
+
+## Publish as Azure Container App
+
+.NET Aspire allows you to publish primitive resources as [Azure Container Apps](/azure/container-apps/overview), a serverless platform that reduces infrastructure management. Supported resource types include:
+
+- <xref:Aspire.Hosting.ApplicationModel.ContainerResource>: Represents a specified container.
+- <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>: Represents a specified executable process.
+- <xref:Aspire.Hosting.ApplicationModel.ProjectResource>: Represents a specified .NET project.
+
+To publish these resources, use the following APIs:
+
+- <xref:Aspire.Hosting.AzureContainerAppContainerExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})?displayProperty=nameWithType>
+- <xref:Aspire.Hosting.AzureContainerAppExecutableExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})?displayProperty=nameWithType>
+- <xref:Aspire.Hosting.AzureContainerAppProjectExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})?displayProperty=nameWithType>
+
+These APIs configure the resource to be published as an Azure Container App and implicitly call <xref:Aspire.Hosting.AzureContainerAppExtensions.AddAzureContainerAppsInfrastructure(Aspire.Hosting.IDistributedApplicationBuilder)> to add the necessary infrastructure and Bicep files to your app host. As an example, consider the following code:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder();
+
+var env = builder.AddParameter("env");
+
+var api = builder.AddProject<Projects.AspireApi>("api")
+                 .PublishAsAzureContainerApp<Projects.AspireApi>((infra, app) =>
+                 {
+                     app.Template.Containers[0].Value!.Env.Add(new ContainerAppEnvironmentVariable
+                     {
+                         Name = "Hello",
+                         Value = env.AsProvisioningParameter(infra)
+                     });
+                 });
+```
+
+The preceding code:
+
+- Creates a new `builder` instance.
+- Adds a parameter named `env` to the builder.
+- Adds a project named `api` to the builder.
+- Calls the `PublishAsAzureContainerApp` method on the `api` resource builder, passing a lambda expression that configures the Azure Container App infrastructure—where `infra` is the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> and `app` is the <xref:Azure.Provisioning.AppContainers.ContainerApp>.
+  - Adds an environment variable named `Hello` to the container app, using the `env` parameter.
+  - The `AsProvisioningParameter` method is used to treat `env` as either a new <xref:Azure.Provisioning.ProvisioningParameter> in infrastructure, or reuses an existing bicep parameter if one with the same name already exists.
+
+For more information, see <xref:Azure.Provisioning.AppContainers.ContainerApp> and <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.AsProvisioningParameter*>.
 
 ## Infrastructure as code
 

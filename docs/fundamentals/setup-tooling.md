@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 02/24/2025
+ms.date: 03/11/2025
 zone_pivot_groups: dev-environment
 uid: dotnet/aspire/setup-tooling
 ---
@@ -17,7 +17,7 @@ uid: dotnet/aspire/setup-tooling
 > - Install .NET Aspire integrations
 > - Work with the .NET Aspire dashboard
 
-## Install .NET Aspire
+## Install .NET Aspire prerequisites
 
 To work with .NET Aspire, you need the following installed locally:
 
@@ -58,6 +58,82 @@ To install the .NET Aspire workload in Visual Studio 2022, use the Visual Studio
 
 :::zone-end
 
+## .NET Aspire templates
+
+.NET Aspire provides a set of solution and project templates. These templates are available in your favorite .NET developer integrated environment. You can use these templates to create full .NET Aspire solutions, or add individual projects to existing .NET Aspire solutions.
+
+### Install the .NET Aspire templates
+
+:::zone pivot="visual-studio"
+
+To install the .NET Aspire templates in Visual Studio, you need to manually install them unless you're using Visual Studio 17.12 or later. For Visual Studio 17.9 to 17.11, follow these steps:
+
+1. Open Visual Studio.
+1. Go to **Tools** > **NuGet Package Manager** > **Package Manager Console**.
+1. Run the following command to install the templates:
+
+  ```dotnetcli
+  dotnet new install Aspire.ProjectTemplates
+  ```
+
+For Visual Studio 17.12 or later, the .NET Aspire templates are installed automatically.
+
+:::zone-end
+:::zone pivot="vscode,dotnet-cli"
+
+To install these templates, use the [dotnet new install](/dotnet/core/tools/dotnet-new-install) command, passing in the `Aspire.ProjectTemplates` NuGet identifier.
+
+```dotnetcli
+dotnet new install Aspire.ProjectTemplates
+```
+
+To install a specific version, append the version number to the package name:
+
+```dotnetcli
+dotnet new install Aspire.ProjectTemplates::9.0.0
+```
+
+> [!TIP]
+> If you already have the .NET Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. Feel free to uninstall the .NET Aspire workload.
+
+:::zone-end
+
+### List the .NET Aspire templates
+
+:::zone pivot="visual-studio"
+
+The .NET Aspire templates are installed automatically when you install Visual Studio 17.9 or later. To see what .NET Aspire templates are available, select **File** > **New** > **Project** in Visual Studio, and search for "Aspire" in the search bar (<kbd>Alt</kbd>+<kbd>S</kbd>). You'll see a list of available .NET Aspire project templates:
+
+:::image type="content" source="media/vs-create-dotnet-aspire-proj.png" alt-text="Visual Studio: Create new project and search for 'Aspire'." lightbox="media/vs-create-dotnet-aspire-proj.png":::
+
+:::zone-end
+:::zone pivot="vscode"
+
+To view the available templates in Visual Studio Code with the C# DevKit installed, select the **Create .NET Project** button when no folder is opened in the **Explorer** view:
+
+:::image type="content" source="media/vscode-create-dotnet-proj.png" alt-text="Visual Studio Code: Create .NET Project button." lightbox="media/vscode-create-dotnet-proj.png":::
+
+Then, search for "Aspire" in the search bar to see the available .NET Aspire project templates:
+
+:::image type="content" source="media/vscode-create-dotnet-aspire-proj.png" alt-text="Visual Studio Code: Create new project and search for 'Aspire'." lightbox="media/vscode-create-dotnet-aspire-proj.png":::
+
+:::zone-end
+:::zone pivot="dotnet-cli"
+
+To verify that the .NET Aspire templates are installed, use the [dotnet new list](/dotnet/core/tools/dotnet-new-list) command, passing in the `aspire` template name:
+
+```dotnetcli
+dotnet new list aspire
+```
+
+Your console output should look like the following:
+
+[!INCLUDE [dotnet-new-list-aspire-output](includes/dotnet-new-list-aspire-output.md)]
+
+:::zone-end
+
+For more information, see [.NET Aspire templates](aspire-sdk-templates.md).
+
 ## Container runtime
 
 .NET Aspire projects are designed to run in containers. You can use either Docker Desktop or Podman as your container runtime. [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most common container runtime. [Podman](https://podman.io/docs/installation) is an open-source daemonless alternative to Docker, that can build and run Open Container Initiative (OCI) containers. If your host environment has both Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `DOTNET_ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
@@ -79,10 +155,6 @@ For more information, see [Install Podman on Linux](https://podman.io/docs/insta
 For more information, see [Install Podman on Windows](https://podman.io/docs/installation#installing-on-mac--windows).
 
 ---
-
-## .NET Aspire templates
-
-.NET Aspire provides a set of solution and project templates. These templates are available in your favorite .NET developer integrated environment. You can use these templates to create full .NET Aspire solutions, or add individual projects to existing .NET Aspire solutions. For more information, see [.NET Aspire templates](aspire-sdk-templates.md).
 
 ## .NET Aspire dashboard
 
