@@ -171,7 +171,7 @@ The two projects of interest in this quickstart are the _*.AppHost_ and _*.Servi
 
 ### .NET Aspire host project
 
-The _*.AppHost_ project is responsible for acting as the orchestrator, and sets the `IsAspireHost` property of the project file to `true`:
+The _*.AppHost_ project is responsible for acting as a local dev-orchestrator:
 
 :::code language="xml" source="snippets/quickstart/AspireSample/AspireSample.AppHost/AspireSample.AppHost.csproj" highlight="10":::
 
