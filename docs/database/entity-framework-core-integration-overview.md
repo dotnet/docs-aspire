@@ -8,9 +8,9 @@ zone_pivot_groups: entity-framework-client-integration
 
 # Entity Framework Core overview
 
-In a cloud-native solution, such as those .NET Aspire is built to create, microservices often need to store data in relational databases. .NET Aspire includes integrations that you can use to ease that task, some of which use the Entity Framework Core(EF Core) object-relational mapper (O/RM) approach to streamline the process.
+In a cloud-native solution, such as those .NET Aspire is built to create, microservices often need to store data in relational databases. .NET Aspire includes integrations that you can use to ease that task, some of which use the Entity Framework Core (EF Core) object-relational mapper (O/RM) approach to streamline the process.
 
-Developers use O/RMs to work with databases using code objects instead of SQL queries. EF Core automatically codes database interactions by generating SQL queries based on LINQ queries. EF Core supports various database providers, including SQL Server, PostgreSQL, and MySQL, so it's easy to interact with relational databases while following object-oriented principles.
+Developers use O/RMs to work with databases using code objects instead of SQL queries. EF Core automatically codes database interactions by generating SQL queries based on Language-Integrated Query (LINQ) queries. EF Core supports various database providers, including SQL Server, PostgreSQL, and MySQL, so it's easy to interact with relational databases while following object-oriented principles.
 
 The most commonly used .NET Aspire EF Core client integrations are:
 
@@ -20,8 +20,89 @@ The most commonly used .NET Aspire EF Core client integrations are:
 - [PostgreSQL Entity Framework Core integration](postgresql-entity-framework-integration.md)
 - [SQL Server Entity Framework Core integration](sql-server-entity-framework-integration.md)
 
+## Overview of EF Core
+
+O/RMs create a model that matches the schema and relationships defined in the database. Code against this model to query the data, create new records, or make other changes. In EF Core the model consists of:
+
+- A set of entity classes, each of which represents a table in the database and its columns.
+- A context class that represents the whole database.
+
+An entity class might look like this:
+
+```csharp
+using System.ComponentModel.DataAnnotations;
+
+namespace SupportDeskProject.Data;
+
+public sealed class SupportTicket
+{
+    public int Id { get; set; }
+    [Required]
+    public string Title { get; set; } = string.Empty;
+    [Required]
+    public string Description { get; set; } = string.Empty;
+}
+```
+
+This entity class represents a database table with three columns: **Id**, **Title**, and **Description**.
+
+A context class must inherit from <xref:System.Data.Entity.DbContext> and looks like this:
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
+
+namespace SupportDeskProject.Data;
+
+public class TicketContext(DbContextOptions options) : DbContext(options)
+{
+    public DbSet<SupportTicket> Tickets => Set<SupportTicket>();
+}
+```
+
+This context represents a database with a single table of support tickets. An instance of the context is usually created for each unit of work in the database. For example, a unit of work might be the creation of a new customer, and require changes in the Customers and Addresses tables. Once the unit of work is complete, you should dispose of the context.
+
+> [!NOTE]
+> For more information about creating models in EF Core, see [Creating and Configuring a Model](/ef/core/modeling/) in the EF Core documentation.
+
+Once you've created a model, you can use LINQ to query it:
+
+```csharp
+using (var db = new TicketContext())
+{
+    var tickets = await db.Tickets
+        .Where(t => t.Title = "Unable to log on")
+        .OrderBy(t => t.Description)
+        .ToListAsync();
+}
+```
+
+> [!NOTE]
+> EF Core also supports creating, modifying, and deleted records and complex queries. For more information, see [Querying Data](/ef/core/querying/) and [Saving Data](/ef/core/saving/)
+
+## How .NET Aspire can help
+
+.NET Aspire is designed to help build observable, production-ready, cloud-native solutions that consist of multiple microservices. It orchestrates multiple projects, each of which may be a microservice written by a dedicated team, and connects them to each other. It provides integrations that make it easy to connect to common services, such as databases.
+
+If you want to use EF Core in any of your microservices, .NET Aspire can help by:
+
+- Managing the connection to the database centrally in the App Host project and passing it to any project that uses it. There are two ways to approach this task:
+    - By creating a new instance of the database in a virtualization container. You can configure this container either to be recreated every time you debug your solution or to persist data across debugging sessions.
+    - By storing a connection string to an existing database.
+- Providing EF Core-aware integrations that make it easy to create contexts in microservice projects. There are EF Core integrations for SQL Server, MySQL, PostgreSQL, Cosmos DB, and other popular database systems. In each microservice:
+    - Define the EF Core model with entity classes and context classes.
+    - Create an instance of the data context and add it to the Dependency Injection (DI) container.
+    - When you want to interact with the database, obtain the context from DI and use it to execute LINQ queries against the database as normal for any EF Core code.
+
 > [!NOTE]
 > In .NET Aspire, EF Core is implemented by client integrations, not hosting integrations. So, for example, to use EF Core with a SQL Server database, you'd use the SQL Server hosting integration to create the SQL Server container and add a database to it. In the consuming microservices, when you want to use EF Core, choose the SQL Server Entity Framework Core integration instead of the SQL Server client integration.
+
+> AJMTODO: Diagram
+
+
+
+Note to explain that the rest of this article concerns DBContexts.
+
 
 ## Use .NET Aspire to create an EF Core context
 
