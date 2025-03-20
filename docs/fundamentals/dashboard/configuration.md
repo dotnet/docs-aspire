@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard configuration
 description: .NET Aspire dashboard configuration options
-ms.date: 02/13/2025
+ms.date: 03/20/2025
 ms.topic: reference
 ---
 
@@ -182,6 +182,7 @@ Telemetry limits have different scopes depending upon the telemetry type:
 | Option | Default value | Description |
 |--|--|--|
 | `Dashboard:ApplicationName` | `Aspire` | The application name to be displayed in the UI. This applies only when no resource service URL is specified. When a resource service exists, the service specifies the application name. |
+| `Dashboard:UI:DisableResourceGraph` | `null` | Disables the rendering of resource graphs on the dashboard. |
 
 ## Next steps
 
