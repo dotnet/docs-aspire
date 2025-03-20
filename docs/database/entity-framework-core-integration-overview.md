@@ -89,9 +89,9 @@ If you want to use EF Core in any of your microservices, .NET Aspire can help by
 - Managing the database container, or a connection to an existing database, centrally in the App Host project and passing its reference to any project that uses it.
 
     > [!NOTE]
-    > In .NET Aspire, EF Core is implemented by client integrations, not hosting integrations. The centralized management of the database in the App Host doesn't involve EF Core, which runs in consuming microservice projects instead. For more information, see [Cosmos DB Hosting integration](/dotnet/aspire/database/azure-cosmos-db-entity-framework-integration#hosting-integration), [MySQL Pomelo Hosting integration](/dotnet/aspire/database/mysql-entity-framework-integration#hosting-integration), [Oracle Hosting integration](/dotnet/aspire/database/oracle-entity-framework-integration#hosting-integration), [PostgreSQL Hosting integration](/dotnet/aspire/database/postgresql-entity-framework-integration#hosting-integration), or [SQL Server Hosting integration](/dotnet/aspire/database/sql-server-entity-framework-integration#hosting-integration), 
+    > In .NET Aspire, EF Core is implemented by client integrations, not hosting integrations. The centralized management of the database in the App Host doesn't involve EF Core, which runs in consuming microservice projects instead. For more information, see [Cosmos DB Hosting integration](/dotnet/aspire/database/azure-cosmos-db-entity-framework-integration#hosting-integration), [MySQL Pomelo Hosting integration](/dotnet/aspire/database/mysql-entity-framework-integration#hosting-integration), [Oracle Hosting integration](/dotnet/aspire/database/oracle-entity-framework-integration#hosting-integration), [PostgreSQL Hosting integration](/dotnet/aspire/database/postgresql-entity-framework-integration#hosting-integration), or [SQL Server Hosting integration](/dotnet/aspire/database/sql-server-entity-framework-integration#hosting-integration).
 
-- Providing EF Core-aware integrations that make it easy to create contexts in microservice projects. There are EF Core integrations for SQL Server, MySQL, PostgreSQL, Oralce, Cosmos DB, and other popular database systems. 
+- Providing EF Core-aware integrations that make it easy to create contexts in microservice projects. There are EF Core integrations for SQL Server, MySQL, PostgreSQL, Oralce, Cosmos DB, and other popular database systems.
 
 To use EF Core in your microservice, you must:
 
@@ -99,7 +99,7 @@ To use EF Core in your microservice, you must:
 - Create an instance of the data context, using the reference passed from the App Host, and add it to the Dependency Injection (DI) container.
 - When you want to interact with the database, obtain the context from DI and use it to execute LINQ queries against the database as normal for any EF Core code.
 
-> AJMTODO: Diagram
+:::image type="content" source="media/ef-core-aspire-architecture.png" lightbox="media/ef-core-aspire-architecture.png" alt-text="A diagram showing how .NET Aspire utilizes EF Core to interact with a database.." :::
 
 Both defining the EF Core model and querying the database are the same in .NET Aspire projects as in any other EF Core app. However, creating the data context differs. In the rest of this article, you'll learn how to create an configure EF Core contexts in .NET Aspire project.
 
