@@ -1,5 +1,4 @@
-﻿
-namespace SignalR.Web.Components.Pages;
+﻿namespace SignalR.Web.Components.Pages;
 
 public sealed partial class Home : IAsyncDisposable
 {
@@ -40,16 +39,16 @@ public sealed partial class Home : IAsyncDisposable
     {
         if (firstRender)
         {
-            _username = await Storage.GetItemAsync(UsernameKey)
+            _username = await Storage.GetItemAsync<string>(UsernameKey)
                 ?? Guid.NewGuid().ToString();
         }
     }
 
     protected override async Task OnInitializedAsync()
     {
-        var api = Configuration.GetServiceHttpsUri("apiservice");
+        var apiUri = Configuration.GetServiceHttpsUri("apiservice");
 
-        var builder = new UriBuilder(api)
+        var builder = new UriBuilder(apiUri)
         {
             Path = HubEndpoints.ChatHub
         };
@@ -70,7 +69,6 @@ public sealed partial class Home : IAsyncDisposable
         _hubRegistrations.Add(
             _hubConnection.On<UserAction>(
                 HubEventNames.UserTypingChanged, OnUserTypingAsync));
-
 
         await _hubConnection.StartAsync();
 
@@ -133,7 +131,7 @@ public sealed partial class Home : IAsyncDisposable
             return Task.CompletedTask;
         }
 
-        return _hubConnection?.InvokeAsync(
+        return _hubConnection?.SendAsync(
             HubClientMethodNames.ToggleUserTyping,
             new UserAction(Name: _username, IsTyping: _isTyping = isTyping)) ?? Task.CompletedTask;
     }
