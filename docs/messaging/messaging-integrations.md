@@ -1,7 +1,7 @@
 ---
 title: Use .NET Aspire messaging integrations in ASP.NET Core
 description: Learn how to connect an ASP.NET Core app to messaging services using .NET Aspire integrations.
-ms.date: 08/12/2024
+ms.date: 03/20/2025
 ms.topic: tutorial
 zone_pivot_groups: dev-environment
 ---
@@ -300,7 +300,6 @@ In the _:::no-loc text="appsettings.json":::_ file of the same project, add the 
 
 ---
 
-
 ## Create the API endpoint
 
 The API must provide an endpoint to receive data and publish it to the Service Bus topic and broadcast to subscribers. Add the following endpoint to the **AspireSample.ApiService** project to send a message to the Service Bus topic. Replace all of the contents of the _:::no-loc text="Program.cs":::_ file with the following C# code:
@@ -405,7 +404,6 @@ In the _:::no-loc text="appsettings.json":::_ file of the **AspireSample.WorkerS
 > Make sure to replace **{your_connection_string}** with the entire connection string you retrieved for your Service Bus namespace from the Azure portal.
 
 ---
-
 
 ## Process the message from the subscriber
 
