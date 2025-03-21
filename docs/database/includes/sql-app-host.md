@@ -43,7 +43,11 @@ builder.AddProject<Projects.ExampleProject>()
 > [!NOTE]
 > The SQL Server container is slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../../fundamentals/app-host-overview.md#container-resource-lifetime).
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `mcr.microsoft.com/mssql/server` image, it creates a new SQL Server instance on your local machine. A reference to your SQL Server resource builder (the `sql` variable) is used to add a database. The database is named `database` and then added to the `ExampleProject`. If the `database` doesn't already exist, it's created. The SQL Server resource includes default credentials with a `username` of `sa` and a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
+When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `mcr.microsoft.com/mssql/server` image, it creates a new SQL Server instance on your local machine. A reference to your SQL Server resource builder (the `sql` variable) is used to add a database. The database is named `database` and then added to the `ExampleProject`.
+
+If the `database` doesn't already exist, it's created. The creation of the database relies on the [app host eventing APIs](../../app-host/eventing.md), specifically the <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent>. When this event is raised, the database resource is created.
+
+The SQL Server resource includes default credentials with a `username` of `sa` and a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
 When the app host runs, the password is stored in the app host's secret store. It's added to the `Parameters` section, for example:
 
@@ -62,7 +66,7 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 
 ### Add SQL Server resource with database scripts
 
-By default, when you add a database resource, it relies on the following SQL script to create the database:
+By default, when you add a <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource>, it relies on the following SQL script to create the database:
 
 ```sql
 IF
@@ -77,6 +81,12 @@ IF
 CREATE DATABASE [<QUOTED_DATABASE_NAME>];
 ```
 
+<!-- TODO: Use xref here when available
+
+To alter the default script, chain a call to the <xref:Aspire.Hosting.SqlServerBuilderExtensions.WithCreationScript*> method on the database resource builder:
+
+-->
+
 To alter the default script, chain a call to the `WithCreationScript` method on the database resource builder:
 
 ```csharp
@@ -85,27 +95,32 @@ var builder = DistributedApplication.CreateBuilder(args);
 var sql = builder.AddSqlServer("sql")
                  .WithLifetime(ContainerLifetime.Persistent);
 
-var databaseName = "todos";
+var databaseName = "app_db";
+var creationScript = $$"""
+    IF DB_ID('{{databaseName}}') IS NULL
+        CREATE DATABASE [{{databaseName}}];
+    GO
+
+    -- Use the database
+    USE [{{databaseName}}];
+    GO
+
+    -- Create the todos table
+    CREATE TABLE todos (
+        id INT PRIMARY KEY AUTO_INCREMENT,       -- Unique ID for each todo
+        title VARCHAR(255) NOT NULL,             -- Short description of the task
+        description TEXT,                        -- Optional detailed description
+        is_completed BOOLEAN DEFAULT FALSE,      -- Completion status
+        due_date DATE,                           -- Optional due date
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    );
+    GO
+
+    """;
+
 var db = sql.AddDatabase(databaseName)
-            .WithCreationScript($$"""
-                CREATE DATABASE [{{databaseName}}];
-                GO
-
-                USE [{{databaseName}}];
-                GO
-
-                CREATE TABLE todos (
-                    id INT PRIMARY KEY AUTO_INCREMENT,       -- Unique ID for each todo
-                    title VARCHAR(255) NOT NULL,             -- Short description of the task
-                    description TEXT,                        -- Optional detailed description
-                    is_completed BOOLEAN DEFAULT FALSE,      -- Completion status
-                    due_date DATE,                           -- Optional due date
-                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-                );
-                GO
-
-                """);
+            .WithCreationScript(creationScript);
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(db)
@@ -114,7 +129,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The preceding example creates a `todos` database with a single `todos` table. The SQL script is executed when the database resource is created. The script is passed as a string to the `WithCreationScript` method, which is then executed in the context of the SQL Server resource.
+The preceding example creates a database named `app_db` with a single `todos` table. The SQL script is executed when the database resource is created. The script is passed as a string to the `WithCreationScript` method, which is then executed in the context of the SQL Server resource.
 
 ### Add SQL Server resource with data volume
 

@@ -44,12 +44,70 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/postgres` image, it creates a new PostgreSQL server instance on your local machine. A reference to your PostgreSQL server and your PostgreSQL database instance (the `postgresdb` variable) are used to add a dependency to the `ExampleProject`. The PostgreSQL server resource includes default credentials with a `username` of `"postgres"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
+When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/postgres` image, it creates a new PostgreSQL server instance on your local machine. A reference to your PostgreSQL server and your PostgreSQL database instance (the `postgresdb` variable) are used to add a dependency to the `ExampleProject`.
+
+If the `postgresdb` doesn't already exist, it's created. The creation of the database relies on the [app host eventing APIs](../../app-host/eventing.md), specifically the <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent>. When this event is raised, the database resource is created.
+
+The PostgreSQL server resource includes default credentials with a `username` of `"postgres"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"messaging"`. For more information, see [Container resource lifecycle](../../fundamentals/app-host-overview.md#container-resource-lifecycle).
 
 > [!TIP]
 > If you'd rather connect to an existing PostgreSQL server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../../fundamentals/app-host-overview.md#reference-existing-resources).
+
+### Add PostgreSQL resource with database scripts
+
+By default, when you add a <xref:Aspire.Hosting.ApplicationModel.PostgresDatabaseResource>, it relies on the following script to create the database:
+
+```sql
+CREATE DATABASE "<QUOTED_DATABASE_NAME>"
+```
+
+<!-- TODO: Use xref here when available
+
+To alter the default script, chain a call to the <xref:Aspire.Hosting.PostgresBuilderExtensions.WithCreationScript*> method on the database resource builder:
+
+-->
+
+To alter the default script, chain a call to the `WithCreationScript` method on the database resource builder:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var postgres = builder.AddPostgres("postgres");
+
+var databaseName = "app_db";
+var creationScript = $$"""
+    -- Create the database
+    CREATE DATABASE {{databaseName}};
+
+    -- Connect to the database
+    \c {{databaseName}}
+
+    -- Create the todos table
+    CREATE TABLE todos (
+        id SERIAL PRIMARY KEY,                            -- Auto-incrementing unique ID
+        title VARCHAR(255) NOT NULL,                      -- Short description of the task
+        description TEXT,                                 -- Optional detailed description
+        is_completed BOOLEAN DEFAULT FALSE,               -- Completion status
+        due_date DATE,                                    -- Optional due date
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,   -- Creation timestamp
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP    -- Last update timestamp
+    );
+
+    """;
+
+var db = postgres.AddDatabase(databaseName)
+                 .WithCreationScript(creationScript);
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(db)
+       .WaitFor(db);
+
+// After adding all resources, run the app...
+```
+
+The preceding example creates a database named `app_db` with a single `todos` table. The script is executed when the database resource is created. The script is passed as a string to the `WithCreationScript` method, which is then executed in the context of the SQL Server resource.
 
 ### Add PostgreSQL pgAdmin resource
 
