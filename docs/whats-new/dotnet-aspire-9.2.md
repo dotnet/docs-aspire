@@ -61,6 +61,12 @@ The .NET Aspire app host project file no longer requires the `IsAspireHost` prop
 
 Starting with .NET Aspire 9.2, we collect usage telemetry from the dashboard by default. This telemetry helps us understand how you use the dashboard and what features are most important to you. We use this information to prioritize our work and improve the dashboard experience. You can opt out of this telemetry by setting the `DOTNET_DASHBOARD_ENABLE_TELEMETRY` environment variable to `false`. For more information, see [.NET Aspire dashboard usage telemetry](../fundamentals/dashboard/usage-telemetry.md).
 
+## 🚫 Disable dashboard resource graphs
+
+The dashboard has the ability to display resource graphs, which show the relationships between resources in your app. This feature is enabled by default, but you can disable it by setting the `Dashboard:UI:DisableResourceGraph` configuration option to `true`.
+
+For more information, see [.NET Aspire dashboard configuration](../fundamentals/dashboard/configuration.md#other).
+
 ## ➕ Adding database resources actually creates a database
 
 There's [plenty of feedback and confusion](https://github.com/dotnet/aspire/issues/7101) around the `AddDatabase` API. The name implies that it adds a database, but it didn't actually create the database. In .NET Aspire 9.2, the `AddDatabase` API now creates a database for the following hosting integrations:
