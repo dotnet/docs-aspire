@@ -1,4 +1,4 @@
-revision: 4
+revision: 7
 schema-version: 5
 owner-ms-alias: adegeo
 
@@ -13,56 +13,8 @@ config:
       - "### Page URL\n\n(.*)"
 
 issues:
-  unlabeled: "labeled"
-
-  labeled:
-    # Temporary label to mark issues as updated for Quest. The label is instantly removed
-    - check:
-        - type: query
-          value: "length(Issue.Labels[?Name == ':world_map: mapQUEST']) != `0`"
-      pass:
-        - labels-remove: [":world_map: mapQUEST"]
-
-    # Handle issues with /svc /subsvc labels from label bot
-    - check:
-        - type: query
-          value: "length(Issue.Labels[?contains(Name, '/svc') || contains(Name, '/subsvc')]) != `0`"
-
-      # If the issue has a /svc or /subsvc label, it must be categorized otherwise it's considered untriaged
-      pass:
-        - check:
-          - type: query
-            value: "length(Issue.Labels[?Name == ':pushpin: seQUESTered' || Name == ':world_map: reQUEST' || Name == 'training-module' || Name == 'doc-enhancement' || Name == 'product-question' || Name == 'in-progress' || Name == 'test-issue' || Name == 'kudos' || Name == 'loc' || Name == 'doc-bug' || Name == 'product-feedback' || Name == 'code-of-conduct' || Name == 'support-request' || Name == 'duplicate' || Name == 'resolved-by-customer' || Name == 'docs-experience' || Name == 'doc-provided' || Name == 'doc-idea' || Name == 'needs-more-info']) != `0`"
-          pass:
-            - labels-remove: [":watch: Not Triaged"]
-          fail:
-            - labels-add: [":watch: Not Triaged"]
 
   opened:
-    # New issue opened, add Not Triaged  
-    - labels-add: [":watch: Not Triaged"]
-
-    # Dependabot opened issue, label it
-    - check:
-        - type: query
-          value: "Issue.User.Login == 'dependabot'"
-      pass:
-        - labels-add: ["dependencies"]
-
-    # Try to detect an empty issue
-    - check:
-        - type: comment-body
-          value: "### Description[\\n\\r]+\\[Enter feedback here\\][\\n\\r]+###"
-      pass:
-        - labels-add: ["needs-more-info"]
-        - labels-remove: [":watch: Not Triaged"]
-        - close
-
-    # Add metadata
-    - check:
-        - type: metadata-exists
-      pass:
-        - svc_subsvc_labels: true
 
     # Add links to related issues if it's a doc issue
     - check:
@@ -72,22 +24,10 @@ issues:
       pass:
         - link-related-issues
 
-  reopened:
-    # Remove won't fix label
-    - labels-remove: ["won't fix"]
-
-  closed:
-
-    # Issue closed, remove in-progress and not triaged labels
-    - labels-remove: ["in-progress", ":watch: Not Triaged"]
-
-    # Check if the issue was closed by the user who opened it
     - check:
-        - type: query
-          value: "Issue.User.Id == EventPayload.sender.id"
+        - type: metadata-exists
       pass:
-        - labels-add: ["resolved-by-customer"]
-        - labels-remove: [":watch: Not Triaged"]
+        - svc_subsvc_labels: true
 
 projects_v2_item:
 
@@ -104,61 +44,10 @@ projects_v2_item:
         - labels-add: [":world_map: mapQUEST"]
 
 pull_request:
+
   reopened: opened
 
   opened:
+
     # Set default sprint for new PRs
     - milestone-set: "![sprint]"
-
-    - check:
-        - type: query
-          value: "PullRequest.base.ref != 'live'"
-      pass:
-        - files-changed:
-            # storage
-            - path: "(?i).*docs\/storage.*"
-              run:
-                - labels-add: ["storage"]
-
-            # caching
-            - path: "(?i).*docs\/caching.*"
-              run:
-                - labels-add: ["caching"]
-
-            # messaging
-            - path: "(?i).*docs\/messaging.*"
-              run:
-                - labels-add: ["messaging"]
-
-            # database
-            - path: "(?i).*docs\/database.*"
-              run:
-                - labels-add: ["database"]
-
-            # security
-            - path: "(?i).*docs\/security.*"
-              run:
-                - labels-add: ["security"]
-
-            # deployment
-            - path: "(?i).*docs\/deployment.*"
-              run:
-                - labels-add: ["deployment"]
-
-            # fundamentals
-            - path: "(?i).*docs\/fundamentals.*"
-              run:
-                - labels-add: ["fundamentals"]
-            - path: "(?i).*docs\/service-discovery.*"
-              run:
-                - labels-add: ["fundamentals"]
-
-            # getting started
-            - path: "(?i).*docs\/get-started.*"
-              run:
-                - labels-add: ["getting-started"]
-
-            # reference
-            - path: "(?i).*docs\/reference.*"
-              run:
-                - labels-add: ["reference"]
