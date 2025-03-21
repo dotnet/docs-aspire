@@ -6,13 +6,13 @@ ms.date: 03/20/2025
 
 # What's new in .NET Aspire 9.2
 
-📢 .NET Aspire 9.2 is the next minor version release of .NET Aspire; it supports _both_:
+📢 .NET Aspire 9.2 is the next minor version release of .NET Aspire; it supports:
 
 - .NET 8.0 Long Term Support (LTS) _or_
 - .NET 9.0 Standard Term Support (STS).
 
 > [!NOTE]
-> You're able to use .NET Aspire 9.2 with either .NET 8 or .NET 9!
+> You're able to use .NET Aspire 9.2 with either .NET 8 or .NET 9! 😲
 
 As always, we focused on highly requested features and pain points from the community. Our theme for 9.1 was "polish, polish, polish"—so you see quality of life fixes throughout the whole platform. Some highlights from this release are resource relationships in the dashboard, support for working in GitHub Codespaces, and publishing resources as a Dockerfile.
 
@@ -48,7 +48,7 @@ Moving between minor releases of .NET Aspire is simple:
     dotnet new update
     ```
 
-    > [!NOTE]
+    > [!IMPORTANT]
     > The `dotnet new update` command updates all of your templates to the latest version.
 
 If your app host project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.0, you can follow [the documentation from last release](../get-started/upgrade-to-aspire-9.md).
@@ -84,3 +84,9 @@ There are, however; a number of remaining hosting integrations that don't yet cr
 - [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle)
 
 The Azure SQL and Azure PostgreSQL hosting integrations both expose an `AddDatabase` API, but they don't create a database—unless you call their respective `RunAsContainer` methods. For more information, see [Understand Azure integration APIs](../azure/integrations-overview.md#understand-azure-integration-apis).
+
+## 🌐 HTTP-based resource command functionality
+
+[Custom resource commands](../fundamentals/custom-resource-commands.md) now support HTTP-based functionality with the addition of the `WithHttpCommand` API, enabling you to define endpoints for tasks like database migrations or resets. These commands can be executed directly from the .NET Aspire dashboard.
+
+For more information, see [Custom HTTP commands in .NET Aspire](../fundamentals/http-commands.md).
