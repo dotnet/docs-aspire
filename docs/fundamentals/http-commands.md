@@ -99,4 +99,6 @@ When the command completes, the dashboard updates the status and provides feedba
 
 ## See also
 
+- [.NET Aspire orchestration overview](app-host-overview.md)
 - [Custom resource commands in .NET Aspire](custom-resource-commands.md)
+- [.NET Aspire GitHub repository: Playground sample](https://github.com/dotnet/aspire/tree/4fdfdbf57d35265913a3bbac38b92d98ed255a5d/playground/TestShop)
