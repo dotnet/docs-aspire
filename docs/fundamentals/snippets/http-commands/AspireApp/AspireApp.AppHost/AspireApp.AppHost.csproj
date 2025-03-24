@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.1.0" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>da41f190-8f5d-494c-a2e8-05e2d09bba4b</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.2.0-preview.1.25171.4" />
+    <PackageReference Include="Aspire.Hosting.Redis" Version="9.2.0-preview.1.25173.2" />
+    <PackageReference Include="Aspire.StackExchange.Redis.DistributedCaching" Version="9.2.0-preview.1.25173.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AspireApp.Api\AspireApp.Api.csproj" />
+  </ItemGroup>
+
+</Project>
