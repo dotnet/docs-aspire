@@ -33,9 +33,9 @@ These APIs are designed to integrate seamlessly with the .NET Aspire ecosystem, 
 
 ## Considerations when registering HTTP commands
 
-Since HTTP commands are exposed as HTTP endpoints on a resource, you should consider potential security implications. It might be best to only expose these command-centric HTTP endpoints in development or staging environments. Likewise, you should validate all requests to the HTTP command endpoint, to ensure they're coming from a trusted source.
+Since HTTP commands are exposed via HTTP endpoints, consider potential security risks. Limit these endpoints to development or staging environments when possible. Always validate incoming requests to ensure they originate from trusted sources. For more information, see [ASP.NET Core security](/aspnet/core/security).
 
-You can use the `configureRequest` callback to add authentication headers or other security measures to the request. One common approach is to use a shared secret, [external parameter](external-parameters.md), or token that is known only to the resource in the app host. The app host code can provide that shared value to the resource explicitly so it can be used to validate the request. This helps to prevent unauthorized access to the HTTP command.
+Use the `configureRequest` callback to enhance security by adding authentication headers or other measures. A common approach is to use a shared secret, [external parameter](external-parameters.md), or token known only to the app host and resource. This shared value can be used to validate requests and prevent unauthorized access.
 
 ## Add a custom HTTP command
 
@@ -85,11 +85,11 @@ The sample app host and corresponding ASP.NET Core minimal API projects demonstr
 
 :::image type="content" source="media/custom-http-command-highlighted.png" lightbox="media/custom-http-command-highlighted.png" alt-text=".NET Aspire dashboard: Resources page showing a highlighted custom HTTP command.":::
 
-If you're to ignore the `isHighlighted` property, or set it to `false`, the command appears nested under the horizontal ellipsis menu (three dots) in the **Actions** column of the **Resources** page. This allows users to access the command without cluttering the UI with too many buttons. The following screenshot shows the same command appearing in the ellipsis menu:
+If you're to omit the `isHighlighted` parameter, or set it to `false`, the command appears nested under the horizontal ellipsis menu (three dots) in the **Actions** column of the **Resources** page. This allows users to access the command without cluttering the UI with too many buttons. The following screenshot shows the same command appearing in the ellipsis menu:
 
 :::image type="content" source="media/custom-http-command.png" lightbox="media/custom-http-command.png" alt-text=".NET Aspire dashboard: Resources page showing a custom HTTP command in the ellipsis menu.":::
 
-When the user clicks the button, the command is executed, and the HTTP request is sent to the specified endpoint. The dashboard provides feedback on the command's execution status, allowing users to monitor the results. When it's starting, a toast notification appears:
+When the user selects the button, the command is executed, and the HTTP request is sent to the specified endpoint. The dashboard provides feedback on the command's execution status, allowing users to monitor the results. When it's starting, a toast notification appears:
 
 :::image type="content" source="media/custom-http-command-starting.png" lightbox="media/custom-http-command-starting.png" alt-text=".NET Aspire dashboard: Toast notification showing the custom HTTP command is starting.":::
 
