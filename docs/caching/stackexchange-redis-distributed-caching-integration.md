@@ -156,7 +156,8 @@ You can also set up the [ConfigurationOptions](https://stackexchange.github.io/S
 ```csharp
 builder.AddRedisDistributedCache(
     "cache",
-    static settings => settings.ConnectTimeout = 3_000);
+     null,
+     static options => options.ConnectTimeout = 3_000);
 ```
 
 [!INCLUDE [redis-distributed-client-health-checks-and-diagnostics](includes/redis-distributed-client-health-checks-and-diagnostics.md)]
