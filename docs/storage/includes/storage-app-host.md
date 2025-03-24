@@ -78,7 +78,7 @@ The following role assignments are added to the storage account to grant your ap
 | Storage Table Data Contributor<br/>`0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3` | Read, write, and delete Azure Storage tables and entities. |
 | Storage Queue Data Contributor<br/>`974c5e8b-45b9-4653-ba55-5f855dd0fb88` | Read, write, and delete Azure Storage queues and queue messages. |
 
-The generated Bicep is a starting point and can be customized to meet your specific requirements.
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 

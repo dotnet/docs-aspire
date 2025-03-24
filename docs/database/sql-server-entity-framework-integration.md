@@ -90,7 +90,7 @@ builder.EnrichSqlServerDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 

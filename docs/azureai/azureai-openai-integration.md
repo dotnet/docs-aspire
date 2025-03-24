@@ -103,7 +103,7 @@ The preceding Bicep is a module that provisions an Azure Cognitive Services reso
     - `modelVersion`: The model version of the deployment resource, set to `2025-02-27`.
 - `connectionString`: The connection string, containing the endpoint of the Cognitive Services resource.
 
-The generated Bicep is a starting point and can be customized to meet your specific requirements.
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 ### Customize provisioning infrastructure
 

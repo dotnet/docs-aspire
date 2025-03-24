@@ -64,7 +64,7 @@ The preceding Bicep is a module that provisions an Azure Cache for Redis with th
 - `redis_contributor`: The contributor of the Azure Cache for Redis resource, with an access policy name of `Data Contributor`.
 - `connectionString`: The connection string of the Azure Cache for Redis resource.
 
-In addition to the Azure Cache for Redis, it also provisions an access policy assignment to the application access to the cache. The generated Bicep is a starting point and can be customized to meet your specific requirements.
+In addition to the Azure Cache for Redis, it also provisions an access policy assignment to the application access to the cache. The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 

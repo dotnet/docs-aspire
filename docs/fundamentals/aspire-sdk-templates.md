@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire templates
-description: Learn how to install the .NET Aspire templates, and how to use them to create new apps.
-ms.date: 11/09/2024
+description: Learn about the .NET Aspire templates and how to use them to create new apps.
+ms.date: 03/11/2025
 zone_pivot_groups: dev-environment
 uid: dotnet/aspire/templates
 ---
@@ -11,76 +11,6 @@ uid: dotnet/aspire/templates
 There are a number of .NET Aspire project templates available to you. You can use these templates to create full .NET Aspire solutions, or add individual projects to existing .NET Aspire solutions.
 
 The .NET Aspire templates are available in the [📦 Aspire.ProjectTemplates](https://www.nuget.org/packages/Aspire.ProjectTemplates) NuGet package.
-
-## Install the .NET Aspire templates
-
-:::zone pivot="visual-studio"
-
-To install the .NET Aspire templates in Visual Studio, you need to manually install them unless you're using Visual Studio 17.12 or later. For Visual Studio 17.9 to 17.11, follow these steps:
-
-1. Open Visual Studio.
-1. Go to **Tools** > **NuGet Package Manager** > **Package Manager Console**.
-1. Run the following command to install the templates:
-
-  ```dotnetcli
-  dotnet new install Aspire.ProjectTemplates
-  ```
-
-For Visual Studio 17.12 or later, the .NET Aspire templates are installed automatically.
-
-:::zone-end
-:::zone pivot="vscode,dotnet-cli"
-
-To install these templates, use the [dotnet new install](/dotnet/core/tools/dotnet-new-install) command, passing in the `Aspire.ProjectTemplates` NuGet identifier.
-
-```dotnetcli
-dotnet new install Aspire.ProjectTemplates
-```
-
-To install a specific version, append the version number to the package name:
-
-```dotnetcli
-dotnet new install Aspire.ProjectTemplates::9.0.0
-```
-
-> [!TIP]
-> If you already have the .NET Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. Feel free to uninstall the .NET Aspire workload.
-
-:::zone-end
-
-## List the .NET Aspire templates
-
-:::zone pivot="visual-studio"
-
-The .NET Aspire templates are installed automatically when you install Visual Studio 17.9 or later. To see what .NET Aspire templates are available, select **File** > **New** > **Project** in Visual Studio, and search for "Aspire" in the search bar (<kbd>Alt</kbd>+<kbd>S</kbd>). You'll see a list of available .NET Aspire project templates:
-
-:::image type="content" source="media/vs-create-dotnet-aspire-proj.png" alt-text="Visual Studio: Create new project and search for 'Aspire'." lightbox="media/vs-create-dotnet-aspire-proj.png":::
-
-:::zone-end
-:::zone pivot="vscode"
-
-To view the available templates in Visual Studio Code with the C# DevKit installed, select the **Create .NET Project** button when no folder is opened in the **Explorer** view:
-
-:::image type="content" source="media/vscode-create-dotnet-proj.png" alt-text="Visual Studio Code: Create .NET Project button." lightbox="media/vscode-create-dotnet-proj.png":::
-
-Then, search for "Aspire" in the search bar to see the available .NET Aspire project templates:
-
-:::image type="content" source="media/vscode-create-dotnet-aspire-proj.png" alt-text="Visual Studio Code: Create new project and search for 'Aspire'." lightbox="media/vscode-create-dotnet-aspire-proj.png":::
-
-:::zone-end
-:::zone pivot="dotnet-cli"
-
-To verify that the .NET Aspire templates are installed, use the [dotnet new list](/dotnet/core/tools/dotnet-new-list) command, passing in the `aspire` template name:
-
-```dotnetcli
-dotnet new list aspire
-```
-
-Your console output should look like the following:
-
-[!INCLUDE [dotnet-new-list-aspire-output](includes/dotnet-new-list-aspire-output.md)]
-
-:::zone-end
 
 ## Available templates
 

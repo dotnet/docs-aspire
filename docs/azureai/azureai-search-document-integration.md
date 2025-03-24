@@ -73,7 +73,7 @@ The preceding Bicep is a module that provisions an Azure AI Search service resou
 - `search_SearchServiceContributor`: The role assignment for the Azure AI Search service contributor role. For more information, see [Search Service Contributor](/azure/role-based-access-control/built-in-roles/ai-machine-learning#search-service-contributor).
 - `connectionString`: The connection string for the Azure AI Search service, which is used to connect to the service. The connection string is generated using the `Endpoint` property of the Azure AI Search service.
 
-The generated Bicep is a starting point and can be customized to meet your specific requirements.
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 
