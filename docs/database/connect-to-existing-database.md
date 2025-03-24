@@ -744,4 +744,4 @@ Now, let's test the solution:
 
 - [.NET Aspire SQL Server Entity Framework Core integration](/dotnet/aspire/database/sql-server-entity-framework-integration)
 - [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](/dotnet/aspire/database/sql-server-integrations)
-- [Use openAPI documents](/aspnet/core/fundamentals/openapi/using-openapi-documents?view=aspnetcore-9.0)
+- [Use openAPI documents](/aspnet/core/fundamentals/openapi/using-openapi-documents)
