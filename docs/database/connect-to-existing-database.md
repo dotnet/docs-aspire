@@ -4,6 +4,7 @@ description: Learn how to configure a .NET Aspire solution with a connection to 
 ms.date: 03/13/2025
 ms.topic: tutorial
 uid: database/connect-to-existing-database
+zone_pivot_groups: entity-framework-client-integration
 ---
 
 # Tutorial: Connect a .NET Aspire microservice to an existing database
@@ -14,17 +15,39 @@ In this tutorial, you create a .NET Aspire solution with an API that connects to
 
 > [!div class="checklist"]
 >
-> - Create an API microservice that uses Entity Framework Core (EF Core) to interact with a database.
+> - Create an API microservice that interacts with a database.
 > - Configure the .NET Aspire App Host project with a connection string for the existing database.
 > - Pass the connection string to the API and use it to connect to the database.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
+:::zone pivot="sql-server-ef"
+
 > [!IMPORTANT]
 > This tutorial also assumes you have a Microsoft SQL Server instance running on your local machine. You can connect to a database elsewhere by providing an appropriate connection string instead of the one suggested in this article. To create a new local instance, download and install [SQL Server Developer Edition](https://www.microsoft.com/sql-server/sql-server-downloads).
 
+:::zone-end
+:::zone pivot="postgresql-ef"
+
+> [!IMPORTANT]
+> This tutorial also assumes you have a PostgreSQL instance running on your local machine. You can connect to a database elsewhere by providing an appropriate connection string instead of the one suggested in this article. To create a new local instance, download and install [PostgreSQL](https://www.postgresql.org/download/).
+
+:::zone-end
+:::zone pivot="oracle-ef"
+
+> [!IMPORTANT]
+> This tutorial also assumes you have an Oracle Database instance running on your local machine. You can connect to a database elsewhere by providing an appropriate connection string instead of the one suggested in this article. To create a new local instance, download and install [Oracle Database](https://www.oracle.com/database/technologies/oracle-database-software-downloads.html).
+
+:::zone-end
+:::zone pivot="mysql-ef"
+
+> [!IMPORTANT]
+> This tutorial also assumes you have a MySQL instance running on your local machine. You can connect to a database elsewhere by providing an appropriate connection string instead of the one suggested in this article. To create a new local instance, download and install [MySQL](https://www.mysql.com/downloads/).
+
+:::zone-end
+
 > [!TIP]
-> In this tutorial, you use EF Core with SQL Server. Other database integrations, including both those that use EF Core and others, can use the same approach to connect to an existing database.
+> In this tutorial, you use .NET Aspire EF Core integrations to access the database. Other database integrations, which don't use EF Core, can use the same approach to connect to an existing database.
 
 ## Create a new .NET Aspire solution
 
@@ -54,8 +77,32 @@ Visual Studio creates a new .NET Aspire solution with an API and a web front end
 First, install EF Core in the _AspireExistingDB.ApiService_ project.
 
 1. In **Solution Explorer**, right-click the _AspireExistingDB.ApiService_ project, and then select **Manage NuGet Packages**.
+
+:::zone pivot="sql-server-ef"
+
 1. Select the **Browse** tab, and then search for **Aspire.Microsoft.EntityFrameworkCore**.
 1. Select the **Aspire.Microsoft.EntityFrameworkCore.SqlServer** package, and then select **Install**.
+
+::zone-end
+:::zone pivot="postgresql-ef"
+
+1. Select the **Browse** tab, and then search for **Aspire.Npgsql.EntityFrameworkCore**.
+1. Select the **Aspire.Npgsql.EntityFrameworkCore.PostgreSQL** package, and then select **Install**.
+
+::zone-end
+:::zone pivot="oracle-ef"
+
+1. Select the **Browse** tab, and then search for **Aspire.Oracle.EntityFrameworkCore**.
+1. Select the **Aspire.Oracle.EntityFrameworkCore** package, and then select **Install**.
+
+:::zone-end
+:::zone pivot="mysql-ef"
+
+1. Select the **Browse** tab, and then search for **Aspire.Pomelo.EntityFrameworkCore**.
+1. Select the **Aspire.Pomelo.EntityFrameworkCore.MySql** package, and then select **Install**.
+
+:::zone-end
+
 1. If the **Preview Changes** dialog appears, select **Apply**.
 1. In the **License Acceptance** dialog, select **I Accept**.
 
@@ -121,6 +168,8 @@ You'll use the Scalar UI to test the _AspireExistingDB.ApiService_ project. Let'
 
 ## Configure a connection string in the App Host project
 
+:::zone pivot="sql-server-ef"
+
 Usually, when you create a cloud-native solution with .NET Aspire, you call the <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*> method to initiate a container that runs the SQL Server instance. You pass that resource to other projects in your solution that need access to the database.
 
 In this case, however, you want to work with an existing database outside of any container. There are three differences in the App Host project:
@@ -162,6 +211,140 @@ Let's implement that configuration:
     var connectionString = builder.AddConnectionString("sql");
     ```
 
+:::zone-end
+:::zone pivot="postgresql-ef"
+
+Usually, when you create a cloud-native solution with .NET Aspire, you call the <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres*> method to initiate a container that runs the PostgreSQL instance. You pass that resource to other projects in your solution that need access to the database.
+
+In this case, however, you want to work with an existing database outside of any container. There are three differences in the App Host project:
+
+- You don't need to install the `Aspire.Hosting.PostgreSQL` hosting integration.
+- You add a connection string in a configuration file, such as **appsetting.json**.
+- You call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> to create a resource that you pass to other projects. Those projects use this resource to connect to the existing database.
+
+Let's implement that configuration:
+
+1. In Visual Studio, in the _AspireExistingDB.AppHost_ project, open the _appsetting.json_ file.
+1. Replace the entire contents of the file with the following code. In the connection string, replace {Username} and {Password} with the correct credentials for your PostgreSQL server:
+
+    ```json
+    {
+        "ConnectionStrings": {
+            "postgresql": "Server=127.0.0.1;Port=5432;Database=WeatherForecasts;User Id={Username};Password={Password};"
+        },
+        "Logging": {
+            "LogLevel": {
+                "Default": "Information",
+                "Microsoft.AspNetCore": "Warning",
+                "Aspire.Hosting.Dcp": "Warning"
+            }
+        }
+    }
+    ```
+
+1. In the _AspireExistingDB.AppHost_ project, open the _Program.cs_ file.
+1. Locate the following line of code:
+
+    ```csharp
+    var builder = DistributedApplication.CreateBuilder(args);
+    ```
+
+1. Immediately after that line, add this line of code, which obtains the connection string from the configuration file:
+
+    ```csharp
+    var connectionString = builder.AddConnectionString("postgresql");
+    ```
+
+:::zone-end
+:::zone pivot="oracle-ef"
+
+Usually, when you create a cloud-native solution with .NET Aspire, you call the <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddOracle*> method to initiate a container that runs the Oracle Database instance. You pass that resource to other projects in your solution that need access to the database.
+
+In this case, however, you want to work with an existing database outside of any container. There are three differences in the App Host project:
+
+- You don't need to install the `Aspire.Hosting.Oracle` hosting integration.
+- You add a connection string in a configuration file, such as **appsetting.json**.
+- You call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> to create a resource that you pass to other projects. Those projects use this resource to connect to the existing database.
+
+Let's implement that configuration:
+
+1. In Visual Studio, in the _AspireExistingDB.AppHost_ project, open the _appsetting.json_ file.
+1. Replace the entire contents of the file with the following code:
+
+    ```json
+    {
+        "ConnectionStrings": {
+            "oracle": "Data Source=WeatherForecasts;Integrated Security=yes;"
+        },
+        "Logging": {
+            "LogLevel": {
+                "Default": "Information",
+                "Microsoft.AspNetCore": "Warning",
+                "Aspire.Hosting.Dcp": "Warning"
+            }
+        }
+    }
+    ```
+
+1. In the _AspireExistingDB.AppHost_ project, open the _Program.cs_ file.
+1. Locate the following line of code:
+
+    ```csharp
+    var builder = DistributedApplication.CreateBuilder(args);
+    ```
+
+1. Immediately after that line, add this line of code, which obtains the connection string from the configuration file:
+
+    ```csharp
+    var connectionString = builder.AddConnectionString("oracle");
+    ```
+
+:::zone-end
+:::zone pivot="mysql-ef"
+
+Usually, when you create a cloud-native solution with .NET Aspire, you call the <xref:Aspire.Hosting.MySqlBuilderExtensions.AddMySql*> method to initiate a container that runs the MySQL instance. You pass that resource to other projects in your solution that need access to the database.
+
+In this case, however, you want to work with an existing database outside of any container. There are three differences in the App Host project:
+
+- You don't need to install the `Aspire.Hosting.MySQL` hosting integration.
+- You add a connection string in a configuration file, such as **appsetting.json**.
+- You call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> to create a resource that you pass to other projects. Those projects use this resource to connect to the existing database.
+
+Let's implement that configuration:
+
+1. In Visual Studio, in the _AspireExistingDB.AppHost_ project, open the _appsetting.json_ file.
+1. Replace the entire contents of the file with the following code. In the connection string, replace {Username} and {Password} with the correct credentials for your MySQL server:
+
+    ```json
+    {
+        "ConnectionStrings": {
+            "mysql": "Server=127.0.0.1;Database=WeatherForecasts;Uid={Username};Pwd={Password};"
+        },
+        "Logging": {
+            "LogLevel": {
+                "Default": "Information",
+                "Microsoft.AspNetCore": "Warning",
+                "Aspire.Hosting.Dcp": "Warning"
+            }
+        }
+    }
+    ```
+
+1. In the _AspireExistingDB.AppHost_ project, open the _Program.cs_ file.
+1. Locate the following line of code:
+
+    ```csharp
+    var builder = DistributedApplication.CreateBuilder(args);
+    ```
+
+1. Immediately after that line, add this line of code, which obtains the connection string from the configuration file:
+
+    ```csharp
+    var connectionString = builder.AddConnectionString("mysql");
+    ```
+
+:::zone-end
+
 1. Locate the following line of code, which creates a resource for the _AspireExistingDB.ApiService_ project:
 
     ```csharp
@@ -179,7 +362,7 @@ Let's implement that configuration:
 
 ## Use the database in the API project
 
-Returning to the _AspireExistingDB.ApiService_ project, you must obtain the connection string resource from the App Host, and then use it to create the database in the instance of SQL Server:
+Returning to the _AspireExistingDB.ApiService_ project, you must obtain the connection string resource from the App Host, and then use it to create the database:
 
 1. In Visual Studio, in the _AspireExistingDB.ApiService_ project, open the _Program.cs_ file.
 1. Locate the following line of code:
@@ -188,11 +371,42 @@ Returning to the _AspireExistingDB.ApiService_ project, you must obtain the conn
     var builder = WebApplication.CreateBuilder(args);
     ```
 
+:::zone pivot="sql-server-ef"
+
 1. Immediately after that line, add this line of code:
 
     ```csharp
     builder.AddSqlServerDbContext<WeatherDbContext>("sql");
     ```
+
+:::zone-end
+:::zone pivot="postgresql-ef"
+
+1. Immediately after that line, add this line of code:
+
+    ```csharp
+    builder.AddSqlServerDbContext<WeatherDbContext>("postgresql");
+    ```
+
+:::zone-end
+:::zone pivot="oracle-ef"
+
+1. Immediately after that line, add this line of code:
+
+    ```csharp
+    builder.AddSqlServerDbContext<WeatherDbContext>("oracle");
+    ```
+
+:::zone-end
+:::zone pivot="mysql-ef"
+
+1. Immediately after that line, add this line of code:
+
+    ```csharp
+    builder.AddSqlServerDbContext<WeatherDbContext>("mysql");
+    ```
+
+:::zone-end
 
 1. Locate the following line of code:
 
@@ -305,6 +519,8 @@ Finally, let's add a POST method to the API, which will add records to the datab
 
 ## Run and test the app locally
 
+:::zone pivot="sql-server-ef"
+
 The sample app is ready to test. Before you start debugging, make sure that:
 
 - Docker Desktop or Podman is running to host containers for the solution.
@@ -345,6 +561,184 @@ Now, let's test the solution:
 
 1. Select **Send**. The call should return JSON with the weather reported you posted.
 1. Switch to SQL Server Management Studio. In the query window for the **Forecasts** table, select **Execute** or press <kbd>F5</kbd>. Your weather forecast is displayed.
+
+:::zone-end
+:::zone pivot="postgresql-ef"
+
+The sample app is ready to test. Before you start debugging, make sure that:
+
+- Docker Desktop or Podman is running to host containers for the solution.
+- PostgreSQL is running to host the database.
+
+Let's connect to PostgreSQL and check the databases that exist.
+
+1. Start the PostgreSQL **psql** shell.
+1. Connect to the PostgreSQL instance on the **localhost** using the credentials and port number you specified when you installed PostgreSQL.
+1. To list all the databases, enter the command **\l**. There is no database named **WeatherForecasts**.
+
+Now, let's test the solution:
+
+1. In Visual Studio, select the run button (or press <kbd>F5</kbd>) to launch your .NET Aspire project dashboard in the browser.
+1. In the navigation on the left, select **Console**.
+1. In the **Resource** drop down list, select **apiservice**. Notice the `CREATE TABLE` SQL command, which has created the **Forecasts** table in the **WeatherForecasts** database.
+
+    :::image type="content" source="media/connect-to-existing-database/console-log-create-table.png" lightbox="media/connect-to-existing-database/console-log-create-table.png" alt-text="A screenshot showing the CREATE TABLE query in the API console log.":::
+
+1. Switch to the **psql** shell and enter the **\l** command again. Notice the new **Forecasts** table.
+1. To query all rows in the **Forecasts** table, run this command:
+
+    ```sql
+    SELECT * FROM Forecasts;
+    ```
+
+    The query runs but returns no results because the table is empty.
+
+1. In the .NET Aspire dashboard, in the navigation on the left, select **Resources**.
+1. Select one of the endpoints for the **apiservice** resource.
+
+    :::image type="content" source="media/connect-to-existing-database/dashboard-select-api-endpoint.png" lightbox="media/connect-to-existing-database/dashboard-select-api-endpoint.png" alt-text="A screenshot showing how to connect to the API from the .NET Aspire dashboard.":::
+
+1. In the browser window, append **/scalar** to the web address and then press <kbd>Enter</kbd>.
+1. In the navigation on the left, expand **Setters** and then select **/weatherforecast POST**.
+1. Select **Test Request**. Under **Body**, in the **JSON** window, delete the **id** and **date** lines and fill in your own values for **temperatureC** and **summary**.
+1. Select **Send**.
+1. In the navigation on the left, select **/weatherforecast GET** and then select **Test Request**.
+
+    :::image type="content" source="media/connect-to-existing-database/scalar-text-get.png" lightbox="media/connect-to-existing-database/scalar-text-get.png" alt-text="A screenshot showing how to test the GET method in the API from the Scalar user interface.":::
+
+1. Select **Send**. The call should return JSON with the weather reported you posted.
+1. Switch to the **psql** shell. To query all rows in the **Forecasts** table, run this command:
+
+    ```sql
+    SELECT * FROM Forecasts;
+    ```
+
+    Your weather forecast is displayed.
+
+:::zone-end
+:::zone pivot="oracle-ef"
+
+The sample app is ready to test. Before you start debugging, make sure that:
+
+- Docker Desktop or Podman is running to host containers for the solution.
+- Oracle Database is running to host the database.
+
+You will use Oracle **SQL Developer** tool to run queries. You can download the tool from [Oracle](https://www.oracle.com/database/sqldeveloper/technologies/download/).
+
+Let's connect to Oracle Database and check the databases that exist.
+
+1. Start the **Oracle SQL Developer** tool.
+1. Right-click the **Connections** node and then select **New Connection**.
+1. Connect to the Oracle Database instance on the **localhost** using the credentials and port number you specified when you installed Oracle.
+1. Expand the **Tables** node. There is no **Forecasts** table.
+
+Now, let's test the solution:
+
+1. In Visual Studio, select the run button (or press <kbd>F5</kbd>) to launch your .NET Aspire project dashboard in the browser.
+1. In the navigation on the left, select **Console**.
+1. In the **Resource** drop down list, select **apiservice**. Notice the `CREATE TABLE` SQL command, which has created the **Forecasts** table in the **WeatherForecasts** database.
+
+    :::image type="content" source="media/connect-to-existing-database/console-log-create-table.png" lightbox="media/connect-to-existing-database/console-log-create-table.png" alt-text="A screenshot showing the CREATE TABLE query in the API console log.":::
+
+1. Switch to the **Oracle SQL Developer** tool. Select the **Tables** node and then select the **Refresh** button. Notice the new **Forecasts** table.
+1. To query all rows in the **Forecasts** table, run this command in the **SQL Worksheet** window:
+
+    ```sql
+    SELECT * FROM Forecasts;
+    ```
+
+    The query runs but returns no results because the table is empty.
+
+1. In the .NET Aspire dashboard, in the navigation on the left, select **Resources**.
+1. Select one of the endpoints for the **apiservice** resource.
+
+    :::image type="content" source="media/connect-to-existing-database/dashboard-select-api-endpoint.png" lightbox="media/connect-to-existing-database/dashboard-select-api-endpoint.png" alt-text="A screenshot showing how to connect to the API from the .NET Aspire dashboard.":::
+
+1. In the browser window, append **/scalar** to the web address and then press <kbd>Enter</kbd>.
+1. In the navigation on the left, expand **Setters** and then select **/weatherforecast POST**.
+1. Select **Test Request**. Under **Body**, in the **JSON** window, delete the **id** and **date** lines and fill in your own values for **temperatureC** and **summary**.
+1. Select **Send**.
+1. In the navigation on the left, select **/weatherforecast GET** and then select **Test Request**.
+
+    :::image type="content" source="media/connect-to-existing-database/scalar-text-get.png" lightbox="media/connect-to-existing-database/scalar-text-get.png" alt-text="A screenshot showing how to test the GET method in the API from the Scalar user interface.":::
+
+1. Select **Send**. The call should return JSON with the weather reported you posted.
+1. Switch to the **Oracle SQL Developer** tool. To query all rows in the **Forecasts** table, run this command:
+
+    ```sql
+    SELECT * FROM Forecasts;
+    ```
+
+    Your weather forecast is displayed.
+
+:::zone-end
+:::zone pivot="mysql-ef"
+
+The sample app is ready to test. Before you start debugging, make sure that:
+
+- Docker Desktop or Podman is running to host containers for the solution.
+- MySQL is running to host the database.
+
+Let's connect to MySQL and check the databases that exist.
+
+1. At a command prompt start the **mysql** tool. Replace {Username} with the correct username for your installation and then enter the correct password:
+
+    ```cmd
+    mysql -u {Username} -p
+    ```
+
+1. To list all the databases, enter this command. There is no database named **WeatherForecasts**:
+
+    ```sql
+    SHOW DATABASES;
+    ```
+
+Now, let's test the solution:
+
+1. In Visual Studio, select the run button (or press <kbd>F5</kbd>) to launch your .NET Aspire project dashboard in the browser.
+1. In the navigation on the left, select **Console**.
+1. In the **Resource** drop down list, select **apiservice**. Notice the `CREATE TABLE` SQL command, which has created the **Forecasts** table in the **WeatherForecasts** database.
+
+    :::image type="content" source="media/connect-to-existing-database/console-log-create-table.png" lightbox="media/connect-to-existing-database/console-log-create-table.png" alt-text="A screenshot showing the CREATE TABLE query in the API console log.":::
+
+1. Switch to the **mysql** shell and enter this command again. Notice the new **WeatherForecasts** database:
+
+    ```sql
+    SHOW DATABASES;
+    ```
+
+1. To query all rows in the **Forecasts** table, run these commands:
+
+    ```sql
+    USE WeatherForecasts;
+    SELECT * FROM Forecasts;
+    ```
+
+    The query runs but returns no results because the table is empty.
+
+1. In the .NET Aspire dashboard, in the navigation on the left, select **Resources**.
+1. Select one of the endpoints for the **apiservice** resource.
+
+    :::image type="content" source="media/connect-to-existing-database/dashboard-select-api-endpoint.png" lightbox="media/connect-to-existing-database/dashboard-select-api-endpoint.png" alt-text="A screenshot showing how to connect to the API from the .NET Aspire dashboard.":::
+
+1. In the browser window, append **/scalar** to the web address and then press <kbd>Enter</kbd>.
+1. In the navigation on the left, expand **Setters** and then select **/weatherforecast POST**.
+1. Select **Test Request**. Under **Body**, in the **JSON** window, delete the **id** and **date** lines and fill in your own values for **temperatureC** and **summary**.
+1. Select **Send**.
+1. In the navigation on the left, select **/weatherforecast GET** and then select **Test Request**.
+
+    :::image type="content" source="media/connect-to-existing-database/scalar-text-get.png" lightbox="media/connect-to-existing-database/scalar-text-get.png" alt-text="A screenshot showing how to test the GET method in the API from the Scalar user interface.":::
+
+1. Select **Send**. The call should return JSON with the weather reported you posted.
+1. Switch to the **mysql** shell. To query all rows in the **Forecasts** table, run this command:
+
+    ```sql
+    SELECT * FROM Forecasts;
+    ```
+
+    Your weather forecast is displayed.
+
+:::zone-end
 
 ## See also
 
