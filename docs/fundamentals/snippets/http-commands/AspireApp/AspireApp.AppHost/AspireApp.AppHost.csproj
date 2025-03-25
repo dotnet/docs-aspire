@@ -12,9 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.2.0-preview.1.25171.4" />
-    <PackageReference Include="Aspire.Hosting.Redis" Version="9.2.0-preview.1.25173.2" />
-    <PackageReference Include="Aspire.StackExchange.Redis.DistributedCaching" Version="9.2.0-preview.1.25173.2" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.2.0-preview.1.25175.3" />
+    <PackageReference Include="Aspire.Hosting.Redis" Version="9.2.0-preview.1.25175.3" />
+    <PackageReference Include="Aspire.StackExchange.Redis.DistributedCaching" Version="9.2.0-preview.1.25175.3" />
   </ItemGroup>
 
   <ItemGroup>

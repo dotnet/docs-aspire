@@ -1,7 +1,7 @@
 ---
 title: Custom HTTP commands in .NET Aspire
 description: Learn how to create custom HTTP commands in .NET Aspire.
-ms.date: 03/24/2025
+ms.date: 03/25/2025
 ms.topic: how-to
 ---
 
@@ -27,7 +27,7 @@ The `WithHttpCommand` API provides two overloads to add custom HTTP commands to 
 
     This version provides more dynamic behavior by allowing you to specify a callback (`endpointSelector`) to determine the endpoint at runtime. This is useful when the endpoint might vary based on the resource's state or other contextual factors. It offers greater flexibility for advanced scenarios where the endpoint can't be hardcoded.
 
-Both overloads allow you to customize the HTTP command extensively, including specifying the HTTP method, configure the request, handling the response, and define UI-related properties like display name, description, and icons. The choice between the two depends on whether the endpoint is static or dynamic in your use case.
+Both overloads allow you to customize the HTTP command extensively, providing an `HttpCommandOptions` subclass of the `CommandOptions` type, including specifying the HTTP method, configure the request, handling the response, and define UI-related properties like display name, description, and icons. The choice between the two depends on whether the endpoint is static or dynamic in your use case.
 
 These APIs are designed to integrate seamlessly with the .NET Aspire ecosystem, enabling developers to extend resource functionality with minimal effort while maintaining control over the behavior and presentation of the commands.
 
@@ -43,6 +43,40 @@ In your app host _Program.cs_ file, you add a custom HTTP command using the `Wit
 
 :::code source="snippets/http-commands/AspireApp/AspireApp.AppHost/Program.cs":::
 
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var cache = builder.AddRedis("cache");
+
+var apiCacheInvalidationKey = builder.AddParameter("ApiCacheInvalidationKey", secret: true);
+
+var api = builder.AddProject<Projects.AspireApp_Api>("api")
+    .WithReference(cache)
+    .WaitFor(cache)
+    .WithEnvironment("ApiCacheInvalidationKey", apiCacheInvalidationKey)
+    .WithHttpCommand(
+        path: "/cache/invalidate",
+        displayName: "Invalidate cache",
+        commandOptions: new HttpCommandOptions()
+        {
+            Description = """            
+                Invalidates the API cache. All cached values are cleared!            
+                """,
+            PrepareRequest = (context) =>
+            {
+                var key = apiCacheInvalidationKey.Resource.Value;
+
+                context.Request.Headers.Add("X-CacheInvalidation-Key", $"Key: {key}");
+
+                return Task.CompletedTask;
+            },
+            IconName = "DocumentLightning",
+            IsHighlighted = true
+        });
+
+builder.Build().Run();
+```
+
 The preceding code:
 
 - Creates a new distributed application builder.
@@ -50,15 +84,14 @@ The preceding code:
 - Adds a parameter named `ApiCacheInvalidationKey` to the application. This parameter is marked as a secret, meaning its value is treated securely.
 - Adds a project named `AspireApp_Api` to the application.
 - Adds a reference to the Redis cache and [waits for it to be ready before proceeding](app-host-overview.md#waiting-for-resources).
-- Configures an HTTP command for the project with the following properties:
+- Configures an HTTP command for the project with the following:
   - `path`: Specifies the URL path for the HTTP command (`/cache/invalidate`).
   - `displayName`: Sets the name of the command as it appears in the UI (`Invalidate cache`).
-  - `displayDescription`: Provides a description of the command that's shown in the UI.
-  - `configureRequest`: A callback function that configures the HTTP request before sending it. In this case, it adds a custom (`X-CacheInvalidation-Key`) header with the value of the `ApiCacheInvalidationKey` parameter.
-  - `iconName`: Specifies the icon to be used for the command in the UI (`DocumentLightningFilled`).
-  - `isHighlighted`: Indicates whether the command should be highlighted in the UI.
-- The `configureRequest` callback is used to add a custom header to the HTTP request. In this case, it adds an `X-CacheInvalidation-Key` header with the value of the `ApiCacheInvalidationKey` parameter.
-- The <xref:System.Threading.Tasks.Task.CompletedTask?displayProperty=nameWithType> is returned to indicate that the request configuration is complete.
+  - `commandOptions`: An optional instance of `HttpCommandOptions` that configures the command's behavior and appearance in the UI:
+    - `Description`: Provides a description of the command that's shown in the UI.
+    - `PrepareRequest`: A callback function that configures the HTTP request before sending it. In this case, it adds a custom (`X-CacheInvalidation-Key`) header with the value of the `ApiCacheInvalidationKey` parameter.
+    - `IconName`: Specifies the icon to be used for the command in the UI (`DocumentLightningFilled`).
+    - `IsHighlighted`: Indicates whether the command should be highlighted in the UI.
 - Finally, the application is built and run.
 
 The HTTP endpoint is responsible for invalidating the cache. When the command is executed, it sends an HTTP request to the specified path (`/cache/invalidate`) with the configured parameters. Since there's an added security measure, the request includes the `X-CacheInvalidation-Key` header with the value of the `ApiCacheInvalidationKey` parameter. This ensures that only authorized requests can trigger the cache invalidation process.
