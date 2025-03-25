@@ -5,8 +5,18 @@ items:
   href: ../get-started/aspire-overview.md
 - name: Breaking changes
   href: breaking-changes.md
-- name: .NET Aspire 9.1
+- name: .NET Aspire 9.2
   expanded: true
+  items:
+  - name: Overview
+    href: 9.2/index.md
+  - name: Breaking changes in 9.2
+    expanded: true
+    items:
+    - name: Container image name and tag updates
+      href: 9.2/container-image-name-and-tag-updates.md
+- name: .NET Aspire 9.1
+  expanded: false
   items:
   - name: Overview
     href: 9.1/index.md
@@ -50,3 +60,5 @@ items:
       href: 9.0/azure-resource-name-scheme.md
     - name: Ollama integration updates
       href: 9.0/ollama-integration-updates.md
+- name: .NET Aspire Support Policy
+  href: https://dotnet.microsoft.com/platform/support/policy/aspire
