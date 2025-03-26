@@ -13,8 +13,10 @@ items:
   - name: Breaking changes in 9.2
     expanded: true
     items:
-    - name: Container image name and tag updates
-      href: 9.2/container-image-name-and-tag-updates.md
+    - name: WithCommand obsolete, use new overload
+      href: 9.2/withcommand-obsolete.md
+    - name: With authentication APIs include semantic changes
+      href: 9.2/withauthentication-changes.md
 - name: .NET Aspire 9.1
   expanded: false
   items:
