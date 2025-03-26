@@ -81,20 +81,6 @@ var creationScript = $$"""
     -- Create the database
     CREATE DATABASE {{databaseName}};
 
-    -- Connect to the database
-    \c {{databaseName}}
-
-    -- Create the todos table
-    CREATE TABLE todos (
-        id SERIAL PRIMARY KEY,                            -- Auto-incrementing unique ID
-        title VARCHAR(255) NOT NULL,                      -- Short description of the task
-        description TEXT,                                 -- Optional detailed description
-        is_completed BOOLEAN DEFAULT FALSE,               -- Completion status
-        due_date DATE,                                    -- Optional due date
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,   -- Creation timestamp
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP    -- Last update timestamp
-    );
-
     """;
 
 var db = postgres.AddDatabase(databaseName)
@@ -107,7 +93,10 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The preceding example creates a database named `app_db` with a single `todos` table. The script is executed when the database resource is created. The script is passed as a string to the `WithCreationScript` method, which is then executed in the context of the SQL Server resource.
+The preceding example creates a database named `app_db`. The script is executed when the database resource is created. The script is passed as a string to the `WithCreationScript` method, which is then executed in the context of the SQL Server resource.
+
+> [!NOTE]
+> The connect to a database command (`\c`) isn't supported when using the creation script.
 
 ### Add PostgreSQL pgAdmin resource
 
