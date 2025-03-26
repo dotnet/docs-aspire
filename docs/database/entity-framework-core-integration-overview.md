@@ -179,40 +179,44 @@ Alternatively, you can add a context to the DI container using the standard EF C
 :::zone pivot="sql-server-ef"
 
 ```csharp
-builder.Services.AddDbContextPool<ExampleDbContext>(options =>
+builder.Services.AddDbContextPool<ExampleDbContext>(options => {
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString);
+});
 ```
 
 :::zone-end
 :::zone pivot="postgresql-ef"
 
 ```csharp
-builder.Services.AddDbContextPool<ExampleDbContext>(options =>
+builder.Services.AddDbContextPool<ExampleDbContext>(options => {
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
-    options.UseNpgsql(connectionString));
+    options.UseNpgsql(connectionString);
+});
 ```
 
 :::zone-end
 :::zone pivot="oracle-ef"
 
 ```csharp
-builder.Services.AddDbContextPool<ExampleDbContext>(options =>
+builder.Services.AddDbContextPool<ExampleDbContext>(options => {
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
-    options.UseOracle(connectionString));
+    options.UseOracle(connectionString);
+});
 ```
 
 :::zone-end
 :::zone pivot="mysql-ef"
 
 ```csharp
-builder.Services.AddDbContextPool<ExampleDbContext>(options =>
+builder.Services.AddDbContextPool<ExampleDbContext>(options => {
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
-    options.UseMySql(connectionString));
+    options.UseMySql(connectionString);
+});
 ```
 
 :::zone-end
@@ -244,7 +248,7 @@ builder.EnrichSqlServerDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -256,7 +260,7 @@ builder.EnrichNpgsqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -268,7 +272,7 @@ builder.EnrichOracleDatabaseDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -280,7 +284,7 @@ builder.EnrichMySqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -314,7 +318,7 @@ builder.EnrichSqlServerDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -332,7 +336,7 @@ builder.EnrichNpgsqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -350,7 +354,7 @@ builder.EnrichOracleDatabaseDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -368,7 +372,7 @@ builder.EnrichMySqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -392,7 +396,7 @@ For these requirements, you can use code to formulate a **dynamic connection str
 var connectionStringWithPlaceHolder = builder.Configuration.GetConnectionString("database")
     ?? throw new InvalidOperationException("Connection string 'database' not found.");
 
-connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
+var connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
 
 builder.Services.AddDbContext<ExampleDbContext>(options =>
     options.UseSqlServer(connectionString
@@ -402,7 +406,7 @@ builder.EnrichSqlServerDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -413,7 +417,7 @@ builder.EnrichSqlServerDbContext<ExampleDbContext>(
 var connectionStringWithPlaceHolder = builder.Configuration.GetConnectionString("database")
     throw new InvalidOperationException("Connection string 'database' not found.");
 
-connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
+var connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
 
 builder.Services.AddDbContext<ExampleDbContext>(options =>
     options.UseNpgsql(connectionString
@@ -423,7 +427,7 @@ builder.EnrichNpgsqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -434,7 +438,7 @@ builder.EnrichNpgsqlDbContext<ExampleDbContext>(
 var connectionStringWithPlaceHolder = builder.Configuration.GetConnectionString("database")
     throw new InvalidOperationException("Connection string 'database' not found.");
 
-connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
+var connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
 
 builder.Services.AddDbContext<ExampleDbContext>(options =>
     options.UseOracle(connectionString
@@ -444,7 +448,7 @@ builder.EnrichOracleDatabaseDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -455,7 +459,7 @@ builder.EnrichOracleDatabaseDbContext<ExampleDbContext>(
 var connectionStringWithPlaceHolder = builder.Configuration.GetConnectionString("database")
     throw new InvalidOperationException("Connection string 'database' not found.");
 
-connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
+var connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
 
 builder.Services.AddDbContext<ExampleDbContext>(options =>
     options.UseMySql(connectionString
@@ -465,7 +469,7 @@ builder.EnrichMySqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -492,7 +496,7 @@ builder.EnrichSqlServerDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -508,7 +512,7 @@ builder.EnrichNpgsqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -524,7 +528,7 @@ builder.EnrichOracleDatabaseDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -540,7 +544,7 @@ builder.EnrichMySqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
