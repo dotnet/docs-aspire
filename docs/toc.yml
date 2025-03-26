@@ -29,12 +29,12 @@ items:
   - name: Upgrade to .NET Aspire 9.0
     href: get-started/upgrade-to-aspire-9.md
 
-- name: App Host (Orchestration)
+- name: App Host (Dev-time orchestration)
   items:
   - name: Overview
-    displayName: orchestration,aspire apphost,aspire app
+    displayName: orchestration,aspire apphost,aspire app,dev-time,inner-loop
     href: fundamentals/app-host-overview.md
-  - name: Orchestrate
+  - name: Locally orchestrate
     items:
     - name: Node.js apps in .NET Aspire
       href: get-started/build-aspire-apps-with-nodejs.md
@@ -136,6 +136,8 @@ items:
       href: azure/integrations-overview.md
     - name: Local Azure provisioning
       href: azure/local-provisioning.md
+    - name: Manage role assignments
+      href: azure/role-assignments.md
     - name: Azure AI Search
       displayName: azure search,search,azure ai,cognitive search,cognitive services
       href: azureai/azureai-search-document-integration.md
