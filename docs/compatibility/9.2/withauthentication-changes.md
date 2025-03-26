@@ -10,9 +10,9 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/2889
 
 Starting in .NET Aspire 9.2, calling any of the following methods:
 
-- <xref:Aspire.Hosting.AzureRedisExtensions.WithAccessKeyAuthentication*>
-- <xref:Aspire.Hosting.AzureCosmosExtensions.WithAccessKeyAuthentication*>
-- <xref:Aspire.Hosting.AzurePostgresExtensions.WithPasswordAuthentication*>
+- <xref:Aspire.Hosting.AzureRedisExtensions.WithAccessKeyAuthentication*?displayProperty=nameWithType>
+- <xref:Aspire.Hosting.AzureCosmosExtensions.WithAccessKeyAuthentication*?displayProperty=nameWithType>
+- <xref:Aspire.Hosting.AzurePostgresExtensions.WithPasswordAuthentication*?displayProperty=nameWithType>
 
 Will now create (or add references to) a key vault resource directly in the app model. This change allows better customization and management of connection strings and secrets.
 
@@ -42,6 +42,6 @@ There is currently no workaround for this change. Ensure that your app model is 
 
 ## Affected APIs
 
-- <xref:Aspire.Hosting.AzureRedisExtensions.WithAccessKeyAuthentication*>
-- <xref:Aspire.Hosting.AzureCosmosExtensions.WithAccessKeyAuthentication*>
-- <xref:Aspire.Hosting.AzurePostgresExtensions.WithPasswordAuthentication*>
+- <xref:Aspire.Hosting.AzureRedisExtensions.WithAccessKeyAuthentication*?displayProperty=nameWithType>
+- <xref:Aspire.Hosting.AzureCosmosExtensions.WithAccessKeyAuthentication*?displayProperty=nameWithType>
+- <xref:Aspire.Hosting.AzurePostgresExtensions.WithPasswordAuthentication*?displayProperty=nameWithType>
