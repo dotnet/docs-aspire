@@ -12,7 +12,7 @@ All .NET Aspire Azure hosting integrations define Azure resources. [These resour
 
 When you add an Azure resource to the [app model](xref:dotnet/aspire/app-host#terminology), it's assigned default roles. If a resource depends on another resource, it inherits the same role assignments as the referenced resource unless explicitly overridden.
 
-Consider a scenario where an API project resource references an Azure resource. The API project is given the default role assignments, as shown in the following example:
+Consider a scenario where an API project resource references an [Azure Search](../azureai/azureai-search-document-integration.md) resource. The API project is given the default role assignments, as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -50,7 +50,7 @@ When you use the `WithRoleAssignments` method, it replaces the default role assi
 
 When you replace the default role assignments with the `SearchIndexDataReader` role, the API project is restricted to only reading data from the Azure Search resource. This ensures the API project can't write data to the Azure Search resource.
 
-For more information, see [Azure documentation](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles).
+For more information, see [Azure built-in roles](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles).
 
 ## Built-in role assignment reference
 
@@ -71,7 +71,7 @@ For more information, see [.NET Aspire Azure App Configuration integration](../c
 
 ### Azure App Container
 
-The provisioning resource type is <xref:Azure.Provisioning.AppContainer.ContainerApp>, and the built-in roles are defined in the <xref:Azure.Provisioning.AppContainers.AppContainersBuiltInRole> struct. The built-in roles are:
+The provisioning resource type is <xref:Azure.Provisioning.AppContainers.ContainerApp>, and the built-in roles are defined in the <xref:Azure.Provisioning.AppContainers.AppContainersBuiltInRole> struct. The built-in roles are:
 
 - <xref:Azure.Provisioning.AppContainers.AppContainersBuiltInRole.Contributor?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.AppContainers.AppContainersBuiltInRole.Owner?displayProperty=nameWithType>
@@ -108,10 +108,11 @@ The provisioning resource type is <xref:Azure.Provisioning.CognitiveServices.Cog
 - <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesBuiltInRole.CognitiveServicesCustomVisionLabeler?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesBuiltInRole.CognitiveServicesCustomVisionReader?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesBuiltInRole.CognitiveServicesCustomVisionTrainer?displayProperty=nameWithType>
-- <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesBuiltInRole.CognitiveServicesDataReader?displayProperty=nameWithType><xref:Azure.Provisioning.CognitiveServices.CognitiveServicesBuiltInRole.CognitiveServicesOpenAIUser?displayProperty=nameWithType>
+- <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesBuiltInRole.CognitiveServicesDataReader?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesBuiltInRole.CognitiveServicesFaceRecognizer?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesBuiltInRole.CognitiveServicesMetricsAdvisorAdministrator?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesBuiltInRole.CognitiveServicesOpenAIContributor?displayProperty=nameWithType>
+- <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesBuiltInRole.CognitiveServicesOpenAIUser?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesBuiltInRole.CognitiveServicesOpenAIUser?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesBuiltInRole.CognitiveServicesQnAMakerEditor?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesBuiltInRole.CognitiveServicesQnAMakerReader?displayProperty=nameWithType>
@@ -135,7 +136,7 @@ For more information, see:
 
 ### Azure Event Hubs
 
-The provisioning resource type is <xref:Azure.Provisioning.EventHubs.EventHubNamespace>, and the built-in roles are defined in the <xref:Azure.Provisioning.EventHubs.EventHubsBuiltInRole> struct. The built-in roles are:
+The provisioning resource type is <xref:Azure.Provisioning.EventHubs.EventHubsNamespace>, and the built-in roles are defined in the <xref:Azure.Provisioning.EventHubs.EventHubsBuiltInRole> struct. The built-in roles are:
 
 - <xref:Azure.Provisioning.EventHubs.EventHubsBuiltInRole.AzureEventHubsDataOwner?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.EventHubs.EventHubsBuiltInRole.AzureEventHubsDataReceiver?displayProperty=nameWithType>
