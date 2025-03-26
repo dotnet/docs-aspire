@@ -20,7 +20,7 @@ Starting with .NET Aspire 9.2, dashboard usage telemetry is enabled by default. 
 - C# Dev Kit: [VSC RELEASE VERSION] or later.
 
 - Set the `DOTNET_DASHBOARD_ENABLE_TELEMETRY` environment variable to `false`. This will apply to all users accessing the Aspire dashboard.
-- Disable telemetry collection in the host IDE. Learn how to opt out in [Visual Studio](https://learn.microsoft.com/en-us/visualstudio/ide/visual-studio-experience-improvement-program) or [Visual Studio Code](https://code.visualstudio.com/docs/configure/telemetry#_disable-telemetry-reporting).
+- Disable telemetry collection in the host IDE. Learn how to opt out in [Visual Studio](/visualstudio/ide/visual-studio-experience-improvement-program) or [Visual Studio Code](https://code.visualstudio.com/docs/configure/telemetry#_disable-telemetry-reporting).
 
 ## Disclosure
 
