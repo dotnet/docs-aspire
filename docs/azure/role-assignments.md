@@ -21,7 +21,7 @@ var api = builder.AddProject<Projects.Api>("api")
                  .WithReference(search);
 ```
 
-In the preceding code, the `search` resource is referenced by the `api` resource. The `search` resource has default role assignments:
+In the preceding code, the `search` resource is referenced by the `api` resource. The `search` resource has the following default role assignments:
 
 - <xref:Azure.Provisioning.Search.SearchBuiltInRole.SearchIndexDataContributor?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.Search.SearchBuiltInRole.SearchServiceContributor?displayProperty=nameWithType>
