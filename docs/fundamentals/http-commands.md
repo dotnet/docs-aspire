@@ -35,7 +35,7 @@ These APIs are designed to integrate seamlessly with the .NET Aspire ecosystem, 
 
 Since HTTP commands are exposed via HTTP endpoints, consider potential security risks. Limit these endpoints to development or staging environments when possible. Always validate incoming requests to ensure they originate from trusted sources. For more information, see [ASP.NET Core security](/aspnet/core/security).
 
-Use the `configureRequest` callback to enhance security by adding authentication headers or other measures. A common approach is to use a shared secret, [external parameter](external-parameters.md), or token known only to the app host and resource. This shared value can be used to validate requests and prevent unauthorized access.
+Use the `CommandOptions.PrepareRequest` callback to enhance security by adding authentication headers or other measures. A common approach is to use a shared secret, [external parameter](external-parameters.md), or token known only to the app host and resource. This shared value can be used to validate requests and prevent unauthorized access.
 
 ## Add a custom HTTP command
 
