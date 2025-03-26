@@ -10,9 +10,9 @@ All .NET Aspire Azure hosting integrations define Azure resources. [These resour
 
 ## Default built-in role assignments
 
-For every Azure resource you add to the [app model](xref:dotnet/aspire/app-host#terminology), it comes with default roles assignments. When a resource is referenced by another resource, a dependency is created. The dependent resource has default role access that's defined by each Azure resource.
+When you add an Azure resource to the [app model](xref:dotnet/aspire/app-host#terminology), it's assigned default roles. If a resource depends on another resource, it inherits the same role assignments as the referenced resource unless explicitly overridden.
 
-Consider a scenario where an API project resource references an Azure resource. The API project is given the default role assignments. You can override these defaults and assign built-in roles that correspond to the resource type. Consider the following example:
+Consider a scenario where an API project resource references an Azure resource. The API project is given the default role assignments, as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -23,12 +23,16 @@ var api = builder.AddProject<Projects.Api>("api")
                  .WithReference(search);
 ```
 
-In the preceding code, the `search` resource is referenced by the `api` resource. The `search` resource has the following default role assignments by default:
+In the example code, the `api` project resource depends on the Azure `search` resource, meaning it references the `search` resource. By default, the `search` resource is assigned the following built-in roles:
 
 - <xref:Azure.Provisioning.Search.SearchBuiltInRole.SearchIndexDataContributor?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.Search.SearchBuiltInRole.SearchServiceContributor?displayProperty=nameWithType>
 
+These role assignments allow the API project to read and write data to the Azure Search resource, and manage it. However, this behavior might not always be desirable. For instance, you might want to restrict the API project to only read data from the Azure Search resource.
+
 ## Override default role assignments
+
+<!-- TODO: Add xref links when available for the WithRoleAssignments API. -->
 
 To override the default role assignment, use the `WithRoleAssignments` API and assign built-in roles as shown in the following example:
 
@@ -42,17 +46,17 @@ var api = builder.AddProject<Projects.Api>("api")
                  .WithReference(search);
 ```
 
-When you chain a call to the `WithRoleAssignments` method, it overrides the default role assignments, replacing them with the given role assignments. The `WithRoleAssignments` method takes the resource to which the role assignment applies and the built-in role to assign. In this case, the `search` resource is assigned the `SearchIndexDataReader` role.
+When you use the `WithRoleAssignments` method, it replaces the default role assignments with the specified ones. This method requires two parameters: the resource to which the role assignment applies and the built-in role to assign. In the preceding example, the `search` resource is assigned the <xref:Azure.Provisioning.Search.SearchBuiltInRole.SearchIndexDataReader?displayProperty=nameWithType> role.
 
-The preceding code replaces the default role assignments with the <xref:Azure.Provisioning.Search.SearchBuiltInRole.SearchIndexDataReader?displayProperty=nameWithType> assignment. This prevents the API project from writing data to the Azure Search resource. The API project can only read data from the Azure Search resource.
+When you replace the default role assignments with the `SearchIndexDataReader` role, the API project is restricted to only reading data from the Azure Search resource. This ensures the API project can't write data to the Azure Search resource.
 
 For more information, see [Azure documentation](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles).
 
 ## Built-in role assignment reference
 
-All built-in roles are defined in <xref:Azure.Provisioning> namespaces in corresponding [📦 Azure.Provisioning.*](https://www.nuget.org/packages?q=Azure.Provisioning) NuGet packages. Each .NET Aspire Azure hosting integration takes a dependency on appropriate provisioning package. For more information, see [Infrastructure as code](integrations-overview.md#infrastructure-as-code).
+All built-in roles are defined within the <xref:Azure.Provisioning> namespaces and are included in the corresponding [📦 Azure.Provisioning.*](https://www.nuget.org/packages?q=Azure.Provisioning) NuGet packages. Each .NET Aspire Azure hosting integration automatically depends on the appropriate provisioning package. For more information, see [Infrastructure as code](integrations-overview.md#infrastructure-as-code).
 
-The following sections list the built-in roles for each Azure provisioning type, that can be used as a parameter to the `WithRoleAssignments` API.
+The following sections list the built-in roles for each Azure provisioning type that can be used as a parameter to the `WithRoleAssignments` API.
 
 ### Azure App Configuration
 
