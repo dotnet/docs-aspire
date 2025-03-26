@@ -44,8 +44,12 @@ items:
       href: get-started/build-aspire-apps-with-python.md
   - name: Configuration
     href: app-host/configuration.md
-  - name: Custom resource commands
-    href: fundamentals/custom-resource-commands.md
+  - name: Custom commands
+    items:
+    - name: Custom resource commands
+      href: fundamentals/custom-resource-commands.md
+    - name: Custom HTTP commands
+      href: fundamentals/http-commands.md
   - name: Add Dockerfiles to the app model
     href: app-host/withdockerfile.md
     displayName: dockerfile,docker
