@@ -6,7 +6,7 @@ ms.date: 03/26/2025
 
 # Manage Azure role assignments
 
-All .NET Aspire Azure hosting integrations define Azure resources. [These resources](integrations-overview.md#add-azure-resources) come with default role assignments. You can replace these default role assignments with built-in role or custom role assignments. In this article, you learn how to manage Azure role assignments on .NET Aspire resources.
+All .NET Aspire Azure hosting integrations define Azure resources. [These resources](integrations-overview.md#add-azure-resources) come with default role assignments. You can replace these default role assignments with built-in role [or custom role assignments](integrations-overview.md#infrastructure-as-code). In this article, you learn how to manage Azure role assignments on .NET Aspire resources.
 
 ## Default built-in role assignments
 
