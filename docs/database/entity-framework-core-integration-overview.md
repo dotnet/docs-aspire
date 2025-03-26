@@ -179,7 +179,8 @@ Alternatively, you can add a context to the DI container using the standard EF C
 :::zone pivot="sql-server-ef"
 
 ```csharp
-builder.Services.AddDbContextPool<ExampleDbContext>(options => {
+builder.Services.AddDbContextPool<ExampleDbContext>(options =>
+{
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
     options.UseSqlServer(connectionString);
@@ -190,7 +191,8 @@ builder.Services.AddDbContextPool<ExampleDbContext>(options => {
 :::zone pivot="postgresql-ef"
 
 ```csharp
-builder.Services.AddDbContextPool<ExampleDbContext>(options => {
+builder.Services.AddDbContextPool<ExampleDbContext>(options =>
+{
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
     options.UseNpgsql(connectionString);
@@ -201,7 +203,8 @@ builder.Services.AddDbContextPool<ExampleDbContext>(options => {
 :::zone pivot="oracle-ef"
 
 ```csharp
-builder.Services.AddDbContextPool<ExampleDbContext>(options => {
+builder.Services.AddDbContextPool<ExampleDbContext>(options =>
+{
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
     options.UseOracle(connectionString);
@@ -212,7 +215,8 @@ builder.Services.AddDbContextPool<ExampleDbContext>(options => {
 :::zone pivot="mysql-ef"
 
 ```csharp
-builder.Services.AddDbContextPool<ExampleDbContext>(options => {
+builder.Services.AddDbContextPool<ExampleDbContext>(options =>
+{
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
     options.UseMySql(connectionString);
