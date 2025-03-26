@@ -14,7 +14,7 @@ This article describes how to integrate Azure SignalR Service into your .NET Asp
 
 ## Hosting integration
 
-The .NET Aspire Azure SignalR Service hosting integration models Azure SignalR resources as the following type:
+The .NET Aspire Azure SignalR Service hosting integration models Azure SignalR resources as the following types:
 
 - <xref:Aspire.Hosting.ApplicationModel.AzureSignalRResource>: Represents an Azure SignalR Service resource, including connection information to the underlying Azure resource.
 - <xref:Aspire.Hosting.Azure.AzureSignalREmulatorResource>: Represents an emulator for Azure SignalR Service, allowing local development and testing without requiring an Azure subscription.
@@ -79,7 +79,7 @@ The generated Bicep provides a starting point and can be customized further.
 
 ### Customize provisioning infrastructure
 
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
+All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
 
 :::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureSignalRInfra.cs" id="configure":::
 
@@ -162,7 +162,7 @@ builder.AddProject<Projects.ApiService>("apiService")
 // After adding all resources, run the app...
 ```
 
-In the preceding example, the `RunAsEmulator` method configures the Azure SignalR Service resource to run as an emulator. The emulator is based on the `mcr.microsoft.com/signalr/signalr-emulator:latest` container image. The emulator is started when the app host is run, and it will be stopped when the app host is stopped.
+In the preceding example, the `RunAsEmulator` method configures the Azure SignalR Service resource to run as an emulator. The emulator is based on the `mcr.microsoft.com/signalr/signalr-emulator:latest` container image. The emulator is started when the app host is run, and is stopped when the app host is stopped.
 
 #### Azure SignalR Service modes
 
@@ -183,7 +183,7 @@ There isn't an official .NET Aspire Azure SignalR [_client integration_](../fund
 > [!IMPORTANT]
 > It's important to disambiguate between .NET Aspire client integrations and the .NET SignalR client. SignalR exposes hubs—which act as a server-side concept—and SignalR clients connect to those hubs. The .NET projects that host SignalR hubs are where you integrate with .NET Aspire. The SignalR client is a separate library that connects to those hubs, in a different project.
 
-There are two specific packages available for [.NET from the Azure team](https://github.com/Azure/azure-signalr) that enable scenarios such as managing the client connection to Azure SignalR Service, and hooking up to the Azure SignalR Service resource. To get started, install the [📦 Microsoft.Azure.SignalR](https://www.nuget.org/packages/Microsoft.Azure.SignalR) NuGet package in the project hosting your SignalR hub.
+There are two packages available for, each with addressing specific scenarios such as managing the client connection to Azure SignalR Service, and hooking up to the Azure SignalR Service resource. To get started, install the [📦 Microsoft.Azure.SignalR](https://www.nuget.org/packages/Microsoft.Azure.SignalR) NuGet package in the project hosting your SignalR hub.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -247,7 +247,7 @@ dotnet add package Microsoft.Azure.SignalR.Management
 
 ---
 
-Azure SignalR _Serverless_ mode doesn't require a hub server to be running, which is why this mode is named "serverless". The Azure SignalR Service is responsible for maintaining client connections. Additionally, in this mode, you cannot use traditional <xref:Microsoft.AspNetCore.SignalR.Hub>, <xref:Microsoft.AspNetCore.SignalR.Hub`1>, or <xref:Microsoft.AspNetCore.SignalR.IHubContext`1>. Instead, you have to [configure an upstream endpoint which is usually an Azure Function SignalR trigger](/azure/azure-signalr/concept-upstream). Consider the following diagram that illustrates the architecture of Azure SignalR Service in _Serverless_ mode:
+Azure SignalR _Serverless_ mode doesn't require a hub server to be running. The Azure SignalR Service is responsible for maintaining client connections. Additionally, in this mode, you cannot use traditional SignalR Hubs, such as <xref:Microsoft.AspNetCore.SignalR.Hub>, <xref:Microsoft.AspNetCore.SignalR.Hub`1>, or <xref:Microsoft.AspNetCore.SignalR.IHubContext`1>. Instead, [configure an upstream endpoint which is usually an Azure Function SignalR trigger](/azure/azure-signalr/concept-upstream). Consider the following diagram that illustrates the architecture of Azure SignalR Service in _Serverless_ mode:
 
 :::image type="content" source="media/serverless-mode-thumb.png" alt-text="Azure SignalR Service: Serverless mode diagram." lightbox="media/serverless-mode.png":::
 
@@ -294,7 +294,7 @@ app.MapPost("/negotiate", async (string? userId, ServiceManager sm, Cancellation
 app.Run();
 ```
 
-The preceding code configures the Azure SignalR Service using the `ServiceManagerBuilder` class. You might have noticed that it doesn't call `AddSignalR` nor does it call `MapHub`—this is intentional, as _Serverless_ mode doesn't require one. The connection string is read from the configuration key `ConnectionStrings:signalr`. When using the emulator, only the HTTP endpoint is available. Within the app, you can use the `ServiceManager` instance to create a `ServiceHubContext`. The `ServiceHubContext` is used to broadcast messages and manage connections to clients.
+The preceding code configures the Azure SignalR Service using the `ServiceManagerBuilder` class, but doesn't call `AddSignalR` or `MapHub`. These two extensions aren't required with _Serverless_ mode. The connection string is read from the configuration key `ConnectionStrings:signalr`. When using the emulator, only the HTTP endpoint is available. Within the app, you can use the `ServiceManager` instance to create a `ServiceHubContext`. The `ServiceHubContext` is used to broadcast messages and manage connections to clients.
 
 The `/negotiate` endpoint is required to establish a connection between the connecting client and the Azure SignalR Service. The `ServiceHubContext` is created using the `ServiceManager.CreateHubContextAsync` method, which takes the hub name as a parameter. The `NegotiateAsync` method is called to negotiate the connection with the Azure SignalR Service, which returns an access token and the URL for the client to connect to.
 
