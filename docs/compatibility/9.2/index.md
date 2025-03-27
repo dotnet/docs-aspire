@@ -20,3 +20,4 @@ If you're migrating an app to .NET Aspire 9.2, the breaking changes listed here 
 |--|--|--|
 | [WithCommand obsolete and new overload with CommandOptions](withcommand-obsolete.md) | Source incompatible | 9.2 |
 | [With authentication API creates keyvault resource in the app model](withauthentication-changes.md) | Behavioral change | 9.2 |
+| [KeyVault default role assignment changing from KeyVaultAdministrator to KeyVaultSecretsUser](keyvault-role-assignment-changes.md) | Behavioral change | 9.2 |

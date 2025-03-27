@@ -81,7 +81,7 @@ The only required parameters are the `name`, `displayName`, and `executeCommand`
 
 ## Type of breaking change
 
-This is a [source incompatible](../../categories.md#source-compatibility) change.
+This is a [source incompatible](../categories.md#source-compatibility) change.
 
 ## Reason for change
 
