@@ -83,13 +83,13 @@ First, install EF Core in the _AspireExistingDB.ApiService_ project.
 1. Select the **Browse** tab, and then search for **Aspire.Microsoft.EntityFrameworkCore**.
 1. Select the **Aspire.Microsoft.EntityFrameworkCore.SqlServer** package, and then select **Install**.
 
-::zone-end
+:::zone-end
 :::zone pivot="postgresql-ef"
 
 1. Select the **Browse** tab, and then search for **Aspire.Npgsql.EntityFrameworkCore**.
 1. Select the **Aspire.Npgsql.EntityFrameworkCore.PostgreSQL** package, and then select **Install**.
 
-::zone-end
+:::zone-end
 :::zone pivot="oracle-ef"
 
 1. Select the **Browse** tab, and then search for **Aspire.Oracle.EntityFrameworkCore**.
