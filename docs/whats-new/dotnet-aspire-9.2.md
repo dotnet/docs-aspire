@@ -65,9 +65,11 @@ If your app host project file doesn't have the `Aspire.AppHost.Sdk` reference, y
 
 The .NET Aspire app host project file no longer requires the `IsAspireHost` property. This property was moved to the `Aspire.AppHost.Sdk` SDK, therefore, you can remove it from your project file. For more information, see [dotnet/aspire issue #8144](https://github.com/dotnet/aspire/pull/8144).
 
+<!--
 ## 📈 Dashboard usage telemetry
 
 .NET Aspire collects usage telemetry from the dashboard by default. This telemetry helps us understand how you use the dashboard and what features are most important to you. We use this information to prioritize our work and improve the dashboard experience. You can opt out of this telemetry by setting the `DOTNET_DASHBOARD_ENABLE_TELEMETRY` environment variable to `false`. For more information, see [.NET Aspire dashboard usage telemetry](../fundamentals/dashboard/usage-telemetry.md).
+-->
 
 ## 🚫 Disable dashboard resource graphs
 
