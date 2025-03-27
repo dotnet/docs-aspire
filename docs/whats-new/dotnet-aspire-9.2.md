@@ -98,3 +98,9 @@ The following hosting integrations don't support database creation:
 [Custom resource commands](../fundamentals/custom-resource-commands.md) now support HTTP-based functionality with the addition of the `WithHttpCommand` API, enabling you to define endpoints for tasks like database migrations or resets. These commands can be run directly from the .NET Aspire dashboard.
 
 For more information, see [Custom HTTP commands in .NET Aspire](../fundamentals/http-commands.md).
+
+## 💔 Breaking changes
+
+With every release, we strive to make .NET Aspire better. However, some changes may break existing functionality. The following breaking changes are introduced in .NET Aspire 9.2:
+
+- [Breaking changes in .NET Aspire 9.2](../compatibility/9.2/index.md)
