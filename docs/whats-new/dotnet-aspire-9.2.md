@@ -8,11 +8,8 @@ ms.date: 03/20/2025
 
 📢 .NET Aspire 9.2 is the next minor version release of .NET Aspire; it supports:
 
-- .NET 8.0 Long Term Support (LTS) _or_
-- .NET 9.0 Standard Term Support (STS).
-
-> [!NOTE]
-> You're able to use .NET Aspire 9.2 with either .NET 8 or .NET 9! 😲
+- .NET 8.0 Long Term Support (LTS)
+- .NET 9.0 Standard Term Support (STS)
 
 As always, we focused on highly requested features and pain points from the community. Our theme for 9.1 was "polish, polish, polish"—so you see quality of life fixes throughout the whole platform. Some highlights from this release are resource relationships in the dashboard, support for working in GitHub Codespaces, and publishing resources as a Dockerfile.
 
@@ -51,7 +48,7 @@ Moving between minor releases of .NET Aspire is simple:
     > [!IMPORTANT]
     > The `dotnet new update` command updates all of your templates to the latest version.
 
-If your app host project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.0, you can follow [the documentation from last release](../get-started/upgrade-to-aspire-9.md).
+If your app host project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.0, follow [the upgrade guide](../get-started/upgrade-to-aspire-9.md).
 
 ## 🚧 App host project file changes
 
@@ -59,7 +56,7 @@ The .NET Aspire app host project file no longer requires the `IsAspireHost` prop
 
 ## 📈 Dashboard usage telemetry
 
-Starting with .NET Aspire 9.2, we collect usage telemetry from the dashboard by default. This telemetry helps us understand how you use the dashboard and what features are most important to you. We use this information to prioritize our work and improve the dashboard experience. You can opt out of this telemetry by setting the `DOTNET_DASHBOARD_ENABLE_TELEMETRY` environment variable to `false`. For more information, see [.NET Aspire dashboard usage telemetry](../fundamentals/dashboard/usage-telemetry.md).
+.NET Aspire collects usage telemetry from the dashboard by default. This telemetry helps us understand how you use the dashboard and what features are most important to you. We use this information to prioritize our work and improve the dashboard experience. You can opt out of this telemetry by setting the `DOTNET_DASHBOARD_ENABLE_TELEMETRY` environment variable to `false`. For more information, see [.NET Aspire dashboard usage telemetry](../fundamentals/dashboard/usage-telemetry.md).
 
 ## 🚫 Disable dashboard resource graphs
 
@@ -67,7 +64,7 @@ The dashboard has the ability to display resource graphs, which show the relatio
 
 For more information, see [.NET Aspire dashboard configuration](../fundamentals/dashboard/configuration.md#other).
 
-## ➕ Adding database resources actually creates a database
+## ➕ Database resources created if missing
 
 There's [plenty of feedback and confusion](https://github.com/dotnet/aspire/issues/7101) around the `AddDatabase` API. The name implies that it adds a database, but it didn't actually create the database. In .NET Aspire 9.2, the `AddDatabase` API now creates a database for the following hosting integrations:
 
@@ -76,7 +73,7 @@ There's [plenty of feedback and confusion](https://github.com/dotnet/aspire/issu
 | [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer) | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*> |
 | [📦 Aspire.Hosting.PostgreSql](https://www.nuget.org/packages/Aspire.Hosting.PostgreSql) | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase*> |
 
-There are, however; a number of remaining hosting integrations that don't yet create a database:
+The following hosting integrations don't support database creation:
 
 - [📦 Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus)
 - [📦 Aspire.Hosting.MongoDb](https://www.nuget.org/packages/Aspire.Hosting.MongoDb)
@@ -87,6 +84,6 @@ The Azure SQL and Azure PostgreSQL hosting integrations both expose an `AddDatab
 
 ## 🌐 HTTP-based resource command functionality
 
-[Custom resource commands](../fundamentals/custom-resource-commands.md) now support HTTP-based functionality with the addition of the `WithHttpCommand` API, enabling you to define endpoints for tasks like database migrations or resets. These commands can be executed directly from the .NET Aspire dashboard.
+[Custom resource commands](../fundamentals/custom-resource-commands.md) now support HTTP-based functionality with the addition of the `WithHttpCommand` API, enabling you to define endpoints for tasks like database migrations or resets. These commands can be run directly from the .NET Aspire dashboard.
 
 For more information, see [Custom HTTP commands in .NET Aspire](../fundamentals/http-commands.md).
