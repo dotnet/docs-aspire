@@ -1,13 +1,11 @@
-using Microsoft.Playwright;
+﻿using Microsoft.Playwright;
 
-namespace Aspire.Common;
+namespace Aspire.Dashboard.ScreenCapture;
 
 public class PlaywrightProvider
 {
     public const string BrowserPathEnvironmentVariableName = "BROWSER_PATH";
     private const string PlaywrightBrowsersPathEnvironmentVariableName = "PLAYWRIGHT_BROWSERS_PATH";
-
-    public static bool HasPlaywrightSupport => RequiresPlaywrightAttribute.IsSupported;
 
     public static async Task<IBrowser> CreateBrowserAsync(BrowserTypeLaunchOptions? options = null)
     {
@@ -15,9 +13,7 @@ public class PlaywrightProvider
         string? browserPath = Environment.GetEnvironmentVariable(BrowserPathEnvironmentVariableName);
         if (!string.IsNullOrEmpty(browserPath) && !File.Exists(browserPath))
         {
-            throw new FileNotFoundException($"""
-                Browser path {BrowserPathEnvironmentVariableName}='{browserPath}' does not exist
-                """);
+            throw new FileNotFoundException($"Browser path {BrowserPathEnvironmentVariableName}='{browserPath}' does not exist");
         }
 
         options ??= new() { Headless = true };
@@ -31,11 +27,10 @@ public class PlaywrightProvider
                 options.ExecutablePath = probePath;
             }
         }
-        
+
         return await playwright.Chromium.LaunchAsync(options).ConfigureAwait(false);
     }
 
-    // Tries to set PLAYWRIGHT_BROWSERS_PATH to the location of the playwright-deps directory in the repo
     public static void DetectAndSetInstalledPlaywrightDependenciesPath(DirectoryInfo? repoRoot = null)
     {
         if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable(PlaywrightBrowsersPathEnvironmentVariableName)))
@@ -45,11 +40,10 @@ public class PlaywrightProvider
             return;
         }
 
-        repoRoot ??= TestUtils.FindRepoRoot();
+        repoRoot ??= FindRepoRoot();
         if (repoRoot is not null)
         {
             // Running from inside the repo
-
             // Check if we already have playwright-deps in artifacts
             var probePath = Path.Combine(repoRoot.FullName, "artifacts", "bin", "playwright-deps");
             if (Directory.Exists(probePath))
@@ -62,5 +56,23 @@ public class PlaywrightProvider
                 Console.WriteLine($"** Did not find playwright dependencies in {probePath}");
             }
         }
+    }
+
+    private static DirectoryInfo? FindRepoRoot()
+    {
+        DirectoryInfo? repoRoot = new(AppContext.BaseDirectory);
+
+        while (repoRoot != null)
+        {
+            // To support git worktrees, check for either a directory or a file named ".git"
+            if (Directory.Exists(Path.Combine(repoRoot.FullName, ".git")) || File.Exists(Path.Combine(repoRoot.FullName, ".git")))
+            {
+                return repoRoot;
+            }
+
+            repoRoot = repoRoot.Parent;
+        }
+
+        return null;
     }
 }
