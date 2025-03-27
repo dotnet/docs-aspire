@@ -1,7 +1,7 @@
 ---
 title: What's new in .NET Aspire 9.2
 description: Learn what's new in the official general availability release of .NET Aspire 9.2.
-ms.date: 03/20/2025
+ms.date: 03/27/2025
 ---
 
 # What's new in .NET Aspire 9.2
@@ -11,11 +11,9 @@ ms.date: 03/20/2025
 - .NET 8.0 Long Term Support (LTS)
 - .NET 9.0 Standard Term Support (STS)
 
-As always, we focused on highly requested features and pain points from the community. Our theme for 9.1 was "polish, polish, polish"—so you see quality of life fixes throughout the whole platform. Some highlights from this release are resource relationships in the dashboard, support for working in GitHub Codespaces, and publishing resources as a Dockerfile.
-
 If you have feedback, questions, or want to contribute to .NET Aspire, collaborate with us on [:::image type="icon" source="../media/github-mark.svg" border="false"::: GitHub](https://github.com/dotnet/aspire) or join us on [:::image type="icon" source="../media/discord-icon.svg" border="false"::: Discord](https://discord.com/invite/h87kDAHQgJ) to chat with team members.
 
-Whether you're new to .NET Aspire or have been with us since the preview, it's important to note that .NET Aspire releases out-of-band from .NET releases. While major versions of .NET Aspire align with .NET major versions, minor versions are released more frequently. For more details on .NET and .NET Aspire version support, see:
+It's important to note that .NET Aspire releases out-of-band from .NET releases. While major versions of .NET Aspire align with .NET major versions, minor versions are released more frequently. For more information on .NET and .NET Aspire version support, see:
 
 - [.NET support policy](https://dotnet.microsoft.com/platform/support/policy): Definitions for LTS and STS.
 - [.NET Aspire support policy](https://dotnet.microsoft.com/platform/support/policy/aspire): Important unique product life cycle details.
@@ -26,15 +24,28 @@ Moving between minor releases of .NET Aspire is simple:
 
 1. In your app host project file (that is, _MyApp.AppHost.csproj_), update the [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk) NuGet package to version `9.2.0`:
 
-    ```xml
+    ```diff
     <Project Sdk="Microsoft.NET.Sdk">
 
         <Sdk Name="Aspire.AppHost.Sdk" Version="9.2.0" />
         
-        <!-- Omitted for brevity -->
+        <PropertyGroup>
+            <OutputType>Exe</OutputType>
+            <TargetFramework>net9.0</TargetFramework>
+    -       <IsAspireHost>true</IsAspireHost>
+            <!-- Omitted for brevity -->
+        </PropertyGroup>
+        
+        <ItemGroup>
+            <PackageReference Include="Aspire.Hosting.AppHost" Version="9.2.0" />
+        </ItemGroup>
     
+        <!-- Omitted for brevity -->
     </Project>
     ```
+
+    > [!IMPORTANT]
+    > The `IsAspireHost` property is no longer required in the project file. For more information, see [App host project file changes](#-app-host-project-file-changes).
 
     For more information, see [.NET Aspire SDK](xref:dotnet/aspire/sdk).
 
@@ -73,14 +84,14 @@ There's [plenty of feedback and confusion](https://github.com/dotnet/aspire/issu
 | [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer) | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*> |
 | [📦 Aspire.Hosting.PostgreSql](https://www.nuget.org/packages/Aspire.Hosting.PostgreSql) | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase*> |
 
+The Azure SQL and Azure PostgreSQL hosting integrations both expose an `AddDatabase` API, but they don't create a database—unless you call their respective `RunAsContainer` methods. For more information, see [Understand Azure integration APIs](../azure/integrations-overview.md#understand-azure-integration-apis).
+
 The following hosting integrations don't support database creation:
 
 - [📦 Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus)
 - [📦 Aspire.Hosting.MongoDb](https://www.nuget.org/packages/Aspire.Hosting.MongoDb)
 - [📦 Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql)
 - [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle)
-
-The Azure SQL and Azure PostgreSQL hosting integrations both expose an `AddDatabase` API, but they don't create a database—unless you call their respective `RunAsContainer` methods. For more information, see [Understand Azure integration APIs](../azure/integrations-overview.md#understand-azure-integration-apis).
 
 ## 🌐 HTTP-based resource command functionality
 
