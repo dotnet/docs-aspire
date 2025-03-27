@@ -8,20 +8,28 @@ public class AppHostTestFixture : IAsyncLifetime
 {
     public PlaywrightFixture PlaywrightFixture { get; } = new();
 
-    private DistributedApplication? _app;
+    public DistributedApplication? App { get; private set; }
 
     public async Task<DistributedApplication> ConfigureAsync<TEntryPoint>(
         Action<IDistributedApplicationTestingBuilder>? configureBuilder = null) where TEntryPoint : class
     {
-        var builder = await DistributedApplicationTestingBuilder.CreateAsync<TEntryPoint>();
+        var builder = await DistributedApplicationTestingBuilder.CreateAsync<TEntryPoint>(
+            args: [],
+            configureBuilder: (options, settings) =>
+            {
+                options.DisableDashboard = false;
+                settings.ApplicationName = "AspireSample";
+            });
+
+        builder.Configuration["ASPIRE_ALLOW_UNSECURED_TRANSPORT"] = "true";
 
         configureBuilder?.Invoke(builder);
 
-        _app = await builder.BuildAsync();
+        App = await builder.BuildAsync();
 
-        await _app.StartAsync();
+        await App.StartAsync();
 
-        return _app;
+        return App;
     }
 
     public async Task InitializeAsync()
@@ -33,6 +41,6 @@ public class AppHostTestFixture : IAsyncLifetime
     {
         await PlaywrightFixture.DisposeAsync();
 
-        await (_app?.DisposeAsync() ?? ValueTask.CompletedTask);
+        await (App?.DisposeAsync() ?? ValueTask.CompletedTask);
     }
 }
