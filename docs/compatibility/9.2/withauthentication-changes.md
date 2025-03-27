@@ -30,7 +30,7 @@ In .NET Aspire 9.2, calling `WithAccessKeyAuthentication` or `WithPasswordAuthen
 
 ## Type of breaking change
 
-This is a [behavioral change](../../categories.md#behavioral-change).
+This is a [behavioral change](../categories.md#behavioral-change).
 
 ## Reason for change
 
