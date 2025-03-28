@@ -60,7 +60,7 @@ The first code snippet to consider uses the <xref:Aspire.Hosting.ContainerResour
 
 In this example `/var/opt/mssql` sets the path to the database files in the container.
 
-All .NET Aspire container resources can utilize volumes, and some provide convenient APIs for adding named volumes derived from resources. Using the <xref:Aspire.Hosting.SqlServer.SqlServerBuilderExtensions.WithDataVolume*> method as an example, the following code is functionally equivalent to the previous example but more succinct:
+All .NET Aspire container resources can utilize volumes, and some provide convenient APIs for adding named volumes derived from resources. Using the <xref:Aspire.Hosting.SqlServerBuilderExtensions.WithDataVolume*> method as an example, the following code is functionally equivalent to the previous example but more succinct:
 
 :::code language="csharp" source="snippets/volumes/VolumeMounts.AppHost/Program.ImplicitVolume.cs" id="implicit":::
 
@@ -85,7 +85,7 @@ In this example:
 - `source: @"C:\SqlServer\Data"` sets the folder on the host computer that will be bound.
 - `target: "/var/opt/mssql"` sets the path to the database files in the container.
 
-As for volumes, some .NET Aspire container resources provide convenient APIs for adding bind mounts. Using the <xref:Aspire.Hosting.SqlServer.SqlServerBuilderExtensions.WithDataBindMount*> method as an example, the following code is functionally equivalent to the previous example but more succinct:
+As for volumes, some .NET Aspire container resources provide convenient APIs for adding bind mounts. Using the <xref:Aspire.Hosting.SqlServerBuilderExtensions.WithDataBindMount*> method as an example, the following code is functionally equivalent to the previous example but more succinct:
 
 :::code language="csharp" source="snippets/volumes/VolumeMounts.AppHost/Program.ImplicitBindMount.cs" id="implicit":::
 
