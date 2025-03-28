@@ -15,10 +15,9 @@ public class AppHostTestFixture : IAsyncLifetime
     {
         var builder = await DistributedApplicationTestingBuilder.CreateAsync<TEntryPoint>(
             args: [],
-            configureBuilder: (options, settings) =>
+            configureBuilder: static (options, _) =>
             {
                 options.DisableDashboard = false;
-                settings.ApplicationName = "AspireSample";
             });
 
         builder.Configuration["ASPIRE_ALLOW_UNSECURED_TRANSPORT"] = "true";

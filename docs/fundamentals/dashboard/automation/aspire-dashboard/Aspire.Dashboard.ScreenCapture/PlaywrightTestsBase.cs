@@ -29,9 +29,9 @@ public class PlaywrightTestsBase<TDashboardServerFixture>(AppHostTestFixture app
             configureBuilder?.Invoke(builder);
         });
 
-    public async Task RunTestAsync(Func<IPage, Task> test)
+    public async Task InteractWithPageAsync(Func<IPage, Task> test, ViewportSize? size = null)
     {
-        var page = await CreateNewPageAsync();
+        var page = await CreateNewPageAsync(size);
 
         try
         {
@@ -43,13 +43,13 @@ public class PlaywrightTestsBase<TDashboardServerFixture>(AppHostTestFixture app
         }
     }
 
-    private async Task<IPage> CreateNewPageAsync(ScreenSize? size = null)
+    private async Task<IPage> CreateNewPageAsync(ViewportSize? size = null)
     {
-        _context ??= await PlaywrightFixture.Browser.NewContextAsync(new BrowserNewContextOptions
+        _context = await PlaywrightFixture.Browser.NewContextAsync(new BrowserNewContextOptions
         {
             IgnoreHTTPSErrors = true,
             ColorScheme = ColorScheme.Dark,
-            ScreenSize = size ?? new() { Width = 1350, Height = 500 },
+            ViewportSize = size,
             BaseURL = DashboardUrl
         });
 
