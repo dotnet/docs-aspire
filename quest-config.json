@@ -37,56 +37,11 @@
             "ParentNodeId": 308203
         },
         {
-            "Label": "okr-freshness",
-            "Semester": "Dilithium",
-            "ParentNodeId": 237266
-        },
-        {
-            "Label": "okr-curation",
-            "Semester": "Dilithium",
-            "ParentNodeId": 237271
-        },
-        {
-            "Label": "user-feedback",
-            "Semester": "Dilithium",
-            "ParentNodeId": 233465
-        },
-        {
-            "Label": "okr-quality",
-            "Semester": "Dilithium",
-            "ParentNodeId": 237266
-        },
-        {
-            "Label": "doc-bug",
-            "Semester": "Dilithium",
-            "ParentNodeId": 233465
-        },
-        {
-            "Label": "dotnet-csharp/svc",
-            "Semester": "Dilithium",
-            "ParentNodeId": 227484
-        },
-        {
-            "Label": "sfi-ropc",
-            "Semester": "Dilithium",
-            "ParentNodeId": 271716
-        },
-        {
-            "Label": "sfi-admin",
-            "Semester": "Dilithium",
-            "ParentNodeId": 271716
-        },
-        {
-            "Label": "sfi-images",
-            "Semester": "Dilithium",
-            "ParentNodeId": 286370
-        },
-        {
-            "Semester": "Dilithium",
-            "ParentNodeId": 227485
+            "Semester": "Bromine",
+            "ParentNodeId": 410741
         }
     ],
-    "DefaultParentNode": 308203,
+    "DefaultParentNode": 410741,
     "WorkItemTags": [
         {
             "Label": "okr-curation",
