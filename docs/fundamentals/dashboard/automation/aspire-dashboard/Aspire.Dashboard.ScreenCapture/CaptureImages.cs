@@ -209,6 +209,15 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
                 .Descendant("fluent-button:nth-of-type(3)");
             await page.ClickAsync(apiEllipsisButton);
 
+            var anchoredRegion = "fluent-anchored-region";
+            await page.WaitForSelectorAsync(anchoredRegion);
+            await page.HighlightElementAsync(anchoredRegion);
+
+            await page.ScreenshotAsync(new()
+            {
+                Path = "../../../../../../media/explore/resource-actions.png"
+            });
+
             await page.ClickAsync(DashboardSelectors.ResourcePage.ViewDetailsOption);
             await page.ClickAsync(DashboardSelectors.ResourcePage.SplitPanel);
 
