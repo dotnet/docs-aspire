@@ -1,7 +1,7 @@
 ---
 title: Explore .NET Aspire dashboard
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 11/07/2024
+ms.date: 03/27/2025
 ms.topic: reference
 ---
 
@@ -343,7 +343,11 @@ Selecting the exemplar indicator opens the trace details page, where you can vie
 
 For more information, see [OpenTelemetry Docs: Exemplars](https://opentelemetry.io/docs/specs/otel/metrics/data-model/#exemplars).
 
-## Theme selection
+## Settings dialog
+
+<span id="theme-selection"></span>
+
+The .NET Aspire dashboard provides a settings dialog that allows you to configure the theme, the language, functionality to clear all the logs and telemetry, and the .NET version used by the dashboard.
 
 By default, the theme is set to follow the System theme, which means the dashboard uses the same theme as your operating system. You can also select the **Light** or **Dark** theme to override the system theme. Theme selections are persisted.
 

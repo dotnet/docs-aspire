@@ -34,6 +34,9 @@ _dependentPackages/
 !/xml/System.IO.Log/
 !/xml/System.Net.Cache/
 
+# Playwright dependencies
+**/*/playwright-deps
+
 # Visual Studio Code
 .vscode/*
 !.vscode/extensions.json
