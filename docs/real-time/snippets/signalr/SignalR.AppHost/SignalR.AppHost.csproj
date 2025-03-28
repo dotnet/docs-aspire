@@ -5,7 +5,6 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <IsAspireHost>true</IsAspireHost>
     <UserSecretsId>8d495870-a988-4f2c-80fe-ebe614c94d35</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
