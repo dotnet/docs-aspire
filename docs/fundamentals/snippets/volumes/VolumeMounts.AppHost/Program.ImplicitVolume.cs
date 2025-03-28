@@ -1,6 +1,6 @@
 ﻿internal partial class Program
 {
-    private static IResourceBuilder<SqlServerDatabaseResource> Implicit(IDistributedApplicationBuilder builder)
+    private static IResourceBuilder<SqlServerDatabaseResource> ImplicitVolume(IDistributedApplicationBuilder builder)
     {
         // <implicit>
         var sql = builder.AddSqlServer("sql")

@@ -1,10 +1,10 @@
 ﻿internal partial class Program
 {
-    private static IResourceBuilder<SqlServerDatabaseResource> WithDataMount(IDistributedApplicationBuilder builder)
+    private static IResourceBuilder<SqlServerDatabaseResource> WithBindMount(IDistributedApplicationBuilder builder)
     {
         // <mount>
         var sql = builder.AddSqlServer("sql")
-                         .WithBindMount("VolumeMount.AppHost-sql-data", "/var/opt/mssql")
+                         .WithBindMount(source: @"C:\SqlServer\Data", target: "/var/opt/mssql")
                          .AddDatabase("sqldb");
         // </mount>
 
