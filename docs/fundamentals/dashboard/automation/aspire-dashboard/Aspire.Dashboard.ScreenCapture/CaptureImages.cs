@@ -222,7 +222,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await page.ClickAsync(DashboardSelectors.ResourcePage.SplitPanel);
 
             await page.ClickAndDragShadowRootElementAsync("split-panels", "#median", (0, 20));
-            await page.RedactElementTextAsync("""fluent-accordion-item [title^="C:"]:last-of-type""");
+            await page.RedactElementTextAsync(DashboardSelectors.ResourcePage.ResourceDetailsProjectPath);
 
             await page.ClickAsync(apiEllipsisButton);
             await page.HoverAsync(DashboardSelectors.ResourcePage.ViewDetailsOption);
