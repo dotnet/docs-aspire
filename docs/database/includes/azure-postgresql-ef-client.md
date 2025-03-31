@@ -22,7 +22,7 @@ dotnet add package Aspire.Azure.Npgsql.EntityFrameworkCore.PostgreSQL
 
 ---
 
-<!-- TODO: Add xref to AddAzureNpgsqlDataSource when available -->
+<!-- TODO: Add xref to AddAzureNpgsqlDbContext when available -->
 
 The PostgreSQL connection can be consumed using the client integration by calling the `AddAzureNpgsqlDataSource`:
 
@@ -34,6 +34,8 @@ builder.AddAzureNpgsqlDbContext<MyDbContext>(connectionName: "postgresdb");
 > The `connectionName` parameter must match the name used when adding the PostgreSQL server resource in the app host project.
 
 The preceding code snippet demonstrates how to use the `AddAzureNpgsqlDataSource` method to register an `NpgsqlDataSource` instance that uses Azure authentication ([Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication)). This `"postgresdb"` connection name corresponds to a connection string configuration value.
+
+<!-- TODO: Add xref to EnrichAzureNpgsqlDbContext when available -->
 
 You might also need to configure specific options of Npgsql, or register a <xref:System.Data.Entity.DbContext> in other ways. In this case, you do so by calling the `EnrichAzureNpgsqlDbContext` extension method, as shown in the following example:
 
@@ -75,7 +77,9 @@ For more information on how to configure the connection string, see the [Npgsql 
 
 ##### Use configuration providers
 
-The .NET Aspire Azure PostgreSQL EntityFrameworkCore Npgsql integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `AzureNpgsqlSettings` from configuration using the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` key. For example, consider the following _appsettings.json_ file that configures some of the available options:
+<!-- TODO: Add xref to AzureNpgsqlEntityFrameworkCorePostgreSQLSettings when available -->
+
+The .NET Aspire Azure PostgreSQL EntityFrameworkCore Npgsql integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `AzureNpgsqlEntityFrameworkCorePostgreSQLSettings` from configuration using the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` key. For example, consider the following _appsettings.json_ file that configures some of the available options:
 
 ```json
 {
@@ -108,6 +112,8 @@ Alternatively, you can use the `EnrichAzureNpgsqlDbContext` extension method to 
 builder.EnrichAzureNpgsqlDbContext<MyDbContext>(
     settings => settings.DisableHealthChecks = true);
 ```
+
+<!-- TODO: Add xref to AzureNpgsqlEntityFrameworkCorePostgreSQLSettings.Credential when available -->
 
 Use the `AzureNpgsqlEntityFrameworkCorePostgreSQLSettings.Credential` property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used.
 

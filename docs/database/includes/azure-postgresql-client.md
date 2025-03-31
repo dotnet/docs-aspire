@@ -64,6 +64,8 @@ For more information on how to configure the connection string, see the [Npgsql 
 
 ##### Use configuration providers
 
+<!-- TODO: Add xref to AzureNpgsqlSettings when available -->
+
 The .NET Aspire Azure Npgsql integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `AzureNpgsqlSettings` from configuration using the `Aspire:Azure:Npgsql` key. For example, consider the following _appsettings.json_ file that configures some of the available options:
 
 ```json
@@ -88,6 +90,8 @@ builder.AddAzureNpgsqlDataSource(
     "postgresdb",
     settings => settings.DisableHealthChecks = true);
 ```
+
+<!-- TODO: Add xref to AzureNpgsqlSettings.Credential when available -->
 
 Use the `AzureNpgsqlSettings.Credential` property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used.
 
