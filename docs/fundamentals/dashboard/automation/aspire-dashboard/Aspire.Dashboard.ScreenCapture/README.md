@@ -10,4 +10,5 @@ dotnet test --filter Capture=resource-text-visualizer
 dotnet test --filter Capture=resource-details
 dotnet test --filter Capture=resource-filtering
 dotnet test --filter Capture=resource-errors
+dotnet test --filter Capture=structured-logs-errors
 ```

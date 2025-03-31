@@ -48,6 +48,19 @@ internal static class PageExtensions
             """);
     }
 
+    public static async Task AdjustSplitPanelsGridTemplateAsync(
+        this IPage page, string selector = "split-panels", string gridTemplateRows = "0.25fr 5px 0.75fr")
+    {
+        await page.EvaluateAsync($$"""
+            const el = document.querySelector('{{selector}}');
+            if (el) {
+              el.style.gridTemplateRows="{{gridTemplateRows}}";
+            } else {
+              console.error('Element not found: {{selector}}');
+            }
+            """);
+    }
+
     public static async Task ClickAndDragShadowRootElementAsync(
         this IPage page, string hostSelector, string shadowSelector, MouseMovement mouseMovement)
     {

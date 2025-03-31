@@ -60,7 +60,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
                 Path = "../../../../../../media/explore/resource-stop-action.png"
             });
         },
-        new() { Width = 1350, Height = 360 });
+        new() { Width = 1280, Height = 360 });
     }
 
     [Fact, Trait("Capture", "themes")]
@@ -96,7 +96,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             // Change theme back to dark theme.
             await page.ClickAsync(DashboardSelectors.SettingsDialog.DarkThemeRadio);
         },
-        new() { Width = 1350, Height = 500 });
+        new() { Width = 1280, Height = 500 });
     }
 
     [Fact, Trait("Capture", "stop-start-resources")]
@@ -126,7 +126,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
                 Path = "../../../../../../media/explore/resource-stopped-action.png"
             });
         },
-        new() { Width = 1350, Height = 360 });
+        new() { Width = 1280, Height = 360 });
 
         await InteractWithPageAsync(async page =>
         {
@@ -156,7 +156,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
                 Path = "../../../../../../media/explore/resource-started-action.png"
             });
         },
-        new() { Width = 1350, Height = 360 });
+        new() { Width = 1280, Height = 360 });
     }
 
     [Fact, Trait("Capture", "resource-text-visualizer")]
@@ -194,7 +194,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
                 Path = "../../../../../../media/explore/text-visualizer-resources.png"
             });
         },
-        new() { Width = 1350, Height = 360 });
+        new() { Width = 1280, Height = 360 });
     }
 
     [Fact, Trait("Capture", "resource-details")]
@@ -211,9 +211,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
                 .Descendant("fluent-button:nth-of-type(3)");
             await page.ClickAsync(apiEllipsisButton);
 
-            var anchoredRegion = "fluent-anchored-region";
-            await page.WaitForSelectorAsync(anchoredRegion);
-            await page.HighlightElementAsync(anchoredRegion);
+            await page.HighlightElementAsync("fluent-anchored-region");
 
             await page.ScreenshotAsync(new()
             {
@@ -223,7 +221,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await page.ClickAsync(DashboardSelectors.ResourcePage.ViewDetailsOption);
             await page.ClickAsync(DashboardSelectors.ResourcePage.SplitPanel);
 
-            await page.ClickAndDragShadowRootElementAsync("split-panels", "#median", (0, 20));
+            await page.AdjustSplitPanelsGridTemplateAsync();
             await page.RedactElementTextAsync(DashboardSelectors.ResourcePage.ResourceDetailsProjectPath);
 
             await page.ClickAsync(apiEllipsisButton);
@@ -256,7 +254,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
                 Path = "../../../../../../media/explore/select-resource-type.png"
             });
         },
-        new() { Width = 1350, Height = 550 });
+        new() { Width = 1280, Height = 550 });
 
         await InteractWithPageAsync(async page =>
         {
@@ -275,7 +273,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await page.ClickAsync(DashboardSelectors.ResourcePage.ViewDetailsOption);
             await page.ClickAsync(DashboardSelectors.ResourcePage.SplitPanel);
 
-            await page.ClickAndDragShadowRootElementAsync(DashboardSelectors.SplitPanels, DashboardSelectors.MedianId, (0, 20));
+            await page.AdjustSplitPanelsGridTemplateAsync();
 
             await page.ClickAsync(DashboardSelectors.ResourcePage.FilterButton);
 
@@ -284,7 +282,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
                 Path = "../../../../../../media/explore/resources-filtered-containers.png"
             });
         },
-        new() { Width = 1350, Height = 600 });
+        new() { Width = 1280, Height = 600 });
     }
 
     [Fact, Trait("Capture", "resource-errors")]
@@ -306,11 +304,76 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
                 WaitUntil = WaitUntilState.NetworkIdle
             });
 
+            await Task.Delay(7_500);
+
+            await page.BringToFrontAsync();
             await page.ScreenshotAsync(new()
             {
                 Path = "../../../../../../media/explore/projects-errors.png"
             });
+
+            // Click the api "errors" button
+            var apiErrorButton = FluentDataGridSelector.Grid.Body.Row(3).Cell(2)
+                .Descendant("> div > fluent-anchor a");
+            await page.ClickAsync(apiErrorButton);
+
+            // Click the first actions button
+            var firstActionButton = FluentDataGridSelector.Grid.Body.Row(2).Cell(6)
+                .Descendant("fluent-button");
+            await page.ClickAsync(firstActionButton);
+            await page.HighlightElementAsync("fluent-anchored-region");
+
+            await page.ScreenshotAsync(new()
+            {
+                Path = "../../../../../../media/explore/structured-logs-errors.png"
+            });
         },
-        new() { Width = 1350, Height = 380 });
+        new() { Width = 1280, Height = 420 });
+    }
+
+    [Fact, Trait("Capture", "structured-logs-errors")]
+    public async Task CaptureStructuredLogsErrorsImages()
+    {
+        await ConfigureAsync<SampleAppHost>(["API_THROWS_EXCEPTION=true"]);
+
+        await InteractWithPageAsync(async page =>
+        {
+            // Login to the dashboard
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
+
+            // Get the weather web frontend URL
+            var url = await page.GetResourceEndpointAsync();
+            var webPage = await page.Context.NewPageAsync();
+
+            await webPage.GotoAsync($"{url}/weather", new()
+            {
+                WaitUntil = WaitUntilState.NetworkIdle
+            });
+
+            await Task.Delay(1_500);
+
+            await page.BringToFrontAsync();
+
+            // Click the api "errors" button
+            var apiErrorButton = FluentDataGridSelector.Grid.Body.Row(3).Cell(2)
+                .Descendant("> div > fluent-anchor a");
+            await page.ClickAsync(apiErrorButton);
+
+            // Click the first actions button
+            var firstActionButton = FluentDataGridSelector.Grid.Body.Row(2).Cell(6)
+                .Descendant("fluent-button");
+            await page.ClickAsync(firstActionButton);
+
+            await page.ClickAsync(DashboardSelectors.ResourcePage.ViewDetailsOption);
+            await page.ClickAsync(DashboardSelectors.ResourcePage.SplitPanel);
+
+            await page.AdjustSplitPanelsGridTemplateAsync();
+
+            await page.ScreenshotAsync(new()
+            {
+                Path = "../../../../../../media/explore/structured-logs-errors-view.png"
+            });
+        },
+        new() { Width = 1280, Height = 960 });
     }
 }
