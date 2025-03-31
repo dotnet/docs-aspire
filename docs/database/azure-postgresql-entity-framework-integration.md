@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure PostgreSQL Entity Framework Core integration
 description: Learn how to integrate Azure PostgreSQL with .NET Aspire applications, using both hosting and Entity Framework Core client integrations.
-ms.date: 01/21/2025
+ms.date: 03/31/2025
 uid: dotnet/aspire/azure-postgresql-entity-framework-integration
 ---
 
