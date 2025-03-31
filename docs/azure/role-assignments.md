@@ -1,7 +1,7 @@
 ---
 title: Manage Azure role assignments
 description: Learn how to override Azure role assignments on .NET Aspire resources.
-ms.date: 03/26/2025
+ms.date: 03/31/2025
 ---
 
 # Manage Azure role assignments
@@ -50,7 +50,7 @@ When you use the `WithRoleAssignments` method, it replaces the default role assi
 
 When you replace the default role assignments with the `SearchIndexDataReader` role, the API project is restricted to only reading data from the Azure Search resource. This ensures the API project can't write data to the Azure Search resource.
 
-For more information, see [Azure built-in roles](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles).
+For more information, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles).
 
 ## Built-in role assignment reference
 
