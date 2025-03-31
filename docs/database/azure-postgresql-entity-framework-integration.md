@@ -17,8 +17,6 @@ uid: dotnet/aspire/azure-postgresql-entity-framework-integration
 
 ## Client integration
 
-[!INCLUDE [postgresql-ef-client](includes/postgresql-ef-client.md)]
-
 [!INCLUDE [azure-postgresql-ef-client](includes/azure-postgresql-ef-client.md)]
 
 ## See also

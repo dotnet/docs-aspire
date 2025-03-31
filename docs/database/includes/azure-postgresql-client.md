@@ -35,6 +35,41 @@ builder.AddAzureNpgsqlDataSource(connectionName: "postgresdb");
 
 The preceding code snippet demonstrates how to use the `AddAzureNpgsqlDataSource` method to register an `NpgsqlDataSource` instance that uses Azure authentication ([Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication)). This `"postgresdb"` connection name corresponds to a connection string configuration value.
 
+After adding `NpgsqlDataSource` to the builder, you can get the `NpgsqlDataSource` instance using dependency injection. For example, to retrieve your data source object from an example service define it as a constructor parameter and ensure the `ExampleService` class is registered with the dependency injection container:
+
+```csharp
+public class ExampleService(NpgsqlDataSource dataSource)
+{
+    // Use dataSource...
+}
+```
+
+For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
+
+### Add keyed Azure Npgsql client
+
+<!-- TODO: Add xref to AddKeyedAzureNpgsqlDataSource when available -->
+
+There might be situations where you want to register multiple `NpgsqlDataSource` instances with different connection names. To register keyed Npgsql clients, call the `AddKeyedAzureNpgsqlDataSource` method:
+
+```csharp
+builder.AddKeyedAzureNpgsqlDataSource(name: "chat");
+builder.AddKeyedAzureNpgsqlDataSource(name: "queue");
+```
+
+Then you can retrieve the `NpgsqlDataSource` instances using dependency injection. For example, to retrieve the connection from an example service:
+
+```csharp
+public class ExampleService(
+    [FromKeyedServices("chat")] NpgsqlDataSource chatDataSource,
+    [FromKeyedServices("queue")] NpgsqlDataSource queueDataSource)
+{
+    // Use data sources...
+}
+```
+
+For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
+
 #### Configuration
 
 The .NET Aspire Azure Npgsql integration provides multiple options to configure the database connection based on the requirements and conventions of your project.
@@ -93,6 +128,44 @@ builder.AddAzureNpgsqlDataSource(
 
 <!-- TODO: Add xref to AzureNpgsqlSettings.Credential when available -->
 
-Use the `AzureNpgsqlSettings.Credential` property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used.
+Use the `AzureNpgsqlSettings.Credential` property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used. When the connection string contains a username and password, the credential is ignored.
 
-When the connection string contains a username and password, the credential is ignored.
+[!INCLUDE [client-integration-health-checks](../../includes/client-integration-health-checks.md)]
+
+- Adds the [`NpgSqlHealthCheck`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/blob/master/src/HealthChecks.NpgSql/NpgSqlHealthCheck.cs), which verifies that commands can be successfully executed against the underlying Postgres database.
+- Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
+
+[!INCLUDE [integration-observability-and-telemetry](../../includes/integration-observability-and-telemetry.md)]
+
+#### Logging
+
+The .NET Aspire PostgreSQL integration uses the following log categories:
+
+- `Npgsql.Connection`
+- `Npgsql.Command`
+- `Npgsql.Transaction`
+- `Npgsql.Copy`
+- `Npgsql.Replication`
+- `Npgsql.Exception`
+
+#### Tracing
+
+The .NET Aspire PostgreSQL integration will emit the following tracing activities using OpenTelemetry:
+
+- `Npgsql`
+
+#### Metrics
+
+The .NET Aspire PostgreSQL integration will emit the following metrics using OpenTelemetry:
+
+- Npgsql:
+  - `ec_Npgsql_bytes_written_per_second`
+  - `ec_Npgsql_bytes_read_per_second`
+  - `ec_Npgsql_commands_per_second`
+  - `ec_Npgsql_total_commands`
+  - `ec_Npgsql_current_commands`
+  - `ec_Npgsql_failed_commands`
+  - `ec_Npgsql_prepared_commands_ratio`
+  - `ec_Npgsql_connection_pools`
+  - `ec_Npgsql_multiplexing_average_commands_per_batch`
+  - `ec_Npgsql_multiplexing_average_write_time_per_batch`

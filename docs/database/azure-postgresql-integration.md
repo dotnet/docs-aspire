@@ -17,8 +17,6 @@ uid: dotnet/aspire/azure-postgresql-integration
 
 ## Client integration
 
-[!INCLUDE [postgresql-client](includes/postgresql-client.md)]
-
 [!INCLUDE [azure-postgresql-client](includes/azure-postgresql-client.md)]
 
 ## See also
