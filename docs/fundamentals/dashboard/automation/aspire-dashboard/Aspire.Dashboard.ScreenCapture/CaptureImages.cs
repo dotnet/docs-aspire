@@ -354,6 +354,19 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
             await page.BringToFrontAsync();
 
+            var apiConsoleLogs = FluentDataGridSelector.Grid.Body.Row(3).Cell(7)
+                .Descendant("""fluent-button[title="Console logs"]""");
+            await page.ClickAsync(apiConsoleLogs);
+
+            await Task.Delay(1000);
+
+            await page.ScreenshotAsync(new()
+            {
+                Path = "../../../../../../media/explore/project-logs-error.png"
+            });
+
+            await page.ClickAsync(DashboardSelectors.Nav.Resources);
+
             // Click the api "errors" button
             var apiErrorButton = FluentDataGridSelector.Grid.Body.Row(3).Cell(2)
                 .Descendant("> div > fluent-anchor a");
