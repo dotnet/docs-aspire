@@ -6,6 +6,12 @@ internal static class DashboardSelectors
 
     public const string Dialog = "fluent-dialog";
 
+    public const string TopHeader = ".header";
+
+    public const string SplitPanels = "split-panels";
+
+    public const string MedianId = "#median";
+
     internal static class Nav
     {
         public const string Resources = $"""div.fluent-appbar-item[title="{nameof(Resources)}"] a""";
@@ -45,6 +51,9 @@ internal static class DashboardSelectors
         public const string CacheResource = "cache";
         public const string ApiResource = "apiservice";
         public const string WebResource = "webfrontend";
+
+        public const string FilterButton = "#resourceFilterButton";
+        public const string FilterDiv = """fluent-anchored-region[anchor="resourceFilterButton"]""";
 
         public const string ViewDetailsOption = """fluent-anchored-region fluent-menu-item:nth-child(1)""";
 

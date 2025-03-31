@@ -1,4 +1,6 @@
-﻿using Aspire.Dashboard.ScreenCapture.Extensions;
+﻿using System.Reflection.PortableExecutable;
+using Aspire.Dashboard.ScreenCapture.Extensions;
+using Aspire.Hosting.Testing;
 using Microsoft.Playwright;
 using Xunit;
 using SampleAppHost = Projects.AspireSample_AppHost;
@@ -15,7 +17,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
         await InteractWithPageAsync(async page =>
         {
-            await page.LoginAndWaitForCacheResourceAsync(DashboardLoginToken);
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
 
             // Click the settings cog.
             await page.ClickAsync(DashboardSelectors.Header.HelpButton);
@@ -38,7 +40,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
         await InteractWithPageAsync(async page =>
         {
-            await page.LoginAndWaitForCacheResourceAsync(DashboardLoginToken);
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
 
             // Take screen capture of the projects.
             await page.ScreenshotAsync(new()
@@ -68,7 +70,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
         await InteractWithPageAsync(async page =>
         {
-            await page.LoginAndWaitForCacheResourceAsync(DashboardLoginToken);
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
 
             // Click the settings cog.
             await page.ClickAsync(DashboardSelectors.Header.SettingsButton);
@@ -104,7 +106,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
         await InteractWithPageAsync(async page =>
         {
-            await page.LoginAndWaitForCacheResourceAsync(DashboardLoginToken);
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
 
             // Select the stop "cache" button
             await page.ClickAsync(DashboardSelectors.ResourcePage.StopResource);
@@ -118,7 +120,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             // Highlight 'cache "Stop" succeeded' toast and 'Exited' state cell
             await page.HighlightElementsAsync(
                 DashboardSelectors.Toast, FluentDataGridSelector.Grid.Body.Row(2).Cell(2));
-                        
+
             await page.ScreenshotAsync(new()
             {
                 Path = "../../../../../../media/explore/resource-stopped-action.png"
@@ -128,7 +130,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
         await InteractWithPageAsync(async page =>
         {
-            await page.LoginAndWaitForCacheResourceAsync(DashboardLoginToken);
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
 
             // Wait for the start button to be displayed
             await page.WaitForSelectorAsync(DashboardSelectors.ResourcePage.StartResource);
@@ -165,7 +167,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
         await InteractWithPageAsync(async page =>
         {
             // Login to the dashboard
-            await page.LoginAndWaitForCacheResourceAsync(DashboardLoginToken);
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
 
             var openInTextVisualizerButton = FluentDataGridSelector.Grid.Body.Row(2).Cell(5)
                 .Descendant("fluent-button");
@@ -203,7 +205,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
         await InteractWithPageAsync(async page =>
         {
             // Login to the dashboard
-            await page.LoginAndWaitForCacheResourceAsync(DashboardLoginToken);
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
 
             var apiEllipsisButton = FluentDataGridSelector.Grid.Body.Row(3).Cell(7)
                 .Descendant("fluent-button:nth-of-type(3)");
@@ -233,5 +235,82 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
                 Path = "../../../../../../media/explore/resource-details.png"
             });
         });
+    }
+
+    [Fact, Trait("Capture", "resource-filtering")]
+    public async Task CaptureResourceFilteringImages()
+    {
+        await ConfigureAsync<SampleAppHost>();
+
+        await InteractWithPageAsync(async page =>
+        {
+            // Login to the dashboard
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
+
+            await page.ClickAsync(DashboardSelectors.ResourcePage.FilterButton);
+
+            await page.HighlightElementAsync(DashboardSelectors.ResourcePage.FilterDiv);
+
+            await page.ScreenshotAsync(new()
+            {
+                Path = "../../../../../../media/explore/select-resource-type.png"
+            });
+        },
+        new() { Width = 1350, Height = 550 });
+
+        await InteractWithPageAsync(async page =>
+        {
+            // Login to the dashboard
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
+
+            await page.ClickAsync(DashboardSelectors.ResourcePage.FilterButton);
+            await page.ClickAsync("#resource-types > fluent-checkbox:nth-of-type(1)");
+            await page.ClickAsync("#resource-types > fluent-checkbox:nth-of-type(2)");
+            await page.ClickAsync(DashboardSelectors.TopHeader, new() { Force = true });
+
+            var cacheEllipsisButton = FluentDataGridSelector.Grid.Body.Row(2).Cell(7)
+                .Descendant("fluent-button:nth-of-type(3)");
+            await page.ClickAsync(cacheEllipsisButton);
+
+            await page.ClickAsync(DashboardSelectors.ResourcePage.ViewDetailsOption);
+            await page.ClickAsync(DashboardSelectors.ResourcePage.SplitPanel);
+
+            await page.ClickAndDragShadowRootElementAsync(DashboardSelectors.SplitPanels, DashboardSelectors.MedianId, (0, 20));
+
+            await page.ClickAsync(DashboardSelectors.ResourcePage.FilterButton);
+
+            await page.ScreenshotAsync(new()
+            {
+                Path = "../../../../../../media/explore/resources-filtered-containers.png"
+            });
+        },
+        new() { Width = 1350, Height = 600 });
+    }
+
+    [Fact, Trait("Capture", "resource-errors")]
+    public async Task CaptureResourcesWithErrorsImages()
+    {
+        await ConfigureAsync<SampleAppHost>([ "API_THROWS_EXCEPTION=true" ]);
+
+        await InteractWithPageAsync(async page =>
+        {
+            // Login to the dashboard
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
+
+            // Get the weather web frontend URL
+            var url = await page.GetResourceEndpointAsync();
+            var webPage = await page.Context.NewPageAsync();
+
+            await webPage.GotoAsync($"{url}/weather", new()
+            {
+                WaitUntil = WaitUntilState.NetworkIdle
+            });
+
+            await page.ScreenshotAsync(new()
+            {
+                Path = "../../../../../../media/explore/projects-errors.png"
+            });
+        },
+        new() { Width = 1350, Height = 380 });
     }
 }

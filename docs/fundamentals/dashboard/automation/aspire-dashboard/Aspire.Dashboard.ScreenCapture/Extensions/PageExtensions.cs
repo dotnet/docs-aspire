@@ -8,8 +8,20 @@ internal static class PageExtensions
 {
     private static readonly JsonSerializerOptions s_options = new(JsonSerializerDefaults.Web);
 
+    public static async Task<string> GetResourceEndpointAsync(this IPage page, int row = 4)
+    {
+        var endpoint = FluentDataGridSelector.Grid.Body.Row(row).Cell(6).Descendant("> div > div:nth-child(1) > a");
+        var url = await page.Locator(endpoint).TextContentAsync();
+
+        Assert.NotNull(url);
+
+        return url;
+    }
+
     public static async Task RedactElementTextAsync(this IPage page, string selector)
     {
+        await page.WaitForSelectorAsync(selector);
+
         await page.EvaluateAsync($$"""
             const el = document.querySelector('{{selector}}');
             if (el) {
@@ -23,6 +35,8 @@ internal static class PageExtensions
 
     public static async Task BlurElementTextAsync(this IPage page, string selector)
     {
+        await page.WaitForSelectorAsync(selector);
+
         await page.EvaluateAsync($$"""
             const el = document.querySelector('{{selector}}');
             if (el) {
@@ -60,6 +74,8 @@ internal static class PageExtensions
 
     public static async Task HighlightElementAsync(this IPage page, string selector)
     {
+        await page.WaitForSelectorAsync(selector);
+
         await page.EvaluateAsync($$"""
             const el = document.querySelector('{{selector}}');
             if (el) {
@@ -74,6 +90,11 @@ internal static class PageExtensions
     public static async Task HighlightElementsAsync(this IPage page, params string[] selectors)
     {
         var array = JsonSerializer.Serialize(selectors, s_options);
+
+        foreach (var selector in selectors)
+        {
+            await page.WaitForSelectorAsync(selector);
+        }
 
         await page.EvaluateAsync($$"""
             for (const selector of {{array}}) {
@@ -98,13 +119,21 @@ internal static class PageExtensions
         await Assertions.Expect(page).ToHaveURLAsync("/");
     }
 
-    public static async Task LoginAndWaitForCacheResourceAsync(this IPage page, string token)
+    public static async Task LoginAndWaitForRunningResourcesAsync(this IPage page, string token)
     {
         await page.LoginAsync(token);
 
-        var cacheResource = page.GetByText(DashboardSelectors.ResourcePage.CacheResource);
+        var cacheStateSpan = FluentDataGridSelector.Grid.Body.Row(2).Cell(2).Descendant("> div > span");
+        var apiStateSpan = FluentDataGridSelector.Grid.Body.Row(3).Cell(2).Descendant("> div > span");
+        var webStateSpan = FluentDataGridSelector.Grid.Body.Row(4).Cell(2).Descendant("> div > span");
 
-        await Assertions.Expect(cacheResource).ToBeVisibleAsync();
+        var cache = page.Locator(cacheStateSpan);
+        var api = page.Locator(apiStateSpan);
+        var web = page.Locator(webStateSpan);
+
+        await Assertions.Expect(cache).ToHaveTextAsync("Running");
+        await Assertions.Expect(api).ToHaveTextAsync("Running");
+        await Assertions.Expect(web).ToHaveTextAsync("Running");
     }
 }
 

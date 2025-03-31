@@ -11,10 +11,11 @@ public class AppHostTestFixture : IAsyncLifetime
     public DistributedApplication? App { get; private set; }
 
     public async Task<DistributedApplication> ConfigureAsync<TEntryPoint>(
+        string[]? args = null,
         Action<IDistributedApplicationTestingBuilder>? configureBuilder = null) where TEntryPoint : class
     {
         var builder = await DistributedApplicationTestingBuilder.CreateAsync<TEntryPoint>(
-            args: [],
+            args: args ?? [],
             configureBuilder: static (options, _) =>
             {
                 options.DisableDashboard = false;

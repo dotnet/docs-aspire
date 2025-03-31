@@ -17,8 +17,9 @@ public class PlaywrightTestsBase<TDashboardServerFixture>(AppHostTestFixture app
     private IBrowserContext? _context;
 
     public Task<DistributedApplication> ConfigureAsync<TEntryPoint>(
+        string[]? args = null,
         Action<IDistributedApplicationTestingBuilder>? configureBuilder = null) where TEntryPoint : class =>
-        AppHostTestFixture.ConfigureAsync<TEntryPoint>(builder =>
+        AppHostTestFixture.ConfigureAsync<TEntryPoint>(args, builder =>
         {
             var aspNetCoreUrls = builder.Configuration["ASPNETCORE_URLS"];
             var urls = aspNetCoreUrls is not null ? aspNetCoreUrls.Split(";") : [];

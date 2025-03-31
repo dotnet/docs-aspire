@@ -1,4 +1,4 @@
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire client integrations.
 builder.AddServiceDefaults();
@@ -23,6 +23,11 @@ string[] summaries = ["Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "
 
 app.MapGet("/weatherforecast", () =>
 {
+    if (builder.Configuration.GetValue<bool>("THROW_EXCEPTION"))
+    {
+        throw new ApplicationException("Error processing request");
+    }
+
     var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (

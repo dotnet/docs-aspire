@@ -8,6 +8,6 @@ dotnet test --filter Capture=themes
 dotnet test --filter Capture=stop-start-resources
 dotnet test --filter Capture=resource-text-visualizer
 dotnet test --filter Capture=resource-details
- ```
-
-
+dotnet test --filter Capture=resource-filtering
+dotnet test --filter Capture=resource-errors
+```
