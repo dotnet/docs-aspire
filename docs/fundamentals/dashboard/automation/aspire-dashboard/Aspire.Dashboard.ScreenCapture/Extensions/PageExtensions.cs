@@ -26,7 +26,7 @@ internal static class PageExtensions
             const el = document.querySelector('{{selector}}');
             if (el) {
               const text = el.textContent;
-              el.textContent = '█'.repeat(text.length);
+              el.textContent = text.replace(/(^\S+)|(\S+$)/g, '█');
             } else {
               console.error('Element not found: {{selector}}');
             }

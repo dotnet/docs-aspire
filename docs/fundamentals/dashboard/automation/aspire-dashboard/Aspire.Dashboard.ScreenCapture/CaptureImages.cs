@@ -376,4 +376,42 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
         },
         new() { Width = 1280, Height = 960 });
     }
+
+    [Fact, Trait("Capture", "console-logs")]
+    public async Task CaptureConsoleLogsOutputImages()
+    {
+        await ConfigureAsync<SampleAppHost>();
+
+        await InteractWithPageAsync(async page =>
+        {
+            // Login to the dashboard
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
+
+            var apiConsoleLogs = FluentDataGridSelector.Grid.Body.Row(3).Cell(7)
+                .Descendant("""fluent-button[title="Console logs"]""");
+            await page.ClickAsync(apiConsoleLogs);
+
+            await Task.Delay(1_000);
+
+            await page.RedactElementTextAsync("#logContainer > div:nth-child(11) > div > span > span.log-content");
+
+            await page.ScreenshotAsync(new()
+            {
+                Path = "../../../../../../media/explore/project-logs.png"
+            });
+
+            // Select "cache" dropdown
+            await page.ClickAsync("fluent-select.resource-list");
+
+            await page.ClickAsync("""fluent-option[value="cache"]""");
+
+            await Task.Delay(1_000);
+
+            await page.ScreenshotAsync(new()
+            {
+                Path = "../../../../../../media/explore/container-logs.png"
+            });
+        },
+        new() { Width = 1280, Height = 360 });
+    }
 }
