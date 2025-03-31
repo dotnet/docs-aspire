@@ -9,12 +9,6 @@
     <UserSecretsId>46746d27-b91d-48f7-9c06-d13a0f2325a6</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Program.ImplicitBindMount.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Program.ImplicitBindMount.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\VolumeMounts.ApiService\VolumeMounts.ApiService.csproj" />
     <ProjectReference Include="..\VolumeMounts.Web\VolumeMounts.Web.csproj" />
   </ItemGroup>

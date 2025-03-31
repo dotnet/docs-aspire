@@ -2,11 +2,11 @@
 {
     private static IResourceBuilder<SqlServerDatabaseResource> ImplicitBindMount(IDistributedApplicationBuilder builder)
     {
-        // <implicit>
+        // <implicitbindmount>
         var sql = builder.AddSqlServer("sql")
                          .WithDataBindMount(source: @"C:\SqlServer\Data")
                          .AddDatabase("sqldb");
-        // </implicit>
+        // </implicitbindmount>
 
         return sql;
     }

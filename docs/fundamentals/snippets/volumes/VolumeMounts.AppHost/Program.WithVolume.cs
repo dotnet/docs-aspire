@@ -2,11 +2,11 @@
 {
     private static IResourceBuilder<SqlServerDatabaseResource> WithVolume(IDistributedApplicationBuilder builder)
     {
-        // <mount>
+        // <volume>
         var sql = builder.AddSqlServer("sql")
                          .WithVolume(target: "/var/opt/mssql")
                          .AddDatabase("sqldb");
-        // </mount>
+        // </volume>
 
         return sql;
     }

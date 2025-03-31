@@ -2,11 +2,11 @@
 {
     private static IResourceBuilder<SqlServerDatabaseResource> WithBindMount(IDistributedApplicationBuilder builder)
     {
-        // <mount>
+        // <bindmount>
         var sql = builder.AddSqlServer("sql")
                          .WithBindMount(source: @"C:\SqlServer\Data", target: "/var/opt/mssql")
                          .AddDatabase("sqldb");
-        // </mount>
+        // </bindmount>
 
         return sql;
     }
