@@ -1,9 +1,4 @@
-﻿using Aspire.Hosting;
-using Aspire.Hosting.Testing;
-using Microsoft.Playwright;
-using Xunit;
-
-namespace Aspire.Dashboard.ScreenCapture;
+﻿namespace Aspire.Dashboard.ScreenCapture;
 
 public class PlaywrightTestsBase<TDashboardServerFixture>(AppHostTestFixture appHostTestFixture)
     : IClassFixture<TDashboardServerFixture>, IAsyncDisposable

@@ -1,12 +1,19 @@
-﻿using System.Text.Json;
-using Microsoft.Playwright;
-using Xunit;
-
-namespace Aspire.Dashboard.ScreenCapture.Extensions;
+﻿namespace Aspire.Dashboard.ScreenCapture.Extensions;
 
 internal static class PageExtensions
 {
     private static readonly JsonSerializerOptions s_options = new(JsonSerializerDefaults.Web);
+    private static readonly string s_relativeMediaPath = "../../../../../../media";
+    
+    public static async Task SaveExploreScreenshotAsync(
+        this IPage page, string fileName, Clip? clip = null)
+    {
+        await page.ScreenshotAsync(new()
+        {
+            Clip = clip,
+            Path = $"{s_relativeMediaPath}/explore/{fileName}"
+        });
+    }
 
     public static async Task<string> GetResourceEndpointAsync(this IPage page, int row = 4)
     {

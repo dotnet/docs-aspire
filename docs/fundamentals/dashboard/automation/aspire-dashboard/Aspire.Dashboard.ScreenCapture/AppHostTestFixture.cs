@@ -1,8 +1,4 @@
-﻿using Aspire.Hosting;
-using Aspire.Hosting.Testing;
-using Xunit;
-
-namespace Aspire.Dashboard.ScreenCapture;
+﻿namespace Aspire.Dashboard.ScreenCapture;
 
 public class AppHostTestFixture : IAsyncLifetime
 {

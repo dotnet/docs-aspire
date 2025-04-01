@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace Aspire.Dashboard.ScreenCapture;
+﻿namespace Aspire.Dashboard.ScreenCapture;
 
 public class FluentDataGridSelector(string initialSelector)
 {

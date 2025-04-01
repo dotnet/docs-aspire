@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.Playwright;
-using Xunit;
-
-namespace Aspire.Dashboard.ScreenCapture;
+﻿namespace Aspire.Dashboard.ScreenCapture;
 
 public class PlaywrightFixture : IAsyncLifetime
 {

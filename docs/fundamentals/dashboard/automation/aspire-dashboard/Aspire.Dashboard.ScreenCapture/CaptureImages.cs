@@ -1,11 +1,4 @@
-﻿using System.Reflection.PortableExecutable;
-using Aspire.Dashboard.ScreenCapture.Extensions;
-using Aspire.Hosting.Testing;
-using Microsoft.Playwright;
-using Xunit;
-using SampleAppHost = Projects.AspireSample_AppHost;
-
-namespace Aspire.Dashboard.ScreenCapture;
+﻿namespace Aspire.Dashboard.ScreenCapture;
 
 [Trait("Category", "Automation")]
 public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTestsBase<AppHostTestFixture>(appHostTestFixture)
@@ -25,11 +18,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             // Draw a red border (highlight) around element.
             await page.HighlightElementAsync(DashboardSelectors.Header.HelpButton);
 
-            // Take a screen capture of the dashboard
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/dashboard-help.png"
-            });
+            await page.SaveExploreScreenshotAsync("dashboard-help.png");
         });
     }
 
@@ -43,10 +32,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
 
             // Take screen capture of the projects.
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/projects.png"
-            });
+            await page.SaveExploreScreenshotAsync("projects.png");
 
             // Hover over cache row
             await page.HoverAsync(FluentDataGridSelector.Grid.Body.Row(2));
@@ -55,10 +41,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await page.HighlightElementAsync(DashboardSelectors.ResourcePage.StopResource);
 
             // Take screen capture of the projects.
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/resource-stop-action.png"
-            });
+            await page.SaveExploreScreenshotAsync("resource-stop-action.png");
         },
         new() { Width = 1280, Height = 360 });
     }
@@ -79,19 +62,13 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await page.WaitForSelectorAsync(DashboardSelectors.SettingsDialog.SettingsDialogHeading);
 
             // Take a dark-theme screen capture.
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/theme-selection.png"
-            });
+            await page.SaveExploreScreenshotAsync("theme-selection.png");
 
             // Change the theme to light theme.
             await page.ClickAsync(DashboardSelectors.SettingsDialog.LightThemeRadio);
 
             // Take a light-theme screen capture.
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/theme-selection-light.png"
-            });
+            await page.SaveExploreScreenshotAsync("theme-selection-light.png");
 
             // Change theme back to dark theme.
             await page.ClickAsync(DashboardSelectors.SettingsDialog.DarkThemeRadio);
@@ -121,10 +98,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await page.HighlightElementsAsync(
                 DashboardSelectors.Toast, FluentDataGridSelector.Grid.Body.Row(2).Cell(2));
 
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/resource-stopped-action.png"
-            });
+            await page.SaveExploreScreenshotAsync("resource-stopped-action.png");
         },
         new() { Width = 1280, Height = 360 });
 
@@ -151,10 +125,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await page.HighlightElementsAsync(
                 DashboardSelectors.Toast, FluentDataGridSelector.Grid.Body.Row(2).Cell(2));
 
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/resource-started-action.png"
-            });
+            await page.SaveExploreScreenshotAsync("resource-started-action.png");
         },
         new() { Width = 1280, Height = 360 });
     }
@@ -178,10 +149,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             // Highlight the button
             await page.HighlightElementAsync(openInTextVisualizerButton);
 
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/text-visualizer-selection-menu.png"
-            });
+            await page.SaveExploreScreenshotAsync("text-visualizer-selection-menu.png");
 
             // Click "open in text visualizer"
             await page.ClickAsync(openInTextVisualizerButton);
@@ -189,10 +157,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             // Wait for dialog to be attached.
             await page.WaitForSelectorAsync(DashboardSelectors.Dialog, new() { State = WaitForSelectorState.Attached });
 
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/text-visualizer-resources.png"
-            });
+            await page.SaveExploreScreenshotAsync("text-visualizer-resources.png");
         },
         new() { Width = 1280, Height = 360 });
     }
@@ -213,25 +178,21 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
             await page.HighlightElementAsync("fluent-anchored-region");
 
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/resource-actions.png"
-            });
+            await page.SaveExploreScreenshotAsync("resource-actions.png");
 
             await page.ClickAsync(DashboardSelectors.ResourcePage.ViewDetailsOption);
             await page.ClickAsync(DashboardSelectors.ResourcePage.SplitPanel);
 
             await page.AdjustSplitPanelsGridTemplateAsync();
+            await page.ClickAndDragShadowRootElementAsync(
+                DashboardSelectors.SplitPanels, DashboardSelectors.MedianId, (0, 20));
             await page.RedactElementTextAsync(DashboardSelectors.ResourcePage.ResourceDetailsProjectPath);
 
             await page.ClickAsync(apiEllipsisButton);
             await page.HoverAsync(DashboardSelectors.ResourcePage.ViewDetailsOption);
             await page.HighlightElementAsync(DashboardSelectors.ResourcePage.ViewDetailsOption);
 
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/resource-details.png"
-            });
+            await page.SaveExploreScreenshotAsync("resource-details.png");
         });
     }
 
@@ -249,10 +210,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
             await page.HighlightElementAsync(DashboardSelectors.ResourcePage.FilterDiv);
 
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/select-resource-type.png"
-            });
+            await page.SaveExploreScreenshotAsync("select-resource-type.png");
         },
         new() { Width = 1280, Height = 550 });
 
@@ -277,10 +235,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
             await page.ClickAsync(DashboardSelectors.ResourcePage.FilterButton);
 
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/resources-filtered-containers.png"
-            });
+            await page.SaveExploreScreenshotAsync("resources-filtered-containers.png");
         },
         new() { Width = 1280, Height = 600 });
     }
@@ -307,10 +262,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await Task.Delay(7_500);
 
             await page.BringToFrontAsync();
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/projects-errors.png"
-            });
+            await page.SaveExploreScreenshotAsync("projects-errors.png");
 
             // Click the api "errors" button
             var apiErrorButton = FluentDataGridSelector.Grid.Body.Row(3).Cell(2)
@@ -323,10 +275,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await page.ClickAsync(firstActionButton);
             await page.HighlightElementAsync("fluent-anchored-region");
 
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/structured-logs-errors.png"
-            });
+            await page.SaveExploreScreenshotAsync("structured-logs-errors.png");
         },
         new() { Width = 1280, Height = 420 });
     }
@@ -360,10 +309,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
             await Task.Delay(1000);
 
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/project-logs-error.png"
-            });
+            await page.SaveExploreScreenshotAsync("project-logs-error.png");
 
             await page.ClickAsync(DashboardSelectors.Nav.Resources);
 
@@ -382,10 +328,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
             await page.AdjustSplitPanelsGridTemplateAsync();
 
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/structured-logs-errors-view.png"
-            });
+            await page.SaveExploreScreenshotAsync("structured-logs-errors-view.png");
         },
         new() { Width = 1280, Height = 960 });
     }
@@ -408,10 +351,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
             await page.RedactElementTextAsync("#logContainer > div:nth-child(11) > div > span > span.log-content");
 
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/project-logs.png"
-            });
+            await page.SaveExploreScreenshotAsync("project-logs.png");
 
             // Select "cache" dropdown
             await page.ClickAsync("fluent-select.resource-list");
@@ -420,10 +360,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
             await Task.Delay(1_000);
 
-            await page.ScreenshotAsync(new()
-            {
-                Path = "../../../../../../media/explore/container-logs.png"
-            });
+            await page.SaveExploreScreenshotAsync("container-logs.png");
         },
         new() { Width = 1280, Height = 360 });
     }
