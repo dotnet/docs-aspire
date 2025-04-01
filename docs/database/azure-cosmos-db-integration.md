@@ -101,7 +101,7 @@ builder.AddAzureCosmosDatabase(connectionName: "customers");
 
 <!-- TODO: Add xref to CosmosDatabaseBuilder when available -->
 
-The `AddAzureCosmosDatabase` API returns a `CosmosDatabaseBuilder` instance that you can use to attach multiple containers under the same database connection. All child containers share the same <xref:Azure.Cosmos.CosmosClient> and database connection. This strategy is useful when associating the same <xref:Azure.Cosmos.CosmosClientOptions> with multiple containers.
+The `AddAzureCosmosDatabase` API returns a `CosmosDatabaseBuilder` instance that you can use to attach multiple containers under the same database connection. All child containers share the same <xref:Azure.Cosmos.CosmosClient> and database connection and `CosmosClient` instance. This strategy is useful when associating the same <xref:Azure.Cosmos.CosmosClientOptions> with multiple containers.
 
 After calling `AddAzureCosmosDatabase`, you can then retrieve the `Database` instance using dependency injection. For example, to retrieve the database from a delegate in a <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*> call consider the following code:
 
