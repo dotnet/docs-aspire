@@ -123,12 +123,12 @@ To add an Azure Service Bus queue, call the <xref:Aspire.Hosting.AzureServiceBus
 var builder = DistributedApplication.CreateBuilder(args);
 
 var serviceBus = builder.AddAzureServiceBus("messaging");
-serviceBus.AddServiceBusQueue("queue");
+var queue = serviceBus.AddServiceBusQueue("queue");
 
 // After adding all resources, run the app...
 ```
 
-When you call <xref:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusQueue(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},System.String,System.String)>, it configures your Service Bus resources to have a queue named `queue`. The queue is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier. For more information, see [Queues, topics, and subscriptions in Azure Service Bus](/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
+When you call <xref:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusQueue(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},System.String,System.String)>, it configures your Service Bus resources to have a queue named `queue`. The expresses an explicit parent-child relationship, between the `messaging` Service Bus resource and its child `queue`. The queue is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier. For more information, see [Queues, topics, and subscriptions in Azure Service Bus](/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
 
 ### Add Azure Service Bus topic and subscription
 
@@ -138,7 +138,7 @@ To add an Azure Service Bus topic, call the <xref:Aspire.Hosting.AzureServiceBus
 var builder = DistributedApplication.CreateBuilder(args);
 
 var serviceBus = builder.AddAzureServiceBus("messaging");
-serviceBus.AddServiceBusTopic("topic");
+var topic = serviceBus.AddServiceBusTopic("topic");
 
 // After adding all resources, run the app...
 ```
