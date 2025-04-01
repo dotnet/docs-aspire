@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Service Bus integration
 description: Learn how to install and configure the .NET Aspire Azure Service Bus integration to connect to Azure Service Bus instances from .NET applications.
-ms.date: 02/25/2025
+ms.date: 04/01/2025
 ---
 
 # .NET Aspire Azure Service Bus integration
@@ -15,6 +15,9 @@ ms.date: 02/25/2025
 The .NET Aspire [Azure Service Bus](https://azure.microsoft.com/services/service-bus/) hosting integration models the various Service Bus resources as the following types:
 
 - <xref:Aspire.Hosting.Azure.AzureServiceBusResource>: Represents an Azure Service Bus resource.
+- <xref:Aspire.Hosting.Azure.AzureServiceBusQueueResource>: Represents an Azure Service Bus queue resource.
+- <xref:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource>: Represents an Azure Service Bus subscription resource.
+- <xref:Aspire.Hosting.Azure.AzureServiceBusTopicResource>: Represents an Azure Service Bus topic resource.
 - <xref:Aspire.Hosting.Azure.AzureServiceBusEmulatorResource>: Represents an Azure Service Bus emulator resource.
 
 To access these types and APIs for expressing them, add the [📦 Aspire.Hosting.Azure.ServiceBus](https://www.nuget.org/packages/Aspire.Hosting.Azure.ServiceBus) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.

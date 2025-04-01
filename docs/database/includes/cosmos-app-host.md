@@ -148,11 +148,18 @@ var builder = DistributedApplication.CreateBuilder(args);
 var cosmos = builder.AddAzureCosmosDB("cosmos");
 
 var customers = cosmos.AddCosmosDatabase("customers");
-customers.AddContainer("profiles", "/id");
+var profiles = customers.AddContainer("profiles", "/id");
 
 var orders = cosmos.AddCosmosDatabase("orders");
-orders.AddContainer("details", "/id");
-orders.AddContainer("history", "/id");
+var details = orders.AddContainer("details", "/id");
+var history = orders.AddContainer("history", "/id");
+
+builder.AddProject<Projects.Api>("api")
+       .WithReference(profiles)
+       .WithReference(details)
+       .WithReference(history);
+
+builder.Build().Run();
 ```
 
 The preceding code adds an Azure Cosmos DB resource named `cosmos` with two databases: `customers` and `orders`. The `customers` database has a single container named `profiles`, while the `orders` database has two containers: `details` and `history`. The partition key for each container is `/id`.

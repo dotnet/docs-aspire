@@ -192,13 +192,27 @@ If you have multiple containers under the same database connection, you can use 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddAzureCosmosDatabase("customers", configureClientOptions: options =>
+    {
+        options.SerializerOptions = new CosmosSerializationOptions()
+        {
+            PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase
+        };
+    })
+    .AddKeyedContainer(name: "profiles");
+
 builder.AddAzureCosmosDatabase(connectionName: "orders")
        .AddKeyedContainer(name: "details")
        .AddKeyedContainer(name: "history");
 
 var app = builder.Build();
 
-// Using container in an endpoint
+app.MapGet("/api/customers", async (
+    [FromKeyedServices("profiles")] Container container) =>
+{
+    // Query data from container
+});
+
 app.MapGet("/api/orders", async (
     [FromKeyedServices("details")] Container container,
     [FromKeyedServices("history")] Container container) =>
@@ -209,7 +223,7 @@ app.MapGet("/api/orders", async (
 app.Run();
 ```
 
-The preceding example code demonstrates how to register two containers, `details` and `clients`, under a shared database connection named `orders`. This setup implies that the `orders` database contains two distinct containers: `details` and `clients`. Each container can be queried individually using its respective key.
+The preceding example code demonstrates how to register two databases, `customers` and `orders`, each with their own containers. The `customers` database has a single container named `profiles`, while the `orders` database has two containers named `details` and `history`. Each container can be queried individually using its respective key.
 
 ### Configuration
 
