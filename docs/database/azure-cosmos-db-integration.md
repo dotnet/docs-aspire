@@ -93,7 +93,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 <!-- TODO: Add xref to AddAzureCosmosDatabase when available -->
 
-Like container resources, you can also add a database resource. The database resource is considered a child resource to the parent <xref:Aspire.Hosting.AzureCosmosDBResource>. In your client-consuming project, you can deep-link to the database resource by name, registering a <xref:Microsoft.Azure.Cosmos.Database> instance for use with dependency injection. For example, consider the following code that calls `AddAzureCosmosDatabase` on an <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> instance:
+In the app host, the database resource can be added as a child resource to the parent <xref:Aspire.Hosting.AzureCosmosDBResource>. In your client-consuming project, you can deep-link to the database resource by name, registering a <xref:Microsoft.Azure.Cosmos.Database> instance for use with dependency injection. For example, consider the following code that calls `AddAzureCosmosDatabase` on an <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> instance:
 
 ```csharp
 builder.AddAzureCosmosDatabase(connectionName: "customers");
