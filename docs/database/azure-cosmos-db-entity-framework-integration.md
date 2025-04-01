@@ -42,10 +42,16 @@ dotnet add package Aspire.Microsoft.EntityFrameworkCore.Cosmos
 
 ### Add Cosmos DB context
 
-In the :::no-loc text="Program.cs"::: file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureEFCoreCosmosExtensions.AddCosmosDbContext%2A> extension method to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container. The method takes a connection name parameter.
+In the :::no-loc text="Program.cs"::: file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureEFCoreCosmosExtensions.AddCosmosDbContext%2A> extension method to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container. The method takes a connection name parameter and a database name parameter.
 
 ```csharp
 builder.AddCosmosDbContext<MyDbContext>("cosmosdb", "databaseName");
+```
+
+Alternatively, the database name can be inferred from the connection when there's a single database in the connection string. In this case, you can omit the database name parameter:
+
+```csharp
+builder.AddCosmosDbContext<MyDbContext>("cosmosdb");
 ```
 
 > [!TIP]

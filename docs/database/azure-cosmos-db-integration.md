@@ -11,6 +11,8 @@ uid: dotnet/aspire/azure-cosmos-db-integration
 
 [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) is a fully managed NoSQL database service for modern app development. The .NET Aspire Azure Cosmos DB integration enables you to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
 
+If you're looking for the Entity Framework Core integration, see [.NET Aspire Cosmos DB Entity Framework Core integration](azure-cosmos-db-entity-framework-integration.md).
+
 ## Hosting integration
 
 [!INCLUDE [cosmos-app-host](includes/cosmos-app-host.md)]
