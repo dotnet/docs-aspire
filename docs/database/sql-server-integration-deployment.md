@@ -36,10 +36,10 @@ In this tutorial, you learn to configure an ASP.NET Core app with a SQL Server D
 
 Visual Studio creates a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:
 
-- **AspireSql.Web**: A Blazor project that depends on service defaults.
 - **AspireSql.ApiService**: An API project that depends on service defaults.
 - **AspireSql.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
 - **AspireSql.ServiceDefaults**: A shared class library to hold configurations that can be reused across the projects in your solution.
+- **AspireSql.Web**: A Blazor project that depends on service defaults.
 
 ## [.NET CLI](#tab/cli)
 
@@ -67,11 +67,11 @@ The .NET CLI creates a new ASP.NET Core solution that is structured to use .NET 
 
 ### Add the .NET Aspire integration to the app
 
-Add the appropriate .NET Aspire integration to the _AspireSQL.AppHost_ project for your desired hosting service.
+Add the appropriate .NET Aspire integration to the _AspireSql.AppHost_ project for your desired hosting service.
 
 # [Azure SQL Database](#tab/azure-sql)
 
-Open a command prompt and add the [📦 Aspire.Hosting.Azure.Sql](https://www.nuget.org/packages/Aspire.Hosting.Azure.Sql) NuGet package to the _AspireSQL.AppHost_ project:
+Open a command prompt and add the [📦 Aspire.Hosting.Azure.Sql](https://www.nuget.org/packages/Aspire.Hosting.Azure.Sql) NuGet package to the _AspireSql.AppHost_ project:
 
 ```dotnetcli
 cd AspireSql.AppHost
@@ -80,7 +80,7 @@ dotnet add package Aspire.Hosting.Azure.Sql
 
 ## [SQL Server Container](#tab/sql-container)
 
-Open a command prompt and add the [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer) NuGet package to the _AspireSQL.AppHost_ project:
+Open a command prompt and add the [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer) NuGet package to the _AspireSql.AppHost_ project:
 
 ```dotnetcli
 cd AspireSql.AppHost
@@ -99,7 +99,7 @@ Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _Aspire
 
 :::code language="csharp" source="snippets/tutorial/aspiresqldeployazure/AspireSql.AppHost/Program.cs":::
 
-The preceding code adds an Azure SQL Server resource to your app and configures a connection to a database called `sqldb`. The `AddAzureSqlServer` method ensures that tools such as the Azure Developer CLI or Visual Studio create an Azure SQL Database resource during the deployment process.
+The preceding code adds an Azure SQL Server resource to your app and configures a connection to a database called `sqldb`. The <xref:Aspire.Hosting.AzureSqlExtensions.AddAzureSqlServer*> method ensures that tools such as the Azure Developer CLI or Visual Studio create an Azure SQL Database resource during the deployment process.
 
 ## [SQL Server Container](#tab/sql-container)
 
@@ -137,6 +137,6 @@ The deployment process created a SQL Server app container due to the **.AppHost*
 
 ## See also
 
-- [.NET Aspire deployment via Azure Container Apps](../deployment/azure/aca-deployment.md)
-- [.NET Aspire Azure Container Apps deployment deep dive](../deployment/azure/aca-deployment-azd-in-depth.md)
-- [Deploy a .NET Aspire project using GitHub Actions](../deployment/azure/aca-deployment-github-actions.md)
+- [Deploy a .NET Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md)
+- [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md)
+- [Tutorial: Deploy a .NET Aspire project using the Azure Developer CLI](../deployment/azure/aca-deployment-github-actions.md)
