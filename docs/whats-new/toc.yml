@@ -4,6 +4,7 @@ items:
 - name: What's new
   href: index.yml
 - name: Latest product updates
+  expanded: true
   items:
   - name: What's new in .NET Aspire 9.2
     href: dotnet-aspire-9.2.md
