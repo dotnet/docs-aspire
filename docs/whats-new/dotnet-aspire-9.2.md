@@ -1,7 +1,7 @@
 ---
 title: What's new in .NET Aspire 9.2
 description: Learn what's new in the official general availability release of .NET Aspire 9.2.
-ms.date: 03/27/2025
+ms.date: 04/02/2025
 ---
 
 # What's new in .NET Aspire 9.2
