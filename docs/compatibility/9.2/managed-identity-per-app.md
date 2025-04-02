@@ -34,7 +34,7 @@ This change was introduced to support scenarios where applications require diffe
 
 ### Azure SQL Server
 
-Grant access to all Azure Managed Identities that need to interact with the database. Follow the guidance in [Configure and manage Azure AD authentication with Azure SQL](https://learn.microsoft.com/azure/azure-sql/database/authentication-aad-configure).
+Grant access to all Azure Managed Identities that need to interact with the database. Follow the guidance in [Configure and manage Azure AD authentication with Azure SQL](/azure/azure-sql/database/authentication-aad-configure).
 
 ### Azure PostgreSQL
 
