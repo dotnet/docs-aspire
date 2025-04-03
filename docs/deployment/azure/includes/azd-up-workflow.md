@@ -11,7 +11,7 @@
     ```output
     Select an Azure Subscription to use:  [Use arrows to move, type to filter]
       1. SampleSubscription01 (xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx)
-      2. SamepleSubscription02 (xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx)
+      2. SampleSubscription02 (xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx)
     ```
 
 1. Select the desired Azure location to use from the list of available options:
