@@ -93,21 +93,21 @@ For more information on dependency injection, see [.NET dependency injection](/d
 
 ### Add keyed Redis client
 
-There might be situations where you want to register multiple `IDistributedCache` instances with different connection names. To register keyed Redis clients, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddKeyedRedisDistributedCache*> method:
+Due to its limitations there can't be multiple `IDistributedCache` instances registered at the same time. Still, there  might be situations where you want to register register multiple Redis clients and use a `IDistributedCache` instance for a specific connection name. To register a keyed Redis client that will be used for the `IDistributedCache` service, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddKeyedRedisDistributedCache*> method:
 
 ```csharp
-builder.AddKeyedRedisDistributedCache(name: "chat");
+builder.AddKeyedRedisClient(name: "chat");
 builder.AddKeyedRedisDistributedCache(name: "product");
 ```
 
-Then you can retrieve the `IDistributedCache` instances using dependency injection. For example, to retrieve the connection from an example service:
+Then you can retrieve the `IDistributedCache` instance using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
 public class ExampleService(
-    [FromKeyedServices("chat")] IDistributedCache chatCache,
-    [FromKeyedServices("product")] IDistributedCache productCache)
+    [FromKeyedServices("chat")] IConnectionMultiplexer chatConnectionMux,
+    IDistributedCache productCache)
 {
-    // Use caches...
+    // Use product cache...
 }
 ```
 
