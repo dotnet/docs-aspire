@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Cosmos DB integration
 description: Learn how to install and configure the .NET Aspire Azure Cosmos DB integration to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
-ms.date: 02/26/2025
+ms.date: 04/01/2025
 uid: dotnet/aspire/azure-cosmos-db-integration
 ---
 
@@ -10,6 +10,8 @@ uid: dotnet/aspire/azure-cosmos-db-integration
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
 [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) is a fully managed NoSQL database service for modern app development. The .NET Aspire Azure Cosmos DB integration enables you to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
+
+If you're looking for the Entity Framework Core integration, see [.NET Aspire Cosmos DB Entity Framework Core integration](azure-cosmos-db-entity-framework-integration.md).
 
 ## Hosting integration
 
@@ -51,7 +53,7 @@ builder.AddAzureCosmosClient(connectionName: "cosmos-db");
 > [!TIP]
 > The `connectionName` parameter must match the name used when adding the Cosmos DB resource in the app host project. In other words, when you call `AddAzureCosmosDB` and provide a name of `cosmos-db` that same name should be used when calling `AddAzureCosmosClient`. For more information, see [Add Azure Cosmos DB resource](#add-azure-cosmos-db-resource).
 
-You can then retrieve the <xref:Azure.Cosmos.CosmosClient> instance using dependency injection. For example, to retrieve the connection from an example service:
+You can then retrieve the <xref:Azure.Cosmos.CosmosClient> instance using dependency injection. For example, to retrieve the client from an example service:
 
 ```csharp
 public class ExampleService(CosmosClient client)
@@ -86,6 +88,142 @@ public class ExampleService(
 ```
 
 For more information on keyed services, see [.NET dependency injection: Keyed services](/dotnet/core/extensions/dependency-injection#keyed-services).
+
+### Add Azure Cosmos DB database
+
+<!-- TODO: Add xref to AddAzureCosmosDatabase when available -->
+
+In the app host, the database resource  (<xref:Aspire.Hosting.AzureCosmosDBDatabaseResource>) can be added as a child resource to the parent <xref:Aspire.Hosting.AzureCosmosDBResource>. In your client-consuming project, you can deep-link to the database resource by name, registering a <xref:Microsoft.Azure.Cosmos.Database> instance for use with dependency injection. For example, consider the following code that calls `AddAzureCosmosDatabase` on an <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> instance:
+
+```csharp
+builder.AddAzureCosmosDatabase(connectionName: "customers");
+```
+
+<!-- TODO: Add xref to CosmosDatabaseBuilder when available -->
+
+The `AddAzureCosmosDatabase` API returns a `CosmosDatabaseBuilder` instance that you can use to attach multiple containers under the same database connection. All child containers share the same <xref:Azure.Cosmos.CosmosClient> and database connection and `CosmosClient` instance. This strategy is useful when associating the same <xref:Azure.Cosmos.CosmosClientOptions> with multiple containers.
+
+After calling `AddAzureCosmosDatabase`, you can then retrieve the `Database` instance using dependency injection. For example, to retrieve the database from a delegate in a <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*> call consider the following code:
+
+```csharp
+app.MapGet("/api/customers", async (Database database) =>
+{
+    // Query data from database...
+});
+```
+
+### Add keyed Azure Cosmos DB database
+
+<!-- TODO: Add xref to AddKeyedAzureCosmosDatabase when available -->
+
+There's also an `AddKeyedAzureCosmosDatabase` API that returns a `CosmosDatabaseBuilder` instance that you can use to attach multiple containers under the same database connection. method that allows you to register multiple databases with different connection names. For example, consider the following code that calls `AddKeyedAzureCosmosDatabase` on an <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> instance:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.AddKeyedAzureCosmosDatabase("customers");
+builder.AddKeyedAzureCosmosDatabase("orders");
+
+var app = builder.Build();
+
+app.MapGet("/api/customers", async (
+    [FromKeyedServices("customers")] Database database) =>
+{
+    // Get container from database and query data
+});
+
+app.MapPost("/api/orders", async (
+    [FromKeyedServices("orders")] Database database,
+    [FromBody] OrderRequest order) =>
+{
+    // Get container from database and query data
+});
+
+app.Run();
+```
+
+The preceding example code demonstrates how to register two databases, `details` and `customers`. Each named database can be used to get their corresponding containers to query data.
+
+### Add Azure Cosmos DB container
+
+<!-- TODO: Add xref to AddAzureCosmosContainer when available -->
+
+When you add a Cosmos DB resource in the app host project, you can also add an Azure Cosmos DB container resource as well. The container resource is considered a child resource to the parent <xref:Aspire.Hosting.AzureCosmosDBDatabaseResource>. In your client-consuming project, you can deep-link to the container resource by name, registering a <xref:Microsoft.Azure.Cosmos.Container> instance for use with dependency injection. For example, consider the following code that calls `AddAzureCosmosContainer` on an <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> instance:
+
+```csharp
+builder.AddAzureCosmosContainer(connectionName: "details");
+```
+
+You can then retrieve the `Container` instance using dependency injection. For example, to retrieve the container from a delegate in a <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*> call consider the following code:
+
+```csharp
+app.MapGet("/api/orders/{id:guid}", async (
+    Container container, 
+    [FromRoute] Guid id) =>
+{
+    // Query data from container...
+});
+```
+
+### Add keyed Azure Cosmos DB container
+
+<!-- TODO: Add xref to AddKeyedAzureCosmosContainer when available -->
+
+There's also an `AddKeyedAzureCosmosContainer` method that allows you to register multiple containers with different connection names. For example, consider the following code that calls `AddKeyedAzureCosmosContainer` on an <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> instance:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.AddKeyedAzureCosmosContainer("customers");
+
+var app = builder.Build();
+
+app.MapGet("/api/customers", async (
+    [FromKeyedServices("customers")] Container container) =>
+{
+    // Query data from container...
+});
+
+app.Run();
+```
+
+If you have multiple containers under the same database connection, you can use the `AddAzureCosmosDatabase` API to attach multiple containers under the same database connection. All child containers share the same <xref:Azure.Cosmos.CosmosClient> and database connection. This strategy is useful when associating the same <xref:Azure.Cosmos.CosmosClientOptions> with multiple containers. Consider the following alternative code, to register multiple containers under the same database connection:
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.AddAzureCosmosDatabase("customers", configureClientOptions: options =>
+    {
+        options.SerializerOptions = new CosmosSerializationOptions()
+        {
+            PropertyNamingPolicy = CosmosPropertyNamingPolicy.CamelCase
+        };
+    })
+    .AddKeyedContainer(name: "profiles");
+
+builder.AddAzureCosmosDatabase(connectionName: "orders")
+       .AddKeyedContainer(name: "details")
+       .AddKeyedContainer(name: "history");
+
+var app = builder.Build();
+
+app.MapGet("/api/customers", async (
+    [FromKeyedServices("profiles")] Container container) =>
+{
+    // Query data from container
+});
+
+app.MapGet("/api/orders", async (
+    [FromKeyedServices("details")] Container container,
+    [FromKeyedServices("history")] Container container) =>
+{
+    // Query data from container
+});
+
+app.Run();
+```
+
+The preceding example code demonstrates how to register two databases, `customers` and `orders`, each with their own containers. The `customers` database has a single container named `profiles`, while the `orders` database has two containers named `details` and `history`. Each container can be queried individually using its respective key.
 
 ### Configuration
 
@@ -201,6 +339,7 @@ The .NET Aspire Azure Cosmos DB integration currently doesn't support metrics by
 ## See also
 
 - [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db)
+- [Sample repository showing parent-child relationships](https://github.com/captainsafia/aspire-child-resources)
 - [.NET Aspire Cosmos DB Entity Framework Core integration](azure-cosmos-db-entity-framework-integration.md)
 - [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
 - [.NET Aspire Azure integrations overview](../azure/integrations-overview.md)
