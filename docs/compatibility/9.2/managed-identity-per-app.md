@@ -32,6 +32,8 @@ This change was introduced to support scenarios where applications require diffe
 
 ## Recommended action
 
+The recommended action is to update your Azure resources to use the new managed identities. This may include:
+
 ### Azure SQL Server
 
 Grant access to all Azure Managed Identities that need to interact with the database. Follow the guidance in [Configure and manage Azure AD authentication with Azure SQL](/azure/azure-sql/database/authentication-aad-configure).
