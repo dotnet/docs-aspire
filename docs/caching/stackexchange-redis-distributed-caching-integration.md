@@ -93,7 +93,7 @@ For more information on dependency injection, see [.NET dependency injection](/d
 
 ### Add keyed Redis client
 
-Due to its limitations there can't be multiple `IDistributedCache` instances registered at the same time. Still, there  might be situations where you want to register register multiple Redis clients and use a `IDistributedCache` instance for a specific connection name. To register a keyed Redis client that will be used for the `IDistributedCache` service, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddKeyedRedisDistributedCache*> method:
+Due to its limitations, you cannot register multiple `IDistributedCache` instances simultaneously. However, there may be scenarios where you need to register multiple Redis clients and use a specific `IDistributedCache` instance for a particular connection name. To register a keyed Redis client that will be used for the `IDistributedCache` service, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddKeyedRedisDistributedCache*> method:
 
 ```csharp
 builder.AddKeyedRedisClient(name: "chat");
