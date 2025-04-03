@@ -258,7 +258,7 @@ public class ExampleService(
 }
 ```
 
-If you want to register a single `WebPubSubServiceClient` instance with a specific connection name, there's an overload that uses the connection name as the service key. Call the `AddAzureWebPubSubServiceClient` method. This method registers the client as a singleton service in the dependency injection container.
+If you want to register a single `WebPubSubServiceClient` instance with a specific connection name, there's an overload that uses the connection name as the service key. Call the `AddKeyedAzureWebPubSubServiceClient` method. This method registers the client as a singleton service in the dependency injection container.
 
 ```csharp
 builder.AddKeyedAzureWebPubSubServiceClient(connectionName: "web-pubsub");
