@@ -54,7 +54,7 @@ builder.AddProject<Projects.ExampleProject>()
 ```
 
 > [!NOTE]
-> The Qdrant container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/app-host-overview.md#container-resource-lifetime).
+> The Qdrant container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
 When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `qdrant/qdrant` image, it creates a new Qdrant instance on your local machine. The resource is named `qdrant` and then added to the `ExampleProject`.
 

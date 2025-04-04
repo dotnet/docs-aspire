@@ -79,7 +79,7 @@ When events are dispatched, you can control how the events are dispatched to sub
 
 The default behavior is `EventDispatchBehavior.BlockingSequential`. To override this behavior, when calling a publishing API such as <xref:Aspire.Hosting.Eventing.IDistributedApplicationEventing.PublishAsync*>, provide the desired behavior as an argument.
 
-## App Host life cycle events in .NET Aspire
+## App Host life cycle events
 
 As you have seen, eventing is the most flexible approach. However, in this section you learn about the alternative: life cycle events.
 
@@ -130,5 +130,5 @@ The preferred way to hook into the app host life cycle is to use the eventing AP
 
 ## See also
 
-- [.NET Aspire orchestration overview](app-host-overview.md)
-- [Orchestrate resources in .NET Aspire](orchestrate-resources.md)
+- [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)
+- [Orchestrate resources in .NET Aspire](../fundamentals/orchestrate-resources.md)

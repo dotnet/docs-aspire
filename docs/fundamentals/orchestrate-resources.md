@@ -15,7 +15,8 @@ In .NET Aspire, a **resource** is a dependant part of a cloud-native application
 - **Container**: You can add Docker containers, based on specific images to your .NET Aspire solution.
 - **Integration resources**: Integrations often add resources such as databases, caches, and messaging services to your application.
 
-> [!NOTE] For the fundamentals of .NET Aspire orchestration and how it manages resources, see [.NET Aspire orchestration overview](app-host-overview.md). In this article, you'll learn how to customize the behavior of resources further by writing code in the app host project.
+> [!NOTE] 
+> For the fundamentals of .NET Aspire orchestration and how it manages resources, see [.NET Aspire orchestration overview](app-host-overview.md). In this article, you'll learn how to customize the behavior of resources further by writing code in the app host project.
 
 ## Configure explicit resource start
 
@@ -209,4 +210,4 @@ The preceding example uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithPa
 ## See also
 
 - [.NET Aspire orchestration overview](app-host-overview.md)
-- [App Host life cycles in .NET Aspire](app-host-life-cycles.md)
+- [Eventing in .NET Aspire](../app-host/eventing.md)

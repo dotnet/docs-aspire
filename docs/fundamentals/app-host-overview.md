@@ -285,7 +285,6 @@ This logic can easily be inverted to connect to an existing Redis resource when 
 ## See also
 
 - [Orchestrate resources in .NET Aspire](orchestrate-resources.md)
-- [App Host life cycles in .NET Aspire](app-host-life-cycles.md)
 - [.NET Aspire integrations overview](integrations-overview.md)
 - [.NET Aspire SDK](dotnet-aspire-sdk.md)
 - [Eventing in .NET Aspire](../app-host/eventing.md)
