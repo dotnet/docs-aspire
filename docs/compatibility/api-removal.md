@@ -14,3 +14,7 @@ ms.date: 10/24/2024
 - By documenting it under [Breaking changes in .NET](breaking-changes.md).
 
 In most cases, an API that shipped in a long-term support (LTS) release is obsoleted in the subsequent LTS release before it's removed. In rare cases, based on business needs, exceptions are made to obsolete an API before the subsequent LTS release. All obsoletions are documented and communicated to customers.
+
+## See also
+
+- [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire)

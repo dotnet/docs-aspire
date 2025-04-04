@@ -62,16 +62,9 @@ If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a d
 
 :::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible.module.bicep":::
 
-The preceding Bicep is a module that provisions an Azure PostgreSQL flexible server with the following defaults:
+The preceding Bicep is a module that provisions an Azure PostgreSQL flexible server resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-- `authConfig`: The authentication configuration of the PostgreSQL server. The default is `ActiveDirectoryAuth` enabled and `PasswordAuth` disabled.
-- `availabilityZone`: The availability zone of the PostgreSQL server. The default is `1`.
-- `backup`: The backup configuration of the PostgreSQL server. The default is `BackupRetentionDays` set to `7` and `GeoRedundantBackup` set to `Disabled`.
-- `highAvailability`: The high availability configuration of the PostgreSQL server. The default is `Disabled`.
-- `storage`: The storage configuration of the PostgreSQL server. The default is `StorageSizeGB` set to `32`.
-- `version`: The version of the PostgreSQL server. The default is `16`.
-- `sku`: The SKU of the PostgreSQL server. The default is `Standard_B1ms`.
-- `tags`: The tags of the PostgreSQL server. The default is `aspire-resource-name` set to the name of the Aspire resource, in this case `postgres-flexible`.
+:::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible-roles.module.bicep":::
 
 In addition to the PostgreSQL flexible server, it also provisions an Azure Firewall rule to allow all Azure IP addresses. Finally, an administrator is created for the PostgreSQL server, and the connection string is outputted as an output variable. The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 

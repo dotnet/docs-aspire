@@ -50,19 +50,9 @@ If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a d
 
 :::code language="bicep" source="../../snippets/azure/AppHost/redis.module.bicep":::
 
-The preceding Bicep is a module that provisions an Azure Cache for Redis with the following defaults:
+The preceding Bicep is a module that provisions an Azure Cache for Redis resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-- `location`: The location of the Azure Cache for Redis resource. The default is the location of the resource group.
-- `principalId`: The principal ID of the Azure Cache for Redis resource.
-- `principalName`: The principal name of the Azure Cache for Redis resource.
-- `sku`: The SKU of the Azure Cache for Redis resource. The default is `Basic` with a capacity of `1`.
-- `enableNonSslPort`: The non-SSL port of the Azure Cache for Redis resource. The default is `false`.
-- `disableAccessKeyAuthentication`: The access key authentication of the Azure Cache for Redis resource. The default is `true`.
-- `minimumTlsVersion`: The minimum TLS version of the Azure Cache for Redis resource. The default is `1.2`.
-- `redisConfiguration`: The Redis configuration of the Azure Cache for Redis resource. The default is `aad-enabled` set to `true`.
-- `tags`: The tags of the Azure Cache for Redis resource. The default is `aspire-resource-name` set to the name of the Aspire resource, in this case `redis`.
-- `redis_contributor`: The contributor of the Azure Cache for Redis resource, with an access policy name of `Data Contributor`.
-- `connectionString`: The connection string of the Azure Cache for Redis resource.
+:::code language="bicep" source="../../snippets/azure/AppHost/redis-roles.module.bicep":::
 
 In addition to the Azure Cache for Redis, it also provisions an access policy assignment to the application access to the cache. The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 

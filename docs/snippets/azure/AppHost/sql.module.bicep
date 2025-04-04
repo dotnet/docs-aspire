@@ -35,3 +35,5 @@ resource sqlFirewallRule_AllowAllAzureIps 'Microsoft.Sql/servers/firewallRules@2
 }
 
 output sqlServerFqdn string = sql.properties.fullyQualifiedDomainName
+
+output name string = sql.name

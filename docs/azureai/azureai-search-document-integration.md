@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure AI Search integration
 description: Learn how to integrate Azure AI Search with .NET Aspire.
-ms.date: 03/07/2025
+ms.date: 04/03/2025
 ---
 
 # .NET Aspire Azure AI Search integration
@@ -57,21 +57,9 @@ If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a d
 
 :::code language="bicep" source="../snippets/azure/AppHost/search.module.bicep":::
 
-The preceding Bicep is a module that provisions an Azure AI Search service resource with the following defaults:
+The preceding Bicep is a module that provisions an Azure AI Search service resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-- `location`: The location parameter of the resource group, defaults to `resourceGroup().location`.
-- `principalType`: The principal type parameter of the Azure AI Search resource.
-- `principalId`: The principal ID  parameter of the Azure AI Search resource.
-- `search`: The resource representing the Azure AI Search service.
-  - `properties`: The properties of the Azure AI Search service:
-    - `hostingMode`: Is set to `default`.
-    - `disableLocalAuth`: Is set to `true`.
-    - `partitionCount`: Is set to `1`.
-    - `replicaCount`: Is set to `1`.
-  - `sku`: Defaults to `basic`.
-- `search_SearchIndexDataContributor`: The role assignment for the Azure AI Search index data contributor role. For more information, see [Search Index Data Contributor](/azure/role-based-access-control/built-in-roles/ai-machine-learning#search-index-data-contributor).
-- `search_SearchServiceContributor`: The role assignment for the Azure AI Search service contributor role. For more information, see [Search Service Contributor](/azure/role-based-access-control/built-in-roles/ai-machine-learning#search-service-contributor).
-- `connectionString`: The connection string for the Azure AI Search service, which is used to connect to the service. The connection string is generated using the `Endpoint` property of the Azure AI Search service.
+:::code language="bicep" source="../snippets/azure/AppHost/search-roles.module.bicep":::
 
 The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 

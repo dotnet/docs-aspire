@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire overview
 description: Learn about .NET Aspire, an application stack designed to improve the experience of building distributed applications.
-ms.date: 11/12/2024
+ms.date: 03/26/2025
 ---
 
 # .NET Aspire overview
@@ -14,7 +14,7 @@ ms.date: 11/12/2024
 :::column-end:::
 :::column span="3":::
 
-.NET Aspire is a set of tools, templates, and packages for building observable, production ready apps.​​ .NET Aspire is delivered through a collection of NuGet packages that bootstrap or improve specific challenges with modern app development. Today's apps generally consume a large number of services, such as databases, messaging, and caching, many of which are supported via [.NET Aspire Integrations](../fundamentals/integrations-overview.md). For information on support, see the [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire).
+.NET Aspire provides tools, templates, and packages to help you build observable, production-ready apps. Delivered through NuGet packages, .NET Aspire simplifies common challenges in modern app development. Today's apps often rely on multiple services like databases, messaging, and caching, many supported by [.NET Aspire Integrations](../fundamentals/integrations-overview.md). For the official support information, see the [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire).
 
 :::column-end:::
 :::row-end:::

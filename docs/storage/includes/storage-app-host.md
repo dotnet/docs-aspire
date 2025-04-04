@@ -58,15 +58,9 @@ If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a d
 
 :::code language="bicep" source="../../snippets/azure/AppHost/storage.module.bicep":::
 
-The preceding Bicep is a module that provisions an Azure Storage account with the following defaults:
+The preceding Bicep is a module that provisions an Azure Storage account resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-- `kind`: The kind of storage account. The default is `StorageV2`.
-- `sku`: The SKU of the storage account. The default is `Standard_GRS`.
-- `properties`: The properties of the storage account:
-  - `accessTier`: The access tier of the storage account. The default is `Hot`.
-  - `allowSharedKeyAccess`: A boolean value that indicates whether the storage account permits requests to be authorized with the account access key. The default is `false`.
-  - `minimumTlsVersion`: The minimum supported TLS version for the storage account. The default is `TLS1_2`.
-  - `networkAcls`: The network ACLs for the storage account. The default is `{ defaultAction: 'Allow' }`.
+:::code language="bicep" source="../../snippets/azure/AppHost/storage-roles.module.bicep":::
 
 In addition to the storage account, it also provisions a blob container.
 
