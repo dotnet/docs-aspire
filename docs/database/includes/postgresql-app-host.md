@@ -46,7 +46,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 
 When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/postgres` image, it creates a new PostgreSQL server instance on your local machine. A reference to your PostgreSQL server and your PostgreSQL database instance (the `postgresdb` variable) are used to add a dependency to the `ExampleProject`. The PostgreSQL server resource includes default credentials with a `username` of `"postgres"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"messaging"`. For more information, see [Container resource lifecycle](../../fundamentals/app-host-overview.md#container-resource-lifecycle).
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"messaging"`. For more information, see [Container resource lifecycle](../../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 > [!TIP]
 > If you'd rather connect to an existing PostgreSQL server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../../fundamentals/app-host-overview.md#reference-existing-resources).

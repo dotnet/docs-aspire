@@ -54,7 +54,7 @@ Alternatively, if you want to use a model from the [Hugging Face](https://huggin
 var llama = ollama.AddHuggingFaceModel("llama", "bartowski/Llama-3.2-1B-Instruct-GGUF:IQ4_XS");
 ```
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/ollama/ollama` image, it creates a new Ollama instance on your local machine. For more information, see [Container resource lifecycle](../fundamentals/app-host-overview.md#container-resource-lifecycle).
+When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/ollama/ollama` image, it creates a new Ollama instance on your local machine. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 ### Download the LLM
 

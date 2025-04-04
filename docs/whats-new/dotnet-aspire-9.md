@@ -127,7 +127,7 @@ There are two methods exposed to wait for a resource:
 - <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*>: Wait for a resource to be ready before starting another resource.
 - <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitForCompletion*>: Wait for a resource to complete before starting another resource.
 
-For more information, see [.NET Aspire app host: Waiting for resources](../fundamentals/app-host-overview.md#waiting-for-resources).
+For more information, see [.NET Aspire app host: Waiting for resources](../fundamentals/orchestrate-resources.md#waiting-for-resources).
 
 #### Resource health checks
 
@@ -191,7 +191,7 @@ The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckEx
 
 ### Persistent containers
 
-The app host now supports _persistent_ containers. Persistent containers deviate from the [typical container life cycle of .NET Aspire orchestrated apps](../fundamentals/app-host-overview.md#container-resource-lifecycle). While they're _created_ and _started_ (when not already available) by the .NET Aspire orchestrator, they're not destroyed by .NET Aspire.
+The app host now supports _persistent_ containers. Persistent containers deviate from the [typical container life cycle of .NET Aspire orchestrated apps](../fundamentals/orchestrate-resources.md#container-resource-lifecycle). While they're _created_ and _started_ (when not already available) by the .NET Aspire orchestrator, they're not destroyed by .NET Aspire.
 
 This is useful when you want to keep the container running even after the app host has stopped.
 
@@ -248,7 +248,7 @@ The eventing model allows developers to hook into the lifecycle of the applicati
 - <xref:Aspire.Hosting.ApplicationModel.AfterResourcesCreatedEvent>: An event that is triggered after the resources are created. This runs in Run mode only.
 - <xref:Aspire.Hosting.ApplicationModel.AfterEndpointsAllocatedEvent>: An event that is triggered after the endpoints are allocated for all resources. This runs in Run mode only.
 
-The global events are analogous to the app host life cycle events. For more information, see [App host life cycles](../fundamentals/app-host-overview.md#app-host-life-cycles).
+The global events are analogous to the app host life cycle events. For more information, see [App host life cycles](../app-host/eventing.md#app-host-life-cycle-events).
 
 **Per-resource events:**
 

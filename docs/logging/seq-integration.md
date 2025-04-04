@@ -54,7 +54,7 @@ var myService = builder.AddProject<Projects.ExampleProject>()
 ```
 
 > [!NOTE]
-> The Seq container may be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/app-host-overview.md#container-resource-lifetime).
+> The Seq container may be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
 #### Accept the Seq End User License Agreement (EULA)
 

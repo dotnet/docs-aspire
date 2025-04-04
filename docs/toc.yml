@@ -36,6 +36,9 @@ items:
     href: fundamentals/app-host-overview.md
   - name: Orchestrate
     items:
+    - name: Orchestrate resources in .NET Aspire
+      displayName: orchestration,aspire apphost,aspire app
+      href: fundamentals/orchestrate-resources.md
     - name: Node.js apps in .NET Aspire
       href: get-started/build-aspire-apps-with-nodejs.md
       displayName: node.js,node,express,typescript,javascript,spa,client-side,server-side
