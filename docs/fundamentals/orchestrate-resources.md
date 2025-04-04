@@ -1,25 +1,25 @@
 ---
 title: Orchestrate resources in .NET Aspire
 description: Learn techniques to control the behavior of .NET Aspire resources such as project, containers, and executable resources.
-ms.date: 04/05/2025
+ms.date: 04/04/2025
 ms.topic: article
 uid: dotnet/aspire/orchestrate-resources
 ---
 
 # Orchestrate resources in .NET Aspire
 
-In .NET Aspire a **resource** is a dependant part of a cloud-native application. Resource types include:
+In .NET Aspire, a **resource** is a dependant part of a cloud-native application. Resource types include:
 
 - **.NET Project**: A custom microservice, responsible for specific functionality in your cloud-native application, and often built by a separate team of developers.
 - **Executable**: If you need to build microservices with tools like Node.js or Orleans, they run as executable resources.
 - **Container**: You can add Docker containers, based on specific images to your .NET Aspire solution.
 - **Integration resources**: Integrations often add resources such as databases, caches, and messaging services to your application.
 
-> [!NOTE] For the fundamentals of .NET Aspire orchestration and how it manages resources, see [.NET Aspire orchestration overview](app-host-overview.md). In this article, you'll learn how to further customize the behavior of resources by writing code in the app host project.
+> [!NOTE] For the fundamentals of .NET Aspire orchestration and how it manages resources, see [.NET Aspire orchestration overview](app-host-overview.md). In this article, you'll learn how to customize the behavior of resources further by writing code in the app host project.
 
 ## Configure explicit resource start
 
-Project, executable and container resources are automatically started with your distributed application by default. A resource can be configured to wait for an explicit startup instruction with the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> method. A resource configured with <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> is initialized with <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.NotStarted?displayProperty=nameWithType>.
+Project, executable, and container resources are automatically started with your distributed application by default. A resource can be configured to wait for an explicit startup instruction with the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> method. A resource configured with <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> is initialized with <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.NotStarted?displayProperty=nameWithType>.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -51,7 +51,7 @@ builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
        .WaitFor(postgresdb);
 ```
 
-In the preceding code, the "apiservice" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType>. The example code shows the [.NET Aspire PostgreSQL integration](../database/postgresql-integration.md), but the same pattern can be applied to other resources.
+In the preceding code, the "apiservice" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType> state. The example code shows the [.NET Aspire PostgreSQL integration](../database/postgresql-integration.md), but the same pattern can be applied to other resources.
 
 Other cases might warrant waiting for a resource to run to completion, either <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Exited?displayProperty=nameWithType> or <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Finished?displayProperty=nameWithType> before the dependent resource starts. To wait for a resource to run to completion, use the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitForCompletion*> method:
 
@@ -70,7 +70,7 @@ builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
        .WaitForCompletion(migration);
 ```
 
-In the preceding code, the "apiservice" project resource waits for the "migration" project resource to run to completion before starting. The "migration" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType>. This can be useful in scenarios where you want to run a database migration before starting the API service, for example.
+In the preceding code, the "apiservice" project resource waits for the "migration" project resource to run to completion before starting. The "migration" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType> state. This can be useful in scenarios where you want to run a database migration before starting the API service, for example.
 
 ### Forcing resource start in the dashboard
 
