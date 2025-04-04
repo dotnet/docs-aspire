@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs for adding resources and expressing dependencies.
-ms.date: 03/14/2025
+ms.date: 04/04/2025
 ms.topic: overview
 uid: dotnet/aspire/app-host
 ---
@@ -139,7 +139,7 @@ The preceding code adds three replicas of the "apiservice" project resource to t
 
 ## Reference resources
 
-A reference represents a dependency between resources. For example, you can probably imagine a scenario where you a web frontend depends on a Redis cache. Consider the following example app host `Program` C# code:
+A reference represents a dependency between resources. For example, you can probably imagine a scenario where a web frontend depends on a Redis cache. Consider the following example app host `Program` C# code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -275,8 +275,8 @@ builder.Build().Run();
 
 In the preceding code:
 
-- If the app host is running in "run" mode, a Redis container resource is added.
-- If the app host is running in "publish" mode, a connection string is added.
+- If the app host is in "run" mode, a Redis container resource is added.
+- If the app host is in "publish" mode, a connection string is added.
 
 This logic can easily be inverted to connect to an existing Redis resource when you're running locally, and create a new Redis resource when you're publishing.
 
