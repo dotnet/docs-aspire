@@ -43,7 +43,21 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             // Take screen capture of the projects.
             await page.SaveExploreScreenshotAsync("resource-stop-action.png");
         },
-        new() { Width = 1280, Height = 360 });
+        new() { Width = 1280, Height = 400 });
+
+        await InteractWithPageAsync(async page =>
+        {
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
+
+            // Click the "graph" tab
+            await page.ClickAsync(DashboardSelectors.ResourcePage.TabGraph);
+
+            // Wait for animation to finish
+            await Task.Delay(1_000);
+
+            // Wait for the graph to be displayed
+            await page.SaveExploreScreenshotAsync("project-graphs.png");
+        });
     }
 
     [Fact, Trait("Capture", "themes")]
@@ -59,7 +73,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await page.ClickAsync(DashboardSelectors.Header.SettingsButton);
 
             // Wait for the settings dialog to be displayed.
-            await page.WaitForSelectorAsync(DashboardSelectors.SettingsDialog.SettingsDialogHeading);
+            await page.WaitForSettingsFlyoutAsync();
 
             // Take a dark-theme screen capture.
             await page.SaveExploreScreenshotAsync("theme-selection.png");
@@ -94,17 +108,17 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             // Wait for the start button to be displayed
             await page.WaitForSelectorAsync(DashboardSelectors.ResourcePage.StartResource);
 
-            // Highlight 'cache "Stop" succeeded' toast and 'Exited' state cell
-            await page.HighlightElementsAsync(
-                DashboardSelectors.Toast, FluentDataGridSelector.Grid.Body.Row(2).Cell(2));
+            // // Highlight 'cache "Stop" succeeded' toast and 'Exited' state cell
+            // await page.HighlightElementsAsync(
+            //     DashboardSelectors.Toast, FluentDataGridSelector.Grid.Body.Row(2).Cell(2));
 
             await page.SaveExploreScreenshotAsync("resource-stopped-action.png");
         },
-        new() { Width = 1280, Height = 360 });
+        new() { Width = 1280, Height = 400 });
 
         await InteractWithPageAsync(async page =>
         {
-            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken, false);
 
             // Wait for the start button to be displayed
             await page.WaitForSelectorAsync(DashboardSelectors.ResourcePage.StartResource);
@@ -121,13 +135,13 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             // Wait for the stop button to be displayed.
             await page.WaitForSelectorAsync(cacheStopButton);
 
-            // Highlight 'cache "Start" succeeded' toast and 'Running' state cell.
-            await page.HighlightElementsAsync(
-                DashboardSelectors.Toast, FluentDataGridSelector.Grid.Body.Row(2).Cell(2));
+            // // Highlight 'cache "Start" succeeded' toast and 'Running' state cell.
+            // await page.HighlightElementsAsync(
+            //     DashboardSelectors.Toast, FluentDataGridSelector.Grid.Body.Row(2).Cell(2));
 
             await page.SaveExploreScreenshotAsync("resource-started-action.png");
         },
-        new() { Width = 1280, Height = 360 });
+        new() { Width = 1280, Height = 400 });
     }
 
     [Fact, Trait("Capture", "resource-text-visualizer")]
@@ -140,7 +154,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             // Login to the dashboard
             await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
 
-            var openInTextVisualizerButton = FluentDataGridSelector.Grid.Body.Row(2).Cell(5)
+            var openInTextVisualizerButton = FluentDataGridSelector.Grid.Body.Row(2).Cell(4)
                 .Descendant("fluent-button");
 
             // Hover over "open in text visualizer"
@@ -159,7 +173,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
             await page.SaveExploreScreenshotAsync("text-visualizer-resources.png");
         },
-        new() { Width = 1280, Height = 360 });
+        new() { Width = 1280, Height = 400 });
     }
 
     [Fact, Trait("Capture", "resource-details")]
@@ -172,7 +186,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             // Login to the dashboard
             await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
 
-            var apiEllipsisButton = FluentDataGridSelector.Grid.Body.Row(3).Cell(7)
+            var apiEllipsisButton = FluentDataGridSelector.Grid.Body.Row(3).Cell(6)
                 .Descendant("fluent-button:nth-of-type(3)");
             await page.ClickAsync(apiEllipsisButton);
 
@@ -193,7 +207,8 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await page.HighlightElementAsync(DashboardSelectors.ResourcePage.ViewDetailsOption);
 
             await page.SaveExploreScreenshotAsync("resource-details.png");
-        });
+        },
+        new() { Width = 1280, Height = 800 });
     }
 
     [Fact, Trait("Capture", "resource-filtering")]
@@ -265,19 +280,22 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await page.SaveExploreScreenshotAsync("projects-errors.png");
 
             // Click the api "errors" button
-            var apiErrorButton = FluentDataGridSelector.Grid.Body.Row(3).Cell(2)
+            var apiErrorButton = FluentDataGridSelector.Grid.Body.Row(4).Cell(2)
                 .Descendant("> div > fluent-anchor a");
             await page.ClickAsync(apiErrorButton);
 
-            // Click the first actions button
-            var firstActionButton = FluentDataGridSelector.Grid.Body.Row(2).Cell(6)
+            // Click the first action button
+            var firstActionButton = FluentDataGridSelector.Grid.Body.Row(3).Cell(6)
                 .Descendant("fluent-button");
             await page.ClickAsync(firstActionButton);
+
+            await Task.Delay(1_500);
+
             await page.HighlightElementAsync("fluent-anchored-region");
 
             await page.SaveExploreScreenshotAsync("structured-logs-errors.png");
         },
-        new() { Width = 1280, Height = 420 });
+        new() { Width = 1280, Height = 460 });
     }
 
     [Fact, Trait("Capture", "structured-logs-errors")]
@@ -303,7 +321,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
             await page.BringToFrontAsync();
 
-            var apiConsoleLogs = FluentDataGridSelector.Grid.Body.Row(3).Cell(7)
+            var apiConsoleLogs = FluentDataGridSelector.Grid.Body.Row(3)//.Cell(7)
                 .Descendant("""fluent-button[title="Console logs"]""");
             await page.ClickAsync(apiConsoleLogs);
 
@@ -314,7 +332,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await page.ClickAsync(DashboardSelectors.Nav.Resources);
 
             // Click the api "errors" button
-            var apiErrorButton = FluentDataGridSelector.Grid.Body.Row(3).Cell(2)
+            var apiErrorButton = FluentDataGridSelector.Grid.Body.Row(4).Cell(2)
                 .Descendant("> div > fluent-anchor a");
             await page.ClickAsync(apiErrorButton);
 
@@ -343,7 +361,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             // Login to the dashboard
             await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
 
-            var apiConsoleLogs = FluentDataGridSelector.Grid.Body.Row(3).Cell(7)
+            var apiConsoleLogs = FluentDataGridSelector.Grid.Body.Row(3)//.Cell(7)
                 .Descendant("""fluent-button[title="Console logs"]""");
             await page.ClickAsync(apiConsoleLogs);
 
@@ -362,6 +380,6 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
             await page.SaveExploreScreenshotAsync("container-logs.png");
         },
-        new() { Width = 1280, Height = 360 });
+        new() { Width = 1280, Height = 400 });
     }
 }

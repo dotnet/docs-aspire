@@ -17,7 +17,7 @@ internal static class PageExtensions
 
     public static async Task<string> GetResourceEndpointAsync(this IPage page, int row = 4)
     {
-        var endpoint = FluentDataGridSelector.Grid.Body.Row(row).Cell(6).Descendant("> div > div:nth-child(1) > a");
+        var endpoint = FluentDataGridSelector.Grid.Body.Row(row).Cell(5).Descendant("> div > div:nth-child(1) > a");
         var url = await page.Locator(endpoint).TextContentAsync();
 
         Assert.NotNull(url);
@@ -139,21 +139,46 @@ internal static class PageExtensions
         await Assertions.Expect(page).ToHaveURLAsync("/");
     }
 
-    public static async Task LoginAndWaitForRunningResourcesAsync(this IPage page, string token)
+    public static async Task LoginAndWaitForRunningResourcesAsync(this IPage page, string token, bool waitForRunning = true)
     {
         await page.LoginAsync(token);
 
-        var cacheStateSpan = FluentDataGridSelector.Grid.Body.Row(2).Cell(2).Descendant("> div > span");
-        var apiStateSpan = FluentDataGridSelector.Grid.Body.Row(3).Cell(2).Descendant("> div > span");
-        var webStateSpan = FluentDataGridSelector.Grid.Body.Row(4).Cell(2).Descendant("> div > span");
+        if (waitForRunning)
+        {
+            var cacheStateSpan = FluentDataGridSelector.Grid.Body.Row(2).Cell(2).Descendant("> div > span");
+            var apiStateSpan = FluentDataGridSelector.Grid.Body.Row(3).Cell(2).Descendant("> div > span");
+            var webStateSpan = FluentDataGridSelector.Grid.Body.Row(4).Cell(2).Descendant("> div > span");
 
-        var cache = page.Locator(cacheStateSpan);
-        var api = page.Locator(apiStateSpan);
-        var web = page.Locator(webStateSpan);
+            var cache = page.Locator(cacheStateSpan);
+            var api = page.Locator(apiStateSpan);
+            var web = page.Locator(webStateSpan);
 
-        await Assertions.Expect(cache).ToHaveTextAsync("Running");
-        await Assertions.Expect(api).ToHaveTextAsync("Running");
-        await Assertions.Expect(web).ToHaveTextAsync("Running");
+            var options = new LocatorAssertionsToHaveTextOptions
+            {
+                Timeout = 17_500
+            };
+
+            await Assertions.Expect(api).ToHaveTextAsync("Running", options);
+            await Assertions.Expect(web).ToHaveTextAsync("Running", options);
+            await Assertions.Expect(cache).ToHaveTextAsync("Running", options);
+        }
+    }
+
+    public static async Task WaitForSettingsFlyoutAsync(this IPage page, bool trimVersionToStable = true)
+    {
+        await page.WaitForSelectorAsync(DashboardSelectors.SettingsDialog.SettingsDialogHeading);
+
+        if (trimVersionToStable)
+        {
+            await page.EvaluateAsync("""
+                const el = document.querySelector('#SettingsDialog .version');
+                if (el) {
+                    el.innerText = el.innerText.substring(0, el.innerText.indexOf('-'));
+                } else {
+                    console.error('Element not found: #SettingsDialog .version');
+                }
+                """);
+        }
     }
 }
 

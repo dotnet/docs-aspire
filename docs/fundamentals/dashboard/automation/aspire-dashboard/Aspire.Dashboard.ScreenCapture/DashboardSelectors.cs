@@ -52,6 +52,9 @@ internal static class DashboardSelectors
         public const string ApiResource = "apiservice";
         public const string WebResource = "webfrontend";
 
+        public const string TabTable = "#tab-Table";
+        public const string TabGraph = "#tab-Graph";
+
         public const string FilterButton = "#resourceFilterButton";
         public const string FilterDiv = """fluent-anchored-region[anchor="resourceFilterButton"]""";
 
