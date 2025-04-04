@@ -239,7 +239,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await page.ClickAsync("#resource-types > fluent-checkbox:nth-of-type(2)");
             await page.ClickAsync(DashboardSelectors.TopHeader, new() { Force = true });
 
-            var cacheEllipsisButton = FluentDataGridSelector.Grid.Body.Row(2).Cell(7)
+            var cacheEllipsisButton = FluentDataGridSelector.Grid.Body.Row(2).Cell(6)
                 .Descendant("fluent-button:nth-of-type(3)");
             await page.ClickAsync(cacheEllipsisButton);
 
@@ -252,7 +252,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
             await page.SaveExploreScreenshotAsync("resources-filtered-containers.png");
         },
-        new() { Width = 1280, Height = 600 });
+        new() { Width = 1280, Height = 630 });
     }
 
     [Fact, Trait("Capture", "resource-errors")]
