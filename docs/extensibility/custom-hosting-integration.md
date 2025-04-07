@@ -357,7 +357,7 @@ For example, the `MailDevResource` exposes a property called `ConnectionStringEx
 ```csharp
 public ReferenceExpression ConnectionStringExpression =>
     ReferenceExpression.Create(
-        $"smtp://{SmtpEndpoint.Property(EndpointProperty.Host)}:{SmtpEndpoint.Property(EndpointProperty.Port)}"
+        $"smtp://{SmtpEndpoint.Property(EndpointProperty.HostAndPort)}"
     );
 ```
 
