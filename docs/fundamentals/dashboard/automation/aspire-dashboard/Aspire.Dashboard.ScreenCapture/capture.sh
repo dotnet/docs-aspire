@@ -9,7 +9,9 @@ filters=(
     "resource-details"
     "resource-filtering"
     "resource-errors"
-    "structured-logs-errors"
+    "structured-logs-errors",
+    "structured-logs",
+    "trace-logs"
 )
 
 for filter in "${filters[@]}"; do

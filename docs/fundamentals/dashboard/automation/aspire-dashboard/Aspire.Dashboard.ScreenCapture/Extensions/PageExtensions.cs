@@ -1,4 +1,6 @@
-﻿namespace Aspire.Dashboard.ScreenCapture.Extensions;
+﻿global using InlineStyle = (string PropertyName, string Style);
+
+namespace Aspire.Dashboard.ScreenCapture.Extensions;
 
 internal static class PageExtensions
 {
@@ -90,6 +92,20 @@ internal static class PageExtensions
 
         await page.Mouse.MoveAsync(x, y);
         await page.Mouse.UpAsync();
+    }
+
+    public static async Task ApplyInlineStyleAsync(this IPage page, string selector, params IEnumerable<InlineStyle> styles)
+    {
+        await page.WaitForSelectorAsync(selector);
+
+        await page.EvaluateAsync($$"""
+            const el = document.querySelector('{{selector}}');
+            if (el) {
+              {{string.Join("", styles.Select(s => $"el.style.{s.PropertyName} = '{s.Style}';"))}}
+            } else {
+              console.error('Element not found: {{selector}}');
+            }
+            """);
     }
 
     public static async Task HighlightElementAsync(this IPage page, string selector)

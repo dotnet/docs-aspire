@@ -382,4 +382,89 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
         },
         new() { Width = 1280, Height = 400 });
     }
+
+    [Fact, Trait("Capture", "structured-logs")]
+    public async Task CaptureStructuredLogsImages()
+    {
+        await ConfigureAsync<SampleAppHost>();
+
+        await InteractWithPageAsync(async page =>
+        {
+            // Login to the dashboard
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
+
+            // Get the weather web frontend URL
+            var url = await page.GetResourceEndpointAsync();
+            var webPage = await page.Context.NewPageAsync();
+
+            await webPage.GotoAsync($"{url}/weather", new()
+            {
+                WaitUntil = WaitUntilState.NetworkIdle
+            });
+
+            await Task.Delay(1_500);
+
+            await page.BringToFrontAsync();
+
+            await page.ClickAsync(DashboardSelectors.Nav.Structured);
+
+            await Task.Delay(1000);
+
+            await page.SaveExploreScreenshotAsync("structured-logs.png");
+
+            // Click the add filters button
+            await page.ClickAsync("""fluent-button[aria-label="Add filter"]""");
+
+            await page.ApplyInlineStyleAsync("form",
+                ("border", "3px solid red"), ("padding", "0.2rem 1rem"));
+
+            await page.SaveExploreScreenshotAsync("structured-logs-filtered.png");
+        });
+    }
+
+    [Fact, Trait("Capture", "trace-logs")]
+    public async Task CaptureTraceLogsImages()
+    {
+        await ConfigureAsync<SampleAppHost>();
+
+        await InteractWithPageAsync(async page =>
+        {
+            // Login to the dashboard
+            await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
+
+            // Get the weather web frontend URL
+            var url = await page.GetResourceEndpointAsync();
+            var webPage = await page.Context.NewPageAsync();
+
+            await webPage.GotoAsync($"{url}/weather", new()
+            {
+                WaitUntil = WaitUntilState.NetworkIdle
+            });
+
+            // Reload to force output cache
+            await webPage.ReloadAsync();
+            await webPage.ReloadAsync();
+
+            // Delay beyond output cache, and invalidate then reload.
+            await Task.Delay(2_250);
+            await webPage.ReloadAsync();
+
+            await page.BringToFrontAsync();
+
+            await page.ClickAsync(DashboardSelectors.Nav.Traces);
+
+            await Task.Delay(1000);
+
+            await page.SaveExploreScreenshotAsync("traces.png");
+
+            var filterInput = """[placeholder="Filter..."]""";
+            var filter = page.Locator($"{filterInput} #control");
+            await filter.FillAsync("weather");
+            await page.HighlightElementAsync(filterInput);
+
+            await Task.Delay(250);
+
+            await page.SaveExploreScreenshotAsync("trace-view-filter.png");
+        });
+    }
 }

@@ -7,7 +7,9 @@ $filters = @(
     "resource-details",
     "resource-filtering",
     "resource-errors",
-    "structured-logs-errors"
+    "structured-logs-errors",
+    "structured-logs",
+    "trace-logs"
 )
 
 foreach ($filter in $filters) {

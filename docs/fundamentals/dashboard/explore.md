@@ -1,7 +1,7 @@
 ---
 title: Explore .NET Aspire dashboard
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 04/04/2025
+ms.date: 04/07/2025
 ms.topic: reference
 ---
 
@@ -226,9 +226,9 @@ Consider the following example screenshot of semantic logs:
 
 The structured logs page also provides a search bar to filter the logs by service, level, or message. You use the **Level** drop down to filter by log level. You can also filter by any log property by selecting the filter icon button, which opens the advanced filter dialog.
 
-Consider the following screenshots showing the structured logs, filtered to display items with "Hosting" in the message text:
+Consider the following screenshots showing the structured logs filter dialog:
 
-:::image type="content" source="media/explore/structured-logs-filtered.png" lightbox="media/explore/structured-logs-filtered.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a filter that displayed only items with Hosting in the message text.":::
+:::image type="content" source="media/explore/structured-logs-filtered.png" lightbox="media/explore/structured-logs-filtered.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page showing the filter dialog.":::
 
 ### Traces page
 

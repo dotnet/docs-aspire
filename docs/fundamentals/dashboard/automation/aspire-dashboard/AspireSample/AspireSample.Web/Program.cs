@@ -1,4 +1,4 @@
-using AspireSample.Web;
+﻿using AspireSample.Web;
 using AspireSample.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);

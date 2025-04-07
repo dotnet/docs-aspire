@@ -20,6 +20,8 @@ dotnet test --filter Capture=resource-details
 dotnet test --filter Capture=resource-filtering
 dotnet test --filter Capture=resource-errors
 dotnet test --filter Capture=structured-logs-errors
+dotnet test --filter Capture=structured-logs
+dotnet test --filter Capture=trace-logs
 ```
 
 Each `Fact` (test) has a "Capture" trait with a specific value to help indicate what area of the dashboard is being captured.
