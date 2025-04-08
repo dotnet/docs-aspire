@@ -53,9 +53,14 @@ items:
   - name: Add Dockerfiles to the app model
     href: app-host/withdockerfile.md
     displayName: dockerfile,docker
-  - name: Networking overview
-    displayName: inner loop,local networking
-    href: fundamentals/networking-overview.md
+  - name: Networking
+    items:
+    - name: Overview
+      displayName: inner loop,local networking
+      href: fundamentals/networking-overview.md
+    - name: Custom resource URLs
+      displayName: withurl,withurlforendpoint,withurls
+      href: fundamentals/dashboard/custom-urls.md
   - name: Eventing in .NET Aspire
     href: app-host/eventing.md
   - name: Use external parameters
