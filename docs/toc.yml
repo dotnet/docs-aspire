@@ -60,7 +60,7 @@ items:
       href: fundamentals/networking-overview.md
     - name: Custom resource URLs
       displayName: withurl,withurlforendpoint,withurls
-      href: fundamentals/dashboard/custom-urls.md
+      href: fundamentals/custom-resource-urls.md
   - name: Eventing in .NET Aspire
     href: app-host/eventing.md
   - name: Use external parameters
