@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Queue Storage integration
 description: This article describes the .NET Aspire Azure Queue Storage integration features and capabilities.
-ms.date: 12/09/2024
+ms.date: 04/08/2025
 uid: storage/azure-queue-storage-integration
 ---
 
@@ -36,6 +36,12 @@ The preceding code:
 - Adds an Azure Storage resource named `storage`.
 - Adds a queue named `queues` to the storage resource.
 - Adds the `storage` resource to the `ExampleProject` and waits for it to be ready before starting the project.
+
+[!INCLUDE [storage-bicep](includes/storage-bicep.md)]
+
+[!INCLUDE [storage-emulator](includes/storage-emulator.md)]
+
+[!INCLUDE [storage-connections](includes/storage-connections.md)]
 
 [!INCLUDE [storage-hosting-health-checks](includes/storage-hosting-health-checks.md)]
 
