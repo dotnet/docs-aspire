@@ -56,7 +56,7 @@ items:
   - name: Networking
     items:
     - name: Overview
-      displayName: inner loop,local networking
+      displayName: inner loop,local networking,networking
       href: fundamentals/networking-overview.md
     - name: Custom resource URLs
       displayName: withurl,withurlforendpoint,withurls
