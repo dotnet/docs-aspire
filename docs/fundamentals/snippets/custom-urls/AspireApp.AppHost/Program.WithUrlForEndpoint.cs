@@ -2,17 +2,17 @@
 {
     internal static void WithUrlForEndpointExample(string[] args)
     {
-        // <withurl>
+        // <withurlforendpoint>
         var builder = DistributedApplication.CreateBuilder(args);
 
         builder.AddProject<Projects.AspireApp_Api>("api")
-            .WithUrlForEndpoint("https", (ResourceUrlAnnotation url) =>
+            .WithUrlForEndpoint("https", url =>
             {
                 url.DisplayText = "Scalar (HTTPS)";
                 url.Url += "/scalar";
             });
 
         builder.Build().Run();
-        // </withurl>
+        // </withurlforendpoint>
     }
 }
