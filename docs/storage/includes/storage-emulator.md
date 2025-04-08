@@ -50,7 +50,7 @@ var storage = builder.AddAzureStorage("storage").RunAsEmulator(
 The preceding code configures the Azurite container's existing `blob`, `queue`, and `table` endpoints to listen on ports `27000`, `27001`, and `27002`, respectively. The Azurite container's ports are mapped to the host ports as shown in the following table:
 
 | Endpoint name | Port mapping (`container:host`) |
-|--------------:|---------------------------------|
+|---------------|---------------------------------|
 | `blob`        | `10000:27000`                   |
 | `queue`       | `10001:27001`                   |
 | `table`       | `10002:27002`                   |
