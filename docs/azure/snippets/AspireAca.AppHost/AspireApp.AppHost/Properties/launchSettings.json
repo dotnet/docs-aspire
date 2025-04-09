@@ -14,16 +14,22 @@
       }
     },
     "http": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "http://localhost:15026",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "DOTNET_ENVIRONMENT": "Development",
-        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19097",
-        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20224"
-      }
+        "commandName": "Project",
+        "dotnetRunMessages": true,
+        "launchBrowser": true,
+        "applicationUrl": "http://localhost:15026",
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "DOTNET_ENVIRONMENT": "Development",
+            "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19097",
+            "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20224"
+        }
+    },
+    "generate-manifest": {
+        "commandName": "Project",
+        "launchBrowser": false,
+        "dotnetRunMessages": true,
+        "commandLineArgs": "--publisher manifest --output-path aspire-manifest.json",
     }
   }
 }

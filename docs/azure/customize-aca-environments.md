@@ -1,15 +1,15 @@
 ---
-title: Customize Azure Container Apps environments
-description: Learn how to customize Azure Container Apps environments in .NET Aspire.
+title: Configure Azure Container Apps environments
+description: Learn how to configure Azure Container Apps environments in .NET Aspire.
 ms.topic: how-to
-ms.date: 04/08/2025
+ms.date: 04/09/2025
 ---
 
-# Customize Azure Container Apps environments
+# Configure Azure Container Apps environments
 
-In .NET Aspire 9.2, you can customize Azure Container Apps (ACA) environments directly within your Aspire application model. The `AddAzureContainerAppEnvironment` method lets you define and configure ACA environments and related resources, such as container registries and volume file shares, using the Azure.Provisioning APIs.
+The [.NET Aspire app host](../fundamentals/app-host-overview.md) generates infrastructure code to provision Azure resources for your application. This allows user to model and configure most things involving deployment in C#, rather than dropping down to Bicep, for example. This includes Azure Container Apps (ACA) environments, which are used to run containerized applications in a serverless environment.
 
-This article explains how to customize ACA environments in your Aspire application.
+Using the [📦 Azure.Provisioning](https://www.nuget.org/packages/Azure.Provisioning) NuGet package, you're able to define and configure ACA environments and related resources, such as container registries and volume file shares. In this article, you learn how to customize ACA environments in your .NET Aspire solutions.
 
 ## Prerequisites
 
