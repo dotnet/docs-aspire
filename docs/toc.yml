@@ -58,7 +58,7 @@ items:
     - name: Overview
       displayName: inner loop,local networking,networking
       href: fundamentals/networking-overview.md
-    - name: Custom resource URLs
+    - name: Define custom resource URLs
       displayName: withurl,withurlforendpoint,withurls
       href: fundamentals/custom-resource-urls.md
   - name: Eventing in .NET Aspire

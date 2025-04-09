@@ -1,17 +1,17 @@
 ---
-title: Custom resource URLs
+title: Define custom resource URLs
 description: Learn how to create custom URLs for .NET Aspire resources.
 ms.date: 04/08/2025
 ms.topic: how-to
 ---
 
-# Custom resource URLs
+# Define custom resource URLs
 
 .NET Aspire resources that expose endpoints only configure host and port values. However, there might be situations where you want to access a specific path of an exposed endpoint. The host and port are unknown until run time. In these cases, you can use custom resource URLs to define specific paths on a configured endpoint, which is convenient for accessing resources from the [dashboard](dashboard/overview.md).
 
 ## Default endpoint behavior
 
-By default, .NET Aspire project resources relies on existing configurations such as Kestrel or launch profiles to determine the host and port of a resource for a configured endpoint.
+By default, .NET Aspire project resources rely on existing configurations such as Kestrel or launch profiles to determine the host and port of a resource for a configured endpoint.
 
 Likewise, you can explicitly expose endpoints using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint*> API. This API allows you to specify the host and port for a resource, which is then used to create the default URL for that resource. The default URL is typically in the format `http://<host>:<port>` or `https://<host>:<port>`, depending on the protocol used. To omit the host port, use one of the following methods:
 
