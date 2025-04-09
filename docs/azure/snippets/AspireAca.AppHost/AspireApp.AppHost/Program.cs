@@ -1,13 +1,7 @@
 ﻿var builder = DistributedApplication.CreateBuilder(args);
 
-var acaEnv = builder.AddAzureContainerAppEnvironment("aca-env")
-    .WithAzdResourceNaming();
+var acaEnv = builder.AddAzureContainerAppEnvironment("aca-env");
 
-acaEnv.ConfigureInfrastructure(infra =>
-{
-    var resources = infra.GetProvisionableResources();
-
-
-});
+// Omitted for brevity...
 
 builder.Build().Run();

@@ -145,6 +145,8 @@ items:
       href: azure/integrations-overview.md
     - name: Local Azure provisioning
       href: azure/local-provisioning.md
+    - name: Configure Azure Container Apps environments
+      href: azure/configure-aca-environments.md
     - name: Manage role assignments
       href: azure/role-assignments.md
     - name: Azure AI Search

@@ -1,7 +1,7 @@
 ---
 title: Azure integrations overview
 description: Overview of the Azure integrations available in the .NET Aspire.
-ms.date: 03/24/2025
+ms.date: 04/09/2025
 uid: dotnet/aspire/integrations/azure-overview
 ---
 
@@ -321,7 +321,7 @@ The preceding code:
   - Adds an environment variable named `Hello` to the container app, using the `env` parameter.
   - The `AsProvisioningParameter` method is used to treat `env` as either a new <xref:Azure.Provisioning.ProvisioningParameter> in infrastructure, or reuses an existing bicep parameter if one with the same name already exists.
 
-For more information, see <xref:Azure.Provisioning.AppContainers.ContainerApp> and <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.AsProvisioningParameter*>.
+To configure the Azure Container App environment, see [Configure Azure Container Apps environments](configure-aca-environments.md). For more information, see <xref:Azure.Provisioning.AppContainers.ContainerApp> and <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.AsProvisioningParameter*>.
 
 ## Infrastructure as code
 
