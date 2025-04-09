@@ -7,11 +7,11 @@ ms.topic: how-to
 
 # Custom resource URLs
 
-.NET Aspire resources that expose endpoints only configure host and port values. However, there might be situations where you want to access a specific route of an exposed endpoint. The host and port are unknown until run time. In these cases, you can use custom resource URLs to define specific routes on a configured endpoint, which is convenient for accessing resources from the [dashboard](dashboard/overview.md).
+.NET Aspire resources that expose endpoints only configure host and port values. However, there might be situations where you want to access a specific path of an exposed endpoint. The host and port are unknown until run time. In these cases, you can use custom resource URLs to define specific paths on a configured endpoint, which is convenient for accessing resources from the [dashboard](dashboard/overview.md).
 
 ## Default endpoint behavior
 
-By default, as described in the [Networking inner loop](networking-overview.md#networking-in-the-inner-loop) article, .NET Aspire relies on existing configurations such as Kestrel or launch profiles to determine the host and port of a resource for a configured endpoint.
+By default, .NET Aspire project resources relies on existing configurations such as Kestrel or launch profiles to determine the host and port of a resource for a configured endpoint.
 
 Likewise, you can explicitly expose endpoints using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint*> API. This API allows you to specify the host and port for a resource, which is then used to create the default URL for that resource. The default URL is typically in the format `http://<host>:<port>` or `https://<host>:<port>`, depending on the protocol used. To omit the host port, use one of the following methods:
 
@@ -45,13 +45,17 @@ The preceding code assigns a project reference to the `api` variable, which is t
 
 <!-- TODO: Add xref to WithUrlForEndpoint when available -->
 
-To expose specific endpoints like Scalar or Swagger in the dashboard, use the `WithUrlForEndpoint` method. The following example demonstrates how to customize the URL for a resource endpoint:
+Both [Scalar](https://scalar.com/) and [Swagger](https://swagger.io/tools/swagger-ui/) are common API services that enhance the usability of endpoints. These services are accessed via URLs tied to declared endpoints.
+
+To customize the URL for the first associated resource endpoint, use the `WithUrlForEndpoint` method.
+
+If you want to add a separate URL (even for the same endpoint) you need to call the `WithUrl` overload that takes a `ReferenceExpression` or interpolated string, or call `WithUrls` and add the URL to the `Urls` list on the context.
 
 :::code source="snippets/custom-urls/AspireApp.AppHost/Program.WithUrlForEndpoint.cs" id="withurlforendpoint":::
 
 <!-- TODO: Add xref to ResourceUrlAnnotation when available -->
 
-The preceding example assumes that the `api` project resource has an `https` endpoint configured. The `WithUrlForEndpoint` method updates the `ResourceUrlAnnotation` for the endpoint, in this case assigning the display text to `Scalar (HTTPS)` and appends the `/scalar` path to the URL.
+The preceding example assumes that the `api` project resource has an `https` endpoint configured. The `WithUrlForEndpoint` method updates the `ResourceUrlAnnotation` associated with the endpoint. In this case, it assigns the display text to `Scalar (HTTPS)` and appends the `/scalar` path to the URL.
 
 When the resource is started, the URL is available in the dashboard as shown in the following screenshot:
 
