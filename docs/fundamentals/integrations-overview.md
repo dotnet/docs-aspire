@@ -62,7 +62,7 @@ For more information on creating a custom client integration, see [Create custom
 
 ### Relationship between integrations
 
-Hosting and client integrations are best when used together, but are **not** coupled and can be used separately. Some hosting integrations don't have a corresponding client integration. Configuration is what makes the hosting integration work with the client integration.
+Hosting and client integrations are best when used together, but are **not** coupled and can be used separately. While publishers are consumed from the app host, they're responsible for transforming the app model into deployable assets. Some hosting integrations don't have a corresponding client integration. Configuration is what makes the hosting integration work with the client integration.
 
 Consider the following diagram that depicts the relationship between hosting and client integrations:
 
