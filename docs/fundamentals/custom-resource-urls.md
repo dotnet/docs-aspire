@@ -7,7 +7,7 @@ ms.topic: how-to
 
 # Define custom resource URLs
 
-.NET Aspire resources that expose endpoints only configure host and port values. However, there might be situations where you want to access a specific path of an exposed endpoint. The host and port are unknown until run time. In these cases, you can use custom resource URLs to define specific paths on a configured endpoint, which is convenient for accessing resources from the [dashboard](dashboard/overview.md). Additionally, you can define custom URLs on a resource that aren't associated with an endpoint. In this article, you learn how to define custom resource URLs.
+In .NET Aspire, resources that expose endpoints only configure host and port, which aren't known until run time. If you need to access a specific path on one of these endpoints—especially from the [dashboard](dashboard/overview.md)—you can define custom resource URLs. You can also add custom URLs that aren't tied to any endpoint. All custom URLs are only available in "run" mode, since they're meant for dashboard use. This article demonstrates how to define custom URLs.
 
 ## Default endpoint behavior
 
