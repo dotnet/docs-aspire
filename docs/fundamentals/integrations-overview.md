@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire integrations overview
 description: Explore the fundamental concepts of .NET Aspire integrations and learn how to integrate them into your apps.
-ms.date: 02/06/2025
+ms.date: 04/09/2025
 ms.topic: conceptual
 uid: dotnet/aspire/integrations
 ---
@@ -15,7 +15,7 @@ uid: dotnet/aspire/integrations
 
 ## Integration responsibilities
 
-Most .NET Aspire integrations are made up of two separate libraries, each with a different responsibility. One type represents resources within the [_app host_](app-host-overview.md) project—known as [hosting integrations](#hosting-integrations). The other type of integration represents client libraries that connect to the resources modeled by hosting integrations, and they're known as [client integrations](#client-integrations).
+Most .NET Aspire integrations are made up of a number of libraries, each with a different responsibility. One type represents resources within the [_app host_](app-host-overview.md) project—known as [hosting integrations](#hosting-integrations). Another type of integration represents client libraries that connect to the resources modeled by hosting integrations, and they're known as [client integrations](#client-integrations).
 
 ### Hosting integrations
 
@@ -25,15 +25,42 @@ Hosting integrations extend the <xref:Aspire.Hosting.IDistributedApplicationBuil
 
 For information on creating a custom _hosting integration_, see [Create custom .NET Aspire hosting integration](../extensibility/custom-hosting-integration.md).
 
+### Publishing integrations
+
+Publishing integrations ("publishers") are a new extensibility point in .NET Aspire that allow you to define how your distributed application gets transformed into deployable assets. Rather than relying on an intermediate [manifest format](../deployment/manifest-format.md), publishers can now plug directly into the application model to generate Docker Compose files, Kubernetes manifests, Azure resources, or whatever else your environment needs.
+
+Publishers integrate seamlessly with the app host, but their functionality extends beyond it. With a public API, tools can directly invoke publishers—either by executing the app host:
+
+```dotnetcli
+dotnet run --publisher {name} --output-path {path}
+```
+
+Or with the .NET Aspire CLI:
+
+```
+aspire publish
+```
+
+Publishers offer flexibility by enabling in-process invocation, integration with build pipelines, or use within custom tools. Available publishers include:
+
+- [📦 Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure)
+- [📦 Aspire.Hosting.Docker (Preview)](https://www.nuget.org/packages/Aspire.Hosting.Docker)
+- [📦 Aspire.Hosting.Kubernetes (Preview)](https://www.nuget.org/packages/Aspire.Hosting.Kubernetes)
+
+> [!IMPORTANT]
+> The Docker and Kubernetes publishers were initially written by community contributor, [Dave Sekula](https://github.com/Prom3theu5)—a great example of the community stepping up to extend the model.
+
+Some publishers are still in preview, and the APIs are subject to change. The goal is to provide a more flexible and extensible way to publish distributed applications, making it easier to adapt to different deployment environments and scenarios.
+
 ### Client integrations
 
-Client integrations wire up client libraries to [dependency injection (DI)](/dotnet/core/extensions/dependency-injection), define configuration schema, and add [health checks](health-checks.md), [resiliency](/dotnet/core/resilience), and [telemetry](telemetry.md) where applicable. .NET Aspire client integration libraries are prefixed with `Aspire.` and then include the full package name that they integrate with, such as `Aspire.StackExchange.Redis`.
+Client integrations wire up client libraries to [dependency injection (DI)](/dotnet/core/extensions/dependency-injection), define configuration schema, and add [health checks](health-checks.md), [resiliency](/dotnet/core/resilience), and [telemetry](telemetry.md) where applicable. .NET Aspire client integration libraries are prefixed with `Aspire.` and then include the full package name that they integrate with, such as [📦 Aspire.StackExchange.Redis](https://www.nuget.org/packages/Aspire.StackExchange.Redis) NuGet package.
 
 These packages configure existing client libraries to connect to hosting integrations. They extend the <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> interface allowing client-consuming projects, such as your web app or API, to use the connected resource. The official [client integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+client+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `client`. In addition to the official client integrations, the [community has created client integrations](../community-toolkit/overview.md) for various services and platforms as part of the Community Toolkit.
 
 For more information on creating a custom client integration, see [Create custom .NET Aspire client integrations](../extensibility/custom-client-integration.md).
 
-### Relationship between hosting and client integrations
+### Relationship between integrations
 
 Hosting and client integrations are best when used together, but are **not** coupled and can be used separately. Some hosting integrations don't have a corresponding client integration. Configuration is what makes the hosting integration work with the client integration.
 
