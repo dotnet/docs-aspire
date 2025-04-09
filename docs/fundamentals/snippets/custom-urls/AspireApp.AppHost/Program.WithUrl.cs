@@ -7,10 +7,7 @@
 
         var api = builder.AddProject<Projects.AspireApp_Api>("api");
 
-        var adminUrl = ReferenceExpression.Create(
-            $"{api.GetEndpoint("https")}/admin");
-
-        api.WithUrl(adminUrl, "Admin Portal");
+        api.WithUrl($"{api.GetEndpoint("https")}/admin"), "Admin Portal");
 
         builder.Build().Run();
         // </withurl>

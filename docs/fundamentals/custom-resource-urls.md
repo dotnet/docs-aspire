@@ -51,7 +51,7 @@ To expose specific endpoints like Scalar or Swagger in the dashboard, use the `W
 
 <!-- TODO: Add xref to ResourceUrlAnnotation when available -->
 
-The preceding example assumes that the `api` project resource has an `https` endpoint configured. The `WithUrlForEndpoint` method updates the `ResourceUrlAnnotation` for the endpoint, in this case assigning the display text to `Scalar (HTTPS)` and appends the `/scalar` route to the URL.
+The preceding example assumes that the `api` project resource has an `https` endpoint configured. The `WithUrlForEndpoint` method updates the `ResourceUrlAnnotation` for the endpoint, in this case assigning the display text to `Scalar (HTTPS)` and appends the `/scalar` path to the URL.
 
 When the resource is started, the URL is available in the dashboard as shown in the following screenshot:
 
