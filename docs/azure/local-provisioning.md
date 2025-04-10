@@ -1,7 +1,7 @@
 ---
 title: Local Azure provisioning
 description: Learn how to use Azure resources in your local development environment.
-ms.date: 12/13/2024
+ms.date: 04/09/2025
 uid: dotnet/aspire/local-azure-provisioning
 ---
 
@@ -106,7 +106,6 @@ As with all [configuration-based settings](/dotnet/core/extensions/configuration
 - `AzureCli`: Delegates to the <xref:Azure.Identity.AzureCliCredential>.
 - `AzurePowerShell`: Delegates to the <xref:Azure.Identity.AzurePowerShellCredential>.
 - `VisualStudio`: Delegates to the <xref:Azure.Identity.VisualStudioCredential>.
-- `VisualStudioCode`: Delegates to the <xref:Azure.Identity.VisualStudioCodeCredential>.
 - `AzureDeveloperCli`: Delegates to the <xref:Azure.Identity.AzureDeveloperCliCredential>.
 - `InteractiveBrowser`: Delegates to the <xref:Azure.Identity.InteractiveBrowserCredential>.
 

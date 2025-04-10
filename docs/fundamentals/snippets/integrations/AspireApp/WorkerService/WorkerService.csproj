@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.Npgsql" Version="9.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.4" />
   </ItemGroup>
 
   <ItemGroup>
