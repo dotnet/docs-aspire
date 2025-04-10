@@ -51,13 +51,11 @@ If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a d
 
 :::code language="bicep" source="../../snippets/azure/AppHost/cosmos.module.bicep":::
 
-The preceding Bicep is a module that provisions an Azure Cosmos DB account with the following defaults:
+The preceding Bicep is a module that provisions an Azure Cosmos DB account resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-- `kind`: The kind of Cosmos DB account. The default is `GlobalDocumentDB`.
-- `consistencyPolicy`: The consistency policy of the Cosmos DB account. The default is `Session`.
-- `locations`: The locations for the Cosmos DB account. The default is the resource group's location.
+:::code language="bicep" source="../../snippets/azure/AppHost/cosmos-roles.module.bicep":::
 
-In addition to the Cosmos DB account, it also adds the current application to the `Data Contributor` role for the Cosmos DB account. The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 

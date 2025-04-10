@@ -16,11 +16,10 @@ builder.AddAzureKeyVault("key-vault");
 builder.AddAzureLogAnalyticsWorkspace("log-analytics-workspace");
 
 var openai = builder.AddAzureOpenAI("openai");
-openai.AddDeployment(
-    new AzureOpenAIDeployment(
-        name: "preview",
-        modelName: "gpt-4.5-preview",
-        modelVersion: "2025-02-27"));
+var deployment = openai.AddDeployment(    
+    name: "preview",
+    modelName: "gpt-4.5-preview",
+    modelVersion: "2025-02-27");
 
 builder.AddAzurePostgresFlexibleServer("postgres-flexible");
 

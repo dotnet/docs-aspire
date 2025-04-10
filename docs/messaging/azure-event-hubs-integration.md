@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Event Hubs integration
 description: This article describes the .NET Aspire Azure Event Hubs integration features and capabilities.
-ms.date: 03/10/2025
+ms.date: 04/03/2025
 ---
 
 # .NET Aspire Azure Event Hubs integration
@@ -65,16 +65,9 @@ If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a d
 
 :::code language="bicep" source="../snippets/azure/AppHost/event-hubs.module.bicep":::
 
-The preceding Bicep is a module that provisions an Azure Event Hubs resource with the following defaults:
+The preceding Bicep is a module that provisions an Azure Event Hubs resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-- `location`: The location of the resource group.
-- `sku`: The SKU of the Event Hubs resource, defaults to `Standard`.
-- `principalId`: The principal ID of the Event Hubs resource.
-- `principalType`: The principal type of the Event Hubs resource.
-- `event_hubs`: The Event Hubs namespace resource.
-- `event_hubs_AzureEventHubsDataOwner`: The Event Hubs resource owner, based on the build-in `Azure Event Hubs Data Owner` role. For more information, see [Azure Event Hubs Data Owner](/azure/role-based-access-control/built-in-roles/analytics#azure-event-hubs-data-owner).
-- `messages`: The Event Hub resource.
-- `eventHubsEndpoint`: The endpoint of the Event Hubs resource.
+:::code language="bicep" source="../snippets/azure/AppHost/event-hubs-roles.module.bicep":::
 
 The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 

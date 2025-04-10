@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Web PubSub integration
 description: This article describes the .NET Aspire Azure Web PubSub integration features and capabilities.
 ms.topic: how-to
-ms.date: 04/01/2025
+ms.date: 04/09/2025
 ---
 
 # .NET Aspire Azure Web PubSub integration
@@ -101,17 +101,9 @@ When you add an Azure Web PubSub resource, the following Bicep is generated:
 
 :::code language="bicep" source="../snippets/azure/AppHost/web-pubsub.module.bicep":::
 
-The preceding Bicep is a module that provisions an Azure Web PubSub resource with the following defaults:
+The preceding Bicep is a module that provisions an Azure Web PubSub resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-- `location`: The location of the resource group.
-- `sku`: The SKU of the Web PubSub resource, defaults to `Free_F1`.
-- `principalId`: The principal ID of the Web PubSub resource.
-- `principalType`: The principal type of the Web PubSub resource.
-- `messages_url_0`: The URL of the event handler for the `messages` hub.
-- `messages`: The name of the hub resource.
-- `web_pubsub`: The name of the Web PubSub resource.
-- `web_pubsub_WebPubSubServiceOwner`: The role assignment for the Web PubSub resource owner. For more information, see [Azure Web PubSub Service Owner](/azure/role-based-access-control/built-in-roles/web-and-mobile#web-pubsub-service-owner).
-- `endpoint`: The endpoint of the Web PubSub resource.
+:::code language="bicep" source="../snippets/azure/AppHost/web-pubsub-roles.module.bicep":::
 
 The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 

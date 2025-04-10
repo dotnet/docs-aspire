@@ -62,10 +62,9 @@ If you're new to Bicep, it's a domain-specific language for defining Azure resou
 
 :::code language="bicep" source="../snippets/azure/AppHost/service-bus.module.bicep":::
 
-The preceding Bicep is a module that provisions an Azure Service Bus namespace with the following defaults:
+The preceding Bicep is a module that provisions an Azure Service Bus namespace resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-- `sku`: The SKU of the Service Bus namespace. The default is Standard.
-- `location`: The location for the Service Bus namespace. The default is the resource group's location.
+:::code language="bicep" source="../snippets/azure/AppHost/service-bus-roles.module.bicep":::
 
 In addition to the Service Bus namespace, it also provisions an Azure role-based access control (Azure RBAC) built-in role of Azure Service Bus Data Owner. The role is assigned to the Service Bus namespace's resource group. For more information, see [Azure Service Bus Data Owner](/azure/role-based-access-control/built-in-roles/integration#azure-service-bus-data-owner).
 
