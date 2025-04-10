@@ -50,16 +50,16 @@ For more information on dependency injection, see [.NET dependency injection](/d
 There might be situations where you want to register multiple `NpgsqlDataSource` instances with different connection names. To register keyed Npgsql clients, call the `AddKeyedAzureNpgsqlDataSource` method:
 
 ```csharp
-builder.AddKeyedAzureNpgsqlDataSource(name: "chat");
-builder.AddKeyedAzureNpgsqlDataSource(name: "queue");
+builder.AddKeyedAzureNpgsqlDataSource(name: "sales_db");
+builder.AddKeyedAzureNpgsqlDataSource(name: "inventory_db");
 ```
 
 Then you can retrieve the `NpgsqlDataSource` instances using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
 public class ExampleService(
-    [FromKeyedServices("chat")] NpgsqlDataSource chatDataSource,
-    [FromKeyedServices("queue")] NpgsqlDataSource queueDataSource)
+    [FromKeyedServices("sales_db")] NpgsqlDataSource salesDataSource,
+    [FromKeyedServices("inventory_db")] NpgsqlDataSource inventoryDataSource)
 {
     // Use data sources...
 }
@@ -103,11 +103,9 @@ The .NET Aspire Azure Npgsql integration supports <xref:Microsoft.Extensions.Con
 ```json
 {
   "Aspire": {
-    "Azure": {
-      "Npgsql": {
-        "DisableHealthChecks": true,
-        "DisableTracing": true
-      }
+    "Npgsql": {
+      "DisableHealthChecks": true,
+      "DisableTracing": true
     }
   }
 }
