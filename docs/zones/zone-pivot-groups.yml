@@ -5,73 +5,73 @@ groups:
   title: Azure development tool
   prompt: Choose an Azure development tool
   pivots:
-    - id: azure-azd
-      title: Azure Developer CLI
-    - id: azure-vs
-      title: Visual Studio
-    - id: azure-cli
-      title: Azure CLI
-    - id: azure-bicep
-      title: Azure Bicep
+  - id: azure-azd
+    title: Azure Developer CLI
+  - id: azure-vs
+    title: Visual Studio
+  - id: azure-cli
+    title: Azure CLI
+  - id: azure-bicep
+    title: Azure Bicep
 - id: azure-storage-mechanism
   title: Azure storage mechanism
   prompt: Choose an Azure storage mechanism
   pivots:
-    - id: azurite
-      title: Azurite (Emulator)
-    - id: azure-portal
-      title: Azure Portal
-    - id: azure-cli
-      title: Azure CLI
-    - id: azure-developer-cli
-      title: Azure Developer CLI
+  - id: azurite
+    title: Azurite (Emulator)
+  - id: azure-portal
+    title: Azure Portal
+  - id: azure-cli
+    title: Azure CLI
+  - id: azure-developer-cli
+    title: Azure Developer CLI
 - id: deployment-platform
   title: Azure deployment platform
   prompt: Choose a deployment platform
   pivots:
-    - id: github-actions
-      title: GitHub Actions
-    - id: azure-pipelines
-      title: Azure Pipelines
+  - id: github-actions
+    title: GitHub Actions
+  - id: azure-pipelines
+    title: Azure Pipelines
 - id: dev-environment
   title: Development environment
   prompt: Choose a development environment
   pivots:
-    - id: visual-studio
-      title: Visual Studio
-    - id: vscode
-      title: Visual Studio Code
-    - id: dotnet-cli
-      title: .NET CLI
+  - id: vscode
+    title: Visual Studio Code
+  - id: visual-studio
+    title: Visual Studio
+  - id: dotnet-cli
+    title: .NET CLI
 - id: resp-host
   title: Hosting resource type
   prompt: Choose a hosting resource that supports the Redis protocol
   pivots:
-    - id: redis
-      title: Redis
-    - id: garnet
-      title: Garnet
-    - id: valkey
-      title: Valkey
+  - id: redis
+    title: Redis
+  - id: garnet
+    title: Garnet
+  - id: valkey
+    title: Valkey
 - id: unit-testing-framework
   title: Unit testing framework
   prompt: Choose a unit testing framework
   pivots:
-    - id: xunit
-      title: xUnit
-    - id: mstest
-      title: MSTest
-    - id: nunit
-      title: NUnit
+  - id: xunit
+    title: xUnit
+  - id: mstest
+    title: MSTest
+  - id: nunit
+    title: NUnit
 - id: entity-framework-client-integration
   title: .NET Aspire Entity Framework Core client integration
   prompt: Choose a .NET Aspire Entity Framework Core client integration
   pivots:
-    - id: sql-server-ef
-      title: SQL Server
-    - id: postgresql-ef
-      title: PostgreSQL
-    - id: oracle-ef
-      title: Oracle
-    - id: mysql-ef
-      title: Pomelo MySQL
+  - id: sql-server-ef
+    title: SQL Server
+  - id: postgresql-ef
+    title: PostgreSQL
+  - id: oracle-ef
+    title: Oracle
+  - id: mysql-ef
+    title: Pomelo MySQL

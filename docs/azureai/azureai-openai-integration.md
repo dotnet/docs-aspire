@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure OpenAI integration (Preview)
 description: Learn how to use the .NET Aspire Azure OpenAI integration.
-ms.date: 03/06/2025
+ms.date: 04/03/2025
 ---
 
 # .NET Aspire Azure OpenAI integration (Preview)
@@ -83,25 +83,9 @@ If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a d
 
 :::code language="bicep" source="../snippets/azure/AppHost/openai.module.bicep":::
 
-The preceding Bicep is a module that provisions an Azure Cognitive Services resource with the following defaults:
+The preceding Bicep is a module that provisions an Azure Cognitive Services resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-- `location`: The location of the resource group.
-- `principalType`: The principal type of the Cognitive Services resource.
-- `principalId`: The principal ID of the Cognitive Services resource.
-- `openai`: The Cognitive Services account resource.
-  - `kind`: The kind of the resource, set to `OpenAI`.
-  - `properties`: The properties of the resource.
-    - `customSubDomainName`: The custom subdomain name for the resource, based on the unique string of the resource group ID.
-    - `publicNetworkAccess`: Set to `Enabled`.
-    - `disableLocalAuth`: Set to `true`.
-  - `sku`: The SKU of the resource, set to `S0`.
-- `openai_CognitiveServicesOpenAIContributor`: The Cognitive Services resource owner, based on the build-in `Azure Cognitive Services OpenAI Contributor` role. For more information, see [Azure Cognitive Services OpenAI Contributor](/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-openai-contributor).
-- `preview`: The deployment resource, based on the `preview` name.
-  - `properties`: The properties of the deployment resource.
-    - `format`: The format of the deployment resource, set to `OpenAI`.
-    - `modelName`: The model name of the deployment resource, set to `gpt-4.5-preview`.
-    - `modelVersion`: The model version of the deployment resource, set to `2025-02-27`.
-- `connectionString`: The connection string, containing the endpoint of the Cognitive Services resource.
+:::code language="bicep" source="../snippets/azure/AppHost/openai-roles.module.bicep":::
 
 The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 

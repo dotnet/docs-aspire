@@ -20,4 +20,5 @@ You can also view individual issues that detail the breaking changes introduced 
 ## See also
 
 - [API removal in .NET](api-removal.md)
+- [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire)
 - [.NET runtime compatibility](/dotnet/core/versions/#net-runtime-compatibility)

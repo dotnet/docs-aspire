@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Service Bus integration
 description: Learn how to install and configure the .NET Aspire Azure Service Bus integration to connect to Azure Service Bus instances from .NET applications.
-ms.date: 02/25/2025
+ms.date: 04/01/2025
 ---
 
 # .NET Aspire Azure Service Bus integration
@@ -15,6 +15,9 @@ ms.date: 02/25/2025
 The .NET Aspire [Azure Service Bus](https://azure.microsoft.com/services/service-bus/) hosting integration models the various Service Bus resources as the following types:
 
 - <xref:Aspire.Hosting.Azure.AzureServiceBusResource>: Represents an Azure Service Bus resource.
+- <xref:Aspire.Hosting.Azure.AzureServiceBusQueueResource>: Represents an Azure Service Bus queue resource.
+- <xref:Aspire.Hosting.Azure.AzureServiceBusSubscriptionResource>: Represents an Azure Service Bus subscription resource.
+- <xref:Aspire.Hosting.Azure.AzureServiceBusTopicResource>: Represents an Azure Service Bus topic resource.
 - <xref:Aspire.Hosting.Azure.AzureServiceBusEmulatorResource>: Represents an Azure Service Bus emulator resource.
 
 To access these types and APIs for expressing them, add the [📦 Aspire.Hosting.Azure.ServiceBus](https://www.nuget.org/packages/Aspire.Hosting.Azure.ServiceBus) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
@@ -59,10 +62,9 @@ If you're new to Bicep, it's a domain-specific language for defining Azure resou
 
 :::code language="bicep" source="../snippets/azure/AppHost/service-bus.module.bicep":::
 
-The preceding Bicep is a module that provisions an Azure Service Bus namespace with the following defaults:
+The preceding Bicep is a module that provisions an Azure Service Bus namespace resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-- `sku`: The SKU of the Service Bus namespace. The default is Standard.
-- `location`: The location for the Service Bus namespace. The default is the resource group's location.
+:::code language="bicep" source="../snippets/azure/AppHost/service-bus-roles.module.bicep":::
 
 In addition to the Service Bus namespace, it also provisions an Azure role-based access control (Azure RBAC) built-in role of Azure Service Bus Data Owner. The role is assigned to the Service Bus namespace's resource group. For more information, see [Azure Service Bus Data Owner](/azure/role-based-access-control/built-in-roles/integration#azure-service-bus-data-owner).
 
@@ -120,12 +122,12 @@ To add an Azure Service Bus queue, call the <xref:Aspire.Hosting.AzureServiceBus
 var builder = DistributedApplication.CreateBuilder(args);
 
 var serviceBus = builder.AddAzureServiceBus("messaging");
-serviceBus.AddServiceBusQueue("queue");
+var queue = serviceBus.AddServiceBusQueue("queue");
 
 // After adding all resources, run the app...
 ```
 
-When you call <xref:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusQueue(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},System.String,System.String)>, it configures your Service Bus resources to have a queue named `queue`. The queue is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier. For more information, see [Queues, topics, and subscriptions in Azure Service Bus](/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
+When you call <xref:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusQueue(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusResource},System.String,System.String)>, it configures your Service Bus resources to have a queue named `queue`. The expresses an explicit parent-child relationship, between the `messaging` Service Bus resource and its child `queue`. The queue is created in the Service Bus namespace that's represented by the `AzureServiceBusResource` that you added earlier. For more information, see [Queues, topics, and subscriptions in Azure Service Bus](/azure/service-bus-messaging/service-bus-queues-topics-subscriptions).
 
 ### Add Azure Service Bus topic and subscription
 
@@ -135,7 +137,7 @@ To add an Azure Service Bus topic, call the <xref:Aspire.Hosting.AzureServiceBus
 var builder = DistributedApplication.CreateBuilder(args);
 
 var serviceBus = builder.AddAzureServiceBus("messaging");
-serviceBus.AddServiceBusTopic("topic");
+var topic = serviceBus.AddServiceBusTopic("topic");
 
 // After adding all resources, run the app...
 ```

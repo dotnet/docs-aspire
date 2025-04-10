@@ -124,5 +124,6 @@ Select the **Clear cache** command to clear the cache of the Redis resource. The
 
 ## See also
 
-- [.NET Aspire orchestration overview](app-host-overview.md)
+- [Custom HTTP commands in .NET Aspire](http-commands.md)
 - [.NET Aspire dashboard: Resource submenu actions](dashboard/explore.md#resource-submenu-actions)
+- [.NET Aspire orchestration overview](app-host-overview.md)

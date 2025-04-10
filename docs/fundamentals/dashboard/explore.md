@@ -1,7 +1,7 @@
 ---
 title: Explore .NET Aspire dashboard
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 11/07/2024
+ms.date: 04/07/2025
 ms.topic: reference
 ---
 
@@ -69,9 +69,15 @@ The dashboard also provides essential details about each resource:
     - **Metrics**: Navigate to the resource's metrics.
     - **Restart**: Stop and then start the resource.
 
- Consider the following screenshot of the resources page:
+Consider the following screenshot of the resources page:
 
 :::image type="content" source="media/explore/projects.png" lightbox="media/explore/projects.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page.":::
+
+Alternatively, you can view the resources as a graph. The graph view provides a visual representation of the resources and their dependencies. This view is useful for understanding how the different resources in your app are connected and how they interact with each other:
+
+:::image type="content" source="media/explore/project-graphs.png" lightbox="media/explore/project-graphs.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page in graph view.":::
+
+You can interact with the graph by selecting a resource to view its details. The overall view also supports zooming in and out.
 
 ### Resource actions
 
@@ -220,9 +226,9 @@ Consider the following example screenshot of semantic logs:
 
 The structured logs page also provides a search bar to filter the logs by service, level, or message. You use the **Level** drop down to filter by log level. You can also filter by any log property by selecting the filter icon button, which opens the advanced filter dialog.
 
-Consider the following screenshots showing the structured logs, filtered to display items with "Hosting" in the message text:
+Consider the following screenshots showing the structured logs filter dialog:
 
-:::image type="content" source="media/explore/structured-logs-filtered.png" lightbox="media/explore/structured-logs-filtered.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a filter that displayed only items with Hosting in the message text.":::
+:::image type="content" source="media/explore/structured-logs-filtered.png" lightbox="media/explore/structured-logs-filtered.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page showing the filter dialog.":::
 
 ### Traces page
 
@@ -343,7 +349,11 @@ Selecting the exemplar indicator opens the trace details page, where you can vie
 
 For more information, see [OpenTelemetry Docs: Exemplars](https://opentelemetry.io/docs/specs/otel/metrics/data-model/#exemplars).
 
-## Theme selection
+## Settings dialog
+
+<span id="theme-selection"></span>
+
+The .NET Aspire dashboard provides a settings dialog that allows you to configure the theme, the language, functionality to clear all the logs and telemetry, and the .NET version used by the dashboard.
 
 By default, the theme is set to follow the System theme, which means the dashboard uses the same theme as your operating system. You can also select the **Light** or **Dark** theme to override the system theme. Theme selections are persisted.
 

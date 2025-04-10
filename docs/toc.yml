@@ -24,17 +24,17 @@ items:
       href: get-started/github-codespaces.md
     - name: Dev Containers
       href: get-started/dev-containers.md
-  - name: What's new in .NET Aspire 9.1
-    href: whats-new/dotnet-aspire-9.1.md
+  - name: What's new in .NET Aspire 9.2
+    href: whats-new/dotnet-aspire-9.2.md
   - name: Upgrade to .NET Aspire 9.0
     href: get-started/upgrade-to-aspire-9.md
 
-- name: App Host (Orchestration)
+- name: App Host (Dev-time orchestration)
   items:
   - name: Overview
-    displayName: orchestration,aspire apphost,aspire app
+    displayName: orchestration,aspire apphost,aspire app,dev-time,inner-loop
     href: fundamentals/app-host-overview.md
-  - name: Orchestrate
+  - name: Locally orchestrate
     items:
     - name: Node.js apps in .NET Aspire
       href: get-started/build-aspire-apps-with-nodejs.md
@@ -44,14 +44,23 @@ items:
       href: get-started/build-aspire-apps-with-python.md
   - name: Configuration
     href: app-host/configuration.md
-  - name: Custom resource commands
-    href: fundamentals/custom-resource-commands.md
+  - name: Custom commands
+    items:
+    - name: Custom resource commands
+      href: fundamentals/custom-resource-commands.md
+    - name: Custom HTTP commands
+      href: fundamentals/http-commands.md
   - name: Add Dockerfiles to the app model
     href: app-host/withdockerfile.md
     displayName: dockerfile,docker
-  - name: Networking overview
-    displayName: inner loop,local networking
-    href: fundamentals/networking-overview.md
+  - name: Networking
+    items:
+    - name: Overview
+      displayName: inner loop,local networking,networking
+      href: fundamentals/networking-overview.md
+    - name: Define custom resource URLs
+      displayName: withurl,withurlforendpoint,withurls
+      href: fundamentals/custom-resource-urls.md
   - name: Eventing in .NET Aspire
     href: app-host/eventing.md
   - name: Use external parameters
@@ -139,6 +148,10 @@ items:
       href: azure/integrations-overview.md
     - name: Local Azure provisioning
       href: azure/local-provisioning.md
+    - name: Configure Azure Container Apps environments
+      href: azure/configure-aca-environments.md
+    - name: Manage role assignments
+      href: azure/role-assignments.md
     - name: Azure AI Search
       displayName: azure search,search,azure ai,cognitive search,cognitive services
       href: azureai/azureai-search-document-integration.md
@@ -189,9 +202,9 @@ items:
       displayName: web pubsub,real-time,messaging
       href: messaging/azure-web-pubsub-integration.md
     - name: Aspire.Hosting.Azure API reference
-      href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.1&preserve-view=true
+      href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.2&preserve-view=true
     - name: Aspire.Azure API reference
-      href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.1&preserve-view=true
+      href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.2&preserve-view=true
   - name: Dapr
     items:
     - name: Overview
@@ -333,7 +346,7 @@ items:
     - name: PostgreSQL Extensions
       href: community-toolkit/hosting-postgresql-extensions.md
   - name: Aspire.Hosting API reference
-    href: /dotnet/api/?term=Aspire.Hosting&view=dotnet-aspire-9.1&preserve-view=true
+    href: /dotnet/api/?term=Aspire.Hosting&view=dotnet-aspire-9.2&preserve-view=true
 
 - name: Custom integrations
   items:
@@ -402,7 +415,7 @@ items:
   - name: Diagnostics overview
     href: diagnostics/overview.md
   - name: .NET Aspire API reference
-    href: /dotnet/api?view=dotnet-aspire-9.1&preserve-view=true
+    href: /dotnet/api?view=dotnet-aspire-9.2&preserve-view=true
   - name: .NET Aspire FAQ
     displayName: iis,functions,deploy,azure,kubernetes
     href: reference/aspire-faq.yml
