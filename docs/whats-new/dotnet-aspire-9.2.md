@@ -64,11 +64,11 @@ Moving between minor releases of .NET Aspire is simple:
 
 If your app host project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.0, follow [the upgrade guide](../get-started/upgrade-to-aspire-9.md).
 
-## 🖥️ App Host
+## 🖥️ App host enhancements
 
 The [app host](../fundamentals/app-host-overview.md) is the core of .NET Aspire, providing the local hosting environment for your distributed applications. In .NET Aspire 9.2, we've made several improvements to the app host:
 
-### 🚧 project file changes
+### 🚧 Project file changes
 
 The .NET Aspire app host project file no longer requires the `IsAspireHost` property. This property was moved to the `Aspire.AppHost.Sdk` SDK, therefore, you can remove it from your project file. For more information, see [dotnet/aspire issue #8144](https://github.com/dotnet/aspire/pull/8144).
 
@@ -163,21 +163,22 @@ For more information, see [Custom HTTP commands in .NET Aspire](../fundamentals/
 
 ### 🗂️ Connection string resource type
 
-We've introduced a new ConnectionStringResource type that makes it easier to build dynamic connection strings without defining a separate resource
-type. This makes it easier to work with build dynamic parameterized connection strings.
+We've introduced a new `ConnectionStringResource` type that makes it easier to build dynamic connection strings without defining a separate resource type. This makes it easier to work with build dynamic parameterized connection strings.
 
-   ```csharp
-   var apiKey = builder.AddParameter("apiKey");
-   var cs = builder.AddConnectionString("openai", csb =>
-   { 
-        csb.Append($"Endpoint=https://api.openai.com/v1;AccessKey={apiKey};");
-   });
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
 
-   var api = builder.AddProject<Projects.Api>("api")
-                    .WithReference(cs);
-   ```
+var apiKey = builder.AddParameter("apiKey");
+var cs = builder.AddConnectionString("openai", csb =>
+{ 
+    csb.Append($"Endpoint=https://api.openai.com/v1;AccessKey={apiKey};");
+});
 
-### 📥 Container resources can now specify an ImagePullPolicy
+var api = builder.AddProject<Projects.Api>("api")
+                .WithReference(cs);
+```
+
+### 📥 Container resources can now specify an image pull policy
 
 Container resources can now specify an `ImagePullPolicy` to control when the image is pulled. This is useful for resources that are updated frequently or that have a large image size. The following policies are supported:
 
@@ -186,6 +187,8 @@ Container resources can now specify an `ImagePullPolicy` to control when the ima
 - `Missing`: Ensures the image is always pulled when the container starts.
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var cache = builder.AddRedis("cache")
                    .WithImageTag("latest")
                    .WithImagePullPolicy(ImagePullPolicy.Always)
@@ -206,7 +209,7 @@ Integrations are a key part of .NET Aspire, allowing you to easily add and confi
 
 The Redis, Valkey, and Garnet containers enable password authentication by default. This is part of our goal to be secure by default—protecting development environments with sensible defaults while still making them easy to configure. Passwords can be set explicitly or generated automatically if not provided.
 
-### 💾 Automatic database creation support for Postgres and SQL Server
+### 💾 Automatic database creation support
 
 There's [plenty of feedback and confusion](https://github.com/dotnet/aspire/issues/7101) around the `AddDatabase` API. The name implies that it adds a database, but it didn't actually create the database. In .NET Aspire 9.2, the `AddDatabase` API now creates a database for the following hosting integrations:
 
