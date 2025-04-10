@@ -79,7 +79,7 @@ The .NET Aspire app host project file no longer requires the `IsAspireHost` prop
 Resources can now define custom URLs. This makes it easier to build custom experiences for your resources. For example, you can define a custom URL for a database resource that points to the database management console. This makes it easier to access the management console directly from the dashboard, you can even give it a friendly name.
 
 ```csharp
-var builder = DistributedApplicationBuilder.Create(args);
+var builder = DistributedApplication.CreateBuilder(args);
 
 var catalogDb = builder.AddPostgres("postgres")
                        .WithDataVolume()
