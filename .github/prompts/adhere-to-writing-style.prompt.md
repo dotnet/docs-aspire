@@ -21,9 +21,11 @@ Use `code` for inline code, language keywords, NuGet package names, command-line
 
 ## Links
 
-Strive to use relative links whenever possible. Use absolute links only when necessary. For example, if you are linking to a page on a different site, use an absolute link. When using absolute links, use the full URL (including the protocol) and remove the locale from the URL. For example, use `https://learn.microsoft.com` instead of `https://learn.microsoft.com/en-us`. Avoid HTTP links. Whenever providing additional resources, use the following format:
+Strive to use relative links whenever possible. Use absolute links only when necessary. For example, if you are linking to a page on a different site, use an absolute link. When using absolute links, use the full URL (including the protocol) and remove the locale from the URL. Avoid HTTP links, always prefer HTTPS. Whenever providing additional resources, use the following format:
 
 "For more information, see [link text](../relative/link/to/content.md)."
+
+Never link to `https://learn.microsoft.com` or `https://learn.microsoft.com/en-us`, always remove these and instead use site relative links. For example, if the original link is `https://learn.microsoft.com/en-us/aspnet/core/mvc/overview`, it should be changed to `/aspnet/core/mvc/overview`.
 
 ## Things to avoid
 
