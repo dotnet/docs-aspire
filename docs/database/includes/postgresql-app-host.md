@@ -93,7 +93,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The preceding example creates a database named `app_db`. The script is executed when the database resource is created. The script is passed as a string to the `WithCreationScript` method, which is then executed in the context of the SQL Server resource.
+The preceding example creates a database named `app_db`. The script is run when the database resource is created. The script is passed as a string to the `WithCreationScript` method, which is then run in the context of the PostgreSQL resource.
 
 > [!NOTE]
 > The connect to a database command (`\c`) isn't supported when using the creation script.
