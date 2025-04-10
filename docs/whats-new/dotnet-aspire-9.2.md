@@ -121,7 +121,7 @@ type. This makes it easier to work with build dynamic parameterized connection s
 
    ```c#
    var apiKey = builder.AddParameter("apiKey");
-   var cs = builder.ApplicationBuilder.AddConnectionString("openai", csb =>
+   var cs = builder.AddConnectionString("openai", csb =>
    { 
         csb.Append($"Endpoint=https://api.openai.com/v1;AccessKey={apiKey};");
    });
@@ -339,10 +339,6 @@ When referencing a Key Vault, Aspire previously granted the broad **Key Vault Ad
 This update continues the security-focused improvements in this release.
 
 ## Deployment
-
-Here’s the updated section with your additions, keeping the tone and structure consistent:
-
----
 
 ### 📦 Built-in Publishers (Preview)
 
