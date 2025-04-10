@@ -139,7 +139,7 @@ In .NET Aspire 9.1, several improvements to streamline your local development ex
 
 You can now tell resources not to start with the rest of your app by using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> on the resource in your app host. Then, you can start it whenever you're ready from inside the dashboard.
 
-For more information, see [Configure explicit resource start](../fundamentals/app-host-overview.md#configure-explicit-resource-start).
+For more information, see [Configure explicit resource start](../fundamentals/orchestrate-resources.md#configure-explicit-resource-start).
 
 ### 🐳 Better Docker integration
 

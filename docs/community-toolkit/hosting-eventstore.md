@@ -50,7 +50,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/eventstore/eventstore` image, it creates a new EventStore instance on your local machine. A reference to your EventStore resource (the `eventstore` variable) is added to the `ExampleProject`.
 
-For more information, see [Container resource lifecycle](../fundamentals/app-host-overview.md#container-resource-lifecycle).
+For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 ### Add EventStore resource with data volume
 
