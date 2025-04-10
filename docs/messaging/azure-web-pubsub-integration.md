@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Web PubSub integration
 description: This article describes the .NET Aspire Azure Web PubSub integration features and capabilities.
 ms.topic: how-to
-ms.date: 04/03/2025
+ms.date: 04/09/2025
 ---
 
 # .NET Aspire Azure Web PubSub integration
@@ -59,7 +59,7 @@ The preceding code adds an Azure Web PubSub resource named `web-pubsub` to the a
 
 ### Add an Azure Web PubSub hub resource
 
-To add an Azure Web PubSub hub resource to your app host project, chain a call to the <xref:Aspire.Hosting.AzureWebPubSubExtensions.AddHub(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.AzureWebPubSubResource},System.String)> method providing a name:
+When you add an Azure Web PubSub resource, you can also add a child hub resource. The hub resource is a logical grouping of connections and event handlers. To add an Azure Web PubSub hub resource to your app host project, chain a call to the <xref:Aspire.Hosting.AzureWebPubSubExtensions.AddHub*> method providing a resource and hub name:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -68,12 +68,12 @@ var worker = builder.AddProject<Projects.WorkerService>("worker")
                     .WithExternalHttpEndpoints();
 
 var webPubSub = builder.AddAzureWebPubSub("web-pubsub");
-var messagesHub = webPubSub.AddHub("messages");
+var messagesHub = webPubSub.AddHub(name: "messages", hubName: "messageHub");
 
 // After adding all resources, run the app...
 ```
 
-The preceding code adds an Azure Web PubSub hub resource named `messages`, which enables the addition of event handlers. To add an event handler, call the <xref:Aspire.Hosting.AzureWebPubSubExtensions.AddEventHandler*>:
+The preceding code adds an Azure Web PubSub hub resource named `messages` and a hub name of `messageHub` , which enables the addition of event handlers. To add an event handler, call the <xref:Aspire.Hosting.AzureWebPubSubExtensions.AddEventHandler*>:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -82,7 +82,7 @@ var worker = builder.AddProject<Projects.WorkerService>("worker")
                     .WithExternalHttpEndpoints();
 
 var webPubSub = builder.AddAzureWebPubSub("web-pubsub");
-var messagesHub = webPubSub.AddHub("messages");
+var messagesHub = webPubSub.AddHub(name: "messages", hubName: "messageHub");
 
 messagesHub.AddEventHandler(
     $"{worker.GetEndpoint("https")}/eventhandler/",
@@ -248,6 +248,12 @@ public class ExampleService(
 {
     // Use clients...
 }
+```
+
+If you want to register a single `WebPubSubServiceClient` instance with a specific connection name, there's an overload that uses the connection name as the service key. Call the `AddKeyedAzureWebPubSubServiceClient` method. This method registers the client as a singleton service in the dependency injection container.
+
+```csharp
+builder.AddKeyedAzureWebPubSubServiceClient(connectionName: "web-pubsub");
 ```
 
 For more information, see [Keyed services in .NET](/dotnet/core/extensions/dependency-injection#keyed-services).

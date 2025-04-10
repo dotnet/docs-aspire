@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Cosmos DB Entity Framework Core integration
 description: Learn how to install and configure the .NET Aspire Cosmos DB Entity Framework Core integration to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
-ms.date: 02/26/2025
+ms.date: 04/01/2025
 uid: dotnet/aspire/azure-cosmos-db-entity-framework-integration
 ---
 
@@ -42,10 +42,16 @@ dotnet add package Aspire.Microsoft.EntityFrameworkCore.Cosmos
 
 ### Add Cosmos DB context
 
-In the :::no-loc text="Program.cs"::: file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureEFCoreCosmosExtensions.AddCosmosDbContext%2A> extension method to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container. The method takes a connection name parameter.
+In the :::no-loc text="Program.cs"::: file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureEFCoreCosmosExtensions.AddCosmosDbContext%2A> extension method to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container. The method takes a connection name parameter and a database name parameter.
 
 ```csharp
 builder.AddCosmosDbContext<MyDbContext>("cosmosdb", "databaseName");
+```
+
+Alternatively, the database name can be inferred from the connection when there's a single database in the connection string. In this case, you can omit the database name parameter:
+
+```csharp
+builder.AddCosmosDbContext<MyDbContext>("cosmosdb");
 ```
 
 > [!TIP]
