@@ -93,21 +93,21 @@ For more information on dependency injection, see [.NET dependency injection](/d
 
 ### Add keyed Redis client
 
-There might be situations where you want to register multiple `IDistributedCache` instances with different connection names. To register keyed Redis clients, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddKeyedRedisDistributedCache*> method:
+Due to its limitations, you cannot register multiple `IDistributedCache` instances simultaneously. However, there may be scenarios where you need to register multiple Redis clients and use a specific `IDistributedCache` instance for a particular connection name. To register a keyed Redis client that will be used for the `IDistributedCache` service, call the <xref:Microsoft.Extensions.Hosting.AspireRedisDistributedCacheExtensions.AddKeyedRedisDistributedCache*> method:
 
 ```csharp
-builder.AddKeyedRedisDistributedCache(name: "chat");
+builder.AddKeyedRedisClient(name: "chat");
 builder.AddKeyedRedisDistributedCache(name: "product");
 ```
 
-Then you can retrieve the `IDistributedCache` instances using dependency injection. For example, to retrieve the connection from an example service:
+Then you can retrieve the `IDistributedCache` instance using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
 public class ExampleService(
-    [FromKeyedServices("chat")] IDistributedCache chatCache,
-    [FromKeyedServices("product")] IDistributedCache productCache)
+    [FromKeyedServices("chat")] IConnectionMultiplexer chatConnectionMux,
+    IDistributedCache productCache)
 {
-    // Use caches...
+    // Use product cache...
 }
 ```
 
@@ -156,7 +156,8 @@ You can also set up the [ConfigurationOptions](https://stackexchange.github.io/S
 ```csharp
 builder.AddRedisDistributedCache(
     "cache",
-    static settings => settings.ConnectTimeout = 3_000);
+     null,
+     static options => options.ConnectTimeout = 3_000);
 ```
 
 [!INCLUDE [redis-distributed-client-health-checks-and-diagnostics](includes/redis-distributed-client-health-checks-and-diagnostics.md)]

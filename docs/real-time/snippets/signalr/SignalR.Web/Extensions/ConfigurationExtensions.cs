@@ -1,4 +1,6 @@
-﻿namespace SignalR.Web.Extensions;
+﻿using System.Data.Common;
+
+namespace SignalR.Web.Extensions;
 
 public static class ConfigurationExtensions
 {
@@ -15,5 +17,21 @@ public static class ConfigurationExtensions
         ArgumentException.ThrowIfNullOrWhiteSpace(url);
 
         return new(url);
+    }
+
+    public static Uri GetUriFromConnectionString(this IConfiguration config, string name)
+    {
+        var connectionString = config.GetConnectionString(name);
+
+        ArgumentException.ThrowIfNullOrWhiteSpace(connectionString);
+
+        var connectionBuilder = new DbConnectionStringBuilder()
+        {
+            ConnectionString = connectionString
+        };
+
+        return connectionBuilder.TryGetValue("Endpoint", out var endpoint) && endpoint is string endpointString
+            ? new Uri(endpointString)
+            : throw new ArgumentException($"The connection string '{name}' does not contain an 'Endpoint' value.");
     }
 }

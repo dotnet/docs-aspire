@@ -188,7 +188,7 @@ The `azd provision` command updates the infrastructure by creating a container a
 
 ### Clean up resources
 
-Remember to clean up the Azure resources that you've created during this walkthrough. Because `azd knows the resource group in which it created the resources it can be used to spin down the environment using the following command:
+Remember to clean up the Azure resources that you've created during this walkthrough. Because `azd` knows the resource group in which it created the resources it can be used to spin down the environment using the following command:
 
 ```azdeveloper
 azd down

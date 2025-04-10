@@ -8,9 +8,9 @@ zone_pivot_groups: entity-framework-client-integration
 
 # Entity Framework Core overview
 
-In a cloud-native solution, such as those .NET Aspire is built to create, microservices often need to store data in relational databases. .NET Aspire includes integrations that you can use to ease that task, some of which use the Entity Framework Core(EF Core) object-relational mapper (O/RM) approach to streamline the process.
+In a cloud-native solution, such as those .NET Aspire is built to create, microservices often need to store data in relational databases. .NET Aspire includes integrations that you can use to ease that task, some of which use the Entity Framework Core (EF Core) object-relational mapper (O/RM) approach to streamline the process.
 
-Developers use O/RMs to work with databases using code objects instead of SQL queries. EF Core automatically codes database interactions by generating SQL queries based on LINQ queries. EF Core supports various database providers, including SQL Server, PostgreSQL, and MySQL, so it's easy to interact with relational databases while following object-oriented principles.
+Developers use O/RMs to work with databases using code objects instead of SQL queries. EF Core automatically codes database interactions by generating SQL queries based on Language-Integrated Query (LINQ) queries. EF Core supports various database providers, including SQL Server, PostgreSQL, and MySQL, so it's easy to interact with relational databases while following object-oriented principles.
 
 The most commonly used .NET Aspire EF Core client integrations are:
 
@@ -20,8 +20,88 @@ The most commonly used .NET Aspire EF Core client integrations are:
 - [PostgreSQL Entity Framework Core integration](postgresql-entity-framework-integration.md)
 - [SQL Server Entity Framework Core integration](sql-server-entity-framework-integration.md)
 
+## Overview of EF Core
+
+O/RMs create a model that matches the schema and relationships defined in the database. Code against this model to query the data, create new records, or make other changes. In EF Core the model consists of:
+
+- A set of entity classes, each of which represents a table in the database and its columns.
+- A context class that represents the whole database.
+
+An entity class might look like this:
+
+```csharp
+using System.ComponentModel.DataAnnotations;
+
+namespace SupportDeskProject.Data;
+
+public sealed class SupportTicket
+{
+    public int Id { get; set; }
+    [Required]
+    public string Title { get; set; } = string.Empty;
+    [Required]
+    public string Description { get; set; } = string.Empty;
+}
+```
+
+This entity class represents a database table with three columns: **Id**, **Title**, and **Description**.
+
+A context class must inherit from <xref:System.Data.Entity.DbContext> and looks like this:
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
+
+namespace SupportDeskProject.Data;
+
+public class TicketContext(DbContextOptions options) : DbContext(options)
+{
+    public DbSet<SupportTicket> Tickets => Set<SupportTicket>();
+}
+```
+
+This context represents a database with a single table of support tickets. An instance of the context is usually created for each unit of work in the database. For example, a unit of work might be the creation of a new customer, and require changes in the Customers and Addresses tables. Once the unit of work is complete, you should dispose of the context.
+
 > [!NOTE]
-> In .NET Aspire, EF Core is implemented by client integrations, not hosting integrations. So, for example, to use EF Core with a SQL Server database, you'd use the SQL Server hosting integration to create the SQL Server container and add a database to it. In the consuming microservices, when you want to use EF Core, choose the SQL Server Entity Framework Core integration instead of the SQL Server client integration.
+> For more information about creating models in EF Core, see [Creating and Configuring a Model](/ef/core/modeling/) in the EF Core documentation.
+
+Once you've created a model, you can use LINQ to query it:
+
+```csharp
+using (var db = new TicketContext())
+{
+    var tickets = await db.Tickets
+        .Where(t => t.Title = "Unable to log on")
+        .OrderBy(t => t.Description)
+        .ToListAsync();
+}
+```
+
+> [!NOTE]
+> EF Core also supports creating, modifying, and deleted records and complex queries. For more information, see [Querying Data](/ef/core/querying/) and [Saving Data](/ef/core/saving/)
+
+## How .NET Aspire can help
+
+.NET Aspire is designed to help build observable, production-ready, cloud-native solutions that consist of multiple microservices. It orchestrates multiple projects, each of which may be a microservice written by a dedicated team, and connects them to each other. It provides integrations that make it easy to connect to common services, such as databases.
+
+If you want to use EF Core in any of your microservices, .NET Aspire can help by:
+
+- Managing the database container, or a connection to an existing database, centrally in the App Host project and passing its reference to any project that uses it.
+
+    > [!IMPORTANT]
+    > In .NET Aspire, EF Core is implemented by client integrations, not hosting integrations. The centralized management of the database in the App Host doesn't involve EF Core, which runs in consuming microservice projects instead. For more information, see [Cosmos DB Hosting integration](/dotnet/aspire/database/azure-cosmos-db-entity-framework-integration#hosting-integration), [MySQL Pomelo Hosting integration](/dotnet/aspire/database/mysql-entity-framework-integration#hosting-integration), [Oracle Hosting integration](/dotnet/aspire/database/oracle-entity-framework-integration#hosting-integration), [PostgreSQL Hosting integration](/dotnet/aspire/database/postgresql-entity-framework-integration#hosting-integration), or [SQL Server Hosting integration](/dotnet/aspire/database/sql-server-entity-framework-integration#hosting-integration).
+
+- Providing EF Core-aware integrations that make it easy to create contexts in microservice projects. There are EF Core integrations for SQL Server, MySQL, PostgreSQL, Oracle, Cosmos DB, and other popular database systems.
+
+To use EF Core in your microservice, you must:
+
+- Define the EF Core model with entity classes and context classes.
+- Create an instance of the data context, using the reference passed from the App Host, and add it to the Dependency Injection (DI) container.
+- When you want to interact with the database, obtain the context from DI and use it to execute LINQ queries against the database as normal for any EF Core code.
+
+:::image type="content" source="media/ef-core-aspire-architecture-thumb.png" lightbox="media/ef-core-aspire-architecture-large.png" alt-text="A diagram showing how .NET Aspire utilizes EF Core to interact with a database.." :::
+
+Both defining the EF Core model and querying the database are the same in .NET Aspire projects as in any other EF Core app. However, creating the data context differs. In the rest of this article, you'll learn how to create an configure EF Core contexts in .NET Aspire project.
 
 ## Use .NET Aspire to create an EF Core context
 
@@ -100,9 +180,11 @@ Alternatively, you can add a context to the DI container using the standard EF C
 
 ```csharp
 builder.Services.AddDbContextPool<ExampleDbContext>(options =>
+{
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString);
+});
 ```
 
 :::zone-end
@@ -110,9 +192,11 @@ builder.Services.AddDbContextPool<ExampleDbContext>(options =>
 
 ```csharp
 builder.Services.AddDbContextPool<ExampleDbContext>(options =>
+{
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
-    options.UseNpgsql(connectionString));
+    options.UseNpgsql(connectionString);
+});
 ```
 
 :::zone-end
@@ -120,9 +204,11 @@ builder.Services.AddDbContextPool<ExampleDbContext>(options =>
 
 ```csharp
 builder.Services.AddDbContextPool<ExampleDbContext>(options =>
+{
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
-    options.UseOracle(connectionString));
+    options.UseOracle(connectionString);
+});
 ```
 
 :::zone-end
@@ -130,9 +216,11 @@ builder.Services.AddDbContextPool<ExampleDbContext>(options =>
 
 ```csharp
 builder.Services.AddDbContextPool<ExampleDbContext>(options =>
+{
     var connectionString = builder.Configuration.GetConnectionString("database")
         ?? throw new InvalidOperationException("Connection string 'database' not found.");
-    options.UseMySql(connectionString));
+    options.UseMySql(connectionString);
+});
 ```
 
 :::zone-end
@@ -164,7 +252,7 @@ builder.EnrichSqlServerDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -176,7 +264,7 @@ builder.EnrichNpgsqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -188,7 +276,7 @@ builder.EnrichOracleDatabaseDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -200,7 +288,7 @@ builder.EnrichMySqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -234,7 +322,7 @@ builder.EnrichSqlServerDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -252,7 +340,7 @@ builder.EnrichNpgsqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -270,7 +358,7 @@ builder.EnrichOracleDatabaseDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -288,7 +376,7 @@ builder.EnrichMySqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -312,7 +400,7 @@ For these requirements, you can use code to formulate a **dynamic connection str
 var connectionStringWithPlaceHolder = builder.Configuration.GetConnectionString("database")
     ?? throw new InvalidOperationException("Connection string 'database' not found.");
 
-connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
+var connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
 
 builder.Services.AddDbContext<ExampleDbContext>(options =>
     options.UseSqlServer(connectionString
@@ -322,7 +410,7 @@ builder.EnrichSqlServerDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -333,7 +421,7 @@ builder.EnrichSqlServerDbContext<ExampleDbContext>(
 var connectionStringWithPlaceHolder = builder.Configuration.GetConnectionString("database")
     throw new InvalidOperationException("Connection string 'database' not found.");
 
-connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
+var connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
 
 builder.Services.AddDbContext<ExampleDbContext>(options =>
     options.UseNpgsql(connectionString
@@ -343,7 +431,7 @@ builder.EnrichNpgsqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -354,7 +442,7 @@ builder.EnrichNpgsqlDbContext<ExampleDbContext>(
 var connectionStringWithPlaceHolder = builder.Configuration.GetConnectionString("database")
     throw new InvalidOperationException("Connection string 'database' not found.");
 
-connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
+var connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
 
 builder.Services.AddDbContext<ExampleDbContext>(options =>
     options.UseOracle(connectionString
@@ -364,7 +452,7 @@ builder.EnrichOracleDatabaseDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -375,7 +463,7 @@ builder.EnrichOracleDatabaseDbContext<ExampleDbContext>(
 var connectionStringWithPlaceHolder = builder.Configuration.GetConnectionString("database")
     throw new InvalidOperationException("Connection string 'database' not found.");
 
-connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
+var connectionString = connectionStringWithPlaceHolder.Replace("{DatabaseName}", "ContosoDatabase");
 
 builder.Services.AddDbContext<ExampleDbContext>(options =>
     options.UseMySql(connectionString
@@ -385,7 +473,7 @@ builder.EnrichMySqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -412,7 +500,7 @@ builder.EnrichSqlServerDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -428,7 +516,7 @@ builder.EnrichNpgsqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -444,7 +532,7 @@ builder.EnrichOracleDatabaseDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
@@ -460,7 +548,7 @@ builder.EnrichMySqlDbContext<ExampleDbContext>(
     configureSettings: settings =>
     {
         settings.DisableRetry = false;
-        settings.CommandTimeout = 30 // seconds
+        settings.CommandTimeout = 30; // seconds
     });
 ```
 
