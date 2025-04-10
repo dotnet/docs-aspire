@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure SignalR Service integration
 description: Learn how to integrate Azure SignalR Service with .NET Aspire.
-ms.date: 03/18/2025
+ms.date: 04/10/2025
 ---
 
 # .NET Aspire Azure SignalR Service integration
@@ -168,8 +168,14 @@ In the preceding example, the `RunAsEmulator` method configures the Azure Signal
 
 While the Azure SignalR Service emulator only supports the _Serverless_ mode, the Azure SignalR Service resource can be configured to use either of the following modes:
 
+- `AzureSignalRServiceMode.Default`
+- `AzureSignalRServiceMode.Serverless`
+
+<!-- TODO add xref
+
 - <xref:Aspire.Hosting.ApplicationModel.AzureSignalRServiceMode.Default?displayProperty=nameWithType>
 - <xref:Aspire.Hosting.ApplicationModel.AzureSignalRServiceMode.Serverless?displayProperty=nameWithType>
+-->
 
 The _Default_ mode is the "default" configuration for Azure SignalR Service. Each mode has its own set of features and limitations. For more information, see [Azure SignalR Service modes](/azure/azure-signalr/concept-service-mode).
 

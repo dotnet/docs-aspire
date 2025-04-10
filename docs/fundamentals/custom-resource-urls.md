@@ -1,7 +1,7 @@
 ---
 title: Define custom resource URLs
 description: Learn how to create custom URLs for .NET Aspire resources.
-ms.date: 04/08/2025
+ms.date: 04/10/2025
 ms.topic: how-to
 ---
 
@@ -79,5 +79,5 @@ URL customization callbacks run during the application model lifecycle, specific
 
 ## See also
 
-- [.NET Aspire dashboard overview](./overview.md)
-- [.NET Aspire app host](../app-host.md)
+- [.NET Aspire dashboard overview](dashboard/overview.md)
+- [.NET Aspire app host](app-host-overview.md)
