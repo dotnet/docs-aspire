@@ -94,7 +94,7 @@ The above code sets the display text for the `PG Admin` URL to `PG Admin`. This 
 
 Adds WithHttpCommand(), which lets you define a resource command that sends an HTTP request to your app during development. Useful for triggering endpoints like seed or reset from the dashboard.
 
-```c#    
+```c#
 if (builder.Environment.IsDevelopment())
 {
     var resetDbKey = Guid.NewGuid().ToString();
