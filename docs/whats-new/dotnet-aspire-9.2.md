@@ -1,7 +1,7 @@
 ---
 title: What's new in .NET Aspire 9.2
 description: Learn what's new in the official general availability release of .NET Aspire 9.2.
-ms.date: 04/02/2025
+ms.date: 04/09/2025
 ---
 
 # What's new in .NET Aspire 9.2
@@ -45,9 +45,7 @@ Moving between minor releases of .NET Aspire is simple:
     ```
 
     > [!IMPORTANT]
-    > The `IsAspireHost` property is no longer required in the project file. For more information, see [App host project file changes](#-app-host-project-file-changes).
-
-    For more information, see [.NET Aspire SDK](xref:dotnet/aspire/sdk).
+    > The `IsAspireHost` property is no longer required in the project file. To upgrade the project `Sdk` node, you must do so manually, and it's best to restart your IDE as well. For more information, see [.NET Aspire SDK](xref:dotnet/aspire/sdk).
 
 1. Check for any NuGet package updates, either using the NuGet Package Manager in Visual Studio or the **Update NuGet Package** command in VS Code.
 1. Update to the latest [.NET Aspire templates](../fundamentals/aspire-sdk-templates.md) by running the following .NET command line:
@@ -64,12 +62,6 @@ If your app host project file doesn't have the `Aspire.AppHost.Sdk` reference, y
 ## 🚧 App host project file changes
 
 The .NET Aspire app host project file no longer requires the `IsAspireHost` property. This property was moved to the `Aspire.AppHost.Sdk` SDK, therefore, you can remove it from your project file. For more information, see [dotnet/aspire issue #8144](https://github.com/dotnet/aspire/pull/8144).
-
-<!--
-## 📈 Dashboard usage telemetry
-
-.NET Aspire collects usage telemetry from the dashboard by default. This telemetry helps us understand how you use the dashboard and what features are most important to you. We use this information to prioritize our work and improve the dashboard experience. You can opt out of this telemetry by setting the `DOTNET_DASHBOARD_ENABLE_TELEMETRY` environment variable to `false`. For more information, see [.NET Aspire dashboard usage telemetry](../fundamentals/dashboard/usage-telemetry.md).
--->
 
 ## 🚫 Disable dashboard resource graphs
 
