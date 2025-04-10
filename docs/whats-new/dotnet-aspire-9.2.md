@@ -88,7 +88,7 @@ There's [plenty of feedback and confusion](https://github.com/dotnet/aspire/issu
 
 The Azure SQL and Azure PostgreSQL hosting integrations both expose an `AddDatabase` API, but they don't create a database—unless you call their respective `RunAsContainer` methods. For more information, see [Understand Azure integration APIs](../azure/integrations-overview.md#understand-azure-integration-apis).
 
-The following hosting integrations don't support database creation:
+The following hosting integrations don't yet support database creation:
 
 - [📦 Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus)
 - [📦 Aspire.Hosting.MongoDb](https://www.nuget.org/packages/Aspire.Hosting.MongoDb)
