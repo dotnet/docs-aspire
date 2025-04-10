@@ -30,7 +30,7 @@ builder.AddAzureNpgsqlDbContext<YourDbContext>(connectionName: "postgresdb");
 > [!TIP]
 > The `connectionName` parameter must match the name used when adding the PostgreSQL server resource in the app host project.
 
-The preceding code snippet demonstrates how to use the `AddAzureNpgsqlDataSource` method to register an `NpgsqlDataSource` instance that uses Azure authentication ([Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication)). This `"postgresdb"` connection name corresponds to a connection string configuration value.
+The preceding code snippet demonstrates how to use the `AddAzureNpgsqlDbContext` method to register an `YourDbContext` (that's [pooled for performance](/ef/core/performance/advanced-performance-topics)) instance that uses Azure authentication ([Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication)). This `"postgresdb"` connection name corresponds to a connection string configuration value.
 
 After adding `YourDbContext` to the builder, you can get the `YourDbContext` instance using dependency injection. For example, to retrieve your data source object from an example service define it as a constructor parameter and ensure the `ExampleService` class is registered with the dependency injection container:
 
