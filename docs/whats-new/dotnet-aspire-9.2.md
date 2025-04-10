@@ -169,10 +169,8 @@ We've introduced a new `ConnectionStringResource` type that makes it easier to b
 var builder = DistributedApplication.CreateBuilder(args);
 
 var apiKey = builder.AddParameter("apiKey");
-var cs = builder.AddConnectionString("openai", csb =>
-{ 
-    csb.Append($"Endpoint=https://api.openai.com/v1;AccessKey={apiKey};");
-});
+var cs = builder.AddConnectionString("openai", 
+    ReferenceExpression.Create($"Endpoint=https://api.openai.com/v1;AccessKey={apiKey};"));
 
 var api = builder.AddProject<Projects.Api>("api")
                 .WithReference(cs);
@@ -182,7 +180,7 @@ var api = builder.AddProject<Projects.Api>("api")
 
 Container resources can now specify an `ImagePullPolicy` to control when the image is pulled. This is useful for resources that are updated frequently or that have a large image size. The following policies are supported:
 
-- `Default`: Default behavior (which is the same as missing in 9.2).
+- `Default`: Default behavior (which is the same as `Missing` in 9.2).
 - `Always`: Always pull the image.
 - `Missing`: Ensures the image is always pulled when the container starts.
 
@@ -218,7 +216,7 @@ There's [plenty of feedback and confusion](https://github.com/dotnet/aspire/issu
 | [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer) | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*> |
 | [📦 Aspire.Hosting.PostgreSql](https://www.nuget.org/packages/Aspire.Hosting.PostgreSql) | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase*> |
 
-The Azure SQL and Azure PostgreSQL hosting integrations both expose an `AddDatabase` API, but they don't create a database—unless you call their respective `RunAsContainer` methods. For more information, see [Understand Azure integration APIs](../azure/integrations-overview.md#understand-azure-integration-apis).
+The Azure SQL and Azure PostgreSQL hosting integrations also expose `AddDatabase` APIs which work with their respective `RunAsContainer` methods. For more information, see [Understand Azure integration APIs](../azure/integrations-overview.md#understand-azure-integration-apis).
 
 By default, .NET Aspire will create an empty database if it doesn't exist. You can also optionally provide a custom script to run during creation for advanced setup or seeding.
 
@@ -271,7 +269,7 @@ For more information, see [Configure Azure Container Apps environments](../azure
 
 .NET Aspire 9.2 adds client integrations for working with **Azure Database for PostgreSQL**, supporting both local development and secure cloud deployment.
 
-These integrations automatically use **Managed Identity (Entra ID)** in the cloud and fall back to username/password during local development—no configuration changes required.
+These integrations automatically use **Managed Identity (Entra ID)** in the cloud and during local development by default. They also support username/password, if configured in your AppHost. No application code changes are required to switch between authentication models.
 
 - [📦 Aspire.Azure.Npgsql](https://www.nuget.org/packages/Aspire.Azure.Npgsql)
 - [📦 Aspire.Azure.Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Aspire.Azure.Npgsql.EntityFrameworkCore.PostgreSQL)
@@ -307,12 +305,11 @@ var cosmos = builder.AddAzureCosmosDB("cosmos")
                     .RunAsPreviewEmulator(e => e.WithDataExplorer());
 
 var db = cosmos.AddCosmosDatabase("appdb");
-var todos = db.AddContainer("todos", partitionKey: "/userId");
-var users = db.AddContainer("users", partitionKey: "/id");
+db.AddContainer("todos", partitionKey: "/userId");
+db.AddContainer("users", partitionKey: "/id");
 
 builder.AddProject<Projects.TodoApi>("api")
-       .WithReference(todos)
-       .WithReference(users);
+       .WithReference(db);
 ```
 
 **In the API project:**
@@ -398,16 +395,15 @@ var vault = builder.AddAzureKeyVault("kv");
 var redis = builder.AddAzureRedis("redis")
                    .WithAccessKeyAuthentication(vault);
 
-builder.AddProject<Projects.Api>("api").WithReference(vault);
+builder.AddProject<Projects.Api>("api")
+       .WithReference(redis);
 ```
 
 Let the compute environment handle the secret management for you:
 
 ```csharp
-var vault = builder.AddAzureKeyVault("kv");
-
 var redis = builder.AddAzureRedis("redis")
-                   .WithAccessKeyAuthentication(vault);
+                   .WithAccessKeyAuthentication();
 
 builder.AddProject<Projects.Api>("api")
        .WithReference(redis);
