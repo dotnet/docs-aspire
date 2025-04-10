@@ -355,7 +355,7 @@ See the [breaking changes](#-breaking-changes) section for more details.
 
 This new identity model is an important step toward more secure and maintainable applications in Aspire. While it introduces some setup considerations, especially for database integrations, it lays the groundwork for better default security across the board.
 
-### 🔑 WithRoleAssignments
+### 🔑 Least-privilege role assignment functionality
 
 .NET Aspire now supports APIs for modeling **least-privilege role assignments** when deploying to. This enables more secure defaults by allowing you to define exactly which roles each app needs for specific Azure resources.
 
@@ -438,14 +438,14 @@ When .NET Aspire launched, it introduced a deployment manifest format—a serial
 
 Publishers simplify this process by working directly with the full application model in-process, enabling richer, more flexible, and maintainable publishing experiences.
 
-The following publishers are available:
+The following NuGet packages expose preview publishers:
 
 - [📦 Aspire.Hosting.Azure](https://www.nuget.org/packages/Aspire.Hosting.Azure)
 - [📦 Aspire.Hosting.Docker (Preview)](https://www.nuget.org/packages/Aspire.Hosting.Docker)
 - [📦 Aspire.Hosting.Kubernetes (Preview)](https://www.nuget.org/packages/Aspire.Hosting.Kubernetes)
 
 > [!IMPORTANT]
-> The Docker and Kubernetes publishers were initially written by community contributor, [Dave Sekula](https://github.com/Prom3theu5)—a great example of the community stepping up to extend the model. 💜 Thank you, Dave!
+> The Docker and Kubernetes publishers were contributed by community contributor, [Dave Sekula](https://github.com/Prom3theu5)—a great example of the community stepping up to extend the model. 💜 Thank you, Dave!
 
 To use a publisher, add the corresponding NuGet package to your app host project file and then call the `Add[Name]Publisher()` method in your app host builder.
 
