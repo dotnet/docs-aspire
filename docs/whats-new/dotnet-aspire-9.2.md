@@ -66,6 +66,8 @@ If your app host project file doesn't have the `Aspire.AppHost.Sdk` reference, y
 
 ## 🖥️ App Host
 
+The [app host](../fundamentals/app-host-overview.md) is the core of .NET Aspire, providing the local hosting environment for your distributed applications. In .NET Aspire 9.2, we've made several improvements to the app host:
+
 ### 🚧 project file changes
 
 The .NET Aspire app host project file no longer requires the `IsAspireHost` property. This property was moved to the `Aspire.AppHost.Sdk` SDK, therefore, you can remove it from your project file. For more information, see [dotnet/aspire issue #8144](https://github.com/dotnet/aspire/pull/8144).
@@ -90,7 +92,7 @@ The preceding code sets the display text for the `PG Admin` URL to `PG Admin`. T
 
 For more information, see [Define custom resource URLs](../fundamentals/custom-resource-urls.md).
 
-## 🔧 Dashboard
+## 🔧 Dashboard user experience improvements
 
 .NET Aspire 9.2 adds new features to the [dashboard](../fundamentals/dashboard/overview.md), making it a more powerful developer tool than ever. The following features were added to the dashboard in .NET Aspire 9.2:
 
@@ -251,7 +253,7 @@ The following hosting integrations don't currently support database creation:
 - [📦 Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql)
 - [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle)
 
-## ☁️ Azure
+## ☁️ Azure integration updates
 
 In .NET Aspire 9.2, we've made several updates to Azure integrations, including:
 
