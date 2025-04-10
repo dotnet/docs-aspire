@@ -90,6 +90,46 @@ var catalogDb = builder.AddPostgres("postgres")
 
 The above code sets the display text for the `PG Admin` URL to `PG Admin`. This makes it easier to access the management console directly from the dashboard.
 
+## 🔧 Dashboard
+
+.NET Aspire 9.2 adds new features to the [dashboard](/docs/fundamentals/dashboard/overview.md), making it a more powerful developer tool than ever. The following features were added to the dashboard in .NET Aspire 9.2:
+
+### 🧩 Resource graph
+
+The resource graph is a new way to visualize the resources in your apps. It displays a graph of resources, linked by relationships. Click the 'Graph' tab on the Resources page to view the resource graph.
+
+:::image type="content" source="media/dashboard-resource-graph.gif" lightbox="media/dashboard-resource-graph.gif" alt-text="Recording of using the dashboard resource graph.":::
+
+### 🎨 Resources icons
+
+We've added resource icons to the resources page! The icon color matches the resource's telemetry in structured logs and traces.
+
+:::image type="content" source="media/dashboard-resource-icons.png" lightbox="media/dashboard-resource-icons.png" alt-text="Screenshot of dashboard resource's page showing the new resource icons.":::
+
+### ⏯️ Pause and resume telemetry
+
+New buttons were added to the **Console logs**, **Structured logs**, **Traces** and **Metrics** pages to pause collecting telemetry. Click the pause button again to resume collecting telemetry.
+
+This feature allows you to pause telemetry in the dashboard while continuing to interact with your app.
+
+:::image type="content" source="media/dashboard-remove-telemetry.png" lightbox="media/dashboard-remove-telemetry.png" alt-text="Screenshot of the dashboard showing the pause button.":::
+
+### ❤️‍🩹 Metrics health warning
+
+The dashboard now warns you when a metric exceeds the configured cardinality limit. Once exceeded, the metric no longer provides accurate information.
+
+:::image type="content" source="media/dashboard-cardinality-limit.png" lightbox="media/dashboard-cardinality-limit.png" alt-text="Screenshot of a metric with the cardinality limit warning.":::
+
+### 🕰️ Console logs UTC
+
+Console logs now supports UTC timestamps. The setting is accessible via the console logs options button.
+
+:::image type="content" source="media/dashboard-console-logs-utc.png" lightbox="media/dashboard-console-logs-utc.png" alt-text="Screenshot of console logs page showing the UTC timestamps option.":::
+
+### 🔎 Trace details search text box
+
+We've added a search text box to trace details. Now you can quickly filter large traces to find the exact span you need.
+
 ### WithHttpCommand
 
 Adds WithHttpCommand(), which lets you define a resource command that sends an HTTP request to your app during development. Useful for triggering endpoints like seed or reset from the dashboard.
