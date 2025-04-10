@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure PostgreSQL integration
 description: Learn how to integrate Azure PostgreSQL with .NET Aspire applications, using both hosting and client integrations.
-ms.date: 01/21/2025
+ms.date: 03/31/2025
 uid: dotnet/aspire/azure-postgresql-integration
 ---
 
@@ -16,8 +16,6 @@ uid: dotnet/aspire/azure-postgresql-integration
 [!INCLUDE [postgresql-flexible-server](includes/postgresql-flexible-server.md)]
 
 ## Client integration
-
-[!INCLUDE [postgresql-client](includes/postgresql-client.md)]
 
 [!INCLUDE [azure-postgresql-client](includes/azure-postgresql-client.md)]
 
