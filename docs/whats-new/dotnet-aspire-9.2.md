@@ -163,11 +163,6 @@ if (builder.Environment.IsDevelopment())
 
 For more information, see [Custom HTTP commands in .NET Aspire](../fundamentals/http-commands.md).
 
-### 🚫 Disable dashboard resource graphs
-
-The dashboard has the ability to display resource graphs, which show the relationships between resources in your app. This feature is enabled by default, but you can disable it by setting the `Dashboard:UI:DisableResourceGraph` configuration option to `true`.
-
-For more information, see [.NET Aspire dashboard configuration](../fundamentals/dashboard/configuration.md#other).
 
 ### 🗂️ Connection string resource type
 
@@ -248,7 +243,6 @@ For more information and examples of using the `AddDatabase` API, see:
 
 The following hosting integrations don't currently support database creation:
 
-- [📦 Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus)
 - [📦 Aspire.Hosting.MongoDb](https://www.nuget.org/packages/Aspire.Hosting.MongoDb)
 - [📦 Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql)
 - [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle)
@@ -324,7 +318,7 @@ builder.AddProject<Projects.TodoApi>("api")
 **In the API project:**
 
 ```csharp
-var builder = Host.CreateApplicationBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
 builder.AddAzureCosmosDatabase("appdb")
        .AddKeyedContainer("todos")
