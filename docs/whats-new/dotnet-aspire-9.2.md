@@ -21,7 +21,7 @@ It's important to note that .NET Aspire releases out-of-band from .NET releases.
 ## ⬆️ Upgrade to .NET Aspire 9.2
 
 > [!IMPORTANT]
-> If you are using `azd` to deploy Azure PostgreSQL or Azure SQL Server, you now have to configure Azure Managed Identities. For more information, see [breaking changes](#-breaking-changes).
+> If you are using `azd` to deploy Azure PostgreSQL or Azure SQL Server, you now have to configure Azure Managed Identities. For more information, see [Improved mmanaged identity defaults](#️-improved-managed-identity-defaults).
 
 Moving between minor releases of .NET Aspire is simple:
 
@@ -98,7 +98,7 @@ For more information, see [Define custom resource URLs](../fundamentals/custom-r
 
 ### 🧩 Resource graph
 
-The resource graph is a new way to visualize the resources in your apps. It displays a graph of resources, linked by relationships. Click the 'Graph' tab on the Resources page to view the resource graph. See it in action on [BluSky](https://bsky.app/profile/james.newtonking.com/post/3lj7odu4re22p).
+The resource graph is a new way to visualize the resources in your apps. It displays a graph of resources, linked by relationships. Click the 'Graph' tab on the Resources page to view the resource graph. See it in action on [James's BlueSky](https://bsky.app/profile/james.newtonking.com/post/3lj7odu4re22p).
 
 For more information, see [.NET Aspire dashboard: Resources page](../fundamentals/dashboard/explore.md#resources-page).
 
@@ -122,7 +122,7 @@ The dashboard now warns you when a metric exceeds the configured cardinality lim
 
 :::image type="content" source="media/dashboard-cardinality-limit.png" lightbox="media/dashboard-cardinality-limit.png" alt-text="Screenshot of a metric with the cardinality limit warning.":::
 
-### 🕰️ Console logs UTC
+### 🕰️ UTC Console logs option
 
 Console logs now supports UTC timestamps. The setting is accessible via the console logs options button.
 
@@ -352,7 +352,7 @@ This is a **behavioral breaking change** and may impact apps using:
 
 - **Azure PostgreSQL** - The app that creates the database becomes the owner. Other apps (like those running migrations or performing data operations) will need explicit `GRANT` permissions to access the database correctly.
 
-See the [breaking changes](#-breaking-changes) section for more details.
+See the [breaking changes](../compatibility/9.2/index.md) page for more details.
 
 This new identity model is an important step toward more secure and maintainable applications in Aspire. While it introduces some setup considerations, especially for database integrations, it lays the groundwork for better default security across the board.
 
@@ -486,12 +486,6 @@ aspire publish --publisher docker-compose
 - `publish` – Generate deployment artifacts from your app host
 
 🧪 The CLI is **experimental** and in **preview**. We're exploring how to make it a first-class experience for .NET Aspire users—your feedback is welcome!
-
-## 📦 Other Integration updates
-
-- All integrations now support multiple configuration providers of the same resource type.
-- Redis, Valkey, and Garnet integrations now have password support by default.
-- Resources including CosmosDB, EventHubs, ServiceBus, and OpenAI now support deep-linking for parent-child relationships.
 
 ## 🧪 Testing template updates
 
