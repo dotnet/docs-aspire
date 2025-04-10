@@ -1,7 +1,7 @@
 ---
 title: Azure integrations overview
 description: Overview of the Azure integrations available in the .NET Aspire.
-ms.date: 03/07/2025
+ms.date: 04/10/2025
 uid: dotnet/aspire/integrations/azure-overview
 ---
 
@@ -107,7 +107,7 @@ You can query whether a resource is marked as an existing resource, by calling t
 
 .NET Aspire provides support for referencing existing Azure resources. You mark an existing resource through the `PublishAsExisting`, `RunAsExisting`, and `AsExisting` APIs. These APIs allow developers to reference already-deployed Azure resources, configure them, and generate appropriate deployment manifests using Bicep templates.
 
-Existing resources referenced with these APIs can be enhanced with role assignments and other customizations that are available with .NET Aspire's [infrastructure as code capabilities](#infrastructure-as-code). These APIs are limited to Azure resources that can be deployed with Bicep templates.
+Existing resources referenced with these APIs can be enhanced with [role assignments](role-assignments.md) and other customizations that are available with .NET Aspire's [infrastructure as code capabilities](#infrastructure-as-code). These APIs are limited to Azure resources that can be deployed with Bicep templates.
 
 ### Configure existing Azure resources for run mode
 
@@ -321,7 +321,7 @@ The preceding code:
   - Adds an environment variable named `Hello` to the container app, using the `env` parameter.
   - The `AsProvisioningParameter` method is used to treat `env` as either a new <xref:Azure.Provisioning.ProvisioningParameter> in infrastructure, or reuses an existing bicep parameter if one with the same name already exists.
 
-For more information, see <xref:Azure.Provisioning.AppContainers.ContainerApp> and <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.AsProvisioningParameter*>.
+To configure the Azure Container App environment, see [Configure Azure Container Apps environments](configure-aca-environments.md). For more information, see <xref:Azure.Provisioning.AppContainers.ContainerApp> and <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.AsProvisioningParameter*>.
 
 ## Infrastructure as code
 
@@ -462,11 +462,11 @@ By default, when you call any of the Bicep-related APIs, a call is also made to 
 
 Imagine that you have a Bicep template in a file named `storage.bicep` that provisions an Azure Storage Account:
 
-:::code language="bicep" source="snippets/AppHost.Bicep/storage.bicep":::
+:::code language="bicep" source="snippets/bicep/AppHost.Bicep/storage.bicep":::
 
 To add a reference to the Bicep file on disk, call the <xref:Aspire.Hosting.AzureBicepResourceExtensions.AddBicepTemplate%2A> method. Consider the following example:
 
-:::code language="csharp" source="snippets/AppHost.Bicep/Program.ReferenceBicep.cs" id="addfile":::
+:::code language="csharp" source="snippets/bicep/AppHost.Bicep/Program.ReferenceBicep.cs" id="addfile":::
 
 The preceding code adds a reference to a Bicep file located at `../infra/storage.bicep`. The file paths should be relative to the _app host_ project. This reference results in an <xref:Aspire.Hosting.Azure.AzureBicepResource> being added to the application's resources collection with the `"storage"` name, and the API returns an `IResourceBuilder<AzureBicepResource>` instance that can be used to further customize the resource.
 
@@ -474,7 +474,7 @@ The preceding code adds a reference to a Bicep file located at `../infra/storage
 
 While having a Bicep file on disk is the most common scenario, you can also add Bicep templates inline. Inline templates can be useful when you want to define a template in code or when you want to generate the template dynamically. To add an inline Bicep template, call the <xref:Aspire.Hosting.AzureBicepResourceExtensions.AddBicepTemplateString%2A> method with the Bicep template as a `string`. Consider the following example:
 
-:::code language="csharp" source="snippets/AppHost.Bicep/Program.InlineBicep.cs" id="addinline":::
+:::code language="csharp" source="snippets/bicep/AppHost.Bicep/Program.InlineBicep.cs" id="addinline":::
 
 In this example, the Bicep template is defined as an inline `string` and added to the application's resources collection with the name `"ai"`. This example provisions an Azure AI resource.
 
@@ -482,7 +482,7 @@ In this example, the Bicep template is defined as an inline `string` and added t
 
 [Bicep supports accepting parameters](/azure/azure-resource-manager/bicep/parameters), which can be used to customize the behavior of the template. To pass parameters to a Bicep template from .NET Aspire, chain calls to the <xref:Aspire.Hosting.AzureBicepResourceExtensions.WithParameter%2A> method as shown in the following example:
 
-:::code language="csharp" source="snippets/AppHost.Bicep/Program.PassParameter.cs" id="addparameter":::
+:::code language="csharp" source="snippets/bicep/AppHost.Bicep/Program.PassParameter.cs" id="addparameter":::
 
 The preceding code:
 
@@ -511,11 +511,11 @@ To use a well-known parameter, pass the parameter name to the <xref:Aspire.Hosti
 
 Consider an example where you want to set up an Azure Event Grid webhook. You might define the Bicep template as follows:
 
- :::code language="bicep" source="snippets/AppHost.Bicep/event-grid-webhook.bicep" highlight="3-4,27-35":::
+ :::code language="bicep" source="snippets/bicep/AppHost.Bicep/event-grid-webhook.bicep" highlight="3-4,27-35":::
 
 This Bicep template defines several parameters, including the `topicName`, `webHookEndpoint`, `principalId`, `principalType`, and the optional `location`. To pass these parameters to the Bicep template, you can use the following code snippet:
 
-:::code language="csharp" source="snippets/AppHost.Bicep/Program.PassParameter.cs" id="addwellknownparams":::
+:::code language="csharp" source="snippets/bicep/AppHost.Bicep/Program.PassParameter.cs" id="addwellknownparams":::
 
 - The `webHookApi` project is added as a reference to the `builder`.
 - The `topicName` parameter is passed a hardcoded name value.
@@ -528,11 +528,11 @@ The well-known parameters are convention-based and shouldn't be accompanied with
 
 In addition to passing parameters to Bicep templates, you can also get outputs from the Bicep templates. Consider the following Bicep template, as it defines an `output` named `endpoint`:
 
-:::code language="bicep" source="snippets/AppHost.Bicep/storage-out.bicep":::
+:::code language="bicep" source="snippets/bicep/AppHost.Bicep/storage-out.bicep":::
 
 The Bicep defines an output named `endpoint`. To get the output from the Bicep template, call the <xref:Aspire.Hosting.AzureBicepResourceExtensions.GetOutput%2A> method on an `IResourceBuilder<AzureBicepResource>` instance as demonstrated in following C# code snippet:
 
-:::code language="csharp" source="snippets/AppHost.Bicep/Program.GetOutputReference.cs" id="getoutput":::
+:::code language="csharp" source="snippets/bicep/AppHost.Bicep/Program.GetOutputReference.cs" id="getoutput":::
 
 In this example, the output from the Bicep template is retrieved and stored in an `endpoint` variable. Typically, you would pass this output as an environment variable to another resource that relies on it. For instance, if you had an ASP.NET Core Minimal API project that depended on this endpoint, you could pass the output as an environment variable to the project using the following code snippet:
 
@@ -558,11 +558,11 @@ It's important to [avoid outputs for secrets](/azure/azure-resource-manager/bice
 
 Consider the following Bicep template as an example the helps to demonstrate this concept of securing secret outputs:
 
-:::code language="bicep" source="snippets/AppHost.Bicep/cosmosdb.bicep" highlight="2,41":::
+:::code language="bicep" source="snippets/bicep/AppHost.Bicep/cosmosdb.bicep" highlight="2,41":::
 
 The preceding Bicep template expects a `keyVaultName` parameter, among several other parameters. It then defines an Azure Cosmos DB resource and stashes a secret into Azure Key Vault, named `connectionString` which represents the fully qualified connection string to the Cosmos DB instance. To access this secret connection string value, you can use the following code snippet:
 
-:::code language="csharp" source="snippets/AppHost.Bicep/Program.cs" id="secrets":::
+:::code language="csharp" source="snippets/bicep/AppHost.Bicep/Program.cs" id="secrets":::
 
 In the preceding code snippet, the `cosmos` Bicep template is added as a reference to the `builder`. The `connectionString` secret output is retrieved from the Bicep template and stored in a variable. The secret output is then passed as an environment variable (`ConnectionStrings__cosmos`) to the `api` project. This environment variable is used to connect to the Cosmos DB instance.
 

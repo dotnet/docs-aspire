@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs for adding resources and expressing dependencies.
-ms.date: 03/14/2025
+ms.date: 03/19/2025
 ms.topic: overview
 uid: dotnet/aspire/app-host
 ---
@@ -40,7 +40,7 @@ builder.Build().Run();
 
 ## App host project
 
-The app host project handles running all of the projects that are part of the .NET Aspire project. In other words, it's responsible for orchestrating all apps within the app model. The project itself is a .NET executable project that references the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package, sets the `IsAspireHost` property to `true`, and references the [.NET Aspire SDK](dotnet-aspire-sdk.md):
+The app host project handles running all of the projects that are part of the .NET Aspire project. In other words, it's responsible for orchestrating all apps within the app model. The project itself is a .NET executable project that references the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package, and uses the [.NET Aspire SDK](dotnet-aspire-sdk.md):
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -50,7 +50,6 @@ The app host project handles running all of the projects that are part of the .N
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net9.0</TargetFramework>
-        <IsAspireHost>true</IsAspireHost>
         <!-- Omitted for brevity -->
     </PropertyGroup>
 

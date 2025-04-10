@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.2.0" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>b43b41f1-2fc1-4e84-94d2-1eb3dd0f3c10</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AspireSample.ApiService\AspireSample.ApiService.csproj" />
+    <ProjectReference Include="..\AspireSample.Web\AspireSample.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.2.0" />
+    <PackageReference Include="Aspire.Hosting.Redis" Version="9.2.0" />
+  </ItemGroup>
+
+</Project>

@@ -5,6 +5,8 @@ ms.topic: include
 The .NET Aspire [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) hosting integration models the various Cosmos DB resources as the following types:
 
 - <xref:Aspire.Hosting.AzureCosmosDBResource>: Represents an Azure Cosmos DB resource.
+- <xref:Aspire.Hosting.Azure.AzureCosmosDBContainerResource>: Represents an Azure Cosmos DB container resource.
+- <xref:Aspire.Hosting.Azure.AzureCosmosDBDatabaseResource>: Represents an Azure Cosmos DB database resource.
 - <xref:Aspire.Hosting.Azure.AzureCosmosDBEmulatorResource>: Represents an Azure Cosmos DB emulator resource.
 
 To access these types and APIs for expressing them, add the [📦 Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
@@ -49,13 +51,11 @@ If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a d
 
 :::code language="bicep" source="../../snippets/azure/AppHost/cosmos.module.bicep":::
 
-The preceding Bicep is a module that provisions an Azure Cosmos DB account with the following defaults:
+The preceding Bicep is a module that provisions an Azure Cosmos DB account resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-- `kind`: The kind of Cosmos DB account. The default is `GlobalDocumentDB`.
-- `consistencyPolicy`: The consistency policy of the Cosmos DB account. The default is `Session`.
-- `locations`: The locations for the Cosmos DB account. The default is the resource group's location.
+:::code language="bicep" source="../../snippets/azure/AppHost/cosmos-roles.module.bicep":::
 
-In addition to the Cosmos DB account, it also adds the current application to the `Data Contributor` role for the Cosmos DB account. The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 
@@ -105,13 +105,15 @@ The dependent resource can access the injected connection string by calling the 
 
 ### Add Azure Cosmos DB database and container resources
 
+.NET Aspire models parent child relationships between Azure Cosmos DB resources. For example, an Azure Cosmos DB account (<xref:Aspire.Hosting.AzureCosmosDBResource>) can have multiple databases (<xref:Aspire.Hosting.Azure.AzureCosmosDBDatabaseResource>), and each database can have multiple containers (<xref:Aspire.Hosting.Azure.AzureCosmosDBContainerResource>). When you add a database or container resource, you do so on a parent resource.
+
 To add an Azure Cosmos DB database resource, call the <xref:Aspire.Hosting.AzureCosmosExtensions.AddCosmosDatabase*> method on an `IResourceBuilder<AzureCosmosDBResource>` instance:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var cosmos = builder.AddAzureCosmosDB("cosmos-db");
-cosmos.AddCosmosDatabase("db");
+var db = cosmos.AddCosmosDatabase("db");
 
 // After adding all resources, run the app...
 ```
@@ -127,14 +129,44 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var cosmos = builder.AddAzureCosmosDB("cosmos-db");
 var db = cosmos.AddCosmosDatabase("db");
-db.AddContainer("entries", "/id");
+var container = db.AddContainer("entries", "/id");
 
 // After adding all resources, run the app...
 ```
 
-The container is created in the database that's represented by the `AzureCosmosDBDatabaseResource` that you added earlier.
+The container is created in the database that's represented by the `AzureCosmosDBDatabaseResource` that you added earlier. For more information, see [Databases, containers, and items in Azure Cosmos DB](/azure/cosmos-db/resource-model).
 
-For more information, see [Databases, containers, and items in Azure Cosmos DB](/azure/cosmos-db/resource-model).
+#### Parent child resource relationship example
+
+To better understand the parent-child relationship between Azure Cosmos DB resources, consider the following example, which demonstrates adding an Azure Cosmos DB resource along with a database and container:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var cosmos = builder.AddAzureCosmosDB("cosmos");
+
+var customers = cosmos.AddCosmosDatabase("customers");
+var profiles = customers.AddContainer("profiles", "/id");
+
+var orders = cosmos.AddCosmosDatabase("orders");
+var details = orders.AddContainer("details", "/id");
+var history = orders.AddContainer("history", "/id");
+
+builder.AddProject<Projects.Api>("api")
+       .WithReference(profiles)
+       .WithReference(details)
+       .WithReference(history);
+
+builder.Build().Run();
+```
+
+The preceding code adds an Azure Cosmos DB resource named `cosmos` with two databases: `customers` and `orders`. The `customers` database has a single container named `profiles`, while the `orders` database has two containers: `details` and `history`. The partition key for each container is `/id`.
+
+The following diagram illustrates the parent child relationship between the Azure Cosmos DB resources:
+
+:::image type="content" source="media/cosmos-resource-relationships-thumb.png" alt-text="A diagram depicting Azure Cosmos DB resource parent child relationships." lightbox="media/cosmos-resource-relationships.png":::
+
+When your app host code expresses parent-child relationships, the client can deep-link to these resources by name. For example, the `customers` database can be referenced by name in the client project, registering a <xref:Microsoft.Azure.Cosmos.Database> instance that connects to the `customers` database. The same applies to named containers, for example, the `details` container can be referenced by name in the client project, registering a <xref:Microsoft.Azure.Cosmos.Container> instance that connects to the `details` container.
 
 ### Add Azure Cosmos DB emulator resource
 

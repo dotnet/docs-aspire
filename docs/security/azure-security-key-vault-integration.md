@@ -61,28 +61,9 @@ If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a d
 
 :::code language="bicep" source="../snippets/azure/AppHost/key-vault.module.bicep":::
 
-The preceding Bicep is a module that provisions an Azure Key Vault resource with the following defaults:
+The preceding Bicep is a module that provisions an Azure Key Vault resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-- `location`: The location of the resource group.
-- `principalId`: The principal ID of the user or service principal.
-- `principalType`: The principal type of the user or service principal.
-- `key_vault`: The Azure Key Vault resource:
-  - `name`: A unique name for the Azure Key Vault.
-  - `properties`: The Azure Key Vault properties:
-    - `tenantId`: The tenant ID of the Azure Key Vault.
-    - `sku`: The Azure Key Vault SKU:
-      - `family`: The SKU family.
-      - `name`: The SKU name.
-    - `enableRbacAuthorization`: A boolean value that indicates whether the Azure Key Vault has role-based access control (RBAC) authorization enabled.
-  - `tags`: The Azure Key Vault tags.
-- `key_vault_KeyVaultAdministrator`: The Azure Key Vault administrator role assignment:
-  - `name`: A unique name for the role assignment.
-  - `properties`: The role assignment properties:
-    - `principalId`: The principal ID of the user or service principal.
-    - `roleDefinitionId`: The role definition ID of the Azure Key Vault administrator role.
-    - `principalType`: The principal type of the user or service principal.
-  - `scope`: The scope of the role assignment.
-- `output`: The Azure Key Vault URI.
+:::code language="bicep" source="../snippets/azure/AppHost/key-vault-roles.module.bicep":::
 
 The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
