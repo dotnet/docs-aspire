@@ -162,6 +162,7 @@ if (builder.Environment.IsDevelopment())
 ```
 
 For more information, see [Custom HTTP commands in .NET Aspire](../fundamentals/http-commands.md).
+
 ### 🗂️ Connection string resource type
 
 We've introduced a new ConnectionStringResource type that makes it easier to build dynamic connection strings without defining a separate resource
@@ -188,9 +189,9 @@ Container resources can now specify an `ImagePullPolicy` to control when the ima
 
 ```csharp
 var cache = builder.AddRedis("cache")
-                .WithImageTag("latest")
-                .WithImagePullPolicy(ImagePullPolicy.Always)
-                .WithRedisInsight();
+                   .WithImageTag("latest")
+                   .WithImagePullPolicy(ImagePullPolicy.Always)
+                   .WithRedisInsight();
 ```
 
 The `ImagePullPolicy` is set to `Always`, which means the image will always be pulled when the resource is created. This is useful for resources that are updated frequently.
@@ -207,7 +208,7 @@ Integrations are a key part of .NET Aspire, allowing you to easily add and confi
 
 The Redis, Valkey, and Garnet containers enable password authentication by default. This is part of our goal to be secure by default—protecting development environments with sensible defaults while still making them easy to configure. Passwords can be set explicitly or generated automatically if not provided.
 
-### Automatic database creation support for Postgres and SQL Server
+### 💾 Automatic database creation support for Postgres and SQL Server
 
 There's [plenty of feedback and confusion](https://github.com/dotnet/aspire/issues/7101) around the `AddDatabase` API. The name implies that it adds a database, but it didn't actually create the database. In .NET Aspire 9.2, the `AddDatabase` API now creates a database for the following hosting integrations:
 
@@ -247,7 +248,7 @@ The following hosting integrations don't currently support database creation:
 
 ## ☁️ Azure integration updates
 
-In .NET Aspire 9.2, we've made several updates to Azure integrations, including:
+In .NET Aspire 9.2, we've made significant updates to Azure integrations, including:
 
 ### ⚙️ Configure Azure Container Apps environments
 
