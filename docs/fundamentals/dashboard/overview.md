@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard overview
 description: Overview of .NET Aspire dashboard and getting started.
-ms.date: 10/29/2024
+ms.date: 04/04/2025
 ms.topic: reference
 ---
 
@@ -54,7 +54,7 @@ For more information, see [.NET Aspire dashboard configuration](configuration.md
 
 ## Architecture
 
-The dashboard user experience is built with a variety of technologies. The frontend is built with [📦 Grpc.AspNetCore) NuGet package](https://www.nuget.org/packages/Grpc.AspNetCore) NuGet package) to the resource server. Consider the following diagram that illustrates the architecture of the .NET Aspire dashboard:
+The dashboard user experience is built with a variety of technologies. The frontend is built with [📦 Grpc.AspNetCore](https://www.nuget.org/packages/Grpc.AspNetCore) NuGet package to the resource server. Consider the following diagram that illustrates the architecture of the .NET Aspire dashboard:
 
 :::image type="content" source="media/architecture-diagram.png" lightbox="media/architecture-diagram.png" alt-text="A diagram showing the architecture of the .NET Aspire dashboard.":::
 
