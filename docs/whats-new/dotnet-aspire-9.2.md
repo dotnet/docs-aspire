@@ -98,13 +98,11 @@ For more information, see [Define custom resource URLs](../fundamentals/custom-r
 
 ### 🧩 Resource graph
 
-The resource graph is a new way to visualize the resources in your apps. It displays a graph of resources, linked by relationships. Click the 'Graph' tab on the Resources page to view the resource graph.
-
-:::image type="content" source="media/dashboard-resource-graph.gif" lightbox="media/dashboard-resource-graph.gif" alt-text="Recording of using the dashboard resource graph.":::
+The resource graph is a new way to visualize the resources in your apps. It displays a graph of resources, linked by relationships. Click the 'Graph' tab on the Resources page to view the resource graph. See it in action on [BluSky](https://bsky.app/profile/james.newtonking.com/post/3lj7odu4re22p).
 
 For more information, see [.NET Aspire dashboard: Resources page](../fundamentals/dashboard/explore.md#resources-page).
 
-### 🎨 Resources icons
+### 🎨 Resource icons
 
 We've added resource icons to the resources page. The icon color matches the resource's telemetry in structured logs and traces.
 
@@ -116,7 +114,7 @@ New buttons were added to the **Console logs**, **Structured logs**, **Traces** 
 
 This feature allows you to pause telemetry in the dashboard while continuing to interact with your app.
 
-:::image type="content" source="media/dashboard-remove-telemetry.png" lightbox="media/dashboard-remove-telemetry.png" alt-text="Screenshot of the dashboard showing the pause button.":::
+:::image type="content" source="media/dashboard-pause-telemetry.png" lightbox="media/dashboard-pause-telemetry.png" alt-text="Screenshot of the dashboard showing the pause button.":::
 
 ### ❤️‍🩹 Metrics health warning
 
@@ -132,7 +130,7 @@ Console logs now supports UTC timestamps. The setting is accessible via the cons
 
 ### 🔎 Trace details search text box
 
-We've added a search text box to trace details. Now you can quickly filter large traces to find the exact span you need.
+We've added a search text box to trace details. Now you can quickly filter large traces to find the exact span you need. See it in action on [BluSky](https://bsky.app/profile/james.newtonking.com/post/3llunn7fc4s2p).
 
 ### 🌐 HTTP-based resource command functionality
 
