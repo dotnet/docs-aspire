@@ -1,7 +1,6 @@
 ---
 title: Screen capture automation
 description: Details pertaining to the capturing of dashboard screens.
-ms.date: 04/10/25
 ---
 
 # .NET Aspire Dashboard: Screen Capture Automation
