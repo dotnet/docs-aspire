@@ -419,8 +419,30 @@ The following hosting integrations don't currently support database creation:
 - Redis, Valkey, and Garnet integrations now have password support by default.
 - Resources including CosmosDB, EventHubs, ServiceBus, and OpenAI now support deeplinking for parent-child relationships.
 
+## 🧪 Testing template updates
+
+The xUnit testing project template now supports a version selector, allowing the user to select either:
+
+- `v2`: The previous xUnit testing experience.
+- `v3`: The new xUnit testing experience and template.
+- `v3 with Microsoft Test Platform`: The next xUnit testing experience, template and uses the [Microsoft Testing Platform](/dotnet/core/testing/microsoft-testing-platform-intro).
+
+By default, to the `v3` experience. For more information, see:
+
+- [What's new in xUnit v.3](https://xunit.net/docs/getting-started/v3/whats-new)
+- [Microsoft Testing Platform support in xUnit.net v3](https://xunit.net/docs/getting-started/v3/microsoft-testing-platform)
+
+> [!NOTE]
+> Both `v3` versions are only supported with .NET Aspire 9.2 or later.
+
 ## 💔 Breaking changes
 
 With every release, we strive to make .NET Aspire better. However, some changes may break existing functionality. The following breaking changes are introduced in .NET Aspire 9.2:
 
 - [Breaking changes in .NET Aspire 9.2](../compatibility/9.2/index.md)
+
+## 🚫 Disable dashboard resource graphs
+
+The dashboard has the ability to display resource graphs, which show the relationships between resources in your app. This feature is enabled by default, but you can disable it by setting the `Dashboard:UI:DisableResourceGraph` configuration option to `true`.
+
+For more information, see [.NET Aspire dashboard configuration](../fundamentals/dashboard/configuration.md#other).
