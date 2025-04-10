@@ -162,8 +162,6 @@ if (builder.Environment.IsDevelopment())
 ```
 
 For more information, see [Custom HTTP commands in .NET Aspire](../fundamentals/http-commands.md).
-
-
 ### 🗂️ Connection string resource type
 
 We've introduced a new ConnectionStringResource type that makes it easier to build dynamic connection strings without defining a separate resource
@@ -415,7 +413,7 @@ builder.AddProject<Projects.Api>("api")
 
 **Previous behavior:**
 
-  `azd` created and managed secrets using Bicep, with no visibility in the app model. Secrets were handled implicitly and couldn't be customized in C#.
+  `azd` created and managed secrets using a key vault per resource, with no visibility in the app model. Secrets were handled implicitly and couldn't be customized in C#.
 
 **New behavior in 9.2:**
 
@@ -431,11 +429,11 @@ This update continues the security-focused improvements in this release.
 
 We're excited to announce several new deployment features in .NET Aspire 9.2, including:
 
-### 📦 Built-in publishers (Preview)
+### 📦 Publishers (Preview)
 
-Publishing integrations (or simply "publishers") are a new extensibility point in .NET Aspire that allow you to define how your distributed application gets transformed into deployable assets. Rather than relying on an [intermediate manifest format](../deployment/manifest-format.md), publishers can now plug directly into the application model to generate Docker Compose files, Kubernetes manifests, Azure resources, or whatever else your environment needs.
+Publishers are a new extensibility point in .NET Aspire that allow you to define how your distributed application gets transformed into deployable assets. Rather than relying on an [intermediate manifest format](../deployment/manifest-format.md), publishers can now plug directly into the application model to generate Docker Compose files, Kubernetes manifests, Azure resources, or whatever else your environment needs.
 
-When .NET Aspire launched, it introduced a deployment manifest format—a serialized snapshot of the application model. While useful for generating deployment targets like Bicep or Terraform, it burdened deployment tools with interpreting the manifest and resource authors with ensuring accurate serialization. This approach also complicated schema evolution and target-specific behaviors.
+When .NET Aspire launched, it introduced a deployment manifest format—a serialized snapshot of the application model. While useful it burdened deployment tools with interpreting the manifest and resource authors with ensuring accurate serialization. This approach also complicated schema evolution and target-specific behaviors.
 
 Publishers simplify this process by working directly with the full application model in-process, enabling richer, more flexible, and maintainable publishing experiences.
 
