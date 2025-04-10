@@ -21,7 +21,7 @@ It's important to note that .NET Aspire releases out-of-band from .NET releases.
 ## ⬆️ Upgrade to .NET Aspire 9.2
 
 > [!IMPORTANT]
-> If you are using `azd` to deploy Azure PostgreSQL or Azure SQL Server, you now have to configure Azure Managed Identities. For more information, see [Improved mmanaged identity defaults](#️-improved-managed-identity-defaults).
+> If you are using `azd` to deploy Azure PostgreSQL or Azure SQL Server, you now have to configure Azure Managed Identities. For more information, see [🛡️ Improved Managed Identity defaults](#improved-managed-identity-defaults).
 
 Moving between minor releases of .NET Aspire is simple:
 
@@ -48,7 +48,7 @@ Moving between minor releases of .NET Aspire is simple:
     ```
 
     > [!IMPORTANT]
-    > The `IsAspireHost` property is no longer required in the project file. For more information, see [App host project file changes](#-app-host-project-file-changes).
+    > The `IsAspireHost` property is no longer required in the project file. For more information, see [🚧 Project file changes](#project-file-changes).
 
     For more information, see [.NET Aspire SDK](xref:dotnet/aspire/sdk).
 
@@ -69,6 +69,8 @@ If your app host project file doesn't have the `Aspire.AppHost.Sdk` reference, y
 The [app host](../fundamentals/app-host-overview.md) is the core of .NET Aspire, providing the local hosting environment for your distributed applications. In .NET Aspire 9.2, we've made several improvements to the app host:
 
 ### 🚧 Project file changes
+
+<span id="project-file-changes"></span>
 
 The .NET Aspire app host project file no longer requires the `IsAspireHost` property. This property was moved to the `Aspire.AppHost.Sdk` SDK, therefore, you can remove it from your project file. For more information, see [dotnet/aspire issue #8144](https://github.com/dotnet/aspire/pull/8144).
 
@@ -335,6 +337,8 @@ app.MapPost("/todos", async ([FromKeyedServices("todos")] Container container, T
 This makes it easy and convenient to use the SDKs to interact with specific resources directly—without extra wiring or manual configuration. It's especially useful in apps that deal with multiple containers or Azure services.
 
 ### 🛡️ Improved Managed Identity defaults
+
+<span id="improved-managed-identity-defaults"></span>
 
 Starting in **.NET Aspire 9.2**, each Azure Container App now gets its **own dedicated managed identity** by default. This is a significant change from previous versions, where all apps shared a single, highly privileged identity.
 
