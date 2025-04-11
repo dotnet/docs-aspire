@@ -165,7 +165,7 @@ For more information, see [Custom HTTP commands in .NET Aspire](../fundamentals/
 
 ### 🗂️ Connection string resource type
 
-We've introduced a new `ConnectionStringResource` type that makes it easier to build dynamic connection strings without defining a separate resource type. This makes it easier to work with build dynamic parameterized connection strings.
+We've introduced a new `ConnectionStringResource` type that makes it easier to build dynamic connection strings without defining a separate resource type. This makes it easier to work with and build dynamic parameterized connection strings.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
