@@ -461,7 +461,7 @@ You can also build your own publisher by implementing the publishing APIs and ca
 
 ### 🆕 Aspire CLI (Preview)
 
-.NET Aspire 9.2 introduces the new **`aspire` CLI**, an experimental tool for creating, running, and publishing Aspire applications from the command line. It provides a rich, interactive experience tailored for Aspire users.
+.NET Aspire 9.2 introduces the new **`aspire` CLI**, a tool for creating, running, and publishing Aspire applications from the command line. It provides a rich, interactive experience tailored for Aspire users.
 
 The CLI is available as a .NET tool and can be installed with:
 
@@ -485,7 +485,7 @@ aspire publish --publisher docker-compose
 - `add <integration>` – Add an integration to your project  
 - `publish` – Generate deployment artifacts from your app host
 
-🧪 The CLI is **experimental** and in **preview**. We're exploring how to make it a first-class experience for .NET Aspire users—your feedback is welcome!
+🧪 The CLI is **preview**. We're exploring how to make it a first-class experience for .NET Aspire users—your feedback is welcome!
 
 ## 🧪 Testing template updates
 
