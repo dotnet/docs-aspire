@@ -18,14 +18,14 @@ Consider the following example app host _:::no-loc text="Program.cs":::_ file:
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Add a parameter named "value"
-var value = builder.AddParameter("value");
+// Add a parameter named "example-parameter-name"
+var parameter = builder.AddParameter("example-parameter-name");
 
 builder.AddProject<Projects.ApiService>("api")
-       .WithEnvironment("EXAMPLE_VALUE", value);
+       .WithEnvironment("ENVIRONMENT_VARIABLE_NAME", parameter);
 ```
 
-The preceding code adds a parameter named `value` to the app host. The parameter is then passed to the `Projects.ApiService` project as an environment variable named `EXAMPLE_VALUE`.
+The preceding code adds a parameter named `example-parameter-name` to the app host. The parameter is then passed to the `Projects.ApiService` project as an environment variable named `ENVIRONMENT_VARIABLE_NAME`.
 
 ### Configure parameter values
 
@@ -36,17 +36,17 @@ Consider the following app host configuration file _:::no-loc text="appsettings.
 ```json
 {
     "Parameters": {
-        "value": "local-value"
+        "example-parameter-name": "local-value"
     }
 }
 ```
 
-The preceding JSON configures a parameter in the `Parameters` section of the app host configuration. In other words, that app host is able to find the parameter as its configured. For example, you could walk up to the <xref:Aspire.Hosting.IDistributedApplicationBuilder.Configuration?displayProperty=nameWithType> and access the value using the `Parameters:value` key:
+The preceding JSON configures a parameter in the `Parameters` section of the app host configuration. In other words, that app host is able to find the parameter as its configured. For example, you could walk up to the <xref:Aspire.Hosting.IDistributedApplicationBuilder.Configuration?displayProperty=nameWithType> and access the value using the `Parameters:example-parameter-name` key:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var key = $"Parameters:value";
+var key = $"Parameters:example-parameter-name";
 var value = builder.Configuration[key]; // value = "local-value"
 ```
 
@@ -60,7 +60,7 @@ var value = builder.Configuration[key]; // value = "local-value"
 ```json
 {
   "resources": {
-    "value": {
+    "example-parameter-name": {
       "type": "parameter.v0",
       "value": "{value.inputs.value}",
       "inputs": {
