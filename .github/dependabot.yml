@@ -31,7 +31,18 @@ updates:
         patterns:
           - "*" # Prefer a single PR per solution update.
   - package-ecosystem: "nuget"
-    directory: "/docs/azure/snippets" #AppHost.Bicep.sln
+    directory: "/docs/azure/snippets/aca/AspireAca.AppHost" #AspireAca.AppHost.sln
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for solutions.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per solution update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/azure/snippets/bicep" #AppHost.Bicep.sln
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -141,6 +152,17 @@ updates:
         patterns:
           - "*" # Prefer a single PR per solution update.
   - package-ecosystem: "nuget"
+    directory: "/docs/fundamentals/dashboard/automation/aspire-dashboard" #aspire-dashboard.sln
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for solutions.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per solution update.
+  - package-ecosystem: "nuget"
     directory: "/docs/fundamentals/dashboard/snippets/BrowserTelemetry" #BrowserTelemetry.sln
     schedule:
       interval: "weekly"
@@ -163,7 +185,29 @@ updates:
         patterns:
           - "*" # Prefer a single PR per solution update.
   - package-ecosystem: "nuget"
+    directory: "/docs/fundamentals/snippets/custom-urls/AspireApp.Api" #AspireApp.Api.sln
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for solutions.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per solution update.
+  - package-ecosystem: "nuget"
     directory: "/docs/fundamentals/snippets/healthz/Healthz.ServiceDefaults" #healthz.sln
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for solutions.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per solution update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/fundamentals/snippets/http-commands/AspireApp" #AspireApp.sln
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -405,7 +449,7 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/azure/snippets/AppHost.Bicep" #AppHost.Bicep.csproj
+    directory: "/docs/azure/snippets/aca/AspireAca.AppHost/AspireApp.AppHost" #AspireApp.AppHost.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -416,7 +460,18 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
-    directory: "/docs/azure/snippets/WebHook.Api" #WebHook.Api.csproj
+    directory: "/docs/azure/snippets/bicep/AppHost.Bicep" #AppHost.Bicep.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/azure/snippets/bicep/WebHook.Api" #WebHook.Api.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -779,6 +834,61 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
+    directory: "/docs/fundamentals/dashboard/automation/aspire-dashboard/Aspire.Dashboard.ScreenCapture" #Aspire.Dashboard.ScreenCapture.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/fundamentals/dashboard/automation/aspire-dashboard/AspireSample/AspireSample.ApiService" #AspireSample.ApiService.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/fundamentals/dashboard/automation/aspire-dashboard/AspireSample/AspireSample.AppHost" #AspireSample.AppHost.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/fundamentals/dashboard/automation/aspire-dashboard/AspireSample/AspireSample.ServiceDefaults" #AspireSample.ServiceDefaults.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/fundamentals/dashboard/automation/aspire-dashboard/AspireSample/AspireSample.Web" #AspireSample.Web.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
     directory: "/docs/fundamentals/dashboard/snippets/BrowserTelemetry/BrowserTelemetry.AppHost" #BrowserTelemetry.AppHost.csproj
     schedule:
       interval: "weekly"
@@ -824,6 +934,39 @@ updates:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
     directory: "/docs/fundamentals/snippets/custom-commands/AspireApp/AspireApp.Web" #AspireApp.Web.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/fundamentals/snippets/custom-urls/AspireApp.AppHost" #AspireApp.AppHost.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/fundamentals/snippets/http-commands/AspireApp/AspireApp.Api" #AspireApp.Api.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/fundamentals/snippets/http-commands/AspireApp/AspireApp.AppHost" #AspireApp.AppHost.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
