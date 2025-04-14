@@ -381,7 +381,7 @@ Each container app automatically gets its own **managed identity**, and Aspire n
 
 ### 1️⃣ First-class Azure Key Vault Secret support
 
-Aspire now supports `IAzureKeyVaultSecretReference`, a new primitive for modeling secrets directly in the app model. This replaces `BicepSecretOutputReference` and gives finer grain control over key vault creation when using AzureBicepResource.
+.NET Aspire now supports `IAzureKeyVaultSecretReference`, a new primitive for modeling secrets directly in the app model. This replaces `BicepSecretOutputReference` and gives finer grain control over Key Vault creation when using `AzureBicepResource`.
 
 You can now:
 
@@ -415,7 +415,7 @@ builder.AddProject<Projects.Api>("api")
 
 **Previous behavior:**
 
-  `azd` created and managed secret outputs using a key vault per resource, with no visibility in the app model. These key vault resources were handled implicitly and couldn't be customized in C#.
+  `azd` created and managed secret outputs using a key vault per resource, with no visibility in the app model. These Key Vault resources were handled implicitly and couldn't be customized in C#.
 
 **New behavior in 9.2:**
 
