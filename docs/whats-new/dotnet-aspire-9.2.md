@@ -359,7 +359,7 @@ This new identity model is an important step toward more secure and maintainable
 
 ### 🔑 Least-privilege role assignment functionality
 
-.NET Aspire now supports APIs for modeling **least-privilege role assignments** when deploying to. This enables more secure defaults by allowing you to define exactly which roles each app needs for specific Azure resources.
+.NET Aspire now supports APIs for modeling **least-privilege role assignments** when referencing Azure resources. This enables more secure defaults by allowing you to define exactly which roles each app needs for specific Azure resources.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -381,7 +381,7 @@ Each container app automatically gets its own **managed identity**, and Aspire n
 
 ### 1️⃣ First-class Azure Key Vault Secret support
 
-Aspire now supports `IAzureKeyVaultSecretReference`, a new primitive for modeling secrets directly in the app model. This replaces `BicepSecretOutputReference` and avoids creating a separate Key Vault per resource.
+.NET Aspire now supports `IAzureKeyVaultSecretReference`, a new primitive for modeling secrets directly in the app model. This replaces `BicepSecretOutputReference` and gives finer grain control over Key Vault creation when using `AzureBicepResource`.
 
 You can now:
 
@@ -389,7 +389,7 @@ You can now:
 - Configure services that support keys (e.g., Redis, Cosmos DB) to store their secrets there
 - Reference those secrets in your app as environment variables or via the Key Vault config provider
 
-Use KeyVault directly in your api:
+Use KeyVault directly in the "api" project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -400,7 +400,7 @@ var redis = builder.AddAzureRedis("redis")
                    .WithAccessKeyAuthentication(vault);
 
 builder.AddProject<Projects.Api>("api")
-       .WithReference(redis);
+       .WithReference(vault);
 ```
 
 Let the compute environment handle the secret management for you:
@@ -415,7 +415,7 @@ builder.AddProject<Projects.Api>("api")
 
 **Previous behavior:**
 
-  `azd` created and managed secrets using a key vault per resource, with no visibility in the app model. Secrets were handled implicitly and couldn't be customized in C#.
+  `azd` created and managed secret outputs using a key vault per resource, with no visibility in the app model. These Key Vault resources were handled implicitly and couldn't be customized in C#.
 
 **New behavior in 9.2:**
 
