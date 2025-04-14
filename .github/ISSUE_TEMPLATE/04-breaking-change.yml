@@ -2,77 +2,78 @@ name: ".NET Aspire breaking change"
 description: Report a change in .NET Aspire that breaks something that worked in a previous version. Intended mostly for product-team use.
 title: "[Breaking change]: "
 labels:
-  - "⛓️‍💥 breaking-change"
-  - Pri1
-  - doc-idea
+- "⛓️‍💥 breaking-change"
+- Pri1
+- doc-idea
+- area-docs
 assignees:
- - IEvangelist
+- IEvangelist
 body:
-  - type: textarea
-    id: description
-    attributes:
-      label: Description
-      description: Brief description of the breaking change.
-    validations:
-      required: true
-  - type: dropdown
-    id: version
-    attributes:
-      label: Version
-      description: What version of .NET Aspire introduced the breaking change?
-      options:
-        - .NET Aspire 9.0 GA
-        - .NET Aspire 9.0 RC1
-        - .NET Aspire 9.1
-        - .NET Aspire 9.2
-        - .NET Aspire 9.3
-        - .NET Aspire 10 Preview
-        - Other (please put exact version in description textbox)
-    validations:
-      required: true
-  - type: textarea
-    id: old-behavior
-    attributes:
-      label: Previous behavior
-      description: Describe the previous behavior.
-    validations:
-      required: true
-  - type: textarea
-    id: new-behavior
-    attributes:
-      label: New behavior
-      description: Describe the new behavior. Include code snippets if applicable.
-    validations:
-      required: true
-  - type: checkboxes
-    id: change-type
-    attributes:
-      label: Type of breaking change
-      description: This information will be used to label the issue appropriately. [(How do I decide?)](https://learn.microsoft.com/dotnet/core/compatibility/categories)
-      options:
-        - label: "**Binary incompatible**: Existing binaries might encounter a breaking change in behavior, such as failure to load or execute, and if so, require recompilation."
-        - label:  "**Source incompatible**: When recompiled using the new SDK or component or to target the new runtime, existing source code might require source changes to compile successfully."
-        - label:  "**Behavioral change**: Existing binaries might behave differently at run time."
-  - type: textarea
-    id: reason
-    attributes:
-      label: Reason for change
-      description: Describe why the breaking change was introduced.
-    validations:
-      required: true
-  - type: textarea
-    id: recommended-action
-    attributes:
-      label: Recommended action
-      description: Describe the recommended action an affected user should take, such as workarounds or examples of code changes.
-    validations:
-      required: true
-  - type: textarea
-    id: affected-apis
-    attributes:
-      label: Affected APIs
-      description: List all the APIs affected by this change. For methods, clarify if it's all overloads or specific overloads.
-  - type: markdown
-    attributes:
-      value: |
-        Finally, please email a link to this breaking change issue to [.NET Breaking Change Notifications](mailto:dotnetbcn@microsoft.com).
+- type: textarea
+  id: description
+  attributes:
+    label: Description
+    description: Brief description of the breaking change.
+  validations:
+    required: true
+- type: dropdown
+  id: version
+  attributes:
+    label: Version
+    description: What version of .NET Aspire introduced the breaking change?
+    options:
+    - .NET Aspire 9.0 GA
+    - .NET Aspire 9.0 RC1
+    - .NET Aspire 9.1
+    - .NET Aspire 9.2
+    - .NET Aspire 9.3
+    - .NET Aspire 10 Preview 1
+    - Other (please put exact version in description textbox)
+  validations:
+    required: true
+- type: textarea
+  id: old-behavior
+  attributes:
+    label: Previous behavior
+    description: Describe the previous behavior.
+  validations:
+    required: true
+- type: textarea
+  id: new-behavior
+  attributes:
+    label: New behavior
+    description: Describe the new behavior. Include code snippets if applicable.
+  validations:
+    required: true
+- type: checkboxes
+  id: change-type
+  attributes:
+    label: Type of breaking change
+    description: This information will be used to label the issue appropriately. [(How do I decide?)](https://learn.microsoft.com/dotnet/core/compatibility/categories)
+    options:
+    - label: "**Binary incompatible**: Existing binaries might encounter a breaking change in behavior, such as failure to load or execute, and if so, require recompilation."
+    - label: "**Source incompatible**: When recompiled using the new SDK or component or to target the new runtime, existing source code might require source changes to compile successfully."
+    - label: "**Behavioral change**: Existing binaries might behave differently at run time."
+- type: textarea
+  id: reason
+  attributes:
+    label: Reason for change
+    description: Describe why the breaking change was introduced.
+  validations:
+    required: true
+- type: textarea
+  id: recommended-action
+  attributes:
+    label: Recommended action
+    description: Describe the recommended action an affected user should take, such as workarounds or examples of code changes.
+  validations:
+    required: true
+- type: textarea
+  id: affected-apis
+  attributes:
+    label: Affected APIs
+    description: List all the APIs affected by this change. For methods, clarify if it's all overloads or specific overloads.
+- type: markdown
+  attributes:
+    value: |
+      Finally, please email a link to this breaking change issue to [.NET Breaking Change Notifications](mailto:dotnetbcn@microsoft.com).
