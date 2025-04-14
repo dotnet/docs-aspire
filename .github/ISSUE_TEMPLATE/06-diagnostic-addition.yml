@@ -1,0 +1,24 @@
+name: ".NET Aspire new diagnostics"
+description: Report a new diagnostic that should be added to .NET Aspire. Intended mostly for product-team use.
+title: "[Add diagnostics]: "
+labels:
+- Pri1
+- doc-idea
+- area-docs
+assignees:
+- IEvangelist
+body:
+- type: input
+  id: diagnostic-id
+  attributes:
+    label: Diagnostic ID
+    description: Enter the ID of the diagnostic to be added. Used for headings, i.e.; `ASPIREACADOMAINS001`.
+  validations:
+    required: true
+- type: textarea
+  id: description
+  attributes:
+    label: Description
+    description: Describe why the diagnostic exists and what it's used to indicate.
+  validations:
+    required: true
