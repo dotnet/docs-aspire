@@ -51,7 +51,7 @@ The preceding code adds an Azure AI Search resource named `search` to the app ho
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureSearchExtensions.AddAzureSearch*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see Local provisioning: Configuration
 
-#### Generated provisioning Bicep
+#### Provisioning-generated Bicep
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by hand; instead, the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure AI Search resource, Bicep is generated to provision the search service with appropriate defaults.
 
