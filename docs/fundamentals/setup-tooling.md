@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 03/11/2025
+ms.date: 04/15/2025
 zone_pivot_groups: dev-environment
 uid: dotnet/aspire/setup-tooling
 ---
@@ -136,12 +136,12 @@ For more information, see [.NET Aspire templates](aspire-sdk-templates.md).
 
 ## Container runtime
 
-.NET Aspire projects are designed to run in containers. You can use either Docker Desktop or Podman as your container runtime. [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most common container runtime. [Podman](https://podman.io/docs/installation) is an open-source daemonless alternative to Docker, that can build and run Open Container Initiative (OCI) containers. If your host environment has both Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `DOTNET_ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
+.NET Aspire projects are designed to run in containers. You can use either Docker Desktop or Podman as your container runtime. [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most common container runtime. [Podman](https://podman.io/docs/installation) is an open-source daemonless alternative to Docker, that can build and run Open Container Initiative (OCI) containers. If your host environment has both Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
 
 ## [Linux](#tab/linux)
 
 ```bash
-export DOTNET_ASPIRE_CONTAINER_RUNTIME=podman
+export ASPIRE_CONTAINER_RUNTIME=podman
 ```
 
 For more information, see [Install Podman on Linux](https://podman.io/docs/installation#installing-on-linux).
@@ -149,7 +149,7 @@ For more information, see [Install Podman on Linux](https://podman.io/docs/insta
 ## [Windows](#tab/windows)
 
 ```powershell
-[System.Environment]::SetEnvironmentVariable("DOTNET_ASPIRE_CONTAINER_RUNTIME", "podman", "User")
+[System.Environment]::SetEnvironmentVariable("ASPIRE_CONTAINER_RUNTIME", "podman", "User")
 ```
 
 For more information, see [Install Podman on Windows](https://podman.io/docs/installation#installing-on-mac--windows).

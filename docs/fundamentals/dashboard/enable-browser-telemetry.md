@@ -1,7 +1,7 @@
 ---
 title: Enable browser telemetry
 description: Learn how to enable browser telemetry in the .NET Aspire dashboard.
-ms.date: 11/11/2024
+ms.date: 04/15/2025
 ---
 
 # Enable browser telemetry
@@ -23,8 +23,8 @@ The .NET Aspire dashboard receives telemetry through OTLP endpoints. [HTTP OTLP 
 
 To configure the gPRC or HTTP endpoints, specify the following environment variables:
 
-- `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL`: The gRPC endpoint to which the dashboard connects for its data.
-- `DOTNET_DASHBOARD_OTLP_HTTP_ENDPOINT_URL`: The HTTP endpoint to which the dashboard connects for its data.
+- `ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL`: The gRPC endpoint to which the dashboard connects for its data.
+- `ASPIRE_DASHBOARD_OTLP_HTTP_ENDPOINT_URL`: The HTTP endpoint to which the dashboard connects for its data.
 
 Configuration of the HTTP OTLP endpoint depends on whether the dashboard is started by the app host or is run standalone.
 
@@ -36,7 +36,7 @@ Consider the following example JSON file:
 
 :::code language="json" source="snippets/BrowserTelemetry/BrowserTelemetry.AppHost/Properties/launchSettings.json" highlight="12,25":::
 
-The preceding launch settings JSON file configures all profiles to include the `DOTNET_DASHBOARD_OTLP_HTTP_ENDPOINT_URL` environment variable.
+The preceding launch settings JSON file configures all profiles to include the `ASPIRE_DASHBOARD_OTLP_HTTP_ENDPOINT_URL` environment variable.
 
 #### Configure OTLP HTTP with standalone dashboard
 
@@ -112,7 +112,7 @@ For more information, see [.NET Aspire dashboard configuration: OTLP CORS](confi
 
 Dashboard OTLP endpoints can be secured with API key authentication. When enabled, HTTP OTLP requests to the dashboard must include the API key as the `x-otlp-api-key` header. By default a new  API key is generated each time the dashboard is run.
 
-API key authentication is automatically enabled when the dashboard is run from the app host. Dashboard authentication can be disabled by setting `DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` to `true` in the app host's _launchSettings.json_ file.
+API key authentication is automatically enabled when the dashboard is run from the app host. Dashboard authentication can be disabled by setting `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` to `true` in the app host's _launchSettings.json_ file.
 
 OTLP endpoints are unsecured by default in the standalone dashboard.
 
