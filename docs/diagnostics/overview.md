@@ -2,7 +2,7 @@
 title: .NET Aspire diagnostics overview
 description: Learn about the diagnostics tools and features available in .NET Aspire.
 ms.topic: overview
-ms.date: 04/14/2025
+ms.date: 04/15/2025
 ai-usage: ai-assisted
 ---
 
@@ -14,7 +14,13 @@ Several APIs of .NET Aspire are decorated with the <xref:System.Diagnostics.Code
 
 <span id="ASPIREACADOMAINS001"></span>
 
-.NET Aspire 9.0 introduces the ability to customize container app resources using the `PublishAsAzureContainerApp(...)` extension method. When you use this method, the Azure Developer CLI (`azd`) can no longer preserve custom domains. Instead use the `ConfigureCustomDomain` method to configure a custom domain within the .NET Aspire app host. The `ConfigureCustomDomain(...)` extension method is experimental. To suppress the compiler error/warning, use the following code:
+.NET Aspire 9.0 introduces the ability to customize container app resources using any of the following extension methods:
+
+- <xref:Aspire.Hosting.AzureContainerAppProjectExtensions.PublishAsAzureContainerApp*>
+- <xref:Aspire.Hosting.AzureContainerAppContainerExtensions.PublishAsAzureContainerApp*>
+- <xref:Aspire.Hosting.AzureContainerAppExecutableExtensions.PublishAsAzureContainerApp*>
+
+When you use one of these methods, the Azure Developer CLI (`azd`) can no longer preserve custom domains. Instead use the <xref:Aspire.Hosting.ContainerAppExtensions.ConfigureCustomDomain(Azure.Provisioning.AppContainers.ContainerApp,Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource})> method to configure a custom domain within the .NET Aspire app host. The `ConfigureCustomDomain(...)` extension method is experimental. To suppress the compiler error/warning, use the following code:
 
 To suppress the `ASPIREACADOMAINS001` diagnostic, select the **Copy** button from the following diagnostic ID, and see [Suppress diagnostic](#suppress-diagnostic):
 
