@@ -49,7 +49,7 @@ The preceding code:
 - Adds a [Redis cache](../caching/stackexchange-redis-integration.md) named `cache` to the application.
 - Adds a parameter named `ApiCacheInvalidationKey` to the application. This parameter is marked as a secret, meaning its value is treated securely.
 - Adds a project named `AspireApp_Api` to the application.
-- Adds a reference to the Redis cache and [waits for it to be ready before proceeding](app-host-overview.md#waiting-for-resources).
+- Adds a reference to the Redis cache and [waits for it to be ready before proceeding](orchestrate-resources.md#waiting-for-resources).
 - Configures an HTTP command for the project with the following:
   - `path`: Specifies the URL path for the HTTP command (`/cache/invalidate`).
   - `displayName`: Sets the name of the command as it appears in the UI (`Invalidate cache`).
