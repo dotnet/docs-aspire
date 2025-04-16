@@ -1,8 +1,7 @@
 ---
 title: Orchestrate resources in .NET Aspire
 description: Learn techniques to control the behavior of .NET Aspire resources such as project, containers, and executable resources.
-ms.date: 04/04/2025
-ms.topic: article
+ms.date: 04/16/2025
 uid: dotnet/aspire/orchestrate-resources
 ---
 
@@ -15,7 +14,7 @@ In .NET Aspire, a **resource** is a dependant part of a cloud-native application
 - **Container**: You can add Docker containers, based on specific images to your .NET Aspire solution.
 - **Integration resources**: Integrations often add resources such as databases, caches, and messaging services to your application.
 
-> [!NOTE] 
+> [!NOTE]
 > For the fundamentals of .NET Aspire orchestration and how it manages resources, see [.NET Aspire orchestration overview](app-host-overview.md). In this article, you'll learn how to customize the behavior of resources further by writing code in the app host project.
 
 ## Configure explicit resource start
