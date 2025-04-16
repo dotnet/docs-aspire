@@ -93,7 +93,7 @@ messagesHub.AddEventHandler(
 
 The preceding code adds a worker service project named `worker` with an external HTTP endpoint. The hub named `messages` resource is added to the `web-pubsub` resource, and an event handler is added to the `messagesHub` resource. The event handler URL is set to the worker service's external HTTP endpoint. For more information, see [Azure Web PubSub event handlers](/azure/azure-web-pubsub/howto-develop-eventhandler).
 
-#### Generated provisioning Bicep
+#### Provisioning-generated Bicep
 
 When you publish your app, .NET Aspire provisioning APIs generate Bicep alongside the manifest file. Bicep is a domain-specific language for defining Azure resources. For more information, see [Bicep Overview](/azure/azure-resource-manager/bicep/overview).
 

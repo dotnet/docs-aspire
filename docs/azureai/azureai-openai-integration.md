@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure OpenAI integration (Preview)
 description: Learn how to use the .NET Aspire Azure OpenAI integration.
-ms.date: 04/03/2025
+ms.date: 04/15/2025
 ---
 
 # .NET Aspire Azure OpenAI integration (Preview)
@@ -53,17 +53,17 @@ The preceding code adds an Azure OpenAI resource named `openai` to the app host 
 
 ### Add an Azure OpenAI deployment resource
 
-To add an Azure OpenAI deployment resource, call the <xref:Aspire.Hosting.AzureOpenAIExtensions.AddDeployment(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.AzureOpenAIResource},Aspire.Hosting.ApplicationModel.AzureOpenAIDeployment)> method:
+To add an Azure OpenAI deployment resource, call the <xref:Aspire.Hosting.AzureOpenAIExtensions.AddDeployment(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.AzureOpenAIResource},System.String,System.String,System.String)> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var openai = builder.AddAzureOpenAI("openai");
+
 openai.AddDeployment(
-    new AzureOpenAIDeployment(
-        name: "preview",
-        modelName: "gpt-4.5-preview",
-        modelVersion: "2025-02-27"));
+    name: "preview",
+    modelName: "gpt-4.5-preview",
+    modelVersion: "2025-02-27");
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(openai)
@@ -77,7 +77,7 @@ The preceding code:
 - Adds an Azure OpenAI resource named `openai`.
 - Adds an Azure OpenAI deployment resource named `preview` with a model name of `gpt-4.5-preview`. The model name must correspond to an [available model](/azure/ai-services/openai/concepts/models) in the Azure OpenAI service.
 
-### Generated provisioning Bicep
+### Provisioning-generated Bicep
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep provisions an Azure OpenAI resource with standard defaults.
 
