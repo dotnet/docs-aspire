@@ -4,92 +4,6 @@
   "source": "https://excalidraw.com",
   "elements": [
     {
-      "id": "QM4BeQ83W7CtG2GTg4j3R",
-      "type": "arrow",
-      "x": 369.72797537376726,
-      "y": -224.59199069332954,
-      "width": 522.704579820363,
-      "height": 4.0055055444463505,
-      "angle": 0,
-      "strokeColor": "#000",
-      "backgroundColor": "#0c8599",
-      "fillStyle": "solid",
-      "strokeWidth": 4,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": "at",
-      "roundness": null,
-      "seed": 1411621205,
-      "version": 829,
-      "versionNonce": 249893716,
-      "isDeleted": false,
-      "boundElements": [
-        {
-          "type": "text",
-          "id": "tkHupmQFVHLZYzwHJRsRG"
-        }
-      ],
-      "updated": 1744220391620,
-      "link": null,
-      "locked": true,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          522.704579820363,
-          -4.0055055444463505
-        ]
-      ],
-      "lastCommittedPoint": null,
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": null,
-      "elbowed": false
-    },
-    {
-      "id": "tkHupmQFVHLZYzwHJRsRG",
-      "type": "text",
-      "x": 441.4549144049231,
-      "y": -269.4707956412963,
-      "width": 383.484375,
-      "height": 82.8,
-      "angle": 0,
-      "strokeColor": "#000",
-      "backgroundColor": "#0c8599",
-      "fillStyle": "solid",
-      "strokeWidth": 4,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": "atV",
-      "roundness": null,
-      "seed": 793132283,
-      "version": 49,
-      "versionNonce": 1994657876,
-      "isDeleted": false,
-      "boundElements": [],
-      "updated": 1744219947557,
-      "link": null,
-      "locked": true,
-      "text": "Configuration\n(Environment Variables)",
-      "fontSize": 36,
-      "fontFamily": 2,
-      "textAlign": "center",
-      "verticalAlign": "middle",
-      "containerId": "QM4BeQ83W7CtG2GTg4j3R",
-      "originalText": "Configuration\n(Environment Variables)",
-      "autoResize": true,
-      "lineHeight": 1.15
-    },
-    {
       "id": "mRiIOlOIzJBtvAp1-b_Op",
       "type": "rectangle",
       "x": 165.102713996945,
@@ -660,8 +574,8 @@
         "type": 2
       },
       "seed": 899412429,
-      "version": 64,
-      "versionNonce": 471599875,
+      "version": 69,
+      "versionNonce": 638517827,
       "isDeleted": false,
       "boundElements": [
         {
@@ -669,7 +583,7 @@
           "id": "N6GfDkI4-NMuSfEwrURHY"
         }
       ],
-      "updated": 1744826422202,
+      "updated": 1744828035922,
       "link": null,
       "locked": false,
       "points": [
@@ -709,11 +623,11 @@
       "index": "b0f8",
       "roundness": null,
       "seed": 603669933,
-      "version": 61,
-      "versionNonce": 1940516707,
+      "version": 69,
+      "versionNonce": 1208711021,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1744826422189,
+      "updated": 1744828035922,
       "link": null,
       "locked": false,
       "text": "GET /api/products",
