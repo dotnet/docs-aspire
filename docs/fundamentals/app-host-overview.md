@@ -10,7 +10,7 @@ uid: dotnet/aspire/app-host
 
 .NET Aspire provides APIs for expressing resources and dependencies within your distributed application. In addition to these APIs, [there's tooling](setup-tooling.md#install-net-aspire-prerequisites) that enables several compelling scenarios. The orchestrator is intended for _local development_ purposes and isn't supported in production environments.
 
-<span id="terminology">
+<span id="terminology"></span>
 
 Before continuing, consider some common terminology used in .NET Aspire:
 
@@ -19,8 +19,6 @@ Before continuing, consider some common terminology used in .NET Aspire:
 - **Resource**: A [resource](#built-in-resource-types) is a dependent part of an application, such as a .NET project, container, executable, database, cache, or cloud service. It represents any part of the application that can be managed or referenced.
 - **Integration**: An integration is a NuGet package for either the _app host_ that models a _resource_ or a package that configures a client for use in a consuming app. For more information, see [.NET Aspire integrations overview](integrations-overview.md).
 - **Reference**: A reference defines a connection between resources, expressed as a dependency using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> API. For more information, see [Reference resources](#reference-resources) or [Reference existing resources](#reference-existing-resources).
-
-</span>
 
 > [!NOTE]
 > .NET Aspire's orchestration is designed to enhance your _local development_ experience by simplifying the management of your cloud-native app's configuration and interconnections. While it's an invaluable tool for development, it's not intended to replace production environment systems like [Kubernetes](../deployment/overview.md#deploy-to-kubernetes), which are specifically designed to excel in that context.

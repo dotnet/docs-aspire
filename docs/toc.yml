@@ -36,7 +36,7 @@ items:
     href: fundamentals/app-host-overview.md
   - name: Locally orchestrate
     items:
-    - name: Orchestrate resources in .NET Aspire
+    - name: Resources in .NET Aspire
       displayName: orchestration,aspire apphost,aspire app
       href: fundamentals/orchestrate-resources.md
     - name: Node.js apps in .NET Aspire
