@@ -16,9 +16,9 @@ Several APIs of .NET Aspire are decorated with the <xref:System.Diagnostics.Code
 
 .NET Aspire 9.0 introduces the ability to customize container app resources using any of the following extension methods:
 
-- <xref:Aspire.Hosting.AzureContainerAppProjectExtensions.PublishAsAzureContainerApp*>
-- <xref:Aspire.Hosting.AzureContainerAppContainerExtensions.PublishAsAzureContainerApp*>
-- <xref:Aspire.Hosting.AzureContainerAppExecutableExtensions.PublishAsAzureContainerApp*>
+- <xref:Aspire.Hosting.AzureContainerAppProjectExtensions.PublishAsAzureContainerApp*?displayProperty=nameWithType>
+- <xref:Aspire.Hosting.AzureContainerAppContainerExtensions.PublishAsAzureContainerApp*?displayProperty=nameWithType>
+- <xref:Aspire.Hosting.AzureContainerAppExecutableExtensions.PublishAsAzureContainerApp*?displayProperty=nameWithType>
 
 When you use one of these methods, the Azure Developer CLI (`azd`) can no longer preserve custom domains. Instead use the <xref:Aspire.Hosting.ContainerAppExtensions.ConfigureCustomDomain(Azure.Provisioning.AppContainers.ContainerApp,Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource},Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.ParameterResource})> method to configure a custom domain within the .NET Aspire app host. The `ConfigureCustomDomain(...)` extension method is experimental. To suppress the compiler error/warning, use the following code:
 
