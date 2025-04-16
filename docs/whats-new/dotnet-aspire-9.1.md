@@ -1,7 +1,7 @@
 ---
 title: What's new in .NET Aspire 9.1
 description: Learn what's new in the official general availability release of .NET Aspire 9.1.
-ms.date: 02/25/2025
+ms.date: 04/15/2025
 ---
 
 # What's new in .NET Aspire 9.1
@@ -107,7 +107,7 @@ For more information, see [.NET Aspire dashboard: Resources page](../fundamental
 
 ### 🛡️ CORS support for custom local domains
 
-You can now set the `DOTNET_DASHBOARD_CORS_ALLOWED_ORIGINS` environment variable to allow the dashboard to receive telemetry from other browser apps, such as if you have resources running on custom localhost domains.
+You can now set the `ASPIRE_DASHBOARD_CORS_ALLOWED_ORIGINS` environment variable to allow the dashboard to receive telemetry from other browser apps, such as if you have resources running on custom localhost domains.
 
 For more information, see [.NET Aspire app host: Dashboard configuration](../app-host/configuration.md#dashboard).
 

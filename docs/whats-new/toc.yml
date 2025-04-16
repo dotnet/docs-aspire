@@ -22,6 +22,8 @@ items:
   href: ../compatibility/breaking-changes.md
 - name: GitHub releases
   items:
+  - name: .NET Aspire 9.2
+    href: https://github.com/dotnet/aspire/releases/tag/v9.2.0
   - name: .NET Aspire 9.1
     href: https://github.com/dotnet/aspire/releases/tag/v9.1.0
   - name: .NET Aspire 9.0

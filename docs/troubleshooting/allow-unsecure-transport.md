@@ -1,7 +1,7 @@
 ---
 title: Allow unsecure transport in .NET Aspire
 description: Learn how to allow unsecure transport in .NET Aspire projects.
-ms.date: 04/09/2024
+ms.date: 04/15/2025
 ---
 
 # Allow unsecure transport in .NET Aspire
@@ -51,8 +51,8 @@ Alternatively, you can control this via the launch profile as it exposes the abi
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DOTNET_ENVIRONMENT": "Development",
-        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:16099",
-        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:17037"
+        "ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:16099",
+        "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:17037"
       }
     },
     "http": {
@@ -63,8 +63,8 @@ Alternatively, you can control this via the launch profile as it exposes the abi
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DOTNET_ENVIRONMENT": "Development",
-        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:16099",
-        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:17038",
+        "ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:16099",
+        "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:17038",
         "ASPIRE_ALLOW_UNSECURED_TRANSPORT": "true"
       }
     }
