@@ -187,7 +187,7 @@ dotnet run --project ../PythonSample.AppHost/PythonSample.AppHost.csproj --launc
 ```
 
 > [!IMPORTANT]
-> The .NET Aspire host must be run using HTTP instead of HTTPS. The **OpenTelemetry** library requires HTTP when running in a local dev environment.
+> The .NET Aspire app host must be run using HTTP instead of HTTPS. The **OpenTelemetry** library requires HTTP when running in a local dev environment.
 
 Once the app host is running, navigate to the dashboard and select the **Structured** logging tab. Notice that it now contains logging events.
 
