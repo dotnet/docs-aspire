@@ -137,7 +137,13 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The RabbitMQ management plugin provides an HTTP-based API for management and monitoring of your RabbitMQ server. .NET Aspire adds another container image [`docker.io/library/rabbitmq-management`](https://hub.docker.com/_/rabbitmq) to the app host that runs the management plugin.
+The RabbitMQ management plugin provides an HTTP-based API for management and monitoring of your RabbitMQ server. .NET Aspire adds another container image [`docker.io/library/rabbitmq-management`](https://hub.docker.com/_/rabbitmq) to the app host that runs the management plugin. You can access the management plugin from the .NET Aspire dashboard by selecting an endpoint for your RabbitMQ resource:
+
+:::image type="content" source="media/dashboard-access-rabbitmq-management.png" alt-text="Screenshot of the .NET Aspire dashboard showing how to connect to the RabbitMQ management plugin.":::
+
+Log into the management plugin using the credentials you configured with parameters:
+
+:::image type="content" source="media/rabbitmq-management-plugin.png" alt-text="Screenshot of the RabbitMQ management plugin.":::
 
 <!--
 TODO: Link to Container lifetimes content that doesn't exist yet.
