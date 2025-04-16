@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire and launch profiles
 description: Learn how .NET Aspire integrates with .NET launch profiles.
-ms.date: 04/23/2024
+ms.date: 04/15/2025
 ---
 
 # .NET Aspire and launch profiles
@@ -70,8 +70,8 @@ In .NET Aspire, the AppHost is just a .NET application. As a result it has a `la
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DOTNET_ENVIRONMENT": "Development",
-        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:21030",
-        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22057"
+        "ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:21030",
+        "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22057"
       }
     },
     "http": {
@@ -82,8 +82,8 @@ In .NET Aspire, the AppHost is just a .NET application. As a result it has a `la
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DOTNET_ENVIRONMENT": "Development",
-        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19240",
-        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20154"
+        "ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19240",
+        "ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20154"
       }
     }
   }
