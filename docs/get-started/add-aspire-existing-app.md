@@ -38,9 +38,15 @@ This article uses a .NET 9 solution with three projects:
 - **Products**: This example Web API returns a list of products in the catalog and their properties.
 - **Store**: This example Blazor Web App displays the product catalog to website visitors.
 
-Consider the following diagram, to help visualize the three-tier architecture:
+### Sample app architecture
+
+To better understand the structure of the sample app, consider the following diagram, which illustrates its simple three-tier architecture:
 
 :::image type="content" source="media/product-store-architecture-thumb.png" alt-text="Simple three-tier architecture diagram showing a product database, product API, and store web app." lightbox="media/product-store-architecture.png":::
+
+This layered design ensures a clear separation of concerns, making the app easier to maintain and scale.
+
+### Run the sample app
 
 Open and start debugging the project to examine its default behavior:
 
