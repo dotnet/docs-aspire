@@ -66,9 +66,11 @@ Calling this API ensures your existing Azure resources remain consistent and pre
 
 ## Customize provisioning infrastructure
 
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
+All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resourcesâ€”using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
 
 ```csharp
+var builder = DistributionApplicationBuilder.Create(args);
+
 var acaEnv = builder.AddAzureContainerAppEnvironment(Config.ContainEnvironmentName);
 
 acaEnv.ConfigureInfrastructure(config =>
