@@ -1,7 +1,7 @@
 ---
 title: Add .NET Aspire to an existing .NET app
 description: Learn how to add .NET Aspire integrations, orchestration, and tooling to a microservices app that already exists.
-ms.date: 03/03/2025
+ms.date: 04/16/2025
 ms.topic: how-to
 zone_pivot_groups: dev-environment
 ---
@@ -138,6 +138,8 @@ Open and start debugging the project to examine its default behavior:
     }
     ```
 
+    ---
+
 1. To start debugging the solution, press <kbd>F5</kbd> or select **Start**.
 1. Two pages open in the browser:
 
@@ -145,8 +147,6 @@ Open and start debugging the project to examine its default behavior:
     - A page displays the homepage of the website. In the menu on the left, select **Products** to see the catalog obtained from the Web API.
 
 1. To stop debugging, close the browser, and then select the **Stop** button twice (once for each running debug instance).
-
----
 
 :::zone-end
 :::zone pivot="dotnet-cli"
@@ -172,7 +172,7 @@ Open and start debugging the project to examine its default behavior:
 
 :::zone-end
 
-No matter which tool you use—Visual Studio, Visual Studio Code, or the .NET CLI—starting multiple projects manually can be tedious. Additionally, the **Store** project requires explicit endpoint configuration for the **Products** API, which is both cumbersome and prone to errors. This is where .NET Aspire simplifies and streamlines the process!
+No matter which tool you use—starting multiple projects manually or configuring connections between them is tedious. Additionally, the **Store** project requires explicit endpoint configuration for the **Products** API, which is both cumbersome and prone to errors. This is where .NET Aspire simplifies and streamlines the process!
 
 ## Add .NET Aspire to the Store web app
 
