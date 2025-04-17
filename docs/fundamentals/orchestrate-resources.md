@@ -73,7 +73,7 @@ In the preceding code, the "apiservice" project resource waits for the "migratio
 
 ### Forcing resource start in the dashboard
 
-Waiting for a resource can be bypassed using the "Start" command in the dashboard. Clicking "Start" on a waiting resource in the dashboard instructs it to start immediately without waiting for the resource to be healthy or completed. This can be useful when you want to test a resource immediately and don't want to wait for the app to be in the right state.
+Waiting for a resource can be bypassed using the **Start** command in the dashboard. Selecting **Start** on a waiting resource in the dashboard instructs it to start immediately without waiting for the resource to be healthy or completed. This can be useful when you want to test a resource immediately and don't want to wait for the app to be in the right state.
 
 ## APIs for adding and expressing resources
 
