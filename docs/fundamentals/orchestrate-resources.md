@@ -7,15 +7,14 @@ uid: dotnet/aspire/orchestrate-resources
 
 # Orchestrate resources in .NET Aspire
 
-In .NET Aspire, a **resource** is a dependant part of a cloud-native application. Resource types include:
+In this article, you learn how to customize the behavior of resources further by writing code in the app host project. In .NET Aspire, a **resource** is a dependent part of a cloud-native application. Resource types include:
 
 - **.NET Project**: A custom microservice, responsible for specific functionality in your cloud-native application, and often built by a separate team of developers.
 - **Executable**: If you need to build microservices with tools like Node.js or Orleans, they run as executable resources.
 - **Container**: You can add Docker containers, based on specific images to your .NET Aspire solution.
 - **Integration resources**: Integrations often add resources such as databases, caches, and messaging services to your application.
 
-> [!NOTE]
-> For the fundamentals of .NET Aspire orchestration and how it manages resources, see [.NET Aspire orchestration overview](app-host-overview.md). In this article, you'll learn how to customize the behavior of resources further by writing code in the app host project.
+For the fundamentals of .NET Aspire orchestration and how it manages resources, see [.NET Aspire orchestration overview](app-host-overview.md).
 
 ## Configure explicit resource start
 
@@ -32,7 +31,7 @@ builder.AddProject<Projects.AspireApp_DbMigration>("dbmigration")
        .WithExplicitStart();
 ```
 
-In the preceeding code the "dbmigration" resource is configured to not automatically start with the distributed application.
+In the preceding code the `"dbmigration"` resource is configured to not automatically start with the distributed application.
 
 Resources with explicit start can be started from the .NET Aspire dashboard by clicking the "Start" command. For more information, see [.NET Aspire dashboard: Stop or Start a resource](dashboard/explore.md#stop-or-start-a-resource).
 

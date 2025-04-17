@@ -87,9 +87,9 @@ The .NET Aspire app host exposes several life cycles that you can hook into by i
 
 | Order | Method | Description |
 |--|--|--|
-| **1** | <xref:Aspire.Hosting.Lifecycle.IDistributedApplicationLifecycleHook.BeforeStartAsync%2A> | Executes before the distributed application starts. |
-| **2** | <xref:Aspire.Hosting.Lifecycle.IDistributedApplicationLifecycleHook.AfterEndpointsAllocatedAsync%2A> | Executes after the orchestrator allocates endpoints for resources in the application model. |
-| **3** | <xref:Aspire.Hosting.Lifecycle.IDistributedApplicationLifecycleHook.AfterResourcesCreatedAsync%2A> | Executes after the resource was created by the orchestrator. |
+| **1** | <xref:Aspire.Hosting.Lifecycle.IDistributedApplicationLifecycleHook.BeforeStartAsync%2A> | Runs before the distributed application starts. |
+| **2** | <xref:Aspire.Hosting.Lifecycle.IDistributedApplicationLifecycleHook.AfterEndpointsAllocatedAsync%2A> | Runs after the orchestrator allocates endpoints for resources in the application model. |
+| **3** | <xref:Aspire.Hosting.Lifecycle.IDistributedApplicationLifecycleHook.AfterResourcesCreatedAsync%2A> | Runs after the resource was created by the orchestrator. |
 
 ### Register a life cycle hook
 
