@@ -181,11 +181,11 @@ var cosmos = builder.AddAzureCosmosDB("cosmos-db")
 // After adding all resources, run the app...
 ```
 
-When you call `RunAsEmulator`, it configures your Cosmos DB resources to run locally using an emulator. The emulator in this case is the [Azure Cosmos DB Emulator](/azure/cosmos-db/local-emulator). The Azure Cosmos DB Emulator provides a free local environment for testing your Azure Cosmos DB apps and it's a perfect companion to the .NET Aspire Azure hosting integration. The emulator isn't installed, instead, it's accessible to .NET Aspire as a container. When you add a container to the app host, as shown in the preceding example with the `mcr.microsoft.com/cosmosdb/emulator` image, it creates and starts the container when the app host starts. For more information, see [Container resource lifecycle](../../fundamentals/app-host-overview.md#container-resource-lifecycle).
+When you call `RunAsEmulator`, it configures your Cosmos DB resources to run locally using an emulator. The emulator in this case is the [Azure Cosmos DB Emulator](/azure/cosmos-db/local-emulator). The Azure Cosmos DB Emulator provides a free local environment for testing your Azure Cosmos DB apps and it's a perfect companion to the .NET Aspire Azure hosting integration. The emulator isn't installed, instead, it's accessible to .NET Aspire as a container. When you add a container to the app host, as shown in the preceding example with the `mcr.microsoft.com/cosmosdb/emulator` image, it creates and starts the container when the app host starts. For more information, see [Container resource lifecycle](../../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 #### Configure Cosmos DB emulator container
 
-There are various configurations available to container resources, for example, you can configure the container's ports, environment variables, it's [lifetime](../../fundamentals/app-host-overview.md#container-resource-lifetime), and more.
+There are various configurations available to container resources, for example, you can configure the container's ports, environment variables, it's [lifetime](../../fundamentals/orchestrate-resources.md#container-resource-lifetime), and more.
 
 ##### Configure Cosmos DB emulator container gateway port
 
@@ -231,7 +231,7 @@ var cosmos = builder.AddAzureCosmosDB("cosmos-db").RunAsEmulator(
 // After adding all resources, run the app...
 ```
 
-For more information, see [Container resource lifetime](../../fundamentals/app-host-overview.md#container-resource-lifetime).
+For more information, see [Container resource lifetime](../../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
 ##### Configure Cosmos DB emulator container with data volume
 
