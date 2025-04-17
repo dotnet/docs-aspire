@@ -283,17 +283,21 @@ Each trace has a color, which is generated to help differentiate between spansâ€
 
 :::image type="content" source="media/explore/traces.png" lightbox="media/explore/traces.png" alt-text="A screenshot of the .NET Aspire dashboard Traces page.":::
 
-You can also select the **View** button to navigate to a detailed view of the request and the duration of time it spent traveling through each application layer. Consider an example selection of a trace to view its details:
+In the **Actions** column, you can select **View details** to navigate to a detailed view of the request and the duration of time it spent traveling through each application layer. Consider an example selection of a trace to view its details:
 
 :::image type="content" source="media/explore/trace.png" lightbox="media/explore/trace.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page.":::
 
-For each span in the trace, select **View** to see more details:
+For each span in the trace, select **View details** to see more details:
 
 :::image type="content" source="media/explore/trace-span-details.png" lightbox="media/explore/trace-span-details.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page with the details of a span displayed.":::
 
 Scroll down in the span details pain to see full information. At the bottom of the span details pane, some span types, such as this call to a cache, show span event timings:
 
 :::image type="content" source="media/explore/trace-span-event-details.png" lightbox="media/explore/trace-span-event-details.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page with the event timings for a span displayed.":::
+
+For complex traces with many spans, use the **Filter** textbox to display only matching spans:
+
+:::image type="content" source="media/explore/filter-spans-trace-details.png" lightbox="media/explore/filter-spans-trace-details.png" alt-text="A screenshot of the .NET Aspire dashboard Trace details page with the filter used to display only weather spans.":::
 
 When errors are present, the page renders an error icon next to the trace name. Consider an example screenshot of traces with errors:
 
@@ -348,6 +352,30 @@ Selecting the exemplar indicator opens the trace details page, where you can vie
 :::image type="content" source="media/explore/trace-page-from-exemplars.png" lightbox="media/explore/trace-page-from-exemplars.png" alt-text=".NET Aspire Dashboard: Trace Page, navigated to from the corresponding Metrics Page exemplar.":::
 
 For more information, see [OpenTelemetry Docs: Exemplars](https://opentelemetry.io/docs/specs/otel/metrics/data-model/#exemplars).
+
+### Controlling telemetry
+
+Telemetry information is generated continuously while you run a .NET Aspire application and it can flood the dashboard with information. The dashboard includes tools you can use to reduce the amount of data displayed in monitoring pages and make it easier to target specific events.
+
+#### Pausing telemetry
+
+In the **Console logs**, **Structured logs**, **Traces**, and **Metrics** pages, you can pause the collection of telemetry data:
+
+:::image type="content" source="media/explore/pause-telemetry.png" lightbox="media/explore/pause-telemetry.png" alt-text="A screenshot of the .NET Aspire dashboard Console logs page, showing how to pause telemetry.":::
+
+The pause button affects only the type of telemetry displayed on that page. So, for example, if you pause console logs collection, your app continues to collect structured logs, traces, and metrics telemetry.
+
+#### Removing data
+
+Next to the **Pause** button, the **Remove data** button enables you to clear the telemetry on the current page. Drop down the list, and choose whether to remove the telemetry for all resource, or only for the current resource:
+
+:::image type="content" source="media/explore/remove-telemetry-data.png" lightbox="media/explore/remove-telemetry-data.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing how to remove telemetry.":::
+
+The button is available for control logs, structured logs, traces, and metrics. It works independently for each type of data.
+
+If you want to remove all telemetry of all types and for all resources in a single step, use the **Remove all** button in the **Settings** dialog:
+
+:::image type="content" source="media/explore/remove-all-telemetry.png" lightbox="media/explore/remove-all-telemetry.png" alt-text="A screenshot of the .NET Aspire dashboard Settings page, showing how to remove all telemetry.":::
 
 ## Settings dialog
 
