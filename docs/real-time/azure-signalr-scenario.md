@@ -69,7 +69,7 @@ This architecture allows the `webapp` project to communicate with the `api` proj
 > [!IMPORTANT]
 > Calling `AddAzureSignalR` implicitly enables Azure provisioning support. Ensure your app host is configured with the appropriate Azure subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration).
 
-### Generated provisioning Bicep
+### Provisioning-generated Bicep
 
 When you add an Azure SignalR Service resource, .NET Aspire generates provisioning infrastructure using [Bicep](/azure/azure-resource-manager/bicep/overview). The generated Bicep includes defaults for location, SKU, and role assignments:
 

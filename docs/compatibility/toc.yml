@@ -15,6 +15,8 @@ items:
     items:
     - name: Azure Container Apps managed identity changes
       href: 9.2/managed-identity-per-app.md
+    - name: Azure OpenAI deployment obsolete APIs
+      href: 9.2/azure-openaideployment-obsolete.md
     - name: KeyVault default role assignment changes
       href: 9.2/keyvault-role-assignment-changes.md
     - name: Role Assignments is separate bicep
