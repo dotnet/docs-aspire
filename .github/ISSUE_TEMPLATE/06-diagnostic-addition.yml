@@ -39,14 +39,6 @@ body:
   validations:
     required: true
 
-- type: textarea
-  id: description
-  attributes:
-    label: Description
-    description: Describe why the diagnostic exists and what it's used to indicate.
-  validations:
-    required: true
-
 - type: input
   id: title-short
   attributes:
