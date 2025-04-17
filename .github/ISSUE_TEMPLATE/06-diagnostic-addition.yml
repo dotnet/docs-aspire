@@ -35,7 +35,7 @@ body:
   id: version_introduced
   attributes:
     label: Version Introduced
-    description: "What version of .NET was this introduced with? (ex: 8 or something like 10 Preview 3)"
+    description: "What version of .NET Aspire was this introduced with? (ex: 9.2)"
   validations:
     required: true
 
