@@ -2,36 +2,41 @@ items:
 - name: .NET Aspire documentation
   href: index.yml
 
-- name: Get Started
+- name: Welcome
   items:
   - name: .NET Aspire overview
     displayName: aspire overview,architecture,key concepts,Kubernetes,k8s
     href: get-started/aspire-overview.md
-  - name: Quickstart - Build your first .NET Aspire project
-    displayName: quickstart,first app,aspire app
-    href: get-started/build-your-first-aspire-app.md
-  - name: Tutorial - Add .NET Aspire to an existing .NET app
-    href: get-started/add-aspire-existing-app.md
-  - name: Setup and tooling
-    items:
-    - name: Overview
-      href: fundamentals/setup-tooling.md
-    - name: .NET Aspire SDK
-      href: fundamentals/dotnet-aspire-sdk.md
-    - name: .NET Aspire templates
-      href: fundamentals/aspire-sdk-templates.md
-    - name: GitHub Codespaces
-      href: get-started/github-codespaces.md
-    - name: Dev Containers
-      href: get-started/dev-containers.md
-  - name: What's new in .NET Aspire 9.3
-    href: whats-new/dotnet-aspire-9.3.md
-  - name: Upgrade to .NET Aspire 9.0
-    href: get-started/upgrade-to-aspire-9.md
+  - name: What's new in .NET Aspire 9.2
+    href: whats-new/dotnet-aspire-9.2.md
 
-- name: App Host (Dev-time orchestration)
+- name: Install
   items:
   - name: Overview
+    href: fundamentals/setup-tooling.md
+  - name: .NET Aspire SDK
+    href: fundamentals/dotnet-aspire-sdk.md
+  - name: .NET Aspire templates
+    href: fundamentals/aspire-sdk-templates.md
+  - name: GitHub Codespaces
+    href: get-started/github-codespaces.md
+  - name: Dev Containers
+    href: get-started/dev-containers.md
+
+- name: Quickstarts
+  items:
+  - name: Build your first .NET Aspire solution
+    displayName: quickstart,first app,aspire app
+    href: get-started/build-your-first-aspire-app.md
+  - name: Add .NET Aspire to an existing solution
+    href: get-started/add-aspire-existing-app.md
+
+- name: Architecture
+  items:
+  - name: Overview
+    displayName: aspire architecture,aspire app,aspire apphost,aspire app model
+    href: architecture/overview.md
+  - name: Dev-time orchestration
     displayName: orchestration,aspire apphost,aspire app,dev-time,inner-loop
     href: fundamentals/app-host-overview.md
   - name: Locally orchestrate
@@ -117,11 +122,11 @@ items:
     href: fundamentals/service-defaults.md
   - name: .NET Aspire and launch profiles
     href: fundamentals/launch-profiles.md
-  - name: Health checks
-    href: fundamentals/health-checks.md
   - name: Telemetry
     displayName: otel,otlp,telemetry,grpc,opentelemetry,protobuf,traceparent
     href: fundamentals/telemetry.md
+  - name: Health checks
+    href: fundamentals/health-checks.md
 
 - name: Integrations
   items:
@@ -371,7 +376,7 @@ items:
   - name: Secure communication between integrations
     href: extensibility/secure-communication-between-integrations.md
 
-- name: Deployment
+- name: Deploy
   items:
   - name: Overview
     displayName: azure deployment,deployment,Kubernetes,k8s
@@ -399,7 +404,8 @@ items:
   - name: Tool-builder manifest schemas
     href: deployment/manifest-format.md
 
-- name: Troubleshooting
+- name: Troubleshoot
+  displayName: troubleshooting
   items:
   - name: Allow unsecure transport
     displayName: unsecure transport,http,non-tls
@@ -499,15 +505,6 @@ items:
     href: reference/aspire-faq.yml
   - name: .NET Aspire NuGet profile
     href: https://www.nuget.org/profiles/aspire
-
-- name: Training
-  items:
-  - name: Introduction to .NET Aspire
-    href: /training/modules/introduction-dotnet-aspire
-  - name: Create a .NET Aspire project
-    href: /training/modules/create-aspire-applications
-  - name: Use telemetry in a .NET Aspire project
-    href: /training/modules/use-telemetry-dotnet-aspire
 
 - name: Resources
   items:
