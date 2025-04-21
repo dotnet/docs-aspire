@@ -53,28 +53,10 @@ builder.AddProject<Projects.ExampleProject>()
 
 When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/rabbitmq` image, it creates a new RabbitMQ server instance on your local machine. A reference to your RabbitMQ server (the `rabbitmq` variable) is added to the `ExampleProject`. The RabbitMQ server resource includes default credentials with a `username` of `"guest"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"messaging"`. For more information, see [Container resource lifecycle](../fundamentals/app-host-overview.md#container-resource-lifecycle).
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"messaging"`. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 > [!TIP]
 > If you'd rather connect to an existing RabbitMQ server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
-
-### Add RabbitMQ server resource with management plugin
-
-To add the [RabbitMQ management plugin](https://www.rabbitmq.com/docs/management) to the RabbitMQ server resource, call the <xref:Aspire.Hosting.RabbitMQBuilderExtensions.WithManagementPlugin*> method:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var rabbitmq = builder.AddRabbitMQ("messaging")
-                      .WithManagementPlugin();
-
-builder.AddProject<Projects.ExampleProject>()
-        .WithReference(rabbitmq);
-
-// After adding all resources, run the app...
-```
-
-The RabbitMQ management plugin provides an HTTP-based API for management and monitoring of your RabbitMQ server. .NET Aspire adds another container image [`docker.io/library/rabbitmq-management`](https://hub.docker.com/_/rabbitmq) to the app host that runs the management plugin.
 
 ### Add RabbitMQ server resource with data volume
 
@@ -135,6 +117,33 @@ builder.AddProject<Projects.ExampleProject>()
 ```
 
 For more information on providing parameters, see [External parameters](../fundamentals/external-parameters.md).
+
+### Add RabbitMQ server resource with management plugin
+
+To add the [RabbitMQ management plugin](https://www.rabbitmq.com/docs/management) to the RabbitMQ server resource, call the <xref:Aspire.Hosting.RabbitMQBuilderExtensions.WithManagementPlugin*> method. Remember to use parameters to set the credentials for the container. You'll need these credentials to log into the management plugin:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var username = builder.AddParameter("username", secret: true);
+var password = builder.AddParameter("password", secret: true);
+
+var rabbitmq = builder.AddRabbitMQ("messaging", username, password)
+                      .WithManagementPlugin();
+
+builder.AddProject<Projects.ExampleProject>()
+        .WithReference(rabbitmq);
+
+// After adding all resources, run the app...
+```
+
+The RabbitMQ management plugin provides an HTTP-based API for management and monitoring of your RabbitMQ server. .NET Aspire adds another container image [`docker.io/library/rabbitmq-management`](https://hub.docker.com/_/rabbitmq) to the app host that runs the management plugin. You can access the management plugin from the .NET Aspire dashboard by selecting an endpoint for your RabbitMQ resource:
+
+:::image type="content" source="media/dashboard-access-rabbitmq-management.png" alt-text="Screenshot of the .NET Aspire dashboard showing how to connect to the RabbitMQ management plugin.":::
+
+Log into the management plugin using the credentials you configured with parameters:
+
+:::image type="content" source="media/rabbitmq-management-plugin.png" alt-text="Screenshot of the RabbitMQ management plugin.":::
 
 <!--
 TODO: Link to Container lifetimes content that doesn't exist yet.

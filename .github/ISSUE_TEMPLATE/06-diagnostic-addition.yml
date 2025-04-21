@@ -6,8 +6,39 @@ labels:
 - doc-idea
 - area-docs
 assignees:
-- IEvangelist
+- adegeo
 body:
+- type: markdown
+  attributes:
+    value: |
+      ```
+      ┌───────────┐
+      │ IMPORTANT ├──────────────────────────┐
+      └────────┬──┘ Please read the          │
+               │       following statement   │
+               └─────────────────────────────┘
+      ```
+      This template is for use by the product team to request new compiler warning articles.
+
+- type: dropdown
+  id: type
+  attributes:
+    label: Rule Type
+    description: "Is this considered an error or warning?"
+    options:
+      - Error
+      - Warning
+  validations:
+    required: true
+
+- type: input
+  id: version_introduced
+  attributes:
+    label: Version Introduced
+    description: "What version of .NET Aspire was this introduced with? (ex: 9.2)"
+  validations:
+    required: true
+
 - type: input
   id: diagnostic-id
   attributes:
@@ -15,10 +46,27 @@ body:
     description: Enter the ID of the diagnostic to be added. Used for headings, i.e.; `ASPIREACADOMAINS001`.
   validations:
     required: true
+
+- type: input
+  id: title-short
+  attributes:
+    label: Short Title
+    description: "A simple title in one sentence that describes the rule. If possible, use the error/warning a user sees."
+  validations:
+    required: true
+
 - type: textarea
   id: description
   attributes:
     label: Description
-    description: Describe why the diagnostic exists and what it's used to indicate.
+    description: "Summarize what triggers this. Provide code examples if applicable."
+  validations:
+    required: true
+
+- type: textarea
+  id: fix
+  attributes:
+    label: How to fix
+    description: "Summarize what a user does to avoid triggering the rule, or what they do to fix their code. Provide an example if possible."
   validations:
     required: true
