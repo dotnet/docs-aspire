@@ -146,7 +146,7 @@ Some values are formatted as JSON or XML. In these cases, the text visualizer en
 
 You can obtain full details about each resource by selecting the ellipsis button in the **Actions** column and then selecting **View details**. The **Details** page provides a comprehensive view of the resource:
 
-:::image type="content" source="media/explore/resource-details.png" lightbox="media/explore/resource-details.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page with the details of a selected resource displayed.":::
+:::image type="content" source="media/explore/resource-details-thumb.png" lightbox="media/explore/resource-details.png" alt-text="A screenshot of the .NET Aspire dashboard Resources page with the details of a selected resource displayed.":::
 
 The search bar in the upper right of the dashboard also provides the option to filter the list, which is useful for .NET Aspire projects with many resources. To select the types of resources that are displayed, drop down the arrow to the left of the filter textbox:
 
@@ -168,7 +168,7 @@ Selecting the error count badge navigates to the [Structured logs](#structured-l
 
 To see the log entry in detail for the error, select the **View** button to open a window below the list with the structured log entry details:
 
-:::image type="content" source="media/explore/structured-logs-errors-view.png" lightbox="media/explore/structured-logs-errors-view.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a lower window with the structured log entry details.":::
+:::image type="content" source="media/explore/structured-logs-errors-view-thumb.png" lightbox="media/explore/structured-logs-errors-view.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a lower window with the structured log entry details.":::
 
 For more information and examples of Structured logs, see the [Structured logs page](#structured-logs-page) section.
 
@@ -198,6 +198,10 @@ When errors occur, they're styled in the logs such that they're easy to identify
 If you select a container or executable, formatting is different from a project but verbose behavior information is still available. Consider the following example screenshot of a container log with the `cache` container selected:
 
 :::image type="content" source="media/explore/container-logs.png" lightbox="media/explore/container-logs.png" alt-text="A screenshot of the .NET Aspire dashboard Console logs page with a container source selected.":::
+
+You can download any console log to your local machine and use your preferred text programs to analyze it:
+
+:::image type="content" source="media/explore/download-console-logs.png" lightbox="media/explore/download-console-logs.png" alt-text="A screenshot of the .NET Aspire dashboard Console logs page showing how to download a log to your local machine.":::
 
 #### Resource replicas
 
@@ -353,11 +357,11 @@ Selecting the exemplar indicator opens the trace details page, where you can vie
 
 For more information, see [OpenTelemetry Docs: Exemplars](https://opentelemetry.io/docs/specs/otel/metrics/data-model/#exemplars).
 
-### Controlling telemetry
+### Interact with telemetry
 
 Telemetry information is generated continuously while you run a .NET Aspire application and it can flood the dashboard with information. The dashboard includes tools you can use to reduce the amount of data displayed in monitoring pages and make it easier to target specific events.
 
-#### Pausing telemetry
+#### Pause telemetry output
 
 In the **Console logs**, **Structured logs**, **Traces**, and **Metrics** pages, you can pause the collection of telemetry data:
 
@@ -365,7 +369,7 @@ In the **Console logs**, **Structured logs**, **Traces**, and **Metrics** pages,
 
 The pause button affects only the type of telemetry displayed on that page. So, for example, if you pause console logs collection, your app continues to collect structured logs, traces, and metrics telemetry.
 
-#### Removing data
+#### Remove data
 
 Next to the **Pause** button, the **Remove data** button enables you to clear the telemetry on the current page. Drop down the list, and choose whether to remove the telemetry for all resource, or only for the current resource:
 
@@ -375,7 +379,7 @@ The button is available for control logs, structured logs, traces, and metrics. 
 
 If you want to remove all telemetry of all types and for all resources in a single step, use the **Remove all** button in the **Settings** dialog:
 
-:::image type="content" source="media/explore/remove-all-telemetry.png" lightbox="media/explore/remove-all-telemetry.png" alt-text="A screenshot of the .NET Aspire dashboard Settings page, showing how to remove all telemetry.":::
+:::image type="content" source="media/explore/remove-all-telemetry-thumb.png" lightbox="media/explore/remove-all-telemetry.png" alt-text="A screenshot of the .NET Aspire dashboard Settings page, showing how to remove all telemetry.":::
 
 ## Settings dialog
 
