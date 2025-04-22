@@ -373,13 +373,13 @@ The pause button affects only the type of telemetry displayed on that page. So, 
 
 Next to the **Pause** button, the **Remove data** button enables you to clear the telemetry on the current page. Drop down the list, and choose whether to remove the telemetry for all resource, or only for the current resource:
 
-:::image type="content" source="media/explore/remove-telemetry-data.png" lightbox="media/explore/remove-telemetry-data.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing how to remove telemetry.":::
+:::image type="content" source="media/explore/remove-telemetry-data-thumb.png" lightbox="media/explore/remove-telemetry-data.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing how to remove telemetry.":::
 
 The button is available for control logs, structured logs, traces, and metrics. It works independently for each type of data.
 
 If you want to remove all telemetry of all types and for all resources in a single step, use the **Remove all** button in the **Settings** dialog:
 
-:::image type="content" source="media/explore/remove-all-telemetry-thumb.png" lightbox="media/explore/remove-all-telemetry.png" alt-text="A screenshot of the .NET Aspire dashboard Settings page, showing how to remove all telemetry.":::
+:::image type="content" source="media/explore/remove-all-telemetry.png" lightbox="media/explore/remove-all-telemetry.png" alt-text="A screenshot of the .NET Aspire dashboard Settings page, showing how to remove all telemetry.":::
 
 ## Settings dialog
 
