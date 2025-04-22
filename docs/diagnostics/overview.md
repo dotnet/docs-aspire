@@ -11,7 +11,7 @@ The following table lists the possible MSBuild and .NET Analyzer warnings and er
 
 | Diagnostic ID                                         | Type                 | Description                                                                                                                                           |
 |-------------------------------------------------------|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [`ASPIRE006`](ASPIRE006.md)                           | (Experimental) Error | <span id="ASPIRE006"></span> Application model items must have valid names                                                                            |
+| [`ASPIRE006`](ASPIRE006.md)                           | (Experimental) Error | <span id="ASPIRE006"></span> Application model items must have valid names.                                                                           |
 | [`ASPIREACADOMAINS001`](ASPIREACADOMAINS001.md)       | (Experimental) Error | <span id="ASPIREACADOMAINS001"></span> `ConfigureCustomDomain` is for evaluation purposes only and is subject to change or removal in future updates. |
 | [`ASPIREAZURE001`](ASPIREAZURE001.md)                 | (Experimental) Error | <span id="ASPIREAZURE001"></span> Publishers are for evaluation purposes only and are subject to change or removal in future updates.                 |
 | [`ASPIRECOSMOSDB001`](ASPIRECOSMOSDB001.md)           | (Experimental) Error | <span id="ASPIRECOSMOSDB001"></span> `RunAsPreviewEmulator` is for evaluation purposes only and is subject to change or removal in future updates.    |
