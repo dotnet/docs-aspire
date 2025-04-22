@@ -124,6 +124,10 @@ The following code is a complete example of an Orleans server project, including
 
 :::code language="csharp" source="snippets/Orleans/OrleansServer/Program.cs" :::
 
+The `CounterGrain` is an implementation of the following `ICounterGrain` interface, which is defined in the shared _OrleansContracts_ project:
+
+:::code language="csharp" source="snippets/Orleans/OrleansContracts/ICounterGrain.cs" :::
+
 ## Create an Orleans client project
 
 In the Orleans client project, add the same NuGet packages:
