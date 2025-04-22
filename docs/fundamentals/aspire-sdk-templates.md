@@ -109,7 +109,7 @@ dotnet new aspire-starter
 > dotnet new aspire-apphost --framework net8.0
 > ```
 
-You need to trust the ASP.NET Core localhost certificate before running the app. Run the following command:
+You need to trust the ASP.NET Core :::no-loc text="localhost"::: certificate before running the app. Run the following command:
 
 ```dotnetcli
 dotnet dev-certs https --trust
