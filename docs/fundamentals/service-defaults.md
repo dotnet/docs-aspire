@@ -122,7 +122,7 @@ The `MapDefaultEndpoints` method:
 - Maps the liveness endpoint to `/alive` route where the health check tag contains `live`.
 
 > [!NOTE]
-> Starting with .NET Aspire 9.2, the [starter template](aspire-sdk-templates.md#solution-templates) has been updated to include a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpsHealthCheck*> for ASP.NET Core projects. To prevent request traces for the configured health endpoints (`/health` and `/alive`) from cluttering the request trace logs in the dashboard during development, the service defaults templates now filter out these traces by default.
+> Starting with .NET Aspire 9.2, the [starter template](aspire-sdk-templates.md#solution-templates) has been updated to include a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpsHealthCheck*> for ASP.NET Core projects. To keep the request trace logs cleaner during development, traces for the configured health endpoints (`/health` and `/alive`) are now excluded by default in the **Service Defaults** project template.
 
 ## Custom service defaults
 
