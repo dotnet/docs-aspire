@@ -16,6 +16,18 @@ In this article, you learn how to customize the behavior of resources further by
 
 For the fundamentals of .NET Aspire orchestration and how it manages resources, see [.NET Aspire orchestration overview](app-host-overview.md).
 
+## Resource naming conventions
+
+Resources in .NET Aspire must follow naming restrictions set by .NET Aspire and the technology that resource represents. For example, a .NET Aspire resource has a maximum name length of 64 characters, but an Azure Container App has a maximum length of 32. When representing a container that's deployed to Azure at publish time, the resource name must not exceed 32 characters.
+
+.NET Aspire resource names must follow these basic rules:
+
+- **Must** be between 1 and 64 characters in length.
+- **Must** start with an ASCII letter.
+- **Must** contain only ASCII letters, digits, and hyphens.
+- **Must not** end with a hyphen.
+- **Must not** contain consecutive hyphens.
+
 ## Configure explicit resource start
 
 Project, executable, and container resources are automatically started with your distributed application by default. A resource can be configured to wait for an explicit startup instruction with the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> method. A resource configured with <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> is initialized with <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.NotStarted?displayProperty=nameWithType>.
