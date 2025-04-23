@@ -109,6 +109,14 @@ dotnet new aspire-starter
 > dotnet new aspire-apphost --framework net8.0
 > ```
 
+You need to trust the ASP.NET Core :::no-loc text="localhost"::: certificate before running the app. Run the following command:
+
+```dotnetcli
+dotnet dev-certs https --trust
+```
+
+For more information, see [Troubleshoot untrusted localhost certificate in .NET Aspire](../troubleshooting/untrusted-localhost-certificate.md). For in-depth details about troubleshooting localhost certificates on Linux, see [ASP.NET Core: GitHub repository issue #32842](https://github.com/dotnet/aspnetcore/issues/32842).
+
 :::zone-end
 
 ## See also

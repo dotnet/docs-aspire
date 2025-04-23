@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire service defaults
 description: Learn about the .NET Aspire service defaults project.
-ms.date: 11/04/2024
+ms.date: 04/21/2025
 ms.topic: reference
 uid: dotnet/aspire/service-defaults
 ---
@@ -121,7 +121,8 @@ The `MapDefaultEndpoints` method:
 - Maps the health checks endpoint to `/health`.
 - Maps the liveness endpoint to `/alive` route where the health check tag contains `live`.
 
-For more information, see [.NET Aspire health checks](health-checks.md).
+> [!NOTE]
+> Starting with .NET Aspire 9.2, the [starter template](aspire-sdk-templates.md#solution-templates) has been updated to include a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpsHealthCheck*> for ASP.NET Core projects. To keep the request trace logs cleaner during development, traces for the configured health endpoints (`/health` and `/alive`) are now excluded by default in the **Service Defaults** project template.
 
 ## Custom service defaults
 
