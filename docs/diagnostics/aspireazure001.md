@@ -14,7 +14,7 @@ helpviewer_keywords:
 
 > Publishers are for evaluation purposes only and are subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
-The .NET Aspire Azure hosting integration now ships with a publisher. If you're using any of the <xref:Aspire.Hosting.AzurePublisherExtensions.AddAzurePublisher*> APIs, you might see a compiler error/warning indicating that the API is experimental. This is expected behavior, as the API is still in preview and the shape of this API is expected to change in the future.
+The .NET Aspire Azure hosting integration now ships with a publisher. If you're using any of the <xref:Aspire.Hosting.AzurePublisherExtensions.AddAzurePublisher*> APIs, you might see a compiler error/warning indicating that the API is experimental. This behavior is expected, as the API is still in preview and the shape of this API is expected to change in the future.
 
 ## Example
 

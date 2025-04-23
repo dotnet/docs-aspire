@@ -16,7 +16,7 @@ helpviewer_keywords:
 
 This diagnostic error is reported when a resource's name is invalid, such as a name with consecutive hyphen (`-`) characters.
 
-This error shouldn't be be suppressed, as invalid model names throw an exception at runtime.
+This error shouldn't be suppressed, as invalid model names throw an exception at runtime.
 
 ## Example
 
