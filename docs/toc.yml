@@ -4,7 +4,7 @@ items:
 
 - name: Welcome
   items:
-  - name: .NET Aspire overview
+  - name: Introduction to .NET Aspire
     displayName: aspire overview,architecture,key concepts,Kubernetes,k8s
     href: get-started/aspire-overview.md
   - name: What's new in .NET Aspire 9.2
@@ -36,7 +36,7 @@ items:
   - name: Overview
     displayName: aspire architecture,aspire app,aspire apphost,aspire app model
     href: architecture/overview.md
-  - name: Dev-time orchestration
+  - name: App host
     displayName: orchestration,aspire apphost,aspire app,dev-time,inner-loop
     href: fundamentals/app-host-overview.md
   - name: Locally orchestrate
