@@ -14,7 +14,7 @@ internal static partial class Program
 
                 serviceBusNamespace.Sku = new ServiceBusSku
                 {
-                    Tier = ServiceBusSkuTier.Premium
+                    Name = ServiceBusSkuName.Premium
                 };
                 serviceBusNamespace.Tags.Add("ExampleKey", "Example value");
             });
