@@ -8,7 +8,7 @@ ms.date: 04/23/2025
 
 .NET Aspire brings together a powerful suite of tools and libraries, designed to deliver a seamless and intuitive experience for developers. Its modular and extensible architecture empowers you to define your application model with precision, orchestrating intricate systems composed of services, containers, and executables. Whether your components span different programming languages, platforms, stacks, or operating systems, .NET Aspire ensures they work harmoniously, simplifying the complexity of modern application development.
 
-### The app model architecture
+## App model architecture
 
 Resources are the building blocks of your app model. They're used to represent abstract concepts like services, containers, executables, and external integrations. Specific resources enable developers to define dependencies on concrete implementations of these concepts. For example, a `Redis` resource can be used to represent a Redis cache, while a `Postgres` resource can represent a PostgreSQL database.
 
@@ -23,65 +23,92 @@ In a traditional compiler, the process of "lowering" involves translating a high
 
 Similarly, .NET Aspire applies this concept to applications, treating the app model as the high-level language:
 
-- **Intermediate constructs:** The app model is first lowered into intermediate constructs, such as CDK-style object graphs. These constructs may be platform-agnostic or partially tailored to specific targets.
+- **Intermediate constructs:** The app model is first lowered into intermediate constructs, such as cloud development kit (CDK)-style object graphs. These constructs might be platform-agnostic or partially tailored to specific targets.
 - **Target runtime representation:** Finally, a publisher generates the deployment-ready artifacts—YAML, HCL, JSON, or other formats—required by the target platform.
 
 This layered approach unlocks several key benefits:
 
 - **Validation and enrichment:** Models can be validated and enriched during the transformation process, ensuring correctness and completeness.
-- **Multi-target support:** Aspire supports multiple deployment targets, enabling flexibility across diverse environments.
+- **Multi-target support:** .NET Aspire supports multiple deployment targets, enabling flexibility across diverse environments.
 - **Customizable workflow:** Developers can hook into each phase of the process to customize behavior, tailoring the output to specific needs.
 - **Clean and portable models:** The high-level app model remains expressive, portable, and free from platform-specific concerns.
 
-Perhaps most importantly, the translation process itself is highly extensible. You can define custom transformations, enrichments, and output formats, allowing .NET Aspire to seamlessly adapt to your unique infrastructure and deployment requirements. This extensibility ensures that .NET Aspire remains a powerful and versatile tool, capable of evolving alongside your application's needs.
+Most importantly, the translation process itself is highly extensible. You can define custom transformations, enrichments, and output formats, allowing .NET Aspire to seamlessly adapt to your unique infrastructure and deployment requirements. This extensibility ensures that .NET Aspire remains a powerful and versatile tool, capable of evolving alongside your application's needs.
 
 ### Modality and extensibility
 
-.NET Aspire operates in two primary modes, each tailored to streamline your specific needs—detailed in the following section. Both modes leverage a robust set of familiar APIs and a rich ecosystem of [integrations](../fundamentals/integrations-overview.md). These integrations work together like puzzle pieces, enabling you to define resources, express dependencies, and configure behavior effortlessly—whether you're running locally or deploying to production.
+.NET Aspire operates in two primary modes, each tailored to streamline your specific needs—detailed in the following section. Both modes use a robust set of familiar APIs and a rich ecosystem of [integrations](../fundamentals/integrations-overview.md). These integrations work together like puzzle pieces, enabling you to define resources, express dependencies, and configure behavior effortlessly—whether you're running locally or deploying to production.
+
+Why is modality important when it comes to the app host's execution context? This is because it allows you to define your application model once and with the appropriate APIs, you specify how resources operate in each mode. Consider the following collection of resources:
+
+- Database: PostgreSQL
+- Cache: Redis
+- AI service: OpenAI
+- Backend: ASP.NET Core minimal API
+- Frontend: React
+
+Depending on the mode, the app host may treat these resources differently. For example, in run mode, the app host may use a local PostgreSQL database and Redis cache, while in publish mode, it may generate deployment artifacts for Azure PostgreSQL and Redis Cache.
 
 #### Run mode
 
-The default mode is run mode, which is ideal for local development and testing. In this mode, the .NET Aspire app host orchestrates your application model, including processes, containers, and cloud emulators, to facilitate fast and iterative development. Resources behave like real runtime entities with lifecycles that mirror production. With a simple <kbd>F5</kbd>, the app host launches everything in your [app model](xref:Aspire.Hosting.ApplicationModel.DistributedApplicationModel)—storage, databases, caches, messaging, jobs, APIs, frontends—all fully configured and ready to debug locally.
+The default mode is run mode, which is ideal for local development and testing. In this mode, the .NET Aspire app host orchestrates your application model, including processes, containers, and cloud emulators, to facilitate fast and iterative development. Resources behave like real runtime entities with lifecycles that mirror production. With a simple <kbd>F5</kbd>, the app host launches everything in your [app model](xref:Aspire.Hosting.ApplicationModel.DistributedApplicationModel)—storage, databases, caches, messaging, jobs, APIs, frontends—all fully configured and ready to debug locally. Considering the app model from the previous section, the app host would orchestrate the following resources locally:
+
+- Database: PostgreSQL local container
+- Cache: Redis local container
+- AI service: Ollama in a local container
+- Backend: ASP.NET Core minimal API run with `dotnet watch run`
+- Frontend: React run with `npm start`
 
 For more information on how run mode works, see [Dev-time orchestration](#dev-time-orchestration).
 
 #### Publish mode
 
-Th publish mode generates deployment-ready artifacts tailored to your target environment. The .NET Aspire app host compiles your app model into outputs like Kubernetes manifests, Terraform configs, Bicep/ARM templates, Docker Compose files, or CDK constructs—ready for integration into any deployment pipeline. Output format depends on the chosen publisher, giving you flexibility across deployment scenarios.
+The publish mode generates deployment-ready artifacts tailored to your target environment. The .NET Aspire app host compiles your app model into outputs like Kubernetes manifests, Terraform configs, Bicep/ARM templates, Docker Compose files, or CDK constructs—ready for integration into any deployment pipeline. The output format depends on the chosen publisher, giving you flexibility across deployment scenarios. Considering the app model from the previous section, the app host doesn't orchestrate anything—instead, it emits publish artifacts that can be used to deploy your application to a cloud provider. For example, let's assume you want to deploy to Azure, the app host would emit Bicep templates for the following resources:
 
-For more information on how publish mode works, see [Publish mode](../architecture/publish-mode.md).
+- Database: Azure Database for PostgreSQL
+- Cache: Azure Cache for Redis
+- AI service: Azure OpenAI Service
+- Backend: Azure Container Apps with a container image of the ASP.NET Core minimal API
+- Frontend: Azure Static WebApps serving the React app
+
+For more information on how to publish mode works, see [Publish mode](../architecture/publish-mode.md).
 
 ## Dev-time orchestration
 
-In run mode, the app host orchestrates all resources defined in your app model. But how does it achieve this? This section explains the orchestration process step by step:
+In run mode, [the app host orchestrates](../fundamentals/app-host-overview.md) all resources defined in your app model. But how does it achieve this?
 
-- **What technologies power the orchestration?**
+> [!IMPORTANT]
+> The app host isn't a production runtime. It's a development-time orchestration tool that simplifies the process of running and debugging your application locally.
 
-    The orchestration is powered by the [Microsoft Developer Control Plane](#developer-control-plane) (DCP), which manages resource lifecycles, dependencies, and network configurations.
+In this section, several key questions are answered to help you understand how the app host orchestrates your app model:
 
-- **How is the app model's resource collection utilized?**
+- **What powers the orchestration?**
 
-    The app model defines a collection of resources, each implementing <xref:Aspire.Hosting.ApplicationModel.IResource>. These resources can represent processes, containers, databases, queues, external services, or other components your application needs.
+  Orchestration is delegated to the [Microsoft Developer Control Plane](#developer-control-plane) (DCP), which manages resource lifecycles, startup order, dependencies, and network configurations across your app topology.
 
-- **What services are involved?**
+- **How is the app model used?**
 
-    The app host delegate out to DCP, which works to evaluate and orchestrate the resources in your app model. The app host provides a high-level view of the desired state, while DCP handles the actual orchestration.
+  The app model defines all resources via implementations of <xref:Aspire.Hosting.ApplicationModel.IResource>, including containers, processes, databases, and external services—forming the blueprint for orchestration.
 
-- **Which resources are monitored?**
+- **What role does the app host play?**
 
-    All resources defined in the app model are monitored, including containers, executables, and external integrations. This ensures they are running as expected during development.
+  The app host provides a high-level declaration of the desired application state. It delegates execution to DCP, which interprets the app model and performs orchestration accordingly.
 
-- **How are container and executable resources managed?**
+- **What resources are monitored?**
 
-    Containers are created, started, and connected to initialized networks. Executables are launched with their required configurations or arguments. DCP ensures that all resources are properly set up and running.
+  All declared resources—including containers, executables, and integrations—are monitored to ensure correct behavior and to support a reliable dev loop.
 
-- **How are dependencies resolved?**
+- **How are containers and executables managed?**
 
-    Dependencies between resources are expressed in the app model. DCP evaluates these dependencies and ensures they are resolved before starting the dependent resources.
+  Containers and processes are initialized with their configs, launched in order, and networked as needed. DCP ensures their readiness and connectivity during orchestration.
 
-- **How are network configurations applied?**
+- **How are resource dependencies handled?**
 
-    Network configurations, such as port mappings, are dynamically assigned unless explicitly specified. DCP ensures that ports are available and not in conflict with other processes.
+  Dependencies are defined in the app model and evaluated by DCP to determine correct startup sequencing, ensuring resources are available before dependents start.
+
+- **How is networking configured?**
+
+  Networking—such as port bindings—is auto-configured unless explicitly defined. DCP resolves conflicts and ensures availability, enabling seamless communication between services.
 
 The orchestration process follows a layered architecture. At its core, the app host represents the developer's desired view of the distributed application's resources. DCP ensures that this desired state is realized by orchestrating the resources and maintaining consistency.
 
@@ -103,20 +130,21 @@ DCP is at the core of the .NET Aspire app host orchestration functionality. It's
 
 DCP is written in Go, aligning with Kubernetes and its ecosystem, which are also Go-based. This choice enables deep, native integration with Kubernetes APIs, efficient concurrency, and access to mature tooling like Kubebuilder. DCP is delivered as two executables:
 
-- _dcp.exe_: API server that exposes a Kubernetes-like API endpoint for the app host to communicate with. Additionally, it exposes log streaming to the app host, which ultimately streams logs to the developer dashboard.
-- _dcpctrl.exe_: Controller that monitors the API server for new objects and changes, ensuring that the real-world environment matches the specified model.
+- `dcp.exe`: API server that exposes a Kubernetes-like API endpoint for the app host to communicate with. Additionally, it exposes log streaming to the app host, which ultimately streams logs to the developer dashboard.
+- `dcpctrl.exe`: Controller that monitors the API server for new objects and changes, ensuring that the real-world environment matches the specified model.
 
 When you run the app host, it communicates with DCP using Kubernetes client libraries. The app host passes the app model to DCP, which evaluates the collection of resources defined within the app model and converts those resource types into specs that DCP understands. This process involves translating the app model into a set of Kubernetes custom resource definitions (CRDs) that represent the desired state of the application
 
 DCP performs the following tasks:
 
 - Prepares the resources for execution:
-  - Services have their endpoints configured.
+  - Service endpoints are configured.
     - Names and ports are dynamic, unless explicitly set.
     - DCP ensures that the ports are available and not in use by other processes.
   - Container networks are initialized.
+  - Contain images are pulled based on their applied [pull policy](xref:Aspire.Hosting.ApplicationModel.ImagePullPolicy).
   - Containers are created and started.
-  - Executables are run with the required configurations or arguments.
+  - Executables are run with the required arguments and environment variables.
 - Resources are monitored:
   - DCP provides change notifications about the objects it manages, including process IDs, running status, and exit codes.
   - The app host subscribes to these changes to manage the [application's lifecycle](../app-host/eventing.md) effectively.
@@ -134,8 +162,25 @@ DCP logs are streamed back to the app host, and then the app host pushes them to
 
 ## Developer dashboard
 
-The [.NET Aspire developer dashboard](../fundamentals/dashboard/overview.md) is ideal for local development, but it also supports a [standalone mode](../fundamentals/dashboard/standalone.md), and is actually also available when publishing to Azure Container Apps. For more information on the developer dashboard, see:
+The [.NET Aspire developer dashboard](../fundamentals/dashboard/overview.md) is a powerful tool designed to simplify local development and resource management. It also supports a [standalone mode](../fundamentals/dashboard/standalone.md) and integrates seamlessly when publishing to Azure Container Apps. With its intuitive interface, the dashboard empowers developers to monitor, manage, and interact with application resources effortlessly.
 
+### Monitor and manage resources
+
+The dashboard provides a user-friendly interface for inspecting resource states, viewing logs, and executing commands. Whether you're debugging locally or deploying to the cloud, the dashboard ensures you have full visibility into your application's behavior.
+
+### Built-in and custom commands
+
+The dashboard relies on DCP to expose a set of default commands for resources, such as start, stop, and restart. These commands are readily available in the dashboard UI, streamlining resource management. For more information, see [Stop or Start a resource](../fundamentals/dashboard/explore.md#stop-or-start-a-resource).
+
+In addition to the default commands, you can define custom commands tailored to your application's needs. These commands are registered in the app model and appear directly in the dashboard, offering flexibility, and control. Learn more about custom commands in [Custom resource commands in .NET Aspire](../fundamentals/custom-resource-commands.md).
+
+### Real-time log streaming
+
+Stay informed with the dashboard's [real-time log streaming](../fundamentals/dashboard/explore.md#console-logs-page) feature. Logs from all resources in your app model are streamed from DCP to the app host and displayed in the dashboard. With advanced filtering options—by resource type, severity, and more—you can quickly pinpoint relevant information and troubleshoot effectively.
+
+The developer dashboard is more than just a tool—it's your command center for building, debugging, and managing .NET Aspire applications with confidence and ease.
+
+## See also
+
+- [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)
 - [Explore the .NET Aspire dashboard](../fundamentals/dashboard/explore.md)
-- [Dashboard configuration](../fundamentals/dashboard/configuration.md)
-- [Enable browser telemetry](../fundamentals/dashboard/enable-browser-telemetry.md)
