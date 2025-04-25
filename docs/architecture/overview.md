@@ -39,25 +39,29 @@ Most importantly, the translation process itself is highly extensible. You can d
 
 .NET Aspire operates in two primary modes, each tailored to streamline your specific needs—detailed in the following section. Both modes use a robust set of familiar APIs and a rich ecosystem of [integrations](../fundamentals/integrations-overview.md). These integrations work together like puzzle pieces, enabling you to define resources, express dependencies, and configure behavior effortlessly—whether you're running locally or deploying to production.
 
-Why is modality important when it comes to the app host's execution context? This is because it allows you to define your application model once and with the appropriate APIs, you specify how resources operate in each mode. Consider the following collection of resources:
+Why is modality important when it comes to the app host's execution context? This is because it allows you to define your app model once and with the appropriate APIs, specify how resources operate in each mode. Consider the following collection of resources:
 
 - Database: PostgreSQL
 - Cache: Redis
-- AI service: OpenAI
+- AI service: Ollama or OpenAI
 - Backend: ASP.NET Core minimal API
-- Frontend: React
+- Frontend: React app
 
-Depending on the mode, the app host may treat these resources differently. For example, in run mode, the app host may use a local PostgreSQL database and Redis cache, while in publish mode, it may generate deployment artifacts for Azure PostgreSQL and Redis Cache.
+Depending on the mode, the app host may treat these resources differently. For example, in run mode, the app host might use a local PostgreSQL database and Redis cache—using containers, while in publish mode, it may generate deployment artifacts for Azure PostgreSQL and Redis Cache.
 
 #### Run mode
 
 The default mode is run mode, which is ideal for local development and testing. In this mode, the .NET Aspire app host orchestrates your application model, including processes, containers, and cloud emulators, to facilitate fast and iterative development. Resources behave like real runtime entities with lifecycles that mirror production. With a simple <kbd>F5</kbd>, the app host launches everything in your [app model](xref:Aspire.Hosting.ApplicationModel.DistributedApplicationModel)—storage, databases, caches, messaging, jobs, APIs, frontends—all fully configured and ready to debug locally. Considering the app model from the previous section, the app host would orchestrate the following resources locally:
 
-- Database: PostgreSQL local container
-- Cache: Redis local container
-- AI service: Ollama in a local container
-- Backend: ASP.NET Core minimal API run with `dotnet watch run`
-- Frontend: React run with `npm start`
+<!--
+
+Mermaid live:
+
+https://mermaid.live/edit#pako:eNptkU2PmzAQhv-KNadWIikBAgRVKyWhVXPYNtpwat3DLEwTa8FGg1l1m81_r4G2q1Xqi-3xMx-v3zOUpiLI4MjYnkSRSy3cKpSt6ZuEnB5nVjUkDJcn6iyjVUZL-C71BH5koy3pyrF3hKUV2Lbv7_nmjW4b0Vlk-3akB3aD5cOErg_7-ecPhdgaJnGrtGqwFuv9bsysjNVkBff6JXWLrr1LHPeRuqNKdaJ03VFp4hd0vRsa7MSB-FGVE_ylrrHB_9H5ZlCJFu-xm9i96eyR6ar2a71iNrt5_lQU-3du7Oe_0l7pHJBp8OvwencdyzdSgwcNcYOqcpacB0aCPVFDEjJ3rJAfJEh9cRz21hyedAmZ5Z48YNMfT5D9wLpzt76t0FKu0Pna_Iu6P7OGbyfHR-M9aFFDdoafkAX-fJH4abIKVqkfx8sg8uAJsjSYp3EYLOIgToIkXMUXD34Z46ou5n4YB1EaRcvlwk_jKBzLfR0fp6mOPEj5M6FTSrw1vbaQhavk8hvQD8fF
+
+-->
+
+:::image type="content" source="media/local-app-topology-thumb.png" alt-text="Local app topology for dev-time orchestration" lightbox="media/local-app-topology.png":::
 
 For more information on how run mode works, see [Dev-time orchestration](#dev-time-orchestration).
 
@@ -65,11 +69,15 @@ For more information on how run mode works, see [Dev-time orchestration](#dev-ti
 
 The publish mode generates deployment-ready artifacts tailored to your target environment. The .NET Aspire app host compiles your app model into outputs like Kubernetes manifests, Terraform configs, Bicep/ARM templates, Docker Compose files, or CDK constructs—ready for integration into any deployment pipeline. The output format depends on the chosen publisher, giving you flexibility across deployment scenarios. Considering the app model from the previous section, the app host doesn't orchestrate anything—instead, it emits publish artifacts that can be used to deploy your application to a cloud provider. For example, let's assume you want to deploy to Azure, the app host would emit Bicep templates for the following resources:
 
-- Database: Azure Database for PostgreSQL
-- Cache: Azure Cache for Redis
-- AI service: Azure OpenAI Service
-- Backend: Azure Container Apps with a container image of the ASP.NET Core minimal API
-- Frontend: Azure Static WebApps serving the React app
+<!--
+
+Mermaid live:
+
+https://mermaid.live/edit#pako:eNptUl1vozAQ_CvWPrUSTQkQQlBViYRWRbrecQWp0tV92IAbrAYbGXNqm-a_n4F-pOr5xfbuzHhn1zsoZMkghI3CpiJ5TAUxK-d6y-4opN16y9uKwj0VY-ZSSaGZKE3yhmGhCTbN2VqdH0UvnWIk06h5QW7ZmkRNczwQe9oSi8eRFWXp5OdFTlbSwGsueI1bEqXJgcjKPIFcMPVVY4VF1Rc17Ifw_k4epCI3rOTtJyFK-vcSkjH1lxeHlF8NE1HyiYyXBhmjxjW2h7j30KCeylZvFMt-_zj-T0PIycn561Wep6fGzOu74S_ue8hY7fdwlHyPxUsqwIKaqRp5aYa06zEUdMVqRiE0xxLVIwUq9gaHnZbZsygg1KpjFijZbSoIH3DbmlvXlKhZzNFMuv6ImoZpqa7HPzB8BQsaFBDu4AlCx55M53YwXziLwPb9meNZ8Axh4EwC33WmvuPPnbm78PcWvEhpVKcT2_UdL_C82WxqB77nDnJ_huRY1Ub1Vt4qNE6ZWslOaAhdb7H_B9Ycy5w
+
+-->
+
+:::image type="content" source="media/publish-app-topology-thumb.png" alt-text="Published app topology" lightbox="media/publish-app-topology.png":::
 
 For more information on how to publish mode works, see [Publish mode](../architecture/publish-mode.md).
 
