@@ -141,6 +141,9 @@ DCP is written in Go, aligning with Kubernetes and its ecosystem, which are also
 - `dcp.exe`: API server that exposes a Kubernetes-like API endpoint for the app host to communicate with. Additionally, it exposes log streaming to the app host, which ultimately streams logs to the developer dashboard.
 - `dcpctrl.exe`: Controller that monitors the API server for new objects and changes, ensuring that the real-world environment matches the specified model.
 
+> [!NOTE]
+> DCP strives for "eventual consistency" rather than "strong consistency." This means that while DCP aims to keep the real-world environment in sync with the specified model, it may not always be perfectly aligned.
+
 When you run the app host, it communicates with DCP using Kubernetes client libraries. The app host passes the app model to DCP, which evaluates the collection of resources defined within the app model and converts those resource types into specs that DCP understands. This process involves translating the app model into a set of Kubernetes custom resource definitions (CRDs) that represent the desired state of the application
 
 DCP performs the following tasks:
