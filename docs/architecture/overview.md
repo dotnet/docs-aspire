@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire architecture overview  
 description: Learn about the overall architecture of .NET Aspire, including its integrations, orchestration, and networking capabilities.  
-ms.date: 04/23/2025
+ms.date: 04/28/2025
 ---
 
 # .NET Aspire architecture overview  
@@ -108,7 +108,7 @@ In this section, several key questions are answered to help you understand how t
 
 - **How are containers and executables managed?**
 
-  Containers and processes are initialized with their configs, launched in order, and networked as needed. DCP ensures their readiness and connectivity during orchestration.
+  Containers and processes are initialized with their configurations and launched concurrently, respecting the dependency graph defined in the app model. DCP ensures their readiness and connectivity during orchestration, starting resources as quickly as possible while maintaining the correct order dictated by their dependencies.
 
 - **How are resource dependencies handled?**
 
@@ -122,9 +122,9 @@ The orchestration process follows a layered architecture. At its core, the app h
 
 The [app model](../fundamentals/app-host-overview.md#define-the-app-model) serves as a blueprint for DCP to orchestrate your application. Under the hood, the app host is a .NET console application powered by the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package. This package includes build targets that register orchestration dependencies, enabling seamless dev-time orchestration.
 
-The .NET Aspire app host contains an implementation of the `k8s.KubernetesClient` (from the [📦 KubernetesClient](https://www.nuget.org/packages/KubernetesClient) NuGet package), which is a .NET client for Kubernetes. This client is used to communicate with the DCP API server, allowing the app host to delegate orchestration tasks to DCP.
+DCP is a Kubernetes-compatible API server, meaning it uses the same network protocols and conventions as Kubernetes. This compatibility allows the .NET Aspire app host to leverage existing Kubernetes libraries for communication. Specifically, the app host contains an implementation of the `k8s.KubernetesClient` (from the [📦 KubernetesClient](https://www.nuget.org/packages/KubernetesClient) NuGet package), which is a .NET client for Kubernetes. This client is used to communicate with the DCP API server, enabling the app host to delegate orchestration tasks to DCP.
 
-When you run the app host, DCP takes over, evaluates the app model, and orchestrates the resources. This process ensures that your application is fully configured and ready for local development, allowing you to focus on building features without worrying about infrastructure complexities. Consider the following diagram that helps to visualize the orchestration process:
+When you run the app host, it performs the first step of "lowering" by translating the general-purpose .NET Aspire app model into a DCP-specific model tailored for local execution in run mode. This DCP model is then handed off to DCP, which evaluates it and orchestrates the resources accordingly. This separation ensures that the app host focuses on adapting the .NET Aspire app model for local execution, while DCP specializes in executing the tailored model. The following diagram helps to visualize this orchestration process:
 
 <span id="app-host-dcp-flow"></span>
 
@@ -142,7 +142,7 @@ DCP is written in Go, aligning with Kubernetes and its ecosystem, which are also
 - `dcpctrl.exe`: Controller that monitors the API server for new objects and changes, ensuring that the real-world environment matches the specified model.
 
 > [!NOTE]
-> DCP strives for "eventual consistency" rather than "strong consistency." This means that while DCP aims to keep the real-world environment in sync with the specified model, it might not always be perfectly aligned.
+> DCP operates on the principle of "eventual consistency," meaning that changes to the model and the real-world environment are applied asynchronously. While this approach may introduce noticeable delays, DCP is designed to diligently synchronize both states. Unlike a "strongly consistent" system that might fail immediately on encountering issues, DCP persistently retries until the desired state is achieved or an error is conclusively determined, often resulting in a more robust alignment between the model and the real world.
 
 When you run the app host, it communicates with DCP using Kubernetes client libraries. The app host gives the app model to DCP, which looks at the resources in the model and turns them into specs it can understand. This process involves translating the app model into a set of Kubernetes custom resource definitions (CRDs) that represent the desired state of the application
 
@@ -165,7 +165,7 @@ Continuing from the [diagram in the previous](#app-host-dcp-flow) section, consi
 
 :::image type="content" source="media/dcp-architecture-thumb.png" alt-text="A diagram depicting the architecture of the Developer Control Plane (DCP)." lightbox="media/dcp-architecture.png":::
 
-DCP logs are streamed back to the app host, and then the app host pushes them to the developer dashboard. DCP registers default commands for the developer dashboard as well, such as start, stop, and restart. For more information on commands, see [Custom resource commands in .NET Aspire](../fundamentals/custom-resource-commands.md).
+DCP logs are streamed back to the app host, which then forwards them to the developer dashboard. While the developer dashboard exposes commands such as start, stop, and restart, these commands are not part of DCP itself. Instead, they are implemented by the app model runtime, specifically within its "dashboard service" component. These commands operate by manipulating DCP objects—creating new ones, deleting old ones, or updating their properties. For example, restarting a .NET project involves stopping and deleting the existing <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> representing the project and creating a new one with the same specifications. For more information on commands, see [Custom resource commands in .NET Aspire](../fundamentals/custom-resource-commands.md).
 
 ## Developer dashboard
 
@@ -177,9 +177,9 @@ The dashboard provides a user-friendly interface for inspecting resource states,
 
 ### Built-in and custom commands
 
-The dashboard relies on DCP to expose a set of default commands for resources, such as start, stop, and restart. These commands are readily available in the dashboard UI, streamlining resource management. For more information, see [Stop or Start a resource](../fundamentals/dashboard/explore.md#stop-or-start-a-resource).
+The dashboard provides a set of commands for managing resources, such as start, stop, and restart. While commands appear as intuitive actions in the dashboard UI, under the hood, they operate by manipulating DCP objects. For more information, see [Stop or Start a resource](../fundamentals/dashboard/explore.md#stop-or-start-a-resource).
 
-In addition to the default commands, you can define custom commands tailored to your application's needs. These commands are registered in the app model and appear directly in the dashboard, offering flexibility, and control. Learn more about custom commands in [Custom resource commands in .NET Aspire](../fundamentals/custom-resource-commands.md).
+In addition to these built-in commands, you can define custom commands tailored to your application's needs. These custom commands are registered in the app model and seamlessly integrated into the dashboard, providing enhanced flexibility and control. Learn more about custom commands in [Custom resource commands in .NET Aspire](../fundamentals/custom-resource-commands.md).
 
 ### Real-time log streaming
 
