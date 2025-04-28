@@ -39,7 +39,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 builder.Build().Run();
 ```
 
-When you call <xref:Aspire.Hosting.DistributedApplication.CreateBuilder*?displayProperty=nameWithType>, you get an instance of <xref:Aspire.Hosting.IDistributedApplicationBuilder>, which is used to configure your app model. This builder provides methods to add resources, define dependencies, and set up the overall structure of your application. After you've add your desired resources, you call `Build` to create the app model. The [templates](../fundamentals/aspire-sdk-templates.md) include code that chains a call to <xref:Aspire.Hosting.IDistributedApplicationBuilder.Build>—which returns an <xref:Aspire.Hosting.DistributedApplication> instance, then call <xref:Aspire.Hosting.DistributedApplication.Run>.
+When you call <xref:Aspire.Hosting.DistributedApplication.CreateBuilder*?displayProperty=nameWithType>, you get an instance of <xref:Aspire.Hosting.IDistributedApplicationBuilder>, which is used to configure your app model. This builder provides methods to add resources, define dependencies, and set up the overall structure of your application. After you've added resources, call `Build` to create the app model. The [templates](../fundamentals/aspire-sdk-templates.md) include code that chains a call to <xref:Aspire.Hosting.IDistributedApplicationBuilder.Build>—which returns an <xref:Aspire.Hosting.DistributedApplication> instance, and then calls <xref:Aspire.Hosting.DistributedApplication.Run>.
 
 ## App host project
 
