@@ -192,7 +192,7 @@ items:
       href: messaging/azure-service-bus-integration.md
     - name: Azure SQL Database
       displayName: azure sql database,database
-      href database/azure-sql-integration.md
+      href: database/azure-sql-integration.md
     - name: Azure Storage
       items:
       - name: Azure Blob Storage
