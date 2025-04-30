@@ -238,7 +238,7 @@ items:
       href: database/azure-postgresql-entity-framework-integration.md
     - name: Azure SQL Database
       displayName: azure sql database,database,ef core
-      href database/azure-sql-entity-framework-integration.md
+      href: database/azure-sql-entity-framework-integration.md
     - name: MySQL Pomelo
       displayName: mysql pomelo,ef core
       href: database/mysql-entity-framework-integration.md
