@@ -415,8 +415,42 @@ items:
   items:
   - name: Breaking changes
     href: compatibility/breaking-changes.md
-  - name: Diagnostics overview
-    href: diagnostics/overview.md
+  - name: Diagnostics
+    items:
+    - name: Overview
+      href: diagnostics/overview.md
+    - name: Errors
+      items:
+      - name: ASPIRE006
+        href: diagnostics/aspire006.md
+      - name: ASPIREACADOMAINS001
+        href: diagnostics/aspireacadomains001.md
+      - name: ASPIRECOSMOSDB001
+        href: diagnostics/aspirecosmosdb001.md
+      - name: ASPIREHOSTINGPYTHON001
+        href: diagnostics/aspirehostingpython001.md
+      - name: ASPIREPUBLISHERS001
+        href: diagnostics/aspirepublishers001.md
+      - name: ASPIREAZURE001
+        href: diagnostics/aspireazure001.md
+    - name: By category
+      items:
+      - name: Resources
+        items:
+        - name: Items must have valid names
+          href: diagnostics/aspire006.md
+      - name: Experimental
+        items:
+        - name: Azure custom domains
+          href: diagnostics/aspireacadomains001.md
+        - name: Cosmos DB preview emulator and data explorer
+          href: diagnostics/aspirecosmosdb001.md
+        - name: Hosting Python apps
+          href: diagnostics/aspirehostingpython001.md
+        - name: Publishing APIs are experimental
+          href: diagnostics/aspirepublishers001.md
+        - name: Publishing to Azure APIs are experimental
+          href: diagnostics/aspireazure001.md
   - name: .NET Aspire API reference
     href: /dotnet/api?view=dotnet-aspire-9.2&preserve-view=true
   - name: .NET Aspire FAQ

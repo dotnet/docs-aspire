@@ -140,7 +140,7 @@ Replace the app host _Program.cs_ code with the following snippet. This code add
 :::code source="snippets/PythonSample/PythonSample.AppHost/Program.cs" highlight="6":::
 
 > [!IMPORTANT]
-> The preceding code suppresses the `ASPIREHOSTINGPYTHON001` diagnostic error. This error is generated because the `AddPythonApp` API is experimental and might change in future release. For more information, see [ASPIREHOSTINGPYTHON001](../diagnostics/overview.md#aspirehostingpython001).
+> The preceding code suppresses the `ASPIREHOSTINGPYTHON001` diagnostic error. This error is generated because the `AddPythonApp` API is experimental and might change in future release. For more information, see [Compiler Error ASPIREHOSTINGPYTHON001](../diagnostics/aspirehostingpython001.md).
 
 ## Run the app
 
