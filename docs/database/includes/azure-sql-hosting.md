@@ -21,7 +21,7 @@ dotnet add package Aspire.Hosting.Azure.Sql
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-The Azure SQL hosting integration takes a dependency on the [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer/) NuGet package, extending it to support Azure. Everything that you can do with the [.NET Aspire SQL Server integration](sql-server-integration.md) and [.NET Aspire SQL Server Entity Framework Core integration](sql-server-entity-framework-integration.md) you can also do with this integration.
+The Azure SQL hosting integration takes a dependency on the [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer/) NuGet package, extending it to support Azure. Everything that you can do with the [.NET Aspire SQL Server integration](../sql-server-integration.md) and [.NET Aspire SQL Server Entity Framework Core integration](../sql-server-entity-framework-integration.md) you can also do with this integration.
 
 ### Add Azure SQL server resource and database resource
 
@@ -41,7 +41,7 @@ The preceding call to `AddAzureSqlServer` configures the Azure SQL server resour
 > By default, `AddAzureSqlServer` configures [Microsoft Entra ID](/azure/azure-sql/database/authentication-aad-overview) authentication. This requires changes to applications that need to connect to these resources. For more information, see [Client integration](#client-integration).
 
 > [!TIP]
-> When you call <xref:Aspire.Hosting.AzureSqlExtensions.AddAzureSqlServer*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*> — which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration).
+> When you call <xref:Aspire.Hosting.AzureSqlExtensions.AddAzureSqlServer*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*> — which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../../azure/local-provisioning.md#configuration).
 
 ### Connect to an existing Azure SQL server
 
@@ -58,7 +58,7 @@ builder.AddProject<Projects.WebApplication>("web")
 // After adding all resources, run the app...
 ```
 
-[!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
+[!INCLUDE [connection-strings-alert](../../includes/connection-strings-alert.md)]
 
 The connection string is configured in the app host's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section. The app host injects this connection string as an environment variable into all dependent resources, for example:
 
@@ -93,4 +93,4 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 The preceding code configures an Azure SQL Database resource to run locally in a container.
 
 > [!TIP]
-> The `RunAsContainer` method is useful for local development and testing. The API exposes an optional delegate that enables you to customize the underlying <xref:Aspire.Hosting.ApplicationModel.SqlServerServerResource> configuration. For example, you can add a data volume or data bind mount. For more information, see the [.NET Aspire SQL Server hosting integration](sql-server-integration.md#add-sql-server-resource-with-data-volume) section.
+> The `RunAsContainer` method is useful for local development and testing. The API exposes an optional delegate that enables you to customize the underlying <xref:Aspire.Hosting.ApplicationModel.SqlServerServerResource> configuration. For example, you can add a data volume or data bind mount. For more information, see the [.NET Aspire SQL Server hosting integration](../sql-server-integration.md#add-sql-server-resource-with-data-volume) section.
