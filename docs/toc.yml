@@ -190,6 +190,9 @@ items:
     - name: Azure Service Bus
       displayName: service bus,messaging
       href: messaging/azure-service-bus-integration.md
+    - name: Azure SQL Database
+      displayName: azure sql database,database
+      href database/azure-sql-integration.md
     - name: Azure Storage
       items:
       - name: Azure Blob Storage
@@ -233,6 +236,9 @@ items:
     - name: Azure PostgreSQL
       displayName: postgresql,ef core
       href: database/azure-postgresql-entity-framework-integration.md
+    - name: Azure SQL Database
+      displayName: azure sql database,database,ef core
+      href database/azure-sql-entity-framework-integration.md
     - name: MySQL Pomelo
       displayName: mysql pomelo,ef core
       href: database/mysql-entity-framework-integration.md
