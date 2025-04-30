@@ -43,10 +43,6 @@ The preceding call to `AddAzureSqlServer` configures the Azure SQL server resour
 > [!TIP]
 > When you call <xref:Aspire.Hosting.AzureSqlExtensions.AddAzureSqlServer*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*> — which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration).
 
-> AJMTODO: #### Provisioning-generated Bicep?
-
-> AJMTODO: #### Customize provisioning infrastructure?
-
 ### Connect to an existing Azure SQL server
 
 You might have an existing Azure SQL database that you want to connect to. Instead of representing a new Azure SQL server resource, you can add a connection string to the app host. To add a connection to an existing Azure SQL server, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> method:
