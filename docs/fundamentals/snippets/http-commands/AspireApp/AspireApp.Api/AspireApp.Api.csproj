@@ -10,9 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.StackExchange.Redis.DistributedCaching" Version="9.2.0" />
+    <PackageReference Include="Aspire.StackExchange.Redis.DistributedCaching" Version="9.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.1.18" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.2.2" />
   </ItemGroup>
 
   <ItemGroup>
