@@ -73,7 +73,7 @@ Welcome to what's new in the .NET Aspire docs for April 2025. This article lists
 
 ### Updated articles
 
-- [.NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> distributed caching integration](../caching/stackexchange-redis-distributed-caching-integration.md) - Correct keyed IDistributedCache registration and usage
+- [.NET Aspire Redis&reg; distributed caching integration](../caching/stackexchange-redis-distributed-caching-integration.md) - Correct keyed IDistributedCache registration and usage
 
 ## Security
 
