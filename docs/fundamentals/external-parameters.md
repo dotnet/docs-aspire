@@ -157,7 +157,7 @@ For more information pertaining to connection strings and their representation i
 
 ### Build connection strings with reference expressions
 
-If you want to construct a connection string from parameters and ensure that it's handled correctly in both development and production, use <xref:Aspire.Hosting.ConnectionStringBuilderExtensions.AddConnectionString*> with a <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression>. 
+If you want to construct a connection string from parameters and ensure that it's handled correctly in both development and production, use <xref:Aspire.Hosting.ConnectionStringBuilderExtensions.AddConnectionString*> with a <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression>.
 
 For example, if you have a secret parameter that stores a small part of a connection string, use this code to insert it:
 
