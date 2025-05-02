@@ -1,6 +1,0 @@
-@AspireReferenceExpressions.Web_HostAddress = http://localhost:5157
-
-GET {{AspireReferenceExpressions.Web_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

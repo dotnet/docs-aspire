@@ -1,4 +1,4 @@
-﻿var builder = DistributedApplication.CreateBuilder(args);
+var builder = DistributedApplication.CreateBuilder(args);
 
 // <secretkey>
 var secretKey = builder.AddParameter("secretkey", secret: true);
@@ -7,7 +7,7 @@ var connectionString = builder.AddConnectionString(
     "composedconnectionstring",
     ReferenceExpression.Create($"Endpoint=https://api.contoso.com/v1;Key={secretKey}"));
 
-builder.AddProject<Projects.AspireReferenceExpressions_API>("api")
+builder.AddProject<Projects.AspireReferenceExpressions_CatalogAPI>("catalogapi")
        .WithReference(connectionString)
        .WaitFor(connectionString);
 // </secretkey>
@@ -20,7 +20,7 @@ var pgConnectionString = builder.AddConnectionString(
     "pgdatabase",
     ReferenceExpression.Create($"{database};Include Error Details=true"));
 
-builder.AddProject<Projects.AspireReferenceExpressions_Web>("web")
+builder.AddProject<Projects.AspireReferenceExpressions_CustomerAPI>("customerapi")
        .WithReference(pgConnectionString)
        .WaitFor(pgConnectionString);
 // </postgresappend>

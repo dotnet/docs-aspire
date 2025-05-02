@@ -7,7 +7,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <UserSecretsId>b0c3a3ac-dab2-4d43-a991-70bcb70215ba</UserSecretsId>
+    <UserSecretsId>6329c834-f9f4-422d-b8e3-d9583b2574c3</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AspireReferenceExpressions.API\AspireReferenceExpressions.API.csproj" />
-    <ProjectReference Include="..\AspireReferenceExpressions.Web\AspireReferenceExpressions.Web.csproj" />
+    <ProjectReference Include="..\AspireReferenceExpressions.CatalogAPI\AspireReferenceExpressions.CatalogAPI.csproj" />
+    <ProjectReference Include="..\AspireReferenceExpressions.CustomerAPI\AspireReferenceExpressions.CustomerAPI.csproj" />
   </ItemGroup>
 
 </Project>

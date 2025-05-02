@@ -1,0 +1,6 @@
+@AspireReferenceExpressions.CustomerAPI_HostAddress = http://localhost:5022
+
+GET {{AspireReferenceExpressions.CustomerAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
