@@ -161,11 +161,11 @@ If you want to construct a connection string from parameters and ensure that it'
 
 For example, if you have a secret parameter that stores a small part of a connection string, use this code to insert it:
 
-:::code language="csharp" source="snippets/referenceexpressions/AspireReferenceExpressions.AppHost/Program.cs" range="1-5,16-20":::
+:::code language="csharp" source="snippets/referenceexpressions/AspireReferenceExpressions.AppHost/Program.cs" id="secretkey":::
 
 You can also use reference expressions to append text to connection strings created by .NET Aspire resources. For example, when you add a PostgreSQL resource to your .NET Aspire solution, the database server runs in a container and a connection string is formulated for it. In the following code, the extra property `Include Error Details` is appended to that connection string before it's passed to consuming projects:
 
-:::code language="csharp" source="snippets/referenceexpressions/AspireReferenceExpressions.AppHost/Program.cs" range="1,7-14,20":::
+:::code language="csharp" source="snippets/referenceexpressions/AspireReferenceExpressions.AppHost/Program.cs" id="postgresappend":::
 
 ## Parameter example
 
