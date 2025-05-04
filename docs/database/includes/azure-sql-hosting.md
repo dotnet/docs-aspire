@@ -84,7 +84,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var azureSql = builder.AddAzureSqlServer("azuresql")
                       .RunAsContainer();
 
-var azureSqlData = postgres.AddDatabase("database");
+var azureSqlData = azureSql.AddDatabase("database");
 
 var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(azureSqlData);
