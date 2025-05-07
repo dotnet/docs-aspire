@@ -37,9 +37,9 @@ The .NET Aspire dashboard doesn't collect telemetry on Visual Studio versions `<
 | .NET Aspire dashboard versions | Data | Notes |
 |--|--|--|
 | 9.3 | Page navigation history. | Includes page settings. |
-| 9.3 | Resource types being used. |  |
+| 9.3 | Resource types being used. | Custom resource type names are not sent to Microsoft. |
 | 9.3 | Request user agent. |  |
-| 9.3 | Invoked dashboard commands. | Command name is securely hashed. |
+| 9.3 | Invoked dashboard commands. | Custom command names are not sent to Microsoft. |
 | 9.3 | Request language and set dashboard language. |  |
 | 9.3 | Resource restart times. |  |
 | 9.3 | OTel data processing times. |  |
