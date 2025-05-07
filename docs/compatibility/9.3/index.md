@@ -18,4 +18,4 @@ If you're migrating an app to .NET Aspire 9.3, the breaking changes listed here 
 
 | Title | Type of change | Introduced version |
 |--|--|--|
-| [With health checks changes in .NET Aspire 9.3](with-health-checks-changes.md) | Binary and source incompatible | 9.3 | 
+| [With health checks changes in .NET Aspire 9.3](with-health-checks-changes.md) | Binary and source incompatible | 9.3 |
