@@ -16,7 +16,7 @@ items:
     - name: With HTTP/S health checks changes
       href: 9.3/with-health-checks-changes.md
 - name: .NET Aspire 9.2
-  expanded: true
+  expanded: false
   items:
   - name: Overview
     href: 9.2/index.md
