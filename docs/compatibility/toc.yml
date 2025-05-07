@@ -15,6 +15,8 @@ items:
     items:
     - name: With HTTP/S health checks changes
       href: 9.3/with-health-checks-changes.md
+    - name: Azure SQL Server default SKU changes
+      href: 9.3/azure-sql-server-default-sku-changes.md
 - name: .NET Aspire 9.2
   expanded: false
   items:
