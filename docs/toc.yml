@@ -47,23 +47,23 @@ items:
       href: get-started/build-aspire-apps-with-python.md
   - name: Configuration
     href: app-host/configuration.md
-  - name: Custom commands
+  - name: Customize resources
     items:
     - name: Custom resource commands
       href: fundamentals/custom-resource-commands.md
+      displayName: withcommand
     - name: Custom HTTP commands
       href: fundamentals/http-commands.md
+      displayName: withhttpcommand,
+    - name: Custom resource URLs
+      displayName: withurl,withurlforendpoint,withurls
+      href: fundamentals/custom-resource-urls.md      
   - name: Add Dockerfiles to the app model
     href: app-host/withdockerfile.md
     displayName: dockerfile,docker
-  - name: Networking
-    items:
-    - name: Overview
-      displayName: inner loop,local networking,networking
-      href: fundamentals/networking-overview.md
-    - name: Define custom resource URLs
-      displayName: withurl,withurlforendpoint,withurls
-      href: fundamentals/custom-resource-urls.md
+  - name: Networking overview
+    displayName: inner loop,local networking,networking
+    href: fundamentals/networking-overview.md
   - name: Eventing in .NET Aspire
     href: app-host/eventing.md
   - name: Use external parameters
