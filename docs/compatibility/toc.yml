@@ -5,6 +5,16 @@ items:
   href: ../get-started/aspire-overview.md
 - name: Breaking changes
   href: breaking-changes.md
+- name: .NET Aspire 9.3
+  expanded: true
+  items:
+  - name: Overview
+    href: 9.3/index.md
+  - name: Breaking changes in 9.3
+    expanded: true
+    items:
+    - name: With HTTP/S health checks changes
+      href: 9.3/with-health-checks-changes.md
 - name: .NET Aspire 9.2
   expanded: true
   items:
@@ -25,7 +35,6 @@ items:
       href: 9.2/withauthentication-changes.md
     - name: WithCommand obsolete, use new overload
       href: 9.2/withcommand-obsolete.md
-
 - name: .NET Aspire 9.1
   expanded: false
   items:
