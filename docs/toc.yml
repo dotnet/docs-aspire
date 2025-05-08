@@ -93,6 +93,8 @@ items:
     href: fundamentals/dashboard/enable-browser-telemetry.md
   - name: Security considerations
     href: fundamentals/dashboard/security-considerations.md
+  - name: Microsoft-collected dashboard telemetry
+    href: fundamentals/dashboard/microsoft-collected-dashboard-telemetry.md
 
 - name: Testing
   items:
