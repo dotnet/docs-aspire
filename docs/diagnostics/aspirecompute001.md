@@ -1,6 +1,6 @@
 ---
 title: Compiler Error ASPIRECOMPUTE001
-description: Learn more about compiler Error ASPIRECOMPUTE001. Compute related types and members are for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
+description: Learn more about compiler Error ASPIRECOMPUTE001. Compute related types and members are for evaluation purposes only and are subject to change or removal in future updates. Suppress this diagnostic to proceed.
 ms.date: 05/08/2025
 f1_keywords:
   - "ASPIRECOMPUTE001"

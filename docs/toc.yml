@@ -425,10 +425,22 @@ items:
     items:
     - name: Overview
       href: diagnostics/overview.md
+    - name: Warnings
+      items:
+      - name: ASPIRE001
+        href: diagnostics/aspire001.md
+      - name: ASPIRE002
+        href: diagnostics/aspire002.md
+      - name: ASPIRE003
+        href: diagnostics/aspire003.md
+      - name: ASPIRE004
+        href: diagnostics/aspire004.md
     - name: Errors
       items:
       - name: ASPIRE006
         href: diagnostics/aspire006.md
+      - name: ASPIRE007
+        href: diagnostics/aspire007.md
       - name: ASPIREACADOMAINS001
         href: diagnostics/aspireacadomains001.md
       - name: ASPIRECOMPUTE001
@@ -445,6 +457,18 @@ items:
         href: diagnostics/aspireazure001.md
     - name: By category
       items:
+      - name: Project
+        items:
+        - name: Code language not fully supported
+          href: diagnostics/aspire001.md
+        - name: Aspire.Hosting.AppHost is missing
+          href: diagnostics/aspire002.md
+        - name: Version of Visual Studio not supported
+          href: diagnostics/aspire003.md
+        - name: Referenced project isn't an executable
+          href: diagnostics/aspire004.md
+        - name: Aspire SDK reference is out of date or missing
+          href: diagnostics/aspire007.md
       - name: Resources
         items:
         - name: Items must have valid names
