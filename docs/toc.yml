@@ -155,6 +155,8 @@ items:
       href: azure/configure-aca-environments.md
     - name: Manage role assignments
       href: azure/role-assignments.md
+    - name: User-assigned managed identity
+      href: azure/user-assigned-managed-identity.md
     - name: Azure AI Search
       displayName: azure search,search,azure ai,cognitive search,cognitive services
       href: azureai/azureai-search-document-integration.md
