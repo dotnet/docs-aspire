@@ -12,7 +12,7 @@ In this article, you learn how to add or reference user-assigned managed identit
 
 To create a new user-assigned managed identity, use the `AddAzureUserAssignedIdentity` API in your distributed application builder:
 
-````csharp
+```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 var sharedMi = builder.AddAzureUserAssignedIdentity("custom-umi");
