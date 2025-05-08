@@ -155,6 +155,8 @@ items:
       href: azure/local-provisioning.md
     - name: Configure Azure Container Apps environments
       href: azure/configure-aca-environments.md
+    - name: User-assigned managed identity
+      href: azure/user-assigned-managed-identity.md
     - name: Manage role assignments
       href: azure/role-assignments.md
     - name: Azure AI Search
