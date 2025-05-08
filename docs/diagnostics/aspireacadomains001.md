@@ -44,7 +44,7 @@ builder.AddProject<Projects.AzureContainerApps_ApiService>("api")
 
 Suppress the error with either of the following methods:
 
-- Set the severity of the rule in the _.editorConfig_ file.
+- Set the severity of the rule in the _.editorconfig_ file.
 
   ```ini
   [*.{cs,vb}]

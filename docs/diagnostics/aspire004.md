@@ -30,7 +30,7 @@ Either change the build type of the project to an executable, or add the `IsAspi
 
 Suppress the warning with either of the following methods:
 
-- Set the severity of the rule in the _.editorConfig_ file.
+- Set the severity of the rule in the _.editorconfig_ file.
 
   ```ini
   [*.{cs,vb}]

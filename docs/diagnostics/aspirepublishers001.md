@@ -22,7 +22,7 @@ Publishers are considered experimental and are expected to change in the future.
 
 Suppress the Error with either of the following methods:
 
-- Set the severity of the rule in the _.editorConfig_ file.
+- Set the severity of the rule in the _.editorconfig_ file.
 
   ```ini
   [*.{cs,vb}]
