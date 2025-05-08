@@ -431,10 +431,14 @@ items:
         href: diagnostics/aspire006.md
       - name: ASPIREACADOMAINS001
         href: diagnostics/aspireacadomains001.md
+      - name: ASPIRECOMPUTE001
+        href: diagnostics/aspirecompute001.md
       - name: ASPIRECOSMOSDB001
         href: diagnostics/aspirecosmosdb001.md
       - name: ASPIREHOSTINGPYTHON001
         href: diagnostics/aspirehostingpython001.md
+      - name: ASPIREPROXYENDPOINTS001
+        href: diagnostics/aspireproxyendpoints001.md
       - name: ASPIREPUBLISHERS001
         href: diagnostics/aspirepublishers001.md
       - name: ASPIREAZURE001
@@ -451,6 +455,10 @@ items:
           href: diagnostics/aspireacadomains001.md
         - name: Cosmos DB preview emulator and data explorer
           href: diagnostics/aspirecosmosdb001.md
+        - name: Various compute APIs are experimental
+          href: diagnostics/aspirecompute001.md
+        - name: Container proxy endpoint APIs are experimental
+          href: diagnostics/aspireproxyendpoints001.md
         - name: Hosting Python apps
           href: diagnostics/aspirehostingpython001.md
         - name: Publishing APIs are experimental
