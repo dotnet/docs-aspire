@@ -6,7 +6,7 @@ ms.date: 05/08/2025
 
 # User-assigned managed identities in .NET Aspire
 
-In this article, you learn how to add or reference user-assigned managed identities. You can add user-assigned managed identities (UMIs) in your .NET Aspire applications to securely access Azure resources. A user-assigned managed identity is a standalone Azure resource that you can assign to one or more service resources. UMIs give you more control over identity management and resource access.
+In this article, you learn how to add or reference user-assigned managed identities (UMIs). You can add UMIs in your .NET Aspire applications to securely access Azure resources. A UMI is a standalone Azure resource that you can assign to one or more service resources. UMIs give you more control over identity management and resource access.
 
 ## Add a user-assigned managed identity
 
