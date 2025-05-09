@@ -9,8 +9,4 @@ var acr = builder.AddAzureContainerRegistry("my-acr");
 builder.AddAzureContainerAppEnvironment("env")
        .WithAzureContainerRegistry(acr);
 
-// (Optional) let a service push images
-builder.AddProject("api", "../Api/Api.csproj")
-       .WithRoleAssignments(acr, ContainerRegistryBuiltInRole.AcrPush);
-
 builder.Build().Run();
