@@ -9,7 +9,7 @@
             .WithUrlForEndpoint("https", url =>
             {
                 url.DisplayText = "Scalar (HTTPS)";
-                url.Url += "/scalar";
+                url.Url = "/scalar";
             });
 
         builder.Build().Run();
