@@ -23,9 +23,9 @@ items:
   - name: Dev Containers
     href: get-started/dev-containers.md
 
-- name: Quickstarts
+- name: Build
   items:
-  - name: Build your first .NET Aspire solution
+  - name: Your first .NET Aspire solution
     displayName: quickstart,first app,aspire app
     href: get-started/build-your-first-aspire-app.md
   - name: Add .NET Aspire to an existing solution
