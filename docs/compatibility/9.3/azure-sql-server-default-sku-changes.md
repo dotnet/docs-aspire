@@ -32,11 +32,11 @@ var database = resourceBuilder
 
 ## Type of breaking change
 
-This is a [behavioral change](../../categories.md#behavioral-change).
+This is a [behavioral change](../categories.md#behavioral-change).
 
 ## Reason for change
 
-This change ensures that deployments take advantage of the Azure SQL Database free offer, reducing the risk of incurring unexpected monthly costs. For more details, see the [Azure SQL Database free offer documentation](https://learn.microsoft.com/azure/azure-sql/database/free-offer?view=azuresql).
+This change ensures that deployments take advantage of the Azure SQL Database free offer, reducing the risk of incurring unexpected monthly costs. For more information, see the [Azure SQL Database free offer](/azure/azure-sql/database/free-offer).
 
 ## Recommended action
 
