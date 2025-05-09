@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Queue Storage integration
 description: This article describes the .NET Aspire Azure Queue Storage integration features and capabilities.
-ms.date: 04/08/2025
+ms.date: 05/09/2025
 uid: storage/azure-queue-storage-integration
 ---
 
@@ -145,7 +145,7 @@ The .NET Aspire Azure Queue Storage integration supports <xref:Microsoft.Extensi
 }
 ```
 
-For the complete Azure Storage Queues client integration JSON schema, see [Aspire.Azure.Data.Queues/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Data.Queues/ConfigurationSchema.json).
+For the complete Azure Storage Queues client integration JSON schema, see [Aspire.Azure.Data.Queues/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/e3d170c14198caf53e62818e1f71a0526449c585/src/Components/Aspire.Azure.Storage.Queues/ConfigurationSchema.json).
 
 #### Use inline delegates
 
