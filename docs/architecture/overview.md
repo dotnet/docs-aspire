@@ -1,20 +1,20 @@
 ---
 title: .NET Aspire architecture overview  
 description: Learn about the overall architecture of .NET Aspire, including its integrations, orchestration, and networking capabilities.  
-ms.date: 04/28/2025
+ms.date: 05/09/2025
 ---
 
 # .NET Aspire architecture overview  
 
-.NET Aspire brings together a powerful suite of tools and libraries, designed to deliver a seamless and intuitive experience for developers. Its modular and extensible architecture empowers you to define your application model with precision, orchestrating intricate systems composed of services, containers, and executables. Whether your components span different programming languages, platforms, stacks, or operating systems, .NET Aspire ensures they work harmoniously, simplifying the complexity of modern application development.
+.NET Aspire brings together a powerful suite of tools and libraries, designed to deliver a seamless and intuitive experience for developers. Its modular and extensible architecture empowers you to define your application model with precision, orchestrating intricate systems composed of services, containers, and executables. Whether your components span different programming languages, platforms, stacks, or operating systems, .NET Aspire ensures they work harmoniously, simplifying the complexity of modern cloud-native app development.
 
 ## App model architecture
 
 Resources are the building blocks of your app model. They're used to represent abstract concepts like services, containers, executables, and external integrations. Specific resources enable developers to define dependencies on concrete implementations of these concepts. For example, a `Redis` resource can be used to represent a Redis cache, while a `Postgres` resource can represent a PostgreSQL database.
 
-While the app model is often synonymous with a collection of resources, it's a high level representation of your entire application topology. This is important, as its architected for lowering. In this way, .NET Aspire can be thought of as a compiler for application topology.
+While the app model is often synonymous with a collection of resources, it's also a high level representation of your entire application topology. This is important, as it's architected for lowering. In this way, .NET Aspire can be thought of as a compiler for application topology.
 
-**Lowering the model**
+### Lowering the model
 
 In a traditional compiler, the process of "lowering" involves translating a high-level programming language into progressively simpler representations:
 
@@ -37,7 +37,7 @@ Most importantly, the translation process itself is highly extensible. You can d
 
 ### Modality and extensibility
 
-.NET Aspire operates in two primary modes, each tailored to streamline your specific needs—detailed in the following section. Both modes use a robust set of familiar APIs and a rich ecosystem of [integrations](../fundamentals/integrations-overview.md). These integrations work together like puzzle pieces, enabling you to define resources, express dependencies, and configure behavior effortlessly—whether you're running locally or deploying to production.
+.NET Aspire operates in two primary modes, each tailored to streamline your specific needs—detailed in the following section. Both modes use a robust set of familiar APIs and a rich ecosystem of [integrations](../fundamentals/integrations-overview.md). Each integration simplifies working with a common service, framework, or platform, such as Redis, PostgreSQL, Azure services, or Orleans, for example. These integrations work together like puzzle pieces, enabling you to define resources, express dependencies, and configure behavior effortlessly—whether you're running locally or deploying to production.
 
 Why is modality important when it comes to the app host's execution context? This is because it allows you to define your app model once and with the appropriate APIs, specify how resources operate in each mode. Consider the following collection of resources:
 
@@ -104,7 +104,7 @@ In this section, several key questions are answered to help you understand how t
 
 - **What resources are monitored?**
 
-  All declared resources—including containers, executables, and integrations—are monitored to ensure correct behavior and to support a reliable dev loop.
+  All declared resources—including containers, executables, and integrations—are monitored to ensure correct behavior and to support a fast and reliable development workflow.
 
 - **How are containers and executables managed?**
 
@@ -144,7 +144,7 @@ DCP is written in Go, aligning with Kubernetes and its ecosystem, which are also
 > [!NOTE]
 > DCP operates on the principle of "eventual consistency," meaning that changes to the model and the real-world environment are applied asynchronously. While this approach may introduce noticeable delays, DCP is designed to diligently synchronize both states. Unlike a "strongly consistent" system that might fail immediately on encountering issues, DCP persistently retries until the desired state is achieved or an error is conclusively determined, often resulting in a more robust alignment between the model and the real world.
 
-When you run the app host, it communicates with DCP using Kubernetes client libraries. The app host gives the app model to DCP, which looks at the resources in the model and turns them into specs it can understand. This process involves translating the app model into a set of Kubernetes custom resource definitions (CRDs) that represent the desired state of the application
+When the app host runs, it uses Kubernetes client libraries to communicate with DCP. It translates the app model into a format DCP can process by converting the model's resources into specifications. Specifically, this involves generating Kubernetes Custom Resource Definitions (CRDs) that represent the application's desired state.
 
 DCP performs the following tasks:
 
