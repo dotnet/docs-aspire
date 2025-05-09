@@ -170,6 +170,9 @@ items:
         href: caching/azure-cache-for-redis-distributed-caching-integration.md
       - name: Azure Cache for Redis output caching
         href: caching/azure-cache-for-redis-output-caching-integration.md
+    - name: Azure Container Registry
+      displayName: container registry,acr
+      href: azure/container-registry-integration.md
     - name: Azure Cosmos DB
       displayName: cosmos db,database
       href: database/azure-cosmos-db-integration.md
