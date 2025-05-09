@@ -31,7 +31,7 @@ var pythonApp = builder.AddPythonApp("hello-python", "../hello-python", "main.py
 
 Suppress the Error with either of the following methods:
 
-- Set the severity of the rule in the _.editorConfig_ file.
+- Set the severity of the rule in the _.editorconfig_ file.
 
   ```ini
   [*.{cs,vb}]
