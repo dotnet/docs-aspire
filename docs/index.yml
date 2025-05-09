@@ -312,7 +312,7 @@ additionalContent:
     - title: Webcasts and shows
       links:
       - text: Azure Friday
-        url: /Shows/Azure-Friday/
+        url: /shows/azure-friday/
       - text: The Cloud Native Show
         url: /shows/the-cloud-native-show
       - text: On .NET
