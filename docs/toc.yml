@@ -9,6 +9,8 @@ items:
     href: get-started/aspire-overview.md
   - name: What's new in .NET Aspire 9.3
     href: whats-new/dotnet-aspire-9.3.md
+  - name: Upgrade to .NET Aspire 9.0
+    href: get-started/upgrade-to-aspire-9.md
 
 - name: Install
   items:
@@ -120,7 +122,7 @@ items:
     href: service-discovery/overview.md
   - name: Service defaults
     href: fundamentals/service-defaults.md
-  - name: .NET Aspire and launch profiles
+  - name: Launch profiles
     href: fundamentals/launch-profiles.md
   - name: Telemetry
     displayName: otel,otlp,telemetry,grpc,opentelemetry,protobuf,traceparent
