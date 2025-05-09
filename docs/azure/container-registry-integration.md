@@ -52,7 +52,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 The following example demonstrates how to provision a new Azure Container Registry and attach it to a container app environment:
 
-:::code source="snippets/acr/AspireAcr.AppHost/Program.cs":::
+:::code source="snippets/acr//AspireAcr.AppHost/AspireAcr.AppHost/Program.cs":::
 
 The preceding code:
 
@@ -81,7 +81,7 @@ The generated Bicep is a starting point and is influenced by changes to the prov
 
 To reference an existing Azure Container Registry, use the <xref:Aspire.Hosting.ExistingAzureResourceExtensions.PublishAsExisting*> method with the registry name and resource group:
 
-:::code source="snippets/acr/AspireAcr.AppHost/Program.Existing.cs" id="existing":::
+:::code source="snippets/acr/AspireAcr.AppHost/AspireAcr.AppHost/Program.Existing.cs" id="existing":::
 
 The preceding code:
 
