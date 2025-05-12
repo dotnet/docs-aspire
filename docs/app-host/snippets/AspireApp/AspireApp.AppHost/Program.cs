@@ -14,6 +14,17 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
     .WithReference(apiService)
     .WaitFor(apiService);
 
+builder.Eventing.Subscribe<ResourceEndpointsAllocatedEvent>(
+    (@event, cancellationToken) =>
+    {
+        // The event doesn't expose an IServiceProvider, just write to the console.
+        Console.WriteLine($"""
+                    3. '{@event.Resource.Name}' ResourceEndpointsAllocatedEvent
+            """);
+
+        return Task.CompletedTask;
+    });
+
 builder.Eventing.Subscribe<BeforeStartEvent>(
     static (@event, cancellationToken) =>
     {
@@ -39,7 +50,7 @@ builder.Eventing.Subscribe<AfterResourcesCreatedEvent>(
     {
         var logger = @event.Services.GetRequiredService<ILogger<Program>>();
 
-        logger.LogInformation("3. AfterResourcesCreatedEvent");
+        logger.LogInformation("4. AfterResourcesCreatedEvent");
 
         return Task.CompletedTask;
     });

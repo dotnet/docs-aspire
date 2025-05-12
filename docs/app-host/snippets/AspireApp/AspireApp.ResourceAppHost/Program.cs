@@ -16,6 +16,16 @@ builder.Eventing.Subscribe<ResourceReadyEvent>(
         return Task.CompletedTask;
     });
 
+builder.Eventing.Subscribe<InitializeResourceEvent>(cache.Resource,
+    static (@event, cancellationToken) =>
+    {
+        var logger = @event.Services.GetRequiredService<ILogger<Program>>();
+
+        logger.LogInformation("0. InitializeResourceEvent");
+
+        return Task.CompletedTask;
+    });
+
 builder.Eventing.Subscribe<BeforeResourceStartedEvent>(
     cache.Resource,
     static (@event, cancellationToken) =>
