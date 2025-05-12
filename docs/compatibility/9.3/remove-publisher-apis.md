@@ -36,29 +36,20 @@ In .NET Aspire 9.3, the publishers are now replaced with new resource types:
 
 <!-- TODO: Add xrefs when available. -->
 
-- `DockerEnvironmentResource`
+- `DockerComposeEnvironmentResource`
 - `KubernetesEnvironmentResource`
-- `AzureEnvironmentResource`
+- `AzureEnvironmentResource` (Automatically added when you use any Azure resource)
 
 These resources include a `PublisherCallbackAnnotation` that defines their publishing behavior. The default publisher now automatically processes all resources with this annotation to generate assets. The `aspire publish` command no longer requires selecting a publisher; it uses the default publisher to handle all annotated resources.
 
 Example:
 
 ```csharp
-builder.AddDockerComposeEnvironment(publisher =>
-{
-    // Configure the Docker environment publisher
-});
+builder.AddDockerComposeEnvironment("docker-compose");
 
-builder.AddKubernetesEnvironment(publisher =>
-{
-    // Configure the Kubernetes environment publisher
-});
+builder.AddKubernetesEnvironment("kubernetes");
 
-builder.AddAzureEnvironment(publisher =>
-{
-    // Configure the Azure environment publisher
-});
+builder.AddAzureEnvironment("azure");
 ```
 
 ## Type of breaking change
@@ -73,20 +64,20 @@ The change simplifies the publishing process by consolidating functionality into
 
 Update your code to use the new resource APIs:
 
-- Replace `AddDockerComposePublisher` with `AddDockerComposeEnvironment(...)`.
-- Replace `AddKubernetesPublisher` with `AddKubernetesEnvironment(...)`.
-- Replace `AddAzurePublisher` with `AddAzureEnvironment(...)` (implicit with any Azure resource).
+- Replace `AddDockerComposePublisher` with `AddDockerComposeEnvironment("...")`.
+- Replace `AddKubernetesPublisher` with `AddKubernetesEnvironment("...")`.
+- Replace `AddAzurePublisher` with `AddAzureEnvironment("...")`.
 
 Example:
 
 ```csharp
-builder.AddDockerComposeEnvironment(...);
-builder.AddKubernetesEnvironment(...);
-builder.AddAzureEnvironment(...);
+var dockerCompose = builder.AddDockerComposeEnvironment("docker-compose");
+var kubernetes = builder.AddKubernetesEnvironment("kubernetes");
+var azure = builder.AddAzureEnvironment("azure");
 ```
 
 ## Affected APIs
 
-- `IDistributedApplicationBuilder.AddDockerComposePublisher`
-- `IDistributedApplicationBuilder.AddKubernetesPublisher`
-- `IDistributedApplicationBuilder.AddAzurePublisher`
+- <xref:Aspire.Hosting.DockerComposePublisherExtensions.AddDockerComposePublisher*>
+- <xref:Aspire.Hosting.KubernetesPublisherExtensions.AddKubernetesPublisher*>
+- <xref:Aspire.Hosting.AzurePublisherExtensions.AddAzurePublisher*>
