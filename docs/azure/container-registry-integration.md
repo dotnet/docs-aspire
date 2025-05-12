@@ -101,7 +101,7 @@ When you attach an Azure Container Registry to a compute environment, Aspire aut
 
 **Fine-grained role assignments**
 
-You can assign specific roles to Azure resources to control access to the container registry. For example, the AcrPush role allows a service to push images to the registry.
+You can assign specific roles to Azure resources to control access to the container registry. For example, the `AcrPush` role allows a service to push images to the registry.
 
 ```csharp
 builder.AddProject("api", "../Api/Api.csproj")
