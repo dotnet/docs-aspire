@@ -32,7 +32,7 @@ The preceding code is based on the starter template with the addition of the cal
 
 When the app host is run, by the time the .NET Aspire dashboard is displayed, you should see the following log output in the console:
 
-:::code language="Plaintext" source="snippets/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10-14,20":::
+:::code language="Output" source="snippets/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10-14,20":::
 
 The log output confirms that event handlers are executed in the order of the app host life cycle events. The subscription order doesn't affect execution order. The `BeforeStartEvent` is triggered first, followed by `AfterEndpointsAllocatedEvent`, then each resource has its `ResourceEndpointsAllocatedEvent` event fired, and finally `AfterResourcesCreatedEvent`.
 
@@ -55,7 +55,7 @@ The preceding code subscribes to the `InitializeResourceEvent`, `ResourceReadyEv
 
 When the app host is run, by the time the .NET Aspire dashboard is displayed, you should see the following log output in the console:
 
-:::code language="Plaintext" source="snippets/AspireApp/AspireApp.ResourceAppHost/Console.txt" highlight="8,10,12,18":::
+:::code language="Output" source="snippets/AspireApp/AspireApp.ResourceAppHost/Console.txt" highlight="8,10,12,18":::
 
 > [!NOTE]
 > Some events are blocking. For example, when the `BeforeResourceStartEvent` is published, the startup of the resource will be blocked until all subscriptions for that event on a given resource have completed executing. Whether an event is blocking or not depends on how it is published (see the following section).
@@ -114,7 +114,7 @@ info: Aspire.Hosting.DistributedApplication[0]
 info: Aspire.Hosting.DistributedApplication[0]
       Distributed application starting.
 info: Aspire.Hosting.DistributedApplication[0]
-      Application host directory is: ..\AspireApp\AspireApp.AppHost
+      Application host directory is: ../AspireApp/AspireApp.AppHost
 info: LifecycleLogger[0]
       AfterEndpointsAllocatedAsync
 info: Aspire.Hosting.DistributedApplication[0]
