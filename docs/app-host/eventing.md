@@ -106,7 +106,7 @@ The preceding code:
 
 When this app host is run, the life cycle hook is executed for each event. The following output is generated:
 
-:::code lang="Output" source="../fundamentals/snippets/lifecycles/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10,16":::
+:::code language="Output" source="../fundamentals/snippets/lifecycles/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10,16":::
 
 The preferred way to hook into the app host life cycle is to use the eventing API. For more information, see [App host eventing](#app-host-eventing).
 
