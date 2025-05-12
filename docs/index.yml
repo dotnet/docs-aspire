@@ -177,7 +177,7 @@ conceptualContent:
       url: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
     - itemType: overview
       text: Use Dapr with .NET Aspire
-      url: frameworks/dapr.md
+      url: community-toolkit/dapr.md
     - itemType: sample
       text: Dapr integration sample
       url: https://github.com/CommunityToolkit/Aspire/tree/main/examples/dapr
