@@ -49,10 +49,12 @@ builder.AddDockerComposeEnvironment(publisher =>
 {
     // Configure the Docker environment publisher
 });
+
 builder.AddKubernetesEnvironment(publisher =>
 {
     // Configure the Kubernetes environment publisher
 });
+
 builder.AddAzureEnvironment(publisher =>
 {
     // Configure the Azure environment publisher
