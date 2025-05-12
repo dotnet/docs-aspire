@@ -135,10 +135,10 @@ The migration service is created, but it needs to be added to the .NET Aspire ap
     This enlists the *:::no-loc text="SupportTicketApi.MigrationService":::* project as a service in the .NET Aspire app host.
 
     > [!NOTE]
-    > In the above code, the call to <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*> adds a representation of a SQL Server database to the .NET Aspire application model with a connection string. It *doesn't* create a database in the SQL Server container. To ensure that the database is created, the sample project calls the EF Core <xref:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureCreated*> method from the support ticket API's *:::no-loc text="Program.cs":::* file.
+    > In the preceding code, the call to <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*> adds a representation of a SQL Server database to the .NET Aspire application model with a connection string. It *doesn't* create a database in the SQL Server container. To ensure that the database is created, the sample project calls the EF Core <xref:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureCreated*> method from the support ticket API's *:::no-loc text="Program.cs":::* file.
 
     > [!TIP]
-    > The code creates the SQL Server container each time it runs and applies migrations to it. Data is not persisted across debugging sessions and any new database rows you create during testing will not survive an app restart. If you would prefer to persist this data, add a data volume to you container. For details see [Add SQL Server resource with data volume](sql-server-entity-framework-integration.md#add-sql-server-resource-with-data-volume).
+    > The code creates the SQL Server container each time it runs and applies migrations to it. Data doesn't persist across debugging sessions and any new database rows you create during testing will not survive an app restart. If you would prefer to persist this data, add a data volume to your container. For more information, see [Add SQL Server resource with data volume](sql-server-entity-framework-integration.md#add-sql-server-resource-with-data-volume).
 
 1. If the code cannot resolve the migration service project, add a reference to the migration service project in the AppHost project:
 
