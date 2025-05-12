@@ -1,7 +1,7 @@
 ---
 title: Azure integrations overview
 description: Overview of the Azure integrations available in the .NET Aspire.
-ms.date: 04/10/2025
+ms.date: 05/09/2025
 uid: dotnet/aspire/integrations/azure-overview
 ---
 
@@ -322,6 +322,9 @@ The preceding code:
   - The `AsProvisioningParameter` method is used to treat `env` as either a new <xref:Azure.Provisioning.ProvisioningParameter> in infrastructure, or reuses an existing bicep parameter if one with the same name already exists.
 
 To configure the Azure Container App environment, see [Configure Azure Container Apps environments](configure-aca-environments.md). For more information, see <xref:Azure.Provisioning.AppContainers.ContainerApp> and <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.AsProvisioningParameter*>.
+
+> [!TIP]
+> If you're working with Azure Container Apps, you might also be interested in the [.NET Aspire Azure Container Registry integration](container-registry-integration.md).
 
 ## Infrastructure as code
 
