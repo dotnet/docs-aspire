@@ -218,12 +218,6 @@ items:
       href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.2&preserve-view=true
     - name: Aspire.Azure API reference
       href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.2&preserve-view=true
-  - name: Dapr
-    items:
-    - name: Overview
-      href: frameworks/dapr.md
-    - name: Dapr integration sample
-      href: https://github.com/CommunityToolkit/Aspire/tree/main/examples/dapr
   - name: Elasticsearch
     displayName: elasticsearch,search
     href: search/elasticsearch-integration.md
@@ -323,6 +317,8 @@ items:
       href: community-toolkit/hosting-azure-static-web-apps.md
     - name: Bun apps
       href: community-toolkit/hosting-bun.md
+    - name: Dapr
+      href: community-toolkit/dapr.md
     - name: Deno apps
       href: community-toolkit/hosting-deno.md
     - name: Go apps
