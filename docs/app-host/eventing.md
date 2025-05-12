@@ -106,28 +106,9 @@ The preceding code:
 
 When this app host is run, the life cycle hook is executed for each event. The following output is generated:
 
-```Output
-info: LifecycleLogger[0]
-      BeforeStartAsync
-info: Aspire.Hosting.DistributedApplication[0]
-      Aspire version: 9.0.0
-info: Aspire.Hosting.DistributedApplication[0]
-      Distributed application starting.
-info: Aspire.Hosting.DistributedApplication[0]
-      Application host directory is: ../AspireApp/AspireApp.AppHost
-info: LifecycleLogger[0]
-      AfterEndpointsAllocatedAsync
-info: Aspire.Hosting.DistributedApplication[0]
-      Now listening on: https://localhost:17043
-info: Aspire.Hosting.DistributedApplication[0]
-      Login to the dashboard at https://localhost:17043/login?t=d80f598bc8a64c7ee97328a1cbd55d72
-info: LifecycleLogger[0]
-      AfterResourcesCreatedAsync
-info: Aspire.Hosting.DistributedApplication[0]
-      Distributed application started. Press Ctrl+C to shut down.
-```
+:::code lang="Output" source="../fundamentals/snippets/lifecycles/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10,16":::
 
-The preferred way to hook into the app host life cycle is to use the eventing API. For more information, see [Eventing in .NET Aspire](#eventing-in-net-aspire).
+The preferred way to hook into the app host life cycle is to use the eventing API. For more information, see [App host eventing](#app-host-eventing).
 
 ## See also
 
