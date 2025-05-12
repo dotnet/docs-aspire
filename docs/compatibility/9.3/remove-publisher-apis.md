@@ -8,7 +8,7 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/3373
 
 # Removal of DockerComposePublisher, KubernetesPublisher, and AzurePublisher
 
-In .NET Aspire 9.3, the `AddDockerComposePublisher`, `AddKubernetesPublisher`, and `AddAzurePublisher` APIs were removed. These APIs are now replaced with new resource types that provide a more streamlined and flexible publishing experience.
+In .NET Aspire 9.3, the `AddDockerComposePublisher`, `AddKubernetesPublisher`, and `AddAzurePublisher` APIs were removed. These APIs are now replaced with new resource types that provide a more composable experience.
 
 ## Version introduced
 
