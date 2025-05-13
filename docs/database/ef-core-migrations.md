@@ -75,7 +75,9 @@ Now you've got some migrations to apply. Next, you'll create a migration service
 
 ## Create the migration service
 
-To run the migrations at startup, you need to create a service that applies the migrations.
+To execute migrations, call the EF Core <xref:Microsoft.EntityFrameworkCore.Migrations.IMigrator.Migrate*> method or the <xref:Microsoft.EntityFrameworkCore.Migrations.IMigrator.MigrateAsync*> method. In this tutorial, you'll create a separate worker service to apply migrations. This approach separates migration concerns into a dedicated project, which is easier to maintain.
+
+To create a service that applies the migrations:
 
 1. Add a new Worker Service project to the solution. If using Visual Studio, right-click the solution in Solution Explorer and select **:::no-loc text="Add":::** > **:::no-loc text="New Project":::**. Select **:::no-loc text="Worker Service":::**, name the project *:::no-loc text="SupportTicketApi.MigrationService":::* and target **.NET 8.0**. If using the command line, use the following commands from the solution directory:
 
@@ -131,6 +133,12 @@ The migration service is created, but it needs to be added to the .NET Aspire ap
     :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.AppHost/Program.cs" highlight="11-13" :::
 
     This enlists the *:::no-loc text="SupportTicketApi.MigrationService":::* project as a service in the .NET Aspire app host.
+
+    > [!NOTE]
+    > In the preceding code, the call to <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*> adds a representation of a SQL Server database to the .NET Aspire application model with a connection string. It *doesn't* create a database in the SQL Server container. To ensure that the database is created, the sample project calls the EF Core <xref:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureCreated*> method from the support ticket API's *:::no-loc text="Program.cs":::* file.
+
+    > [!TIP]
+    > The code creates the SQL Server container each time it runs and applies migrations to it. Data doesn't persist across debugging sessions and any new database rows you create during testing will not survive an app restart. If you would prefer to persist this data, add a data volume to your container. For more information, see [Add SQL Server resource with data volume](sql-server-entity-framework-integration.md#add-sql-server-resource-with-data-volume).
 
 1. If the code cannot resolve the migration service project, add a reference to the migration service project in the AppHost project:
 
