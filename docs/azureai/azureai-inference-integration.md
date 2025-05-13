@@ -13,7 +13,7 @@ The .NET Aspire Azure AI Inference integration provides a seamless way to deploy
 
 ## Hosting integration
 
-There's currently no hosting integration for the Azure AI Inference library. However, you can model a reference to this resource in your app host project, and connect to an existing Azure AI Foundry resource using the <xref:Aspire.Hosting.ConnectionStringBuilderExtensions.AddConnectionString*> API.
+Although the Azure AI Inference library doesn't currently offer direct hosting integration, you can still integrate it into your app host project. Simply add a connection string to establish a reference to an existing Azure AI Foundry resource.
 
 ### Connect to an existing Azure AI Foundry service
 
@@ -102,7 +102,7 @@ The .NET Aspire Azure AI Inference library provides multiple options to configur
 
 A connection can be constructed from the `Keys`, `Deployment ID` and `Endpoint` tab with the format:
 
-```Connection string
+```Plaintext
 Endpoint={endpoint};Key={key};DeploymentId={deploymentId}`
 ```
 
