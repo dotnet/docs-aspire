@@ -13,21 +13,21 @@ internal sealed class LifecycleLogger(ILogger<LifecycleLogger> logger)
     public Task BeforeStartAsync(
         DistributedApplicationModel appModel, CancellationToken cancellationToken = default)
     {
-        logger.LogInformation("BeforeStartAsync");
+        logger.LogInformation("1. BeforeStartAsync");
         return Task.CompletedTask;
     }
 
     public Task AfterEndpointsAllocatedAsync(
         DistributedApplicationModel appModel, CancellationToken cancellationToken = default)
     {
-        logger.LogInformation("AfterEndpointsAllocatedAsync");
+        logger.LogInformation("2. AfterEndpointsAllocatedAsync");
         return Task.CompletedTask;
     }
 
     public Task AfterResourcesCreatedAsync(
         DistributedApplicationModel appModel, CancellationToken cancellationToken = default)
     {
-        logger.LogInformation("AfterResourcesCreatedAsync");
+        logger.LogInformation("3. AfterResourcesCreatedAsync");
         return Task.CompletedTask;
     }
 }
