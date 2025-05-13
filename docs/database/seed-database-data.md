@@ -197,6 +197,7 @@ if (app.Environment.IsDevelopment())
 
 Database seeding is useful in a variety of app development scenarios. Try combining these techniques with the resource implementations demonstrated in the following tutorials:
 
-- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](../database/sql-server-integrations.md)
+- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](sql-server-integrations.md)
+- [Tutorial: Apply Entity Framework Core migrations in .NET Aspire](ef-core-migrations.md)
 - [Tutorial: Connect an ASP.NET Core app to .NET Aspire storage integrations](../storage/azure-storage-integrations.md)
 - [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)
