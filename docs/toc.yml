@@ -159,6 +159,9 @@ items:
       href: azure/user-assigned-managed-identity.md
     - name: Manage role assignments
       href: azure/role-assignments.md
+    - name: Azure AI Inference (Preview)
+      displayName: azure ai,inference
+      href: azureai/azureai-inference-integration.md
     - name: Azure AI Search
       displayName: azure search,search,azure ai,cognitive search,cognitive services
       href: azureai/azureai-search-document-integration.md
