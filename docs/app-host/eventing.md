@@ -32,7 +32,7 @@ The preceding code is based on the starter template with the addition of the cal
 
 When the app host is run, by the time the .NET Aspire dashboard is displayed, you should see the following log output in the console:
 
-:::code language="Output" source="snippets/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10-14,20":::
+:::code language="Plaintext" source="snippets/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10-14,20":::
 
 The log output confirms that event handlers are executed in the order of the app host life cycle events. The subscription order doesn't affect execution order. The `BeforeStartEvent` is triggered first, followed by `AfterEndpointsAllocatedEvent`, then each resource has its `ResourceEndpointsAllocatedEvent` event fired, and finally `AfterResourcesCreatedEvent`.
 
@@ -55,7 +55,7 @@ The preceding code subscribes to the `InitializeResourceEvent`, `ResourceReadyEv
 
 When the app host is run, by the time the .NET Aspire dashboard is displayed, you should see the following log output in the console:
 
-:::code language="Output" source="snippets/AspireApp/AspireApp.ResourceAppHost/Console.txt" highlight="8,10,12,18":::
+:::code language="Plaintext" source="snippets/AspireApp/AspireApp.ResourceAppHost/Console.txt" highlight="8,10,12,18":::
 
 > [!NOTE]
 > Some events are blocking. For example, when the `BeforeResourceStartEvent` is published, the startup of the resource will be blocked until all subscriptions for that event on a given resource have completed executing. Whether an event is blocking or not depends on how it is published (see the following section).
@@ -106,7 +106,7 @@ The preceding code:
 
 When this app host is run, the life cycle hook is executed for each event. The following output is generated:
 
-:::code language="Output" source="../fundamentals/snippets/lifecycles/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10,16":::
+:::code language="Plaintext" source="../fundamentals/snippets/lifecycles/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10,16":::
 
 The preferred way to hook into the app host life cycle is to use the eventing API. For more information, see [App host eventing](#app-host-eventing).
 
