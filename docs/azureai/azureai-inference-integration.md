@@ -46,7 +46,7 @@ For more information, see [Add existing Azure resources with connection strings]
 
 ## Client integration
 
-To get started with the .NET Aspire Azure AI Inference client integration, install the [📦 Aspire.Azure.AI.Inference](https://www.nuget.org/packages/Aspire.Azure.AI.Inference) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure OpenAI client.
+To get started with the .NET Aspire Azure AI Inference client integration, install the [📦 Aspire.Azure.AI.Inference](https://www.nuget.org/packages/Aspire.Azure.AI.Inference) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure AI Inference client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -74,7 +74,7 @@ builder.AddChatCompletionsClient(connectionName: "ai-foundry");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Azure OpenAI resource in the app host project. For more information, see [Connect to an existing Azure AI Foundry service](#connect-to-an-existing-azure-ai-foundry-service).
+> The `connectionName` parameter must match the name used when adding the Azure AI Inference resource in the app host project. For more information, see [Connect to an existing Azure AI Foundry service](#connect-to-an-existing-azure-ai-foundry-service).
 
 After adding the `ChatCompletionsClient`, you can retrieve the client instance using dependency injection:
 
@@ -90,6 +90,31 @@ For more information, see:
 - [What is Azure AI model inference?](/azure/ai-foundry/model-inference/overview) for details on Azure AI model interfence.
 - [Dependency injection in .NET](/dotnet/core/extensions/dependency-injection) for details on dependency injection.
 - [The Azure AI Foundry SDK: C#](/azure/ai-foundry/how-to/develop/sdk-overview?tabs=sync&pivots=programming-language-csharp).
+
+### Add keyed Azure AI Inference clients
+
+There might be situations where you want to register multiple `ChatCompletionsClient` instances with different connection names. To register keyed Azure AI Inference clients, call the `AddKeyedAzureChatCompletionsClient` method:
+
+```csharp
+builder.AddKeyedAzureChatCompletionsClient(name: "chat");
+builder.AddKeyedAzureChatCompletionsClient(name: "code");
+```
+
+> [!IMPORTANT]
+> When using keyed services, ensure that your Azure AI Inference resource configures two named connections, one for `chat` and one for `code`.
+
+Then you can retrieve the client instances using dependency injection. For example, to retrieve the clients from a service:
+
+```csharp
+public class ExampleService(
+    [KeyedService("chat")] ChatCompletionsClient chatClient,
+    [KeyedService("code")] ChatCompletionsClient codeClient)
+{
+    // Use clients...
+}
+```
+
+For more information, see [Keyed services in .NET](/dotnet/core/extensions/dependency-injection#keyed-services).
 
 ### Configuration
 
@@ -170,14 +195,26 @@ builder.AddChatCompletionsClient(
     static settings => settings.DisableTracing = true);
 ```
 
-#### Experimental telemetry
+[!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
-Azure AI OpenAI telemetry support is experimental, and the shape of traces may change in the future without notice. It can be enabled by invoking:
+### Logging
 
-```csharp
-AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true);
-```
+The .NET Aspire Azure AI Inference integration uses the following log categories:
 
-Alternatively, you can see the `AZURE_EXPERIMENTAL_ENABLE_ACTIVITY_SOURCE` environment variable to `"true"`.
+- `Azure.Core`
+- `Azure.Identity`
+
+### Tracing
+
+The .NET Aspire Azure AI Inference integration emits tracing activities using OpenTelemetry for operations performed with the `OpenAIClient`.
+
+> [!IMPORTANT]
+> Azure AI Inference telemetry support is experimental, and the shape of traces may change in the future without notice. It can be enabled by invoking:
+>
+> ```csharp
+> AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true);
+> ```
+>
+> Alternatively, you can set the `AZURE_EXPERIMENTAL_ENABLE_ACTIVITY_SOURCE` environment variable to `"true"`.
 
 ## See also
