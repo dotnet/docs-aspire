@@ -29,12 +29,12 @@ items:
   - name: Upgrade to .NET Aspire 9.0
     href: get-started/upgrade-to-aspire-9.md
 
-- name: Architecture
+- name: Dev-time orchestration
   items:
-  - name: Overview
+  - name: Architecture overview
     displayName: aspire architecture,aspire app,aspire apphost,aspire app model
     href: architecture/overview.md
-  - name: App host
+  - name: App host overview
     displayName: orchestration,aspire apphost,aspire app,dev-time,inner-loop
     href: fundamentals/app-host-overview.md
   - name: Locally orchestrate
