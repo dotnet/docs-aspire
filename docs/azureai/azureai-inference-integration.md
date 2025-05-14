@@ -1,7 +1,7 @@
 ---
 title: Azure AI Inference
 description: Learn how to use the .NET Aspire Azure AI Inference integration to deploy and manage machine learning models in the cloud.
-ms.date: 05/13/2025
+ms.date: 05/14/2025
 titleSuffix: ''
 ---
 
@@ -9,7 +9,7 @@ titleSuffix: ''
 
 [!INCLUDE [includes-client](../includes/includes-client.md)]
 
-The .NET Aspire Azure AI Inference integration provides a seamless way to deploy and manage machine learning models in the cloud. This integration allows you to leverage the power of Azure's AI services while maintaining the flexibility and ease of use of the .NET Aspire framework.
+The .NET Aspire Azure AI Inference integration provides a seamless way to deploy and manage machine learning models in the cloud. This integration allows you to leverage the power of Azure's AI services while maintaining the flexibility and ease of use of the .NET Aspire.
 
 ## Hosting integration
 
