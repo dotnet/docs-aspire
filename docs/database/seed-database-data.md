@@ -85,9 +85,9 @@ In the app host's *Program.cs* file, create the database and mount the folder th
 
 ---
 
-## Seed data using Entity Framework Core
+## Seed data using EF Core
 
-You can also seed data in .NET Aspire projects using Entity Framework Core by explicitly running migrations during startup. Entity Framework Core handles underlying database connections and schema creation for you, which eliminates the need to use volumes or run SQL scripts during container startup.
+You can also seed data in .NET Aspire projects using EF Core by explicitly running migrations during startup. EF Core handles underlying database connections and schema creation for you, which eliminates the need to use volumes or run SQL scripts during container startup.
 
 > [!IMPORTANT]
 > These types of configurations should only be done during development, so make sure to add a conditional that checks your current environment context.
