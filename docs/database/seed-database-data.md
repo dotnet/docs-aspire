@@ -34,7 +34,11 @@ By default, .NET Aspire database integrations rely on containerized databases, w
 > [!NOTE]
 > Visit the [Database Container Sample App](https://github.com/dotnet/aspire-samples/blob/main/samples/DatabaseContainers/DatabaseContainers.AppHost/Program.cs) to view the full project and file structure for each database option.
 
-## Seed data in SQL Server databases using SQL scripts
+## Seed data using SQL scripts
+
+In .NET Aspire 9.2, the recommended method for executing database seeding scripts depends on the database server you use:
+
+### [SQL Server](#tab/sql-server)
 
 In .NET Aspire 9.2 and later versions, you can use the <xref:Aspire.Hosting.SqlServerBuilderExtensions.WithCreationScript*> method to ensure a T-SQL script is run when the database is created. Add SQL code to this script that creates and populates the database, the necessary tables, and other database objects.
 
@@ -44,7 +48,7 @@ The following code is an example T-SQL script that creates and populates an addr
 
 You must ensure that this script is copied to the app host's output directory, so that .NET Aspire can execute it. Add the following XML to your *.csproj* file:
 
-:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/DatabaseContainers.AppHost.csproj" range="13-17" :::
+:::code language="xml" source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/DatabaseContainers.AppHost.csproj" range="13-17" :::
 
 Adjust the `Include` parameter to match the path to your SQL script in the project.
 
@@ -59,11 +63,9 @@ This code:
 - Obtains the path to the T-SQL script in the output folder.
 - Calls `WithCreationScript()` to create and seed the database.
 
-## Seed data using bind mounts
-
-In .NET Aspire 9.2, The `WithCreationScript()` method is not supported for the PostgreSQL and MySQL integrations. Instead you must use a bind mount and deploy the setup SQL script to it, so that the data is seeded when the container initializes the database.
-
 ### [PostgreSQL](#tab/postgresql)
+
+In .NET Aspire 9.2, The `WithCreationScript()` method is not supported for the PostgreSQL integration. Instead you must use a bind mount and deploy the setup SQL script to it, so that the data is seeded when the container initializes the database.
 
 The following code is an example PostgreSQL script that creates and populates a to do list database:
 
@@ -74,6 +76,8 @@ In the app host's *Program.cs* file, create the database and mount the folder th
 :::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/Program.cs" range="3-19" :::
 
 ### [MySQL](#tab/mysql)
+
+In .NET Aspire 9.2, The `WithCreationScript()` method is not supported for the MySQL integration. Instead you must use a bind mount and deploy the setup SQL script to it, so that the data is seeded when the container initializes the database.
 
 The following code is an example MySQL script that creates and populates a product catalog database:
 
