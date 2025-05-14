@@ -1,5 +1,5 @@
 ---
-title: Azure AI Inference
+title: .NET Aspire Azure AI Inference integration (Preview)
 description: Learn how to use the .NET Aspire Azure AI Inference integration to deploy and manage machine learning models in the cloud.
 ms.date: 05/14/2025
 titleSuffix: ''
