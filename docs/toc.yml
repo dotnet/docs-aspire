@@ -162,6 +162,9 @@ items:
       href: azure/user-assigned-managed-identity.md
     - name: Manage role assignments
       href: azure/role-assignments.md
+    - name: Azure App Configuration
+      displayName: app configuration,configuration
+      href: azure/azure-app-configuration-integration.md
     - name: Azure AI Inference (Preview)
       displayName: azure ai,inference
       href: azureai/azureai-inference-integration.md
