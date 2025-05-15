@@ -65,7 +65,7 @@ This code:
 
 ### [PostgreSQL](#tab/postgresql)
 
-In .NET Aspire 9.2, The `WithCreationScript()` method is not supported for the PostgreSQL integration. Instead you must use a bind mount and deploy the setup SQL script to it, so that the data is seeded when the container initializes the database.
+In .NET Aspire 9.2, the `WithCreationScript()` method isn't supported for the PostgreSQL integration. Instead, you must use a bind mount and deploy the setup SQL script to it, so that the data is seeded when the container initializes the database.
 
 The following code is an example PostgreSQL script that creates and populates a to do list database:
 
@@ -77,7 +77,7 @@ In the app host's *Program.cs* file, create the database and mount the folder th
 
 ### [MySQL](#tab/mysql)
 
-In .NET Aspire 9.2, The `WithCreationScript()` method is not supported for the MySQL integration. Instead you must use a bind mount and deploy the setup SQL script to it, so that the data is seeded when the container initializes the database.
+In .NET Aspire 9.2, the `WithCreationScript()` method isn't supported for the MySQL integration. Instead, you must use a bind mount and deploy the setup SQL script to it, so that the data is seeded when the container initializes the database.
 
 The following code is an example MySQL script that creates and populates a product catalog database:
 
