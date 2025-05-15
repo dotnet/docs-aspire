@@ -114,7 +114,7 @@ builder.AddProject<Projects.WebApplication>("web")
 // After adding all resources, run the app...
 ```
 
-[!INCLUDE [connection-strings-alert](../../includes/connection-strings-alert.md)]
+[!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
 
 The connection string is configured in the app host's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section. The app host injects this connection string as an environment variable into all dependent resources, for example:
 
