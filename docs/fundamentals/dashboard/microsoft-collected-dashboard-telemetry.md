@@ -39,7 +39,7 @@ Alternatively, you can opt-out of telemetry collection by disabling telemetry co
 
 ## Disclosure
 
-When dashboard usage telemetry is enabled, there's a disclosure statement at the bottom of the settings panel, informing you that telemetry is enabled. This disclosure statement appears anytime usage telemetry is enabled.
+When dashboard usage telemetry is enabled, there's a disclosure statement at the bottom of the settings panel, informing you that telemetry is enabled. This disclosure statement appears when usage telemetry is enabled.
 
 ## Data points
 
