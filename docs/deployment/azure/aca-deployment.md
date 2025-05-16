@@ -1,8 +1,8 @@
 ---
 title: Deploy .NET Aspire projects to Azure Container Apps
 description: Learn how to use the Azure Developer CLI to deploy .NET Aspire projects to Azure.
-ms.date: 06/14/2024
-ms.custom: devx-track-extended-azdevcli
+ms.date: 05/14/2025
+ms.custom: microsoft.azdcli
 ---
 
 # Deploy a .NET Aspire project to Azure Container Apps
