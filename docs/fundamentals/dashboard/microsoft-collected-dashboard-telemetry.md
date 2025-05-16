@@ -19,18 +19,18 @@ Starting with .NET Aspire 9.3, dashboard usage telemetry is enabled by default. 
 - Visual Studio: 17.14 or later.
 - C# Dev Kit: 1.18.25 or later.
 
-To opt-out of telemetry collection, set the `DOTNET_DASHBOARD_ENABLE_TELEMETRY` environment variable to `false`. This will apply to all users accessing the .NET Aspire dashboard:
+To opt-out of telemetry collection, set the `ASPIRE_DASHBOARD_TELEMETRY_OPTOUT` environment variable to `true`. This will apply to all users accessing the .NET Aspire dashboard:
 
 ### [PowerShell](#tab/powershell)
 
 ```powershell
-$env:DOTNET_DASHBOARD_ENABLE_TELEMETRY = "false"
+$env:ASPIRE_DASHBOARD_TELEMETRY_OPTOUT= "true"
 ```
 
 ### [Bash](#tab/bash)
 
 ```bash
-export DOTNET_DASHBOARD_ENABLE_TELEMETRY=false
+export ASPIRE_DASHBOARD_TELEMETRY_OPTOUT=true
 ```
 
 ---
