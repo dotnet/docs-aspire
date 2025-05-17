@@ -1,8 +1,8 @@
----
+
 title: What's new in .NET Aspire 9.3
 description: Learn what's new in the official general availability release of .NET Aspire 9.3.
 ms.date: 05/07/2025
----
+
 
 # What's new in .NET Aspire 9.3
 
@@ -18,7 +18,7 @@ It's important to note that .NET Aspire releases out-of-band from .NET releases.
 - [.NET support policy](https://dotnet.microsoft.com/platform/support/policy): Definitions for LTS and STS.
 - [.NET Aspire support policy](https://dotnet.microsoft.com/platform/support/policy/aspire): Important unique product life cycle details.
 
-🖥️ App model enhancements
+## 🖥️ App model enhancements
 
 ### ✨ Zero-friction container configuration
 
@@ -122,11 +122,11 @@ These events make resource authoring smoother, safer, and more deterministic—n
 
 Absolutely—here’s the updated version with the ports removed from the `Address` fields, aligning with how Aspire resolves service names internally via the network:
 
----
+
 
 Perfect—here’s the revised version with all the accurate caveats clearly called out:
 
----
+
 
 ### 🌐 YARP Integration (Preview)
 
@@ -215,7 +215,7 @@ At runtime, Aspire now executes a `CREATE DATABASE` command for `"appdb"` agains
 This brings MySQL in line with the broader Aspire database ecosystem:
 
 | Integration | Automatically creates database?           |
-| ----------- | ----------------------------------------- |
+| -- | -- |
 | SQL Server  | ✅ Yes                                     |
 | PostgreSQL  | ✅ Yes                                     |
 | **MySQL**   | ✅ **Yes (new in 9.3)**                    |
@@ -402,13 +402,13 @@ The key API here is `.AsEnvironmentPlaceholder(...)`, which tells Aspire to emit
 
 > 🧠 This tightly couples your infrastructure parameters with the Docker Compose model—without hardcoding values—unlocking composability across environments.
 
----
+
 
 These enhancements make Docker Compose a **fully programmable publishing target**, ideal for local development, container-based CI workflows, and teams that need structured control without brittle YAML overlays.
 
 Perfect — here’s a polished section modeled after the Docker Compose one, highlighting the real Kubernetes APIs introduced in 9.3 with your example and accurate terminology:
 
----
+
 
 ### ☸️ Kubernetes manifest customization
 
@@ -416,7 +416,7 @@ Perfect — here’s a polished section modeled after the Docker Compose one, hi
 
 Like Docker Compose, Aspire now supports both **global environment-level settings** and **per-resource customization**.
 
----
+
 
 #### 🛠️ Configure global and per-resource settings
 
@@ -457,7 +457,7 @@ This gives you fully typed access to the Kubernetes object model, enabling power
 
 This integration lets you deploy your project as a **containerized Linux Web App**, modeled directly in your Aspire app host using a new `AddAzureAppServiceEnvironment(...)` API.
 
----
+
 
 #### 🚧 Current limitations (Preview)
 
@@ -472,7 +472,7 @@ This first release is scoped to the most common use cases:
 
 > 📢 Hosted dashboard support is coming soon—we’re actively developing this. Feedback is welcome!
 
----
+
 
 #### Example: Deploy to Azure App Service
 
@@ -507,7 +507,7 @@ This is ideal for teams that:
 * Integrate with existing CI/CD pipelines and promotion workflows
 * Require fine-grained control over image publishing
 
----
+
 
 #### Example: associate ACR with an Azure Container Apps environment
 
@@ -526,7 +526,7 @@ In this example:
 * The ACR is modeled in Aspire and used by the container apps environment
 * Aspire publishes the built image to `my-acr` and configures Azure Container Apps to pull from it
 
----
+
 
 #### ACR works with multiple compute environments
 
@@ -638,7 +638,7 @@ builder.AddContainer("myContainer", "nginx")
        .WithEnvironment("MY_SECRET", secretRef);
 ```
 
----
+
 
 #### 🧩 Reference secrets from existing Key Vaults
 
@@ -671,7 +671,7 @@ You can also use `PublishAsExisting(...)` if you want to reference an existing v
 
 This integration simplifies calling Azure OpenAI or Azure AI Inference services from your application—whether you prefer working directly with the SDK or using abstraction-friendly interfaces.
 
----
+
 
 #### Use `ChatCompletionsClient` with the Azure SDK
 
@@ -686,7 +686,7 @@ app.MapPost("/chat-raw", (
 });
 ```
 
----
+
 
 #### Use `IChatClient` via `Microsoft.Extensions.AI`
 
@@ -724,7 +724,7 @@ builder.AddAzureAppConfiguration("appconfig");
 
 Once registered, Aspire automatically wires Azure App Configuration into your application’s configuration pipeline.
 
----
+
 
 #### Example: bind Azure App Configuration to app settings
 
@@ -762,7 +762,7 @@ In .NET Aspire 9.2, using **multiple projects with the same Azure SQL Server** i
 
 Each app was assigned its own **managed identity**, but Aspire granted **admin access** to the last app deployed—overwriting access for any previously deployed apps. This led to confusing failures where only one app could talk to the database at a time.
 
----
+
 
 #### ✅ New behavior in 9.3
 
@@ -776,7 +776,7 @@ Each app was assigned its own **managed identity**, but Aspire granted **admin a
 
 This ensures every app that references the database gets **full access** without conflicting with other apps.
 
----
+
 
 #### Why this matters
 
@@ -785,7 +785,7 @@ This ensures every app that references the database gets **full access** without
 * Avoids the brittle “last one wins” admin behavior from earlier releases
 * Enables richer deployment scenarios in cloud-native environments like Azure Container Apps
 
----
+
 
 #### ⚠️ Breaking change
 
@@ -793,6 +793,152 @@ If your deployment relied on Aspire setting the managed identity as the SQL Serv
 
 
 📖 Related: [dotnet/aspire#8381](https://github.com/dotnet/aspire/issues/8381)
+
+
+### 💸 Default Azure SQL SKU is now Free (Breaking change)
+
+.NET Aspire 9.3 changes the default SKU used when provisioning **Azure SQL databases** to the **Free (Basic)** tier. This helps reduce unexpected costs during development and experimentation.
+
+Previously, Aspire defaulted to the **General Purpose (GP)** tier, which could incur charges even for small or test apps.
+
+
+
+#### What’s new
+
+When you provision a SQL database like this:
+
+```csharp
+var sql = builder.AddAzureSqlServer("sqlserver");
+
+sql.AddDatabase("appdb");
+```
+
+Aspire now automatically uses the **free-tier SKU** for `appdb`, unless you override it.
+
+
+
+#### How to restore the previous behavior
+
+If your app requires the performance or features of a paid tier, you can opt out of the new default using:
+
+```csharp
+sql.AddDatabase("appdb")
+   .WithDefaultAzureSku(); // Uses the previous (General Purpose) default
+```
+
+
+#### ⚠️ Breaking change
+
+This change affects cost, performance, and available features in new deployments. If your app depends on higher-tier capabilities, be sure to configure the SKU accordingly.
+
+📦 Implemented in [#8887](https://github.com/dotnet/aspire/pull/8887)
+🔧 Use `.WithDefaultAzureSku()` on the **database** to revert to the old behavior
+🔗 Learn more about [Azure SQL pricing tiers](https://learn.microsoft.com/azure/azure-sql/database/service-tiers)
+
+Certainly! Here's the full, updated version with `goversion` replaced by `openaiKey` — a more realistic and relatable Aspire parameter example:
+
+## 🚀 AZD: Major Improvements to CI/CD for Aspire Apps
+
+We've dramatically improved how `azd` configures CI/CD pipelines for Aspire-based applications. These updates directly address one of the most frustrating pain points reported by the community: managing environment parameters and secrets securely and predictably across environments.
+
+Aspire apps are increasingly parameter-driven — using infrastructure-defined settings like connection strings, runtime versions, API keys, and feature flags. Getting those values safely and consistently into CI pipelines like GitHub Actions has historically been difficult. This release fixes that.
+
+### 🧠 Smarter Parameter Handling — No More `AZD_INITIAL_ENVIRONMENT_CONFIG`
+
+Previously, Aspire apps that required infrastructure parameters relied on a hidden environment variable called `AZD_INITIAL_ENVIRONMENT_CONFIG`. This variable was a large JSON blob containing all local environment configuration. It had to be passed manually into CI pipelines, was difficult to inspect, and introduced friction when sharing or updating environments.
+
+**Now:** `azd` extracts Aspire parameters directly from your infrastructure definitions and exposes them as named environment variables or secrets in your pipeline — **securely and explicitly**.
+
+For example:
+
+```bicep
+param openaiKey string
+param dbPassword string
+```
+
+become:
+
+```yaml
+AZURE_OPENAI_KEY: ${{ secrets.AZURE_OPENAI_KEY }}
+AZURE_DB_PASSWORD: ${{ secrets.AZURE_DB_PASSWORD }}
+```
+
+This means no more bundling, no more fragile config hacks, and no more guessing how your environment is configured in CI.
+
+
+
+### 🔤 Consistent, Predictable Parameter Naming
+
+Aspire parameters are mapped to environment variable names using a clear rule:
+
+1. Convert `camelCase` to `SNAKE_CASE`
+2. Replace dashes (`-`) with underscores (`_`)
+3. Uppercase everything
+4. Prefix with `AZURE_`
+
+| Parameter Name         | Env Var Name                 |
+| - | - |
+| `openaiKey`            | `AZURE_OPENAI_KEY`           |
+| `dbPassword`           | `AZURE_DB_PASSWORD`          |
+| `storage-account-name` | `AZURE_STORAGE_ACCOUNT_NAME` |
+
+This naming consistency means Aspire deployment targets like Azure Container Apps can resolve configuration without custom mappings — locally or in the cloud.
+
+### 📦 Aspire Parameters Automatically Exported to CI
+
+Aspire apps often define required parameters in Bicep or infrastructure modules — including things like API keys, credentials, or runtime configuration. These are now automatically exported to your pipeline configuration using the naming rules above.
+
+You no longer need to:
+
+* Manually configure these in `.azure/env-name/config.json`
+* Inject them into CI via complex JSON blobs
+* Worry about missing or mismatched configuration between local and cloud
+
+Secure parameters (like `openaiKey` or `dbPassword`) are automatically treated as CI secrets, while others are injected as variables — all handled by `azd`.
+
+### 🧼 Interactive Secret Management in GitHub Actions
+
+When you run `azd pipeline config`, `azd` will now detect and prompt you if a secret already exists in your GitHub repo or if a secret is no longer used:
+
+#### Existing Secret Prompt:
+
+```
+The secret AZURE_OPENAI_KEY already exists. What would you like to do?
+  [1] Keep it
+  [2] Keep ALL existing secrets
+  [3] Overwrite it
+  [4] Overwrite ALL secrets
+```
+
+#### Unused Secret Prompt:
+
+```
+The secret AZURE_OLD_SECRET is no longer used. What would you like to do?
+  [1] Keep it
+  [2] Keep ALL unused secrets
+  [3] Delete it
+  [4] Delete ALL unused secrets
+```
+
+This ensures:
+
+* You’re never surprised by secret overwrites
+* You can keep your repo clean of stale configuration
+* CI reflects your actual infrastructure setup
+
+### 🔄 End-to-End, Repeatable Aspire Deployment
+
+With these changes, the local-to-cloud workflow for Aspire apps is now consistent and automated:
+
+1. You define infrastructure parameters as part of your Aspire app.
+2. `azd` captures them during provisioning.
+3. `azd pipeline config` maps them into your GitHub Actions or Azure DevOps pipeline.
+4. Your pipeline runs securely with all the same inputs as your local environment — no manual steps required.
+
+No more `AZD_INITIAL_ENVIRONMENT_CONFIG`. No more brittle overrides. Just clear, secure, parameterized deployment.
+
+
+These changes unlock a smoother, safer CI/CD experience for Aspire projects — reducing manual configuration, improving security, and aligning your local development setup with your production pipeline.
 
 ## 💔 Breaking changes
 
