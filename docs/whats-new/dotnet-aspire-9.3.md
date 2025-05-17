@@ -449,8 +449,182 @@ This gives you fully typed access to the Kubernetes object model, enabling power
 
 > 🧠 Aspire emits standard Kubernetes manifests under the hood—you can still use `kubectl`, `helm`, or GitOps workflows to deploy them, but now you can shape them directly from your app definition.
 
+## ☁️ Azure goodies
+
+### 🌐 Azure App Service (Preview support)
+
+.NET Aspire 9.3 introduces **preview support for deploying .NET projects to Azure App Service**—one of the most requested features from developers using Aspire with existing Azure environments.
+
+This integration lets you deploy your project as a **containerized Linux Web App**, modeled directly in your Aspire app host using a new `AddAzureAppServiceEnvironment(...)` API.
+
+---
+
+#### 🚧 Current limitations (Preview)
+
+This first release is scoped to the most common use cases:
+
+* Supports **.NET projects only** (via `AddProject(...)`)
+* Each project must expose a **single public HTTP endpoint**
+* **Projects are published as containers** to Azure Container Registry
+* **Containers within the app host** are not supported
+* **Existing App Service Plans are not supported**
+* The Aspire **dashboard is not hosted** in App Service yet
+
+> 📢 Hosted dashboard support is coming soon—we’re actively developing this. Feedback is welcome!
+
+---
+
+#### Example: Deploy to Azure App Service
+
+```csharp
+var env = builder.AddAzureAppServiceEnvironment("env");
+
+builder.AddProject<Projects.Api>("api")
+       .WithExternalHttpEndpoints()
+       .PublishAsAzureAppServiceWebsite((infra, site) =>
+       {
+           site.SiteConfig.IsWebSocketsEnabled = true;
+       });
+```
+
+In this example:
+
+* Aspire provisions an App Service Plan and a Web App
+* Your project is built as a container and published to **Azure Container Registry**
+* The container is deployed to App Service with the configuration you provide
+
+> 🧠 Use `PublishAsAzureAppServiceWebsite(...)` to customize settings like site config, authentication, or SKU.
+
+💬 This feature is in **preview**—we’re looking for your feedback as we expand support!
+
+### 🖇️ Resource Deep Linking for Blob Containers
+
+.NET Aspire 9.3 expands **resource deep linking** to include **Azure Blob Storage containers**, building on the model already used for Cosmos DB, Event Hubs, Service Bus, and Azure OpenAI.
+
+You can now model individual blob containers directly in your app host, then inject scoped `BlobContainerClient` instances into your services—making it easy to read or write blobs without manually configuring connection strings or access.
+
+**AppHost:**
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Add Azure Storage Emulator
+var storage = builder.AddAzureStorage("storage").RunAsEmulator();
+
+// Add a blob group and a container
+var blobs = storage.AddBlobs("blobs");
+var container = blobs.AddBlobContainer("images", blobContainerName: "image-uploads");
+
+// Add the API project and reference the container
+builder.AddProject<Projects.my94app_ApiService>("api")
+       .WithExternalHttpEndpoints()
+       .WithReference(container);
+
+builder.Build().Run();
+```
+
+**In the API project:**
+
+```csharp
+using Azure.Storage.Blobs;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Register the blob container client
+builder.AddAzureBlobContainerClient("images");
+
+var app = builder.Build();
+
+// Minimal POST endpoint for image upload
+app.MapPost("/upload", async (
+    IFormFile file,
+    BlobContainerClient container) =>
+{
+    await container.CreateIfNotExistsAsync();
+
+    var blob = container.GetBlobClient(file.FileName);
+    using var stream = file.OpenReadStream();
+    await blob.UploadAsync(stream, overwrite: true);
+
+    return Results.Ok(new { Url = blob.Uri });
+});
+
+app.Run();
+```
+
+This pattern provides clean separation of concerns, secure container scoping, and minimal ceremony—ideal for microservices that interact with specific blob containers.
+
+### 🔐 Expanded Azure Key Vault client integrations
+
+.NET Aspire 9.3 expands Azure Key Vault support with new client integration APIs for **keys** and **certificates**, allowing you to inject typed Azure SDK clients directly into your services:
+
+* `AddAzureKeyVaultKeyClient(...)`
+* `AddAzureKeyVaultCertificateClient(...)`
+* `AddKeyedAzureKeyVaultKeyClient(...)`
+* `AddKeyedAzureKeyVaultCertificateClient(...)`
+
+These APIs complement the existing `AddAzureKeyVaultClient(...)` and provide easy access to `KeyClient` and `CertificateClient` from the Azure SDK for .NET.
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+// Register default clients
+builder.AddAzureKeyVaultKeyClient("kv");
+builder.AddAzureKeyVaultCertificateClient("kv");
+
+// Register named (keyed) clients
+builder.AddKeyedAzureKeyVaultCertificateClient("kv", "signing-cert");
+```
+
+The **keyed overloads** allow you to register multiple clients scoped to the same Key Vault resource—useful when accessing multiple certificates or keys by purpose.
+
+> 🙌 This feature was contributed by [@james-gould](https://github.com/james-gould). Thank you!
+
+
+### 🔑 Use Key Vault secrets in environment variables
+
+.NET Aspire 9.3 adds support for wiring **Key Vault secrets directly into environment variables** using a new overload of `WithEnvironment(...)` that accepts an `IAzureKeyVaultSecretReference`.
+
+This makes it easy to securely reference secrets from a modeled Key Vault without hardcoding secret values—and ensures those references flow correctly into deployment outputs like Docker Compose, Kubernetes, or Azure Bicep.
+
+```csharp
+var kv = builder.AddAzureKeyVault("myKeyVault");
+
+var secretRef = kv.Resource.GetSecret("mySecret");
+
+builder.AddContainer("myContainer", "nginx")
+       .WithEnvironment("MY_SECRET", secretRef);
+```
+
+---
+
+#### 🧩 Reference secrets from existing Key Vaults
+
+You can also use this with **existing Azure Key Vaults** by marking the resource with `RunAsExisting(...)` or `PublishAsExisting(...)`. This lets you consume secrets from **already-provisioned vaults**—perfect for shared environments or team-managed infrastructure.
+
+```csharp
+var existingVault = builder.AddAzureKeyVault("sharedVault")
+                           .RunAsExisting("my-vault-name", "infra-rg");
+
+var apiKey = existingVault.Resource.GetSecret("stripe-api-key");
+
+builder.AddContainer("billing", "mycompany/billing")
+       .WithEnvironment("STRIPE_API_KEY", apiKey);
+```
+
+This pattern ensures Aspire:
+
+* Doesn't attempt to re-provision the Key Vault
+* Emits references to the correct existing resources in publish mode
+* Still enables secret injection and secure scoping via environment variables
+
+You can also use `PublishAsExisting(...)` if you want to reference an existing vault in published infrastructure templates (e.g., Bicep), while continuing to use it in local dev or staging pipelines.
+
+📖 See also: [Use existing Azure resources](../azure/existing-resources.md)
+
+
 ## 💔 Breaking changes
 
 With every release, we strive to make .NET Aspire better. However, some changes may break existing functionality. The following breaking changes are introduced in .NET Aspire 9.3:
 
-- [Breaking changes in .NET Aspire 9.3](../compatibility/9.3/index.md)
+- [Breaking changes in .NET Aspire 9.3](https://learn.microsoft.com/en-us/dotnet/aspire/azure/integrations-overview?tabs=dotnet-cli#use-existing-azure-resources)
