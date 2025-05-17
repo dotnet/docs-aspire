@@ -1,8 +1,6 @@
-
 title: What's new in .NET Aspire 9.3
 description: Learn what's new in the official general availability release of .NET Aspire 9.3.
 ms.date: 05/07/2025
-
 
 # What's new in .NET Aspire 9.3
 
@@ -39,11 +37,11 @@ The new `WithHostPort`, `WithPassword`, and `WithUserName` (or equivalent per-se
 
 9.3 makes resource links both **smarter and easier to place**:
 
-* **Pick where a link appears** – each link now carries a `UrlDisplayLocation` (`SummaryAndDetails` or `DetailsOnly`), so you can keep diagnostic links out of the main grid yet still see them in the details pane.
-* **Relative paths are auto-resolved** – hand the helper `"/health"` and Aspire rewrites it to the full host-qualified URL when the endpoint is allocated.
-* **Multiple links per endpoint** – an overload of `WithUrlForEndpoint` lets you attach extra URLs (docs, admin UIs, probes) to the same endpoint without redefining it.
-* **Endpoint helper inside callbacks** – `context.GetEndpoint("https")` fetches the fully-resolved endpoint so you can build custom links programmatically.
-* **Custom URLs for any resource** – `WithUrl*` also works for custom resources.
+- **Pick where a link appears** – each link now carries a `UrlDisplayLocation` (`SummaryAndDetails` or `DetailsOnly`), so you can keep diagnostic links out of the main grid yet still see them in the details pane.
+- **Relative paths are auto-resolved** – hand the helper `"/health"` and Aspire rewrites it to the full host-qualified URL when the endpoint is allocated.
+- **Multiple links per endpoint** – an overload of `WithUrlForEndpoint` lets you attach extra URLs (docs, admin UIs, probes) to the same endpoint without redefining it.
+- **Endpoint helper inside callbacks** – `context.GetEndpoint("https")` fetches the fully-resolved endpoint so you can build custom links programmatically.
+- **Custom URLs for any resource** – `WithUrl*` also works for custom resources.
 
 ```csharp
 var frontend = builder.AddProject<Projects.Frontend>("frontend")
@@ -67,13 +65,13 @@ These tweaks let you surface the right links, in the right place, with virtually
 
 Historically the only way to keep a resource out of the Dashboard was to put it in the **`Hidden`** *state*—a hack that also made the resource look "terminal" to APIs such as `WaitForResourceAsync`. In 9.3 every snapshot now carries a **boolean `IsHidden` flag**, completely decoupling *visibility* from *lifecycle state*.
 
-* **Cleaner defaults** – low-level helpers like `AddParameter` and `AddConnectionString` mark themselves hidden so they don’t clutter the UI:
+- **Cleaner defaults** – low-level helpers like `AddParameter` and `AddConnectionString` mark themselves hidden so they don’t clutter the UI:
 
   ```csharp
   var apiKey = builder.AddParameter("api-key", secret: true);   // IsHidden = true ✔
   ```
 
-* **Accurate waits & health flows** – `WaitForResourceAsync` was updated to treat `IsHidden` as a separate predicate, so hidden resources can still be awaited or surfaced programmatically without special-casing states. ([GitHub][1])
+- **Accurate waits & health flows** – `WaitForResourceAsync` was updated to treat `IsHidden` as a separate predicate, so hidden resources can still be awaited or surfaced programmatically without special-casing states.
 
 This small change removes ambiguity in the model while giving you precise control over what shows up in the Dashboard.
 
@@ -119,14 +117,6 @@ builder.Eventing.Subscribe<ResourceEndpointsAllocatedEvent>((e, ct) =>
 ```
 
 These events make resource authoring smoother, safer, and more deterministic—no lifecycle guesswork needed.
-
-Absolutely—here’s the updated version with the ports removed from the `Address` fields, aligning with how Aspire resolves service names internally via the network:
-
-
-
-Perfect—here’s the revised version with all the accurate caveats clearly called out:
-
-
 
 ### 🌐 YARP Integration (Preview)
 
@@ -186,12 +176,11 @@ The config file is mounted into the container and used as the runtime YARP confi
 
 The `.WithReference(...)` calls automatically ensure that the proxy container can resolve the referenced services by name (`catalog`, `basket`), using Aspire’s internal network graph.
 
-
 ### ⚠️ Known limitations in this preview
 
-* **Only configuration-based routing is supported**. Code-based or programmatic route generation is not available yet.
-* **The configuration file is not deployed** as part of publish operations—you must manage the file manually.
-* **Routing from containers to projects will not work on Podman**, due to host-to-container networking limitations.
+- **Only configuration-based routing is supported**. Code-based or programmatic route generation is not available yet.
+- **The configuration file is not deployed** as part of publish operations—you must manage the file manually.
+- **Routing from containers to projects will not work on Podman**, due to host-to-container networking limitations.
 
 > 💡 Want to learn more about authoring YARP configs? See the official [YARP documentation](https://aka.ms/yarp).
 > 🧪 This integration is in preview—APIs and behavior may evolve. Feedback welcome!
@@ -240,14 +229,13 @@ Previously, these dependencies were invisible in the **Traces** view unless they
 
 This helps you:
 
-* Understand the full chain of dependencies—even if some components are passive
-* Debug latency or failures in calls to uninstrumented services
-* Keep the trace UI consistent across infrastructure types
+- Understand the full chain of dependencies—even if some components are passive
+- Debug latency or failures in calls to uninstrumented services
+- Keep the trace UI consistent across infrastructure types
 
 > 💡 This is especially useful for services like SQL Server, PostgreSQL, Redis, or blob storage where outgoing client telemetry exists, but the service itself doesn’t participate in distributed tracing.
 
 🧪 No instrumentation changes are needed—Aspire infers the mapping based on resource references.
-
 
 ### 🖱️ Resource context menus & quick-launch actions
 
@@ -257,9 +245,9 @@ This helps you:
 
 You can now **right-click any resource node** in the **Resource Graph** view to bring up a context menu with quick actions:
 
-* Open structured logs, console logs, traces, or metrics for that resource
-* Launch external URLs associated with the resource (like PGAdmin, Swagger, or Grafana)
-* Jump directly to the resource's detail pane
+- Open structured logs, console logs, traces, or metrics for that resource
+- Launch external URLs associated with the resource (like PGAdmin, Swagger, or Grafana)
+- Jump directly to the resource's detail pane
 
 This reduces the number of clicks and lets you stay in the graph while investigating specific services.
 
@@ -267,9 +255,9 @@ This reduces the number of clicks and lets you stay in the graph while investiga
 
 Resource URLs defined via `WithUrlForEndpoint(...)` are now **more prominently integrated** into the dashboard UI. They appear:
 
-* In the **console logs view** action bar
-* In the new **right-click menus**
-* On the **resource detail pane**, as before
+- In the **console logs view** action bar
+- In the new **right-click menus**
+- On the **resource detail pane**, as before
 
 This makes common destinations—like admin UIs, health checks, and docs—instantly accessible wherever you’re working.
 
@@ -286,8 +274,6 @@ When a resource has only **one replica**, the Aspire dashboard now uses the **fr
 This small change makes logs easier to read and reduces visual noise—especially in common single-instance setups during development.
 
 > In multi-replica scenarios, Aspire still uses full replica IDs so you can distinguish between instances.
-
-Thanks — here’s a rewritten version that reflects the correct architecture shift, ties it to future capabilities, and uses your tone and sample verbatim where needed:
 
 ## 🚀 Deployment & publish
 
@@ -337,10 +323,10 @@ This (contrived) example shows how you could explicitly map services to differen
 
 .NET Aspire 9.3 supports the following environment resources:
 
-* `AddDockerComposeEnvironment(...)`
-* `AddKubernetesEnvironment(...)`
-* `AddAzureContainerAppEnvironment(...)`
-* `AddAzureAppServiceEnvironment(...)` — [see new App Service support →](#azure-app-service-preview)
+- `AddDockerComposeEnvironment(...)`
+- `AddKubernetesEnvironment(...)`
+- `AddAzureContainerAppEnvironment(...)`
+- `AddAzureAppServiceEnvironment(...)` — [see new App Service support →](#azure-app-service-preview)
 
 These represent deployment targets that can transform and emit infrastructure-specific artifacts from your app model.
 
@@ -352,8 +338,8 @@ These represent deployment targets that can transform and emit infrastructure-sp
 
 You can now programmatically configure the top-level Compose file and the behavior of each individual service using two new APIs:
 
-* `ConfigureComposeFile(...)` — customize the `docker-compose.yml` metadata
-* `PublishAsDockerComposeService(...)` — modify the generated service for any compute resource (like a container or project)
+- `ConfigureComposeFile(...)` — customize the `docker-compose.yml` metadata
+- `PublishAsDockerComposeService(...)` — modify the generated service for any compute resource (like a container or project)
 
 ```csharp
 builder.AddDockerComposeEnvironment("env")
@@ -402,13 +388,7 @@ The key API here is `.AsEnvironmentPlaceholder(...)`, which tells Aspire to emit
 
 > 🧠 This tightly couples your infrastructure parameters with the Docker Compose model—without hardcoding values—unlocking composability across environments.
 
-
-
 These enhancements make Docker Compose a **fully programmable publishing target**, ideal for local development, container-based CI workflows, and teams that need structured control without brittle YAML overlays.
-
-Perfect — here’s a polished section modeled after the Docker Compose one, highlighting the real Kubernetes APIs introduced in 9.3 with your example and accurate terminology:
-
-
 
 ### ☸️ Kubernetes manifest customization
 
@@ -416,14 +396,12 @@ Perfect — here’s a polished section modeled after the Docker Compose one, hi
 
 Like Docker Compose, Aspire now supports both **global environment-level settings** and **per-resource customization**.
 
-
-
 #### 🛠️ Configure global and per-resource settings
 
 You can use the following APIs to configure Kubernetes output in C#:
 
-* `WithProperties(...)` on the compute environment to set global behaviors
-* `PublishAsKubernetesService(...)` on compute resources to modify their specific Kubernetes resources
+- `WithProperties(...)` on the compute environment to set global behaviors
+- `PublishAsKubernetesService(...)` on compute resources to modify their specific Kubernetes resources
 
 ```csharp
 builder.AddKubernetesEnvironment("env")
@@ -443,9 +421,9 @@ builder.AddContainer("service", "nginx")
 
 This gives you fully typed access to the Kubernetes object model, enabling powerful modifications like:
 
-* Overriding container image pull policies
-* Customizing replica counts or deployment strategies
-* Injecting labels or annotations into Services, Deployments, or ConfigMaps
+- Overriding container image pull policies
+- Customizing replica counts or deployment strategies
+- Injecting labels or annotations into Services, Deployments, or ConfigMaps
 
 > 🧠 Aspire emits standard Kubernetes manifests under the hood—you can still use `kubectl`, `helm`, or GitOps workflows to deploy them, but now you can shape them directly from your app definition.
 
@@ -457,22 +435,18 @@ This gives you fully typed access to the Kubernetes object model, enabling power
 
 This integration lets you deploy your project as a **containerized Linux Web App**, modeled directly in your Aspire app host using a new `AddAzureAppServiceEnvironment(...)` API.
 
-
-
 #### 🚧 Current limitations (Preview)
 
 This first release is scoped to the most common use cases:
 
-* Supports **.NET projects only** (via `AddProject(...)`)
-* Each project must expose a **single public HTTP endpoint**
-* **Projects are published as containers** to Azure Container Registry
-* **Containers within the app host** are not supported
-* **Existing App Service Plans are not supported**
-* The Aspire **dashboard is not hosted** in App Service yet
+- Supports **.NET projects only** (via `AddProject(...)`)
+- Each project must expose a **single public HTTP endpoint**
+- **Projects are published as containers** to Azure Container Registry
+- **Containers within the app host** are not supported
+- **Existing App Service Plans are not supported**
+- The Aspire **dashboard is not hosted** in App Service yet
 
 > 📢 Hosted dashboard support is coming soon—we’re actively developing this. Feedback is welcome!
-
-
 
 #### Example: Deploy to Azure App Service
 
@@ -489,9 +463,9 @@ builder.AddProject<Projects.Api>("api")
 
 In this example:
 
-* Aspire provisions an App Service Plan and a Web App
-* Your project is built as a container and published to **Azure Container Registry**
-* The container is deployed to App Service with the configuration you provide
+- Aspire provisions an App Service Plan and a Web App
+- Your project is built as a container and published to **Azure Container Registry**
+- The container is deployed to App Service with the configuration you provide
 
 > 🧠 Use `PublishAsAzureAppServiceWebsite(...)` to customize settings like site config, authentication, or SKU.
 
@@ -503,11 +477,9 @@ In this example:
 
 This is ideal for teams that:
 
-* Share a centralized registry across environments
-* Integrate with existing CI/CD pipelines and promotion workflows
-* Require fine-grained control over image publishing
-
-
+- Share a centralized registry across environments
+- Integrate with existing CI/CD pipelines and promotion workflows
+- Require fine-grained control over image publishing
 
 #### Example: associate ACR with an Azure Container Apps environment
 
@@ -523,17 +495,15 @@ builder.AddProject<Projects.Api>("api")
 
 In this example:
 
-* The ACR is modeled in Aspire and used by the container apps environment
-* Aspire publishes the built image to `my-acr` and configures Azure Container Apps to pull from it
-
-
+- The ACR is modeled in Aspire and used by the container apps environment
+- Aspire publishes the built image to `my-acr` and configures Azure Container Apps to pull from it
 
 #### ACR works with multiple compute environments
 
 You can associate an `AzureContainerRegistryResource` with:
 
-* `AddAzureContainerAppEnvironment(...)`
-* `AddAppServiceEnvironment(...)`
+- `AddAzureContainerAppEnvironment(...)`
+- `AddAppServiceEnvironment(...)`
 
 This gives you consistent control over where images are published, even across different compute targets.
 
@@ -600,10 +570,10 @@ This pattern provides clean separation of concerns, secure container scoping, an
 
 .NET Aspire 9.3 expands Azure Key Vault support with new client integration APIs for **keys** and **certificates**, allowing you to inject typed Azure SDK clients directly into your services:
 
-* `AddAzureKeyVaultKeyClient(...)`
-* `AddAzureKeyVaultCertificateClient(...)`
-* `AddKeyedAzureKeyVaultKeyClient(...)`
-* `AddKeyedAzureKeyVaultCertificateClient(...)`
+- `AddAzureKeyVaultKeyClient(...)`
+- `AddAzureKeyVaultCertificateClient(...)`
+- `AddKeyedAzureKeyVaultKeyClient(...)`
+- `AddKeyedAzureKeyVaultCertificateClient(...)`
 
 These APIs complement the existing `AddAzureKeyVaultClient(...)` and provide easy access to `KeyClient` and `CertificateClient` from the Azure SDK for .NET.
 
@@ -622,7 +592,6 @@ The **keyed overloads** allow you to register multiple clients scoped to the sam
 
 > 🙌 This feature was contributed by [@james-gould](https://github.com/james-gould). Thank you!
 
-
 ### 🔑 Use Key Vault secrets in environment variables
 
 .NET Aspire 9.3 adds support for wiring **Key Vault secrets directly into environment variables** using a new overload of `WithEnvironment(...)` that accepts an `IAzureKeyVaultSecretReference`.
@@ -637,8 +606,6 @@ var secretRef = kv.Resource.GetSecret("mySecret");
 builder.AddContainer("myContainer", "nginx")
        .WithEnvironment("MY_SECRET", secretRef);
 ```
-
-
 
 #### 🧩 Reference secrets from existing Key Vaults
 
@@ -656,22 +623,19 @@ builder.AddContainer("billing", "mycompany/billing")
 
 This pattern ensures Aspire:
 
-* Doesn't attempt to re-provision the Key Vault
-* Emits references to the correct existing resources in publish mode
-* Still enables secret injection and secure scoping via environment variables
+- Doesn't attempt to re-provision the Key Vault
+- Emits references to the correct existing resources in publish mode
+- Still enables secret injection and secure scoping via environment variables
 
 You can also use `PublishAsExisting(...)` if you want to reference an existing vault in published infrastructure templates (e.g., Bicep), while continuing to use it in local dev or staging pipelines.
 
 📖 See also: [Use existing Azure resources](../azure/existing-resources.md)
-
 
 ### 🧠 Azure AI Inference client integration (Preview)
 
 .NET Aspire 9.3 adds **client-only support for Azure-hosted Chat Completions endpoints** using the `Azure.AI.OpenAI` SDK and the `Microsoft.Extensions.AI` abstractions.
 
 This integration simplifies calling Azure OpenAI or Azure AI Inference services from your application—whether you prefer working directly with the SDK or using abstraction-friendly interfaces.
-
-
 
 #### Use `ChatCompletionsClient` with the Azure SDK
 
@@ -685,8 +649,6 @@ app.MapPost("/chat-raw", (
     // Use the client
 });
 ```
-
-
 
 #### Use `IChatClient` via `Microsoft.Extensions.AI`
 
@@ -724,8 +686,6 @@ builder.AddAzureAppConfiguration("appconfig");
 
 Once registered, Aspire automatically wires Azure App Configuration into your application’s configuration pipeline.
 
-
-
 #### Example: bind Azure App Configuration to app settings
 
 ```csharp
@@ -746,9 +706,9 @@ app.Run();
 
 This enables:
 
-* Dynamic feature flag evaluation
-* Centralized configuration management across environments
-* Secure integration into the Aspire hosting model
+- Dynamic feature flag evaluation
+- Centralized configuration management across environments
+- Secure integration into the Aspire hosting model
 
 > 🔐 Like all Azure integrations in Aspire, the App Configuration client defaults to using **Managed Identity** for secure access—no connection strings required.
 
@@ -762,8 +722,6 @@ In .NET Aspire 9.2, using **multiple projects with the same Azure SQL Server** i
 
 Each app was assigned its own **managed identity**, but Aspire granted **admin access** to the last app deployed—overwriting access for any previously deployed apps. This led to confusing failures where only one app could talk to the database at a time.
 
-
-
 #### ✅ New behavior in 9.3
 
 .NET Aspire 9.3 fixes this by:
@@ -771,37 +729,29 @@ Each app was assigned its own **managed identity**, but Aspire granted **admin a
 1. Assigning **one identity** as the **SQL Server administrator**
 2. Emitting a **SQL script** that:
 
-   * Creates a **user** for each additional managed identity
-   * Assigns each user the **`db_owner`** role on the target database
+   - Creates a **user** for each additional managed identity
+   - Assigns each user the **`db_owner`** role on the target database
 
 This ensures every app that references the database gets **full access** without conflicting with other apps.
 
-
-
 #### Why this matters
 
-* Supports **multiple apps accessing the same SQL Server** securely
-* Preserves **least-privilege separation** across app identities
-* Avoids the brittle “last one wins” admin behavior from earlier releases
-* Enables richer deployment scenarios in cloud-native environments like Azure Container Apps
-
-
+- Supports **multiple apps accessing the same SQL Server** securely
+- Preserves **least-privilege separation** across app identities
+- Avoids the brittle “last one wins” admin behavior from earlier releases
+- Enables richer deployment scenarios in cloud-native environments like Azure Container Apps
 
 #### ⚠️ Breaking change
 
 If your deployment relied on Aspire setting the managed identity as the SQL Server **admin**, you’ll need to review your access model. Apps now receive **explicit role-based access (`db_owner`)** instead of broad admin rights.
 
-
 📖 Related: [dotnet/aspire#8381](https://github.com/dotnet/aspire/issues/8381)
-
 
 ### 💸 Default Azure SQL SKU is now Free (Breaking change)
 
 .NET Aspire 9.3 changes the default SKU used when provisioning **Azure SQL databases** to the **Free (Basic)** tier. This helps reduce unexpected costs during development and experimentation.
 
 Previously, Aspire defaulted to the **General Purpose (GP)** tier, which could incur charges even for small or test apps.
-
-
 
 #### What’s new
 
@@ -815,8 +765,6 @@ sql.AddDatabase("appdb");
 
 Aspire now automatically uses the **free-tier SKU** for `appdb`, unless you override it.
 
-
-
 #### How to restore the previous behavior
 
 If your app requires the performance or features of a paid tier, you can opt out of the new default using:
@@ -825,7 +773,6 @@ If your app requires the performance or features of a paid tier, you can opt out
 sql.AddDatabase("appdb")
    .WithDefaultAzureSku(); // Uses the previous (General Purpose) default
 ```
-
 
 #### ⚠️ Breaking change
 
