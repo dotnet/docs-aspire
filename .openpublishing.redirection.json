@@ -283,6 +283,10 @@
     {
       "source_path_from_root": "/docs/deployment/azure/local-provisioning.md",
       "redirect_url": "/dotnet/aspire/azure/local-provisioning"      
+    },
+    {
+      "source_path_from_root": "/docs/frameworks/dapr.md",
+      "redirect_url": "/dotnet/aspire/azure/dapr"
     }
   ]
 }

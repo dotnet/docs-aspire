@@ -1,11 +1,15 @@
 ---
 title: NET Aspire Dapr integration
 description: Learn how to use the .NET Aspire Dapr integration, which can configure and orchestrate Dapr from a .NET Aspire app host project.
-ms.date: 01/16/2025
+ms.date: 05/12/2025
 uid: frameworks/dapr
 ---
 
 # .NET Aspire Dapr integration
+
+[!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
+
+[!INCLUDE [banner](includes/banner.md)]
 
 [Distributed Application Runtime (Dapr)](https://docs.dapr.io/) offers developer APIs that serve as a conduit for interacting with other services and dependencies and abstract the application from the specifics of those services and dependencies. Dapr and .NET Aspire can work together to improve your local development experience. By using Dapr with .NET Aspire, you can focus on writing and implementing .NET-based distributed applications instead of local on-boarding.
 
@@ -30,9 +34,9 @@ At first sight Dapr and .NET Aspire may look like they have overlapping function
 
 Dapr provides many [built-in components](https://docs.dapr.io/concepts/components-concept), and when you use Dapr with .NET Aspire you can easily explore and configure these components. Don't confuse these components with .NET Aspire integrations. For example, consider the following:
 
-- [Dapr—State stores](https://docs.dapr.io/concepts/components-concept/#state-stores): Call <xref:Aspire.Hosting.IDistributedApplicationBuilderExtensions.AddDaprStateStore%2A> to add a configured state store to your .NET Aspire project.
-- [Dapr—Pub Sub](https://docs.dapr.io/concepts/components-concept/#pubsub-brokers): Call <xref:Aspire.Hosting.IDistributedApplicationBuilderExtensions.AddDaprPubSub%2A> to add a configured pub sub to your .NET Aspire project.
-- Dapr—Components: Call <xref:Aspire.Hosting.IDistributedApplicationBuilderExtensions.AddDaprComponent%2A> to add a configured integration to your .NET Aspire project.
+- [Dapr—State stores](https://docs.dapr.io/concepts/components-concept/#state-stores): Call `AddDaprStateStore` to add a configured state store to your .NET Aspire project.
+- [Dapr—Pub Sub](https://docs.dapr.io/concepts/components-concept/#pubsub-brokers): Call `AddDaprPubSub` to add a configured pub sub to your .NET Aspire project.
+- Dapr—Components: Call `AddDaprComponent` to add a configured integration to your .NET Aspire project.
 
 ## Install Dapr
 
@@ -47,18 +51,18 @@ This integration requires Dapr version 1.13 or later. To install Dapr, see [Inst
 
 ## Hosting integration
 
-In your .NET Aspire solution, to integrate Dapr and access its types and APIs, add the [📦 Aspire.Hosting.Dapr](https://www.nuget.org/packages/Aspire.Hosting.Dapr) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+In your .NET Aspire solution, to integrate Dapr and access its types and APIs, add the [📦 CommunityToolkit.Aspire.Hosting.Dapr](https://www.nuget.org/packages/CommunityToolkit.Aspire.Hosting.Dapr) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.Dapr
+dotnet add package CommunityToolkit.Aspire.Hosting.Dapr
 ```
 
 ### [PackageReference](#tab/package-reference)
 
 ```xml
-<PackageReference Include="Aspire.Hosting.Dapr"
+<PackageReference Include="CommunityToolkit.Aspire.Hosting.Dapr"
                   Version="*" />
 ```
 
@@ -70,7 +74,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 Dapr uses the [sidecar pattern](https://docs.dapr.io/concepts/dapr-services/sidecar/). The Dapr sidecar runs alongside your app as a lightweight, portable, and stateless HTTP server that listens for incoming HTTP requests from your app.
 
-To add a sidecar to a .NET Aspire resource, call the <xref:Aspire.Hosting.IDistributedApplicationResourceBuilderExtensions.WithDaprSidecar%2A> method on it. The `appId` parameter is the unique identifier for the Dapr application, but it's optional. If you don't provide an `appId`, the parent resource name is used instead.
+To add a sidecar to a .NET Aspire resource, call the `WithDaprSidecar` method on it. The `appId` parameter is the unique identifier for the Dapr application, but it's optional. If you don't provide an `appId`, the parent resource name is used instead.
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="1-7"  highlight="7":::
 

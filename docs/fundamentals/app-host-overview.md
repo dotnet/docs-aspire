@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs for adding resources and expressing dependencies.
-ms.date: 04/15/2025
+ms.date: 04/23/2025
 ms.topic: overview
 uid: dotnet/aspire/app-host
 ---
@@ -25,18 +25,21 @@ Before continuing, consider some common terminology used in .NET Aspire:
 
 ## Define the app model
 
-.NET Aspire empowers you to seamlessly build, provision, deploy, configure, test, run, and observe your distributed applications. All of these capabilities are achieved through the utilization of an _app model_ that outlines the resources in your .NET Aspire solution and their relationships. These resources encompass projects, executables, containers, and external services and cloud resources that your app depends on. Within every .NET Aspire solution, there's a designated [App host project](#app-host-project), where the app model is precisely defined using methods available on the <xref:Aspire.Hosting.IDistributedApplicationBuilder>. This builder is obtained by invoking <xref:Aspire.Hosting.DistributedApplication.CreateBuilder%2A?displayProperty=nameWithType>.
+.NET Aspire enables you to efficiently build, provision, deploy, configure, test, run, and monitor your distributed applications. These capabilities are powered by an _app model_, which defines the resources in your .NET Aspire solution and their interconnections.
+
+The app model is more than just a list of resources—it represents the complete topology of your application. This includes the relationships between resources, their dependencies, and their configurations. Resources can include projects, executables, containers, external services, and cloud resources that your application relies on.
+
+In your [.NET Aspire app host project](#app-host-project), your `Program` file defines your app model:
 
 ```csharp
-// Create a new app model builder
 var builder = DistributedApplication.CreateBuilder(args);
 
-// TODO:
-//   Add resources to the app model
-//   Express dependencies between resources
+// Add resources to the app model
 
 builder.Build().Run();
 ```
+
+When you call <xref:Aspire.Hosting.DistributedApplication.CreateBuilder*?displayProperty=nameWithType>, you get an instance of <xref:Aspire.Hosting.IDistributedApplicationBuilder>, which is used to configure your app model. This builder provides methods to add resources, define dependencies, and set up the overall structure of your application. After you've added resources, call `Build` to create the app model. The [templates](../fundamentals/aspire-sdk-templates.md) include code that chains a call to <xref:Aspire.Hosting.IDistributedApplicationBuilder.Build>—which returns an <xref:Aspire.Hosting.DistributedApplication> instance, and then calls <xref:Aspire.Hosting.DistributedApplication.Run>.
 
 ## App host project
 
