@@ -497,6 +497,48 @@ In this example:
 
 💬 This feature is in **preview**—we’re looking for your feedback as we expand support!
 
+### 📤 Use an existing Azure Container Registry (ACR)
+
+.NET Aspire 9.3 adds support for modeling an existing **Azure Container Registry (ACR)** using the new `AddAzureContainerRegistry(...)` API. This enables you to **push images to an ACR you already manage**—without Aspire provisioning a new one.
+
+This is ideal for teams that:
+
+* Share a centralized registry across environments
+* Integrate with existing CI/CD pipelines and promotion workflows
+* Require fine-grained control over image publishing
+
+---
+
+#### Example: associate ACR with an Azure Container Apps environment
+
+```csharp
+var acr = builder.AddAzureContainerRegistry("my-acr");
+
+builder.AddAzureContainerAppEnvironment("env")
+       .WithAzureContainerRegistry(acr);
+
+builder.AddProject<Projects.Api>("api")
+       .WithExternalHttpEndpoints();
+```
+
+In this example:
+
+* The ACR is modeled in Aspire and used by the container apps environment
+* Aspire publishes the built image to `my-acr` and configures Azure Container Apps to pull from it
+
+---
+
+#### ACR works with multiple compute environments
+
+You can associate an `AzureContainerRegistryResource` with:
+
+* `AddAzureContainerAppEnvironment(...)`
+* `AddAppServiceEnvironment(...)`
+
+This gives you consistent control over where images are published, even across different compute targets.
+
+> 💡 Use `.RunAsExisting()` or `.PublishAsExisting()` on the ACR resource to reference a real registry without provisioning one.
+
 ### 🖇️ Resource Deep Linking for Blob Containers
 
 .NET Aspire 9.3 expands **resource deep linking** to include **Azure Blob Storage containers**, building on the model already used for Cosmos DB, Event Hubs, Service Bus, and Azure OpenAI.
@@ -622,6 +664,135 @@ You can also use `PublishAsExisting(...)` if you want to reference an existing v
 
 📖 See also: [Use existing Azure resources](../azure/existing-resources.md)
 
+
+### 🧠 Azure AI Inference client integration (Preview)
+
+.NET Aspire 9.3 adds **client-only support for Azure-hosted Chat Completions endpoints** using the `Azure.AI.OpenAI` SDK and the `Microsoft.Extensions.AI` abstractions.
+
+This integration simplifies calling Azure OpenAI or Azure AI Inference services from your application—whether you prefer working directly with the SDK or using abstraction-friendly interfaces.
+
+---
+
+#### Use `ChatCompletionsClient` with the Azure SDK
+
+```csharp
+builder.AddChatCompletionsClient("connectionName");
+
+app.MapPost("/chat-raw", (
+    ChatCompletionsClient client,
+    ChatRequest message) =>
+{
+    // Use the client
+});
+```
+
+---
+
+#### Use `IChatClient` via `Microsoft.Extensions.AI`
+
+```csharp
+builder.AddAzureChatCompletionsClient("inference")
+       .AddChatClient();
+```
+
+Once registered, you can inject `IChatClient` using standard dependency injection:
+
+```csharp
+app.MapPost("/chat", async (
+    IChatClient chatClient,
+    ChatRequest message) =>
+{
+    var result = await chatClient.GetChatMessageAsync(message.Input);
+    return result;
+});
+```
+
+This setup integrates seamlessly with frameworks like [Semantic Kernel](https://github.com/dotnet/semantic-kernel), and works well in modular or pluggable AI systems.
+
+📦 Implemented in [#9103](https://github.com/dotnet/aspire/pull/9103)
+🔗 Learn more about [Microsoft.Extensions.AI](https://github.com/dotnet/semantic-kernel/blob/main/docs/extensions/microsoft-extensions-ai.md) and [ChatCompletionsClient](https://learn.microsoft.com/dotnet/api/azure.ai.openai.chatcompletionsclient)
+
+### ⚙️ Azure App Configuration client integration
+
+.NET Aspire 9.3 adds support for **Azure App Configuration** via a new client integration API, provided through the `Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration` package.
+
+This makes it easy to connect to centralized configuration using the official Azure SDK and the `Microsoft.Extensions.Configuration.AzureAppConfiguration` provider—no manual setup required.
+
+```csharp
+builder.AddAzureAppConfiguration("appconfig");
+```
+
+Once registered, Aspire automatically wires Azure App Configuration into your application’s configuration pipeline.
+
+---
+
+#### Example: bind Azure App Configuration to app settings
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.AddAzureAppConfiguration("appconfig");
+
+var app = builder.Build();
+
+app.MapGet("/feature", (IConfiguration config) =>
+{
+    var isEnabled = config.GetValue<bool>("FeatureFlag:Enabled");
+    return Results.Ok(new { Enabled = isEnabled });
+});
+
+app.Run();
+```
+
+This enables:
+
+* Dynamic feature flag evaluation
+* Centralized configuration management across environments
+* Secure integration into the Aspire hosting model
+
+> 🔐 Like all Azure integrations in Aspire, the App Configuration client defaults to using **Managed Identity** for secure access—no connection strings required.
+
+📦 Implemented in [#8945](https://github.com/dotnet/aspire/pull/8945)
+📦 NuGet package: [`Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration`](https://www.nuget.org/packages/Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration)
+🔗 Learn more about [Azure App Configuration](https://learn.microsoft.com/azure/azure-app-configuration/overview)
+
+### 🛡️ Secure multi-app access to Azure SQL (Breaking change)
+
+In .NET Aspire 9.2, using **multiple projects with the same Azure SQL Server** inside an **Azure Container Apps environment** could silently break your app's identity model.
+
+Each app was assigned its own **managed identity**, but Aspire granted **admin access** to the last app deployed—overwriting access for any previously deployed apps. This led to confusing failures where only one app could talk to the database at a time.
+
+---
+
+#### ✅ New behavior in 9.3
+
+.NET Aspire 9.3 fixes this by:
+
+1. Assigning **one identity** as the **SQL Server administrator**
+2. Emitting a **SQL script** that:
+
+   * Creates a **user** for each additional managed identity
+   * Assigns each user the **`db_owner`** role on the target database
+
+This ensures every app that references the database gets **full access** without conflicting with other apps.
+
+---
+
+#### Why this matters
+
+* Supports **multiple apps accessing the same SQL Server** securely
+* Preserves **least-privilege separation** across app identities
+* Avoids the brittle “last one wins” admin behavior from earlier releases
+* Enables richer deployment scenarios in cloud-native environments like Azure Container Apps
+
+---
+
+#### ⚠️ Breaking change
+
+If your deployment relied on Aspire setting the managed identity as the SQL Server **admin**, you’ll need to review your access model. Apps now receive **explicit role-based access (`db_owner`)** instead of broad admin rights.
+
+
+📖 Related: [dotnet/aspire#8381](https://github.com/dotnet/aspire/issues/8381)
 
 ## 💔 Breaking changes
 
