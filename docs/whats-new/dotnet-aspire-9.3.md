@@ -210,7 +210,7 @@ This brings MySQL in line with the broader Aspire database ecosystem:
 | SQL Server  | ✅ Yes                                     |
 | PostgreSQL  | ✅ Yes                                     |
 | **MySQL**   | ✅ **Yes (new in 9.3)**                    |
-| MongoDB     | ❌ No (not supported yet)                  |
+| MongoDB     | ❌ No (not needed; created on first write) |
 | Oracle      | ❌ No (not supported yet)                  |
 
 No additional configuration is required—the same `AddDatabase` call you already use now provisions the database for you behind the scenes.
@@ -443,7 +443,8 @@ This gives you fully typed access to the Kubernetes object model, enabling power
 
 #### 🔍 Smarter app host discovery
 
-The CLI now **recursively searches upward** from your current directory to locate the app host project. Once found, it caches the result in a `.aspire` folder to avoid repeated lookups.
+> The CLI now **walks upward** from your current directory, **recursively searching each level** for the app host project. Once located, it caches the result in a `.aspire` folder to speed up future commands.
+
 
 You can now run commands like `aspire run`, `aspire add`, or `aspire publish` from **any directory within your solution**, and the CLI will resolve the app host automatically.
 
@@ -536,7 +537,7 @@ In this example:
 You can associate an `AzureContainerRegistryResource` with:
 
 - `AddAzureContainerAppEnvironment(...)`
-- `AddAppServiceEnvironment(...)`
+- `AddAzureAppServiceEnvironment(...)`
 
 This gives you consistent control over where images are published, even across different compute targets.
 
