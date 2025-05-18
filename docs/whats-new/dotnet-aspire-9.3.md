@@ -210,7 +210,7 @@ This brings MySQL in line with the broader Aspire database ecosystem:
 | SQL Server  | ✅ Yes                                     |
 | PostgreSQL  | ✅ Yes                                     |
 | **MySQL**   | ✅ **Yes (new in 9.3)**                    |
-| MongoDB     | ❌ No (not needed; created on first write) |
+| MongoDB     | ❌ No (not supported yet)                  |
 | Oracle      | ❌ No (not supported yet)                  |
 
 No additional configuration is required—the same `AddDatabase` call you already use now provisions the database for you behind the scenes.
