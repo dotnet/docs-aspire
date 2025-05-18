@@ -7,14 +7,14 @@ ms.topic: reference
 
 # GitHub Copilot in the .NET Aspire dashboard
 
-Introducing GitHub Copilot in the .NET Aspire dashboard. GitHub Copilot is your AI debugging assistant.
+Introducing GitHub Copilot in the .NET Aspire dashboard! GitHub Copilot is your new AI debugging assistant.
 
-AI integration supercharges the dashboard's OpenTelemetry debugging and diagnostics experience. GitHub Copilot allows you to:
+GitHub Copilot supercharges the dashboard's OpenTelemetry debugging and diagnostics experience. With AI, you can:
 
-- Review hundreds of log messages with the click of a button.
-- Investigate the root cause of errors across multiple apps.
-- Highlight performance issues in traces.
-- Explain obscure error codes using AI's extensive knowledge base.
+- Review hundreds of log messages with a single click
+- Investigate the root cause of errors across multiple apps
+- Highlight performance issues in traces
+- Explain obscure error codes using AI's huge knowledge repository
 
 You'll have access to Copilot in the dashboard when you launch your app from VS Code or Visual Studio.
 
