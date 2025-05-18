@@ -429,15 +429,15 @@ This gives you fully typed access to the Kubernetes object model, enabling power
 
 ## 🖥️ Aspire CLI enhancements
 
-🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
+> 🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
+>
+> 📦 To install:
+>
+> ```bash
+> dotnet tool install --global aspire.cli --prerelease
+> ```
 
-📦 To install:
-
-```bash
-dotnet tool install --global aspire.cli --prerelease
-```
-
-> ⚠️ **The Aspire 9.3 CLI is not compatible with Aspire projects <= version 9.2.**
+> ⚠️ **The Aspire 9.3 CLI is not compatible with Aspire 9.2 projects.**
 > You must upgrade your project to Aspire 9.3+ in order to use the latest CLI features.
 
 #### 🔍 Smarter app host discovery
@@ -449,8 +449,8 @@ You can now run commands like `aspire run`, `aspire add`, or `aspire publish` fr
 For example:
 
 ```bash
-$ cd src/frontend
-$ aspire run
+cd src/frontend
+aspire run
 ```
 
 #### ⏳ Health-aware dashboard launch
@@ -865,9 +865,9 @@ Aspire apps often define required parameters in Bicep or infrastructure modules 
 
 You no longer need to:
 
-* Manually configure these in `.azure/env-name/config.json`
-* Inject them into CI via complex JSON blobs
-* Worry about missing or mismatched configuration between local and cloud
+- Manually configure these in `.azure/env-name/config.json`
+- Inject them into CI via complex JSON blobs
+- Worry about missing or mismatched configuration between local and cloud
 
 Secure parameters (like `openaiKey` or `dbPassword`) are automatically treated as CI secrets, while others are injected as variables — all handled by `azd`.
 
@@ -897,9 +897,9 @@ The secret AZURE_OLD_SECRET is no longer used. What would you like to do?
 
 This ensures:
 
-* You’re never surprised by secret overwrites
-* You can keep your repo clean of stale configuration
-* CI reflects your actual infrastructure setup
+- You’re never surprised by secret overwrites
+- You can keep your repo clean of stale configuration
+- CI reflects your actual infrastructure setup
 
 ### 🔄 End-to-End, Repeatable Aspire Deployment
 
