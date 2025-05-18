@@ -21,4 +21,4 @@ If you're migrating an app to .NET Aspire 9.3, the breaking changes listed here 
 | [AddAzureSqlServer assigns a dedicated user-assigned managed identity as the administrator](azure-sql-server-default-uami-admin.md) | Behavioral change | 9.3 |
 | [Change the default SKU used for creating a new Azure SQL database](azure-sql-server-default-sku-changes.md) | Behavioral change | 9.3 |
 | [Remove publisher APIs](remove-publisher-apis.md) | Binary incompatible, source incompatible, and behavioral change | 9.3 |
-| [With health checks changes in .NET Aspire 9.3](with-health-checks-changes.md) | Binary and source incompatible | 9.3 |
+| [Http(s) health checks changes in .NET Aspire 9.3](with-health-checks-changes.md) | Binary and source incompatible | 9.3 |
