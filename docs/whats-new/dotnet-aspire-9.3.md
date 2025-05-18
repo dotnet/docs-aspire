@@ -61,7 +61,7 @@ var frontend = builder.AddProject<Projects.Frontend>("frontend")
 
 These tweaks let you surface the right links, in the right place, with virtually zero boilerplate.
 
-### 🙈 Hide resources without "faking" their state 
+### 🙈 Hide resources without "faking" their state
 
 Historically the only way to keep a resource out of the Dashboard was to put it in the **`Hidden`** *state*—a hack that also made the resource look "terminal" to APIs such as `WaitForResourceAsync`. In 9.3 every snapshot now carries a **boolean `IsHidden` flag**, completely decoupling *visibility* from *lifecycle state*.
 
@@ -427,6 +427,40 @@ This gives you fully typed access to the Kubernetes object model, enabling power
 
 > 🧠 Aspire emits standard Kubernetes manifests under the hood—you can still use `kubectl`, `helm`, or GitOps workflows to deploy them, but now you can shape them directly from your app definition.
 
+## 🖥️ Aspire CLI enhancements
+
+.NET Aspire 9.3 brings a number of improvements to the `aspire` CLI, making it more reliable and intuitive—especially when running in nested directories, terminal scripts, or iterative development loops.
+
+#### 🔍 Smarter app host discovery
+
+The CLI now **recursively searches upward** from your current working directory to locate the `.csproj` file for your app host. Once found, it caches the project location in a hidden `.aspire` folder at the root of your repo or workspace.
+
+This means you can now run commands like `aspire run`, `aspire publish`, or `aspire add` from anywhere inside your project tree—**no need to `cd` to the app host folder first**.
+
+For example:
+
+```bash
+$ cd src/frontend
+$ aspire run
+```
+
+Aspire will locate the app host project in `../MyApp.AppHost/` and remember it for future commands.
+
+#### ⏳ Smarter dashboard startup
+
+Previously, when launching an Aspire app, the CLI would print a dashboard URL as soon as the dashboard process started—even if it wasn’t ready to serve requests. This often led to confusion when opening the link too soon resulted in a blank page or connection error.
+
+In 9.3, the CLI now **waits until the dashboard is healthy and responsive** before showing the link in the terminal:
+
+```bash
+ℹ️ Waiting for dashboard to become available...
+🚀 Dashboard running at http://localhost:18888
+```
+
+This provides a smoother startup experience and makes the dashboard feel more like an integrated part of the toolchain.
+
+These updates make the Aspire CLI **easier to use from any directory**, more resilient in scripts or terminals, and more aligned with how real-world developers move through their projects. More enhancements are on the way as Aspire evolves into a full developer workflow companion.
+
 ## ☁️ Azure goodies
 
 ### 🌐 Azure App Service (Preview support)
@@ -782,8 +816,6 @@ This change affects cost, performance, and available features in new deployments
 🔧 Use `.WithDefaultAzureSku()` on the **database** to revert to the old behavior
 🔗 Learn more about [Azure SQL pricing tiers](https://learn.microsoft.com/azure/azure-sql/database/service-tiers)
 
-Certainly! Here's the full, updated version with `goversion` replaced by `openaiKey` — a more realistic and relatable Aspire parameter example:
-
 ## 🚀 AZD: Major Improvements to CI/CD for Aspire Apps
 
 We've dramatically improved how `azd` configures CI/CD pipelines for Aspire-based applications. These updates directly address one of the most frustrating pain points reported by the community: managing environment parameters and secrets securely and predictably across environments.
@@ -811,8 +843,6 @@ AZURE_DB_PASSWORD: ${{ secrets.AZURE_DB_PASSWORD }}
 ```
 
 This means no more bundling, no more fragile config hacks, and no more guessing how your environment is configured in CI.
-
-
 
 ### 🔤 Consistent, Predictable Parameter Naming
 
@@ -883,7 +913,6 @@ With these changes, the local-to-cloud workflow for Aspire apps is now consisten
 4. Your pipeline runs securely with all the same inputs as your local environment — no manual steps required.
 
 No more `AZD_INITIAL_ENVIRONMENT_CONFIG`. No more brittle overrides. Just clear, secure, parameterized deployment.
-
 
 These changes unlock a smoother, safer CI/CD experience for Aspire projects — reducing manual configuration, improving security, and aligning your local development setup with your production pipeline.
 
