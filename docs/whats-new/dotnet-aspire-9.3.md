@@ -429,13 +429,22 @@ This gives you fully typed access to the Kubernetes object model, enabling power
 
 ## 🖥️ Aspire CLI enhancements
 
-.NET Aspire 9.3 brings a number of improvements to the `aspire` CLI, making it more reliable and intuitive—especially when running in nested directories, terminal scripts, or iterative development loops.
+🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
+
+📦 To install:
+
+```bash
+dotnet tool install --global aspire.cli --prerelease
+```
+
+> ⚠️ **The Aspire 9.3 CLI is not compatible with Aspire projects <= version 9.2.**
+> You must upgrade your project to Aspire 9.3+ in order to use the latest CLI features.
 
 #### 🔍 Smarter app host discovery
 
-The CLI now **recursively searches upward** from your current working directory to locate the `.csproj` file for your app host. Once found, it caches the project location in a hidden `.aspire` folder at the root of your repo or workspace.
+The CLI now **recursively searches upward** from your current directory to locate the app host project. Once found, it caches the result in a `.aspire` folder to avoid repeated lookups.
 
-This means you can now run commands like `aspire run`, `aspire publish`, or `aspire add` from anywhere inside your project tree—**no need to `cd` to the app host folder first**.
+You can now run commands like `aspire run`, `aspire add`, or `aspire publish` from **any directory within your solution**, and the CLI will resolve the app host automatically.
 
 For example:
 
@@ -444,22 +453,11 @@ $ cd src/frontend
 $ aspire run
 ```
 
-Aspire will locate the app host project in `../MyApp.AppHost/` and remember it for future commands.
+#### ⏳ Health-aware dashboard launch
 
-#### ⏳ Smarter dashboard startup
+The CLI now **waits for the dashboard to become responsive** before printing its URL to the terminal. This ensures the link works immediately when opened—no more blank pages or retry loops.
 
-Previously, when launching an Aspire app, the CLI would print a dashboard URL as soon as the dashboard process started—even if it wasn’t ready to serve requests. This often led to confusion when opening the link too soon resulted in a blank page or connection error.
-
-In 9.3, the CLI now **waits until the dashboard is healthy and responsive** before showing the link in the terminal:
-
-```bash
-ℹ️ Waiting for dashboard to become available...
-🚀 Dashboard running at http://localhost:18888
-```
-
-This provides a smoother startup experience and makes the dashboard feel more like an integrated part of the toolchain.
-
-These updates make the Aspire CLI **easier to use from any directory**, more resilient in scripts or terminals, and more aligned with how real-world developers move through their projects. More enhancements are on the way as Aspire evolves into a full developer workflow companion.
+These updates make the Aspire CLI more reliable, script-friendly, and aligned with how developers move across folders and projects during daily development.
 
 ## ☁️ Azure goodies
 
