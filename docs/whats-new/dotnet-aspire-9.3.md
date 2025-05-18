@@ -217,6 +217,23 @@ No additional configuration is required—the same `AddDatabase` call you alread
 
 ## 📊 Dashboard delights
 
+### ✨ GitHub Copilot in the dashboard
+
+Introducing GitHub Copilot in the .NET Aspire dashboard! GitHub Copilot is your new AI debugging assistant.
+
+GitHub Copilot supercharges the dashboard's OpenTelemetry debugging and diagnostics experience. With AI, you can:
+
+- Review hundreds of log messages with a single click
+- Investigate the root cause of errors across multiple apps
+- Highlight performance issues in traces
+- Explain obscure error codes using AI's huge knowledge repository
+
+You'll have access to Copilot in the dashboard when you launch your app from VS Code or Visual Studio.
+
+:::image type="content" source="media/dashboard-copilot.png" lightbox="media/dashboard-copilot.png" alt-text="Screenshot of dashboard with GitHub Copilot chat open.":::
+
+For more details on requirements and how to get started, see [GitHub Copilot in the .NET Aspire dashboard](../fundamentals/dashboard/copilot.md).
+
 ### 🧠 Remembers your filter settings
 
 The .NET Aspire dashboard now **remembers your resource filter settings** between sessions. Previously, if you filtered the Resources view (for example, to hide support services or highlight only frontend apps), those filters were reset on page reload.
