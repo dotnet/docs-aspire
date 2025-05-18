@@ -1,6 +1,8 @@
+---
 title: What's new in .NET Aspire 9.3
 description: Learn what's new in the official general availability release of .NET Aspire 9.3.
 ms.date: 05/07/2025
+---
 
 # What's new in .NET Aspire 9.3
 
@@ -316,7 +318,6 @@ This (contrived) example shows how you could explicitly map services to differen
 
 > 💡 Imagine a real-world case where your frontend is deployed to a CDN or GitHub Pages, and your backend runs in Azure Container Apps. This new model makes that future possible.
 
-📦 Implemented in [#9096](https://github.com/dotnet/aspire/pull/9096)
 🔧 All previous publisher registration APIs (like `AddDockerComposePublisher()`) have been removed in favor of this new model.
 
 #### Supported compute environments
@@ -703,7 +704,6 @@ app.MapPost("/chat", async (
 
 This setup integrates seamlessly with frameworks like [Semantic Kernel](https://github.com/dotnet/semantic-kernel), and works well in modular or pluggable AI systems.
 
-📦 Implemented in [#9103](https://github.com/dotnet/aspire/pull/9103)
 🔗 Learn more about [Microsoft.Extensions.AI](https://github.com/dotnet/semantic-kernel/blob/main/docs/extensions/microsoft-extensions-ai.md) and [ChatCompletionsClient](https://learn.microsoft.com/dotnet/api/azure.ai.openai.chatcompletionsclient)
 
 ### ⚙️ Azure App Configuration client integration
@@ -744,7 +744,6 @@ This enables:
 
 > 🔐 Like all Azure integrations in Aspire, the App Configuration client defaults to using **Managed Identity** for secure access—no connection strings required.
 
-📦 Implemented in [#8945](https://github.com/dotnet/aspire/pull/8945)
 📦 NuGet package: [`Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration`](https://www.nuget.org/packages/Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration)
 🔗 Learn more about [Azure App Configuration](https://learn.microsoft.com/azure/azure-app-configuration/overview)
 
@@ -810,8 +809,8 @@ sql.AddDatabase("appdb")
 
 This change affects cost, performance, and available features in new deployments. If your app depends on higher-tier capabilities, be sure to configure the SKU accordingly.
 
-📦 Implemented in [#8887](https://github.com/dotnet/aspire/pull/8887)
 🔧 Use `.WithDefaultAzureSku()` on the **database** to revert to the old behavior
+
 🔗 Learn more about [Azure SQL pricing tiers](https://learn.microsoft.com/azure/azure-sql/database/service-tiers)
 
 ## 🚀 AZD: Major Improvements to CI/CD for Aspire Apps
