@@ -223,6 +223,8 @@ The .NET Aspire dashboard now **remembers your resource filter settings** betwee
 
 As of 9.3, filter state is **persisted in local storage**, so your selections stick across refreshes and restarts. This small improvement makes it easier to focus on the parts of your app that matter most—especially in large graphs with many supporting services like Redis, SQL, or queues.
 
+:::image type="content" source="media/dashboard-filter.png" lightbox="media/dashboard-filter.png" alt-text="Screenshot of dashboard resource's page showing the filter popup.":::
+
 ### 🧵 Uninstrumented resources now appear in Traces
 
 In 9.3, the dashboard can now **visualize outgoing calls to resources that don’t emit their own telemetry**—such as databases, caches, and other infrastructure components that lack built-in tracing.
@@ -239,9 +241,13 @@ This helps you:
 
 🧪 No instrumentation changes are needed—Aspire infers the mapping based on resource references.
 
+:::image type="content" source="media/dashboard-traces-uninstrumented-resources.png" lightbox="media/dashboard-traces-uninstrumented-resources.png" alt-text="Screenshot of dashboard traces's page showing added resources in results.":::
+
 ### 🖱️ Resource context menus & quick-launch actions
 
 .NET Aspire 9.3 makes the dashboard more interactive and easier to navigate by introducing new **context menus** and enhancing how **resource URLs** are surfaced across views.
+
+:::image type="content" source="media/dashboard-context-menu.png" lightbox="media/dashboard-context-menu.png" alt-text="Screenshot of dashboard resource graph view with a context menu.":::
 
 #### 🧭 Right-click context menus in the graph
 
@@ -268,6 +274,8 @@ Together, these improvements turn the Aspire dashboard into a true control plane
 ### ⏸️ Metrics pause warning
 
 The dashboard now shows a **warning banner** when metrics collection is paused. This makes it clear that data may be stale if you've temporarily halted telemetry.
+
+:::image type="content" source="media/dashboard-metrics-warning.png" lightbox="media/dashboard-metrics-warning.png" alt-text="Screenshot of dashboard metrics page with a pause warning.":::
 
 ### 📝 Friendly names in console logs
 
