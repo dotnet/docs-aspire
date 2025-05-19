@@ -59,6 +59,8 @@ The .NET Aspire dashboard doesn't collect telemetry on Visual Studio versions `<
 | 9.3 | Resource restart times. | — |
 | 9.3 | OTel data processing times. | — |
 | 9.3 | Dashboard-related unhandled exceptions. | — |
+| 9.3 | GitHub Copilot usage statistics. | — |
+| 9.3 | GitHub Copilot help/unhelp feedback. | — |
 
 ## See also
 

@@ -83,6 +83,8 @@ items:
     href: fundamentals/dashboard/overview.md
   - name: Explore features
     href: fundamentals/dashboard/explore.md
+  - name: GitHub Copilot
+    href: fundamentals/dashboard/copilot.md
   - name: Standalone mode
     items:
     - name: Overview

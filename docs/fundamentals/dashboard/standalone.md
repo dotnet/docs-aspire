@@ -73,7 +73,11 @@ Although there is no restriction on where the dashboard is run, the dashboard is
 - Telemetry is automatically removed if [telemetry limits](configuration.md#telemetry-limits) are exceeded.
 - No telemetry is persisted when the dashboard is restarted.
 
-The dashboard also has functionality for viewing .NET Aspire resources. The dashboard resource features are disabled when it is run in standalone mode. To enable the resources UI, [add configuration for a resource service](configuration.md#resources).
+### Unavailable features when standalone
+
+The dashboard has functionality for viewing .NET Aspire resources. The dashboard resource features are disabled when it is run in standalone mode. To enable the resources UI, [add configuration for a resource service](configuration.md#resources).
+
+[GitHub Copilot functionality](copilot.md) isn't available in the standalone dashboard. Copilot uses a connection to your IDE to communicate with GitHub Copilot and that connection isn't available when the dashboard is in standalone mode.
 
 ## Send telemetry to the dashboard
 
