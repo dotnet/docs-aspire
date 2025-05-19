@@ -79,7 +79,7 @@ This small change removes ambiguity in the model while giving you precise contro
 
 ### 🔔 New lifecycle events
 
-.NET Aspire 9.3 introduces two new lifecycle events that make it easier to build custom resources with predictable behavior—without relying on hacks like `Task.Run` or polling:
+.NET Aspire 9.3 introduces two new lifecycle events that make it easier to build custom resources with predictable behavior—without relying on hacks like <xref:System.Threading.Tasks.Task.Run*?displayProperty=nameWithType> or polling:
 
 #### `InitializeResourceEvent`
 
@@ -102,7 +102,7 @@ This replaces awkward patterns like `Task.Run` inside constructors or `Configure
 
 #### `ResourceEndpointsAllocatedEvent`
 
-This event fires once a resource's endpoints have been assigned (e.g., after port resolution or container allocation). It's scoped per resource, so you can safely get an EndpointReference and build derived URLs or diagnostics.
+This event fires once a resource's endpoints have been assigned (e.g., after port resolution or container allocation). It's scoped per resource, so you can safely get an <xref:Aspire.Hosting.ApplicationModel.EndpointReference> and build derived URLs or diagnostics.
 
 ```csharp
 builder.Eventing.Subscribe<ResourceEndpointsAllocatedEvent>((e, ct) =>
@@ -137,7 +137,7 @@ builder.AddYarp("apigateway")
 
 The config file is mounted into the container and used as the runtime YARP configuration.
 
-#### Example `yarp.json`:
+#### Example _yarp.json_:
 
 ```json
 {
@@ -206,12 +206,12 @@ At runtime, Aspire now executes a `CREATE DATABASE` command for `"appdb"` agains
 This brings MySQL in line with the broader Aspire database ecosystem:
 
 | Integration | Automatically creates database?           |
-| -- | -- |
-| SQL Server  | ✅ Yes                                     |
-| PostgreSQL  | ✅ Yes                                     |
-| **MySQL**   | ✅ **Yes (new in 9.3)**                    |
+|-------------|-------------------------------------------|
+| SQL Server  | ✅ Yes                                    |
+| PostgreSQL  | ✅ Yes                                    |
+| **MySQL**   | ✅ **Yes (new in 9.3)**                   |
 | MongoDB     | ❌ No (not needed; created on first write) |
-| Oracle      | ❌ No (not supported yet)                  |
+| Oracle      | ❌ No (not supported yet)                 |
 
 No additional configuration is required—the same `AddDatabase` call you already use now provisions the database for you behind the scenes.
 
@@ -453,7 +453,6 @@ This gives you fully typed access to the Kubernetes object model, enabling power
 
 > The CLI now **walks upward** from your current directory, **recursively searching each level** for the app host project. Once located, it caches the result in a `.aspire` folder to speed up future commands.
 
-
 You can now run commands like `aspire run`, `aspire add`, or `aspire publish` from **any directory within your solution**, and the CLI will resolve the app host automatically.
 
 For example:
@@ -671,11 +670,11 @@ This pattern ensures Aspire:
 
 You can also use `PublishAsExisting(...)` if you want to reference an existing vault in published infrastructure templates (e.g., Bicep), while continuing to use it in local dev or staging pipelines.
 
-📖 See also: [Use existing Azure resources](../azure/existing-resources.md)
+📖 See also: [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
 ### 🧠 Azure AI Inference client integration (Preview)
 
-.NET Aspire 9.3 adds **client-only support for Azure-hosted Chat Completions endpoints** using the `Azure.AI.OpenAI` SDK and the `Microsoft.Extensions.AI` abstractions.
+.NET Aspire 9.3 adds **client-only support for Azure-hosted Chat Completions endpoints** using the <xref:Azure.AI.OpenAI> SDK and the <xref:Microsoft.Extensions.AI> abstractions.
 
 This integration simplifies calling Azure OpenAI or Azure AI Inference services from your application—whether you prefer working directly with the SDK or using abstraction-friendly interfaces.
 
@@ -699,7 +698,7 @@ builder.AddAzureChatCompletionsClient("inference")
        .AddChatClient();
 ```
 
-Once registered, you can inject `IChatClient` using standard dependency injection:
+Once registered, you can inject <xref:Microsoft.Extensions.AI.IChatClient> using standard dependency injection:
 
 ```csharp
 app.MapPost("/chat", async (
@@ -713,11 +712,11 @@ app.MapPost("/chat", async (
 
 This setup integrates seamlessly with frameworks like [Semantic Kernel](https://github.com/dotnet/semantic-kernel), and works well in modular or pluggable AI systems.
 
-🔗 Learn more about [Microsoft.Extensions.AI](https://github.com/dotnet/semantic-kernel/blob/main/docs/extensions/microsoft-extensions-ai.md) and [ChatCompletionsClient](https://learn.microsoft.com/dotnet/api/azure.ai.openai.chatcompletionsclient)
+🔗 Learn more about [Microsoft.Extensions.AI](https://github.com/dotnet/semantic-kernel/blob/main/docs/extensions/microsoft-extensions-ai.md) and [ChatCompletionsClient](/dotnet/api/azure.ai.openai.chatcompletionsclient)
 
 ### ⚙️ Azure App Configuration client integration
 
-.NET Aspire 9.3 adds support for **Azure App Configuration** via a new client integration API, provided through the `Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration` package.
+.NET Aspire 9.3 adds support for **Azure App Configuration** via a new client integration API, provided through the [📦 Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration](https://www.nuget.org/packages/Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration) NuGet package.
 
 This makes it easy to connect to centralized configuration using the official Azure SDK and the `Microsoft.Extensions.Configuration.AzureAppConfiguration` provider—no manual setup required.
 
@@ -754,7 +753,7 @@ This enables:
 > 🔐 Like all Azure integrations in Aspire, the App Configuration client defaults to using **Managed Identity** for secure access—no connection strings required.
 
 📦 NuGet package: [`Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration`](https://www.nuget.org/packages/Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration)
-🔗 Learn more about [Azure App Configuration](https://learn.microsoft.com/azure/azure-app-configuration/overview)
+🔗 Learn more about [Azure App Configuration](/azure/azure-app-configuration/overview)
 
 ### 🛡️ Secure multi-app access to Azure SQL (Breaking change)
 
@@ -820,7 +819,7 @@ This change affects cost, performance, and available features in new deployments
 
 🔧 Use `.WithDefaultAzureSku()` on the **database** to revert to the old behavior
 
-🔗 Learn more about [Azure SQL pricing tiers](https://learn.microsoft.com/azure/azure-sql/database/service-tiers)
+🔗 Learn more about [Azure SQL pricing tiers](/azure/azure-sql/database/service-tiers)
 
 ## 🚀 AZD: Major Improvements to CI/CD for Aspire Apps
 
@@ -859,8 +858,8 @@ Aspire parameters are mapped to environment variable names using a clear rule:
 3. Uppercase everything
 4. Prefix with `AZURE_`
 
-| Parameter Name         | Env Var Name                 |
-| - | - |
+| Parameter name         | Env var vame                 |
+|------------------------|------------------------------|
 | `openaiKey`            | `AZURE_OPENAI_KEY`           |
 | `dbPassword`           | `AZURE_DB_PASSWORD`          |
 | `storage-account-name` | `AZURE_STORAGE_ACCOUNT_NAME` |
@@ -873,7 +872,7 @@ Aspire apps often define required parameters in Bicep or infrastructure modules 
 
 You no longer need to:
 
-- Manually configure these in `.azure/env-name/config.json`
+- Manually configure these in _.azure/env-name/config.json_
 - Inject them into CI via complex JSON blobs
 - Worry about missing or mismatched configuration between local and cloud
 
@@ -926,4 +925,4 @@ These changes unlock a smoother, safer CI/CD experience for Aspire projects — 
 
 With every release, we strive to make .NET Aspire better. However, some changes may break existing functionality. The following breaking changes are introduced in .NET Aspire 9.3:
 
-- [Breaking changes in .NET Aspire 9.3](https://learn.microsoft.com/en-us/dotnet/aspire/azure/integrations-overview?tabs=dotnet-cli#use-existing-azure-resources)
+- [Breaking changes in .NET Aspire 9.3](../compatibility/9.3/index.md)
