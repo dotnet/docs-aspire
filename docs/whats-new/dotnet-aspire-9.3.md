@@ -6,14 +6,14 @@ ms.date: 05/18/2025
 
 # What's new in .NET Aspire 9.3
 
-📢 .NET Aspire 9.3 is the next minor version release of .NET Aspire; it supports:
+📢 .NET Aspire 9.3 is the next minor version release of .NET Aspire. It supports:
 
 - .NET 8.0 Long Term Support (LTS)
 - .NET 9.0 Standard Term Support (STS)
 
-If you have feedback, questions, or want to contribute to .NET Aspire, collaborate with us on [:::image type="icon" source="../media/github-mark.svg" border="false"::: GitHub](https://github.com/dotnet/aspire) or join us on [:::image type="icon" source="../media/discord-icon.svg" border="false"::: Discord](https://discord.com/invite/h87kDAHQgJ) to chat with team members.
+If you have feedback, questions, or want to contribute to .NET Aspire, collaborate with us on [:::image type="icon" source="../media/github-mark.svg" border="false"::: GitHub](https://github.com/dotnet/aspire) or join us on [:::image type="icon" source="../media/discord-icon.svg" border="false"::: Discord](https://aka.ms/dotnet-discord) to chat with team members.
 
-It's important to note that .NET Aspire releases out-of-band from .NET releases. While major versions of .NET Aspire align with .NET major versions, minor versions are released more frequently. For more information on .NET and .NET Aspire version support, see:
+It's important to note that .NET Aspire releases out-of-band from .NET releases. While major versions of .NET Aspire align with major .NET versions, minor versions are released more frequently. For more information on .NET and .NET Aspire version support, see:
 
 - [.NET support policy](https://dotnet.microsoft.com/platform/support/policy): Definitions for LTS and STS.
 - [.NET Aspire support policy](https://dotnet.microsoft.com/platform/support/policy/aspire): Important unique product life cycle details.
@@ -33,11 +33,11 @@ builder.AddPostgres("pg")
        .WithPassword(pgPwd)         // reference a secret parameter
 ```
 
-The new `WithHostPort`, `WithPassword`, and `WithUserName` (or equivalent per-service) extension methods are available on **PostgreSQL, SQL Server, Redis, and several other container resources**, giving you consistent, declarative control across the stack.
+The new `WithHostPort`, `WithPassword`, and `WithUserName` (or equivalent per-service) extension methods are available on **PostgreSQL**, **SQL Server**, **Redis**, and several other container resources, giving you consistent, declarative control across the stack.
 
 ### 🔗 Streamlined custom URLs
 
-9.3 makes resource links both **smarter and easier to place**:
+9.3 makes resource links both **smarter** and **easier** to place:
 
 - **Pick where a link appears** – each link now carries a `UrlDisplayLocation` (`SummaryAndDetails` or `DetailsOnly`), so you can keep diagnostic links out of the main grid yet still see them in the details pane.
 - **Relative paths are auto-resolved** – hand the helper `"/health"` and Aspire rewrites it to the full host-qualified URL when the endpoint is allocated.
@@ -61,7 +61,7 @@ var frontend = builder.AddProject<Projects.Frontend>("frontend")
     });
 ```
 
-These tweaks let you surface the right links, in the right place, with virtually zero boilerplate.
+With these tweaks you can further customize your local dev stack by surfacing the right links in the right place.
 
 ### 🙈 Hide resources without "faking" their state
 
@@ -178,7 +178,7 @@ The config file is mounted into the container and used as the runtime YARP confi
 
 The `.WithReference(...)` calls automatically ensure that the proxy container can resolve the referenced services by name (`catalog`, `basket`), using Aspire’s internal network graph.
 
-### ⚠️ Known limitations in this preview
+#### ⚠️ Known limitations in this preview
 
 - **Only configuration-based routing is supported**. Code-based or programmatic route generation is not available yet.
 - **The configuration file is not deployed** as part of publish operations—you must manage the file manually.
@@ -287,9 +287,9 @@ This small change makes logs easier to read and reduces visual noise—especiall
 
 ## 🚀 Deployment & publish
 
-### 🏗️ New publisher model & compute environment support
+### 🏗️ Improvements to in-preview publisher model & compute environment support
 
-.NET Aspire 9.3 introduces a **new publisher model** that distributes publishing behavior across your application graph instead of relying on a single top-level publisher.
+In 9.2, we shipped our first iteration of "publishers", a flexible way to configure deployments to any cloud in the app host. To ensure more flexibility, .NET Aspire 9.3 includes a **new and improved** publisher model that distributes publishing behavior across your application graph instead of relying on a single top-level publisher.
 
 Rather than selecting a target environment (like Docker or Azure) by calling `AddDockerComposePublisher()` or similar, Aspire now includes a **built-in publisher** that looks for a `PublishingCallbackAnnotation` on each resource. This annotation describes how that resource should be published—for example, as a Docker Compose service, Kubernetes manifest, or Azure Bicep module.
 
@@ -326,11 +326,11 @@ This (contrived) example shows how you could explicitly map services to differen
 
 > 💡 Imagine a real-world case where your frontend is deployed to a CDN or GitHub Pages, and your backend runs in Azure Container Apps. This new model makes that future possible.
 
-🔧 All previous publisher registration APIs (like `AddDockerComposePublisher()`) have been removed in favor of this new model.
+⚠️ All previous publisher registration APIs (like `AddDockerComposePublisher()`) have been removed in favor of this new model.
 
 #### Supported compute environments
 
-.NET Aspire 9.3 supports the following environment resources:
+.NET Aspire 9.3 has preview support for the following environment resources:
 
 - `AddDockerComposeEnvironment(...)`
 - `AddKubernetesEnvironment(...)`
@@ -438,7 +438,7 @@ This gives you fully typed access to the Kubernetes object model, enabling power
 
 ## 🖥️ Aspire CLI enhancements
 
-> 🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
+🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
 >
 > 📦 To install:
 >
@@ -451,7 +451,7 @@ This gives you fully typed access to the Kubernetes object model, enabling power
 
 #### 🔍 Smarter app host discovery
 
-> The CLI now **walks upward** from your current directory, **recursively searching each level** for the app host project. Once located, it caches the result in a `.aspire` folder to speed up future commands.
+The CLI now **walks upward** from your current directory, **recursively searching each level** for the app host project. Once located, it caches the result in a `.aspire` folder to speed up future commands.
 
 You can now run commands like `aspire run`, `aspire add`, or `aspire publish` from **any directory within your solution**, and the CLI will resolve the app host automatically.
 
@@ -716,7 +716,7 @@ This setup integrates seamlessly with frameworks like [Semantic Kernel](https://
 
 ### ⚙️ Azure App Configuration client integration
 
-.NET Aspire 9.3 adds support for **Azure App Configuration** via a new client integration API, provided through the [📦 Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration](https://www.nuget.org/packages/Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration) NuGet package.
+.NET Aspire 9.3 adds support for **Azure App Configuration** via a new client integration, [📦 Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration](https://www.nuget.org/packages/Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration) NuGet package.
 
 This makes it easy to connect to centralized configuration using the official Azure SDK and the `Microsoft.Extensions.Configuration.AzureAppConfiguration` provider—no manual setup required.
 
