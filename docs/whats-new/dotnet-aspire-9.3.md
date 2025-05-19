@@ -300,7 +300,7 @@ Rather than selecting a target environment (like Docker or Azure) by calling `Ad
 In typical apps, you only need to add a **single compute environment**, like:
 
 ```csharp
-builder.AddAzureContainerAppEnvironment("prod");
+builder.AddAzureContainerAppEnvironment("env");
 ```
 
 In this case, Aspire applies the correct publishing behavior to all compute resources in your app model—no extra configuration needed.
@@ -548,7 +548,7 @@ You can associate an `AzureContainerRegistryResource` with:
 
 This gives you consistent control over where images are published, even across different compute targets.
 
-> 💡 Use `.RunAsExisting()` or `.PublishAsExisting()` on the ACR resource to reference a real registry without provisioning one.
+> 💡 Use `.RunAsExisting()` or `.PublishAsExisting()` on the ACR resource to reference an existing registry without provisioning one.
 
 ### 🖇️ Resource Deep Linking for Blob Containers
 
@@ -637,7 +637,7 @@ The **keyed overloads** allow you to register multiple clients scoped to the sam
 
 .NET Aspire 9.3 adds support for wiring **Key Vault secrets directly into environment variables** using a new overload of `WithEnvironment(...)` that accepts an `IAzureKeyVaultSecretReference`.
 
-This makes it easy to securely reference secrets from a modeled Key Vault without hardcoding secret values—and ensures those references flow correctly into deployment outputs like Docker Compose, Kubernetes, or Azure Bicep.
+This makes it easy to securely reference secrets from a modeled Key Vault without hardcoding secret values—and ensures those references flow correctly into deployment outputs like Azure Bicep.
 
 ```csharp
 var kv = builder.AddAzureKeyVault("myKeyVault");
@@ -650,11 +650,14 @@ builder.AddContainer("myContainer", "nginx")
 
 #### 🧩 Reference secrets from existing Key Vaults
 
-You can also use this with **existing Azure Key Vaults** by marking the resource with `RunAsExisting(...)` or `PublishAsExisting(...)`. This lets you consume secrets from **already-provisioned vaults**—perfect for shared environments or team-managed infrastructure.
+You can also use this with **existing Azure Key Vaults** by marking the resource with `AsExisting(...)`, `RunAsExisting(...)`, or `PublishAsExisting(...)`. This lets you consume secrets from **already-provisioned vaults**—perfect for shared environments or team-managed infrastructure.
 
 ```csharp
+var keyVaultNameParam = builder.AddParameter("key-vault-name");
+var keyVaultResourceGroupParam = builder.AddParameter("key-vault-rg");
+
 var existingVault = builder.AddAzureKeyVault("sharedVault")
-                           .RunAsExisting("my-vault-name", "infra-rg");
+                           .AsExisting(keyVaultNameParam, keyVaultResourceGroupParam);
 
 var apiKey = existingVault.Resource.GetSecret("stripe-api-key");
 
@@ -668,20 +671,18 @@ This pattern ensures Aspire:
 - Emits references to the correct existing resources in publish mode
 - Still enables secret injection and secure scoping via environment variables
 
-You can also use `PublishAsExisting(...)` if you want to reference an existing vault in published infrastructure templates (e.g., Bicep), while continuing to use it in local dev or staging pipelines.
-
 📖 See also: [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
 ### 🧠 Azure AI Inference client integration (Preview)
 
-.NET Aspire 9.3 adds **client-only support for Azure-hosted Chat Completions endpoints** using the <xref:Azure.AI.OpenAI> SDK and the <xref:Microsoft.Extensions.AI> abstractions.
+.NET Aspire 9.3 adds **client-only support for Azure-hosted Chat Completions endpoints** using the <xref:Azure.AI.Inference> library and the <xref:Microsoft.Extensions.AI> abstractions.
 
 This integration simplifies calling Azure OpenAI or Azure AI Inference services from your application—whether you prefer working directly with the SDK or using abstraction-friendly interfaces.
 
 #### Use `ChatCompletionsClient` with the Azure SDK
 
 ```csharp
-builder.AddChatCompletionsClient("connectionName");
+builder.AddAzureChatCompletionsClient("connectionName");
 
 app.MapPost("/chat-raw", (
     ChatCompletionsClient client,
@@ -705,14 +706,14 @@ app.MapPost("/chat", async (
     IChatClient chatClient,
     ChatRequest message) =>
 {
-    var result = await chatClient.GetChatMessageAsync(message.Input);
+    var result = await chatClient.GetResponseAsync(message.Input);
     return result;
 });
 ```
 
 This setup integrates seamlessly with frameworks like [Semantic Kernel](https://github.com/dotnet/semantic-kernel), and works well in modular or pluggable AI systems.
 
-🔗 Learn more about [Microsoft.Extensions.AI](https://github.com/dotnet/semantic-kernel/blob/main/docs/extensions/microsoft-extensions-ai.md) and `ChatCompletionsClient`.
+🔗 Learn more about [Microsoft.Extensions.AI](/dotnet/ai/microsoft-extensions-ai) and [ChatCompletionsClient](/dotnet/api/azure.ai.inference.chatcompletionsclient).
 
 ### ⚙️ Azure App Configuration client integration
 
@@ -784,7 +785,7 @@ This ensures every app that references the database gets **full access** without
 
 If your deployment relied on Aspire setting the managed identity as the SQL Server **admin**, you’ll need to review your access model. Apps now receive **explicit role-based access (`db_owner`)** instead of broad admin rights.
 
-📖 Related: [dotnet/aspire#8381](https://github.com/dotnet/aspire/issues/8381)
+📖 Related: [dotnet/aspire#8381](https://github.com/dotnet/aspire/issues/8381) and [dotnet/aspire#8389](https://github.com/dotnet/aspire/issues/8389)
 
 ### 💸 Default Azure SQL SKU is now Free (Breaking change)
 
