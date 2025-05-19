@@ -90,7 +90,7 @@ dotnet new install Aspire.ProjectTemplates
 To install a specific version, append the version number to the package name:
 
 ```dotnetcli
-dotnet new install Aspire.ProjectTemplates::9.0.0
+dotnet new install Aspire.ProjectTemplates::9.3.0
 ```
 
 > [!TIP]
