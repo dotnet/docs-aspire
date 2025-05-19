@@ -11,7 +11,17 @@ builder.Eventing.Subscribe<ResourceReadyEvent>(
     {
         var logger = @event.Services.GetRequiredService<ILogger<Program>>();
 
-        logger.LogInformation("3. ResourceReadyEvent");
+        logger.LogInformation("4. ResourceReadyEvent");
+
+        return Task.CompletedTask;
+    });
+
+builder.Eventing.Subscribe<InitializeResourceEvent>(cache.Resource,
+    static (@event, cancellationToken) =>
+    {
+        var logger = @event.Services.GetRequiredService<ILogger<Program>>();
+
+        logger.LogInformation("1. InitializeResourceEvent");
 
         return Task.CompletedTask;
     });
@@ -22,7 +32,7 @@ builder.Eventing.Subscribe<BeforeResourceStartedEvent>(
     {
         var logger = @event.Services.GetRequiredService<ILogger<Program>>();
 
-        logger.LogInformation("2. BeforeResourceStartedEvent");
+        logger.LogInformation("3. BeforeResourceStartedEvent");
 
         return Task.CompletedTask;
     });
@@ -33,7 +43,7 @@ builder.Eventing.Subscribe<ConnectionStringAvailableEvent>(
     {
         var logger = @event.Services.GetRequiredService<ILogger<Program>>();
 
-        logger.LogInformation("1. ConnectionStringAvailableEvent");
+        logger.LogInformation("2. ConnectionStringAvailableEvent");
 
         return Task.CompletedTask;
     });

@@ -7,10 +7,10 @@ items:
   - name: .NET Aspire overview
     displayName: aspire overview,architecture,key concepts,Kubernetes,k8s
     href: get-started/aspire-overview.md
-  - name: Quickstart - Build your first .NET Aspire project
+  - name: Build your first .NET Aspire solution
     displayName: quickstart,first app,aspire app
     href: get-started/build-your-first-aspire-app.md
-  - name: Tutorial - Add .NET Aspire to an existing .NET app
+  - name: Add .NET Aspire to an existing solution
     href: get-started/add-aspire-existing-app.md
   - name: Setup and tooling
     items:
@@ -24,14 +24,17 @@ items:
       href: get-started/github-codespaces.md
     - name: Dev Containers
       href: get-started/dev-containers.md
-  - name: What's new in .NET Aspire 9.2
-    href: whats-new/dotnet-aspire-9.2.md
+  - name: What's new in .NET Aspire 9.3
+    href: whats-new/dotnet-aspire-9.3.md
   - name: Upgrade to .NET Aspire 9.0
     href: get-started/upgrade-to-aspire-9.md
 
-- name: App Host (Dev-time orchestration)
+- name: Dev-time orchestration
   items:
-  - name: Overview
+  - name: Architecture overview
+    displayName: aspire architecture,aspire app,aspire apphost,aspire app model
+    href: architecture/overview.md
+  - name: App host overview
     displayName: orchestration,aspire apphost,aspire app,dev-time,inner-loop
     href: fundamentals/app-host-overview.md
   - name: Locally orchestrate
@@ -45,25 +48,25 @@ items:
     - name: Python apps in .NET Aspire
       displayName: python,flask,fastapi
       href: get-started/build-aspire-apps-with-python.md
-  - name: Configuration
+  - name: App host configuration
     href: app-host/configuration.md
-  - name: Custom commands
+  - name: Customize resources
     items:
     - name: Custom resource commands
       href: fundamentals/custom-resource-commands.md
+      displayName: withcommand
     - name: Custom HTTP commands
       href: fundamentals/http-commands.md
+      displayName: withhttpcommand,
+    - name: Custom resource URLs
+      displayName: withurl,withurlforendpoint,withurls
+      href: fundamentals/custom-resource-urls.md      
   - name: Add Dockerfiles to the app model
     href: app-host/withdockerfile.md
     displayName: dockerfile,docker
-  - name: Networking
-    items:
-    - name: Overview
-      displayName: inner loop,local networking,networking
-      href: fundamentals/networking-overview.md
-    - name: Define custom resource URLs
-      displayName: withurl,withurlforendpoint,withurls
-      href: fundamentals/custom-resource-urls.md
+  - name: Networking overview
+    displayName: inner loop,local networking,networking
+    href: fundamentals/networking-overview.md
   - name: Eventing in .NET Aspire
     href: app-host/eventing.md
   - name: Use external parameters
@@ -80,6 +83,8 @@ items:
     href: fundamentals/dashboard/overview.md
   - name: Explore features
     href: fundamentals/dashboard/explore.md
+  - name: GitHub Copilot
+    href: fundamentals/dashboard/copilot.md
   - name: Standalone mode
     items:
     - name: Overview
@@ -93,6 +98,8 @@ items:
     href: fundamentals/dashboard/enable-browser-telemetry.md
   - name: Security considerations
     href: fundamentals/dashboard/security-considerations.md
+  - name: Microsoft-collected dashboard telemetry
+    href: fundamentals/dashboard/microsoft-collected-dashboard-telemetry.md
 
 - name: Testing
   items:
@@ -113,13 +120,13 @@ items:
     href: service-discovery/overview.md
   - name: Service defaults
     href: fundamentals/service-defaults.md
-  - name: .NET Aspire and launch profiles
+  - name: Launch profiles
     href: fundamentals/launch-profiles.md
-  - name: Health checks
-    href: fundamentals/health-checks.md
   - name: Telemetry
     displayName: otel,otlp,telemetry,grpc,opentelemetry,protobuf,traceparent
     href: fundamentals/telemetry.md
+  - name: Health checks
+    href: fundamentals/health-checks.md
 
 - name: Integrations
   items:
@@ -153,8 +160,16 @@ items:
       href: azure/local-provisioning.md
     - name: Configure Azure Container Apps environments
       href: azure/configure-aca-environments.md
+    - name: User-assigned managed identity
+      href: azure/user-assigned-managed-identity.md
     - name: Manage role assignments
       href: azure/role-assignments.md
+    - name: Azure App Configuration
+      displayName: app configuration,configuration
+      href: azure/azure-app-configuration-integration.md
+    - name: Azure AI Inference (Preview)
+      displayName: azure ai,inference
+      href: azureai/azureai-inference-integration.md
     - name: Azure AI Search
       displayName: azure search,search,azure ai,cognitive search,cognitive services
       href: azureai/azureai-search-document-integration.md
@@ -166,6 +181,9 @@ items:
         href: caching/azure-cache-for-redis-distributed-caching-integration.md
       - name: Azure Cache for Redis output caching
         href: caching/azure-cache-for-redis-output-caching-integration.md
+    - name: Azure Container Registry (Preview)
+      displayName: container registry,acr
+      href: azure/container-registry-integration.md
     - name: Azure Cosmos DB
       displayName: cosmos db,database
       href: database/azure-cosmos-db-integration.md
@@ -211,12 +229,6 @@ items:
       href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.2&preserve-view=true
     - name: Aspire.Azure API reference
       href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.2&preserve-view=true
-  - name: Dapr
-    items:
-    - name: Overview
-      href: frameworks/dapr.md
-    - name: Dapr integration sample
-      href: https://github.com/CommunityToolkit/Aspire/tree/main/examples/dapr
   - name: Elasticsearch
     displayName: elasticsearch,search
     href: search/elasticsearch-integration.md
@@ -316,6 +328,8 @@ items:
       href: community-toolkit/hosting-azure-static-web-apps.md
     - name: Bun apps
       href: community-toolkit/hosting-bun.md
+    - name: Dapr
+      href: community-toolkit/dapr.md
     - name: Deno apps
       href: community-toolkit/hosting-deno.md
     - name: Go apps
@@ -368,7 +382,7 @@ items:
   - name: Secure communication between integrations
     href: extensibility/secure-communication-between-integrations.md
 
-- name: Deployment
+- name: Deploy
   items:
   - name: Overview
     displayName: azure deployment,deployment,Kubernetes,k8s
@@ -396,7 +410,8 @@ items:
   - name: Tool-builder manifest schemas
     href: deployment/manifest-format.md
 
-- name: Troubleshooting
+- name: Troubleshoot
+  displayName: troubleshooting
   items:
   - name: Allow unsecure transport
     displayName: unsecure transport,http,non-tls
@@ -496,15 +511,6 @@ items:
     href: reference/aspire-faq.yml
   - name: .NET Aspire NuGet profile
     href: https://www.nuget.org/profiles/aspire
-
-- name: Training
-  items:
-  - name: Introduction to .NET Aspire
-    href: /training/modules/introduction-dotnet-aspire
-  - name: Create a .NET Aspire project
-    href: /training/modules/create-aspire-applications
-  - name: Use telemetry in a .NET Aspire project
-    href: /training/modules/use-telemetry-dotnet-aspire
 
 - name: Resources
   items:

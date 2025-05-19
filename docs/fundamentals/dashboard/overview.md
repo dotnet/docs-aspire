@@ -7,7 +7,16 @@ ms.topic: reference
 
 # .NET Aspire dashboard overview
 
-[.NET Aspire](../../get-started/aspire-overview.md) project templates offer a sophisticated dashboard for comprehensive app monitoring and inspection, and it's also available in [standalone mode](#standalone-mode). This dashboard allows you to closely track various aspects of your app, including logs, traces, and environment configurations, in real-time. It's purpose-built to enhance the development experience, providing an insightful overview of your app's state and structure. The dashboard exposes the ability to [stop, start, and restart resources](explore.md#resource-actions), as well as view and interact with logs and telemetry.
+[.NET Aspire](../../get-started/aspire-overview.md) project templates include a sophisticated dashboard for comprehensive app monitoring and inspection. The dashboard is also available in [standalone mode](#standalone-mode).
+
+The dashboard enables real-time tracking of key aspects of your app, including logs, traces, and environment configurations. It's designed to enhance the development experience by providing a clear and insightful view of your app's state and structure.
+
+Key features of the dashboard include:
+
+- Real-time tracking of logs, traces, and environment configurations.
+- User interface to [stop, start, and restart resources](explore.md#resource-actions).
+- Collects and displays logs and telemetry; [view structured logs, traces, and metrics](explore.md#monitoring-pages) in an intuitive UI.
+- Enhanced debugging with [GitHub Copilot](copilot.md), your AI-powered assistant built into the dashboard.
 
 ## Use the dashboard with .NET Aspire projects
 

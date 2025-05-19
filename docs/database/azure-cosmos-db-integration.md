@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Cosmos DB integration
 description: Learn how to install and configure the .NET Aspire Azure Cosmos DB integration to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
-ms.date: 04/10/2025
+ms.date: 05/15/2025
 uid: dotnet/aspire/azure-cosmos-db-integration
 ---
 
@@ -247,7 +247,7 @@ Then the connection string is retrieved from the `ConnectionStrings` configurati
 }
 ```
 
-For more information on how to format this connection string, see the ConnectionString documentation.
+For more information, see the [ConnectionString documentation](/azure/cosmos-db/nosql/how-to-dotnet-get-started#connect-with-a-connection-string).
 
 #### Use configuration providers
 
