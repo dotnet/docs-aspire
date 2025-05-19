@@ -837,7 +837,9 @@ This change affects cost, performance, and available features in new deployments
 
 🔧 Use `.WithDefaultAzureSku()` on the **database** to revert to the old behavior
 
-🔗 Learn more about [Azure SQL pricing tiers](/azure/azure-sql/database/service-tiers)
+<!--
+🔗 Learn more about [Azure SQL pricing tiers](https://learn.microsoft.com/azure/azure-sql/database/service-tiers)
+-->
 
 ## 🚀 AZD: Major Improvements to CI/CD for Aspire Apps
 

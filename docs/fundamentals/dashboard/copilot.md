@@ -64,7 +64,7 @@ The dashboard also includes a Copilot option in the context menus for resources,
 
 If your app has structured logs or traces with errors, an **Explain errors** button appears on those pages. Selecting it makes all errors available to Copilot for investigation.
 
-:::image type="content" source="media/copilot/structuredlogs-explainerrors.png" lightbox="media/copilot/structuredlogs-explainerrors.png" alt-text="A screenshot of the structured logs page with an Explain errors button.":::
+:::image type="content" source="media/copilot/structuredlogs-explainerror.png" lightbox="media/copilot/structuredlogs-explainerror.png" alt-text="A screenshot of the structured logs page with an Explain errors button.":::
 
 On the trace details page, the **Explain trace** button is always visible. It provides a quick way to analyze the currently viewed trace.
 
