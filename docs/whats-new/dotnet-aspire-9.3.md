@@ -67,7 +67,7 @@ With these tweaks you can further customize your local dev stack by surfacing th
 
 Historically the only way to keep a resource out of the Dashboard was to put it in the **`Hidden`** *state*—a hack that also made the resource look "terminal" to APIs such as `WaitForResourceAsync`. In 9.3 every snapshot now carries a **boolean `IsHidden` flag**, completely decoupling *visibility* from *lifecycle state*.
 
-- **Cleaner defaults** – low-level helpers like `AddParameter` and `AddConnectionString` mark themselves hidden so they don’t clutter the UI:
+- **Cleaner defaults** – low-level helpers like `AddParameter` and `AddConnectionString` mark themselves hidden so they don't clutter the UI:
 
   ```csharp
   var apiKey = builder.AddParameter("api-key", secret: true);   // IsHidden = true ✔
@@ -176,7 +176,7 @@ The config file is mounted into the container and used as the runtime YARP confi
 }
 ```
 
-The `.WithReference(...)` calls automatically ensure that the proxy container can resolve the referenced services by name (`catalog`, `basket`), using Aspire’s internal network graph.
+The `.WithReference(...)` calls automatically ensure that the proxy container can resolve the referenced services by name (`catalog`, `basket`), using Aspire's internal network graph.
 
 #### ⚠️ Known limitations in this preview
 
@@ -184,6 +184,7 @@ The `.WithReference(...)` calls automatically ensure that the proxy container ca
 - **The configuration file is not deployed** as part of publish operations—you must manage the file manually.
 - **Routing from containers to projects will not work on Podman**, due to host-to-container networking limitations.
 
+> [!TIP]
 > 💡 Want to learn more about authoring YARP configs? See the official [YARP documentation](https://aka.ms/yarp).
 > 🧪 This integration is in preview—APIs and behavior may evolve. Feedback welcome!
 
@@ -244,9 +245,9 @@ As of 9.3, filter state is **persisted in local storage**, so your selections st
 
 ### 🧵 Uninstrumented resources now appear in Traces
 
-In 9.3, the dashboard can now **visualize outgoing calls to resources that don’t emit their own telemetry**—such as databases, caches, and other infrastructure components that lack built-in tracing.
+In 9.3, the dashboard can now **visualize outgoing calls to resources that don't emit their own telemetry**—such as databases, caches, and other infrastructure components that lack built-in tracing.
 
-Previously, these dependencies were invisible in the **Traces** view unless they were emitting OTLP traces. Now, if your app makes an HTTP, SQL, or Redis call to a **modeled Aspire resource** that doesn’t emit spans itself, Aspire still shows it as a **referenced peer** in the trace timeline.
+Previously, these dependencies were invisible in the **Traces** view unless they were emitting OTLP traces. Now, if your app makes an HTTP, SQL, or Redis call to a **modeled Aspire resource** that doesn't emit spans itself, Aspire still shows it as a **referenced peer** in the trace timeline.
 
 This helps you:
 
@@ -254,7 +255,8 @@ This helps you:
 - Debug latency or failures in calls to uninstrumented services
 - Keep the trace UI consistent across infrastructure types
 
-> 💡 This is especially useful for services like SQL Server, PostgreSQL, Redis, or blob storage where outgoing client telemetry exists, but the service itself doesn’t participate in distributed tracing.
+> [!IMPORTANT]
+> 💡 This is especially useful for services like SQL Server, PostgreSQL, Redis, or blob storage where outgoing client telemetry exists, but the service itself doesn't participate in distributed tracing.
 
 🧪 No instrumentation changes are needed—Aspire infers the mapping based on resource references.
 
@@ -284,7 +286,7 @@ Resource URLs defined via `WithUrlForEndpoint(...)` are now **more prominently i
 - In the new **right-click menus**
 - On the **resource detail pane**, as before
 
-This makes common destinations—like admin UIs, health checks, and docs—instantly accessible wherever you’re working.
+This makes common destinations—like admin UIs, health checks, and docs—instantly accessible wherever you're working.
 
 Together, these improvements turn the Aspire dashboard into a true control plane for navigating your distributed app—**less friction, more focus.**
 
@@ -300,6 +302,7 @@ When a resource has only **one replica**, the Aspire dashboard now uses the **fr
 
 This small change makes logs easier to read and reduces visual noise—especially in common single-instance setups during development.
 
+> [!NOTE]
 > In multi-replica scenarios, Aspire still uses full replica IDs so you can distinguish between instances.
 
 ## 🚀 Deployment & publish
@@ -310,6 +313,7 @@ In 9.2, we shipped our first iteration of "publishers", a flexible way to config
 
 Rather than selecting a target environment (like Docker or Azure) by calling `AddDockerComposePublisher()` or similar, Aspire now includes a **built-in publisher** that looks for a `PublishingCallbackAnnotation` on each resource. This annotation describes how that resource should be published—for example, as a Docker Compose service, Kubernetes manifest, or Azure Bicep module.
 
+> [!TIP]
 > ✅ This architectural shift lays the groundwork for **hybrid and heterogeneous deployments**, where different services within the same app can be deployed to different targets (cloud, edge, local).
 
 #### Most apps only need one environment
@@ -341,6 +345,7 @@ builder.AddProject<Projects.Frontend>("frontend")
 
 This (contrived) example shows how you could explicitly map services to different compute targets—modeling, for example, a frontend in Kubernetes and a backend in Docker Compose.
 
+> [!NOTE]
 > 💡 Imagine a real-world case where your frontend is deployed to a CDN or GitHub Pages, and your backend runs in Azure Container Apps. This new model makes that future possible.
 
 ⚠️ All previous publisher registration APIs (like `AddDockerComposePublisher()`) have been removed in favor of this new model.
@@ -412,6 +417,7 @@ builder.AddContainer("service", "nginx")
 
 The key API here is `.AsEnvironmentPlaceholder(...)`, which tells Aspire to emit a Compose variable like `${PARAM_1}` and register the mapping so the `.env` file is updated accordingly.
 
+> [!TIP]
 > 🧠 This tightly couples your infrastructure parameters with the Docker Compose model—without hardcoding values—unlocking composability across environments.
 
 These enhancements make Docker Compose a **fully programmable publishing target**, ideal for local development, container-based CI workflows, and teams that need structured control without brittle YAML overlays.
@@ -451,18 +457,20 @@ This gives you fully typed access to the Kubernetes object model, enabling power
 - Customizing replica counts or deployment strategies
 - Injecting labels or annotations into Services, Deployments, or ConfigMaps
 
+> [!IMPORTANT]
 > 🧠 Aspire emits standard Kubernetes manifests under the hood—you can still use `kubectl`, `helm`, or GitOps workflows to deploy them, but now you can shape them directly from your app definition.
 
 ## 🖥️ Aspire CLI enhancements
 
 🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
->
-> 📦 To install:
->
-> ```bash
-> dotnet tool install --global aspire.cli --prerelease
-> ```
 
+📦 To install:
+
+```bash
+dotnet tool install --global aspire.cli --prerelease
+```
+
+> [!NOTE]
 > ⚠️ **The Aspire 9.3 CLI is not compatible with Aspire 9.2 projects.**
 > You must upgrade your project to Aspire 9.3+ in order to use the latest CLI features.
 
@@ -504,7 +512,8 @@ This first release is scoped to the most common use cases:
 - **Existing App Service Plans are not supported**
 - The Aspire **dashboard is not hosted** in App Service yet
 
-> 📢 Hosted dashboard support is coming soon—we’re actively developing this. Feedback is welcome!
+> [!IMPORTANT]
+> 📢 Hosted dashboard support is coming soon—we're actively developing this. Feedback is welcome!
 
 #### Example: Deploy to Azure App Service
 
@@ -527,7 +536,7 @@ In this example:
 
 > 🧠 Use `PublishAsAzureAppServiceWebsite(...)` to customize settings like site config, authentication, or SKU.
 
-💬 This feature is in **preview**—we’re looking for your feedback as we expand support!
+💬 This feature is in **preview**—we're looking for your feedback as we expand support!
 
 ### 📤 Use an existing Azure Container Registry (ACR)
 
@@ -742,7 +751,7 @@ This makes it easy to connect to centralized configuration using the official Az
 builder.AddAzureAppConfiguration("appconfig");
 ```
 
-Once registered, Aspire automatically wires Azure App Configuration into your application’s configuration pipeline.
+Once registered, Aspire automatically wires Azure App Configuration into your application's configuration pipeline.
 
 #### Example: bind Azure App Configuration to app settings
 
@@ -800,7 +809,7 @@ This ensures every app that references the database gets **full access** without
 
 #### ⚠️ Breaking change
 
-If your deployment relied on Aspire setting the managed identity as the SQL Server **admin**, you’ll need to review your access model. Apps now receive **explicit role-based access (`db_owner`)** instead of broad admin rights.
+If your deployment relied on Aspire setting the managed identity as the SQL Server **admin**, you'll need to review your access model. Apps now receive **explicit role-based access (`db_owner`)** instead of broad admin rights.
 
 📖 Related: [dotnet/aspire#8381](https://github.com/dotnet/aspire/issues/8381) and [dotnet/aspire#8389](https://github.com/dotnet/aspire/issues/8389)
 
@@ -810,7 +819,7 @@ If your deployment relied on Aspire setting the managed identity as the SQL Serv
 
 Previously, Aspire defaulted to the **General Purpose (GP)** tier, which could incur charges even for small or test apps.
 
-#### What’s new
+#### What's new
 
 When you provision a SQL database like this:
 
@@ -924,7 +933,7 @@ The secret AZURE_OLD_SECRET is no longer used. What would you like to do?
 
 This ensures:
 
-- You’re never surprised by secret overwrites
+- You're never surprised by secret overwrites
 - You can keep your repo clean of stale configuration
 - CI reflects your actual infrastructure setup
 
