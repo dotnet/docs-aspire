@@ -1,7 +1,7 @@
 ---
 title: What's new in .NET Aspire 9.3
 description: Learn what's new in the official general availability release of .NET Aspire 9.3.
-ms.date: 05/07/2025
+ms.date: 05/18/2025
 ---
 
 # What's new in .NET Aspire 9.3
@@ -124,7 +124,7 @@ These events make resource authoring smoother, safer, and more deterministic—n
 
 .NET Aspire 9.3 introduces **preview support for [YARP](https://aka.ms/yarp)** (Yet Another Reverse Proxy)—a long-requested addition that brings reverse proxying into the Aspire application model.
 
-This integration makes it easy to add a lightweight proxy container to your distributed app, powered by the official [YARP container image](http://yarp.dot.net). It currently supports **configuration-based routing only**, using a JSON file you supply.
+This integration makes it easy to add a lightweight proxy container to your distributed app, powered by the official [YARP container image](https://yarp.dot.net). It currently supports **configuration-based routing only**, using a JSON file you supply.
 
 #### Add a reverse proxy to your Aspire app:
 
@@ -335,7 +335,7 @@ This (contrived) example shows how you could explicitly map services to differen
 - `AddDockerComposeEnvironment(...)`
 - `AddKubernetesEnvironment(...)`
 - `AddAzureContainerAppEnvironment(...)`
-- `AddAzureAppServiceEnvironment(...)` — [see new App Service support →](#azure-app-service-preview)
+- `AddAzureAppServiceEnvironment(...)` — [see new App Service support →](#-azure-app-service-preview-support)
 
 These represent deployment targets that can transform and emit infrastructure-specific artifacts from your app model.
 
@@ -712,7 +712,7 @@ app.MapPost("/chat", async (
 
 This setup integrates seamlessly with frameworks like [Semantic Kernel](https://github.com/dotnet/semantic-kernel), and works well in modular or pluggable AI systems.
 
-🔗 Learn more about [Microsoft.Extensions.AI](https://github.com/dotnet/semantic-kernel/blob/main/docs/extensions/microsoft-extensions-ai.md) and [ChatCompletionsClient](/dotnet/api/azure.ai.openai.chatcompletionsclient)
+🔗 Learn more about [Microsoft.Extensions.AI](https://github.com/dotnet/semantic-kernel/blob/main/docs/extensions/microsoft-extensions-ai.md) and `ChatCompletionsClient`.
 
 ### ⚙️ Azure App Configuration client integration
 
