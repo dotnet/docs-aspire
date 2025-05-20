@@ -815,9 +815,9 @@ If your deployment relied on Aspire setting the managed identity as the SQL Serv
 
 ### 💸 Default Azure SQL SKU now uses the Free Offer (Breaking change)
 
-.NET Aspire 9.3 changes the default SKU used when provisioning **Azure SQL databases** to the **GP_S_Gen5_2** (General Purprose Serverless) tier with the [Free Offer](https://learn.microsoft.com/azure/azure-sql/database/free-offer?view=azuresql). This helps reduce unexpected costs during development and experimentation.
+.NET Aspire 9.3 changes the default SKU used when provisioning **Azure SQL databases** to the **GP_S_Gen5_2** (General Purpose Serverless) tier with the [**Free Offer**](https://learn.microsoft.com/azure/azure-sql/database/free-offer?view=azuresql). This helps reduce unexpected costs during development and experimentation.
 
-Previously, Aspire defaulted to the **General Purpose (GP)** tier without the Free Offer, which could incur charges even for small or test apps.
+Previously, Aspire defaulted to the **General Purpose (GP)** tier *without* the Free Offer, which could incur charges even for small or test apps.
 
 #### What's new
 
@@ -829,7 +829,7 @@ var sql = builder.AddAzureSqlServer("sqlserver");
 sql.AddDatabase("appdb");
 ```
 
-Aspire now automatically uses the **Free Offer** for `appdb`, which will deploy a GP_S_Gen5_2 (General Purpose Serverless), unless you override it.
+Aspire now automatically uses the **Free Offer** for `appdb`, which will deploy a **GP_S_Gen5_2** (General Purpose Serverless), unless you override it.
 
 #### How to restore the previous behavior
 
@@ -840,7 +840,7 @@ sql.AddDatabase("appdb")
    .WithDefaultAzureSku(); // Uses the previous (General Purpose) default
 ```
 
-If you want to specify what SKU to use, you the `ConfigureInfrastructure` method as explained here: [Setting a specific SKU](https://github.com/dotnet/aspire/tree/main/src/Aspire.Hosting.Azure.Sql#setting-a-specific-sku)
+If you want to specify what SKU to use, you the `ConfigureInfrastructure` method as explained here: [Setting a specific SKU](https://github.com/dotnet/aspire/tree/main/src/Aspire.Hosting.Azure.Sql#setting-a-specific-sku).
 
 #### ⚠️ Breaking change
 
