@@ -518,7 +518,7 @@ This first release is scoped to the most common use cases:
 #### Example: Deploy to Azure App Service
 
 ```csharp
-var env = builder.AddAzureAppServiceEnvironment("env");
+builder.AddAzureAppServiceEnvironment("env");
 
 builder.AddProject<Projects.Api>("api")
        .WithExternalHttpEndpoints()
