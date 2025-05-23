@@ -32,7 +32,7 @@ By default, .NET Aspire database integrations rely on containerized databases, w
 > Container hosts like Docker and Podman support volumes and bind mounts, both of which provide locations for data that persist when a container restarts. Volumes are the recommended solution, because they offer better performance, portability, and security. The container host creates and remains in control of volumes. Each volume can store data for multiple containers. Bind mounts have relatively limited functionality in comparison but enable you to access the data from the host machine.
 
 > [!NOTE]
-> Visit the [Database Container Sample App](https://github.com/dotnet/aspire-samples/blob/main/samples/DatabaseContainers/DatabaseContainers.AppHost/Program.cs) to view the full project and file structure for each database option.
+> Visit the [Database Container Sample App](https://github.com/dotnet/aspire-samples/blob/main/samples/DatabaseContainers/DatabaseContainers.AppHost/AppHost.cs) to view the full project and file structure for each database option.
 
 ## Seed data using SQL scripts
 
@@ -52,9 +52,9 @@ You must ensure that this script is copied to the app host's output directory, s
 
 Adjust the `Include` parameter to match the path to your SQL script in the project.
 
-Next, in the app host's *Program.cs* file, create the database and run the creation script:
+Next, in the app host's *AppHost.cs* (or *Program.cs*) file, create the database and run the creation script:
 
-:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/Program.cs" range="40-49" :::
+:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/AppHost.cs" range="40-49" :::
 
 This code:
 
@@ -71,9 +71,9 @@ The following code is an example PostgreSQL script that creates and populates a 
 
 :::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.ApiService/data/postgres/init.sql" :::
 
-In the app host's *Program.cs* file, create the database and mount the folder that contains the SQL script as a bind mount:
+In the app host's *AppHost.cs* (or *Program.cs*) file, create the database and mount the folder that contains the SQL script as a bind mount:
 
-:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/Program.cs" range="3-19" :::
+:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/AppHost.cs" range="3-19" :::
 
 ### [MySQL](#tab/mysql)
 
@@ -83,9 +83,9 @@ The following code is an example MySQL script that creates and populates a produ
 
 :::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.ApiService/data/mysql/init.sql" :::
 
-In the app host's *Program.cs* file, create the database and mount the folder that contains the SQL script as a bind mount:
+In the app host's *AppHost.cs* (or *Program.cs*) file, create the database and mount the folder that contains the SQL script as a bind mount:
 
-:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/Program.cs" range="21-36" :::
+:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/AppHost.cs" range="21-36" :::
 
 ---
 
@@ -96,7 +96,7 @@ You can also seed data in .NET Aspire projects using EF Core by explicitly runni
 > [!IMPORTANT]
 > These types of configurations should only be done during development, so make sure to add a conditional that checks your current environment context.
 
-Add the following code to the _:::no-loc text="Program.cs":::_ file of your **API Service** project.
+Add the following code to the _:::no-loc text="AppHost.cs":::_ (or *Program.cs*) file of your **API Service** project.
 
 ### [SQL Server](#tab/sql-server)
 
