@@ -815,7 +815,7 @@ If your deployment relied on Aspire setting the managed identity as the SQL Serv
 
 ### 💸 Default Azure SQL SKU now uses the Free Offer (Breaking change)
 
-.NET Aspire 9.3 changes the default SKU used when provisioning **Azure SQL databases** to the **GP_S_Gen5_2** (General Purpose Serverless) tier with the [**Free Offer**](https://learn.microsoft.com/azure/azure-sql/database/free-offer?view=azuresql). This helps reduce unexpected costs during development and experimentation.
+.NET Aspire 9.3 changes the default SKU used when provisioning **Azure SQL databases** to the **GP_S_Gen5_2** (General Purpose Serverless) tier with the [**Free Offer**](/azure/azure-sql/database/free-offer?view=azuresql). This helps reduce unexpected costs during development and experimentation.
 
 Previously, Aspire defaulted to the **General Purpose (GP)** tier *without* the Free Offer, which could incur charges even for small or test apps.
 
