@@ -1,7 +1,7 @@
 ---
 title: Orchestrate Node.js apps in .NET Aspire
 description: Learn how to integrate Node.js and npm apps into a .NET Aspire App Host project.
-ms.date: 11/20/2024
+ms.date: 05/27/2025
 ---
 
 # Orchestrate Node.js apps in .NET Aspire
@@ -119,7 +119,7 @@ To help understand how each client app resource is orchestrated, look to the app
 
 The project file also defines a build target that ensures that the npm dependencies are installed before the app host is built. The app host code (_Program.cs_) declares the client app resources using the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp(Aspire.Hosting.IDistributedApplicationBuilder,System.String,System.String,System.String,System.String[])> API.
 
-:::code source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.AppHost/Program.cs":::
+:::code source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.AppHost/AppHost.cs":::
 
 The preceding code:
 

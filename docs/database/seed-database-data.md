@@ -1,7 +1,7 @@
 ---
 title: Seed data in a database using .NET Aspire
 description: Learn about how to seed database data in .NET Aspire
-ms.date: 05/14/2025
+ms.date: 05/27/2025
 ms.topic: how-to
 ---
 
