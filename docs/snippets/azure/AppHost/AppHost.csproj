@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Provisioning.ContainerRegistry" Version="1.0.0" />
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.2.1" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.3.0" />
     <PackageReference Include="Aspire.Hosting.Azure.AppConfiguration" Version="9.3.0" />
     <PackageReference Include="Aspire.Hosting.Azure.AppContainers" Version="9.3.0" />
     <PackageReference Include="Aspire.Hosting.Azure.ApplicationInsights" Version="9.3.0" />
