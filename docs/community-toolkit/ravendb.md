@@ -11,7 +11,7 @@ ms.date: 2/10/2025
 
 [!INCLUDE [banner](includes/banner.md)]
 
-[RavenDB](https://ravendb.net/)  is a high-performance, open-source NoSQL database designed for fast, efficient, and scalable data storage. It supports advanced features like ACID transactions, distributed data replication, and time-series data management, making it an excellent choice for modern application development. The .NET Aspire RavenDB integration enables you to connect to existing RavenDB instances or create new instances from .NET using the [docker.io/library/ravendb container image](https://hub.docker.com/r/ravendb/ravendb).
+[RavenDB](https://ravendb.net/) is a high-performance, open-source NoSQL database designed for fast, efficient, and scalable data storage. It supports advanced features like ACID transactions, distributed data replication, and time-series data management, making it an excellent choice for modern application development. The .NET Aspire RavenDB integration enables you to connect to existing RavenDB instances or create new instances from .NET using the [docker.io/library/ravendb container image](https://hub.docker.com/r/ravendb/ravendb).
 
 ## Hosting integration
 
@@ -50,6 +50,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 // After adding all resources, build and run the app...
 ```
+
 > [!IMPORTANT]
 > A valid RavenDB license is required.  If you don’t have one yet, you can request a free Community license [here](https://ravendb.net/license/request/community).
 
@@ -113,6 +114,7 @@ builder.AddProject<Projects.ExampleProject>()
        .WithReference(ravendb)
        .WaitFor(ravendb);
 ```
+
 > [!IMPORTANT]
 > Ensure the certificate path is accessible to the container by bind-mounting it to `/etc/ravendb/security`.
 
@@ -124,8 +126,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.RavenDB](htt
 
 ## Client integration
 
-To get started with the .NET Aspire RavenDB client integration, install the [📦 CommunityToolkit.Aspire.RavenDB.Client](https://nuget.org/packages/CommunityToolkit.Aspire.RavenDB.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the RavenDB client.
-The RavenDB client integration registers an [IDocumentStore](https://ravendb.net/docs/article-page/6.2/csharp/client-api/what-is-a-document-store) instance, which serves as the entry point for interacting with the RavenDB server resource or an existing RavenDB instance. If your app host includes RavenDB database resources, the associated [IDocumentSession](https://ravendb.net/docs/article-page/6.2/csharp/client-api/session/what-is-a-session-and-how-does-it-work) and [IAsyncDocumentSession](https://ravendb.net/docs/article-page/6.2/csharp/client-api/session/what-is-a-session-and-how-does-it-work) instances are also registered for dependency injection.
+To get started with the .NET Aspire RavenDB client integration, install the [📦 CommunityToolkit.Aspire.RavenDB.Client](https://nuget.org/packages/CommunityToolkit.Aspire.RavenDB.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the RavenDB client. The RavenDB client integration registers an [IDocumentStore](https://ravendb.net/docs/article-page/6.2/csharp/client-api/what-is-a-document-store) instance, which serves as the entry point for interacting with the RavenDB server resource or an existing RavenDB instance. If your app host includes RavenDB database resources, the associated [IDocumentSession](https://ravendb.net/docs/article-page/6.2/csharp/client-api/session/what-is-a-session-and-how-does-it-work) and [IAsyncDocumentSession](https://ravendb.net/docs/article-page/6.2/csharp/client-api/session/what-is-a-session-and-how-does-it-work) instances are also registered for dependency injection.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
