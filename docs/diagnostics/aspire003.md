@@ -18,4 +18,4 @@ When using Visual Studio to code your .NET Aspire project, you must have Visual 
 
 ## To correct this warning
 
-Upgrade Visual Studio 2022 to latest version, or at a minimum, version 17.20.
+Upgrade Visual Studio 2022 to latest version, or at a minimum, version 17.10.
