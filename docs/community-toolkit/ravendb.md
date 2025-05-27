@@ -2,7 +2,7 @@
 title: .NET Aspire Community Toolkit RavenDB integration
 author: shiranshalom
 description: Learn how to use the .NET Aspire RavenDB hosting and client integrations to run a RavenDB container and access it via the RavenDB client.
-ms.date: 2/10/2025
+ms.date: 5/27/2025
 ---
 
 # .NET Aspire Community Toolkit RavenDB integration
@@ -296,4 +296,3 @@ The .NET Aspire RavenDB client integration uses the configured client to perform
 - [Running in a Docker Container](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/running-in-docker-container)
 - [RavenDB Code](https://github.com/ravendb/ravendb)
 - [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
-
