@@ -25,20 +25,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 In your app host project, call <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*> to add and return a SQL Server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*>, to add SQL Server database resource.
 
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var sql = builder.AddSqlServer("sql")
-                 .WithLifetime(ContainerLifetime.Persistent);
-
-var db = sql.AddDatabase("database");
-
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(db)
-       .WaitFor(db);
-
-// After adding all resources, run the app...
-```
+:::code language="csharp" source="../snippets/sql-server-integration/AspireApp.AppHost/AppHost.cs":::
 
 > [!NOTE]
 > The SQL Server container is slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../../fundamentals/orchestrate-resources.md#container-resource-lifetime).
@@ -85,44 +72,7 @@ To alter the default script, chain a call to the <xref:Aspire.Hosting.SqlServerB
 
 To alter the default script, chain a call to the `WithCreationScript` method on the database resource builder:
 
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var sql = builder.AddSqlServer("sql")
-                 .WithLifetime(ContainerLifetime.Persistent);
-
-var databaseName = "app_db";
-var creationScript = $$"""
-    IF DB_ID('{{databaseName}}') IS NULL
-        CREATE DATABASE [{{databaseName}}];
-    GO
-
-    -- Use the database
-    USE [{{databaseName}}];
-    GO
-
-    -- Create the todos table
-    CREATE TABLE todos (
-        id INT PRIMARY KEY IDENTITY(1,1),        -- Unique ID for each todo
-        title VARCHAR(255) NOT NULL,             -- Short description of the task
-        description TEXT,                        -- Optional detailed description
-        is_completed BIT DEFAULT 0,              -- Completion status
-        due_date DATE,                           -- Optional due date
-        created_at DATETIME DEFAULT GETDATE()    -- Creation timestamp
-    );
-    GO
-
-    """;
-
-var db = sql.AddDatabase(databaseName)
-            .WithCreationScript(creationScript);
-
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(db)
-       .WaitFor(db);
-
-// After adding all resources, run the app...
-```
+:::code language="csharp" source="../snippets/sql-server-creation-script/AspireApp.AppHost/AppHost.cs":::
 
 The preceding example creates a database named `app_db` with a single `todos` table. The SQL script is executed when the database resource is created. The script is passed as a string to the `WithCreationScript` method, which is then executed in the context of the SQL Server resource.
 
@@ -130,20 +80,7 @@ The preceding example creates a database named `app_db` with a single `todos` ta
 
 To add a data volume to the SQL Server resource, call the <xref:Aspire.Hosting.SqlServerBuilderExtensions.WithDataVolume*> method on the SQL Server resource:
 
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var sql = builder.AddSqlServer("sql")
-                 .WithDataVolume();
-
-var db = sql.AddDatabase("database");
-
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(db)
-       .WaitFor(db);
-
-// After adding all resources, run the app...
-```
+:::code language="csharp" source="../snippets/sql-server-data-volume/AspireApp.AppHost/AppHost.cs":::
 
 The data volume is used to persist the SQL Server data outside the lifecycle of its container. The data volume is mounted at the `/var/opt/mssql` path in the SQL Server container and when a `name` parameter isn't provided, the name is generated at random. For more information on data volumes and details on why they're preferred over [bind mounts](#add-sql-server-resource-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
 
@@ -154,20 +91,7 @@ The data volume is used to persist the SQL Server data outside the lifecycle of 
 
 To add a data bind mount to the SQL Server resource, call the <xref:Aspire.Hosting.SqlServerBuilderExtensions.WithDataBindMount*> method:
 
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var sql = builder.AddSqlServer("sql")
-                 .WithDataBindMount(source: @"C:\SqlServer\Data");
-
-var db = sql.AddDatabase("database");
-
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(db)
-       .WaitFor(db);
-
-// After adding all resources, run the app...
-```
+:::code language="csharp" source="../snippets/sql-server-bind-mount/AspireApp.AppHost/AppHost.cs":::
 
 [!INCLUDE [data-bind-mount-vs-volumes](../../includes/data-bind-mount-vs-volumes.md)]
 
@@ -177,20 +101,7 @@ Data bind mounts rely on the host machine's filesystem to persist the SQL Server
 
 When you want to explicitly provide the password used by the container image, you can provide these credentials as parameters. Consider the following alternative example:
 
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var password = builder.AddParameter("password", secret: true);
-
-var sql = builder.AddSqlServer("sql", password);
-var db = sql.AddDatabase("database");
-
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(db)
-       .WaitFor(db);
-
-// After adding all resources, run the app...
-```
+:::code language="csharp" source="../snippets/sql-server-parameters/AspireApp.AppHost/AppHost.cs":::
 
 For more information on providing parameters, see [External parameters](../../fundamentals/external-parameters.md).
 
