@@ -81,11 +81,7 @@ IF
 CREATE DATABASE [<QUOTED_DATABASE_NAME>];
 ```
 
-<!-- TODO: Use xref here when available
-
 To alter the default script, chain a call to the <xref:Aspire.Hosting.SqlServerBuilderExtensions.WithCreationScript*> method on the database resource builder:
-
--->
 
 To alter the default script, chain a call to the `WithCreationScript` method on the database resource builder:
 
@@ -107,13 +103,12 @@ var creationScript = $$"""
 
     -- Create the todos table
     CREATE TABLE todos (
-        id INT PRIMARY KEY AUTO_INCREMENT,       -- Unique ID for each todo
+        id INT PRIMARY KEY IDENTITY(1,1),        -- Unique ID for each todo
         title VARCHAR(255) NOT NULL,             -- Short description of the task
         description TEXT,                        -- Optional detailed description
-        is_completed BOOLEAN DEFAULT FALSE,      -- Completion status
+        is_completed BIT DEFAULT 0,              -- Completion status
         due_date DATE,                           -- Optional due date
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        created_at DATETIME DEFAULT GETDATE()    -- Creation timestamp
     );
     GO
 
