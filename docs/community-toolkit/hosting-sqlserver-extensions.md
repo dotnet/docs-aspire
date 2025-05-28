@@ -1,7 +1,7 @@
 ---
 title: SQL Server hosting extensions
 description: Learn how to use the .NET Aspire SQL Server extensions package which provides extra functionality to the .NET Aspire SQL Server hosting package.
-ms.date: 03/04/2025
+ms.date: 05/28/2025
 ---
 
 # .NET Aspire Community Toolkit SQL Server hosting extensions
@@ -14,6 +14,7 @@ In this article, you learn about the .NET Aspire Community Toolkit SQL Server ho
 
 This package provides the following features:
 
+- [Adminer](https://adminer.org/) management UI
 - [DbGate](https://dbgate.org/) management UI
 
 ## Hosting integration
@@ -44,6 +45,13 @@ To add the DbGate management UI to your SQL Server resource, call the `WithDbGat
 ```csharp
 var sqlserver = builder.AddSqlServer("sqlserver")
     .WithDbGate();
+```
+
+To add the Adminer management UI to your SQL Server resource, call the `WithAdminer` method on the `SqlServerResourceBuilder` instance.
+
+```csharp
+var sqlserver = builder.AddSqlServer("sqlserver")
+    .WithAdminer();
 ```
 
 This will add a new resource to the app host which will be available from the .NET Aspire dashboard.
