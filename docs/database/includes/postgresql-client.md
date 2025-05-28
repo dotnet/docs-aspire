@@ -105,7 +105,7 @@ The following example shows an _:::no-loc text="appsettings.json":::_ file that 
 }
 ```
 
-For the complete PostgreSQL client integration JSON schema, see [Aspire.Npgsql/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Npgsql/ConfigurationSchema.json).
+For the complete PostgreSQL client integration JSON schema, see [Aspire.Npgsql/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Npgsql/ConfigurationSchema.json).
 
 #### Use inline delegates
 

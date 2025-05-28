@@ -97,7 +97,8 @@
     },
     "fileMetadata": {
       "ms.topic": {
-        "docs/**/*.md": "conceptual"
+        "docs/**/*.md": "conceptual",
+        "docs/diagnostics/*.md": "error-reference"
       },
       "ms.devlang": {
         "docs/**/*.*": "csharp"
@@ -190,6 +191,7 @@
           "Visual Studio",
           "Vue",
           "WASM",
+          "Web PubSub",
           "Worker Service"
         ]
       }

@@ -1,13 +1,13 @@
 ---
 title: Manage the app host in .NET Aspire tests
 description: Learn how to manage the app host in .NET Aspire tests.
-ms.date: 10/21/2024
+ms.date: 02/24/2025
 zone_pivot_groups: unit-testing-framework
 ---
 
 # Manage the app host in .NET Aspire tests
 
-When writing functional or integration tests with .NET Aspire, it's important to consider how the [app host](../fundamentals/app-host-overview.md) instance is managed across tests, since the app host represents the full application environment and thus can be expensive to create and tear down. In this article, you'll learn how to manage the app host instance in your .NET Aspire tests.
+When writing functional or integration tests with .NET Aspire, managing the [app host](../fundamentals/app-host-overview.md) instance efficiently is crucial. The app host represents the full application environment and can be costly to create and tear down. This article explains how to manage the app host instance in your .NET Aspire tests.
 
 For writing tests with .NET Aspire, you use the [📦 `Aspire.Hosting.Testing`](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package which contains some helper classes to manage the app host instance in your tests.
 
@@ -20,7 +20,7 @@ var appHost = await DistributedApplicationTestingBuilder
     .CreateAsync<Projects.AspireApp_AppHost>();
 ```
 
-The <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder.CreateAsync*> method takes the type of the app host project reference as a generic-type parameter so that it's able to create the app host instance. This code is executed at the start of each test, but as a test suite grows larger it's recommended that the app host instance is created once and shared across tests.
+The `DistributedApplicationTestingBuilder.CreateAsync<T>` method takes the app host project type as a generic parameter to create the app host instance. While this method is executed at the start of each test, it's more efficient to create the app host instance once and share it across tests as the test suite grows.
 
 :::zone pivot="xunit"
 
@@ -112,14 +112,57 @@ public class WebTests
 
 :::zone-end
 
-By capturing the app host in a field when the test run is started, you can access it in each test without the need to recreate it, decreasing the time it takes to run the tests. Then, when the test run has completed, the app host is disposed, which will clean up any resources that were created during the test run, such as containers.
+By capturing the app host in a field when the test run is started, you can access it in each test without the need to recreate it, decreasing the time it takes to run the tests. Then, when the test run completes, the app host is disposed, which cleans up any resources that were created during the test run, such as containers.
+
+## Pass arguments to your app host
+
+You can access the arguments from your app host with the `args` parameter. Arguments are also passed to [.NET's configuration system](/dotnet/core/extensions/configuration), so you can override many configuration settings this way. In the following example, you override the [environment](/aspnet/core/fundamentals/environments) by specifying it as a command line option:
+
+```csharp
+var builder = await DistributedApplicationTestingBuilder
+    .CreateAsync<Projects.MyAppHost>(
+    [
+        "--environment=Testing"
+    ]);
+```
+
+Other arguments can be passed to your app host `Program` and made available in your app host. In the next example, you pass an argument to the app host and use it to control whether you add data volumes to a Postgres instance.
+
+In the app host `Program`, you use configuration to support enabling or disabling volumes:
+
+```csharp
+var postgres = builder.AddPostgres("postgres1");
+if (builder.Configuration.GetValue("UseVolumes", true))
+{
+    postgres.WithDataVolume();
+}
+```
+
+In test code, you pass `"UseVolumes=false"` in the `args` to the app host:
+
+```csharp
+public async Task DisableVolumesFromTest()
+{
+    // Disable volumes in the test builder via arguments:
+    using var builder = await DistributedApplicationTestingBuilder
+        .CreateAsync<Projects.TestingAppHost1_AppHost>(
+        [
+            "UseVolumes=false"
+        ]);
+
+    // The container will have no volume annotation since we disabled volumes by passing UseVolumes=false
+    var postgres = builder.Resources.Single(r => r.Name == "postgres1");
+
+    Assert.Empty(postgres.Annotations.OfType<ContainerMountAnnotation>());
+}
+```
 
 ## Use the `DistributedApplicationFactory` class
 
 While the `DistributedApplicationTestingBuilder` class is useful for many scenarios, there might be situations where you want more control over starting the app host, such as executing code before the builder is created or after the app host is built. In these cases, you implement your own version of the <xref:Aspire.Hosting.Testing.DistributedApplicationFactory> class. This is what the `DistributedApplicationTestingBuilder` uses internally.
 
 ```csharp
-public class TestingAspireAppHost
+public class TestingAspireAppHost()
     : DistributedApplicationFactory(typeof(Projects.AspireApp_AppHost))
 {
     // override methods here
@@ -130,17 +173,19 @@ The constructor requires the type of the app host project reference as a paramet
 
 ### Lifecycle methods
 
-The `DistributionApplicationFactory` class provides several lifecycle methods that can be overridden to provide custom behavior throughout the preperation and creation of the app host. The available methods are `OnBuilderCreating`, `OnBuilderCreated`, `OnBuilding` and `OnBuilt`.
+The `DistributionApplicationFactory` class provides several lifecycle methods that can be overridden to provide custom behavior throughout the preparation and creation of the app host. The available methods are `OnBuilderCreating`, `OnBuilderCreated`, `OnBuilding`, and `OnBuilt`.
 
-For example, we can use the `OnBuilderCreating` method to set environment variables, such as the subscription and resource group information for Azure, before the app host is created and any dependent Azure resources are provisioned, resulting in our tests using the correct Azure environment.
+For example, we can use the `OnBuilderCreating` method to set configuration, such as the subscription and resource group information for Azure, before the app host is created and any dependent Azure resources are provisioned, resulting in our tests using the correct Azure environment.
 
 ```csharp
-public class TestingAspireAppHost : DistributedApplicationFactory(typeof(Projects.AspireApp_AppHost))
+public class TestingAspireAppHost() : DistributedApplicationFactory(typeof(Projects.AspireApp_AppHost))
 {
     protected override void OnBuilderCreating(DistributedApplicationOptions applicationOptions, HostApplicationBuilderSettings hostOptions)
     {
-        builder.EnvironmentVariables["AZURE_SUBSCRIPTION_ID"] = "00000000-0000-0000-0000-000000000000";
-        builder.EnvironmentVariables["AZURE_RESOURCE_GROUP"] = "my-resource-group";
+        hostOptions.Configuration ??= new();
+        hostOptions.Configuration["environment"] = "Development";
+        hostOptions.Configuration["AZURE_SUBSCRIPTION_ID"] = "00000000-0000-0000-0000-000000000000";
+        hostOptions.Configuration["AZURE_RESOURCE_GROUP"] = "my-resource-group";
     }
 }
 ```

@@ -5,7 +5,7 @@ internal static partial class Program
     public static void ConfigurePostgreSQLInfra(IDistributedApplicationBuilder builder)
     {
         // <configure>
-        builder.AddAzureCosmosDB("cosmos-db")
+        builder.AddAzurePostgresFlexibleServer("postgres")
             .ConfigureInfrastructure(infra =>
             {
                 var flexibleServer = infra.GetProvisionableResources()

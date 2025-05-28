@@ -2,75 +2,25 @@
 title: .NET Aspire diagnostics overview
 description: Learn about the diagnostics tools and features available in .NET Aspire.
 ms.topic: overview
-ms.date: 10/21/2024
+ms.date: 04/15/2025
 ---
 
-# .NET Aspire diagnostics overview
+# .NET Aspire diagnostics list
 
-Several APIs of .NET Aspire are decorated with the <xref:System.Diagnostics.CodeAnalysis.ExperimentalAttribute>. This attribute indicates that the API is experimental and may be removed or changed in future versions of .NET Aspire. The attribute is used to identify APIs that aren't yet stable and may not be suitable for production use.
+The following table lists the possible MSBuild and .NET Analyzer warnings and errors you might encounter with .NET Aspire:
 
-## AZPROVISION001
-
-<span id="AZPROVISION001"></span>
-
-.NET Aspire provides various overloads for Azure Provisioning resource types (from the `Azure.Provisioning` package). The overloads are used to create resources with different configurations. The overloads are experimental and may be removed or changed in future versions of .NET Aspire.
-
-To suppress this diagnostic with the `SuppressMessageAttribute`, add the following code to your project:
-
-```csharp
-using System.Diagnostics.CodeAnalysis;
-
-[assembly: SuppressMessage("AZPROVISION001", "Justification")]
-```
-
-Alternatively, you can suppress this diagnostic with preprocessor directive by adding the following code to your project:
-
-```csharp
-#pragma warning disable AZPROVISION001
-        // API that is causing the warning.
-#pragma warning restore AZPROVISION001
-```
-
-## ASPIREACADOMAINS001
-
-<span id="ASPIREACADOMAINS001"></span>
-
-.NET Aspire 9.0 introduces the ability to customize container app resources using the `PublishAsAzureContainerApp(...)` extension method. When using this method the Azure Developer CLI (`azd`) can no longer preserve custom domains. Instead use the `ConfigureCustomDomain` method to configure a custom domain within the .NET Aspire app host. The `ConfigureCustomDomain(...)` extension method is experimental. To suppress the compiler error/warning use the following code:
-
-To suppress this diagnostic with the `SuppressMessageAttribute`, add the following code to your project:
-
-```csharp
-using System.Diagnostics.CodeAnalysis;
-
-[assembly: SuppressMessage("ASPIREACADOMAINS001", "Justification")]
-```
-
-Alternatively, you can suppress this diagnostic with preprocessor directive by adding the following code to your project:
-
-```csharp
-#pragma warning disable ASPIREACADOMAINS001
-        // API that is causing the warning.
-#pragma warning restore ASPIREACADOMAINS001
-```
-
-## ASPIREHOSTINGPYTHON001
-
-<span id="ASPIREHOSTINGPYTHON001"></span>
-
-.NET Aspire provides a way to add Python executables or applications to the .NET Aspire app host. Since the shape of this API is expected to change in the future, it has been marked as _Experimental_. To suppress the compiler error/warning use the following code:
-
-To suppress this diagnostic with the `SuppressMessageAttribute`, add the following code to your project file:
-
-```xml
-<PropertyGroup>
-  <NoWarn>$(NoWarn);ASPIREHOSTINGPYTHON001</NoWarn>
-<PropertyGroup>
-```
-
-Alternatively, you can suppress this diagnostic with preprocessor directive by adding the following code to your project:
-
-```csharp
-#pragma warning disable ASPIREHOSTINGPYTHON001
-        // API that is causing the warning.
-#pragma warning restore ASPIREHOSTINGPYTHON001
-```
+| Diagnostic ID                                           | Type                 | Description                                                                                                                                                              |
+|---------------------------------------------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [`ASPIRE001`](aspire001.md)                             | Warning              | <span id="ASPIRE001"></span> The code language isn't fully supported by Aspire, some code generation targets will not run.                                               |
+| [`ASPIRE002`](aspire002.md)                             | Warning              | <span id="ASPIRE002"></span> Project is an Aspire AppHost project but necessary dependencies aren't present. Are you missing an Aspire.Hosting.AppHost PackageReference? |
+| [`ASPIRE003`](aspire003.md)                             | Warning              | <span id="ASPIRE003"></span> 'Project' is a .NET Aspire AppHost project that requires Visual Studio version 17.10 or above to work correctly.                            |
+| [`ASPIRE004`](aspire004.md)                             | Warning              | <span id="ASPIRE004"></span> 'Project' is referenced by an Aspire Host project, but it is not an executable.                                                             |
+| [`ASPIRE006`](aspire006.md)                             | (Experimental) Error | <span id="ASPIRE006"></span> Application model items must have valid names.                                                                                              |
+| [`ASPIRE007`](aspire007.md)                             | Error                | <span id="ASPIRE007"></span> 'Project' requires a reference to "Aspire.AppHost.Sdk" with version "9.0.0" or greater to work correctly.                                   |
+| [`ASPIREACADOMAINS001`](aspireacadomains001.md)         | (Experimental) Error | <span id="ASPIREACADOMAINS001"></span> `ConfigureCustomDomain` is for evaluation purposes only and is subject to change or removal in future updates.                    |
+| [`ASPIREAZURE001`](aspireazure001.md)                   | (Experimental) Error | <span id="ASPIREAZURE001"></span> Publishers are for evaluation purposes only and are subject to change or removal in future updates.                                    |
+| [`ASPIRECOMPUTE001`](aspirecompute001.md)               | (Experimental) Error | <span id="ASPIRECOMPUTE001"></span> Compute related types and members are for evaluation purposes only and is subject to change or removal in future updates.            |
+| [`ASPIRECOSMOSDB001`](aspirecosmosdb001.md)             | (Experimental) Error | <span id="ASPIRECOSMOSDB001"></span> `RunAsPreviewEmulator` is for evaluation purposes only and is subject to change or removal in future updates.                       |
+| [`ASPIREHOSTINGPYTHON001`](aspirehostingpython001.md)   | (Experimental) Error | <span id="ASPIREHOSTINGPYTHON001"></span> `AddPythonApp` is for evaluation purposes only and is subject to change or removal in future updates.                          |
+| [`ASPIREPROXYENDPOINTS001`](aspireproxyendpoints001.md) | (Experimental) Error | <span id="ASPIREPROXYENDPOINTS001"></span> ProxyEndpoint members are for evaluation purposes only and are subject to change or removal in future updates.                |
+| [`ASPIREPUBLISHERS001`](aspirepublishers001.md)         | Error                | <span id="ASPIREPUBLISHERS001"></span> Publishers are for evaluation purposes only and are subject to change or removal in future updates.                               |

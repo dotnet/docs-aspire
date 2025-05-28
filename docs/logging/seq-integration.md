@@ -54,7 +54,7 @@ var myService = builder.AddProject<Projects.ExampleProject>()
 ```
 
 > [!NOTE]
-> The Seq container may be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/app-host-overview.md#container-resource-lifetime).
+> The Seq container may be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
 #### Accept the Seq End User License Agreement (EULA)
 
@@ -166,7 +166,7 @@ The .NET Aspire Seq integration supports <xref:Microsoft.Extensions.Configuratio
 }
 ```
 
-For the complete Seq client integration JSON schema, see [Aspire.Seq/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Microsoft.Data.SqlClient/ConfigurationSchema.json).
+For the complete Seq client integration JSON schema, see [Aspire.Seq/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Microsoft.Data.SqlClient/ConfigurationSchema.json).
 
 #### Use inline delegates
 

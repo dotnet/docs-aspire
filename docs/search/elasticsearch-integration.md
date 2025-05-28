@@ -1,11 +1,11 @@
 ---
-title: .NET Aspire Elasticsearch integration
+title: .NET Aspire Elasticsearch integration (Preview)
 description: Learn how to use the .NET Aspire Elasticsearch integration, which includes both hosting and client integrations.
-ms.date: 10/11/2024
+ms.date: 02/14/2025
 uid: search/elasticsearch-integration
 ---
 
-# .NET Aspire Elasticsearch integration
+# .NET Aspire Elasticsearch integration (Preview)
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
@@ -49,7 +49,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/elasticsearch` image, it creates a new Elasticsearch instance on your local machine. A reference to your Elasticsearch resource (the `elasticsearch` variable) is added to the `ExampleProject`. The Elasticsearch resource includes default credentials with a `username` of `"elastic"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method when a password wasn't provided.
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"elasticsearch"`. For more information, see [Container resource lifecycle](../fundamentals/app-host-overview.md#container-resource-lifecycle).
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"elasticsearch"`. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 > [!TIP]
 > If you'd rather connect to an existing Elasticsearch instance, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
@@ -224,7 +224,7 @@ The .NET Aspire Elasticsearch Client integration supports <xref:Microsoft.Extens
 }
 ```
 
-For the complete Elasticsearch client integration JSON schema, see [Aspire.Elastic.Clients.Elasticsearch/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Elastic.Clients.Elasticsearch/ConfigurationSchema.json).
+For the complete Elasticsearch client integration JSON schema, see [Aspire.Elastic.Clients.Elasticsearch/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Elastic.Clients.Elasticsearch/ConfigurationSchema.json).
 
 #### Use inline delegates
 

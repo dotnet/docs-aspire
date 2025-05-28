@@ -7,10 +7,10 @@ items:
   - name: .NET Aspire overview
     displayName: aspire overview,architecture,key concepts,Kubernetes,k8s
     href: get-started/aspire-overview.md
-  - name: Quickstart - Build your first .NET Aspire project
+  - name: Build your first .NET Aspire solution
     displayName: quickstart,first app,aspire app
     href: get-started/build-your-first-aspire-app.md
-  - name: Tutorial - Add .NET Aspire to an existing .NET app
+  - name: Add .NET Aspire to an existing solution
     href: get-started/add-aspire-existing-app.md
   - name: Setup and tooling
     items:
@@ -20,33 +20,52 @@ items:
       href: fundamentals/dotnet-aspire-sdk.md
     - name: .NET Aspire templates
       href: fundamentals/aspire-sdk-templates.md
-  - name: What's new in .NET Aspire 9.0
-    href: whats-new/dotnet-aspire-9.md
+    - name: GitHub Codespaces
+      href: get-started/github-codespaces.md
+    - name: Dev Containers
+      href: get-started/dev-containers.md
+  - name: What's new in .NET Aspire 9.3
+    href: whats-new/dotnet-aspire-9.3.md
   - name: Upgrade to .NET Aspire 9.0
     href: get-started/upgrade-to-aspire-9.md
 
-- name: App Host (Orchestration)
+- name: Dev-time orchestration
   items:
-  - name: Overview
-    displayName: orchestration,aspire apphost,aspire app
+  - name: Architecture overview
+    displayName: aspire architecture,aspire app,aspire apphost,aspire app model
+    href: architecture/overview.md
+  - name: App host overview
+    displayName: orchestration,aspire apphost,aspire app,dev-time,inner-loop
     href: fundamentals/app-host-overview.md
-  - name: Orchestrate
+  - name: Locally orchestrate
     items:
+    - name: Resources in .NET Aspire
+      displayName: orchestration,aspire apphost,aspire app
+      href: fundamentals/orchestrate-resources.md
     - name: Node.js apps in .NET Aspire
       href: get-started/build-aspire-apps-with-nodejs.md
       displayName: node.js,node,express,typescript,javascript,spa,client-side,server-side
     - name: Python apps in .NET Aspire
       displayName: python,flask,fastapi
       href: get-started/build-aspire-apps-with-python.md
-  - name: Configuration
+  - name: App host configuration
     href: app-host/configuration.md
-  - name: Custom resource commands
-    href: fundamentals/custom-resource-commands.md
+  - name: Customize resources
+    items:
+    - name: Custom resource commands
+      href: fundamentals/custom-resource-commands.md
+      displayName: withcommand
+    - name: Custom HTTP commands
+      href: fundamentals/http-commands.md
+      displayName: withhttpcommand,
+    - name: Custom resource URLs
+      displayName: withurl,withurlforendpoint,withurls
+      href: fundamentals/custom-resource-urls.md      
   - name: Add Dockerfiles to the app model
     href: app-host/withdockerfile.md
     displayName: dockerfile,docker
   - name: Networking overview
-    displayName: inner loop,local networking
+    displayName: inner loop,local networking,networking
     href: fundamentals/networking-overview.md
   - name: Eventing in .NET Aspire
     href: app-host/eventing.md
@@ -64,6 +83,8 @@ items:
     href: fundamentals/dashboard/overview.md
   - name: Explore features
     href: fundamentals/dashboard/explore.md
+  - name: GitHub Copilot
+    href: fundamentals/dashboard/copilot.md
   - name: Standalone mode
     items:
     - name: Overview
@@ -77,9 +98,14 @@ items:
     href: fundamentals/dashboard/enable-browser-telemetry.md
   - name: Security considerations
     href: fundamentals/dashboard/security-considerations.md
+  - name: Microsoft-collected dashboard telemetry
+    href: fundamentals/dashboard/microsoft-collected-dashboard-telemetry.md
 
 - name: Testing
   items:
+  - name: Overview
+    displayName: aspire testing,testing
+    href: testing/overview.md
   - name: Write your first .NET Aspire test
     href: testing/write-your-first-test.md
   - name: Managing the app host
@@ -94,13 +120,13 @@ items:
     href: service-discovery/overview.md
   - name: Service defaults
     href: fundamentals/service-defaults.md
-  - name: .NET Aspire and launch profiles
+  - name: Launch profiles
     href: fundamentals/launch-profiles.md
-  - name: Health checks
-    href: fundamentals/health-checks.md
   - name: Telemetry
     displayName: otel,otlp,telemetry,grpc,opentelemetry,protobuf,traceparent
     href: fundamentals/telemetry.md
+  - name: Health checks
+    href: fundamentals/health-checks.md
 
 - name: Integrations
   items:
@@ -115,14 +141,11 @@ items:
     - name: Connect to SQL Server with EF Core
       displayName: database,sql server,ef core
       href: database/sql-server-integrations.md
+    - name: Connect to an existing SQL Server database
+      displayName: database, sql server, ef core
+      href: database/connect-to-existing-database.md
     - name: Connect to storage
       href: storage/azure-storage-integrations.md
-    - name: Database initialization and maintenance
-      items:
-      - name: Entity Framework Core migrations
-        href: database/ef-core-migrations.md
-      - name: Seed data in a database
-        href: database/seed-database-data.md
     - name: Messaging using .NET Aspire integrations
       displayName: messaging
       href: messaging/messaging-integrations.md
@@ -135,6 +158,21 @@ items:
       href: azure/integrations-overview.md
     - name: Local Azure provisioning
       href: azure/local-provisioning.md
+    - name: Configure Azure Container Apps environments
+      href: azure/configure-aca-environments.md
+    - name: User-assigned managed identity
+      href: azure/user-assigned-managed-identity.md
+    - name: Manage role assignments
+      href: azure/role-assignments.md
+    - name: Azure App Configuration
+      displayName: app configuration,configuration
+      href: azure/azure-app-configuration-integration.md
+    - name: Azure AI Inference (Preview)
+      displayName: azure ai,inference
+      href: azureai/azureai-inference-integration.md
+    - name: Azure AI Search
+      displayName: azure search,search,azure ai,cognitive search,cognitive services
+      href: azureai/azureai-search-document-integration.md
     - name: Azure Cache for Redis
       items:
       - name: Azure Cache for Redis
@@ -143,14 +181,12 @@ items:
         href: caching/azure-cache-for-redis-distributed-caching-integration.md
       - name: Azure Cache for Redis output caching
         href: caching/azure-cache-for-redis-output-caching-integration.md
+    - name: Azure Container Registry (Preview)
+      displayName: container registry,acr
+      href: azure/container-registry-integration.md
     - name: Azure Cosmos DB
-      items:
-      - name: Azure Cosmos DB - EF Core
-        displayName: cosmos db,database,ef core
-        href: database/azure-cosmos-db-entity-framework-integration.md
-      - name: Azure Cosmos DB
-        displayName: cosmos db,database
-        href: database/azure-cosmos-db-integration.md
+      displayName: cosmos db,database
+      href: database/azure-cosmos-db-integration.md
     - name: Azure Event Hubs
       displayName: event hubs,messaging
       href: messaging/azure-event-hubs-integration.md
@@ -161,25 +197,20 @@ items:
       displayName: key vault,security
       href: security/azure-security-key-vault-integration.md
     - name: Azure PostgreSQL
-      items:
-      - name: Azure PostgreSQL - EF Core
-        displayName: postgres,postgresql,database,flexible server,ef core,azure for database
-        href: database/azure-postgresql-entity-framework-integration.md
-      - name: Azure PostgreSQL
-        displayName: postgres,postgresql,database,flexible server,azure for database
-        href: database/azure-postgresql-integration.md
-    - name: Azure OpenAI
+      displayName: postgres,postgresql,database,flexible server,azure for database
+      href: database/azure-postgresql-integration.md
+    - name: Azure OpenAI (Preview)
       displayName: azure ai,openai
       href: azureai/azureai-openai-integration.md
     - name: Azure SignalR Service
       displayName: azure signalr service,signalr,real-time
       href: real-time/azure-signalr-scenario.md
-    - name: Azure Search Documents
-      displayName: azure search,search,azure ai
-      href: azureai/azureai-search-document-integration.md
     - name: Azure Service Bus
       displayName: service bus,messaging
       href: messaging/azure-service-bus-integration.md
+    - name: Azure SQL Database
+      displayName: azure sql database,database
+      href: database/azure-sql-integration.md
     - name: Azure Storage
       items:
       - name: Azure Blob Storage
@@ -195,18 +226,43 @@ items:
       displayName: web pubsub,real-time,messaging
       href: messaging/azure-web-pubsub-integration.md
     - name: Aspire.Hosting.Azure API reference
-      href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.0&preserve-view=true
+      href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.2&preserve-view=true
     - name: Aspire.Azure API reference
-      href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.0&preserve-view=true
-  - name: Dapr
-    items:
-    - name: Overview
-      href: frameworks/dapr.md
-    - name: Dapr integration sample
-      href: /samples/dotnet/aspire-samples/aspire-dapr/
+      href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.2&preserve-view=true
   - name: Elasticsearch
     displayName: elasticsearch,search
     href: search/elasticsearch-integration.md
+  - name: Entity Framework Core
+    displayName: ef core,entity framework core,database
+    items:
+    - name: Overview
+      href: database/entity-framework-core-integration-overview.md
+    - name: Apply migrations
+      href: database/ef-core-migrations.md
+    - name: Seed data in a database
+      displayName: seed data,ef core,scripts,entrypoint,init
+      href: database/seed-database-data.md
+    - name: Azure Cosmos DB
+      displayName: cosmos db,database,ef core
+      href: database/azure-cosmos-db-entity-framework-integration.md
+    - name: Azure PostgreSQL
+      displayName: postgresql,ef core
+      href: database/azure-postgresql-entity-framework-integration.md
+    - name: Azure SQL Database
+      displayName: azure sql database,database,ef core
+      href: database/azure-sql-entity-framework-integration.md
+    - name: MySQL Pomelo
+      displayName: mysql pomelo,ef core
+      href: database/mysql-entity-framework-integration.md
+    - name: Oracle
+      displayName: oracle,ef core
+      href: database/oracle-entity-framework-integration.md
+    - name: PostgreSQL
+      displayName: postgresql,ef core
+      href: database/postgresql-entity-framework-integration.md
+    - name: SQL Server
+      displayName: sql server,ef core
+      href: database/sql-server-entity-framework-integration.md
   - name: Keycloak (Preview)
     displayName: security,openid connect,single sign-on,sso,identity,federation,account management
     href: authentication/keycloak-integration.md
@@ -217,19 +273,11 @@ items:
     displayName: mongodb,database
     href: database/mongodb-integration.md
   - name: MySQL
-    items:
-    - name: Pomelo MySQL - EF Core
-      displayName: pomelo mysql,database
-      href: database/mysql-entity-framework-integration.md
-    - name: MySQL
-      displayName: mysql,database
-      href: database/mysql-integration.md
+    displayName: mysql,database
+    href: database/mysql-integration.md
   - name: NATS
     displayName: nats,messaging
     href: messaging/nats-integration.md
-  - name: Oracle - EF Core
-    displayName: oracle,database,ef core
-    href: database/oracle-entity-framework-integration.md
   - name: Orleans
     items:
     - name: Overview
@@ -237,13 +285,8 @@ items:
     - name: Orleans voting sample
       href: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
   - name: PostgreSQL
-    items:
-    - name: PostgreSQL - EF Core
-      displayName: postgresql,database,ef core
-      href: database/postgresql-entity-framework-integration.md
-    - name: PostgreSQL
-      displayName: postgresql,database
-      href: database/postgresql-integration.md
+    displayName: postgresql,database
+    href: database/postgresql-integration.md
   - name: Qdrant
     href: database/qdrant-integration.md
   - name: RabbitMQ service broker
@@ -275,13 +318,8 @@ items:
     displayName: seq,logging
     href: logging/seq-integration.md
   - name: SQL Server
-    items:
-    - name: SQL Database - EF Core
-      displayName: sql server,sql database,ef core
-      href: database/sql-server-entity-framework-integration.md
-    - name: SQL Database
-      displayName: sql server,sql database
-      href: database/sql-server-integration.md
+    displayName: sql server,sql database
+    href: database/sql-server-integration.md
   - name: Community Toolkit
     items:
     - name: Overview
@@ -290,6 +328,8 @@ items:
       href: community-toolkit/hosting-azure-static-web-apps.md
     - name: Bun apps
       href: community-toolkit/hosting-bun.md
+    - name: Dapr
+      href: community-toolkit/dapr.md
     - name: Deno apps
       href: community-toolkit/hosting-deno.md
     - name: Go apps
@@ -312,8 +352,26 @@ items:
       href: community-toolkit/hosting-data-api-builder.md
     - name: EventStore
       href: community-toolkit/hosting-eventstore.md
+    - name: SQLite
+      items:
+      - name: SQLite - EF Core
+        displayName: sqlite,database,ef core
+        href: community-toolkit/sqlite-entity-framework-integration.md
+      - name: SQLite
+        displayName: sqlite,database
+        href: community-toolkit/sqlite.md
+    - name: SQL Server Extensions
+      href: community-toolkit/hosting-sqlserver-extensions.md
+    - name: MongoDB Extensions
+      href: community-toolkit/hosting-mongodb-extensions.md
+    - name: Redis Extensions
+      href: community-toolkit/hosting-redis-extensions.md
+    - name: PostgreSQL Extensions
+      href: community-toolkit/hosting-postgresql-extensions.md
+    - name: RavenDB
+      href: community-toolkit/ravendb.md
   - name: Aspire.Hosting API reference
-    href: /dotnet/api/?term=Aspire.Hosting&view=dotnet-aspire-9.0&preserve-view=true
+    href: /dotnet/api/?term=Aspire.Hosting&view=dotnet-aspire-9.2&preserve-view=true
 
 - name: Custom integrations
   items:
@@ -326,7 +384,7 @@ items:
   - name: Secure communication between integrations
     href: extensibility/secure-communication-between-integrations.md
 
-- name: Deployment
+- name: Deploy
   items:
   - name: Overview
     displayName: azure deployment,deployment,Kubernetes,k8s
@@ -354,7 +412,8 @@ items:
   - name: Tool-builder manifest schemas
     href: deployment/manifest-format.md
 
-- name: Troubleshooting
+- name: Troubleshoot
+  displayName: troubleshooting
   items:
   - name: Allow unsecure transport
     displayName: unsecure transport,http,non-tls
@@ -379,31 +438,86 @@ items:
   items:
   - name: Breaking changes
     href: compatibility/breaking-changes.md
-  - name: Diagnostics overview
-    href: diagnostics/overview.md
+  - name: Diagnostics
+    items:
+    - name: Overview
+      href: diagnostics/overview.md
+    - name: Warnings
+      items:
+      - name: ASPIRE001
+        href: diagnostics/aspire001.md
+      - name: ASPIRE002
+        href: diagnostics/aspire002.md
+      - name: ASPIRE003
+        href: diagnostics/aspire003.md
+      - name: ASPIRE004
+        href: diagnostics/aspire004.md
+    - name: Errors
+      items:
+      - name: ASPIRE006
+        href: diagnostics/aspire006.md
+      - name: ASPIRE007
+        href: diagnostics/aspire007.md
+      - name: ASPIREACADOMAINS001
+        href: diagnostics/aspireacadomains001.md
+      - name: ASPIRECOMPUTE001
+        href: diagnostics/aspirecompute001.md
+      - name: ASPIRECOSMOSDB001
+        href: diagnostics/aspirecosmosdb001.md
+      - name: ASPIREHOSTINGPYTHON001
+        href: diagnostics/aspirehostingpython001.md
+      - name: ASPIREPROXYENDPOINTS001
+        href: diagnostics/aspireproxyendpoints001.md
+      - name: ASPIREPUBLISHERS001
+        href: diagnostics/aspirepublishers001.md
+      - name: ASPIREAZURE001
+        href: diagnostics/aspireazure001.md
+    - name: By category
+      items:
+      - name: Project
+        items:
+        - name: Code language not fully supported
+          href: diagnostics/aspire001.md
+        - name: Aspire.Hosting.AppHost is missing
+          href: diagnostics/aspire002.md
+        - name: Version of Visual Studio not supported
+          href: diagnostics/aspire003.md
+        - name: Referenced project isn't an executable
+          href: diagnostics/aspire004.md
+        - name: Aspire SDK reference is out of date or missing
+          href: diagnostics/aspire007.md
+      - name: Resources
+        items:
+        - name: Items must have valid names
+          href: diagnostics/aspire006.md
+      - name: Experimental
+        items:
+        - name: Azure custom domains
+          href: diagnostics/aspireacadomains001.md
+        - name: Cosmos DB preview emulator and data explorer
+          href: diagnostics/aspirecosmosdb001.md
+        - name: Various compute APIs are experimental
+          href: diagnostics/aspirecompute001.md
+        - name: Container proxy endpoint APIs are experimental
+          href: diagnostics/aspireproxyendpoints001.md
+        - name: Hosting Python apps
+          href: diagnostics/aspirehostingpython001.md
+        - name: Publishing APIs are experimental
+          href: diagnostics/aspirepublishers001.md
+        - name: Publishing to Azure APIs are experimental
+          href: diagnostics/aspireazure001.md
   - name: .NET Aspire API reference
-    href: /dotnet/api?view=dotnet-aspire-9.0&preserve-view=true
+    href: /dotnet/api?view=dotnet-aspire-9.2&preserve-view=true
   - name: .NET Aspire FAQ
     displayName: iis,functions,deploy,azure,kubernetes
     href: reference/aspire-faq.yml
   - name: .NET Aspire NuGet profile
     href: https://www.nuget.org/profiles/aspire
 
-- name: Training
-  items:
-  - name: Introduction to .NET Aspire
-    href: /training/modules/introduction-dotnet-aspire
-  - name: Create a .NET Aspire project
-    href: /training/modules/create-aspire-applications
-  - name: Use telemetry in a .NET Aspire project
-    href: /training/modules/use-telemetry-dotnet-aspire
-
 - name: Resources
   items:
   - name: .NET Aspire
     href: https://github.com/dotnet/aspire
-  - name: .NET Aspire Credential
-    href: /credentials/applied-skills/build-distributed-apps-with-dotnet-aspire/
   - name: .NET Aspire samples
     href: https://github.com/dotnet/aspire-samples
   - name: .NET Aspire samples browser

@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Blob Storage integration
 description: Learn how to use the .NET Aspire Azure Blob Storage integration, which includes both hosting and client integrations.
-ms.date: 12/09/2024
+ms.date: 04/08/2025
 uid: storage/azure-blob-storage-integration
 ---
 
@@ -39,6 +39,12 @@ The preceding code:
 - Chains a call to <xref:Aspire.Hosting.AzureStorageExtensions.RunAsEmulator*> to configure the storage resource to run locally using an emulator. The emulator in this case is [Azurite](/azure/storage/common/storage-use-azurite).
 - Adds a blob container named `blobs` to the storage resource.
 - Adds the `blobs` resource to the `ExampleProject` and waits for it to be ready before starting the project.
+
+[!INCLUDE [storage-bicep](includes/storage-bicep.md)]
+
+[!INCLUDE [storage-emulator](includes/storage-emulator.md)]
+
+[!INCLUDE [storage-connections](includes/storage-connections.md)]
 
 [!INCLUDE [storage-hosting-health-checks](includes/storage-hosting-health-checks.md)]
 
@@ -142,7 +148,7 @@ The .NET Aspire Azure Blob Storage integration supports <xref:Microsoft.Extensio
 }
 ```
 
-For the complete Azure Blob Storage client integration JSON schema, see [Aspire.Azure.Storage.Blobs/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Azure.Storage.Blobs/ConfigurationSchema.json).
+For the complete Azure Blob Storage client integration JSON schema, see [Aspire.Azure.Storage.Blobs/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Storage.Blobs/ConfigurationSchema.json).
 
 #### Use inline delegates
 

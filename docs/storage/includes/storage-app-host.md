@@ -52,21 +52,11 @@ When you add an `AzureStorageResource` to the app host, it exposes other useful 
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../../azure/local-provisioning.md#configuration).
 
-#### Generated provisioning Bicep
+#### Provisioning-generated Bicep
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Storage resource, the following Bicep is generated:
 
-<!-- markdownlint-disable MD033 -->
-<br/>
-<details>
-<summary id="storage-bicep"><strong>Toggle Azure Storage Bicep.</strong></summary>
-<p aria-labelledby="storage-json">
-
 :::code language="bicep" source="../../snippets/azure/AppHost/storage.module.bicep":::
-
-</p>
-</details>
-<!-- markdownlint-enable MD033 -->
 
 The preceding Bicep is a module that provisions an Azure Storage account with the following defaults:
 
@@ -88,7 +78,7 @@ The following role assignments are added to the storage account to grant your ap
 | Storage Table Data Contributor<br/>`0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3` | Read, write, and delete Azure Storage tables and entities. |
 | Storage Queue Data Contributor<br/>`974c5e8b-45b9-4653-ba55-5f855dd0fb88` | Read, write, and delete Azure Storage queues and queue messages. |
 
-The generated Bicep is a starting point and can be customized to meet your specific requirements.
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 
@@ -152,11 +142,11 @@ var storage = builder.AddAzureStorage("storage")
 // After adding all resources, run the app...
 ```
 
-When you call `RunAsEmulator`, it configures your storage resources to run locally using an emulator. The emulator in this case is [Azurite](/azure/storage/common/storage-use-azurite). The Azurite open-source emulator provides a free local environment for testing your Azure Blob, Queue Storage, and Table Storage apps and it's a perfect companion to the .NET Aspire Azure hosting integration. Azurite isn't installed, instead, it's accessible to .NET Aspire as a container. When you add a container to the app host, as shown in the preceding example with the `mcr.microsoft.com/azure-storage/azurite` image, it creates and starts the container when the app host starts. For more information, see [Container resource lifecycle](../../fundamentals/app-host-overview.md#container-resource-lifecycle).
+When you call `RunAsEmulator`, it configures your storage resources to run locally using an emulator. The emulator in this case is [Azurite](/azure/storage/common/storage-use-azurite). The Azurite open-source emulator provides a free local environment for testing your Azure Blob, Queue Storage, and Table Storage apps and it's a perfect companion to the .NET Aspire Azure hosting integration. Azurite isn't installed, instead, it's accessible to .NET Aspire as a container. When you add a container to the app host, as shown in the preceding example with the `mcr.microsoft.com/azure-storage/azurite` image, it creates and starts the container when the app host starts. For more information, see [Container resource lifecycle](../../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 #### Configure Azurite container
 
-There are various configurations available to container resources, for example, you can configure the container's ports, environment variables, it's [lifetime](../../fundamentals/app-host-overview.md#container-resource-lifetime), and more.
+There are various configurations available to container resources, for example, you can configure the container's ports, environment variables, it's [lifetime](../../fundamentals/orchestrate-resources.md#container-resource-lifetime), and more.
 
 ##### Configure Azurite container ports
 
@@ -208,7 +198,7 @@ var storage = builder.AddAzureStorage("storage").RunAsEmulator(
 // After adding all resources, run the app...
 ```
 
-For more information, see [Container resource lifetime](../../fundamentals/app-host-overview.md#container-resource-lifetime).
+For more information, see [Container resource lifetime](../../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
 ##### Configure Azurite container with data volume
 

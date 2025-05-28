@@ -47,7 +47,7 @@ With the configuration-based endpoint resolver, named endpoints can be specified
 ```json
 {
   "Services": {
-    "basket":
+    "basket": {
       "https": "https://10.2.3.4:8080", /* the https endpoint, requested via https://basket */
       "dashboard": "https://10.2.3.4:9999" /* the "dashboard" endpoint, requested via https://_dashboard.basket */
     }

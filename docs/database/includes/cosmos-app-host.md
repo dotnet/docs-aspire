@@ -5,6 +5,8 @@ ms.topic: include
 The .NET Aspire [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) hosting integration models the various Cosmos DB resources as the following types:
 
 - <xref:Aspire.Hosting.AzureCosmosDBResource>: Represents an Azure Cosmos DB resource.
+- <xref:Aspire.Hosting.Azure.AzureCosmosDBContainerResource>: Represents an Azure Cosmos DB container resource.
+- <xref:Aspire.Hosting.Azure.AzureCosmosDBDatabaseResource>: Represents an Azure Cosmos DB database resource.
 - <xref:Aspire.Hosting.Azure.AzureCosmosDBEmulatorResource>: Represents an Azure Cosmos DB emulator resource.
 
 To access these types and APIs for expressing them, add the [📦 Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
@@ -43,29 +45,17 @@ When you add an <xref:Aspire.Hosting.AzureCosmosDBResource> to the app host, it 
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureCosmosExtensions.AddAzureCosmosDB*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../../azure/local-provisioning.md#configuration).
 
-#### Generated provisioning Bicep
+#### Provisioning-generated Bicep
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Cosmos DB resource, the following Bicep is generated:
 
-<!-- markdownlint-disable MD033 -->
-<br/>
-<details>
-<summary id="cosmos-bicep"><strong>Toggle Azure Cosmos DB Bicep.</strong></summary>
-<p aria-labelledby="cosmos-bicep">
-
 :::code language="bicep" source="../../snippets/azure/AppHost/cosmos.module.bicep":::
 
-</p>
-</details>
-<!-- markdownlint-enable MD033 -->
+The preceding Bicep is a module that provisions an Azure Cosmos DB account resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-The preceding Bicep is a module that provisions an Azure Cosmos DB account with the following defaults:
+:::code language="bicep" source="../../snippets/azure/AppHost/cosmos-roles.module.bicep":::
 
-- `kind`: The kind of Cosmos DB account. The default is `GlobalDocumentDB`.
-- `consistencyPolicy`: The consistency policy of the Cosmos DB account. The default is `Session`.
-- `locations`: The locations for the Cosmos DB account. The default is the resource group's location.
-
-In addition to the Cosmos DB account, it also provisions an Azure Key Vault resource. This is used to store the Cosmos DB account's connection string securely. The generated Bicep is a starting point and can be customized to meet your specific requirements.
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 
@@ -113,23 +103,70 @@ The connection string is configured in the app host's configuration, typically u
 
 The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"cosmos-db"`. The `GetConnectionString` API is shorthand for `IConfiguration.GetSection("ConnectionStrings")[name]`.
 
-### Add Azure Cosmos DB database resource
+### Add Azure Cosmos DB database and container resources
 
-To add an Azure Cosmos DB database resource, chain a call on an `IResourceBuilder<AzureCosmosDBResource>` to the <xref:Aspire.Hosting.AzureCosmosExtensions.AddDatabase*> API:
+.NET Aspire models parent child relationships between Azure Cosmos DB resources. For example, an Azure Cosmos DB account (<xref:Aspire.Hosting.AzureCosmosDBResource>) can have multiple databases (<xref:Aspire.Hosting.Azure.AzureCosmosDBDatabaseResource>), and each database can have multiple containers (<xref:Aspire.Hosting.Azure.AzureCosmosDBContainerResource>). When you add a database or container resource, you do so on a parent resource.
+
+To add an Azure Cosmos DB database resource, call the <xref:Aspire.Hosting.AzureCosmosExtensions.AddCosmosDatabase*> method on an `IResourceBuilder<AzureCosmosDBResource>` instance:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var cosmos = builder.AddAzureCosmosDB("cosmos-db")
-                    .AddDatabase("db");
+var cosmos = builder.AddAzureCosmosDB("cosmos-db");
+var db = cosmos.AddCosmosDatabase("db");
 
 // After adding all resources, run the app...
 ```
 
-When you call `AddDatabase`, it configures your Cosmos DB resources to have a database named `db`. The database is created in the Cosmos DB account that's represented by the `AzureCosmosDBResource` that you added earlier. The database is a logical container for collections and users. For more information, see [Databases, containers, and items in Azure Cosmos DB](/azure/cosmos-db/resource-model).
+When you call `AddCosmosDatabase`, it adds a database named `db` to your Cosmos DB resources and returns the newly created database resource. The database is created in the Cosmos DB account that's represented by the `AzureCosmosDBResource` that you added earlier. The database is a logical container for collections and users.
 
-> [!NOTE]
-> When using the `AddDatabase` API to add a database to an Azure Cosmos DB resource, if you're running the emulator, the database isn't actually created in the emulator. This API is intended to include a database in the [Bicep generated](#generated-provisioning-bicep) by the provisioning infrastructure.
+An Azure Cosmos DB container is where data is stored. When you create a container, you need to supply a partition key.
+
+To add an Azure Cosmos DB container resource, call the <xref:Aspire.Hosting.AzureCosmosExtensions.AddContainer*> method on an `IResourceBuilder<AzureCosmosDBDatabaseResource>` instance:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var cosmos = builder.AddAzureCosmosDB("cosmos-db");
+var db = cosmos.AddCosmosDatabase("db");
+var container = db.AddContainer("entries", "/id");
+
+// After adding all resources, run the app...
+```
+
+The container is created in the database that's represented by the `AzureCosmosDBDatabaseResource` that you added earlier. For more information, see [Databases, containers, and items in Azure Cosmos DB](/azure/cosmos-db/resource-model).
+
+#### Parent child resource relationship example
+
+To better understand the parent-child relationship between Azure Cosmos DB resources, consider the following example, which demonstrates adding an Azure Cosmos DB resource along with a database and container:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var cosmos = builder.AddAzureCosmosDB("cosmos");
+
+var customers = cosmos.AddCosmosDatabase("customers");
+var profiles = customers.AddContainer("profiles", "/id");
+
+var orders = cosmos.AddCosmosDatabase("orders");
+var details = orders.AddContainer("details", "/id");
+var history = orders.AddContainer("history", "/id");
+
+builder.AddProject<Projects.Api>("api")
+       .WithReference(profiles)
+       .WithReference(details)
+       .WithReference(history);
+
+builder.Build().Run();
+```
+
+The preceding code adds an Azure Cosmos DB resource named `cosmos` with two databases: `customers` and `orders`. The `customers` database has a single container named `profiles`, while the `orders` database has two containers: `details` and `history`. The partition key for each container is `/id`.
+
+The following diagram illustrates the parent child relationship between the Azure Cosmos DB resources:
+
+:::image type="content" source="media/cosmos-resource-relationships-thumb.png" alt-text="A diagram depicting Azure Cosmos DB resource parent child relationships." lightbox="media/cosmos-resource-relationships.png":::
+
+When your app host code expresses parent-child relationships, the client can deep-link to these resources by name. For example, the `customers` database can be referenced by name in the client project, registering a <xref:Microsoft.Azure.Cosmos.Database> instance that connects to the `customers` database. The same applies to named containers, for example, the `details` container can be referenced by name in the client project, registering a <xref:Microsoft.Azure.Cosmos.Container> instance that connects to the `details` container.
 
 ### Add Azure Cosmos DB emulator resource
 
@@ -144,11 +181,11 @@ var cosmos = builder.AddAzureCosmosDB("cosmos-db")
 // After adding all resources, run the app...
 ```
 
-When you call `RunAsEmulator`, it configures your Cosmos DB resources to run locally using an emulator. The emulator in this case is the [Azure Cosmos DB Emulator](/azure/cosmos-db/local-emulator). The Azure Cosmos DB Emulator provides a free local environment for testing your Azure Cosmos DB apps and it's a perfect companion to the .NET Aspire Azure hosting integration. The emulator isn't installed, instead, it's accessible to .NET Aspire as a container. When you add a container to the app host, as shown in the preceding example with the `mcr.microsoft.com/cosmosdb/emulator` image, it creates and starts the container when the app host starts. For more information, see [Container resource lifecycle](../../fundamentals/app-host-overview.md#container-resource-lifecycle).
+When you call `RunAsEmulator`, it configures your Cosmos DB resources to run locally using an emulator. The emulator in this case is the [Azure Cosmos DB Emulator](/azure/cosmos-db/local-emulator). The Azure Cosmos DB Emulator provides a free local environment for testing your Azure Cosmos DB apps and it's a perfect companion to the .NET Aspire Azure hosting integration. The emulator isn't installed, instead, it's accessible to .NET Aspire as a container. When you add a container to the app host, as shown in the preceding example with the `mcr.microsoft.com/cosmosdb/emulator` image, it creates and starts the container when the app host starts. For more information, see [Container resource lifecycle](../../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 #### Configure Cosmos DB emulator container
 
-There are various configurations available to container resources, for example, you can configure the container's ports, environment variables, it's [lifetime](../../fundamentals/app-host-overview.md#container-resource-lifetime), and more.
+There are various configurations available to container resources, for example, you can configure the container's ports, environment variables, it's [lifetime](../../fundamentals/orchestrate-resources.md#container-resource-lifetime), and more.
 
 ##### Configure Cosmos DB emulator container gateway port
 
@@ -194,7 +231,7 @@ var cosmos = builder.AddAzureCosmosDB("cosmos-db").RunAsEmulator(
 // After adding all resources, run the app...
 ```
 
-For more information, see [Container resource lifetime](../../fundamentals/app-host-overview.md#container-resource-lifetime).
+For more information, see [Container resource lifetime](../../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
 ##### Configure Cosmos DB emulator container with data volume
 
@@ -231,3 +268,27 @@ var cosmos = builder.AddAzureCosmosDB("cosmos-db").RunAsEmulator(
 ```
 
 The preceding code configures the Cosmos DB emulator container to have a partition count of `100`. This is a shorthand for setting the `AZURE_COSMOS_EMULATOR_PARTITION_COUNT` environment variable.
+
+#### Use Linux-based emulator (preview)
+
+The [next generation of the Azure Cosmos DB emulator](/azure/cosmos-db/emulator-linux) is entirely Linux-based and is available as a Docker container. It supports running on a wide variety of processors and operating systems.
+
+To use the preview version of the Cosmos DB emulator, call the <xref:Aspire.Hosting.AzureCosmosExtensions.RunAsPreviewEmulator*> method. Since this feature is in preview, you need to explicitly opt into the preview feature by suppressing the `ASPIRECOSMOSDB001` experimental diagnostic.
+
+The preview emulator also supports exposing a "Data Explorer" endpoint which allows you to view the data stored in the Cosmos DB emulator via a web UI. To enable the Data Explorer, call the <xref:Aspire.Hosting.AzureCosmosExtensions.WithDataExplorer*> method.
+
+```csharp
+#pragma warning disable ASPIRECOSMOSDB001
+
+var builder = DistributedApplication.CreateBuilder(args);
+
+var cosmos = builder.AddAzureCosmosDB("cosmos-db").RunAsPreviewEmulator(
+                     emulator =>
+                     {
+                         emulator.WithDataExplorer();
+                     });
+
+// After adding all resources, run the app...
+```
+
+The preceding code configures the Linux-based preview Cosmos DB emulator container, with the Data Explorer endpoint, to use at run time.

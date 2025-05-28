@@ -18,11 +18,7 @@
     "config": {
       "type": "azure.bicep.v0",
       "connectionString": "{config.outputs.appConfigEndpoint}",
-      "path": "config.module.bicep",
-      "params": {
-        "principalId": "",
-        "principalType": ""
-      }
+      "path": "config.module.bicep"
     },
     "app-insights": {
       "type": "azure.bicep.v0",
@@ -34,29 +30,22 @@
     },
     "cosmos": {
       "type": "azure.bicep.v0",
-      "connectionString": "{cosmos.secretOutputs.connectionString}",
-      "path": "cosmos.module.bicep",
-      "params": {
-        "keyVaultName": ""
-      }
+      "connectionString": "{cosmos.outputs.connectionString}",
+      "path": "cosmos.module.bicep"
     },
     "event-hubs": {
       "type": "azure.bicep.v0",
       "connectionString": "{event-hubs.outputs.eventHubsEndpoint}",
-      "path": "event-hubs.module.bicep",
-      "params": {
-        "principalId": "",
-        "principalType": ""
-      }
+      "path": "event-hubs.module.bicep"
+    },
+    "messages": {
+      "type": "value.v0",
+      "connectionString": "Endpoint={event-hubs.outputs.eventHubsEndpoint};EntityPath=messages"
     },
     "key-vault": {
       "type": "azure.bicep.v0",
       "connectionString": "{key-vault.outputs.vaultUri}",
-      "path": "key-vault.module.bicep",
-      "params": {
-        "principalId": "",
-        "principalType": ""
-      }
+      "path": "key-vault.module.bicep"
     },
     "log-analytics-workspace": {
       "type": "azure.bicep.v0",
@@ -65,57 +54,36 @@
     "openai": {
       "type": "azure.bicep.v0",
       "connectionString": "{openai.outputs.connectionString}",
-      "path": "openai.module.bicep",
-      "params": {
-        "principalId": "",
-        "principalType": ""
-      }
+      "path": "openai.module.bicep"
+    },
+    "preview": {
+      "type": "value.v0",
+      "connectionString": "{openai.outputs.connectionString};Deployment=preview"
     },
     "postgres-flexible": {
       "type": "azure.bicep.v0",
       "connectionString": "{postgres-flexible.outputs.connectionString}",
-      "path": "postgres-flexible.module.bicep",
-      "params": {
-        "principalId": "",
-        "principalType": "",
-        "principalName": ""
-      }
+      "path": "postgres-flexible.module.bicep"
     },
     "redis": {
       "type": "azure.bicep.v0",
       "connectionString": "{redis.outputs.connectionString}",
-      "path": "redis.module.bicep",
-      "params": {
-        "principalId": "",
-        "principalName": ""
-      }
+      "path": "redis.module.bicep"
     },
     "search": {
       "type": "azure.bicep.v0",
       "connectionString": "{search.outputs.connectionString}",
-      "path": "search.module.bicep",
-      "params": {
-        "principalId": "",
-        "principalType": ""
-      }
+      "path": "search.module.bicep"
     },
     "service-bus": {
       "type": "azure.bicep.v0",
       "connectionString": "{service-bus.outputs.serviceBusEndpoint}",
-      "path": "service-bus.module.bicep",
-      "params": {
-        "principalId": "",
-        "principalType": ""
-      }
+      "path": "service-bus.module.bicep"
     },
     "signalr": {
       "type": "azure.bicep.v0",
       "connectionString": "Endpoint=https://{signalr.outputs.hostName};AuthType=azure",
-      "path": "signalr.module.bicep",
-      "params": {
-        "principalId": "",
-        "principalType": ""
-      }
+      "path": "signalr.module.bicep"
     },
     "sql": {
       "type": "azure.bicep.v0",
@@ -128,19 +96,140 @@
     },
     "storage": {
       "type": "azure.bicep.v0",
-      "path": "storage.module.bicep",
-      "params": {
-        "principalId": "",
-        "principalType": ""
+      "path": "storage.module.bicep"
+    },
+    "wrkr": {
+      "type": "project.v0",
+      "path": "../WorkerService/WorkerService.csproj",
+      "env": {
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY": "in_memory"
       }
     },
-    "web-pub-sub": {
+    "web-pubsub": {
       "type": "azure.bicep.v0",
-      "connectionString": "{web-pub-sub.outputs.endpoint}",
-      "path": "web-pub-sub.module.bicep",
+      "connectionString": "{web-pubsub.outputs.endpoint}",
+      "path": "web-pubsub.module.bicep",
       "params": {
+        "messages_url_0": "{wrkr.bindings.https.url}/eventhandler/"
+      }
+    },
+    "config-roles": {
+      "type": "azure.bicep.v0",
+      "path": "config-roles.module.bicep",
+      "params": {
+        "config_outputs_name": "{config.outputs.name}",
+        "principalType": "",
+        "principalId": ""
+      }
+    },
+    "cosmos-roles": {
+      "type": "azure.bicep.v0",
+      "path": "cosmos-roles.module.bicep",
+      "params": {
+        "cosmos_outputs_name": "{cosmos.outputs.name}",
+        "principalId": ""
+      }
+    },
+    "event-hubs-roles": {
+      "type": "azure.bicep.v0",
+      "path": "event-hubs-roles.module.bicep",
+      "params": {
+        "event_hubs_outputs_name": "{event-hubs.outputs.name}",
+        "principalType": "",
+        "principalId": ""
+      }
+    },
+    "key-vault-roles": {
+      "type": "azure.bicep.v0",
+      "path": "key-vault-roles.module.bicep",
+      "params": {
+        "key_vault_outputs_name": "{key-vault.outputs.name}",
+        "principalType": "",
+        "principalId": ""
+      }
+    },
+    "openai-roles": {
+      "type": "azure.bicep.v0",
+      "path": "openai-roles.module.bicep",
+      "params": {
+        "openai_outputs_name": "{openai.outputs.name}",
+        "principalType": "",
+        "principalId": ""
+      }
+    },
+    "postgres-flexible-roles": {
+      "type": "azure.bicep.v0",
+      "path": "postgres-flexible-roles.module.bicep",
+      "params": {
+        "postgres_flexible_outputs_name": "{postgres-flexible.outputs.name}",
+        "principalType": "",
         "principalId": "",
-        "principalType": ""
+        "principalName": ""
+      }
+    },
+    "redis-roles": {
+      "type": "azure.bicep.v0",
+      "path": "redis-roles.module.bicep",
+      "params": {
+        "redis_outputs_name": "{redis.outputs.name}",
+        "principalId": "",
+        "principalName": ""
+      }
+    },
+    "search-roles": {
+      "type": "azure.bicep.v0",
+      "path": "search-roles.module.bicep",
+      "params": {
+        "search_outputs_name": "{search.outputs.name}",
+        "principalType": "",
+        "principalId": ""
+      }
+    },
+    "service-bus-roles": {
+      "type": "azure.bicep.v0",
+      "path": "service-bus-roles.module.bicep",
+      "params": {
+        "service_bus_outputs_name": "{service-bus.outputs.name}",
+        "principalType": "",
+        "principalId": ""
+      }
+    },
+    "signalr-roles": {
+      "type": "azure.bicep.v0",
+      "path": "signalr-roles.module.bicep",
+      "params": {
+        "signalr_outputs_name": "{signalr.outputs.name}",
+        "principalType": "",
+        "principalId": ""
+      }
+    },
+    "sql-roles": {
+      "type": "azure.bicep.v0",
+      "path": "sql-roles.module.bicep",
+      "params": {
+        "sql_outputs_name": "{sql.outputs.name}",
+        "principalId": "",
+        "principalName": ""
+      }
+    },
+    "storage-roles": {
+      "type": "azure.bicep.v0",
+      "path": "storage-roles.module.bicep",
+      "params": {
+        "storage_outputs_name": "{storage.outputs.name}",
+        "principalType": "",
+        "principalId": ""
+      }
+    },
+    "web-pubsub-roles": {
+      "type": "azure.bicep.v0",
+      "path": "web-pubsub-roles.module.bicep",
+      "params": {
+        "web_pubsub_outputs_name": "{web-pubsub.outputs.name}",
+        "principalType": "",
+        "principalId": ""
       }
     }
   }

@@ -2,7 +2,9 @@
 
 public static class HubEndpoints
 {
-    public const string ChatHub = "/chathub";
+    public const string ChatHub = $"/{ChatHubWithoutRouteSlash}";
+
+    public const string ChatHubWithoutRouteSlash = "chathub";
 }
 
 public static class HubClientMethodNames

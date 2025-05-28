@@ -171,7 +171,7 @@ The two projects of interest in this quickstart are the _*.AppHost_ and _*.Servi
 
 ### .NET Aspire host project
 
-The _*.AppHost_ project is responsible for acting as the orchestrator, and sets the `IsAspireHost` property of the project file to `true`:
+The _*.AppHost_ project is responsible for acting as a local dev-orchestrator:
 
 :::code language="xml" source="snippets/quickstart/AspireSample/AspireSample.AppHost/AspireSample.AppHost.csproj" highlight="10":::
 
@@ -186,7 +186,7 @@ If you've used either the [.NET Generic Host](/dotnet/core/extensions/generic-ho
 - Creates an <xref:Aspire.Hosting.IDistributedApplicationBuilder> instance from calling <xref:Aspire.Hosting.DistributedApplication.CreateBuilder?displayProperty=nameWithType>.
 - Calls <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> with the name `"cache"` to add a Redis server to the app, assigning the returned value to a variable named `cache`, which is of type `IResourceBuilder<RedisResource>`.
 - Calls <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> given the generic-type parameter with the project's details, adding the `AspireSample.ApiService` project to the application model. This is one of the fundamental building blocks of .NET Aspire, and it's used to configure service discovery and communication between the projects in your app. The name argument `"apiservice"` is used to identify the project in the application model, and used later by projects that want to communicate with it.
-- Calls `AddProject` again, this time adding the `AspireSample.Web` project to the application model. It also chains multiple calls to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> passing the `cache` and `apiService` variables. The `WithReference` API is another fundamental API of .NET Aspire, which injects either service discovery information or connection string configuration into the project being added to the application model. Additionally, calls to the `WaitFor` API are used to ensure that the `cache` and `apiService` resources are available before the `AspireSample.Web` project is started. For more information, see [.NET Aspire orchestration: Waiting for resources](../fundamentals/app-host-overview.md#waiting-for-resources).
+- Calls `AddProject` again, this time adding the `AspireSample.Web` project to the application model. It also chains multiple calls to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> passing the `cache` and `apiService` variables. The `WithReference` API is another fundamental API of .NET Aspire, which injects either service discovery information or connection string configuration into the project being added to the application model. Additionally, calls to the `WaitFor` API are used to ensure that the `cache` and `apiService` resources are available before the `AspireSample.Web` project is started. For more information, see [.NET Aspire orchestration: Waiting for resources](../fundamentals/orchestrate-resources.md#waiting-for-resources).
 
 Finally, the app is built and run. The <xref:Aspire.Hosting.DistributedApplication.Run?displayProperty=nameWithType> method is responsible for starting the app and all of its dependencies. For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
 

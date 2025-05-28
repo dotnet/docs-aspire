@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Cosmos DB Entity Framework Core integration
 description: Learn how to install and configure the .NET Aspire Cosmos DB Entity Framework Core integration to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
-ms.date: 12/18/2024
+ms.date: 04/01/2025
 uid: dotnet/aspire/azure-cosmos-db-entity-framework-integration
 ---
 
@@ -42,7 +42,13 @@ dotnet add package Aspire.Microsoft.EntityFrameworkCore.Cosmos
 
 ### Add Cosmos DB context
 
-In the :::no-loc text="Program.cs"::: file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureEFCoreCosmosExtensions.AddCosmosDbContext%2A> extension method to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container. The method takes a connection name parameter.
+In the :::no-loc text="Program.cs"::: file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureEFCoreCosmosExtensions.AddCosmosDbContext%2A> extension method to register a <xref:System.Data.Entity.DbContext?displayProperty=fullName> for use via the dependency injection container. The method takes a connection name parameter and a database name parameter.
+
+```csharp
+builder.AddCosmosDbContext<MyDbContext>("cosmosdb", "databaseName");
+```
+
+Alternatively, the database name can be inferred from the connection when there's a single database in the connection string. In this case, you can omit the database name parameter:
 
 ```csharp
 builder.AddCosmosDbContext<MyDbContext>("cosmosdb");
@@ -104,7 +110,7 @@ The .NET Aspire Microsoft Entity Framework Core Cosmos DB integration supports <
 }
 ```
 
-For the complete Cosmos DB client integration JSON schema, see [Aspire.Microsoft.EntityFrameworkCore.Cosmos/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Microsoft.EntityFrameworkCore.Cosmos/ConfigurationSchema.json).
+For the complete Cosmos DB client integration JSON schema, see [Aspire.Microsoft.EntityFrameworkCore.Cosmos/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Microsoft.EntityFrameworkCore.Cosmos/ConfigurationSchema.json).
 
 #### Use inline delegates
 
@@ -117,8 +123,6 @@ builder.AddCosmosDbContext<MyDbContext>(
 ```
 
 ### Client integration health checks
-
-By default, .NET Aspire integrations enable health checks for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
 
 The .NET Aspire Microsoft Entity Framework Core Cosmos DB integration currently doesn't implement health checks, though this may change in future releases.
 

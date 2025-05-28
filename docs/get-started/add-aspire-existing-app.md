@@ -1,7 +1,7 @@
 ---
 title: Add .NET Aspire to an existing .NET app
 description: Learn how to add .NET Aspire integrations, orchestration, and tooling to a microservices app that already exists.
-ms.date: 11/08/2024
+ms.date: 04/16/2025
 ms.topic: how-to
 zone_pivot_groups: dev-environment
 ---
@@ -37,6 +37,16 @@ This article uses a .NET 9 solution with three projects:
 - **Data Entities**: This project is an example class library. It defines the `Product` class used in the Web App and Web API.
 - **Products**: This example Web API returns a list of products in the catalog and their properties.
 - **Store**: This example Blazor Web App displays the product catalog to website visitors.
+
+### Sample app architecture
+
+To better understand the structure of the sample app, consider the following diagram, which illustrates its simple three-tier architecture:
+
+:::image type="content" source="media/product-store-architecture-thumb.png" alt-text="Simple three-tier architecture diagram showing a product database, product API, and store web app." lightbox="media/product-store-architecture.png":::
+
+This layered design ensures a clear separation of concerns, making the app easier to maintain and scale.
+
+### Run the sample app
 
 Open and start debugging the project to examine its default behavior:
 
@@ -134,6 +144,8 @@ Open and start debugging the project to examine its default behavior:
     }
     ```
 
+    ---
+
 1. To start debugging the solution, press <kbd>F5</kbd> or select **Start**.
 1. Two pages open in the browser:
 
@@ -141,8 +153,6 @@ Open and start debugging the project to examine its default behavior:
     - A page displays the homepage of the website. In the menu on the left, select **Products** to see the catalog obtained from the Web API.
 
 1. To stop debugging, close the browser, and then select the **Stop** button twice (once for each running debug instance).
-
----
 
 :::zone-end
 :::zone pivot="dotnet-cli"
@@ -167,6 +177,8 @@ Open and start debugging the project to examine its default behavior:
 1. To stop debugging, close the browser, and press <kbd>Ctrl</kbd>+<kbd>C</kbd> in both terminals.
 
 :::zone-end
+
+No matter which tool you use—starting multiple projects manually or configuring connections between them is tedious. Additionally, the **Store** project requires explicit endpoint configuration for the **Products** API, which is both cumbersome and prone to errors. This is where .NET Aspire simplifies and streamlines the process!
 
 ## Add .NET Aspire to the Store web app
 
@@ -249,6 +261,8 @@ dotnet add .\eShopLite.AppHost\eShopLite.AppHost.csproj reference .\Store\Store.
 ```
 
 ---
+
+For more information on the available templates, see [.NET Aspire templates](../fundamentals/aspire-sdk-templates.md).
 
 ### Create a service defaults project
 
@@ -344,7 +358,7 @@ builder.Build().Run();
 
 The preceding code:
 
-- Creates a new `DistributedApplicationBuilder` instance.
+- Creates a new <xref:Aspire.Hosting.DistributedApplicationBuilder> instance.
 - Adds the **Store** project to the orchestrator.
 - Adds the **Products** project to the orchestrator.
 - Builds and runs the orchestrator.
@@ -353,7 +367,7 @@ The preceding code:
 
 ## Service Discovery
 
-At this point, both projects are part of .NET Aspire orchestration, but the _Store_ needs to be able to discover the **Products** backend address through [.NET Aspire's service discovery](../service-discovery/overview.md). To enable service discovery, open the _:::no-loc text="Program.cs":::_ file in **eShopLite.AppHost** and update the code that the _Store_ adds a reference to the _Products_ project:
+At this point, both projects are part of .NET Aspire orchestration, but the **Store** project needs to rely on the **Products** backend address through [.NET Aspire's service discovery](../service-discovery/overview.md). To enable service discovery, open the _:::no-loc text="Program.cs":::_ file in **eShopLite.AppHost** project and update the code so that the `builder` adds a reference to the _Products_ project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -362,12 +376,13 @@ var products = builder.AddProject<Projects.Products>("products");
 
 builder.AddProject<Projects.Store>("store")
        .WithExternalHttpEndpoints()
-       .WithReference(products);
+       .WithReference(products)
+       .WaitFor(products);
 
 builder.Build().Run();
 ```
 
-The preceding code expresses that the _Store_ project depends on the _Products_ project. For more information, see [.NET Aspire app host: Reference resources](../fundamentals/app-host-overview.md#reference-resources). This reference is used to discover the address of the _Products_ project. Additionally, the _Store_ project is configured to use external HTTP endpoints. If you later choose to deploy this app, you'd need the call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints%2A> to ensure that it's public to the outside world.
+The preceding code expresses that the _Store_ project depends on the _Products_ project. For more information, see [.NET Aspire app host: Reference resources](../fundamentals/app-host-overview.md#reference-resources). This reference is used to discover the address of the _Products_ project at run time. Additionally, the _Store_ project is configured to use external HTTP endpoints. If you later choose to deploy this app, you'd need the call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints%2A> to ensure that it's public to the outside world. Finally, the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> API ensures that _Store_ app waits for the _Products_ app to be ready to serve requests.
 
 Next, update the _:::no-loc text="appsettings.json":::_ in the _Store_ project with the following JSON:
 
@@ -414,7 +429,7 @@ Delete the _launch.json_ file that you created earlier, it no longer serves a pu
     :::image type="content" source="media/vscode-run-app-host.png" lightbox="media/vscode-run-app-host.png" alt-text="Visual Studio Code: Solution Explorer selecting Debug > Start New Instance." :::
 
     > [!NOTE]
-    > If Docker Desktop (or Podman) isn't running, you'll experience an error. Start the OCI compliant container engine and try again.
+    > If Docker Desktop (or Podman) isn't running, you experience an error. Start the container runtime and try again.
 
 :::zone-end
 :::zone pivot="dotnet-cli"
@@ -426,7 +441,7 @@ Delete the _launch.json_ file that you created earlier, it no longer serves a pu
     ```
 
     > [!NOTE]
-    > If Docker Desktop (or Podman) isn't running, you'll experience an error. Start the OCI compliant container engine and try again.
+    > If Docker Desktop (or Podman) isn't running, you experience an error. Start the container runtime and try again.
 
 :::zone-end
 :::zone pivot="vscode,dotnet-cli"
@@ -443,4 +458,4 @@ Delete the _launch.json_ file that you created earlier, it no longer serves a pu
 
 :::zone-end
 
-Congratulations, you added .NET Aspire orchestration to your pre-existing web app. You can now add .NET Aspire integrations and use the .NET Aspire tooling to streamline your cloud-native web app development.
+Congratulations, you added .NET Aspire orchestration to your preexisting web app. You can now add .NET Aspire integrations and use the .NET Aspire tooling to streamline your cloud-native web app development.

@@ -44,37 +44,17 @@ The preceding call to `AddAzureRedis` configures the Redis server resource to be
 > [!TIP]
 > When you call <xref:Aspire.Hosting.AzureRedisExtensions.AddAzureRedis*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../../azure/local-provisioning.md#configuration).
 
-#### Generated provisioning Bicep
+#### Provisioning-generated Bicep
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Cache for Redis resource, the following Bicep is generated:
 
-<!-- markdownlint-disable MD033 -->
-<br/>
-<details>
-<summary id="azure-redis"><strong>Toggle Azure Cache for Redis Bicep.</strong></summary>
-<p aria-labelledby="azure-redis">
-
 :::code language="bicep" source="../../snippets/azure/AppHost/redis.module.bicep":::
 
-</p>
-</details>
-<!-- markdownlint-enable MD033 -->
+The preceding Bicep is a module that provisions an Azure Cache for Redis resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-The preceding Bicep is a module that provisions an Azure Cache for Redis with the following defaults:
+:::code language="bicep" source="../../snippets/azure/AppHost/redis-roles.module.bicep":::
 
-- `location`: The location of the Azure Cache for Redis resource. The default is the location of the resource group.
-- `principalId`: The principal ID of the Azure Cache for Redis resource.
-- `principalName`: The principal name of the Azure Cache for Redis resource.
-- `sku`: The SKU of the Azure Cache for Redis resource. The default is `Basic` with a capacity of `1`.
-- `enableNonSslPort`: The non-SSL port of the Azure Cache for Redis resource. The default is `false`.
-- `disableAccessKeyAuthentication`: The access key authentication of the Azure Cache for Redis resource. The default is `true`.
-- `minimumTlsVersion`: The minimum TLS version of the Azure Cache for Redis resource. The default is `1.2`.
-- `redisConfiguration`: The Redis configuration of the Azure Cache for Redis resource. The default is `aad-enabled` set to `true`.
-- `tags`: The tags of the Azure Cache for Redis resource. The default is `aspire-resource-name` set to the name of the Aspire resource, in this case `redis`.
-- `redis_contributor`: The contributor of the Azure Cache for Redis resource, with an access policy name of `Data Contributor`.
-- `connectionString`: The connection string of the Azure Cache for Redis resource.
-
-In addition to the Azure Cache for Redis, it also provisions an access policy assignment to the application access to the cache. The generated Bicep is a starting point and can be customized to meet your specific requirements.
+In addition to the Azure Cache for Redis, it also provisions an access policy assignment to the application access to the cache. The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 

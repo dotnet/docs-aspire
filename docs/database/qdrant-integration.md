@@ -54,7 +54,7 @@ builder.AddProject<Projects.ExampleProject>()
 ```
 
 > [!NOTE]
-> The Qdrant container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/app-host-overview.md#container-resource-lifetime).
+> The Qdrant container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
 When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `qdrant/qdrant` image, it creates a new Qdrant instance on your local machine. The resource is named `qdrant` and then added to the `ExampleProject`.
 
@@ -243,7 +243,7 @@ The .NET Aspire Qdrant client integration supports <xref:Microsoft.Extensions.Co
 }
 ```
 
-For the complete Qdrant client integration JSON schema, see [Aspire.Qdrant.Client/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Qdrant.Client/ConfigurationSchema.json).
+For the complete Qdrant client integration JSON schema, see [Aspire.Qdrant.Client/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Qdrant.Client/ConfigurationSchema.json).
 
 #### Use inline delegates
 

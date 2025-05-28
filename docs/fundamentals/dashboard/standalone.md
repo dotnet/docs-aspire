@@ -1,7 +1,7 @@
 ---
 title: Standalone .NET Aspire dashboard
 description: How to use the .NET Aspire dashboard standalone.
-ms.date: 10/29/2024
+ms.date: 04/15/2025
 ms.topic: reference
 ---
 
@@ -56,7 +56,7 @@ When the dashboard is run from a standalone container, the login token is printe
 :::image type="content" source="media/standalone/aspire-dashboard-container-log.png" lightbox="media/standalone/aspire-dashboard-container-log.png" alt-text="Screenshot of the .NET Aspire dashboard container logs.":::
 
 > [!TIP]
-> To avoid the login, you can disable the authentication requirement by setting the `DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` environment variable to `true`. Additional configuration is available, see [Dashboard configuration](configuration.md).
+> To avoid the login, you can disable the authentication requirement by setting the `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` environment variable to `true`. Additional configuration is available, see [Dashboard configuration](configuration.md).
 
 For more information about logging into the dashboard, see [Dashboard authentication](explore.md#dashboard-authentication).
 
@@ -73,7 +73,11 @@ Although there is no restriction on where the dashboard is run, the dashboard is
 - Telemetry is automatically removed if [telemetry limits](configuration.md#telemetry-limits) are exceeded.
 - No telemetry is persisted when the dashboard is restarted.
 
-The dashboard also has functionality for viewing .NET Aspire resources. The dashboard resource features are disabled when it is run in standalone mode. To enable the resources UI, [add configuration for a resource service](configuration.md#resources).
+### Unavailable features when standalone
+
+The dashboard has functionality for viewing .NET Aspire resources. The dashboard resource features are disabled when it is run in standalone mode. To enable the resources UI, [add configuration for a resource service](configuration.md#resources).
+
+[GitHub Copilot functionality](copilot.md) isn't available in the standalone dashboard. Copilot uses a connection to your IDE to communicate with GitHub Copilot and that connection isn't available when the dashboard is in standalone mode.
 
 ## Send telemetry to the dashboard
 

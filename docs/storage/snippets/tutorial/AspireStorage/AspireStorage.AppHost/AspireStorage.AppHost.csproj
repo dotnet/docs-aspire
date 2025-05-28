@@ -1,11 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.2.0" />
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <IsAspireHost>true</IsAspireHost>
     <UserSecretsId>90b8925f-9539-4074-b384-2172e0b8354a</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
@@ -14,7 +13,7 @@
     <ProjectReference Include="..\AspireStorage.WorkerService\AspireStorage.WorkerService.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.Storage" Version="9.0.0" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.2.1" />
+    <PackageReference Include="Aspire.Hosting.Azure.Storage" Version="9.2.1" />
   </ItemGroup>
 </Project>

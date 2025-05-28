@@ -1,7 +1,7 @@
 ---
 title: Use .NET Aspire messaging integrations in ASP.NET Core
 description: Learn how to connect an ASP.NET Core app to messaging services using .NET Aspire integrations.
-ms.date: 08/12/2024
+ms.date: 03/20/2025
 ms.topic: tutorial
 zone_pivot_groups: dev-environment
 ---
@@ -117,7 +117,7 @@ Visual Studio tooling added this line of code to register your new project with 
 1. Choose the **Worker Service** template and enter the project name as **AspireSample.WorkerService**.
 1. Select **Default directory** to create the project in the same directory as the solution.
 1. Select **Create project** to add the project to the solution.
-1. Right-click on the **AspireSample.AppHost** project in the **Solution Explorer** and select **Add Project Reference**:
+1. Right-click on the **AspireSample.AppHost** project in the **Solution Explorer**, select **Add Project Reference** and then select **AspireSample.WorkerService**:
 
     :::image type="content" source="media/vscode-add-project-reference.png" lightbox="media/vscode-add-project-reference.png" alt-text="Visual Studio Code: Add project reference from AspireSample.AppHost to AspireSample.WorkerService.":::
 
@@ -230,7 +230,7 @@ Add the [.NET Aspire Azure Service Bus](azure-service-bus-integration.md) integr
     ```xml
     <ItemGroup>
         <PackageReference Include="Aspire.Azure.Messaging.ServiceBus"
-                          Version="8.0.1" />
+                          Version="9.1.0" />
     </ItemGroup>
     ```
 
@@ -253,7 +253,7 @@ dotnet add package Aspire.Azure.Messaging.ServiceBus
 
 :::zone-end
 
-In the _:::no-loc text="Program.cs":::_ file of the **AspireSample.ApiService** project, add a call to the `AddAzureServiceBusClient` extension method—replacing the existing call to `AddServiceDefaults`:
+In the _:::no-loc text="Program.cs":::_ file of the **AspireSample.ApiService** project, add a call to the `AddAzureServiceBusClient` extension method immediately after the existing call to `AddServiceDefaults`:
 
 ```csharp
 // Add service defaults & Aspire integrations.
@@ -281,22 +281,24 @@ In the _:::no-loc text="appsettings.json":::_ file of the same project, add the 
 }
 ```
 
+> [!NOTE]
+> Make sure to replace **{your_namespace}** in the service URIs with the name of your own Service Bus namespace.
+
 # [Connection String](#tab/connection-string)
 
 ```json
 {
   // Existing configuration is omitted for brevity.
   "ConnectionStrings": {
-    "serviceBusConnection": "Endpoint=sb://{your_namespace}.servicebus.windows.net/;
-          SharedAccessKeyName=accesskeyname;SharedAccessKey=accesskey"
+    "serviceBusConnection": "{your_connection_string}"
   }
 }
 ```
 
----
-
 > [!NOTE]
-> Make sure to replace **{your_namespace}** in the service URIs with the name of your own Service Bus namespace.
+> Make sure to replace **{your_connection_string}** with the entire connection string you retrieved for your Service Bus namespace from the Azure portal.
+
+---
 
 ## Create the API endpoint
 
@@ -351,7 +353,7 @@ app.Run();
 
 Add the [.NET Aspire Azure Service Bus](azure-service-bus-integration.md) integration to your **AspireSample.WorkerService** project. Follow the same steps as you did before when you added the [Aspire.Azure.Messaging.ServiceBus](https://nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) NuGet package to the **AspireSample.ApiService** project. Once it's been added, you can configure the worker service to process messages from the Service Bus topic.
 
-In the _:::no-loc text="Program.cs":::_ file of the **AspireSample.WorkerService** project, repace the existing code with the following:
+In the _:::no-loc text="Program.cs":::_ file of the **AspireSample.WorkerService** project, replace the existing code with the following:
 
 ```csharp
 using AspireSample.WorkerService;
@@ -384,22 +386,24 @@ In the _:::no-loc text="appsettings.json":::_ file of the **AspireSample.WorkerS
 }
 ```
 
+> [!NOTE]
+> Make sure to replace **{your_namespace}** in the Service URIs with the name of your own Service Bus namespace.
+
 # [Connection String](#tab/connection-string)
 
 ```json
 {
   // Existing configuration is omitted for brevity.
   "ConnectionStrings": {
-    "serviceBusConnection": "Endpoint=sb://{your_namespace}.servicebus.windows.net/;
-        SharedAccessKeyName=accesskeyname;SharedAccessKey=accesskey"
+    "serviceBusConnection": "{your_connection_string}"
   }
 }
 ```
 
----
-
 > [!NOTE]
-> Make sure to replace **{your_namespace}** in the Service URIs with the name of your own Service Bus namespace.
+> Make sure to replace **{your_connection_string}** with the entire connection string you retrieved for your Service Bus namespace from the Azure portal.
+
+---
 
 ## Process the message from the subscriber
 
@@ -498,10 +502,10 @@ The sample app is now ready for testing. Verify that the data submitted to the A
 4. In a terminal window, use the `curl` command to send a test message to the API:
 
     ```bash
-    curl -X POST -H "Content-Type: application/json" https://localhost:{port}/notify?message=hello%20aspire  
+    curl -X POST -H "Content-Type: application/json" https://localhost:{port}/notify?message=hello%20aspire
     ```
 
-    Be sure to replace **{port}** with the port number from earlier.
+    Be sure to replace **{port}** with the port number you noted earlier.
 5. Switch back to the **aspiresample-workerservice** logs. You should see the test message printed in the output logs.
 
 <!-- markdownlint-enable MD029 -->

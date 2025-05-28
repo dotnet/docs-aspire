@@ -5,8 +5,63 @@ items:
   href: ../get-started/aspire-overview.md
 - name: Breaking changes
   href: breaking-changes.md
-- name: .NET Aspire 9.0
+- name: .NET Aspire 9.3
   expanded: true
+  items:
+  - name: Overview
+    href: 9.3/index.md
+  - name: Breaking changes in 9.3
+    expanded: true
+    items:
+    - name: With HTTP/S health checks changes
+      href: 9.3/with-health-checks-changes.md
+    - name: Azure SQL Server default SKU changes
+      href: 9.3/azure-sql-server-default-sku-changes.md
+    - name: Removal of publisher APIs
+      href: 9.3/remove-publisher-apis.md
+    - name: Azure SQL Server default user-assigned managed identity admin changes
+      href: 9.3/azure-sql-server-default-uami-admin.md
+- name: .NET Aspire 9.2
+  expanded: false
+  items:
+  - name: Overview
+    href: 9.2/index.md
+  - name: Breaking changes in 9.2
+    expanded: true
+    items:
+    - name: Azure Container Apps managed identity changes
+      href: 9.2/managed-identity-per-app.md
+    - name: Azure OpenAI deployment obsolete APIs
+      href: 9.2/azure-openaideployment-obsolete.md
+    - name: KeyVault default role assignment changes
+      href: 9.2/keyvault-role-assignment-changes.md
+    - name: Role Assignments is separate bicep
+      href: 9.2/generated-bicep-updates.md
+    - name: With authentication APIs include semantic changes
+      href: 9.2/withauthentication-changes.md
+    - name: WithCommand obsolete, use new overload
+      href: 9.2/withcommand-obsolete.md
+- name: .NET Aspire 9.1
+  expanded: false
+  items:
+  - name: Overview
+    href: 9.1/index.md
+  - name: Breaking changes in 9.1
+    expanded: true
+    items:
+    - name: Container image name and tag updates
+      href: 9.1/container-image-name-and-tag-updates.md
+    - name: Cosmos DB hosting integration obsolete API and default managed identity support
+      href: 9.1/cosmos-db-obsolete-apis.md
+    - name: Service Bus hosting integration obsolete APIs
+      href: 9.1/service-bus-obsolete-apis.md
+    - name: Event Hubs hosting integration obsolete APIs
+      href: 9.1/event-hubs-obsolete-apis.md
+    - name: Testing builder API changes
+      href: 9.1/testing-builder-api-changes.md
+    - name: Python hosting integration API changes
+      href: 9.1/python-hosting-integration-api-changes.md
+- name: .NET Aspire 9.0
   items:
   - name: Overview
     href: 9.0/index.md
@@ -17,7 +72,7 @@ items:
       href: 9.0/azureopenai-ctor.md
     - name: Introduce new Python resource type and APIs changes
       href: 9.0/addpython.md
-    - name:  Updates to implicitly named volumes to avoid collisions
+    - name: Updates to implicitly named volumes to avoid collisions
       href: 9.0/unnamed-volumes.md
     - name: Make unnamed volumes more unique
       href: 9.0/make-unnamed-volumes-unique.md
@@ -31,3 +86,5 @@ items:
       href: 9.0/azure-resource-name-scheme.md
     - name: Ollama integration updates
       href: 9.0/ollama-integration-updates.md
+- name: .NET Aspire Support Policy
+  href: https://dotnet.microsoft.com/platform/support/policy/aspire

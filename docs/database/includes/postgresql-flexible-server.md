@@ -56,34 +56,17 @@ The preceding call to `AddAzurePostgresFlexibleServer` configures the PostgresSQ
 > [!TIP]
 > When you call <xref:Aspire.Hosting.AzurePostgresExtensions.AddAzurePostgresFlexibleServer*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../../azure/local-provisioning.md#configuration).
 
-#### Generated provisioning Bicep
+#### Provisioning-generated Bicep
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by hand, because the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure PostgreSQL resource, the following Bicep is generated:
 
-<!-- markdownlint-disable MD033 -->
-<br/>
-<details>
-<summary id="azure-postgresql"><strong>Toggle Azure PostgreSQL Bicep.</strong></summary>
-<p aria-labelledby="azure-postgresql">
-
 :::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible.module.bicep":::
 
-</p>
-</details>
-<!-- markdownlint-enable MD033 -->
+The preceding Bicep is a module that provisions an Azure PostgreSQL flexible server resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-The preceding Bicep is a module that provisions an Azure PostgreSQL flexible server with the following defaults:
+:::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible-roles.module.bicep":::
 
-- `authConfig`: The authentication configuration of the PostgreSQL server. The default is `ActiveDirectoryAuth` enabled and `PasswordAuth` disabled.
-- `availabilityZone`: The availability zone of the PostgreSQL server. The default is `1`.
-- `backup`: The backup configuration of the PostgreSQL server. The default is `BackupRetentionDays` set to `7` and `GeoRedundantBackup` set to `Disabled`.
-- `highAvailability`: The high availability configuration of the PostgreSQL server. The default is `Disabled`.
-- `storage`: The storage configuration of the PostgreSQL server. The default is `StorageSizeGB` set to `32`.
-- `version`: The version of the PostgreSQL server. The default is `16`.
-- `sku`: The SKU of the PostgreSQL server. The default is `Standard_B1ms`.
-- `tags`: The tags of the PostgreSQL server. The default is `aspire-resource-name` set to the name of the Aspire resource, in this case `postgres-flexible`.
-
-In addition to the PostgreSQL flexible server, it also provisions an Azure Firewall rule to allow all Azure IP addresses. Finally, an administrator is created for the PostgreSQL server, and the connection string is outputted as an output variable. The generated Bicep is a starting point and can be customized to meet your specific requirements.
+In addition to the PostgreSQL flexible server, it also provisions an Azure Firewall rule to allow all Azure IP addresses. Finally, an administrator is created for the PostgreSQL server, and the connection string is outputted as an output variable. The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 

@@ -58,7 +58,7 @@ When you add a client integration to a project within your .NET Aspire solution,
 
 ## Versioning considerations
 
-Hosting and client integrations are updated each release to target the latest stable versions of dependent resources. When container images are updated with new image versions, the hosting integrations update to these new versions. Similarly, when a new NuGet version is available for a dependent client library, the corresponding client integration updates to the new version. This ensures the latest features and security updates are available to applications.
+Hosting and client integrations are updated each release to target the latest stable versions of dependent resources. When container images are updated with new image versions, the hosting integrations update to these new versions. Similarly, when a new NuGet version is available for a dependent client library, the corresponding client integration updates to the new version. This ensures the latest features and security updates are available to applications. The .NET Aspire update type (major, minor, patch) doesn't necessarily indicate the type of update in dependent resources. For example, a new major version of a dependent resource may be updated in a .NET Aspire patch release, if necessary.
 
 When major breaking changes happen in dependent resources, integrations may temporarily split into version-dependent packages to ease updating across the breaking change. For more information, see the [first example of such a breaking change](https://github.com/dotnet/aspire/issues/3956).
 
@@ -153,6 +153,7 @@ For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.co
 | - **Learn More**: [📄 Meilisearch hosting](../community-toolkit/hosting-meilisearch.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch) <br /> - **Client**: [📦 Aspire.CommunitToolkit.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Meilisearch) | An Aspire component leveraging the [Meilisearch](https://meilisearch.com) container. |
 | - **Learn More**: [📄 Rust hosting](../community-toolkit/hosting-rust.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Rust](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Rust) <br /> - **Client**: N/A | A hosting integration for Rust apps. |
 | - **Learn More**: [📄 SQL Database projects hosting](../community-toolkit/hosting-sql-database-projects.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.SqlDatabaseProjects](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SqlDatabaseProjects) <br /> - **Client**: N/A | An Aspire hosting integration for SQL Database Projects. |
+| - **Learn More**: [📄 RavenDB](../community-toolkit/ravendb.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.RavenDB](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.RavenDB) <br /> - **Client**: [📦 Aspire.CommunityToolkit.RavenDB.Client](https://nuget.org/packages/CommunityToolkit.Aspire.RavenDB.Client) | An Aspire component leveraging the [RavenDB](https://ravendb.net/) container. |
 <!-- markdownlint-enable MD033 MD045 -->
 
 For more information, see [.NET Aspire Community Toolkit](../community-toolkit/overview.md).

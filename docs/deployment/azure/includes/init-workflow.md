@@ -10,12 +10,13 @@
 
     For more information on the `azd init` command, see [azd init](/azure/developer/azure-developer-cli/reference#azd-init).
 
-1. Select **Use code in the current directory** when `azd` prompts you with two app initialization options.
+1. Select **Use code in the current directory** when `azd` prompts you with three app initialization options.
 
     ```Output
     ? How do you want to initialize your app?  [Use arrows to move, type to filter]
     > Use code in the current directory
       Select a template
+      Create a minimal project
     ```
 
 1. After scanning the directory, `azd` prompts you to confirm that it found the correct .NET Aspire _AppHost_ project. Select the **Confirm and continue initializing my app** option.

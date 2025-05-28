@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire dashboard security considerations
 description: Security considerations for running the .NET Aspire dashboard
-ms.date: 11/20/2024
+ms.date: 04/15/2025
 ms.topic: reference
 ---
 
@@ -19,7 +19,7 @@ The dashboard can be run in different scenarios, such as being automatically sta
 
 The dashboard is automatically started when an .NET Aspire app host is run. The dashboard is secure by default when run from .NET Aspire tooling:
 
-- Transport is secured with HTTPS. Using HTTPS is configured by default in _launchSettings.json_. The launch profile includes `https` addresses in `applicationUrl` and `DOTNET_DASHBOARD_OTLP_ENDPOINT_URL` values.
+- Transport is secured with HTTPS. Using HTTPS is configured by default in _launchSettings.json_. The launch profile includes `https` addresses in `applicationUrl` and `ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL` values.
 - Browser frontend authenticated with a browser token.
 - Incoming telemetry authenticated with an API key.
 

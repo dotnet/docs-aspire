@@ -50,7 +50,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/getmeili/meilisearch` image, it creates a new Meilisearch instance on your local machine. A reference to your Meilisearch resource (the `meilisearch` variable) is added to the `ExampleProject`. The Meilisearch resource includes a randomly generated `master key` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method when a master key wasn't provided.
 
-For more information, see [Container resource lifecycle](../fundamentals/app-host-overview.md#container-resource-lifecycle).
+For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 ### Add Meilisearch resource with data volume
 

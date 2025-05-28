@@ -1,0 +1,18 @@
+info: LifecycleLogger[0]
+      1. BeforeStartAsync
+info: Aspire.Hosting.DistributedApplication[0]
+      Aspire version: 9.3.0
+info: Aspire.Hosting.DistributedApplication[0]
+      Distributed application starting.
+info: Aspire.Hosting.DistributedApplication[0]
+      Application host directory is: ../AspireApp/AspireApp.AppHost
+info: LifecycleLogger[0]
+      2. AfterEndpointsAllocatedAsync
+info: Aspire.Hosting.DistributedApplication[0]
+      Now listening on: https://localhost:17043
+info: Aspire.Hosting.DistributedApplication[0]
+      Login to the dashboard at https://localhost:17043/login?t=<YOUR_TOKEN>
+info: LifecycleLogger[0]
+      3. AfterResourcesCreatedAsync
+info: Aspire.Hosting.DistributedApplication[0]
+      Distributed application started. Press Ctrl+C to shut down.

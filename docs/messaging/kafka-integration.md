@@ -49,14 +49,14 @@ builder.AddProject<Projects.ExampleProject>()
 
 When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/confluentinc/confluent-local` image, it creates a new Kafka server instance on your local machine. A reference to your Kafka server (the `kafka` variable) is added to the `ExampleProject`. The Kafka server resource includes default ports
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"kafka"`. For more information, see [Container resource lifecycle](../fundamentals/app-host-overview.md#container-resource-lifecycle).
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"kafka"`. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 > [!TIP]
 > If you'd rather connect to an existing Kafka server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
 
 ### Add Kafka UI
 
-To add the [Kafka UI](https://hub.docker.com/r/provectuslabs/kafka-ui) to the Kafka server resource, call the <xref:Aspire.Hosting.KafkaBuilderExtensions.WithKafkaUI*> method:
+To add the [Kafka UI](https://hub.docker.com/r/kafbat/kafka-ui) to the Kafka server resource, call the <xref:Aspire.Hosting.KafkaBuilderExtensions.WithKafkaUI*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -70,7 +70,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The Kafka UI is a free, open-source web UI to monitor and manage Apache Kafka clusters. .NET Aspire adds another container image [`docker.io/provectuslabs/kafka-ui`](https://hub.docker.com/r/provectuslabs/kafka-ui) to the app host that runs the Kafka UI.
+The Kafka UI is a free, open-source web UI to monitor and manage Apache Kafka clusters. .NET Aspire adds another container image [`docker.io/kafbat/kafka-ui`](https://hub.docker.com/r/kafbat/kafka-ui) to the app host that runs the Kafka UI.
 
 ### Change the Kafka UI host port
 
@@ -249,7 +249,7 @@ The `Config` properties of both  `Aspire:Confluent:Kafka:Producer` and `Aspire.C
 
 `Confluent.Kafka.Consumer<TKey, TValue>` requires the `ClientId` property to be set to let the broker track consumed message offsets.
 
-For the complete Kafka client integration JSON schema, see [Aspire.Confluent.Kafka/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Confluent.Kafka/ConfigurationSchema.json).
+For the complete Kafka client integration JSON schema, see [Aspire.Confluent.Kafka/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Confluent.Kafka/ConfigurationSchema.json).
 
 #### Use inline delegates
 
@@ -334,14 +334,15 @@ The .NET Aspire Apache Kafka integration dos not emit distributed traces.
 
 The .NET Aspire Apache Kafka integration emits the following metrics using OpenTelemetry:
 
-- `messaging.kafka.network.tx`
-- `messaging.kafka.network.transmitted`
-- `messaging.kafka.network.rx`
-- `messaging.kafka.network.received`
-- `messaging.publish.messages`
-- `messaging.kafka.message.transmitted`
-- `messaging.receive.messages`
-- `messaging.kafka.message.received`
+- `Aspire.Confluent.Kafka`
+  - `messaging.kafka.network.tx`
+  - `messaging.kafka.network.transmitted`
+  - `messaging.kafka.network.rx`
+  - `messaging.kafka.network.received`
+  - `messaging.publish.messages`
+  - `messaging.kafka.message.transmitted`
+  - `messaging.receive.messages`
+  - `messaging.kafka.message.received`
 
 ## See also
 

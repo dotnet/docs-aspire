@@ -18,14 +18,14 @@ Consider the following example app host _:::no-loc text="Program.cs":::_ file:
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Add a parameter named "value"
-var value = builder.AddParameter("value");
+// Add a parameter named "example-parameter-name"
+var parameter = builder.AddParameter("example-parameter-name");
 
 builder.AddProject<Projects.ApiService>("api")
-       .WithEnvironment("EXAMPLE_VALUE", value);
+       .WithEnvironment("ENVIRONMENT_VARIABLE_NAME", parameter);
 ```
 
-The preceding code adds a parameter named `value` to the app host. The parameter is then passed to the `Projects.ApiService` project as an environment variable named `EXAMPLE_VALUE`.
+The preceding code adds a parameter named `example-parameter-name` to the app host. The parameter is then passed to the `Projects.ApiService` project as an environment variable named `ENVIRONMENT_VARIABLE_NAME`.
 
 ### Configure parameter values
 
@@ -36,17 +36,17 @@ Consider the following app host configuration file _:::no-loc text="appsettings.
 ```json
 {
     "Parameters": {
-        "value": "local-value"
+        "example-parameter-name": "local-value"
     }
 }
 ```
 
-The preceding JSON configures a parameter in the `Parameters` section of the app host configuration. In other words, that app host is able to find the parameter as its configured. For example, you could walk up to the <xref:Aspire.Hosting.IDistributedApplicationBuilder.Configuration?displayProperty=nameWithType> and access the value using the `Parameters:value` key:
+The preceding JSON configures a parameter in the `Parameters` section of the app host configuration. In other words, that app host is able to find the parameter as its configured. For example, you could walk up to the <xref:Aspire.Hosting.IDistributedApplicationBuilder.Configuration?displayProperty=nameWithType> and access the value using the `Parameters:example-parameter-name` key:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var key = $"Parameters:value";
+var key = $"Parameters:example-parameter-name";
 var value = builder.Configuration[key]; // value = "local-value"
 ```
 
@@ -60,7 +60,7 @@ var value = builder.Configuration[key]; // value = "local-value"
 ```json
 {
   "resources": {
-    "value": {
+    "example-parameter-name": {
       "type": "parameter.v0",
       "value": "{value.inputs.value}",
       "inputs": {
@@ -134,10 +134,14 @@ var builder = DistributedApplication.CreateBuilder(args);
 var redis = builder.AddConnectionString("redis");
 
 builder.AddProject<Projects.WebApplication>("api")
-       .WithReference(redis);
+       .WithReference(redis)
+       .WaitFor(redis);
 
 builder.Build().Run();
 ```
+
+> [!NOTE]
+> Using <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> with a connection string will implicitly wait for the resource that the connection string connects to.
 
 Now consider the following app host configuration file _:::no-loc text="appsettings.json":::_:
 
@@ -150,6 +154,18 @@ Now consider the following app host configuration file _:::no-loc text="appsetti
 ```
 
 For more information pertaining to connection strings and their representation in the deployment manifest, see [Connection string and binding references](../deployment/manifest-format.md#connection-string-and-binding-references).
+
+### Build connection strings with reference expressions
+
+If you want to construct a connection string from parameters and ensure that it's handled correctly in both development and production, use <xref:Aspire.Hosting.ConnectionStringBuilderExtensions.AddConnectionString*> with a <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression>.
+
+For example, if you have a secret parameter that stores a small part of a connection string, use this code to insert it:
+
+:::code language="csharp" source="snippets/referenceexpressions/AspireReferenceExpressions.AppHost/Program.cs" id="secretkey":::
+
+You can also use reference expressions to append text to connection strings created by .NET Aspire resources. For example, when you add a PostgreSQL resource to your .NET Aspire solution, the database server runs in a container and a connection string is formulated for it. In the following code, the extra property `Include Error Details` is appended to that connection string before it's passed to consuming projects:
+
+:::code language="csharp" source="snippets/referenceexpressions/AspireReferenceExpressions.AppHost/Program.cs" id="postgresappend":::
 
 ## Parameter example
 

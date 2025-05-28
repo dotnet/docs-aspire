@@ -1,7 +1,7 @@
 ---
 title: Orchestrate Node.js apps in .NET Aspire
 description: Learn how to integrate Node.js and npm apps into a .NET Aspire App Host project.
-ms.date: 11/20/2024
+ms.date: 05/27/2025
 ---
 
 # Orchestrate Node.js apps in .NET Aspire
@@ -119,7 +119,7 @@ To help understand how each client app resource is orchestrated, look to the app
 
 The project file also defines a build target that ensures that the npm dependencies are installed before the app host is built. The app host code (_Program.cs_) declares the client app resources using the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp(Aspire.Hosting.IDistributedApplicationBuilder,System.String,System.String,System.String,System.String[])> API.
 
-:::code source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.AppHost/Program.cs":::
+:::code source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.AppHost/AppHost.cs":::
 
 The preceding code:
 
@@ -148,7 +148,13 @@ There are several key modifications from the original Angular template. The firs
 
 The .NET Aspire app host sets the `services__weatherapi__http__0` environment variable, which is used to resolve the "weatherapi" service endpoint. The preceding configuration proxies HTTP requests that start with `/api` to the target URL specified in the environment variable.
 
-The second update is to the _package.json_ file. This file is used to configure the Angular client to run on a different port than the default port. This is achieved by using the `PORT` environment variable, and the `run-script-os` npm package to set the port.
+Then include the proxy file to in the _angular.json_ file.
+Update the `serve` target to include the `proxyConfig` option, referencing to the created _proxy.conf.js_ file.
+The Angular CLI will now use the proxy configuration while serving the Angular client app.
+
+:::code language="javascript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/angular.json" range="59-73" highlight="13":::
+
+The third update is to the _package.json_ file. This file is used to configure the Angular client to run on a different port than the default port. This is achieved by using the `PORT` environment variable, and the `run-script-os` npm package to set the port.
 
 :::code language="json" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/package.json":::
 

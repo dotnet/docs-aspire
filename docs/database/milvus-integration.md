@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Milvus database integration
 description: Learn how to use the .NET Aspire Milvus database integration, which includes both hosting and client integrations.
-ms.date: 08/22/2024
+ms.date: 02/14/2025
 uid: database/milvus-integration
 ---
 
@@ -56,7 +56,7 @@ builder.AddProject<Projects.ExampleProject>()
 ```
 
 > [!NOTE]
-> The Milvus container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/app-host-overview.md#container-resource-lifetime).
+> The Milvus container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
 When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `milvusdb/milvus` image, it creates a new Milvus instance on your local machine. A reference to your Milvus resource builder (the `milvus` variable) is used to add a database. The database is named `milvusdb` and then added to the `ExampleProject`.
 
@@ -158,7 +158,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 When you debug the .NET Aspire solution, you'll see an Attu container listed in the solution's resources. Select the resource's endpoint to open the GUI and start managing databases.
 
-## Client integration
+## Client integration (Preview)
 
 To get started with the .NET Aspire Milvus client integration, install the [📦 Aspire.Milvus.Client](https://www.nuget.org/packages/Aspire.Milvus.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the Milvus database client. The Milvus client integration registers a [Milvus.Client.MilvusClient](https://github.com/milvus-io/milvus-sdk-csharp) instance that you can use to interact with Milvus databases.
 
@@ -270,7 +270,7 @@ The .NET Aspire Milvus client integration supports <xref:Microsoft.Extensions.Co
 }
 ```
 
-For the complete Milvus client integration JSON schema, see [Aspire.Milvus.Client/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.0.0/src/Components/Aspire.Milvus.Client/ConfigurationSchema.json).
+For the complete Milvus client integration JSON schema, see [Aspire.Milvus.Client/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Milvus.Client/ConfigurationSchema.json).
 
 #### Use inline delegates
 

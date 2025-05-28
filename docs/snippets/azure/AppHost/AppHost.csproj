@@ -1,34 +1,35 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-  <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.2.0" />
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <IsAspireHost>true</IsAspireHost>
     <UserSecretsId>70839f09-c301-4bf9-aa1d-59b0a2bfb79e</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Azure.Provisioning.ContainerRegistry" Version="1.0.0" />
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.AppConfiguration" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.ApplicationInsights" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.CognitiveServices" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.CosmosDB" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.EventHubs" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.KeyVault" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.OperationalInsights" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.PostgreSQL" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.Redis" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.Search" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.ServiceBus" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.SignalR" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.Sql" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.Storage" Version="9.0.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.WebPubSub" Version="9.0.0" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.AppConfiguration" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.AppContainers" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.ApplicationInsights" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.CognitiveServices" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.CosmosDB" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.EventHubs" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.Functions" Version="9.2.0-preview.1.25209.2" />
+    <PackageReference Include="Aspire.Hosting.Azure.KeyVault" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.OperationalInsights" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.PostgreSQL" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.Redis" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.Search" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.ServiceBus" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.SignalR" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.Sql" Version="9.2.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.Storage" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.WebPubSub" Version="9.3.0" />
   </ItemGroup>
 
   <ItemGroup>
