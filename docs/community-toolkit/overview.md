@@ -48,6 +48,9 @@ The community toolkit is a growing project, publishing a set of NuGet packages. 
 - The [SQLite](https://www.sqlite.org/index.html) integration provides support for hosting SQLite databases.
   - [📄 .NET Aspire SQLite hosting integration](sqlite.md#hosting-integration)
   - [📦 CommunityToolkit.Aspire.Hosting.SQLite](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SQLite).
+- The [RavenDB](https://ravendb.net/) integration enables hosting RavenDB containers.
+  - [📄 .NET Aspire RavenDB hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.RavenDB).
+  - [📦 CommunityToolkit.Aspire.Hosting.RavenDB](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.RavenDB).
 
 ### Client integrations
 
@@ -65,6 +68,9 @@ The following client integrations are available in the toolkit:
 - The [SQLite Entity Framework](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite) integration provides support for hosting SQLite databases with Entity Framework.
   - [📄 .NET Aspire SQLite EF hosting integration](sqlite-entity-framework-integration.md#client-integration)
   - [📦 CommunityToolkit.Aspire.Microsoft.EntityFrameworkCore.Sqlite](https://nuget.org/packages/CommunityToolkit.Aspire.Microsoft.EntityFrameworkCore.Sqlite).
+- **RavenDB.Client** is a .NET client for the RavenDB Client API:
+  - [📄 .NET Aspire RavenDB client integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.RavenDB.Client)
+  - [📦 CommunityToolkit.Aspire.RavenDB.Client](https://nuget.org/packages/CommunityToolkit.Aspire.RavenDB.Client)
 
 > [!TIP]
 > Always check the [GitHub repository][github-repo] for the most up-to-date information on the toolkit.

@@ -518,7 +518,7 @@ This first release is scoped to the most common use cases:
 #### Example: Deploy to Azure App Service
 
 ```csharp
-var env = builder.AddAzureAppServiceEnvironment("env");
+builder.AddAzureAppServiceEnvironment("env");
 
 builder.AddProject<Projects.Api>("api")
        .WithExternalHttpEndpoints()
@@ -813,11 +813,11 @@ If your deployment relied on Aspire setting the managed identity as the SQL Serv
 
 📖 Related: [dotnet/aspire#8381](https://github.com/dotnet/aspire/issues/8381) and [dotnet/aspire#8389](https://github.com/dotnet/aspire/issues/8389)
 
-### 💸 Default Azure SQL SKU is now Free (Breaking change)
+### 💸 Default Azure SQL SKU now uses the Free Offer (Breaking change)
 
-.NET Aspire 9.3 changes the default SKU used when provisioning **Azure SQL databases** to the **Free (Basic)** tier. This helps reduce unexpected costs during development and experimentation.
+.NET Aspire 9.3 changes the default SKU used when provisioning **Azure SQL databases** to the **GP_S_Gen5_2** (General Purpose Serverless) tier with the [**Free Offer**](/azure/azure-sql/database/free-offer?view=azuresql). This helps reduce unexpected costs during development and experimentation.
 
-Previously, Aspire defaulted to the **General Purpose (GP)** tier, which could incur charges even for small or test apps.
+Previously, Aspire defaulted to the **General Purpose (GP)** tier *without* the Free Offer, which could incur charges even for small or test apps.
 
 #### What's new
 
@@ -829,16 +829,18 @@ var sql = builder.AddAzureSqlServer("sqlserver");
 sql.AddDatabase("appdb");
 ```
 
-Aspire now automatically uses the **free-tier SKU** for `appdb`, unless you override it.
+Aspire now automatically uses the **Free Offer** for `appdb`, which will deploy a **GP_S_Gen5_2** (General Purpose Serverless), unless you override it.
 
 #### How to restore the previous behavior
 
-If your app requires the performance or features of a paid tier, you can opt out of the new default using:
+If your app requires the performance or features of the General Purpose paid tier, you can opt out of the new default using:
 
 ```csharp
 sql.AddDatabase("appdb")
    .WithDefaultAzureSku(); // Uses the previous (General Purpose) default
 ```
+
+If you want to specify what SKU to use, you the `ConfigureInfrastructure` method as explained here: [Setting a specific SKU](https://github.com/dotnet/aspire/tree/main/src/Aspire.Hosting.Azure.Sql#setting-a-specific-sku).
 
 #### ⚠️ Breaking change
 

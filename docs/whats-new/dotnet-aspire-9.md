@@ -62,7 +62,7 @@ The display of resource details contains several improvements:
 
 - Configured container volumes are listed in resource details.
 
-- .NET Aspire 9 adds support for health checks. Detailed information about these checks can now be viewed in the resource details pane, showing why a resource might be marked as unhealthy or degraded. Find out more about health checks [here](#resource-health-checks).
+- .NET Aspire 9 adds support for health checks. Detailed information about these checks can now be viewed in the resource details pane, showing why a resource might be marked as unhealthy or degraded. For more information, see [Resource health check](#resource-health-checks).
 
 ### Colorful console log
 
