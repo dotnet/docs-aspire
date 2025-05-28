@@ -78,8 +78,7 @@ To add a data bind mount to the MailPit resource, call the `Aspire.Hosting.MailP
 var builder = DistributedApplication.CreateBuilder(args);
 
 var mailpit = builder.AddMailPit("mailpit")
-                         .WithDataBindMount(
-                             source: @"C:\MailPit\Data");
+                     .WithDataBindMount(source: @"C:\MailPit\Data");
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(mailpit);
@@ -92,6 +91,8 @@ builder.AddProject<Projects.ExampleProject>()
 Data bind mounts rely on the host machine's filesystem to persist the MailPit data across container restarts. The data bind mount is mounted at the `C:\MailPit\Data` on Windows (or `/MailPit/Data` on Unix) path on the host machine in the MailPit container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
 
 ## Client integration
+
+There isn't a Community Toolkit client integration, however, if you're consuming the resource, it's good to know how to configure your clients.
 
 ### Use a connection string
 
