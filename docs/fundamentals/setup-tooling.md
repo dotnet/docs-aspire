@@ -168,16 +168,6 @@ For more information, see [Install Podman on Windows](https://podman.io/docs/ins
 
 ---
 
-## .NET Aspire templates
-
-.NET Aspire provides a set of solution and project templates. These templates are available in your favorite .NET developer integrated environment. You can use these templates to create full .NET Aspire solutions, or add individual projects to existing .NET Aspire solutions. To install the .NET Aspire templates from their respective NuGet packages, use the following commands:
-
-```dotnetcli
-dotnet new install Aspire.ProjectTemplates
-```
-
-For more information, see [.NET Aspire templates](aspire-sdk-templates.md).
-
 ## .NET Aspire dashboard
 
 .NET Aspire templates that expose the [app host](app-host-overview.md) project also include a useful developer [dashboard](dashboard/overview.md) that's used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
