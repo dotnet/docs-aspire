@@ -143,10 +143,10 @@ For more information, see [.NET Aspire templates](aspire-sdk-templates.md).
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most popular container runtime among .NET Aspire developers, offering a familiar and widely supported environment for building and running containers.
 - [Podman](https://podman.io/docs/installation) is an open-source, daemonless alternative to Docker. It supports building and running Open Container Initiative (OCI) containers, making it a flexible choice for developers who prefer a lightweight solution.
-- [Rancher Desktop](https://rancherdesktop.io/) is another open-source option that provides a user-friendly interface for managing containers. It runs as an Electron app and uses a virtual machine on macOS and Linux, while leveraging Windows Subsystem for Linux (WSL) on Windows.
+- [Rancher Desktop](https://rancherdesktop.io/) is another open-source option that provides a user-friendly interface for managing containers. It runs as an Electron app and uses a virtual machine on macOS and Linux, while using Windows Subsystem for Linux (WSL) on Windows.
 
 > [!IMPORTANT]
-> Rancher Desktop is only supported with the default installation, where it relies on the Docker CLI. If you have configured Rancher Desktop to use the `nerdctl` CLI, .NET Aspire won't work with it.
+> .NET Aspire supports Rancher Desktop only with the default Docker CLI setup. If you configure Rancher Desktop to use the `nerdctl` CLI, .NET Aspire can't use it.
 
 If your host environment has a Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `DOTNET_ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
 
@@ -206,7 +206,7 @@ The .NET Aspire dashboard is also available in a standalone mode. For more infor
 
 ## Visual Studio tooling
 
-Visual Studio provides additional features for working with .NET Aspire integrations and the App Host orchestrator project. Not all of these features are currently available in Visual Studio Code or through the CLI.
+Visual Studio provides extra features for working with .NET Aspire integrations and the App Host orchestrator project. Not all of these features are currently available in Visual Studio Code or through the CLI.
 
 ### Add an integration package
 
@@ -224,7 +224,7 @@ For more information on .NET Aspire integrations, see [.NET Aspire integrations 
 
 ### Add hosting packages
 
-.NET Aspire hosting packages are used to configure various resources and dependencies an app may depend on or consume. Hosting packages are differentiated from other integration packages in that they're added to the _*.AppHost_ project. To add a hosting package to your app, follow these steps:
+.NET Aspire hosting packages are used to configure various resources and dependencies an app might depend on or consume. Hosting packages are differentiated from other integration packages in that they're added to the _*.AppHost_ project. To add a hosting package to your app, follow these steps:
 
 1. In Visual Studio, right select on the _*.AppHost_ project and select **Add** > **.NET Aspire package...**.
 
