@@ -146,7 +146,7 @@ For more information, see [.NET Aspire templates](aspire-sdk-templates.md).
 - [Rancher Desktop](https://rancherdesktop.io/) is another open-source option that provides a user-friendly interface for managing containers. It runs as an Electron app and uses a virtual machine on macOS and Linux, while using Windows Subsystem for Linux (WSL) on Windows.
 
 > [!IMPORTANT]
-> .NET Aspire supports Rancher Desktop only with the default Docker CLI setup. If you configure Rancher Desktop to use the `nerdctl` CLI, .NET Aspire can't use it.
+> .NET Aspire supports Rancher Desktop only with the default Docker CLI setup. If you configure Rancher Desktop to use the `nerdctl` CLI, it isn't supported.
 
 If your host environment has a Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `DOTNET_ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
 
@@ -167,16 +167,6 @@ For more information, see [Install Podman on Linux](https://podman.io/docs/insta
 For more information, see [Install Podman on Windows](https://podman.io/docs/installation#installing-on-mac--windows).
 
 ---
-
-### Container runtime support matrix
-
-The following table shows the container runtimes supported by .NET Aspire:
-
-| Container runtime | Windows | macOS | Linux |
-|-------------------|---------|-------|-------|
-| Docker Desktop    | ✔️      | ✔️    | ✔️    |
-| Podman            | ❌      | ❌    | ✔️    |
-| Rancher Desktop   | ✔️      | ✔️    | ✔️    |
 
 ## .NET Aspire templates
 
