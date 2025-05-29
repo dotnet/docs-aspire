@@ -1,0 +1,6 @@
+@AspireApp.ExampleProject_HostAddress = http://localhost:5022
+
+GET {{AspireApp.ExampleProject_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
