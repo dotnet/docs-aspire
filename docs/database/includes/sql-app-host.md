@@ -70,7 +70,6 @@ CREATE DATABASE [<QUOTED_DATABASE_NAME>];
 
 To alter the default script, chain a call to the <xref:Aspire.Hosting.SqlServerBuilderExtensions.WithCreationScript*> method on the database resource builder:
 
-
 :::code language="csharp" source="../snippets/sql-server-creation-script/AspireApp.AppHost/AppHost.cs":::
 
 The preceding example creates a database named `app_db` with a single `todos` table. The SQL script is executed when the database resource is created. The script is passed as a string to the `WithCreationScript` method, which is then executed in the context of the SQL Server resource.
