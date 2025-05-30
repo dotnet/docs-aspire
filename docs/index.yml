@@ -11,7 +11,7 @@ metadata:
   description: Learn about .NET Aspire, a cloud-ready stack for building distributed applications. Browse API reference, tutorials, and more.
   ms.topic: hub-page
   ms.service: dotnet-aspire
-  ms.date: 02/25/2025
+  ms.date: 05/30/2025
 
 highlightedContent:
   items:
@@ -360,7 +360,7 @@ additionalContent:
     items:
     - title: ".NET Aspire API reference"
       summary: API reference documentation for .NET Aspire
-      url: /dotnet/api?view=dotnet-aspire-9.2&preserve-view=true
+      url: /dotnet/api?view=dotnet-aspire-9.3&preserve-view=true
     - title: ".NET API reference"
       summary: API reference documentation for .NET
       url: /dotnet/api?view=net-9.0&preserve-view=true
