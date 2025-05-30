@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 05/29/2025
+ms.date: 05/30/2025
 zone_pivot_groups: dev-environment
 uid: dotnet/aspire/setup-tooling
 ---
@@ -104,7 +104,7 @@ dotnet new install Aspire.ProjectTemplates::9.3.0
 
 :::zone pivot="visual-studio"
 
-The .NET Aspire templates are installed automatically when you install Visual Studio 17.9 or later. To see what .NET Aspire templates are available, select **File** > **New** > **Project** in Visual Studio, and search for "Aspire" in the search bar (<kbd>Alt</kbd>+<kbd>S</kbd>). You'll see a list of available .NET Aspire project templates:
+The .NET Aspire templates are installed automatically when you install Visual Studio 17.9 or later. To see what .NET Aspire templates are available, select **File** > **New** > **Project** in Visual Studio, and search for "Aspire" in the search bar (<kbd>Alt</kbd>+<kbd>S</kbd>). You see a list of available .NET Aspire project templates:
 
 :::image type="content" source="media/vs-create-dotnet-aspire-proj.png" alt-text="Visual Studio: Create new project and search for 'Aspire'." lightbox="media/vs-create-dotnet-aspire-proj.png":::
 
@@ -138,7 +138,7 @@ For more information, see [.NET Aspire templates](aspire-sdk-templates.md).
 
 ## Container runtime
 
-.NET Aspire can run containers using several OCI-compatible runtimes, including Docker Desktop and Podman. While some users have reported success using [Rancher Desktop](https://rancherdesktop.io/)—particularly when configured to use the Docker CLI—this is not an officially supported or regularly tested scenario. It might be possible to use Rancher Desktop with the default installation, but it's not an officially supported or validated approach. If you encounter issues with Rancher Desktop, please let us know, but be aware that fixes may not be prioritized.
+.NET Aspire can run containers using several OCI-compatible runtimes, including Docker Desktop and Podman. While some users have reported success using [Rancher Desktop](https://rancherdesktop.io/)—particularly when configured to use the Docker CLI—this isn't an officially supported or regularly tested scenario. It might be possible to use Rancher Desktop with the default installation, but it's not an officially supported or validated approach. If you encounter issues with Rancher Desktop, please let us know, but be aware that fixes might not be prioritized.
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most popular container runtime among .NET Aspire developers, offering a familiar and widely supported environment for building and running containers.
 - [Podman](https://podman.io/docs/installation) is an open-source, daemonless alternative to Docker. It supports building and running Open Container Initiative (OCI) containers, making it a flexible choice for developers who prefer a lightweight solution.
