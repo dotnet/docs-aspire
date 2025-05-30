@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 04/15/2025
+ms.date: 05/30/2025
 zone_pivot_groups: dev-environment
 uid: dotnet/aspire/setup-tooling
 ---
@@ -23,7 +23,9 @@ To work with .NET Aspire, you need the following installed locally:
 
 - [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0) or [.NET 9.0](https://dotnet.microsoft.com/download/dotnet/9.0).
 - An OCI compliant container runtime, such as:
-  - [Docker Desktop](https://www.docker.com/products/docker-desktop) or [Podman](https://podman.io/). For more information, see [Container runtime](#container-runtime).
+  - [Docker Desktop](https://www.docker.com/products/docker-desktop)
+  - [Podman](https://podman.io/)
+    - _For more information, see [Container runtime](#container-runtime)_.
 - An Integrated Developer Environment (IDE) or code editor, such as:
   - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) version 17.9 or higher (Optional)
   - [Visual Studio Code](https://code.visualstudio.com/) (Optional)
@@ -102,7 +104,7 @@ dotnet new install Aspire.ProjectTemplates::9.3.0
 
 :::zone pivot="visual-studio"
 
-The .NET Aspire templates are installed automatically when you install Visual Studio 17.9 or later. To see what .NET Aspire templates are available, select **File** > **New** > **Project** in Visual Studio, and search for "Aspire" in the search bar (<kbd>Alt</kbd>+<kbd>S</kbd>). You'll see a list of available .NET Aspire project templates:
+The .NET Aspire templates are installed automatically when you install Visual Studio 17.9 or later. To see what .NET Aspire templates are available, select **File** > **New** > **Project** in Visual Studio, and search for "Aspire" in the search bar (<kbd>Alt</kbd>+<kbd>S</kbd>). You see a list of available .NET Aspire project templates:
 
 :::image type="content" source="media/vs-create-dotnet-aspire-proj.png" alt-text="Visual Studio: Create new project and search for 'Aspire'." lightbox="media/vs-create-dotnet-aspire-proj.png":::
 
@@ -136,7 +138,12 @@ For more information, see [.NET Aspire templates](aspire-sdk-templates.md).
 
 ## Container runtime
 
-.NET Aspire projects are designed to run in containers. You can use either Docker Desktop or Podman as your container runtime. [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most common container runtime. [Podman](https://podman.io/docs/installation) is an open-source daemonless alternative to Docker, that can build and run Open Container Initiative (OCI) containers. If your host environment has both Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
+.NET Aspire can run containers using several OCI-compatible runtimes, including Docker Desktop and Podman. While some users have reported success using [Rancher Desktop](https://rancherdesktop.io/)—particularly when configured to use the Docker CLI—this isn't an officially supported or regularly tested scenario. It might be possible to use Rancher Desktop with the default installation, but it's not an officially supported or validated approach. If you encounter issues with Rancher Desktop, please let us know, but be aware that fixes might not be prioritized.
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most popular container runtime among .NET Aspire developers, offering a familiar and widely supported environment for building and running containers.
+- [Podman](https://podman.io/docs/installation) is an open-source, daemonless alternative to Docker. It supports building and running Open Container Initiative (OCI) containers, making it a flexible choice for developers who prefer a lightweight solution.
+
+If your host environment has a Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `DOTNET_ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
 
 ## [Linux](#tab/linux)
 
@@ -174,7 +181,7 @@ The .NET Aspire dashboard is also available in a standalone mode. For more infor
 
 ## Visual Studio tooling
 
-Visual Studio provides additional features for working with .NET Aspire integrations and the App Host orchestrator project. Not all of these features are currently available in Visual Studio Code or through the CLI.
+Visual Studio provides extra features for working with .NET Aspire integrations and the App Host orchestrator project. Not all of these features are currently available in Visual Studio Code or through the CLI.
 
 ### Add an integration package
 
@@ -192,7 +199,7 @@ For more information on .NET Aspire integrations, see [.NET Aspire integrations 
 
 ### Add hosting packages
 
-.NET Aspire hosting packages are used to configure various resources and dependencies an app may depend on or consume. Hosting packages are differentiated from other integration packages in that they're added to the _*.AppHost_ project. To add a hosting package to your app, follow these steps:
+.NET Aspire hosting packages are used to configure various resources and dependencies an app might depend on or consume. Hosting packages are differentiated from other integration packages in that they're added to the _*.AppHost_ project. To add a hosting package to your app, follow these steps:
 
 1. In Visual Studio, right select on the _*.AppHost_ project and select **Add** > **.NET Aspire package...**.
 
