@@ -89,6 +89,8 @@ To expand the functionality provided by the .NET Aspire integrations, the Commun
   - [📄 Docs](hosting-redis-extensions.md)
 - [📦 CommunityToolkit.Aspire.Hosting.MongoDB.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.MongoDB.Extensions)
   - [📄 Docs](hosting-mongodb-extensions.md)
+- [📦 CommunityToolkit.Aspire.Hosting.MySql.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.MySql.Extensions)
+  - [📄 Docs](hosting-mysql-extensions.md)
 
 If you're not seeing an integration or extension you need, you can contribute to the toolkit by creating your own integration and submitting a pull request. For more information, see [How to collaborate](#how-to-collaborate).
 
