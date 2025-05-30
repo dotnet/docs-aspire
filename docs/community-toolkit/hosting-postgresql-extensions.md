@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL hosting extensions
 description: Learn how to use the .NET Aspire PostgreSQL extensions package which provides extra functionality to the .NET Aspire PostgreSQL hosting package.
-ms.date: 03/04/2025
+ms.date: 05/28/2025
 ---
 
 # .NET Aspire Community Toolkit PostgreSQL hosting extensions
@@ -14,6 +14,7 @@ In this article, you learn about the .NET Aspire Community Toolkit PostgreSQL ho
 
 This package provides the following features:
 
+- [Adminer](https://adminer.org/) management UI
 - [DbGate](https://dbgate.org/) management UI
 
 ## Hosting integration
@@ -44,6 +45,13 @@ To add the DbGate management UI to your PostgreSQL resource, call the `WithDbGat
 ```csharp
 var postgresServer = builder.AddPostgreSQL("PostgreSQL")
     .WithDbGate();
+```
+
+To add the Adminer management UI to your PostgreSQL resource, call the `WithAdminer` method on the `PostgresServerResource` instance.
+
+```csharp
+var postgresServer = builder.AddPostgreSQL("PostgreSQL")
+    .WithAdminer();
 ```
 
 This will add a new resource to the app host which will be available from the .NET Aspire dashboard.
