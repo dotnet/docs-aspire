@@ -139,14 +139,11 @@ For more information, see [.NET Aspire templates](aspire-sdk-templates.md).
 
 ## Container runtime
 
-.NET Aspire supports running containers using various OCI-compatible runtimes, such as Docker Desktop, Podman, and Rancher Desktop.
+.NET Aspire can run containers using several OCI-compatible runtimes, including Docker Desktop, Podman, and Rancher Desktop. In addition to an OCI-compatible runtime, .NET Aspire requires a supported command-line interface (CLI) for container management. Currently, only the Docker CLI and Podman CLI are supported. For example, Rancher Desktop is supported when configured to use the Docker CLI, but not when using the `nerdctl` CLI.
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most popular container runtime among .NET Aspire developers, offering a familiar and widely supported environment for building and running containers.
 - [Podman](https://podman.io/docs/installation) is an open-source, daemonless alternative to Docker. It supports building and running Open Container Initiative (OCI) containers, making it a flexible choice for developers who prefer a lightweight solution.
 - [Rancher Desktop](https://rancherdesktop.io/) is another open-source option that provides a user-friendly interface for managing containers. It runs as an Electron app and uses a virtual machine on macOS and Linux, while using Windows Subsystem for Linux (WSL) on Windows.
-
-> [!IMPORTANT]
-> .NET Aspire supports Rancher Desktop only with the default Docker CLI setup. If you configure Rancher Desktop to use the `nerdctl` CLI, it isn't supported.
 
 If your host environment has a Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `DOTNET_ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
 
