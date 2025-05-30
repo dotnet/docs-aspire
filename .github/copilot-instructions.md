@@ -1,4 +1,4 @@
-When writing documentation, follow the following guidelines:
+When writing documentation or editing .md files, follow the following guidelines:
 
 Unless otherwise specified, all .NET content refers to modern .NET (not .NET Framework).
 
