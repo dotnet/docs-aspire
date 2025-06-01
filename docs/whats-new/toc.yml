@@ -24,8 +24,6 @@ items:
   href: ../compatibility/breaking-changes.md
 - name: GitHub releases
   items:
-  #- name: .NET Aspire 9.3
-  #  href: https://github.com/dotnet/aspire/releases/tag/v9.3.0
   - name: .NET Aspire 9.2
     href: https://github.com/dotnet/aspire/releases/tag/v9.2.0
   - name: .NET Aspire 9.1
@@ -45,9 +43,9 @@ items:
 - name: Latest documentation updates
   expanded: true
   items:
+  - name: May 2025
+    href: dotnet-docs-aspire-mod2.md
   - name: April 2025
     href: dotnet-docs-aspire-mod1.md
   - name: February 2025
     href: dotnet-docs-aspire-mod2.md
-  - name: January 2025
-    href: dotnet-docs-aspire-mod1.md
