@@ -48,6 +48,5 @@ The following people contributed to the .NET Aspire docs during this period. Tha
 
 - [alistairmatthews](https://github.com/alistairmatthews) - Alistair Matthews ![5 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-5-green)
 - [Alirexaa](https://github.com/Alirexaa) - Alireza Baloochi  ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
-- [copilot-swe-agent](https://github.com/copilot-swe-agent) -  ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [crisweber2600](https://github.com/crisweber2600) - Cris Weber ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
 - [shiranshalom](https://github.com/shiranshalom) - shiranshalom ![1 pull requests.](https://img.shields.io/badge/Merged%20Pull%20Requests-1-green)
