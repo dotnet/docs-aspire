@@ -368,6 +368,8 @@ items:
       href: community-toolkit/hosting-redis-extensions.md
     - name: PostgreSQL Extensions
       href: community-toolkit/hosting-postgresql-extensions.md
+    - name: MySql Extensions
+      href: community-toolkit/hosting-mysql-extensions.md
     - name: RavenDB
       href: community-toolkit/ravendb.md
   - name: Aspire.Hosting API reference
