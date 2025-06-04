@@ -98,6 +98,11 @@ The data volume is used to persist the MongoDB server data outside the lifecycle
 > [!WARNING]
 > The password is stored in the data volume. When using a data volume and if the password changes, it will not work until you delete the volume.
 
+> [!IMPORTANT]
+> Some database integrations, including the .NET Aspire MongoDB integration, can't successfully use data volumes after deployment to Azure Container Apps (ACA). This is because ACA uses Server Message Block (SMB) to connect containers to data volumes, and some systems can't use this connection. In the Aspire Dashboard, a database affected by this issue has a status of **Activating** or **Activation Failed** but is never listed as **Running**.
+>
+> You can resolve the problem by deploying to a Kubernetes cluster, such as Azure Kubernetes Services (AKS). For more information, see [.NET Aspire deployments](../deployment/overview.md).
+
 ### Add MongoDB server resource with data bind mount
 
 To add a data bind mount to the MongoDB server resource, call the <xref:Aspire.Hosting.MongoDBBuilderExtensions.WithDataBindMount*> method:
