@@ -23,6 +23,10 @@ For more information on the schema of the manifest and how to run app host proje
 
 .NET Aspire projects are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. The [Azure Container Apps](azure/aca-deployment.md) topic describes how to deploy Aspire apps to ACA manually, using bicep, or using the Azure Developer CLI (azd).
 
+### Customize Azure infrastructure
+
+When deploying to Azure, you can customize the infrastructure resources to meet organizational requirements such as tagging policies, specific SKUs, networking configurations, or compliance standards. .NET Aspire provides powerful APIs to customize Azure resources during deployment. For detailed examples and patterns, see [Customize Azure deployment infrastructure](azure/customize-infrastructure.md).
+
 ### Use Application Insights for .NET Aspire telemetry
 
 .NET Aspire projects are designed to emit telemetry using OpenTelemetry which uses a provider model. .NET Aspire projects can direct their telemetry to Azure Monitor / Application Insights using the Azure Monitor telemetry distro. For more information, see [Use Application Insights for .NET Aspire telemetry](azure/application-insights.md) for step-by-step instructions.
