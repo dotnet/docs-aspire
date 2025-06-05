@@ -93,6 +93,8 @@ The preceding code:
   - The <xref:Azure.Provisioning.SignalR.SignalRService.PublicNetworkAccess?displayProperty=nameWithType> property is set to `Enabled`.
   - A tag is added to the SignalR service resource with a key of `ExampleKey` and a value of `Example value`.
 
+There are many more configuration options available to customize the Azure SignalR resource. For more information, see <xref:Azure.Provisioning.SignalR>. For more information, see [Azure.Provisioning customization](../azure/integrations-overview.md#azureprovisioning-customization). For deployment-focused customization patterns, see [Customize Azure deployment infrastructure](../deployment/azure/customize-infrastructure.md).
+
 ### Connect to an existing Azure SignalR Service
 
 You might have an existing Azure SignalR Service that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.ApplicationModel.AzureSignalRResource> is an existing resource:
