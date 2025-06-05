@@ -100,6 +100,9 @@ To create a service that applies the migrations:
     dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer -v "9.1.0"
     ```
 
+    > [!TIP]
+    > In some cases, you might also need to add the [📦 Microsoft.EntityFrameworkCore.Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools) package to prevent EF from failing silently without applying migrations. This is particularly relevant when using databases other than SQL Server, such as PostgreSQL. For more information, see [dotnet/efcore#27215](https://github.com/dotnet/efcore/issues/27215#issuecomment-2045767772).
+
 1. Add the highlighted lines to the *:::no-loc text="Program.cs":::* file in the *:::no-loc text="SupportTicketApi.MigrationService":::* project:
 
     :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.MigrationService/Program.cs" highlight="1,6,9-12" :::
