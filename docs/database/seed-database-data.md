@@ -36,11 +36,11 @@ By default, .NET Aspire database integrations rely on containerized databases, w
 
 ## Seed data using SQL scripts
 
-In .NET Aspire 9.2, the recommended method for executing database seeding scripts depends on the database server you use:
+In .NET Aspire 9.3, the recommended method for executing database seeding scripts depends on the database server you use:
 
 ### [SQL Server](#tab/sql-server)
 
-In .NET Aspire 9.2 and later versions, you can use the <xref:Aspire.Hosting.SqlServerBuilderExtensions.WithCreationScript*> method to ensure a T-SQL script is run when the database is created. Add SQL code to this script that creates and populates the database, the necessary tables, and other database objects.
+In .NET Aspire 9.3 and later versions, you can use the <xref:Aspire.Hosting.SqlServerBuilderExtensions.WithCreationScript*> method to ensure a T-SQL script is run when the database is created. Add SQL code to this script that creates and populates the database, the necessary tables, and other database objects.
 
 The following code is an example T-SQL script that creates and populates an address book database:
 
