@@ -1,11 +1,9 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
 var postgres = builder.AddAzurePostgresFlexibleServer("postgres")
-                      .RunAsContainer(ConfPostgresContainer);
+                      .RunAsContainer(container => 
+                      {
+                        container.WithDataVolume();
+                      });
 
 builder.Build().Run();
-
-static void ConfPostgresContainer(IResourceBuilder<PostgresServerResource> container)
-{
-    container.WithDataVolume();
-}
