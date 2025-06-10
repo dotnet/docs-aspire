@@ -65,7 +65,7 @@ This code:
 
 ### [PostgreSQL](#tab/postgresql)
 
-In .NET Aspire 9.2, the `WithCreationScript()` method isn't supported for the PostgreSQL integration. Instead, you must use a bind mount and deploy the setup SQL script to it, so that the data is seeded when the container initializes the database.
+In .NET Aspire 9.3, the `WithCreationScript()` method is supported for the PostgreSQL integration but, because there is no `USE DATABASE` in PostgreSQL, it only supports operations against the default database. For example, you can issue `CREATE DATABASE` statements to create other databases, but you can't populate them with tables and data. Instead, you must use a bind mount and deploy the setup SQL script to it, so that the data is seeded when the container initializes the database.
 
 The following code is an example PostgreSQL script that creates and populates a to do list database:
 
@@ -77,15 +77,21 @@ In the app host's *AppHost.cs* (or *Program.cs*) file, create the database and m
 
 ### [MySQL](#tab/mysql)
 
-In .NET Aspire 9.2, the `WithCreationScript()` method isn't supported for the MySQL integration. Instead, you must use a bind mount and deploy the setup SQL script to it, so that the data is seeded when the container initializes the database.
+In .NET Aspire 9.3 and later versions, you can use the <xref:Aspire.Hosting.MySqlBuilderExtensions.WithCreationScript*> method to ensure a MySQL script is run when the database is created. Add SQL code to this script that creates and populates the database, the necessary tables, and other database objects.
 
-The following code is an example MySQL script that creates and populates a product catalog database:
+In the following App Host code, the script is created as a string and passed to the `WithCreationScript` method:
 
-:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.ApiService/data/mysql/init.sql" :::
+:::code source="../snippets/mysql-seed-data/AppHost.cs" :::
 
-In the app host's *AppHost.cs* (or *Program.cs*) file, create the database and mount the folder that contains the SQL script as a bind mount:
+This code:
 
-:::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/AppHost.cs" range="21-36" :::
+- Create a MySQL container by calling `builder.AddMySql()`.
+- Uses the `MYSQL_DATABASE` environment variable to name the database `catalog`.
+- Ensures that data is persisted across debugging sessions by calling `WithDataVolume()` and `WithLifetime(ContainerLifetime.Persistent)`.
+- Create a second container that runs the PHP My Admin user interface for MySQL.
+- Calls `WithCreationScript()` to create and seed the database.
+
+If you run this code, you can use the PHP My Admin resource to check that a table called **catalog** has been created and populated with products.
 
 ---
 
