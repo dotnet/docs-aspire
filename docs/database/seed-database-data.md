@@ -81,7 +81,7 @@ In .NET Aspire 9.3 and later versions, you can use the <xref:Aspire.Hosting.MySq
 
 In the following App Host code, the script is created as a string and passed to the `WithCreationScript` method:
 
-:::code source="../snippets/mysql-seed-data/AppHost.cs" :::
+:::code source="snippets/mysql-seed-data/AppHost.cs" :::
 
 This code:
 
