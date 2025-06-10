@@ -29,14 +29,14 @@ Before you can use .NET Aspire 9, you need to remove outdated components and upg
 
 ### .NET Aspire workload
 
-Previously the **aspire** workload was required to create and run .NET Aspire projects. But, with .NET Aspire 9 the workload is no longer required and should be removed from your .NET environment.
+Previously the **aspire workload** was required to create and run .NET Aspire projects. But, with .NET Aspire 9 the workload is no longer required and should be removed from your .NET environment.
 
 > [!IMPORTANT]
-> You must remove .NET Aspire 8 (the **aspire** workload) to enable the .NET Aspire 9 templates.
+> You must remove .NET Aspire 8 (the **aspire workload**) to enable the .NET Aspire 9 templates.
 
 01. Find the installation source by opening a terminal and running the `dotnet workload list` command.
 
-    The preceding command lists the workloads installed in the .NET environment. The method used to install .NET Aspire is listed under the **Installation Source** column of the output, and is either _VS_ for Visual Studio or _SDK_ for the .NET tooling. For example, the following snippet indicates that Visual Studio was used to install .NET Aspire:
+    The preceding command lists the workloads installed in the .NET environment. The method used to install .NET Aspire is listed under the **Installation Source** column of the output, and is either _VS_ for Visual Studio or _SDK_ for the .NET SDK. For example, the following snippet indicates that Visual Studio was used to install .NET Aspire:
 
     ```
     Installed Workload Id      Manifest Version      Installation Source
