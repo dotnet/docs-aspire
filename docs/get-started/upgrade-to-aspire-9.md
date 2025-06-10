@@ -21,7 +21,7 @@ Before you upgrade your projects to .NET Aspire 9.0, ensure that you have the fo
 
 - [Install the latest tooling](../fundamentals/setup-tooling.md).
 - [Use the .NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md).
-- If you have an older major version of .NET Aspire installed, [remove it](#upgrade-to-net-aspire-9).
+- If you have a version of .NET Aspire older than 9.0, [remove it](#upgrade-your-development-environment).
 
 ## Upgrade your development environment
 
@@ -56,6 +56,8 @@ Previously the **aspire** workload was required to create and run .NET Aspire pr
       01. Select the **Modify** button to apply the changes.
 
     - If the **Installation Source** starts with _SDK_, run `dotnet workload uninstall aspire` to remove .NET Aspire.
+
+01. Install the .NET Aspire 9.0 templates with the `dotnet new install Aspire.ProjectTemplates` command.
 
 ## Manually upgrade to .NET Aspire 9.0
 
