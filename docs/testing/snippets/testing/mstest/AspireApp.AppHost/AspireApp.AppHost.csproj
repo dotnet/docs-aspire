@@ -12,6 +12,6 @@
     <ProjectReference Include="..\AspireApp.Web\AspireApp.Web.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.3.1" />
   </ItemGroup>
 </Project>
