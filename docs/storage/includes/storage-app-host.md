@@ -102,32 +102,28 @@ There are many more configuration options available to customize the Azure Stora
 
 ### Connect to an existing Azure Storage account
 
-You might have an existing Azure Storage account that you want to connect to. Instead of representing a new Azure Storage resource, you can add a connection string to the app host. To add a connection to an existing Azure Storage account, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> method:
+You might have an existing Azure Storage account that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureStorageResource> is an existing resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var blobs = builder.AddConnectionString("blobs");
+var existingStorageName = builder.AddParameter("existingStorageName");
+var existingStorageResourceGroup = builder.AddParameter("existingStorageResourceGroup");
 
-builder.AddProject<Projects.WebApplication>("web")
-       .WithReference(blobs);
+var storageaccount = builder.AddAzureStorage("storage")
+                    .AsExisting(existingStorageName, existingStorageResourceGroup)
+                    .AddBlobs("blobs");
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(storageaccount);
 
 // After adding all resources, run the app...
 ```
 
-[!INCLUDE [connection-strings-alert](../../includes/connection-strings-alert.md)]
+For more information on treating Azure Storage resources as existing resources, see [Use existing Azure resources](../../azure/integrations-overview.md#use-existing-azure-resources).
 
-The connection string is configured in the app host's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section. The app host injects this connection string as an environment variable into all dependent resources, for example:
-
-```json
-{
-    "ConnectionStrings": {
-        "blobs": "https://{account_name}.blob.core.windows.net/"
-    }
-}
-```
-
-The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"blobs"`. The `GetConnectionString` API is shorthand for `IConfiguration.GetSection("ConnectionStrings")[name]`.
+> [!NOTE]
+> Alternatively, instead of representing an Azure Storage account resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Add Azure Storage emulator resource
 

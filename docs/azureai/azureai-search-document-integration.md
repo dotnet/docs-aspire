@@ -103,34 +103,8 @@ builder.AddProject<Projects.ExampleProject>()
 
 For more information on treating Azure AI Search resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
-Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the app host. Which is a weakly-typed approach that's based solely on a `string` value. To add a connection to an existing Azure AI Search service, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString%2A> method:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var search = builder.ExecutionContext.IsPublishMode
-    ? builder.AddAzureSearch("search")
-    : builder.AddConnectionString("search");
-
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(search);
-
-// After adding all resources, run the app...
-```
-
-[!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
-
-The connection string is configured in the app host's configuration, typically under User Secrets, under the `ConnectionStrings` section:
-
-```json
-{
-  "ConnectionStrings": {
-    "search": "https://{account_name}.search.azure.com/"
-  }
-}
-```
-
-For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> [!NOTE]
+> Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Hosting integration health checks
 

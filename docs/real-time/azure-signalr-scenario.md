@@ -114,32 +114,8 @@ builder.AddProject<Projects.ExampleProject>()
 
 For more information on treating Azure SignalR resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
-Alternatively, instead of representing an Azure SignalR resource, you can add a connection string to the app host. Which is a weakly-typed approach that's based solely on a `string` value. To add a connection to an existing Azure SignalR Service, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString%2A> method:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var signalr = builder.ExecutionContext.IsPublishMode
-    ? builder.AddAzureSignalR("signalr")
-    : builder.AddConnectionString("signalr");
-
-builder.AddProject<Projects.ApiService>("apiService")
-       .WithReference(signalr);
-```
-
-[!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
-
-The connection string is configured in the app host's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section:
-
-```json
-{
-  "ConnectionStrings": {
-    "signalr": "Endpoint=https://your-signalr-instance.service.signalr.net;AccessKey=your-access-key;Version=1.0;"
-  }
-}
-```
-
-For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> [!NOTE]
+> Alternatively, instead of representing an Azure SignalR Service resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Add an Azure SignalR Service emulator resource
 
