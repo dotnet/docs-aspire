@@ -31,30 +31,6 @@ dotnet add package Aspire.Hosting.Azure.Search
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-### Connect to an existing Azure AI Search service
-
-You might have an existing Azure AI Search service that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureSearchResource> is an existing resource:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var existingSearchName = builder.AddParameter("existingSearchName");
-var existingSearchResourceGroup = builder.AddParameter("existingSearchResourceGroup");
-
-var search = builder.AddAzureSearch("search")
-                    .AsExisting(existingSearchName, existingSearchResourceGroup);
-
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(search);
-
-// After adding all resources, run the app...
-```
-
-For more information on treating Azure AI Search resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
-
-> [!NOTE]
-> Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
-
 ### Add an Azure AI Search resource
 
 To add an <xref:Aspire.Hosting.Azure.AzureSearchResource> to your app host project, call the <xref:Aspire.Hosting.AzureSearchExtensions.AddAzureSearch*> method providing a name:
@@ -105,6 +81,30 @@ The preceding code:
     - A tag is added to the Cognitive Services resource with a key of `ExampleKey` and a value of `Example value`.
 
 There are many more configuration options available to customize the Azure AI Search resource. For more information, see [`Azure.Provisioning` customization](../azure/integrations-overview.md#azureprovisioning-customization).
+
+### Connect to an existing Azure AI Search service
+
+You might have an existing Azure AI Search service that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureSearchResource> is an existing resource:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var existingSearchName = builder.AddParameter("existingSearchName");
+var existingSearchResourceGroup = builder.AddParameter("existingSearchResourceGroup");
+
+var search = builder.AddAzureSearch("search")
+                    .AsExisting(existingSearchName, existingSearchResourceGroup);
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(search);
+
+// After adding all resources, run the app...
+```
+
+For more information on treating Azure AI Search resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
+
+> [!NOTE]
+> Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Hosting integration health checks
 
