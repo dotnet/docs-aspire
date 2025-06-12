@@ -45,7 +45,7 @@ The preceding call to `AddAzureSqlServer` configures the Azure SQL server resour
 
 ### Connect to an existing Azure SQL server
 
-You might have an existing Azure SQL Database service that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureSqlSearchResource> is an existing resource:
+You might have an existing Azure SQL Database service that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureSqlServerResource> is an existing resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
