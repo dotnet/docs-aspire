@@ -76,3 +76,265 @@ The preceding walkthrough demonstrates the streamlined process of creating a Dev
 The [template repository](https://github.com/dotnet/aspire-devcontainer) contains a copy of the _devcontainer.json_ file that you can use as a starting point, which should be sufficient for .NET Aspire. The following JSON represents the latest version of the _.devcontainer/devcontainer.json_ file from the template:
 
 :::code language="json" source="~/aspire-devcontainer/.devcontainer/devcontainer.json":::
+
+## Dev Container scenarios
+
+The basic .NET Aspire Dev Container template works well for simple scenarios, but you might need additional configuration depending on your specific requirements. The following sections provide examples for various common scenarios.
+
+### Stateless .NET apps only
+
+For simple .NET Aspire projects that only use .NET project resources without external containers or complex orchestration, you can use a minimal Dev Container configuration:
+
+```json
+{
+  "name": ".NET Aspire - Simple",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
+  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
+  "postStartCommand": "dotnet dev-certs https --trust",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit"
+      ]
+    }
+  }
+}
+```
+
+This minimal configuration is suitable for .NET Aspire apps that orchestrate only .NET services without external dependencies.
+
+### Adding Node.js resources
+
+If your .NET Aspire app includes Node.js resources, add the Node.js feature to your Dev Container:
+
+```json
+{
+  "name": ".NET Aspire with Node.js",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    }
+  },
+  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
+  "postStartCommand": "dotnet dev-certs https --trust",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "ms-vscode.vscode-typescript-next"
+      ]
+    }
+  }
+}
+```
+
+This configuration provides both .NET and Node.js development capabilities within the same container environment.
+
+### Container orchestration with Docker-in-Docker
+
+When your .NET Aspire app orchestrates container resources, you need Docker-in-Docker (DinD) support. This is more complex and has specific considerations:
+
+```json
+{
+  "name": ".NET Aspire with Containers",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "enableNonRootDocker": true,
+      "moby": true
+    }
+  },
+  "runArgs": [
+    "--sysctl",
+    "net.ipv6.conf.all.disable_ipv6=0",
+    "--sysctl",
+    "net.ipv6.conf.default.forwarding=1",
+    "--sysctl",
+    "net.ipv6.conf.all.forwarding=1"
+  ],
+  "hostRequirements": {
+    "cpus": 8,
+    "memory": "32gb",
+    "storage": "64gb"
+  },
+  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
+  "postStartCommand": "dotnet dev-certs https --trust",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  }
+}
+```
+
+> [!IMPORTANT]
+> **Docker-in-Docker considerations:**
+>
+> - Requires higher resource allocation (CPU, memory, storage)
+> - IPv6 configuration might be necessary for container networking
+> - Works with Docker Desktop but may have limitations with Rancher Desktop
+> - Network connectivity between containers might require additional configuration
+
+### Dapr integration examples
+
+For .NET Aspire apps that integrate with Dapr, you can set up Dapr components in your Dev Container:
+
+#### Basic Dapr setup
+
+```json
+{
+  "name": ".NET Aspire with Dapr",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "enableNonRootDocker": true
+    },
+    "ghcr.io/dapr/cli/dapr-cli:0": {}
+  },
+  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
+  "postCreateCommand": "dotnet dev-certs https --trust && dapr init",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "ms-azuretools.vscode-dapr"
+      ]
+    }
+  }
+}
+```
+
+#### Dapr with external backends
+
+For more complex Dapr scenarios that use external backends (Redis, PostgreSQL), you can use Docker Compose:
+
+```json
+{
+  "name": ".NET Aspire with Dapr and Backends",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "enableNonRootDocker": true
+    },
+    "ghcr.io/dapr/cli/dapr-cli:0": {}
+  },
+  "runArgs": [
+    "--sysctl",
+    "net.ipv6.conf.all.disable_ipv6=0"
+  ],
+  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
+  "postCreateCommand": [
+    "dotnet dev-certs https --trust",
+    "docker compose up -d",
+    "dapr init"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "ms-azuretools.vscode-dapr",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  }
+}
+```
+
+### Infrastructure and Bicep scenarios
+
+For .NET Aspire projects that include Bicep infrastructure files and Azure deployment:
+
+```json
+{
+  "name": ".NET Aspire with Azure Infrastructure",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "enableNonRootDocker": true
+    },
+    "ghcr.io/azure/azure-dev/azd:0": {
+      "version": "latest"
+    }
+  },
+  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
+  "postStartCommand": "dotnet dev-certs https --trust",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "ms-azuretools.vscode-bicep",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  }
+}
+```
+
+### Kubernetes deployment with Aspirate
+
+For scenarios where you want to deploy to Kubernetes using Aspirate:
+
+```json
+{
+  "name": ".NET Aspire with Aspirate",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "enableNonRootDocker": true,
+      "moby": true
+    },
+    "ghcr.io/prom3theu5/aspirational-manifests/aspirate:latest": {}
+  },
+  "runArgs": [
+    "--sysctl",
+    "net.ipv6.conf.all.disable_ipv6=0"
+  ],
+  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
+  "postCreateCommand": [
+    "dotnet dev-certs https --trust",
+    "dotnet tool install -g aspirate --prerelease"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml"
+      ]
+    }
+  }
+}
+```
+
+## Common considerations
+
+When using Dev Containers with .NET Aspire, keep the following considerations in mind:
+
+### Resource requirements
+
+- **Basic .NET apps**: Standard Dev Container resources
+- **Container orchestration**: Minimum 8 CPUs, 32GB memory, 64GB storage
+- **Complex scenarios with Dapr/Kubernetes**: Higher resource allocation recommended
+
+### Networking
+
+- IPv6 configuration may be required for container-to-container communication
+- Port forwarding is automatically handled by .NET Aspire 9.1+
+- External service connectivity depends on your container runtime
+
+### Performance
+
+- Docker-in-Docker scenarios have performance overhead
+- Consider using Docker outside of Docker (DooD) for production workflows
+- Local development vs. deployment scenarios may require different configurations
+
+### Security
+
+- Dev Containers run with elevated privileges when using Docker-in-Docker
+- SSL certificate trust is handled automatically in most scenarios
+- Consider security implications when exposing ports in cloud environments
