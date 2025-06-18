@@ -12,6 +12,9 @@ items:
     href: get-started/build-your-first-aspire-app.md
   - name: Add .NET Aspire to an existing solution
     href: get-started/add-aspire-existing-app.md
+  - name: Migrate from Docker Compose
+    href: get-started/migrate-from-docker-compose.md
+    displayName: docker compose,migration,migrate
   - name: Setup and tooling
     items:
     - name: Overview
