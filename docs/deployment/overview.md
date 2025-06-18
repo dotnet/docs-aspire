@@ -29,7 +29,9 @@ For more information on the schema of the manifest and how to run app host proje
 
 ## Deploy to Kubernetes
 
-Kubernetes is a popular container orchestration platform that can run .NET Aspire projects. To deploy .NET Aspire projects to Kubernetes clusters, you need to map the .NET Aspire JSON manifest to a Kubernetes YAML manifest file. There are two ways to do this: by using the Aspir8 project, or by manually creating Kubernetes manifests.
+Kubernetes is a popular container orchestration platform that can run .NET Aspire projects. To deploy .NET Aspire projects to Kubernetes clusters, you need to map the .NET Aspire JSON manifest to a Kubernetes YAML manifest file. There are several ways to do this: by using the Aspir8 project, using .NET Aspire's built-in Kubernetes publishing features, or by manually creating Kubernetes manifests.
+
+For a comprehensive guide on deploying to Kubernetes, including AKS, see [Deploy a .NET Aspire project to Kubernetes](kubernetes-deployment.md).
 
 ### The Aspir8 project
 

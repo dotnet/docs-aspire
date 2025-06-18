@@ -409,6 +409,9 @@ items:
       href: database/sql-server-integration-deployment.md
     - name: Deploy .NET Aspire + Redis
       href: caching/caching-integrations-deployment.md
+  - name: Deploy to Kubernetes
+    href: deployment/kubernetes-deployment.md
+    displayName: kubernetes,k8s,aks,aspir8
   - name: Tool-builder manifest schemas
     href: deployment/manifest-format.md
 
