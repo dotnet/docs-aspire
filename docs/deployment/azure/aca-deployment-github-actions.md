@@ -119,6 +119,9 @@ The Azure Developer CLI enables you to automatically create pipelines with the c
     azd pipeline config --provider azdo
     ```
 
+    > [!IMPORTANT]
+    > Before running `azd pipeline config`, ensure you have successfully run `azd init` to initialize your project. If you encounter errors like "no project exists" during pipeline execution, see the [troubleshooting section](#troubleshoot-azure-devops-pipeline-deployment) for solutions.
+
 1. Select the subscription to provision and deploy the app resources to.
 
 1. Select the Azure location to use for the resources.
@@ -168,6 +171,65 @@ The Azure Developer CLI enables you to automatically create pipelines with the c
 > If you encounter a `403 Forbidden` error when viewing your site in the browser, make sure the ingress settings are configured correctly. On the **webfrontend** app page in the Azure Portal, navigate to **Ingress** on the left navigation. Make sure **Ingress traffic** is set to **Accepting traffic from anywhere** and save your changes.
 
 Congratulations! You successfully deployed a .NET Aspire project using the Azure Developer CLI and Azure Pipelines.
+
+## Troubleshoot Azure DevOps pipeline deployment
+
+This section covers common issues you might encounter when deploying .NET Aspire projects using Azure DevOps pipelines.
+
+### "ERROR: no project exists; to create a new project, run azd init"
+
+**Problem**: During the provisioning step of your Azure DevOps pipeline, you encounter the error message:
+
+```output
+ERROR: no project exists; to create a new project, run azd init
+```
+
+**Cause**: This error occurs because the `azd init` command generates files (`azure.yaml` and the `.azure` folder) that are typically not committed to your repository. When the pipeline runs in a clean environment, these files don't exist, causing `azd` commands to fail.
+
+**Solution**: There are several approaches to resolve this issue:
+
+#### Option 1: Run azd init in your pipeline (Recommended)
+
+Add an `azd init` step to your Azure DevOps pipeline before the provisioning step. You can use the `--from-code` and `--no-prompt` flags to run the command non-interactively:
+
+```yaml
+- task: AzureCLI@2
+  displayName: 'Initialize Azure Developer CLI'
+  inputs:
+    azureSubscription: '$(AZURE_SERVICE_CONNECTION)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      azd init --from-code --no-prompt
+      azd env new $(AZURE_ENV_NAME) --location $(AZURE_LOCATION) --subscription $(AZURE_SUBSCRIPTION_ID)
+```
+
+Make sure to define the following variables in your pipeline:
+
+- `AZURE_ENV_NAME`: Your environment name (for example, `dev` or `prod`)
+- `AZURE_LOCATION`: Your Azure region (for example, `eastus2`)
+- `AZURE_SUBSCRIPTION_ID`: Your Azure subscription ID
+
+#### Option 2: Commit required files to your repository
+
+If you prefer to commit the generated files to your repository:
+
+1. Run `azd init` locally in your project directory.
+1. Add the generated `azure.yaml` file to your repository.
+1. Optionally, add the `.azure` folder to your repository if you want to preserve environment-specific settings.
+
+> [!NOTE]
+> The `.azure` folder contains environment-specific configuration that might include sensitive information. Review the contents carefully before committing to your repository.
+
+#### Option 3: Use azd pipeline config with proper initialization
+
+Ensure that you run `azd pipeline config --provider azdo` after successfully running `azd init` locally. This command should set up the pipeline with the correct configuration that handles the initialization automatically.
+
+If you continue to experience issues, verify that:
+
+- Your project structure matches what `azd` expects for .NET Aspire projects
+- You're running the commands from the correct directory (typically where your `.sln` file is located)
+- Your Azure DevOps service connection has the necessary permissions for provisioning resources
 
 :::zone-end
 
