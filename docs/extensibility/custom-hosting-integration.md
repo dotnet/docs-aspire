@@ -488,4 +488,7 @@ In the custom resource tutorial, you learned how to create a custom .NET Aspire 
 ## Next steps
 
 > [!div class="nextstepaction"]
+> [Create non-container custom resources](custom-non-container-resource.md)
+
+> [!div class="nextstepaction"]
 > [Create custom .NET Aspire client integrations](custom-client-integration.md)

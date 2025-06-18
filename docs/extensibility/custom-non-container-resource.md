@@ -34,7 +34,7 @@ Examples include:
 
 Non-container custom resources use these key Aspire services:
 
-- **<xref:Aspire.Hosting.Lifecycle.IDistributedApplicationLifecycleHook>**: Hook into app startup/shutdown
+- **<xref:Aspire.Hosting.Lifecycle.IDistributedApplicationLifecycleHook>**: Hook into app startup/shutdown. For more information, see [App Host life cycle events](../app-host/eventing.md#app-host-life-cycle-events).
 - **<xref:Microsoft.Extensions.Logging.ILogger>**: Standard .NET logging that appears in console and dashboard
 
 > [!NOTE]
