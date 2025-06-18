@@ -378,6 +378,9 @@ items:
   - name: Create hosting integrations
     displayName: resources,extensibility,hosting,integrations
     href: extensibility/custom-hosting-integration.md
+  - name: Create non-container custom resources
+    displayName: resources,extensibility,hosting,integrations,lifecycle,dashboard
+    href: extensibility/custom-non-container-resource.md
   - name: Create client integrations
     displayName: custom,extensibility,client,library,integrations
     href: extensibility/custom-client-integration.md
