@@ -142,17 +142,21 @@ builder.Build().Run();
 
 #### Publish to Kubernetes
 
-1. Build your project and generate manifests:
+Generate Kubernetes manifests using the built-in publishing target:
 
-   ```dotnetcli
-   dotnet run --publisher kubernetes --output-path ./k8s-manifests
-   ```
+```dotnetcli
+dotnet run --publisher kubernetes --output-path ./k8s-manifests
+```
 
-1. Apply the generated manifests:
+This command generates standard Kubernetes YAML files in the specified output directory that you can deploy using `kubectl` or any GitOps workflow.
 
-   ```bash
-   kubectl apply -f ./k8s-manifests
-   ```
+#### Deploy the generated manifests
+
+Apply the generated manifests to your cluster:
+
+```bash
+kubectl apply -f ./k8s-manifests
+```
 
 ### Option 3: Create manual Kubernetes manifests
 
@@ -272,7 +276,7 @@ The Kubernetes extension provides several features that work seamlessly with .NE
 - **Port forwarding**: Access cluster services locally
 - **Apply manifests**: Deploy YAML files directly from the editor
 
-<!-- TODO: Add screenshot of VS Code with Kubernetes extension showing .NET Aspire deployment -->
+:::image type="content" source="media/vscode-kubernetes-extension.png" lightbox="media/vscode-kubernetes-extension.png" alt-text="Visual Studio Code with Kubernetes extension showing .NET Aspire deployment":::
 
 ### Debugging workflow
 
