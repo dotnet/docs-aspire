@@ -204,6 +204,9 @@ Add an `azd init` step to your Azure DevOps pipeline before the provisioning ste
       azd env new $(AZURE_ENV_NAME) --location $(AZURE_LOCATION) --subscription $(AZURE_SUBSCRIPTION_ID)
 ```
 
+> [!NOTE]
+> If you encounter prompts even with `--no-prompt`, try running `azd init` and `azd env new` as separate steps, or use environment variables to provide answers to any prompts. The `--from-code` flag tells azd to use the existing code in the current directory rather than creating a new project from a template.
+
 Make sure to define the following variables in your pipeline:
 
 - `AZURE_ENV_NAME`: Your environment name (for example, `dev` or `prod`)
