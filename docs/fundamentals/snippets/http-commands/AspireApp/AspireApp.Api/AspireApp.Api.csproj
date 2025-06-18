@@ -12,7 +12,7 @@
   <ItemGroup>
     <PackageReference Include="Aspire.StackExchange.Redis.DistributedCaching" Version="9.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.4.13" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.4.19" />
   </ItemGroup>
 
   <ItemGroup>
