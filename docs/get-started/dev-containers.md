@@ -182,7 +182,7 @@ When your .NET Aspire app orchestrates container resources, you need Docker-in-D
 
 ### Dapr integration examples
 
-For .NET Aspire apps that integrate with Dapr, you can set up Dapr components in your Dev Container:
+For .NET Aspire apps that integrate with Dapr, you can set up Dapr components in your Dev Container. For more information about .NET Aspire Dapr integration, see [.NET Aspire Dapr integration](../community-toolkit/dapr.md).
 
 #### Basic Dapr setup
 
@@ -338,3 +338,10 @@ When using Dev Containers with .NET Aspire, keep the following considerations in
 - Dev Containers run with elevated privileges when using Docker-in-Docker
 - SSL certificate trust is handled automatically in most scenarios
 - Consider security implications when exposing ports in cloud environments
+
+## See also
+
+- [.NET Aspire and GitHub Codespaces](github-codespaces.md)
+- [.NET Aspire Dapr integration](../community-toolkit/dapr.md)
+- [Add Dockerfiles to your .NET app model](../app-host/withdockerfile.md)
+- [Dev Containers specification](https://containers.dev/implementors/spec/)
