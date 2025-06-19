@@ -206,7 +206,7 @@ Although development teams are free to use `azd up` (or `azd provision` and `azd
 
 ```azdeveloper
 azd config set alpha.infraSynth on
-azd infra synth
+azd infra gen
 ```
 
 After this command is executed in the starter template example used in this guide, the following files are created in the _AppHost_ project directory:
@@ -374,10 +374,10 @@ tags:
   aspire-resource-name: webfrontend
 ```
 
-After executing the `azd infra synth` command, when `azd provision` and `azd deploy` are called they use the Bicep and supporting generated files.
+After executing the `azd infra gen` command, when `azd provision` and `azd deploy` are called they use the Bicep and supporting generated files.
 
 > [!IMPORTANT]
-> If `azd infra synth` is called again, it replaces any modified files with freshly generated ones and prompts you for confirmation before doing so.
+> If `azd infra gen` is called again, it replaces any modified files with freshly generated ones and prompts you for confirmation before doing so.
 
 ## Isolated environments for debugging
 
