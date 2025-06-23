@@ -17,7 +17,7 @@ All .NET Aspire Azure hosting integrations expose Azure resources and by convent
 
 When your .NET Aspire app host contains Azure resources, and you run it locally (typical developer <kbd>F5</kbd> or `dotnet run` experience), the [Azure resources are provisioned](local-provisioning.md) in your Azure subscription. This allows you as the developer to debug against them locally in the context of your app host.
 
-.NET Aspire aims to minimize costs by defaulting to _Basic_ or _Standard_ [Stock Keeping Unit (SKU)](/partner-center/developer/product-resources#sku) for its Azure integrations. While these sensible defaults are provided, you can [customize the Azure resources](#azureprovisioning-customization) to suit your needs. Additionally, some integrations support [emulators](#local-emulators) or [containers](#local-containers), which are useful for local development, testing, and debugging. By default, when you run your app locally, the Azure resources use the actual Azure service. However, you can configure them to use local emulators or containers, avoiding costs associated with the actual Azure service during local development.
+.NET Aspire aims to minimize costs by defaulting to _Basic_ or _Standard_ [Stock Keeping Unit (SKU)](/partner-center/developer/product-resources#sku) for its Azure integrations. While these sensible defaults are provided, you can [customize the Azure resources](customize-azure-resources.md#azureprovisioning-customization) to suit your needs. Additionally, some integrations support [emulators](#local-emulators) or [containers](#local-containers), which are useful for local development, testing, and debugging. By default, when you run your app locally, the Azure resources use the actual Azure service. However, you can configure them to use local emulators or containers, avoiding costs associated with the actual Azure service during local development.
 
 ### Local emulators
 
@@ -34,7 +34,7 @@ Some Azure services can be emulated to run locally. Currently, .NET Aspire suppo
 To have your Azure resources use the local emulators, chain a call the `RunAsEmulator` method on the Azure resource builder. This method configures the Azure resource to use the local emulator instead of the actual Azure service.
 
 > [!IMPORTANT]
-> Calling any of the available `RunAsEmulator` APIs on an Azure resource builder doesn't effect the [publishing manifest](../deployment/manifest-format.md). When you publish your app, [generated Bicep file](#infrastructure-as-code) reflects the actual Azure service, not the local emulator.
+> Calling any of the available `RunAsEmulator` APIs on an Azure resource builder doesn't effect the [publishing manifest](../deployment/manifest-format.md). When you publish your app, [the generated Bicep file](customize-azure-resources.md) reflects the actual Azure service, not the local emulator.
 
 ### Local containers
 
@@ -49,7 +49,7 @@ Currently, .NET Aspire supports the following Azure services as containers:
 | Azure SQL Server | Call <xref:Aspire.Hosting.AzureSqlExtensions.RunAsContainer*?displayProperty=nameWithType> on the `IResourceBuilder<AzureSqlServerResource>` to configure it to run locally in a container, based on the `mcr.microsoft.com/mssql/server` image. |
 
 > [!NOTE]
-> Like emulators, calling `RunAsContainer` on an Azure resource builder doesn't effect the [publishing manifest](../deployment/manifest-format.md). When you publish your app, the [generated Bicep file](#infrastructure-as-code) reflects the actual Azure service, not the local container.
+> Like emulators, calling `RunAsContainer` on an Azure resource builder doesn't effect the [publishing manifest](../deployment/manifest-format.md). When you publish your app, the [generated Bicep file](customize-azure-resources.md) reflects the actual Azure service, not the local container.
 
 ### Understand Azure integration APIs
 
@@ -107,7 +107,7 @@ You can query whether a resource is marked as an existing resource, by calling t
 
 .NET Aspire provides support for referencing existing Azure resources. You mark an existing resource through the `PublishAsExisting`, `RunAsExisting`, and `AsExisting` APIs. These APIs allow developers to reference already-deployed Azure resources, configure them, and generate appropriate deployment manifests using Bicep templates.
 
-Existing resources referenced with these APIs can be enhanced with [role assignments](role-assignments.md) and other customizations that are available with .NET Aspire's [infrastructure as code capabilities](#infrastructure-as-code). These APIs are limited to Azure resources that can be deployed with Bicep templates.
+Existing resources referenced with these APIs can be enhanced with [role assignments](role-assignments.md) and other customizations that are available with .NET Aspire's [infrastructure as code capabilities](customize-azure-resources.md). These APIs are limited to Azure resources that can be deployed with Bicep templates.
 
 ### Configure existing Azure resources for run mode
 
@@ -216,7 +216,7 @@ resource queue 'Microsoft.ServiceBus/namespaces/queues@2024-01-01' = {
 output serviceBusEndpoint string = messaging.properties.serviceBusEndpoint
 ```
 
-For more information on the generated Bicep templates, see [Infrastructure as code](#infrastructure-as-code) and [consider other publishing APIs](#publish-as-azure-container-app).
+For more information on the generated Bicep templates, see [Customize Azure resources](customize-azure-resources.md) and [consider other publishing APIs](#publish-as-azure-container-app).
 
 > [!WARNING]
 > When interacting with existing resources that require authentication, ensure the authentication strategy that you're configuring in the .NET Aspire application model aligns with the authentication strategy allowed by the existing resource. For example, it's not possible to use managed identity against an existing Azure PostgreSQL resource that isn't configured to allow managed identity. Similarly, if an existing Azure Redis resource disabled access keys, it's not possible to use access key authentication.

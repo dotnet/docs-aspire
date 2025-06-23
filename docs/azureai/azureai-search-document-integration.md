@@ -80,7 +80,7 @@ The preceding code:
     - The <xref:Azure.Provisioning.Search.SearchService.SearchSkuName?displayProperty=nameWithType> is set to <xref:Azure.Provisioning.Search.SearchServiceSkuName.Standard3?displayProperty=nameWithType>.
     - A tag is added to the Cognitive Services resource with a key of `ExampleKey` and a value of `Example value`.
 
-There are many more configuration options available to customize the Azure AI Search resource. For more information, see [`Azure.Provisioning` customization](../azure/integrations-overview.md#azureprovisioning-customization).
+There are many more configuration options available to customize the Azure AI Search resource. For more information, see [`Azure.Provisioning` customization](../azure/customize-azure-resources.md#azureprovisioning-customization).
 
 ### Connect to an existing Azure AI Search service
 
