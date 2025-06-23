@@ -72,7 +72,7 @@ The preceding code:
   - The <xref:Azure.Provisioning.CosmosDB.CosmosDBAccount.ConsistencyPolicy?displayProperty=nameWithType> is assigned to a <xref:Azure.Provisioning.CosmosDB.DefaultConsistencyLevel.Strong?displayProperty=nameWithType>.
   - A tag is added to the Cosmos DB account with a key of `ExampleKey` and a value of `Example value`.
 
-There are many more configuration options available to customize the Azure Cosmos DB resource. For more information, see <xref:Azure.Provisioning.CosmosDB>. For more information, see [Azure.Provisioning customization](../../azure/integrations-overview.md#azureprovisioning-customization).
+There are many more configuration options available to customize the Azure Cosmos DB resource. For more information, see <xref:Azure.Provisioning.CosmosDB>. For more information, see [Azure.Provisioning customization](../../azure/customize-azure-resources.md#azureprovisioning-customization).
 
 ### Connect to an existing Azure Cosmos DB account
 

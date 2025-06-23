@@ -156,6 +156,8 @@ items:
     items:
     - name: Overview
       href: azure/integrations-overview.md
+    - name: Customize Azure resources
+      href: azure/customize-azure-resources.md
     - name: Local Azure provisioning
       href: azure/local-provisioning.md
     - name: Configure Azure Container Apps environments

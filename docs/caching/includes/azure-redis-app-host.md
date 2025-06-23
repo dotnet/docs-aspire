@@ -71,7 +71,7 @@ The preceding code:
   - The `Sku` is set with a family of `BasicOrStandard`, a name of `Standard`, and a capacity of `1`.
   - A tag is added to the Redis resource with a key of `ExampleKey` and a value of `Example value`.
 
-There are many more configuration options available to customize the Azure Cache for Redis resource. For more information, see <xref:Azure.Provisioning.Redis>. For more information, see [Azure.Provisioning customization](../../azure/integrations-overview.md#azureprovisioning-customization).
+There are many more configuration options available to customize the Azure Cache for Redis resource. For more information, see <xref:Azure.Provisioning.Redis>. For more information, see [Azure.Provisioning customization](../../azure/customize-azure-resources.md#azureprovisioning-customization).
 
 ### Connect to an existing Azure Cache for Redis
 

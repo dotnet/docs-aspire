@@ -122,7 +122,7 @@ The preceding code:
   - The <xref:Azure.Provisioning.WebPubSub.WebPubSubService.Sku?displayProperty=nameWithType> object has its name and capacity properties set to `Standard_S1` and `5`, respectively.
   - A tag is added to the Web PubSub resource with a key of `ExampleKey` and a value of `Example value`.
 
-There are many more configuration options available to customize the Web PubSub resource. For more information, see <xref:Azure.Provisioning.WebPubSub>. For more information, see [`Azure.Provisioning` customization](../azure/integrations-overview.md#azureprovisioning-customization).
+There are many more configuration options available to customize the Web PubSub resource. For more information, see <xref:Azure.Provisioning.WebPubSub>. For more information, see [`Azure.Provisioning` customization](../azure/customize-azure-resources.md#azureprovisioning-customization).
 
 ### Connect to an existing Azure Web PubSub instance
 

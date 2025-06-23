@@ -84,7 +84,7 @@ The preceding code:
   - The high availability properties are set with <xref:Azure.Provisioning.PostgreSql.PostgreSqlFlexibleServerHighAvailabilityMode.ZoneRedundant?displayProperty=nameWithType> in standby availability zone `"2"`.
   - A tag is added to the flexible server with a key of `ExampleKey` and a value of `Example value`.
 
-There are many more configuration options available to customize the PostgreSQL flexible server resource. For more information, see <xref:Azure.Provisioning.PostgreSql> and [Azure.Provisioning customization](../../azure/integrations-overview.md#azureprovisioning-customization).
+There are many more configuration options available to customize the PostgreSQL flexible server resource. For more information, see <xref:Azure.Provisioning.PostgreSql> and [Azure.Provisioning customization](../../azure/customize-azure-resources.md#azureprovisioning-customization).
 
 ### Connect to an existing Azure PostgreSQL flexible server
 
