@@ -83,7 +83,7 @@ The preceding code:
   - The <xref:Azure.Provisioning.KeyVault.KeyVaultProperties.EnableRbacAuthorization?displayProperty=nameWithType> property is set to `true`.
   - A tag is added to the resource with a key of `ExampleKey` and a value of `Example value`.
 
-There are many more configuration options available to customize the Key Vault resource. For more information, see <xref:Azure.Provisioning.KeyVault> and [Azure.Provisioning customization](../azure/integrations-overview.md#azureprovisioning-customization).
+There are many more configuration options available to customize the Key Vault resource. For more information, see <xref:Azure.Provisioning.KeyVault> and [Azure.Provisioning customization](../azure/customize-azure-resources.md#azureprovisioning-customization).
 
 ### Connect to an existing Azure Key Vault instance
 

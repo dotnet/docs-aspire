@@ -17,7 +17,7 @@ These APIs automatically create a default ACA environment when you publish your 
 
 The [.NET Aspire app host](../fundamentals/app-host-overview.md) simplifies infrastructure provisioning by generating code to create Azure resources for your applications. This approach enables you to model and configure deployment-related aspects directly in C#, reducing the need to rely on tools like Bicep. These aspects include configuring ACA environments, which provide a serverless platform for running containerized applications.
 
-By using the <xref:Azure.Provisioning> APIs (explained in [Infrastructure as code](integrations-overview.md#infrastructure-as-code)), you can configure and customize ACA environments along with related resources, such as container registries and file share volumes. Any available deployment setting can be configured. For more information on the available settings, see [Microsoft.App managedEnvironments](/azure/templates/microsoft.app/managedenvironments).
+By using the <xref:Azure.Provisioning> APIs (explained in [Customize Azure resources](customize-azure-resources.md)), you can configure and customize ACA environments along with related resources, such as container registries and file share volumes. Any available deployment setting can be configured. For more information on the available settings, see [Microsoft.App managedEnvironments](/azure/templates/microsoft.app/managedenvironments).
 
 This article guides you through the process of tailoring ACA environments for your .NET Aspire solutions.
 
@@ -43,7 +43,7 @@ This module configures:
 - A role assignment for the user principal ID to the ACA environment.
 - Various outputs for the ACA environment.
 
-Using the `acaEnv` variable, you can chain a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API to customize the ACA environment to your liking. For more information, see [Configure infrastructure](integrations-overview.md#configure-infrastructure).
+Using the `acaEnv` variable, you can chain a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API to customize the ACA environment to your liking. For more information, see [Configure infrastructure](customize-azure-resources.md#configure-infrastructure).
 
 ## Handle naming conventions
 
