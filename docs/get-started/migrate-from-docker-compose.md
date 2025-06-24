@@ -9,7 +9,7 @@ ms.topic: how-to
 
 This guide helps you understand how to migrate applications from Docker Compose to .NET Aspire, highlighting the key conceptual differences and providing practical examples for common migration scenarios.
 
-## Understanding the differences
+## Understand the differences
 
 While Docker Compose and .NET Aspire might seem similar at first glance, they serve different purposes and operate at different levels of abstraction.
 
@@ -29,7 +29,7 @@ While Docker Compose and .NET Aspire might seem similar at first glance, they se
 When migrating from Docker Compose to .NET Aspire, consider these conceptual differences:
 
 - **From YAML to C#**: Configuration moves from declarative YAML to imperative, strongly-typed C# code
-- **From containers to resources**: .NET Aspire manages not just containers, but .NET projects, databases, and cloud resources
+- **From containers to resources**: .NET Aspire manages not just containers, but .NET projects, executables, parameters, all as resources
 - **From manual networking to service discovery**: .NET Aspire automatically configures service discovery and connection strings
 - **From development gaps to integrated experience**: .NET Aspire provides dashboard, telemetry, and debugging integration
 
@@ -100,7 +100,7 @@ builder.Build().Run();
 
 - **Service dependencies**: `depends_on` becomes `WithReference()` which also configures service discovery
 - **Environment variables**: Connection strings are automatically generated and injected
-- **Build context**: .NET projects are referenced directly instead of using Dockerfile builds
+- **Build context**: Build context is capable of using Dockerfiles, .NET projects, Node.js apps, and more instead of just Dockerfile builds
 - **Data persistence**: Volumes are automatically managed by .NET Aspire
 
 ### Container-based services
@@ -294,7 +294,7 @@ For persistent data:
 - Validate that inter-service communication works as expected
 - Test with your existing client applications
 
-## Publishing to Docker Compose
+## Publish to Docker Compose
 
 .NET Aspire 9.3 introduced the ability to publish your app model back to Docker Compose, enabling a hybrid workflow:
 
@@ -365,15 +365,6 @@ This generates a `docker-compose.yml` file from your .NET Aspire configuration, 
 - .NET Aspire automatically assigns ports to avoid conflicts
 - Use `WithHttpEndpoint()` to specify custom ports if needed
 - Check the dashboard for actual assigned ports
-
-### Getting help
-
-If you encounter issues during migration:
-
-- Check the [.NET Aspire troubleshooting documentation](../troubleshooting/allow-unsecure-transport.md)
-- Review the [GitHub discussions](https://github.com/dotnet/aspire/discussions) for similar migration scenarios
-- Ask questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/dotnet-aspire) with the `dotnet-aspire` tag
-- Join the [.NET Aspire Discord community](https://aka.ms/aspire/discord)
 
 ## Next steps
 
