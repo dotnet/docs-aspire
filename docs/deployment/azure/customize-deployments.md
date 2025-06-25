@@ -1,6 +1,6 @@
 ---
 title: Customize .NET Aspire deployments with infrastructure synthesis
-description: Learn how to customize Azure deployments using azd infra synth for production scenarios.
+description: Learn how to customize Azure deployments using azd infra gen for production scenarios.
 ms.date: 01/08/2025
 ms.custom: devx-track-extended-azdevcli
 ---
@@ -9,7 +9,7 @@ ms.custom: devx-track-extended-azdevcli
 
 The Azure Developer CLI (`azd`) provides a powerful feature called infrastructure synthesis that allows you to generate and customize the underlying infrastructure code for your .NET Aspire applications. This capability is essential for production scenarios where you need fine-grained control over Azure resources, security configurations, and deployment patterns.
 
-This article covers how to use `azd infra synth` to:
+This article covers how to use `azd infra gen` to:
 
 > [!div class="checklist"]
 >
@@ -26,14 +26,14 @@ You will also need to have the Azure Developer CLI [installed locally](/azure/de
 
 Infrastructure synthesis in `azd` transforms your .NET Aspire app model into concrete Azure infrastructure definitions using Bicep templates. This process bridges the gap between the development-time orchestration in .NET Aspire and the production infrastructure required in Azure.
 
-When you run `azd infra synth`, the CLI:
+When you run `azd infra gen`, the CLI:
 
 1. Analyzes your .NET Aspire app host project
-2. Identifies all resources and their dependencies
-3. Generates corresponding Azure resource definitions in Bicep
-4. Creates supporting configuration files for deployment
+1. Identifies all resources and their dependencies
+1. Generates corresponding Azure resource definitions in Bicep
+1. Creates supporting configuration files for deployment
 
-## Enable and use infrastructure synthesis
+## Use infrastructure generation
 
 Infrastructure synthesis is currently an alpha feature that must be explicitly enabled:
 
@@ -41,23 +41,25 @@ Infrastructure synthesis is currently an alpha feature that must be explicitly e
 azd config set alpha.infraSynth on
 ```
 
-Once enabled, generate infrastructure files for your .NET Aspire project:
+Call the generate infrastructure command on your .NET Aspire solution:
 
 ```azdeveloper
-azd infra synth
+azd infra gen
 ```
 
 This command creates an `infra` folder in your app host project directory with the following structure:
 
-```
-infra/
-├── main.bicep              # Main infrastructure entry point
-├── main.parameters.json    # Parameter values for deployment
-├── resources.bicep         # Resource definitions
-└── abbreviations.json      # Azure resource naming conventions
+```Directory
+└───📂 infra
+     ├─── abbreviations.json   # Azure resource naming conventions  
+     ├─── main.bicep           # Main infrastructure entry point
+     ├─── main.parameters.json # Parameter values for deployment
+     └─── resources.bicep      # Resource definitions    
 ```
 
 ## Production considerations
+
+The generated infrastructure provides a solid foundation for your deployment, but production environments require additional configuration for security, scalability, and maintainability. This section covers the key areas you should customize when preparing for production deployment.
 
 ### Security configurations
 
@@ -190,7 +192,7 @@ After generating initial infrastructure, establish a workflow for ongoing custom
 4. **Document customizations** for team collaboration
 
 > [!IMPORTANT]
-> Running `azd infra synth` again will regenerate files and may overwrite your customizations. Always version control your changes and be prepared to re-apply customizations after regeneration.
+> Running `azd infra gen` again will regenerate files and may overwrite your customizations. Always version control your changes and be prepared to re-apply customizations after regeneration.
 
 ## Advanced customization patterns
 
