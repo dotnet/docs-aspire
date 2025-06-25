@@ -25,7 +25,7 @@ For more information on the schema of the manifest and how to run app host proje
 
 ### Customize Azure infrastructure
 
-When deploying to Azure, you can customize the infrastructure resources to meet organizational requirements such as tagging policies, specific SKUs, networking configurations, or compliance standards. .NET Aspire provides powerful APIs to customize Azure resources during deployment. For detailed examples and patterns, see [Customize Azure deployment infrastructure](azure/customize-infrastructure.md).
+When deploying to Azure, you can customize the infrastructure resources to meet organizational requirements such as tagging policies, specific SKUs, networking configurations, or compliance standards. .NET Aspire provides powerful APIs to customize Azure resources during deployment. For detailed examples and patterns, see [Customize Azure resources](../azure/customize-azure-resources.md).
 
 ### Use Application Insights for .NET Aspire telemetry
 

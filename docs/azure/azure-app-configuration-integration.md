@@ -77,7 +77,7 @@ The preceding code:
   - The <xref:Azure.Provisioning.AppConfiguration.AppConfigurationStore.SkuName?displayProperty=nameWithType> is assigned to `Free`.
   - A tag is added to the App Configuration store with a key of `ExampleKey` and a value of `Example value`.
 
-There are many more configuration options available to customize the Azure App Configuration resource. For more information, see <xref:Azure.Provisioning.AppConfiguration>. For more information, see [Azure.Provisioning customization](integrations-overview.md#azureprovisioning-customization). For deployment-focused customization patterns, see [Customize Azure deployment infrastructure](../deployment/azure/customize-infrastructure.md).
+There are many more configuration options available to customize the Azure App Configuration resource. For more information, see <xref:Azure.Provisioning.AppConfiguration>. For more information, see [Azure.Provisioning customization](integrations-overview.md#azureprovisioning-customization). For deployment-focused customization patterns, see [Customize Azure resources](customize-azure-resources.md).
 
 ### Use existing Azure App Configuration resource
 

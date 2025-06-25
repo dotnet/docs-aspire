@@ -83,7 +83,7 @@ The preceding code:
   - The <xref:Azure.Provisioning.ServiceBus.ServiceBusNamespace.Sku?displayProperty=nameWithType> created with a <xref:Azure.Provisioning.ServiceBus.ServiceBusSkuTier.Premium?displayProperty=nameWithType>
   - A tag is added to the Service Bus namespace with a key of `ExampleKey` and a value of `Example value`.
 
-There are many more configuration options available to customize the Azure Service Bus resource. For more information, see <xref:Azure.Provisioning.ServiceBus>. For more information, see [Azure.Provisioning customization](../azure/integrations-overview.md#azureprovisioning-customization). For deployment-focused customization patterns, see [Customize Azure deployment infrastructure](../deployment/azure/customize-infrastructure.md).
+There are many more configuration options available to customize the Azure Service Bus resource. For more information, see <xref:Azure.Provisioning.ServiceBus>. For more information, see [Azure.Provisioning customization](../azure/integrations-overview.md#azureprovisioning-customization). For deployment-focused customization patterns, see [Customize Azure resources](../azure/customize-azure-resources.md).
 
 ### Connect to an existing Azure Service Bus namespace
 

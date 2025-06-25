@@ -104,7 +104,7 @@ The preceding code:
   - The <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesAccount.Sku?displayProperty=nameWithType> property is assigned to a new instance of <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesSku> with an `E0` name and <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesSkuTier.Enterprise?displayProperty=nameWithType> tier.
   - A tag is added to the Cognitive Services resource with a key of `ExampleKey` and a value of `Example value`.
 
-There are many more configuration options available to customize the Azure OpenAI resource. For more information, see <xref:Azure.Provisioning.CognitiveServices>. For more information, see [Azure.Provisioning customization](../azure/integrations-overview.md#azureprovisioning-customization). For deployment-focused customization patterns, see [Customize Azure deployment infrastructure](../deployment/azure/customize-infrastructure.md).
+There are many more configuration options available to customize the Azure OpenAI resource. For more information, see <xref:Azure.Provisioning.CognitiveServices>. For more information, see [Azure.Provisioning customization](../azure/integrations-overview.md#azureprovisioning-customization). For deployment-focused customization patterns, see [Customize Azure resources](../azure/customize-azure-resources.md).
 
 ### Connect to an existing Azure OpenAI service
 

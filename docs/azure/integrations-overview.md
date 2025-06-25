@@ -366,7 +366,7 @@ All .NET Aspire Azure hosting integrations expose various Azure resources, and t
 Regardless of the Azure resource you're working with, to configure its underlying infrastructure, you chain a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> extension method. This method allows you to customize the infrastructure of the Azure resource by passing a `configure` delegate of type `Action<AzureResourceInfrastructure>`. The <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type is a subclass of the <xref:Azure.Provisioning.Infrastructure?displayProperty=fullName>. This type exposes a massive API surface area for configuring the underlying infrastructure of the Azure resource.
 
 > [!TIP]
-> For comprehensive examples and deployment-focused patterns for customizing Azure infrastructure, see [Customize Azure deployment infrastructure](../deployment/azure/customize-infrastructure.md).
+> For comprehensive examples and deployment-focused patterns for customizing Azure infrastructure, see [Customize Azure resources](customize-azure-resources.md).
 
 Consider the following example:
 
