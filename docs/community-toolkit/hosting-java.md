@@ -2,7 +2,7 @@
 title: Java/Spring hosting
 author: justinyoo
 description: A .NET Aspire hosting integration for hosting Java/Spring applications using either the Java runtime or a container.
-ms.date: 01/31/2025
+ms.date: 06/25/2025
 ---
 
 # .NET Aspire Java/Spring hosting integration
