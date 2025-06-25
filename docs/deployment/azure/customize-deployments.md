@@ -1,11 +1,11 @@
 ---
-title: Customize .NET Aspire deployments with infrastructure generation
-description: Learn how to customize Azure deployments using azd infra gen for production scenarios.
+title: Customize .NET Aspire Azure deployments
+description: Learn how to use Azure Developer CLI (azd) infrastructure generation to customize and configure .NET Aspire deployments for production scenarios with Bicep templates, security best practices, and scalable resource configurations.
 ms.date: 06/25/2025
 ms.custom: devx-track-extended-azdevcli
 ---
 
-# Customize .NET Aspire deployments with infrastructure generation
+# Customize .NET Aspire Azure deployments
 
 The Azure Developer CLI (`azd`) provides a powerful feature called infrastructure generation that allows you to generate and customize the underlying infrastructure code for your .NET Aspire applications. This capability is essential for production scenarios where you need fine-grained control over Azure resources, security configurations, and deployment patterns.
 
@@ -13,10 +13,10 @@ This article covers how to use `azd infra gen` to:
 
 > [!div class="checklist"]
 >
-> - Generate Bicep infrastructure files from your .NET Aspire app model
-> - Customize generated infrastructure for production requirements
-> - Apply security best practices to generated resources
-> - Manage infrastructure as code with proper version control
+> - Generate Bicep infrastructure files from your .NET Aspire app model.
+> - Customize generated infrastructure for production requirements.
+> - Apply security best practices to generated resources.
+> - Manage infrastructure as code with proper version control.
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
@@ -28,10 +28,10 @@ Infrastructure generation in `azd` transforms your .NET Aspire app model into co
 
 When you run `azd infra gen`, the CLI:
 
-1. Analyzes your .NET Aspire app host project
-1. Identifies all resources and their dependencies
-1. Generates corresponding Azure resource definitions in Bicep
-1. Creates supporting configuration files for deployment
+1. Analyzes your .NET Aspire app host project.
+1. Identifies all resources and their dependencies.
+1. Generates corresponding Azure resource definitions in Bicep.
+1. Creates supporting configuration files for deployment.
 
 ## Use infrastructure generation
 
@@ -180,10 +180,10 @@ var currentTier = tierConfigurations[environmentType]
 
 After generating initial infrastructure, establish a workflow for ongoing customization:
 
-1. **Make infrastructure changes** to the generated Bicep files
-2. **Test deployments** in development environments
-3. **Version control** your infrastructure changes
-4. **Document customizations** for team collaboration
+1. **Make infrastructure changes** to the generated Bicep files.
+2. **Test deployments** in development environments.
+3. **Version control** your infrastructure changes.
+4. **Document customizations** for team collaboration.
 
 > [!IMPORTANT]
 > Running `azd infra gen` again will regenerate files and may overwrite your customizations. Always version control your changes and be prepared to re-apply customizations after regeneration.
@@ -245,11 +245,11 @@ param location string
 
 ## Best practices
 
-- **Version control**: Always commit generated infrastructure files to source control
-- **Environment separation**: Use separate resource groups and naming conventions for different environments
-- **Security scanning**: Implement automated security scanning of Bicep templates
-- **Cost monitoring**: Set up budget alerts and resource tags for cost tracking
-- **Documentation**: Maintain documentation of customizations and their rationale
+- **Version control**: Always commit generated infrastructure files to source control.
+- **Environment separation**: Use separate resource groups and naming conventions for different environments.
+- **Security scanning**: Implement automated security scanning of Bicep templates.
+- **Cost monitoring**: Set up budget alerts and resource tags for cost tracking.
+- **Documentation**: Maintain documentation of customizations and their rationale.
 
 ## Next steps
 

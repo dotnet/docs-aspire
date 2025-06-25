@@ -23,7 +23,7 @@ As an alternative to this tutorial and for a more in-depth guide, see [Deploy a 
 
 ## Deploy .NET Aspire projects with `azd`
 
-With .NET Aspire and Azure Container Apps (ACA), you have a great hosting scenario for building out your cloud-native apps with .NET. We built some great new features into the Azure Developer CLI (`azd`) specific for making .NET Aspire development and deployment to Azure a friction-free experience. For production scenarios that require granular control over infrastructure, see [Customize deployments with infrastructure generation](customize-deployments.md). But for new projects, you won't find an easier path to success for getting a new microservice topology deployed into the cloud.
+With .NET Aspire and Azure Container Apps (ACA), you have a great hosting scenario for building out your cloud-native apps with .NET. We built some great new features into the Azure Developer CLI (`azd`) specific for making .NET Aspire development and deployment to Azure a friction-free experience. For production scenarios that require granular control over infrastructure, see [Customize .NET Aspire Azure deployments](customize-deployments.md). But for new projects, you won't find an easier path to success for getting a new microservice topology deployed into the cloud.
 
 ## Create a .NET Aspire project
 
