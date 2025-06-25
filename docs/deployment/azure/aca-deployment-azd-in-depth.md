@@ -202,6 +202,8 @@ The previous command may take some time to execute, but when completed the resou
 
 Although development teams are free to use `azd up` (or `azd provision` and `azd deploy`) commands for their deployments both for development and production purposes, some teams may choose to generate Bicep files that they can review and manage as part of version control (this also allows these Bicep files to be referenced as part of a larger more complex Azure deployment).
 
+For comprehensive guidance on customizing generated infrastructure for production scenarios, see [Customize .NET Aspire Azure deployments](customize-deployments.md).
+
 `azd` includes the ability to output the Bicep it uses for provisioning via following command:
 
 ```azdeveloper
