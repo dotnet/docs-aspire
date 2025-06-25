@@ -38,7 +38,7 @@ Invoke-WebRequest `
 
 ---
 
-## Platform-specific considerations (Linux and macOS certificate trust)
+## Linux and macOS certificate trust
 
 On Linux and macOS platforms, you might need to import the .NET Aspire OpenTelemetry certificate into the Java certificate store for telemetry to work properly. Without this step, your Java application will start successfully, but telemetry collection might fail with certificate errors.
 
