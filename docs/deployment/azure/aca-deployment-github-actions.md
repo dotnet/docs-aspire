@@ -176,7 +176,7 @@ Congratulations! You successfully deployed a .NET Aspire project using the Azure
 
 This section covers common issues you might encounter when deploying .NET Aspire projects using Azure DevOps pipelines.
 
-### "ERROR: no project exists; to create a new project, run azd init"
+### ERROR: no project exists; to create a new project, run azd init
 
 **Problem**: During the provisioning step of your Azure DevOps pipeline, you encounter the error message:
 
