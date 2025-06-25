@@ -1,7 +1,7 @@
 ---
 title: Create non-container custom resources
 description: Learn how to create custom .NET Aspire resources that don't rely on containers using lifecycle hooks and dashboard integration.
-ms.date: 06/18/2025
+ms.date: 06/25/2025
 ms.topic: how-to
 ---
 
@@ -77,23 +77,7 @@ The lifecycle hook:
 
 The extension method automatically registers the lifecycle hook:
 
-```csharp
-public static IResourceBuilder<HttpProxyResource> AddHttpProxy(
-    this IDistributedApplicationBuilder builder,
-    string name,
-    string targetUrl,
-    int? port = null)
-{
-    var resource = new HttpProxyResource(name, targetUrl);
-    
-    // Register the lifecycle hook for this resource type
-    builder.Services.TryAddSingleton<HttpProxyLifecycleHook>();
-    builder.Services.AddLifecycleHook<HttpProxyLifecycleHook>();
-
-    return builder.AddResource(resource)
-                  .WithHttpEndpoint(port: port, name: "http");
-}
-```
+:::code language="csharp" source="snippets/HttpProxyResource/HttpProxy.Hosting/HttpProxyResourceBuilderExtensions.cs":::
 
 ### Use the resource
 
@@ -103,11 +87,11 @@ Now you can use the proxy in your app host:
 
 ## Dashboard integration
 
-The resource integrates with the Aspire dashboard through:
+Non-container resources integrate with the Aspire dashboard through multiple channels, providing real-time visibility into your resource's status, logs, and performance.
 
 ### Standard logging
 
-Use standard .NET logging patterns that automatically appear in the dashboard:
+All .NET logging automatically appears in the Aspire dashboard. Use structured logging for better searchability and filtering:
 
 ```csharp
 _logger.LogInformation("Starting HTTP proxy {ResourceName} -> {TargetUrl}", 
@@ -119,9 +103,11 @@ _logger.LogError(ex, "Failed to start HTTP proxy {ResourceName}", resource.Name)
 
 For more sophisticated dashboard integration, you can use:
 
-- **Status notifications**: Update resource state and properties in real-time
-- **Log streaming**: Send structured logs directly to the dashboard
-- **Health monitoring**: Report resource health and performance metrics
+- **Status notifications**: Update resource state and properties in real-time using advanced Aspire hosting APIs
+- **Log streaming**: Send structured logs directly to the dashboard using specialized services
+- **Health monitoring**: Report resource health and performance metrics. For more information, see [Health checks in .NET Aspire](../fundamentals/health-checks.md)
+
+For more information about the dashboard's capabilities, see [Explore the .NET Aspire dashboard](../fundamentals/dashboard/explore.md).
 
 These advanced features require additional Aspire hosting APIs and more complex implementation patterns.
 
@@ -130,10 +116,10 @@ These advanced features require additional Aspire hosting APIs and more complex 
 When creating non-container resources:
 
 1. **Resource cleanup**: Always implement proper disposal in lifecycle hooks
-2. **Error handling**: Catch and log exceptions, update status appropriately  
-3. **Status updates**: Provide meaningful status information to users
-4. **Performance**: Avoid blocking operations in lifecycle methods
-5. **Dependencies**: Use dependency injection for required services
+1. **Error handling**: Catch and log exceptions, update status appropriately  
+1. **Status updates**: Provide meaningful status information to users
+1. **Performance**: Avoid blocking operations in lifecycle methods
+1. **Dependencies**: Use dependency injection for required services
 
 ## Summary
 

@@ -1,0 +1,9 @@
+{
+  "solution": {
+    "path": "HttpProxySample.slnx",
+    "projects": [
+      "HttpProxy.Hosting/HttpProxy.Hosting.csproj",
+      "HttpProxySample.AppHost/HttpProxySample.AppHost.csproj"
+    ]
+  }
+}
