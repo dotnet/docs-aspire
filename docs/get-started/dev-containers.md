@@ -133,11 +133,44 @@ This configuration provides both .NET and Node.js development capabilities withi
 
 ### Container orchestration with Docker-in-Docker
 
-When your .NET Aspire app orchestrates container resources, you need Docker-in-Docker (DinD) support. This is more complex and has specific considerations:
+When your .NET Aspire app orchestrates container resources, you need Docker-in-Docker (DinD) support. Here's a basic configuration:
 
 ```json
 {
   "name": ".NET Aspire with Containers",
+  "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "enableNonRootDocker": true,
+      "moby": true
+    }
+  },
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "16gb",
+    "storage": "32gb"
+  },
+  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
+  "postStartCommand": "dotnet dev-certs https --trust",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-dotnettools.csdevkit",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  }
+}
+```
+
+#### Advanced container networking
+
+If you encounter networking issues between containers or need IPv6 support, you can add additional network configuration:
+
+```json
+{
+  "name": ".NET Aspire with Advanced Networking",
   "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
@@ -176,7 +209,7 @@ When your .NET Aspire app orchestrates container resources, you need Docker-in-D
 > **Docker-in-Docker considerations:**
 >
 > - Requires higher resource allocation (CPU, memory, storage)
-> - IPv6 configuration might be necessary for container networking
+> - The advanced networking configuration above includes IPv6 forwarding settings that may be needed for complex container-to-container communication scenarios
 > - Works with Docker Desktop but may have limitations with Rancher Desktop
 > - Network connectivity between containers might require additional configuration
 
