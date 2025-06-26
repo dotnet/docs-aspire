@@ -29,20 +29,13 @@ For more information on the schema of the manifest and how to run app host proje
 
 ## Deploy to Kubernetes
 
-Kubernetes is a popular container orchestration platform that can run .NET Aspire projects. To deploy .NET Aspire projects to Kubernetes clusters, you need to map the .NET Aspire JSON manifest to a Kubernetes YAML manifest file. There are several ways to do this: by using the Aspir8 project, using .NET Aspire's built-in Kubernetes publishing features, or by manually creating Kubernetes manifests.
+Kubernetes is a popular container orchestration platform that can run .NET Aspire solutions. To deploy .NET Aspire solutions to Kubernetes clusters, you can use .NET Aspire's built-in Kubernetes publishing features or manually create Kubernetes manifests.
 
-For a comprehensive guide on deploying to Kubernetes, including AKS, see [Deploy a .NET Aspire project to Kubernetes](kubernetes-deployment.md).
+For a comprehensive guide on deploying to Kubernetes, including AKS, see [Deploy a .NET Aspire solution to Kubernetes](kubernetes-deployment.md).
 
-### The Aspir8 project
+### Built-in Kubernetes publishing
 
-**Aspir8**, an open-source project, handles the generation of deployment YAML based on the .NET Aspire app host manifest. The project outputs a .NET global tool that can be used to perform a series of tasks, resulting in the generation of Kubernetes manifests:
-
-- `aspirate init`: Initializes the **Aspir8** project in the current directory.
-- `aspirate generate`: Generates Kubernetes manifests based on the .NET Aspire app host manifest.
-- `aspirate apply`: Applies the generated Kubernetes manifests to the Kubernetes cluster.
-- `aspirate destroy`: Deletes the resources created by the `apply` command.
-
-With these commands, you can build your apps, containerize them, and deploy them to Kubernetes clusters. For more information, see [Aspir8](https://prom3theu5.github.io/aspirational-manifests/getting-started.html).
+.NET Aspire includes native support for generating Kubernetes manifests directly from your app host configuration. This approach allows you to customize Kubernetes resources programmatically while maintaining the benefits of .NET Aspire's orchestration model.
 
 ### Manually create Kubernetes manifests
 

@@ -1,111 +1,50 @@
 ---
-title: Deploy .NET Aspire projects to Kubernetes
-description: Learn how to deploy .NET Aspire projects to Kubernetes clusters using Aspir8 or manual YAML generation.
-ms.date: 01/16/2025
+title: Deploy .NET Aspire solutions to Kubernetes
+description: Learn how to deploy .NET Aspire solutions to Kubernetes clusters using built-in publishing or manual YAML generation.
+ms.date: 06/26/2025
 ms.topic: how-to
 ---
 
-# Deploy a .NET Aspire project to Kubernetes
+# Deploy a .NET Aspire solution to Kubernetes
 
-.NET Aspire projects are designed to run in containerized environments. Kubernetes is a popular container orchestration platform that can run .NET Aspire projects in any cloud provider or on-premises environment. This article walks you through deploying .NET Aspire solutions to Kubernetes clusters using different approaches. You'll learn how to complete the following tasks:
+.NET Aspire solutions are designed to run in containerized environments. Kubernetes is a popular container orchestration platform that can run .NET Aspire resources in any cloud provider or on-premises environment. This article walks you through deploying .NET Aspire solutions to Kubernetes clusters using different approaches. You'll learn how to complete the following tasks:
 
 > [!div class="checklist"]
 >
-> - Deploy using the Aspir8 tool for automated manifest generation
-> - Manually create and customize Kubernetes YAML manifests
-> - Use Visual Studio Code with Kubernetes extensions for development workflow
-> - Configure .NET Aspire for Kubernetes deployment
+> - Use built-in .NET Aspire Kubernetes publishing for automated manifest generation.
+> - Manually create and customize Kubernetes YAML manifests.
+> - Use Visual Studio Code with Kubernetes extensions for development workflow.
+> - Configure .NET Aspire for Kubernetes deployment.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
-## Prerequisites
-
-Before deploying to Kubernetes, ensure you have:
+Before deploying to Kubernetes, ensure you also have:
 
 - A running Kubernetes cluster. You can use:
-  - [Azure Kubernetes Service (AKS)](/azure/aks/learn/quick-kubernetes-deploy-portal) for cloud deployment
-  - [Docker Desktop](https://docs.docker.com/desktop/kubernetes/) for local development
-  - [minikube](https://minikube.sigs.k8s.io/docs/start/) for local testing
-  - Any other Kubernetes distribution
-- [kubectl](https://kubernetes.io/docs/tasks/tools/) configured to access your cluster
-- [Docker](https://docs.docker.com/get-docker/) for building container images
+  - [Azure Kubernetes Service (AKS)](/azure/aks/learn/quick-kubernetes-deploy-portal) for cloud deployment.
+  - [Docker Desktop](https://docs.docker.com/desktop/kubernetes/) for local development.
+  - [minikube](https://minikube.sigs.k8s.io/docs/start/) for local testing.
+  - Any other Kubernetes distribution.
+- [kubectl](https://kubernetes.io/docs/tasks/tools/) configured to access your cluster.
+- [Docker](https://docs.docker.com/get-docker/) for building container images.
 
 > [!TIP]
 > For production deployments on Azure, see [Quickstart: Deploy an Azure Kubernetes Service (AKS) cluster using the Azure portal](/azure/aks/learn/quick-kubernetes-deploy-portal).
 
 ## Deployment approaches
 
-There are three main approaches to deploy .NET Aspire projects to Kubernetes:
+There are two main approaches to deploy .NET Aspire solutions to Kubernetes. Each approach offers different levels of automation and control over the deployment process.
 
-1. **Aspir8 tool** - Automated manifest generation from .NET Aspire app model (recommended)
-2. **Built-in .NET Aspire 9.3+ Kubernetes publishing** - Native Kubernetes manifest generation
-3. **Manual YAML creation** - Hand-authored Kubernetes manifests for full control
+1. **Built-in .NET Aspire Kubernetes publishing** - Native Kubernetes manifest generation.
+2. **Manual YAML creation** - Hand-authored Kubernetes manifests for full control.
 
-### Option 1: Deploy using Aspir8
+### Option 1: Use built-in .NET Aspire Kubernetes publishing
 
-[Aspir8](https://prom3theu5.github.io/aspirational-manifests/) is an open-source project that automatically generates Kubernetes deployment YAML based on your .NET Aspire app host manifest. This is the most straightforward approach for getting started.
-
-#### Install Aspir8
-
-Install the Aspir8 global tool:
-
-```dotnetcli
-dotnet tool install -g aspirate
-```
-
-#### Generate and deploy manifests
-
-1. Navigate to your .NET Aspire project's app host directory:
-
-   ```bash
-   cd YourAspireApp.AppHost
-   ```
-
-1. Initialize Aspir8 in your project:
-
-   ```dotnetcli
-   aspirate init
-   ```
-
-   This creates an `aspirate.json` configuration file where you can customize deployment settings.
-
-1. Generate Kubernetes manifests:
-
-   ```dotnetcli
-   aspirate generate
-   ```
-
-   This command:
-   - Builds your .NET Aspire projects
-   - Creates container images  
-   - Generates Kubernetes YAML manifests in the `manifests` folder
-
-1. Review the generated manifests in the `manifests` folder. You'll find:
-   - `Deployment` objects for your application services
-   - `Service` objects for networking
-   - `ConfigMap` objects for configuration
-   - Container registry configurations
-
-1. Apply the manifests to your Kubernetes cluster:
-
-   ```dotnetcli
-   aspirate apply
-   ```
-
-#### Manage deployments
-
-Aspir8 provides additional commands for managing your deployments:
-
-- **Update deployment**: Run `aspirate generate` and `aspirate apply` again after making code changes
-- **Remove deployment**: Use `aspirate destroy` to clean up all resources
-
-### Option 2: Use .NET Aspire 9.3+ built-in Kubernetes publishing
-
-.NET Aspire 9.3 introduced native Kubernetes manifest generation capabilities that allow you to customize the output programmatically.
+.NET Aspire includes native Kubernetes manifest generation capabilities that allow you to customize the output programmatically. This approach leverages the <xref:Microsoft.Extensions.Hosting.DistributedApplicationBuilder> to configure Kubernetes-specific settings and the <xref:Microsoft.Extensions.Hosting.IDistributedApplicationResourceWithEndpoints.PublishAsKubernetesService%2A> extension method to publish resources as Kubernetes services.
 
 #### Configure Kubernetes publishing
 
-In your app host project, you can configure Kubernetes-specific settings:
+In your app host project, you can configure Kubernetes-specific settings. The following code shows how to set up a Kubernetes environment and configure services for deployment:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -158,9 +97,9 @@ Apply the generated manifests to your cluster:
 kubectl apply -f ./k8s-manifests
 ```
 
-### Option 3: Create manual Kubernetes manifests
+### Option 2: Create manual Kubernetes manifests
 
-For scenarios requiring full control over Kubernetes resources, you can hand-author YAML manifests. This approach provides maximum flexibility but requires more effort.
+For scenarios requiring full control over Kubernetes resources, you can hand-author YAML manifests. This approach provides maximum flexibility but requires more effort. Manual creation is useful when you need specific Kubernetes features or configurations that aren't available through the built-in publishing options.
 
 #### Generate the manifest
 
@@ -258,51 +197,57 @@ kubectl apply -f apiservice.yaml
 
 ## Development workflow with Visual Studio Code
 
-Visual Studio Code provides excellent support for developing and managing Kubernetes applications. This workflow complements .NET Aspire development perfectly.
+Visual Studio Code provides excellent support for developing and managing Kubernetes applications. This workflow complements .NET Aspire development perfectly by allowing you to manage the entire deployment lifecycle from within the editor.
 
 ### Install Kubernetes extension
 
+The Kubernetes extension for Visual Studio Code provides comprehensive support for managing Kubernetes resources. Follow these steps to set up your development environment:
+
 1. Install the [Kubernetes extension](https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools) for Visual Studio Code.
 
-1. Open your .NET Aspire project in VS Code.
+1. Open your .NET Aspire solution in VS Code.
 
 ### Use Kubernetes extension features
 
 The Kubernetes extension provides several features that work seamlessly with .NET Aspire:
 
-- **Cluster explorer**: View and manage your Kubernetes resources
-- **YAML intellisense**: Auto-completion and validation for Kubernetes manifests  
-- **Pod logs**: Stream logs directly in VS Code
-- **Port forwarding**: Access cluster services locally
-- **Apply manifests**: Deploy YAML files directly from the editor
+- **Cluster explorer**: View and manage your Kubernetes resources.
+- **YAML intellisense**: Auto-completion and validation for Kubernetes manifests.  
+- **Pod logs**: Stream logs directly in VS Code.
+- **Port forwarding**: Access cluster services locally.
+- **Apply manifests**: Deploy YAML files directly from the editor.
 
 :::image type="content" source="media/vscode-kubernetes-extension.png" lightbox="media/vscode-kubernetes-extension.png" alt-text="Visual Studio Code with Kubernetes extension showing .NET Aspire deployment":::
 
 ### Debugging workflow
 
-1. Use Aspir8 or built-in publishing to generate manifests
-1. Apply manifests to your development cluster
+The following workflow demonstrates how to use Visual Studio Code effectively with .NET Aspire deployments:
+
+1. Use built-in publishing to generate manifests.
+1. Apply manifests to your development cluster.
 1. Use VS Code to:
-   - Monitor pod status
-   - View application logs
-   - Port-forward services for testing
-   - Update and redeploy manifests
+   - Monitor pod status.
+   - View application logs.
+   - Port-forward services for testing.
+   - Update and redeploy manifests.
 
 This workflow allows you to use the same tools you're familiar with for Kubernetes development while benefiting from .NET Aspire's orchestration capabilities.
 
 ## Configuration considerations
 
+When deploying .NET Aspire solutions to Kubernetes, several configuration aspects require special attention to ensure proper functionality in the containerized environment.
+
 ### Service discovery
 
 .NET Aspire's service discovery works differently in Kubernetes compared to local development. Configure service discovery for Kubernetes by:
 
-1. Using Kubernetes DNS names in connection strings
-1. Leveraging Kubernetes `Service` objects for stable endpoints
-1. Configuring [.NET Aspire service discovery](../service-discovery/overview.md) for container environments
+1. Using Kubernetes DNS names in connection strings.
+1. Leveraging Kubernetes `Service` objects for stable endpoints.
+1. Configuring [.NET Aspire service discovery](../service-discovery/overview.md) for container environments.
 
 ### Secrets and configuration
 
-For production deployments, store sensitive configuration in Kubernetes `Secret` objects:
+For production deployments, store sensitive configuration in Kubernetes `Secret` objects rather than in plain text configuration files. This approach ensures that sensitive data is properly encrypted and managed by Kubernetes:
 
 ```yaml
 apiVersion: v1
@@ -327,7 +272,7 @@ env:
 
 ### Health checks
 
-.NET Aspire health checks work automatically in Kubernetes when properly configured:
+.NET Aspire health checks work automatically in Kubernetes when properly configured. The following example shows how to configure liveness and readiness probes:
 
 ```yaml
 containers:
@@ -345,12 +290,16 @@ containers:
 
 ## Troubleshooting
 
+When deploying .NET Aspire solutions to Kubernetes, you might encounter various issues. This section covers common problems and provides debugging strategies to help resolve them.
+
 ### Common issues
 
-- **Image pull errors**: Ensure your container registry is accessible from the cluster
-- **Service connectivity**: Verify Kubernetes `Service` objects and DNS resolution
-- **Resource limits**: Configure appropriate CPU and memory limits
-- **Configuration mismatch**: Check that connection strings match Kubernetes service names
+The following list describes common deployment issues and their typical causes:
+
+- **Image pull errors**: Ensure your container registry is accessible from the cluster.
+- **Service connectivity**: Verify Kubernetes `Service` objects and DNS resolution.
+- **Resource limits**: Configure appropriate CPU and memory limits.
+- **Configuration mismatch**: Check that connection strings match Kubernetes service names.
 
 ### Debugging tools
 
@@ -375,7 +324,6 @@ kubectl port-forward service/<service-name> 8080:80
 - [Learn about .NET Aspire service discovery](../service-discovery/overview.md)
 - [Configure health checks](../fundamentals/health-checks.md)
 - [Deploy to Azure Kubernetes Service](/azure/aks/learn/quick-kubernetes-deploy-portal)
-- [Explore Aspir8 documentation](https://prom3theu5.github.io/aspirational-manifests/)
 
 ## See also
 
