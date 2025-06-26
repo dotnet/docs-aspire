@@ -18,17 +18,17 @@ Before creating a custom resource, consider whether your scenario might be bette
 
 Custom non-container resources are valuable when you need:
 
-- Dashboard integration with status updates and logs
-- Lifecycle management (starting/stopping services)
-- In-process services that benefit from Aspire's orchestration
-- External resource management with rich feedback
+- Dashboard integration with status updates and logs.
+- Lifecycle management (starting/stopping services).
+- In-process services that benefit from Aspire's orchestration.
+- External resource management with rich feedback.
 
 Examples include:
 
-- In-process HTTP proxies or middleware
-- Cloud service provisioning and management
-- External API integrations with health monitoring
-- Background services that need dashboard visibility
+- In-process HTTP proxies or middleware.
+- Cloud service provisioning and management.
+- External API integrations with health monitoring.
+- Background services that need dashboard visibility.
 
 ## Key components
 
@@ -68,10 +68,10 @@ Create a lifecycle hook to manage the proxy:
 
 The lifecycle hook:
 
-1. **Manages lifecycle**: Starts services when resources are created
-2. **Integrates logging**: Uses standard .NET logging that appears in the Aspire dashboard
-3. **Handles background tasks**: Runs long-running services in background tasks
-4. **Provides resource management**: Manages resources like HTTP listeners and cleanup
+1. **Manages lifecycle**: Starts services when resources are created.
+1. **Integrates logging**: Uses standard .NET logging that appears in the Aspire dashboard.
+1. **Handles background tasks**: Runs long-running services in background tasks.
+1. **Provides resource management**: Manages resources like HTTP listeners and cleanup.
 
 ### Register the lifecycle hook
 

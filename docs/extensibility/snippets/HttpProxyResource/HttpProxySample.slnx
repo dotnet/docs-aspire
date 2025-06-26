@@ -1,5 +1,7 @@
 <Project>
   <Sdk Name="Microsoft.Build.Traversal" />
-  <ProjectReference Include="HttpProxy.Hosting/HttpProxy.Hosting.csproj" />
-  <ProjectReference Include="HttpProxySample.AppHost/HttpProxySample.AppHost.csproj" />
+  <folder name="/src/">
+    <project path="HttpProxy.Hosting/HttpProxy.Hosting.csproj" />
+    <project path="HttpProxySample.AppHost/HttpProxySample.AppHost.csproj" />
+  </folder>
 </Project>
