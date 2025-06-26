@@ -348,6 +348,8 @@ This generates a `docker-compose.yml` file from your .NET Aspire configuration, 
 
 ## Migration troubleshooting
 
+When migrating from Docker Compose to .NET Aspire, you might encounter some common challenges. This section provides solutions to frequently encountered issues and guidance on how to troubleshoot problems that arise during the migration process.
+
 ### Common issues and solutions
 
 **Service discovery not working**
