@@ -370,6 +370,8 @@ items:
       href: community-toolkit/hosting-redis-extensions.md
     - name: PostgreSQL Extensions
       href: community-toolkit/hosting-postgresql-extensions.md
+    - name: MySql Extensions
+      href: community-toolkit/hosting-mysql-extensions.md
     - name: RavenDB
       href: community-toolkit/ravendb.md
   - name: Aspire.Hosting API reference
@@ -404,6 +406,9 @@ items:
       displayName: azure container apps,aca,azd
     - name: Deploy using azd and CI/CD
       href: deployment/azure/aca-deployment-github-actions.md
+    - name: Customize .NET Aspire Azure deployments
+      href: deployment/azure/customize-deployments.md
+      displayName: azd infra synth,azd infra gen,bicep,infrastructure,production
     - name: Use .NET Aspire with Application Insights
       href: deployment/azure/application-insights.md
       displayName: app insights

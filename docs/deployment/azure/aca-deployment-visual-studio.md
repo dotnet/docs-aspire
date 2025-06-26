@@ -1,6 +1,6 @@
 ---
 title: Deploy .NET Aspire projects to Azure Container Apps using Visual Studio
-description: Learn how to use Bicep, the Azure CLI, and Azure Developer CLI to deploy .NET Aspire projects to Azure using Visual Studio.
+description: Learn how to deploy .NET Aspire projects to Azure Container Apps using Visual Studio.
 ms.date: 06/14/2024
 ---
 
