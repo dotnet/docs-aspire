@@ -1,101 +1,82 @@
 ---
-title: .NET Aspire overview
-description: Learn about .NET Aspire, an application stack designed to improve the experience of building distributed applications.
-ms.date: 03/26/2025
+title: Aspire overview
+description: Learn about Aspire, an application stack designed to improve the experience of building distributed applications.
+ms.date: 06/26/2025
 ---
 
-# .NET Aspire overview
+# Aspire overview
 
-:::row:::
-:::column:::
+Aspire streamlines building, running, debugging, and deploying distributed apps. Picture your app as a set of services, databases, and frontends—when they're deployed, they all work together seamlessly, but during development they need to be individually started and connected. With Aspire, you get a unified toolchain that eliminates complex configs and makes local debugging effortless. Launch and debug your entire app with a single command. Ready to deploy? Aspire lets you publish anywhere—Kubernetes, the cloud, or your own servers. It's also fully extensible, so you can integrate your favorite tools and services with ease.
 
-:::image type="icon" border="false" source="../../assets/dotnet-aspire-logo-128.svg":::
+For the official support information, see the [Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire).
 
-:::column-end:::
-:::column span="3":::
+## The app host
 
-.NET Aspire provides tools, templates, and packages to help you build observable, production-ready apps. Delivered through NuGet packages, .NET Aspire simplifies common challenges in modern app development. Today's apps often rely on multiple services like databases, messaging, and caching, many supported by [.NET Aspire Integrations](../fundamentals/integrations-overview.md). For the official support information, see the [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire).
+Aspire's app host is where you define your app's services and dependencies in code—no complex configs required. Easily map out your architecture and let Aspire handle the local orchestration, so you can focus on building features.
 
-:::column-end:::
-:::row-end:::
-
-## Why .NET Aspire?
-
-.NET Aspire improves the experience of building apps that have a variety of projects and resources. With dev-time productivity enhancements that emulate deployed scenarios, you can quickly develop interconnected apps. Designed for flexibility, .NET Aspire allows you to replace or extend parts with your preferred tools and workflows. Key features include:
-
-- [**Dev-Time Orchestration**](#dev-time-orchestration): .NET Aspire provides features for running and connecting multi-project applications, container resources, and other dependencies for [local development environments](../fundamentals/networking-overview.md).
-- [**Integrations**](#net-aspire-integrations): .NET Aspire integrations are NuGet packages for commonly used services, such as Redis or Postgres, with standardized interfaces ensuring they connect consistently and seamlessly with your app.
-- [**Tooling**](#project-templates-and-tooling): .NET Aspire comes with project templates and tooling experiences for Visual Studio, Visual Studio Code, and the [.NET CLI](/dotnet/core/tools/) to help you create and interact with .NET Aspire projects.
-
-## Dev-time orchestration
-
-In .NET Aspire, "orchestration" primarily focuses on enhancing the _local development_ experience by simplifying the management of your app's configuration and interconnections. It's important to note that .NET Aspire's orchestration isn't intended to replace the robust systems used in production environments, such as [Kubernetes](../deployment/overview.md#deploy-to-kubernetes). Instead, it's a set of abstractions that streamline the setup of service discovery, environment variables, and container configurations, eliminating the need to deal with low-level implementation details. With .NET Aspire, your code has a consistent bootstrapping experience on any dev machine without the need for complex manual steps, making it easier to manage during the development phase.
-
-.NET Aspire orchestration assists with the following concerns:
-
-- **App composition**: Specify the .NET projects, containers, executables, and cloud resources that make up the application.
-- **Service discovery and connection string management**: The app host injects the right connection strings, network configurations, and service discovery information to simplify the developer experience.
-
-For example, using .NET Aspire, the following code creates a local Redis container resource, waits for it to become available, and then configures the appropriate connection string in the `"frontend"` project with a few helper method calls:
+A simple example might represent a common three-tier architecture with a frontend that depends on an API, which in turn connects to a database. This could be represented in the app host as shown in the following code:
 
 ```csharp
-// Create a distributed application builder given the command line arguments.
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Add a Redis server to the application.
-var cache = builder.AddRedis("cache");
+// Add database service
+var postgres = builder.AddPostgres("db")
+    .AddDatabase("appdata")
+    .WithDataVolume();
 
-// Add the frontend project to the application and configure it to use the 
-// Redis server, defined as a referenced dependency.
-builder.AddProject<Projects.MyFrontend>("frontend")
-       .WithReference(cache)
-       .WaitFor(cache);
+// Add API service and reference the database
+var api = builder.AddProject<Projects.ApiService>("api")
+    .WithReference(postgres)
+    .WaitFor(postgres);
+
+// Add frontend service and reference the API
+var frontend = builder.AddProject<Projects.Frontend>("frontend")
+    .WithReference(api);
+
+builder.Build().Run();
 ```
 
-For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
+Regardless of the language you choose, Aspire provides a consistent way to define your app's architecture. You can easily add services, set up dependencies, and configure how they interact—all in a straightforward, code-first manner.
 
-> [!IMPORTANT]
-> The call to <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis*> creates a new Redis container in your local dev environment. If you'd rather use an existing Redis instance, you can use the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> method to reference an existing connection string. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
+For more information, see [Aspire orchestration overview](../fundamentals/app-host-overview.md).
 
-## .NET Aspire integrations
+## Modeled as resources
 
-[.NET Aspire integrations](../fundamentals/integrations-overview.md) are NuGet packages designed to simplify connections to popular services and platforms, such as Redis or PostgreSQL. .NET Aspire integrations handle cloud resource setup and interaction for you through standardized patterns, such as adding health checks and telemetry. Integrations are two-fold - ["hosting" integrations](../fundamentals/integrations-overview.md#hosting-integrations) represents the service you're connecting to, and ["client" integrations](../fundamentals/integrations-overview.md#client-integrations) represents the client or consumer of that service. In other words, for many hosting packages there's a corresponding client package that handles the service connection within your code.
+Aspire makes it easy to define everything your app needs—frontends, APIs, databases, and more—using the unified app host model. Just describe your resources in code, and Aspire handles the connections for you. Resources can include:
 
-Each integration is designed to work with the .NET Aspire app host, and their configurations are injected automatically by [referencing named resources](../fundamentals/app-host-overview.md#reference-resources). In other words, if _Example.ServiceFoo_ references _Example.ServiceBar_, _Example.ServiceFoo_ inherits the integration's required configurations to allow them to communicate with each other automatically.
+- AI services
+- Caches
+- Containers
+- Databases
+- Executables
+- Frameworks
+- Messaging services
+- Projects
+- Storage
 
-For example, consider the following code using the .NET Aspire Service Bus integration:
+One resource can depend on another, and Aspire automatically wires them together. This means you can focus on building your app without worrying about the underlying infrastructure.
 
-```csharp
-builder.AddAzureServiceBusClient("servicebus");
-```
+Under the hood, every integration is either a container or executable, meaning you can add any container image, codebase, script, or cloud resource to your app host. Creating reusable Aspire integrations is just like creating a reusable UI component. It can be as simple or complex as you need, and is fully shareable.
 
-The <xref:Microsoft.Extensions.Hosting.AspireServiceBusExtensions.AddAzureServiceBusClient%2A> method handles the following concerns:
+For more information, see [Aspire integrations](../fundamentals/integrations-overview.md).
 
-- Registers a <xref:Azure.Messaging.ServiceBus.ServiceBusClient> as a singleton in the DI container for connecting to Azure Service Bus.
-- Applies <xref:Azure.Messaging.ServiceBus.ServiceBusClient> configurations either inline through code or through configuration.
-- Enables corresponding health checks, logging, and telemetry specific to the Azure Service Bus usage.
+## Reusable app topology
 
-A full list of available integrations is detailed on the [.NET Aspire integrations](../fundamentals/integrations-overview.md) overview page.
+When you compose your distributed app in Aspire's app host, you're not just defining services for local development and orchestration—you're also setting up the foundation for deployment. The same composition you use to run and debug locally is leveraged when you publish your app, ensuring consistency from development through to production. Likewise, Aspire doesn't get in the way of your existing deployment workflows.
 
-## Project templates and tooling
+Continuing from the three-tier architecture example, you can deploy the same app topology to various environments, whether it's a local machine, a cloud provider, or your own servers. Consider the following table that illustrates how the same resources can be deployed across different platforms:
 
-.NET Aspire provides a set of project templates and tooling experiences for Visual Studio, Visual Studio Code, and the [.NET CLI](/dotnet/core/tools/). These templates are designed to help you create and interact with .NET Aspire projects, or add .NET Aspire into your existing codebase. The templates include a set of opinionated defaults to help you get started quickly - for example, it has boilerplate code for turning on health checks and logging in .NET apps. These defaults are fully customizable, so you can edit and adapt them to suit your needs.
+| Resource | Local development | Azure | AWS |
+|----------|-------------------|-------|-----|
+| Frontend | `npm run` | Azure Container Apps | ECS or App Runner |
+| API Service | `dotnet run` | Azure Container Apps | ECS or Lambda |
+| Database | Docker container | Azure Database for PostgreSQL | RDS or Aurora |
 
-.NET Aspire templates also include boilerplate extension methods that handle common service configurations for you:
+Aspire's deployment capabilities are flexible and extensible, allowing you to adapt to your preferred infrastructure. Aspire doesn't get in the way of your existing deployment workflows, so you can continue using your favorite tools and services.
 
-```csharp
-builder.AddServiceDefaults();
-```
-
-For more information on what `AddServiceDefaults` does, see [.NET Aspire service defaults](../fundamentals/service-defaults.md).
-
-When added to your _:::no-loc text="Program.cs":::_ file, the preceding code handles the following concerns:
-
-- **OpenTelemetry**: Sets up formatted logging, runtime metrics, built-in meters, and tracing for ASP.NET Core, gRPC, and HTTP. For more information, see [.NET Aspire telemetry](../fundamentals/telemetry.md).
-- **Default health checks**: Adds default health check endpoints that tools can query to monitor your app. For more information, see [.NET app health checks in C#](/dotnet/core/diagnostics/diagnostic-health-checks).
-- **Service discovery**: Enables [service discovery](../service-discovery/overview.md) for the app and configures <xref:System.Net.Http.HttpClient> accordingly.
+For more information, see [Deploy Aspire apps](../deployment/overview.md).
 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Quickstart: Build your first .NET Aspire project](build-your-first-aspire-app.md)
+> [Quickstart: Build your first Aspire project](build-your-first-aspire-app.md)
