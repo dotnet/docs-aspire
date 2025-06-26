@@ -6,7 +6,7 @@ ms.date: 03/31/2025
 
 # Manage Azure role assignments
 
-All .NET Aspire Azure hosting integrations define Azure resources. [These resources](integrations-overview.md#add-azure-resources) come with default role assignments. You can replace these default role assignments with built-in role [or custom role assignments](integrations-overview.md#infrastructure-as-code). In this article, you learn how to manage Azure role assignments on .NET Aspire resources.
+All .NET Aspire Azure hosting integrations define Azure resources. [These resources](integrations-overview.md#add-azure-resources) come with default role assignments. You can replace these default role assignments with built-in role [or custom role assignments](customize-azure-resources.md). In this article, you learn how to manage Azure role assignments on .NET Aspire resources.
 
 ## Default built-in role assignments
 
@@ -54,7 +54,7 @@ For more information, see [Azure built-in roles](/azure/role-based-access-contro
 
 ## Built-in role assignment reference
 
-All built-in roles are defined within the <xref:Azure.Provisioning> namespaces and are included in the corresponding [📦 Azure.Provisioning.*](https://www.nuget.org/packages?q=Azure.Provisioning) NuGet packages. Each .NET Aspire Azure hosting integration automatically depends on the appropriate provisioning package. For more information, see [Infrastructure as code](integrations-overview.md#infrastructure-as-code).
+All built-in roles are defined within the <xref:Azure.Provisioning> namespaces and are included in the corresponding [📦 Azure.Provisioning.*](https://www.nuget.org/packages?q=Azure.Provisioning) NuGet packages. Each .NET Aspire Azure hosting integration automatically depends on the appropriate provisioning package. For more information, see [Customized Azure resources](customize-azure-resources.md).
 
 The following sections list the built-in roles for each Azure provisioning type that can be used as a parameter to the `WithRoleAssignments` API.
 

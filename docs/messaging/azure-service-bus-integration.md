@@ -87,12 +87,16 @@ There are many more configuration options available to customize the Azure Servi
 
 ### Connect to an existing Azure Service Bus namespace
 
-You might have an existing Azure Service Bus namespace that you want to connect to. Instead of representing a new Azure Service Bus resource, you can add a connection string to the app host. To add a connection to an existing Azure Service Bus namespace, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> method:
+You might have an existing Azure Service Bus namespace that you want to connect to. Chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureServiceBusResource> is an existing resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var serviceBus = builder.AddConnectionString("messaging");
+var existingServiceBusName = builder.AddParameter("existingServiceBusName");
+var existingServiceBusResourceGroup = builder.AddParameter("existingServiceBusResourceGroup");
+
+var serviceBus = builder.AddAzureServiceBus("messaging")
+                        .AsExisting(existingServiceBusName, existingServiceBusResourceGroup);
 
 builder.AddProject<Projects.WebApplication>("web")
        .WithReference(serviceBus);
@@ -100,19 +104,10 @@ builder.AddProject<Projects.WebApplication>("web")
 // After adding all resources, run the app...
 ```
 
-[!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
+For more information on treating Azure Service Bus resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
-The connection string is configured in the app host's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section. The app host injects this connection string as an environment variable into all dependent resources, for example:
-
-```json
-{
-    "ConnectionStrings": {
-        "messaging": "Endpoint=sb://{namespace}.servicebus.windows.net/;SharedAccessKeyName={key_name};SharedAccessKey={key_value};"
-    }
-}
-```
-
-The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"messaging"`. The `GetConnectionString` API is shorthand for `IConfiguration.GetSection("ConnectionStrings")[name]`.
+> [!NOTE]
+> Alternatively, instead of representing an Azure Service Bus resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Add Azure Service Bus queue
 

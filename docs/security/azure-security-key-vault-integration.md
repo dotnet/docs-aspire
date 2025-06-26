@@ -87,32 +87,27 @@ There are many more configuration options available to customize the Key Vault r
 
 ### Connect to an existing Azure Key Vault instance
 
-You might have an existing Azure Key Vault instance that you want to connect to. Instead of representing a new Azure Key Vault resource, you can add a connection string to the app host. To add a connection to an existing Azure Key Vault resource, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> method:
+You might have an existing Azure AI Key Vault instance that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureKeyVaultResource> is an existing resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var keyVault = builder.AddConnectionString("key-vault");
+var existingKeyVaultName = builder.AddParameter("existingKeyVaultName");
+var existingKeyVaultResourceGroup = builder.AddParameter("existingKeyVaultResourceGroup");
 
-builder.AddProject<Projects.WebApplication>("web")
-       .WithReference(keyVault);
+var keyvault = builder.AddAzureKeyVault("ke-yvault")
+                    .AsExisting(existingKeyVaultName, existingKeyVaultResourceGroup);
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(keyvault);
 
 // After adding all resources, run the app...
 ```
 
-[!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
+For more information on treating Azure Key Vault resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
-The connection string is configured in the app host's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section. The app host injects this connection string as an environment variable into all dependent resources, for example:
-
-```json
-{
-  "ConnectionStrings": {
-    "key-vault": "https://{account_name}.vault.azure.net/"
-  }
-}
-```
-
-The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"key-vault"`. The `GetConnectionString` API is shorthand for `IConfiguration.GetSection("ConnectionStrings")[name]`.
+> [!NOTE]
+> Alternatively, instead of representing an Azure Key Vault resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ## Client integration
 

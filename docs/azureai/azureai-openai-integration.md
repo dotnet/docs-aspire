@@ -127,34 +127,8 @@ builder.AddProject<Projects.ExampleProject>()
 
 For more information on treating Azure OpenAI resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
-Alternatively, instead of representing an Azure OpenAI resource, you can add a connection string to the app host. Which is a weakly-typed approach that's based solely on a `string` value. To add a connection to an existing Azure OpenAI service, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString%2A> method:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var openai = builder.ExecutionContext.IsPublishMode
-    ? builder.AddAzureOpenAI("openai")
-    : builder.AddConnectionString("openai");
-
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(openai);
-
-// After adding all resources, run the app...
-```
-
-[!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
-
-The connection string is configured in the app host's configuration, typically under User Secrets, under the `ConnectionStrings` section:
-
-```json
-{
-  "ConnectionStrings": {
-    "openai": "https://{account_name}.openai.azure.com/"
-  }
-}
-```
-
-For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> [!NOTE]
+> Alternatively, instead of representing an Azure OpenAI resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ## Client integration
 

@@ -122,7 +122,7 @@ The preceding code:
   - The <xref:Azure.Provisioning.WebPubSub.WebPubSubService.Sku?displayProperty=nameWithType> object has its name and capacity properties set to `Standard_S1` and `5`, respectively.
   - A tag is added to the Web PubSub resource with a key of `ExampleKey` and a value of `Example value`.
 
-There are many more configuration options available to customize the Web PubSub resource. For more information, see <xref:Azure.Provisioning.WebPubSub>. For more information, see [`Azure.Provisioning` customization](../azure/integrations-overview.md#azureprovisioning-customization).
+There are many more configuration options available to customize the Web PubSub resource. For more information, see <xref:Azure.Provisioning.WebPubSub>. For more information, see [`Azure.Provisioning` customization](../azure/customize-azure-resources.md#azureprovisioning-customization).
 
 ### Connect to an existing Azure Web PubSub instance
 
@@ -145,34 +145,8 @@ builder.AddProject<Projects.ExampleProject>()
 
 For more information on treating Azure Web PubSub resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
-Alternatively, instead of representing an Azure Web PubSub resource, you can add a connection string to the app host. Which is a weakly-typed approach that's based solely on a `string` value. To add a connection to an existing Azure Web PubSub service, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString%2A> method:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var webPubSub = builder.ExecutionContext.IsPublishMode
-    ? builder.AddAzureWebPubSub("web-pubsub")
-    : builder.AddConnectionString("web-pubsub");
-
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(webPubSub);
-
-// After adding all resources, run the app...
-```
-
-[!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
-
-The connection string is configured in the app host's configuration, typically under User Secrets, under the `ConnectionStrings` section:
-
-```json
-{
-  "ConnectionStrings": {
-    "web-pubsub": "https://{account_name}.webpubsub.azure.com"
-  }
-}
-```
-
-For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> [!NOTE]
+> Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ## Client integration
 

@@ -84,6 +84,11 @@ The data volume is used to persist the MySQL server data outside the lifecycle o
 > [!WARNING]
 > The password is stored in the data volume. When using a data volume and if the password changes, it will not work until you delete the volume.
 
+> [!IMPORTANT]
+> Some database integrations, including the .NET Aspire MySQL integration, can't successfully use data volumes after deployment to Azure Container Apps (ACA). This is because ACA uses Server Message Block (SMB) to connect containers to data volumes, and some systems can't use this connection. In the Aspire Dashboard, a database affected by this issue has a status of **Activating** or **Activation Failed** but is never listed as **Running**.
+>
+> You can resolve the problem by deploying to a Kubernetes cluster, such as Azure Kubernetes Services (AKS). For more information, see [.NET Aspire deployments](../../deployment/overview.md).
+
 ### Add a MySQL resource with a data bind mount
 
 To add a data bind mount to the MySQL resource, call the <xref:Aspire.Hosting.MySqlBuilderExtensions.WithDataBindMount*> method:

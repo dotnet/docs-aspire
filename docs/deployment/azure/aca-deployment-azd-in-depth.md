@@ -202,11 +202,13 @@ The previous command may take some time to execute, but when completed the resou
 
 Although development teams are free to use `azd up` (or `azd provision` and `azd deploy`) commands for their deployments both for development and production purposes, some teams may choose to generate Bicep files that they can review and manage as part of version control (this also allows these Bicep files to be referenced as part of a larger more complex Azure deployment).
 
+For comprehensive guidance on customizing generated infrastructure for production scenarios, see [Customize .NET Aspire Azure deployments](customize-deployments.md).
+
 `azd` includes the ability to output the Bicep it uses for provisioning via following command:
 
 ```azdeveloper
 azd config set alpha.infraSynth on
-azd infra synth
+azd infra gen
 ```
 
 After this command is executed in the starter template example used in this guide, the following files are created in the _AppHost_ project directory:
@@ -374,10 +376,10 @@ tags:
   aspire-resource-name: webfrontend
 ```
 
-After executing the `azd infra synth` command, when `azd provision` and `azd deploy` are called they use the Bicep and supporting generated files.
+After executing the `azd infra gen` command, when `azd provision` and `azd deploy` are called they use the Bicep and supporting generated files.
 
 > [!IMPORTANT]
-> If `azd infra synth` is called again, it replaces any modified files with freshly generated ones and prompts you for confirmation before doing so.
+> If `azd infra gen` is called again, it replaces any modified files with freshly generated ones and prompts you for confirmation before doing so.
 
 ## Isolated environments for debugging
 

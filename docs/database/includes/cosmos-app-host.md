@@ -72,16 +72,20 @@ The preceding code:
   - The <xref:Azure.Provisioning.CosmosDB.CosmosDBAccount.ConsistencyPolicy?displayProperty=nameWithType> is assigned to a <xref:Azure.Provisioning.CosmosDB.DefaultConsistencyLevel.Strong?displayProperty=nameWithType>.
   - A tag is added to the Cosmos DB account with a key of `ExampleKey` and a value of `Example value`.
 
-There are many more configuration options available to customize the Azure Cosmos DB resource. For more information, see <xref:Azure.Provisioning.CosmosDB>. For more information, see [Azure.Provisioning customization](../../azure/integrations-overview.md#azureprovisioning-customization).
+There are many more configuration options available to customize the Azure Cosmos DB resource. For more information, see <xref:Azure.Provisioning.CosmosDB>. For more information, see [Azure.Provisioning customization](../../azure/customize-azure-resources.md#azureprovisioning-customization).
 
 ### Connect to an existing Azure Cosmos DB account
 
-You might have an existing Azure Cosmos DB account that you want to connect to. Instead of representing a new Azure Cosmos DB resource, you can add a connection string to the app host. To add a connection to an existing Azure Cosmos DB account, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> method:
+You might have an existing Azure Cosmos DB account that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.AzureCosmosDBResource> is an existing resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var cosmos = builder.AddConnectionString("cosmos-db");
+var existingCosmosName = builder.AddParameter("existingCosmosName");
+var existingCosmosResourceGroup = builder.AddParameter("existingCosmosResourceGroup");
+
+var cosmos = builder.AddAzureCosmosDB("cosmos-db")
+                    .AsExisting(existingCosmosName, existingCosmosResourceGroup);
 
 builder.AddProject<Projects.WebApplication>("web")
        .WithReference(cosmos);
@@ -89,19 +93,10 @@ builder.AddProject<Projects.WebApplication>("web")
 // After adding all resources, run the app...
 ```
 
-[!INCLUDE [connection-strings-alert](../../includes/connection-strings-alert.md)]
+For more information on treating Azure Cosmos DB resources as existing resources, see [Use existing Azure resources](../../azure/integrations-overview.md#use-existing-azure-resources).
 
-The connection string is configured in the app host's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section. The app host injects this connection string as an environment variable into all dependent resources, for example:
-
-```json
-{
-    "ConnectionStrings": {
-        "cosmos-db": "AccountEndpoint=https://{account_name}.documents.azure.com:443/;AccountKey={account_key};"
-    }
-}
-```
-
-The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"cosmos-db"`. The `GetConnectionString` API is shorthand for `IConfiguration.GetSection("ConnectionStrings")[name]`.
+> [!NOTE]
+> Alternatively, instead of representing an Azure Cosmos DB resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Add Azure Cosmos DB database and container resources
 

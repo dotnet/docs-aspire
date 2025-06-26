@@ -9,7 +9,7 @@ ms.date: 05/09/2025
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 > [!IMPORTANT]
-> The .NET Aspire Azure Functions integration is currently in preview and is subject to change.
+> The .NET Aspire Azure Container Registry integration is currently in preview and is subject to change.
 
 [Azure Container Registry (ACR)](/azure/container-registry) is a managed Docker container registry service that simplifies the storage, management, and deployment of container images. The .NET Aspire integration allows you to provision or reference an existing Azure Container Registry and seamlessly integrate it with your app's compute environments.
 

@@ -84,36 +84,31 @@ The preceding code:
   - The high availability properties are set with <xref:Azure.Provisioning.PostgreSql.PostgreSqlFlexibleServerHighAvailabilityMode.ZoneRedundant?displayProperty=nameWithType> in standby availability zone `"2"`.
   - A tag is added to the flexible server with a key of `ExampleKey` and a value of `Example value`.
 
-There are many more configuration options available to customize the PostgreSQL flexible server resource. For more information, see <xref:Azure.Provisioning.PostgreSql> and [Azure.Provisioning customization](../../azure/integrations-overview.md#azureprovisioning-customization).
+There are many more configuration options available to customize the PostgreSQL flexible server resource. For more information, see <xref:Azure.Provisioning.PostgreSql> and [Azure.Provisioning customization](../../azure/customize-azure-resources.md#azureprovisioning-customization).
 
 ### Connect to an existing Azure PostgreSQL flexible server
 
-You might have an existing Azure PostgreSQL flexible server that you want to connect to. Instead of representing a new Azure PostgreSQL flexible server resource, you can add a connection string to the app host. To add a connection to an existing Azure PostgreSQL flexible server, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> method:
+You might have an existing Azure PostgreSQL flexible server that you want to connect to. Chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzurePostgresFlexibleServerResource> is an existing resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var postgres = builder.AddConnectionString("postgres");
+var existingPostgresName = builder.AddParameter("existingPostgresName");
+var existingPostgresResourceGroup = builder.AddParameter("existingPostgresResourceGroup");
 
-builder.AddProject<Projects.WebApplication>("web")
+var postgres = builder.AddAzurePostgresFlexibleServer("postgres")
+                      .AsExisting(existingPostgresName, existingPostgresResourceGroup);
+
+builder.AddProject<Projects.ExampleProject>()
        .WithReference(postgres);
 
 // After adding all resources, run the app...
 ```
 
-[!INCLUDE [connection-strings-alert](../../includes/connection-strings-alert.md)]
+For more information on treating Azure PostgreSQL flexible server resources as existing resources, see [Use existing Azure resources](../../azure/integrations-overview.md#use-existing-azure-resources).
 
-The connection string is configured in the app host's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section. The app host injects this connection string as an environment variable into all dependent resources, for example:
-
-```json
-{
-    "ConnectionStrings": {
-        "postgres": "Server=<PostgreSQL-server-name>.postgres.database.azure.com;Database=<database-name>;Port=5432;Ssl Mode=Require;User Id=<username>;"
-    }
-}
-```
-
-The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"postgres"`. The `GetConnectionString` API is shorthand for `IConfiguration.GetSection("ConnectionStrings")[name]`.
+> [!NOTE]
+> Alternatively, instead of representing an Azure PostgreSQL flexible server resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Run Azure PostgreSQL resource as a container
 

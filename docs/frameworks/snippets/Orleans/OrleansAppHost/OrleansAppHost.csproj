@@ -8,10 +8,10 @@
     <UserSecretsId>88427062-d086-46c2-b35e-171d742a6fe0</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.3.0" />
-    <PackageReference Include="Aspire.Hosting.Orleans" Version="9.3.0" />
-    <PackageReference Include="Aspire.Hosting.Azure" Version="9.3.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.Storage" Version="9.3.0" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.3.1" />
+    <PackageReference Include="Aspire.Hosting.Orleans" Version="9.3.1" />
+    <PackageReference Include="Aspire.Hosting.Azure" Version="9.3.2" />
+    <PackageReference Include="Aspire.Hosting.Azure.Storage" Version="9.3.1" />
     <ProjectReference Include="..\OrleansServer\OrleansServer.csproj" />
     <ProjectReference Include="..\OrleansClient\OrleansClient.csproj" />
   </ItemGroup>
