@@ -15,8 +15,8 @@ While Docker Compose and .NET Aspire might seem similar at first glance, they se
 
 ### Docker Compose vs .NET Aspire
 
-| Aspect | Docker Compose | .NET Aspire |
-|--------|----------------|-------------|
+|  | Docker Compose | .NET Aspire |
+|--|--|--|
 | **Primary purpose** | Container orchestration | Development-time orchestration and app composition |
 | **Scope** | Container-focused | Multi-resource (containers, .NET projects, cloud resources) |
 | **Configuration** | YAML-based | C#-based, strongly typed |
