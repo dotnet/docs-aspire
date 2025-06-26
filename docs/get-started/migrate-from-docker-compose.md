@@ -28,14 +28,14 @@ While Docker Compose and .NET Aspire might seem similar at first glance, they se
 
 When migrating from Docker Compose to .NET Aspire, consider these conceptual differences:
 
-- **From YAML to C#**: Configuration moves from declarative YAML to imperative, strongly-typed C# code
-- **From containers to resources**: .NET Aspire manages not just containers, but .NET projects, executables, parameters, all as resources
-- **From manual networking to service discovery**: .NET Aspire automatically configures service discovery and connection strings
-- **From development gaps to integrated experience**: .NET Aspire provides dashboard, telemetry, and debugging integration
+- **From YAML to C#**: Configuration moves from declarative YAML to imperative, strongly-typed C# code.
+- **From containers to resources**: .NET Aspire manages not just containers, but .NET projects, executables, parameters, all as resources.
+- **From manual networking to service discovery**: .NET Aspire automatically configures service discovery and connection strings.
+- **From development gaps to integrated experience**: .NET Aspire provides dashboard, telemetry, and debugging integration.
 
 ## Docker Compose to .NET Aspire reference
 
-This section provides a comprehensive mapping of Docker Compose YAML syntax to .NET Aspire C# API equivalents.
+The following reference tables provide systematic mappings from Docker Compose YAML syntax to equivalent .NET Aspire C# API calls. Use these tables as a quick reference when converting your existing Docker Compose files to .NET Aspire application host configurations. Each section covers a specific aspect of container orchestration, from basic service definitions to advanced networking and resource management.
 
 ### Service definitions
 
@@ -145,7 +145,16 @@ This section provides a comprehensive mapping of Docker Compose YAML syntax to .
 
 ## Common migration patterns
 
-This section shows how to migrate common Docker Compose patterns to .NET Aspire.
+This section demonstrates practical migration scenarios that you'll likely encounter when moving from Docker Compose to .NET Aspire. Each pattern shows a complete Docker Compose example alongside its .NET Aspire equivalent, highlighting the key differences and benefits of the migration.
+
+The patterns covered include:
+
+- **Multi-service web applications** with frontend, API, and database components.
+- **Container-based services** using existing Docker images.
+- **Environment variables and configuration** management strategies.
+- **Custom networks and volumes** for data persistence and service isolation.
+
+These examples represent the most common use cases, but .NET Aspire's flexibility allows for many other scenarios. If your specific use case isn't covered here, you can combine these patterns or refer to the comprehensive API reference above.
 
 ### Multi-service web application
 
@@ -208,10 +217,10 @@ builder.Build().Run();
 
 **Key differences:**
 
-- **Service dependencies**: `depends_on` becomes `WithReference()` which also configures service discovery
-- **Environment variables**: Connection strings are automatically generated and injected
-- **Build context**: Build context is capable of using Dockerfiles, .NET projects, Node.js apps, and more instead of just Dockerfile builds
-- **Data persistence**: Volumes are automatically managed by .NET Aspire
+- **Service dependencies**: `depends_on` becomes `WithReference()` which also configures service discovery.
+- **Environment variables**: Connection strings are automatically generated and injected.
+- **Build context**: Build context is capable of using Dockerfiles, .NET projects, Node.js apps, and more instead of just Dockerfile builds.
+- **Data persistence**: Volumes are automatically managed by .NET Aspire.
 
 ### Container-based services
 
@@ -302,9 +311,9 @@ builder.Build().Run();
 
 **Key differences:**
 
-- **Automatic connection strings**: Database and cache URLs are automatically generated
-- **Typed parameters**: External configuration uses strongly-typed parameters instead of environment variable substitution
-- **Service discovery**: References automatically configure the correct service endpoints
+- **Automatic connection strings**: Database and cache URLs are automatically generated.
+- **Typed parameters**: External configuration uses strongly-typed parameters instead of environment variable substitution.
+- **Service discovery**: References automatically configure the correct service endpoints.
 
 ### Custom networks and volumes
 
@@ -355,21 +364,23 @@ builder.Build().Run();
 
 **Key differences:**
 
-- **Simplified networking**: .NET Aspire automatically handles container networking
-- **Volume management**: Named volumes are created and managed through the resource model
-- **Bind mounts**: Host directories can be mounted with `WithBindMount()`
+- **Simplified networking**: .NET Aspire automatically handles container networking.
+- **Volume management**: Named volumes are created and managed through the resource model.
+- **Bind mounts**: Host directories can be mounted with `WithBindMount()`.
 
 ## Migration strategy
+
+Successfully migrating from Docker Compose to .NET Aspire requires a systematic approach. The following steps provide a proven methodology for moving your applications while minimizing disruption and ensuring all components work correctly in the new environment.
 
 ### 1. Assess your current setup
 
 Before migrating, inventory your Docker Compose setup:
 
-- **Services**: Identify all services (databases, caches, APIs, web apps)
-- **Dependencies**: Map out service dependencies from `depends_on`
-- **Data persistence**: Catalog volumes and bind mounts
-- **Environment variables**: List all configuration and secrets
-- **Custom networks**: Identify any custom networking requirements
+- **Services**: Identify all services including databases, caches, APIs, and web applications.
+- **Dependencies**: Map out service dependencies from `depends_on` declarations.
+- **Data persistence**: Catalog all volumes and bind mounts used for data storage.
+- **Environment variables**: List all configuration variables and secrets.
+- **Custom networks**: Identify any custom networking requirements and configurations.
 
 ### 2. Create the .NET Aspire app host
 
@@ -383,26 +394,26 @@ dotnet new aspire-apphost -o MyApp.AppHost
 
 Migrate services one by one, starting with backing services (databases, caches) and then applications:
 
-1. **Add backing services** (PostgreSQL, Redis, etc.)
-1. **Convert .NET applications** to project references
-1. **Convert other containers** using `AddContainer()`
-1. **Configure dependencies** with `WithReference()`
-1. **Set up environment variables** and parameters
+1. **Add backing services** like PostgreSQL, Redis, and other infrastructure components.
+1. **Convert .NET applications** to project references for better integration.
+1. **Convert other containers** using `AddContainer()` for existing Docker images.
+1. **Configure dependencies** with `WithReference()` to establish service relationships.
+1. **Set up environment variables** and parameters for configuration management.
 
 ### 4. Handle data migration
 
 For persistent data:
 
-- Use `WithVolume()` for named volumes
-- Use `WithBindMount()` for host directory mounts
-- Consider using `WithDataVolume()` for database persistence
+- Use `WithVolume()` for named volumes that need to persist data.
+- Use `WithBindMount()` for host directory mounts when you need direct access to host files.
+- Consider using `WithDataVolume()` for database persistence with automatic volume management.
 
 ### 5. Test and validate
 
-- Start the .NET Aspire app host and verify all services start correctly
-- Check the dashboard to confirm service health and connectivity
-- Validate that inter-service communication works as expected
-- Test with your existing client applications
+- Start the .NET Aspire app host and verify all services start correctly.
+- Check the dashboard to confirm service health and connectivity status.
+- Validate that inter-service communication works as expected.
+- Test with your existing client applications to ensure compatibility.
 
 ## Publish to Docker Compose
 
@@ -439,9 +450,9 @@ builder.Build().Run();
 
 This generates a `docker-compose.yml` file from your .NET Aspire configuration, allowing you to:
 
-- Use .NET Aspire for development
-- Deploy with Docker Compose in production
-- Maintain consistency between environments
+- Use .NET Aspire for development with its rich tooling and dashboard experience.
+- Deploy with Docker Compose in production environments where it's already established.
+- Maintain consistency between environments by using the same configuration model.
 
 ## Migration troubleshooting
 
@@ -449,13 +460,13 @@ This generates a `docker-compose.yml` file from your .NET Aspire configuration, 
 
 **Service discovery not working**
 
-- Ensure you're using `WithReference()` to establish dependencies
-- Check that services are using the correct environment variable names
-- Review the dashboard to verify environment variables are injected correctly
+- Ensure you're using `WithReference()` to establish dependencies between services.
+- Check that services are using the correct environment variable names for connections.
+- Review the dashboard to verify environment variables are injected correctly.
 
 **Database connections failing**
 
-- Verify the database is fully started before dependent services
+- Verify the database is fully started before dependent services attempt to connect.
 - Use `WaitFor()` to ensure proper startup ordering:
 
   ```csharp
@@ -466,25 +477,25 @@ This generates a `docker-compose.yml` file from your .NET Aspire configuration, 
 
 **Volume mounting issues**
 
-- Use absolute paths for bind mounts
-- Ensure the host directory exists and has proper permissions
-- Consider using named volumes instead of bind mounts where possible
+- Use absolute paths for bind mounts to avoid path resolution issues.
+- Ensure the host directory exists and has proper permissions before mounting.
+- Consider using named volumes instead of bind mounts where possible for better portability.
 
 **Port conflicts**
 
-- .NET Aspire automatically assigns ports to avoid conflicts
-- Use `WithHttpEndpoint()` to specify custom ports if needed
-- Check the dashboard for actual assigned ports
+- .NET Aspire automatically assigns ports to avoid conflicts between services.
+- Use `WithHttpEndpoint()` to specify custom ports if needed for external access.
+- Check the dashboard for actual assigned ports during development.
 
 ## Next steps
 
 After migrating to .NET Aspire:
 
-- Explore [.NET Aspire integrations](../fundamentals/integrations-overview.md) to replace custom container configurations
-- Set up [health checks](../fundamentals/health-checks.md) for better monitoring
-- Configure [telemetry](../fundamentals/telemetry.md) for observability
-- Learn about [deployment options](../deployment/overview.md) for production environments
-- Consider [testing](../testing/overview.md) your distributed application
+- Explore [.NET Aspire integrations](../fundamentals/integrations-overview.md) to replace custom container configurations.
+- Set up [health checks](../fundamentals/health-checks.md) for better monitoring.
+- Configure [telemetry](../fundamentals/telemetry.md) for observability.
+- Learn about [deployment options](../deployment/overview.md) for production environments.
+- Consider [testing](../testing/overview.md) your distributed application.
 
 ## See also
 
