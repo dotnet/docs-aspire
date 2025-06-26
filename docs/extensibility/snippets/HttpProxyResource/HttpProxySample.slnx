@@ -1,9 +1,5 @@
-{
-  "solution": {
-    "path": "HttpProxySample.slnx",
-    "projects": [
-      "HttpProxy.Hosting/HttpProxy.Hosting.csproj",
-      "HttpProxySample.AppHost/HttpProxySample.AppHost.csproj"
-    ]
-  }
-}
+<Project>
+  <Sdk Name="Microsoft.Build.Traversal" />
+  <ProjectReference Include="HttpProxy.Hosting/HttpProxy.Hosting.csproj" />
+  <ProjectReference Include="HttpProxySample.AppHost/HttpProxySample.AppHost.csproj" />
+</Project>
