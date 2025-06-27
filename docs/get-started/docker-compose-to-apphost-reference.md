@@ -75,8 +75,8 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 | Docker Compose | .NET Aspire | Notes |
 |----------------|-------------|-------|
-| `deploy.resources.limits.memory: 512m` | `.WithResourceLimits(memory: 0.5)` | Memory limit in GB |
-| `deploy.resources.limits.cpus: 0.5` | `.WithResourceLimits(cpu: 0.5)` | CPU limit |
+| `deploy.resources.limits.memory: 512m` | Not supported | Resource limits aren't supported in .NET Aspire |
+| `deploy.resources.limits.cpus: 0.5` | Not supported | Resource limits aren't supported in .NET Aspire |
 
 ## Health checks
 
