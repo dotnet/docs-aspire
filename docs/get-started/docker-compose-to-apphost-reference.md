@@ -89,8 +89,8 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 | Docker Compose | .NET Aspire | Notes |
 |----------------|-------------|-------|
-| `restart: unless-stopped` | `.WithRestart(RestartPolicy.UnlessStopped)` | Available in container resources |
-| `restart: always` | `.WithRestart(RestartPolicy.Always)` | Always restart |
+| `restart: unless-stopped` | Not supported | Restart policies aren't supported in .NET Aspire |
+| `restart: always` | Not supported | Restart policies aren't supported in .NET Aspire |
 | `restart: no` | Default | No restart policy |
 
 ## Labels and metadata
