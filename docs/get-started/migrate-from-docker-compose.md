@@ -35,6 +35,11 @@ When migrating from Docker Compose to .NET Aspire, consider these conceptual dif
 
 For a comprehensive reference mapping Docker Compose YAML syntax to .NET Aspire C# API calls, see [Docker Compose to .NET Aspire AppHost API reference](docker-compose-to-apphost-reference.md).
 
+**Related links:**
+- [Docker Compose overview](https://docs.docker.com/compose/)
+- [.NET Aspire overview](aspire-overview.md)
+- [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)
+
 ## Common migration patterns
 
 This section demonstrates practical migration scenarios that you'll likely encounter when moving from Docker Compose to .NET Aspire. Each pattern shows a complete Docker Compose example alongside its .NET Aspire equivalent, highlighting the key differences and benefits of the migration.
@@ -260,6 +265,11 @@ builder.Build().Run();
 - **Volume management**: Named volumes are created and managed through the resource model.
 - **Bind mounts**: Host directories can be mounted with `WithBindMount()`.
 
+**Related links:**
+- [Docker Compose specification](https://docs.docker.com/compose/compose-file/)
+- [.NET Aspire app host overview](../fundamentals/app-host-overview.md)
+- [Container resource extensions](../app-host/containers.md)
+
 ## Migration strategy
 
 Successfully migrating from Docker Compose to .NET Aspire requires a systematic approach. The following steps provide a proven methodology for moving your applications while minimizing disruption and ensuring all components work correctly in the new environment.
@@ -307,6 +317,11 @@ For persistent data:
 - Validate that inter-service communication works as expected.
 - Test with your existing client applications to ensure compatibility.
 
+**Related links:**
+- [Docker Compose migration checklist](https://docs.docker.com/compose/migrate/)
+- [Build your first .NET Aspire app](build-your-first-aspire-app.md)
+- [.NET Aspire testing overview](../testing/overview.md)
+
 ## Publish to Docker Compose
 
 .NET Aspire 9.3 introduced the ability to publish your app model back to Docker Compose, enabling a hybrid workflow:
@@ -346,6 +361,10 @@ This generates a `docker-compose.yml` file from your .NET Aspire configuration, 
 - Deploy with Docker Compose in production environments where it's already established.
 - Maintain consistency between environments by using the same configuration model.
 
+**Related links:**
+- [Docker Compose enhancements in .NET Aspire 9.3](../whats-new/dotnet-aspire-9.3.md#-docker-compose-enhancements)
+- <xref:Aspire.Hosting.DockerCompose.PublishAsDockerComposeService%2A>
+
 ## Migration troubleshooting
 
 When migrating from Docker Compose to .NET Aspire, you might encounter some common challenges. This section provides solutions to frequently encountered issues and guidance on how to troubleshoot problems that arise during the migration process.
@@ -381,6 +400,11 @@ When migrating from Docker Compose to .NET Aspire, you might encounter some comm
 - Use `WithHttpEndpoint()` to specify custom ports if needed for external access.
 - Check the dashboard for actual assigned ports during development.
 
+**Related links:**
+- [Docker Compose troubleshooting](https://docs.docker.com/compose/troubleshooting/)
+- [.NET Aspire troubleshooting](../troubleshooting/overview.md)
+- [.NET Aspire dashboard overview](../fundamentals/dashboard/overview.md)
+
 ## Next steps
 
 After migrating to .NET Aspire:
@@ -394,6 +418,7 @@ After migrating to .NET Aspire:
 ## See also
 
 - [.NET Aspire overview](aspire-overview.md)
+- [AspiriFridays stream](https://www.youtube.com/@aspiredotdev)
 - [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)
 - [Docker Compose enhancements in .NET Aspire 9.3](../whats-new/dotnet-aspire-9.3.md#-docker-compose-enhancements)
 - [Add Dockerfiles to your .NET app model](../app-host/withdockerfile.md)
