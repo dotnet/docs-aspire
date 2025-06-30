@@ -16,21 +16,37 @@ ms.custom:
 
 The .NET Aspire CLI (`aspire` command) is a .NET global tool that provides command-line functionality to create, manage, run, and publish Aspire projects. Use the .NET Aspire CLI to streamline development workflows for distributed applications.
 
+The Aspire CLI is an interactive-first experience.
+
 - [Install .NET Aspire CLI](install.md)
 
 ## Create projects
 
-The `aspire new` command creates one or more Aspire projects that the Aspire CLI tool installs the latest Aspire project templates into the `dotnet` system.
+The `aspire new` command is an interactive-first CLI experience, and is used to create one or more Aspire projects. As part of creating a project, Azure CLI ensures that the latest Aspire project templates are installed into the `dotnet` system.
+
+<!-- Add asciinema here -->
 
 Use the `aspire new` command to create an Aspire project from a list of templates. Once a template is selected, the name of the project is set, and the output folder is chosen, `aspire` downloads the latest templates and generates one or more projects.
 
+While command line parameters can be used to automate the creation of an Aspire project, the Aspire CLI is an interactive-first experience.
+
 ## Run the app host project
 
-// TODO: This also checks certs, and does it do anything else? What else should we point out?
+The `aspire run` command runs the app host project in development mode, which configures the Aspire environment, builds the app host, launches the web dashboard, and displays a terminal-based dashboard. This is similar to running the app host project in your IDE of choice, however, a terminal dashboard is also visible.
 
-The `aspire run` command runs the app host project in development mode, which launches the dashboard and any projects configured with the app host. This is similar to running the app host project in your IDE of choice, however, a terminal dashboard is also visible. For example:
+When `aspire run` starts, it searches the current directory for an app host. If an app host isn't found, the sub directories are searched until an app host is found. If no app host is found, Aspire stops. Once an app host is found, Aspire CLI takes the following stesp:
 
-```aspire
+- Installs or verifies that Aspires local hosting certificates are installed and trusted.
+- Builds the app host project.
+- Starts the app host.
+- Starts the dashboard.
+- Displays a terminal-based dashboard.
+
+<!-- Add asciinema here instead of the terminal dashboard -->
+
+The following snippet is an example of the terminal dashboard:
+
+```Aspire CLI
 Dashboard:
 📈  Direct: https://localhost:17077/login?t=64ebc6d760ab2c48df93607fd431cf0a
 
@@ -47,8 +63,14 @@ Press CTRL-C to stop the app host and exit.
 
 ## Add integrations
 
-The `aspire add` command is an easy way to add integration packages to your app host. Use this as an alternative to a NuGet search through your IDE. You can run `aspire add <name|id>` if you know the name or NuGet ID of the integration package, If you omit a name or ID, the tool provides a list of packages to choose from. If you provide a partial name or ID, the tool filters the list of packages with items that match the provided value.
+The `aspire add` command is an easy way to add official integration packages to your app host. Use this as an alternative to a NuGet search through your IDE. You can run `aspire add <name|id>` if you know the name or NuGet ID of the integration package, If you omit a name or ID, the tool provides a list of packages to choose from. If you provide a partial name or ID, the tool filters the list of packages with items that match the provided value.
+
+<!-- Add asciinema here -->
 
 ## Publish Aspire applications
 
 // TODO: Stuff about publishing
+
+## Configure Aspire environment
+
+
