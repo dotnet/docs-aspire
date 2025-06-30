@@ -63,7 +63,7 @@ Start by creating some migrations to apply.
 
 1. Modify the model so that it includes a new property. Open *:::no-loc text="SupportTicketApi.Data\\Models\\SupportTicket.cs":::* and add a new property to the `SupportTicket` class:
 
-    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.Data/Models/SupportTicket.cs" range="5-13" highlight="8" :::
+    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.Data/Models/SupportTicket.cs" range="4-15" highlight="10" :::
 
 1. Create another new migration to capture the changes to the model:
 
@@ -97,7 +97,7 @@ To create a service that applies the migrations:
 
     ```dotnetcli
     cd SupportTicketApi.MigrationService
-    dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer -v "9.1.0"
+    dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer -v "9.3.1"
     ```
 
     > [!TIP]
@@ -105,7 +105,7 @@ To create a service that applies the migrations:
 
 1. Add the highlighted lines to the *:::no-loc text="Program.cs":::* file in the *:::no-loc text="SupportTicketApi.MigrationService":::* project:
 
-    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.MigrationService/Program.cs" highlight="1,6,9-12" :::
+    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.MigrationService/Program.cs" highlight="1,7,9-11" :::
 
     In the preceding code:
 
@@ -131,11 +131,11 @@ To create a service that applies the migrations:
 The migration service is created, but it needs to be added to the .NET Aspire app host so that it runs when the app starts.
 
 1. In the *:::no-loc text="SupportTicketApi.AppHost":::* project, open the *:::no-loc text="Program.cs":::* file.
-1. Add the following highlighted code to the `ConfigureServices` method:
+1. Add the following highlighted code:
 
-    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.AppHost/Program.cs" highlight="11-13" :::
+    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.AppHost/Program.cs" highlight="7-9, 13-14" :::
 
-    This enlists the *:::no-loc text="SupportTicketApi.MigrationService":::* project as a service in the .NET Aspire app host.
+    This code enlists the *:::no-loc text="SupportTicketApi.MigrationService":::* project as a service in the .NET Aspire app host. It also ensures that the API resource doesn't run until the migrations are complete.
 
     > [!NOTE]
     > In the preceding code, the call to <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*> adds a representation of a SQL Server database to the .NET Aspire application model with a connection string. It *doesn't* create a database in the SQL Server container. To ensure that the database is created, the sample project calls the EF Core <xref:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureCreated*> method from the support ticket API's *:::no-loc text="Program.cs":::* file.
