@@ -89,7 +89,7 @@ For simple .NET Aspire projects that only use .NET project resources without ext
 {
   "name": ".NET Aspire - Simple",
   "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
-  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
+  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates --force",
   "postStartCommand": "dotnet dev-certs https --trust",
   "customizations": {
     "vscode": {
@@ -116,7 +116,7 @@ If your .NET Aspire app includes Node.js resources, add the Node.js feature to y
       "version": "lts"
     }
   },
-  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
+  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates --force",
   "postStartCommand": "dotnet dev-certs https --trust",
   "customizations": {
     "vscode": {
@@ -151,7 +151,7 @@ When your .NET Aspire app orchestrates container resources, you need Docker-in-D
     "memory": "16gb",
     "storage": "32gb"
   },
-  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
+  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates --force",
   "postStartCommand": "dotnet dev-certs https --trust",
   "customizations": {
     "vscode": {
@@ -192,7 +192,7 @@ If you encounter networking issues between containers or need IPv6 support, you 
     "memory": "32gb",
     "storage": "64gb"
   },
-  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
+  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates --force",
   "postStartCommand": "dotnet dev-certs https --trust",
   "customizations": {
     "vscode": {
@@ -215,7 +215,7 @@ If you encounter networking issues between containers or need IPv6 support, you 
 
 ### Dapr integration examples
 
-For .NET Aspire apps that integrate with Dapr, you can set up Dapr components in your Dev Container. For more information about .NET Aspire Dapr integration, see [.NET Aspire Dapr integration](../community-toolkit/dapr.md).
+For .NET Aspire apps that integrate with Dapr, you can set up Dapr components in your Dev Container. For more information, see [.NET Aspire Dapr integration](../community-toolkit/dapr.md).
 
 #### Basic Dapr setup
 
@@ -229,7 +229,7 @@ For .NET Aspire apps that integrate with Dapr, you can set up Dapr components in
     },
     "ghcr.io/dapr/cli/dapr-cli:0": {}
   },
-  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
+  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates --force",
   "postCreateCommand": "dotnet dev-certs https --trust && dapr init",
   "customizations": {
     "vscode": {
@@ -260,7 +260,7 @@ For more complex Dapr scenarios that use external backends (Redis, PostgreSQL), 
     "--sysctl",
     "net.ipv6.conf.all.disable_ipv6=0"
   ],
-  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
+  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates --force",
   "postCreateCommand": [
     "dotnet dev-certs https --trust",
     "docker compose up -d",
