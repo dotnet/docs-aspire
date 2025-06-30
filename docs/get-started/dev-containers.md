@@ -308,69 +308,33 @@ For .NET Aspire projects that include Bicep infrastructure files and Azure deplo
 }
 ```
 
-### Kubernetes deployment with Aspirate
-
-For scenarios where you want to deploy to Kubernetes using Aspirate:
-
-```json
-{
-  "name": ".NET Aspire with Aspirate",
-  "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {
-      "enableNonRootDocker": true,
-      "moby": true
-    },
-    "ghcr.io/prom3theu5/aspirational-manifests/aspirate:latest": {}
-  },
-  "runArgs": [
-    "--sysctl",
-    "net.ipv6.conf.all.disable_ipv6=0"
-  ],
-  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
-  "postCreateCommand": [
-    "dotnet dev-certs https --trust",
-    "dotnet tool install -g aspirate --prerelease"
-  ],
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "ms-dotnettools.csdevkit",
-        "ms-azuretools.vscode-docker",
-        "redhat.vscode-yaml"
-      ]
-    }
-  }
-}
-```
-
 ## Common considerations
 
 When using Dev Containers with .NET Aspire, keep the following considerations in mind:
 
-### Resource requirements
+**Resource requirements**
 
-- **Basic .NET apps**: Standard Dev Container resources
-- **Container orchestration**: Minimum 8 CPUs, 32GB memory, 64GB storage
-- **Complex scenarios with Dapr/Kubernetes**: Higher resource allocation recommended
+- **Basic .NET apps**: Standard Dev Container resources are sufficient for simple scenarios.
+- **Container orchestration**: A minimum of 8 CPUs, 32GB memory, and 64GB storage is recommended.
+- **Complex scenarios with Dapr/Kubernetes**: Higher resource allocation is recommended for optimal performance.
 
-### Networking
+**Networking**
 
-- IPv6 configuration may be required for container-to-container communication
-- Port forwarding is automatically handled by .NET Aspire 9.1+
-- External service connectivity depends on your container runtime
+- IPv6 configuration may be required for container-to-container communication.
+- Port forwarding is automatically handled by .NET Aspire 9.1 and later versions.
+- External service connectivity depends on your container runtime configuration.
 
-### Performance
+**Performance**
 
-- Docker-in-Docker scenarios have performance overhead
-- Consider using Docker outside of Docker (DooD) for production workflows
-- Local development vs. deployment scenarios may require different configurations
+- Docker-in-Docker scenarios incur performance overhead compared to native Docker.
+- Consider using Docker outside of Docker (DooD) for production workflows.
+- Local development and deployment scenarios may require different configurations.
 
-### Security
+**Security**
 
-- Dev Containers run with elevated privileges when using Docker-in-Docker
-- SSL certificate trust is handled automatically in most scenarios
-- Consider security implications when exposing ports in cloud environments
+- Dev Containers run with elevated privileges when using Docker-in-Docker.
+- SSL certificate trust is handled automatically in most scenarios.
+- Consider security implications when exposing ports in cloud environments.
 
 ## See also
 
