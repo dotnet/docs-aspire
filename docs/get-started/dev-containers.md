@@ -208,10 +208,10 @@ If you encounter networking issues between containers or need IPv6 support, you 
 > [!IMPORTANT]
 > **Docker-in-Docker considerations:**
 >
-> - Requires higher resource allocation (CPU, memory, storage)
-> - The advanced networking configuration above includes IPv6 forwarding settings that may be needed for complex container-to-container communication scenarios
-> - Works with Docker Desktop but may have limitations with Rancher Desktop
-> - Network connectivity between containers might require additional configuration
+> - Docker-in-Docker requires higher resource allocation including increased CPU, memory, and storage.
+> - The advanced networking configuration above includes IPv6 forwarding settings that may be needed for complex container-to-container communication scenarios.
+> - This configuration works with Docker Desktop but may have limitations with Rancher Desktop.
+> - Network connectivity between containers might require additional configuration depending on your specific use case.
 
 ### Dapr integration examples
 
@@ -271,36 +271,6 @@ For more complex Dapr scenarios that use external backends (Redis, PostgreSQL), 
       "extensions": [
         "ms-dotnettools.csdevkit",
         "ms-azuretools.vscode-dapr",
-        "ms-azuretools.vscode-docker"
-      ]
-    }
-  }
-}
-```
-
-### Infrastructure and Bicep scenarios
-
-For .NET Aspire projects that include Bicep infrastructure files and Azure deployment:
-
-```json
-{
-  "name": ".NET Aspire with Azure Infrastructure",
-  "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {
-      "enableNonRootDocker": true
-    },
-    "ghcr.io/azure/azure-dev/azd:0": {
-      "version": "latest"
-    }
-  },
-  "onCreateCommand": "dotnet new install Aspire.ProjectTemplates::9.3.1 --force",
-  "postStartCommand": "dotnet dev-certs https --trust",
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "ms-dotnettools.csdevkit",
-        "ms-azuretools.vscode-bicep",
         "ms-azuretools.vscode-docker"
       ]
     }
