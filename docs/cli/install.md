@@ -20,7 +20,7 @@ This article teaches you how to install .NET Aspire CLI, which is a .NET global 
 
 ## Install the global tool
 
-Use the `dotnet tool` command to install .NET Aspire CLI global tool. The name of the global tool is `Aspire.Cli`.
+Use the `dotnet tool` command to install .NET Aspire CLI global tool. The name of the global tool is [Aspire.Cli](https://www.nuget.org/packages/Aspire.CLI).
 
 1. Open a terminal.
 1. Run `dotnet tool install -g Aspire.Cli --prerelease` to install the global tool.

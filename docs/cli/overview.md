@@ -20,7 +20,7 @@ The .NET Aspire CLI (`aspire` command) is a .NET global tool that provides comma
 
 ## Create projects
 
-The `aspire new` command creates one or more Aspire projects  that the Aspire CLI tool installs the latest Aspire project templates into the `dotnet` system.
+The `aspire new` command creates one or more Aspire projects that the Aspire CLI tool installs the latest Aspire project templates into the `dotnet` system.
 
 Use the `aspire new` command to create an Aspire project from a list of templates. Once a template is selected, the name of the project is set, and the output folder is chosen, `aspire` downloads the latest templates and generates one or more projects.
 
