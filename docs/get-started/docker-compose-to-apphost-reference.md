@@ -17,6 +17,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 | `service_name:` | `builder.Add*("service_name")` | Service name becomes resource name |
 
 **Related links:**
+
 - [Docker Compose services reference](https://docs.docker.com/compose/compose-file/05-services/)
 - <xref:Aspire.Hosting.DistributedApplicationBuilder>
 
@@ -31,8 +32,9 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 | `build.dockerfile: Custom.dockerfile` | `builder.AddDockerfile("name", ".").WithDockerfile("Custom.dockerfile")` | Custom Dockerfile name |
 
 **Related links:**
+
 - [Docker Compose build reference](https://docs.docker.com/compose/compose-file/build/)
-- <xref:Aspire.Hosting.DockerfileExtensions.AddDockerfile%2A>
+- <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile%2A>
 - <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A>
 
 ## .NET projects
@@ -42,6 +44,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 | `build: ./MyApi` (for .NET) | `builder.AddProject<Projects.MyApi>("myapi")` | Direct .NET project reference |
 
 **Related links:**
+
 - [Docker Compose build reference](https://docs.docker.com/compose/compose-file/build/)
 - <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>
 
@@ -54,6 +57,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 | `expose: ["8080"]` | `.WithEndpoint(port: 8080)` | Internal port exposure. Ports are optional; dynamic ports are used if omitted. |
 
 **Related links:**
+
 - [Docker Compose ports reference](https://docs.docker.com/compose/compose-file/05-services/#ports)
 - <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpEndpoint%2A>
 - <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpsEndpoint%2A>
@@ -68,6 +72,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 | `env_file: .env` | `.WithEnvironment(envFile)` | Environment file (custom implementation) |
 
 **Related links:**
+
 - [Docker Compose environment reference](https://docs.docker.com/compose/compose-file/05-services/#environment)
 - <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEnvironment%2A>
 
@@ -80,9 +85,10 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 | `volumes: ["./config:/app:ro"]` | `.WithBindMount("./config", "/app", isReadOnly: true)` | Read-only bind mount |
 
 **Related links:**
+
 - [Docker Compose volumes reference](https://docs.docker.com/compose/compose-file/05-services/#volumes)
-- <xref:Aspire.Hosting.ResourceBuilderExtensions.WithVolume%2A>
-- <xref:Aspire.Hosting.ResourceBuilderExtensions.WithBindMount%2A>
+- <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithVolume%2A>
+- <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithBindMount%2A>
 
 ## Dependencies and ordering
 
@@ -93,6 +99,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 | `depends_on: db: condition: service_healthy` | `.WaitForCompletion(db)` | Wait for health check |
 
 **Related links:**
+
 - [Docker Compose depends_on reference](https://docs.docker.com/compose/compose-file/05-services/#depends_on)
 - <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A>
 - <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor%2A>
@@ -106,8 +113,9 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 | Custom networks | Not needed | Service discovery handles inter-service communication |
 
 **Related links:**
+
 - [Docker Compose networks reference](https://docs.docker.com/compose/compose-file/05-services/#networks)
-- [.NET Aspire service discovery](../fundamentals/service-discovery.md)
+- [.NET Aspire service discovery](../service-discovery/overview.md)
 
 ## Resource limits
 
@@ -117,6 +125,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 | `deploy.resources.limits.cpus: 0.5` | Not supported | Resource limits aren't supported in .NET Aspire |
 
 **Related links:**
+
 - [Docker Compose deploy reference](https://docs.docker.com/compose/compose-file/deploy/)
 
 ## Health checks
@@ -127,6 +136,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 | `healthcheck.interval: 30s` | Configurable in integration | Health check configuration varies by resource type |
 
 **Related links:**
+
 - [Docker Compose healthcheck reference](https://docs.docker.com/compose/compose-file/05-services/#healthcheck)
 - [.NET Aspire health checks](../fundamentals/health-checks.md)
 
@@ -139,6 +149,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 | `restart: no` | Default | No restart policy |
 
 **Related links:**
+
 - [Docker Compose restart reference](https://docs.docker.com/compose/compose-file/05-services/#restart)
 
 ## Logging
@@ -149,8 +160,9 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 | `logging.options.max-size: 10m` | Dashboard configuration | Managed through .NET Aspire dashboard |
 
 **Related links:**
+
 - [Docker Compose logging reference](https://docs.docker.com/compose/compose-file/05-services/#logging)
-- [.NET Aspire logging](../fundamentals/logging.md)
+- [.NET Aspire telemetry](../fundamentals/telemetry.md)
 
 ## Database services
 
@@ -162,6 +174,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 | `image: mongo:latest` | `builder.AddMongoDB("name")` | MongoDB with automatic configuration |
 
 **Related links:**
+
 - [Docker Compose services reference](https://docs.docker.com/compose/compose-file/05-services/)
 - <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres%2A>
 - <xref:Aspire.Hosting.MySqlBuilderExtensions.AddMySql%2A>

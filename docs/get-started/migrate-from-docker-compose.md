@@ -36,6 +36,7 @@ When migrating from Docker Compose to .NET Aspire, consider these conceptual dif
 For a comprehensive reference mapping Docker Compose YAML syntax to .NET Aspire C# API calls, see [Docker Compose to .NET Aspire AppHost API reference](docker-compose-to-apphost-reference.md).
 
 **Related links:**
+
 - [Docker Compose overview](https://docs.docker.com/compose/)
 - [.NET Aspire overview](aspire-overview.md)
 - [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)
@@ -266,9 +267,10 @@ builder.Build().Run();
 - **Bind mounts**: Host directories can be mounted with `WithBindMount()`.
 
 **Related links:**
+
 - [Docker Compose specification](https://docs.docker.com/compose/compose-file/)
 - [.NET Aspire app host overview](../fundamentals/app-host-overview.md)
-- [Container resource extensions](../app-host/containers.md)
+- [Add Dockerfiles to your .NET app model](../app-host/withdockerfile.md)
 
 ## Migration strategy
 
@@ -318,6 +320,7 @@ For persistent data:
 - Test with your existing client applications to ensure compatibility.
 
 **Related links:**
+
 - [Docker Compose migration checklist](https://docs.docker.com/compose/migrate/)
 - [Build your first .NET Aspire app](build-your-first-aspire-app.md)
 - [.NET Aspire testing overview](../testing/overview.md)
@@ -362,8 +365,9 @@ This generates a `docker-compose.yml` file from your .NET Aspire configuration, 
 - Maintain consistency between environments by using the same configuration model.
 
 **Related links:**
+
 - [Docker Compose enhancements in .NET Aspire 9.3](../whats-new/dotnet-aspire-9.3.md#-docker-compose-enhancements)
-- <xref:Aspire.Hosting.DockerCompose.PublishAsDockerComposeService%2A>
+- <xref:Aspire.Hosting.DockerComposePublisherExtensions.PublishAsDockerComposeService%2A>
 
 ## Migration troubleshooting
 
@@ -401,8 +405,9 @@ When migrating from Docker Compose to .NET Aspire, you might encounter some comm
 - Check the dashboard for actual assigned ports during development.
 
 **Related links:**
-- [Docker Compose troubleshooting](https://docs.docker.com/compose/troubleshooting/)
-- [.NET Aspire troubleshooting](../troubleshooting/overview.md)
+
+- [Docker Compose FAQ](https://docs.docker.com/compose/faq/)
+- [Container runtime unhealthy](../troubleshooting/container-runtime-unhealthy.md)
 - [.NET Aspire dashboard overview](../fundamentals/dashboard/overview.md)
 
 ## Next steps
