@@ -69,7 +69,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 |----------------|-------------|-------|
 | `environment: KEY=value` | `.WithEnvironment("KEY", "value")` | Static environment variable |
 | `environment: KEY=${HOST_VAR}` | `.WithEnvironment(context => context.EnvironmentVariables["KEY"] = hostVar)` | Environment variable with callback context |
-| `env_file: .env` | `.WithEnvironment(envFile)` | Environment file (custom implementation) |
+| `env_file: .env` | Not supported | Environment file (custom implementation) |
 
 **Related links:**
 
