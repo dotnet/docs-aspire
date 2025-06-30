@@ -108,13 +108,17 @@ items:
   - name: Microsoft-collected dashboard telemetry
     href: fundamentals/dashboard/microsoft-collected-dashboard-telemetry.md
 
-- name: .NET Aspire CLI
+- name: Aspire CLI
   displayName: aspire cli,aspire command line interface,aspire commands,cli
   items:
   - name: Overview
     href: cli/overview.md
   - name: Install
     href: cli/install.md
+  - name: aspire command reference
+    items:
+    - name: aspire
+      href: cli-reference/aspire.md
 
 - name: Testing
   items:
