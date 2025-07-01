@@ -5,7 +5,7 @@ summary: Welcome to what's new in .NET Aspire docs. Use this page to quickly fin
 metadata:
   title: .NET Aspire what's new?
   description: Learn about new and updated content in .NET Aspire docs.
-  ms.date: 06/01/2025
+  ms.date: 07/01/2025
   ms.topic: landing-page
 landingContent:
 - title: .NET Aspire release documentation
@@ -52,12 +52,12 @@ landingContent:
   linkLists:
   - linkListType: whats-new
     links:
+    - text: June 2025
+      url: dotnet-docs-aspire-mod0.md
     - text: May 2025
       url: dotnet-docs-aspire-mod2.md
     - text: April 2025
       url: dotnet-docs-aspire-mod1.md
-    - text: March 2025
-      url: dotnet-docs-aspire-mod0.md
 - title: Find language updates
   linkLists:
   - linkListType: whats-new
