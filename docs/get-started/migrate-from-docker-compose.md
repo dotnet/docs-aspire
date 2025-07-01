@@ -3,6 +3,7 @@ title: Migrate from Docker Compose to .NET Aspire
 description: Learn how to migrate your Docker Compose applications to .NET Aspire and understand the key conceptual differences.
 ms.date: 06/26/2025
 ms.topic: how-to
+ai-usage: ai-generated
 ---
 
 # Migrate from Docker Compose to .NET Aspire

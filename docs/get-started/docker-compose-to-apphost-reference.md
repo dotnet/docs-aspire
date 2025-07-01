@@ -3,6 +3,7 @@ title: Docker Compose to .NET Aspire AppHost API reference
 description: Quick reference for converting Docker Compose YAML syntax to .NET Aspire C# API calls.
 ms.date: 06/26/2025
 ms.topic: reference
+ai-usage: ai-generated
 ---
 
 # Docker Compose to .NET Aspire AppHost API reference
