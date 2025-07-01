@@ -1,7 +1,7 @@
 ---
 title: Overview
 description: An overview of the .NET Aspire Community Toolkit project.
-ms.date: 11/05/2024
+ms.date: 05/28/2025
 ---
 
 # .NET Aspire Community Toolkit
@@ -45,6 +45,9 @@ The community toolkit is a growing project, publishing a set of NuGet packages. 
 - The [Rust apps](https://www.rust-lang.org/) integration provides support for hosting Rust applications.
   - [📄 .NET Aspire Rust hosting integration](hosting-rust.md#hosting-integration).
   - [📦 CommunityToolkit.Aspire.Hosting.Rust](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Rust).
+- The [MailPit](https://mailpit.axllent.org/) integration enables hosting MailPit containers.
+  - [📄 .NET Aspire MailPit hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.MailPit).
+  - [📦 CommunityToolkit.Aspire.Hosting.MailPit](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.MailPit).
 - The [SQLite](https://www.sqlite.org/index.html) integration provides support for hosting SQLite databases.
   - [📄 .NET Aspire SQLite hosting integration](sqlite.md#hosting-integration)
   - [📦 CommunityToolkit.Aspire.Hosting.SQLite](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SQLite).
