@@ -47,7 +47,7 @@ The following options are available when `aspire` is used by itself, without spe
 
 | Command                             | Function                                                       |
 |-------------------------------------|----------------------------------------------------------------|
-| [aspire new](aspire-new.md)         | Create an Aspire sample project from a template.               |
+| [aspire new](aspire-new.md)         | Create an Aspire sample project or solution from a template.               |
 | [aspire run](aspire-run.md)         | Run an Aspire app host in development mode.                    |
 | [aspire add](aspire-add.md)         | Add an integration to the Aspire project.                      |
 | [aspire publish](aspire-publish.md) | Generates deployment artifacts for an Aspire app host project. |
@@ -56,7 +56,7 @@ The following options are available when `aspire` is used by itself, without spe
 
 ## Examples
 
-Create an Aspire application:
+Create an Aspire solution from the template:
 
 ```dotnetcli
 aspire new aspire-starter
