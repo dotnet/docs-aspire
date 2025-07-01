@@ -56,7 +56,7 @@ The following options are available when `aspire` is used by itself, without spe
 
 ## Examples
 
-Create an Aspire application:
+Create an Aspire solution from the template:
 
 ```Command
 aspire new aspire-starter
