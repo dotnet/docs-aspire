@@ -9,7 +9,7 @@ uid: database/oracle-entity-framework-integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Oracle Database](https://www.oracle.com/database/technologies/) is a widely-used relational database management system owned and developed by Oracle. The .NET Aspire Oracle Entity Framework Core integration enables you to connect to existing Oracle servers or create new servers from .NET with the [container-registry.orcale.com/databse/free](https://container-registry.oracle.com/ords/f?p=113:4:5999388133692:::RP,4:P4_REPOSITORY,AI_REPOSITORY,P4_REPOSITORY_NAME,AI_REPOSITORY_NAME:1863,1863,Oracle%20Database%20Free,Oracle%20Database%20Free&cs=3L7x5hgm9Co0WJN-3xZTrFJkDyCZKiS8wlK1jg7nU2yE65gVGYh4WbMLzmX59tAHoLwbwWeAz-kjraRQzB1V5TA) container image.
+[Oracle Database](https://www.oracle.com/database/technologies/) is a widely-used relational database management system owned and developed by Oracle. The .NET Aspire Oracle Entity Framework Core integration enables you to connect to existing Oracle servers or create new servers from .NET with the [container-registry.oracle.com/database/free](https://container-registry.oracle.com/ords/f?p=113:4:5999388133692:::RP,4:P4_REPOSITORY,AI_REPOSITORY,P4_REPOSITORY_NAME,AI_REPOSITORY_NAME:1863,1863,Oracle%20Database%20Free,Oracle%20Database%20Free&cs=3L7x5hgm9Co0WJN-3xZTrFJkDyCZKiS8wlK1jg7nU2yE65gVGYh4WbMLzmX59tAHoLwbwWeAz-kjraRQzB1V5TA) container image.
 
 ## Hosting integration
 
