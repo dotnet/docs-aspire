@@ -25,6 +25,7 @@ While Docker Compose and .NET Aspire might seem similar at first glance, they se
 | **Development experience** | Manual container management | Integrated tooling, dashboard, and telemetry |
 
 For more information, see [Docker Compose to .NET Aspire AppHost API reference](docker-compose-to-apphost-reference.md).
+
 ### Key conceptual shifts
 
 When migrating from Docker Compose to .NET Aspire, consider these conceptual differences:
