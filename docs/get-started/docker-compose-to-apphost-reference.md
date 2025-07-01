@@ -14,8 +14,8 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 | Docker Compose | .NET Aspire | Notes |
 |----------------|-------------|-------|
-| `services:` | `var builder = DistributedApplication.CreateBuilder(args);` | Root application builder used for adding and representing resources. |
-| `service_name:` | `builder.Add*("service_name")` | Service name becomes resource name |
+| `services:` | `var builder = DistributedApplication.CreateBuilder(args)` | Root application builder used for adding and representing resources. |
+| `service_name:` | `builder.Add*("service_name")` | Service name becomes resource name. |
 
 **Related links:**
 
@@ -26,11 +26,11 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 | Docker Compose | .NET Aspire | Notes |
 |----------------|-------------|-------|
-| `image: nginx:latest` | `builder.AddContainer("name", "nginx:latest")` | Direct image reference |
-| `build: .` | `builder.AddDockerfile("name", ".")` | Build from Dockerfile |
-| `build: ./path` | `builder.AddDockerfile("name", "./path")` | Build from specific path |
-| `build.context: ./app` | `builder.AddDockerfile("name", "./app")` | Build context |
-| `build.dockerfile: Custom.dockerfile` | `builder.AddDockerfile("name", ".").WithDockerfile("Custom.dockerfile")` | Custom Dockerfile name |
+| `image: nginx:latest` | `builder.AddContainer("name", "nginx:latest")` | Direct image reference. |
+| `build: .` | `builder.AddDockerfile("name", ".")` | Build from Dockerfile. |
+| `build: ./path` | `builder.AddDockerfile("name", "./path")` | Build from specific path. |
+| `build.context: ./app` | `builder.AddDockerfile("name", "./app")` | Build context. |
+| `build.dockerfile: Custom.dockerfile` | `builder.Add*("name").WithDockerfile("Custom.dockerfile")` | Custom Dockerfile name. |
 
 **Related links:**
 
@@ -42,7 +42,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 | Docker Compose | .NET Aspire | Notes |
 |----------------|-------------|-------|
-| `build: ./MyApi` (for .NET) | `builder.AddProject<Projects.MyApi>("myapi")` | Direct .NET project reference |
+| `build: ./MyApi` (for .NET) | `builder.AddProject<Projects.MyApi>("myapi")` | Direct .NET project reference. |
 
 **Related links:**
 
@@ -68,9 +68,9 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 | Docker Compose | .NET Aspire | Notes |
 |----------------|-------------|-------|
-| `environment: KEY=value` | `.WithEnvironment("KEY", "value")` | Static environment variable |
-| `environment: KEY=${HOST_VAR}` | `.WithEnvironment(context => context.EnvironmentVariables["KEY"] = hostVar)` | Environment variable with callback context |
-| `env_file: .env` | Not supported | Environment file (custom implementation) |
+| `environment: KEY=value` | `.WithEnvironment("KEY", "value")` | Static environment variable. |
+| `environment: KEY=${HOST_VAR}` | `.WithEnvironment(context => context.EnvironmentVariables["KEY"] = hostVar)` | Environment variable with callback context. |
+| `env_file: .env` | Not supported | Environment file (custom implementation). |
 
 **Related links:**
 
@@ -81,9 +81,9 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 | Docker Compose | .NET Aspire | Notes |
 |----------------|-------------|-------|
-| `volumes: ["data:/app/data"]` | `.WithVolume("data", "/app/data")` | Named volume |
-| `volumes: ["./host:/container"]` | `.WithBindMount("./host", "/container")` | Bind mount |
-| `volumes: ["./config:/app:ro"]` | `.WithBindMount("./config", "/app", isReadOnly: true)` | Read-only bind mount |
+| `volumes: ["data:/app/data"]` | `.WithVolume("data", "/app/data")` | Named volume. |
+| `volumes: ["./host:/container"]` | `.WithBindMount("./host", "/container")` | Bind mount. |
+| `volumes: ["./config:/app:ro"]` | `.WithBindMount("./config", "/app", isReadOnly: true)` | Read-only bind mount. |
 
 **Related links:**
 
@@ -95,9 +95,9 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 | Docker Compose | .NET Aspire | Notes |
 |----------------|-------------|-------|
-| `depends_on: [db]` | `.WithReference(db)` | Service dependency with connection |
-| `depends_on: db: condition: service_started` | `.WaitFor(db)` | Wait for service start |
-| `depends_on: db: condition: service_healthy` | `.WaitForCompletion(db)` | Wait for health check |
+| `depends_on: [db]` | `.WithReference(db)` | Service dependency with connection. |
+| `depends_on: db: condition: service_started` | `.WaitFor(db)` | Wait for service start. |
+| `depends_on: db: condition: service_healthy` | `.WaitForCompletion(db)` | Wait for health check. |
 
 **Related links:**
 
@@ -110,8 +110,8 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 | Docker Compose | .NET Aspire | Notes |
 |----------------|-------------|-------|
-| `networks: [backend]` | Automatic | .NET Aspire handles networking automatically |
-| Custom networks | Not needed | Service discovery handles inter-service communication |
+| `networks: [backend]` | Automatic | .NET Aspire handles networking automatically. |
+| Custom networks | Not needed | Service discovery handles inter-service communication. |
 
 **Related links:**
 
@@ -122,8 +122,8 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 | Docker Compose | .NET Aspire | Notes |
 |----------------|-------------|-------|
-| `deploy.resources.limits.memory: 512m` | Not supported | Resource limits aren't supported in .NET Aspire |
-| `deploy.resources.limits.cpus: 0.5` | Not supported | Resource limits aren't supported in .NET Aspire |
+| `deploy.resources.limits.memory: 512m` | Not supported | Resource limits aren't supported in .NET Aspire. |
+| `deploy.resources.limits.cpus: 0.5` | Not supported | Resource limits aren't supported in .NET Aspire. |
 
 **Related links:**
 
@@ -133,8 +133,8 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 | Docker Compose | .NET Aspire | Notes |
 |----------------|-------------|-------|
-| `healthcheck.test: ["CMD", "curl", "http://localhost/health"]` | Built-in for integrations | .NET Aspire integrations include health checks |
-| `healthcheck.interval: 30s` | Configurable in integration | Health check configuration varies by resource type |
+| `healthcheck.test: ["CMD", "curl", "http://localhost/health"]` | Built-in for integrations. | .NET Aspire integrations include health checks. |
+| `healthcheck.interval: 30s` | Configurable in integration. | Health check configuration varies by resource type. |
 
 **Related links:**
 
@@ -145,9 +145,9 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 | Docker Compose | .NET Aspire | Notes |
 |----------------|-------------|-------|
-| `restart: unless-stopped` | Not supported | Restart policies aren't supported in .NET Aspire |
-| `restart: always` | Not supported | Restart policies aren't supported in .NET Aspire |
-| `restart: no` | Default | No restart policy |
+| `restart: unless-stopped` | Not supported | Restart policies aren't supported in .NET Aspire. |
+| `restart: always` | Not supported | Restart policies aren't supported in .NET Aspire. |
+| `restart: no` | Default | No restart policy. |
 
 **Related links:**
 
@@ -157,8 +157,8 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 | Docker Compose | .NET Aspire | Notes |
 |----------------|-------------|-------|
-| `logging.driver: json-file` | Built-in | .NET Aspire provides integrated logging |
-| `logging.options.max-size: 10m` | Dashboard configuration | Managed through .NET Aspire dashboard |
+| `logging.driver: json-file` | Built-in | .NET Aspire provides integrated logging. |
+| `logging.options.max-size: 10m` | Dashboard configuration | Managed through .NET Aspire dashboard. |
 
 **Related links:**
 
@@ -169,10 +169,10 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 | Docker Compose | .NET Aspire | Notes |
 |----------------|-------------|-------|
-| `image: postgres:15` | `builder.AddPostgres("name")` | PostgreSQL with automatic configuration |
-| `image: mysql:8` | `builder.AddMySql("name")` | MySQL with automatic configuration |
-| `image: redis:7` | `builder.AddRedis("name")` | Redis with automatic configuration |
-| `image: mongo:latest` | `builder.AddMongoDB("name")` | MongoDB with automatic configuration |
+| `image: postgres:15` | `builder.AddPostgres("name")` | PostgreSQL with automatic configuration. |
+| `image: mysql:8` | `builder.AddMySql("name")` | MySQL with automatic configuration. |
+| `image: redis:7` | `builder.AddRedis("name")` | Redis with automatic configuration. |
+| `image: mongo:latest` | `builder.AddMongoDB("name")` | MongoDB with automatic configuration. |
 
 **Related links:**
 
