@@ -18,12 +18,12 @@ While Docker Compose and .NET Aspire might seem similar at first glance, they se
 
 |  | Docker Compose | .NET Aspire |
 |--|--|--|
-| **Primary purpose** | Container orchestration | Development-time orchestration and app composition |
-| **Scope** | Container-focused | Multi-resource (containers, .NET projects, cloud resources) |
-| **Configuration** | YAML-based | C#-based, strongly typed |
-| **Target environment** | Any Docker runtime | Development and cloud deployment |
-| **Service discovery** | DNS-based container discovery | Built-in service discovery with environment variables |
-| **Development experience** | Manual container management | Integrated tooling, dashboard, and telemetry |
+| **Primary purpose** | Container orchestration | Development-time orchestration and app composition. |
+| **Scope** | Container-focused | Multi-resource (containers, .NET projects, cloud resources). |
+| **Configuration** | YAML-based | C#-based, strongly typed. |
+| **Target environment** | Any Docker runtime | Development and cloud deployment. |
+| **Service discovery** | DNS-based container discovery | Built-in service discovery with environment variables. |
+| **Development experience** | Manual container management | Integrated tooling, dashboard, and telemetry. |
 
 For more information, see [Docker Compose to .NET Aspire AppHost API reference](docker-compose-to-apphost-reference.md).
 
