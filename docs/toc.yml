@@ -82,6 +82,11 @@ items:
   - name: Persist data using volumes
     displayName: volumes,persist data
     href: fundamentals/persist-data-volumes.md
+  - name: Custom resources
+    items:
+  - name: Create non-container custom resources
+    displayName: resources,extensibility,hosting,integrations,lifecycle,dashboard
+    href: extensibility/custom-non-container-resource.md
 
 - name: Dashboard
   items:
