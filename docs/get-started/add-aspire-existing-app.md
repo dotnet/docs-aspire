@@ -204,7 +204,7 @@ Template Name       Short Name              Language  Tags
 .NET Aspire Tes...  aspire-xunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test/xUnit
 ```
 
-In this tutorial, you'll add a App Host project and a Service Defaults project. 
+In this tutorial, you'll add a App Host project and a Service Defaults project.
 
 If the previous command didn't find any templates you must install them. Execute this command:
 
