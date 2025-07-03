@@ -184,13 +184,13 @@ No matter which tool you use—starting multiple projects manually or configurin
 
 If you've worked with .NET Aspire on your current computer before, you likely have the necessary .NET project templates already installed. You can check by using the following command:
 
-```bash
-dotnet new list ".NET Aspire"
+```dotnetcli
+dotnet new list aspire
 ```
 
 If the .NET Aspire templates are installed, the output resembles:
 
-```bash
+```dotnetcli
 These templates matched your input: '.NET Aspire'
 
 Template Name       Short Name              Language  Tags
@@ -208,7 +208,7 @@ In this tutorial, you'll add a App Host project and a Service Defaults project.
 
 If the previous command didn't find any templates you must install them. Execute this command:
 
-```bash
+```dotnetcli
 dotnet new install Aspire.ProjectTemplates
 ```
 
