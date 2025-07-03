@@ -180,6 +180,40 @@ Open and start debugging the project to examine its default behavior:
 
 No matter which tool you use—starting multiple projects manually or configuring connections between them is tedious. Additionally, the **Store** project requires explicit endpoint configuration for the **Products** API, which is both cumbersome and prone to errors. This is where .NET Aspire simplifies and streamlines the process!
 
+## Ensure .NET Aspire templates are installed
+
+If you've worked with .NET Aspire on your current computer before, you likely have the necessary .NET project templates already installed. You can check by using the following command:
+
+```dotnetcli
+dotnet new list aspire
+```
+
+If the .NET Aspire templates are installed, the output resembles:
+
+```dotnetcli
+These templates matched your input: '.NET Aspire'
+
+Template Name       Short Name              Language  Tags
+------------------  ----------------------  --------  -------------------------------------------------------------------------------
+.NET Aspire App...  aspire-apphost          [C#]      Common/.NET Aspire/Cloud
+.NET Aspire Emp...  aspire                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire Ser...  aspire-servicedefaults  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
+.NET Aspire Sta...  aspire-starter          [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud/Test/MSTest/NUnit/xUnit
+.NET Aspire Tes...  aspire-mstest           [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test/MSTest
+.NET Aspire Tes...  aspire-nunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test/NUnit
+.NET Aspire Tes...  aspire-xunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test/xUnit
+```
+
+In this tutorial, you'll add a App Host project and a Service Defaults project.
+
+If the previous command didn't find any templates you must install them. Execute this command:
+
+```dotnetcli
+dotnet new install Aspire.ProjectTemplates
+```
+
+For more information about the .NET Aspire templates, see [.NET Aspire templates](../fundamentals/setup-tooling.md#net-aspire-templates)
+
 ## Add .NET Aspire to the Store web app
 
 Now, let's enroll the **Store** project, which implements the web user interface, in .NET Aspire orchestration:
