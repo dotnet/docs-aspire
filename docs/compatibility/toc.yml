@@ -13,12 +13,14 @@ items:
   - name: Breaking changes in 9.4
     expanded: true
     items:
+    - name: Azure Storage APIs renamed and refactored
+      href: 9.4/azure-storage-apis-renamed.md
+    - name: BicepSecretOutputReference and GetSecretOutput are now obsolete
+      href: 9.4/getsecretoutput-deprecated.md
     - name: Deprecating various known parameters in AzureBicepResource
       href: 9.4/azure-bicep-parameters-deprecated.md
     - name: Local auth disabled by default on Azure resources
       href: 9.4/local-auth-disabled-for-azure-resources.md
-    - name: BicepSecretOutputReference and GetSecretOutput are now obsolete
-      href: 9.4/getsecretoutput-deprecated.md
 - name: .NET Aspire 9.3
   expanded: true
   items:
