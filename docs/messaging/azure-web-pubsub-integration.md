@@ -143,6 +143,8 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
+[!INCLUDE [azure-configuration](../azure/includes/azure-configuration.md)]
+
 For more information on treating Azure Web PubSub resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
 > [!NOTE]
