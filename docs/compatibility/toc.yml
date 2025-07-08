@@ -17,6 +17,8 @@ items:
       href: 9.4/azure-bicep-parameters-deprecated.md
     - name: Local auth disabled by default on Azure resources
       href: 9.4/local-auth-disabled-for-azure-resources.md
+    - name: BicepSecretOutputReference and GetSecretOutput are now obsolete
+      href: 9.4/getsecretoutput-deprecated.md
 - name: .NET Aspire 9.3
   expanded: true
   items:
