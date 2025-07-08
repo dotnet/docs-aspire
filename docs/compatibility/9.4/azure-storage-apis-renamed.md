@@ -76,6 +76,26 @@ builder.AddAzureQueueServiceClient("storage");
 builder.AddAzureTableServiceClient("storage");
 ```
 
+### API changes summary
+
+The following table summarizes the key hosting integration API changes:
+
+| Obsolete API | New API | Notes |
+|--|--|--|
+| `AddBlobs` | `AddBlobService` | — |
+| `AddBlobContainer` | `AddBlobContainer` | New API uses `IResourceBuilder<AzureStorageResource>` overload. |
+| `AddTables` | `AddTableService` | — |
+| `AddQueues` | `AddQueueService` | — |
+| N/A | `AddQueue` | — |
+
+The following table summarizes the key client registration API changes:
+
+| Obsolete API | New API |
+|--|--|
+| `AddAzureBlobClient` | `AddAzureBlobServiceClient` |
+| `AddAzureQueueClient` | `AddAzureQueueServiceClient` |
+| `AddAzureTableClient` | `AddAzureTableServiceClient` |
+
 ## Type of breaking change
 
 This change is a [binary incompatible](../categories.md#binary-compatibility) and [source incompatible](../categories.md#source-compatibility) change.
@@ -92,21 +112,12 @@ The new API names provide consistency with Azure client libraries and resource g
 
 ## Affected APIs
 
-- <xref:Aspire.Azure.Hosting.Storage.AzureStorageResourceBuilder.AddBlobs>
-- <xref:Aspire.Azure.Hosting.Storage.AzureBlobStorageResourceBuilder.AddBlobContainer>
-- <xref:Aspire.Azure.Hosting.Storage.AzureStorageResourceBuilder.AddQueues>
-- <xref:Aspire.Azure.Hosting.Storage.AzureStorageResourceBuilder.AddTables>
-- <xref:Aspire.Azure.Hosting.Storage.AzureStorageResourceBuilder.AddBlobService>
-- <xref:Aspire.Azure.Hosting.Storage.AzureStorageResourceBuilder.AddBlobContainer>
-- <xref:Aspire.Azure.Hosting.Storage.AzureStorageResourceBuilder.AddQueueService>
-- <xref:Aspire.Azure.Hosting.Storage.AzureStorageResourceBuilder.AddQueue>
-- <xref:Aspire.Azure.Hosting.Storage.AzureStorageResourceBuilder.AddTableService>
-- <xref:Aspire.Azure.Hosting.Storage.AzureStorageResourceBuilder.AddTable>
-- <xref:Aspire.Azure.Storage.Blobs.BlobServiceClientBuilderExtensions.AddAzureBlobClient>
-- <xref:Aspire.Azure.Storage.Blobs.BlobServiceClientBuilderExtensions.AddAzureBlobServiceClient>
-- <xref:Aspire.Azure.Storage.Queues.QueueServiceClientBuilderExtensions.AddAzureQueueClient>
-- <xref:Aspire.Azure.Storage.Queues.QueueServiceClientBuilderExtensions.AddAzureQueueServiceClient>
-- <xref:Aspire.Azure.Data.Tables.TableServiceClientBuilderExtensions.AddAzureTableClient>
-- <xref:Aspire.Azure.Data.Tables.TableServiceClientBuilderExtensions.AddAzureTableServiceClient>
+- `AddBlobs`
+- `AddBlobContainer`
+- `AddTables`
+- `AddQueues`
+- `AddAzureBlobClient`
+- `AddAzureQueueClient`
+- `AddAzureTableClient`
 
 For a complete list of changes, see the [pull request](https://github.com/dotnet/aspire/pull/10241).
