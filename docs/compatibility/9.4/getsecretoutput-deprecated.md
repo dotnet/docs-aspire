@@ -71,6 +71,6 @@ Aspire's resources with support for keys were updated to handle this new change.
 ## Affected APIs
 
 - <xref:Aspire.Hosting.Azure.BicepSecretOutputReference?displayProperty=fullName>
-- <xref:Aspire.Hosting.Azure.AzureBicepResourceExtensions.GetSecretOutput?displayProperty=fullName>
+- <xref:Aspire.Hosting.AzureBicepResourceExtensions.GetSecretOutput(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureBicepResource},System.String)?displayProperty=fullName>
 - <xref:Aspire.Hosting.AzureBicepResourceExtensions.WithEnvironment``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.String,Aspire.Hosting.Azure.BicepSecretOutputReference)?displayProperty=fullName>
 - Automatic Key Vault generation and secret wiring logic (removed)
