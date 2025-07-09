@@ -27,6 +27,8 @@ body:
     - .NET Aspire 9.1
     - .NET Aspire 9.2
     - .NET Aspire 9.3
+    - .NET Aspire 9.4
+    - .NET Aspire 9.5
     - .NET Aspire 10 Preview 1
     - Other (please put exact version in description textbox)
   validations:
