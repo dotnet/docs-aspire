@@ -79,6 +79,8 @@ builder.Build().Run();
 
 The uv application can be added as a reference to other resources in the AppHost project.
 
+---
+
 ## See also
 
 - [Orchestrate Python apps in .NET Aspire](../get-started/build-aspire-apps-with-Python.md)
