@@ -64,6 +64,7 @@ A resource service is hosted by the app host. The resource service is used by th
 |--|--|--|
 | `ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL` | `null` | Configures the address of the resource service hosted by the app host. Automatically generated with _launchSettings.json_ to have a random port on localhost. For example, `https://localhost:17037`. |
 | `ASPIRE_DASHBOARD_RESOURCESERVICE_APIKEY` | Automatically generated 128-bit entropy token. | The API key used to authenticate requests made to the app host's resource service. The API key is required if the app host is in run mode, the dashboard isn't disabled, and the dashboard isn't configured to allow anonymous access with `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS`. |
+| `ASPIRE_VERSION_CHECK_DISABLED` | `false` | When set to `true` .NET Aspire doesn't check for newer versions on startup. |
 
 ## Dashboard
 
