@@ -68,7 +68,7 @@ In the _:::no-loc text="Program.cs":::_ file of your app host project, call the 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var uvicorn = builder.AddUvApp(
+var uv = builder.AddUvApp(
         name: "uvapp", 
         projectDirectory: "../uv-api", 
         scriptPath: "uv-api")
