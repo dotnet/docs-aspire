@@ -66,8 +66,15 @@ The Uvicorn application can be added as a reference to other resources in the Ap
 In the _:::no-loc text="Program.cs":::_ file of your app host project, call the `AddUvApp` method to add a Uvicorn application to the builder.
 
 ```csharp
-var uvicorn = builder.AddUvApp("uvapp", "../uv-api", "uv-api")
+var builder = DistributedApplication.CreateBuilder(args);
+
+var uvicorn = builder.AddUvApp(
+        name: "uvapp", 
+        projectDirectory: "../uv-api", 
+        scriptPath: "uv-api")
     .WithHttpEndpoint(env: "PORT");
+
+builder.Build().Run();
 ```
 
 The uv application can be added as a reference to other resources in the AppHost project.
