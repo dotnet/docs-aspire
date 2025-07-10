@@ -34,7 +34,7 @@ When the app host is run, by the time the .NET Aspire dashboard is displayed, yo
 
 :::code language="Plaintext" source="snippets/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10,12,14,16,22":::
 
-The log output confirms that event handlers are executed in the order of the app host life cycle events. The subscription order doesn't affect execution order. The `BeforeStartEvent` is triggered first, followed by each resources `ResourceEndpointsAllocatedEvent`, and finally `AfterResourcesCreatedEvent`.
+The log output confirms that event handlers are executed in the order of the app host life cycle events. The subscription order doesn't affect execution order. The `BeforeStartEvent` is triggered first, followed by each resource's `ResourceEndpointsAllocatedEvent`, and finally `AfterResourcesCreatedEvent`.
 
 ## Resource eventing
 
@@ -65,7 +65,7 @@ When the app host is run, by the time the .NET Aspire dashboard is displayed, yo
 :::code language="Plaintext" source="snippets/AspireApp/AspireApp.ResourceAppHost/Console.txt" highlight="8,10,12,14,20":::
 
 > [!NOTE]
-> Some events block execution. For example, when the `BeforeResourceStartEvent` publishes, the resource startup blocks until all subscriptions for that event on a given resource finish executing. Whether an event blocks or not depends on how you publish it (see the following section).
+> Some events block execution. For example, when the `BeforeResourceStartedEvent` is published, the resource startup blocks until all subscriptions for that event on a given resource finish executing. Whether an event blocks or not depends on how you publish it (see the following section).
 
 ## Publish events
 
