@@ -55,6 +55,7 @@ For more information, see [.NET Aspire and launch profiles](../fundamentals/laun
 |--|--|--|
 | `ASPIRE_ALLOW_UNSECURED_TRANSPORT` | `false` | Allows communication with the app host without https. `ASPNETCORE_URLS` (dashboard address) and `ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL` (app host resource service address) must be secured with HTTPS unless true. |
 | `ASPIRE_CONTAINER_RUNTIME` | `docker` | Allows the user of alternative container runtimes for resources backed by containers. Possible values are `docker` (default) or `podman`. See [Setup and tooling overview for more details](../fundamentals/setup-tooling.md).  |
+| `ASPIRE_VERSION_CHECK_DISABLED` | `false` | When set to `true`, .NET Aspire doesn't check for newer versions on startup. |
 
 ## Resource service
 
@@ -64,7 +65,6 @@ A resource service is hosted by the app host. The resource service is used by th
 |--|--|--|
 | `ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL` | `null` | Configures the address of the resource service hosted by the app host. Automatically generated with _launchSettings.json_ to have a random port on localhost. For example, `https://localhost:17037`. |
 | `ASPIRE_DASHBOARD_RESOURCESERVICE_APIKEY` | Automatically generated 128-bit entropy token. | The API key used to authenticate requests made to the app host's resource service. The API key is required if the app host is in run mode, the dashboard isn't disabled, and the dashboard isn't configured to allow anonymous access with `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS`. |
-| `ASPIRE_VERSION_CHECK_DISABLED` | `false` | When set to `true` .NET Aspire doesn't check for newer versions on startup. |
 
 ## Dashboard
 
