@@ -45,26 +45,26 @@ The following options are available when `aspire` is used by itself, without spe
 
 ## Commands
 
-| Command                             | Function                                                       |
-|-------------------------------------|----------------------------------------------------------------|
-| [aspire new](aspire-new.md)         | Create an Aspire sample project from a template.               |
-| [aspire run](aspire-run.md)         | Run an Aspire app host in development mode.                    |
-| [aspire add](aspire-add.md)         | Add an integration to the Aspire project.                      |
-| [aspire publish](aspire-publish.md) | Generates deployment artifacts for an Aspire app host project. |
-| [aspire config](aspire-config.md)   |  |
-| [aspire exec](aspire-exec.md)       |  |
+| Command                               | Status  | Function                                                                 |
+|---------------------------------------|---------|--------------------------------------------------------------------------|
+| [`aspire add`](aspire-add.md)         | Stable  | Add an integration to the Aspire project.                                |
+| [`aspire new`](aspire-new.md)         | Stable  | Create an Aspire sample project from a template.                         |
+| [`aspire run`](aspire-run.md)         | Stable  | Run an Aspire apphost in development mode.                               |
+| [`aspire exec`](aspire-exec.md)       | Preview | Similar to the `aspire run` command, but passes commands to the apphost. |
+| [`aspire deploy`](aspire-deploy.md)   | Preview | Deploys the artifacts created by `aspire publish`.                       |
+| [`aspire publish`](aspire-publish.md) | Preview | Generates deployment artifacts for an Aspire apphost project.            |
 
 ## Examples
 
 Create an Aspire application:
 
-```dotnetcli
+```Command
 aspire new aspire-starter
 ```
 
 Run an Aspire app host project:
 
-```command
+```Command
 aspire run
 ```
 
