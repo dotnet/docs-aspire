@@ -55,6 +55,7 @@ For more information, see [.NET Aspire and launch profiles](../fundamentals/laun
 |--|--|--|
 | `ASPIRE_ALLOW_UNSECURED_TRANSPORT` | `false` | Allows communication with the app host without https. `ASPNETCORE_URLS` (dashboard address) and `ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL` (app host resource service address) must be secured with HTTPS unless true. |
 | `ASPIRE_CONTAINER_RUNTIME` | `docker` | Allows the user of alternative container runtimes for resources backed by containers. Possible values are `docker` (default) or `podman`. See [Setup and tooling overview for more details](../fundamentals/setup-tooling.md).  |
+| `ASPIRE_VERSION_CHECK_DISABLED` | `false` | When set to `true`, .NET Aspire doesn't check for newer versions on startup. |
 
 ## Resource service
 
