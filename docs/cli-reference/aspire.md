@@ -56,7 +56,7 @@ The following options are available when `aspire` is used by itself, without spe
 
 ## Examples
 
-Create an Aspire application:
+Create an Aspire solution from the template:
 
 ```Command
 aspire new aspire-starter
@@ -72,4 +72,3 @@ aspire run
 
 - [Environment variables used by .NET SDK, .NET CLI, and .NET runtime](dotnet-environment-variables.md)
 - [Runtime Configuration Files](https://github.com/dotnet/sdk/blob/main/documentation/specs/runtime-configuration-file.md)
-- [.NET runtime configuration settings](../runtime-config/index.md)
