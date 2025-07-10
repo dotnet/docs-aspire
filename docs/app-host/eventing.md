@@ -41,8 +41,8 @@ The log output confirms that event handlers are executed in the order of the app
 In addition to the app host events, you can also subscribe to resource events. Resource events are raised specific to an individual resource. Resource events are defined as implementations of the <xref:Aspire.Hosting.Eventing.IDistributedApplicationResourceEvent> interface. The following resource events are available in the listed order:
 
 1. <xref:Aspire.Hosting.ApplicationModel.InitializeResourceEvent>: Raised by orchestrators to signal to resources that they should initialize themselves.
-1. <xref:Aspire.Hosting.ApplicationModel.ConnectionStringAvailableEvent>: Raised when a connection string becomes available for a resource.
 1. <xref:Aspire.Hosting.ApplicationModel.ResourceEndpointsAllocatedEvent>: Raised when the orchestrator allocates endpoints for a resource.
+1. <xref:Aspire.Hosting.ApplicationModel.ConnectionStringAvailableEvent>: Raised when a connection string becomes available for a resource.
 1. <xref:Aspire.Hosting.ApplicationModel.BeforeResourceStartedEvent>: Raised before the orchestrator starts a new resource.
 1. <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent>: Raised when a resource initially transitions to a ready state.
 
@@ -55,10 +55,10 @@ To subscribe to resource events, use the convenience-based extension methods—`
 The preceding code subscribes to the `InitializeResourceEvent`, `ResourceReadyEvent`, `ResourceEndpointsAllocatedEvent`, `ConnectionStringAvailableEvent`, and `BeforeResourceStartedEvent` events on the `cache` resource. When <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis*> is called, it returns an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is a <xref:Aspire.Hosting.ApplicationModel.RedisResource>. Chain calls to the `On*` methods to subscribe to the events. The `On*` methods return the same <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> instance, so you can chain multiple calls:
 
 - `OnInitializeResource`: Subscribes to the <xref:Aspire.Hosting.ApplicationModel.InitializeResourceEvent> event.
-- `OnResourceReady`: Subscribes to the <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent> event.
 - `OnResourceEndpointsAllocated`: Subscribes to the <xref:Aspire.Hosting.ApplicationModel.ResourceEndpointsAllocatedEvent> event.
 - `OnConnectionStringAvailable`: Subscribes to the <xref:Aspire.Hosting.ApplicationModel.ConnectionStringAvailableEvent> event.
 - `OnBeforeResourceStarted`: Subscribes to the <xref:Aspire.Hosting.ApplicationModel.BeforeResourceStartedEvent> event.
+- `OnResourceReady`: Subscribes to the <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent> event.
 
 When the app host is run, by the time the .NET Aspire dashboard is displayed, you should see the following log output in the console:
 
