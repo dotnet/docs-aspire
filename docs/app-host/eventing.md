@@ -17,7 +17,7 @@ In this article, you learn how to use the eventing features in .NET Aspire.
 The following events are available in the app host and occur in the following order:
 
 1. <xref:Aspire.Hosting.ApplicationModel.BeforeStartEvent>: This event is raised before the app host starts.
-1. `ResourceEndpointsAllocatedEvent`: This event is raised per resource after its endpoints are allocated.
+1. <xref:Aspire.Hosting.ApplicationModel.ResourceEndpointsAllocatedEvent>: This event is raised per resource after its endpoints are allocated.
 1. <xref:Aspire.Hosting.ApplicationModel.AfterResourcesCreatedEvent>: This event is raised after the app host created resources.
 
 All of the preceding events are analogous to the [app host life cycles](xref:dotnet/aspire/app-host#app-host-life-cycles). That is, an implementation of the <xref:Aspire.Hosting.Lifecycle.IDistributedApplicationLifecycleHook> could handle these events just the same. With the eventing API, however, you can run arbitrary code when these events are raised and event define custom events—any event that implements the <xref:Aspire.Hosting.Eventing.IDistributedApplicationEvent> interface.
