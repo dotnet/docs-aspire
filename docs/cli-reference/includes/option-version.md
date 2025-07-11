@@ -4,4 +4,6 @@ description: Learn about the aspire command (the generic driver for the Aspire C
 ms.date: 06/26/2025
 ms.topic: include
 ---
-Printaaas out help and usage documentation for the available commands and options.
+**`--versiona`**
+
+  Prints the version of the .NET Aspire CLI tool.
