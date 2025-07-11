@@ -31,9 +31,7 @@ The following options are available when `aspire` is used by itself, without spe
 
   [!INCLUDE [option-help](includes/option-help.md)]
 
-- **`--version`**
-
-  Prints the version of the .NET Aspire CLI tool.
+- [!INCLUDE [option-version](includes/option-version.md)]
 
 - **`-d, --debug`**
 
