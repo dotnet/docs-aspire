@@ -21,6 +21,9 @@ In this tutorial, you create a .NET Aspire solution with an API that connects to
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
+> [!IMPORTANT]
+> This tutorial assumes you have .NET Aspire version 9.3 or a higher version installed. For information about upgrading from earlier versions, see [Upgrade to .NET Aspire 9](../get-started/upgrade-to-aspire-9.md).
+
 :::zone pivot="sql-server-ef"
 
 > [!IMPORTANT]
@@ -63,6 +66,7 @@ Let's start by creating a new solution with the .NET Aspire Starter template.
 1. In the **Additional information** page:
 
     - Make sure that **.NET 9.0** is selected.
+    - In the .NET Aspire version drop-down list, select 9.3 or a higher version number.
     - Leave the other values at their defaults and then select **Create**.
 
 Visual Studio creates a new .NET Aspire solution with an API and a web front end. The solution consists of the following projects:
@@ -198,7 +202,7 @@ Let's implement that configuration:
     }
     ```
 
-1. In the _AspireExistingDB.AppHost_ project, open the _Program.cs_ file.
+1. In the _AspireExistingDB.AppHost_ project, open the _AppHost.cs_ file.
 1. Locate the following line of code:
 
     ```csharp
@@ -242,7 +246,7 @@ Let's implement that configuration:
     }
     ```
 
-1. In the _AspireExistingDB.AppHost_ project, open the _Program.cs_ file.
+1. In the _AspireExistingDB.AppHost_ project, open the _AppHost.cs_ file.
 1. Locate the following line of code:
 
     ```csharp
@@ -286,7 +290,7 @@ Let's implement that configuration:
     }
     ```
 
-1. In the _AspireExistingDB.AppHost_ project, open the _Program.cs_ file.
+1. In the _AspireExistingDB.AppHost_ project, open the _AppHost.cs_ file.
 1. Locate the following line of code:
 
     ```csharp
@@ -330,7 +334,7 @@ Let's implement that configuration:
     }
     ```
 
-1. In the _AspireExistingDB.AppHost_ project, open the _Program.cs_ file.
+1. In the _AspireExistingDB.AppHost_ project, open the _AppHost.cs_ file.
 1. Locate the following line of code:
 
     ```csharp
@@ -348,14 +352,16 @@ Let's implement that configuration:
 1. Locate the following line of code, which creates a resource for the _AspireExistingDB.ApiService_ project:
 
     ```csharp
-    var apiService = builder.AddProject<Projects.AspireExistingDB_ApiService>("apiservice");
+    var apiService = builder.AddProject<Projects.AspireExistingDB_ApiService>("apiservice")
+        .WithHttpHealthCheck("/health");
     ```
 
 1. Modify that line to match the following, which creates the resource and passes the connection string to it:
 
     ```csharp
     var apiService = builder.AddProject<Projects.AspireExistingDB_ApiService>("apiservice")
-                            .WithReference(connectionString);
+                            .WithReference(connectionString)
+                            .WithHttpHealthCheck("/health");
     ```
 
 1. To save your changes, select **File** > **Save All**.

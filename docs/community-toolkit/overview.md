@@ -18,9 +18,6 @@ The community toolkit is a growing project, publishing a set of NuGet packages. 
 
 ### Hosting integrations
 
-- The [Azure Static Web Apps](/azure/static-web-apps/static-web-apps-cli-overview) integration enables local emulator support:
-  - [📄 .NET Aspire Azure Static Web Apps emulator integration](hosting-azure-static-web-apps.md).
-  - [📦 CommunityToolkit.Aspire.Hosting.Azure.StaticWebApps](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Azure.StaticWebApps).
 - The [Azure Data API Builder](/azure/data-api-builder/overview) integration enables seamless API creation for your data:
   - [📄 .NET Aspire Azure Data API Builder integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder).
   - [📦 CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder).

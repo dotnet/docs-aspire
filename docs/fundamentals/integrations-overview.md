@@ -143,7 +143,6 @@ For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.co
 <!-- markdownlint-disable MD033 MD045 -->
 | Integration docs and NuGet packages | Description |
 |--|--|
-| - **Learn More**: [📄 Azure Static Web Apps emulator](../community-toolkit/hosting-azure-static-web-apps.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Azure.StaticWebApps](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Azure.StaticWebApps) <br /> - **Client**: N/A | A hosting integration for the [Azure Static Web Apps emulator](/azure/static-web-apps/static-web-apps-cli-overview) (Note: this does not support deployment of a project to Azure Static Web Apps). |
 | - **Learn More**: [📄 Bun hosting](../community-toolkit/hosting-bun.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Bun](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Bun) <br /> - **Client**: N/A | A hosting integration for Bun apps. |
 | - **Learn More**: [📄 Deno hosting](../community-toolkit/hosting-deno.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Deno](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Deno) <br /> - **Client**: N/A | A hosting integration for Deno apps. |
 | - **Learn More**: [📄 Go hosting](../community-toolkit/hosting-golang.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Golang](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Golang) <br /> - **Client**: N/A | A hosting integration for Go apps. |
