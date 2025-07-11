@@ -333,8 +333,6 @@ items:
     items:
     - name: Overview
       href: community-toolkit/overview.md
-    - name: Azure Static Web Apps
-      href: community-toolkit/hosting-azure-static-web-apps.md
     - name: Bun apps
       href: community-toolkit/hosting-bun.md
     - name: Dapr
