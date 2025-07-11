@@ -13,6 +13,8 @@ items:
   - name: Breaking changes in 9.4
     expanded: true
     items:
+    - name: AddAzureOpenAI defaults to CognitiveServicesOpenAIUser role
+      href: 9.4/add-azure-openai-default-changes.md
     - name: Azure Storage APIs renamed and refactored
       href: 9.4/azure-storage-apis-renamed.md
     - name: BicepSecretOutputReference and GetSecretOutput are now obsolete
