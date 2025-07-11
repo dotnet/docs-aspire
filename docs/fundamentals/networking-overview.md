@@ -32,7 +32,7 @@ To help visualize how endpoints work, consider the .NET Aspire starter templates
 
 ## How container networks are managed
 
-When you add one or more container resource(s), .NET Aspire creates a dedicated container bridge network to enable service discovery between containers. This bridge network is a virtual network that lets containers communicate with each other and provides a DNS server for container-to-container service discovery using DNS names.
+When you add one or more container resources, .NET Aspire creates a dedicated container bridge network to enable service discovery between containers. This bridge network is a virtual network that lets containers communicate with each other and provides a DNS server for container-to-container service discovery using DNS names.
 
 The network's lifetime depends on the container resources:
 
