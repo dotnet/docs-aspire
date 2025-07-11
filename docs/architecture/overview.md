@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire architecture overview  
 description: Learn about the overall architecture of .NET Aspire, including its integrations, orchestration, and networking capabilities.  
-ms.date: 05/09/2025
+ms.date: 07/11/2025
 ---
 
 # .NET Aspire architecture overview  
@@ -165,7 +165,9 @@ Continuing from the [diagram in the previous](#app-host-dcp-flow) section, consi
 
 :::image type="content" source="media/dcp-architecture-thumb.png" alt-text="A diagram depicting the architecture of the Developer Control Plane (DCP)." lightbox="media/dcp-architecture.png":::
 
-DCP logs are streamed back to the app host, which then forwards them to the developer dashboard. While the developer dashboard exposes commands such as start, stop, and restart, these commands are not part of DCP itself. Instead, they are implemented by the app model runtime, specifically within its "dashboard service" component. These commands operate by manipulating DCP objects—creating new ones, deleting old ones, or updating their properties. For example, restarting a .NET project involves stopping and deleting the existing <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> representing the project and creating a new one with the same specifications. For more information on commands, see [Custom resource commands in .NET Aspire](../fundamentals/custom-resource-commands.md).
+DCP logs are streamed back to the app host, which then forwards them to the developer dashboard. While the developer dashboard exposes commands such as start, stop, and restart, these commands are not part of DCP itself. Instead, they are implemented by the app model runtime, specifically within its "dashboard service" component. These commands operate by manipulating DCP objects—creating new ones, deleting old ones, or updating their properties. For example, restarting a .NET project involves stopping and deleting the existing <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> representing the project and creating a new one with the same specifications.
+
+For more information on container networking, see [How container networks are managed](../fundamentals/networking-overview.md#how-container-networks-are-managed).
 
 ## Developer dashboard
 

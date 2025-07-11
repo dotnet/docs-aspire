@@ -6,6 +6,8 @@ items:
 - name: Latest product updates
   expanded: true
   items:
+  - name: What's new in .NET Aspire 9.4
+    href: dotnet-aspire-9.4.md
   - name: What's new in .NET Aspire 9.3
     href: dotnet-aspire-9.3.md
   - name: What's new in .NET Aspire 9.2
