@@ -119,6 +119,8 @@ items:
     items:
     - name: aspire
       href: cli-reference/aspire.md
+    - name: aspire new
+      href: cli-reference/aspire-new.md
 
 - name: Testing
   items:
