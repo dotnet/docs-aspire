@@ -4,6 +4,6 @@ description: Learn about the aspire command (the generic driver for the Aspire C
 ms.date: 07/11/2025
 ms.topic: include
 ---
-**`--version`**
+**`-d, --debug`**
 
-  Prints the version of the .NET Aspire CLI tool.
+  Enable debug logging to the console, which prints out detailed information about what .NET Aspire CLI is doing when a command is run.

@@ -4,6 +4,6 @@ description: Learn about the aspire command (the generic driver for the Aspire C
 ms.date: 07/11/2025
 ms.topic: include
 ---
-**`--version`**
+**`--wait-for-debugger`**
 
-  Prints the version of the .NET Aspire CLI tool.
+  Wait for a debugger to attach before running a command.
