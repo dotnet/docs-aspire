@@ -29,7 +29,7 @@ The following options are available when `aspire` is used by itself, without spe
 
 - **`-?, -h, --help`**
 
-  Prints out help and usage documentation for the available commands and options.
+  [!INCLUDE [option-help](includes/option-help.md)]
 
 - **`--version`**
 
