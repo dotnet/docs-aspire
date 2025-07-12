@@ -27,7 +27,7 @@ The following table describes the basic commands provided by Aspire:
 | [`aspire add`](#add-integrations)                          | Stable  | Add an integration to the Aspire project.                                 |
 | [`aspire new`](#create-projects)                           | Stable  | Create an Aspire sample project from a template.                          |
 | [`aspire run`](#run-the-apphost-project)                   | Stable  | Run an Aspire apphost in development mode.                                |
-| [`aspire exec`](#run-commands-in-resource-context-preview) | Preview | Similar to the `aspire run` command, but passes commands to the apphost.  |
+| [`aspire exec`](#run-commands-in-resource-context-preview) | Preview | Similar to the `aspire run` command, but runs commands in the context of a resource.  |
 | [`aspire deploy`](#deploy-aspire-applications-preview)     | Preview | Deploys the artifacts created by `aspire publish`.                        |
 | [`aspire publish`](#publish-aspire-applications-preview)   | Preview | Generates deployment artifacts for an Aspire apphost project.             |
 
@@ -50,9 +50,9 @@ While command line parameters can be used to automate the creation of an Aspire 
 
 ## Run the apphost project
 
-The `aspire run` command runs the apphost project in development mode, which configures the Aspire environment, builds the apphost, launches the web dashboard, and displays a terminal-based dashboard. This is similar to running the apphost project in your IDE of choice, however, a terminal dashboard is also visible.
+The `aspire run` command runs the apphost project in development mode, which configures the Aspire environment, builds the apphost, launches the web dashboard, and displays a terminal-based dashboard. This is similar to running the apphost project in your IDE of choice, however, a terminal-based version dashboard is also visible.
 
-When `aspire run` starts, it searches the current directory for an apphost. If an apphost isn't found, the sub directories are searched until an apphost is found. If no apphost is found, Aspire stops. Once an apphost is found, Aspire CLI takes the following stesp:
+When `aspire run` starts, it searches the current directory for an apphost. If an apphost isn't found, the sub directories are searched until an apphost is found. If no apphost is found, Aspire stops. Once an apphost is found, Aspire CLI takes the following steps:
 
 - Installs or verifies that Aspires local hosting certificates are installed and trusted.
 - Builds the apphost project.
