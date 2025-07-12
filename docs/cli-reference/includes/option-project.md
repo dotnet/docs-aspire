@@ -4,6 +4,6 @@ description: Learn about the aspire command (the generic driver for the Aspire C
 ms.date: 07/11/2025
 ms.topic: include
 ---
-**`-?, -h, --help`**
+**`--project`**
 
-  Prints help and usage documentation for the available commands and options.
+  The path to the Aspire apphost project file.

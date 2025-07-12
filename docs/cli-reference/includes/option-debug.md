@@ -6,4 +6,4 @@ ms.topic: include
 ---
 **`-d, --debug`**
 
-  Enable debug logging to the console, which prints out detailed information about what .NET Aspire CLI is doing when a command is run.
+  Enable debug logging to the console, which prints detailed information about what .NET Aspire CLI is doing when a command is run.
