@@ -119,8 +119,14 @@ items:
     items:
     - name: aspire
       href: cli-reference/aspire.md
+    - name: aspire add
+      href: cli-reference/aspire-add.md
+    - name: aspire exec
+      href: cli-reference/aspire-exec.md
     - name: aspire new
       href: cli-reference/aspire-new.md
+    - name: aspire run
+      href: cli-reference/aspire-run.md
 
 - name: Testing
   items:

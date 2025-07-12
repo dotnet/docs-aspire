@@ -1,6 +1,6 @@
 ---
-title: aspire command
-description: Learn about the aspire command (the generic driver for the Aspire CLI) and its usage.
+title: aspire new command
+description: Learn about the aspire new command and its usage. This command creates new Aspire projects or solutions.
 ms.date: 07/11/2025
 ---
 # aspire new command
@@ -9,16 +9,9 @@ ms.date: 07/11/2025
 
 ## Name
 
-`aspire new` - Create a new Aspire project, app, or solution.
-
-Supports:
-
-- ✔️ Interactive
-- ✔️ Non-interactive
+`aspire new` - Create a new Aspire project or solution.
 
 ## Synopsis
-
-Create a new Aspire project:
 
 ```dotnetcli
 aspire new [command] [options]
@@ -62,24 +55,24 @@ Each command represents a template.
 
 | Command                  | Function                     |
 |--------------------------|------------------------------|
-| `aspire-starter`         | Aspire Starter App           |
 | `aspire`                 | Aspire Empty App             |
 | `aspire-apphost`         | Aspire App Host              |
-| `aspire-servicedefaults` | Aspire Service Defaults      |
 | `aspire-mstest`          | Aspire Test Project (MSTest) |
 | `aspire-nunit`           | Aspire Test Project (NUnit)  |
+| `aspire-servicedefaults` | Aspire Service Defaults      |
+| `aspire-starter`         | Aspire Starter App           |
 | `aspire-xunit`           | Aspire Test Project (xUnit)  |
 
 ## Examples
 
-Create an Aspire solution from the template. Because the template was selected (`aspire-starter`), you're prompted for the name, output folder, and template version.
+- Create an Aspire solution from the template. Because the template was selected (`aspire-starter`), you're prompted for the name, output folder, and template version.
 
-```Command
-aspire new aspire-starter
-```
+  ```Command
+  aspire new aspire-starter
+  ```
 
-Create an AppHost project named `aspireapp` from the **9.3.1** templates and place the output in a folder named `aspire1`.
+- Create an AppHost project named `aspireapp` from the **9.3.1** templates and place the output in a folder named `aspire1`.
 
-```Command
-aspire new aspire-apphost --version 9.3.1 --name aspireapp1 --output ./aspire1
-```
+  ```Command
+  aspire new aspire-apphost --version 9.3.1 --name aspireapp1 --output ./aspire1
+  ```

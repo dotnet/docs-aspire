@@ -21,7 +21,7 @@ aspire [command] [options]
 
 ## Description
 
-The `aspire` command provides commands for working with Aspire projects. For example `aspire run` runs an Aspire AppHost project.
+The `aspire` command provides commands for working with Aspire projects. For example, `aspire run` runs an Aspire AppHost project.
 
 ## Options
 
