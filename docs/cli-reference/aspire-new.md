@@ -51,9 +51,9 @@ The following options are available:
 
 ## Commands
 
-Each command represents a template.
+Each command represents a template. Pass the `--help` parameter to the template command to print the options available to the template.
 
-| Command                  | Function                     |
+| Command                  | Template                     |
 |--------------------------|------------------------------|
 | `aspire`                 | Aspire Empty App             |
 | `aspire-apphost`         | Aspire App Host              |
