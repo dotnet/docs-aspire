@@ -5,7 +5,7 @@ ms.date: 07/11/2025
 ---
 # aspire add command
 
-**This article applies to:** ✔️ Aspire CLI 9.3.1 and later versions
+**This article applies to:** ✔️ Aspire CLI 9.4.0 and later versions
 
 ## Name
 
