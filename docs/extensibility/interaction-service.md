@@ -7,9 +7,6 @@ description: Use the interaction service API to prompt users for input, request 
 
 The interaction service API (`Aspire.Hosting.IInteractionService`) allows you to prompt users for input, request confirmation, and display messages in the Aspire dashboard or CLI during publish and deploy. This is useful for scenarios where you need to gather information from the user or provide feedback on the status of operations.
 
-> [!NOTE]
-> This is a preview feature and is subject to change.
-
 ## The `IInteractionService` API
 
 The `IInteractionService` interface can be retrieved from the dependency injection container of your <xref:Aspire.Hosting.DistributedApplication>. When you request this service, be sure to check if it's available for usage.
@@ -63,7 +60,9 @@ There are a number of ways to display messages to the user:
 
 Dialog messages are modal windows that require user interaction before they can be dismissed. Use dialog messages for critical information, errors, or important notifications that need immediate attention.
 
-The <xref:Aspire.Hosting.IInteractionService.PromptMessageBoxAsync%2A> method displays a dialog box with a title, message, and customizable buttons. You can specify the intent of the message (error, warning, information, etc.) and customize the button text.
+<!-- <xref:Aspire.Hosting.IInteractionService.PromptMessageBoxAsync%2A> -->
+
+The `IInteractionService.PromptMessageBoxAsync` method displays a dialog box with a title, message, and customizable buttons. You can specify the intent of the message (error, warning, information, etc.) and customize the button text.
 
 :::code source="snippets/InteractionService/AppHost.MessageBoxExample.cs" id="example":::
 
@@ -78,17 +77,21 @@ Message bars are non-modal notifications that appear as an alert-style banner ne
 > [!TIP]
 > Message bar notifications stack, so you can display multiple messages at once.
 
-The <xref:Aspire.Hosting.IInteractionService.PromptMessageBarAsync%2A> method displays a message bar with optional action links:
+<!-- <xref:Aspire.Hosting.IInteractionService.PromptMessageBarAsync%2A> -->
+
+The `IInteractionService.PromptMessageBarAsync` method displays a message bar with optional action links:
 
 :::code source="snippets/InteractionService/AppHost.MessageBarExample.cs" id="example":::
 
 The previous example demonstrates several ways to use the message bar API. Each approach displays different types of notifications in the Aspire dashboard:
 
-:::image type="content" source="interaction-service-message-bar.png" lightbox="interaction-service-message-bar.png" alt-text="Aspire dashboard interface showing multiple message bars stacked near the top of the page. There are five message bars displayed, each with a different type of notification.":::
+:::image type="content" source="media/interaction-service-message-bar.png" lightbox="media/interaction-service-message-bar.png" alt-text="Aspire dashboard interface showing multiple message bars stacked near the top of the page. There are five message bars displayed, each with a different type of notification.":::
 
 ## Prompt for user confirmation
 
-Use the interaction service when you need the user to confirm an action before proceeding. The <xref:Aspire.Hosting.IInteractionService.PromptConfirmationAsync%2A> method displays a confirmation dialog in the Aspire dashboard. The user can choose a _primary_ action (like "Delete" or "Deploy") or _secondary_ action (like "Cancel") to cancel the operation.
+<!-- <xref:Aspire.Hosting.IInteractionService.PromptConfirmationAsync%2A> -->
+
+Use the interaction service when you need the user to confirm an action before proceeding. The `IInteractionService.PromptConfirmationAsync` method displays a confirmation dialog in the Aspire dashboard. The user can choose a _primary_ action (like "Delete" or "Deploy") or _secondary_ action (like "Cancel") to cancel the operation.
 
 Confirmation dialogs are essential for destructive operations or actions that have significant consequences. They help prevent accidental actions and give users a chance to reconsider their decisions.
 
@@ -108,7 +111,9 @@ The interaction service API allows you to prompt users for input in a variety of
 
 ### Prompt user for a single input
 
-Use the <xref:Aspire.Hosting.IInteractionService.PromptInputAsync%2A> method to collect a single piece of information from the user. This method supports various input types through the <xref:Aspire.Hosting.InteractionInput> class. Consider the following example, that prompts the user for an API key as a secret input value:
+<!-- <xref:Aspire.Hosting.IInteractionService.PromptInputAsync%2A> -->
+
+Use the `IInteractionService.PromptInputAsync` method to collect a single piece of information from the user. This method supports various input types through the `InteractionInput` class. Consider the following example, that prompts the user for an API key as a secret input value:
 
 :::code source="snippets/InteractionService/AppHost.SingleInputExample.cs" id="example":::
 
@@ -120,68 +125,31 @@ If the user doesn't enter a value, the dialog will show an error message indicat
 
 :::image type="content" source="media/interaction-service-single-input-validation.png" lightbox="media/interaction-service-single-input-validation.png" alt-text="Aspire dashboard interface showing a single input dialog with an error message indicating that the input is required.":::
 
-### Prompt for multiple input values
+### Prompt the user for multiple input values
 
-Use the <xref:Aspire.Hosting.IInteractionService.PromptInputsAsync%2A> method to collect multiple pieces of information in a single dialog. This is more efficient and provides a better user experience when you need several related configuration values.
+<!-- <xref:Aspire.Hosting.IInteractionService.PromptInputsAsync%2A> -->
 
-#### Basic multiple inputs
+Use the `IInteractionService.PromptInputsAsync` method to collect multiple pieces of information in a single dialog. This is more efficient and provides a better user experience when you need several related configuration values.
 
-```csharp
-// Collect multiple configuration values at once
-var inputs = new List<InteractionInput>
-{
-    new()
-    {
-        Label = "Application Name",
-        InputType = InputType.Text,
-        Required = true,
-        Placeholder = "my-app"
-    },
-    new()
-    {
-        Label = "Environment",
-        InputType = InputType.Choice,
-        Required = true,
-        Options = new List<KeyValuePair<string, string>>
-        {
-            new("dev", "Development"),
-            new("staging", "Staging"),
-            new("prod", "Production")
-        }
-    },
-    new()
-    {
-        Label = "Instance Count",
-        InputType = InputType.Number,
-        Required = true,
-        Placeholder = "1"
-    },
-    new()
-    {
-        Label = "Enable Monitoring",
-        InputType = InputType.Boolean,
-        Required = false
-    }
-};
+Consider the following example, which prompts the user for multiple input values:
 
-var multiResult = await interactionService.PromptInputsAsync(
-    title: "Application Configuration",
-    message: "Configure your application deployment settings:",
-    inputs: inputs);
+:::code source="snippets/InteractionService/AppHost.MultipleInputExample.cs" id="example":::
 
-if (!multiResult.Canceled && multiResult.Data != null)
-{
-    foreach (var input in multiResult.Data)
-    {
-        // Process each input value
-        Console.WriteLine($"{input.Label}: {input.Value}");
-    }
-}
-```
+This renders on the dashboard as shown in the following image:
+
+:::image type="content" source="media/interaction-service-multiple-input.png" lightbox="media/interaction-service-multiple-input.png" alt-text="Aspire dashboard interface showing a multiple input dialog with labels, input fields, and buttons for confirming or canceling the input.":::
+
+Imagine you fill out the dialog with the following values:
+
+:::image type="content" source="media/interaction-service-multiple-input-filled.png" lightbox="media/interaction-service-multiple-input-filled.png" alt-text="Aspire dashboard interface showing a multiple input dialog with filled input fields and buttons for confirming or canceling the input.":::
+
+After selecting the **Ok** button, the resource logs display the following output:
+
+:::image type="content" source="media/interaction-service-multiple-input-logs.png" lightbox="media/interaction-service-multiple-input-logs.png" alt-text="Aspire dashboard interface showing logs with the input values entered in the multiple input dialog.":::
 
 #### Input validation
 
-For complex scenarios, you can provide custom validation logic using the `ValidationCallback` property:
+For complex scenarios, you can provide custom validation logic using the `InputsDialogInteractionOptions.ValidationCallback` property:
 
 ```csharp
 // Multiple inputs with custom validation
@@ -219,7 +187,7 @@ var databaseInputs = new List<InteractionInput>
 
 var validationOptions = new InputsDialogInteractionOptions
 {
-    ValidationCallback = async (context) =>
+    ValidationCallback = async context =>
     {
         var passwordInput = context.Inputs.FirstOrDefault(i => i.Label == "Password");
         var confirmPasswordInput = context.Inputs.FirstOrDefault(i => i.Label == "Confirm Password");
