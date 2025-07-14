@@ -14,6 +14,12 @@ The `IInteractionService` interface can be retrieved from the dependency injecti
 
 The interaction service has several methods that you use to interact with the users or display messages. The following sections describe how to use these APIs effectively.
 
+- `IInteractionService.PromptMessageBoxAsync`: Displays a modal dialog box with a message and buttons for user interaction.
+- `IInteractionService.PromptMessageBarAsync`: Displays a nonmodal message bar at the top of the dashboard for informational messages.
+- `IInteractionService.PromptConfirmationAsync`: Displays a confirmation dialog with options for the user to confirm or cancel an action.
+- `IInteractionService.PromptInputAsync`: Prompts the user for a single input value, such as a text or secret.
+- `IInteractionService.PromptInputsAsync`: Prompts the user for multiple input values in a single dialog, allowing for more complex configurations.
+
 ## Where to use the interaction service
 
 Any of the available callback-based extension methods of `IResourceBuilder<T>` can use the interaction service to prompt users for input or confirmation. Use the interaction service in these scenarios:
@@ -49,7 +55,7 @@ These approaches help you create interactive, user-friendly experiences for loca
 
 ## Display messages
 
-There are a number of ways to display messages to the user:
+There are many ways to display messages to the user:
 
 - **Dialog messages**: Show important information in a dialog box in the Aspire dashboard. The user must interact with the dialog to dismiss it.
 - **Message bar messages**: Display less critical information in a message bar in the Aspire dashboard. The message doesn't require immediate action, so the user can continue working.
@@ -70,7 +76,7 @@ Message dialogs come with many options that control their appearance and behavio
 
 ### Display a message bar
 
-Message bars are non-modal notifications that appear as an alert-style banner near the top of the dashboard interface without blocking the user's workflow. They can be dismissed by selecting the **X** button. They're ideal for status updates, informational messages, warnings, or notifications that don't require immediate action.
+Message bars are nonmodal notifications that appear as an alert-style banner near the top of the dashboard interface without blocking the user's workflow. They can be dismissed by selecting the **X** button. They're ideal for status updates, informational messages, warnings, or notifications that don't require immediate action.
 
 > [!TIP]
 > Message bar notifications stack, so you can display multiple messages at once.
@@ -105,7 +111,7 @@ This example renders on the dashboard as shown in the following image:
 
 ## Prompt for user input
 
-The interaction service API allows you to prompt users for input in a variety of ways. You can collect single values or multiple values at once, with support for different input types including text, secrets, choices, booleans, and numbers.
+The interaction service API allows you to prompt users for input in various ways. You can collect single values or multiple values at once, with support for different input types including text, secrets, choices, booleans, and numbers.
 
 ### Prompt user for a single input
 
@@ -115,11 +121,11 @@ Use the `IInteractionService.PromptInputAsync` method to collect a single piece 
 
 :::code source="snippets/InteractionService/AppHost.SingleInputExample.cs" id="example":::
 
-When the Aspire dashboard runs and the user selects the corresponding command, the interaction service displays a dialog like the following:
+When the Aspire dashboard runs and the user selects the corresponding command, the interaction service displays a dialog like the following screenshot:
 
 :::image type="content" source="media/interaction-service-single-input.png" lightbox="media/interaction-service-single-input.png" alt-text="Aspire dashboard interface showing a single input dialog with a label, input field, and buttons for confirming or canceling the input.":::
 
-If the user doesn't enter a value, the dialog will show an error message indicating that the input is required:
+If the user doesn't enter a value, the dialog shows an error message indicating that the input is required:
 
 :::image type="content" source="media/interaction-service-single-input-validation.png" lightbox="media/interaction-service-single-input-validation.png" alt-text="Aspire dashboard interface showing a single input dialog with an error message indicating that the input is required.":::
 
@@ -141,7 +147,7 @@ Imagine you fill out the dialog with the following values:
 
 :::image type="content" source="media/interaction-service-multiple-input-filled.png" lightbox="media/interaction-service-multiple-input-filled.png" alt-text="Aspire dashboard interface showing a multiple input dialog with filled input fields and buttons for confirming or canceling the input.":::
 
-After selecting the **Ok** button, the resource logs display the following output:
+After you select the **Ok** button, the resource logs display the following output:
 
 :::image type="content" source="media/interaction-service-multiple-input-logs.png" lightbox="media/interaction-service-multiple-input-logs.png" alt-text="Aspire dashboard interface showing logs with the input values entered in the multiple input dialog.":::
 
