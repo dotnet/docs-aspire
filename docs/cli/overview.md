@@ -50,7 +50,7 @@ While command line parameters can be used to automate the creation of an Aspire 
 
 ## Run the apphost project
 
-The `aspire run` command runs the apphost project in development mode, which configures the Aspire environment, builds the apphost, launches the web dashboard, and displays a terminal-based dashboard. This is similar to running the apphost project in your IDE of choice, however, a terminal-based version dashboard is also visible.
+The `aspire run` command runs the apphost project in development mode, which configures the Aspire environment, builds the apphost, launches the web dashboard, and prints a list of endpoints.
 
 When `aspire run` starts, it searches the current directory for an apphost. If an apphost isn't found, the sub directories are searched until an apphost is found. If no apphost is found, Aspire stops. Once an apphost is found, Aspire CLI takes the following steps:
 
@@ -58,25 +58,19 @@ When `aspire run` starts, it searches the current directory for an apphost. If a
 - Builds the apphost project.
 - Starts the apphost.
 - Starts the dashboard.
-- Displays a terminal-based dashboard.
 
-<!-- Add asciinema here instead of the terminal dashboard -->
-
-The following snippet is an example of the terminal dashboard:
+The following snippet is an example of the output displayed by the `aspire run` command:
 
 ```Aspire CLI
-Dashboard:
-📈  Direct: https://localhost:17077/login?t=64ebc6d760ab2c48df93607fd431cf0b
-
-╭─────────────┬─────────┬─────────┬────────────────────────╮
-│ Resource    │ Type    │ State   │ Endpoint(s)            │
-├─────────────┼─────────┼─────────┼────────────────────────┤
-│ apiservice  │ Project │ Running │ https://localhost:7422 │
-│             │         │         │ http://localhost:5327  │
-│ webfrontend │ Project │ Running │ https://localhost:7241 │
-│             │         │         │ http://localhost:5185  │
-╰─────────────┴─────────┴─────────┴────────────────────────╯
-Press CTRL-C to stop the apphost and exit.
+Dashboard:  https://localhost:17178/login?t=17f974bf68e390b0d4548af8d7e38b65                                         
+            https://literate-eureka-55x5r74pwxv2vx7p-17178.app.github.dev/login?t=17f974bf68e390b0d4548af8d7e38b65   
+                                                                                                                    
+    Logs:  /home/vscode/.aspire/cli/logs/apphost-1295-2025-07-14-18-16-13.log                                       
+                                                              
+Endpoints:  webfrontend has endpoint https://localhost:7294   
+            webfrontend has endpoint http://localhost:5131   
+            apiservice has endpoint https://localhost:7531   
+            apiservice has endpoint http://localhost:5573   
 ```
 
 ## Add integrations
