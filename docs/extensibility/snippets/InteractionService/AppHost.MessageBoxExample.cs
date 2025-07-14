@@ -12,7 +12,9 @@ partial class Program
             """
             ##### 🤓 Nice!
 
-            It's worth noting that **Markdown** is _supported_ (and demonstrated here) in the message body. Simply configure the options as:
+            It's worth noting that **Markdown** is _supported_
+            (and demonstrated here) in the message body. Simply
+            configure the options as:
 
             ```csharp
             var options = new MessageBoxInteractionOptions

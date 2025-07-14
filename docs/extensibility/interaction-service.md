@@ -10,10 +10,7 @@ The interaction service API (`Aspire.Hosting.IInteractionService`) allows you to
 
 ## The `IInteractionService` API
 
-The `IInteractionService` interface can be retrieved from the dependency injection container of your <xref:Aspire.Hosting.DistributedApplication>. When you request this service, be sure to check if it's available for usage.
-
-> [!IMPORTANT]
-> If you attempt to use the interaction service when it's not available, an exception is thrown.
+The `IInteractionService` interface can be retrieved from the dependency injection container of your <xref:Aspire.Hosting.DistributedApplication>. When you request this service, be sure to check if it's available for usage. If you attempt to use the interaction service when it's not available (`IInteractionService.IsAvailable` returns `false`), an exception is thrown.
 
 The interaction service has several methods that you use to interact with the users or display messages. The following sections describe how to use these APIs effectively.
 
@@ -231,28 +228,6 @@ When prompting for user input, consider these best practices:
 1. **Implement validation**: Validate user input and provide clear error messages when validation fails.
 1. **Make required fields clear**: Mark required fields and provide appropriate defaults for optional ones.
 1. **Handle cancellation**: Always check if the user canceled the input dialog and handle it gracefully.
-
-## Real-world usage patterns
-
-The interaction service is particularly useful in scenarios where you need to gather configuration from users during deployment or setup processes. Here are some common patterns:
-
-### Progressive disclosure
-
-For complex configurations, use a progressive approach where you start with basic questions and ask for more details based on user choices:
-
-1. **Initial choice**: Ask users to select a deployment target (local, cloud, specific provider).
-1. **Environment-specific questions**: Based on the initial choice, ask for relevant configuration details.
-1. **Confirmation with summary**: Show a summary of all choices and ask for final confirmation.
-1. **Status updates**: Use message bars to show progress during long-running operations.
-
-### Error handling and recovery
-
-Always provide clear error messages and recovery options:
-
-- Use message boxes with error intent for critical failures.
-- Provide links to documentation or troubleshooting guides in message bars.
-- Allow users to retry operations after fixing issues.
-- Gracefully handle cancellation and provide alternative flows.
 
 ## See also
 
