@@ -1,6 +1,7 @@
 ---
 title: Interaction Service (Preview)
 description: Use the interaction service API to prompt users for input, request confirmation, and display messages in the Aspire dashboard or CLI during publish and deploy.
+ms.date: 07/14/2025
 ---
 
 # .NET Aspire Interaction Service (Preview)
@@ -26,7 +27,7 @@ Any of the available callback-based extension methods of `IResourceBuilder<T>` c
 
 - **Custom resource commands**: Add commands to resources in the Aspire dashboard. Use the interaction service to prompt users for input or confirmation when these commands run.
 
-    When you chain a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithCommand*> on a target `IResourceBuilder<T>`, for example, your callback can use the interaction service to gather input or confirm actions. For more information, see [Add custom commands to resources](custom-resource-commands.md).
+    When you chain a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithCommand*> on a target `IResourceBuilder<T>`, for example, your callback can use the interaction service to gather input or confirm actions. For more information, see [Custom resource commands in .NET Aspire](../fundamentals/custom-resource-commands.md).
 
 These approaches help you create interactive, user-friendly experiences for local development and dashboard interactions.
 
@@ -255,5 +256,7 @@ Always provide clear error messages and recovery options:
 
 ## See also
 
-- <xref:Aspire.Hosting.IInteractionService>
+<!-- <xref:Aspire.Hosting.IInteractionService> -->
+
+- [Aspire.Hosting.IInteractionService](https://github.com/dotnet/aspire/blob/main/src/Aspire.Hosting/IInteractionService.cs)
 - [.NET Aspire extensibility overview](../extensibility/custom-hosting-integration.md)
