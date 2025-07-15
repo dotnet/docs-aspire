@@ -414,6 +414,9 @@ items:
     - name: Customize .NET Aspire Azure deployments
       href: deployment/azure/customize-deployments.md
       displayName: azd infra synth,azd infra gen,bicep,infrastructure,production
+    - name: Azure security best practices
+      href: deployment/azure/azure-security-best-practices.md
+      displayName: azure security,security best practices,container security,managed identity
     - name: Use .NET Aspire with Application Insights
       href: deployment/azure/application-insights.md
       displayName: app insights
