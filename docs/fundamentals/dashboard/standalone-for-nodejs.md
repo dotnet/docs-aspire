@@ -100,18 +100,12 @@ To use the .NET Aspire dashboard with your Node.js app, you need to install the 
 1. Install the OpenTelemetry SDK and related packages:
 
     ```console
-    npm install @opentelemetry/api @opentelemetry/sdk-node @opentelemetry/exporter-otlp-grpc @opentelemetry/instrumentation-express @opentelemetry/instrumentation-http
+    npm install @opentelemetry/api @opentelemetry/sdk-node @opentelemetry/exporter-trace-otlp-grpc @opentelemetry/exporter-metrics-otlp-grpc @opentelemetry/auto-instrumentations-node
     ```
 
 1. Create a new file called `tracing.js` to configure OpenTelemetry:
 
     :::code language="javascript" source="~/docs/fundamentals/dashboard/snippets/standalone-for-nodejs/tracing.js":::
-
-1. Install the auto-instrumentations package:
-
-    ```console
-    npm install @opentelemetry/auto-instrumentations-node
-    ```
 
 1. Update your `app.js` to import the tracing configuration at the very beginning:
 

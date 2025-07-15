@@ -1,8 +1,7 @@
 const { NodeSDK } = require('@opentelemetry/sdk-node');
 const { getNodeAutoInstrumentations } = require('@opentelemetry/auto-instrumentations-node');
-const { OTLPTraceExporter } = require('@opentelemetry/exporter-otlp-grpc');
-const { OTLPMetricExporter } = require('@opentelemetry/exporter-otlp-grpc');
-const { OTLPLogExporter } = require('@opentelemetry/exporter-otlp-grpc');
+const { OTLPTraceExporter } = require('@opentelemetry/exporter-trace-otlp-grpc');
+const { OTLPMetricExporter } = require('@opentelemetry/exporter-metrics-otlp-grpc');
 const { PeriodicExportingMetricReader } = require('@opentelemetry/sdk-metrics');
 
 // Configure the OTLP endpoint - this should match your dashboard configuration
@@ -18,11 +17,6 @@ const sdk = new NodeSDK({
     }),
     exportIntervalMillis: 5000,
   }),
-  logRecordProcessor: {
-    exporter: new OTLPLogExporter({
-      url: otlpEndpoint,
-    }),
-  },
   instrumentations: [getNodeAutoInstrumentations({
     '@opentelemetry/instrumentation-fs': {
       enabled: false,
