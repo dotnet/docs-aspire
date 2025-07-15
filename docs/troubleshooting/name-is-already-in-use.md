@@ -27,10 +27,15 @@ One workaround is to avoid using common names like `appconfig` or `storage` for 
 Consider the following example:
 
 ```csharp
-var appConfig = builder.AddAzureAppConfiguration(
-    "appConfig",
-    (resource, construct, store) =>
-{
-    store.AssignProperty(p => p.Name, "'noncalculatedname'");
-});
+using Azure.Provisioning.AppConfiguration;
+
+var appConfig = builder.AddAzureAppConfiguration("appConfig")
+    .ConfigureInfrastructure(infra =>
+    {
+        var appConfigStore = infra.GetProvisionableResources()
+                                  .OfType<AppConfigurationStore>()
+                                  .Single();
+        
+        appConfigStore.Name = "noncalculatedname";
+    });
 ```
