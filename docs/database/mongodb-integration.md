@@ -323,10 +323,45 @@ The .NET Aspire MongoDB integration supports <xref:Microsoft.Extensions.Configur
         "DisableHealthChecks": false,
         "HealthCheckTimeout": 10000,
         "DisableTracing": false
-      },
+      }
     }
   }
+}
 ```
+
+#### Use named configuration
+
+The .NET Aspire MongoDB integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "MongoDB": {
+      "Driver": {
+        "mongo1": {
+          "ConnectionString": "mongodb://server1:port/test",
+          "DisableHealthChecks": false,
+          "HealthCheckTimeout": 10000
+        },
+        "mongo2": {
+          "ConnectionString": "mongodb://server2:port/test",
+          "DisableTracing": true,
+          "HealthCheckTimeout": 5000
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `mongo1` and `mongo2` connection names can be used when calling `AddMongoDBClient`:
+
+```csharp
+builder.AddMongoDBClient("mongo1");
+builder.AddMongoDBClient("mongo2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
 
 #### Use inline configurations
 
