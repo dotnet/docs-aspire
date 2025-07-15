@@ -49,6 +49,87 @@ zone_pivot_groups: resp-host
 
 [!INCLUDE [redis-hosting-health-checks](includes/redis-hosting-health-checks.md)]
 
+## Using with non-.NET applications
+
+The Redis hosting integration can be used with any application technology, not just .NET applications. When you use <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to reference a Redis resource, connection information is automatically injected as environment variables into the referencing application.
+
+For applications that don't use the [client integration](#client-integration), you can access the connection information through environment variables. Here's an example of how to configure environment variables for a non-.NET application:
+
+:::zone pivot="redis"
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var redis = builder.AddRedis("cache")
+    .WithLifetime(ContainerLifetime.Persistent);
+
+// Example: Configure a non-.NET application with Redis access  
+var app = builder.AddExecutable("my-app", "python", "app.py", ".")
+    .WithReference(redis) // Provides ConnectionStrings__cache
+    .WithEnvironment(context =>
+    {
+        // Additional individual connection details as environment variables
+        context.EnvironmentVariables["REDIS_HOST"] = redis.Resource.PrimaryEndpoint.Property(EndpointProperty.Host);
+        context.EnvironmentVariables["REDIS_PORT"] = redis.Resource.PrimaryEndpoint.Property(EndpointProperty.Port);
+    });
+
+builder.Build().Run();
+```
+
+:::zone-end
+:::zone pivot="garnet"
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var garnet = builder.AddGarnet("cache")
+    .WithLifetime(ContainerLifetime.Persistent);
+
+// Example: Configure a non-.NET application with Garnet access  
+var app = builder.AddExecutable("my-app", "python", "app.py", ".")
+    .WithReference(garnet) // Provides ConnectionStrings__cache
+    .WithEnvironment(context =>
+    {
+        // Additional individual connection details as environment variables
+        context.EnvironmentVariables["REDIS_HOST"] = garnet.Resource.PrimaryEndpoint.Property(EndpointProperty.Host);
+        context.EnvironmentVariables["REDIS_PORT"] = garnet.Resource.PrimaryEndpoint.Property(EndpointProperty.Port);
+    });
+
+builder.Build().Run();
+```
+
+:::zone-end
+:::zone pivot="valkey"
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var valkey = builder.AddValkey("cache")
+    .WithLifetime(ContainerLifetime.Persistent);
+
+// Example: Configure a non-.NET application with Valkey access  
+var app = builder.AddExecutable("my-app", "python", "app.py", ".")
+    .WithReference(valkey) // Provides ConnectionStrings__cache
+    .WithEnvironment(context =>
+    {
+        // Additional individual connection details as environment variables
+        context.EnvironmentVariables["REDIS_HOST"] = valkey.Resource.PrimaryEndpoint.Property(EndpointProperty.Host);
+        context.EnvironmentVariables["REDIS_PORT"] = valkey.Resource.PrimaryEndpoint.Property(EndpointProperty.Port);
+    });
+
+builder.Build().Run();
+```
+
+:::zone-end
+
+This configuration provides the non-.NET application with several environment variables:
+
+- `ConnectionStrings__cache`: The complete Redis/Garnet/Valkey connection string
+- `REDIS_HOST`: The hostname/IP address of the server
+- `REDIS_PORT`: The port number the server is listening on
+
+Your non-.NET application can then read these environment variables to connect to the cache using the appropriate Redis client library for that technology (for example, `redis-py` for Python, `redis` for Node.js, or `go-redis` for Go).
+
 ## Client integration
 
 [!INCLUDE [redis-client-nuget](includes/redis-client-nuget.md)]
