@@ -1,11 +1,11 @@
 ---
-title: Annotations in .NET Aspire
+title: Resource annotations
 description: Learn about annotations in .NET Aspire, how they work, and how to create custom annotations for extending resource behavior.
-ms.date: 01/20/2025
+ms.date: 07/15/2025
 ms.topic: conceptual
 ---
 
-# Annotations in .NET Aspire
+# Resource annotations in .NET Aspire
 
 Annotations are a key extensibility mechanism in .NET Aspire that allow you to attach metadata and behavior to resources. They provide a way to customize how resources are configured, deployed, and managed throughout the application lifecycle. This article explains how annotations work and how to use them effectively in your .NET Aspire applications.
 
@@ -13,10 +13,10 @@ Annotations are a key extensibility mechanism in .NET Aspire that allow you to a
 
 Annotations in .NET Aspire are objects that implement the <xref:Aspire.Hosting.ApplicationModel.IResourceAnnotation> interface. They're attached to resources to provide additional metadata, configuration, or behavior. Annotations are consumed by various parts of the .NET Aspire stack, including:
 
-- The dashboard for displaying custom URLs and commands
-- Deployment tools for generating infrastructure as code
-- The hosting layer for configuring runtime behavior
-- Testing infrastructure for resource inspection
+- The dashboard for displaying custom URLs and commands.
+- Deployment tools for generating infrastructure as code.
+- The hosting layer for configuring runtime behavior.
+- Testing infrastructure for resource inspection.
 
 Every annotation is associated with a specific resource and can contain any data or behavior needed to extend that resource's functionality.
 
@@ -30,7 +30,8 @@ Here's a simple example of how annotations are used:
 var builder = DistributedApplication.CreateBuilder(args);
 
 var redis = builder.AddRedis("cache")
-    .WithCommand("clear-cache", "Clear Cache", OnClearCache)
+    .WithCommand("clear-cache", "Clear Cache", 
+        async context => new ExecuteCommandResult { Success = true })
     .WithUrl("admin", "http://localhost:8080/admin");
 
 builder.Build().Run();
@@ -43,7 +44,7 @@ In this example:
 
 ## Built-in annotation types
 
-.NET Aspire includes several built-in annotation types for common scenarios:
+.NET Aspire includes many built-in annotation types for common scenarios. This section covers some of the more commonly used annotations, but there are many more available for specific use cases.
 
 ### EndpointAnnotation
 
@@ -88,41 +89,93 @@ var postgres = builder.AddPostgres("postgres")
     .WithDataVolume(); // Adds a ContainerMountAnnotation
 ```
 
-### CommandAnnotation
-
-The `CommandAnnotation` defines custom commands that can be executed from the dashboard.
-
-```csharp
-var redis = builder.AddRedis("cache")
-    .WithCommand("clear", "Clear Cache", OnClearCache);
-```
-
 ## Creating custom annotations
 
-You can create custom annotations by implementing the <xref:Aspire.Hosting.ApplicationModel.IResourceAnnotation> interface. Here's how to create a custom annotation:
+Custom annotations in .NET Aspire are designed to capture resource-specific metadata and behavior that can be leveraged throughout the application lifecycle. They're commonly used by:
+
+- **Extension methods** to infer user intent and configure resource behavior
+- **Deployment tools** to generate deployment-specific configuration
+- **Lifecycle hooks** to query the app model and make runtime decisions
+- **Development tools** like the dashboard to display resource information
+
+Custom annotations should focus on a single concern and provide clear value to consumers of the resource metadata.
 
 ### 1. Define the annotation class
 
-:::code source="snippets/annotations-overview/Program.cs" id="CustomConfigAnnotation":::
+Start by creating a class that implements `IResourceAnnotation`. Focus on capturing specific metadata that other components need to reason about your resource:
+
+:::code source="snippets/annotations-overview/Program.cs" id="ServiceMetricsAnnotation":::
 
 ### 2. Create extension methods
 
-Create extension methods to make your annotation easy to use:
+Create fluent extension methods that follow .NET Aspire's builder pattern. These methods should make it easy for app host authors to configure your annotation:
 
-:::code source="snippets/annotations-overview/Program.cs" id="CustomConfigExtensions":::
+:::code source="snippets/annotations-overview/Program.cs" id="ServiceMetricsExtensions":::
+
+The extension methods serve as the primary API surface for your annotation. They should:
+
+- Follow naming conventions (start with `With` for additive operations)
+- Provide sensible defaults
+- Return the builder for method chaining
+- Include comprehensive XML documentation
 
 ### 3. Use the custom annotation
 
+Once defined, annotations integrate seamlessly into the app host model:
+
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 var api = builder.AddProject<Projects.Api>("api")
-    .WithCustomConfig("feature-flag", "enabled");
+    .WithMetrics("/api/metrics", 9090, "environment:production", "service:api");
 ```
 
 ### 4. Process the annotation
 
-Create services or hooks to process your custom annotations:
+The value of custom annotations comes from components that consume them. This typically happens in:
 
-:::code source="snippets/annotations-overview/Program.cs" id="CustomConfigProcessor":::
+**Lifecycle hooks** - Processing annotations during application startup:
+
+:::code source="snippets/annotations-overview/Program.cs" id="ServiceMetricsProcessor":::
+
+**Deployment tools** - Reading annotations to generate deployment configuration:
+
+```csharp
+public class MetricsDeploymentProcessor
+{
+    public void ProcessResource(IResource resource, DeploymentContext context)
+    {
+        var metricsConfig = resource.Annotations
+            .OfType<ServiceMetricsAnnotation>()
+            .FirstOrDefault();
+
+        if (metricsConfig?.Enabled == true)
+        {
+            // Generate Prometheus scrape configuration
+            context.AddScrapeConfig(resource.Name, metricsConfig.MetricsPath, metricsConfig.Port);
+        }
+    }
+}
+```
+
+**Dashboard integration** - Displaying annotation data in the development dashboard:
+
+```csharp
+// Annotations can be queried to provide rich dashboard experiences
+public class MetricsDashboardProvider
+{
+    public string GetMetricsUrl(IResource resource)
+    {
+        var metricsConfig = resource.Annotations
+            .OfType<ServiceMetricsAnnotation>()
+            .FirstOrDefault();
+
+        return metricsConfig?.Enabled == true 
+            ? $"http://localhost:{metricsConfig.Port}{metricsConfig.MetricsPath}"
+            : null;
+    }
+}
+```
 
 ## Advanced annotation patterns
 
@@ -182,14 +235,15 @@ public async Task Resource_Should_Have_Expected_Annotations()
     var resource = app.Resources.GetResource("my-resource");
 
     // Assert that specific annotations exist
-    Assert.NotEmpty(resource.Annotations.OfType<CustomConfigAnnotation>());
+    Assert.NotEmpty(resource.Annotations.OfType<ServiceMetricsAnnotation>());
 
     // Assert annotation properties
-    var config = resource.Annotations
-        .OfType<CustomConfigAnnotation>()
+    var metricsConfig = resource.Annotations
+        .OfType<ServiceMetricsAnnotation>()
         .First();
     
-    Assert.Equal("expected-value", config.ConfigValue);
+    Assert.True(metricsConfig.Enabled);
+    Assert.Equal("/metrics", metricsConfig.MetricsPath);
 }
 ```
 

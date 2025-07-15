@@ -3,36 +3,45 @@ using Aspire.Hosting.ApplicationModel;
 
 namespace AnnotationsOverview
 {
-    // <CustomConfigAnnotation>
-    public sealed class CustomConfigAnnotation : IResourceAnnotation
+    // <ServiceMetricsAnnotation>
+    public sealed class ServiceMetricsAnnotation : IResourceAnnotation
     {
-        public string ConfigKey { get; set; } = "";
-        public string ConfigValue { get; set; } = "";
-        public bool IsRequired { get; set; } = true;
+        public string MetricsPath { get; set; } = "/metrics";
+        public int Port { get; set; } = 9090;
+        public bool Enabled { get; set; } = true;
+        public string[] AdditionalLabels { get; set; } = [];
     }
-    // </CustomConfigAnnotation>
+    // </ServiceMetricsAnnotation>
 
-    // <CustomConfigExtensions>
-    public static class CustomConfigExtensions
+    // <ServiceMetricsExtensions>
+    public static class ServiceMetricsExtensions
     {
-        public static IResourceBuilder<T> WithCustomConfig<T>(
+        public static IResourceBuilder<T> WithMetrics<T>(
             this IResourceBuilder<T> builder,
-            string key,
-            string value,
-            bool isRequired = true)
+            string path = "/metrics",
+            int port = 9090,
+            params string[] labels)
             where T : class, IResource
         {
-            var annotation = new CustomConfigAnnotation
+            var annotation = new ServiceMetricsAnnotation
             {
-                ConfigKey = key,
-                ConfigValue = value,
-                IsRequired = isRequired
+                MetricsPath = path,
+                Port = port,
+                Enabled = true,
+                AdditionalLabels = labels
             };
 
             return builder.WithAnnotation(annotation);
         }
+
+        public static IResourceBuilder<T> WithoutMetrics<T>(
+            this IResourceBuilder<T> builder)
+            where T : class, IResource
+        {
+            return builder.WithAnnotation(new ServiceMetricsAnnotation { Enabled = false });
+        }
     }
-    // </CustomConfigExtensions>
+    // </ServiceMetricsExtensions>
 
     // <ValidatedAnnotation>
     public sealed class ValidatedAnnotation : IResourceAnnotation
@@ -49,22 +58,28 @@ namespace AnnotationsOverview
     }
     // </ValidatedAnnotation>
 
-    // <CustomConfigProcessor>
-    public class CustomConfigProcessor
+    // <ServiceMetricsProcessor>
+    public class ServiceMetricsProcessor
     {
-        public static void ProcessCustomConfig(IResource resource)
+        public static void ProcessMetricsConfiguration(IResource resource)
         {
-            var customConfigs = resource.Annotations
-                .OfType<CustomConfigAnnotation>();
+            var metricsConfig = resource.Annotations
+                .OfType<ServiceMetricsAnnotation>()
+                .FirstOrDefault();
 
-            foreach (var config in customConfigs)
+            if (metricsConfig?.Enabled == true)
             {
-                // Process the configuration
-                Console.WriteLine($"Setting {config.ConfigKey} = {config.ConfigValue}");
+                // Configure metrics collection
+                Console.WriteLine($"Enabling metrics for {resource.Name} at {metricsConfig.MetricsPath}:{metricsConfig.Port}");
+                
+                if (metricsConfig.AdditionalLabels.Length > 0)
+                {
+                    Console.WriteLine($"Additional labels: {string.Join(", ", metricsConfig.AdditionalLabels)}");
+                }
             }
         }
     }
-    // </CustomConfigProcessor>
+    // </ServiceMetricsProcessor>
 
     // <AccessingAnnotations>
     public class AnnotationInspector
@@ -72,11 +87,11 @@ namespace AnnotationsOverview
         public static void InspectResource(IResource resource)
         {
             // Get all annotations of a specific type
-            var customConfigs = resource.Annotations.OfType<CustomConfigAnnotation>();
+            var metricsConfigs = resource.Annotations.OfType<ServiceMetricsAnnotation>();
 
             // Check if a resource has a specific annotation
-            bool hasCustomConfig = resource.Annotations
-                .Any(a => a is CustomConfigAnnotation);
+            bool hasMetricsConfig = resource.Annotations
+                .Any(a => a is ServiceMetricsAnnotation);
 
             // Get the first annotation of a type
             var endpoint = resource.Annotations
