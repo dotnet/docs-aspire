@@ -61,6 +61,22 @@ Start by creating some migrations to apply.
       - Creates a migration named *InitialCreate*.
       - Creates the migration in the in the *Migrations* folder in the *SupportTicketApi.Data* project.
 
+### Using Package Manager Console
+
+If you prefer using Visual Studio's Package Manager Console instead of the command line:
+
+1. Open the **Package Manager Console** in Visual Studio (**Tools** > **NuGet Package Manager** > **Package Manager Console**).
+1. Set the **Default project** dropdown to *SupportTicketApi.Data*.
+1. Set the **Startup project** dropdown (or right-click in Solution Explorer) to *SupportTicketApi.Api*.
+1. Run the migration command:
+
+    ```powershell
+    Add-Migration InitialCreate
+    ```
+
+    > [!IMPORTANT]
+    > When using Package Manager Console, ensure the startup project is set to the project that contains the DbContext registration (usually your API or web project), and the default project is set to where you want the migrations to be created (usually your data project).
+
 1. Modify the model so that it includes a new property. Open *:::no-loc text="SupportTicketApi.Data\\Models\\SupportTicket.cs":::* and add a new property to the `SupportTicket` class:
 
     :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.Data/Models/SupportTicket.cs" range="4-15" highlight="10" :::
@@ -73,9 +89,63 @@ Start by creating some migrations to apply.
 
 Now you've got some migrations to apply. Next, you'll create a migration service that applies these migrations during app startup.
 
+## Troubleshoot migration issues
+
+When working with EF Core migrations in .NET Aspire projects, you might encounter some common issues. Here are solutions to the most frequent problems:
+
+### "No database provider has been configured" error
+
+If you get an error like "No database provider has been configured for this DbContext" when running migration commands, it's because the EF tools can't find a connection string or database provider configuration. This happens because .NET Aspire projects use service discovery and orchestration that's only available at runtime.
+
+**Solution**: Temporarily add a connection string to your project's `appsettings.json` file:
+
+1. In your API project (where the DbContext is registered), open or create an `appsettings.json` file.
+1. Add a connection string with the same name used in your .NET Aspire app host:
+
+    ```json
+    {
+      "ConnectionStrings": {
+        "ticketdb": "Server=(localdb)\\mssqllocaldb;Database=TicketDb;Trusted_Connection=true"
+      }
+    }
+    ```
+
+1. Run your migration commands as normal.
+1. Remove the connection string from `appsettings.json` when you're done, as .NET Aspire will provide it at runtime.
+
+> [!TIP]
+> The connection string name must match what you use in your app host. For example, if you use `builder.AddProject<Projects.SupportTicketApi_Api>().WithReference(sqlServer.AddDatabase("ticketdb"))`, then use "ticketdb" as the connection string name.
+
+### Multiple databases in one solution
+
+When your .NET Aspire solution has multiple services with different databases, create migrations for each database separately:
+
+1. Navigate to each service project directory that has a DbContext.
+1. Run migration commands with the appropriate project reference:
+
+    ```dotnetcli
+    # For the first service/database
+    dotnet ef migrations add InitialCreate --project ..\FirstService.Data\FirstService.Data.csproj
+
+    # For the second service/database  
+    dotnet ef migrations add InitialCreate --project ..\SecondService.Data\SecondService.Data.csproj
+    ```
+
+1. Create separate migration services for each database, or handle multiple DbContexts in a single migration service.
+
+### Startup project configuration
+
+Ensure you're running migration commands from the correct project:
+
+- **CLI**: Navigate to the project directory that contains the DbContext registration (usually your API project)
+- **Package Manager Console**: Set the startup project to the one that configures the DbContext, and the default project to where migrations should be created
+
 ## Create the migration service
 
-To execute migrations, call the EF Core <xref:Microsoft.EntityFrameworkCore.Migrations.IMigrator.Migrate*> method or the <xref:Microsoft.EntityFrameworkCore.Migrations.IMigrator.MigrateAsync*> method. In this tutorial, you'll create a separate worker service to apply migrations. This approach separates migration concerns into a dedicated project, which is easier to maintain.
+To execute migrations, call the EF Core <xref:Microsoft.EntityFrameworkCore.Migrations.IMigrator.Migrate*> method or the <xref:Microsoft.EntityFrameworkCore.Migrations.IMigrator.MigrateAsync*> method. In this tutorial, you'll create a separate worker service to apply migrations. This approach separates migration concerns into a dedicated project, which is easier to maintain and allows migrations to run before other services start.
+
+> [!NOTE]
+> **Where to create migrations**: Migrations should be created in the project that contains your Entity Framework DbContext and model classes (in this example, *SupportTicketApi.Data*). The migration service project references this data project to apply the migrations at startup.
 
 To create a service that applies the migrations:
 
@@ -151,6 +221,67 @@ The migration service is created, but it needs to be added to the .NET Aspire ap
 
     > [!IMPORTANT]
     > If you are using Visual Studio, and you selected the **:::no-loc text="Enlist in Aspire orchestration":::** option when creating the Worker Service project, similar code is added automatically with the service name `supportticketapi-migrationservice`. Replace that code with the preceding code.
+
+## Multiple databases scenario
+
+If your .NET Aspire solution uses multiple databases, you have two options for managing migrations:
+
+### Option 1: Separate migration services (Recommended)
+
+Create a dedicated migration service for each database. This approach provides better isolation and makes it easier to manage different database schemas independently.
+
+1. Create separate migration service projects for each database:
+
+    ```dotnetcli
+    dotnet new worker -n FirstService.MigrationService -f "net8.0"
+    dotnet new worker -n SecondService.MigrationService -f "net8.0"
+    ```
+
+1. Configure each migration service to handle its specific database context.
+1. Add both migration services to your app host:
+
+    ```csharp
+    var firstDb = sqlServer.AddDatabase("firstdb");
+    var secondDb = postgres.AddDatabase("seconddb");
+
+    var firstMigrations = builder.AddProject<Projects.FirstService_MigrationService>()
+        .WithReference(firstDb);
+
+    var secondMigrations = builder.AddProject<Projects.SecondService_MigrationService>()
+        .WithReference(secondDb);
+
+    // Ensure services wait for their respective migrations
+    builder.AddProject<Projects.FirstService_Api>()
+        .WithReference(firstDb)
+        .WaitFor(firstMigrations);
+
+    builder.AddProject<Projects.SecondService_Api>()
+        .WithReference(secondDb)
+        .WaitFor(secondMigrations);
+    ```
+
+### Option 2: Single migration service with multiple contexts
+
+Alternatively, you can create one migration service that handles multiple database contexts:
+
+1. Add references to all data projects in the migration service.
+1. Register all DbContexts in the migration service's `Program.cs`.
+1. Modify the `Worker.cs` to apply migrations for each context:
+
+    ```csharp
+    public async Task<bool> RunMigrationAsync(IServiceProvider serviceProvider)
+    {
+        await using var scope = serviceProvider.CreateAsyncScope();
+        
+        var firstContext = scope.ServiceProvider.GetRequiredService<FirstDbContext>();
+        var secondContext = scope.ServiceProvider.GetRequiredService<SecondDbContext>();
+        
+        await firstContext.Database.MigrateAsync();
+        await secondContext.Database.MigrateAsync();
+        
+        return true;
+    }
+    ```
 
 ## Remove existing seeding code
 
