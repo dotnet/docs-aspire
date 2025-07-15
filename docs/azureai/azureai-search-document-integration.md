@@ -258,6 +258,40 @@ The .NET Aspire Azure AI Search library supports <xref:Microsoft.Extensions.Conf
 
 For the complete Azure AI Search Documents client integration JSON schema, see [Aspire.Azure.Search.Documents/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Search.Documents/ConfigurationSchema.json).
 
+### Use named configuration
+
+The .NET Aspire Azure AI Search library supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "Search": {
+        "Documents": {
+          "search1": {
+            "Endpoint": "https://mysearch1.search.windows.net/",
+            "DisableTracing": false
+          },
+          "search2": {
+            "Endpoint": "https://mysearch2.search.windows.net/",
+            "DisableTracing": true
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `search1` and `search2` connection names can be used when calling `AddAzureSearchClient`:
+
+```csharp
+builder.AddAzureSearchClient("search1");
+builder.AddAzureSearchClient("search2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
+
 ### Use inline delegates
 
 You can also pass the `Action<AzureSearchSettings> configureSettings` delegate to set up some or all the options inline, for example to disable tracing from code:

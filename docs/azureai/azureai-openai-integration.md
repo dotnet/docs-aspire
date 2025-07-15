@@ -361,6 +361,40 @@ The .NET Aspire Azure OpenAI integration supports <xref:Microsoft.Extensions.Con
 
 For the complete Azure OpenAI client integration JSON schema, see [Aspire.Azure.AI.OpenAI/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.AI.OpenAI/ConfigurationSchema.json).
 
+#### Use named configuration
+
+The .NET Aspire Azure OpenAI integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "AI": {
+        "OpenAI": {
+          "openai1": {
+            "Endpoint": "https://account1.openai.azure.com/",
+            "DisableTracing": false
+          },
+          "openai2": {
+            "Endpoint": "https://account2.openai.azure.com/",
+            "DisableTracing": true
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `openai1` and `openai2` connection names can be used when calling `AddAzureOpenAIClient`:
+
+```csharp
+builder.AddAzureOpenAIClient("openai1");
+builder.AddAzureOpenAIClient("openai2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
+
 #### Use inline delegates
 
 You can pass the `Action<AzureOpenAISettings> configureSettings` delegate to set up some or all the options inline, for example to disable tracing from code:
