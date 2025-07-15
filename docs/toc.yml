@@ -127,6 +127,9 @@ items:
     href: service-discovery/overview.md
   - name: Service defaults
     href: fundamentals/service-defaults.md
+  - name: Annotations overview
+    displayName: annotations,metadata,custom annotations,resource annotations
+    href: fundamentals/annotations-overview.md
   - name: Launch profiles
     href: fundamentals/launch-profiles.md
   - name: Telemetry
