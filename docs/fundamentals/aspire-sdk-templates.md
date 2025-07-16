@@ -64,6 +64,10 @@ The following .NET Aspire project templates are available:
   > [!IMPORTANT]
   > The service defaults project template takes a `FrameworkReference` dependency on `Microsoft.AspNetCore.App`. This may not be ideal for some project types. For more information, see [.NET Aspire service defaults](service-defaults.md).
 
+## Install the .NET Aspire templates
+
+[!INCLUDE [Install templates](includes/install-templates.md)]
+
 ## Create solutions and projects using templates
 
 To create a .NET Aspire solution or project, use Visual Studio, Visual Studio Code, or the .NET CLI, and base it on the available templates. Explore additional .NET Aspire templates in the [.NET Aspire samples](https://github.com/dotnet/aspire-samples) repository.
