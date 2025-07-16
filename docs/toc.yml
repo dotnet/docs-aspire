@@ -76,7 +76,7 @@ items:
     href: fundamentals/networking-overview.md
   - name: Eventing in .NET Aspire
     href: app-host/eventing.md
-  - name: Interact with resources
+  - name: Prompt user from CLI or Dashboard
     href: extensibility/interaction-service.md
   - name: Use external parameters
     displayName: external parameters,configuration
