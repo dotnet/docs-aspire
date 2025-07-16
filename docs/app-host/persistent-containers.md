@@ -71,7 +71,7 @@ var postgres = builder.AddPostgres("postgres")
 builder.Build().Run();
 ```
 
-When you specify a custom container name, .NET Aspire first checks if a container with that name already exists. If it does, .NET Aspire can reuse that existing container (even if it wasn't created by the app host). If no container with the custom name exists, .NET Aspire creates a new one. Containers with custom names are never automatically recreated, even if the app host configuration changes, giving you full control over their lifecycle.
+When you specify a custom container name, .NET Aspire first checks if a container with that name already exists. If a container with that name exists and was previously created by .NET Aspire, it follows the normal persistent container behavior and can be automatically recreated if the configuration changes. If a container with that name exists but wasn't created by .NET Aspire, it won't be managed or recreated by the app host. If no container with the custom name exists, .NET Aspire creates a new one.
 
 ## Manual cleanup
 
