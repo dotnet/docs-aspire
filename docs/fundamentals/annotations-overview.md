@@ -1,7 +1,7 @@
 ---
 title: Resource annotations
 description: Learn about annotations in .NET Aspire, how they work, and how to create custom annotations for extending resource behavior.
-ms.date: 07/15/2025
+ms.date: 07/16/2025
 ---
 
 # Resource annotations in .NET Aspire
@@ -38,14 +38,14 @@ builder.Build().Run();
 
 In this example:
 
-- `WithCommand` adds a `CommandAnnotation` that defines a custom command
-- `WithUrl` adds a `ResourceUrlAnnotation` that defines a custom URL
+- <xref:Aspire.Hosting.ResourceBuilderExtensions.WithCommand*> adds a <xref:Aspire.Hosting.ApplicationModel.ResourceCommandAnnotation> that defines a custom command.
+- <xref:Aspire.Hosting.ResourceBuilderExtensions.WithUrl*> adds a <xref:Aspire.Hosting.ApplicationModel.ResourceUrlAnnotation> that defines a custom URL.
 
 ## Built-in annotation types
 
 .NET Aspire includes many built-in annotation types for common scenarios. This section covers some of the more commonly used annotations, but there are many more available for specific use cases.
 
-### EndpointAnnotation
+### `EndpointAnnotation`
 
 The <xref:Aspire.Hosting.ApplicationModel.EndpointAnnotation> defines network endpoints for resources. It contains information about ports, protocols, and endpoint configuration.
 
@@ -60,7 +60,7 @@ var api = builder.AddProject<Projects.Api>("api")
     });
 ```
 
-### ResourceUrlAnnotation
+### `ResourceUrlAnnotation`
 
 The <xref:Aspire.Hosting.ApplicationModel.ResourceUrlAnnotation> defines custom URLs that appear in the dashboard, often pointing to management interfaces or documentation.
 
@@ -69,7 +69,7 @@ var database = builder.AddPostgres("postgres")
     .WithUrl("admin", "https://localhost:5050");
 ```
 
-### EnvironmentCallbackAnnotation
+### `EnvironmentCallbackAnnotation`
 
 The <xref:Aspire.Hosting.ApplicationModel.EnvironmentCallbackAnnotation> allows you to modify environment variables at runtime based on the state of other resources.
 
@@ -79,7 +79,7 @@ var app = builder.AddProject<Projects.MyApp>("app")
     .WithReference(database);
 ```
 
-### ContainerMountAnnotation
+### `ContainerMountAnnotation`
 
 The `ContainerMountAnnotation` defines volume mounts for containerized resources.
 
@@ -88,7 +88,7 @@ var postgres = builder.AddPostgres("postgres")
     .WithDataVolume(); // Adds a ContainerMountAnnotation
 ```
 
-### PublishingCallbackAnnotation
+### `PublishingCallbackAnnotation`
 
 The <xref:Aspire.Hosting.ApplicationModel.PublishingCallbackAnnotation> allows you to register callbacks that execute during the publishing process. This is useful for performing custom operations when resources are being published.
 
@@ -101,27 +101,34 @@ var api = builder.AddProject<Projects.Api>("api")
     });
 ```
 
-### DeployingCallbackAnnotation
+For more information, see <xref:Aspire.Hosting.ResourceBuilderExtensions.WithPublishingCallback*>.
 
-The <xref:Aspire.Hosting.ApplicationModel.DeployingCallbackAnnotation> allows you to register callbacks that execute during the deployment process. This annotation is used internally by deployment tools to customize resource deployment behavior.
+### `DeployingCallbackAnnotation`
+
+<!-- <xref:Aspire.Hosting.ApplicationModel.DeployingCallbackAnnotation> -->
+
+The `DeployingCallbackAnnotation` allows you to register callbacks that execute during the deployment process. This annotation is used internally by deployment tools to customize resource deployment behavior.
 
 ```csharp
-// Used internally by deployment tools
-var annotation = new DeployingCallbackAnnotation(async context =>
-{
-    // Custom deployment logic
-    await ConfigureDeploymentAsync(context);
-});
+var api = builder.AddProject<Projects.Api>("api");
+
+api.Resource.Annotations.Add(
+    new DeployingCallbackAnnotation(async context =>
+    {
+        // Custom deployment logic
+        await ConfigureDeploymentAsync(context);
+    });
+);
 ```
 
 ## Creating custom annotations
 
 Custom annotations in .NET Aspire are designed to capture resource-specific metadata and behavior that can be leveraged throughout the application lifecycle. They're commonly used by:
 
-- **Extension methods** to infer user intent and configure resource behavior
-- **Deployment tools** to generate deployment-specific configuration
-- **Lifecycle hooks** to query the app model and make runtime decisions
-- **Development tools** like the dashboard to display resource information
+- **Extension methods** to infer user intent and configure resource behavior.
+- **Deployment tools** to generate deployment-specific configuration.
+- **Lifecycle hooks** to query the app model and make runtime decisions.
+- **Development tools** like the dashboard to display resource information.
 
 Custom annotations should focus on a single concern and provide clear value to consumers of the resource metadata.
 
@@ -139,10 +146,10 @@ Create fluent extension methods that follow .NET Aspire's builder pattern. These
 
 The extension methods serve as the primary API surface for your annotation. They should:
 
-- Follow naming conventions (start with `With` for additive operations)
-- Provide sensible defaults
-- Return the builder for method chaining
-- Include comprehensive XML documentation
+- Follow naming conventions (start with `With` for additive operations).
+- Provide sensible defaults.
+- Return the builder for method chaining.
+- Include comprehensive XML documentation.
 
 ### 3. Use the custom annotation
 
@@ -182,6 +189,8 @@ public async Task Resource_Should_Have_Expected_Annotations()
     Assert.Equal("/metrics", metricsConfig.MetricsPath);
 }
 ```
+
+For more information, see [Testing with Aspire](../testing/overview.md).
 
 ## Best practices
 
@@ -223,7 +232,7 @@ Provide XML documentation for custom annotations and extension methods:
 public static IResourceBuilder<T> WithCaching<T>(
     this IResourceBuilder<T> builder,
     TimeSpan ttl)
-    where T : class, IResource
+    where T : class, IResource { /*...*/ }
 ```
 
 ### Keep annotations simple
