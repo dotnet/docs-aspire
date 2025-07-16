@@ -2,7 +2,6 @@
 title: Resource annotations
 description: Learn about annotations in .NET Aspire, how they work, and how to create custom annotations for extending resource behavior.
 ms.date: 07/15/2025
-ms.topic: conceptual
 ---
 
 # Resource annotations in .NET Aspire
@@ -129,95 +128,6 @@ var builder = DistributedApplication.CreateBuilder(args);
 var api = builder.AddProject<Projects.Api>("api")
     .WithMetrics("/api/metrics", 9090, "environment:production", "service:api");
 ```
-
-### 4. Process the annotation
-
-The value of custom annotations comes from components that consume them. This typically happens in:
-
-**Lifecycle hooks** - Processing annotations during application startup:
-
-:::code source="snippets/annotations-overview/Program.cs" id="ServiceMetricsProcessor":::
-
-**Deployment tools** - Reading annotations to generate deployment configuration:
-
-```csharp
-public class MetricsDeploymentProcessor
-{
-    public void ProcessResource(IResource resource, DeploymentContext context)
-    {
-        var metricsConfig = resource.Annotations
-            .OfType<ServiceMetricsAnnotation>()
-            .FirstOrDefault();
-
-        if (metricsConfig?.Enabled == true)
-        {
-            // Generate Prometheus scrape configuration
-            context.AddScrapeConfig(resource.Name, metricsConfig.MetricsPath, metricsConfig.Port);
-        }
-    }
-}
-```
-
-**Dashboard integration** - Displaying annotation data in the development dashboard:
-
-```csharp
-// Annotations can be queried to provide rich dashboard experiences
-public class MetricsDashboardProvider
-{
-    public string GetMetricsUrl(IResource resource)
-    {
-        var metricsConfig = resource.Annotations
-            .OfType<ServiceMetricsAnnotation>()
-            .FirstOrDefault();
-
-        return metricsConfig?.Enabled == true 
-            ? $"http://localhost:{metricsConfig.Port}{metricsConfig.MetricsPath}"
-            : null;
-    }
-}
-```
-
-## Advanced annotation patterns
-
-### Conditional annotations
-
-You can add annotations conditionally based on environment or configuration:
-
-```csharp
-var apiBuilder = builder.AddProject<Projects.Api>("api");
-
-if (builder.Environment.IsDevelopment())
-{
-    apiBuilder.WithUrl("swagger", "/swagger");
-}
-```
-
-### Annotation composition
-
-Combine multiple annotations to create complex behaviors:
-
-```csharp
-public static IResourceBuilder<T> WithMonitoring<T>(
-    this IResourceBuilder<T> builder)
-    where T : class, IResource
-{
-    return builder
-        .WithUrl("metrics", "/metrics")
-        .WithUrl("health", "/health");
-}
-```
-
-### Annotation validation
-
-Validate annotations to ensure they're correctly configured:
-
-:::code source="snippets/annotations-overview/Program.cs" id="ValidatedAnnotation":::
-
-## Accessing annotations
-
-You can access annotations on resources for inspection or processing:
-
-:::code source="snippets/annotations-overview/Program.cs" id="AccessingAnnotations":::
 
 ## Testing with annotations
 
