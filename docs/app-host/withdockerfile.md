@@ -21,16 +21,16 @@ Choose the appropriate method based on your scenario:
 
 **Use <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile%2A> when:**
 
-- You want to add a custom containerized service to your app model
-- You have an existing Dockerfile for a custom application or service
-- You need to create a new container resource that isn't provided by .NET Aspire components
+- You want to add a custom containerized service to your app model.
+- You have an existing Dockerfile for a custom application or service.
+- You need to create a new container resource that isn't provided by .NET Aspire components.
 
 **Use <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A> when:**
 
-- You want to customize an existing .NET Aspire component (like PostgreSQL, Redis, etc.)
-- You need to replace the default container image with a custom one
-- You want to maintain the strongly typed resource builder and its extension methods
-- You have specific requirements that the default container image doesn't meet
+- You want to customize an existing .NET Aspire component (like PostgreSQL, Redis, etc.).
+- You need to replace the default container image with a custom one.
+- You want to maintain the strongly typed resource builder and its extension methods.
+- You have specific requirements that the default container image doesn't meet.
 
 ## Add a Dockerfile to the app model
 
