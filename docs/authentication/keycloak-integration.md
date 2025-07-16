@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Keycloak integration (Preview)
 description: Learn how to use the .NET Aspire Keycloak integration, which includes both hosting and client integrations.
-ms.date: 03/06/2025
+ms.date: 07/16/2025
 uid: authentication/keycloak-integration
 ---
 
@@ -165,7 +165,12 @@ The realm import files are mounted at `/opt/keycloak/data/import` in the Keycloa
 
 As an example, the following JSON file could be added to the app host project in a _/Realms_ folder—to serve as a source realm configuration file:
 
+<details>
+<summary><strong>Show Realm JSON (expand to view)</strong></summary>
+
 :::code language="json" source="snippets/AspireApp/AspireApp.AppHost/Realms/weathershop-realm.json":::
+
+</details>
 
 ### Hosting integration health checks
 
