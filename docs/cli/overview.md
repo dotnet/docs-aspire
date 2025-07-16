@@ -31,17 +31,17 @@ Use the `aspire new` command to create an Aspire project from a list of template
 
 While command line parameters can be used to automate the creation of an Aspire project, the Aspire CLI is an interactive-first experience.
 
-## Run the apphost project
+## Start the apphost
 
 [_Command reference: `aspire run`_](../cli-reference/aspire-run.md)
 
-The `aspire run` command runs the apphost project in development mode, which configures the Aspire environment, builds the apphost, launches the web dashboard, and prints a list of endpoints.
+The `aspire run` command runs the apphost project in development mode, which configures the Aspire environment, builds and starts services defined by the apphost, launches the web dashboard, and prints a list of endpoints.
 
 When `aspire run` starts, it searches the current directory for an apphost. If an apphost isn't found, the sub directories are searched until an apphost is found. If no apphost is found, Aspire stops. Once an apphost is found, Aspire CLI takes the following steps:
 
 - Installs or verifies that Aspires local hosting certificates are installed and trusted.
 - Builds the apphost project.
-- Starts the apphost.
+- Starts the apphost and any services defined in the apphost.
 - Starts the dashboard.
 
 The following snippet is an example of the output displayed by the `aspire run` command:
@@ -70,13 +70,21 @@ The `aspire add` command is an easy way to add official integration packages to 
 
 [_Command reference: `aspire publish`_](../cli-reference/aspire-publish.md)
 
-The `aspire publish` command publishes resources, serializing data into JSON format. When this command is run, Aspire invokes registered <xref:Aspire.Hosting.ApplicationModel.PublishingCallbackAnnotation> annotations for resources. These annotations serialize a resource so that it can be consumed by deployment tools.
+The `aspire publish` command publishes resources, serializing resources to disk. When this command is run, Aspire invokes registered <xref:Aspire.Hosting.ApplicationModel.PublishingCallbackAnnotation> annotations for resources, in the order they're declared. These annotations serialize a resource so that it can be consumed by deployment tools.
+
+Some integrations automatically register a `PublishingCallbackAnnotation` for you, for example:
+
+- <xref:Aspire.Hosting.Azure.AzureEnvironmentResource> generates Bicep assets.
+- <xref:Aspire.Hosting.Docker.DockerComposeEnvironmentResource> generates docker-compose yaml.
+- <xref:Aspire.Hosting.Kubernetes.KubernetesEnvironmentResource> generates Kubernetes Helm charts.
 
 ## Deploy Aspire applications (preview)
 
 [_Command reference: `aspire deploy`_](../cli-reference/aspire-deploy.md)
 
-The `aspire deploy` command is similar to `aspire publish`, except that in addition to serializing resources, it also deploys resources that have registered a `DeployingCallbackAnnotation` annotation.
+The `aspire deploy` command is similar to `aspire publish`. After Aspire has invoked the publishing annotations, it invokes resource's `DeployingCallbackAnnotation` annotations, in the order they're declared.
+
+As of Aspire 9.4, Aspire doesn't include any default deployment annotations for its resources, you must use the `DeployingCallbackAnnotation` to build your own.
 
 > [!TIP]
 > Consider this a good way to deploy your Aspire solution to a staging area for testing.
