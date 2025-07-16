@@ -88,6 +88,32 @@ var postgres = builder.AddPostgres("postgres")
     .WithDataVolume(); // Adds a ContainerMountAnnotation
 ```
 
+### PublishingCallbackAnnotation
+
+The <xref:Aspire.Hosting.ApplicationModel.PublishingCallbackAnnotation> allows you to register callbacks that execute during the publishing process. This is useful for performing custom operations when resources are being published.
+
+```csharp
+var api = builder.AddProject<Projects.Api>("api")
+    .WithPublishingCallback(async context =>
+    {
+        // Custom logic during publishing
+        await CustomPublishLogicAsync(context);
+    });
+```
+
+### DeployingCallbackAnnotation
+
+The <xref:Aspire.Hosting.ApplicationModel.DeployingCallbackAnnotation> allows you to register callbacks that execute during the deployment process. This annotation is used internally by deployment tools to customize resource deployment behavior.
+
+```csharp
+// Used internally by deployment tools
+var annotation = new DeployingCallbackAnnotation(async context =>
+{
+    // Custom deployment logic
+    await ConfigureDeploymentAsync(context);
+});
+```
+
 ## Creating custom annotations
 
 Custom annotations in .NET Aspire are designed to capture resource-specific metadata and behavior that can be leveraged throughout the application lifecycle. They're commonly used by:
