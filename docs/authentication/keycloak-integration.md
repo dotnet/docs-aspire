@@ -369,11 +369,11 @@ This approach allows you to configure the exact production URLs without relying 
 
 ### Security best practices
 
-- Always use `RequireHttpsMetadata = true` in production environments
-- Use secure, validated SSL certificates for your Keycloak server
-- Configure appropriate realm settings and client configurations in Keycloak
-- Implement proper token validation and audience checks
-- Consider using Keycloak's built-in security features like rate limiting and brute force protection
+- Always use `RequireHttpsMetadata = true` in production environments.
+- Use secure, validated SSL certificates for your Keycloak server.
+- Configure appropriate realm settings and client configurations in Keycloak.
+- Implement proper token validation and audience checks.
+- Consider using Keycloak's built-in security features like rate limiting and brute force protection.
 
 ## See also
 
