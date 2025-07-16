@@ -16,29 +16,12 @@ The Aspire CLI (`aspire` command) is a cross-platform tool that provides command
 
 The Aspire CLI is an interactive-first experience.
 
-- [Install .NET Aspire CLI](install.md)
-
-## Commands
-
-The following table describes the basic commands provided by Aspire:
-
-| Command                                                    | Status  | Function                                                                  |
-|------------------------------------------------------------|---------|---------------------------------------------------------------------------|
-| [`aspire add`](#add-integrations)                          | Stable  | Add an integration to the Aspire project.                                 |
-| [`aspire new`](#create-projects)                           | Stable  | Create an Aspire sample project from a template.                          |
-| [`aspire run`](#run-the-apphost-project)                   | Stable  | Run an Aspire apphost in development mode.                                |
-| [`aspire exec`](#run-commands-in-resource-context-preview) | Preview | Similar to the `aspire run` command, but runs commands in the context of a resource.  |
-| [`aspire deploy`](#deploy-aspire-applications-preview)     | Preview | Deploys the artifacts created by `aspire publish`.                        |
-| [`aspire publish`](#publish-aspire-applications-preview)   | Preview | Generates deployment artifacts for an Aspire apphost project.             |
-
-<!-- These commands aren't used yet
-
-| [`aspire config`](#configure-aspire-environment)         | Stable  | Configures the Aspire environment.                                        |
-| `aspire init`                                            | Future  | ... |
-
--->
+- [Install .NET Aspire CLI.](install.md)
+- [`aspire` command reference.](../cli-reference/aspire.md)
 
 ## Create projects
+
+[_Command reference: `aspire new`_](../cli-reference/aspire-new.md)
 
 The `aspire new` command is an interactive-first CLI experience, and is used to create one or more Aspire projects. As part of creating a project, Azure CLI ensures that the latest Aspire project templates are installed into the `dotnet` system.
 
@@ -49,6 +32,8 @@ Use the `aspire new` command to create an Aspire project from a list of template
 While command line parameters can be used to automate the creation of an Aspire project, the Aspire CLI is an interactive-first experience.
 
 ## Run the apphost project
+
+[_Command reference: `aspire run`_](../cli-reference/aspire-run.md)
 
 The `aspire run` command runs the apphost project in development mode, which configures the Aspire environment, builds the apphost, launches the web dashboard, and prints a list of endpoints.
 
@@ -75,15 +60,21 @@ Endpoints:  webfrontend has endpoint https://localhost:7294
 
 ## Add integrations
 
+[_Command reference: `aspire add`_](../cli-reference/aspire-add.md)
+
 The `aspire add` command is an easy way to add official integration packages to your apphost. Use this as an alternative to a NuGet search through your IDE. You can run `aspire add <name|id>` if you know the name or NuGet ID of the integration package, If you omit a name or ID, the tool provides a list of packages to choose from. If you provide a partial name or ID, the tool filters the list of packages with items that match the provided value.
 
 <!-- Add asciinema here -->
 
 ## Publish Aspire applications (preview)
 
+[_Command reference: `aspire publish`_](../cli-reference/aspire-publish.md)
+
 The `aspire publish` command publishes resources, serializing data into JSON format. When this command is run, Aspire invokes registered <xref:Aspire.Hosting.ApplicationModel.PublishingCallbackAnnotation> annotations for resources. These annotations serialize a resource so that it can be consumed by deployment tools.
 
 ## Deploy Aspire applications (preview)
+
+[_Command reference: `aspire deploy`_](../cli-reference/aspire-deploy.md)
 
 The `aspire deploy` command is similar to `aspire publish`, except that in addition to serializing resources, it also deploys resources that have registered a `DeployingCallbackAnnotation` annotation.
 
@@ -91,5 +82,7 @@ The `aspire deploy` command is similar to `aspire publish`, except that in addit
 > Consider this a good way to deploy your Aspire solution to a staging area for testing.
 
 ## Run commands in resource context (preview)
+
+[_Command reference: `aspire exec`_](../cli-reference/aspire-exec.md)
 
 The `aspire exec` command runs commands in the context of a specific Aspire resource, inheriting that resource's configuration including environment variables, connection strings, and working directory. This is particularly useful for scenarios like running Entity Framework migrations where you need to run commands with the same configuration as your application. For example, you can run `aspire exec --resource api -- dotnet ef migrations add Init` to run Entity Framework commands with the proper database connection strings automatically configured.
