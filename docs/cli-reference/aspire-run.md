@@ -28,7 +28,7 @@ The command performs the following steps to run an apphost project:
 - Writes the apphost project path to the `.aspire/settings.json` config file in the current directory.
 - Installs or verifies that Aspires local hosting certificates are installed and trusted.
 - Builds the apphost project.
-- Starts the apphost.
+- Starts the apphost and any services defined in the apphost.
 - Starts the dashboard.
 
 The following snippet is an example of the output displayed by the `aspire run` command:
