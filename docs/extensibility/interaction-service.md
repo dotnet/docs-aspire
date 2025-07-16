@@ -24,11 +24,14 @@ The interaction service has several methods that you use to interact with users 
 
 The following sections describe how to use these APIs effectively in both contexts:
 
-- `PromptMessageBoxAsync`: Displays a modal dialog box with a message and buttons for user interaction (dashboard) or shows a message with confirmation prompt (CLI).
-- `PromptNotificationAsync`: Displays a nonmodal notification at the top of the dashboard (dashboard only) or outputs an informational message (CLI).
-- `PromptConfirmationAsync`: Displays a confirmation dialog with options for the user to confirm or cancel an action (both contexts).
+- `PromptMessageBoxAsync`: Displays a modal dialog box with a message and buttons for user interaction (dashboard only).
+- `PromptNotificationAsync`: Displays a nonmodal notification at the top of the dashboard (dashboard only).
+- `PromptConfirmationAsync`: Displays a confirmation dialog with options for the user to confirm or cancel an action (dashboard only).
 - `PromptInputAsync`: Prompts the user for a single input value, such as a text or secret (both contexts).
-- `PromptInputsAsync`: Prompts the user for multiple input values in a single dialog (dashboard) or sequentially (CLI), allowing for more complex configurations.
+- `PromptInputsAsync`: Prompts the user for multiple input values in a single dialog (dashboard) or sequentially (CLI), allowing for more complex configurations (both contexts).
+
+> [!IMPORTANT]
+> During `aspire publish` and `aspire deploy` operations, only `PromptInputAsync` and `PromptInputsAsync` are available. Other interaction methods (`PromptMessageBoxAsync`, `PromptNotificationAsync`, and `PromptConfirmationAsync`) will throw an exception if called in CLI contexts.
 
 ## Where to use the interaction service
 
@@ -64,21 +67,26 @@ These approaches help you create interactive, user-friendly experiences for loca
 >     return CommandResults.Success();
 > });
 > ```
+>
+> For CLI specific contexts, the interaction service is retrieved from either the `PublishingContext` or `DeploymentContext` depending on the operation being performed.
 
 ## Display messages
 
 There are many ways to display messages to the user. The presentation differs between dashboard and CLI contexts:
 
-- **Dialog messages**: Show important information in a dialog box (dashboard) or as formatted text output with confirmation prompts (CLI).
-- **Notification messages**: Display less critical information in a notification (dashboard) or as informational output (CLI).
+- **Dialog messages**: Show important information in a dialog box (dashboard only).
+- **Notification messages**: Display less critical information in a notification (dashboard only).
+
+> [!NOTE]
+> Message display methods (`PromptMessageBoxAsync` and `PromptNotificationAsync`) are only available in dashboard contexts. These methods throw an exception if called during `aspire publish` or `aspire deploy` operations.
 
 ### Display a dialog message box
 
-Dialog messages provide important information that requires user attention. In the dashboard, these appear as modal windows, while in the CLI, they appear as formatted text with confirmation prompts.
+Dialog messages provide important information that requires user attention. These are only available in the dashboard context and will throw an exception if called during CLI operations like `aspire publish` or `aspire deploy`.
 
 <!-- <xref:Aspire.Hosting.IInteractionService.PromptMessageBoxAsync%2A> -->
 
-The `IInteractionService.PromptMessageBoxAsync` method displays a message with customizable response options. In the dashboard context, this appears as a dialog box with buttons. In the CLI context, this appears as formatted text with confirmation prompts.
+The `IInteractionService.PromptMessageBoxAsync` method displays a message with customizable response options in the dashboard context.
 
 :::code source="snippets/InteractionService/AppHost.MessageBoxExample.cs" id="example":::
 
@@ -88,28 +96,18 @@ The `IInteractionService.PromptMessageBoxAsync` method displays a message with c
 
 **CLI view:**
 
-```text
-┌── Example Message Dialog ──┐
-│ This is an example message │
-│ shown to the user for      │
-│ informational purposes.    │
-│                            │
-│ [1] OK                     │
-│ [2] Cancel                 │
-└────────────────────────────┘
-Select an option [1-2]:
-```
+This method isn't available in CLI contexts. If you call it during `aspire publish` or `aspire deploy`, it throws an exception.
 
 ### Display a notification message
 
-Notification messages provide nonmodal notifications. In the dashboard, they appear as dismissible banners near the top of the interface. In the CLI, they appear as informational output that doesn't require user interaction.
+Notification messages provide nonmodal notifications. These are only available in the dashboard context and will throw an exception if called during CLI operations like `aspire publish` or `aspire deploy`.
 
 > [!TIP]
-> In the dashboard, notification messages stack, so you can display multiple messages at once. In the CLI, multiple notifications appear as sequential informational output.
+> In the dashboard, notification messages stack, so you can display multiple messages at once.
 
 <!-- <xref:Aspire.Hosting.IInteractionService.PromptNotificationAsync%2A> -->
 
-The `IInteractionService.PromptNotificationAsync` method displays informational messages with optional action links:
+The `IInteractionService.PromptNotificationAsync` method displays informational messages with optional action links in the dashboard context:
 
 :::code source="snippets/InteractionService/AppHost.NotificationExample.cs" id="example":::
 
@@ -121,18 +119,13 @@ The previous example demonstrates several ways to use the notification API. Each
 
 **CLI view:**
 
-```text
-ℹ Information: This is an informational message
-⚠ Warning: This is a warning message
-✗ Error: This is an error message
-✓ Success: Operation completed successfully
-```
+This method isn't available in CLI contexts. If you call it during `aspire publish` or `aspire deploy`, it throws an exception.
 
 ## Prompt for user confirmation
 
 <!-- <xref:Aspire.Hosting.IInteractionService.PromptConfirmationAsync%2A> -->
 
-Use the interaction service when you need the user to confirm an action before proceeding. The `IInteractionService.PromptConfirmationAsync` method displays a confirmation prompt. In the dashboard, this appears as a dialog with action buttons. In the CLI, this appears as a yes/no prompt.
+Use the interaction service when you need the user to confirm an action before proceeding. The `IInteractionService.PromptConfirmationAsync` method displays a confirmation prompt in the dashboard context. This method is only available in dashboard contexts and will throw an exception if called during CLI operations like `aspire publish` or `aspire deploy`.
 
 Confirmation prompts are essential for destructive operations or actions that have significant consequences. They help prevent accidental actions and give users a chance to reconsider their decisions.
 
@@ -148,17 +141,7 @@ For operations that can't be undone, such as deleting resources, always prompt f
 
 **CLI view:**
 
-```text
-┌── Confirm Destructive Operation ──┐
-│ Are you sure you want to delete   │
-│ this resource? This action cannot │
-│ be undone.                        │
-│                                   │
-│ Type 'DELETE' to confirm:         │
-└────────────────────────────────────┘
-> DELETE
-Confirmed. Proceeding with deletion...
-```
+This method isn't available in CLI contexts. If you call it during `aspire publish` or `aspire deploy`, it throws an exception.
 
 ## Prompt for user input
 
@@ -186,13 +169,20 @@ If the user doesn't enter a value, the dialog shows an error message indicating 
 
 In the CLI context, the same interaction appears as a text prompt:
 
-```text
-API Key Configuration
-Configure the API key for the external service.
+```Aspire
+aspire deploy
 
-Enter API Key (required, hidden): 
-> ********
-API key configured successfully.
+Step 1: Analyzing model.
+
+       ✓ DONE: Analyzing the distributed application model for publishing and deployment capabilities. 00:00:00
+           Found 1 resources that support deployment. (FakeResource)
+
+✅ COMPLETED: Analyzing model. completed successfully
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+Enter your third-party service API key: *************
+✓ PUBLISHING COMPLETED: Publishing completed successfully
 ```
 
 ### Prompt the user for multiple input values
@@ -223,27 +213,38 @@ After you select the **Ok** button, the resource logs display the following outp
 
 In the CLI context, the same inputs are requested sequentially:
 
-```text
-Application Configuration
-Configure multiple settings for the application.
+```Aspire
+aspire deploy
 
-Enter Server URL (required): 
-> https://api.example.com
+Step 1: Analyzing model.
 
-Enter API Version (required): 
-> v2
+       ✓ DONE: Analyzing the distributed application model for publishing and deployment capabilities. 00:00:00
+           Found 1 resources that support deployment. (FakeResource)
 
-Enable Debug Mode (y/n): 
-> y
+✅ COMPLETED: Analyzing model. completed successfully
 
-Enter Max Connections (required): 
-> 100
+═══════════════════════════════════════════════════════════════════════════════
 
-Configuration completed:
-- Server URL: https://api.example.com
-- API Version: v2
-- Debug Mode: True
-- Max Connections: 100
+Configure your application deployment settings:
+Application Name: example-app
+Environment:  Staging
+Instance Count: 3
+Enable Monitoring: [y/n] (n): y
+✓ DEPLOY COMPLETED: Deploying completed successfully
+```
+
+Depending on the input type, the CLI might display additional prompts. For example, the `Enable Monitoring` input is a boolean choice, so the CLI prompts for a yes/no response. If you enter `y`, it enables monitoring; if you enter `n`, it disables monitoring. For the environment input, the CLI displays a list of available environments for selection:
+
+```Aspire
+Configure your application deployment settings:
+Application Name: example-app
+Environment:
+
+> Development
+  Staging
+  Testing
+
+(Type to search)
 ```
 
 #### Input validation
@@ -341,17 +342,21 @@ When you run your application using `aspire run` or by directly launching the ap
 - **Modal dialogs**: Message boxes and input prompts appear as overlay dialogs that require user interaction.
 - **Notification messages**: Informational messages appear as dismissible banners at the top of the dashboard.
 - **Rich UI**: Full support for interactive form elements, validation, and visual feedback.
+- **All methods available**: All interaction service methods are supported in dashboard contexts.
 
 ### CLI context
 
 When you run `aspire publish` or `aspire deploy`, interactions are prompted through the command-line interface:
 
-- **Text prompts**: All interactions appear as text-based prompts in the terminal.
+- **Text prompts**: Only input prompts (`PromptInputAsync` and `PromptInputsAsync`) are available and appear as text-based prompts in the terminal.
 - **Sequential input**: Multiple inputs are requested one at a time rather than in a single dialog.
-- **Simple confirmation**: Yes/no confirmations and basic input validation through the command line.
+- **Limited functionality**: Message boxes, notifications, and confirmation dialogs aren't available and will throw exceptions if called.
+
+> [!IMPORTANT]
+> In CLI contexts, only `PromptInputAsync` and `PromptInputsAsync` methods are supported. Calling `PromptMessageBoxAsync`, `PromptNotificationAsync`, or `PromptConfirmationAsync` results in an exception.
 
 > [!NOTE]
-> The same interaction service code works in both contexts. The underlying implementation automatically adapts the user experience based on whether the application is running in dashboard or CLI mode.
+> The same interaction service code works in both contexts, but with limitations in CLI mode. The underlying implementation automatically adapts the user experience based on whether the application is running in dashboard or CLI mode. However, only input-related methods (`PromptInputAsync` and `PromptInputsAsync`) are available during CLI operations like `aspire publish` and `aspire deploy`.
 
 ## See also
 

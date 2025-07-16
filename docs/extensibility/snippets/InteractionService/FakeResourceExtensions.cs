@@ -20,4 +20,13 @@ public static class FakeResourceExtensions
             })
             .ExcludeFromManifest();
     }
+
+    public static IResourceBuilder<FakeResource> WithDeployment(
+        this IResourceBuilder<FakeResource> builder,
+        Func<DeployingContext, Task> callback)
+    {
+        builder.WithAnnotation(new DeployingCallbackAnnotation(callback));
+
+        return builder;
+    }
 }
