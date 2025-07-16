@@ -1,12 +1,12 @@
 ---
-title: Persistent container services in .NET Aspire
+title: Persistent container lifetimes in .NET Aspire
 description: Learn how to configure containers to persist and be re-used between .NET Aspire app host runs.
-ms.date: 01/15/2025
+ms.date: 07/15/2025
 ---
 
-# Persistent container services in .NET Aspire
+# Persistent container lifetimes in .NET Aspire
 
-In .NET Aspire, containers follow a typical lifecycle where they're created when the app host starts and destroyed when it stops. However, .NET Aspire 9.0 introduces **persistent containers**, which deviate from this standard lifecycle. Persistent containers are created and started by the .NET Aspire orchestrator but are not destroyed when the app host stops, allowing them to persist between runs.
+In .NET Aspire, containers follow a typical lifecycle where they're created when the app host starts and destroyed when it stops. However, you can specify that you want to use **persistent containers**, which deviate from this standard lifecycle. Persistent containers are created and started by the .NET Aspire orchestrator but aren't destroyed when the app host stops, allowing them to persist between runs.
 
 This feature is particularly beneficial for containers that have long startup times, such as databases, as it eliminates the need to wait for these services to initialize on every app host restart.
 
@@ -48,12 +48,10 @@ This mechanism ensures that persistent containers stay synchronized with your ap
 
 ## Container naming and uniqueness
 
-### Default naming
-
 By default, persistent containers use a naming pattern that combines:
 
-- The service name you specify in your app host
-- A postfix based on a hash of the app host project path
+- The service name you specify in your app host.
+- A postfix based on a hash of the app host project path.
 
 This naming scheme ensures that persistent containers are unique to each app host project, preventing conflicts when multiple .NET Aspire projects use the same service names.
 
@@ -78,7 +76,7 @@ When you specify a custom container name, .NET Aspire can reuse an existing cont
 ## Manual cleanup
 
 > [!IMPORTANT]
-> Persistent containers are not automatically removed when you stop the app host. To delete these containers, you must manually stop and remove them using your container runtime.
+> Persistent containers aren't automatically removed when you stop the app host. To delete these containers, you must manually stop and remove them using your container runtime.
 
 You can clean up persistent containers using Docker CLI commands:
 
@@ -100,57 +98,6 @@ Persistent containers are ideal for:
 - **Message brokers**: RabbitMQ, Redis, and similar services that benefit from maintaining state between runs.
 - **Development data**: Containers with test data or configurations that you want to preserve during development iterations.
 - **Shared services**: Services that multiple app hosts or development team members can share.
-
-## Example scenarios
-
-### Development database with test data
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Persistent PostgreSQL with custom name for team sharing
-var postgres = builder.AddPostgres("postgres")
-                      .WithLifetime(ContainerLifetime.Persistent)
-                      .WithContainerName("team-dev-postgres");
-
-var catalogDb = postgres.AddDatabase("catalogdb");
-var inventoryDb = postgres.AddDatabase("inventorydb");
-
-builder.AddProject<Projects.CatalogService>("catalog")
-       .WithReference(catalogDb);
-
-builder.AddProject<Projects.InventoryService>("inventory")
-       .WithReference(inventoryDb);
-
-builder.Build().Run();
-```
-
-### Multiple persistent services
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Persistent database
-var postgres = builder.AddPostgres("postgres")
-                      .WithLifetime(ContainerLifetime.Persistent);
-
-// Persistent message broker
-var rabbitmq = builder.AddRabbitMQ("messaging")
-                      .WithLifetime(ContainerLifetime.Persistent);
-
-// Persistent cache
-var redis = builder.AddRedis("cache")
-                   .WithLifetime(ContainerLifetime.Persistent);
-
-var db = postgres.AddDatabase("appdb");
-
-builder.AddProject<Projects.WebApi>("api")
-       .WithReference(db)
-       .WithReference(rabbitmq)
-       .WithReference(redis);
-
-builder.Build().Run();
-```
 
 ## See also
 
