@@ -3,7 +3,7 @@ title: aspire config get command
 description: Learn about the aspire config get command and its usage. This command gets an Aspire CLI config value by key name.
 ms.date: 07/11/2025
 ---
-# aspire add command
+# aspire config add command
 
 **This article applies to:** ✔️ Aspire CLI 9.4.0 and later versions
 

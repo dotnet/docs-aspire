@@ -3,7 +3,7 @@ title: aspire config set command
 description: Learn about the aspire config set command and its usage. This command sets an Aspire CLI config value by key name.
 ms.date: 07/11/2025
 ---
-# aspire add command
+# aspire config set command
 
 **This article applies to:** ✔️ Aspire CLI 9.4.0 and later versions
 
