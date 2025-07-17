@@ -21,7 +21,7 @@ aspire publish [options] [[--] <additional arguments>...]
 
 ## Description
 
-The `aspire publish` command publishes resources, serializing resources to disk. When this command is run, Aspire invokes registered <xref:Aspire.Hosting.ApplicationModel.PublishingCallbackAnnotation> annotations for resources, in the order they're declared. These annotations serialize a resource so that it can be consumed by deployment tools.
+The `aspire publish` command publishes resources by serializing them to disk. When this command is run, Aspire invokes registered <xref:Aspire.Hosting.ApplicationModel.PublishingCallbackAnnotation> annotations for resources, in the order they're declared. These annotations serialize a resource so that it can be consumed by deployment tools.
 
 [!INCLUDE [project-search-logic-description](includes/project-search-logic-description.md)]
 
