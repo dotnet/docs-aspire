@@ -1,9 +1,8 @@
 ---
 title: Use the .NET Aspire dashboard with Node.js apps
 description: How to use the Aspire Dashboard in a Node.js application.
-ms.date: 01/15/2025
+ms.date: 07/17/2025
 ms.topic: tutorial
-ms.author: aapowell
 ---
 
 # Tutorial: Use the .NET Aspire dashboard with Node.js apps
@@ -49,7 +48,7 @@ To create a new Express.js application:
     npm install express
     ```
 
-1. Create a basic Express.js application by creating an `app.js` file:
+1. Create a basic Express.js application by creating an *app.js* file:
 
     ```javascript
     const express = require('express');
@@ -81,9 +80,9 @@ To create a new Express.js application:
     });
     ```
 
-1. Update the `package.json` file to include a start script:
+1. Replace the entire *package.json* file with the following content:
 
-    :::code language="json" source="~/docs/fundamentals/dashboard/snippets/standalone-for-nodejs/package.json":::
+    :::code language="json" source="snippets/standalone-for-nodejs/package.json":::
 
 1. Test the application by running:
 
@@ -91,23 +90,17 @@ To create a new Express.js application:
     npm start
     ```
 
-1. Browse to the application at `http://localhost:3000` in a web browser to verify it's working.
+1. Browse to the application at <http://localhost:3000> in a web browser to verify it's working.
 
 ## Adding OpenTelemetry
 
 To use the .NET Aspire dashboard with your Node.js app, you need to install the OpenTelemetry SDK and exporter. The OpenTelemetry SDK provides the API for instrumenting your application, and the exporter sends telemetry data to the .NET Aspire dashboard.
 
-1. Install the OpenTelemetry SDK and related packages:
+1. Create a new file called *tracing.js* to configure OpenTelemetry:
 
-    ```console
-    npm install @opentelemetry/api @opentelemetry/sdk-node @opentelemetry/exporter-trace-otlp-grpc @opentelemetry/exporter-metrics-otlp-grpc @opentelemetry/auto-instrumentations-node
-    ```
+    :::code language="javascript" source="snippets/standalone-for-nodejs/tracing.js":::
 
-1. Create a new file called `tracing.js` to configure OpenTelemetry:
-
-    :::code language="javascript" source="~/docs/fundamentals/dashboard/snippets/standalone-for-nodejs/tracing.js":::
-
-1. Update your `app.js` to import the tracing configuration at the very beginning:
+1. Update your *app.js* to import the tracing configuration at the very beginning:
 
     ```javascript
     // This must be imported first!
@@ -176,16 +169,12 @@ After starting both the dashboard and your Node.js application, you can view tel
 
 1. Make some requests to your Node.js application:
 
-    ```bash
+    ```console
     curl http://localhost:3000/
     curl http://localhost:3000/api/weather
     ```
 
-1. Navigate to the .NET Aspire dashboard at `http://localhost:18888` and explore the different sections:
-
-### Structured logs
-
-The **Structured Logs** page displays logs from your Node.js application. You'll see console log entries and HTTP request logs automatically captured by the OpenTelemetry auto-instrumentation.
+1. Navigate to the .NET Aspire dashboard at <http://localhost:18888> and explore the different sections:
 
 ### Traces
 
@@ -199,9 +188,9 @@ The **Metrics** page displays various metrics collected from your Node.js applic
 
 You can enhance your application with custom spans, logs, and metrics:
 
-1. Update your `app.js` to include custom telemetry:
+1. Update your *app.js* to include custom telemetry:
 
-    :::code language="javascript" source="~/docs/fundamentals/dashboard/snippets/standalone-for-nodejs/app.js":::
+    :::code language="javascript" source="snippets/standalone-for-nodejs/app.js":::
 
 ## Next steps
 
