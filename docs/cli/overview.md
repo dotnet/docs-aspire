@@ -70,7 +70,7 @@ The `aspire add` command is an easy way to add official integration packages to 
 
 [_Command reference: `aspire publish`_](../cli-reference/aspire-publish.md)
 
-The `aspire publish` command publishes resources, serializing resources to disk. When this command is run, Aspire invokes registered <xref:Aspire.Hosting.ApplicationModel.PublishingCallbackAnnotation> annotations for resources, in the order they're declared. These annotations serialize a resource so that it can be consumed by deployment tools.
+The `aspire publish` command publishes resources, serializing resources to disk. When this command is run, Aspire invokes registered <xref:Aspire.Hosting.ApplicationModel.PublishingCallbackAnnotation> resource annotations, in the order they're declared. These annotations serialize a resource so that it can be consumed by deployment tools.
 
 Some integrations automatically register a `PublishingCallbackAnnotation` for you, for example:
 
@@ -82,7 +82,7 @@ Some integrations automatically register a `PublishingCallbackAnnotation` for yo
 
 [_Command reference: `aspire deploy`_](../cli-reference/aspire-deploy.md)
 
-The `aspire deploy` command is similar to `aspire publish`. After Aspire has invoked the publishing annotations, it invokes resource's `DeployingCallbackAnnotation` annotations, in the order they're declared.
+The `aspire deploy` command is similar to `aspire publish`. After Aspire has invoked the publishing annotations, it invokes `DeployingCallbackAnnotation` resource annotations, in the order they're declared.
 
 As of Aspire 9.4, Aspire doesn't include any default deployment annotations for its resources, you must use the `DeployingCallbackAnnotation` to build your own.
 
