@@ -1,7 +1,7 @@
 ---
 title: The specified name is already in use
 description: Learn how to troubleshoot the error "The specified name is already in use" when deploying to Azure.
-ms.date: 06/03/2024
+ms.date: 07/17/2025
 ---
 
 # The specified name is already in use
