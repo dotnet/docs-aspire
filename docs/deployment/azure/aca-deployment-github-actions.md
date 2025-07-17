@@ -1,7 +1,7 @@
 ---
 title: Deploy a .NET Aspire project using the Azure Developer CLI
 description: Learn how to use `azd` to deploy .NET Aspire projects.
-ms.date: 01/08/2025
+ms.date: 07/17/2025
 zone_pivot_groups: deployment-platform
 ms.custom: devx-track-extended-azdevcli
 ---
@@ -112,14 +112,14 @@ The `azd pipeline config` command generates a GitHub Actions workflow that assum
 
 For example, if your repository structure looks like this:
 
-```
-MyAspireApp/
-├── MyAspireApp.sln
-├── MyAspireApp.AppHost/
-│   ├── MyAspireApp.AppHost.csproj
-│   └── Program.cs
-├── MyAspireApp.ApiService/
-└── MyAspireApp.Web/
+```Directory
+└───📂 MyAspireApp
+    ├───📂 MyAspireApp.ApiService
+    ├───📂 MyAspireApp.AppHost
+    │    ├─── MyAspireApp.AppHost.csproj
+    │    └─── Program.cs
+    ├───📂 MyAspireApp.Web
+    └─── MyAspireApp.sln
 ```
 
 The generated workflow steps for **Provision Infrastructure** and **Deploy Application** need to run from the `MyAspireApp.AppHost` directory, not from the repository root.
