@@ -3,7 +3,7 @@ title: aspire config list command
 description: Learn about the aspire config list command and its usage. This command lists all Aspire CLI config values.
 ms.date: 07/11/2025
 ---
-# aspire add command
+# aspire config list command
 
 **This article applies to:** ✔️ Aspire CLI 9.4.0 and later versions
 

@@ -3,7 +3,7 @@ title: aspire config delete command
 description: Learn about the aspire config delete command and its usage. This command deletes an Aspire CLI config value by key name.
 ms.date: 07/11/2025
 ---
-# aspire add command
+# aspire config delete command
 
 **This article applies to:** ✔️ Aspire CLI 9.4.0 and later versions
 
