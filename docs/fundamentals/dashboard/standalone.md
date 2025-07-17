@@ -51,9 +51,27 @@ The preceding Docker command:
 
 Data displayed in the dashboard can be sensitive. By default, the dashboard is secured with authentication that requires a token to login.
 
-When the dashboard is run from a standalone container, the login token is printed to the container logs. After copying the highlighted token into the login page, select the *Login* button.
+When the dashboard is run from a standalone container, the login token is printed to the container logs. The logs are displayed in the Docker Desktop user interface on the **Logs** tab for the **aspire-dashboard** container:
 
 :::image type="content" source="media/standalone/aspire-dashboard-container-log.png" lightbox="media/standalone/aspire-dashboard-container-log.png" alt-text="Screenshot of the .NET Aspire dashboard container logs.":::
+
+After copying the highlighted token into the login page, select the *Login* button.
+
+Alternatively, you can obtain the token from the logs by using the `docker` command:
+
+## [Bash](#tab/bash)
+
+```bash
+docker container logs aspire-dashboard | grep "t="
+```
+
+## [PowerShell](#tab/powershell)
+
+```powershell
+docker container logs aspire-dashboard | sls "t="
+```
+
+---
 
 > [!TIP]
 > To avoid the login, you can disable the authentication requirement by setting the `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` environment variable to `true`. Additional configuration is available, see [Dashboard configuration](configuration.md).
