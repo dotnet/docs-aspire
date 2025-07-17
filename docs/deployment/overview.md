@@ -2,7 +2,7 @@
 title: .NET Aspire deployments
 description: Learn about essential deployment concepts for .NET Aspire.
 ms.topic: overview
-ms.date: 05/21/2024
+ms.date: 07/17/2025
 ---
 
 # .NET Aspire deployments
