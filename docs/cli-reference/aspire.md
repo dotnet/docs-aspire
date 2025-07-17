@@ -37,6 +37,8 @@ The following options are available when `aspire` is used by itself, without spe
 
 ## Commands
 
+The following commands are available:
+
 | Command                               | Status  | Function                                                                 |
 |---------------------------------------|---------|--------------------------------------------------------------------------|
 | [`aspire add`](aspire-add.md)         | Stable  | Add an integration to the Aspire project.                                |

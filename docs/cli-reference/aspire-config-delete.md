@@ -1,0 +1,45 @@
+---
+title: aspire config delete command
+description: Learn about the aspire config delete command and its usage. This command deletes an Aspire CLI config value by key name.
+ms.date: 07/11/2025
+---
+# aspire add command
+
+**This article applies to:** ✔️ Aspire CLI 9.4.0 and later versions
+
+## Name
+
+`aspire config delete` - Delete a configuration value.
+
+## Synopsis
+
+```dotnetcli
+aspire config delete <key> [options]
+```
+
+## Description
+
+The `aspire config delete` command delete's a config value by key name.
+
+The command returns the following exit codes:
+
+- `0`&mdash;The command succeeded.
+- `1`&mdash;The supplied key doesn't exist in the config file, or the config file is missing.
+
+## Arguments
+
+The following arguments are available:
+
+- **`key`**
+
+  The configuration key to delete.
+
+## Options
+
+The following options are available:
+
+- [!INCLUDE [option-help](includes/option-help.md)]
+
+- [!INCLUDE [option-debug](includes/option-debug.md)]
+
+- [!INCLUDE [option-wait](includes/option-wait.md)]
