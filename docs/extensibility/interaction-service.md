@@ -19,16 +19,18 @@ The `IInteractionService` interface can be retrieved from the dependency injecti
 
 The interaction service has several methods that you use to interact with users or display messages. The behavior of these methods depends on the execution context:
 
-- **Dashboard context** (`aspire run` or direct app host launch): Interactions appear as modal dialogs, notifications, and form inputs in the Aspire dashboard web interface.
+- **Dashboard context** (`aspire run` or direct app host launch): Interactions appear as modal dialogs, notifications, and form inputs in the [Aspire dashboard web interface](../fundamentals/dashboard/overview.md).
 - **CLI context** (`aspire publish` or `aspire deploy`): Interactions are prompted through the command-line interface with text-based prompts and responses.
 
 The following sections describe how to use these APIs effectively in both contexts:
 
-- `PromptMessageBoxAsync`: Displays a modal dialog box with a message and buttons for user interaction (dashboard only).
-- `PromptNotificationAsync`: Displays a nonmodal notification at the top of the dashboard (dashboard only).
-- `PromptConfirmationAsync`: Displays a confirmation dialog with options for the user to confirm or cancel an action (dashboard only).
-- `PromptInputAsync`: Prompts the user for a single input value, such as a text or secret (both contexts).
-- `PromptInputsAsync`: Prompts the user for multiple input values in a single dialog (dashboard) or sequentially (CLI), allowing for more complex configurations (both contexts).
+| Method | Description | Contexts supported |
+|--|--|--|
+| `PromptMessageBoxAsync` | Displays a modal dialog box with a message and buttons for user interaction. | Dashboard only |
+| `PromptNotificationAsync` | Displays a nonmodal notification at the top of the dashboard. | Dashboard only |
+| `PromptConfirmationAsync` | Displays a confirmation dialog with options for the user to confirm or cancel an action. | Dashboard only |
+| `PromptInputAsync` | Prompts the user for a single input value, such as text or secret. | Dashboard, CLI |
+| `PromptInputsAsync` | Prompts the user for multiple input values in a single dialog (dashboard) or sequentially (CLI). | Dashboard, CLI |
 
 > [!IMPORTANT]
 > During `aspire publish` and `aspire deploy` operations, only `PromptInputAsync` and `PromptInputsAsync` are available. Other interaction methods (`PromptMessageBoxAsync`, `PromptNotificationAsync`, and `PromptConfirmationAsync`) will throw an exception if called in CLI contexts.
@@ -41,11 +43,11 @@ Any of the available callback-based extension methods of `IResourceBuilder<T>` c
 
     Resource types are free to define dashboard interactions, such as prompting for user input or displaying messages. The interaction service allows you to create a more interactive experience for users when they manage resources in the Aspire dashboard or CLI. For more information, see [Create custom .NET Aspire hosting integrations](custom-hosting-integration.md).
 
-- **Custom resource commands**: Add commands to resources in the Aspire dashboard. Use the interaction service to prompt users for input or confirmation when these commands run.
+- **Custom resource commands**: Add commands to resources in the Aspire dashboard or CLI. Use the interaction service to prompt users for input or confirmation when these commands run.
 
     When you chain a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithCommand*> on a target `IResourceBuilder<T>`, for example, your callback can use the interaction service to gather input or confirm actions. For more information, see [Custom resource commands in .NET Aspire](../fundamentals/custom-resource-commands.md).
 
-- **Publish and deploy workflows**: During `aspire publish` or `aspire deploy` operations, use the interaction service to gather deployment-specific configuration, confirm destructive operations, or provide status updates through the CLI.
+- **Publish and deploy workflows**: During `aspire publish` or `aspire deploy` operations, use the interaction service to gather deployment-specific configuration and confirm destructive operations through the CLI.
 
 These approaches help you create interactive, user-friendly experiences for local development, dashboard interactions, and deployment workflows.
 
@@ -72,21 +74,21 @@ These approaches help you create interactive, user-friendly experiences for loca
 
 ## Display messages
 
-There are many ways to display messages to the user. The presentation differs between dashboard and CLI contexts:
+There are several ways to display messages to the user:
 
-- **Dialog messages**: Show important information in a dialog box (dashboard only).
-- **Notification messages**: Display less critical information in a notification (dashboard only).
+- **Dialog messages**: Show important information in a dialog box.
+- **Notification messages**: Display less critical information in a notification.
 
 > [!NOTE]
 > Message display methods (`PromptMessageBoxAsync` and `PromptNotificationAsync`) are only available in dashboard contexts. These methods throw an exception if called during `aspire publish` or `aspire deploy` operations.
 
 ### Display a dialog message box
 
-Dialog messages provide important information that requires user attention. These are only available in the dashboard context and will throw an exception if called during CLI operations like `aspire publish` or `aspire deploy`.
+Dialog messages provide important information that requires user attention.
 
 <!-- <xref:Aspire.Hosting.IInteractionService.PromptMessageBoxAsync%2A> -->
 
-The `IInteractionService.PromptMessageBoxAsync` method displays a message with customizable response options in the dashboard context.
+The `IInteractionService.PromptMessageBoxAsync` method displays a message with customizable response options.
 
 :::code source="snippets/InteractionService/AppHost.MessageBoxExample.cs" id="example":::
 
@@ -96,14 +98,14 @@ The `IInteractionService.PromptMessageBoxAsync` method displays a message with c
 
 **CLI view:**
 
-This method isn't available in CLI contexts. If you call it during `aspire publish` or `aspire deploy`, it throws an exception.
+The `PromptMessageBoxAsync` method only works in the dashboard context. If you call it during `aspire publish` or `aspire deploy`, the method throws an exception and doesn't display a message in the CLI.
 
 ### Display a notification message
 
-Notification messages provide nonmodal notifications. These are only available in the dashboard context and will throw an exception if called during CLI operations like `aspire publish` or `aspire deploy`.
+Notification messages provide nonmodal notifications.
 
 > [!TIP]
-> In the dashboard, notification messages stack, so you can display multiple messages at once.
+> In the dashboard, notification messages appear stacked at the top, so you can show several messages at once. You can display notifications one after another by awaiting each dismissal before showing the next. Or, you can display multiple notifications at the same time without waiting for each to be dismissed.
 
 <!-- <xref:Aspire.Hosting.IInteractionService.PromptNotificationAsync%2A> -->
 
@@ -111,7 +113,7 @@ The `IInteractionService.PromptNotificationAsync` method displays informational 
 
 :::code source="snippets/InteractionService/AppHost.NotificationExample.cs" id="example":::
 
-The previous example demonstrates several ways to use the notification API. Each approach displays different types of notifications.
+The previous example demonstrates several ways to use the notification API. Each approach displays different types of notifications, all of which are invoked in parallel and displayed in the dashboard around the same time.
 
 **Dashboard view:**
 
@@ -119,15 +121,13 @@ The previous example demonstrates several ways to use the notification API. Each
 
 **CLI view:**
 
-This method isn't available in CLI contexts. If you call it during `aspire publish` or `aspire deploy`, it throws an exception.
+The `PromptNotificationAsync` method isn't available in CLI contexts. If you call it during `aspire publish` or `aspire deploy`, it throws an exception.
 
 ## Prompt for user confirmation
 
 <!-- <xref:Aspire.Hosting.IInteractionService.PromptConfirmationAsync%2A> -->
 
-Use the interaction service when you need the user to confirm an action before proceeding. The `IInteractionService.PromptConfirmationAsync` method displays a confirmation prompt in the dashboard context. This method is only available in dashboard contexts and will throw an exception if called during CLI operations like `aspire publish` or `aspire deploy`.
-
-Confirmation prompts are essential for destructive operations or actions that have significant consequences. They help prevent accidental actions and give users a chance to reconsider their decisions.
+Use the interaction service when you need the user to confirm an action before proceeding. The `IInteractionService.PromptConfirmationAsync` method displays a confirmation prompt in the dashboard context. Confirmation prompts are essential for destructive operations or actions that have significant consequences. They help prevent accidental actions and give users a chance to reconsider their decisions.
 
 ### Prompt for confirmation before destructive operations
 
@@ -141,7 +141,7 @@ For operations that can't be undone, such as deleting resources, always prompt f
 
 **CLI view:**
 
-This method isn't available in CLI contexts. If you call it during `aspire publish` or `aspire deploy`, it throws an exception.
+The `PromptConfirmationAsync` method isn't available in CLI contexts. If you call it during `aspire publish` or `aspire deploy`, the method throws an exception.
 
 ## Prompt for user input
 
@@ -179,7 +179,7 @@ Step 1: Analyzing model.
 
 ✅ COMPLETED: Analyzing model. completed successfully
 
-═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════
 
 Enter your third-party service API key: *************
 ✓ PUBLISHING COMPLETED: Publishing completed successfully
@@ -190,6 +190,9 @@ Enter your third-party service API key: *************
 <!-- <xref:Aspire.Hosting.IInteractionService.PromptInputsAsync%2A> -->
 
 Use the `IInteractionService.PromptInputsAsync` method to collect multiple pieces of information. In the dashboard, this presents all inputs in a single dialog. In the CLI, inputs are requested sequentially.
+
+> [!IMPORTANT]
+> It's possible to create wizard-like flows using the interaction service. By chaining multiple prompts together—handling the results from one prompt before moving to the next—you can guide users through a series of related questions, making it easier to collect all the necessary information.
 
 Consider the following example, which prompts the user for multiple input values:
 
@@ -223,7 +226,7 @@ Step 1: Analyzing model.
 
 ✅ COMPLETED: Analyzing model. completed successfully
 
-═══════════════════════════════════════════════════════════════════════════════
+═══════════════════════════════════════════════════════════════════════════════════════════════════════════════
 
 Configure your application deployment settings:
 Application Name: example-app
@@ -320,6 +323,8 @@ if (!dbResult.Canceled && dbResult.Data != null)
 }
 ```
 
+Prompting the user for a password and confirming they match is referred to as "dual independent verification" input. This approach is common in scenarios where you want to ensure the user enters the same password twice to avoid typos or mismatches.
+
 ### Best practices for user input
 
 When prompting for user input, consider these best practices:
@@ -333,7 +338,7 @@ When prompting for user input, consider these best practices:
 
 ## Interaction contexts
 
-The interaction service behaves differently depending on how your .NET Aspire application is launched:
+The interaction service behaves differently depending on how your Aspire solution is launched:
 
 ### Dashboard context
 
@@ -350,13 +355,10 @@ When you run `aspire publish` or `aspire deploy`, interactions are prompted thro
 
 - **Text prompts**: Only input prompts (`PromptInputAsync` and `PromptInputsAsync`) are available and appear as text-based prompts in the terminal.
 - **Sequential input**: Multiple inputs are requested one at a time rather than in a single dialog.
-- **Limited functionality**: Message boxes, notifications, and confirmation dialogs aren't available and will throw exceptions if called.
+- **Limited functionality**: Message boxes, notifications, and confirmation dialogs aren't available and throws exceptions if called.
 
 > [!IMPORTANT]
-> In CLI contexts, only `PromptInputAsync` and `PromptInputsAsync` methods are supported. Calling `PromptMessageBoxAsync`, `PromptNotificationAsync`, or `PromptConfirmationAsync` results in an exception.
-
-> [!NOTE]
-> The same interaction service code works in both contexts, but with limitations in CLI mode. The underlying implementation automatically adapts the user experience based on whether the application is running in dashboard or CLI mode. However, only input-related methods (`PromptInputAsync` and `PromptInputsAsync`) are available during CLI operations like `aspire publish` and `aspire deploy`.
+> The interaction service adapts automatically to dashboard and CLI contexts. In CLI mode, only input-related methods—`PromptInputAsync` and `PromptInputsAsync`—are supported. Calling `PromptMessageBoxAsync`, `PromptNotificationAsync`, or `PromptConfirmationAsync` in CLI operations like `aspire publish` or `aspire deploy` results in an exception.
 
 ## See also
 
