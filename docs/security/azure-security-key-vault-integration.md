@@ -257,6 +257,50 @@ The .NET Aspire Azure Key Vault integration supports <xref:Microsoft.Extensions.
 
 For the complete Azure Key Vault client integration JSON schema, see [Aspire.Azure.Security.KeyVault/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Security.KeyVault/ConfigurationSchema.json).
 
+#### Use named configuration
+
+The .NET Aspire Azure Key Vault integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "Security": {
+        "KeyVault": {
+          "vault1": {
+            "VaultUri": "https://myvault1.vault.azure.net/",
+            "DisableHealthChecks": true,
+            "ClientOptions": {
+              "Diagnostics": {
+                "ApplicationId": "myapp1"
+              }
+            }
+          },
+          "vault2": {
+            "VaultUri": "https://myvault2.vault.azure.net/",
+            "DisableTracing": true,
+            "ClientOptions": {
+              "Diagnostics": {
+                "ApplicationId": "myapp2"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `vault1` and `vault2` connection names can be used when calling `AddAzureKeyVaultSecrets`:
+
+```csharp
+builder.AddAzureKeyVaultSecrets("vault1");
+builder.AddAzureKeyVaultSecrets("vault2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
+
 If you have set up your configurations in the `Aspire:Azure:Security:KeyVault` section of your _:::no-loc text="appsettings.json":::_ file you can just call the method `AddAzureKeyVaultSecrets` without passing any parameters.
 
 #### Use inline delegates

@@ -251,6 +251,44 @@ The `Config` properties of both  `Aspire:Confluent:Kafka:Producer` and `Aspire.C
 
 For the complete Kafka client integration JSON schema, see [Aspire.Confluent.Kafka/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Confluent.Kafka/ConfigurationSchema.json).
 
+#### Use named configuration
+
+The .NET Aspire Apache Kafka integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Confluent": {
+      "Kafka": {
+        "Producer": {
+          "kafka1": {
+            "DisableHealthChecks": false,
+            "Config": {
+              "Acks": "All"
+            }
+          },
+          "kafka2": {
+            "DisableHealthChecks": true,
+            "Config": {
+              "Acks": "Leader"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `kafka1` and `kafka2` connection names can be used when calling `AddKafkaProducer` or `AddKafkaConsumer`:
+
+```csharp
+builder.AddKafkaProducer<string, string>("kafka1");
+builder.AddKafkaConsumer<string, string>("kafka2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
+
 #### Use inline delegates
 
 There are several inline delegates available to configure various options.

@@ -269,6 +269,40 @@ The .NET Aspire Azure Cosmos DB integration supports <xref:Microsoft.Extensions.
 
 For the complete Cosmos DB client integration JSON schema, see [Aspire.Microsoft.Azure.Cosmos/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Microsoft.Azure.Cosmos/ConfigurationSchema.json).
 
+#### Use named configuration
+
+The .NET Aspire Azure Cosmos DB integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Microsoft": {
+      "Azure": {
+        "Cosmos": {
+          "cosmos1": {
+            "AccountEndpoint": "https://myaccount1.documents.azure.com:443/",
+            "DisableTracing": false
+          },
+          "cosmos2": {
+            "AccountEndpoint": "https://myaccount2.documents.azure.com:443/",
+            "DisableTracing": true
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `cosmos1` and `cosmos2` connection names can be used when calling `AddAzureCosmosClient`:
+
+```csharp
+builder.AddAzureCosmosClient("cosmos1");
+builder.AddAzureCosmosClient("cosmos2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
+
 #### Use inline delegates
 
 Also you can pass the `Action<MicrosoftAzureCosmosSettings> configureSettings` delegate to set up some or all the options inline, for example to disable tracing from code:

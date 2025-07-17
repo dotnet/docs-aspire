@@ -111,6 +111,46 @@ The .NET Aspire Azure Table Storage integration supports <xref:Microsoft.Extensi
 
 For the complete Azure Data Tables client integration JSON schema, see [Aspire.Azure.Data.Tables/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Data.Tables/ConfigurationSchema.json).
 
+#### Use named configuration
+
+The .NET Aspire Azure Table Storage integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "Data": {
+        "Tables": {
+          "tables1": {
+            "ServiceUri": "https://myaccount1.table.core.windows.net/",
+            "DisableHealthChecks": true,
+            "ClientOptions": {
+              "EnableTenantDiscovery": true
+            }
+          },
+          "tables2": {
+            "ServiceUri": "https://myaccount2.table.core.windows.net/",
+            "DisableTracing": true,
+            "ClientOptions": {
+              "EnableTenantDiscovery": false
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `tables1` and `tables2` connection names can be used when calling `AddAzureTableClient`:
+
+```csharp
+builder.AddAzureTableClient("tables1");
+builder.AddAzureTableClient("tables2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
+
 #### Use inline delegates
 
 You can also pass the `Action<AzureDataTablesSettings> configureSettings` delegate to set up some or all the options inline, for example to configure the `ServiceUri`:

@@ -478,6 +478,46 @@ The .NET Aspire Azure Event Hubs library supports <xref:Microsoft.Extensions.Con
 
 For the complete Azure Event Hubs client integration JSON schema, see [Aspire.Azure.Messaging.EventHubs/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Messaging.EventHubs/ConfigurationSchema.json).
 
+### Use named configuration
+
+The .NET Aspire Azure Event Hubs library supports named configuration, which allows you to configure multiple instances of the same client type with different settings. The named configuration uses the connection name as a key under the specific client configuration section.
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "Messaging": {
+        "EventHubs": {
+          "EventProcessorClient": {
+            "processor1": {
+              "EventHubName": "MyHub1",
+              "ClientOptions": {
+                "Identifier": "PROCESSOR_1"
+              }
+            },
+            "processor2": {
+              "EventHubName": "MyHub2",
+              "ClientOptions": {
+                "Identifier": "PROCESSOR_2"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `processor1` and `processor2` connection names can be used when calling `AddAzureEventProcessorClient`:
+
+```csharp
+builder.AddAzureEventProcessorClient("processor1");
+builder.AddAzureEventProcessorClient("processor2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
+
 You can also setup the Options type using the optional `Action<IAzureClientBuilder<EventProcessorClient, EventProcessorClientOptions>> configureClientBuilder` parameter of the `AddAzureEventProcessorClient` method. For example, to set the processor's client ID for this client:
 
 ```csharp
