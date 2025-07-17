@@ -59,6 +59,9 @@ items:
     href: app-host/configuration.md
   - name: Customize resources
     items:
+    - name: Persistent container services
+      href: app-host/persistent-containers.md
+      displayName: persistent containers,container lifetime,withlifetime
     - name: Custom resource commands
       href: fundamentals/custom-resource-commands.md
       displayName: withcommand
