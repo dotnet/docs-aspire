@@ -111,7 +111,7 @@ For more information, see [.NET Aspire templates](aspire-sdk-templates.md).
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most popular container runtime among .NET Aspire developers, offering a familiar and widely supported environment for building and running containers.
 - [Podman](https://podman.io/docs/installation) is an open-source, daemonless alternative to Docker. It supports building and running Open Container Initiative (OCI) containers, making it a flexible choice for developers who prefer a lightweight solution.
 
-If your host environment has a Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `DOTNET_ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
+If your host environment has a Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
 
 ## [Linux](#tab/linux)
 
