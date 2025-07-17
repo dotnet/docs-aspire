@@ -65,9 +65,9 @@ Start by creating some migrations to apply.
 
 If you prefer using Visual Studio's Package Manager Console instead of the command line:
 
-1. Open the **Package Manager Console** in Visual Studio (**Tools** > **NuGet Package Manager** > **Package Manager Console**).
+1. Open the **Package Manager Console** in Visual Studio by selecting **Tools** > **NuGet Package Manager** > **Package Manager Console**.
 1. Set the **Default project** dropdown to *SupportTicketApi.Data*.
-1. Set the **Startup project** dropdown (or right-click in Solution Explorer) to *SupportTicketApi.Api*.
+1. Set the **Startup project** to *SupportTicketApi.Api* using the dropdown in the toolbar or by right-clicking the project in Solution Explorer and selecting **Set as Startup Project**.
 1. Run the migration command:
 
     ```powershell
