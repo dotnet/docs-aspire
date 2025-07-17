@@ -35,9 +35,9 @@ The following options are available:
 
 The following commands are available:
 
-| Command                                            | Status | Function                       |
-|----------------------------------------------------|--------|--------------------------------|
-| [`aspire config get <key>`](aspire-add.md)         | Stable | Get a configuration value.     |
-| [`aspire config set <key> <value>`](aspire-new.md) | Stable | Set a configuration value.     |
-| [`aspire config list`](aspire-run.md)              | Stable | List all configuration values. |
-| [`aspire config delete <key>`](aspire-exec.md)     | Stable | Delete a configuration value.  |
+| Command                                                   | Status | Function                       |
+|-----------------------------------------------------------|--------|--------------------------------|
+| [`aspire config list`](aspire-config-list.md)             | Stable | List all configuration values. |
+| [`aspire config get <key>`](aspire-config-get.md)         | Stable | Get a configuration value.     |
+| [`aspire config set <key> <value>`](aspire-config-set.md) | Stable | Set a configuration value.     |
+| [`aspire config delete <key>`](aspire-config-delete.md)   | Stable | Delete a configuration value.  |
