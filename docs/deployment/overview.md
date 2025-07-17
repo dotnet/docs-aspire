@@ -40,7 +40,7 @@ Kubernetes is a popular container orchestration platform that can run .NET Aspir
 - `aspirate apply`: Applies the generated Kubernetes manifests to the Kubernetes cluster.
 - `aspirate destroy`: Deletes the resources created by the `apply` command.
 
-With these commands, you can build your apps, containerize them, and deploy them to Kubernetes clusters. For more information, see [Aspir8](https://prom3theu5.github.io/aspirational-manifests/getting-started.html).
+With these commands, you can build your apps, containerize them, and deploy them to Kubernetes clusters. For more information, see [Aspirate (formerly Aspir8)](https://prom3theu5.github.io/aspirational-manifests/).
 
 ### Manually create Kubernetes manifests
 
