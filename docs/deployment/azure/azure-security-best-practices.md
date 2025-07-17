@@ -78,7 +78,7 @@ For more granular control over permissions, use user-assigned managed identities
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Create or reference a user-assigned managed identity
-var managedIdentity = builder.AddAzureUserAssignedManagedIdentity("app-identity");
+var managedIdentity = builder.AddAzureUserAssignedIdentity("app-identity");
 
 // Apply the identity to your container apps
 builder.AddProject<Projects.ApiService>()
@@ -86,22 +86,6 @@ builder.AddProject<Projects.ApiService>()
 ```
 
 For detailed guidance, see [User-assigned managed identity](../../azure/user-assigned-managed-identity.md).
-
-### Implement network security
-
-**Virtual network integration**: Deploy your Container Apps environment within a custom virtual network for enhanced network isolation:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Configure custom virtual network
-builder.AddAzureContainerAppsEnvironment("aspire-env")
-       .WithVirtualNetwork("custom-vnet");
-```
-
-**Network security groups**: Configure network security groups (NSGs) to control inbound and outbound traffic to your virtual network.
-
-**Private endpoints**: For resources that support it, configure private endpoints to ensure traffic doesn't traverse the public internet.
 
 ### Enable comprehensive monitoring
 
@@ -121,77 +105,9 @@ For more information, see [Use .NET Aspire with Application Insights](applicatio
 
 **Azure Monitor**: Configure alerts for suspicious activities and resource consumption anomalies.
 
-### Secure data storage
+## Additional security resources
 
-**Encrypt data at rest**: Ensure all data storage resources use encryption at rest. Azure services like Azure SQL Database and Azure Cosmos DB provide this by default.
-
-**Configure backup retention**: Implement appropriate backup and retention policies for your data:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Configure Azure SQL with backup settings
-var sqlServer = builder.AddAzureSqlServer("sql-server")
-                      .WithBackupRetentionDays(30);
-```
-
-**Data classification**: Classify sensitive data and apply appropriate protection measures using Azure Information Protection.
-
-## Production deployment considerations
-
-### Environment separation
-
-Maintain separate environments for development, staging, and production with different security configurations:
-
-```bash
-# Deploy to different environments with azd
-azd env set ENVIRONMENT_NAME production
-azd up
-```
-
-### Secret rotation
-
-Implement regular secret rotation for API keys, connection strings, and certificates:
-
-- Use Azure Key Vault's automatic rotation features for supported secret types
-- Configure alerts for expiring certificates and secrets
-- Automate secret updates using Azure Automation or Azure Functions
-
-### Access control
-
-**Principle of least privilege**: Grant only the minimum permissions necessary for each service and user.
-
-**Just-in-time access**: Use Azure Privileged Identity Management (PIM) for temporary elevated access to production resources.
-
-**Multi-factor authentication**: Require MFA for all administrative access to Azure resources.
-
-### Compliance and auditing
-
-**Enable audit logging**: Configure Azure Activity Log and resource-specific diagnostic logs to track all administrative actions.
-
-**Compliance scanning**: Use Azure Security Center and Azure Policy to continuously assess your deployment against security best practices and compliance requirements.
-
-**Vulnerability scanning**: Regularly scan your container images for vulnerabilities using Azure Container Registry's built-in security scanning.
-
-## Security monitoring and incident response
-
-### Continuous monitoring
-
-Implement continuous security monitoring using:
-
-- **Azure Defender for Containers**: Provides runtime protection and threat detection
-- **Azure Sentinel**: For advanced security incident and event management (SIEM)
-- **Custom alerting**: Configure alerts for unusual access patterns or configuration changes
-
-### Incident response planning
-
-Develop and test incident response procedures:
-
-1. **Detection**: Automated alerting for security events
-2. **Analysis**: Procedures for investigating security incidents
-3. **Containment**: Steps to isolate affected resources
-4. **Recovery**: Processes for restoring normal operations
-5. **Lessons learned**: Post-incident review and improvement
+For comprehensive guidance on Azure security, see [Azure security best practices and patterns](/azure/security/fundamentals/best-practices-and-patterns).
 
 ## Next steps
 
