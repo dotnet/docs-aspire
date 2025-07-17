@@ -42,7 +42,7 @@ After copying the token from the console and pasting it into the login page, sel
 The dashboard persists the token as a browser persistent cookie, which remains valid for three days. Persistent cookies have an expiration date and remain valid even after closing the browser. This means that users don't need to log in again if they close and reopen the browser. For more information, see the [Security considerations for running the .NET Aspire dashboard](security-considerations.md) documentation.
 
 > [!TIP]
-> You can also obtain the login token from the container logs. For more information, see [Login to the dashboard](standalone.md#login-to-the-dashboard)
+> You can also obtain the login token from the container logs. For more information, see [Login to the dashboard](standalone.md#login-to-the-dashboard).
 
 ## Resources page
 
