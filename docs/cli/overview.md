@@ -19,7 +19,7 @@ The Aspire CLI is an interactive-first experience.
 - [Install .NET Aspire CLI.](install.md)
 - [`aspire` command reference.](../cli-reference/aspire.md)
 
-## Create projects
+## Use templates
 
 [_Command reference: `aspire new`_](../cli-reference/aspire-new.md)
 
