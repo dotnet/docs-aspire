@@ -21,6 +21,8 @@ aspire config delete <key> [options]
 
 The `aspire config delete` command delete's a config value by key name.
 
+[!INCLUDE [config-file-description](includes/config-file-description.md)]
+
 The command returns the following exit codes:
 
 - `0`&mdash;The command succeeded.
@@ -37,6 +39,10 @@ The following arguments are available:
 ## Options
 
 The following options are available:
+
+- **`-g, --global`**
+
+  Delete the configuration value from the global `$HOME/.aspire/settings.json` instead of the local settings file.
 
 - [!INCLUDE [option-help](includes/option-help.md)]
 

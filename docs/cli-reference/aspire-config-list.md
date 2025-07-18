@@ -19,7 +19,11 @@ aspire config list [options]
 
 ## Description
 
-The `aspire config list` command delete's a config value by key name.
+The `aspire config list` command lists all config value by key name.
+
+[!INCLUDE [config-file-description](includes/config-file-description.md)]
+
+This command lists both the global and local settings. If a local setting overrides a global setting, only the local setting is displayed.
 
 ## Options
 
