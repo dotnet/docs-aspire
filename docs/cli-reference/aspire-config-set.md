@@ -21,6 +21,8 @@ aspire config set <key> <value> [options]
 
 The `aspire config set` command sets a config value by key name.
 
+[!INCLUDE [config-file-description](includes/config-file-description.md)]
+
 ## Arguments
 
 The following arguments are available:
@@ -36,6 +38,10 @@ The following arguments are available:
 ## Options
 
 The following options are available:
+
+- **`-g, --global`**
+
+  Set the configuration value globally in `$HOME/.aspire/settings.json` instead of the local settings file.
 
 - [!INCLUDE [option-help](includes/option-help.md)]
 

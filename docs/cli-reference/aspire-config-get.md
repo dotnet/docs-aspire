@@ -3,7 +3,7 @@ title: aspire config get command
 description: Learn about the aspire config get command and its usage. This command gets an Aspire CLI config value by key name.
 ms.date: 07/11/2025
 ---
-# aspire config add command
+# aspire config get command
 
 **This article applies to:** ✔️ Aspire CLI 9.4.0 and later versions
 
@@ -20,6 +20,10 @@ aspire config get <key> [options]
 ## Description
 
 The `aspire config get` command retrieves a config value by key name.
+
+[!INCLUDE [config-file-description](includes/config-file-description.md)]
+
+If the config value doesn't exist in a local settings file, the config file is retrieved from the global settings file.
 
 The command returns the following exit codes:
 
