@@ -47,6 +47,8 @@ Close the browser tabs that display the Swagger endpoint and the .NET Aspire das
 
 Start by creating some migrations to apply.
 
+### [.NET CLI](#tab/dotnet-cli)
+
 1. Open a terminal (<kbd>Ctrl</kbd>+<kbd>\`</kbd> in Visual Studio).
 1. Set *:::no-loc text="SupportTicketApi\\SupportTicketApi.Api":::* as the current directory.
 1. Use the [`dotnet ef` command-line tool](/ef/core/managing-schemas/migrations/#install-the-tools) to create a new migration to capture the initial state of the database schema:
@@ -61,7 +63,7 @@ Start by creating some migrations to apply.
       - Creates a migration named *InitialCreate*.
       - Creates the migration in the in the *Migrations* folder in the *SupportTicketApi.Data* project.
 
-### Using Package Manager Console
+### [Package Manager Console](#tab/package-manager-console)
 
 If you prefer using Visual Studio's Package Manager Console instead of the command line:
 
@@ -75,7 +77,9 @@ If you prefer using Visual Studio's Package Manager Console instead of the comma
     ```
 
     > [!IMPORTANT]
-    > When using Package Manager Console, ensure the startup project is set to the project that contains the DbContext registration (usually your API or web project), and the default project is set to where you want the migrations to be created (usually your data project).
+    > When using Package Manager Console, ensure the startup project is set to the project that contains the DbContext registration (usually your API or web project), and the default project is set to where you want the migrations to be created (usually your data project). Remember to change the startup project back to your AppHost project when you're done, or the .NET Aspire dashboard won't start when you press F5.
+
+---
 
 1. Modify the model so that it includes a new property. Open *:::no-loc text="SupportTicketApi.Data\\Models\\SupportTicket.cs":::* and add a new property to the `SupportTicket` class:
 
@@ -83,9 +87,19 @@ If you prefer using Visual Studio's Package Manager Console instead of the comma
 
 1. Create another new migration to capture the changes to the model:
 
+    ### [.NET CLI](#tab/dotnet-cli-2)
+
     ```dotnetcli
     dotnet ef migrations add AddCompleted --project ..\SupportTicketApi.Data\SupportTicketApi.Data.csproj
     ```
+
+    ### [Package Manager Console](#tab/package-manager-console-2)
+
+    ```powershell
+    Add-Migration AddCompleted
+    ```
+
+    ---
 
 Now you've got some migrations to apply. Next, you'll create a migration service that applies these migrations during app startup.
 
