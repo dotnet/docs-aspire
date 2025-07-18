@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot installing the .NET Aspire workload
 description: Explore strategies for troubleshooting issues when installing the .NET Aspire workload.
-ms.date: 05/15/2024
+ms.date: 07/17/2025
 ---
 
 # Troubleshoot installing the .NET Aspire workload

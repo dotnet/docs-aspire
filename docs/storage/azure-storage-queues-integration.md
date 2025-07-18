@@ -147,6 +147,48 @@ The .NET Aspire Azure Queue Storage integration supports <xref:Microsoft.Extensi
 
 For the complete Azure Storage Queues client integration JSON schema, see [Aspire.Azure.Data.Queues/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/e3d170c14198caf53e62818e1f71a0526449c585/src/Components/Aspire.Azure.Storage.Queues/ConfigurationSchema.json).
 
+#### Use named configuration
+
+The .NET Aspire Azure Queue Storage integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "Storage": {
+        "Queues": {
+          "queue1": {
+            "DisableHealthChecks": true,
+            "ClientOptions": {
+              "Diagnostics": {
+                "ApplicationId": "myapp1"
+              }
+            }
+          },
+          "queue2": {
+            "DisableTracing": true,
+            "ClientOptions": {
+              "Diagnostics": {
+                "ApplicationId": "myapp2"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `queue1` and `queue2` connection names can be used when calling `AddAzureQueueClient`:
+
+```csharp
+builder.AddAzureQueueClient("queue1");
+builder.AddAzureQueueClient("queue2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
+
 #### Use inline delegates
 
 You can also pass the `Action<AzureStorageQueuesSettings> configureSettings` delegate to set up some or all the options inline, for example to configure health checks:

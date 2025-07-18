@@ -387,6 +387,40 @@ The .NET Aspire Azure Service Bus integration supports <xref:Microsoft.Extension
 
 For the complete Service Bus client integration JSON schema, see [Aspire.Azure.Messaging.ServiceBus/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Messaging.ServiceBus/ConfigurationSchema.json).
 
+#### Use named configuration
+
+The .NET Aspire Azure Service Bus integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "Messaging": {
+        "ServiceBus": {
+          "bus1": {
+            "ConnectionString": "Endpoint=sb://namespace1.servicebus.windows.net/;SharedAccessKeyName=keyName;SharedAccessKey=key;",
+            "DisableTracing": false
+          },
+          "bus2": {
+            "ConnectionString": "Endpoint=sb://namespace2.servicebus.windows.net/;SharedAccessKeyName=keyName;SharedAccessKey=key;",
+            "DisableTracing": true
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `bus1` and `bus2` connection names can be used when calling `AddAzureServiceBusClient`:
+
+```csharp
+builder.AddAzureServiceBusClient("bus1");
+builder.AddAzureServiceBusClient("bus2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
+
 #### Use inline delegates
 
 Also you can pass the `Action<AzureMessagingServiceBusSettings> configureSettings` delegate to set up some or all the options inline, for example to disable tracing from code:

@@ -166,7 +166,37 @@ The .NET Aspire Seq integration supports <xref:Microsoft.Extensions.Configuratio
 }
 ```
 
-For the complete Seq client integration JSON schema, see [Aspire.Seq/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Microsoft.Data.SqlClient/ConfigurationSchema.json).
+For the complete Seq client integration JSON schema, see [Aspire.Seq/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Seq/ConfigurationSchema.json).
+
+#### Use named configuration
+
+The .NET Aspire Seq integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Seq": {
+      "seq1": {
+        "ServerUrl": "http://seq1:5341",
+        "DisableHealthChecks": true
+      },
+      "seq2": {
+        "ServerUrl": "http://seq2:5341",
+        "DisableHealthChecks": false
+      }
+    }
+  }
+}
+```
+
+In this example, the `seq1` and `seq2` connection names can be used when calling `AddSeqEndpoint`:
+
+```csharp
+builder.AddSeqEndpoint("seq1");
+builder.AddSeqEndpoint("seq2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
 
 #### Use inline delegates
 

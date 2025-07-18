@@ -1,7 +1,7 @@
 ---
 title: Deploy .NET Aspire projects to Azure Container Apps using Visual Studio
 description: Learn how to deploy .NET Aspire projects to Azure Container Apps using Visual Studio.
-ms.date: 06/14/2024
+ms.date: 07/17/2025
 ---
 
 # Deploy a .NET Aspire project to Azure Container Apps using Visual Studio

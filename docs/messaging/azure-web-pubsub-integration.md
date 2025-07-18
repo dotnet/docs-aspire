@@ -291,6 +291,40 @@ The library supports <xref:Microsoft.Extensions.Configuration>. It loads setting
 
 For the complete Azure OpenAI client integration JSON schema, see [Aspire.Azure.Messaging.WebPubSub/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/main/src/Components/Aspire.Azure.Messaging.WebPubSub/ConfigurationSchema.json).
 
+#### Use named configuration
+
+The .NET Aspire Azure Web PubSub integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "Messaging": {
+        "WebPubSub": {
+          "webpubsub1": {
+            "HubName": "hub1",
+            "DisableHealthChecks": true
+          },
+          "webpubsub2": {
+            "HubName": "hub2",
+            "DisableHealthChecks": false
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `webpubsub1` and `webpubsub2` connection names can be used when calling `AddAzureWebPubSubServiceClient`:
+
+```csharp
+builder.AddAzureWebPubSubServiceClient("webpubsub1");
+builder.AddAzureWebPubSubServiceClient("webpubsub2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
+
 #### Use inline delegates
 
 You can configure settings inline:
