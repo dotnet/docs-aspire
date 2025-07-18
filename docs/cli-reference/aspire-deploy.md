@@ -25,12 +25,13 @@ The `aspire deploy` command is similar to [`aspire publish`](./aspire-publish.md
 
 [!INCLUDE [project-search-logic-description](includes/project-search-logic-description.md)]
 
-The command performs the following steps to run an apphost project:
+The command performs the following steps to run an AppHost project:
 
-- Writes the apphost project path to the `.aspire/settings.json` config file in the current directory.
-- Installs or verifies that Aspires local hosting certificates are installed and trusted.
-- Builds the apphost project.
-- Starts the apphost in publish mode.
+- Creates or modifies the `.aspire/settings.json` config file in the current directory, and sets the `appHostPath` config value to the path of the AppHost project file.
+- Installs or verifies that Aspire's local hosting certificates are installed and trusted.
+- Builds the AppHost project.
+- Starts the app host and its resources.
+- Starts the app host in publish mode.
 - Invokes all <xref:Aspire.Hosting.ApplicationModel.PublishingCallbackAnnotation> resource annotations.
 - Invokes all `DeployingCallbackAnnotation` resource annotations.
 
@@ -40,7 +41,7 @@ The following options are available:
 
 - **`--`**
 
-  Delimits arguments to aspire publish from arguments for the apphost. All arguments after this delimiter are passed to the apphost.
+  Delimits arguments to aspire publish from arguments for the app host. All arguments after this delimiter are passed to the app host.
 
 - [!INCLUDE [option-project](includes/option-project.md)]
 
@@ -56,19 +57,19 @@ The following options are available:
 
 ## Examples
 
-- Search the current directory structure for apphost projects to build, publish, and deploy:
+- Search the current directory structure for AppHost projects to build, publish, and deploy:
 
   ```Command
   aspire deploy
   ```
 
-- Publish and deploy a specific apphost project:
+- Publish and deploy a specific AppHost project:
 
   ```Command
   aspire deploy --project './projects/apphost/orchestration.AppHost.csproj'
   ```
 
-- Publish and deploy a specific apphost project with arguments:
+- Publish and deploy a specific AppHost project with arguments:
 
   ```Command
   aspire deploy --project './projects/apphost/orchestration.AppHost.csproj' -- -fast
