@@ -19,16 +19,16 @@ aspire run [options] [[--] <additional arguments>...]
 
 ## Description
 
-The `aspire run` command runs the apphost project in development mode, which configures the Aspire environment, builds the apphost, launches the web dashboard, and prints a list of endpoints.
+The `aspire run` command runs the AppHost project in development mode, which configures the Aspire environment, builds and starts resources defined by the app host, launches the web dashboard, and prints a list of endpoints.
 
 [!INCLUDE [project-search-logic-description](includes/project-search-logic-description.md)]
 
 The command performs the following steps to run an apphost project:
 
-- Writes the apphost project path to the `.aspire/settings.json` config file in the current directory.
-- Installs or verifies that Aspires local hosting certificates are installed and trusted.
-- Builds the apphost project.
-- Starts the apphost and any services defined in the apphost.
+- Creates or modifies the `.aspire/settings.json` config file in the current directory, and sets the `appHostPath` config value to the path of the AppHost project file.
+- Installs or verifies that Aspire's local hosting certificates are installed and trusted.
+- Builds the AppHost project.
+- Starts the app host and its resources.
 - Starts the dashboard.
 
 The following snippet is an example of the output displayed by the `aspire run` command:
