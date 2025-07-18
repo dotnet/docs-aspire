@@ -1,6 +1,6 @@
 ---
 title: .NET Aspire CLI Overview and Commands
-description: Learn .NET Aspire CLI commands for creating projects, running an apphost, and adding integrations. Get started with command-line tools to build and manage distributed applications efficiently.
+description: Learn .NET Aspire CLI commands for creating projects, running an app host, and adding integrations. Get started with command-line tools to build and manage distributed applications efficiently.
 ms.date: 06/26/2025
 ms.topic: overview
 ms.custom:
@@ -31,17 +31,17 @@ Use the `aspire new` command to create an Aspire project from a list of template
 
 While command line parameters can be used to automate the creation of an Aspire project, the Aspire CLI is an interactive-first experience.
 
-## Start the apphost
+## Start the app host
 
 [_Command reference: `aspire run`_](../cli-reference/aspire-run.md)
 
-The `aspire run` command runs the apphost project in development mode, which configures the Aspire environment, builds and starts services defined by the apphost, launches the web dashboard, and prints a list of endpoints.
+The `aspire run` command runs the AppHost project in development mode, which configures the Aspire environment, builds and starts resources defined by the app host, launches the web dashboard, and prints a list of endpoints.
 
-When `aspire run` starts, it searches the current directory for an apphost. If an apphost isn't found, the sub directories are searched until an apphost is found. If no apphost is found, Aspire stops. Once an apphost is found, Aspire CLI takes the following steps:
+When `aspire run` starts, it searches the current directory for an AppHost project. If a project isn't found, the sub directories are searched until one is found. If no AppHost project is found, Aspire stops. Once a project is found, Aspire CLI takes the following steps:
 
-- Installs or verifies that Aspires local hosting certificates are installed and trusted.
-- Builds the apphost project.
-- Starts the apphost and any services defined in the apphost.
+- Installs or verifies that Aspire's local hosting certificates are installed and trusted.
+- Builds the AppHost project.
+- Starts the app host and its resources.
 - Starts the dashboard.
 
 The following snippet is an example of the output displayed by the `aspire run` command:
@@ -62,7 +62,7 @@ Endpoints:  webfrontend has endpoint https://localhost:7294
 
 [_Command reference: `aspire add`_](../cli-reference/aspire-add.md)
 
-The `aspire add` command is an easy way to add official integration packages to your apphost. Use this as an alternative to a NuGet search through your IDE. You can run `aspire add <name|id>` if you know the name or NuGet ID of the integration package, If you omit a name or ID, the tool provides a list of packages to choose from. If you provide a partial name or ID, the tool filters the list of packages with items that match the provided value.
+The `aspire add` command is an easy way to add official integration packages to your AppHost project. Use this as an alternative to a NuGet search through your IDE. You can run `aspire add <name|id>` if you know the name or NuGet ID of the integration package, If you omit a name or ID, the tool provides a list of packages to choose from. If you provide a partial name or ID, the tool filters the list of packages with items that match the provided value.
 
 <!-- Add asciinema here -->
 
@@ -93,4 +93,4 @@ As of Aspire 9.4, Aspire doesn't include any default deployment annotations for 
 
 [_Command reference: `aspire exec`_](../cli-reference/aspire-exec.md)
 
-The `aspire exec` command runs commands in the context of a specific Aspire resource, inheriting that resource's configuration including environment variables, connection strings, and working directory. This is particularly useful for scenarios like running Entity Framework migrations where you need to run commands with the same configuration as your application. For example, you can run `aspire exec --resource api -- dotnet ef migrations add Init` to run Entity Framework commands with the proper database connection strings automatically configured.
+The `aspire exec` command runs a command in the context of a specific Aspire resource, inheriting that resource's configuration, including environment variables, connection strings, and working directory. This is particularly useful for scenarios like running Entity Framework migrations where you need to run commands with the same configuration as your application. For example, you can run `aspire exec --resource api -- dotnet ef migrations add Init` to run Entity Framework commands with the proper database connection strings automatically configured.
