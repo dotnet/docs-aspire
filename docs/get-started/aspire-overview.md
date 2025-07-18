@@ -70,7 +70,7 @@ Resources you can integrate include:
 Integrations are two-fold: "hosting" integrations represent the service you're connecting to, while "client" integrations represent the consumer of that service.
 
 > [!TIP]
-> Under the hood, every [integration](../fundamentals/integrations-overview.md) is either a container or executable, meaning you can add any container image, codebase, script, or cloud resource to your app host. Creating reusable Aspire integrations is just like creating a reusable UI component.
+> Under the hood, every _hosting_ [integration](../fundamentals/integrations-overview.md) is either a container or executable, meaning you can add any container image, codebase, script, or cloud resource to your app host. Creating reusable Aspire integrations is just like creating a reusable UI component.
 
 ## From development to deployment
 
