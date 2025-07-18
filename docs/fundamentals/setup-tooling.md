@@ -258,6 +258,24 @@ Once you create a new .NET Aspire project, you run and debug the app, stepping t
 
 :::zone-end
 
+## 🖥️ Aspire CLI
+
+🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
+
+📦 To install:
+
+On Windows:
+
+```powershell
+iex "& { $(irm https://github.com/dotnet/aspire/raw/refs/heads/main/eng/scripts/get-aspire-cli.ps1) }"
+```
+
+On Linux, or macOS:
+
+```sh
+curl -sSL https://github.com/dotnet/aspire/raw/refs/heads/main/eng/scripts/get-aspire-cli.sh | bash
+```
+
 ## See also
 
 - [Unable to install .NET Aspire workload](../troubleshooting/unable-to-install-workload.md)
