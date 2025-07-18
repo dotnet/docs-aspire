@@ -35,7 +35,6 @@ The following snippet is an example of the output displayed by the `aspire run` 
 
 ```Aspire CLI
 Dashboard:  https://localhost:17178/login?t=17f974bf68e390b0d4548af8d7e38b65                                         
-            https://literate-eureka-55x5r74pwxv2vx7p-17178.app.github.dev/login?t=17f974bf68e390b0d4548af8d7e38b65   
                                                                                                                     
     Logs:  /home/vscode/.aspire/cli/logs/apphost-1295-2025-07-14-18-16-13.log                                       
                                                               

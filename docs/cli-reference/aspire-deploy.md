@@ -47,7 +47,7 @@ The following options are available:
 
 - **`-o, --output-path`**
 
-  The output path for deployment artifacts. Defaults the a folder named _deploy_ in the current directory.
+  The output path for deployment artifacts. Defaults to a folder named _deploy_ in the current directory.
 
 - [!INCLUDE [option-help](includes/option-help.md)]
 
