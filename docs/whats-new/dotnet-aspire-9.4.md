@@ -8,6 +8,24 @@ ms.date: 07/03/2025
 
 _Aspire 9.4 introduces improvements across the CLI, dashboard, deployment, and provisioning experiences — all designed to streamline developer workflows and reduce friction._
 
+## 🖥️ Aspire CLI enhancements
+
+🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
+
+📦 To install:
+
+On Windows:
+
+```powershell
+iex "& { $(irm https://github.com/dotnet/aspire/raw/refs/heads/main/eng/scripts/get-aspire-cli.ps1) }"
+```
+
+On Linux, or macOS:
+
+```sh
+curl -sSL https://github.com/dotnet/aspire/raw/refs/heads/main/eng/scripts/get-aspire-cli.sh | bash
+```
+
 ## CLI and Dashboard
 
 This release introduces major enhancements to interactivity and diagnostics in the CLI and Dashboard. From validated user prompts to better logging visibility, Aspire now helps you catch configuration errors faster, streamline your local dev loop, and navigate logs more effectively.
