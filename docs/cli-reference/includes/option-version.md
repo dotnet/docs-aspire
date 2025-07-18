@@ -4,4 +4,4 @@ ms.topic: include
 ---
 **`--version`**
 
-  Prints the version of the .NET Aspire CLI tool.
+  Prints the version of the Aspire CLI tool.

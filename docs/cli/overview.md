@@ -1,6 +1,6 @@
 ---
 title: .NET Aspire CLI Overview and Commands
-description: Learn .NET Aspire CLI commands for creating projects, running an app host, and adding integrations. Get started with command-line tools to build and manage distributed applications efficiently.
+description: Learn about the Aspire CLI commands for creating projects, running an app host, and adding integrations. Get started with command-line tools to build and manage distributed applications efficiently.
 ms.date: 06/26/2025
 ms.topic: overview
 ms.custom:
@@ -10,7 +10,7 @@ ms.custom:
   - ai-gen-description
 ---
 
-# .NET Aspire CLI Overview
+# Aspire CLI Overview
 
 The Aspire CLI (`aspire` command) is a cross-platform tool that provides command-line functionality to create, manage, run, and publish polyglot Aspire projects. Use the Aspire CLI to streamline development workflows and coordinate services for distributed applications.
 
@@ -87,7 +87,7 @@ The `aspire deploy` command is similar to `aspire publish`. After Aspire has inv
 As of Aspire 9.4, Aspire doesn't include any default deployment annotations for its resources, you must use the `DeployingCallbackAnnotation` to build your own.
 
 > [!TIP]
-> Consider this a good way to deploy your Aspire solution to a staging area for testing.
+> Consider this a good way to deploy your Aspire solution to a staging or testing environment.
 
 ## Run commands in resource context (preview)
 
