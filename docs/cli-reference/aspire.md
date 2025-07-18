@@ -42,7 +42,7 @@ The following commands are available:
 | Command                                          | Status  | Function                                                                 |
 |--------------------------------------------------|---------|--------------------------------------------------------------------------|
 | [`aspire add`](aspire-add.md)                    | Stable  | Add an integration to the Aspire project.                                |
-| [`aspire config`](#configure-aspire-environment) | Stable  | Configures the Aspire environment.                                       |
+| [`aspire config`](aspire-configure.md)           | Stable  | Configures the Aspire environment.                                       |
 | [`aspire deploy`](aspire-deploy.md)              | Preview | Deploys the artifacts created by `aspire publish`.                       |
 | [`aspire exec`](aspire-exec.md)                  | Stable  | Similar to the `aspire run` command, but passes commands to the apphost. |
 | [`aspire new`](aspire-new.md)                    | Stable  | Create an Aspire sample project from a template.                         |
