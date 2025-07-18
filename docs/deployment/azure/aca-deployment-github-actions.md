@@ -22,12 +22,12 @@ The Azure Developer CLI (`azd`) enables you to deploy .NET Aspire projects using
 
 - [Create an Azure DevOps organization](/azure/devops/organizations/accounts/create-organization) or choose an existing organization
 - [Create an Azure DevOps Personal Access Token (PAT)](/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate#create-a-pat) and save it for later use. Configure the token with the following permissions:
-  - Agent Pools (read, manage).
-  - Build (read and execute).
-  - Code (full).
-  - Project and team (read, write and manage).
-  - Release (read, write, execute and manage).
-  - Service Connections (read, query and manage).
+  - Agent Pools (read, manage)
+  - Build (read and execute)
+  - Code (full)
+  - Project and team (read, write and manage)
+  - Release (read, write, execute and manage)
+  - Service Connections (read, query and manage)
 
 :::zone-end
 
