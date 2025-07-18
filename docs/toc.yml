@@ -101,6 +101,8 @@ items:
       href: fundamentals/dashboard/standalone.md
     - name: Tutorial — Use with Python
       href: fundamentals/dashboard/standalone-for-python.md
+    - name: Tutorial — Use with Node.js
+      href: fundamentals/dashboard/standalone-for-nodejs.md
   - name: Configuration
     href: fundamentals/dashboard/configuration.md
   - name: Enable browser telemetry
