@@ -39,18 +39,18 @@ The following options are available when `aspire` is used by itself, without spe
 
 The following commands are available:
 
-| Command                               | Status  | Function                                                                 |
-|---------------------------------------|---------|--------------------------------------------------------------------------|
-| [`aspire add`](aspire-add.md)         | Stable  | Add an integration to the Aspire project.                                |
-| [`aspire new`](aspire-new.md)         | Stable  | Create an Aspire sample project from a template.                         |
-| [`aspire run`](aspire-run.md)         | Stable  | Run an Aspire apphost in development mode.                               |
-| [`aspire exec`](aspire-exec.md)       | Stable  | Similar to the `aspire run` command, but passes commands to the apphost. |
-| [`aspire deploy`](aspire-deploy.md)   | Preview | Deploys the artifacts created by `aspire publish`.                       |
-| [`aspire publish`](aspire-publish.md) | Preview | Generates deployment artifacts for an Aspire apphost project.            |
+| Command                                          | Status  | Function                                                                 |
+|--------------------------------------------------|---------|--------------------------------------------------------------------------|
+| [`aspire add`](aspire-add.md)                    | Stable  | Add an integration to the Aspire project.                                |
+| [`aspire config`](#configure-aspire-environment) | Stable  | Configures the Aspire environment.                                       |
+| [`aspire deploy`](aspire-deploy.md)              | Preview | Deploys the artifacts created by `aspire publish`.                       |
+| [`aspire exec`](aspire-exec.md)                  | Stable  | Similar to the `aspire run` command, but passes commands to the apphost. |
+| [`aspire new`](aspire-new.md)                    | Stable  | Create an Aspire sample project from a template.                         |
+| [`aspire publish`](aspire-publish.md)            | Preview | Generates deployment artifacts for an Aspire apphost project.            |
+| [`aspire run`](aspire-run.md)                    | Stable  | Run an Aspire apphost in development mode.                               |
 
 <!-- These commands aren't used yet
 
-| [`aspire config`](#configure-aspire-environment)         | Stable  | Configures the Aspire environment.                                        |
 | `aspire init`                                            | Future  | ... |
 
 -->
