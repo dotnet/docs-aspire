@@ -14,17 +14,19 @@ _Aspire 9.4 introduces improvements across the CLI, dashboard, deployment, and p
 
 📦 To install:
 
-On Windows:
+### [Unix](#tab/unix)
+
+```sh
+curl -sSL https://github.com/dotnet/aspire/raw/refs/heads/main/eng/scripts/get-aspire-cli.sh | bash
+```
+
+### [Windows](#tab/windows)
 
 ```powershell
 iex "& { $(irm https://github.com/dotnet/aspire/raw/refs/heads/main/eng/scripts/get-aspire-cli.ps1) }"
 ```
 
-On Linux, or macOS:
-
-```sh
-curl -sSL https://github.com/dotnet/aspire/raw/refs/heads/main/eng/scripts/get-aspire-cli.sh | bash
-```
+---
 
 ## CLI and Dashboard
 
