@@ -1,6 +1,6 @@
 ---
 title: aspire add command
-description: Learn about the aspire add command and its usage. This command adds an integration package to an Aspire apphost project.
+description: Learn about the aspire add command and its usage. This command adds an integration package to an Aspire AppHost project.
 ms.date: 07/11/2025
 ---
 # aspire add command
@@ -19,7 +19,7 @@ aspire add [<integration>] [options]
 
 ## Description
 
-The `aspire add` command searches NuGet for an integration package and adds it to the apphost project.
+The `aspire add` command searches NuGet for an integration package and adds it to the AppHost project.
 
 [!INCLUDE [project-search-logic-description](includes/project-search-logic-description.md)]
 
@@ -55,13 +55,13 @@ The following options are available:
 
 ## Examples
 
-- Finds an apphost project and lists all Aspire integration packages from NuGet:
+- Finds an AppHost project and lists all Aspire integration packages from NuGet:
 
   ```Command
   aspire add
   ```
 
-- Finds an apphost project and adds the **kafka** (Aspire.Hosting.Kafka) integration package:
+- Finds an AppHost project and adds the **kafka** (Aspire.Hosting.Kafka) integration package:
 
   ```Command
   aspire add kafka --version 9.3.2

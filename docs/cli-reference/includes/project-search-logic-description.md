@@ -5,7 +5,7 @@ ms.date: 07/11/2025
 ms.topic: include
 ---
 
-The Aspire CLI uses the following logic, in order, to determine which apphost project to process:
+The Aspire CLI uses the following logic, in order, to determine which AppHost project to process:
 
 - The `--project` option.
 
@@ -17,6 +17,6 @@ The Aspire CLI uses the following logic, in order, to determine which apphost pr
 
 - Searches the current directory and subdirectories.
 
-  Starting in the current directory, the CLI gathers all apphost projects from that directory and below. If a single project is discovered, it's automatically selected. If mutliple projects are discovered, they're printed to the terminal for the user to manually select one of the projects.
+  Starting in the current directory, the CLI gathers all AppHost projects from that directory and below. If a single project is discovered, it's automatically selected. If mutliple projects are discovered, they're printed to the terminal for the user to manually select one of the projects.
   
   Once a project selected, either automatically or manually, the path to the project is stored in the `.aspire/settings.json` config file.

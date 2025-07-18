@@ -6,4 +6,4 @@ ms.topic: include
 ---
 **`--project`**
 
-  The path to the Aspire apphost project file.
+  The path to the Aspire AppHost project file.

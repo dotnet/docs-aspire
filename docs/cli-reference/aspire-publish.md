@@ -25,12 +25,13 @@ The `aspire publish` command publishes resources by serializing them to disk. Wh
 
 [!INCLUDE [project-search-logic-description](includes/project-search-logic-description.md)]
 
-The command performs the following steps to run an apphost project:
+The command performs the following steps to run an AppHost project:
 
-- Writes the apphost project path to the `.aspire/settings.json` config file in the current directory.
-- Installs or verifies that Aspires local hosting certificates are installed and trusted.
-- Builds the apphost project.
-- Starts the apphost in publish mode.
+- Creates or modifies the `.aspire/settings.json` config file in the current directory, and sets the `appHostPath` config value to the path of the AppHost project file.
+- Installs or verifies that Aspire's local hosting certificates are installed and trusted.
+- Builds the AppHost project.
+- Starts the app host and its resources.
+- Starts the app host in publish mode.
 - Invokes all <xref:Aspire.Hosting.ApplicationModel.PublishingCallbackAnnotation> annotations for resources.
 
 ## Options
@@ -39,7 +40,7 @@ The following options are available:
 
 - **`--`**
 
-  Delimits arguments to aspire publish from arguments for the apphost. All arguments after this delimiter are passed to the apphost.
+  Delimits arguments to aspire publish from arguments for the AppHost. All arguments after this delimiter are passed to the AppHost.
 
 - [!INCLUDE [option-project](includes/option-project.md)]
 
@@ -55,19 +56,19 @@ The following options are available:
 
 ## Examples
 
-- Search the current directory structure for apphost projects to build and publish:
+- Search the current directory structure for AppHost projects to build and publish:
 
   ```Command
   aspire publish
   ```
 
-- Publish a specific apphost project:
+- Publish a specific AppHost project:
 
   ```Command
   aspire publish --project './projects/apphost/orchestration.AppHost.csproj'
   ```
 
-- Publish a specific apphost project with arguments:
+- Publish a specific AppHost project with arguments:
 
   ```Command
   aspire publish --project './projects/apphost/orchestration.AppHost.csproj' -- -fast

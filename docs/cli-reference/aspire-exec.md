@@ -1,6 +1,6 @@
 ---
 title: aspire exec command
-description: Learn about the aspire exec command and its usage. This command builds and runs an Aspire apphost project, then sends commands to a resource.
+description: Learn about the aspire exec command and its usage. This command builds and runs an Aspire AppHost project, then sends commands to a resource.
 ms.date: 07/11/2025
 ---
 # aspire exec command
@@ -19,7 +19,7 @@ aspire exec [options] [[--] <additional arguments>...]
 
 ## Description
 
-The `aspire exec` command runs an apphost project and runs a command in the context of one of the resources.
+The `aspire exec` command runs an AppHost project and runs a command in the context of one of the resources.
 
 You must specify either the `--resource` or the `--start-resource` option, and you must provide parameters with the `--` option.
 
@@ -51,7 +51,7 @@ The following options are available:
 
 ## Examples
 
-- Builds and runs the apphost project, then sends the command `migrate` to the `database1` resource:
+- Builds and runs the AppHost project, then sends the command `migrate` to the `database1` resource:
 
   ```Command
   aspire exec --resource database1 -- migrate

@@ -51,7 +51,7 @@ The following options are available:
 
 - **`--`**
 
-  Delimits arguments to aspire run from arguments for the apphost being run. All arguments after this delimiter are passed to the apphost run.
+  Delimits arguments to aspire run from arguments for the app host being run. All arguments after this delimiter are passed to the app host run.
 
 - [!INCLUDE [option-project](includes/option-project.md)]
 
@@ -67,19 +67,19 @@ The following options are available:
 
 ## Examples
 
-- Search the current directory structure for apphost projects to build and run:
+- Search the current directory structure for AppHost projects to build and run:
 
   ```Command
   aspire run
   ```
 
-- Run a specific apphost project:
+- Run a specific AppHost project:
 
   ```Command
   aspire run --project './projects/apphost/orchestration.AppHost.csproj'
   ```
 
-- Run a specific apphost project with arguments:
+- Run a specific AppHost project with arguments:
 
   ```Command
   aspire run --project './projects/apphost/orchestration.AppHost.csproj' -- -fast
