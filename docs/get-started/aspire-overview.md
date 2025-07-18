@@ -1,18 +1,18 @@
 ---
 title: Aspire overview
 description: Learn about Aspire, an application stack designed to improve the experience of building distributed applications.
-ms.date: 06/26/2025
+ms.date: 07/18/2025
 ---
 
 # Aspire overview
 
-Aspire provides tools, templates, and packages to help you build observable, production-ready distributed apps. Delivered through NuGet packages, Aspire simplifies the development experience by streamlining the management of your app's configuration and interconnections. With Aspire, you get a unified toolchain that makes local debugging effortless—launch and debug your entire app with a single command. Ready to deploy? Aspire lets you publish anywhere—Kubernetes, the cloud, or your own servers—using the same app composition you use for development.
+Aspire provides tools, templates, and packages to help you build observable, production-ready distributed apps. Delivered through packages, Aspire simplifies the development experience by streamlining the management of your app's configuration and interconnections. With Aspire, you get a unified toolchain that makes local debugging effortless—launch and debug your entire app with a single command. Ready to deploy? Aspire lets you publish anywhere—Kubernetes, the cloud, or your own servers—using the same app composition you use for development.
 
 Aspire is designed for flexibility, allowing you to replace or extend parts with your preferred tools and workflows. Key capabilities include:
 
-- **App host orchestration**: Define your app's services, dependencies, and configuration in code
-- **Rich integrations**: NuGet packages for popular services with standardized interfaces
-- **Consistent tooling**: Project templates and experiences for Visual Studio, VS Code, and the CLI
+- **App host orchestration**: Define your app's services, dependencies, and configuration in code.
+- **Rich integrations**: NuGet packages for popular services with standardized interfaces.
+- **Consistent tooling**: Project templates and experiences for Visual Studio, VS Code, and the CLI.
 
 For the official support information, see the [Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire).
 
@@ -57,15 +57,15 @@ Aspire makes it easy to define everything your app needs using integrations—Nu
 
 Resources you can integrate include:
 
-- AI services
-- Caches  
-- Containers
-- Databases
-- Executables
-- Frameworks
-- Messaging services
-- Projects
-- Storage
+- **AI Services**: Large Language Models, AI endpoints, and cognitive services.
+- **Caches**: Redis, in-memory caches, and distributed caching solutions.
+- **Containers**: Docker containers for databases, message brokers, and other services.
+- **Databases**: SQL Server, PostgreSQL, MySQL, MongoDB, and other data stores.
+- **Executables**: Console applications, scripts, and background services.
+- **Frameworks**: Web applications, APIs, and microservices built with various frameworks.
+- **Messaging Services**: Service Bus, RabbitMQ, Kafka, and other messaging systems.
+- **Projects**: .NET projects, Node.js applications, Python services, and more.
+- **Storage**: Blob storage, file systems, and cloud storage services.
 
 Integrations are two-fold: "hosting" integrations represent the service you're connecting to, while "client" integrations represent the consumer of that service.
 
@@ -84,9 +84,9 @@ builder.AddServiceDefaults();
 
 When added to your C# code, this method configures:
 
-- **OpenTelemetry**: Formatted logging, runtime metrics, and tracing for ASPCore, gRPC, and HTTP
-- **Health checks**: Default endpoints that tools can query to monitor your app
-- **Service discovery**: Enables service discovery and configures <xref:System.Net.Http.HttpClient> accordingly
+- **OpenTelemetry**: Formatted logging, runtime metrics, and tracing for ASPCore, gRPC, and HTTP.
+- **Health checks**: Default endpoints that tools can query to monitor your app.
+- **Service discovery**: Enables service discovery and configures <xref:System.Net.Http.HttpClient> accordingly.
 
 For more information, see [Aspire service defaults](../fundamentals/service-defaults.md).
 
@@ -94,15 +94,18 @@ Consider how the three-tier architecture example can be deployed across differen
 
 | **Resource** | **Local development** | **Azure** | **AWS** |
 |----------|-------------------|-------|-----|---------|
-| Frontend | `npm run` | Azure Container Apps | AWS ECS or AWS App Runner |
-| API service | `dotnet run` | Azure Container Apps | AWS ECS or AWS Lambda |
-| Database | `docker.io/library/postgres` | Azure Database for PostgreSQL | AWS RDS or AWS Aurora |
+| Frontend | `npm run` | Azure Container Apps | Amazon Elastic Container Service |
+| API service | `dotnet run` | Azure Container Apps | AWS Lambda |
+| Database | `docker.io/library/postgres` | Azure Database for PostgreSQL | Amazon Relational Database Service |
+
+> [!TIP]
+> These are just a few examples of how you can deploy Aspire apps.
 
 Aspire's deployment capabilities are flexible and don't interfere with your existing workflows. You can continue using your preferred tools and services while benefiting from the consistent app topology defined in your app host.
 
-For more information, see [Deploy Aspire apps](../deployment/overview.md) and [Aspire service defaults](../fundamentals/service-defaults.md).
+For more information, see [Deploy Aspire apps](../deployment/overview.md).
 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Quickstart: Build your first Aspire project](build-your-first-aspire-app.md)
+> [Build your first Aspire solution](build-your-first-aspire-app.md)
