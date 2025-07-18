@@ -1,22 +1,24 @@
 info: Program[0]
       1. BeforeStartEvent
 info: Aspire.Hosting.DistributedApplication[0]
-      Aspire version: 9.3.0-preview.1.25262.2+6d54dc081cd2e7ea435e33f7c0e62ff6946ae66d
+      Aspire version: 9.4.0
 info: Aspire.Hosting.DistributedApplication[0]
       Distributed application starting.
 info: Aspire.Hosting.DistributedApplication[0]
       Application host directory is: ../AspireApp/AspireApp.AppHost
 info: Program[0]
-      2. AfterEndpointsAllocatedEvent
-        3. 'aspire-dashboard' ResourceEndpointsAllocatedEvent
-        3. 'cache' ResourceEndpointsAllocatedEvent
-        3. 'apiservice' ResourceEndpointsAllocatedEvent
-        3. 'webfrontend' ResourceEndpointsAllocatedEvent
+      2. "cache" ResourceEndpointsAllocatedEvent
+info: Program[0]
+      2. "apiservice" ResourceEndpointsAllocatedEvent
+info: Program[0]
+      2. "webfrontend" ResourceEndpointsAllocatedEvent
+info: Program[0]
+      2. "aspire-dashboard" ResourceEndpointsAllocatedEvent
 info: Aspire.Hosting.DistributedApplication[0]
       Now listening on: https://localhost:17178
 info: Aspire.Hosting.DistributedApplication[0]
       Login to the dashboard at https://localhost:17178/login?t=<YOUR_TOKEN>
 info: Program[0]
-      4. AfterResourcesCreatedEvent
+      3. AfterResourcesCreatedEvent
 info: Aspire.Hosting.DistributedApplication[0]
       Distributed application started. Press Ctrl+C to shut down.

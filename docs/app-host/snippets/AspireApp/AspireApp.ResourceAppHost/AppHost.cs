@@ -5,45 +5,52 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var cache = builder.AddRedis("cache");
 
-builder.Eventing.Subscribe<ResourceReadyEvent>(
-    cache.Resource,
-    static (@event, cancellationToken) =>
+cache.OnResourceReady(static (resource, @event, cancellationToken) =>
     {
         var logger = @event.Services.GetRequiredService<ILogger<Program>>();
 
-        logger.LogInformation("4. ResourceReadyEvent");
+        logger.LogInformation("5. OnResourceReady");
 
         return Task.CompletedTask;
     });
 
-builder.Eventing.Subscribe<InitializeResourceEvent>(cache.Resource,
-    static (@event, cancellationToken) =>
+cache.OnInitializeResource(
+    static (resource, @event, cancellationToken) =>
     {
         var logger = @event.Services.GetRequiredService<ILogger<Program>>();
 
-        logger.LogInformation("1. InitializeResourceEvent");
+        logger.LogInformation("1. OnInitializeResource");
 
         return Task.CompletedTask;
     });
 
-builder.Eventing.Subscribe<BeforeResourceStartedEvent>(
-    cache.Resource,
-    static (@event, cancellationToken) =>
+cache.OnBeforeResourceStarted(
+    static (resource, @event, cancellationToken) =>
     {
         var logger = @event.Services.GetRequiredService<ILogger<Program>>();
 
-        logger.LogInformation("3. BeforeResourceStartedEvent");
+        logger.LogInformation("4. OnBeforeResourceStarted");
+
 
         return Task.CompletedTask;
     });
 
-builder.Eventing.Subscribe<ConnectionStringAvailableEvent>(
-    cache.Resource,
-    static (@event, cancellationToken) =>
+cache.OnResourceEndpointsAllocated(
+    static (resource, @event, cancellationToken) =>
     {
         var logger = @event.Services.GetRequiredService<ILogger<Program>>();
 
-        logger.LogInformation("2. ConnectionStringAvailableEvent");
+        logger.LogInformation("2. OnResourceEndpointsAllocated");
+
+        return Task.CompletedTask;
+    });
+
+cache.OnConnectionStringAvailable(
+    static (resource, @event, cancellationToken) =>
+    {
+        var logger = @event.Services.GetRequiredService<ILogger<Program>>();
+
+        logger.LogInformation("3. OnConnectionStringAvailable");
 
         return Task.CompletedTask;
     });

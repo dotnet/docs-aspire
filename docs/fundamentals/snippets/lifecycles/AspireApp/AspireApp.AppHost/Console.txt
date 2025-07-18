@@ -1,7 +1,7 @@
 info: LifecycleLogger[0]
       1. BeforeStartAsync
 info: Aspire.Hosting.DistributedApplication[0]
-      Aspire version: 9.3.0
+      Aspire version: 9.4.0
 info: Aspire.Hosting.DistributedApplication[0]
       Distributed application starting.
 info: Aspire.Hosting.DistributedApplication[0]
