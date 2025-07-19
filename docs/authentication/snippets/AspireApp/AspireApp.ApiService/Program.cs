@@ -15,8 +15,14 @@ builder.Services.AddAuthentication()
                     realm: "WeatherShop",
                     configureOptions: options =>
                 {
-                    options.RequireHttpsMetadata = false;
                     options.Audience = "weather.api";
+                    
+                    // For development only - disable HTTPS metadata validation
+                    // In production, use explicit Authority configuration instead
+                    if (builder.Environment.IsDevelopment())
+                    {
+                        options.RequireHttpsMetadata = false;
+                    }
                 });
 
 builder.Services.AddAuthorizationBuilder();
