@@ -180,6 +180,20 @@ For more information and examples of Structured logs, see the [Structured logs p
 >
 > For more information about configuring a resource service, see [Dashboard configuration](configuration.md).
 
+## Interaction prompts
+
+Some resources or commands might prompt you for values when using the .NET Aspire dashboard. This interactive functionality is powered by the interaction service, which allows integrations to request input from users when needed.
+
+For example, Azure resources that are missing required configuration might prompt you for configuration values when the dashboard starts or when you interact with those resources. These prompts help ensure that resources are properly configured and can function correctly within your .NET Aspire application.
+
+When interaction prompts appear, they provide:
+
+- Input prompts for missing configuration values
+- Confirmation dialogs for important actions  
+- Information messages with details about resource status
+
+These prompts appear directly in the dashboard interface, making it easy to provide the necessary information without switching to external tools or configuration files.
+
 ## Monitoring pages
 
 The .NET Aspire dashboard provides various ways to view logs, traces, and metrics for your app. This information enables you to track the behavior and performance of your app and to diagnose any issues that arise.
