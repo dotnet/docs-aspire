@@ -1,18 +1,22 @@
 ---
 title: Aspire overview
 description: Learn about Aspire, an application stack designed to improve the experience of building distributed applications.
-ms.date: 07/18/2025
+ms.date: 07/21/2025
 ---
 
 # Aspire overview
 
-Aspire provides tools, templates, and packages to help you build observable, production-ready distributed apps. Delivered through packages, Aspire simplifies the development experience by streamlining the management of your app's configuration and interconnections. With Aspire, you get a unified toolchain that makes local debugging effortless—launch and debug your entire app with a single command. Ready to deploy? Aspire lets you publish anywhere—Kubernetes, the cloud, or your own servers—using the same app composition you use for development.
+**Aspire** provides tools, templates, and packages for building **observable, production-ready distributed apps**. At the center is the **app model**—a **code-first, single source of truth** that defines your app's services, resources, and connections.
 
-Aspire is designed for flexibility, allowing you to replace or extend parts with your preferred tools and workflows. Key capabilities include:
+Aspire gives you a **unified toolchain**: launch and debug your entire app locally with one command, then deploy anywhere—**Kubernetes, the cloud, or your own servers**—using the same composition.
 
-- **App host orchestration**: Define your app's services, dependencies, and configuration in code.
-- **Rich integrations**: NuGet packages for popular services with standardized interfaces.
-- **Consistent tooling**: Project templates and experiences for Visual Studio, VS Code, and the CLI.
+Extensibility is a core focus. Aspire's APIs are designed so you can adapt the platform to your infrastructure, services, and workflows.
+
+### Key capabilities
+
+- **App host orchestration:** Define services, dependencies, and configuration in code.
+- **Rich integrations:** NuGet packages for popular services with standardized interfaces.
+- **Consistent tooling:** Project templates and experiences for **Visual Studio, VS Code, and the CLI.**
 
 For the official support information, see the [Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire).
 
