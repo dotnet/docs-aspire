@@ -48,3 +48,9 @@ The following options are available:
 - [!INCLUDE [option-debug](includes/option-debug.md)]
 
 - [!INCLUDE [option-wait](includes/option-wait.md)]
+
+## Settings
+
+The following config settings are available:
+
+[!INCLUDE [config-settings-table](includes/config-settings-table.md)]

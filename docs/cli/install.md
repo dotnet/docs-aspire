@@ -16,7 +16,7 @@ This article teaches you how to install .NET Aspire CLI, which is a .NET global 
 
 ## Prerequisites
 
-- [.NET SDK 8.0](https://dotnet.microsoft.com/download/dotnet/8.0) or [.NET SDK 9.0](https://dotnet.microsoft.com/download/dotnet/9.0).
+- [.NET SDK 9.0](https://dotnet.microsoft.com/download/dotnet/9.0).
 
 ## Install the global tool
 

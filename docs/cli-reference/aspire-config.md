@@ -43,3 +43,9 @@ The following commands are available:
 | [`aspire config get <key>`](aspire-config-get.md)         | Stable | Get a configuration value.     |
 | [`aspire config set <key> <value>`](aspire-config-set.md) | Stable | Set a configuration value.     |
 | [`aspire config delete <key>`](aspire-config-delete.md)   | Stable | Delete a configuration value.  |
+
+## Settings
+
+The following config settings are available:
+
+[!INCLUDE [config-settings-table](includes/config-settings-table.md)]

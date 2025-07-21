@@ -34,14 +34,9 @@ The command performs the following steps to run an apphost project:
 The following snippet is an example of the output displayed by the `aspire run` command:
 
 ```Aspire CLI
-Dashboard:  https://localhost:17178/login?t=17f974bf68e390b0d4548af8d7e38b65                                         
-                                                                                                                    
-    Logs:  /home/vscode/.aspire/cli/logs/apphost-1295-2025-07-14-18-16-13.log                                       
-                                                              
-Endpoints:  webfrontend has endpoint https://localhost:7294   
-            webfrontend has endpoint http://localhost:5131   
-            apiservice has endpoint https://localhost:7531   
-            apiservice has endpoint http://localhost:5573   
+Dashboard:  https://localhost:17178/login?t=17f974bf68e390b0d4548af8d7e38b65
+
+    Logs:  /home/vscode/.aspire/cli/logs/apphost-1295-2025-07-14-18-16-13.log
 ```
 
 ## Options
