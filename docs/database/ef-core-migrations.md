@@ -77,7 +77,7 @@ If you prefer using Visual Studio's Package Manager Console instead of the comma
     ```
 
     > [!IMPORTANT]
-    > When using Package Manager Console, ensure the startup project is set to the project that contains the DbContext registration (usually your API or web project), and the default project is set to where you want the migrations to be created (usually your data project). Remember to change the startup project back to your AppHost project when you're done, or the .NET Aspire dashboard won't start when you press F5.
+    > When using Package Manager Console, ensure the startup project is set to the project that contains the DbContext registration (usually your API or web project), and the default project is set to where you want the migrations to be created (usually your data project). Remember to change the startup project back to your AppHost project when you're done, or the .NET Aspire dashboard won't start when you press <kbd>F5</kbd>.
 
 ---
 
