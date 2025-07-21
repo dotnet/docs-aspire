@@ -16,7 +16,7 @@ The Aspire CLI (`aspire` command) is a cross-platform tool that provides command
 
 The Aspire CLI is an interactive-first experience.
 
-- [Install .NET Aspire CLI.](install.md)
+- [Install the Aspire CLI.](install.md)
 - [`aspire` command reference.](../cli-reference/aspire.md)
 
 ## Use templates
@@ -31,7 +31,7 @@ Use the `aspire new` command to create an Aspire project from a list of template
 
 While command line parameters can be used to automate the creation of an Aspire project, the Aspire CLI is an interactive-first experience.
 
-## Start the app host
+## Start the Aspire AppHost
 
 [_Command reference: `aspire run`_](../cli-reference/aspire-run.md)
 

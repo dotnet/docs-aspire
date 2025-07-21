@@ -19,7 +19,7 @@ aspire exec [options] [[--] <additional arguments>...]
 
 ## Description
 
-The `aspire exec` command runs an AppHost project and runs a command in the context of one of the resources.
+The `aspire exec` command runs a command in the context of one of the resources defined in the AppHost.
 
 You must specify either the `--resource` or the `--start-resource` option, and you must provide parameters with the `--` option.
 
