@@ -18,9 +18,28 @@ This article teaches you how to install .NET Aspire CLI, which is a .NET global 
 
 - [.NET SDK 9.0](https://dotnet.microsoft.com/download/dotnet/9.0).
 
-## Install the global tool
+## Install as a native executable
 
-Use the `dotnet tool` command to install .NET Aspire CLI global tool. The name of the global tool is [Aspire.Cli](https://www.nuget.org/packages/Aspire.CLI).
+The compiled version of the Aspire CLI can be installd using the Aspire CLI Installation Script.
+
+01. Open a terminal.
+01. Run the following command to download and run the script.
+
+    Windows:
+
+    ```powershell
+    Invoke-Expression "& { $(Invoke-RestMethod https://github.com/dotnet/aspire/raw/refs/heads/main/eng/scripts/get-aspire-cli.ps1) }"
+    ```
+
+    Linux or macOS:
+
+    ```bash
+    curl -sSL https://github.com/dotnet/aspire/raw/refs/heads/main/eng/scripts/get-aspire-cli.sh | bash
+    ```
+
+## Install as a .NET global tool
+
+Use the `dotnet tool` command to install the Aspire CLI global tool. The name of the global tool is [Aspire.Cli](https://www.nuget.org/packages/Aspire.CLI).
 
 01. Open a terminal.
 01. Run the following command to install Aspire CLI:
@@ -37,8 +56,8 @@ To validate that the global tool is installed, use the `--version` option to que
 aspire --version
 ```
 
-If that command works, you're presented with the version of the .NET Aspire CLI tool:
+If that command works, you're presented with the version of the Aspire CLI tool:
 
 ```
-9.3.1-preview.1.25305.6+5bc26c78ff8c7be825d0ae33633a1ae9f1d64a67
+9.4.0
 ```
