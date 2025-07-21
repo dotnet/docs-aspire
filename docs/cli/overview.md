@@ -40,8 +40,8 @@ The `aspire run` command runs the AppHost project in development mode, which con
 When `aspire run` starts, it searches the current directory for an AppHost project. If a project isn't found, the sub directories are searched until one is found. If no AppHost project is found, Aspire stops. Once a project is found, Aspire CLI takes the following steps:
 
 - Installs or verifies that Aspire's local hosting certificates are installed and trusted.
-- Builds the AppHost project.
-- Starts the app host and its resources.
+- Builds the AppHost project and its resources.
+- Starts the AppHost and its resources.
 - Starts the dashboard.
 
 The following snippet is an example of the output displayed by the `aspire run` command:

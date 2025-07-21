@@ -27,8 +27,8 @@ The command performs the following steps to run an apphost project:
 
 - Creates or modifies the `.aspire/settings.json` config file in the current directory, and sets the `appHostPath` config value to the path of the AppHost project file.
 - Installs or verifies that Aspire's local hosting certificates are installed and trusted.
-- Builds the AppHost project.
-- Starts the app host and its resources.
+- Builds the AppHost project and its resources.
+- Starts the AppHost and its resources.
 - Starts the dashboard.
 
 The following snippet is an example of the output displayed by the `aspire run` command:
@@ -45,7 +45,7 @@ The following options are available:
 
 - **`--`**
 
-  Delimits arguments to aspire run from arguments for the app host being run. All arguments after this delimiter are passed to the app host run.
+  Delimits arguments to `aspire run` from arguments for the app host being run. All arguments after this delimiter are passed to the app host run.
 
 - [!INCLUDE [option-project](includes/option-project.md)]
 

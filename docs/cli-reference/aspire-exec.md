@@ -31,7 +31,7 @@ The following options are available:
 
 - **`--`**
 
-  Delimits arguments to aspire exec from arguments for the resource. All arguments after this delimiter are passed to the resource.
+  Delimits arguments to `aspire exec` from arguments for the resource. All arguments after this delimiter are passed to the resource.
 
 - [!INCLUDE [option-project](includes/option-project.md)]
 

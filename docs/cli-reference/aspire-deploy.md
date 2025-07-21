@@ -9,7 +9,7 @@ ms.date: 07/11/2025
 
 ## Name
 
-`aspire deploy` - Deploy an Aspire app host project to its supported deployment targets.
+`aspire deploy` - Deploy a codebase orchestrated with Aspire to specified targets.
 
 [!INCLUDE [mode-preview](includes/mode-preview.md)]
 
@@ -21,17 +21,16 @@ aspire deploy [options] [[--] <additional arguments>...]
 
 ## Description
 
-The `aspire deploy` command is similar to [`aspire publish`](./aspire-publish.md). After Aspire has invoked the publishing annotations, it invokes `DeployingCallbackAnnotation` resource annotations, in the order they're declared.
+The `aspire deploy` command first invokes the [`aspire publish`](./aspire-publish.md) command. After which, Aspire invokes all `DeployingCallbackAnnotation` resource annotations, in the order they're declared.
 
 [!INCLUDE [project-search-logic-description](includes/project-search-logic-description.md)]
 
-The command performs the following steps to run an AppHost project:
+The command performs the following steps to deploy an app orchestrated with Aspire:
 
 - Creates or modifies the `.aspire/settings.json` config file in the current directory, and sets the `appHostPath` config value to the path of the AppHost project file.
 - Installs or verifies that Aspire's local hosting certificates are installed and trusted.
-- Builds the AppHost project.
-- Starts the app host and its resources.
-- Starts the app host in publish mode.
+- Builds the AppHost project and its resources.
+- Starts the AppHost and its resources.
 - Invokes all <xref:Aspire.Hosting.ApplicationModel.PublishingCallbackAnnotation> resource annotations.
 - Invokes all `DeployingCallbackAnnotation` resource annotations.
 

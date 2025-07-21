@@ -29,9 +29,8 @@ The command performs the following steps to run an AppHost project:
 
 - Creates or modifies the `.aspire/settings.json` config file in the current directory, and sets the `appHostPath` config value to the path of the AppHost project file.
 - Installs or verifies that Aspire's local hosting certificates are installed and trusted.
-- Builds the AppHost project.
-- Starts the app host and its resources.
-- Starts the app host in publish mode.
+- Builds the AppHost project and its resources.
+- Starts the AppHost and its resources.
 - Invokes all <xref:Aspire.Hosting.ApplicationModel.PublishingCallbackAnnotation> annotations for resources.
 
 ## Options
@@ -40,7 +39,7 @@ The following options are available:
 
 - **`--`**
 
-  Delimits arguments to aspire publish from arguments for the AppHost. All arguments after this delimiter are passed to the AppHost.
+  Delimits arguments to `aspire publish` from arguments for the AppHost. All arguments after this delimiter are passed to the AppHost.
 
 - [!INCLUDE [option-project](includes/option-project.md)]
 
