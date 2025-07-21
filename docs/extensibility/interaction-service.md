@@ -15,8 +15,23 @@ This is useful for scenarios where you need to gather information from the user 
 
 ## The `IInteractionService` API
 
-The `IInteractionService` interface can be retrieved from the dependency injection container of your <xref:Aspire.Hosting.DistributedApplication>. When you request this service, be sure to check if it's available for usage. If you attempt to use the interaction service when it's not available (`IInteractionService.IsAvailable` returns `false`), an exception is thrown.
+The `IInteractionService` interface is retrieved from the <xref:Aspire.Hosting.DistributedApplication> dependency injection container. `IInteractionService` can be injected into types created from DI or from <xref:System.IServiceProvider>, which is usually available on a context argument passed to events.
 
+When you request `IInteractionService`, be sure to check if it's available for usage. If you attempt to use the interaction service when it's not available (`IInteractionService.IsAvailable` returns `false`), an exception is thrown.
+
+```csharp
+var interactionService = serviceProvider.GetRequiredService<IInteractionService>();
+if (interactionService.IsAvailable)
+{
+    var result = await interactionService.PromptConfirmation(
+        title: "Delete confirmation,
+        message: "Are you sure you want to delete the data?");
+        
+    if (result.Data)
+    {
+        // Run your resource/command logic.
+    }
+}
 The interaction service has several methods that you use to interact with users or display messages. The behavior of these methods depends on the execution context:
 
 - **Dashboard context** (`aspire run` or direct app host launch): Interactions appear as modal dialogs, notifications, and form inputs in the [Aspire dashboard web interface](../fundamentals/dashboard/overview.md).
@@ -27,7 +42,7 @@ The following sections describe how to use these APIs effectively in both contex
 | Method | Description | Contexts supported |
 |--|--|--|
 | `PromptMessageBoxAsync` | Displays a modal dialog box with a message and buttons for user interaction. | Dashboard only |
-| `PromptNotificationAsync` | Displays a nonmodal notification at the top of the dashboard. | Dashboard only |
+| `PromptNotificationAsync` | Displays a nonmodal notification in the dashboard as a message bar. | Dashboard only |
 | `PromptConfirmationAsync` | Displays a confirmation dialog with options for the user to confirm or cancel an action. | Dashboard only |
 | `PromptInputAsync` | Prompts the user for a single input value, such as text or secret. | Dashboard, CLI |
 | `PromptInputsAsync` | Prompts the user for multiple input values in a single dialog (dashboard) or sequentially (CLI). | Dashboard, CLI |
@@ -151,7 +166,7 @@ The interaction service API allows you to prompt users for input in various ways
 
 <!-- <xref:Aspire.Hosting.IInteractionService.PromptInputAsync%2A> -->
 
-Use the `IInteractionService.PromptInputAsync` method to collect a single piece of information from the user. This method supports various input types through the `InteractionInput` class. Consider the following example, that prompts the user for an API key as a secret input value:
+Use the `IInteractionService.PromptInputAsync` method to collect a single piece of information from the user. This method supports various input types through the <xref:Aspire.Hosting.InteractionInput> class. Consider the following example, that prompts the user for an API key as a secret input value:
 
 :::code source="snippets/InteractionService/AppHost.SingleInputExample.cs" id="example":::
 
@@ -252,6 +267,8 @@ Environment:
 
 #### Input validation
 
+Basic input validation is available by configuring <xref:Aspire.Hosting.InteractionInput>. It provides options for requiring a value, or the maximum text length of `Text` or `SecretText` fields.
+
 For complex scenarios, you can provide custom validation logic using the `InputsDialogInteractionOptions.ValidationCallback` property:
 
 ```csharp
@@ -281,7 +298,7 @@ var databaseInputs = new List<InteractionInput>
     },
     new()
     {
-        Label = "Confirm Password",
+        Label = "Confirm password",
         InputType = InputType.SecretText,
         Required = true,
         Placeholder = "Confirm your password"
@@ -293,7 +310,7 @@ var validationOptions = new InputsDialogInteractionOptions
     ValidationCallback = async context =>
     {
         var passwordInput = context.Inputs.FirstOrDefault(i => i.Label == "Password");
-        var confirmPasswordInput = context.Inputs.FirstOrDefault(i => i.Label == "Confirm Password");
+        var confirmPasswordInput = context.Inputs.FirstOrDefault(i => i.Label == "Confirm password");
 
         // Validate password strength
         if (passwordInput?.Value is { Length: < 8 })
@@ -312,7 +329,7 @@ var validationOptions = new InputsDialogInteractionOptions
 };
 
 var dbResult = await interactionService.PromptInputsAsync(
-    title: "Database Configuration",
+    title: "Database configuration",
     message: "Configure your PostgreSQL database connection:",
     inputs: databaseInputs,
     options: validationOptions);
