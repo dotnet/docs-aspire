@@ -441,17 +441,17 @@ The following shortcuts are available:
 
 The .NET Aspire dashboard includes GitHub Copilot as your AI debugging assistant when you launch your app from VS Code or Visual Studio with a GitHub account that has a Copilot subscription. Copilot can help you:
 
-- Review hundreds of log messages with a single click
-- Investigate the root cause of errors across multiple apps  
-- Highlight performance issues in traces
-- Explain obscure error codes using AI's vast knowledge repository
+- Review hundreds of log messages with a single click.
+- Investigate the root cause of errors across multiple apps.
+- Highlight performance issues in traces.
+- Explain obscure error codes using AI's vast knowledge repository.
 
 Copilot features appear throughout the dashboard interface:
 
-- **Copilot button**: Available in the top-right corner to open the Copilot chat interface
-- **Context menus**: "Ask GitHub Copilot" options in resource, log, trace, and span context menus
-- **Explain buttons**: "Explain errors" on structured logs and "Explain trace" on trace details pages
-- **Suggested questions**: Contextual AI suggestions based on the current page
+- **Copilot button**: This button is available in the top-right corner to open the Copilot chat interface.
+- **Context menus**: "Ask GitHub Copilot" options appear in resource, log, trace, and span context menus.
+- **Explain buttons**: "Explain errors" buttons appear on structured logs and "Explain trace" buttons appear on trace details pages.
+- **Suggested questions**: Contextual AI suggestions appear based on the current page.
 
 For comprehensive information about GitHub Copilot features, requirements, troubleshooting, and configuration options, see [GitHub Copilot in the .NET Aspire dashboard](copilot.md).
 
