@@ -23,7 +23,7 @@ The `aspire run` command runs the AppHost project in development mode, which con
 
 [!INCLUDE [project-search-logic-description](includes/project-search-logic-description.md)]
 
-The command performs the following steps to run an apphost project:
+The command performs the following steps to run an Aspire AppHost:
 
 - Creates or modifies the `.aspire/settings.json` config file in the current directory, and sets the `appHostPath` config value to the path of the AppHost project file.
 - Installs or verifies that Aspire's local hosting certificates are installed and trusted.

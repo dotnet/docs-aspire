@@ -11,6 +11,8 @@ ms.date: 07/11/2025
 
 `aspire exec` - Run an Aspire app host to execute a command against the resource.
 
+[!INCLUDE [mode-preview](includes/mode-preview.md)]
+
 ## Synopsis
 
 ```dotnetcli
