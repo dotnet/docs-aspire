@@ -1175,6 +1175,17 @@ updates:
         patterns:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
+    directory: "/docs/fundamentals/snippets/annotations-overview" #annotations-overview.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
     directory: "/docs/fundamentals/snippets/custom-commands/AspireApp/AspireApp.AppHost" #AspireApp.AppHost.csproj
     schedule:
       interval: "weekly"
