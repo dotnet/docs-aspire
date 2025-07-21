@@ -15,7 +15,7 @@ ms.date: 07/11/2025
 
 ## Synopsis
 
-```dotnetcli
+```Command
 aspire exec [options] [[--] <additional arguments>...]
 ```
 

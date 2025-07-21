@@ -15,7 +15,7 @@ ms.date: 07/11/2025
 
 ## Synopsis
 
-```dotnetcli
+```Command
 aspire deploy [options] [[--] <additional arguments>...]
 ```
 
@@ -62,13 +62,13 @@ The following options are available:
   aspire deploy
   ```
 
-- Publish and deploy a specific AppHost project:
+- Publish and deploy an Aspire apphost and its dependencies:
 
   ```Command
   aspire deploy --project './projects/apphost/orchestration.AppHost.csproj'
   ```
 
-- Publish and deploy a specific AppHost project with arguments:
+- Publish and deploy an Aspire AppHost with arguments:
 
   ```Command
   aspire deploy --project './projects/apphost/orchestration.AppHost.csproj' -- -fast

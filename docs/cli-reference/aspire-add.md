@@ -13,13 +13,13 @@ ms.date: 07/11/2025
 
 ## Synopsis
 
-```dotnetcli
+```Command
 aspire add [<integration>] [options]
 ```
 
 ## Description
 
-The `aspire add` command searches NuGet for an integration package and adds it to the AppHost project.
+The `aspire add` command searches for an integration package and adds it to the Aspire AppHost.
 
 [!INCLUDE [project-search-logic-description](includes/project-search-logic-description.md)]
 

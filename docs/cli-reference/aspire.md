@@ -15,13 +15,13 @@ ms.date: 07/11/2025
 
 To get information about the available commands and the environment:
 
-```dotnetcli
+```Command
 aspire [command] [options]
 ```
 
 ## Description
 
-The `aspire` command provides commands for working with Aspire projects. For example, `aspire run` runs an Aspire AppHost project.
+The `aspire` command provides commands for working with Aspire projects. For example, `aspire run` runs your Aspire AppHost.
 
 ## Options
 
@@ -47,7 +47,7 @@ The following commands are available:
 | [`aspire exec`](aspire-exec.md)                  | Preview | Similar to the `aspire run` command, but passes commands to the apphost. |
 | [`aspire new`](aspire-new.md)                    | Stable  | Create an Aspire sample project from a template.                         |
 | [`aspire publish`](aspire-publish.md)            | Preview | Generates deployment artifacts for an Aspire apphost project.            |
-| [`aspire run`](aspire-run.md)                    | Stable  | Run an Aspire apphost in development mode.                               |
+| [`aspire run`](aspire-run.md)                    | Stable  | Run an Aspire apphost for local development.                             |
 
 <!-- These commands aren't used yet
 
@@ -63,7 +63,7 @@ The following commands are available:
   aspire new aspire-starter
   ```
 
-- Run an Aspire AppHost project:
+- Run an Aspire AppHost:
 
   ```Command
   aspire run
