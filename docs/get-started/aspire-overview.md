@@ -74,7 +74,22 @@ Resources you can integrate include:
 Integrations are two-fold: "hosting" integrations represent the service you're connecting to, while "client" integrations represent the consumer of that service.
 
 > [!TIP]
-> Under the hood, every _hosting_ [integration](../fundamentals/integrations-overview.md) is either a container or executable, meaning you can add any container image, codebase, script, or cloud resource to your app host. Creating reusable Aspire integrations is just like creating a reusable UI component.
+> Under the hood, a _hosting_ [integration](../fundamentals/integrations-overview.md) can represent a container, an executable, or even just C# code that configures resources without running a separate process. You can add any container image, codebase, script, or cloud resource to your app host. Creating reusable Aspire integrations is similar to building reusable components for your apps.
+
+## Monitor and troubleshoot with the Aspire dashboard
+
+Aspire includes a powerful developer dashboard that gives you real-time visibility into your distributed app. The dashboard lets you inspect resources, view logs, traces, and metrics, and manage your app's services—all from a single UI.
+
+When you run your Aspire app, the dashboard launches automatically. You can:
+
+- See all your app's resources and their status.
+- Drill into logs, traces, and metrics for any service.
+- Start, stop, or restart resources directly from the dashboard.
+- Visualize dependencies and troubleshoot issues faster.
+
+The dashboard is available both as part of Aspire solution or as a [standalone tool](../fundamentals/dashboard/standalone.md) for any app that emits OpenTelemetry data.
+
+Learn more in the [dashboard overview](../fundamentals/dashboard/overview.md), or dive deeper into [dashboard features and usage](../fundamentals/dashboard/explore.md).
 
 ## From development to deployment
 
