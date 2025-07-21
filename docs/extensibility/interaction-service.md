@@ -239,7 +239,9 @@ Environment:
 
 #### Input validation
 
-Basic input validation is available by configuring <xref:Aspire.Hosting.InteractionInput>. It provides options for requiring a value, or the maximum text length of `Text` or `SecretText` fields.
+<!-- <xref:Aspire.Hosting.InteractionInput> -->
+
+Basic input validation is available by configuring `InteractionInput`. It provides options for requiring a value, or the maximum text length of `Text` or `SecretText` fields.
 
 For complex scenarios, you can provide custom validation logic using the `InputsDialogInteractionOptions.ValidationCallback` property:
 
