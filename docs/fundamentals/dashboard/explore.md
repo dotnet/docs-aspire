@@ -437,9 +437,9 @@ For example, Azure resources that are missing required configuration might promp
 
 In the dashboard, interaction prompts appear as:
 
-- Input dialogs for missing configuration values
-- Confirmation dialogs for important actions
-- Notification messages with details about resource status
+- Input dialogs for missing configuration values.
+- Confirmation dialogs for important actions.
+- Notification messages with details about resource status.
 
 These prompts appear directly in the dashboard interface, making it easy to provide the necessary information without switching to external tools or configuration files.
 
