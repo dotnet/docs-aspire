@@ -1,12 +1,9 @@
-using Microsoft.Extensions.DependencyInjection;
-
 var builder = DistributedApplication.CreateBuilder(args);
 
 var fakeResource = builder.AddFakeResource("fake-resource-01")
     .WithCommand("msg-dialog", "Example Message Dialog", ShowMessageBoxExample)
     .WithCommand("msg-bar", "Example Message Bar", ShowNotificationExample)
-    .WithCommand("confirm", "Confirmation Example", ShowConfirmationExample)
-    .WithCommand("single-input", "Single Input Example", ShowSingleInputExample);
+    .WithCommand("confirm", "Confirmation Example", ShowConfirmationExample);
 
 fakeResource.WithCommand(
     "multi-input",

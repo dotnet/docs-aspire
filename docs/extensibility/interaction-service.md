@@ -1,7 +1,7 @@
 ---
 title: Interaction Service (Preview)
 description: Use the interaction service API to prompt users for input, request confirmation, and display messages in the Aspire dashboard or CLI during publish and deploy.
-ms.date: 07/16/2025
+ms.date: 07/21/2025
 ---
 
 # Interaction Service (Preview)
@@ -124,7 +124,7 @@ Notification messages provide nonmodal notifications.
 
 <!-- <xref:Aspire.Hosting.IInteractionService.PromptNotificationAsync%2A> -->
 
-The `IInteractionService.PromptNotificationAsync` method displays informational messages with optional action links in the dashboard context:
+The `IInteractionService.PromptNotificationAsync` method displays informational messages with optional action links in the dashboard context. You don't have to await the result of a notification message if you don't need to. This is especially useful for notifications, since you might want to display them and continue without waiting for user interaction.
 
 :::code source="snippets/InteractionService/AppHost.NotificationExample.cs" id="example":::
 
@@ -162,49 +162,19 @@ The `PromptConfirmationAsync` method isn't available in CLI contexts. If you cal
 
 The interaction service API allows you to prompt users for input in various ways. You can collect single values or multiple values, with support for different input types including text, secrets, choices, booleans, and numbers. The presentation adapts automatically to the execution context.
 
-### Prompt user for a single input
+| Type         | Dashboard                 | CLI prompt            |
+|--------------|---------------------------|-----------------------|
+| `Text`       | Textbox                   | Text prompt           |
+| `SecretText` | Textbox with masked input | Masked text prompt    |
+| `Choice`     | Dropdown box of options   | Choice prompt         |
+| `Boolean`    | Checkbox                  | Boolean choice prompt |
+| `Number`     | Number textbox            | Text prompt           |
 
-<!-- <xref:Aspire.Hosting.IInteractionService.PromptInputAsync%2A> -->
-
-Use the `IInteractionService.PromptInputAsync` method to collect a single piece of information from the user. This method supports various input types through the <xref:Aspire.Hosting.InteractionInput> class. Consider the following example, that prompts the user for an API key as a secret input value:
-
-:::code source="snippets/InteractionService/AppHost.SingleInputExample.cs" id="example":::
-
-**Dashboard view:**
-
-When the Aspire dashboard runs and the user selects the corresponding command, the interaction service displays a dialog like the following screenshot:
-
-:::image type="content" source="media/interaction-service-single-input.png" lightbox="media/interaction-service-single-input.png" alt-text="Aspire dashboard interface showing a single input dialog with a label, input field, and buttons for confirming or canceling the input.":::
-
-If the user doesn't enter a value, the dialog shows an error message indicating that the input is required:
-
-:::image type="content" source="media/interaction-service-single-input-validation.png" lightbox="media/interaction-service-single-input-validation.png" alt-text="Aspire dashboard interface showing a single input dialog with an error message indicating that the input is required.":::
-
-**CLI view:**
-
-In the CLI context, the same interaction appears as a text prompt:
-
-```Aspire
-aspire deploy
-
-Step 1: Analyzing model.
-
-       ✓ DONE: Analyzing the distributed application model for publishing and deployment capabilities. 00:00:00
-           Found 1 resources that support deployment. (FakeResource)
-
-✅ COMPLETED: Analyzing model. completed successfully
-
-═══════════════════════════════════════════════════════════════════════════════════════════════════════════════
-
-Enter your third-party service API key: *************
-✓ PUBLISHING COMPLETED: Publishing completed successfully
-```
-
-### Prompt the user for multiple input values
+### Prompt the user for input values
 
 <!-- <xref:Aspire.Hosting.IInteractionService.PromptInputsAsync%2A> -->
 
-Use the `IInteractionService.PromptInputsAsync` method to collect multiple pieces of information. In the dashboard, this presents all inputs in a single dialog. In the CLI, inputs are requested sequentially.
+You can prompt for a single value using the `IInteractionService.PromptInputAsync` method, or collect multiple pieces of information with `IInteractionService.PromptInputsAsync`. In the dashboard, multiple inputs appear together in a single dialog. In the CLI, each input is requested one after another.
 
 > [!IMPORTANT]
 > It's possible to create wizard-like flows using the interaction service. By chaining multiple prompts together—handling the results from one prompt before moving to the next—you can guide users through a series of related questions, making it easier to collect all the necessary information.
