@@ -15,7 +15,7 @@ This is useful for scenarios where you need to gather information from the user 
 
 ## The `IInteractionService` API
 
-The `IInteractionService` interface is retrieved from the <xref:Aspire.Hosting.DistributedApplication> dependency injection container. `IInteractionService` can be injected into types created from DI or from <xref:System.IServiceProvider>, which is usually available on a context argument passed to events.
+The `IInteractionService` interface is retrieved from the <xref:Aspire.Hosting.DistributedApplication> dependency injection container. `IInteractionService` can be injected into types created from DI or resolved from <xref:System.IServiceProvider>, which is usually available on a context argument passed to events.
 
 When you request `IInteractionService`, be sure to check if it's available for usage. If you attempt to use the interaction service when it's not available (`IInteractionService.IsAvailable` returns `false`), an exception is thrown.
 
@@ -23,8 +23,8 @@ When you request `IInteractionService`, be sure to check if it's available for u
 var interactionService = serviceProvider.GetRequiredService<IInteractionService>();
 if (interactionService.IsAvailable)
 {
-    var result = await interactionService.PromptConfirmation(
-        title: "Delete confirmation,
+    var result = await interactionService.PromptConfirmationAsync(
+        title: "Delete confirmation",
         message: "Are you sure you want to delete the data?");
         
     if (result.Data)
@@ -126,7 +126,7 @@ Notification messages provide nonmodal notifications.
 
 <!-- <xref:Aspire.Hosting.IInteractionService.PromptNotificationAsync%2A> -->
 
-The `IInteractionService.PromptNotificationAsync` method displays informational messages with optional action links in the dashboard context. You don't have to await the result of a notification message if you don't need to. This is especially useful for notifications, since you might want to display them and continue without waiting for user interaction.
+The `IInteractionService.PromptNotificationAsync` method displays informational messages with optional action links in the dashboard context. You don't have to await the result of a notification message if you don't need to. This is especially useful for notifications, since you might want to display a notification and continue without waiting for user to dismiss it.
 
 :::code source="snippets/InteractionService/AppHost.NotificationExample.cs" id="example":::
 
