@@ -1,7 +1,7 @@
 ---
 title: The specified name is already in use
 description: Learn how to troubleshoot the error "The specified name is already in use" when deploying to Azure.
-ms.date: 06/03/2024
+ms.date: 07/17/2025
 ---
 
 # The specified name is already in use
@@ -27,10 +27,15 @@ One workaround is to avoid using common names like `appconfig` or `storage` for 
 Consider the following example:
 
 ```csharp
-var appConfig = builder.AddAzureAppConfiguration(
-    "appConfig",
-    (resource, construct, store) =>
-{
-    store.AssignProperty(p => p.Name, "'noncalculatedname'");
-});
+using Azure.Provisioning.AppConfiguration;
+
+var appConfig = builder.AddAzureAppConfiguration("appConfig")
+    .ConfigureInfrastructure(infra =>
+    {
+        var appConfigStore = infra.GetProvisionableResources()
+                                  .OfType<AppConfigurationStore>()
+                                  .Single();
+        
+        appConfigStore.Name = "noncalculatedname";
+    });
 ```

@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire telemetry
 description: Learn about essential telemetry concepts for .NET Aspire.
-ms.date: 12/08/2023
+ms.date: 07/17/2025
 ---
 
 # .NET Aspire telemetry

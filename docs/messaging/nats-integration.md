@@ -249,6 +249,38 @@ The .NET Aspire NATS integration supports <xref:Microsoft.Extensions.Configurati
 
 For the complete NATS client integration JSON schema, see [Aspire.NATS.Net/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.NATS.Net/ConfigurationSchema.json).
 
+#### Use named configuration
+
+The .NET Aspire NATS integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Nats": {
+      "Client": {
+        "nats1": {
+          "ConnectionString": "nats://nats1:4222",
+          "DisableHealthChecks": true
+        },
+        "nats2": {
+          "ConnectionString": "nats://nats2:4222",
+          "DisableTracing": true
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `nats1` and `nats2` connection names can be used when calling `AddNatsClient`:
+
+```csharp
+builder.AddNatsClient("nats1");
+builder.AddNatsClient("nats2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
+
 #### Use inline delegates
 
 Pass the `Action<NatsClientSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:

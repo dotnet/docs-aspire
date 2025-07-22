@@ -21,7 +21,9 @@ Most .NET Aspire integrations are made up of two separate libraries, each with a
 
 Hosting integrations configure applications by provisioning resources (like containers or cloud resources) or pointing to existing instances (such as a local SQL server). These packages model various services, platforms, or capabilities, including caches, databases, logging, storage, and messaging systems.
 
-Hosting integrations extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface, enabling the _app host_ project to express resources within its [_app model_](app-host-overview.md#terminology). The official [hosting integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+hosting+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `hosting`. In addition to the official hosting integrations, the [community has created hosting integrations](../community-toolkit/overview.md) for various services and platforms as part of the Community Toolkit.
+Hosting integrations extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface, enabling the _app host_ project to express resources within its [_app model_](app-host-overview.md#terminology). **Hosting integrations work with any type of application**, not just .NET applications. They provide infrastructure and inject configuration details (such as connection strings, endpoints, and credentials) as environment variables into any project, executable, or container that references them.
+
+The official [hosting integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+hosting+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `hosting`. In addition to the official hosting integrations, the [community has created hosting integrations](../community-toolkit/overview.md) for various services and platforms as part of the Community Toolkit.
 
 For information on creating a custom _hosting integration_, see [Create custom .NET Aspire hosting integration](../extensibility/custom-hosting-integration.md).
 
@@ -36,6 +38,8 @@ For more information on creating a custom client integration, see [Create custom
 ### Relationship between hosting and client integrations
 
 Hosting and client integrations are best when used together, but are **not** coupled and can be used separately. Some hosting integrations don't have a corresponding client integration. Configuration is what makes the hosting integration work with the client integration.
+
+**Client integrations are .NET-specific** and provide convenient, opinionated ways to configure .NET applications. However, **you can use hosting integrations without client integrations** for non-.NET applications or when you prefer to configure connections manually. In these scenarios, the hosting integration still provides the infrastructure and exposes connection information through environment variables that any application technology can consume.
 
 Consider the following diagram that depicts the relationship between hosting and client integrations:
 
@@ -143,7 +147,6 @@ For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.co
 <!-- markdownlint-disable MD033 MD045 -->
 | Integration docs and NuGet packages | Description |
 |--|--|
-| - **Learn More**: [📄 Azure Static Web Apps emulator](../community-toolkit/hosting-azure-static-web-apps.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Azure.StaticWebApps](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Azure.StaticWebApps) <br /> - **Client**: N/A | A hosting integration for the [Azure Static Web Apps emulator](/azure/static-web-apps/static-web-apps-cli-overview) (Note: this does not support deployment of a project to Azure Static Web Apps). |
 | - **Learn More**: [📄 Bun hosting](../community-toolkit/hosting-bun.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Bun](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Bun) <br /> - **Client**: N/A | A hosting integration for Bun apps. |
 | - **Learn More**: [📄 Deno hosting](../community-toolkit/hosting-deno.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Deno](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Deno) <br /> - **Client**: N/A | A hosting integration for Deno apps. |
 | - **Learn More**: [📄 Go hosting](../community-toolkit/hosting-golang.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Golang](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Golang) <br /> - **Client**: N/A | A hosting integration for Go apps. |

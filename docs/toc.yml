@@ -59,6 +59,9 @@ items:
     href: app-host/configuration.md
   - name: Customize resources
     items:
+    - name: Persistent container services
+      href: app-host/persistent-containers.md
+      displayName: persistent containers,container lifetime,withlifetime
     - name: Custom resource commands
       href: fundamentals/custom-resource-commands.md
       displayName: withcommand
@@ -100,6 +103,8 @@ items:
       href: fundamentals/dashboard/standalone.md
     - name: Tutorial — Use with Python
       href: fundamentals/dashboard/standalone-for-python.md
+    - name: Tutorial — Use with Node.js
+      href: fundamentals/dashboard/standalone-for-nodejs.md
   - name: Configuration
     href: fundamentals/dashboard/configuration.md
   - name: Enable browser telemetry
@@ -129,6 +134,9 @@ items:
     href: service-discovery/overview.md
   - name: Service defaults
     href: fundamentals/service-defaults.md
+  - name: Resource annotations
+    displayName: annotations,metadata,custom annotations,resource annotations
+    href: fundamentals/annotations-overview.md
   - name: Launch profiles
     href: fundamentals/launch-profiles.md
   - name: Telemetry
@@ -335,8 +343,6 @@ items:
     items:
     - name: Overview
       href: community-toolkit/overview.md
-    - name: Azure Static Web Apps
-      href: community-toolkit/hosting-azure-static-web-apps.md
     - name: Bun apps
       href: community-toolkit/hosting-bun.md
     - name: Dapr
@@ -418,6 +424,9 @@ items:
     - name: Customize .NET Aspire Azure deployments
       href: deployment/azure/customize-deployments.md
       displayName: azd infra synth,azd infra gen,bicep,infrastructure,production
+    - name: Azure security best practices
+      href: deployment/azure/azure-security-best-practices.md
+      displayName: azure security,security best practices,container security,managed identity
     - name: Use .NET Aspire with Application Insights
       href: deployment/azure/application-insights.md
       displayName: app insights

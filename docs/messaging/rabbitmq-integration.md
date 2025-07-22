@@ -266,6 +266,40 @@ The .NET Aspire RabbitMQ integration supports <xref:Microsoft.Extensions.Configu
 
 For the complete RabbitMQ client integration JSON schema, see [Aspire.RabbitMQ.Client/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.RabbitMQ.Client/ConfigurationSchema.json).
 
+#### Use named configuration
+
+The .NET Aspire RabbitMQ integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "RabbitMQ": {
+      "Client": {
+        "rabbit1": {
+          "ConnectionString": "amqp://username:password@rabbit1:5672",
+          "DisableHealthChecks": true,
+          "MaxConnectRetryCount": 2
+        },
+        "rabbit2": {
+          "ConnectionString": "amqp://username:password@rabbit2:5672",
+          "DisableTracing": true,
+          "MaxConnectRetryCount": 5
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `rabbit1` and `rabbit2` connection names can be used when calling `AddRabbitMQClient`:
+
+```csharp
+builder.AddRabbitMQClient("rabbit1");
+builder.AddRabbitMQClient("rabbit2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
+
 #### Use inline delegates
 
 Also you can pass the `Action<RabbitMQClientSettings> configureSettings` delegate to set up some or all the options inline, for example to disable health checks from code:

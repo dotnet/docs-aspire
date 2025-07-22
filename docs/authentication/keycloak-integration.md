@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Keycloak integration (Preview)
 description: Learn how to use the .NET Aspire Keycloak integration, which includes both hosting and client integrations.
-ms.date: 03/06/2025
+ms.date: 07/16/2025
 uid: authentication/keycloak-integration
 ---
 
@@ -165,7 +165,14 @@ The realm import files are mounted at `/opt/keycloak/data/import` in the Keycloa
 
 As an example, the following JSON file could be added to the app host project in a _/Realms_ folder—to serve as a source realm configuration file:
 
+<!-- markdownlint-disable MD033 -->
+<details>
+<summary><strong>Show Realm JSON (expand to view)</strong></summary>
+
 :::code language="json" source="snippets/AspireApp/AspireApp.AppHost/Realms/weathershop-realm.json":::
+
+</details>
+<!-- markdownlint-enable MD033 -->
 
 ### Hosting integration health checks
 
@@ -202,10 +209,20 @@ builder.Services.AddAuthentication()
                     options =>
                     {
                         options.Audience = "store.api";
+                        
+                        // For development only - disable HTTPS metadata validation
+                        // In production, use explicit Authority configuration instead
+                        if (builder.Environment.IsDevelopment())
+                        {
+                            options.RequireHttpsMetadata = false;
+                        }
                     });
 ```
 
 You can set many other options via the `Action<JwtBearerOptions> configureOptions` delegate.
+
+> [!WARNING]
+> When using `RequireHttpsMetadata = true` (the default), the JWT Bearer authentication requires the Authority URL to use HTTPS. However, .NET Aspire service discovery uses the `https+http://` scheme, which doesn't satisfy this requirement. For production scenarios where HTTPS metadata validation is required, you need to explicitly configure the Authority URL. See [Production considerations](#production-considerations) for more information.
 
 #### JWT bearer authentication example
 
@@ -219,7 +236,7 @@ The preceding ASP.NET Core Minimal API `Program` class demonstrates:
 - Adding JWT bearer authentication with the <xref:Microsoft.Extensions.DependencyInjection.AspireKeycloakExtensions.AddKeycloakJwtBearer*> API and configuring:
   - The `serviceName` as `keycloak`.
   - The `realm` as `WeatherShop`.
-  - The `options` with the `Audience` set to `weather.api` and sets `RequireHttpsMetadata` to `false`.
+  - The `options` with the `Audience` set to `weather.api` and conditionally sets `RequireHttpsMetadata` to `false` for development environments only.
 - Adds authorization services to the DI container with the <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder*> API.
 - Calls the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> API to require authorization on the `/weatherforecast` endpoint.
 
@@ -286,6 +303,84 @@ To help visualize the auth flow, consider the following sequence diagram:
 :::image type="content" source="media/auth-flow-diagram.png" lightbox="media/auth-flow-diagram.png" alt-text="Authentication flow diagram—demonstrating a user request for an access token, Keycloak returning a JWT, and the token being forward to the API.":::
 
 For a complete working sample, see [.NET Aspire playground: Keycloak integration](https://github.com/dotnet/aspire/tree/01ed51919f8df692ececce51048a140615dc759d/playground/keycloak).
+
+## Production considerations
+
+When deploying Keycloak authentication to production environments, there are several important security considerations to address.
+
+### HTTPS metadata requirements
+
+By default, JWT Bearer authentication in ASP.NET Core has `RequireHttpsMetadata = true`, which requires that the Authority URL uses HTTPS. However, .NET Aspire service discovery uses the `https+http://` scheme for local development, which doesn't satisfy this requirement.
+
+For production scenarios, you have two options:
+
+#### Option 1: Explicit Authority configuration
+
+Configure the Authority URL explicitly instead of relying on service discovery:
+
+```csharp
+builder.Services.AddAuthentication()
+    .AddKeycloakJwtBearer(
+        serviceName: "keycloak",
+        realm: "MyRealm",
+        configureOptions: options =>
+        {
+            // Explicitly set the Authority for production
+            if (!builder.Environment.IsDevelopment())
+            {
+                options.Authority = "https://your-keycloak-server.com/realms/MyRealm";
+            }
+            
+            options.Audience = "my.api";
+            // RequireHttpsMetadata = true by default (recommended for production)
+        });
+```
+
+#### Option 2: Environment-based configuration
+
+Use different settings for development and production environments:
+
+```csharp
+builder.Services.AddAuthentication()
+    .AddKeycloakJwtBearer(
+        serviceName: "keycloak",
+        realm: "MyRealm",
+        configureOptions: options =>
+        {
+            options.Audience = "my.api";
+            
+            // Only disable HTTPS metadata validation in development
+            if (builder.Environment.IsDevelopment())
+            {
+                options.RequireHttpsMetadata = false;
+            }
+            else
+            {
+                // In production, explicitly set the Authority
+                options.Authority = "https://your-keycloak-server.com/realms/MyRealm";
+                // RequireHttpsMetadata = true by default
+            }
+        });
+```
+
+### Connection string configuration
+
+For production deployments, consider using connection strings instead of the hosting integration:
+
+```csharp
+// In Program.cs of your app host
+builder.AddConnectionString("keycloak", "https://your-keycloak-server.com");
+```
+
+This approach allows you to configure the exact production URLs without relying on service discovery.
+
+### Security best practices
+
+- Always use `RequireHttpsMetadata = true` in production environments.
+- Use secure, validated SSL certificates for your Keycloak server.
+- Configure appropriate realm settings and client configurations in Keycloak.
+- Implement proper token validation and audience checks.
+- Consider using Keycloak's built-in security features like rate limiting and brute force protection.
 
 ## See also
 
