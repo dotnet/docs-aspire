@@ -225,19 +225,7 @@ For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fun
 
 🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
 
-📦 To install:
-
-On Windows:
-
-```powershell
-iex "& { $(irm https://github.com/dotnet/aspire/raw/refs/heads/main/eng/scripts/get-aspire-cli.ps1) }"
-```
-
-On Linux, or macOS:
-
-```sh
-curl -sSL https://github.com/dotnet/aspire/raw/refs/heads/main/eng/scripts/get-aspire-cli.sh | bash
-```
+[!INCLUDE [install-aspire-cli](../includes/install-aspire-cli.md)]
 
 ## See also
 

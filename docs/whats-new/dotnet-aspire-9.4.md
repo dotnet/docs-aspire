@@ -1,7 +1,7 @@
 ---
 title: What's new in .NET Aspire 9.4    
 description: Learn what's new in the official general availability release of .NET Aspire 9.4.
-ms.date: 07/03/2025
+ms.date: 07/22/2025
 ---
 
 # What's new in .NET Aspire 9.4
@@ -12,21 +12,7 @@ _Aspire 9.4 introduces improvements across the CLI, dashboard, deployment, and p
 
 🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
 
-📦 To install:
-
-### [Unix](#tab/unix)
-
-```sh
-curl -sSL https://github.com/dotnet/aspire/raw/refs/heads/main/eng/scripts/get-aspire-cli.sh | bash
-```
-
-### [Windows](#tab/windows)
-
-```powershell
-iex "& { $(irm https://github.com/dotnet/aspire/raw/refs/heads/main/eng/scripts/get-aspire-cli.ps1) }"
-```
-
----
+[!INCLUDE [install-aspire-cli](../includes/install-aspire-cli.md)]
 
 ## CLI and Dashboard
 

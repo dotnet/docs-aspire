@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 07/11/2025
+ms.date: 07/22/2025
 zone_pivot_groups: dev-environment
 uid: dotnet/aspire/setup-tooling
 ---
@@ -231,19 +231,7 @@ Once you create a new .NET Aspire project, you run and debug the app, stepping t
 
 🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
 
-📦 To install:
-
-On Windows:
-
-```powershell
-iex "& { $(irm https://github.com/dotnet/aspire/raw/refs/heads/main/eng/scripts/get-aspire-cli.ps1) }"
-```
-
-On Linux, or macOS:
-
-```sh
-curl -sSL https://github.com/dotnet/aspire/raw/refs/heads/main/eng/scripts/get-aspire-cli.sh | bash
-```
+[!INCLUDE [install-aspire-cli](../includes/install-aspire-cli.md)]
 
 ## See also
 
