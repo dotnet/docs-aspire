@@ -483,6 +483,8 @@ items:
         href: diagnostics/aspire006.md
       - name: ASPIRE007
         href: diagnostics/aspire007.md
+      - name: ASPIRE008
+        href: diagnostics/aspire008.md
       - name: ASPIREACADOMAINS001
         href: diagnostics/aspireacadomains001.md
       - name: ASPIRECOMPUTE001
@@ -511,6 +513,8 @@ items:
           href: diagnostics/aspire004.md
         - name: Aspire SDK reference is out of date or missing
           href: diagnostics/aspire007.md
+        - name: Aspire workload is deprecated
+          href: diagnostics/aspire008.md
       - name: Resources
         items:
         - name: Items must have valid names
