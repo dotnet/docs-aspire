@@ -2,7 +2,7 @@
 title: Breaking changes in .NET Aspire 9.4
 titleSuffix: ""
 description: Navigate to the breaking changes in .NET Aspire 9.4.
-ms.date: 07/08/2025
+ms.date: 07/22/2025
 ---
 
 # Breaking changes in .NET Aspire 9.4
@@ -22,4 +22,5 @@ If you're migrating an app to .NET Aspire 9.4, the breaking changes listed here 
 | [Azure Storage APIs renamed and refactored](azure-storage-apis-renamed.md) | Binary incompatible, source incompatible | 9.4 |
 | [BicepSecretOutputReference and GetSecretOutput are now obsolete](getsecretoutput-deprecated.md) | Binary incompatible, source incompatible | 9.4 |
 | [Deprecating various known parameters in AzureBicepResource](azure-bicep-parameters-deprecated.md) | Source incompatible, behavioral change | 9.4 |
+| [Hybrid compute mode between azd and Aspire apps dropped](hybrid-compute-support-dropped.md) | Behavioral change | 9.4 |
 | [Local auth is disabled by default on Azure resources](local-auth-disabled-for-azure-resources.md) | Behavioral change | 9.4 |
