@@ -1,7 +1,7 @@
 ---
 title: Azure integrations overview
 description: Overview of the Azure integrations available in the .NET Aspire.
-ms.date: 05/09/2025
+ms.date: 07/22/2025
 uid: dotnet/aspire/integrations/azure-overview
 ---
 
@@ -25,11 +25,12 @@ Some Azure services can be emulated to run locally. Currently, .NET Aspire suppo
 
 | Hosting integration | Description |
 |--|--|
-| Azure Cosmos DB | Call <xref:Aspire.Hosting.AzureCosmosExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureCosmosDBResource>` to configure the Cosmos DB resource to be [emulated with the NoSQL API](/azure/cosmos-db/how-to-develop-emulator). |
-| Azure Event Hubs | Call <xref:Aspire.Hosting.AzureEventHubsExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureEventHubsResource>` to configure the Event Hubs resource to be [emulated](/azure/event-hubs/overview-emulator). |
-| Azure Service Bus | Call <xref:Aspire.Hosting.AzureServiceBusExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureServiceBusResource>` to configure the Service Bus resource to be [emulated with Service Bus emulator](/azure/service-bus-messaging/overview-emulator). |
-| Azure SignalR Service | Call <xref:Aspire.Hosting.AzureSignalRExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureSignalRResource>` to configure the SignalR resource to be [emulated with Azure SignalR emulator](/azure/azure-signalr/signalr-howto-emulator). |
-| Azure Storage | Call <xref:Aspire.Hosting.AzureStorageExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureStorageResource>` to configure the Storage resource to be [emulated with Azurite](/azure/storage/common/storage-use-azurite). |
+| [Azure AI Foundry](../azureai/azureai-foundry-integration.md) | Call `RunAsFoundryLocal` on the `IResourceBuilder<AzureAIFoundryResource>` to configure the resource to be [emulated with Foundry Local](/azure/ai-foundry/foundry-local/get-started). |
+| [Azure Cosmos DB](../database/azure-cosmos-db-integration.md) | Call <xref:Aspire.Hosting.AzureCosmosExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureCosmosDBResource>` to configure the Cosmos DB resource to be [emulated with the NoSQL API](/azure/cosmos-db/how-to-develop-emulator). |
+| [Azure Event Hubs](../messaging/azure-event-hubs-integration.md) | Call <xref:Aspire.Hosting.AzureEventHubsExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureEventHubsResource>` to configure the Event Hubs resource to be [emulated](/azure/event-hubs/overview-emulator). |
+| [Azure Service Bus](../messaging/azure-service-bus-integration.md) | Call <xref:Aspire.Hosting.AzureServiceBusExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureServiceBusResource>` to configure the Service Bus resource to be [emulated with Service Bus emulator](/azure/service-bus-messaging/overview-emulator). |
+| [Azure SignalR Service](../real-time/azure-signalr-scenario.md) | Call <xref:Aspire.Hosting.AzureSignalRExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureSignalRResource>` to configure the SignalR resource to be [emulated with Azure SignalR emulator](/azure/azure-signalr/signalr-howto-emulator). |
+| [Azure Storage](../storage/azure-storage-blobs-integration.md) | Call <xref:Aspire.Hosting.AzureStorageExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureStorageResource>` to configure the Storage resource to be [emulated with Azurite](/azure/storage/common/storage-use-azurite). |
 
 To have your Azure resources use the local emulators, chain a call the `RunAsEmulator` method on the Azure resource builder. This method configures the Azure resource to use the local emulator instead of the actual Azure service.
 
@@ -44,9 +45,9 @@ Currently, .NET Aspire supports the following Azure services as containers:
 
 | Hosting integration | Details |
 |--|--|
-| Azure Cache for Redis | Call <xref:Aspire.Hosting.AzureRedisExtensions.RunAsContainer*?displayProperty=nameWithType> on the `IResourceBuilder<AzureRedisCacheResource>` to configure it to run locally in a container, based on the `docker.io/library/redis` image. |
-| Azure PostgreSQL Flexible Server | Call <xref:Aspire.Hosting.AzurePostgresExtensions.RunAsContainer*?displayProperty=nameWithType> on the `IResourceBuilder<AzurePostgresFlexibleServerResource>` to configure it to run locally in a container, based on the `docker.io/library/postgres` image. |
-| Azure SQL Server | Call <xref:Aspire.Hosting.AzureSqlExtensions.RunAsContainer*?displayProperty=nameWithType> on the `IResourceBuilder<AzureSqlServerResource>` to configure it to run locally in a container, based on the `mcr.microsoft.com/mssql/server` image. |
+| [Azure Cache for Redis](../caching/azure-cache-for-redis-integration.md) | Call <xref:Aspire.Hosting.AzureRedisExtensions.RunAsContainer*?displayProperty=nameWithType> on the `IResourceBuilder<AzureRedisCacheResource>` to configure it to run locally in a container, based on the `docker.io/library/redis` image. |
+| [Azure PostgreSQL Flexible Server](../database/azure-postgresql-integration.md) | Call <xref:Aspire.Hosting.AzurePostgresExtensions.RunAsContainer*?displayProperty=nameWithType> on the `IResourceBuilder<AzurePostgresFlexibleServerResource>` to configure it to run locally in a container, based on the `docker.io/library/postgres` image. |
+| [Azure SQL Server](../database/azure-sql-integration.md) | Call <xref:Aspire.Hosting.AzureSqlExtensions.RunAsContainer*?displayProperty=nameWithType> on the `IResourceBuilder<AzureSqlServerResource>` to configure it to run locally in a container, based on the `mcr.microsoft.com/mssql/server` image. |
 
 > [!NOTE]
 > Like emulators, calling `RunAsContainer` on an Azure resource builder doesn't effect the [publishing manifest](../deployment/manifest-format.md). When you publish your app, the [generated Bicep file](customize-azure-resources.md) reflects the actual Azure service, not the local container.

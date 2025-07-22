@@ -7,6 +7,8 @@ ai-usage: ai-assisted
 
 # .NET Aspire GitHub Models integration
 
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
+
 [GitHub Models](https://docs.github.com/github-models) provides access to various AI models including OpenAI's GPT models, DeepSeek, Microsoft's Phi models, and other leading AI models, all accessible through GitHub's infrastructure. The .NET Aspire GitHub Models integration enables you to connect to GitHub Models from your .NET applications for prototyping and production scenarios.
 
 ## Hosting integration
