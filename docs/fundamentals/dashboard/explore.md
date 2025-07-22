@@ -17,6 +17,8 @@ In the upcoming sections, you discover how to create a .NET Aspire project and e
 
 The screenshots featured in this article showcase the dark theme. For more information on theme selection, see [Theme selection](#theme-selection).
 
+The .NET Aspire dashboard also includes **GitHub Copilot**, your AI debugging assistant, which can help you analyze resources, logs, traces, and telemetry data. Copilot is available when you launch your app from VS Code or Visual Studio with a GitHub account that has a Copilot subscription. For complete details, see [GitHub Copilot in the .NET Aspire dashboard](copilot.md).
+
 ## Dashboard authentication
 
 When you run a .NET Aspire app host, the orchestrator starts up all the app's dependent resources and then opens a browser window to the dashboard. The .NET Aspire dashboard requires token-based authentication for its users because it displays environment variables and other sensitive information.
@@ -128,6 +130,8 @@ The following submenu actions are available:
 >
 > :::image type="content" source="media/explore/resource-submenu-actions.png" lightbox="media/explore/resource-submenu-actions.png" border="true" alt-text=".NET Aspire dashboard disabled submenu actions.":::
 
+When GitHub Copilot is available (when launching from VS Code or Visual Studio with a Copilot subscription), resource context menus also include an **Ask GitHub Copilot** option. This allows you to investigate resources using AI analysis.
+
 #### Copy or Open in text visualizer
 
 To view a _text visualizer_ of certain columns, on hover you see a vertical ellipsis icon. Select the icon to display the available options:
@@ -237,6 +241,8 @@ Consider the following screenshots showing the structured logs filter dialog:
 
 :::image type="content" source="media/explore/structured-logs-filtered.png" lightbox="media/explore/structured-logs-filtered.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page showing the filter dialog.":::
 
+When GitHub Copilot is available and your app has structured logs with errors, an **Explain errors** button appears on the structured logs page. Selecting it makes all errors available to Copilot for AI-powered investigation. Additionally, structured log entries include an **Ask GitHub Copilot** option in their context menus.
+
 ### Traces page
 
 Navigate to the **Traces** page to view all of the traces for your app. .NET Aspire automatically configures tracing for the different projects in your app. Distributed tracing is a diagnostic technique that helps engineers localize failures and performance issues within applications, especially those that might be distributed across multiple machines or processes. For more information, see [.NET distributed tracing](/dotnet/core/diagnostics/distributed-tracing). This technique tracks requests through an application and correlates work done by different application integrations. Traces also help identify how long different stages of the request took to complete. The traces page displays the following information:
@@ -281,6 +287,8 @@ Each span is represented as a row in the table, and contains a **Name**. Spans a
 Within the trace details page, there's a **View Logs** button that takes you to the structured logs page with a filter applied to show only the logs relevant to the request. Consider an example screenshot depicting the structured logs page with a filter applied to show only the logs relevant to the trace:
 
 :::image type="content" source="media/explore/structured-logs-trace-errors.png" lightbox="media/explore/structured-logs-trace-errors.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a filter applied to show only the logs relevant to the trace.":::
+
+When GitHub Copilot is available, the trace details page also includes an **Explain trace** button that provides a quick way to analyze the currently viewed trace using AI. Additionally, traces and individual spans include **Ask GitHub Copilot** options in their context menus for detailed investigation.
 
 The structured logs page is discussed in more detail in the [Structured logs page](#structured-logs-page) section.
 
@@ -428,6 +436,24 @@ The following shortcuts are available:
 
 - <kbd>?</kbd>: Got to **Help**.
 - <kbd>Shift</kbd> + <kbd>s</kbd>: Go to **<u>S</u>ettings**.
+
+## GitHub Copilot in the dashboard
+
+The .NET Aspire dashboard includes GitHub Copilot as your AI debugging assistant when you launch your app from VS Code or Visual Studio with a GitHub account that has a Copilot subscription. Copilot can help you:
+
+- Review hundreds of log messages with a single click.
+- Investigate the root cause of errors across multiple apps.
+- Highlight performance issues in traces.
+- Explain obscure error codes using AI's vast knowledge repository.
+
+Copilot features appear throughout the dashboard interface:
+
+- **Copilot button**: This button is available in the top-right corner to open the Copilot chat interface.
+- **Context menus**: "Ask GitHub Copilot" options appear in resource, log, trace, and span context menus.
+- **Explain buttons**: "Explain errors" buttons appear on structured logs and "Explain trace" buttons appear on trace details pages.
+- **Suggested questions**: Contextual AI suggestions appear based on the current page.
+
+For comprehensive information about GitHub Copilot features, requirements, troubleshooting, and configuration options, see [GitHub Copilot in the .NET Aspire dashboard](copilot.md).
 
 ## Next steps
 

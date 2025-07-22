@@ -737,7 +737,7 @@ app.MapPost("/chat", async (
 });
 ```
 
-This setup integrates seamlessly with frameworks like [Semantic Kernel](https://github.com/dotnet/semantic-kernel), and works well in modular or pluggable AI systems.
+This setup integrates seamlessly with frameworks like [Semantic Kernel](https://github.com/microsoft/semantic-kernel), and works well in modular or pluggable AI systems.
 
 🔗 Learn more about [Microsoft.Extensions.AI](/dotnet/ai/microsoft-extensions-ai) and [ChatCompletionsClient](/dotnet/api/azure.ai.inference.chatcompletionsclient).
 
