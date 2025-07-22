@@ -35,7 +35,7 @@ partial class Program
 
         if (result.Canceled)
         {
-            return CommandResults.Failure("User cancalled.");
+            return CommandResults.Failure("User cancelled.");
         }
 
         return result.Data
