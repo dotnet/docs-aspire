@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Key Vault integration
 description: Learn about the .NET Aspire Azure Key Vault integration.
-ms.date: 02/07/2025
+ms.date: 07/22/2025
 uid: security/azure-security-key-vault-integration
 ---
 
@@ -59,11 +59,11 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Key Vault resource, the following Bicep is generated:
 
-:::code language="bicep" source="../snippets/azure/AppHost/key-vault.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/key-vault/key-vault.bicep":::
 
 The preceding Bicep is a module that provisions an Azure Key Vault resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-:::code language="bicep" source="../snippets/azure/AppHost/key-vault-roles.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/key-vault-roles/key-vault-roles.bicep":::
 
 The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
