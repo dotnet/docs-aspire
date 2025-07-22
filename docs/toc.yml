@@ -318,6 +318,9 @@ items:
     - name: SQL Server
       displayName: sql server,ef core
       href: database/sql-server-entity-framework-integration.md
+  - name: GitHub Models
+    displayName: github models,github ai,github copilot,github copilot chat,deepseek,phi,gpt
+    href: github/github-models-integration.md
   - name: Keycloak (Preview)
     displayName: security,openid connect,single sign-on,sso,identity,federation,account management
     href: authentication/keycloak-integration.md
