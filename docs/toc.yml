@@ -115,6 +115,42 @@ items:
   - name: Microsoft-collected dashboard telemetry
     href: fundamentals/dashboard/microsoft-collected-dashboard-telemetry.md
 
+- name: Aspire CLI
+  displayName: aspire cli,aspire command line interface,aspire commands,cli
+  items:
+  - name: Overview
+    href: cli/overview.md
+  - name: Install
+    href: cli/install.md
+  - name: aspire command reference
+    items:
+    - name: aspire
+      href: cli-reference/aspire.md
+    - name: aspire add
+      href: cli-reference/aspire-add.md
+    - name: aspire deploy
+      href: cli-reference/aspire-deploy.md
+    - name: aspire config
+      items:
+      - name: aspire config [command]
+        href: cli-reference/aspire-config.md
+      - name: aspire config list
+        href: cli-reference/aspire-config-list.md
+      - name: aspire config get
+        href: cli-reference/aspire-config-get.md
+      - name: aspire config set
+        href: cli-reference/aspire-config-set.md
+      - name: aspire config delete
+        href: cli-reference/aspire-config-delete.md
+    - name: aspire exec
+      href: cli-reference/aspire-exec.md
+    - name: aspire new
+      href: cli-reference/aspire-new.md
+    - name: aspire publish
+      href: cli-reference/aspire-publish.md
+    - name: aspire run
+      href: cli-reference/aspire-run.md
+
 - name: Testing
   items:
   - name: Overview
