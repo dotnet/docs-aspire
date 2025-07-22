@@ -7,11 +7,11 @@ ai-usage: ai-assisted
 
 # .NET Aspire GitHub Models integration
 
-[GitHub Models](https://docs.github.com/en/github-models) provides access to various AI models including OpenAI's GPT models, DeepSeek, Microsoft's Phi models, and other leading AI models, all accessible through GitHub's infrastructure. The .NET Aspire GitHub Models integration enables you to connect to GitHub Models from your .NET applications for prototyping and production scenarios.
+[GitHub Models](https://docs.github.com/github-models) provides access to various AI models including OpenAI's GPT models, DeepSeek, Microsoft's Phi models, and other leading AI models, all accessible through GitHub's infrastructure. The .NET Aspire GitHub Models integration enables you to connect to GitHub Models from your .NET applications for prototyping and production scenarios.
 
 ## Hosting integration
 
-The .NET Aspire [GitHub Models](https://docs.github.com/en/github-models) hosting integration models GitHub Models resources as `GitHubModelResource`. To access these types and APIs for expressing them within your [app host](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/app-host-overview) project, install the [📦 Aspire.Hosting.GitHub.Models](https://www.nuget.org/packages/Aspire.Hosting.GitHub.Models) NuGet package:
+The .NET Aspire [GitHub Models](https://docs.github.com/github-models) hosting integration models GitHub Models resources as `GitHubModelResource`. To access these types and APIs for expressing them within your [AppHost project](../fundamentals/app-host-overview.md), install the [📦 Aspire.Hosting.GitHub.Models](https://www.nuget.org/packages/Aspire.Hosting.GitHub.Models) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -128,7 +128,7 @@ GitHub Models supports various AI models. Some popular options include:
 - `deepseek/DeepSeek-V3-0324`
 - `microsoft/Phi-4-mini-instruct`
 
-Check the [GitHub Models documentation](https://docs.github.com/en/github-models) for the most up-to-date list of available models.
+Check the [GitHub Models documentation](https://docs.github.com/github-models) for the most up-to-date list of available models.
 
 ## Client integration
 
@@ -255,15 +255,15 @@ builder.AddOpenAIClient("chat")
        .AddChatClient();
 ```
 
-## Configuration
+### Configuration
 
 The GitHub Models integration supports configuration through user secrets, environment variables, or app settings. The integration automatically uses the `GITHUB_TOKEN` environment variable if available, or you can specify a custom API key parameter.
 
-### Authentication
+#### Authentication
 
 The GitHub Models integration requires a GitHub personal access token with `models: read` permission. The token can be provided in several ways:
 
-#### Environment variables in Codespaces and GitHub Actions
+##### Environment variables in Codespaces and GitHub Actions
 
 When running an app in GitHub Codespaces or GitHub Actions, the `GITHUB_TOKEN` environment variable is automatically available and can be used without additional configuration. This token has the necessary permissions to access GitHub Models for the repository context.
 
@@ -272,7 +272,7 @@ When running an app in GitHub Codespaces or GitHub Actions, the `GITHUB_TOKEN` e
 var chat = builder.AddGitHubModel("chat", "openai/gpt-4o-mini");
 ```
 
-#### Personal access tokens for local development
+##### Personal access tokens for local development
 
 For local development, you need to create a [fine-grained personal access token](https://github.com/settings/tokens) with the `models: read` scope and configure it in user secrets:
 
@@ -288,114 +288,29 @@ For local development, you need to create a [fine-grained personal access token]
 
 The connection string follows this format:
 
-```ini
+```Plaintext
 Endpoint=https://models.github.ai/inference;Key={api_key};Model={model_name};DeploymentId={model_name}
 ```
 
 For organization-specific requests:
 
-```
+```Plaintext
 Endpoint=https://models.github.ai/orgs/{organization}/inference;Key={api_key};Model={model_name};DeploymentId={model_name}
 ```
 
 ### Rate limits and costs
 
 > [!IMPORTANT]
-> Each model has rate limits that vary by model and usage tier. Some models include costs if you exceed free tier limits. Check the [GitHub Models documentation](https://docs.github.com/en/github-models) for current rate limits and pricing information.
+> Each model has rate limits that vary by model and usage tier. Some models include costs if you exceed free tier limits. Check the [GitHub Models documentation](https://docs.github.com/github-models) for current rate limits and pricing information.
 
 > [!TIP]
 > Use health checks sparingly to avoid consuming your rate limit allowance. The integration caches health check results to minimize API calls.
 
-## Sample application
+### Sample application
 
-Here's a complete example of a Blazor application that uses GitHub Models:
+The `dotnet/aspire` repo contains an example application demonstrating the GitHub Models integration. You can find the sample in the [Aspire GitHub repository](https://github.com/dotnet/aspire/tree/main/playground/GitHubModelsEndToEnd).
 
-### AppHost example
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var chat = builder.AddGitHubModel("chat", "openai/gpt-4o-mini");
-
-builder.AddProject<Projects.StoryApp>("storyapp")
-       .WithReference(chat)
-       .WaitFor(chat);
-
-builder.Build().Run();
-```
-
-### Client Program.cs
-
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-builder.AddServiceDefaults();
-
-builder.AddAzureChatCompletionsClient("chat")
-       .AddChatClient();
-
-builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
-
-var app = builder.Build();
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseAntiforgery();
-
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
-
-app.Run();
-```
-
-### Blazor Component
-
-```razor
-@page "/"
-@using Microsoft.Extensions.AI
-@inject IChatClient chatClient
-
-<div class="story-container">
-    @foreach (var message in chatMessages.Where(m => m.Role == ChatRole.Assistant))
-    {
-        <p class="story-text">@message.Text</p>
-    }
-
-    <button @onclick="GenerateNextParagraph" class="btn btn-primary">
-        Generate Next Paragraph
-    </button>
-    
-    <p class="powered-by">Powered by GitHub Models</p>
-</div>
-
-@code {
-    private List<ChatMessage> chatMessages = new()
-    {
-        new(ChatRole.System, "Write an engaging fictional story. Start with an interesting premise.")
-    };
-
-    private async Task GenerateNextParagraph()
-    {
-        if (chatMessages.Count > 1)
-        {
-            chatMessages.Add(new ChatMessage(ChatRole.User, "Continue the story with the next paragraph."));
-        }
-
-        var response = await chatClient.GetResponseAsync(chatMessages);
-        chatMessages.AddMessages(response);
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        await GenerateNextParagraph();
-    }
-}
-```
-
-## Observability and telemetry
-
-.NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as the pillars of observability. For more information about integration observability and telemetry, see [.NET Aspire integrations overview](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/integrations-overview).
+[!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
 ### Logging
 
@@ -410,7 +325,7 @@ HTTP requests to the GitHub Models API are automatically traced when using the A
 
 ## See also
 
-- [GitHub Models](https://docs.github.com/en/github-models)
-- [.NET Aspire integrations overview](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/integrations-overview)
+- [GitHub Models](https://docs.github.com/github-models)
+- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
-- [GitHub Models API documentation](https://docs.github.com/en/rest/models/inference)
+- [GitHub Models API documentation](https://docs.github.com/rest/models/inference)
