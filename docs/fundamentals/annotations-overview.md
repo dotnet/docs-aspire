@@ -1,7 +1,7 @@
 ---
 title: Resource annotations
 description: Learn about annotations in .NET Aspire, how they work, and how to create custom annotations for extending resource behavior.
-ms.date: 07/16/2025
+ms.date: 07/23/2025
 ---
 
 # Resource annotations in .NET Aspire
@@ -120,6 +120,8 @@ api.Resource.Annotations.Add(
     });
 );
 ```
+
+For more information on publishing and deploying annotations, see [Build container images](build-container-images.md).
 
 ## Creating custom annotations
 

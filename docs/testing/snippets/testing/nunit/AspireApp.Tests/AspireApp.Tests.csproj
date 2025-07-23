@@ -10,7 +10,7 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.Testing" Version="9.3.1" />
+    <PackageReference Include="Aspire.Hosting.Testing" Version="9.4.0-preview.1.25372.26" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
     <PackageReference Include="NUnit" Version="4.3.2" />
     <PackageReference Include="NUnit.Analyzers" Version="4.9.2" />

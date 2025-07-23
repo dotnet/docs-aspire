@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="api/api.csproj" />
+  <Project Path="build-container-images.csproj" />
+</Solution>

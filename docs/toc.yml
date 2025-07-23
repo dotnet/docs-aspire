@@ -445,7 +445,7 @@ items:
   - name: Secure communication between integrations
     href: extensibility/secure-communication-between-integrations.md
 
-- name: Deploy
+- name: Publish and Deploy
   items:
   - name: Overview
     displayName: azure deployment,deployment,Kubernetes,k8s
@@ -476,6 +476,8 @@ items:
       href: database/sql-server-integration-deployment.md
     - name: Deploy .NET Aspire + Redis
       href: caching/caching-integrations-deployment.md
+  - name: Build container images
+    href: fundamentals/build-container-images.md
   - name: Tool-builder manifest schemas
     href: deployment/manifest-format.md
 
