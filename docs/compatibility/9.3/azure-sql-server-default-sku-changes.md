@@ -1,14 +1,14 @@
 ---
 title: "Breaking change - Change the default SKU used for creating a new Azure SQL database"
 description: "Learn about the breaking change in .NET Aspire 9.3 where the default SKU for Azure SQL database deployment now uses the free offer."
-ms.date: 5/7/2025
+ms.date: 7/23/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/3144
 ---
 
 # Change the default SKU used for creating a new Azure SQL database
 
-The default SKU for deploying a new Azure SQL database has been updated to take advantage of the Azure SQL Database free offer. This change helps avoid unexpected monthly costs by pausing the database when free offer limits are reached. Methods for customizing the SKU during deployment are available through the <xref:Aspire.Hosting.ResourceBuilderExtensions.ConfigureInfrastructure*> method and the <xref:Aspire.Hosting.AzureSqlExtensions.WithAzureDefaultSku*> method.
+The default SKU for deploying a new Azure SQL database has been updated to take advantage of the Azure SQL Database free offer. This change helps avoid unexpected monthly costs by pausing the database when free offer limits are reached. Methods for customizing the SKU during deployment are available through the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> method and the <xref:Aspire.Hosting.AzureSqlExtensions.WithDefaultAzureSku*> method.
 
 ## Version introduced
 
@@ -70,4 +70,4 @@ Review your existing deployments to ensure they align with the new default behav
 
 - <xref:Aspire.Hosting.Azure.AzureSqlDatabaseResource>: Updated to use the free offer as the default deployment option.
 - <xref:Aspire.Hosting.AzureSqlExtensions.AddDatabase*>: Updated to use the free offer as the default deployment option.
-- <xref:Aspire.Hosting.AzureSqlExtensions.WithAzureDefaultSku*>: Added to allow opting out of the free offer.
+- <xref:Aspire.Hosting.AzureSqlExtensions.WithDefaultAzureSku*>: Added to allow opting out of the free offer.
