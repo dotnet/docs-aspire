@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Logging;
 using StackExchange.Redis;
@@ -10,13 +10,18 @@ internal static class RedisResourceBuilderExtensions
     public static IResourceBuilder<RedisResource> WithClearCommand(
         this IResourceBuilder<RedisResource> builder)
     {
+        var commandOptions = new CommandOptions
+        {
+            UpdateState = OnUpdateResourceState,
+            IconName = "AnimalRabbitOff",
+            IconVariant = IconVariant.Filled
+        };
+
         builder.WithCommand(
             name: "clear-cache",
             displayName: "Clear Cache",
             executeCommand: context => OnRunClearCacheCommandAsync(builder, context),
-            updateState: OnUpdateResourceState,
-            iconName: "AnimalRabbitOff",
-            iconVariant: IconVariant.Filled);
+            commandOptions: commandOptions);
 
         return builder;
     }
@@ -30,9 +35,7 @@ internal static class RedisResourceBuilderExtensions
                 $"Unable to get the '{context.ResourceName}' connection string.");
 
         await using var connection = ConnectionMultiplexer.Connect(connectionString);
-
         var database = connection.GetDatabase();
-
         await database.ExecuteAsync("FLUSHALL");
 
         return CommandResults.Success();
@@ -42,7 +45,6 @@ internal static class RedisResourceBuilderExtensions
         UpdateCommandStateContext context)
     {
         var logger = context.ServiceProvider.GetRequiredService<ILogger<Program>>();
-
         if (logger.IsEnabled(LogLevel.Information))
         {
             logger.LogInformation(
