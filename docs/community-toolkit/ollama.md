@@ -135,7 +135,7 @@ dotnet add package CommunityToolkit.Aspire.OllamaSharp
 
 ### Add Ollama client API
 
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the `AddOllamaClientApi` extension to register an `IOllamaClientApi` for use via the dependency injection container. If the resource provided in the app host, and referenced in the client-consuming project, is an `OllamaModelResource`, then the `AddOllamaClientApi` method will register the model as the default model for the `IOllamaClientApi`.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireOllamaExtensions.AddOllamaClientApi*> extension to register an `IOllamaClientApi` for use via the dependency injection container. If the resource provided in the app host, and referenced in the client-consuming project, is an `OllamaModelResource`, then the <xref:Microsoft.Extensions.Hosting.AspireOllamaExtensions.AddOllamaClientApi*> method will register the model as the default model for the `IOllamaClientApi`.
 
 ```csharp
 builder.AddOllamaClientApi("llama3");
@@ -152,7 +152,7 @@ public class ExampleService(IOllamaClientApi ollama)
 
 ### Add keyed Ollama client API
 
-There might be situations where you want to register multiple `IOllamaClientApi` instances with different connection names. To register keyed Ollama clients, call the `AddKeyedOllamaClientApi` method:
+There might be situations where you want to register multiple `IOllamaClientApi` instances with different connection names. To register keyed Ollama clients, call the <xref:Microsoft.Extensions.Hosting.AspireOllamaExtensions.AddKeyedOllamaClientApi*> method:
 
 ```csharp
 builder.AddKeyedOllamaClientApi(name: "chat");
@@ -176,7 +176,7 @@ The Ollama client integration provides multiple configuration approaches and opt
 
 ### Use a connection string
 
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling the `AddOllamaClientApi` method:
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling the <xref:Microsoft.Extensions.Hosting.AspireOllamaExtensions.AddOllamaClientApi*> method:
 
 ```csharp
 builder.AddOllamaClientApi("llama");
@@ -194,16 +194,16 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 
 ### Integration with `Microsoft.Extensions.AI`
 
-The [📦 Microsoft.Extensions.AI](https://www.nuget.org/packages/Microsoft.Extensions.AI) NuGet package provides an abstraction over the Ollama client API, using generic interfaces. OllamaSharp supports these interfaces, and they can be registered by chaining either the <xref:Microsoft.Extensions.AI.IChatClient> or <xref:Microsoft.Extensions.AI.IEmbeddingGenerator`2> registration methods to the `AddOllamaClientApi` method.
+The [📦 Microsoft.Extensions.AI](https://www.nuget.org/packages/Microsoft.Extensions.AI) NuGet package provides an abstraction over the Ollama client API, using generic interfaces. OllamaSharp supports these interfaces, and they can be registered by chaining either the <xref:Microsoft.Extensions.AI.IChatClient> or <xref:Microsoft.Extensions.AI.IEmbeddingGenerator`2> registration methods to the <xref:Microsoft.Extensions.Hosting.AspireOllamaExtensions.AddOllamaClientApi*> method.
 
-To register an `IChatClient`, chain the `AddChatClient` method to the `AddOllamaClientApi` method:
+To register an `IChatClient`, chain the <xref:Microsoft.Extensions.AI.ChatClientBuilderExtensions.AddChatClient*> method to the <xref:Microsoft.Extensions.Hosting.AspireOllamaExtensions.AddOllamaClientApi*> method:
 
 ```csharp
 builder.AddOllamaClientApi("llama")
        .AddChatClient();
 ```
 
-Similarly, to register an `IEmbeddingGenerator`, chain the `AddEmbeddingGenerator` method:
+Similarly, to register an `IEmbeddingGenerator`, chain the <xref:Microsoft.Extensions.AI.EmbeddingGeneratorBuilderExtensions.AddEmbeddingGenerator*> method:
 
 ```csharp
 builder.AddOllamaClientApi("llama")
@@ -221,7 +221,7 @@ public class ExampleService(IChatClient chatClient)
 
 ### Add keyed Microsoft.Extensions.AI clients
 
-There might be situations where you want to register multiple AI client instances with different connection names. To register keyed AI clients, use the keyed versions of the registration methods:
+There might be situations where you want to register multiple AI client instances with different connection names. To register keyed AI clients, use the keyed versions of the registration methods such as <xref:Microsoft.Extensions.AI.ChatClientBuilderExtensions.AddKeyedChatClient*> and <xref:Microsoft.Extensions.AI.EmbeddingGeneratorBuilderExtensions.AddKeyedEmbeddingGenerator*>:
 
 ```csharp
 builder.AddOllamaClientApi("chat")
