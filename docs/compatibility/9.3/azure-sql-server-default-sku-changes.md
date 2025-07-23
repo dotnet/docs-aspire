@@ -8,7 +8,7 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/3144
 
 # Change the default SKU used for creating a new Azure SQL database
 
-The default SKU for deploying a new Azure SQL database has been updated to take advantage of the Azure SQL Database free offer. This change helps avoid unexpected monthly costs by pausing the database when free offer limits are reached. A new method, `WithSku`, has also been introduced to allow customization of the SKU during deployment.
+The default SKU for deploying a new Azure SQL database has been updated to take advantage of the Azure SQL Database free offer. This change helps avoid unexpected monthly costs by pausing the database when free offer limits are reached. Methods for customizing the SKU during deployment are available through the `ConfigureInfrastructure` method and the `WithAzureDefaultSku` method.
 
 ## Version introduced
 
@@ -20,14 +20,18 @@ The Azure SQL database was deployed with a default SKU that did not utilize the 
 
 ## New behavior
 
-The Azure SQL database now deploys with the default SKU `GP_S_Gen5_2` (General Purpose Serverless) and the Azure SQL Database free offer enabled. The database pauses automatically when free offer limits are reached, preventing unexpected costs. Additionally, the `WithSku` method allows you to specify a different SKU if needed.
+The Azure SQL database now deploys with the default SKU `GP_S_Gen5_2` (General Purpose Serverless) and the Azure SQL Database free offer enabled. The database pauses automatically when free offer limits are reached, preventing unexpected costs. Additionally, you can configure a different SKU using the `ConfigureInfrastructure` method if needed.
 
-Example usage of the new `WithSku` method:
+Example usage of configuring a specific SKU:
 
 ```csharp
-var database = resourceBuilder
-    .AddDatabase("MyDatabase")
-    .WithSku("GP_S_Gen5_4");
+var sqlServer = builder.AddAzureSqlServer("sql")
+    .ConfigureInfrastructure(infra => {
+        var azureResources = infra.GetProvisionableResources();
+        var azureDb = azureResources.OfType<SqlDatabase>().Single();
+        azureDb.Sku = new SqlSku() { Name = "GP_S_Gen5_4" };
+    })
+    .AddDatabase("MyDatabase");
 ```
 
 ## Type of breaking change
@@ -40,12 +44,24 @@ This change ensures that deployments take advantage of the Azure SQL Database fr
 
 ## Recommended action
 
-If you want to use a different SKU for your Azure SQL database deployment, use the new `WithSku` method to specify the desired SKU. For example:
+If you want to use a different SKU for your Azure SQL database deployment, use the `ConfigureInfrastructure` method to specify the desired SKU. For example:
 
 ```csharp
-var database = resourceBuilder
+var sqlServer = builder.AddAzureSqlServer("sql")
+    .ConfigureInfrastructure(infra => {
+        var azureResources = infra.GetProvisionableResources();
+        var azureDb = azureResources.OfType<SqlDatabase>().Single();
+        azureDb.Sku = new SqlSku() { Name = "GP_S_Gen5_4" };
+    })
+    .AddDatabase("MyDatabase");
+```
+
+Alternatively, if you don't want to use the free offer and prefer to use Azure's default SKU, you can use the `WithAzureDefaultSku` method:
+
+```csharp
+var sqlServer = builder.AddAzureSqlServer("sql")
     .AddDatabase("MyDatabase")
-    .WithSku("GP_S_Gen5_4");
+    .WithAzureDefaultSku();
 ```
 
 Review your existing deployments to ensure they align with the new default behavior.
@@ -54,4 +70,4 @@ Review your existing deployments to ensure they align with the new default behav
 
 - <xref:Aspire.Hosting.Azure.AzureSqlDatabaseResource>: Updated to use the free offer as the default deployment option.
 - <xref:Aspire.Hosting.AzureSqlExtensions.AddDatabase*>: Updated to use the free offer as the default deployment option.
-- `public static IResourceBuilder<AzureSqlDatabaseResource> WithSku`: Added to allow specifying the desired SKU.
+- `public static IResourceBuilder<AzureSqlDatabaseResource> WithAzureDefaultSku`: Added to allow opting out of the free offer.
