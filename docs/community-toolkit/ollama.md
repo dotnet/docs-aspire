@@ -221,7 +221,7 @@ public class ExampleService(IChatClient chatClient)
 
 ### Add keyed Microsoft.Extensions.AI clients
 
-There might be situations where you want to register multiple AI client instances with different connection names. To register keyed AI clients, use the keyed versions of the registration methods such as <xref:Microsoft.Extensions.AI.ChatClientBuilderExtensions.AddKeyedChatClient*> and <xref:Microsoft.Extensions.AI.EmbeddingGeneratorBuilderExtensions.AddKeyedEmbeddingGenerator*>:
+There might be situations where you want to register multiple AI client instances with different connection names. To register keyed AI clients, use the keyed versions of the registration methods (<xref:Microsoft.Extensions.AI.ChatClientBuilderExtensions.AddKeyedChatClient*> and <xref:Microsoft.Extensions.AI.EmbeddingGeneratorBuilderExtensions.AddKeyedEmbeddingGenerator*>):
 
 ```csharp
 builder.AddOllamaClientApi("chat")
