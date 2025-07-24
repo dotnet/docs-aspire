@@ -13,6 +13,8 @@ ai-usage: ai-assisted
 
 When you publish or deploy Aspire applications, the platform automatically builds container images for your services. This process involves two main components:
 
+<!-- TODO: IResourceContainerImageBuilder and PublishingActivityProgressReporter xrefs -->
+
 - `IResourceContainerImageBuilder`: The service that turns resource definitions into runnable container images.
 - `PublishingActivityProgressReporter`: The API that provides structured progress reporting during long-running operations.
 
@@ -30,7 +32,7 @@ Consider using the container image building and progress reporting APIs in these
 > [!NOTE]
 > For most standard Aspire applications, the built-in publishing process handles container image building automatically without requiring these APIs.
 
-## `IResourceContainerImageBuilder` API
+## Resource container image builder API
 
 The `IResourceContainerImageBuilder` is the core service in the <xref:Aspire.Hosting.Publishing> layer that converts resource definitions into container images. It analyzes each resource in your distributed application model and determines whether to:
 
@@ -40,9 +42,11 @@ The `IResourceContainerImageBuilder` is the core service in the <xref:Aspire.Hos
 
 ### Container build options
 
+<!-- TODO: ContainerBuildOptions xref -->
+
 The `ContainerBuildOptions` class, which provides strongly typed configuration for container builds. This class allows you to specify:
 
-- **Image format**: Docker or OCI format.
+- **Image format**: Docker or Open Container Initiative (OCI) format.
 - **Target platform**: Linux x64, Windows, ARM64, etc.
 - **Output path**: Where to save the built images.
 
@@ -50,7 +54,7 @@ The `ContainerBuildOptions` class, which provides strongly typed configuration f
 
 The builder now performs container runtime health checks (Docker/Podman) only when at least one resource requires a Dockerfile build. This change eliminates false-positive errors in projects that publish directly from .NET assemblies. If the container runtime is required but unhealthy, the builder throws an explicit `InvalidOperationException` to surface the problem early.
 
-## `PublishingActivityProgressReporter` API
+## Publishing activity reporter API
 
 The `PublishingActivityProgressReporter` API enables structured progress reporting during [aspire publish](../cli-reference/aspire-publish.md) and [aspire deploy](../cli-reference/aspire-deploy.md) commands. This reduces uncertainty during long-running operations and surfaces failures early.
 
@@ -79,17 +83,19 @@ The reporter API provides structured access to progress reporting with the follo
 
 ## Example: Build container images and report progress
 
-To use these APIs, add a `PublishingCallbackAnnotation`, a `DeployingCallbackAnnotation`, or both to a resource in the app model. You can annotate either custom or built-in resources by adding annotations to the <xref:Aspire.Hosting.ApplicationModel.IResource.Annotations?displayProperty=nameWithType> collection.
+To use these APIs, add a `PublishingCallbackAnnotation`, a `DeployingCallbackAnnotation`, or both to a resource in your app model. You can annotate custom (or built-in) resources by adding annotations to the <xref:Aspire.Hosting.ApplicationModel.IResource.Annotations?displayProperty=nameWithType> collection.
 
 As a developer, you can choose to:
 
-- Use both annotations when your resource needs to participate in both publishing and deployment phases. For example, if your resource must build container images, generate manifests, or perform other preparatory tasks during publishing, and then push those images to a container registry or configure deployment targets during deployment, add both annotations. Publishing always runs before deployment, so you can separate logic for each phase and ensure that all necessary artifacts are available before deployment begins.
+- Use both annotations if your resource needs to do work in both publishing and deployment. For example, build images and generate manifests during publishing, then push images or configure deployment targets during deployment. Publishing always happens before deployment, so you can keep logic for each phase separate.
 
-- Use only `PublishingCallbackAnnotation` if your resource only needs to perform actions during the publishing phase. This is useful when your resource is responsible for generating build artifacts, preparing configuration files, or building images, but doesn't need to take any action during deployment. For example, a resource that only builds and tags images but doesn't push them can use just the publishing callback.
+- Use only `PublishingCallbackAnnotation` if your resource only needs to do something during publishing. This is common when you just need to build artifacts or images, but don't need to do anything during deployment.
 
-- Use only `DeployingCallbackAnnotation` if your resource only needs to participate in deployment. This is appropriate when your resource doesn't require any build or preparation steps, but must perform actions such as pushing images to a registry, updating deployment targets, or configuring runtime environments. For example, a resource that consumes pre-built images and only needs to deploy them can use just the deploying callback.
+- Use only `DeployingCallbackAnnotation` if your resource only needs to do something during deployment. This fits cases where you use prebuilt images and just need to deploy or configure them.
 
-Choose the annotation(s) that match your resource's responsibilities to keep your application model clear and maintainable. This separation lets you clearly define logic for each phase, but you can use both the activity reporter and the resource container image builder in either callback as needed.
+Choose one or more annotations that match your resource's responsibilities to keep your application model clear and maintainable. This separation lets you clearly define logic for each phase, but you can use both the activity reporter and the resource container image builder in either callback as needed.
+
+### Example resource with annotations
 
 For example, consider the `ComputeEnvironmentResource` constructor:
 
@@ -106,6 +112,14 @@ The preceding code:
 - Defines an extension method on the <xref:Aspire.Hosting.IDistributedApplicationBuilder>.
 - Accepts a `name` for the compute environment resource, protected by the <xref:Aspire.Hosting.ApplicationModel.ResourceNameAttribute>.
 - Instantiates a `ComputeEnvironmentResource` given the `name` and adds it to the `builder`.
+
+### Example AppHost
+
+In your AppHost, you can add the `ComputeEnvironmentResource` to the application model like this:
+
+:::code source="snippets/build-container-images/apphost/AppHost.cs":::
+
+The preceding code uses the `AddComputeEnvironment` extension method to add the `ComputeEnvironmentResource` to the application model.
 
 ### Publishing callback annotation
 

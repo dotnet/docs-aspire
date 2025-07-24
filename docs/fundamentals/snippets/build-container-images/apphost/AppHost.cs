@@ -3,7 +3,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var cache = builder.AddRedis("redis");
 
 builder.AddProject<Projects.api>("api")
-    .WithReference(cache);
+       .WithReference(cache);
 
 builder.AddComputeEnvironment("compute-env");
 
