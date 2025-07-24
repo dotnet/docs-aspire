@@ -1,7 +1,7 @@
 ---
 title: aspire config command
 description: Learn about the aspire config command and its usage. This command driver is used to manage the Aspire CLI config settings.
-ms.date: 07/11/2025
+ms.date: 07/24/2025
 ---
 # aspire config command
 
