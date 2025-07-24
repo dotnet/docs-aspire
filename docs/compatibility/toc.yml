@@ -26,7 +26,6 @@ items:
     - name: Local auth disabled by default on Azure resources
       href: 9.4/local-auth-disabled-for-azure-resources.md
 - name: .NET Aspire 9.3
-  expanded: true
   items:
   - name: Overview
     href: 9.3/index.md
