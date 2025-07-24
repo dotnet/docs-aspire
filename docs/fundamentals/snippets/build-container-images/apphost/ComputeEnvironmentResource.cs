@@ -2,17 +2,18 @@ using System.Diagnostics.CodeAnalysis;
 using Aspire.Hosting.Publishing;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Examples.ContainerBuilding;
-
 [Experimental("ASPIRECOMPUTE001")]
 public sealed class ComputeEnvironmentResource : Resource
 {
+    // <ctor>
     public ComputeEnvironmentResource(string name) : base(name)
     {
         Annotations.Add(new PublishingCallbackAnnotation(PublishAsync));
         Annotations.Add(new DeployingCallbackAnnotation(DeployAsync));
     }
+    // </ctor>
 
+    // <publish>
     private static async Task PublishAsync(PublishingContext context)
     {
         var reporter = context.ActivityReporter;
@@ -20,12 +21,11 @@ public sealed class ComputeEnvironmentResource : Resource
 
         // Build container images for all project resources in the application
         await using (var buildStep = await reporter.CreateStepAsync(
-                     "Build container images", context.CancellationToken))
+            "Build container images", context.CancellationToken))
         {
-            // Find all project resources that need container images
+            // Find all resources that need container images
             var projectResources = context.Model.Resources
-                .OfType<ProjectResource>()
-                .Where(r => r.Annotations.OfType<ContainerImageAnnotation>().Any())
+                .Where(r => r.HasAnnotationOfType<ContainerImageAnnotation>())
                 .ToList();
 
             if (projectResources.Count > 0)
@@ -39,19 +39,20 @@ public sealed class ComputeEnvironmentResource : Resource
                 };
 
                 var buildTask = await buildStep.CreateTaskAsync(
-                    $"Building {projectResources.Count} container images", context.CancellationToken);
+                    $"Building {projectResources.Count} container image(s)", context.CancellationToken);
 
                 // Build all the container images
                 await imageBuilder.BuildImagesAsync(
                     projectResources, buildOptions, context.CancellationToken);
 
                 await buildTask.SucceedAsync(
-                    $"Built {projectResources.Count} images successfully", context.CancellationToken);
+                    $"Built {projectResources.Count} image(s) successfully", context.CancellationToken);
             }
             else
             {
                 var skipTask = await buildStep.CreateTaskAsync(
                     "No container images to build", context.CancellationToken);
+                    
                 await skipTask.SucceedAsync("Skipped - no project resources found", context.CancellationToken);
             }
 
@@ -60,20 +61,16 @@ public sealed class ComputeEnvironmentResource : Resource
 
         // Generate deployment manifests
         await using (var manifestStep = await reporter.CreateStepAsync(
-                     "Generate deployment manifests", context.CancellationToken))
+            "Generate deployment manifests", context.CancellationToken))
         {
             var bicepTask = await manifestStep.CreateTaskAsync(
-                "Generate Bicep templates", context.CancellationToken);
-            
-            // Generate deployment files in the output directory
-            var manifestPath = Path.Combine(context.OutputPath, "main.bicep");
-            await File.WriteAllTextAsync(manifestPath, 
-                "// Generated deployment template", context.CancellationToken);
-            
+                "Write main.bicep", context.CancellationToken);
+
+            // Write file to context.OutputPath …
             await bicepTask.SucceedAsync(
-                $"Bicep template written to {manifestPath}", context.CancellationToken);
-            
-            await manifestStep.SucceedAsync("All manifests generated", context.CancellationToken);
+                $"main.bicep at {context.OutputPath}", context.CancellationToken);
+
+            await manifestStep.SucceedAsync("Manifests ready", context.CancellationToken);
         }
 
         // Complete the publishing operation
@@ -82,20 +79,22 @@ public sealed class ComputeEnvironmentResource : Resource
             completionState: CompletionState.Completed,
             cancellationToken: context.CancellationToken);
     }
+    // </publish>
 
+    // <deploy>
     private static async Task DeployAsync(DeployingContext context)
     {
         var reporter = context.ActivityReporter;
 
         await using (var deployStep = await reporter.CreateStepAsync(
-                     "Deploy to target environment", context.CancellationToken))
+            "Deploy to target environment", context.CancellationToken))
         {
             var applyTask = await deployStep.CreateTaskAsync(
                 "Apply Kubernetes manifests", context.CancellationToken);
-            
+
             // Simulate deploying to Kubernetes cluster
-            await Task.Delay(1000, context.CancellationToken); // Simulate deployment work
-            
+            await Task.Delay(1_000, context.CancellationToken);
+
             await applyTask.SucceedAsync("All workloads deployed", context.CancellationToken);
             await deployStep.SucceedAsync("Deployment to cluster completed", context.CancellationToken);
         }
@@ -107,16 +106,6 @@ public sealed class ComputeEnvironmentResource : Resource
             isDeploy: true,
             cancellationToken: context.CancellationToken);
     }
+    // </deploy>
 }
 
-// Extension method to make it easier to add the custom resource
-[Experimental("ASPIRECOMPUTE001")]
-public static class ComputeEnvironmentResourceExtensions
-{
-    public static IResourceBuilder<ComputeEnvironmentResource> AddComputeEnvironment(
-        this IDistributedApplicationBuilder builder,
-        string name)
-    {
-        return builder.AddResource(new ComputeEnvironmentResource(name));
-    }
-}

@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="api/api.csproj" />
-  <Project Path="build-container-images.csproj" />
+  <Project Path="api/Api.csproj" />
+  <Project Path="apphost/AppHost.csproj" />
 </Solution>
