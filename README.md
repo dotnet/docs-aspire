@@ -23,9 +23,13 @@ To contribute, see:
 - Issues labeled [`help wanted` :label:](https://github.com/dotnet/docs-aspire/issues?q=is%3Aopen+is%3Aissue+label%3A%22help+wanted%22+) for ideas.
 - [#Hacktoberfest and Microsoft Docs :jack_o_lantern:](https://learn.microsoft.com/contribute/hacktoberfest) for details on our participation in the annual event.
 
-## Microsoft Open Source Code of Conduct
+## .NET Foundation
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+This project has adopted the code of conduct defined by the [Contributor Covenant](https://contributor-covenant.org) to clarify expected behavior in our community. For more information, see the [.NET Foundation Code of Conduct](https://www.dotnetfoundation.org/code-of-conduct).
+
+See also:
+
+- [Repository: Code of Conduct](CODE-OF-CONDUCT.md)
 
 ## :octocat: GitHub Action workflows
 
