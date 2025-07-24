@@ -194,10 +194,20 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 
 ### Integration with `Microsoft.Extensions.AI`
 
-The Microsoft.Extensions.AI library provides an abstraction over the Ollama client API, using generic interfaces. OllamaSharp supports these interfaces, and they can be registered using the `AddOllamaSharpChatClient` and `AddOllamaSharpEmbeddingGenerator` extension methods. These methods will also register the `IOllamaClientApi` instances with the dependency injection container, and have keyed versions for multiple instances.
+The [📦 Microsoft.Extensions.AI](https://www.nuget.org/packages/Microsoft.Extensions.AI) NuGet package provides an abstraction over the Ollama client API, using generic interfaces. OllamaSharp supports these interfaces, and they can be registered by chaining either the <xref:Microsoft.Extensions.AI.IChatClient> or <xref:Microsoft.Extensions.AI.IEmbeddingGenerator`2> registration methods to the `AddOllamaClientApi` method.
+
+To register an `IChatClient`, chain the `AddChatClient` method to the `AddOllamaClientApi` method:
 
 ```csharp
-builder.AddOllamaSharpChatClient("llama");
+builder.AddOllamaClientApi("llama")
+       .AddChatClient();
+```
+
+Similarly, to register an `IEmbeddingGenerator`, chain the `AddEmbeddingGenerator` method:
+
+```csharp
+builder.AddOllamaClientApi("llama")
+       .AddEmbeddingGenerator();
 ```
 
 After adding `IChatClient` to the builder, you can get the `IChatClient` instance using dependency injection. For example, to retrieve your context object from service:
@@ -206,6 +216,28 @@ After adding `IChatClient` to the builder, you can get the `IChatClient` instanc
 public class ExampleService(IChatClient chatClient)
 {
     // Use chat client...
+}
+```
+
+### Add keyed Microsoft.Extensions.AI clients
+
+There might be situations where you want to register multiple AI client instances with different connection names. To register keyed AI clients, use the keyed versions of the registration methods:
+
+```csharp
+builder.AddOllamaClientApi("chat")
+       .AddKeyedChatClient("chat");
+builder.AddOllamaClientApi("embeddings")
+       .AddKeyedEmbeddingGenerator("embeddings");
+```
+
+Then you can retrieve the AI client instances using dependency injection. For example, to retrieve the clients from an example service:
+
+```csharp
+public class ExampleService(
+    [FromKeyedServices("chat")] IChatClient chatClient,
+    [FromKeyedServices("embeddings")] IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator)
+{
+    // Use AI clients...
 }
 ```
 
