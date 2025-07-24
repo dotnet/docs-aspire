@@ -11,7 +11,7 @@ Environments provide context for the application to run in. Parameters express t
 
 ## Parameter values
 
-Parameter values are read from the `Parameters` section of the app host's configuration and are used to provide values to the app while running locally. When you publish the app, if the value isn't configured you're prompted to provide it.
+Parameter values are read from the `Parameters` section of the app host's configuration and are used to provide values to the app while running locally. When you run or publish the app, if the value isn't configured you're prompted to provide it.
 
 Consider the following example app host _:::no-loc text="Program.cs":::_ file:
 
@@ -29,7 +29,7 @@ The preceding code adds a parameter named `example-parameter-name` to the app ho
 
 ### Configure parameter values
 
-Adding parameters to the builder is only one aspect of the configuration. You must also provide the value for the parameter. The value can be provided in the app host configuration file, set as a user secret, or configured in any [other standard configuration](/dotnet/core/extensions/configuration). When parameter values aren't found, they're prompted for when publishing the app.
+Adding parameters to the builder is only one aspect of the configuration. You must also provide the value for the parameter. The value can be provided in the app host configuration file, set as a user secret, or configured in any [other standard configuration](/dotnet/core/extensions/configuration). When parameter values aren't found, they're prompted for when you run or publish the app.
 
 Consider the following app host configuration file _:::no-loc text="appsettings.json":::_:
 
@@ -41,7 +41,7 @@ Consider the following app host configuration file _:::no-loc text="appsettings.
 }
 ```
 
-The preceding JSON configures a parameter in the `Parameters` section of the app host configuration. In other words, that app host is able to find the parameter as its configured. For example, you could walk up to the <xref:Aspire.Hosting.IDistributedApplicationBuilder.Configuration?displayProperty=nameWithType> and access the value using the `Parameters:example-parameter-name` key:
+The preceding JSON configures a parameter in the `Parameters` section of the app host configuration. In other words, that app host is able to find the parameter as it's configured. For example, you could walk up to the <xref:Aspire.Hosting.IDistributedApplicationBuilder.Configuration?displayProperty=nameWithType> and access the value using the `Parameters:example-parameter-name` key:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -52,6 +52,31 @@ var value = builder.Configuration[key]; // value = "local-value"
 
 > [!IMPORTANT]
 > However, you don't need to access this configuration value yourself in the app host. Instead, the <xref:Aspire.Hosting.ApplicationModel.ParameterResource> is used to pass the parameter value to dependent resources. Most often as an environment variable.
+
+### Prompt for parameter values in the dashboard
+
+From .NET Aspire version 9.4 onwards, if your code adds parameters but doesn't set them, then you will see a prompt to configure their values in the .NET Aspire dashboard. The **Unresolved parameters** message is displayed and you can click **Enter values** to resolve the problem:
+
+:::image type="content" source="./media/dashboard-unresolved-parameters-message.png" lightbox="./media/dashboard-unresolved-parameters-message.png" alt-text="Screenshot of the .NET Aspire dashboard warning that appears when there are unresolved parameters.":::
+
+When you select **Enter values**, .NET Aspire displays a form that you can use to configure values for each of the missing parameters.
+
+You can also control how the dashboard displays these parameters, by using these methods:
+
+- `WithDescription`: Use this method to provide a text description that helps users to complete the parameter.
+- `WithMarkdownDescription`: Use this method to provide a formatted description in [Markdown](https://www.markdownguide.org/basic-syntax/) that helps users to complete the parameter.
+- `WithCustomInput`: Use this method to provide a callback method that customizes the parameter dialog. For example, in this callback you can customize the default value, input type, label, and placeholder text.
+
+This code shows how to set a description and use the callback:
+
+:::code language="csharp" source="snippets/unresolvedparameters/AppHost.cs" id="unresolvedparameters":::
+
+The code renders this control in the dashboard:
+
+:::image type="content" source="./media/customized-parameter-ui.png" lightbox="./media/customized-parameter-ui.png" alt-text="Screenshot of the .NET Aspire dashboard parameter completion dialog with customizations.":::
+
+> [!NOTE]
+> Notice that the dashboard parameter dialog includes the **Save to user secret** checkbox, which you should use for sensitive values that require extra protection. For more information about secret parameter values, see [Secret values](#secret-values).
 
 ### Parameter representation in the manifest
 
