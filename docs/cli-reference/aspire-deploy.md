@@ -7,8 +7,8 @@ ms.date: 07/24/2025
 
 **This article applies to:** ✔️ Aspire CLI 9.4.0 and later versions.
 
-> [!IMPORTANT]
-> This command is in preview, and unavailable unless explicitly enabled. To enable this command, run the following command:
+> [!NOTE]
+> This command is unavailable unless explicitly enabled. To enable this command, run the following command:
 >
 > ```Aspire
 > aspire config set features.deployCommandEnabled true
