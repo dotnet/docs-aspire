@@ -55,7 +55,7 @@ var value = builder.Configuration[key]; // value = "local-value"
 
 ### Prompt for parameter values in the dashboard
 
-From .NET Aspire version 9.4 onwards, if your code adds parameters but doesn't set them, then you will see a prompt to configure their values in the .NET Aspire dashboard. The **Unresolved parameters** message is displayed and you can click **Enter values** to resolve the problem:
+If your code adds parameters but doesn't set them, you'll see a prompt to configure their values in the .NET Aspire dashboard. The **Unresolved parameters** message appears, and you can select **Enter values** to resolve the problem:
 
 :::image type="content" source="./media/dashboard-unresolved-parameters-message.png" lightbox="./media/dashboard-unresolved-parameters-message.png" alt-text="Screenshot of the .NET Aspire dashboard warning that appears when there are unresolved parameters.":::
 
@@ -63,8 +63,8 @@ When you select **Enter values**, .NET Aspire displays a form that you can use t
 
 You can also control how the dashboard displays these parameters, by using these methods:
 
-- `WithDescription`: Use this method to provide a text description that helps users to complete the parameter.
-- `WithMarkdownDescription`: Use this method to provide a formatted description in [Markdown](https://www.markdownguide.org/basic-syntax/) that helps users to complete the parameter.
+- `WithDescription`: Use this method to provide a text description that helps users understand the purpose of the parameter.
+- `WithMarkdownDescription`: Use this method to provide a formatted description in [Markdown](https://www.markdownguide.org/basic-syntax/) that explains the parameter's intent.
 - `WithCustomInput`: Use this method to provide a callback method that customizes the parameter dialog. For example, in this callback you can customize the default value, input type, label, and placeholder text.
 
 This code shows how to set a description and use the callback:
@@ -76,7 +76,7 @@ The code renders this control in the dashboard:
 :::image type="content" source="./media/customized-parameter-ui.png" lightbox="./media/customized-parameter-ui.png" alt-text="Screenshot of the .NET Aspire dashboard parameter completion dialog with customizations.":::
 
 > [!NOTE]
-> Notice that the dashboard parameter dialog includes the **Save to user secret** checkbox, which you should use for sensitive values that require extra protection. For more information about secret parameter values, see [Secret values](#secret-values).
+> The dashboard parameter dialog includes a **Save to user secret** checkbox. Select this option to store sensitive values in your AppHost's user secrets for extra protection. For more information about secret parameter values, see [Secret values](#secret-values).
 
 ### Parameter representation in the manifest
 
