@@ -29,19 +29,37 @@ To install the Aspire CLI:
     | `--verbose` | `-v` | Enable verbose output | `false` |
     | `--help` | `-h` | Show help message | |
 
+    #### Quality options
+
+    The `--quality` option determines which build of the Aspire CLI to install:
+
+    - **`dev`**: Latest builds from the `main` branch (development builds).
+    - **`staging`**: Builds from the current release branch (pre-release builds).
+    - **`release`**: Latest generally available release (stable builds).
+
     #### Usage examples
 
+    Install to a custom directory:
+
     ```sh
-    # Install to a custom directory
     curl -sSL https://aspire.dev/install.sh | bash -s -- --install-path "/usr/local/bin"
+    ```
 
-    # Install with verbose output
+    Install with verbose output:
+
+    ```sh
     curl -sSL https://aspire.dev/install.sh | bash -s -- --verbose
+    ```
 
-    # Install a specific version
+    Install a specific version:
+
+    ```sh
     curl -sSL https://aspire.dev/install.sh | bash -s -- --version "9.4"
+    ```
 
-    # Install development builds
+    Install development builds:
+
+    ```sh
     curl -sSL https://aspire.dev/install.sh | bash -s -- --quality "dev"
     ```
 
@@ -57,7 +75,7 @@ To install the Aspire CLI:
 
     #### Script options
 
-    The Windows install script (`install.ps1`) supports the following parameters:
+    The Windows install script (`install.ps1`) supports the following options:
 
     | Parameter | Description | Default value |
     |-----------|-------------|---------------|
@@ -69,19 +87,37 @@ To install the Aspire CLI:
     | `-KeepArchive` | Keep downloaded archive files after installation | `false` |
     | `-Help` | Show help message | |
 
+    #### Quality options
+
+    The `-Quality` option determines which build of the Aspire CLI to install:
+
+    - **`dev`**: Latest builds from the `main` branch (development builds).
+    - **`staging`**: Builds from the current release branch (pre-release builds).
+    - **`release`**: Latest generally available release (stable builds).
+
     #### Usage examples
 
+    Install to a custom directory:
+
     ```powershell
-    # Install to a custom directory
     Invoke-Expression "& { $(Invoke-RestMethod https://aspire.dev/install.ps1) } -InstallPath 'C:\Tools\Aspire'"
+    ```
 
-    # Install with verbose output  
+    Install with verbose output:
+
+    ```powershell
     Invoke-Expression "& { $(Invoke-RestMethod https://aspire.dev/install.ps1) } -Verbose"
+    ```
 
-    # Install a specific version
+    Install a specific version:
+
+    ```powershell
     Invoke-Expression "& { $(Invoke-RestMethod https://aspire.dev/install.ps1) } -Version '9.4'"
+    ```
 
-    # Install development builds
+    Install development builds:
+
+    ```powershell
     Invoke-Expression "& { $(Invoke-RestMethod https://aspire.dev/install.ps1) } -Quality 'dev'"
     ```
 
@@ -90,11 +126,3 @@ To install the Aspire CLI:
     The script installs the Aspire CLI to `%USERPROFILE%\.aspire\bin` by default.
 
     ---
-
-### Quality options
-
-The `quality` parameter determines which build of the Aspire CLI to install:
-
-- **`dev`**: Latest builds from the `main` branch (development builds).
-- **`staging`**: Builds from the current release branch (pre-release builds).
-- **`release`**: Latest generally available release (stable builds).

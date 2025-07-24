@@ -1,11 +1,20 @@
 ---
 title: aspire deploy command
 description: Learn about the aspire deploy command and its usage. This command first runs publishing mode, then invokes resource deployments declared by the app host.
-ms.date: 07/11/2025
+ms.date: 07/24/2025
 ---
-# aspire deploy command
+# aspire deploy command (Preview)
 
 **This article applies to:** ✔️ Aspire CLI 9.4.0 and later versions.
+
+> [!IMPORTANT]
+> This command is in preview, and unavailable unless explicitly enabled. To enable this command, run the following command:
+>
+> ```Aspire
+> aspire config set features.deployCommandEnabled true
+> ```
+>
+> For more information, see [aspire config command](aspire-config.md).
 
 ## Name
 

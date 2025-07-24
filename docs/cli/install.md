@@ -4,7 +4,7 @@ description: Learn how to install .NET Aspire CLI, which is a .NET global tool. 
 author: adegeo
 ms.author: adegeo
 ms.topic: install-set-up-deploy
-ms.date: 07/22/2025
+ms.date: 07/24/2025
 
 #customer intent: As a developer, I want to install the .NET Aspire CLI so that I can create, run, and manage .NET Aspire projects.
 
@@ -39,12 +39,12 @@ Use the `dotnet tool` command to install the Aspire CLI global tool. The name of
 
 To validate that the global tool is installed, use the `--version` option to query Aspire CLI for a version number:
 
-```
+```Aspire
 aspire --version
 ```
 
 If that command works, you're presented with the version of the Aspire CLI tool:
 
-```
+```Aspire
 9.4.0
 ```

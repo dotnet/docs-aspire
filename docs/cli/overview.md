@@ -25,8 +25,6 @@ The Aspire CLI is an interactive-first experience.
 
 The `aspire new` command is an interactive-first CLI experience, and is used to create one or more Aspire projects. As part of creating a project, Azure CLI ensures that the latest Aspire project templates are installed into the `dotnet` system.
 
-<!-- Add asciinema here -->
-
 Use the `aspire new` command to create an Aspire project from a list of templates. Once a template is selected, the name of the project is set, and the output folder is chosen, `aspire` downloads the latest templates and generates one or more projects.
 
 While command line parameters can be used to automate the creation of an Aspire project, the Aspire CLI is an interactive-first experience.
@@ -58,8 +56,6 @@ Dashboard:  https://localhost:17178/login?t=17f974bf68e390b0d4548af8d7e38b65
 
 The `aspire add` command is an easy way to add official integration packages to your AppHost project. Use this as an alternative to a NuGet search through your IDE. You can run `aspire add <name|id>` if you know the name or NuGet ID of the integration package, If you omit a name or ID, the tool provides a list of packages to choose from. If you provide a partial name or ID, the tool filters the list of packages with items that match the provided value.
 
-<!-- Add asciinema here -->
-
 ## Publish Aspire applications (preview)
 
 [_Command reference: `aspire publish`_](../cli-reference/aspire-publish.md)
@@ -82,6 +78,12 @@ As of Aspire 9.4, Aspire doesn't include any default deployment annotations for 
 
 > [!TIP]
 > Consider this a good way to deploy your Aspire solution to a staging or testing environment.
+
+## Manage Aspire configuration (preview)
+
+[_Command reference: `aspire config`_](../cli-reference/aspire-config.md)
+
+The `aspire config` command lets you manage Aspire CLI configuration settings. Use it to `list`, `get`, `set`, or `delete` configuration values that control CLI behavior. This command is also used to toggle features on or off.
 
 ## Run commands in resource context (preview)
 
