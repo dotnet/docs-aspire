@@ -14,8 +14,8 @@
     <PackageReference Include="Microsoft.Orleans.Server" Version="9.2.1" />
     <PackageReference Include="Microsoft.Orleans.Persistence.AzureStorage" Version="9.2.1" />
     <PackageReference Include="Microsoft.Orleans.Clustering.AzureStorage" Version="9.2.1" />
-    <PackageReference Include="Aspire.Azure.Data.Tables" Version="9.4.0-preview.1.25372.26" />
-    <PackageReference Include="Aspire.Azure.Storage.Blobs" Version="9.4.0-preview.1.25372.26" />
+    <PackageReference Include="Aspire.Azure.Data.Tables" Version="9.4.0-preview.1.25373.10" />
+    <PackageReference Include="Aspire.Azure.Storage.Blobs" Version="9.4.0-preview.1.25373.10" />
     <ProjectReference Include="..\OrleansContracts\OrleansContracts.csproj" />
     <ProjectReference Include="..\OrleansServiceDefaults\OrleansServiceDefaults.csproj" />
   </ItemGroup>
