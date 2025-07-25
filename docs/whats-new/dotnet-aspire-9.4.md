@@ -8,7 +8,7 @@ ms.date: 07/25/2025
 
 _Aspire 9.4 introduces improvements across the CLI, dashboard, deployment, and provisioning experiences—all designed to streamline developer workflows and reduce friction._
 
-## 🚀 App model enhancements
+## 🖥️ App model enhancements
 
 Aspire 9.4 brings several updates to the app model, making it easier to define, configure, and manage distributed applications. This release focuses on simplifying integration with external services, enhancing reverse proxy configuration, and improving resource lifecycle management. These changes help you build more flexible and robust cloud-native solutions with less effort.
 
@@ -172,7 +172,7 @@ Docker Compose support has been enhanced with better parameter binding and more 
 - **Service customization**: Programmatic control over container settings
 - **Network configuration**: Improved container networking and service discovery
 
-## 🖥️ CLI enhancements
+## ⌨️ CLI enhancements
 
 🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
 
