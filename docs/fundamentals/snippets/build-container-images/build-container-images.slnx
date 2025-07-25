@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="api/Api.csproj" />
-  <Project Path="apphost/AppHost.csproj" />
-</Solution>
