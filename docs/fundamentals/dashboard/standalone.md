@@ -62,13 +62,23 @@ Alternatively, you can obtain the token from the logs by using the `docker` comm
 ## [Bash](#tab/bash)
 
 ```bash
-docker container logs aspire-dashboard | grep "t="
+#!/bin/bash
+loginLine=$(docker container logs aspire-dashboard | grep "login?t=")
+match=$(echo "$loginLine" | sed -n 's/.*login?t=\([^[:space:]]*\).*/\1/p')
+echo -n "$match" | xclip -selection clipboard
+echo "$match"
 ```
+
+> [!NOTE]
+> This script requires that your system has the `sed` and `xclip` tools installed.
 
 ## [PowerShell](#tab/powershell)
 
 ```powershell
-docker container logs aspire-dashboard | sls "t="
+$loginLine =  docker container logs aspire-dashboard | Select-String "login\?t="
+$matches = [regex]::Match($loginLine, "(?<=login\?t=)(\S+)")
+$matches.Value | Set-Clipboard
+echo $matches.Value
 ```
 
 ---
