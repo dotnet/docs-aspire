@@ -1,11 +1,11 @@
 ---
 title: GitHub Models integration
 description: Learn how to integrate .NET Aspire with GitHub Models for AI model access and management.
-ms.date: 07/22/2025
+ms.date: 07/25/2025
 ai-usage: ai-assisted
 ---
 
-# .NET Aspire GitHub Models integration
+# .NET Aspire GitHub Models integration (Preview)
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 

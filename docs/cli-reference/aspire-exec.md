@@ -1,11 +1,20 @@
 ---
 title: aspire exec command
 description: Learn about the aspire exec command and its usage. This command builds and runs an Aspire AppHost project, then sends commands to a resource.
-ms.date: 07/11/2025
+ms.date: 07/25/2025
 ---
 # aspire exec command
 
 **This article applies to:** ✔️ Aspire CLI 9.4.0 and later versions.
+
+> [!NOTE]
+> This command is disabled by default. To use it, turn on the feature toggle by running:
+>
+> ```Aspire
+> aspire config set features.execCommandEnabled true
+> ```
+>
+> For more information, see [aspire config command](aspire-config.md).
 
 ## Name
 
