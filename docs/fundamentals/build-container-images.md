@@ -5,7 +5,7 @@ ms.date: 07/25/2025
 ai-usage: ai-assisted
 ---
 
-# Build container images
+# Build container images (Preview)
 
 .NET Aspire provides powerful APIs for building container images from your resources during publishing and deployment operations. This article covers the key components that enable programmatic container image creation and progress reporting.
 
@@ -19,6 +19,9 @@ During publishing and deployment, the container image builder is available to cr
 - `PublishingActivityProgressReporter`: The API that provides structured progress reporting during long-running operations.
 
 These APIs give you fine-grained control over the image building process and provide real-time feedback to users during lengthy build operations.
+
+> [!IMPORTANT]
+> These APIs are currently in preview and subject to change. They are designed for advanced scenarios where you need custom control over container image building and progress reporting. To suppress warnings for these APIs, see [Compiler Error ASPIREPUBLISHERS001](../diagnostics/aspirepublishers001.md).
 
 ## When to use these APIs
 
