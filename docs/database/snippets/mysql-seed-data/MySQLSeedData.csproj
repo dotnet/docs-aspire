@@ -11,8 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.3.1" />
-    <PackageReference Include="Aspire.Hosting.MySql" Version="9.3.1" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.4.0-preview.1.25372.26" />
+    <PackageReference Include="Aspire.Hosting.MySql" Version="9.4.0-preview.1.25372.26" />
   </ItemGroup>
 
 </Project>

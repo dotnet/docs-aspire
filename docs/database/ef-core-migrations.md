@@ -97,7 +97,7 @@ To create a service that applies the migrations:
 
     ```dotnetcli
     cd SupportTicketApi.MigrationService
-    dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer -v "9.3.1"
+    dotnet add package Aspire.Microsoft.EntityFrameworkCore.SqlServer -v "9.4.0"
     ```
 
     > [!TIP]

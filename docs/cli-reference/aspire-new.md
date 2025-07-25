@@ -71,8 +71,8 @@ Each command represents a template. Pass the `--help` parameter to the template 
   aspire new aspire-starter
   ```
 
-- Create an AppHost project named `aspireapp` from the **9.3.1** templates and place the output in a folder named `aspire1`.
+- Create an AppHost project named `aspireapp` from the **9.4.0** templates and place the output in a folder named `aspire1`.
 
   ```Command
-  aspire new aspire-apphost --version 9.3.1 --name aspireapp1 --output ./aspire1
+  aspire new aspire-apphost --version 9.4.0 --name aspireapp1 --output ./aspire1
   ```
