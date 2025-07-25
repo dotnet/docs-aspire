@@ -1,7 +1,7 @@
 ---
 title: Build container images
 description: Learn how to build container images from your .NET Aspire resources.
-ms.date: 07/24/2025
+ms.date: 07/25/2025
 ai-usage: ai-assisted
 ---
 
@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 ## Overview
 
-When you publish or deploy Aspire applications, the platform automatically builds container images for your services. This process involves two main components:
+During publishing and deployment, the container image builder is available to create images for resources that need them. Aspire uses this builder when a resource requires a container image, such as when publishing with Docker Compose. The process involves two main components:
 
 <!-- TODO: IResourceContainerImageBuilder and PublishingActivityProgressReporter xrefs -->
 

@@ -1,7 +1,7 @@
 ---
 title: Resource annotations
 description: Learn about annotations in .NET Aspire, how they work, and how to create custom annotations for extending resource behavior.
-ms.date: 07/23/2025
+ms.date: 07/25/2025
 ---
 
 # Resource annotations in .NET Aspire
@@ -43,7 +43,7 @@ In this example:
 
 ## Built-in annotation types
 
-.NET Aspire includes many built-in annotation types for common scenarios. This section covers some of the more commonly used annotations, but there are many more available for specific use cases.
+.NET Aspire includes many built-in annotation types for common scenarios. This section covers _some_ of the more commonly used annotations, but there are [_many more_](xref:Aspire.Hosting.ApplicationModel.IResourceAnnotation) available for specific use cases.
 
 ### `EndpointAnnotation`
 
@@ -121,7 +121,7 @@ api.Resource.Annotations.Add(
 );
 ```
 
-For more information on publishing and deploying annotations, see [Build container images](build-container-images.md).
+For more information about publishing and deploying Aspire apps, see [publishing and deploying](../deployment/overview.md).
 
 ## Creating custom annotations
 
