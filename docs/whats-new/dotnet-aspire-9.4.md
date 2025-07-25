@@ -31,6 +31,8 @@ builder.Build().Run();
 
 External service resources provide a clean, consistent way to model dependencies on services that exist outside your Aspire application, making hybrid architectures and gradual migrations much more straightforward.
 
+For more information, see [Express external service resources](../fundamentals/orchestrate-resources.md#express-external-service-resources).
+
 ### 🔧 Enhanced YARP configuration
 
 Building on the Yet Another Reverse Proxy (YARP) integration introduced in 9.3, this release adds powerful programmatic configuration capabilities that complement the existing JSON-based approach. You can now configure YARP routing rules, clusters, and policies directly in your app model.
@@ -83,21 +85,19 @@ This approach provides strongly typed configuration while maintaining the flexib
 
 .NET Aspire 9.4 introduces improved lifecycle event handling and resource state management, building on the foundation established in 9.3. Resources now have more predictable initialization patterns and better support for custom startup sequences.
 
-<!-- TODO: Fix this as it is incorrect.
-    Should be myResource.On* events
- -->
-
 ```csharp
-builder.Eventing.Subscribe<InitializeResourceEvent>(myResource, async (e, ct) =>
-{
-    // Custom initialization logic
-    await SetupCustomResource(e.Resource);
-    
-    // Signal the resource is ready
-    await e.Notifications.PublishUpdateAsync(e.Resource,
-        s => s with { State = KnownResourceStates.Running });
-});
+myResource.OnInitializeResource(
+    static (resource, @event, cancellationToken) =>
+    {
+        var logger = @event.Services.GetRequiredService<ILogger<Program>>();
+
+        logger.LogInformation("1. OnInitializeResource");
+
+        return Task.CompletedTask;
+    });
 ```
+
+For more information, see [Resource eventing](../app-host/eventing.md#resource-eventing).
 
 ## 📊 Dashboard delights
 

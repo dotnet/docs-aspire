@@ -248,7 +248,9 @@ By default, YARP uses a randomly assigned port. Using `WithHostPort` allows you 
 
 ### Service discovery integration
 
-The YARP integration automatically works with .NET service discovery when targeting resources that implement <xref:Aspire.Hosting.ApplicationModel.IResourceWithServiceDiscovery>. This enables dynamic endpoint resolution for backend services:
+<!-- TODO : Add xref:Aspire.Hosting.ApplicationModel.IResourceWithServiceDiscovery when available -->
+
+The YARP integration automatically works with .NET service discovery when targeting resources that implement `IResourceWithServiceDiscovery`. This enables dynamic endpoint resolution for backend services:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -263,7 +265,11 @@ var gateway = builder.AddYarp("gateway")
                      });
 ```
 
-For external services, use <xref:Aspire.Hosting.DistributedApplicationBuilderExtensions.AddExternalService*>:
+<!-- TODO
+    Add xref:Aspire.Hosting.DistributedApplicationBuilderExtensions.AddExternalService when available
+-->
+
+For external services, use `AddExternalService`:
 
 ```csharp
 var externalApi = builder.AddExternalService("external-api")

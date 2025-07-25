@@ -10,11 +10,11 @@ titleSuffix: ''
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure AI Foundry](https://azure.microsoft.com/products/ai-services/ai-foundry/) is an AI platform that provides access to cutting-edge foundation models, tools for AI development, and scalable infrastructure for building intelligent applications. The .NET Aspire Azure AI Foundry integration enables you to connect to Azure AI Foundry or run models locally using Foundry Local from your .NET applications.
+[Azure AI Foundry](https://ai.azure.com/) is an AI platform that provides access to cutting-edge foundation models, tools for AI development, and scalable infrastructure for building intelligent applications. The .NET Aspire Azure AI Foundry integration enables you to connect to Azure AI Foundry or run models locally using Foundry Local from your .NET applications.
 
 ## Hosting integration
 
-The .NET Aspire [Azure AI Foundry](/azure/ai-foundry/) hosting integration models Azure AI Foundry resources as [AzureAIFoundryResource](/dotnet/api/aspire.hosting.azure.azureoailfoundryresource). To access these types and APIs for expressing them within your [AppHost](../fundamentals/app-host-overview.md) project, install the [📦 Aspire.Hosting.Azure.AIFoundry](https://www.nuget.org/packages/Aspire.Hosting.Azure.AIFoundry) NuGet package:
+The .NET Aspire [Azure AI Foundry](/azure/ai-foundry/) hosting integration models Azure AI Foundry resources as `AzureAIFoundryResource`. To access these types and APIs for expressing them within your [AppHost](../fundamentals/app-host-overview.md) project, install the [📦 Aspire.Hosting.Azure.AIFoundry](https://www.nuget.org/packages/Aspire.Hosting.Azure.AIFoundry) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -35,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Azure AI Foundry resource
 
-To add an [AzureAIFoundryResource](/dotnet/api/aspire.hosting.azure.azureailfoundryresource) to your app host project, call the [AddAzureAIFoundry](/dotnet/api/aspire.hosting.azureailfoundryextensions.addazureailfoundry) method:
+To add an `AzureAIFoundryResource` to your app host project, call the `AddAzureAIFoundry` method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -348,7 +348,6 @@ The .NET Aspire Azure AI Foundry integration emits tracing activities using Open
 ## See also
 
 - [Azure AI Foundry](https://azure.microsoft.com/products/ai-services/ai-foundry/)
-- [Foundry Local documentation](/azure/ai-foundry/foundry-local/)
 - [.NET Aspire integrations overview](/dotnet/aspire/fundamentals/integrations-overview)
 - [.NET Aspire Azure integrations overview](/dotnet/aspire/azure/integrations-overview)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
