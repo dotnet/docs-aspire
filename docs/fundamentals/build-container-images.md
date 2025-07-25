@@ -52,7 +52,7 @@ The `ContainerBuildOptions` class, which provides strongly typed configuration f
 
 ### Container runtime health checks
 
-The builder now performs container runtime health checks (Docker/Podman) only when at least one resource requires a Dockerfile build. This change eliminates false-positive errors in projects that publish directly from .NET assemblies. If the container runtime is required but unhealthy, the builder throws an explicit `InvalidOperationException` to surface the problem early.
+The builder performs container runtime health checks (Docker/Podman) only when at least one resource requires a Dockerfile build. This change eliminates false-positive errors in projects that publish directly from .NET assemblies. If the container runtime is required but unhealthy, the builder throws an explicit `InvalidOperationException` to surface the problem early.
 
 ## Publishing activity reporter API
 

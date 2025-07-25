@@ -25,7 +25,7 @@ public sealed class ComputeEnvironmentResource : Resource
         {
             // Find all resources that need container images
             var projectResources = context.Model.Resources
-                .Where(r => r.HasAnnotationOfType<ContainerImageAnnotation>())
+                .OfType<ProjectResource>()
                 .ToList();
 
             if (projectResources.Count > 0)
