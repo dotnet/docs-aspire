@@ -77,7 +77,7 @@ builder.AddYarp("apigateway")
            .ToCluster("basket-cluster"));
 ```
 
-This approach provides strongly typed configuration while maintaining the flexibility to use traditional YARP JSON configuration files when needed.
+This approach provides strongly typed configuration while maintaining the flexibility to use traditional YARP JSON configuration files when needed. For more information, see [YARP integration](../proxies/yarp-integration.md).
 
 ### 🏗️ Enhanced resource lifecycle management
 
