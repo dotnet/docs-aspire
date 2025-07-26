@@ -2,7 +2,7 @@
 title: .NET Aspire Azure Web PubSub integration
 description: This article describes the .NET Aspire Azure Web PubSub integration features and capabilities.
 ms.topic: how-to
-ms.date: 04/09/2025
+ms.date: 07/22/2025
 ---
 
 # .NET Aspire Azure Web PubSub integration
@@ -99,11 +99,11 @@ When you publish your app, .NET Aspire provisioning APIs generate Bicep alongsid
 
 When you add an Azure Web PubSub resource, the following Bicep is generated:
 
-:::code language="bicep" source="../snippets/azure/AppHost/web-pubsub.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/web-pubsub/web-pubsub.bicep":::
 
 The preceding Bicep is a module that provisions an Azure Web PubSub resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-:::code language="bicep" source="../snippets/azure/AppHost/web-pubsub-roles.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/web-pubsub-roles/web-pubsub-roles.bicep":::
 
 The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 

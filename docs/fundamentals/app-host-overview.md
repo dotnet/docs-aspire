@@ -48,7 +48,7 @@ The app host project handles running all of the projects that are part of the .N
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.1.0" />
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.4.0" />
     
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -57,7 +57,7 @@ The app host project handles running all of the projects that are part of the .N
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
+        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.4.0" />
     </ItemGroup>
 
     <!-- Omitted for brevity -->

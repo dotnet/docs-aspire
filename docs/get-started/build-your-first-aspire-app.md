@@ -221,6 +221,12 @@ The preceding code:
 
 For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fundamentals/networking/http/httpclient) class.
 
+## 🖥️ Aspire CLI
+
+🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
+
+[!INCLUDE [install-aspire-cli](../includes/install-aspire-cli.md)]
+
 ## See also
 
 - [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)

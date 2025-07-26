@@ -31,8 +31,8 @@ items:
       href: get-started/github-codespaces.md
     - name: Dev Containers
       href: get-started/dev-containers.md
-  - name: What's new in .NET Aspire 9.3
-    href: whats-new/dotnet-aspire-9.3.md
+  - name: What's new in .NET Aspire 9.4
+    href: whats-new/dotnet-aspire-9.4.md
   - name: Upgrade to .NET Aspire 9.0
     href: get-started/upgrade-to-aspire-9.md
 
@@ -79,6 +79,8 @@ items:
     href: fundamentals/networking-overview.md
   - name: Eventing in .NET Aspire
     href: app-host/eventing.md
+  - name: Prompt user from CLI or Dashboard
+    href: extensibility/interaction-service.md
   - name: Use external parameters
     displayName: external parameters,configuration
     href: fundamentals/external-parameters.md
@@ -112,6 +114,42 @@ items:
     href: fundamentals/dashboard/security-considerations.md
   - name: Microsoft-collected dashboard telemetry
     href: fundamentals/dashboard/microsoft-collected-dashboard-telemetry.md
+
+- name: Aspire CLI
+  displayName: aspire cli,aspire command line interface,aspire commands,cli
+  items:
+  - name: Overview
+    href: cli/overview.md
+  - name: Install
+    href: cli/install.md
+  - name: aspire command reference
+    items:
+    - name: aspire
+      href: cli-reference/aspire.md
+    - name: aspire add
+      href: cli-reference/aspire-add.md
+    - name: aspire deploy
+      href: cli-reference/aspire-deploy.md
+    - name: aspire config
+      items:
+      - name: aspire config [command]
+        href: cli-reference/aspire-config.md
+      - name: aspire config list
+        href: cli-reference/aspire-config-list.md
+      - name: aspire config get
+        href: cli-reference/aspire-config-get.md
+      - name: aspire config set
+        href: cli-reference/aspire-config-set.md
+      - name: aspire config delete
+        href: cli-reference/aspire-config-delete.md
+    - name: aspire exec
+      href: cli-reference/aspire-exec.md
+    - name: aspire new
+      href: cli-reference/aspire-new.md
+    - name: aspire publish
+      href: cli-reference/aspire-publish.md
+    - name: aspire run
+      href: cli-reference/aspire-run.md
 
 - name: Testing
   items:
@@ -184,6 +222,9 @@ items:
     - name: Azure App Configuration
       displayName: app configuration,configuration
       href: azure/azure-app-configuration-integration.md
+    - name: Azure AI Foundry (Preview)
+      displayName: azure ai,foundry,foundation models,ai foundry
+      href: azureai/azureai-foundry-integration.md
     - name: Azure AI Inference (Preview)
       displayName: azure ai,inference
       href: azureai/azureai-inference-integration.md
@@ -280,6 +321,9 @@ items:
     - name: SQL Server
       displayName: sql server,ef core
       href: database/sql-server-entity-framework-integration.md
+  - name: GitHub Models
+    displayName: github models,github ai,github copilot,github copilot chat,deepseek,phi,gpt
+    href: github/github-models-integration.md
   - name: Keycloak (Preview)
     displayName: security,openid connect,single sign-on,sso,identity,federation,account management
     href: authentication/keycloak-integration.md
@@ -337,6 +381,9 @@ items:
   - name: SQL Server
     displayName: sql server,sql database
     href: database/sql-server-integration.md
+  - name: YARP (Yet Another Reverse Proxy)
+    displayName: yarp,reverse proxy
+    href: proxies/yarp-integration.md
   - name: Community Toolkit
     items:
     - name: Overview
@@ -401,7 +448,7 @@ items:
   - name: Secure communication between integrations
     href: extensibility/secure-communication-between-integrations.md
 
-- name: Deploy
+- name: Publish and Deploy
   items:
   - name: Overview
     displayName: azure deployment,deployment,Kubernetes,k8s
@@ -432,6 +479,8 @@ items:
       href: database/sql-server-integration-deployment.md
     - name: Deploy .NET Aspire + Redis
       href: caching/caching-integrations-deployment.md
+  - name: Build container images
+    href: fundamentals/build-container-images.md
   - name: Tool-builder manifest schemas
     href: deployment/manifest-format.md
 
@@ -481,6 +530,8 @@ items:
         href: diagnostics/aspire006.md
       - name: ASPIRE007
         href: diagnostics/aspire007.md
+      - name: ASPIRE008
+        href: diagnostics/aspire008.md
       - name: ASPIREACADOMAINS001
         href: diagnostics/aspireacadomains001.md
       - name: ASPIRECOMPUTE001
@@ -509,6 +560,8 @@ items:
           href: diagnostics/aspire004.md
         - name: Aspire SDK reference is out of date or missing
           href: diagnostics/aspire007.md
+        - name: Aspire workload is deprecated
+          href: diagnostics/aspire008.md
       - name: Resources
         items:
         - name: Items must have valid names

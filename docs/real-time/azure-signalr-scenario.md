@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure SignalR Service integration
 description: Learn how to integrate Azure SignalR Service with .NET Aspire.
-ms.date: 04/10/2025
+ms.date: 07/22/2025
 ---
 
 # .NET Aspire Azure SignalR Service integration
@@ -73,9 +73,13 @@ This architecture allows the `webapp` project to communicate with the `api` proj
 
 When you add an Azure SignalR Service resource, .NET Aspire generates provisioning infrastructure using [Bicep](/azure/azure-resource-manager/bicep/overview). The generated Bicep includes defaults for location, SKU, and role assignments:
 
-:::code language="bicep" source="../snippets/azure/AppHost/signalr.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/signalr/signalr.bicep":::
 
-The generated Bicep provides a starting point and can be customized further.
+The preceding Bicep is a module that provisions an Azure SignalR Service resource. Additionally, role assignments are created for the Azure resource in a separate module:
+
+:::code language="bicep" source="../snippets/azure/AppHost/signalr-roles/signalr-roles.bicep":::
+
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 ### Customize provisioning infrastructure
 

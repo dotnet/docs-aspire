@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 05/30/2025
+ms.date: 07/22/2025
 zone_pivot_groups: dev-environment
 uid: dotnet/aspire/setup-tooling
 ---
@@ -22,6 +22,7 @@ uid: dotnet/aspire/setup-tooling
 To work with .NET Aspire, you need the following installed locally:
 
 - [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0) or [.NET 9.0](https://dotnet.microsoft.com/download/dotnet/9.0).
+  - Starting with .NET Aspire 9.4, [.NET 10 Preview 5 or later](https://dotnet.microsoft.com/download/dotnet/10.0) is supported.
 - An OCI compliant container runtime, such as:
   - [Docker Desktop](https://www.docker.com/products/docker-desktop)
   - [Podman](https://podman.io/)
@@ -225,6 +226,12 @@ Once you create a new .NET Aspire project, you run and debug the app, stepping t
 :::image type="content" source="media/setup-tooling/vscode-debugging.png" lightbox="media/setup-tooling/vscode-debugging.png" alt-text="A screenshot showing how to debug a .NET Aspire project in Visual Studio Code.":::
 
 :::zone-end
+
+## 🖥️ Aspire CLI
+
+🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
+
+[!INCLUDE [install-aspire-cli](../includes/install-aspire-cli.md)]
 
 ## See also
 

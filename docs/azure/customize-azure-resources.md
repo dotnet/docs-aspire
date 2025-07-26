@@ -1,7 +1,7 @@
 ---
 title: Customize Azure resources
 description: Describes how to customize your Azure infrastructure using code in .NET Aspire solutions.
-ms.date: 06/23/2025
+ms.date: 07/22/2025
 uid: dotnet/aspire/integrations/customize-azure-resources
 ---
 
@@ -85,7 +85,7 @@ The functionality demonstrates how to add Azure infrastructure to your app host 
 
 Consider the resulting Bicep file:
 
-:::code language="bicep" source="../snippets/azure/AppHost/acr.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/acr/acr.bicep":::
 
 The Bicep file reflects the desired configuration of the Azure Container Registry, as defined by the `AddAzureInfrastructure` API.
 

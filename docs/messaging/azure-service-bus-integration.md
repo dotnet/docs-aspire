@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure Service Bus integration
 description: Learn how to install and configure the .NET Aspire Azure Service Bus integration to connect to Azure Service Bus instances from .NET applications.
-ms.date: 04/01/2025
+ms.date: 07/22/2025
 ---
 
 # .NET Aspire Azure Service Bus integration
@@ -60,11 +60,11 @@ When you add an <xref:Aspire.Hosting.Azure.AzureServiceBusResource> to the app h
 
 If you're new to Bicep, it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Service Bus resource, the following Bicep is generated:
 
-:::code language="bicep" source="../snippets/azure/AppHost/service-bus.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/service-bus/service-bus.bicep":::
 
 The preceding Bicep is a module that provisions an Azure Service Bus namespace resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-:::code language="bicep" source="../snippets/azure/AppHost/service-bus-roles.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/service-bus-roles/service-bus-roles.bicep":::
 
 In addition to the Service Bus namespace, it also provisions an Azure role-based access control (Azure RBAC) built-in role of Azure Service Bus Data Owner. The role is assigned to the Service Bus namespace's resource group. For more information, see [Azure Service Bus Data Owner](/azure/role-based-access-control/built-in-roles/integration#azure-service-bus-data-owner).
 

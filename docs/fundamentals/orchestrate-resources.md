@@ -1,26 +1,27 @@
 ---
-title: Orchestrate resources in .NET Aspire
-description: Learn techniques to control the behavior of .NET Aspire resources such as project, containers, and executable resources.
-ms.date: 04/16/2025
+title: Orchestrate resources in Aspire
+description: Learn techniques to control the behavior of Aspire resources such as project, containers, and executable resources.
+ms.date: 07/25/2025
 uid: dotnet/aspire/orchestrate-resources
 ---
 
 # Orchestrate resources in .NET Aspire
 
-In this article, you learn how to customize the behavior of resources further by writing code in the app host project. In .NET Aspire, a **resource** is a dependent part of a cloud-native application. Resource types include:
+In this article, you learn how to customize the behavior of resources further by writing code in the app host project. In Aspire, a **resource** is a dependent part of a cloud-native application. Resource types include:
 
 - **.NET Project**: A custom microservice, responsible for specific functionality in your cloud-native application, and often built by a separate team of developers.
 - **Executable**: If you need to build microservices with tools like Node.js or Orleans, they run as executable resources.
-- **Container**: You can add Docker containers, based on specific images to your .NET Aspire solution.
+- **Container**: You can add Docker containers, based on specific images to your Aspire solution.
 - **Integration resources**: Integrations often add resources such as databases, caches, and messaging services to your application.
+- **External service**: Represents a third-party API or service that your application depends on but isn't managed by Aspire. Use this for resources like public APIs or SaaS endpoints.
 
-For the fundamentals of .NET Aspire orchestration and how it manages resources, see [.NET Aspire orchestration overview](app-host-overview.md).
+For the fundamentals of Aspire orchestration and how it manages resources, see [Aspire orchestration overview](app-host-overview.md).
 
 ## Resource naming conventions
 
-Resources in .NET Aspire must follow naming restrictions set by .NET Aspire and the technology that resource represents. For example, a .NET Aspire resource has a maximum name length of 64 characters, but an Azure Container App has a maximum length of 32. When you publish the .NET Aspire container resource for Azure, the name must not exceed 32 characters in length.
+Resources in Aspire must follow naming restrictions set by Aspire and the technology that resource represents. For example, a Aspire resource has a maximum name length of 64 characters, but an Azure Container App has a maximum length of 32. When you publish the Aspire container resource for Azure, the name must not exceed 32 characters in length.
 
-.NET Aspire resource names must follow these basic rules:
+Aspire resource names must follow these basic rules:
 
 - **Must** be between 1 and 64 characters in length.
 - **Must** start with an ASCII letter.
@@ -45,7 +46,7 @@ builder.AddProject<Projects.AspireApp_DbMigration>("dbmigration")
 
 In the preceding code the `"dbmigration"` resource is configured to not automatically start with the distributed application.
 
-Resources with explicit start can be started from the .NET Aspire dashboard by clicking the "Start" command. For more information, see [.NET Aspire dashboard: Stop or Start a resource](dashboard/explore.md#stop-or-start-a-resource).
+Resources with explicit start can be started from the Aspire dashboard by clicking the "Start" command. For more information, see [Aspire dashboard: Stop or Start a resource](dashboard/explore.md#stop-or-start-a-resource).
 
 ## Waiting for resources
 
@@ -62,7 +63,7 @@ builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
        .WaitFor(postgresdb);
 ```
 
-In the preceding code, the "apiservice" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType> state. The example code shows the [.NET Aspire PostgreSQL integration](../database/postgresql-integration.md), but the same pattern can be applied to other resources.
+In the preceding code, the "apiservice" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType> state. The example code shows the [Aspire PostgreSQL integration](../database/postgresql-integration.md), but the same pattern can be applied to other resources.
 
 Other cases might warrant waiting for a resource to run to completion, either <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Exited?displayProperty=nameWithType> or <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Finished?displayProperty=nameWithType> before the dependent resource starts. To wait for a resource to run to completion, use the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitForCompletion*> method:
 
@@ -89,7 +90,7 @@ Waiting for a resource can be bypassed using the **Start** command in the dashbo
 
 ## APIs for adding and expressing resources
 
-.NET Aspire [hosting integrations](integrations-overview.md#hosting-integrations) and [client integrations](integrations-overview.md#client-integrations) are both delivered as NuGet packages, but they serve different purposes. While _client integrations_ provide client library configuration for consuming apps outside the scope of the app host, _hosting integrations_ provide APIs for expressing resources and dependencies within the app host. For more information, see [.NET Aspire integrations overview: Integration responsibilities](integrations-overview.md#integration-responsibilities).
+Aspire [hosting integrations](integrations-overview.md#hosting-integrations) and [client integrations](integrations-overview.md#client-integrations) are both delivered as NuGet packages, but they serve different purposes. While _client integrations_ provide client library configuration for consuming apps outside the scope of the app host, _hosting integrations_ provide APIs for expressing resources and dependencies within the app host. For more information, see [Aspire integrations overview: Integration responsibilities](integrations-overview.md#integration-responsibilities).
 
 ## Express container resources
 
@@ -131,9 +132,9 @@ The preceding code adds a container resource named "ollama" with the image `olla
 
 ### Customize container resources
 
-All <xref:Aspire.Hosting.ApplicationModel.ContainerResource> subclasses can be customized to meet your specific requirements. This can be useful when using a [hosting integration](integrations-overview.md#hosting-integrations) that models a container resource, but requires modifications. When you have an `IResourceBuilder<ContainerResource>` you can chain calls to any of the available APIs to modify the container resource. .NET Aspire container resources typically point to pinned tags, but you might want to use the `latest` tag instead.
+All <xref:Aspire.Hosting.ApplicationModel.ContainerResource> subclasses can be customized to meet your specific requirements. This can be useful when using a [hosting integration](integrations-overview.md#hosting-integrations) that models a container resource, but requires modifications. When you have an `IResourceBuilder<ContainerResource>` you can chain calls to any of the available APIs to modify the container resource. Aspire container resources typically point to pinned tags, but you might want to use the `latest` tag instead.
 
-To help exemplify this, imagine a scenario where you're using the [.NET Aspire Redis integration](../caching/stackexchange-redis-integration.md). If the Redis integration relies on the `7.4` tag and you want to use the `latest` tag instead, you can chain a call to the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithImageTag*> API:
+To help exemplify this, imagine a scenario where you're using the [Aspire Redis integration](../caching/stackexchange-redis-integration.md). If the Redis integration relies on the `7.4` tag and you want to use the `latest` tag instead, you can chain a call to the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithImageTag*> API:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -149,7 +150,7 @@ For more information and additional APIs available, see <xref:Aspire.Hosting.Con
 
 ### Container resource lifecycle
 
-When the app host is run, the <xref:Aspire.Hosting.ApplicationModel.ContainerResource> is used to determine what container image to create and start. Under the hood, .NET Aspire runs the container using the defined container image by delegating calls to the appropriate OCI-compliant container runtime, either Docker or Podman. The following commands are used:
+When the app host is run, the <xref:Aspire.Hosting.ApplicationModel.ContainerResource> is used to determine what container image to create and start. Under the hood, Aspire runs the container using the defined container image by delegating calls to the appropriate OCI-compliant container runtime, either Docker or Podman. The following commands are used:
 
 #### [Docker](#tab/docker)
 
@@ -171,7 +172,7 @@ These commands are used instead of `podman run` to manage attached container net
 
 ---
 
-Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectResource>, <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, and <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, .NET Aspire provides extension methods to add common resources to your app model. For more information, see [Hosting integrations](integrations-overview.md#hosting-integrations).
+Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectResource>, <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, and <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, Aspire provides extension methods to add common resources to your app model. For more information, see [Hosting integrations](integrations-overview.md#hosting-integrations).
 
 ### Container resource lifetime
 
@@ -185,6 +186,112 @@ var ollama = builder.AddContainer("ollama", "ollama/ollama")
 ```
 
 The preceding code adds a container resource named "ollama" with the image "ollama/ollama" and a persistent lifetime.
+
+## Express external service resources
+
+<!-- TODO Add <xref:Aspire.Hosting.ExternalServiceResource> -->
+
+External services are third-party APIs and services that your application depends on but that exist outside your Aspire solution. These services are already running elsewhere and aren't managed by Aspire. To express an `ExternalServiceResource` you add it to an <xref:Aspire.Hosting.IDistributedApplicationBuilder> instance by calling the `AddExternalService` method:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var nuget = builder.AddExternalService("nuget", "https://api.nuget.org/")
+    .WithHttpHealthCheck(path: "/v3/index.json");
+
+var frontend = builder.AddProject<Projects.Frontend>("frontend")
+    .WithReference(nuget);
+```
+
+The preceding code adds an external service resource named "nuget" that points to the NuGet API. The external service is configured with an HTTP health check to monitor its availability. The frontend project can then reference this external service for service discovery.
+
+External services support several configuration approaches:
+
+### Static URL configuration
+
+You can configure an external service with a static URL using either a string or a URI:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Using a string URL
+var nuget = builder.AddExternalService("nuget", "https://api.nuget.org/");
+
+// Using a URI
+var uri = new Uri("https://api.example.com/");
+var api = builder.AddExternalService("external-api", uri);
+```
+
+### Parameter-based URL configuration
+
+For scenarios where the external service URL might vary between environments or needs to be configurable, you can use parameters:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var externalServiceUrl = builder.AddParameter("external-service-url");
+var externalService = builder.AddExternalService("external-service", externalServiceUrl);
+
+var frontend = builder.AddProject<Projects.Frontend>("frontend")
+    .WithReference(externalService);
+```
+
+When using parameter-based configuration, the URL value can be set through configuration, environment variables, or user secrets. During development, Aspire might prompt you to provide the URL value. For more information, see [External parameters](external-parameters.md).
+
+### External service URL requirements
+
+External service URLs must meet specific requirements:
+
+- **Must** be an absolute URI (include scheme, host, and optional port).
+- **Must** have the absolute path set to "/" (no additional path segments).
+- **Must not** contain query parameters or fragments.
+
+Valid examples:
+
+- `https://api.example.com/`
+- `http://localhost:8080/`
+- `https://service.example.com:9443/`
+
+Invalid examples:
+
+- `https://api.example.com/v1/api` (contains path)
+- `https://api.example.com/?version=1` (contains query)
+- `https://api.example.com/#section` (contains fragment)
+
+### Health checks for external services
+
+External services can be configured with HTTP health checks to monitor their availability:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var api = builder.AddExternalService("api", "https://api.example.com/")
+    .WithHttpHealthCheck(path: "/health", statusCode: 200);
+```
+
+The `WithHttpHealthCheck` method adds a health check that periodically polls the external service. You can specify:
+
+- **`path`**: The relative path for the health check endpoint (optional, defaults to no additional path).
+- **`statusCode`**: The expected HTTP status code (optional, defaults to 200).
+
+### Service discovery with external services
+
+When you reference an external service from another resource, Aspire automatically configures service discovery by injecting environment variables in the standard format:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var api = builder.AddExternalService("api", "https://api.example.com/");
+
+var frontend = builder.AddProject<Projects.Frontend>("frontend")
+    .WithReference(api);
+```
+
+This configuration injects an environment variable like `services__api__https__0=https://api.example.com/` into the frontend project, enabling service discovery through the standard .NET service discovery mechanisms.
+
+### External service lifecycle
+
+External services implement <xref:Aspire.Hosting.ApplicationModel.IResourceWithoutLifetime>, meaning they're not managed by Aspire's lifecycle system. They're expected to be running independently. During development, external services appear in the Aspire dashboard with a "Running" state if they're reachable, or show health check failures if they're not available.
 
 ## Resource relationships
 
@@ -219,5 +326,5 @@ The preceding example uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithPa
 
 ## See also
 
-- [.NET Aspire orchestration overview](app-host-overview.md)
-- [Eventing in .NET Aspire](../app-host/eventing.md)
+- [Aspire orchestration overview](app-host-overview.md)
+- [Eventing in Aspire](../app-host/eventing.md)

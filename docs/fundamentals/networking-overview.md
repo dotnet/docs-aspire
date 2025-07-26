@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire inner loop networking overview
 description: Learn how .NET Aspire handles networking and endpoints, and how you can use them in your app code.
-ms.date: 10/29/2024
+ms.date: 07/11/2025
 ms.topic: overview
 ---
 
@@ -29,6 +29,29 @@ Upon creating a binding, whether implicit or explicit, .NET Aspire launches a li
 To help visualize how endpoints work, consider the .NET Aspire starter templates inner-loop networking diagram:
 
 :::image type="content" source="media/networking/networking-proxies-1x.png" lightbox="media/networking/networking-proxies.png" alt-text=".NET Aspire Starter Application template inner loop networking diagram.":::
+
+## How container networks are managed
+
+When you add one or more container resources, .NET Aspire creates a dedicated container bridge network to enable service discovery between containers. This bridge network is a virtual network that lets containers communicate with each other and provides a DNS server for container-to-container service discovery using DNS names.
+
+The network's lifetime depends on the container resources:
+
+- If all containers have a session lifetime, the network is also session-based and is cleaned up when the app host process ends.
+- If any container has a persistent lifetime, the network is persistent and remains running after the app host process terminates. Aspire reuses this network on subsequent runs, allowing persistent containers to keep communicating even when the app host isn't running.
+
+For more information on container lifetimes, see [Container resource lifetime](orchestrate-resources.md#container-resource-lifetime).
+
+Here are the naming conventions for container networks:
+
+- **Session networks**: `aspire-session-network-<unique-id>-<app-host-name>`
+- **Persistent networks**: `aspire-persistent-network-<project-hash>-<app-host-name>`
+
+Each app host instance gets its own network resources. The only differences are the network's lifetime and name; service discovery works the same way for both.
+
+Containers register themselves on the network using their resource name. Aspire uses this name for service discovery between containers. For example, a `pgadmin` container can connect to a database resource named `postgres` using `postgres:5432`.
+
+> [!NOTE]
+> Host services, such as projects or other executables, don't use container networks. They rely on exposed container ports for service discovery and communication with containers. For more details on service discovery, see [service discovery overview](../service-discovery/overview.md).
 
 ## Launch profiles
 

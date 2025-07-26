@@ -2,6 +2,13 @@
 
 AddAzureInfrastructure(builder);
 
+var foundry = builder.AddAzureAIFoundry("ai-foundry");
+var foundryDeployment = foundry.AddDeployment(
+    name: "chat",
+    modelName: "Phi-4",
+    modelVersion: "1",
+    format: "Microsoft");
+
 builder.AddAzureAppConfiguration("config");
 
 builder.AddAzureApplicationInsights("app-insights");

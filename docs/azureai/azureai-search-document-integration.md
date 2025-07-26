@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure AI Search integration
 description: Learn how to integrate Azure AI Search with .NET Aspire.
-ms.date: 04/03/2025
+ms.date: 07/22/2025
 ---
 
 # .NET Aspire Azure AI Search integration
@@ -55,11 +55,11 @@ The preceding code adds an Azure AI Search resource named `search` to the app ho
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by hand; instead, the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure AI Search resource, Bicep is generated to provision the search service with appropriate defaults.
 
-:::code language="bicep" source="../snippets/azure/AppHost/search.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/search/search.bicep":::
 
 The preceding Bicep is a module that provisions an Azure AI Search service resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-:::code language="bicep" source="../snippets/azure/AppHost/search-roles.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/search-roles/search-roles.bicep":::
 
 The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 

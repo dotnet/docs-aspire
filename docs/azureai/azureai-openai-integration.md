@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Azure OpenAI integration (Preview)
 description: Learn how to use the .NET Aspire Azure OpenAI integration.
-ms.date: 04/15/2025
+ms.date: 07/22/2025
 ---
 
 # .NET Aspire Azure OpenAI integration (Preview)
@@ -81,11 +81,11 @@ The preceding code:
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep provisions an Azure OpenAI resource with standard defaults.
 
-:::code language="bicep" source="../snippets/azure/AppHost/openai.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/openai/openai.bicep":::
 
 The preceding Bicep is a module that provisions an Azure Cognitive Services resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-:::code language="bicep" source="../snippets/azure/AppHost/openai-roles.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/openai-roles/openai-roles.bicep":::
 
 The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 

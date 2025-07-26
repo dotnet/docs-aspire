@@ -7,6 +7,10 @@ Write for readers who may have a limited vocabulary or are not native English sp
 - Use active voice
 - Use the second person (you, your) to address the reader directly
 
+## Lists
+
+Use lists more sparingly. Use them only when they help to clarify the content. Use bullet points for unordered lists and numbered lists for ordered lists. Regardless of the type of list, always use sentence-style capitalization, complete sentences, and proper punctuation.
+
 ## Headings
 
 Headings use sentence-style capitalization. Always capitalize the first word of a heading. Do not use gerunds (e.g., "Using" or "Creating") in heading.
