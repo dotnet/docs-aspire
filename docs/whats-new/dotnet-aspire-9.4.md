@@ -37,6 +37,7 @@ For more information, see [Express external service resources](../fundamentals/o
 
 Building on the Yet Another Reverse Proxy (YARP) integration introduced in 9.3, this release adds powerful programmatic configuration capabilities that complement the existing JSON-based approach. You can now configure YARP routing rules, clusters, and policies directly in your app model.
 
+<!--
 ```mermaid
 flowchart LR
     subgraph Client
@@ -60,6 +61,7 @@ flowchart LR
 ```
 
 This diagram shows how a reverse proxy like YARP receives client requests, routes them to the appropriate backend service, and returns the response to the client.
+-->
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
