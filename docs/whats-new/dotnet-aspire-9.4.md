@@ -42,15 +42,15 @@ Moving between minor releases of Aspire is simple:
 
 If your AppHost project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.0, follow [the upgrade guide](../get-started/upgrade-to-aspire-9.md).
 
-## 🖥️ Aspire CLI is generally available
+## 🛠️ Aspire CLI is generally available
 
 With the release of Aspire 9.4, the Aspire CLI is generally available. To install the Aspire CLI as an AOT compiled binary, use the following helper scripts:
 
 ```bash
-# Linux/macOS
+# Bash
 curl -sSL https://aspire.dev/install.sh | bash
 
-# Windows (PowerShell)
+# PowerShell
 iex "& { $(irm https://aspire.dev/install.ps1) }"
 ```
 
@@ -64,24 +64,24 @@ dotnet tool install -g Aspire.Cli
 > ⚠️ **The Aspire 9.4 CLI is not compatible with Aspire 9.3 projects.**
 > You must upgrade your project to Aspire 9.4+ in order to use the latest CLI features.
 
-### CLI Commands
+### 🎯 CLI Commands
 
-The Aspire CLI has the following commands:
+The Aspire CLI has the following [commands](../cli-reference/aspire.md):
 
 - `aspire new`: Creates a new Aspire project from templates.
 - `aspire run`: Finds and runs the existing apphost from anywhere in the repo.
 - `aspire add`: Adds a hosting integration package to the apphost.
 - `aspire config [get|set|delete|list]`: Configures Aspire settings and feature flags.
-- `aspire publish` (preview): Generates deployment artifacts based on the apphost.
+- `aspire publish` (Preview): Generates deployment artifacts based on the apphost.
 
-In addition to these core commands, we have two beta commands behind feature flags:
+In addition to these core commands, we have two beta commands behind [feature flags](../cli-reference/aspire-config.md):
 
 - `aspire exec`: Invokes an arbitrary command in the context of an executable resource defined in the apphost (ie, inheriting its environment variables).
 - `aspire deploy`: Extends the capabiltiies of `aspire publish` to actively deploy to a target environment.
 
-### `aspire exec`
+#### `aspire exec`
 
-The new **exec command** allows you to execute commands within the context of your Aspire application environment:
+The new `exec` command allows you to execute commands within the context of your Aspire application environment:
 
 ```bash
 # Execute commands, like migrataions, with environment variables from your app model
@@ -95,25 +95,25 @@ aspire exec --start-resource my-worker -- npm run build
 ```
 
 **Key capabilities**:
+
 - **Environment variable injection** from your app model resources
 - **Resource targeting** with `--resource` or `--start-resource` options
-- **Command execution** in the context of your Aspire application
+- **Command execution** in the context of your Aspirified application
 
 > [!IMPORTANT]
 > 🧪 **Feature Flag**: The `aspire exec` command is behind a feature flag and **disabled by default** in this release. It must be explicitly enabled for use with `aspire config set features.execCommandEnabled true`.
 
-### 🛠️ `aspire deploy`
+#### `aspire deploy`
 
-The `aspire deploy` command now supports extensible deployment workflows through the new `DeployingCallbackAnnotation`, enabling custom pre/post-deploy logic and richer integration with external systems during deployment operations.
+The `aspire deploy` command supports extensible deployment workflows through the new `DeployingCallbackAnnotation`, enabling custom pre/post-deploy logic and richer integration with external systems during deployment operations.
 
 **Key capabilities:**
-- **Custom deployment hooks**: Use `DeployingCallbackAnnotation` to execute custom logic during the `aspire deploy` command
-- **Workflow activity reporting**: Use the `IPublishingActivityReporter` to support progress notifications and prompting in commmands
-- **Integration with publish**: `aspire deploy` runs `PublishingCallbackAnnotations` to support deploying artifacts emitted by publish steps, if applicable
 
-**Example usage:**
+- **Custom deployment hooks** using `DeployingCallbackAnnotation` to execute custom logic during the `aspire deploy` command
+- **Workflow activity reporting** via the `IPublishingActivityReporter` to support progress notifications and prompting in commmands
+- **Integration with publish** - `aspire deploy` runs `PublishingCallbackAnnotations` to support deploying artifacts emitted by publish steps, if applicable
 
-The example below demonstrates using the `DeployingCallbackAnnotation` to register custom deployment behavior and showcases CLI-based prompting and progress notifications.
+The example below demonstrates using the `DeployingCallbackAnnotation` to register custom deployment behavior and showcases [CLI-based prompting](#️-interaction-service) and progress notifications.
 
 ```csharp
 #pragma warning disable ASPIREPUBLISHERS001
@@ -124,6 +124,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
+// Custom deployment step defined below
 builder.AddDataSeedJob("SeedInitialData", seedDataPath: "data/seeds");
 
 builder.Build().Run();
@@ -196,27 +197,20 @@ This custom deployment logic executes as follows from the `aspire deploy` comman
 
 ![aspire-deploy-whats-new](https://github.com/user-attachments/assets/15c6730d-8154-496a-be70-c67257ce5523)
 
-This enhancement enables more sophisticated `aspire deploy` workflows and provides a foundation for advanced deployment automation scenarios.
+Now, integration owners can create sophisticated `aspire deploy` workflows. This work also provides a foundation for advanced deployment automation scenarios.
 
 > [!NOTE]
 > While the `DeployingCallbackAnnotation` API is available in .NET Aspire 9.4, there are currently no built-in resources that natively support deployment callbacks. Built-in resource support for deployment callbacks will be added in the next version of .NET Aspire.
-### 🎯 Enhanced resource interaction capabilities
 
-The Aspire CLI in 9.4 introduces experimental support for rich user interactions, enabling more sophisticated automation and deployment workflows. This includes support for confirmation prompts, input collection, and validation workflows during resource operations.
+> [!IMPORTANT]
+> 🧪 **Feature Flag**: The `aspire deploy` command is behind a feature flag and **disabled by default** in this release. It must be explicitly enabled for use with `aspire config set features.deployCommandEnabled true`
 
-These capabilities are particularly useful for:
-
-- Collecting deployment parameters interactively
-- Confirming destructive operations
-- Gathering configuration input during setup workflows
-
-The interaction system integrates with both console-based workflows and can be extended to work with IDE integrations and automated tooling.
-
-### 📊 Enhanced publish and deploy output
+### 📃 Enhanced publish and deploy output
 
 .NET Aspire 9.4 significantly improves the feedback and progress reporting during publish and deploy operations, providing clearer visibility into what's happening during deployment processes.
 
 **Key improvements:**
+
 - **Enhanced progress reporting** with detailed step-by-step feedback during publishing
 - **Container runtime health checks** that provide clear status updates during container operations
 - **Better error messaging** with more descriptive information when deployments fail
@@ -226,6 +220,7 @@ The interaction system integrates with both console-based workflows and can be e
 These improvements make it much easier to understand what's happening during `aspire deploy` and `aspire publish` operations, helping developers debug issues more effectively and gain confidence in their deployment processes.
 
 The enhanced output is particularly valuable for:
+
 - **CI/CD pipelines** where clear logging is essential for troubleshooting
 - **Complex deployments** with multiple resources and dependencies
 - **Container-based deployments** where build and push operations need clear status reporting
@@ -276,6 +271,7 @@ builder.Build().Run();
 ```
 
 **Key capabilities:**
+
 - **`*.localhost` subdomain support** - Use custom subdomains while maintaining localhost behavior
 - **Multiple URL generation** - Endpoints listening on multiple addresses automatically get localhost and machine name URLs
 - **Enhanced dashboard integration** - All URL variants appear in the Aspire dashboard for easy access
