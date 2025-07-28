@@ -40,11 +40,11 @@ Moving between minor releases of Aspire is simple:
 
     > The `dotnet new update` command updates all of your templates to the latest version.
 
-If your AppHosts project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.0, follow [the upgrade guide](../get-started/upgrade-to-aspire-9.md).
+If your AppHost project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.0, follow [the upgrade guide](../get-started/upgrade-to-aspire-9.md).
 
 ## 🖥️ Aspire CLI is generally available
 
-With the release of Aspire 9.4, the Aspire CLI is generally available. To install the Aspire CLI you can download it using the following helper scripts:
+With the release of Aspire 9.4, the Aspire CLI is generally available. To install the Aspire CLI as an AOT compiled binary, use the following helper scripts:
 
 ```bash
 # Linux/macOS
@@ -54,7 +54,7 @@ curl -sSL https://aspire.dev/install.sh | bash
 iex "& { $(irm https://aspire.dev/install.ps1) }"
 ```
 
-This will install the CLI and put it on your PATH (the binaries are placed in the `$HOME/.aspire/bin` path). If you choose you can also install the CLI as a .NET global tool using:
+This will install the CLI and put it on your PATH (the binaries are placed in the `$HOME/.aspire/bin` path). If you choose you can also install the CLI as a non-AOT .NET global tool using:
 
 ```dotnetcli
 dotnet tool install -g Aspire.Cli
@@ -68,30 +68,23 @@ dotnet tool install -g Aspire.Cli
 
 The Aspire CLI has the following commands:
 
-- `aspire new`: used to create a new Aspire projects to add projects to existing codebases.
-- `aspire run`: finds and runs the existing apphost and provides easy access to the dashboard.
-- `aspire add`: adds a hosting integration package to the app host.
-- `aspire config [get|set|delete|list]`: configures Aspire settings and feature flags.
-- `aspire publish` (preview): generates deployment artifacts based on the apphost.
+- `aspire new`: Creates a new Aspire project from templates.
+- `aspire run`: Finds and runs the existing apphost from anywhere in the repo.
+- `aspire add`: Adds a hosting integration package to the apphost.
+- `aspire config [get|set|delete|list]`: Configures Aspire settings and feature flags.
+- `aspire publish` (preview): Generates deployment artifacts based on the apphost.
 
-In addition to these core commands available in this release of Aspire, we have additional commands which are in beta:
+In addition to these core commands, we have two beta commands behind feature flags:
 
-- `aspire exec`: supports invoking an arbitrary command within the apphost whilst in the context of an executable resource (inheriting its environment variables).
-- `aspire deploy`: extends the capabiltiies of `aspire publish` to actively deploying to a target environment.
+- `aspire exec`: Invokes an arbitrary command in the context of an executable resource defined in the apphost (ie, inheriting its environment variables).
+- `aspire deploy`: Extends the capabiltiies of `aspire publish` to actively deploy to a target environment.
 
-Both the `aspire exec` and `aspire deploy` command are hidden behind their respective feature flags. You can enable them using the following commands:
+### `aspire exec`
 
-```bash
-aspire config set features.execCommandEnabled true
-aspire config set features.deployCommandEnabled true
-```
-
-### 💻 New `aspire exec` command
-
-A new **exec command** allows you to execute commands within the context of your Aspire application environment:
+The new **exec command** allows you to execute commands within the context of your Aspire application environment:
 
 ```bash
-# Execute commands with environment variables from your app model
+# Execute commands, like migrataions, with environment variables from your app model
 aspire exec --resource my-api -- dotnet ef database update
 
 # Run scripts with access to application context
@@ -107,7 +100,7 @@ aspire exec --start-resource my-worker -- npm run build
 - **Command execution** in the context of your Aspire application
 
 > [!IMPORTANT]
-> 🧪 **Feature Flag**: The `aspire exec` command is behind a feature flag and **disabled by default** in this release. It must be explicitly enabled for use.
+> 🧪 **Feature Flag**: The `aspire exec` command is behind a feature flag and **disabled by default** in this release. It must be explicitly enabled for use with `aspire config set features.execCommandEnabled true`.
 
 ### 🛠️ `aspire deploy`
 
