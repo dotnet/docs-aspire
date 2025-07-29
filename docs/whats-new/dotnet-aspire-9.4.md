@@ -639,7 +639,7 @@ public async Task Should_ResetCache_WhenTestStarts()
 
 ### 🔄 Resource lifecycle events
 
-.NET Aspire 9.4 introduces convenient extension methods on <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder*> that make it much easier to subscribe to [lifecycle events](../app-host/eventing.md#app-host-life-cycle-events) directly on resources, providing a cleaner and more intuitive API.
+.NET Aspire 9.4 introduces convenient extension methods on <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> that make it much easier to subscribe to [lifecycle events](../app-host/eventing.md#app-host-life-cycle-events) directly on resources, providing a cleaner and more intuitive API.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -921,7 +921,7 @@ Aspire only shows notifications when a newer version is available, and the check
 
 Connection strings:
 
-- Appear in the **resource details** panel for any resource that implements `IResourceWithConnectionString`
+- Appear in the **resource details** panel for any resource that implements <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString>
 - Values are marked as **sensitive** and can be toggled for visibility in the dashboard
 - Supports all resource types including databases, message brokers, and custom resources
 
@@ -1043,7 +1043,7 @@ builder.Build().Run();
 
 ##### Azure AI Foundry Local support
 
-[Azure AI Foundry Local](https://learn.microsoft.com/azure/ai-foundry/foundry-local/) is an on-device AI inference solution that runs models locally on your hardware, providing performance, privacy, and cost advantages without requiring an Azure subscription. It's ideal for scenarios requiring data privacy, offline operation, cost reduction, or low-latency responses.
+[Azure AI Foundry Local](xref:azure/ai-foundry/foundry-local/) is an on-device AI inference solution that runs models locally on your hardware, providing performance, privacy, and cost advantages without requiring an Azure subscription. It's ideal for scenarios requiring data privacy, offline operation, cost reduction, or low-latency responses.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -1110,7 +1110,7 @@ builder.AddOpenAIClient("chat")
 - **Azure AI Foundry** - Cloud-hosted models with enterprise-grade scaling, supports all Azure AI model deployments
 - **Foundry Local** - On-device inference with different model selection optimized for local hardware, no Azure subscription required
 
-The `RunAsFoundryLocal()` method enables local development scenarios using [Azure AI Foundry Local](https://learn.microsoft.com/azure/ai-foundry/foundry-local/), allowing you to test AI capabilities without requiring cloud resources during development. This supports automatic model downloading, loading, and management through the integrated Foundry Local runtime.
+The `RunAsFoundryLocal()` method enables local development scenarios using [Azure AI Foundry Local](xref:azure/ai-foundry/foundry-local/), allowing you to test AI capabilities without requiring cloud resources during development. This supports automatic model downloading, loading, and management through the integrated Foundry Local runtime.
 
 ### 🗄️ Database hosting improvements
 
@@ -1140,7 +1140,7 @@ All database providers now support `WithInitFiles()` method, replacing the more 
 
 ### 🏷️ Consistent resource name exposure
 
-.NET Aspire 9.4 now consistently exposes the actual names of all Azure resources through `Aspire.Hosting.Azure.NameOutputReference` property. This enables applications to access the real Azure resource names that get generated during deployment, which is essential for scenarios requiring direct Azure resource coordination. This is particularly valuable for external automation scripts and monitoring and alerting systems that reference resources by their actual names.
+.NET Aspire 9.4 now consistently exposes the actual names of all Azure resources through the `NameOutputReference` property. This enables applications to access the real Azure resource names that get generated during deployment, which is essential for scenarios requiring direct Azure resource coordination. This is particularly valuable for external automation scripts and monitoring and alerting systems that reference resources by their actual names.
 
 ### 🗄️ Azure Cosmos DB
 
@@ -1294,8 +1294,8 @@ var webApi = builder.AddProject<Projects.WebAPI>("webapi")
 
 **Key features**:
 
-- `Aspire.Hosting.Azure.KeyVault.AzureKeyVaultResourceExtensions.AddSecret` method for adding new secrets to Key Vault from parameters or expressions
-- `Aspire.Hosting.Azure.KeyVault.AzureKeyVaultResourceExtensions.GetSecret` method for referencing existing secrets in Key Vault
+- <xref:Aspire.Hosting.AzureKeyVaultResourceExtensions.AddSecret*> method for adding new secrets to Key Vault from parameters or expressions
+- <xref:Aspire.Hosting.Azure.KeyVault.AzureKeyVaultResource.GetSecret*> method for referencing existing secrets in Key Vault
 - **Strongly-typed secret references** that can be used with `WithEnvironment()` for environment variables
 - **Custom secret naming** support with optional `secretName` parameter
 
