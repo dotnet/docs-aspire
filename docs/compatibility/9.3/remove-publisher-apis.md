@@ -78,6 +78,6 @@ var azure = builder.AddAzureEnvironment("azure");
 
 ## Affected APIs
 
-- <xref:Aspire.Hosting.DockerComposePublisherExtensions.AddDockerComposePublisher*>
-- <xref:Aspire.Hosting.KubernetesPublisherExtensions.AddKubernetesPublisher*>
-- <xref:Aspire.Hosting.AzurePublisherExtensions.AddAzurePublisher*>
+- Aspire.Hosting.DockerComposePublisherExtensions.AddDockerComposePublisher*
+- Aspire.Hosting.KubernetesPublisherExtensions.AddKubernetesPublisher*
+- Aspire.Hosting.AzurePublisherExtensions.AddAzurePublisher*
