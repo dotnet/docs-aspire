@@ -925,7 +925,7 @@ Connection strings:
 - Values are marked as **sensitive** and can be toggled for visibility in the dashboard
 - Supports all resource types including databases, message brokers, and custom resources
 
-:::image type="content" source="media/dashboard-connectionstrings.png" lightbox="media/dashboard-connectionstrings.png" alt-text="Screenshot of dashboard showing connection string.":::
+:::image type="content" source="media/dashboard-connection-strings.png" lightbox="media/dashboard-connectionstrings.png" alt-text="Screenshot of dashboard showing connection string.":::
 
 External parameters are no longer hidden. The parameter state and value is visible in the dashboard.
 
