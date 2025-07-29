@@ -105,13 +105,13 @@ aspire exec --start-resource my-worker -- npm run build
 
 #### `aspire deploy`
 
-The `aspire deploy` command supports extensible deployment workflows through the new `DeployingCallbackAnnotation`, enabling custom pre/post-deploy logic and richer integration with external systems during deployment operations.
+The `aspire deploy` command supports extensible deployment workflows through the new [`DeployingCallbackAnnotation`](../fundamentals/annotations-overview.md), enabling custom pre/post-deploy logic and richer integration with external systems during deployment operations.
 
 **Key capabilities:**
 
-- **Custom deployment hooks** using `DeployingCallbackAnnotation` to execute custom logic during the `aspire deploy` command
-- **Workflow activity reporting** via the `IPublishingActivityReporter` to support progress notifications and prompting in commmands
-- **Integration with publish** - `aspire deploy` runs `PublishingCallbackAnnotations` to support deploying artifacts emitted by publish steps, if applicable
+- **Custom deployment hooks** using <xref:Aspire.Hosting.Publishing.DeployingCallbackAnnotation/> to execute custom logic during the `aspire deploy` command
+- **Workflow activity reporting** via the <xref:Aspire.Hosting.Publishing.IPublishingActivityReporter/> to support progress notifications and prompting in commmands
+- **Integration with publish** - `aspire deploy` runs <xref:Aspire.Hosting.Publishing.PublishingCallbackAnnotations/> to support deploying artifacts emitted by publish steps, if applicable
 
 The example below demonstrates using the `DeployingCallbackAnnotation` to register custom deployment behavior and showcases [CLI-based prompting](#️-interaction-service) and progress notifications.
 
@@ -200,7 +200,7 @@ This custom deployment logic executes as follows from the `aspire deploy` comman
 Now, integration owners can create sophisticated `aspire deploy` workflows. This work also provides a foundation for advanced deployment automation scenarios.
 
 > [!NOTE]
-> While the `DeployingCallbackAnnotation` API is available in .NET Aspire 9.4, there are currently no built-in resources that natively support deployment callbacks. Built-in resource support for deployment callbacks will be added in the next version of .NET Aspire.
+> While the <xref:Aspire.Hosting.Publishing.DeployingCallbackAnnotation> API is available in .NET Aspire 9.4, there are currently no built-in resources that natively support deployment callbacks. Built-in resource support for deployment callbacks will be added in the next version of .NET Aspire.
 
 > [!IMPORTANT]
 > 🧪 **Feature Flag**: The `aspire deploy` command is behind a feature flag and **disabled by default** in this release. It must be explicitly enabled for use with `aspire config set features.deployCommandEnabled true`
@@ -226,11 +226,13 @@ The enhanced output is particularly valuable for:
 - **Container-based deployments** where build and push operations need clear status reporting
 - **Team environments** where deployment logs need to be easily interpreted by different team members
 
+For more information about publishing and deploying Aspire apps, see [aspire deploy](../cli-reference/aspire-deploy.md).
+
 ## 🖥️ App model enhancements
 
 ### 🌐 External service modeling
 
-Modern applications frequently need to integrate with external APIs, third-party services, or existing infrastructure that isn't managed by Aspire. .NET Aspire 9.4 introduces first-class support for modeling external services as resources in your application graph.
+Modern applications frequently need to integrate with external APIs, third-party services, or existing infrastructure that isn't managed by Aspire. .NET Aspire 9.4 introduces first-class support for [modeling external services](../fundamentals/orchestrate-resources.md#express-external-service-resources) as resources in your application graph.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -254,7 +256,7 @@ External services appear in the Aspire dashboard with health status, can be refe
 
 ### 🔗 Enhanced endpoint URL support
 
-.NET Aspire 9.4 introduces enhanced support for non-localhost URLs, making it easier to work with custom domains and network configurations. This includes support for `*.localhost` subdomains and automatic generation of multiple URL variants for endpoints listening on multiple addresses.
+.NET Aspire 9.4 introduces support for [non-localhost URLs](../fundamentals/networking-overview.md), making it easier to work with custom domains and network configurations. This includes support for `*.localhost` subdomains and automatic generation of multiple URL variants for endpoints listening on multiple addresses.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -272,13 +274,12 @@ builder.Build().Run();
 
 **Key capabilities:**
 
-- **`*.localhost` subdomain support** - Use custom subdomains while maintaining localhost behavior
-- **Multiple URL generation** - Endpoints listening on multiple addresses automatically get localhost and machine name URLs
-- **Enhanced dashboard integration** - All URL variants appear in the Aspire dashboard for easy access
-- **Network flexibility** - Better support for development scenarios requiring specific network configurations
-- **Launch profile configuration** - For projects, custom URLs can also be configured via launch profiles in `launchSettings.json`
+- **Custom `*.localhost` subdomain support** that maintains localhost behavior
+- **Automatic endpoint URL generation** for endpoints listening on multiple addresses, with both localhost and machine name URLs (such as Codespaces)
+- **All URL variants** appear in the Aspire dashboard for easy access
+- **Network flexibility** for development scenarios requiring specific network configurations
+- **Launch profile configuration support** so custom URLs can also be configured via launch profiles in `launchSettings.json`:
 
-**Launch profile configuration example:**
 ```json
 {
   "profiles": {
@@ -295,19 +296,129 @@ builder.Build().Run();
 }
 ```
 
-This enhancement simplifies development workflows where custom domains or external network access is needed while maintaining the familiar localhost development experience. For example many developers working on SaaS solutions which uses custom domains per-tenant will appreciate this new capability.
+This simplifies development workflows where custom domains or external network access is needed while maintaining the familiar localhost development experience. A popular example includes SaaS solutions which use custom domains per-tenant.
+
+### 🎛️ Interaction service
+
+.NET Aspire 9.4 introduces the [interaction service](../extensibility/interaction-service.md), a general service that allows developers to build rich experiences at runtime by extending the dashboard UX and at publish and deploy time using the Aspire CLI. It allows you to build complex interactions where input is required from the user.
+
+> [!IMPORTANT]
+> 🧪 This feature is experimental and may change in future releases.
+
+:::image type="content" source="media/dashboard-interaction-service.gif" lightbox="media/dashboard-interaction-service.gif" alt-text="Recording of using the interaction service in the dashboard.":::
+
+The interaction system supports:
+
+- Confirmation prompts for destructive operations
+- Input collection with validation
+- Multi-step workflows
+- Dashboard interactions during run mode
+- CLI interactions during deploy and publish operations
+
+```csharp
+// Example usage of IInteractionService APIs
+public class DeploymentService
+{
+    private readonly IInteractionService _interactionService;
+
+    public DeploymentService(IInteractionService interactionService)
+    {
+        _interactionService = interactionService;
+    }
+
+    public async Task DeployAsync()
+    {
+        // Prompt for confirmation before destructive operations
+        var confirmResult = await _interactionService.PromptConfirmationAsync(
+            "Confirm Deployment", 
+            "This will overwrite the existing deployment. Continue?");
+
+        if (confirmResult.Canceled || !confirmResult.Data)
+        {
+            return;
+        }
+
+        // Collect multiple inputs with validation
+        var regionInput = new InteractionInput { Label = "Region", InputType = InputType.Text, Required = true };
+        var instanceCountInput = new InteractionInput { Label = "Instance Count", InputType = InputType.Number, Required = true };
+        var enableMonitoringInput =  new InteractionInput { Label = "Enable Monitoring", InputType = InputType.Boolean };
+
+        var multiInputResult = await _interactionService.PromptInputsAsync(
+            "Advanced Configuration",
+            "Configure deployment settings:",
+            [regionInput, instanceCountInput, enableMonitoringInput],
+            new InputsDialogInteractionOptions
+            {
+                ValidationCallback = async context =>
+                {
+                    if (!IsValidRegion(regionInput.Value))
+                    {
+                        context.AddValidationError(regionInput, "Invalid region specified");
+                    }
+                }
+            });
+
+        if (multiInputResult.Canceled)
+        {
+            return;
+        }
+
+        await RunDeploymentAsync(
+            region: regionInput.Value,
+            instanceCount: instanceCountInput.Value,
+            enableMonitoring: enableMonitoringInput.Value);
+
+        // Show progress notifications
+        await _interactionService.PromptNotificationAsync(
+            "Deployment Status",
+            "Deployment completed successfully!",
+            new NotificationInteractionOptions
+            {
+                Intent = MessageIntent.Success,
+                LinkText = "View Dashboard",
+                LinkUrl = "https://portal.azure.com"
+            });
+    }
+
+    private bool IsValidRegion(string? region) 
+    {
+        // Validation logic here
+        return !string.IsNullOrEmpty(region);
+    }
+}
+```
+
+**Input types supported:**
+
+- `Text` - Standard text input
+- `SecretText` - Password/secret input (masked)
+- `Choice` - Dropdown selection
+- `Boolean` - Checkbox input
+- `Number` - Numeric input
+
+**Advanced features:**
+
+- **Validation callbacks** for complex input validation
+- **Markdown support** for rich text descriptions
+- **Custom button text** and dialog options
+- **Intent-based styling** for different message types
+- **Link support** in notifications
+
+These interactions work seamlessly whether you're running your application through the [Aspire dashboard](#-dashboard-new-features) or deploying via the CLI with `aspire deploy` and `aspire publish` commands.
 
 ### 🔄 Interactive parameter prompting during run mode
 
-.NET Aspire 9.4 introduces interactive parameter prompting, automatically collecting missing parameter values during application startup through the dashboard interface.
+.NET Aspire 9.4 introduces interactive parameter prompting, automatically collecting missing parameter values in the dashboard during application startup through the new [interaction service](#️-interaction-service).
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Parameters without default values will trigger prompts
 var apiKey = builder.AddParameter("api-key", secret: true);
-var dbPassword = builder.AddParameter("db-password", secret: true);  
-var environment = builder.AddParameter("environment");
+var dbPassword = builder.AddParameter("db-password", secret: true);
+
+// This also works for values that could be defined in appsettings.json
+var environment = builder.AddParameterFromConfiguration("environment", "ENVIRONMENT_VARIABLE");
 
 // Application will prompt for these values if not provided
 var database = builder.AddPostgres("postgres", password: dbPassword);
@@ -320,23 +431,22 @@ builder.Build().Run();
 ```
 
 **Interactive experience:**
-- **Automatic detection** - Aspire detects missing parameter values during startup
-- **Dashboard prompts** - Interactive forms appear in the dashboard for parameter collection
-- **Validation support** - Parameters can include validation rules and helpful descriptions
-- **Secure handling** - Secret parameters are properly masked during input
-- **Persistent storage** - Collected values can be saved to user secrets for future runs
 
-**Key improvements:**
-- **No more startup failures** - Missing parameters trigger prompts instead of errors
-- **Developer-friendly** - Clean interface for providing configuration values
-- **Security-conscious** - Secret parameters are handled appropriately
-- **Validation feedback** - Clear error messages for invalid parameter values
+- **Automatically detects parameters** that are missing so there aren't startup failures
+- **Dashboard prompts** with interactive forms and Markdown-enabled parameter descriptions
+- **Validation support** for enforcing rules (required, length, casing, etc)
+- **Secret masking** so sensitive input isn't shown while being entered
+- **Save to user secrets** for persistent per-project value storage outside of source control
 
-This feature eliminates the need to pre-configure all parameters before running your Aspire application, making the development experience more fluid and user-friendly.
+This feature eliminates the need to pre-configure all parameters in appsettings.json or .env files before running your Aspirified application, so you can clone, run, and be guided through what values are needed to run the full stack.
 
-### 📝 Enhanced parameter descriptions and custom input rendering
+#### 📝 Enhanced parameter descriptions and custom input rendering
 
-Building on the interactive parameter prompting capabilities, .NET Aspire 9.4 introduces rich parameter descriptions and custom input rendering to provide better user guidance and specialized input controls during parameter collection.
+Building on the interactive parameter prompting capabilities and the new [interaction service](#️-interaction-service), Aspire 9.4 introduces rich parameter descriptions and custom input rendering to provide better user guidance and specialized input controls during parameter collection.
+
+- **<xref:Aspire.Hosting.ParameterResourceBuilderExtensions.WithDescription*/>** - Add helpful descriptions to guide users during parameter input
+- **Markdown support** - Rich text descriptions with links, formatting, and lists using `enableMarkdown: true`
+- **<xref:Aspire.Hosting.ParameterResourceBuilderExtensions.WithCustomInput*/>** - Create specialized input controls for specific parameter types
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -397,34 +507,11 @@ var api = builder.AddProject<Projects.Api>("api")
 builder.Build().Run();
 ```
 
-**Enhanced parameter capabilities:**
-- **`WithDescription()`** - Add helpful descriptions to guide users during parameter input
-- **Markdown support** - Rich text descriptions with links, formatting, and lists using `enableMarkdown: true`
-- **`WithCustomInput()`** - Create specialized input controls for specific parameter types
-- **Enhanced validation** - Better feedback for invalid parameter values with length constraints and required field validation
-- **Improved UX** - More intuitive parameter collection with contextual help
-
-**Supported input types for custom rendering:**
-- `Text` - Standard text input with placeholder support
-- `SecretText` - Password/secret input (masked)
-- `Number` - Numeric input with min/max validation
-- `Boolean` - Checkbox input for true/false values
-- `Choice` - Dropdown selection from predefined options
-
-**Key benefits:**
-- **Better user guidance** - Clear descriptions explain what each parameter is for
-- **Rich documentation** - Markdown support allows for formatted help text with links
-- **Appropriate input controls** - Numbers use numeric inputs, choices use dropdowns
-- **Validation feedback** - Clear constraints and error messages for required fields and length limits
-- **Professional appearance** - Well-formatted prompts improve the development experience
-
-This enhancement makes parameter collection more intuitive and user-friendly, reducing confusion and errors during application startup while providing professional-quality input forms in the Aspire dashboard.
-
-**GitHub Issue:** [#10447](https://github.com/dotnet/aspire/issues/10447)
+For more information, including supported input types, see the [Interaction Service section](#️-interaction-service) below or the full [interaction service docs](../extensibility/interaction-service.md).
 
 ### 🐳 Enhanced persistent container support
 
-.NET Aspire 9.4 improves support for persistent containers with better lifecycle management and networking capabilities, ensuring containers can persist across application restarts while maintaining proper connectivity.
+.NET Aspire 9.4 improves support for [persistent containers](../app-host/persistent-containers.md) with better lifecycle management and networking capabilities, ensuring containers can persist across application restarts while maintaining proper connectivity.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -434,7 +521,7 @@ var database = builder.AddPostgres("postgres")
     .WithLifetime(ContainerLifetime.Persistent)
     .WithExplicitStart(); // Better support for explicit start with persistent containers
 
-// Persistent containers automatically get persistent networking
+// Persistent containers automatically also get persistent networking
 var redis = builder.AddRedis("redis")
     .WithLifetime(ContainerLifetime.Persistent);
 
@@ -446,22 +533,17 @@ builder.Build().Run();
 ```
 
 **Enhanced capabilities:**
-- **Improved lifecycle management** - Better coordination between `WithExplicitStart()` and `ContainerLifetime.Persistent`
-- **Persistent networking** - Automatic persistent network creation when persistent containers are detected
-- **Container delay start** - Uses orchestrator container delay start feature for more reliable startup sequencing
-- **Network isolation** - Persistent and session-scoped containers use separate networks for better resource management
 
-**Key benefits:**
-- **Data persistence** - Database and cache containers maintain state across application restarts
-- **Development efficiency** - No need to repeatedly seed databases or warm caches
-- **Network stability** - Consistent network topology for persistent infrastructure
-- **Resource optimization** - Separate networks prevent conflicts between persistent and ephemeral resources
+- **Improved lifecycle coordination** between <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*/> and `ContainerLifetime.Persistent`
+- **Automatic persistent networking** spun up when persistent containers are detected
+- **Container delay start** for more reliable startup sequencing
+- **Network isolation** between persistent and session-scoped containers, which now use separate networks for better resource management
 
-This enhancement provides a more robust foundation for development scenarios requiring stateful services that persist beyond individual application runs.
+This will greatly improve your experience while building stateful services that persist beyond individual application runs.
 
 ### 🎛️ Resource command service
 
-.NET Aspire 9.4 introduces `ResourceCommandService`, an API for executing commands against resources. You can now easily execute the commands that appear in the dashboard programmatically. For example, when writing unit tests for commands, or having other integrations in Aspire execute commands.
+.NET Aspire 9.4 introduces <xref:Aspire.Hosting.ApplicationModel.ResourceCommandService/>, an API for executing commands against resources. You can now easily execute the commands that appear in the dashboard programmatically. For example, when writing unit tests for commands, or having other integrations in Aspire execute commands.
 
 The example below uses `ResourceCommandService` to have a command execute other commands.
 
@@ -557,7 +639,7 @@ public async Task Should_ResetCache_WhenTestStarts()
 
 ### 🔄 Resource lifecycle events
 
-.NET Aspire 9.4 introduces **convenient extension methods** on `IResourceBuilder<T>` that make it much easier to subscribe to lifecycle events directly on resources, providing a cleaner and more intuitive API.
+.NET Aspire 9.4 introduces convenient extension methods on <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder/>` that make it much easier to subscribe to [lifecycle events](../app-host/eventing.md#app-host-life-cycle-events) directly on resources, providing a cleaner and more intuitive API.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -622,17 +704,14 @@ builder.Build().Run();
 ```
 
 **Available lifecycle events:**
-- **`OnInitializeResource()`** - Called during early resource initialization
-- **`OnBeforeResourceStarted()`** - Called before the resource starts
-- **`OnConnectionStringAvailable()`** - Called when connection strings are resolved (requires `IResourceWithConnectionString`)
-- **`OnResourceEndpointsAllocated()`** - Called when resource endpoints are allocated (requires `IResourceWithEndpoints`)
-- **`OnResourceReady()`** - Called when the resource is fully ready
 
-**Key improvements in .NET Aspire 9.4:**
-- **Fluent API** - Chain event subscriptions directly on resource builders for cleaner code
-- **Strongly-typed callbacks** - Each event method provides the specific resource type and event type
-- **Simplified syntax** - No need to manually subscribe to the eventing system or handle resource matching
-- **Better IntelliSense** - Full IDE support with proper type checking and auto-completion
+- <xref:Aspire.Hosting.DistributedApplicationEventingExtensions.OnInitializeResource*/> - Called during early resource initialization
+- <xref:Aspire.Hosting.DistributedApplicationEventingExtensions.OnBeforeResourceStarted*/> - Called before the resource starts
+- <xref:Aspire.Hosting.DistributedApplicationEventingExtensions.OnConnectionStringAvailable*/> - Called when connection strings are resolved (requires `IResourceWithConnectionString`)
+- <xref:Aspire.Hosting.DistributedApplicationEventingExtensions.OnResourceEndpointsAllocated*/> - Called when resource endpoints are allocated (requires `IResourceWithEndpoints`)
+- <xref:Aspire.Hosting.DistributedApplicationEventingExtensions.OnResourceReady*/> - Called when the resource is fully ready
+
+The new chainable fluent API, strongly-typed callbacks, and simplified syntax make it intuitive to hook into your resource lifecycles for interactions, commands, custom scripts, and more.
 
 **Migration from manual eventing:**
 ```csharp
@@ -655,7 +734,7 @@ var db = builder.AddMongoDB("mongo")
     });
 ```
 
-These events enable sophisticated startup orchestration, health validation, and initialization workflows without requiring complex external coordination mechanisms. The new extension methods make it much easier to implement common patterns like database seeding, configuration validation, and resource health checks. Note that the old mechanism is not being deprecated, the new methods simply provide a more natural programming model when using the builder pattern.
+The new extension methods make it much easier to implement common patterns like database seeding, configuration validation, and resource health checks. Note that the old mechanism is not being deprecated, the new methods simply provide a more natural programming model when using the builder pattern.
 
 ### 📁 Enhanced container file mounting
 
@@ -687,118 +766,12 @@ var dynamicContainer = builder.AddContainer("worker", "worker:latest")
 builder.Build().Run();
 ```
 
-The enhanced APIs handle file permissions, ownership, and provide both static and dynamic file mounting capabilities while maintaining the flexibility to customize when needed.
-
-### 🎛️ Interaction service
-
-.NET Aspire 9.4 introduces the interaction service, a general service that allows developers to build rich experiences at runtime by extending the dashboard UX and at publish and deploy time using the Aspire CLI. It allows you to build complex interactions where input is required from the user.
-
-> [!IMPORTANT]
-> 🧪 This feature is experimental and may change in future releases.
-
-:::image type="content" source="media/dashboard-interaction-service.gif" lightbox="media/dashboard-interaction-service.gif" alt-text="Recording of using the interaction service in the dashboard.":::
-
-The interaction system supports:
-
-- Confirmation prompts for destructive operations
-- Input collection with validation
-- Multi-step workflows
-- Dashboard interactions during run mode
-- CLI interactions during deploy and publish operations
-
-```csharp
-// Example usage of IInteractionService APIs
-public class DeploymentService
-{
-    private readonly IInteractionService _interactionService;
-
-    public DeploymentService(IInteractionService interactionService)
-    {
-        _interactionService = interactionService;
-    }
-
-    public async Task DeployAsync()
-    {
-        // Prompt for confirmation before destructive operations
-        var confirmResult = await _interactionService.PromptConfirmationAsync(
-            "Confirm Deployment", 
-            "This will overwrite the existing deployment. Continue?");
-
-        if (confirmResult.Canceled || !confirmResult.Data)
-        {
-            return;
-        }
-
-        // Collect multiple inputs with validation
-        var regionInput = new InteractionInput { Label = "Region", InputType = InputType.Text, Required = true };
-        var instanceCountInput = new InteractionInput { Label = "Instance Count", InputType = InputType.Number, Required = true };
-        var enableMonitoringInput =  new InteractionInput { Label = "Enable Monitoring", InputType = InputType.Boolean };
-
-        var multiInputResult = await _interactionService.PromptInputsAsync(
-            "Advanced Configuration",
-            "Configure deployment settings:",
-            [regionInput, instanceCountInput, enableMonitoringInput],
-            new InputsDialogInteractionOptions
-            {
-                ValidationCallback = async context =>
-                {
-                    if (!IsValidRegion(regionInput.Value))
-                    {
-                        context.AddValidationError(regionInput, "Invalid region specified");
-                    }
-                }
-            });
-
-        if (multiInputResult.Canceled)
-        {
-            return;
-        }
-
-        await RunDeploymentAsync(
-            region: regionInput.Value,
-            instanceCount: instanceCountInput.Value,
-            enableMonitoring: enableMonitoringInput.Value);
-
-        // Show progress notifications
-        await _interactionService.PromptNotificationAsync(
-            "Deployment Status",
-            "Deployment completed successfully!",
-            new NotificationInteractionOptions
-            {
-                Intent = MessageIntent.Success,
-                LinkText = "View Dashboard",
-                LinkUrl = "https://portal.azure.com"
-            });
-    }
-
-    private bool IsValidRegion(string? region) 
-    {
-        // Validation logic here
-        return !string.IsNullOrEmpty(region);
-    }
-}
-```
-
-**Input types supported:**
-- `Text` - Standard text input
-- `SecretText` - Password/secret input (masked)
-- `Choice` - Dropdown selection
-- `Boolean` - Checkbox input
-- `Number` - Numeric input
-
-**Advanced features:**
-- **Validation callbacks** for complex input validation
-- **Markdown support** for rich text descriptions
-- **Custom button text** and dialog options
-- **Intent-based styling** for different message types
-- **Link support** in notifications
-
-These interactions work seamlessly whether you're running your application through the Aspire dashboard or deploying via the CLI with `aspire deploy` and `aspire publish` commands.
+The [enhanced APIs](../fundamentals/persist-data-volumes.md) handle file permissions, ownership, and provide both static and dynamic file mounting capabilities while maintaining the flexibility to customize when needed.
 
 ### ✨ Advanced YARP routing with transform APIs (Preview)
 
 > [!NOTE]
-> The YARP resource is currently in preview and APIs may change in future releases.
+> The [YARP integration](../proxies/yarp-integration.md) is currently in preview and APIs may change in future releases.
 
 Building sophisticated reverse proxy configurations has traditionally required deep knowledge of YARP's transform system and manual JSON configuration. .NET Aspire 9.4 introduces a comprehensive set of fluent APIs that make advanced routing transformations accessible through strongly-typed C# code.
 
@@ -884,138 +857,130 @@ var yarp = builder.AddYarp("gateway")
 builder.Build().Run();
 ```
 
-**Migration from 9.3 to 9.4:**
+#### Migration from YARP 9.3 to 9.4
+
 If you were using `WithConfigFile()` in .NET Aspire 9.3, you'll need to migrate to the new code-based configuration model shown above. The strongly-typed APIs provide better IntelliSense support and work seamlessly with deployment scenarios.
 
 > [!NOTE]
 > We are working on a more general-purpose solution for file-based configuration during deployment. File-based configuration support will return in a future version of .NET Aspire.
 
-This eliminates the need for complex YARP configuration files while providing complete access to YARP's powerful transformation pipeline. The fluent API makes it easy to implement common patterns like API versioning, header enrichment, and security transformations.
+This eliminates the need for complex YARP configuration files while providing complete access to YARP's powerful transformation pipeline through a fluent API.
 
-### 🤖 Azure AI Foundry integration
+### 🔒 Enhanced Docker Compose deployment security
 
-.NET Aspire 9.4 introduces comprehensive Azure AI Foundry support, bringing enterprise AI capabilities directly into your distributed applications. This integration simplifies working with AI models and deployments through the Azure AI platform, supporting both Azure-hosted deployments and local development with Foundry Local.
-
-#### Hosting configuration
+.NET Aspire 9.4 improves [Docker Compose publish](../deployment/overview.md) security with smart port mapping - only external endpoints are exposed to the host while internal services use Docker's internal networking.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Add Azure AI Foundry project
-var foundry = builder.AddAzureAIFoundry("foundry");
+var compose = builder.AddDockerComposeEnvironment("production");
 
-// Add specific model deployments
-var chat = foundry.AddDeployment("chat", "qwen2.5-0.5b", "1", "Microsoft");
-var embedding = foundry.AddDeployment("embedding", "text-embedding-ada-002", "2", "OpenAI");
-
-// Connect your services to AI capabilities
-var webService = builder.AddProject<Projects.WebService>("webservice")
-    .WithReference(chat)
-    .WaitFor(chat);
+// Add a service with both internal and external endpoints
+var webService = builder.AddContainer("webservice", "nginx")
+    .WithEndpoint(scheme: "http", port: 8080, name: "internal")       // Internal endpoint
+    .WithEndpoint(scheme: "http", port: 8081, name: "api", isExternal: true); // External endpoint
 
 builder.Build().Run();
 ```
 
-**Azure AI Foundry Local support:**
+**Generated Docker Compose output:**
 
-[Azure AI Foundry Local](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/) is an on-device AI inference solution that runs models locally on your hardware, providing performance, privacy, and cost advantages without requiring an Azure subscription. It's ideal for scenarios requiring data privacy, offline operation, cost reduction, or low-latency responses.
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// For local development, run with Foundry Local
-var localFoundry = builder.AddAzureAIFoundry("foundry")
-    .RunAsFoundryLocal()
-    .AddDeployment("chat", "phi-3.5-mini", "1", "Microsoft");
-
-var webService = builder.AddProject<Projects.WebService>("webservice")
-    .WithReference(localFoundry)
-    .WaitFor(localFoundry);
-
-builder.Build().Run();
+```yaml
+services:
+  webservice:
+    image: "nginx:latest"
+    ports:
+      - "8081:8001"    # Only external endpoints get port mappings (host:container)
+    expose:
+      - "8000"         # Internal endpoints use expose (container port only)
+    networks:
+      - "aspire"
 ```
 
-#### Client integration
+Now, only `isExternal: true` endpoints are exposed to host, and internal endpoints use Docker's `expose` for container-to-container communication.
 
-Once you've configured the Azure AI Foundry resource in your app host, consume it in your services using the Azure AI Inference SDK or OpenAI SDK for compatible models:
+## 🎨 Dashboard new features
 
-**Using Azure AI Inference SDK:**
+### 🔔 Automatic upgrade check notifications
 
-```csharp
-// In Program.cs
-var builder = WebApplication.CreateBuilder(args);
+.NET Aspire 9.4 includes an update notification system that automatically checks for newer versions and notifies developers when updates are available, making sure you stay current with the latest improvements and security updates.
 
-builder.AddAzureChatCompletionsClient("chat")
-       .AddChatClient();
+When a newer version is detected, a friendly notification appears in the Aspire dashboard:
 
-var app = builder.Build();
+:::image type="content" source="media/dashboard-update-notification.png" lightbox="media/dashboard-update-notification.png" alt-text="Screenshot of dashboard showing an update notification.":::
 
-// Minimal API endpoint for chat completion
-app.MapPost("/generate", async (IChatClient chatClient, ChatRequest request) =>
-{
-    var messages = new List<ChatMessage>
-    {
-        new(ChatRole.System, "You are a helpful assistant."),
-        new(ChatRole.User, request.Prompt)
-    };
+Aspire only shows notifications when a newer version is available, and the checks happen in the background without impacting application startup or performance. The upgrade check system can be disable by setting the `ASPIRE_VERSION_CHECK_DISABLED` environment variable to `true`. For more information, see [App host configuration](/dotnet/aspire/app-host/configuration).
 
-    var response = await chatClient.GetResponseAsync(messages);
-    return Results.Ok(new { Response = response.Text });
-});
+### 📋 Parameters and connection strings visible in dashboard
 
-app.Run();
+.NET Aspire 9.4 makes parameters and connection strings visible in the Aspire dashboard, providing better visibility into your application's configuration and connectivity status during development.
 
-public record ChatRequest(string Prompt);
-```
+Connection strings:
 
-**Using OpenAI SDK (for compatible models):**
+- Appear in the **resource details** panel for any resource that implements `IResourceWithConnectionString`
+- Values are marked as **sensitive** and can be toggled for visibility in the dashboard
+- Supports all resource types including databases, message brokers, and custom resources
 
-```csharp
-// In Program.cs
-var builder = WebApplication.CreateBuilder(args);
+:::image type="content" source="media/dashboard-connectionstrings.png" lightbox="media/dashboard-connectionstrings.png" alt-text="Screenshot of dashboard showing connection string.":::
 
-builder.AddOpenAIClient("chat")
-       .AddChatClient();
+External parameters are no longer hidden. The parameter state and value is visible in the dashboard.
 
-// Usage is identical to the Azure AI Inference SDK example above
-```
+:::image type="content" source="media/dashboard-parameters.png" lightbox="media/dashboard-parameters.png" alt-text="Screenshot of dashboard showing parameters.":::
 
-**Key differences between Azure AI Foundry and Foundry Local:**
-- **Azure AI Foundry** - Cloud-hosted models with enterprise-grade scaling, supports all Azure AI model deployments
-- **Foundry Local** - On-device inference with different model selection optimized for local hardware, no Azure subscription required
+For more information, see [external parameters](/dotnet/aspire/fundamentals/external-parameters).
 
-The `RunAsFoundryLocal()` method enables local development scenarios using [Azure AI Foundry Local](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/), allowing you to test AI capabilities without requiring cloud resources during development. This supports automatic model downloading, loading, and management through the integrated Foundry Local runtime.
+### 🔗 Enhanced dashboard peer visualization for uninstrumented resources
 
-### 🐙 GitHub Models integration
+.NET Aspire 9.4 improves uninstrumented peer matching in distributed tracing. This feature lets you to see connections between resources even when they aren't instrumented with telemetry.
 
-.NET Aspire 9.4 introduces support for [GitHub Models](https://docs.github.com/en/github-models), enabling easy integration with AI models hosted on GitHub's platform. This provides a simple way to incorporate AI capabilities into your applications using GitHub's model hosting service.
+For example, the screenshot below shows a call to a GitHub model resolving to the model resource in Aspire:
 
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
+:::image type="content" source="media/dashboard-tracing-peers.png" lightbox="media/dashboard-tracing-peers.png" alt-text="Screenshot of a span linked to a GitHub model resource defined in Aspire.":::
 
-// Add GitHub Model - API key parameter is automatically created
-var model = builder.AddGitHubModel("chat-model", "gpt-4o-mini")
-    .WithHealthCheck();
+OpenTelemetry spans can now resolve to peers that are defined by parameters, connection strings, GitHub Models, and external services:
 
-// You can also specify an API key explicitly if needed
-var apiKey = builder.AddParameter("github-api-key", secret: true);
-var explicitModel = builder.AddGitHubModel("explicit-chat", "gpt-4o-mini")
-    .WithApiKey(apiKey);
+- **Connection string parsing** - Comprehensive parser supports SQL Server, PostgreSQL, MySQL, MongoDB, Redis, and many other connection string formats
+- **Parameter visualization** - Shows how parameters with URLs or connection strings connect to services
+- **GitHub Models integration** - Visualizes connections to GitHub-hosted AI models with proper state management
+- **External service mapping** - Shows relationships between your services and external dependencies
 
-// Use the model in your services
-var chatService = builder.AddProject<Projects.ChatService>("chat")
-    .WithReference(model);
+**GitHub Issue:** [#10382](https://github.com/dotnet/aspire/issues/10382)
 
-builder.Build().Run();
-```
+### 📋 Console logs text wrapping control
 
-GitHub Models integration provides:
-- **Simple model integration** with GitHub's hosted AI models
-- **Automatic API key management** - parameters are created automatically with the pattern `{name}-gh-apikey`
-- **Explicit API key support** - optionally specify API keys using `WithApiKey()` for custom scenarios
-- **GITHUB_TOKEN fallback** - automatically reads the `GITHUB_TOKEN` environment variable when no explicit API key is provided
-- **Built-in health checks** for model availability
-- **Connection string support** for easy service integration
+.NET Aspire 9.4 introduces a new toggle option in the dashboard console logs to control text wrapping behavior, giving you better control over how long log lines are displayed.
+
+:::image type="content" source="media/dashboard-console-logs-wrapping.gif" lightbox="media/dashboard-console-logs-wrapping.gif" alt-text="Recording of toggling line wrapping on console logs page.":::
+
+Some Aspire users have run into trouble with viewing large console logs, which is tracked in this GitHub issue: [Console logs not showing, plus browser window size affecting displayed logs #7969](https://github.com/dotnet/aspire/issues/7969). If you're having trouble with logs please try experimenting with disabling wrapping and see whether it improves your user experience. Feedback on this issue would be very helpful.
+
+### 👁️ Show/hide hidden resources in dashboard
+
+.NET Aspire 9.4 introduces the ability to show or hide hidden resources in the dashboard, giving you complete visibility into your application's infrastructure components and internal resources that are normally hidden from view.
+
+:::image type="content" source="media/dashboard-hidden-resources.png" lightbox="media/dashboard-hidden-resources.png" alt-text="Dashboard resources page with the show/hide hidden resources UI visible.":::
+
+If there are no hidden resources in your Aspire app then the show/hide UI is disabled.
+
+### 🏗️ Enhanced dashboard infrastructure with proxied endpoints
+
+.NET Aspire 9.4 introduces significant infrastructure improvements to the dashboard system, implementing proxied endpoints that make dashboard launching more reliable by fixing port reuse problems. This architectural enhancement resolves issues with dashboard connectivity during application startup and shutdown scenarios.
+
+**Key improvements:**
+- **Proxied endpoint architecture** - Dashboard endpoints are now modeled as first-class proxied resources in the DCP (Developer Control Plane)
+- **Startup retry resilience** - Automatic retry handling during DCP proxy startup eliminates connection failures from unclean dashboard shutdowns
+- **Port reuse problem resolution** - Fixes issues where dashboard ports weren't properly released from previous runs
+- **Improved reliability** - Better handling of cases where the dashboard wasn't cleanly shut down from a previous run
+
+**Technical benefits:**
+- **Unified endpoint model** - OTLP (OpenTelemetry Protocol) endpoints for both gRPC and HTTP are now consistently managed
+- **Target URL resolution** - Proper handling of target host and port configurations for proxied scenarios
+- **Environment variable optimization** - Streamlined configuration of `ASPNETCORE_URLS` and OTLP endpoint URLs
+- **Reference expression support** - Dashboard URLs are now properly handled through the reference expression system
+
+This infrastructure enhancement provides a more robust foundation for dashboard operations, particularly in complex development environments and deployment scenarios where network connectivity can be challenging. The primary benefit is making dashboard launching more reliable by eliminating the common port reuse issues that could prevent the dashboard from starting after previous application runs.
+
+## ☁️ Azure goodies
 
 ### 🗄️ Azure Cosmos DB hierarchical partition keys
 
@@ -1147,6 +1112,27 @@ builder.Build().Run();
 
 This change automatically applies to all Azure EventHubs and Web PubSub resources, ensuring secure-by-default behavior.
 
+### ⚙️ Enhanced Azure provisioning interaction
+
+.NET Aspire 9.4 significantly improves the Azure provisioning experience by leveraging the interaction services to streamline Azure subscription and resource group configuration during deployment workflows.
+
+The enhanced Azure provisioning system:
+
+- **Automatically prompts for missing Azure configuration** during deploy operations
+- **Saves configuration to user secrets** for future deployments
+- **Provides smart defaults** like auto-generated resource group names
+- **Includes validation callbacks** for Azure-specific inputs like subscription IDs and locations
+- **Supports rich HTML prompts** with links to create free Azure accounts
+
+**Key improvements:**
+- **Streamlined first-time setup** - No more manual configuration of Azure parameters
+- **Persistent settings** - Configuration is saved securely in user secrets
+- **Context-aware prompts** - Only prompts for missing configuration
+- **Enhanced validation** - Built-in validation for Azure resource constraints
+- **Better error handling** - Clear feedback when provisioning fails
+
+This enhancement makes Azure deployment significantly more user-friendly, especially for developers new to Azure or setting up projects for the first time. The interaction system ensures that all necessary Azure configuration is collected interactively and stored securely for subsequent deployments.
+
 ### 🔐 Azure Key Vault enhancements
 
 .NET Aspire 9.4 introduces significant improvements to Azure Key Vault integration with new secret management APIs that provide strongly typed access to secrets:
@@ -1265,156 +1251,6 @@ builder.Build().Run();
 - **Seamless service discovery** for all containerized resources
 - **Improved security** with selective port exposure - only external endpoints are mapped to host ports
 
-### 🔒 Enhanced Docker Compose security
-
-.NET Aspire 9.4 improves Docker Compose security with smart port mapping - only external endpoints are exposed to the host while internal services use Docker's internal networking.
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var compose = builder.AddDockerComposeEnvironment("production");
-
-// Add a service with both internal and external endpoints
-var webService = builder.AddContainer("webservice", "nginx")
-    .WithEndpoint(scheme: "http", port: 8080, name: "internal")       // Internal endpoint
-    .WithEndpoint(scheme: "http", port: 8081, name: "api", isExternal: true); // External endpoint
-
-builder.Build().Run();
-```
-
-**Generated Docker Compose output:**
-
-```yaml
-services:
-  webservice:
-    image: "nginx:latest"
-    ports:
-      - "8081:8001"    # Only external endpoints get port mappings (host:container)
-    expose:
-      - "8000"         # Internal endpoints use expose (container port only)
-    networks:
-      - "aspire"
-```
-
-**Key improvements:**
-- **Selective port exposure** - Only `isExternal: true` endpoints exposed to host
-- **Internal service isolation** - Internal endpoints use Docker's `expose` for container-to-container communication
-- **Reduced attack surface** - Fewer ports exposed to the host system
-- **Production ready** - Aligns with security best practices for containerized deployments
-
-**GitHub Issue:** [#9180](https://github.com/dotnet/aspire/issues/9180)
-
-### 🏗️ Enhanced dashboard infrastructure with proxied endpoints
-
-.NET Aspire 9.4 introduces significant infrastructure improvements to the dashboard system, implementing proxied endpoints that make dashboard launching more reliable by fixing port reuse problems. This architectural enhancement resolves issues with dashboard connectivity during application startup and shutdown scenarios.
-
-**Key improvements:**
-- **Proxied endpoint architecture** - Dashboard endpoints are now modeled as first-class proxied resources in the DCP (Developer Control Plane)
-- **Startup retry resilience** - Automatic retry handling during DCP proxy startup eliminates connection failures from unclean dashboard shutdowns
-- **Port reuse problem resolution** - Fixes issues where dashboard ports weren't properly released from previous runs
-- **Improved reliability** - Better handling of cases where the dashboard wasn't cleanly shut down from a previous run
-
-**Technical benefits:**
-- **Unified endpoint model** - OTLP (OpenTelemetry Protocol) endpoints for both gRPC and HTTP are now consistently managed
-- **Target URL resolution** - Proper handling of target host and port configurations for proxied scenarios
-- **Environment variable optimization** - Streamlined configuration of `ASPNETCORE_URLS` and OTLP endpoint URLs
-- **Reference expression support** - Dashboard URLs are now properly handled through the reference expression system
-
-This infrastructure enhancement provides a more robust foundation for dashboard operations, particularly in complex development environments and deployment scenarios where network connectivity can be challenging. The primary benefit is making dashboard launching more reliable by eliminating the common port reuse issues that could prevent the dashboard from starting after previous application runs.
-
-**GitHub Issue:** [#10587](https://github.com/dotnet/aspire/issues/10587)
-
-### ⚙️ Enhanced Azure provisioning interaction
-
-.NET Aspire 9.4 significantly improves the Azure provisioning experience by leveraging the interaction services to streamline Azure subscription and resource group configuration during deployment workflows.
-
-The enhanced Azure provisioning system:
-
-- **Automatically prompts for missing Azure configuration** during deploy operations
-- **Saves configuration to user secrets** for future deployments
-- **Provides smart defaults** like auto-generated resource group names
-- **Includes validation callbacks** for Azure-specific inputs like subscription IDs and locations
-- **Supports rich HTML prompts** with links to create free Azure accounts
-
-**Key improvements:**
-- **Streamlined first-time setup** - No more manual configuration of Azure parameters
-- **Persistent settings** - Configuration is saved securely in user secrets
-- **Context-aware prompts** - Only prompts for missing configuration
-- **Enhanced validation** - Built-in validation for Azure resource constraints
-- **Better error handling** - Clear feedback when provisioning fails
-
-This enhancement makes Azure deployment significantly more user-friendly, especially for developers new to Azure or setting up projects for the first time. The interaction system ensures that all necessary Azure configuration is collected interactively and stored securely for subsequent deployments.
-
-## 🎨 Dashboard new features
-
-### 🔔 Automatic upgrade check notifications
-
-.NET Aspire 9.4 introduces an intelligent upgrade notification system that automatically checks for newer versions and notifies developers when updates are available, ensuring teams stay current with the latest improvements and security updates.
-
-**How it works:**
-- **Background checking** - Aspire automatically checks for newer versions every 2 days during development
-- **Smart notifications** - Only shows notifications when a newer version is available
-- **Non-intrusive** - Checks happen in the background without impacting application startup or performance
-- **Configurable** - Can be disabled or ignored per version as needed
-
-When a newer version is detected, a friendly notification appears in the Aspire dashboard:
-
-:::image type="content" source="media/dashboard-update-notification.png" lightbox="media/dashboard-update-notification.png" alt-text="Screenshot of dashboard showing an update notification.":::
-
-The upgrade check system can be disable by setting the `ASPIRE_VERSION_CHECK_DISABLED` environment variable to `true`. For more information, see [App host configuration](/dotnet/aspire/app-host/configuration).
-
-### 📋 Parameters and connection strings visible in dashboard
-
-.NET Aspire 9.4 makes parameters and connection strings visible in the Aspire dashboard, providing better visibility into your application's configuration and connectivity status during development.
-
-Connection strings:
-
-- Appear in the **resource details** panel for any resource that implements `IResourceWithConnectionString`
-- Values are marked as **sensitive** and can be toggled for visibility in the dashboard
-- Supports all resource types including databases, message brokers, and custom resources
-
-:::image type="content" source="media/dashboard-connectionstrings.png" lightbox="media/dashboard-connectionstrings.png" alt-text="Screenshot of dashboard showing connection string.":::
-
-External parameters are no longer hidden. The parameter state and value is visible in the dashboard.
-
-:::image type="content" source="media/dashboard-parameters.png" lightbox="media/dashboard-parameters.png" alt-text="Screenshot of dashboard showing parameters.":::
-
-For more information, see [external parameters](/dotnet/aspire/fundamentals/external-parameters).
-
-### 🔗 Enhanced dashboard peer visualization for uninstrumented resources
-
-.NET Aspire 9.4 improves uninstrumented peer matching in distributed tracing. This feature lets you to see connections between resources even when they aren't instrumented with telemetry.
-
-For example, the screenshot below shows a call to a GitHub model resolving to the model resource in Aspire:
-
-:::image type="content" source="media/dashboard-tracing-peers.png" lightbox="media/dashboard-tracing-peers.png" alt-text="Screenshot of a span linked to a GitHub model resource defined in Aspire.":::
-
-OpenTelemetry spans can now resolve to peers that are defined by parameters, connection strings, GitHub Models, and external services:
-
-- **Connection string parsing** - Comprehensive parser supports SQL Server, PostgreSQL, MySQL, MongoDB, Redis, and many other connection string formats
-- **Parameter visualization** - Shows how parameters with URLs or connection strings connect to services
-- **GitHub Models integration** - Visualizes connections to GitHub-hosted AI models with proper state management
-- **External service mapping** - Shows relationships between your services and external dependencies
-
-**GitHub Issue:** [#10382](https://github.com/dotnet/aspire/issues/10382)
-
-### 📋 Console logs text wrapping control
-
-.NET Aspire 9.4 introduces a new toggle option in the dashboard console logs to control text wrapping behavior, giving you better control over how long log lines are displayed.
-
-:::image type="content" source="media/dashboard-console-logs-wrapping.gif" lightbox="media/dashboard-console-logs-wrapping.gif" alt-text="Recording of toggling line wrapping on console logs page.":::
-
-Some Aspire users have run into trouble with viewing large console logs, which is tracked in this GitHub issue: [Console logs not showing, plus browser window size affecting displayed logs #7969](https://github.com/dotnet/aspire/issues/7969). If you're having trouble with logs please try experimenting with disabling wrapping and see whether it improves your user experience. Feedback on this issue would be very helpful.
-
-### 👁️ Show/hide hidden resources in dashboard
-
-.NET Aspire 9.4 introduces the ability to show or hide hidden resources in the dashboard, giving you complete visibility into your application's infrastructure components and internal resources that are normally hidden from view.
-
-:::image type="content" source="media/dashboard-hidden-resources.png" lightbox="media/dashboard-hidden-resources.png" alt-text="Dashboard resources page with the show/hide hidden resources UI visible.":::
-
-If there are no hidden resources in your Aspire app then the show/hide UI is disabled.
-
-## ☁️ Azure goodies
 
 ### 🔄 Flexible Azure Storage queue management
 
@@ -1588,6 +1424,131 @@ builder.Build().Run();
 This change resolves issues where Azure Functions deployed to Container Apps weren't properly recognized by Azure tooling and monitoring systems, providing a more seamless serverless experience.
 
 ## 🔗 Integrations updates
+
+### 🤖 Azure AI Foundry integration
+
+.NET Aspire 9.4 introduces comprehensive Azure AI Foundry support, bringing enterprise AI capabilities directly into your distributed applications. This integration simplifies working with AI models and deployments through the Azure AI platform, supporting both Azure-hosted deployments and local development with Foundry Local.
+
+#### Hosting configuration
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Add Azure AI Foundry project
+var foundry = builder.AddAzureAIFoundry("foundry");
+
+// Add specific model deployments
+var chat = foundry.AddDeployment("chat", "qwen2.5-0.5b", "1", "Microsoft");
+var embedding = foundry.AddDeployment("embedding", "text-embedding-ada-002", "2", "OpenAI");
+
+// Connect your services to AI capabilities
+var webService = builder.AddProject<Projects.WebService>("webservice")
+    .WithReference(chat)
+    .WaitFor(chat);
+
+builder.Build().Run();
+```
+
+**Azure AI Foundry Local support:**
+
+[Azure AI Foundry Local](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/) is an on-device AI inference solution that runs models locally on your hardware, providing performance, privacy, and cost advantages without requiring an Azure subscription. It's ideal for scenarios requiring data privacy, offline operation, cost reduction, or low-latency responses.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// For local development, run with Foundry Local
+var localFoundry = builder.AddAzureAIFoundry("foundry")
+    .RunAsFoundryLocal()
+    .AddDeployment("chat", "phi-3.5-mini", "1", "Microsoft");
+
+var webService = builder.AddProject<Projects.WebService>("webservice")
+    .WithReference(localFoundry)
+    .WaitFor(localFoundry);
+
+builder.Build().Run();
+```
+
+#### Client integration
+
+Once you've configured the Azure AI Foundry resource in your app host, consume it in your services using the Azure AI Inference SDK or OpenAI SDK for compatible models:
+
+**Using Azure AI Inference SDK:**
+
+```csharp
+// In Program.cs
+var builder = WebApplication.CreateBuilder(args);
+
+builder.AddAzureChatCompletionsClient("chat")
+       .AddChatClient();
+
+var app = builder.Build();
+
+// Minimal API endpoint for chat completion
+app.MapPost("/generate", async (IChatClient chatClient, ChatRequest request) =>
+{
+    var messages = new List<ChatMessage>
+    {
+        new(ChatRole.System, "You are a helpful assistant."),
+        new(ChatRole.User, request.Prompt)
+    };
+
+    var response = await chatClient.GetResponseAsync(messages);
+    return Results.Ok(new { Response = response.Text });
+});
+
+app.Run();
+
+public record ChatRequest(string Prompt);
+```
+
+**Using OpenAI SDK (for compatible models):**
+
+```csharp
+// In Program.cs
+var builder = WebApplication.CreateBuilder(args);
+
+builder.AddOpenAIClient("chat")
+       .AddChatClient();
+
+// Usage is identical to the Azure AI Inference SDK example above
+```
+
+**Key differences between Azure AI Foundry and Foundry Local:**
+- **Azure AI Foundry** - Cloud-hosted models with enterprise-grade scaling, supports all Azure AI model deployments
+- **Foundry Local** - On-device inference with different model selection optimized for local hardware, no Azure subscription required
+
+The `RunAsFoundryLocal()` method enables local development scenarios using [Azure AI Foundry Local](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/), allowing you to test AI capabilities without requiring cloud resources during development. This supports automatic model downloading, loading, and management through the integrated Foundry Local runtime.
+
+### 🐙 GitHub Models integration
+
+.NET Aspire 9.4 introduces support for [GitHub Models](https://docs.github.com/en/github-models), enabling easy integration with AI models hosted on GitHub's platform. This provides a simple way to incorporate AI capabilities into your applications using GitHub's model hosting service.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Add GitHub Model - API key parameter is automatically created
+var model = builder.AddGitHubModel("chat-model", "gpt-4o-mini")
+    .WithHealthCheck();
+
+// You can also specify an API key explicitly if needed
+var apiKey = builder.AddParameter("github-api-key", secret: true);
+var explicitModel = builder.AddGitHubModel("explicit-chat", "gpt-4o-mini")
+    .WithApiKey(apiKey);
+
+// Use the model in your services
+var chatService = builder.AddProject<Projects.ChatService>("chat")
+    .WithReference(model);
+
+builder.Build().Run();
+```
+
+GitHub Models integration provides:
+- **Simple model integration** with GitHub's hosted AI models
+- **Automatic API key management** - parameters are created automatically with the pattern `{name}-gh-apikey`
+- **Explicit API key support** - optionally specify API keys using `WithApiKey()` for custom scenarios
+- **GITHUB_TOKEN fallback** - automatically reads the `GITHUB_TOKEN` environment variable when no explicit API key is provided
+- **Built-in health checks** for model availability
+- **Connection string support** for easy service integration
 
 ### 🗄️ Database hosting improvements
 
