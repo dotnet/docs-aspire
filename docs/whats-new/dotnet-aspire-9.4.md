@@ -1764,7 +1764,7 @@ Several auto-injected known parameters have been deprecated and removed from Azu
 
 **Deprecated parameters:**
 
-- `AzureBicepResource.KnownParameters.KeyVaultName` 
+- `AzureBicepResource.KnownParameters.KeyVaultName`
 - `AzureBicepResource.KnownParameters.LogAnalyticsWorkspaceId`
 
 #### KeyVaultName parameter deprecation
