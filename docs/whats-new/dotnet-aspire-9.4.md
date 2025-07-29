@@ -109,7 +109,7 @@ The `aspire deploy` command supports extensible deployment workflows through the
 
 **Key capabilities:**
 
-- **Custom deployment hooks** using `Aspire.Hosting.Publishing.DeployingCallbackAnnotation` to execute custom logic during the `aspire deploy` command
+- **Custom deployment hooks** using <xref:Aspire.Hosting.ApplicationModel.DeployingCallbackAnnotation> to execute custom logic during the `aspire deploy` command
 - **Workflow activity reporting** via the <xref:Aspire.Hosting.Publishing.IPublishingActivityReporter> to support progress notifications and prompting in commmands
 - **Integration with publish** - `aspire deploy` runs `Aspire.Hosting.Publishing.PublishingCallbackAnnotations` to support deploying artifacts emitted by publish steps, if applicable
 
@@ -200,7 +200,7 @@ This custom deployment logic executes as follows from the `aspire deploy` comman
 Now, integration owners can create sophisticated `aspire deploy` workflows. This work also provides a foundation for advanced deployment automation scenarios.
 
 > [!NOTE]
-> While the `Aspire.Hosting.Publishing.DeployingCallbackAnnotation` API is available in .NET Aspire 9.4, there are currently no built-in resources that natively support deployment callbacks. Built-in resource support for deployment callbacks will be added in the next version of .NET Aspire.
+> While the <xref:Aspire.Hosting.ApplicationModel.DeployingCallbackAnnotation> API is available in .NET Aspire 9.4, there are currently no built-in resources that natively support deployment callbacks. Built-in resource support for deployment callbacks will be added in the next version of .NET Aspire.
 
 > [!IMPORTANT]
 > 🧪 **Feature Flag**: The `aspire deploy` command is behind a feature flag and **disabled by default** in this release. It must be explicitly enabled for use with `aspire config set features.deployCommandEnabled true`
