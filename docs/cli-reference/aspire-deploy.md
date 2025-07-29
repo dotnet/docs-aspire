@@ -49,7 +49,7 @@ The following options are available:
 
 - **`--`**
 
-  Delimits arguments to aspire publish from arguments for the app host. All arguments after this delimiter are passed to the app host.
+  Delimits arguments to `aspire publish` from arguments for the app host. All arguments after this delimiter are passed to the apphost.
 
 - [!INCLUDE [option-project](includes/option-project.md)]
 

@@ -9,7 +9,7 @@ ms.date: 07/11/2025
 
 ## Name
 
-`aspire run` - Run an Aspire app host in development mode.
+`aspire run` - Run an Aspire AppHost in development mode.
 
 ## Synopsis
 

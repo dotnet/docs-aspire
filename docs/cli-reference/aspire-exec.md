@@ -18,7 +18,7 @@ ms.date: 07/25/2025
 
 ## Name
 
-`aspire exec` - Run an Aspire app host to execute a command against the resource.
+`aspire exec` - Run an Aspire AppHost to execute a command against the resource.
 
 [!INCLUDE [mode-preview](includes/mode-preview.md)]
 

@@ -19,7 +19,7 @@ aspire config [command] [options]
 
 ## Description
 
-The `aspire config` command driver provides commands to manage the Aspire CLI config settings.
+The `aspire config` command manages the Aspire CLI config settings.
 
 [!INCLUDE [config-file-description](includes/config-file-description.md)]
 

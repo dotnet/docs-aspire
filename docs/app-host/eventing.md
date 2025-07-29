@@ -48,13 +48,13 @@ In addition to the app host events, you can also subscribe to resource events. R
 
 ### Subscribe to resource events
 
-To subscribe to resource events, use the convenience-based extension methods—`On*`. After you have a distributed application builder instance, and a resource builder, walk up to the instance and chain a call to the desired `On*` event API. Consider the following sample app host _AppHost.cs_ file:
+To subscribe to resource events, use the convenience-based extension methods—`On*`. After you have a distributed application builder instance, and a resource builder, walk up to the instance and chain a call to the desired `On*` event API. Consider the following sample _AppHost.cs_ file:
 
 :::code source="snippets/AspireApp/AspireApp.ResourceAppHost/AppHost.cs":::
 
 The preceding code subscribes to the `InitializeResourceEvent`, `ResourceReadyEvent`, `ResourceEndpointsAllocatedEvent`, `ConnectionStringAvailableEvent`, and `BeforeResourceStartedEvent` events on the `cache` resource. When <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis*> is called, it returns an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is a <xref:Aspire.Hosting.ApplicationModel.RedisResource>. Chain calls to the `On*` methods to subscribe to the events. The `On*` methods return the same <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> instance, so you can chain multiple calls:
 
-- `OnInitializeResource`: Subscribes to the <xref:Aspire.Hosting.ApplicationModel.InitializeResourceEvent> event.
+- `OnInitializeResource`: Subscribes to the <xref:Aspire.Hosting.ApplicationModel.InitializeResourceEvent>.
 - `OnResourceEndpointsAllocated`: Subscribes to the <xref:Aspire.Hosting.ApplicationModel.ResourceEndpointsAllocatedEvent> event.
 - `OnConnectionStringAvailable`: Subscribes to the <xref:Aspire.Hosting.ApplicationModel.ConnectionStringAvailableEvent> event.
 - `OnBeforeResourceStarted`: Subscribes to the <xref:Aspire.Hosting.ApplicationModel.BeforeResourceStartedEvent> event.

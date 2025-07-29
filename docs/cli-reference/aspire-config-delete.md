@@ -19,7 +19,7 @@ aspire config delete <key> [options]
 
 ## Description
 
-The `aspire config delete` command delete's a config value by key name.
+The `aspire config delete` command deletes a config value by key name.
 
 [!INCLUDE [config-file-description](includes/config-file-description.md)]
 

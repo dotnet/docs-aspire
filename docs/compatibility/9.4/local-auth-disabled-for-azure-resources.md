@@ -6,7 +6,7 @@ ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/3723
 ---
 
-# Local auth is disabled by default on Azure resources
+# Local authentication is disabled by default on Azure resources
 
 Starting in .NET Aspire 9.4, local authentication is disabled by default for Azure EventHubs and Azure WebPubSub integrations. This change improves security by aligning with Azure environments that reject resources with local authentication enabled.
 

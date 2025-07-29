@@ -1,6 +1,6 @@
 ---
 title: aspire publish command
-description: Learn about the aspire publish command and its usage. This command invokes resource publishers declared by the app host to serialize resources to disk.
+description: Learn about the aspire publish command and its usage. This command invokes resource publishers declared by the apphost to serialize resources to disk.
 ms.date: 07/11/2025
 ---
 # aspire publish command

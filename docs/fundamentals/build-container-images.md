@@ -28,12 +28,12 @@ These APIs give you fine-grained control over the image building process and pro
 Consider using the container image building and progress reporting APIs in these scenarios:
 
 - **Custom deployment targets**: When you need to deploy to platforms that require specific image formats or build configurations.
-- **Complex build pipelines**: When your publishing process involves multiple steps that users need visibility into.
+- **Complex build pipelines**: When your publishing process involves multiple steps that users should see.
 - **Enterprise scenarios**: When you need custom progress reporting for integration with CI/CD systems or dashboards.
 - **Custom resource types**: When implementing custom resources that need to participate in the publishing and deployment process.
 
 > [!NOTE]
-> For most standard Aspire applications, the built-in publishing process handles container image building automatically without requiring these APIs.
+> For most standard Aspire applications, the built-in publishing process builds container images automatically without requiring these APIs.
 
 ## Resource container image builder API
 
@@ -47,7 +47,7 @@ The `IResourceContainerImageBuilder` is the core service in the <xref:Aspire.Hos
 
 <!-- TODO: ContainerBuildOptions xref -->
 
-The `ContainerBuildOptions` class, which provides strongly typed configuration for container builds. This class allows you to specify:
+The `ContainerBuildOptions` class provides strongly typed configuration for container builds. This class allows you to specify:
 
 - **Image format**: Docker or Open Container Initiative (OCI) format.
 - **Target platform**: Linux x64, Windows, ARM64, etc.
@@ -59,7 +59,7 @@ The builder performs container runtime health checks (Docker/Podman) only when a
 
 ## Publishing activity reporter API
 
-The `PublishingActivityProgressReporter` API enables structured progress reporting during [aspire publish](../cli-reference/aspire-publish.md) and [aspire deploy](../cli-reference/aspire-deploy.md) commands. This reduces uncertainty during long-running operations and surfaces failures early.
+The `PublishingActivityProgressReporter` API enables structured progress reporting during [`aspire publish`](../cli-reference/aspire-publish.md) and [`aspire deploy`](../cli-reference/aspire-deploy.md) commands. This reduces uncertainty during long-running operations and surfaces failures early.
 
 ### API overview and behavior
 
@@ -175,9 +175,9 @@ When using these APIs, follow these guidelines:
 ### State management
 
 - Each step and task starts in *Running* state and transitions exactly once to *Completed*, *Warning*, or *Error*.
-- Attempting multiple state transitions throws an exception.
-- The reporter guarantees ordered events and prevents interleaving.
-- Disposal of `IPublishingActivityStep` automatically completes unfinished steps.
+- Throw an exception when attempting multiple state transitions.
+- Leverage the reporter to guarantee ordered events and prevent interleaving.
+- Dispose of `IPublishingActivityStep` to automatically complete unfinished steps.
 
 ## See also
 

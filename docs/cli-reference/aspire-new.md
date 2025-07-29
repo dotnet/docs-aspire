@@ -21,7 +21,7 @@ aspire new [command] [options]
 
 The `aspire new` command is the driver for creating Aspire projects, apps, or solutions, based on the Aspire templates. Each command specifies the template to use, and the options for the driver specify the options for the template.
 
-This command defaults to **interactive** mode. By issuing the command without any options, the command prompts you for the project template and version, name, and output folder. input to fill out the options. When the `--name`, `--output`, and `--version` options are provided, the command runs **non-interactive** and generates files based on the command template.
+This command defaults to **interactive** mode. When executed without any options, the command prompts you for the project template and version, name, and output folder. When the `--name`, `--output`, and `--version` options are provided, the command runs **non-interactive** and generates files based on the command template.
 
 ## Options
 
