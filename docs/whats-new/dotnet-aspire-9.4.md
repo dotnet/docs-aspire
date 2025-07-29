@@ -931,7 +931,7 @@ For more information, see [external parameters](/dotnet/aspire/fundamentals/exte
 
 ### 🔗 Enhanced dashboard peer visualization for uninstrumented resources
 
-.NET Aspire 9.4 improves uninstrumented peer matching in distributed tracing. This feature lets you to see connections between resources even when they aren't instrumented with telemetry.
+.NET Aspire 9.4 lets you observe connections between resources even when they aren't instrumented with telemetry.
 
 For example, the screenshot below shows a call to a GitHub model resolving to the model resource in Aspire:
 
@@ -939,12 +939,10 @@ For example, the screenshot below shows a call to a GitHub model resolving to th
 
 OpenTelemetry spans can now resolve to peers that are defined by parameters, connection strings, GitHub Models, and external services:
 
-- **Connection string parsing** - Comprehensive parser supports SQL Server, PostgreSQL, MySQL, MongoDB, Redis, and many other connection string formats
-- **Parameter visualization** - Shows how parameters with URLs or connection strings connect to services
-- **GitHub Models integration** - Visualizes connections to GitHub-hosted AI models with proper state management
-- **External service mapping** - Shows relationships between your services and external dependencies
-
-**GitHub Issue:** [#10382](https://github.com/dotnet/aspire/issues/10382)
+- **Connection string parsing** supports SQL Server, PostgreSQL, MySQL, MongoDB, Redis, and many other connection string formats
+- **Visualize parameters** with URLs or connection strings and how they connect to services
+- **GitHub Models integration** for GitHub-hosted AI models with proper state management
+- **External service mapping** between your services and external dependencies
 
 ### 📋 Console logs text wrapping control
 
@@ -964,21 +962,186 @@ If there are no hidden resources in your Aspire app then the show/hide UI is dis
 
 ### 🏗️ Enhanced dashboard infrastructure with proxied endpoints
 
-.NET Aspire 9.4 introduces significant infrastructure improvements to the dashboard system, implementing proxied endpoints that make dashboard launching more reliable by fixing port reuse problems. This architectural enhancement resolves issues with dashboard connectivity during application startup and shutdown scenarios.
+.NET Aspire 9.4 introduces significant infrastructure improvements to the dashboard system, implementing proxied endpoints that make dashboard launching more reliable and avoiding port reuse problems. This architectural enhancement resolves issues with dashboard connectivity during application startup and shutdown scenarios. The UI when the dashboard is attempting to reconnect has also been updated with a more friendly, cohesive look and animation.
 
 **Key improvements:**
-- **Proxied endpoint architecture** - Dashboard endpoints are now modeled as first-class proxied resources in the DCP (Developer Control Plane)
-- **Startup retry resilience** - Automatic retry handling during DCP proxy startup eliminates connection failures from unclean dashboard shutdowns
-- **Port reuse problem resolution** - Fixes issues where dashboard ports weren't properly released from previous runs
-- **Improved reliability** - Better handling of cases where the dashboard wasn't cleanly shut down from a previous run
 
-**Technical benefits:**
-- **Unified endpoint model** - OTLP (OpenTelemetry Protocol) endpoints for both gRPC and HTTP are now consistently managed
-- **Target URL resolution** - Proper handling of target host and port configurations for proxied scenarios
-- **Environment variable optimization** - Streamlined configuration of `ASPNETCORE_URLS` and OTLP endpoint URLs
-- **Reference expression support** - Dashboard URLs are now properly handled through the reference expression system
+- **Proxied dashboard endpoints** modeled as first-class proxied resources in DCP (Developer Control Plane)
+- **Automatic startup retry resilience** during DCP proxy startup eliminates connection failures from unclean dashboard shutdowns
+- **Port reuse problem resolution** for when dashboard ports weren't properly released from previous runs
+- **Improved reliability** in cases where the dashboard wasn't cleanly shut down from a previous run
 
-This infrastructure enhancement provides a more robust foundation for dashboard operations, particularly in complex development environments and deployment scenarios where network connectivity can be challenging. The primary benefit is making dashboard launching more reliable by eliminating the common port reuse issues that could prevent the dashboard from starting after previous application runs.
+### 🐳 Docker Compose with integrated Aspire Dashboard
+
+Managing observability in Docker Compose environments often requires running separate monitoring tools or losing the rich insights that Aspire provides during development. .NET Aspire 9.4 introduces native Aspire Dashboard integration for Docker Compose environments.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var compose = builder.AddDockerComposeEnvironment("production")
+                    .WithDashboard(dashboard => dashboard.WithHostPort(8080)); // Configure dashboard with specific port
+
+// Add services that will automatically report to the dashboard
+builder.AddProject<Projects.Frontend>("frontend");
+builder.AddProject<Projects.Api>("api");
+
+builder.Build().Run();
+```
+
+## 🔗 Updated integrations
+
+### 🤖 Azure AI Foundry integration
+
+.NET Aspire 9.4 introduces comprehensive Azure AI Foundry support, bringing enterprise AI capabilities directly into your distributed applications. This integration simplifies working with AI models and deployments through the Azure AI platform, supporting both Azure-hosted deployments and local development with Foundry Local.
+
+#### Hosting configuration
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Add Azure AI Foundry project
+var foundry = builder.AddAzureAIFoundry("foundry");
+
+// Add specific model deployments
+var chat = foundry.AddDeployment("chat", "qwen2.5-0.5b", "1", "Microsoft");
+var embedding = foundry.AddDeployment("embedding", "text-embedding-ada-002", "2", "OpenAI");
+
+// Connect your services to AI capabilities
+var webService = builder.AddProject<Projects.WebService>("webservice")
+    .WithReference(chat)
+    .WaitFor(chat);
+
+builder.Build().Run();
+```
+
+**Azure AI Foundry Local support:**
+
+[Azure AI Foundry Local](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/) is an on-device AI inference solution that runs models locally on your hardware, providing performance, privacy, and cost advantages without requiring an Azure subscription. It's ideal for scenarios requiring data privacy, offline operation, cost reduction, or low-latency responses.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// For local development, run with Foundry Local
+var localFoundry = builder.AddAzureAIFoundry("foundry")
+    .RunAsFoundryLocal()
+    .AddDeployment("chat", "phi-3.5-mini", "1", "Microsoft");
+
+var webService = builder.AddProject<Projects.WebService>("webservice")
+    .WithReference(localFoundry)
+    .WaitFor(localFoundry);
+
+builder.Build().Run();
+```
+
+#### Client integration
+
+Once you've configured the Azure AI Foundry resource in your app host, consume it in your services using the Azure AI Inference SDK or OpenAI SDK for compatible models:
+
+**Using Azure AI Inference SDK:**
+
+```csharp
+// In Program.cs
+var builder = WebApplication.CreateBuilder(args);
+
+builder.AddAzureChatCompletionsClient("chat")
+       .AddChatClient();
+
+var app = builder.Build();
+
+// Minimal API endpoint for chat completion
+app.MapPost("/generate", async (IChatClient chatClient, ChatRequest request) =>
+{
+    var messages = new List<ChatMessage>
+    {
+        new(ChatRole.System, "You are a helpful assistant."),
+        new(ChatRole.User, request.Prompt)
+    };
+
+    var response = await chatClient.GetResponseAsync(messages);
+    return Results.Ok(new { Response = response.Text });
+});
+
+app.Run();
+
+public record ChatRequest(string Prompt);
+```
+
+**Using OpenAI SDK (for compatible models):**
+
+```csharp
+// In Program.cs
+var builder = WebApplication.CreateBuilder(args);
+
+builder.AddOpenAIClient("chat")
+       .AddChatClient();
+
+// Usage is identical to the Azure AI Inference SDK example above
+```
+
+**Key differences between Azure AI Foundry and Foundry Local:**
+- **Azure AI Foundry** - Cloud-hosted models with enterprise-grade scaling, supports all Azure AI model deployments
+- **Foundry Local** - On-device inference with different model selection optimized for local hardware, no Azure subscription required
+
+The `RunAsFoundryLocal()` method enables local development scenarios using [Azure AI Foundry Local](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/), allowing you to test AI capabilities without requiring cloud resources during development. This supports automatic model downloading, loading, and management through the integrated Foundry Local runtime.
+
+### 🐙 GitHub Models integration
+
+.NET Aspire 9.4 introduces support for [GitHub Models](https://docs.github.com/en/github-models), enabling easy integration with AI models hosted on GitHub's platform. This provides a simple way to incorporate AI capabilities into your applications using GitHub's model hosting service.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Add GitHub Model - API key parameter is automatically created
+var model = builder.AddGitHubModel("chat-model", "gpt-4o-mini")
+    .WithHealthCheck();
+
+// You can also specify an API key explicitly if needed
+var apiKey = builder.AddParameter("github-api-key", secret: true);
+var explicitModel = builder.AddGitHubModel("explicit-chat", "gpt-4o-mini")
+    .WithApiKey(apiKey);
+
+// Use the model in your services
+var chatService = builder.AddProject<Projects.ChatService>("chat")
+    .WithReference(model);
+
+builder.Build().Run();
+```
+
+GitHub Models integration provides:
+
+- **Simple model integration** with GitHub's hosted AI models
+- **Automatic API key management** - parameters are created automatically with the pattern `{name}-gh-apikey`
+- **Explicit API key support** - optionally specify API keys using `WithApiKey()` for custom scenarios
+- **GITHUB_TOKEN fallback** - automatically reads the `GITHUB_TOKEN` environment variable when no explicit API key is provided
+- **Built-in health checks** for model availability
+- **Connection string support** for easy service integration
+
+### 🗄️ Database hosting improvements
+
+Several database integrations have been updated with **improved initialization patterns**:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// MongoDB - new WithInitFiles method (replaces WithInitBindMount)
+var mongo = builder.AddMongoDB("mongo")
+    .WithInitFiles("./mongo-init");  // Initialize with scripts
+
+// MySQL - improved initialization with better file handling
+var mysql = builder.AddMySql("mysql", password: builder.AddParameter("mysql-password"))
+    .WithInitFiles("./mysql-init");  // Initialize with SQL scripts
+
+// Oracle - enhanced setup capabilities with consistent API
+var oracle = builder.AddOracle("oracle")
+    .WithInitFiles("./oracle-init");  // Initialize with Oracle scripts
+
+builder.Build().Run();
+```
+
+**Key improvements**:
+- **Unified initialization**: All database providers now support `WithInitFiles()` method
+- **Simplified API**: Replaces the more complex `WithInitBindMount()` method
+- **Better error handling**: The new method provides improved error handling
 
 ## ☁️ Azure goodies
 
@@ -1227,31 +1390,6 @@ This enhancement brings Azure App Configuration in line with other Azure compone
 
 **GitHub Issue:** [#9323](https://github.com/dotnet/aspire/issues/9323)
 
-### 🐳 Docker Compose with integrated Aspire Dashboard
-
-Managing observability in Docker Compose environments often requires running separate monitoring tools or losing the rich insights that Aspire provides during development. .NET Aspire 9.4 introduces native Aspire Dashboard integration for Docker Compose environments.
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var compose = builder.AddDockerComposeEnvironment("production")
-                    .WithDashboard(dashboard => dashboard.WithHostPort(8080)); // Configure dashboard with specific port
-
-// Add services that will automatically report to the dashboard
-builder.AddProject<Projects.Frontend>("frontend");
-builder.AddProject<Projects.Api>("api");
-
-builder.Build().Run();
-```
-
-**Key capabilities:**
-- **Dashboard integration** automatically configures OTLP endpoints and service discovery
-- **Port configuration** with `WithHostPort()` for predictable dashboard access
-- **Same observability experience** in production Docker environments as local development
-- **Seamless service discovery** for all containerized resources
-- **Improved security** with selective port exposure - only external endpoints are mapped to host ports
-
-
 ### 🔄 Flexible Azure Storage queue management
 
 Working with Azure Storage queues often requires choosing between coarse-grained connection to entire storage accounts or manually managing individual queue configurations. .NET Aspire 9.4 introduces fine-grained queue modeling that lets you work with specific queues while maintaining clear separation of concerns.
@@ -1423,159 +1561,7 @@ builder.Build().Run();
 
 This change resolves issues where Azure Functions deployed to Container Apps weren't properly recognized by Azure tooling and monitoring systems, providing a more seamless serverless experience.
 
-## 🔗 Integrations updates
 
-### 🤖 Azure AI Foundry integration
-
-.NET Aspire 9.4 introduces comprehensive Azure AI Foundry support, bringing enterprise AI capabilities directly into your distributed applications. This integration simplifies working with AI models and deployments through the Azure AI platform, supporting both Azure-hosted deployments and local development with Foundry Local.
-
-#### Hosting configuration
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Add Azure AI Foundry project
-var foundry = builder.AddAzureAIFoundry("foundry");
-
-// Add specific model deployments
-var chat = foundry.AddDeployment("chat", "qwen2.5-0.5b", "1", "Microsoft");
-var embedding = foundry.AddDeployment("embedding", "text-embedding-ada-002", "2", "OpenAI");
-
-// Connect your services to AI capabilities
-var webService = builder.AddProject<Projects.WebService>("webservice")
-    .WithReference(chat)
-    .WaitFor(chat);
-
-builder.Build().Run();
-```
-
-**Azure AI Foundry Local support:**
-
-[Azure AI Foundry Local](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/) is an on-device AI inference solution that runs models locally on your hardware, providing performance, privacy, and cost advantages without requiring an Azure subscription. It's ideal for scenarios requiring data privacy, offline operation, cost reduction, or low-latency responses.
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// For local development, run with Foundry Local
-var localFoundry = builder.AddAzureAIFoundry("foundry")
-    .RunAsFoundryLocal()
-    .AddDeployment("chat", "phi-3.5-mini", "1", "Microsoft");
-
-var webService = builder.AddProject<Projects.WebService>("webservice")
-    .WithReference(localFoundry)
-    .WaitFor(localFoundry);
-
-builder.Build().Run();
-```
-
-#### Client integration
-
-Once you've configured the Azure AI Foundry resource in your app host, consume it in your services using the Azure AI Inference SDK or OpenAI SDK for compatible models:
-
-**Using Azure AI Inference SDK:**
-
-```csharp
-// In Program.cs
-var builder = WebApplication.CreateBuilder(args);
-
-builder.AddAzureChatCompletionsClient("chat")
-       .AddChatClient();
-
-var app = builder.Build();
-
-// Minimal API endpoint for chat completion
-app.MapPost("/generate", async (IChatClient chatClient, ChatRequest request) =>
-{
-    var messages = new List<ChatMessage>
-    {
-        new(ChatRole.System, "You are a helpful assistant."),
-        new(ChatRole.User, request.Prompt)
-    };
-
-    var response = await chatClient.GetResponseAsync(messages);
-    return Results.Ok(new { Response = response.Text });
-});
-
-app.Run();
-
-public record ChatRequest(string Prompt);
-```
-
-**Using OpenAI SDK (for compatible models):**
-
-```csharp
-// In Program.cs
-var builder = WebApplication.CreateBuilder(args);
-
-builder.AddOpenAIClient("chat")
-       .AddChatClient();
-
-// Usage is identical to the Azure AI Inference SDK example above
-```
-
-**Key differences between Azure AI Foundry and Foundry Local:**
-- **Azure AI Foundry** - Cloud-hosted models with enterprise-grade scaling, supports all Azure AI model deployments
-- **Foundry Local** - On-device inference with different model selection optimized for local hardware, no Azure subscription required
-
-The `RunAsFoundryLocal()` method enables local development scenarios using [Azure AI Foundry Local](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/), allowing you to test AI capabilities without requiring cloud resources during development. This supports automatic model downloading, loading, and management through the integrated Foundry Local runtime.
-
-### 🐙 GitHub Models integration
-
-.NET Aspire 9.4 introduces support for [GitHub Models](https://docs.github.com/en/github-models), enabling easy integration with AI models hosted on GitHub's platform. This provides a simple way to incorporate AI capabilities into your applications using GitHub's model hosting service.
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Add GitHub Model - API key parameter is automatically created
-var model = builder.AddGitHubModel("chat-model", "gpt-4o-mini")
-    .WithHealthCheck();
-
-// You can also specify an API key explicitly if needed
-var apiKey = builder.AddParameter("github-api-key", secret: true);
-var explicitModel = builder.AddGitHubModel("explicit-chat", "gpt-4o-mini")
-    .WithApiKey(apiKey);
-
-// Use the model in your services
-var chatService = builder.AddProject<Projects.ChatService>("chat")
-    .WithReference(model);
-
-builder.Build().Run();
-```
-
-GitHub Models integration provides:
-- **Simple model integration** with GitHub's hosted AI models
-- **Automatic API key management** - parameters are created automatically with the pattern `{name}-gh-apikey`
-- **Explicit API key support** - optionally specify API keys using `WithApiKey()` for custom scenarios
-- **GITHUB_TOKEN fallback** - automatically reads the `GITHUB_TOKEN` environment variable when no explicit API key is provided
-- **Built-in health checks** for model availability
-- **Connection string support** for easy service integration
-
-### 🗄️ Database hosting improvements
-
-Several database integrations have been updated with **improved initialization patterns**:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// MongoDB - new WithInitFiles method (replaces WithInitBindMount)
-var mongo = builder.AddMongoDB("mongo")
-    .WithInitFiles("./mongo-init");  // Initialize with scripts
-
-// MySQL - improved initialization with better file handling
-var mysql = builder.AddMySql("mysql", password: builder.AddParameter("mysql-password"))
-    .WithInitFiles("./mysql-init");  // Initialize with SQL scripts
-
-// Oracle - enhanced setup capabilities with consistent API
-var oracle = builder.AddOracle("oracle")
-    .WithInitFiles("./oracle-init");  // Initialize with Oracle scripts
-
-builder.Build().Run();
-```
-
-**Key improvements**:
-- **Unified initialization**: All database providers now support `WithInitFiles()` method
-- **Simplified API**: Replaces the more complex `WithInitBindMount()` method
-- **Better error handling**: The new method provides improved error handling
 
 ## 📋 Project template improvements
 
