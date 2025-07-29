@@ -212,10 +212,10 @@ Now, integration owners can create sophisticated `aspire deploy` workflows. This
 **Key improvements:**
 
 - **Enhanced progress reporting** with detailed step-by-step feedback during publishing
-- **Container runtime health checks** that provide clear status updates during container operations
+- **Cleaner output formatting** that makes it easier to follow deployment progress
 - **Better error messaging** with more descriptive information when deployments fail
 - **Improved publishing context** that tracks and reports on resource deployment status
-- **Cleaner output formatting** that makes it easier to follow deployment progress
+- **Container build logs** provide clear status updates during container operations
 
 These improvements make it much easier to understand what's happening during `aspire deploy` and `aspire publish` operations, helping developers debug issues more effectively and gain confidence in their deployment processes.
 
@@ -968,13 +968,6 @@ If there are no hidden resources in your Aspire app then the show/hide UI is dis
 
 .NET Aspire 9.4 introduces significant infrastructure improvements to the dashboard system, implementing proxied endpoints that make dashboard launching more reliable and avoiding port reuse problems. This architectural enhancement resolves issues with dashboard connectivity during application startup and shutdown scenarios. The UI when the dashboard is attempting to reconnect has also been updated to be more reliable and with a new cohesive look and animation.
 
-**Key improvements:**
-
-- **Proxied dashboard endpoints** modeled as first-class proxied resources in DCP (Developer Control Plane)
-- **Automatic startup retry resilience** during DCP proxy startup eliminates connection failures from unclean dashboard shutdowns
-- **Port reuse problem resolution** for when dashboard ports weren't properly released from previous runs
-- **Improved reliability** in cases where the dashboard wasn't cleanly shut down from a previous run
-
 ### 🐳 Docker Compose with integrated Aspire Dashboard
 
 Managing observability in Docker Compose environments often requires running separate monitoring tools or losing the rich insights that Aspire provides during development. .NET Aspire 9.4 introduces native Aspire Dashboard integration for Docker Compose environments.
@@ -1002,8 +995,7 @@ builder.Build().Run();
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Add GitHub Model - API key parameter is automatically created
-var model = builder.AddGitHubModel("chat-model", "gpt-4o-mini")
-    .WithHealthCheck();
+var model = builder.AddGitHubModel("chat-model", "gpt-4o-mini");
 
 // You can also specify an API key explicitly if needed
 var apiKey = builder.AddParameter("github-api-key", secret: true);
@@ -1148,23 +1140,7 @@ All database providers now support `WithInitFiles()` method, replacing the more 
 
 ### 🏷️ Consistent resource name exposure
 
-.NET Aspire 9.4 now consistently exposes the actual names of deployed Azure resources through the <xref:Aspire.Hosting.Azure.NameOutputReference/> property. This enables applications to access the real Azure resource names that get generated during deployment, which is essential for scenarios requiring direct Azure resource coordination.
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var storage = builder.AddAzureStorage("appstorage");
-var signalr = builder.AddAzureSignalR("notifications");
-
-// Access the actual deployed Azure resource names
-var api = builder.AddProject<Projects.Api>("api")
-                .WithEnvironment("STORAGE_NAME", storage.Resource.NameOutputReference)
-                .WithEnvironment("SIGNALR_NAME", signalr.Resource.NameOutputReference);
-
-builder.Build().Run();
-```
-
-This is particularly valuable for **external automation scripts** and **monitoring and alerting systems** that reference resources by their actual names. The `NameOutputReference` property is now available on all Azure resources.
+.NET Aspire 9.4 now consistently exposes the actual names of all Azure resources through the <xref:Aspire.Hosting.Azure.NameOutputReference/> property. This enables applications to access the real Azure resource names that get generated during deployment, which is essential for scenarios requiring direct Azure resource coordination. This is particularly valuable for external automation scripts and monitoring and alerting systems that reference resources by their actual names.
 
 ### 🗄️ Azure Cosmos DB
 
@@ -1323,32 +1299,13 @@ var webApi = builder.AddProject<Projects.WebAPI>("webapi")
 - **Strongly-typed secret references** that can be used with `WithEnvironment()` for environment variables
 - **Custom secret naming** support with optional `secretName` parameter
 
-### 📀 Azure Storage client improvements
+#### 📥Resource Deep Linking for Azure Storage Queues
 
-.NET Aspire 9.4 standardizes [Azure Storage client registration](../storage/azure-storage-integrations.md) with consistent naming conventions and enhanced keyed service support:
+.NET Aspire 9.4 expands resource deep linking to include Azure Queue Storage queues, building on the model already used for Azure Blob Storage, Cosmos DB, etc.
 
-```csharp
-var builder = WebApplication.CreateBuilder(args);
+You can now model individual storage queues directly in your app host, then inject scoped QueueClient instances into your services—making it easy to interact with queues without manually configuring connection strings or access.
 
-// Azure Table Storage with new standardized naming
-builder.AddAzureTableServiceClient("tables");
-builder.AddKeyedAzureTableServiceClient("primary-tables");
-
-// Azure Queue Storage with consistent API
-builder.AddAzureQueueServiceClient("queues");
-builder.AddKeyedAzureQueueServiceClient("primary-queues");
-
-// Keyed Blob Storage (enhanced support)
-builder.AddKeyedAzureBlobServiceClient("primary-blobs");
-
-var app = builder.Build();
-```
-
-The new client registration methods provide consistent naming across all Azure Storage services and full support for keyed dependency injection scenarios.
-
-#### 🔄 Flexible Azure Storage queue management
-
-Working with [Azure Storage queues](../storage/azure-storage-queues-integration.md) often requires choosing between coarse-grained connection to entire storage accounts or manually managing individual queue configurations. .NET Aspire 9.4 introduces fine-grained queue modeling that lets you work with specific queues while maintaining clear separation of concerns.
+**AppHost:**
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -1369,11 +1326,36 @@ builder.AddProject<Projects.NotificationService>("notifications")
 builder.Build().Run();
 ```
 
-This approach provides better security isolation, clearer dependency modeling, and simplifies service configuration by injecting pre-configured `QueueClient` instances.
+**In the OrderProcessor project:**
+
+```csharp
+using Azure.Storage.Queues;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Register the queue client
+builder.AddAzureQueue("orders");
+
+var app = builder.Build();
+
+// Minimal POST endpoint for image upload
+app.MapPost("/process-order", async (QueueClient ordersQueue) =>
+{
+    // read a message for the queue
+    var message = await ordersQueue.ReceiveMessageAsync();
+    ProcessMessage(message);
+
+    return Results.Ok();
+});
+
+app.Run();
+```
+
+This approach provides clean separation of concerns, secure container scoping, and minimal ceremony—ideal for microservices that interact with specific storage queues.
 
 ### 📡 OpenTelemetry tracing support for Azure App Configuration
 
-.NET Aspire 9.4 introduces **OpenTelemetry tracing support** for [Azure App Configuration](../azure/azure-app-configuration-integration.md), completing the observability story for this component. The Azure App Configuration integration now automatically instruments configuration retrieval operations and refresh operations with distributed tracing.
+.NET Aspire 9.4 introduces **OpenTelemetry tracing support** for [Azure App Configuration](../azure/azure-app-configuration-integration.md), completing the observability story for this integration. The Azure App Configuration integration now automatically instruments configuration retrieval operations and refresh operations with distributed tracing.
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -1608,23 +1590,7 @@ var milvus = builder.AddMilvus("milvus")
 
 **Migration impact**: Update method calls to use `WithConfigurationFile` instead of `WithConfigurationBindMount` for Milvus configuration.
 
-### 🔒 Azure Cosmos DB connection string property changes
-
-Azure Cosmos DB connection string handling has been updated to use the new connection string output approach:
-
-```csharp
-// ❌ Before (obsolete property):
-var cosmos = builder.AddAzureCosmosDB("cosmos");
-// cosmos.ConnectionString property is obsolete - use ConnectionStringExpression instead
-
-// ✅ After (recommended):
-var cosmos = builder.AddAzureCosmosDB("cosmos");
-var connectionString = cosmos.ConnectionStringExpression;  // Use expression-based approach
-```
-
-**Migration impact**: Replace direct `ConnectionString` property access with `ConnectionStringExpression` for Azure Cosmos DB resources.
-
-### 🔄 Azure Storage component registration updates
+### 🔄 Azure Storage client registration updates
 
 Client registration methods for Azure Storage have been standardized with new naming conventions:
 
@@ -1891,22 +1857,6 @@ var syncValue = apiKey.Resource.Value;  // Still works but may block
 ```
 
 **Migration impact**: When working with `ParameterResource` values in async contexts, use the new `GetValueAsync()` method instead of the `Value` property to avoid potential deadlocks. For `WithEnvironment()` calls, prefer passing the parameter resource directly rather than accessing `.Value` synchronously.
-
-### 🔧 Kafka configuration method changes
-
-Kafka configuration has been updated with more descriptive method names:
-
-```csharp
-// ❌ Before (deprecated):
-var kafka = builder.AddKafka("kafka")
-    .WithConfigurationFile("./kafka.properties");  // Old method name
-
-// ✅ After (recommended):
-var kafka = builder.AddKafka("kafka")
-    .WithConfigurationFile("./kafka.properties");  // Method renamed for clarity
-```
-
-**Migration impact**: Update method calls to use the new naming convention if you were using preview Kafka configuration methods.
 
 With every release, we strive to make .NET Aspire better. However, some changes may break existing functionality. For complete details on breaking changes in this release, see:
 
