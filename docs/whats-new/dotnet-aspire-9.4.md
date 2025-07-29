@@ -714,6 +714,7 @@ builder.Build().Run();
 The new chainable fluent API, strongly-typed callbacks, and simplified syntax make it intuitive to hook into your resource lifecycles for interactions, commands, custom scripts, and more.
 
 **Migration from manual eventing:**
+
 ```csharp
 // ❌ Before (manual eventing subscription):
 builder.Eventing.Subscribe<ResourceReadyEvent>(db.Resource, async (evt, ct) =>
@@ -1683,7 +1684,7 @@ var postgres = builder.AddPostgres("postgres")
 
 **Migration impact**: Replace `WithInitBindMount()` calls with `WithInitFiles()` - the new method handles read-only mounting automatically and provides better error handling.
 
-###  Resource lifecycle event updates
+### Resource lifecycle event updates
 
 The generic `AfterEndpointsAllocatedEvent` has been deprecated in favor of more specific, type-safe events:
 
@@ -1745,10 +1746,12 @@ var api = builder.AddProject<Projects.Api>("api")
 ```
 
 **Key changes:**
+
 - `PublishAsAzureContainerApp()` **no longer automatically creates infrastructure** - it only adds customization annotations
 - **BicepSecretOutput APIs have been removed** from the Azure Container Apps logic for simplified secret handling
 
 **Migration impact:**
+
 1. **Add explicit Azure Container App Environment**: Use `builder.AddAzureContainerAppEnvironment("name")` before calling `PublishAsAzureContainerApp()`
 2. **Update secret references**: Replace any `BicepSecretOutputReference` usage with proper Azure Key Vault resources using `IAzureKeyVaultSecretReference`
 3. **Review infrastructure setup**: Ensure your Bicep templates or infrastructure setup properly creates the Container App Environment that your apps will deploy to
@@ -1760,6 +1763,7 @@ This change provides **clearer separation** between infrastructure provisioning 
 Several auto-injected known parameters have been deprecated and removed from Azure resources in favor of explicit resource modeling:
 
 **Deprecated parameters:**
+
 - `AzureBicepResource.KnownParameters.KeyVaultName` 
 - `AzureBicepResource.KnownParameters.LogAnalyticsWorkspaceId`
 
