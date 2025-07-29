@@ -966,7 +966,7 @@ If there are no hidden resources in your Aspire app then the show/hide UI is dis
 
 ### 🏗️ Enhanced dashboard infrastructure with proxied endpoints
 
-.NET Aspire 9.4 introduces significant infrastructure improvements to the dashboard system, implementing proxied endpoints that make dashboard launching more reliable and avoiding port reuse problems. This architectural enhancement resolves issues with dashboard connectivity during application startup and shutdown scenarios. The UI when the dashboard is attempting to reconnect has also been updated with a more friendly, cohesive look and animation.
+.NET Aspire 9.4 introduces significant infrastructure improvements to the dashboard system, implementing proxied endpoints that make dashboard launching more reliable and avoiding port reuse problems. This architectural enhancement resolves issues with dashboard connectivity during application startup and shutdown scenarios. The UI when the dashboard is attempting to reconnect has also been updated to be more reliable and with a new cohesive look and animation.
 
 **Key improvements:**
 
