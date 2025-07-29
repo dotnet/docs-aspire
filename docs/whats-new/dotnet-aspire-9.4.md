@@ -1043,7 +1043,7 @@ builder.Build().Run();
 
 ##### Azure AI Foundry Local support
 
-[Azure AI Foundry Local](xref:azure/ai-foundry/foundry-local) is an on-device AI inference solution that runs models locally on your hardware, providing performance, privacy, and cost advantages without requiring an Azure subscription. It's ideal for scenarios requiring data privacy, offline operation, cost reduction, or low-latency responses.
+[Azure AI Foundry Local](xref:/azure/ai-foundry/foundry-local) is an on-device AI inference solution that runs models locally on your hardware, providing performance, privacy, and cost advantages without requiring an Azure subscription. It's ideal for scenarios requiring data privacy, offline operation, cost reduction, or low-latency responses.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
