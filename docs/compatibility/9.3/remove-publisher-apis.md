@@ -24,9 +24,9 @@ In .NET Aspire 9.2, the publisher API was introduced in preview, allowing the us
 
 These publishers were added using the following methods:
 
-- <xref:Aspire.Hosting.DockerComposePublisherExtensions.AddDockerComposePublisher*>
-- <xref:Aspire.Hosting.KubernetesPublisherExtensions.AddKubernetesPublisher*>
-- <xref:Aspire.Hosting.AzurePublisherExtensions.AddAzurePublisher*>
+- `Aspire.Hosting.DockerComposePublisherExtensions.AddDockerComposePublisher*`
+- `Aspire.Hosting.KubernetesPublisherExtensions.AddKubernetesPublisher*`
+- `Aspire.Hosting.AzurePublisherExtensions.AddAzurePublisher*`
 
 Multiple publishers could be added, and the `aspire publish` CLI command allowed users to select one for publishing.
 
