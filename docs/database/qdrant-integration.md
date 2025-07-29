@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Qdrant integration
 description: Learn how to use the .NET Aspire Qdrant integration, which includes both hosting and client integrations.
-ms.date: 01/13/2025
+ms.date: 07/22/2025
 uid: database/qdrant-integration
 ---
 
@@ -158,7 +158,7 @@ dotnet add package Aspire.Qdrant.Client
 
 ---
 
-## Add a Qdrant client
+### Add a Qdrant client
 
 In the _Program.cs_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireQdrantExtensions.AddQdrantClient*> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a `QdrantClient` for use through the dependency injection container. The method takes a connection name parameter.
 
@@ -180,7 +180,7 @@ public class ExampleService(QdrantClient client)
 
 For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
 
-## Add keyed Qdrant client
+### Add keyed Qdrant client
 
 There might be situations where you want to register multiple `QdrantClient` instances with different connection names. To register keyed Qdrant clients, call the <xref:Microsoft.Extensions.Hosting.AspireQdrantExtensions.AddKeyedQdrantClient*> method:
 

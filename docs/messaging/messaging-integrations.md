@@ -230,7 +230,7 @@ Add the [.NET Aspire Azure Service Bus](azure-service-bus-integration.md) integr
     ```xml
     <ItemGroup>
         <PackageReference Include="Aspire.Azure.Messaging.ServiceBus"
-                          Version="9.1.0" />
+                          Version="*" />
     </ItemGroup>
     ```
 

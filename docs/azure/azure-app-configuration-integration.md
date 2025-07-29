@@ -1,7 +1,7 @@
 ---
 title: Azure App Configuration integration
 description: Learn how to use Azure App Configuration with .NET Aspire.
-ms.date: 05/15/2025
+ms.date: 07/22/2025
 ---
 
 # .NET Aspire Azure App Configuration integration
@@ -54,11 +54,11 @@ When you add an <xref:Aspire.Hosting.Azure.AzureAppConfigurationResource> to the
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure App Configuration resource, the following Bicep is generated:
 
-:::code language="bicep" source="../snippets/azure/AppHost/config.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/config/config.bicep":::
 
 The preceding Bicep is a module that provisions an Azure App Configuration resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-:::code language="bicep" source="../snippets/azure/AppHost/config-roles.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/config-roles/config-roles.bicep":::
 
 The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they're reflected in the generated files.
 

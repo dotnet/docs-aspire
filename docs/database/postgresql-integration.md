@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire PostgreSQL integration
 description: Learn how to integrate PostgreSQL with .NET Aspire applications, using both hosting and client integrations.
-ms.date: 02/07/2025
+ms.date: 07/22/2025
 uid: database/postgresql-integration
 ---
 
@@ -21,7 +21,7 @@ The PostgreSQL hosting integration automatically adds a health check for the Pos
 
 The hosting integration relies on the [📦 AspNetCore.HealthChecks.Npgsql](https://www.nuget.org/packages/AspNetCore.HealthChecks.Npgsql) NuGet package.
 
-## Using with non-.NET applications
+### Using with non-.NET applications
 
 The PostgreSQL hosting integration can be used with any application technology, not just .NET applications. When you use <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to reference a PostgreSQL resource, connection information is automatically injected as environment variables into the referencing application.
 

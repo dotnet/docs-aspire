@@ -60,11 +60,11 @@ The preceding call to `AddAzurePostgresFlexibleServer` configures the PostgresSQ
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by hand, because the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure PostgreSQL resource, the following Bicep is generated:
 
-:::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible.module.bicep":::
+:::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible/postgres-flexible.bicep":::
 
 The preceding Bicep is a module that provisions an Azure PostgreSQL flexible server resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-:::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible-roles.module.bicep":::
+:::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible-roles/postgres-flexible-roles.bicep":::
 
 In addition to the PostgreSQL flexible server, it also provisions an Azure Firewall rule to allow all Azure IP addresses. Finally, an administrator is created for the PostgreSQL server, and the connection string is outputted as an output variable. The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
