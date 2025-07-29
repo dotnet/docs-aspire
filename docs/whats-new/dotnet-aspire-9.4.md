@@ -534,7 +534,7 @@ builder.Build().Run();
 
 **Enhanced capabilities:**
 
-- **Improved lifecycle coordination** between `Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart` and `ContainerLifetime.Persistent`
+- **Improved lifecycle coordination** between <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> and `ContainerLifetime.Persistent`
 - **Automatic persistent networking** spun up when persistent containers are detected
 - **Container delay start** for more reliable startup sequencing
 - **Network isolation** between persistent and session-scoped containers, which now use separate networks for better resource management
@@ -543,7 +543,7 @@ This will greatly improve your experience while building stateful services that 
 
 ### 🎛️ Resource command service
 
-.NET Aspire 9.4 introduces `Aspire.Hosting.ApplicationModel.ResourceCommandService`, an API for executing commands against resources. You can now easily execute the commands that appear in the dashboard programmatically. For example, when writing unit tests for commands, or having other integrations in Aspire execute commands.
+.NET Aspire 9.4 introduces <xref:Aspire.Hosting.ApplicationModel.ResourceCommandService>, an API for executing commands against resources. You can now easily execute the commands that appear in the dashboard programmatically. For example, when writing unit tests for commands, or having other integrations in Aspire execute commands.
 
 The example below uses `ResourceCommandService` to have a command execute other commands.
 
@@ -639,7 +639,7 @@ public async Task Should_ResetCache_WhenTestStarts()
 
 ### 🔄 Resource lifecycle events
 
-.NET Aspire 9.4 introduces convenient extension methods on `Aspire.Hosting.ApplicationModel.IResourceBuilder` that make it much easier to subscribe to [lifecycle events](../app-host/eventing.md#app-host-life-cycle-events) directly on resources, providing a cleaner and more intuitive API.
+.NET Aspire 9.4 introduces convenient extension methods on <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder*> that make it much easier to subscribe to [lifecycle events](../app-host/eventing.md#app-host-life-cycle-events) directly on resources, providing a cleaner and more intuitive API.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -705,11 +705,11 @@ builder.Build().Run();
 
 **Available lifecycle events:**
 
-- `OnInitializeResource` - Called during early resource initialization
-- `OnBeforeResourceStarted` - Called before the resource starts
-- `OnConnectionStringAvailable` - Called when connection strings are resolved (requires `IResourceWithConnectionString`)
-- `OnResourceEndpointsAllocated` - Called when resource endpoints are allocated (requires `IResourceWithEndpoints`)
-- `OnResourceReady` - Called when the resource is fully ready
+- <xref:Aspire.Hosting.EventingExtensions.OnInitializeResource*> - Called during early resource initialization
+- <xref:Aspire.Hosting.EventingExtensions.OnBeforeResourceStarted*> - Called before the resource starts
+- <xref:Aspire.Hosting.EventingExtensions.OnConnectionStringAvailable*> - Called when connection strings are resolved (requires `IResourceWithConnectionString`)
+- <xref:Aspire.Hosting.EventingExtensions.OnResourceEndpointsAllocated*> - Called when resource endpoints are allocated (requires `IResourceWithEndpoints`)
+- <xref:Aspire.Hosting.EventingExtensions.OnResourceReady*> - Called when the resource is fully ready
 
 The new chainable fluent API, strongly-typed callbacks, and simplified syntax make it intuitive to hook into your resource lifecycles for interactions, commands, custom scripts, and more.
 
