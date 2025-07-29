@@ -336,7 +336,7 @@ public class DeploymentService
 - **Intent-based styling** for different message types
 - **Link support** in notifications
 
-These interactions work seamlessly whether you're running your application through the [Aspire dashboard](#-dashboard-new-features) or deploying via the CLI with `aspire deploy` and `aspire publish` commands.
+These interactions work seamlessly whether you're running your application through the [Aspire dashboard](#-dashboard-improvements) or deploying via the CLI with `aspire deploy` and `aspire publish` commands.
 
 ### 🔄 Interactive parameter prompting during run mode
 
@@ -925,7 +925,7 @@ Connection strings:
 - Values are marked as **sensitive** and can be toggled for visibility in the dashboard
 - Supports all resource types including databases, message brokers, and custom resources
 
-:::image type="content" source="media/dashboard-connection-strings.png" lightbox="media/dashboard-connectionstrings.png" alt-text="Screenshot of dashboard showing connection string.":::
+:::image type="content" source="media/dashboard-connection-strings.png" lightbox="media/dashboard-connection-strings.png" alt-text="Screenshot of dashboard showing connection string.":::
 
 External parameters are no longer hidden. The parameter state and value is visible in the dashboard.
 
@@ -1043,7 +1043,7 @@ builder.Build().Run();
 
 ##### Azure AI Foundry Local support
 
-[Azure AI Foundry Local](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/) is an on-device AI inference solution that runs models locally on your hardware, providing performance, privacy, and cost advantages without requiring an Azure subscription. It's ideal for scenarios requiring data privacy, offline operation, cost reduction, or low-latency responses.
+[Azure AI Foundry Local](https://learn.microsoft.com/azure/ai-foundry/foundry-local/) is an on-device AI inference solution that runs models locally on your hardware, providing performance, privacy, and cost advantages without requiring an Azure subscription. It's ideal for scenarios requiring data privacy, offline operation, cost reduction, or low-latency responses.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -1110,7 +1110,7 @@ builder.AddOpenAIClient("chat")
 - **Azure AI Foundry** - Cloud-hosted models with enterprise-grade scaling, supports all Azure AI model deployments
 - **Foundry Local** - On-device inference with different model selection optimized for local hardware, no Azure subscription required
 
-The `RunAsFoundryLocal()` method enables local development scenarios using [Azure AI Foundry Local](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/), allowing you to test AI capabilities without requiring cloud resources during development. This supports automatic model downloading, loading, and management through the integrated Foundry Local runtime.
+The `RunAsFoundryLocal()` method enables local development scenarios using [Azure AI Foundry Local](https://learn.microsoft.com/azure/ai-foundry/foundry-local/), allowing you to test AI capabilities without requiring cloud resources during development. This supports automatic model downloading, loading, and management through the integrated Foundry Local runtime.
 
 ### 🗄️ Database hosting improvements
 
@@ -1175,7 +1175,7 @@ builder.Build().Run();
 - **Better data distribution** for multi-dimensional datasets
 - **Enhanced scalability** up to 10,000+ RU/s per logical partition prefix
 
-For detailed guidance on design patterns and best practices, see the [Azure Cosmos DB hierarchical partition keys documentation](https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys).
+For detailed guidance on design patterns and best practices, see the [Azure Cosmos DB hierarchical partition keys documentation](https://learn.microsoft.com/azure/cosmos-db/hierarchical-partition-keys).
 
 #### Serverless support
 
@@ -1200,7 +1200,7 @@ var provisionedCosmos = builder.AddAzureCosmosDB("cosmos")
 **Use serverless for:** Variable workloads, development/testing, applications with low average-to-peak traffic ratios.  
 **Use provisioned throughput for:** Sustained traffic requiring predictable performance guarantees.
 
-For detailed comparison and limits, see [Azure Cosmos DB serverless documentation](https://learn.microsoft.com/en-us/azure/cosmos-db/serverless).
+For detailed comparison and limits, see [Azure Cosmos DB serverless documentation](https://learn.microsoft.com/azure/cosmos-db/serverless).
 
 ### 🆔 Consistent user-assigned managed identity support
 
@@ -1243,7 +1243,7 @@ This approach provides:
 
 #### 🔐 Disabled local authentication to enforce managed identity
 
-.NET Aspire 9.4 automatically disables local authentication for [Azure EventHubs](../messaging/azure-event-hubs-integration.md[) and [Azure Web PubSub](../messaging/azure-web-pubsub-integration.md) resources, enforcing managed identity authentication by default.
+.NET Aspire 9.4 automatically disables local authentication for [Azure EventHubs](../messaging/azure-event-hubs-integration.md) and [Azure Web PubSub](../messaging/azure-web-pubsub-integration.md) resources, enforcing managed identity authentication by default.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
