@@ -230,74 +230,6 @@ For more information about publishing and deploying Aspire apps, see [aspire dep
 
 ## 🖥️ App model enhancements
 
-### 🌐 External service modeling
-
-Modern applications frequently need to integrate with external APIs, third-party services, or existing infrastructure that isn't managed by Aspire. .NET Aspire 9.4 introduces first-class support for [modeling external services](../fundamentals/orchestrate-resources.md#express-external-service-resources) as resources in your application graph.
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Reference an external service by URL
-var externalApi = builder.AddExternalService("external-api", "https://api.company.com");
-
-// Or use a parameter for dynamic configuration
-var apiUrl = builder.AddParameter("api-url");
-var externalDb = builder.AddExternalService("external-db", apiUrl)
-    .WithHttpHealthCheck("/health");
-
-var myService = builder.AddProject<Projects.MyService>("my-service")
-    .WithReference(externalApi)
-    .WithReference(externalDb);
-
-builder.Build().Run();
-```
-
-External services appear in the Aspire dashboard with health status, can be referenced like any other resource, and support the same configuration patterns as internal resources.
-
-### 🔗 Enhanced endpoint URL support
-
-.NET Aspire 9.4 introduces support for [non-localhost URLs](../fundamentals/networking-overview.md), making it easier to work with custom domains and network configurations. This includes support for `*.localhost` subdomains and automatic generation of multiple URL variants for endpoints listening on multiple addresses.
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Endpoints targeting all addresses automatically get multiple URL variants
-var api = builder.AddProject<Projects.Api>("api")
-    .WithEndpoint("https", e => e.TargetHost = "0.0.0.0");
-
-// Machine name URLs for external access  
-var publicService = builder.AddProject<Projects.PublicService>("public")
-    .WithEndpoint("https", e => e.TargetHost = "0.0.0.0");
-
-builder.Build().Run();
-```
-
-**Key capabilities:**
-
-- **Custom `*.localhost` subdomain support** that maintains localhost behavior
-- **Automatic endpoint URL generation** for endpoints listening on multiple addresses, with both localhost and machine name URLs (such as Codespaces)
-- **All URL variants** appear in the Aspire dashboard for easy access
-- **Network flexibility** for development scenarios requiring specific network configurations
-- **Launch profile configuration support** so custom URLs can also be configured via launch profiles in `launchSettings.json`:
-
-```json
-{
-  "profiles": {
-    "https": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "https://*:7001;http://*:5001",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    }
-  }
-}
-```
-
-This simplifies development workflows where custom domains or external network access is needed while maintaining the familiar localhost development experience. A popular example includes SaaS solutions which use custom domains per-tenant.
-
 ### 🎛️ Interaction service
 
 .NET Aspire 9.4 introduces the [interaction service](../extensibility/interaction-service.md), a general service that allows developers to build rich experiences at runtime by extending the dashboard UX and at publish and deploy time using the Aspire CLI. It allows you to build complex interactions where input is required from the user.
@@ -508,6 +440,74 @@ builder.Build().Run();
 ```
 
 For more information, including supported input types, see the [Interaction Service section](#️-interaction-service) below or the full [interaction service docs](../extensibility/interaction-service.md).
+
+### 🌐 External service modeling
+
+Modern applications frequently need to integrate with external APIs, third-party services, or existing infrastructure that isn't managed by Aspire. .NET Aspire 9.4 introduces first-class support for [modeling external services](../fundamentals/orchestrate-resources.md#express-external-service-resources) as resources in your application graph.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Reference an external service by URL
+var externalApi = builder.AddExternalService("external-api", "https://api.company.com");
+
+// Or use a parameter for dynamic configuration
+var apiUrl = builder.AddParameter("api-url");
+var externalDb = builder.AddExternalService("external-db", apiUrl)
+    .WithHttpHealthCheck("/health");
+
+var myService = builder.AddProject<Projects.MyService>("my-service")
+    .WithReference(externalApi)
+    .WithReference(externalDb);
+
+builder.Build().Run();
+```
+
+External services appear in the Aspire dashboard with health status, can be referenced like any other resource, and support the same configuration patterns as internal resources.
+
+### 🔗 Enhanced endpoint URL support
+
+.NET Aspire 9.4 introduces support for [non-localhost URLs](../fundamentals/networking-overview.md), making it easier to work with custom domains and network configurations. This includes support for `*.localhost` subdomains and automatic generation of multiple URL variants for endpoints listening on multiple addresses.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Endpoints targeting all addresses automatically get multiple URL variants
+var api = builder.AddProject<Projects.Api>("api")
+    .WithEndpoint("https", e => e.TargetHost = "0.0.0.0");
+
+// Machine name URLs for external access  
+var publicService = builder.AddProject<Projects.PublicService>("public")
+    .WithEndpoint("https", e => e.TargetHost = "0.0.0.0");
+
+builder.Build().Run();
+```
+
+**Key capabilities:**
+
+- **Custom `*.localhost` subdomain support** that maintains localhost behavior
+- **Automatic endpoint URL generation** for endpoints listening on multiple addresses, with both localhost and machine name URLs (such as Codespaces)
+- **All URL variants** appear in the Aspire dashboard for easy access
+- **Network flexibility** for development scenarios requiring specific network configurations
+- **Launch profile configuration support** so custom URLs can also be configured via launch profiles in `launchSettings.json`:
+
+```json
+{
+  "profiles": {
+    "https": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://*:7001;http://*:5001",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
+```
+
+This simplifies development workflows where custom domains or external network access is needed while maintaining the familiar localhost development experience. A popular example includes SaaS solutions which use custom domains per-tenant.
 
 ### 🐳 Enhanced persistent container support
 
