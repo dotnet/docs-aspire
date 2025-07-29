@@ -44,7 +44,7 @@ The following sections describe how to use these APIs effectively in both contex
 | Method | Description | Contexts supported |
 |--|--|--|
 | `PromptMessageBoxAsync` | Displays a modal dialog box with a message and buttons for user interaction. | Dashboard only |
-| `PromptNotificationAsync` | Displays a nonmodal notification in the dashboard as a message bar. | Dashboard only |
+| `PromptNotificationAsync` | Displays a non-modal notification in the dashboard as a message bar. | Dashboard only |
 | `PromptConfirmationAsync` | Displays a confirmation dialog with options for the user to confirm or cancel an action. | Dashboard only |
 | `PromptInputAsync` | Prompts the user for a single input value, such as text or secret. | Dashboard, CLI |
 | `PromptInputsAsync` | Prompts the user for multiple input values in a single dialog (dashboard) or sequentially (CLI). | Dashboard, CLI |
@@ -119,7 +119,7 @@ The `PromptMessageBoxAsync` method only works in the dashboard context. If you c
 
 ### Display a notification message
 
-Notification messages provide nonmodal notifications.
+Notification messages provide non-modal notifications.
 
 > [!TIP]
 > In the dashboard, notification messages appear stacked at the top, so you can show several messages at once. You can display notifications one after another by awaiting each dismissal before showing the next. Or, you can display multiple notifications at the same time without waiting for each to be dismissed.

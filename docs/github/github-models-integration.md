@@ -65,7 +65,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When an organization is specified, the token must be attributed to that organization.
+When an organization is specified, the token must be attributed to that organization in GitHub.
 
 ### Configure API key authentication
 

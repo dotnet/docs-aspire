@@ -20,11 +20,11 @@ Extensibility is a core focus. Aspire's APIs are designed so you can adapt the p
 
 For the official support information, see the [Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire).
 
-## The app host
+## The AppHost
 
 Aspire's app host is where you define your app's services and dependencies in code—no complex configuration files required. The app host provides orchestration for your local development environment by simplifying the management of service discovery, environment variables, and container configurations.
 
-Picture a common three-tier architecture: a frontend that depends on an API, which connects to a database. In Aspire, this topology is represented in the app host as shown in the following code:
+Picture a common three-tier architecture: a frontend, which depends on an API, which connects to a database. In Aspire, this topology is represented in the app host as shown in the following code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -48,8 +48,8 @@ builder.Build().Run();
 
 The app host assists with the following concerns:
 
-- **App composition**: Specify the projects, containers, executables, and cloud resources that make up your application
-- **Service discovery and connection string management**: Automatically inject the right connection strings and network configurations
+- **App composition**: Specify the projects, containers, executables, and cloud resources that make up your application.
+- **Service discovery and connection string management**: Automatically inject the right connection strings and network configurations.
 
 It's important to note that Aspire's orchestration focuses on enhancing the _local development_ experience. It's not intended to replace production systems like Kubernetes, but rather provides abstractions that eliminate low-level implementation details during development.
 
@@ -67,7 +67,7 @@ Resources you can integrate include:
 - **Databases**: SQL Server, PostgreSQL, MySQL, MongoDB, and other data stores.
 - **Executables**: Console applications, scripts, and background services.
 - **Frameworks**: Web applications, APIs, and microservices built with various frameworks.
-- **Messaging Services**: Service Bus, RabbitMQ, Kafka, and other messaging systems.
+- **Messaging Services**: Azure Service Bus, RabbitMQ, Kafka, and other messaging systems.
 - **Projects**: .NET projects, Node.js applications, Python services, and more.
 - **Storage**: Blob storage, file systems, and cloud storage services.
 
@@ -87,7 +87,7 @@ When you run your Aspire app, the dashboard launches automatically. You can:
 - Start, stop, or restart resources directly from the dashboard.
 - Visualize dependencies and troubleshoot issues faster.
 
-The dashboard is available both as part of Aspire solution or as a [standalone tool](../fundamentals/dashboard/standalone.md) for any app that emits OpenTelemetry data.
+The dashboard is available both as part of an Aspire solution or as a [standalone tool](../fundamentals/dashboard/standalone.md) for any app that emits OpenTelemetry data.
 
 Learn more in the [dashboard overview](../fundamentals/dashboard/overview.md), or dive deeper into [dashboard features and usage](../fundamentals/dashboard/explore.md).
 
