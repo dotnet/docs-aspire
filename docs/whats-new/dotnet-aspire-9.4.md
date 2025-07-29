@@ -113,7 +113,7 @@ The `aspire deploy` command supports extensible deployment workflows through the
 - **Workflow activity reporting** via the <xref:Aspire.Hosting.Publishing.IPublishingActivityReporter/> to support progress notifications and prompting in commmands
 - **Integration with publish** - `aspire deploy` runs <xref:Aspire.Hosting.Publishing.PublishingCallbackAnnotations/> to support deploying artifacts emitted by publish steps, if applicable
 
-The example below demonstrates using the `DeployingCallbackAnnotation` to register custom deployment behavior and showcases [CLI-based prompting](#️-interaction-service) and progress notifications.
+The example below demonstrates using the `DeployingCallbackAnnotation` to register custom deployment behavior and showcases [CLI-based prompting](#-enhanced-publish-and-deploy-output) and progress notifications.
 
 ```csharp
 #pragma warning disable ASPIREPUBLISHERS001
@@ -374,7 +374,7 @@ This feature eliminates the need to pre-configure all parameters in appsettings.
 
 #### 📝 Enhanced parameter descriptions and custom input rendering
 
-Building on the interactive parameter prompting capabilities and the new [interaction service](#️-interaction-service), Aspire 9.4 introduces rich parameter descriptions and custom input rendering to provide better user guidance and specialized input controls during parameter collection.
+Building on the interactive parameter prompting capabilities and the new [interaction service](#-interaction-service), Aspire 9.4 introduces rich parameter descriptions and custom input rendering to provide better user guidance and specialized input controls during parameter collection.
 
 - **<xref:Aspire.Hosting.ParameterResourceBuilderExtensions.WithDescription*/>** - Add helpful descriptions to guide users during parameter input
 - **Markdown support** - Rich text descriptions with links, formatting, and lists using `enableMarkdown: true`
@@ -439,7 +439,7 @@ var api = builder.AddProject<Projects.Api>("api")
 builder.Build().Run();
 ```
 
-For more information, including supported input types, see the [Interaction Service section](#️-interaction-service) below or the full [interaction service docs](../extensibility/interaction-service.md).
+For more information, including supported input types, see the [Interaction Service section](#-interaction-service) below or the full [interaction service docs](../extensibility/interaction-service.md).
 
 ### 🌐 External service modeling
 
