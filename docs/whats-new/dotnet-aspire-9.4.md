@@ -990,9 +990,40 @@ builder.Build().Run();
 
 ## 🔗 Updated integrations
 
+### 🐙 GitHub Models integration
+
+.NET Aspire 9.4 introduces support for [GitHub Models](https://docs.github.com/en/github-models), enabling easy integration with AI models hosted on GitHub's platform. This provides a simple way to incorporate AI capabilities into your applications using GitHub's model hosting service.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Add GitHub Model - API key parameter is automatically created
+var model = builder.AddGitHubModel("chat-model", "gpt-4o-mini")
+    .WithHealthCheck();
+
+// You can also specify an API key explicitly if needed
+var apiKey = builder.AddParameter("github-api-key", secret: true);
+var explicitModel = builder.AddGitHubModel("explicit-chat", "gpt-4o-mini")
+    .WithApiKey(apiKey);
+
+// Use the model in your services
+var chatService = builder.AddProject<Projects.ChatService>("chat")
+    .WithReference(model);
+
+builder.Build().Run();
+```
+
+The [GitHub Models integration](../github/github-models-integration.md) provides:
+
+- **Simple model integration** with GitHub's hosted AI models
+- **Automatic API key parameter creation** with the pattern `{name}-gh-apikey`
+- **Explicit API key support** using `WithApiKey()` for custom scenarios
+- **GITHUB_TOKEN fallback** when no explicit API key is provided
+- **Built-in health checks** for model availability
+
 ### 🤖 Azure AI Foundry integration
 
-.NET Aspire 9.4 introduces comprehensive Azure AI Foundry support, bringing enterprise AI capabilities directly into your distributed applications. This integration simplifies working with AI models and deployments through the Azure AI platform, supporting both Azure-hosted deployments and local development with Foundry Local.
+.NET Aspire 9.4 introduces comprehensive [Azure AI Foundry](https://ai.azure.com/) support, bringing enterprise AI capabilities directly into your distributed applications. This integration simplifies working with AI models and deployments through the Azure AI platform, supporting both Azure-hosted deployments and local development with [Foundry Local](https://github.com/microsoft/Foundry-Local).
 
 #### Hosting configuration
 
@@ -1014,7 +1045,7 @@ var webService = builder.AddProject<Projects.WebService>("webservice")
 builder.Build().Run();
 ```
 
-**Azure AI Foundry Local support:**
+##### Azure AI Foundry Local support
 
 [Azure AI Foundry Local](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/) is an on-device AI inference solution that runs models locally on your hardware, providing performance, privacy, and cost advantages without requiring an Azure subscription. It's ideal for scenarios requiring data privacy, offline operation, cost reduction, or low-latency responses.
 
@@ -1035,7 +1066,7 @@ builder.Build().Run();
 
 #### Client integration
 
-Once you've configured the Azure AI Foundry resource in your app host, consume it in your services using the Azure AI Inference SDK or OpenAI SDK for compatible models:
+Once you've configured the [Azure AI Foundry resource](../azureai/azureai-foundry-integration.md) in your app host, consume it in your services using the [Azure AI Inference SDK](../azureai/azureai-inference-integration.md) or [OpenAI SDK](../azureai/azureai-openai-integration.md) for compatible models:
 
 **Using Azure AI Inference SDK:**
 
@@ -1079,42 +1110,11 @@ builder.AddOpenAIClient("chat")
 ```
 
 **Key differences between Azure AI Foundry and Foundry Local:**
+
 - **Azure AI Foundry** - Cloud-hosted models with enterprise-grade scaling, supports all Azure AI model deployments
 - **Foundry Local** - On-device inference with different model selection optimized for local hardware, no Azure subscription required
 
 The `RunAsFoundryLocal()` method enables local development scenarios using [Azure AI Foundry Local](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-local/), allowing you to test AI capabilities without requiring cloud resources during development. This supports automatic model downloading, loading, and management through the integrated Foundry Local runtime.
-
-### 🐙 GitHub Models integration
-
-.NET Aspire 9.4 introduces support for [GitHub Models](https://docs.github.com/en/github-models), enabling easy integration with AI models hosted on GitHub's platform. This provides a simple way to incorporate AI capabilities into your applications using GitHub's model hosting service.
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Add GitHub Model - API key parameter is automatically created
-var model = builder.AddGitHubModel("chat-model", "gpt-4o-mini")
-    .WithHealthCheck();
-
-// You can also specify an API key explicitly if needed
-var apiKey = builder.AddParameter("github-api-key", secret: true);
-var explicitModel = builder.AddGitHubModel("explicit-chat", "gpt-4o-mini")
-    .WithApiKey(apiKey);
-
-// Use the model in your services
-var chatService = builder.AddProject<Projects.ChatService>("chat")
-    .WithReference(model);
-
-builder.Build().Run();
-```
-
-GitHub Models integration provides:
-
-- **Simple model integration** with GitHub's hosted AI models
-- **Automatic API key management** - parameters are created automatically with the pattern `{name}-gh-apikey`
-- **Explicit API key support** - optionally specify API keys using `WithApiKey()` for custom scenarios
-- **GITHUB_TOKEN fallback** - automatically reads the `GITHUB_TOKEN` environment variable when no explicit API key is provided
-- **Built-in health checks** for model availability
-- **Connection string support** for easy service integration
 
 ### 🗄️ Database hosting improvements
 
@@ -1138,14 +1138,33 @@ var oracle = builder.AddOracle("oracle")
 builder.Build().Run();
 ```
 
-**Key improvements**:
-- **Unified initialization**: All database providers now support `WithInitFiles()` method
-- **Simplified API**: Replaces the more complex `WithInitBindMount()` method
-- **Better error handling**: The new method provides improved error handling
+All database providers now support `WithInitFiles()` method, replacing the more complex `WithInitBindMount()` method and enabling better error handling.
 
 ## ☁️ Azure goodies
 
-### 🗄️ Azure Cosmos DB hierarchical partition keys
+### 🏷️ Consistent resource name exposure
+
+.NET Aspire 9.4 now consistently exposes the actual names of deployed Azure resources through the <xref:Aspire.Hosting.Azure.NameOutputReference/> property. This enables applications to access the real Azure resource names that get generated during deployment, which is essential for scenarios requiring direct Azure resource coordination.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var storage = builder.AddAzureStorage("appstorage");
+var signalr = builder.AddAzureSignalR("notifications");
+
+// Access the actual deployed Azure resource names
+var api = builder.AddProject<Projects.Api>("api")
+                .WithEnvironment("STORAGE_NAME", storage.Resource.NameOutputReference)
+                .WithEnvironment("SIGNALR_NAME", signalr.Resource.NameOutputReference);
+
+builder.Build().Run();
+```
+
+This is particularly valuable for **external automation scripts** and **monitoring and alerting systems** that reference resources by their actual names. The `NameOutputReference` property is now available on all Azure resources.
+
+### 🗄️ Azure Cosmos DB
+
+#### Hierarchical partition keys
 
 .NET Aspire 9.4 introduces support for **hierarchical partition keys** (subpartitioning) in Azure Cosmos DB, enabling multi-level partitioning for better data distribution and query performance.
 
@@ -1170,20 +1189,15 @@ builder.Build().Run();
 ```
 
 **Key benefits:**
+
 - **Scale beyond 20GB per logical partition** through multi-level distribution
 - **Improved query performance** with efficient routing to relevant partitions
 - **Better data distribution** for multi-dimensional datasets
 - **Enhanced scalability** up to 10,000+ RU/s per logical partition prefix
 
-**When to use:**
-- Multi-tenant applications where tenants may exceed 20GB
-- Large datasets with natural hierarchies (geography, categories, time-based)
-- High-cardinality scenarios with thousands of unique values per level
-- Applications with queries that filter on hierarchical prefixes
-
 For detailed guidance on design patterns and best practices, see the [Azure Cosmos DB hierarchical partition keys documentation](https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys).
 
-### ⚡ Serverless support
+#### Serverless support
 
 Azure Cosmos DB accounts now default to serverless mode for cost optimization with consumption-based billing.
 
@@ -1197,6 +1211,7 @@ var provisionedCosmos = builder.AddAzureCosmosDB("cosmos")
 ```
 
 **Serverless benefits:**
+
 - **Pay-per-use** - Only charged for consumed Request Units and storage
 - **No minimum costs** - Ideal for intermittent or unpredictable workloads
 - **Automatic scaling** - No capacity planning required
@@ -1496,47 +1511,6 @@ builder.Build().Run();
 - **Seamless local-to-cloud experience** for containerized applications
 
 This feature bridges the gap between container development and Azure App Service deployment, allowing developers to use the same container-based workflows they use locally in production Azure environments.
-
-### 🏷️ Azure resource name exposure
-
-.NET Aspire 9.4 now consistently exposes the actual names of deployed Azure resources through the `NameOutputReference` property. This enables applications to access the real Azure resource names that get generated during deployment, which is essential for scenarios requiring direct Azure resource coordination.
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var storage = builder.AddAzureStorage("appstorage");
-var signalr = builder.AddAzureSignalR("notifications");
-
-// Access the actual deployed Azure resource names
-var api = builder.AddProject<Projects.Api>("api")
-                .WithEnvironment("STORAGE_NAME", storage.Resource.NameOutputReference)
-                .WithEnvironment("SIGNALR_NAME", signalr.Resource.NameOutputReference);
-
-builder.Build().Run();
-```
-
-This is particularly valuable for:
-- **External automation scripts** that need to interact with deployed Azure resources
-- **Monitoring and alerting systems** that reference resources by their actual names
-- **Cross-service coordination** where services need to know exact Azure resource identifiers
-- **Infrastructure as Code scenarios** where generated names must be referenced elsewhere
-
-The `NameOutputReference` property is now available on all Azure resources including:
-- Azure App Configuration
-- Azure App Containers Environment
-- Azure Application Insights
-- Azure Cosmos DB
-- Azure Event Hubs
-- Azure Key Vault
-- Azure PostgreSQL
-- Azure Redis Cache
-- Azure AI Search
-- Azure Service Bus
-- Azure SignalR
-- Azure SQL Database
-- Azure Storage
-- Azure Web PubSub
-- And many more Azure services
 
 ### ⚡ Azure Functions Container Apps integration
 
