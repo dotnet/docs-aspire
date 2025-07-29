@@ -1222,7 +1222,7 @@ var provisionedCosmos = builder.AddAzureCosmosDB("cosmos")
 
 For detailed comparison and limits, see [Azure Cosmos DB serverless documentation](https://learn.microsoft.com/en-us/azure/cosmos-db/serverless).
 
-### 🆔 Enhanced Azure user-assigned managed identity support
+### 🆔 Consistent user-assigned managed identity support
 
 .NET Aspire 9.4 introduces comprehensive support for Azure user-assigned managed identities, providing enhanced security and consistent identity management across your Azure infrastructure:
 
@@ -1257,12 +1257,13 @@ builder.Build().Run();
 ```
 
 This approach provides:
+
 - **Flexible identity control** - Override Aspire's secure defaults when you need specific identity configurations
 - **Consistent identity management** across all compute resources
 
-### 🔐 Enhanced Azure security with disabled local authentication
+#### 🔐 Disabled local authentication to enforce managed identity
 
-.NET Aspire 9.4 automatically disables local authentication for Azure EventHubs and Azure Web PubSub resources, enforcing managed identity authentication by default.
+.NET Aspire 9.4 automatically disables local authentication for [Azure EventHubs](../messaging/azure-event-hubs-integration.md[) and [Azure Web PubSub](../messaging/azure-web-pubsub-integration.md) resources, enforcing managed identity authentication by default.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -1282,38 +1283,11 @@ var processor = builder.AddProject<Projects.EventProcessor>("processor")
 builder.Build().Run();
 ```
 
-**Security improvements:**
-- **Managed identity enforcement** - eliminates connection string vulnerabilities
-- **Reduced attack surface** - password-less authentication by default
-- **Zero configuration required** - automatic security enhancement
-- **Compliance alignment** - meets enterprise security requirements
-
 This change automatically applies to all Azure EventHubs and Web PubSub resources, ensuring secure-by-default behavior.
-
-### ⚙️ Enhanced Azure provisioning interaction
-
-.NET Aspire 9.4 significantly improves the Azure provisioning experience by leveraging the interaction services to streamline Azure subscription and resource group configuration during deployment workflows.
-
-The enhanced Azure provisioning system:
-
-- **Automatically prompts for missing Azure configuration** during deploy operations
-- **Saves configuration to user secrets** for future deployments
-- **Provides smart defaults** like auto-generated resource group names
-- **Includes validation callbacks** for Azure-specific inputs like subscription IDs and locations
-- **Supports rich HTML prompts** with links to create free Azure accounts
-
-**Key improvements:**
-- **Streamlined first-time setup** - No more manual configuration of Azure parameters
-- **Persistent settings** - Configuration is saved securely in user secrets
-- **Context-aware prompts** - Only prompts for missing configuration
-- **Enhanced validation** - Built-in validation for Azure resource constraints
-- **Better error handling** - Clear feedback when provisioning fails
-
-This enhancement makes Azure deployment significantly more user-friendly, especially for developers new to Azure or setting up projects for the first time. The interaction system ensures that all necessary Azure configuration is collected interactively and stored securely for subsequent deployments.
 
 ### 🔐 Azure Key Vault enhancements
 
-.NET Aspire 9.4 introduces significant improvements to Azure Key Vault integration with new secret management APIs that provide strongly typed access to secrets:
+.NET Aspire 9.4 introduces significant improvements to the [Azure Key Vault integration](../security/azure-security-key-vault-integration.md) with new secret management APIs that provide strongly typed access to secrets:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -1339,14 +1313,15 @@ var webApi = builder.AddProject<Projects.WebAPI>("webapi")
 ```
 
 **Key features**:
-- **`AddSecret()`** method for adding new secrets to Key Vault from parameters or expressions
-- **`GetSecret()`** method for referencing existing secrets in Key Vault
+
+- <xref.Aspire.Hosting.Azure.KeyVault.AzureKeyVaultResourceExtensions.AddSecret*/> method for adding new secrets to Key Vault from parameters or expressions
+- <xref.Aspire.Hosting.Azure.KeyVault.AzureKeyVaultResourceExtensions.GetSecret*/> method for referencing existing secrets in Key Vault
 - **Strongly-typed secret references** that can be used with `WithEnvironment()` for environment variables
 - **Custom secret naming** support with optional `secretName` parameter
 
-### 📊 Azure Storage client improvements
+### 📀 Azure Storage client improvements
 
-.NET Aspire 9.4 standardizes Azure Storage client registration with consistent naming conventions and enhanced keyed service support:
+.NET Aspire 9.4 standardizes [Azure Storage client registration](../storage/azure-storage-integrations.md) with consistent naming conventions and enhanced keyed service support:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -1367,47 +1342,9 @@ var app = builder.Build();
 
 The new client registration methods provide consistent naming across all Azure Storage services and full support for keyed dependency injection scenarios.
 
-### 📡 OpenTelemetry tracing support for Azure App Configuration
+#### 🔄 Flexible Azure Storage queue management
 
-.NET Aspire 9.4 introduces **OpenTelemetry tracing support for Azure App Configuration**, completing the observability story for this component. The Azure App Configuration component now automatically instruments configuration retrieval operations and refresh operations with distributed tracing.
-
-```csharp
-var builder = WebApplication.CreateBuilder(args);
-
-// Azure App Configuration now includes automatic tracing
-builder.AddAzureAppConfiguration("config", settings =>
-{
-    settings.Endpoint = new Uri("https://myconfig.azconfig.io");
-    // Tracing is enabled by default - traces configuration operations
-});
-
-// Optionally disable tracing for specific scenarios
-builder.AddAzureAppConfiguration("sensitive-config", settings =>
-{
-    settings.DisableTracing = true; // Disable OpenTelemetry tracing
-});
-
-var app = builder.Build();
-```
-
-**What gets traced:**
-- **Configuration retrieval operations** - When configuration values are loaded from Azure App Configuration
-- **Configuration refresh operations** - When the configuration is refreshed in the background
-- **Activity source**: `Microsoft.Extensions.Configuration.AzureAppConfiguration` - for filtering and correlation
-
-**Key benefits:**
-- **End-to-end observability** - See configuration operations in your distributed traces
-- **Performance monitoring** - Track latency of configuration retrieval and refresh operations
-- **Debugging support** - Correlate configuration issues with application behavior
-- **Configurable tracing** - Can be disabled using `DisableTracing = true` for sensitive scenarios
-
-This enhancement brings Azure App Configuration in line with other Azure components that support comprehensive observability, providing developers with better insights into configuration-related performance and behavior.
-
-**GitHub Issue:** [#9323](https://github.com/dotnet/aspire/issues/9323)
-
-### 🔄 Flexible Azure Storage queue management
-
-Working with Azure Storage queues often requires choosing between coarse-grained connection to entire storage accounts or manually managing individual queue configurations. .NET Aspire 9.4 introduces fine-grained queue modeling that lets you work with specific queues while maintaining clear separation of concerns.
+Working with [Azure Storage queues](../storage/azure-storage-queues-integration.md) often requires choosing between coarse-grained connection to entire storage accounts or manually managing individual queue configurations. .NET Aspire 9.4 introduces fine-grained queue modeling that lets you work with specific queues while maintaining clear separation of concerns.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -1430,59 +1367,52 @@ builder.Build().Run();
 
 This approach provides better security isolation, clearer dependency modeling, and simplifies service configuration by injecting pre-configured `QueueClient` instances.
 
-### 🏗️ Enhanced Azure Container Apps integration
+### 📡 OpenTelemetry tracing support for Azure App Configuration
 
-Managing complex Azure Container Apps environments often requires integrating with existing Azure resources like Log Analytics workspaces. .NET Aspire 9.4 enhances Container Apps integration with support for existing Azure resources and improved configuration.
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Reference existing Log Analytics workspace
-var workspaceName = builder.AddParameter("workspace-name");
-var workspaceRg = builder.AddParameter("workspace-rg");
-
-var logWorkspace = builder.AddAzureLogAnalyticsWorkspace("workspace")
-                          .AsExisting(workspaceName, workspaceRg);
-
-var containerEnv = builder.AddAzureContainerAppEnvironment("production")
-                          .WithAzureLogAnalyticsWorkspace(logWorkspace);
-
-builder.AddProject<Projects.Api>("api")
-       .WithComputeEnvironment(containerEnv);
-
-builder.Build().Run();
-```
-
-The enhanced integration provides better cost control by reusing existing Log Analytics workspaces and improved resource coordination.
-
-### 🛡️ Automatic DataProtection configuration for scaled applications
-
-.NET Aspire 9.4 automatically configures DataProtection for .NET projects deployed to Azure Container Apps, ensuring applications work correctly when scaling beyond a single instance.
-
-**Background**: When ASP.NET Core applications scale to multiple instances, they need shared DataProtection keys to decrypt cookies, authentication tokens, and other protected data across all instances. Without proper configuration, users experience authentication issues and data corruption when load balancers route requests to different container instances.
-
-**Automatic configuration**: .NET Aspire now automatically enables `autoConfigureDataProtection` for all .NET projects deployed to Azure Container Apps:
+.NET Aspire 9.4 introduces **OpenTelemetry tracing support** for [Azure App Configuration](../azure/azure-app-configuration-integration.md), completing the observability story for this component. The Azure App Configuration integration now automatically instruments configuration retrieval operations and refresh operations with distributed tracing.
 
 ```csharp
-var builder = DistributedApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
-builder.AddAzureContainerAppEnvironment("production");
+// Azure App Configuration now includes automatic tracing
+builder.AddAzureAppConfiguration("config", settings =>
+{
+    settings.Endpoint = new Uri("https://myconfig.azconfig.io");
+    // Tracing is enabled by default - traces configuration operations
+});
 
-// DataProtection is automatically configured for scaling
-var api = builder.AddProject<Projects.WebApi>("api");
+// Optionally disable tracing for specific scenarios
+builder.AddAzureAppConfiguration("sensitive-config", settings =>
+{
+    settings.DisableTracing = true; // Disable OpenTelemetry tracing
+});
 
-var frontend = builder.AddProject<Projects.BlazorApp>("frontend");
-
-builder.Build().Run();
+var app = builder.Build();
 ```
 
-**Key benefits**:
-- **Seamless scaling** - Applications work correctly when Azure automatically scales to multiple instances
-- **Consistent user experience** - No authentication issues or session loss when requests hit different instances  
-- **Zero configuration required** - DataProtection is automatically configured using Azure Container Apps managed identity
-- **Production-ready security** - Uses Azure Key Vault integration provided by the platform
+**What gets traced:**
 
-This enhancement aligns Aspire-generated deployments with Azure Developer CLI (`azd`) behavior and resolves common production scaling issues without requiring manual DataProtection configuration.
+- **Configuration retrieval operations** - When configuration values are loaded from Azure App Configuration
+- **Configuration refresh operations** - When the configuration is refreshed in the background
+- **Activity source**: `Microsoft.Extensions.Configuration.AzureAppConfiguration` - for filtering and correlation
+
+Tracing can be disabled using `DisableTracing = true` for sensitive scenarios.
+
+This enhancement brings Azure App Configuration in line with other Azure components that support comprehensive observability, providing developers with better insights into configuration-related performance and behavior.
+
+### ⚙️ Enhanced Azure provisioning interaction
+
+.NET Aspire 9.4 significantly improves the Azure provisioning experience by leveraging the interaction services to streamline Azure subscription and resource group configuration during deployment workflows.
+
+The enhanced Azure provisioning system:
+
+- **Automatically prompts for missing Azure configuration** during deploy operations
+- **Saves configuration to user secrets** for future deployments
+- **Provides smart defaults** like auto-generated resource group names
+- **Includes validation callbacks** for Azure-specific inputs like subscription IDs and locations
+- **Supports rich HTML prompts** with links to create free Azure accounts
+
+This enhancement makes Azure deployment significantly more user-friendly, especially for developers new to Azure or setting up projects for the first time. The interaction system ensures that all necessary Azure configuration is collected interactively and stored securely for subsequent deployments.
 
 ### 🐳 Azure App Service container support
 
@@ -1504,13 +1434,55 @@ var webApp = builder.AddProject<Projects.WebApp>("webapp");
 builder.Build().Run();
 ```
 
-**Key capabilities:**
-- **Dockerfile deployment** directly to Azure App Service
-- **Container image building** as part of the deployment process
-- **Unified deployment model** across different Azure compute environments
-- **Seamless local-to-cloud experience** for containerized applications
-
 This feature bridges the gap between container development and Azure App Service deployment, allowing developers to use the same container-based workflows they use locally in production Azure environments.
+
+### 🏗️ Improvements to the Azure Container Apps integration
+
+Managing complex Azure Container Apps environments often requires integrating with existing Azure resources like Log Analytics workspaces. .NET Aspire 9.4 enhances the [Container Apps integration](../azure/configure-aca-environments.md) with support for existing Azure resources and improved configuration.
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Reference existing Log Analytics workspace
+var workspaceName = builder.AddParameter("workspace-name");
+var workspaceRg = builder.AddParameter("workspace-rg");
+
+var logWorkspace = builder.AddAzureLogAnalyticsWorkspace("workspace")
+                          .AsExisting(workspaceName, workspaceRg);
+
+var containerEnv = builder.AddAzureContainerAppEnvironment("production")
+                          .WithAzureLogAnalyticsWorkspace(logWorkspace);
+
+builder.AddProject<Projects.Api>("api")
+       .WithComputeEnvironment(containerEnv);
+
+builder.Build().Run();
+```
+
+This also helps manage cost control by reusing existing resources like Log Analytics.
+
+#### 🛡️ Automatic DataProtection configuration for .NET on ACA
+
+.NET Aspire 9.4 automatically configures DataProtection for .NET projects deployed to Azure Container Apps, ensuring applications work correctly when scaling beyond a single instance.
+
+When ASP.NET Core applications scale to multiple instances, they need shared DataProtection keys to decrypt cookies, authentication tokens, and other protected data across all instances. Without proper configuration, users experience authentication issues and data corruption when load balancers route requests to different container instances.
+
+.NET Aspire now automatically enables `autoConfigureDataProtection` for all .NET projects deployed to Azure Container Apps:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+builder.AddAzureContainerAppEnvironment("production");
+
+// DataProtection is automatically configured for scaling
+var api = builder.AddProject<Projects.WebApi>("api");
+
+var frontend = builder.AddProject<Projects.BlazorApp>("frontend");
+
+builder.Build().Run();
+```
+
+This enhancement aligns Aspire-generated deployments with Azure Developer CLI (`azd`) behavior and resolves common production scaling issues without requiring manual DataProtection configuration.
 
 ### ⚡ Azure Functions Container Apps integration
 
@@ -1526,12 +1498,6 @@ var functionsApp = builder.AddAzureFunctionsProject<Projects.MyFunctions>("funct
 
 builder.Build().Run();
 ```
-
-**Key improvements:**
-- **Automatic function app kind setting** - Azure Functions are correctly identified as "functionapp" kind in Container Apps
-- **Better Azure portal integration** - Functions appear correctly in the Azure portal with proper functionality
-- **Improved runtime behavior** - Enhanced compatibility with Azure Container Apps runtime environment
-- **Streamlined deployment** - Simplified deployment process with correct metadata
 
 This change resolves issues where Azure Functions deployed to Container Apps weren't properly recognized by Azure tooling and monitoring systems, providing a more seamless serverless experience.
 
