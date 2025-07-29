@@ -340,7 +340,7 @@ These interactions work seamlessly whether you're running your application throu
 
 ### 🔄 Interactive parameter prompting during run mode
 
-.NET Aspire 9.4 introduces interactive parameter prompting, automatically collecting missing parameter values in the dashboard during application startup through the new [interaction service](#️-interaction-service).
+.NET Aspire 9.4 introduces interactive parameter prompting, automatically collecting missing parameter values in the dashboard during application startup through the new [interaction service](#-interaction-service).
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
