@@ -901,7 +901,7 @@ Now, only `isExternal: true` endpoints are exposed to host, and internal endpoin
 
 ## 🎨 Dashboard improvements
 
-> [!ASIDE]
+> [!TIP]
 > For a bite sized look at many of the 9.4 dashboard changes, James Newton-King has kept up his tradition of posting one new dashboard feature a day leading up to an Aspire release on his [BlueSky](https://bsky.app/profile/james.newtonking.com)!
 
 ### 🔔 Automatic upgrade check notifications
