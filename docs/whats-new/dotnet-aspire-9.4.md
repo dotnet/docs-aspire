@@ -1561,20 +1561,13 @@ builder.Build().Run();
 
 This change resolves issues where Azure Functions deployed to Container Apps weren't properly recognized by Azure tooling and monitoring systems, providing a more seamless serverless experience.
 
-
-
 ## 📋 Project template improvements
 
 .NET Aspire 9.4 introduces enhancements to project templates, including .NET 10 support and improved file naming conventions.
 
 ### 🚀 .NET 10 framework support
 
-All .NET Aspire project templates now support .NET 10 with framework selection:
-
-- **Multi-framework support**: Templates support .NET 8.0, .NET 9.0, and .NET 10.0
-- **Smart defaults**: .NET 9.0 remains the default target framework
-- **Version-specific templates**: Separate template configurations for different Aspire versions
-- **Framework parameter**: Use `--framework net10.0` to target .NET 10 specifically
+All .NET Aspire project templates now support .NET 10 with framework selection. .NET 9.0 remains the default target framework.
 
 ```bash
 # Create a new Aspire project targeting .NET 10
@@ -1586,29 +1579,9 @@ dotnet new aspire-apphost --framework net10.0
 
 ### 📝 Improved file naming convention
 
-The `aspire-apphost` template now uses a more descriptive file naming convention:
+The `aspire-apphost` template now uses a more descriptive file naming convention making it easier to distinguish app host files in multi-project solutions. Instead of `Program.cs`, the main program file is now named `AppHost.cs`.
 
-- **AppHost.cs**: The main program file is now named `AppHost.cs` instead of `Program.cs`
-- **Semantic clarity**: The filename clearly indicates this is an Aspire app host
-- **Better organization**: Makes it easier to distinguish app host files in multi-project solutions
-
-**Before (9.3 and earlier)**:
-```
-MyApp.AppHost/
-├── Program.cs          ← Generic name
-├── Aspire.AppHost1.csproj
-└── appsettings.json
-```
-
-**After (9.4)**:
-```
-MyApp.AppHost/
-├── AppHost.cs          ← Descriptive name
-├── Aspire.AppHost1.csproj
-└── appsettings.json
-```
-
-The content and functionality remain unchanged—only the filename has been updated to be more descriptive and semantically meaningful.
+The content and functionality remain unchanged — only the filename has been updated to be more descriptive.
 
 ## 💔 Breaking changes
 
