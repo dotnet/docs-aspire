@@ -3,6 +3,7 @@ title: .NET Aspire Elasticsearch integration (Preview)
 description: Learn how to use the .NET Aspire Elasticsearch integration, which includes both hosting and client integrations.
 ms.date: 02/14/2025
 uid: search/elasticsearch-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Elasticsearch integration (Preview)

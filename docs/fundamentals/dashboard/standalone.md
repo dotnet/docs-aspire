@@ -3,6 +3,7 @@ title: Standalone .NET Aspire dashboard
 description: How to use the .NET Aspire dashboard standalone.
 ms.date: 04/15/2025
 ms.topic: reference
+ms.custom: sfi-image-nochange
 ---
 
 # Standalone .NET Aspire dashboard

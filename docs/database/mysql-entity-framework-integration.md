@@ -2,6 +2,7 @@
 title: .NET Aspire Pomelo MySQL Entity Framework Core integration
 description: Learn how to use the .NET Aspire MySQL Entity Framework integration, which includes both hosting and client integrations.
 ms.date: 02/07/2025
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Pomelo MySQL Entity Framework Core integration

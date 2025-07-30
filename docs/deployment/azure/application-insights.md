@@ -3,6 +3,9 @@ title: Use .NET Aspire with Application Insights
 description: Learn how to send .NET Aspire telemetry to Application Insights.
 ms.date: 07/17/2025
 ms.topic: how-to
+ms.custom:
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # Use Application Insights for .NET Aspire telemetry

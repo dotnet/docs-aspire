@@ -2,6 +2,7 @@
 title: Orchestrate Node.js apps in .NET Aspire
 description: Learn how to integrate Node.js and npm apps into a .NET Aspire App Host project.
 ms.date: 05/27/2025
+ms.custom: sfi-image-nochange
 ---
 
 # Orchestrate Node.js apps in .NET Aspire

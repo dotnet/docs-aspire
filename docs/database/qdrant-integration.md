@@ -3,6 +3,7 @@ title: .NET Aspire Qdrant integration
 description: Learn how to use the .NET Aspire Qdrant integration, which includes both hosting and client integrations.
 ms.date: 07/22/2025
 uid: database/qdrant-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Qdrant integration

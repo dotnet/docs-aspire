@@ -4,6 +4,9 @@ description: Learn the fundamental concepts of .NET Aspire orchestration and exp
 ms.date: 04/23/2025
 ms.topic: overview
 uid: dotnet/aspire/app-host
+ms.custom:
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # .NET Aspire orchestration overview

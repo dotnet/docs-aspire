@@ -3,6 +3,7 @@ title: .NET Aspire RabbitMQ integration
 description: Learn how to use the .NET Aspire RabbitMQ message-broker integration, which includes both hosting and client integrations.
 ms.date: 02/19/2025
 uid: messaging/rabbitmq-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire RabbitMQ integration

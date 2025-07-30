@@ -3,6 +3,9 @@ title: .NET Aspire manifest format for deployment tool builders
 description: Learn about the .NET Aspire manifest format in this comprehensive deployment tool builder guide.
 ms.date: 03/29/2024
 ms.topic: reference
+ms.custom:
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # .NET Aspire manifest format for deployment tool builders

@@ -2,6 +2,7 @@
 title: .NET Aspire Azure AI Search integration
 description: Learn how to integrate Azure AI Search with .NET Aspire.
 ms.date: 07/22/2025
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Azure AI Search integration

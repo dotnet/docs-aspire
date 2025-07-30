@@ -3,6 +3,7 @@ title: .NET Aspire PostgreSQL Entity Framework Core integration
 description: Learn how to integrate PostgreSQL with .NET Aspire applications using Entity Framework Core, using both hosting and client integrations.
 ms.date: 02/07/2025
 uid: database/postgresql-ef-core-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire PostgreSQL Entity Framework Core integration
