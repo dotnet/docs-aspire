@@ -1692,7 +1692,6 @@ var api = builder.AddProject<Projects.Api>("api")
     .PublishAsAzureContainerApp((infrastructure, containerApp) =>
     {
         app.Template.Scale.MinReplicas = 0;
-
     });
 
 // The hybrid approach mixed azd-generated environments with Aspire-managed infrastructure
@@ -1702,12 +1701,16 @@ var api = builder.AddProject<Projects.Api>("api")
 // Explicitly add Azure Container App Environment first
 var containerAppEnvironment = builder.AddAzureContainerAppEnvironment("cae");
 
+// When coming from hybrid mode, the names of the resources will change
+// WithAzdResourceNaming will keep the older naming convention that azd uses
+// while making this transition to aspire owned infrastructure.
+containerAppEnvironment.WithAzdResourceNaming();
+
 // Then use PublishAsAzureContainerApp for customization only (same API)
 var api = builder.AddProject<Projects.Api>("api")
     .PublishAsAzureContainerApp((infrastructure, containerApp) =>
     {
         app.Template.Scale.MinReplicas = 0;
-
     });
 ```
 
