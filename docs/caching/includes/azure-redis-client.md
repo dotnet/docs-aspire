@@ -1,5 +1,6 @@
 ---
 ms.topic: include
+ms.custom: sfi-ropc-nochange
 ---
 
 ### Add Azure Cache for Redis authenticated client

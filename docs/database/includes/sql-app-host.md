@@ -1,5 +1,6 @@
 ---
 ms.topic: include
+ms.custom: sfi-ropc-nochange
 ---
 
 The SQL Server hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.SqlServerServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.

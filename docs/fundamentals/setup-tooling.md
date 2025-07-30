@@ -4,6 +4,7 @@ description: Learn about essential tooling concepts for .NET Aspire.
 ms.date: 07/22/2025
 zone_pivot_groups: dev-environment
 uid: dotnet/aspire/setup-tooling
+ms.custom: sfi-image-nochange
 ---
 
 # .NET Aspire setup and tooling

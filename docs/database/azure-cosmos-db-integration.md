@@ -3,6 +3,7 @@ title: .NET Aspire Azure Cosmos DB integration
 description: Learn how to install and configure the .NET Aspire Azure Cosmos DB integration to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
 ms.date: 05/15/2025
 uid: dotnet/aspire/azure-cosmos-db-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Azure Cosmos DB integration

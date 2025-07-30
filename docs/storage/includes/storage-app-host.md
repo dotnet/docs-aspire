@@ -1,5 +1,6 @@
 ---
 ms.topic: include
+ms.custom: sfi-ropc-nochange
 ---
 
 The .NET Aspire [Azure Storage](/azure/storage/) hosting integration models the various storage resources as the following types:

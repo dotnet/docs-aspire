@@ -3,6 +3,7 @@ title: .NET Aspire NATS integration
 description: Learn how to use the .NET Aspire NATS integration to send logs and traces to a NATS Server.
 ms.date: 02/20/2025
 uid: messaging/nats-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire NATS integration

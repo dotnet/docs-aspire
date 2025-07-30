@@ -3,6 +3,7 @@ title: .NET Aspire Azure Blob Storage integration
 description: Learn how to use the .NET Aspire Azure Blob Storage integration, which includes both hosting and client integrations.
 ms.date: 04/08/2025
 uid: storage/azure-blob-storage-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Azure Blob Storage integration

@@ -2,6 +2,7 @@
 title: Eventing in .NET Aspire
 description: Learn how to use the .NET eventing features with .NET Aspire.
 ms.date: 07/10/2025
+ms.custom: sfi-ropc-nochange
 ---
 
 # Eventing in .NET Aspire

@@ -3,6 +3,7 @@ title: Implement caching with .NET Aspire integrations
 description: Learn how to connect to Redis and cache data using .NET Aspire integrations.
 ms.date: 02/05/2025
 ms.topic: tutorial
+ms.custom: sfi-ropc-nochange
 ---
 
 # Tutorial: Implement caching with .NET Aspire integrations

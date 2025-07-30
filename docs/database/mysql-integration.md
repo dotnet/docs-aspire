@@ -3,6 +3,7 @@ title: .NET Aspire MySQL database integration
 description: Learn how to use the .NET Aspire MySQL database integration, which includes both hosting and client integrations.
 ms.date: 02/07/2025
 uid: storage/mysql-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire MySQL integration
