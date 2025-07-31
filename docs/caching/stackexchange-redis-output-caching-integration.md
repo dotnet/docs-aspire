@@ -3,6 +3,7 @@ title: .NET Aspire Redis output caching integration
 description: Learn how to use the .NET Aspire  Redis output caching integration to register an ASP.NET Core Output Caching provider backed by a Redis server.
 ms.date: 02/05/2025
 zone_pivot_groups: resp-host
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> output caching integration

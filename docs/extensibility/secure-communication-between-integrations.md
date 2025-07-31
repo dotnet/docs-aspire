@@ -3,6 +3,7 @@ title: Secure communication between hosting and client integrations
 description: Learn how to Secure communication between hosting and client integrations.
 ms.date: 09/12/2024
 ms.topic: how-to
+ms.custom: sfi-ropc-nochange
 ---
 
 # Secure communication between hosting and client integrations

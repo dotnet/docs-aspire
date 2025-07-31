@@ -3,6 +3,7 @@ title: Custom resource commands in .NET Aspire
 description: Learn how to create custom resource commands in .NET Aspire.
 ms.date: 11/07/2024
 ms.topic: how-to
+ms.custom: sfi-ropc-nochange
 ---
 
 # Custom resource commands in .NET Aspire

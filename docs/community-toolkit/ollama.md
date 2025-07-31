@@ -2,6 +2,7 @@
 title: .NET Aspire Community Toolkit Ollama integration
 description: Learn how to use the .NET Aspire Ollama hosting and client integration to host Ollama models using the Ollama container and accessing it via the OllamaSharp client.
 ms.date: 10/24/2024
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Community Toolkit Ollama integration

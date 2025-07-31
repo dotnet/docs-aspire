@@ -2,6 +2,7 @@
 title: .NET Aspire Azure OpenAI integration (Preview)
 description: Learn how to use the .NET Aspire Azure OpenAI integration.
 ms.date: 07/22/2025
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Azure OpenAI integration (Preview)

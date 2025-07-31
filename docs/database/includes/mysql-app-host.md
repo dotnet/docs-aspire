@@ -1,5 +1,6 @@
 ---
 ms.topic: include
+ms.custom: sfi-ropc-nochange
 ---
 
 The MySQL hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.MySqlServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.MySqlDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.

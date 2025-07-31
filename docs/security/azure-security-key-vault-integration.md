@@ -3,6 +3,7 @@ title: .NET Aspire Azure Key Vault integration
 description: Learn about the .NET Aspire Azure Key Vault integration.
 ms.date: 07/22/2025
 uid: security/azure-security-key-vault-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Azure Key Vault integration

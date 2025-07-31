@@ -4,6 +4,7 @@ description: Learn about how to to apply Entity Framework Core migrations in .NE
 ms.date: 07/31/2024
 ms.topic: how-to
 uid: database/ef-core-migrations
+ms.custom: sfi-image-nochange
 ---
 
 # Apply Entity Framework Core migrations in .NET Aspire

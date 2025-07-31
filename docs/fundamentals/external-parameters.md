@@ -3,6 +3,7 @@ title: External parameters
 description: Learn how to express parameters such as secrets, connection strings, and other configuration values that might vary between environments.
 ms.topic: how-to
 ms.date: 12/06/2024
+ms.custom: sfi-ropc-nochange
 ---
 
 # External parameters

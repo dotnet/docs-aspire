@@ -3,6 +3,7 @@ title: .NET Aspire SQL Server Entity Framework Core integration
 description: Learn how to use the .NET Aspire SQL Server Entity Framework integration, which includes both hosting and client integrations.
 ms.date: 02/07/2025
 uid: database/sql-server-ef-core-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire SQL Server Entity Framework Core integration

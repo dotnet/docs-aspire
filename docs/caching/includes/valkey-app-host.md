@@ -1,5 +1,6 @@
 ---
 ms.topic: include
+ms.custom: sfi-ropc-nochange
 ---
 
 The Valkey hosting integration models a Valkey resource as the <xref:Aspire.Hosting.ApplicationModel.ValkeyResource> type. To access this type and APIs that allow you to add it to your [📦 Aspire.Hosting.Valkey](https://www.nuget.org/packages/Aspire.Hosting.Valkey) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.

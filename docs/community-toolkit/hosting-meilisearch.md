@@ -2,6 +2,7 @@
 title: .NET Aspire Community Toolkit Meilisearch integration
 description: Learn how to use the .NET Aspire Meilisearch hosting and client integration to run the Meilisearch container and accessing it via the Meilisearch client.
 ms.date: 10/24/2024
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Community Toolkit Meilisearch integration

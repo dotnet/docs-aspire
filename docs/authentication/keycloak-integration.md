@@ -3,6 +3,7 @@ title: .NET Aspire Keycloak integration (Preview)
 description: Learn how to use the .NET Aspire Keycloak integration, which includes both hosting and client integrations.
 ms.date: 07/16/2025
 uid: authentication/keycloak-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Keycloak integration (Preview)

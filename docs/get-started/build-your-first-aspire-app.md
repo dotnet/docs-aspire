@@ -4,6 +4,7 @@ description: Learn how to build your first .NET Aspire solution using the .NET A
 ms.date: 11/07/2024
 ms.topic: quickstart
 zone_pivot_groups: dev-environment
+ms.custom: sfi-ropc-nochange
 ---
 
 # Quickstart: Build your first .NET Aspire solution

@@ -3,6 +3,7 @@ title: .NET Aspire Redis distributed caching integration
 description: Learn how to use the .NET Aspire Redis distributed caching integration, which includes both hosting and client integrations.
 ms.date: 02/05/2025
 zone_pivot_groups: resp-host
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> distributed caching integration

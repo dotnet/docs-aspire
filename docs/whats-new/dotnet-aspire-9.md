@@ -2,6 +2,7 @@
 title: What's new in .NET Aspire 9.0
 description: Learn what's new in the official general availability version of .NET Aspire 9.0.
 ms.date: 11/13/2024
+ms.custom: sfi-ropc-nochange
 ---
 
 # What's new in .NET Aspire 9.0

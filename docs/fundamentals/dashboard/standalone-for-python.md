@@ -4,6 +4,7 @@ description: How to use the Aspire Dashboard in a Python application.
 ms.date: 10/29/2024
 ms.topic: tutorial
 ms.author: aapowell
+ms.custom: sfi-image-nochange
 ---
 
 # Tutorial: Use the .NET Aspire dashboard with Python apps
