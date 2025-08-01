@@ -100,8 +100,7 @@ aspire exec --start-resource my-worker -- npm run build
 - **Resource targeting** with `--resource` or `--start-resource` options
 - **Command execution** in the context of your Aspirified application
 
-> [!IMPORTANT]
-> 🧪 **Feature Flag**: The `aspire exec` command is behind a feature flag and **disabled by default** in this release. It must be explicitly enabled for use with `aspire config set features.execCommandEnabled true`.
+[!INCLUDE [aspire exec feature flag note](../cli/includes/exec-feature-flag-note.md)]
 
 #### `aspire deploy`
 

@@ -329,7 +329,7 @@ The following Event Hub clients are supported by the library, along with their c
 | <xref:Azure.Messaging.EventHubs.Producer.EventHubBufferedProducerClient> | <xref:Azure.Messaging.EventHubs.Producer.EventHubBufferedProducerClientOptions> | <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsBufferedProducerSettings> |
 | <xref:Azure.Messaging.EventHubs.Consumer.EventHubConsumerClient> | <xref:Azure.Messaging.EventHubs.Consumer.EventHubConsumerClientOptions> | <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsConsumerSettings> |
 | <xref:Azure.Messaging.EventHubs.EventProcessorClient> | <xref:Azure.Messaging.EventHubs.EventProcessorClientOptions> | <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsProcessorSettings> |
-| <xref:Microsoft.Azure.EventHubs.PartitionReceiver> | <xref:Azure.Messaging.EventHubs.Primitives.PartitionReceiverOptions> | <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsPartitionReceiverSettings> |
+| [PartitionReceiver Class](/dotnet/api/microsoft.azure.eventhubs.partitionreceiver) | <xref:Azure.Messaging.EventHubs.Primitives.PartitionReceiverOptions> | <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsPartitionReceiverSettings> |
 
 The client types are from the Azure SDK for .NET, as are the corresponding options classes. The settings classes are provided by the .NET Aspire. The settings classes are used to configure the client instances.
 
@@ -368,7 +368,7 @@ The client integration provides additional APIs to configure client instances. W
 | <xref:Azure.Messaging.EventHubs.Producer.EventHubBufferedProducerClient> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddAzureEventHubBufferedProducerClient*> |
 | <xref:Azure.Messaging.EventHubs.Consumer.EventHubConsumerClient> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddAzureEventHubConsumerClient*> |
 | <xref:Azure.Messaging.EventHubs.EventProcessorClient> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddAzureEventProcessorClient*> |
-| <xref:Microsoft.Azure.EventHubs.PartitionReceiver> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddAzurePartitionReceiverClient*> |
+| [PartitionReceiver class](/dotnet/api/microsoft.azure.eventhubs.partitionreceiver) | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddAzurePartitionReceiverClient*> |
 
 All of the aforementioned APIs include optional parameters to configure the client instances.
 
@@ -407,7 +407,7 @@ The client integration provides additional APIs to configure keyed client instan
 | <xref:Azure.Messaging.EventHubs.Producer.EventHubBufferedProducerClient> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddKeyedAzureEventHubBufferedProducerClient*> |
 | <xref:Azure.Messaging.EventHubs.Consumer.EventHubConsumerClient> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddKeyedAzureEventHubConsumerClient*> |
 | <xref:Azure.Messaging.EventHubs.EventProcessorClient> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddKeyedAzureEventProcessorClient*> |
-| <xref:Microsoft.Azure.EventHubs.PartitionReceiver> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddKeyedAzurePartitionReceiverClient*> |
+| [PartitionReceiver class](/dotnet/api/microsoft.azure.eventhubs.partitionreceiver) | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddKeyedAzurePartitionReceiverClient*> |
 
 All of the aforementioned APIs include optional parameters to configure the client instances.
 

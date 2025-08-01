@@ -90,3 +90,5 @@ The `aspire config` command lets you manage Aspire CLI configuration settings. U
 [_Command reference: `aspire exec`_](../cli-reference/aspire-exec.md)
 
 The `aspire exec` command runs a command in the context of a specific Aspire resource, inheriting that resource's configuration, including environment variables, connection strings, and working directory. This is particularly useful for scenarios like running Entity Framework migrations where you need to run commands with the same configuration as your application. For example, you can run `aspire exec --resource api -- dotnet ef migrations add Init` to run Entity Framework commands with the proper database connection strings automatically configured.
+
+[!INCLUDE [aspire exec feature flag note](includes/exec-feature-flag-note.md)]
