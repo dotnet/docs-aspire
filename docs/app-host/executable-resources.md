@@ -1,7 +1,7 @@
 ---
 title: Host external executables in .NET Aspire
 description: Learn how to use ExecutableResource and AddExecutable to host external executable applications in your .NET Aspire app host.
-ms.date: 01/04/2025
+ms.date: 08/04/2025
 ---
 
 # Host external executables in .NET Aspire
@@ -12,14 +12,14 @@ In .NET Aspire, you can host external executable applications alongside your .NE
 
 Use executable resources when you need to:
 
-- Host non-.NET applications that don't have containerized equivalents
-- Integrate command-line tools or utilities into your application
-- Run external processes that other resources depend on
-- Develop with tools that provide local development servers
+- Host non-.NET applications that don't have containerized equivalents.
+- Integrate command-line tools or utilities into your application.
+- Run external processes that other resources depend on.
+- Develop with tools that provide local development servers.
 
 Common examples include:
 
-- **Frontend development servers**: Tools like Azure Static Web Apps CLI, Vite, or webpack dev server
+- **Frontend development servers**: Tools like [Vercel CLI](https://vercel.com/docs/cli), Vite, or webpack dev server
 - **Language-specific applications**: Node.js apps, Python scripts, or Go applications
 - **Database tools**: Migration utilities or database seeders
 - **Build tools**: Asset processors or code generators
@@ -60,8 +60,8 @@ You can provide command-line arguments in several ways:
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Arguments provided directly
-var app = builder.AddExecutable("swa-cli", "swa", "start", ".")
-    .WithArgs("dist", "--api-location", "api", "--port", "4280");
+var app = builder.AddExecutable("vercel-dev", "vercel", "dev", ".")
+    .WithArgs("--listen", "3000");
 ```
 
 ### Arguments using WithArgs
@@ -131,9 +131,9 @@ var app = builder.AddExecutable("app", "node", "app.js", ".")
     });
 ```
 
-## Practical example: Azure Static Web Apps CLI
+## Practical example: Vercel CLI
 
-Here's a complete example using the Azure Static Web Apps CLI to host a frontend application with a backend API:
+Here's a complete example using the [Vercel CLI](https://vercel.com/docs/cli) to host a frontend application with a backend API:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -142,11 +142,11 @@ var builder = DistributedApplication.CreateBuilder(args);
 var api = builder.AddProject<Projects.MyApi>("api")
     .WithExternalHttpEndpoints();
 
-// Frontend with Azure SWA CLI
-var frontend = builder.AddExecutable("swa", "swa", ".", "start")
-    .WithArgs("dist", "--api-location", "http://localhost:5000", "--port", "4280")
-    .WithEnvironment("SWA_CLI_API_URI", api.GetEndpoint("http"))
-    .WithExplicitStart(); // Start manually after API is ready
+// Frontend with Vercel CLI
+var frontend = builder.AddExecutable("vercel-dev", "vercel", "dev", ".")
+    .WithArgs("--listen", "3000")
+    .WithEnvironment("API_URL", api.GetEndpoint("http"))
+    .WithHttpEndpoint(port: 3000, name: "http");
 
 builder.Build().Run();
 ```
