@@ -35,12 +35,12 @@ Moving between minor releases of Aspire is simple:
 1. Update to the latest [.NET Aspire templates](../fundamentals/aspire-sdk-templates.md) by running the following .NET command line:
 
     ```dotnetcli
-    dotnet new update
+    dotnet new install Aspire.ProjectTemplates
     ```
 
-    > The `dotnet new update` command updates all of your templates to the latest version.
+    > The `dotnet new install` command will update existing Aspire templates to the latest version if they are already installed.
 
-If your AppHost project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.0, follow [the upgrade guide](../get-started/upgrade-to-aspire-9.md).
+If your AppHost project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9, follow [the upgrade guide](../get-started/upgrade-to-aspire-9.md).
 
 ## 🛠️ Aspire CLI is generally available
 
@@ -1692,7 +1692,6 @@ var api = builder.AddProject<Projects.Api>("api")
     .PublishAsAzureContainerApp((infrastructure, containerApp) =>
     {
         app.Template.Scale.MinReplicas = 0;
-
     });
 
 // The hybrid approach mixed azd-generated environments with Aspire-managed infrastructure
@@ -1702,12 +1701,16 @@ var api = builder.AddProject<Projects.Api>("api")
 // Explicitly add Azure Container App Environment first
 var containerAppEnvironment = builder.AddAzureContainerAppEnvironment("cae");
 
+// When coming from hybrid mode, the names of the resources will change
+// WithAzdResourceNaming will keep the older naming convention that azd uses
+// while making this transition to aspire owned infrastructure.
+containerAppEnvironment.WithAzdResourceNaming();
+
 // Then use PublishAsAzureContainerApp for customization only (same API)
 var api = builder.AddProject<Projects.Api>("api")
     .PublishAsAzureContainerApp((infrastructure, containerApp) =>
     {
         app.Template.Scale.MinReplicas = 0;
-
     });
 ```
 

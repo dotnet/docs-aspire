@@ -3,6 +3,7 @@ title: .NET Aspire Apache Kafka integration
 description: Learn how to use the .NET Aspire Apache Kafka client message-broker integration.
 ms.date: 10/11/2024
 uid: messaging/kafka-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Apache Kafka integration

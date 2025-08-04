@@ -2,6 +2,7 @@
 title: .NET Aspire Azure SignalR Service integration
 description: Learn how to integrate Azure SignalR Service with .NET Aspire.
 ms.date: 07/22/2025
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Azure SignalR Service integration

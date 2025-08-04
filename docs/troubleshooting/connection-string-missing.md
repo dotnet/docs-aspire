@@ -2,6 +2,7 @@
 title: The connection string is missing
 description: Learn how to troubleshoot the error "ConnectionString is missing" during execution of your app.
 ms.date: 07/03/2024
+ms.custom: sfi-ropc-nochange
 ---
 
 # Connection string is missing

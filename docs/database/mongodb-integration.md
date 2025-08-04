@@ -3,6 +3,7 @@ title: .NET Aspire MongoDB database integration
 description: Learn how to use the .NET Aspire MongoDB database integration, which includes both hosting and client integrations.
 ms.date: 02/19/2025
 uid: database/mongodb-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire MongoDB database integration

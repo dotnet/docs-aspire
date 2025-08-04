@@ -2,6 +2,7 @@
 title: .NET Aspire Community Toolkit EventStore integration
 description: Learn how to use the .NET Aspire EventStore hosting and client integration to run the EventStore container and accessing it via the EventStore client.
 ms.date: 11/21/2024
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Community Toolkit EventStore integration

@@ -3,7 +3,9 @@ title: Deploy a .NET Aspire project using the Azure Developer CLI
 description: Learn how to use `azd` to deploy .NET Aspire projects.
 ms.date: 07/17/2025
 zone_pivot_groups: deployment-platform
-ms.custom: devx-track-extended-azdevcli
+ms.custom:
+  - devx-track-extended-azdevcli
+  - sfi-image-nochange
 ---
 
 # Tutorial: Deploy a .NET Aspire project using the Azure Developer CLI

@@ -3,6 +3,7 @@ title: .NET Aspire Oracle Entity Framework Core integration
 description: Learn how to use the .NET Aspire Oracle Entity Framework Core integration, which includes both hosting and client integrations.
 ms.date: 01/21/2025
 uid: database/oracle-entity-framework-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Oracle Entity Framework Core integration

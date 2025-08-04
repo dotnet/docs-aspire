@@ -3,6 +3,7 @@ title: .NET Aspire Milvus database integration
 description: Learn how to use the .NET Aspire Milvus database integration, which includes both hosting and client integrations.
 ms.date: 02/14/2025
 uid: database/milvus-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Milvus database integration

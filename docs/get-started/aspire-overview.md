@@ -2,6 +2,7 @@
 title: Aspire overview
 description: Learn about Aspire, an application stack designed to improve the experience of building distributed applications.
 ms.date: 07/21/2025
+ms.custom: sfi-ropc-nochange
 ---
 
 # Aspire overview

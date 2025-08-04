@@ -1,5 +1,6 @@
 ---
 ms.topic: include
+ms.custom: sfi-ropc-nochange
 ---
 
 The PostgreSQL hosting integration models various PostgreSQL resources as the following types.

@@ -3,6 +3,7 @@ title: Create custom .NET Aspire client integrations
 description: Learn how to create a custom .NET Aspire client integration for an existing containerized application.
 ms.date: 09/12/2024
 ms.topic: how-to
+ms.custom: sfi-ropc-nochange
 ---
 
 # Create custom .NET Aspire client integrations

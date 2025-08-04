@@ -3,6 +3,7 @@ title: .NET Aspire Redis integration
 description: Learn how to use the .NET Aspire Redis integration, which includes both hosting and client integrations.
 ms.date: 02/05/2025
 zone_pivot_groups: resp-host
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> integration

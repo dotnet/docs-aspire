@@ -2,6 +2,7 @@
 title: Orchestrate Python apps in .NET Aspire
 description: Learn how to integrate Python apps into a .NET Aspire app host project.
 ms.date: 04/15/2025
+ms.custom: sfi-image-nochange
 ---
 
 # Orchestrate Python apps in .NET Aspire

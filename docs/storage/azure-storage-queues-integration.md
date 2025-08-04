@@ -3,6 +3,7 @@ title: .NET Aspire Azure Queue Storage integration
 description: This article describes the .NET Aspire Azure Queue Storage integration features and capabilities.
 ms.date: 05/09/2025
 uid: storage/azure-queue-storage-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Azure Queue Storage integration

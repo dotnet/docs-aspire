@@ -4,6 +4,9 @@ description: Learn how to connect an ASP.NET Core app to messaging services usin
 ms.date: 03/20/2025
 ms.topic: tutorial
 zone_pivot_groups: dev-environment
+ms.custom:
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # Tutorial: Use .NET Aspire messaging integrations in ASP.NET Core

@@ -2,6 +2,7 @@
 title: .NET Aspire Azure Event Hubs integration
 description: This article describes the .NET Aspire Azure Event Hubs integration features and capabilities.
 ms.date: 07/22/2025
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Azure Event Hubs integration

@@ -3,6 +3,7 @@ title: Access resources in .NET Aspire tests
 description: Learn how to access the resources from the .NET Aspire app host in your tests.
 ms.date: 02/24/2025
 zone_pivot_groups: unit-testing-framework
+ms.custom: sfi-ropc-nochange
 ---
 
 # Access resources in .NET Aspire tests
