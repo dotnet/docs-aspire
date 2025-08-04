@@ -84,7 +84,7 @@ In addition to these core commands, we have two beta commands behind [feature fl
 The new `exec` command allows you to execute commands within the context of your Aspire application environment:
 
 ```bash
-# Execute commands, like migrataions, with environment variables from your app model
+# Execute commands, like migrations, with environment variables from your app model
 aspire exec --resource my-api -- dotnet ef database update
 
 # Run scripts with access to application context
