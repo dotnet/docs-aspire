@@ -45,10 +45,10 @@ builder.Build().Run();
 
 The <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> method accepts the following parameters:
 
-- **name**: A unique identifier for the resource
-- **command**: The executable name or path (for example, `"node"`, `"python"`, or `"/usr/bin/myapp"`)
-- **workingDirectory**: The directory where the executable should run
-- **args**: Optional command-line arguments passed to the executable
+- **name**: A unique identifier for the resource.
+- **command**: The executable name or path (for example, `"node"`, `"python"`, or `"/usr/bin/myapp"`).
+- **workingDirectory**: The directory where the executable should run.
+- **args**: Optional command-line arguments passed to the executable.
 
 ## Configure command-line arguments
 
@@ -262,12 +262,12 @@ var api = builder.AddProject<Projects.MyApi>("api")
 
 When working with executable resources:
 
-1. **Use explicit paths**: For better reliability, use full paths to executables when possible
-2. **Handle dependencies**: Use `WithReference` to establish proper dependency relationships
-3. **Configure explicit start**: Use `WithExplicitStart()` for executables that shouldn't start automatically
-4. **Prepare for deployment**: Always use `PublishAsDockerfile()` for production scenarios
-5. **Environment isolation**: Use environment variables rather than command-line arguments for sensitive configuration
-6. **Resource naming**: Use descriptive names that clearly identify the executable's purpose
+1. **Use explicit paths**: For better reliability, use full paths to executables when possible.
+2. **Handle dependencies**: Use `WithReference` to establish proper dependency relationships.
+3. **Configure explicit start**: Use `WithExplicitStart()` for executables that shouldn't start automatically.
+4. **Prepare for deployment**: Always use `PublishAsDockerfile()` for production scenarios.
+5. **Environment isolation**: Use environment variables rather than command-line arguments for sensitive configuration.
+6. **Resource naming**: Use descriptive names that clearly identify the executable's purpose.
 
 ## See also
 
