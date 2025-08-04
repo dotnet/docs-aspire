@@ -197,5 +197,3 @@ var app = builder.Build();
 - **Testing**: .NET Aspire provides [testing capabilities](../testing/overview.md) that work with the new hosting model.
 
 For more information about .NET Aspire integrations and the hosting model, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
-
-For more information about .NET Aspire integrations and the hosting model, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
