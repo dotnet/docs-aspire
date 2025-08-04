@@ -1,0 +1,277 @@
+---
+title: Host external executables in .NET Aspire
+description: Learn how to use ExecutableResource and AddExecutable to host external executable applications in your .NET Aspire app host.
+ms.date: 01/04/2025
+---
+
+# Host external executables in .NET Aspire
+
+In .NET Aspire, you can host external executable applications alongside your .NET projects using the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> method. This capability is useful when you need to integrate non-.NET applications or tools into your distributed application, such as Node.js applications, Python scripts, or specialized CLI tools.
+
+## When to use executable resources
+
+Use executable resources when you need to:
+
+- Host non-.NET applications that don't have containerized equivalents
+- Integrate command-line tools or utilities into your application
+- Run external processes that other resources depend on
+- Develop with tools that provide local development servers
+
+Common examples include:
+
+- **Frontend development servers**: Tools like Azure Static Web Apps CLI, Vite, or webpack dev server
+- **Language-specific applications**: Node.js apps, Python scripts, or Go applications
+- **Database tools**: Migration utilities or database seeders
+- **Build tools**: Asset processors or code generators
+
+## Basic usage
+
+The <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> method requires a resource name, the executable path, and optionally command-line arguments and a working directory:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Basic executable without arguments
+var nodeApp = builder.AddExecutable("frontend", "node", "server.js", ".");
+
+// Executable with command-line arguments
+var pythonApp = builder.AddExecutable("api", "python", "-m", "uvicorn")
+    .WithArgs("main:app", "--reload", "--host", "0.0.0.0", "--port", "8000");
+
+builder.Build().Run();
+```
+
+### Method parameters
+
+The <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> method accepts the following parameters:
+
+- **name**: A unique identifier for the resource
+- **command**: The executable name or path (for example, `"node"`, `"python"`, or `"/usr/bin/myapp"`)
+- **workingDirectory**: The directory where the executable should run
+- **args**: Optional command-line arguments passed to the executable
+
+## Configure command-line arguments
+
+You can provide command-line arguments in several ways:
+
+### Arguments in the AddExecutable call
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Arguments provided directly
+var app = builder.AddExecutable("swa-cli", "swa", "start", ".")
+    .WithArgs("dist", "--api-location", "api", "--port", "4280");
+```
+
+### Arguments using WithArgs
+
+Use the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.WithArgs%2A> method to add arguments after creating the resource:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var app = builder.AddExecutable("webpack-dev", "npm", ".", "run")
+    .WithArgs("dev")
+    .WithArgs("--", "--port", "3000");
+```
+
+### Dynamic arguments with WithEnvironment
+
+For arguments that depend on other resources, use environment variables:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var database = builder.AddPostgres("postgres").AddDatabase("mydb");
+
+var migrator = builder.AddExecutable("migrator", "dotnet", ".", "run")
+    .WithReference(database)
+    .WithEnvironment(context =>
+    {
+        var connectionString = database.Resource.ConnectionStringExpression;
+        context.EnvironmentVariables["CONNECTION_STRING"] = connectionString;
+    });
+```
+
+## Work with resource dependencies
+
+Executable resources can reference other resources and access their connection information:
+
+### Basic resource references
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var redis = builder.AddRedis("cache");
+var postgres = builder.AddPostgres("postgres").AddDatabase("appdb");
+
+var app = builder.AddExecutable("worker", "python", "worker.py", ".")
+    .WithReference(redis)      // Provides ConnectionStrings__cache
+    .WithReference(postgres);  // Provides ConnectionStrings__appdb
+```
+
+### Access specific endpoint information
+
+For more control over how connection information is passed to your executable:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var redis = builder.AddRedis("cache");
+
+var app = builder.AddExecutable("app", "node", "app.js", ".")
+    .WithReference(redis)
+    .WithEnvironment(context =>
+    {
+        // Provide individual connection details
+        context.EnvironmentVariables["REDIS_HOST"] = redis.Resource.PrimaryEndpoint.Property(EndpointProperty.Host);
+        context.EnvironmentVariables["REDIS_PORT"] = redis.Resource.PrimaryEndpoint.Property(EndpointProperty.Port);
+        context.EnvironmentVariables["REDIS_URL"] = $"redis://{redis.Resource.PrimaryEndpoint}";
+    });
+```
+
+## Practical example: Azure Static Web Apps CLI
+
+Here's a complete example using the Azure Static Web Apps CLI to host a frontend application with a backend API:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Backend API
+var api = builder.AddProject<Projects.MyApi>("api")
+    .WithExternalHttpEndpoints();
+
+// Frontend with Azure SWA CLI
+var frontend = builder.AddExecutable("swa", "swa", ".", "start")
+    .WithArgs("dist", "--api-location", "http://localhost:5000", "--port", "4280")
+    .WithEnvironment("SWA_CLI_API_URI", api.GetEndpoint("http"))
+    .WithExplicitStart(); // Start manually after API is ready
+
+builder.Build().Run();
+```
+
+## Configure endpoints
+
+Executable resources can expose HTTP endpoints that other resources can reference:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var frontend = builder.AddExecutable("vite-dev", "npm", ".", "run")
+    .WithArgs("dev", "--", "--port", "5173", "--host", "0.0.0.0")
+    .WithHttpEndpoint(port: 5173, name: "http");
+
+// Another service can reference the frontend
+var e2eTests = builder.AddExecutable("playwright", "npx", ".", "playwright")
+    .WithArgs("test")
+    .WithEnvironment("BASE_URL", frontend.GetEndpoint("http"));
+```
+
+## Environment configuration
+
+Configure environment variables for your executable:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var app = builder.AddExecutable("api", "uvicorn", ".", "main:app")
+    .WithArgs("--reload", "--host", "0.0.0.0")
+    .WithEnvironment("DEBUG", "true")
+    .WithEnvironment("LOG_LEVEL", "info")
+    .WithEnvironment(context =>
+    {
+        // Dynamic environment variables
+        context.EnvironmentVariables["START_TIME"] = DateTimeOffset.UtcNow.ToString();
+    });
+```
+
+## Publishing with PublishAsDockerfile
+
+For production deployment, executable resources need to be containerized. Use the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.PublishAsDockerfile%2A> method to specify how the executable should be packaged:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var app = builder.AddExecutable("frontend", "npm", ".", "start")
+    .WithArgs("--port", "3000")
+    .PublishAsDockerfile();
+```
+
+When you call `PublishAsDockerfile()`, .NET Aspire generates a Dockerfile during the publish process. You can customize this by providing your own Dockerfile:
+
+### Custom Dockerfile for publishing
+
+Create a `Dockerfile` in your executable's working directory:
+
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+EXPOSE 3000
+CMD ["npm", "start"]
+```
+
+Then reference it in your app host:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var app = builder.AddExecutable("frontend", "npm", ".", "start")
+    .PublishAsDockerfile([new DockerfileBuildArg("NODE_ENV", "production")]);
+```
+
+## Advanced scenarios
+
+### Multiple executable arguments
+
+For complex command lines, you can chain multiple `WithArgs` calls:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var app = builder.AddExecutable("complex-tool", "myapp", ".")
+    .WithArgs("--config", "config.json")
+    .WithArgs("--verbose")
+    .WithArgs("--output", "/tmp/results")
+    .WithArgs("--workers", "4");
+```
+
+### Conditional execution
+
+Use explicit start control for executables that should only run under certain conditions:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var database = builder.AddPostgres("postgres").AddDatabase("appdb");
+
+var migrator = builder.AddExecutable("migrator", "dotnet", ".", "ef")
+    .WithArgs("database", "update")
+    .WithReference(database)
+    .WithExplicitStart(); // Only run when manually started
+
+var api = builder.AddProject<Projects.MyApi>("api")
+    .WithReference(database)
+    .WaitFor(migrator); // API waits for migrator to complete
+```
+
+## Best practices
+
+When working with executable resources:
+
+1. **Use explicit paths**: For better reliability, use full paths to executables when possible
+2. **Handle dependencies**: Use `WithReference` to establish proper dependency relationships
+3. **Configure explicit start**: Use `WithExplicitStart()` for executables that shouldn't start automatically
+4. **Prepare for deployment**: Always use `PublishAsDockerfile()` for production scenarios
+5. **Environment isolation**: Use environment variables rather than command-line arguments for sensitive configuration
+6. **Resource naming**: Use descriptive names that clearly identify the executable's purpose
+
+## See also
+
+- [App host overview](../fundamentals/app-host-overview.md)
+- [Add Dockerfiles to the app model](withdockerfile.md)
+- [Node.js apps in .NET Aspire](../get-started/build-aspire-apps-with-nodejs.md)
+- [Python apps in .NET Aspire](../get-started/build-aspire-apps-with-python.md)
