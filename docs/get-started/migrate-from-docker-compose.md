@@ -367,6 +367,7 @@ When migrating from Docker Compose to .NET Aspire, you might encounter some comm
 
 - [Docker Compose FAQ](https://docs.docker.com/compose/faq/)
 - [Container runtime unhealthy](../troubleshooting/container-runtime-unhealthy.md)
+- [Container runtime 'podman' could not be found in WSL](../troubleshooting/podman-wsl-not-found.md)
 - [.NET Aspire dashboard overview](../fundamentals/dashboard/overview.md)
 
 ## Next steps
