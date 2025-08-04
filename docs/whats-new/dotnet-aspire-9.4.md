@@ -1110,7 +1110,7 @@ builder.AddOpenAIClient("chat")
 - **Azure AI Foundry** - Cloud-hosted models with enterprise-grade scaling, supports all Azure AI model deployments
 - **Foundry Local** - On-device inference with different model selection optimized for local hardware, no Azure subscription required
 
-The `RunAsFoundryLocal()` method enables local development scenarios using [Azure AI Foundry Local](https://learn.microsoft.com/azure/ai-foundry/foundry-local/), allowing you to test AI capabilities without requiring cloud resources during development. This supports automatic model downloading, loading, and management through the integrated Foundry Local runtime.
+The `RunAsFoundryLocal()` method enables local development scenarios using [Azure AI Foundry Local](/azure/ai-foundry/foundry-local/), allowing you to test AI capabilities without requiring cloud resources during development. This supports automatic model downloading, loading, and management through the integrated Foundry Local runtime.
 
 ### 🗄️ Database hosting improvements
 
@@ -1175,7 +1175,7 @@ builder.Build().Run();
 - **Better data distribution** for multi-dimensional datasets
 - **Enhanced scalability** up to 10,000+ RU/s per logical partition prefix
 
-For detailed guidance on design patterns and best practices, see the [Azure Cosmos DB hierarchical partition keys documentation](https://learn.microsoft.com/azure/cosmos-db/hierarchical-partition-keys).
+For detailed guidance on design patterns and best practices, see the [Azure Cosmos DB hierarchical partition keys documentation](/azure/cosmos-db/hierarchical-partition-keys).
 
 #### Serverless support
 
@@ -1200,7 +1200,7 @@ var provisionedCosmos = builder.AddAzureCosmosDB("cosmos")
 **Use serverless for:** Variable workloads, development/testing, applications with low average-to-peak traffic ratios.  
 **Use provisioned throughput for:** Sustained traffic requiring predictable performance guarantees.
 
-For detailed comparison and limits, see [Azure Cosmos DB serverless documentation](https://learn.microsoft.com/azure/cosmos-db/serverless).
+For detailed comparison and limits, see [Azure Cosmos DB serverless documentation](/azure/cosmos-db/serverless).
 
 ### 🆔 Consistent user-assigned managed identity support
 
@@ -1820,7 +1820,7 @@ var resource = builder.AddAzureInfrastructure("custom", infra =>
 });
 ```
 
-**Migration impact**: Replace auto-injected parameters with explicit resource modeling for better resource graph representation and support for multiple Azure compute environments. See [Azure resource customization docs](https://learn.microsoft.com/dotnet/aspire/azure/customize-azure-resources) for more details.
+**Migration impact**: Replace auto-injected parameters with explicit resource modeling for better resource graph representation and support for multiple Azure compute environments. See [Azure resource customization docs](/dotnet/aspire/azure/customize-azure-resources) for more details.
 
 ### 🔧 ParameterResource.Value synchronous behavior change
 
