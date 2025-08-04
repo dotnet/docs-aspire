@@ -108,7 +108,7 @@ The `aspire deploy` command supports extensible deployment workflows through the
 
 **Key capabilities:**
 
-- **Custom deployment hooks** using `Aspire.Hosting.Publishing.DeployingCallbackAnnotation` to execute custom logic during the `aspire deploy` command
+- **Custom deployment hooks** using <xref:Aspire.Hosting.ApplicationModel.DeployingCallbackAnnotation> to execute custom logic during the `aspire deploy` command
 - **Workflow activity reporting** via the <xref:Aspire.Hosting.Publishing.IPublishingActivityReporter> to support progress notifications and prompting in commmands
 - **Integration with publish** - `aspire deploy` runs `Aspire.Hosting.Publishing.PublishingCallbackAnnotations` to support deploying artifacts emitted by publish steps, if applicable
 
@@ -199,7 +199,7 @@ This custom deployment logic executes as follows from the `aspire deploy` comman
 Now, integration owners can create sophisticated `aspire deploy` workflows. This work also provides a foundation for advanced deployment automation scenarios.
 
 > [!NOTE]
-> While the `Aspire.Hosting.Publishing.DeployingCallbackAnnotation` API is available in .NET Aspire 9.4, there are currently no built-in resources that natively support deployment callbacks. Built-in resource support for deployment callbacks will be added in the next version of .NET Aspire.
+> While the <xref:Aspire.Hosting.ApplicationModel.DeployingCallbackAnnotation> API is available in .NET Aspire 9.4, there are currently no built-in resources that natively support deployment callbacks. Built-in resource support for deployment callbacks will be added in the next version of .NET Aspire.
 
 > [!IMPORTANT]
 > 🧪 **Feature Flag**: The `aspire deploy` command is behind a feature flag and **disabled by default** in this release. It must be explicitly enabled for use with `aspire config set features.deployCommandEnabled true`
@@ -533,7 +533,7 @@ builder.Build().Run();
 
 **Enhanced capabilities:**
 
-- **Improved lifecycle coordination** between `Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart` and `ContainerLifetime.Persistent`
+- **Improved lifecycle coordination** between <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> and `ContainerLifetime.Persistent`
 - **Automatic persistent networking** spun up when persistent containers are detected
 - **Container delay start** for more reliable startup sequencing
 - **Network isolation** between persistent and session-scoped containers, which now use separate networks for better resource management
@@ -542,7 +542,7 @@ This will greatly improve your experience while building stateful services that 
 
 ### 🎛️ Resource command service
 
-.NET Aspire 9.4 introduces `Aspire.Hosting.ApplicationModel.ResourceCommandService`, an API for executing commands against resources. You can now easily execute the commands that appear in the dashboard programmatically. For example, when writing unit tests for commands, or having other integrations in Aspire execute commands.
+.NET Aspire 9.4 introduces <xref:Aspire.Hosting.ApplicationModel.ResourceCommandService>, an API for executing commands against resources. You can now easily execute the commands that appear in the dashboard programmatically. For example, when writing unit tests for commands, or having other integrations in Aspire execute commands.
 
 The example below uses `ResourceCommandService` to have a command execute other commands.
 
@@ -638,7 +638,7 @@ public async Task Should_ResetCache_WhenTestStarts()
 
 ### 🔄 Resource lifecycle events
 
-.NET Aspire 9.4 introduces convenient extension methods on `Aspire.Hosting.ApplicationModel.IResourceBuilder` that make it much easier to subscribe to [lifecycle events](../app-host/eventing.md#app-host-life-cycle-events) directly on resources, providing a cleaner and more intuitive API.
+.NET Aspire 9.4 introduces convenient extension methods on <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> that make it much easier to subscribe to [lifecycle events](../app-host/eventing.md#app-host-life-cycle-events) directly on resources, providing a cleaner and more intuitive API.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -704,11 +704,11 @@ builder.Build().Run();
 
 **Available lifecycle events:**
 
-- `OnInitializeResource` - Called during early resource initialization
-- `OnBeforeResourceStarted` - Called before the resource starts
-- `OnConnectionStringAvailable` - Called when connection strings are resolved (requires `IResourceWithConnectionString`)
-- `OnResourceEndpointsAllocated` - Called when resource endpoints are allocated (requires `IResourceWithEndpoints`)
-- `OnResourceReady` - Called when the resource is fully ready
+- <xref:Aspire.Hosting.EventingExtensions.OnInitializeResource*> - Called during early resource initialization
+- <xref:Aspire.Hosting.EventingExtensions.OnBeforeResourceStarted*> - Called before the resource starts
+- <xref:Aspire.Hosting.EventingExtensions.OnConnectionStringAvailable*> - Called when connection strings are resolved (requires `IResourceWithConnectionString`)
+- <xref:Aspire.Hosting.EventingExtensions.OnResourceEndpointsAllocated*> - Called when resource endpoints are allocated (requires `IResourceWithEndpoints`)
+- <xref:Aspire.Hosting.EventingExtensions.OnResourceReady*> - Called when the resource is fully ready
 
 The new chainable fluent API, strongly-typed callbacks, and simplified syntax make it intuitive to hook into your resource lifecycles for interactions, commands, custom scripts, and more.
 
@@ -920,7 +920,7 @@ Aspire only shows notifications when a newer version is available, and the check
 
 Connection strings:
 
-- Appear in the **resource details** panel for any resource that implements `IResourceWithConnectionString`
+- Appear in the **resource details** panel for any resource that implements <xref:Aspire.Hosting.ApplicationModel.IResourceWithConnectionString>
 - Values are marked as **sensitive** and can be toggled for visibility in the dashboard
 - Supports all resource types including databases, message brokers, and custom resources
 
@@ -1042,7 +1042,7 @@ builder.Build().Run();
 
 ##### Azure AI Foundry Local support
 
-[Azure AI Foundry Local](https://learn.microsoft.com/azure/ai-foundry/foundry-local/) is an on-device AI inference solution that runs models locally on your hardware, providing performance, privacy, and cost advantages without requiring an Azure subscription. It's ideal for scenarios requiring data privacy, offline operation, cost reduction, or low-latency responses.
+[Azure AI Foundry Local](/azure/ai-foundry/foundry-local/) is an on-device AI inference solution that runs models locally on your hardware, providing performance, privacy, and cost advantages without requiring an Azure subscription. It's ideal for scenarios requiring data privacy, offline operation, cost reduction, or low-latency responses.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -1109,7 +1109,7 @@ builder.AddOpenAIClient("chat")
 - **Azure AI Foundry** - Cloud-hosted models with enterprise-grade scaling, supports all Azure AI model deployments
 - **Foundry Local** - On-device inference with different model selection optimized for local hardware, no Azure subscription required
 
-The `RunAsFoundryLocal()` method enables local development scenarios using [Azure AI Foundry Local](https://learn.microsoft.com/azure/ai-foundry/foundry-local/), allowing you to test AI capabilities without requiring cloud resources during development. This supports automatic model downloading, loading, and management through the integrated Foundry Local runtime.
+The `RunAsFoundryLocal()` method enables local development scenarios using [Azure AI Foundry Local](/azure/ai-foundry/foundry-local/), allowing you to test AI capabilities without requiring cloud resources during development. This supports automatic model downloading, loading, and management through the integrated Foundry Local runtime.
 
 ### 🗄️ Database hosting improvements
 
@@ -1139,7 +1139,7 @@ All database providers now support `WithInitFiles()` method, replacing the more 
 
 ### 🏷️ Consistent resource name exposure
 
-.NET Aspire 9.4 now consistently exposes the actual names of all Azure resources through `Aspire.Hosting.Azure.NameOutputReference` property. This enables applications to access the real Azure resource names that get generated during deployment, which is essential for scenarios requiring direct Azure resource coordination. This is particularly valuable for external automation scripts and monitoring and alerting systems that reference resources by their actual names.
+.NET Aspire 9.4 now consistently exposes the actual names of all Azure resources through the `NameOutputReference` property. This enables applications to access the real Azure resource names that get generated during deployment, which is essential for scenarios requiring direct Azure resource coordination. This is particularly valuable for external automation scripts and monitoring and alerting systems that reference resources by their actual names.
 
 ### 🗄️ Azure Cosmos DB
 
@@ -1174,7 +1174,7 @@ builder.Build().Run();
 - **Better data distribution** for multi-dimensional datasets
 - **Enhanced scalability** up to 10,000+ RU/s per logical partition prefix
 
-For detailed guidance on design patterns and best practices, see the [Azure Cosmos DB hierarchical partition keys documentation](https://learn.microsoft.com/azure/cosmos-db/hierarchical-partition-keys).
+For detailed guidance on design patterns and best practices, see the [Azure Cosmos DB hierarchical partition keys documentation](/azure/cosmos-db/hierarchical-partition-keys).
 
 #### Serverless support
 
@@ -1199,7 +1199,7 @@ var provisionedCosmos = builder.AddAzureCosmosDB("cosmos")
 **Use serverless for:** Variable workloads, development/testing, applications with low average-to-peak traffic ratios.  
 **Use provisioned throughput for:** Sustained traffic requiring predictable performance guarantees.
 
-For detailed comparison and limits, see [Azure Cosmos DB serverless documentation](https://learn.microsoft.com/azure/cosmos-db/serverless).
+For detailed comparison and limits, see [Azure Cosmos DB serverless documentation](/azure/cosmos-db/serverless).
 
 ### 🆔 Consistent user-assigned managed identity support
 
@@ -1293,8 +1293,8 @@ var webApi = builder.AddProject<Projects.WebAPI>("webapi")
 
 **Key features**:
 
-- `Aspire.Hosting.Azure.KeyVault.AzureKeyVaultResourceExtensions.AddSecret` method for adding new secrets to Key Vault from parameters or expressions
-- `Aspire.Hosting.Azure.KeyVault.AzureKeyVaultResourceExtensions.GetSecret` method for referencing existing secrets in Key Vault
+- <xref:Aspire.Hosting.AzureKeyVaultResourceExtensions.AddSecret*> method for adding new secrets to Key Vault from parameters or expressions
+- <xref:Aspire.Hosting.Azure.AzureKeyVaultResource.GetSecret*> method for referencing existing secrets in Key Vault
 - **Strongly-typed secret references** that can be used with `WithEnvironment()` for environment variables
 - **Custom secret naming** support with optional `secretName` parameter
 
@@ -1819,7 +1819,7 @@ var resource = builder.AddAzureInfrastructure("custom", infra =>
 });
 ```
 
-**Migration impact**: Replace auto-injected parameters with explicit resource modeling for better resource graph representation and support for multiple Azure compute environments. See [Azure resource customization docs](https://learn.microsoft.com/dotnet/aspire/azure/customize-azure-resources) for more details.
+**Migration impact**: Replace auto-injected parameters with explicit resource modeling for better resource graph representation and support for multiple Azure compute environments. See [Azure resource customization docs](/dotnet/aspire/azure/customize-azure-resources) for more details.
 
 ### 🔧 ParameterResource.Value synchronous behavior change
 
