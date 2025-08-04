@@ -16,7 +16,7 @@ In .NET Aspire 9.4, several Azure Storage APIs were renamed and refactored for c
 
 ## Previous behavior
 
-Previously, you used methods like `AddBlobs`, `AddBlobContainer`, `AddQueues`, and `AddTables` to add Azure Storage resources.
+Previously, you used `AddBlobs` to call `AddBlobContainer` to add a blob container:
 
 **Hosting integration example:**
 
@@ -27,9 +27,6 @@ var storage = builder.AddAzureStorage("storage");
 
 var blobs = storage.AddBlobs("blobs");
 var blobContainer = blobs.AddBlobContainer("container");
-
-var queues = storage.AddQueues("queues");
-var tables = storage.AddTables("tables");
 ```
 
 Client registration methods also used names like `AddAzureBlobClient`, `AddAzureQueueClient`, and `AddAzureTableClient`.
@@ -46,22 +43,14 @@ builder.AddAzureTableClient("storage");
 
 ## New behavior
 
-Now, the API uses more explicit names that match Azure resource types. For example, use `AddBlobService`, `AddBlobContainer`, `AddQueueService`, `AddQueue`, `AddTableService`, and `AddTable`.
+Now, `AddBlobContainer` is a top level call on the storage resource.
 
 **Hosting integration example:**
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var storage = builder.AddAzureStorage("storage");
-
-var blobs = storage.AddBlobService("blobService");
-blobs.AddBlobContainer("container");
-
-var queues = storage.AddQueueService("queueService");
-queues.AddQueue("queue");
-
-var tables = storage.AddTableService("tableService");
+var blobContainer = storage.AddBlobContainer("container");
 ```
 
 Client registration methods now use names like `AddAzureBlobServiceClient`, `AddAzureQueueServiceClient`, and `AddAzureTableServiceClient`.
@@ -82,11 +71,7 @@ The following table summarizes the key hosting integration API changes:
 
 | Obsolete API | New API | Notes |
 |--|--|--|
-| `AddBlobs` | `AddBlobService` | — |
 | `AddBlobContainer` | `AddBlobContainer` | New API uses `IResourceBuilder<AzureStorageResource>` overload. |
-| `AddTables` | `AddTableService` | — |
-| `AddQueues` | `AddQueueService` | — |
-| N/A | `AddQueue` | — |
 
 The following table summarizes the key client registration API changes:
 
@@ -112,10 +97,7 @@ The new API names provide consistency with Azure client libraries and resource g
 
 ## Affected APIs
 
-- `AddBlobs`
 - `AddBlobContainer`
-- `AddTables`
-- `AddQueues`
 - `AddAzureBlobClient`
 - `AddAzureQueueClient`
 - `AddAzureTableClient`
