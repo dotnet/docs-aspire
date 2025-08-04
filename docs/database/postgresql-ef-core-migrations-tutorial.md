@@ -183,7 +183,7 @@ dotnet new worker -n AspirePostgreSQLEFCore.MigrationService -f "net9.0"
 dotnet sln add AspirePostgreSQLEFCore.MigrationService
 ```
 
-2. Add the necessary project references and packages:
+1. Add the necessary project references and packages:
 
 ```dotnetcli
 dotnet add AspirePostgreSQLEFCore.MigrationService reference AspirePostgreSQLEFCore.Data
@@ -191,11 +191,11 @@ dotnet add AspirePostgreSQLEFCore.MigrationService reference AspirePostgreSQLEFC
 dotnet add AspirePostgreSQLEFCore.MigrationService package Aspire.Npgsql.EntityFrameworkCore.PostgreSQL
 ```
 
-3. Update the migration service **Program.cs**:
+1. Update the migration service **Program.cs**:
 
 :::code source="snippets/postgresql-ef-core-tutorial/AspirePostgreSQLEFCore.MigrationService/Program.cs":::
 
-4. Replace the **Worker.cs** file content:
+1. Replace the **Worker.cs** file content:
 
 :::code source="snippets/postgresql-ef-core-tutorial/AspirePostgreSQLEFCore.MigrationService/Worker.cs":::
 
@@ -225,16 +225,16 @@ Create a simple form to test the database integration. Replace the contents of *
 dotnet run --project AspirePostgreSQLEFCore.AppHost
 ```
 
-2. In the .NET Aspire dashboard, wait for all services to start:
+1. In the .NET Aspire dashboard, wait for all services to start:
    - The **postgres** container should show as **Running**
-   - The **migration** service should show as **Finished** 
+   - The **migration** service should show as **Finished**
    - The web application should show as **Running**
 
-3. Click the web application endpoint to open the application.
+1. Click the web application endpoint to open the application.
 
-4. Fill out the support ticket form and submit it.
+1. Fill out the support ticket form and submit it.
 
-5. Verify that the data appears in the table below the form.
+1. Verify that the data appears in the table below the form.
 
 ## Verify data persistence
 
