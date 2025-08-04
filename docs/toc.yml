@@ -194,6 +194,9 @@ items:
     - name: Connect to SQL Server with EF Core
       displayName: database,sql server,ef core
       href: database/sql-server-integrations.md
+    - name: PostgreSQL migrations with Entity Framework Core
+      displayName: database,postgresql,ef core,migrations
+      href: database/postgresql-ef-core-migrations-tutorial.md
     - name: Connect to an existing SQL Server database
       displayName: database, sql server, ef core
       href: database/connect-to-existing-database.md
