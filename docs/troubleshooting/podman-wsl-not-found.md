@@ -22,9 +22,9 @@ This occurs even though running `podman images` or other Podman commands work su
 
 This issue typically occurs in WSL environments when:
 
-1. **Podman is installed in a separate WSL distribution** than where your .NET Aspire application is running
-2. **You're using shell aliases** instead of having the actual Podman executable in your PATH
-3. **The Podman executable isn't available in the system PATH** that .NET Aspire searches
+1. **Podman is installed in a separate WSL distribution** than where your .NET Aspire application is running.
+1. **You're using shell aliases** instead of having the actual Podman executable in your PATH.
+1. **The Podman executable isn't available in the system PATH** that .NET Aspire searches.
 
 .NET Aspire resolves container runtimes by searching for the executable in the system PATH. Shell aliases (like those defined in `~/.bash_aliases`) aren't recognized during this process.
 
