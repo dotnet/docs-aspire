@@ -19,7 +19,7 @@ Follow [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-g
 - Sentence case headings (no gerunds in titles)
 - Be concise, break up long sentences
 - Oxford comma in lists
-- Number all ordered list items as "1." (not "1.", "2.", etc.)
+- Number all ordered list items as "1." (not sequential numbering like "1.", "2.", "3.", etc.)
 - Complete sentences with proper punctuation in all list items
 - Avoid "etc." or "and so on" - provide complete lists or use "for example"
 - No consecutive headings without content between them
@@ -45,7 +45,7 @@ Use the `url` value from results for manual links.
 
 ## Code Snippets
 For snippets >6 lines:
-1. Create `snippets/{document-name}/` folder in same directory as document
+1. Create `snippets/my-doc/` folder in same directory as document (for a document named `my-doc.md`)
 1. Add snippet as separate `.cs` file
 1. Include simple `.csproj` targeting latest .NET
 1. All code should use the latest stable versions/features
