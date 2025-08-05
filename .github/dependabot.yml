@@ -185,6 +185,17 @@ updates:
         patterns:
           - "*" # Prefer a single PR per solution update.
   - package-ecosystem: "nuget"
+    directory: "/docs/extensibility/snippets/InteractionService" #InteractionService.slnx
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for solutions.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per solution update.
+  - package-ecosystem: "nuget"
     directory: "/docs/extensibility/snippets/MailDevResource" #MailDevResource.sln
     schedule:
       interval: "weekly"
@@ -252,6 +263,17 @@ updates:
           - "*" # Prefer a single PR per solution update.
   - package-ecosystem: "nuget"
     directory: "/docs/fundamentals/dashboard/snippets/DisableAI/AspireApp" #AspireApp.sln
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for solutions.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per solution update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/fundamentals/snippets/build-container-images" #build-container-images.sln
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -351,6 +373,17 @@ updates:
           - "*" # Prefer a single PR per solution update.
   - package-ecosystem: "nuget"
     directory: "/docs/fundamentals/snippets/referenceexpressions" #AspireReferenceExpressions.sln
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for solutions.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per solution update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/fundamentals/snippets/unresolvedparameters" #unresolvedparameters.sln
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -1176,6 +1209,17 @@ updates:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
     directory: "/docs/fundamentals/snippets/annotations-overview" #annotations-overview.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/fundamentals/snippets/build-container-images/apphost" #AppHost.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
