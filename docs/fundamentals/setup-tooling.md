@@ -133,6 +133,41 @@ For more information, see [Install Podman on Windows](https://podman.io/docs/ins
 
 ---
 
+### WSL (Windows Subsystem for Linux) considerations
+
+When using Podman with WSL, ensure that the `podman` executable is available in your `PATH` and not just defined as a shell alias. .NET Aspire resolves container runtimes by searching for the executable in the system PATH, and shell aliases aren't recognized during this process.
+
+**Common issues and solutions:**
+
+- **Podman installed in a separate WSL distribution**: If Podman is installed in a different WSL distribution than your .NET Aspire application, the `podman` command might not be available in your current distribution's PATH.
+
+  **Solution**: Install Podman directly in the WSL distribution where you're running your .NET Aspire application, or create a symbolic link to the Podman executable in a directory that's in your PATH (such as `/usr/local/bin`).
+
+- **Using shell aliases**: If you have a shell alias like `alias podman='podman-remote-static-linux_amd64'` in your `~/.bash_aliases` or similar file, .NET Aspire won't be able to find the container runtime.
+
+  **Solution**: Instead of using an alias, create a symbolic link or add the directory containing the Podman executable to your PATH:
+
+  ```bash
+  # Option 1: Create a symbolic link
+  sudo ln -s /path/to/podman-remote-static-linux_amd64 /usr/local/bin/podman
+  
+  # Option 2: Add to PATH in your shell profile
+  echo 'export PATH="/path/to/podman/directory:$PATH"' >> ~/.bashrc
+  source ~/.bashrc
+  ```
+
+**Verify your setup**: You can verify that Podman is correctly configured by running:
+
+```bash
+which podman
+podman --version
+```
+
+Both commands should succeed and return valid results before running your .NET Aspire application.
+
+> [!TIP]
+> If you encounter issues with Podman in WSL environments, see [Container runtime 'podman' could not be found in WSL](../troubleshooting/podman-wsl-not-found.md) for specific troubleshooting guidance.
+
 ## .NET Aspire dashboard
 
 .NET Aspire templates that expose the [app host](app-host-overview.md) project also include a useful developer [dashboard](dashboard/overview.md) that's used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
