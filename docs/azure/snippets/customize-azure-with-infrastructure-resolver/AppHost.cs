@@ -4,7 +4,7 @@ using Azure.Provisioning.Primitives;
 using Azure.Provisioning.CosmosDB;
 using Microsoft.Extensions.DependencyInjection;
 
-// <configure-azure-options>
+// <configureazureoptions>
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.Services.Configure<AzureProvisioningOptions>(options =>
@@ -13,9 +13,9 @@ builder.Services.Configure<AzureProvisioningOptions>(options =>
 });
 
 builder.Build().Run();
-// </configure-azure-options>
+// </configureazureoptions>
 
-// <infrastructure-resolver>
+// <infrastructureresolver>
 internal sealed class FixedNameInfrastructureResolver : InfrastructureResolver
 {
     public override void ResolveProperties(ProvisionableConstruct construct, ProvisioningBuildOptions options)
@@ -28,4 +28,4 @@ internal sealed class FixedNameInfrastructureResolver : InfrastructureResolver
         base.ResolveProperties(construct, options);
     }
 }
-// </infrastructure-resolver>
+// </infrastructureresolver>

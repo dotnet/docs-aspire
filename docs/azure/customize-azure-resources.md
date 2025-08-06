@@ -95,11 +95,11 @@ Another method you can use to customize Azure provisioning is to create an <xref
 
 The custom infrastructure resolver is a class that inherits from `InfrastructureResolver` and overrides the `ResolveResources` method to make the customizations you need. In this example, the name of a Cosmos DB resource is set:
 
-:::code language="csharp" source="snippets/customize-azure-with-infrastructure-resolver/AppHost.cs" id="infrastructure-resolver":::
+:::code language="csharp" source="snippets/customize-azure-with-infrastructure-resolver/AppHost.cs" id="infrastructureresolver":::
 
 Having created that class, add it to the configuration options using code like this in the AppHost:
 
-:::code language="csharp" source="snippets/customize-azure-with-infrastructure-resolver/AppHost.cs" id="configure-azure-options":::
+:::code language="csharp" source="snippets/customize-azure-with-infrastructure-resolver/AppHost.cs" id="configureazureoptions":::
 
 ## Use custom Bicep templates
 
