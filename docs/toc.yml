@@ -71,6 +71,9 @@ items:
     - name: Custom resource URLs
       displayName: withurl,withurlforendpoint,withurls
       href: fundamentals/custom-resource-urls.md      
+  - name: Host external executables
+    href: app-host/executable-resources.md
+    displayName: executable,addexecutable,external apps,cli tools
   - name: Add Dockerfiles to the app model
     href: app-host/withdockerfile.md
     displayName: dockerfile,docker
