@@ -36,157 +36,39 @@ Instead of using `HostingStartup`, configure your application directly in the `P
 
 **Before (HostingStartup pattern):**
 
-```csharp
-// MyDatabaseStartup.cs
-public class MyDatabaseStartup : IHostingStartup
-{
-    public void Configure(IWebHostBuilder builder)
-    {
-        builder.ConfigureServices(services =>
-        {
-            // This won't work with Aspire integrations
-            services.AddDbContext<MyDbContext>(options =>
-                options.UseNpgsql(connectionString));
-        });
-    }
-}
-```
+:::code language="csharp" source="snippets/hosting-startup-not-supported/hosting-startup-before.cs":::
 
 **After (IHostApplicationBuilder pattern):**
 
-```csharp
-// Program.cs
-var builder = WebApplication.CreateBuilder(args);
-
-// Add service defaults first
-builder.AddServiceDefaults();
-
-// Now you can use Aspire integrations
-builder.AddNpgsqlDbContext<MyDbContext>("postgres");
-
-var app = builder.Build();
-
-app.MapDefaultEndpoints();
-app.Run();
-```
+:::code language="csharp" source="snippets/hosting-startup-not-supported/host-application-builder-after.cs":::
 
 ### Option 2: Create configuration extensions
 
 If you need modular configuration, create extension methods that work with `IHostApplicationBuilder`:
 
-```csharp
-// DatabaseConfiguration.cs
-public static class DatabaseConfiguration
-{
-    public static IHostApplicationBuilder AddDatabaseServices(
-        this IHostApplicationBuilder builder)
-    {
-        // Configure your database based on environment or configuration
-        var connectionName = builder.Configuration["DatabaseProvider"] switch
-        {
-            "PostgreSQL" => "postgres",
-            "SqlServer" => "sqlserver",
-            _ => throw new InvalidOperationException("Unsupported database provider")
-        };
-
-        builder.AddNpgsqlDbContext<MyDbContext>(connectionName);
-        
-        return builder;
-    }
-}
-
-// Program.cs
-var builder = WebApplication.CreateBuilder(args);
-builder.AddServiceDefaults();
-builder.AddDatabaseServices(); // Your modular configuration
-var app = builder.Build();
-```
+:::code language="csharp" source="snippets/hosting-startup-not-supported/configuration-extensions.cs":::
 
 ### Option 3: Use feature flags or configuration-based service registration
 
 For conditional service registration based on configuration:
 
-```csharp
-// Program.cs
-var builder = WebApplication.CreateBuilder(args);
-builder.AddServiceDefaults();
-
-// Conditional service registration based on configuration
-var databaseProvider = builder.Configuration["DatabaseProvider"];
-switch (databaseProvider)
-{
-    case "PostgreSQL":
-        builder.AddNpgsqlDbContext<MyDbContext>("postgres");
-        break;
-    case "SqlServer":
-        builder.AddSqlServerDbContext<MyDbContext>("sqlserver");
-        break;
-    default:
-        throw new InvalidOperationException($"Unsupported database provider: {databaseProvider}");
-}
-
-var telemetryProvider = builder.Configuration["TelemetryProvider"];
-switch (telemetryProvider)
-{
-    case "ApplicationInsights":
-        builder.Services.AddApplicationInsightsTelemetry();
-        break;
-    case "OpenTelemetry":
-        // OpenTelemetry is included with service defaults
-        break;
-}
-
-var app = builder.Build();
-```
+:::code language="csharp" source="snippets/hosting-startup-not-supported/feature-flags-configuration.cs":::
 
 ### Option 4: Use dependency injection for plugin architecture
 
 For more complex plugin scenarios, use dependency injection with interfaces:
 
-```csharp
-// IServicePlugin.cs
-public interface IServicePlugin
-{
-    void ConfigureServices(IHostApplicationBuilder builder);
-}
-
-// DatabasePlugin.cs
-public class DatabasePlugin : IServicePlugin
-{
-    public void ConfigureServices(IHostApplicationBuilder builder)
-    {
-        builder.AddNpgsqlDbContext<MyDbContext>("postgres");
-    }
-}
-
-// Program.cs
-var builder = WebApplication.CreateBuilder(args);
-builder.AddServiceDefaults();
-
-// Register plugins
-var plugins = new List<IServicePlugin>
-{
-    new DatabasePlugin(),
-    // Add other plugins as needed
-};
-
-foreach (var plugin in plugins)
-{
-    plugin.ConfigureServices(builder);
-}
-
-var app = builder.Build();
-```
+:::code language="csharp" source="snippets/hosting-startup-not-supported/dependency-injection-plugins.cs":::
 
 ## Best practices for modular configuration
 
 1. **Use configuration-based decisions**: Instead of having separate startup classes, use configuration values to determine which services to register.
 
-2. **Create extension methods**: Group related service registrations into extension methods on `IHostApplicationBuilder`.
+1. **Create extension methods**: Group related service registrations into extension methods on `IHostApplicationBuilder`.
 
-3. **Leverage service defaults**: Always call `builder.AddServiceDefaults()` to get the full benefits of .NET Aspire's built-in features.
+1. **Leverage service defaults**: Always call `builder.AddServiceDefaults()` to get the full benefits of .NET Aspire's built-in features.
 
-4. **Use the app host for orchestration**: For development scenarios, use the [.NET Aspire app host](../fundamentals/app-host-overview.md) to manage dependencies and configuration.
+1. **Use the app host for orchestration**: For development scenarios, use the [.NET Aspire app host](../fundamentals/app-host-overview.md) to manage dependencies and configuration.
 
 ## Additional considerations
 
