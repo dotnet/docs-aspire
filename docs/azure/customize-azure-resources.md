@@ -89,6 +89,18 @@ Consider the resulting Bicep file:
 
 The Bicep file reflects the desired configuration of the Azure Container Registry, as defined by the `AddAzureInfrastructure` API.
 
+### Use an infrastructure resolver to customize Azure provisioning options
+
+Another method you can use to customize Azure provisioning is to create an <xref:Azure.Provisioning.Primitives.InfrastructureResolver> and write code in it to implement your requirements. Then add that class to the configuration options for your AppHost.
+
+The custom infrastructure resolver is a class that inherits from `InfrastructureResolver` and overrides the `ResolveResources` method to make the customizations you need. In this example, the name of a Cosmos DB resource is set:
+
+:::code language="csharp" source="snippets/customize-azure-with-infrastructure-resolver/AppHost.cs" id="infrastructure-resolver":::
+
+Having created that class, add it to the configuration options using code like this in the AppHost:
+
+:::code language="csharp" source="snippets/customize-azure-with-infrastructure-resolver/AppHost.cs" id="configure-azure-options":::
+
 ## Use custom Bicep templates
 
 When you're targeting Azure as your desired cloud provider, you can use Bicep to define your infrastructure as code. It aims to drastically simplify the authoring experience with a cleaner syntax and better support for modularity and code reuse.
