@@ -54,12 +54,6 @@ For conditional service registration based on configuration:
 
 :::code language="csharp" source="snippets/hosting-startup-not-supported/feature-flags-configuration.cs":::
 
-### Option 4: Use dependency injection for plugin architecture
-
-For more complex plugin scenarios, use dependency injection with interfaces:
-
-:::code language="csharp" source="snippets/hosting-startup-not-supported/dependency-injection-plugins.cs":::
-
 ## Best practices for modular configuration
 
 1. **Use configuration-based decisions**: Instead of having separate startup classes, use configuration values to determine which services to register.
