@@ -284,9 +284,9 @@ items:
       displayName: web pubsub,real-time,messaging
       href: messaging/azure-web-pubsub-integration.md
     - name: Aspire.Hosting.Azure API reference
-      href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.4&preserve-view=true
+      href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.0&preserve-view=true
     - name: Aspire.Azure API reference
-      href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.4&preserve-view=true
+      href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.0&preserve-view=true
   - name: Elasticsearch
     displayName: elasticsearch,search
     href: search/elasticsearch-integration.md
@@ -435,7 +435,7 @@ items:
     - name: RavenDB
       href: community-toolkit/ravendb.md
   - name: Aspire.Hosting API reference
-    href: /dotnet/api/?term=Aspire.Hosting&view=dotnet-aspire-9.4&preserve-view=true
+    href: /dotnet/api/?term=Aspire.Hosting&view=dotnet-aspire-9.0&preserve-view=true
 
 - name: Custom integrations
   items:
@@ -586,7 +586,7 @@ items:
         - name: Publishing to Azure APIs are experimental
           href: diagnostics/aspireazure001.md
   - name: .NET Aspire API reference
-    href: /dotnet/api?view=dotnet-aspire-9.4&preserve-view=true
+    href: /dotnet/api?view=dotnet-aspire-9.0&preserve-view=true
   - name: .NET Aspire FAQ
     displayName: iis,functions,deploy,azure,kubernetes
     href: reference/aspire-faq.yml
