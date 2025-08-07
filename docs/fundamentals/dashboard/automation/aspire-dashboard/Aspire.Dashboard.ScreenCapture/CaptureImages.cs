@@ -186,23 +186,25 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             // Login to the dashboard
             await page.LoginAndWaitForRunningResourcesAsync(DashboardLoginToken);
 
-            var apiEllipsisButton = FluentDataGridSelector.Grid.Body.Row(3).Cell(6)
-                .Descendant("fluent-button:nth-of-type(3)");
-            await page.ClickAsync(apiEllipsisButton);
+            await page.ClickAsync(FluentDataGridSelector.Grid.Body.Row(3).Cell(6)
+                 .Descendant("fluent-button:nth-of-type(3)"));
 
             await page.HighlightElementAsync("fluent-anchored-region");
 
             await page.SaveExploreScreenshotAsync("resource-actions.png");
 
             await page.ClickAsync(DashboardSelectors.ResourcePage.ViewDetailsOption);
-            await page.ClickAsync(DashboardSelectors.ResourcePage.SplitPanel);
+            //await page.ClickAsync(DashboardSelectors.ResourcePage.SplitPanel);
 
-            await page.AdjustSplitPanelsGridTemplateAsync();
-            await page.ClickAndDragShadowRootElementAsync(
-                DashboardSelectors.SplitPanels, DashboardSelectors.MedianId, (0, 20));
+            //await page.AdjustSplitPanelsGridTemplateAsync();
+            //await page.ClickAndDragShadowRootElementAsync(
+            //    DashboardSelectors.SplitPanels, DashboardSelectors.MedianId, (0, 20));
             await page.RedactElementTextAsync(DashboardSelectors.ResourcePage.ResourceDetailsProjectPath);
 
-            await page.ClickAsync(apiEllipsisButton);
+            var apiEllipsisButton = FluentDataGridSelector.Grid.Body.Row(3).Cell(4)
+                .Descendant("fluent-button");
+
+            await page.ClickAsync(apiEllipsisButton, new() { Force = true });
             await page.HoverAsync(DashboardSelectors.ResourcePage.ViewDetailsOption);
             await page.HighlightElementAsync(DashboardSelectors.ResourcePage.ViewDetailsOption);
 
@@ -258,7 +260,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
     [Fact, Trait("Capture", "resource-errors")]
     public async Task CaptureResourcesWithErrorsImages()
     {
-        await ConfigureAsync<SampleAppHost>([ "API_THROWS_EXCEPTION=true" ]);
+        await ConfigureAsync<SampleAppHost>(["API_THROWS_EXCEPTION=true"]);
 
         await InteractWithPageAsync(async page =>
         {
@@ -447,7 +449,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
             // Delay beyond output cache, and invalidate then reload.
             await Task.Delay(2_250);
-            await webPage.ReloadAsync();
+            await webPage.ReloadAsync(new() { WaitUntil = WaitUntilState.NetworkIdle });
 
             await page.BringToFrontAsync();
 
