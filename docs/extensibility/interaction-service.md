@@ -8,7 +8,7 @@ ms.date: 07/21/2025
 
 The interaction service (`Aspire.Hosting.IInteractionService`) allows you to prompt users for input, request confirmation, and display messages. The interaction service works in two different contexts:
 
-- **Aspire dashboard**: When running `aspire run` or launching the app host directly, interactions appear as dialogs and notifications in the dashboard UI.
+- **Aspire dashboard**: When running `aspire run` or launching the AppHost directly, interactions appear as dialogs and notifications in the dashboard UI.
 - **Aspire CLI**: When running `aspire publish` or `aspire deploy`, interactions are prompted through the command-line interface.
 
 This is useful for scenarios where you need to gather information from the user or provide feedback on the status of operations, regardless of how the application is being launched or deployed.
@@ -36,7 +36,7 @@ if (interactionService.IsAvailable)
 
 The interaction service has several methods that you use to interact with users or display messages. The behavior of these methods depends on the execution context:
 
-- **Dashboard context** (`aspire run` or direct app host launch): Interactions appear as modal dialogs, notifications, and form inputs in the [Aspire dashboard web interface](../fundamentals/dashboard/overview.md).
+- **Dashboard context** (`aspire run` or direct AppHost launch): Interactions appear as modal dialogs, notifications, and form inputs in the [Aspire dashboard web interface](../fundamentals/dashboard/overview.md).
 - **CLI context** (`aspire publish` or `aspire deploy`): Interactions are prompted through the command-line interface with text-based prompts and responses.
 
 The following sections describe how to use these APIs effectively in both contexts:
@@ -333,7 +333,7 @@ The interaction service behaves differently depending on how your Aspire solutio
 
 ### Dashboard context
 
-When you run your application using `aspire run` or by directly launching the app host project, interactions appear in the Aspire dashboard web interface:
+When you run your application using `aspire run` or by directly launching the AppHost project, interactions appear in the Aspire dashboard web interface:
 
 - **Modal dialogs**: Message boxes and input prompts appear as overlay dialogs that require user interaction.
 - **Notification messages**: Informational messages appear as dismissible banners at the top of the dashboard.

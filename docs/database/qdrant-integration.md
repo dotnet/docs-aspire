@@ -39,7 +39,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Qdrant resource
 
-In your app host project, call <xref:Aspire.Hosting.QdrantBuilderExtensions.AddQdrant*> to add and return a Qdrant resource builder.
+In your AppHost project, call <xref:Aspire.Hosting.QdrantBuilderExtensions.AddQdrant*> to add and return a Qdrant resource builder.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -168,7 +168,7 @@ builder.AddQdrantClient("qdrant");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Qdrant resource in the app host project. In other words, when you call `AddQdrant` and provide a name of `qdrant` that same name should be used when calling `AddQdrantClient`. For more information, see [Add Qdrant resource](#add-qdrant-resource).
+> The `connectionName` parameter must match the name used when adding the Qdrant resource in the AppHost project. In other words, when you call `AddQdrant` and provide a name of `qdrant` that same name should be used when calling `AddQdrantClient`. For more information, see [Add Qdrant resource](#add-qdrant-resource).
 
 You can then retrieve the `QdrantClient` instance using dependency injection. For example, to retrieve the connection from an example service:
 

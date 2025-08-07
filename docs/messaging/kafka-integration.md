@@ -35,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Kafka server resource
 
-In your app host project, call <xref:Aspire.Hosting.KafkaBuilderExtensions.AddKafka*> on the `builder` instance to add a Kafka server resource:
+In your AppHost project, call <xref:Aspire.Hosting.KafkaBuilderExtensions.AddKafka*> on the `builder` instance to add a Kafka server resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -71,7 +71,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The Kafka UI is a free, open-source web UI to monitor and manage Apache Kafka clusters. .NET Aspire adds another container image [`docker.io/kafbat/kafka-ui`](https://hub.docker.com/r/kafbat/kafka-ui) to the app host that runs the Kafka UI.
+The Kafka UI is a free, open-source web UI to monitor and manage Apache Kafka clusters. .NET Aspire adds another container image [`docker.io/kafbat/kafka-ui`](https://hub.docker.com/r/kafbat/kafka-ui) to the AppHost that runs the Kafka UI.
 
 ### Change the Kafka UI host port
 

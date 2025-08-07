@@ -29,7 +29,7 @@ builder.AddAzureNpgsqlDataSource(connectionName: "postgresdb");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the PostgreSQL server resource in the app host project.
+> The `connectionName` parameter must match the name used when adding the PostgreSQL server resource in the AppHost project.
 
 The preceding code snippet demonstrates how to use the `AddAzureNpgsqlDataSource` method to register an `NpgsqlDataSource` instance that uses Azure authentication ([Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication)). This `"postgresdb"` connection name corresponds to a connection string configuration value.
 

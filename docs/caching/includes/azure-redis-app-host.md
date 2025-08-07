@@ -23,7 +23,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Azure Cache for Redis resource
 
-In your app host project, call <xref:Aspire.Hosting.AzureRedisExtensions.AddAzureRedis*> on the `builder` instance to add an Azure Cache for Redis resource, as shown in the following example:
+In your AppHost project, call <xref:Aspire.Hosting.AzureRedisExtensions.AddAzureRedis*> on the `builder` instance to add an Azure Cache for Redis resource, as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

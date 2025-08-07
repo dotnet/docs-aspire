@@ -24,7 +24,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add SQL Server resource and database resource
 
-In your app host project, call <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*> to add and return a SQL Server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*>, to add SQL Server database resource.
+In your AppHost project, call <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*> to add and return a SQL Server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*>, to add SQL Server database resource.
 
 :::code language="csharp" source="../snippets/sql-server-integration/AspireApp.AppHost/AppHost.cs":::
 
@@ -37,7 +37,7 @@ When adding a database resource to the app model, the database is created if it 
 
 The SQL Server resource includes default credentials with a `username` of `sa` and a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
-When the app host runs, the password is stored in the app host's secret store. It's added to the `Parameters` section, for example:
+When the AppHost runs, the password is stored in the app host's secret store. It's added to the `Parameters` section, for example:
 
 ```json
 {
@@ -106,7 +106,7 @@ For more information on providing parameters, see [External parameters](../../fu
 
 ### Connect to database resources
 
-When the .NET Aspire app host runs, the server's database resources can be accessed from external tools, such as [SQL Server Management Studio (SSMS)](/sql/ssms/download-sql-server-management-studio-ssms) or [MSSQL for Visual Studio Code](/sql/tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code). The connection string for the database resource is available in the dependent resources environment variables and is accessed using the [.NET Aspire dashboard: Resource details](../../fundamentals/dashboard/explore.md#resource-details) pane. The environment variable is named `ConnectionStrings__{name}` where `{name}` is the name of the database resource, in this example it's `database`. Use the connection string to connect to the database resource from external tools. Imagine that you have a database named `todos` with a single `dbo.Todos` table.
+When the .NET Aspire AppHost runs, the server's database resources can be accessed from external tools, such as [SQL Server Management Studio (SSMS)](/sql/ssms/download-sql-server-management-studio-ssms) or [MSSQL for Visual Studio Code](/sql/tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code). The connection string for the database resource is available in the dependent resources environment variables and is accessed using the [.NET Aspire dashboard: Resource details](../../fundamentals/dashboard/explore.md#resource-details) pane. The environment variable is named `ConnectionStrings__{name}` where `{name}` is the name of the database resource, in this example it's `database`. Use the connection string to connect to the database resource from external tools. Imagine that you have a database named `todos` with a single `dbo.Todos` table.
 
 #### [SQL Server Management Studio](#tab/ssms)
 

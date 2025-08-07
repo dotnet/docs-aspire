@@ -17,7 +17,7 @@ uid: storage/azure-data-tables-integration
 
 ### Add Azure Table Storage resource
 
-In your app host project, register the Azure Table Storage integration by chaining a call to <xref:Aspire.Hosting.AzureStorageExtensions.AddTables*> on the `IResourceBuilder<IAzureStorageResource>` instance returned by <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>. The following example demonstrates how to add an Azure Table Storage resource named `storage` and a table resource named `tables`:
+In your AppHost project, register the Azure Table Storage integration by chaining a call to <xref:Aspire.Hosting.AzureStorageExtensions.AddTables*> on the `IResourceBuilder<IAzureStorageResource>` instance returned by <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>. The following example demonstrates how to add an Azure Table Storage resource named `storage` and a table resource named `tables`:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

@@ -24,7 +24,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add MySQL server resource and database resource
 
-In your app host project, call <xref:Aspire.Hosting.MySqlBuilderExtensions.AddMySql*> to add and return a MySQL resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.MySqlBuilderExtensions.AddDatabase*>, to add a MySQL database resource.
+In your AppHost project, call <xref:Aspire.Hosting.MySqlBuilderExtensions.AddMySql*> to add and return a MySQL resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.MySqlBuilderExtensions.AddDatabase*>, to add a MySQL database resource.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -46,7 +46,7 @@ var myService = builder.AddProject<Projects.ExampleProject>()
 
 When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `mysql` image, it creates a new MySQL instance on your local machine. A reference to your MySQL resource builder (the `mysql` variable) is used to add a database. The database is named `mysqldb` and then added to the `ExampleProject`. The MySQL resource includes default credentials with a `username` of `root` and a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
-When the app host runs, the password is stored in the app host's secret store. It's added to the `Parameters` section, for example:
+When the AppHost runs, the password is stored in the app host's secret store. It's added to the `Parameters` section, for example:
 
 ```json
 {

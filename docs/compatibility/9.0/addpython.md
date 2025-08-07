@@ -27,7 +27,7 @@ This change is a [source compatibility](../categories.md#source-compatibility).
 
 ## Reason for change
 
-This changes removes the concept of a Python project from the app host and instead uses the concept of a Python app. Project is an overloaded term that's reserved for .NET projects. The new term `PythonAppResource` is more accurate.
+This changes removes the concept of a Python project from the AppHost and instead uses the concept of a Python app. Project is an overloaded term that's reserved for .NET projects. The new term `PythonAppResource` is more accurate.
 
 ## Recommended action
 

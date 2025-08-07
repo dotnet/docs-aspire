@@ -31,7 +31,7 @@ builder.AddRedisDistributedCache(connectionName: "cache");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Azure Cache for Redis resource in the app host project. For more information, see [Add Azure Cache for Redis resource](#add-azure-cache-for-redis-resource).
+> The `connectionName` parameter must match the name used when adding the Azure Cache for Redis resource in the AppHost project. For more information, see [Add Azure Cache for Redis resource](#add-azure-cache-for-redis-resource).
 
 You can then retrieve the `IDistributedCache` instance using dependency injection. For example, to retrieve the cache from a service:
 

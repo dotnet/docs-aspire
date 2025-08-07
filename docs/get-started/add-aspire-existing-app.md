@@ -204,7 +204,7 @@ Template Name       Short Name              Language  Tags
 .NET Aspire Tes...  aspire-xunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test/xUnit
 ```
 
-In this tutorial, you'll add a App Host project and a Service Defaults project.
+In this tutorial, you'll add a AppHost project and a Service Defaults project.
 
 If the previous command didn't find any templates you must install them. Execute this command:
 
@@ -256,7 +256,7 @@ Also notice that the **eShopLite.AppHost** project, now depends on both the **St
 :::zone-end
 :::zone pivot="vscode,dotnet-cli"
 
-### Create an app host project
+### Create an AppHost project
 
 In order to orchestrate the existing projects, you need to create a new _app host_ project. To create a new [_app host_ project](../fundamentals/app-host-overview.md) from the available .NET Aspire templates, use the following .NET CLI command:
 
@@ -300,7 +300,7 @@ For more information on the available templates, see [.NET Aspire templates](../
 
 ### Create a service defaults project
 
-After the app host project is created, you need to create a new _service defaults_ project. To create a new [_service defaults_ project](../fundamentals/service-defaults.md) from the available .NET Aspire templates, use the following .NET CLI command:
+After the AppHost project is created, you need to create a new _service defaults_ project. To create a new [_service defaults_ project](../fundamentals/service-defaults.md) from the available .NET Aspire templates, use the following .NET CLI command:
 
 ```dotnetcli
 dotnet new aspire-servicedefaults -o eShopLite.ServiceDefaults
@@ -376,7 +376,7 @@ In both the **Store** and **Products** projects, update their _:::no-loc text="P
 builder.AddServiceDefaults();
 ```
 
-### Update the app host project
+### Update the AppHost project
 
 Open the _:::no-loc text="Program.cs":::_ file of the _app host_ project, and replace its contents with the following C# code:
 

@@ -29,7 +29,7 @@ builder.AddAzureNpgsqlDbContext<YourDbContext>(connectionName: "postgresdb");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the PostgreSQL server resource in the app host project.
+> The `connectionName` parameter must match the name used when adding the PostgreSQL server resource in the AppHost project.
 
 The preceding code snippet demonstrates how to use the `AddAzureNpgsqlDbContext` method to register an `YourDbContext` (that's [pooled for performance](/ef/core/performance/advanced-performance-topics)) instance that uses Azure authentication ([Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication)). This `"postgresdb"` connection name corresponds to a connection string configuration value.
 
@@ -55,7 +55,7 @@ builder.Services.AddDbContext<YourDbContext>(options =>
 ```
 
 > [!NOTE]
-> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method must match the name used when adding the PostgreSQL server resource in the app host project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
+> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method must match the name used when adding the PostgreSQL server resource in the AppHost project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
 
 You have more flexibility when you create the database context in this way, for example:
 

@@ -35,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Oracle server and database resources
 
-In your app host project, call <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddOracle*> to add and return an Oracle server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddDatabase*>, to add an Oracle database to the server resource:
+In your AppHost project, call <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddOracle*> to add and return an Oracle server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddDatabase*>, to add an Oracle database to the server resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -173,7 +173,7 @@ builder.AddOracleDatabaseDbContext<ExampleDbContext>(connectionName: "oracledb")
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Oracle database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `oracledb` that same name should be used when calling `AddOracleDatabaseDbContext`. For more information, see [Add Oracle server and database resources](#add-oracle-server-and-database-resources).
+> The `connectionName` parameter must match the name used when adding the Oracle database resource in the AppHost project. In other words, when you call `AddDatabase` and provide a name of `oracledb` that same name should be used when calling `AddOracleDatabaseDbContext`. For more information, see [Add Oracle server and database resources](#add-oracle-server-and-database-resources).
 
 You can then retrieve the <xref:Microsoft.EntityFrameworkCore.DbContext> instance using dependency injection. For example, to retrieve the connection from an example service:
 
@@ -197,7 +197,7 @@ builder.Services.AddDbContext<ExampleDbContext>(options =>
 ```
 
 > [!NOTE]
-> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method must match the name used when adding the Oracle resource in the app host project. For more information, see [Add Oracle server and database resources](#add-oracle-server-and-database-resources).
+> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method must match the name used when adding the Oracle resource in the AppHost project. For more information, see [Add Oracle server and database resources](#add-oracle-server-and-database-resources).
 
 You have more flexibility when you create the database context in this way, for example:
 

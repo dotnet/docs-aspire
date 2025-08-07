@@ -45,7 +45,7 @@ The following options are available:
 
 - **`--`**
 
-  Delimits arguments to `aspire run` from arguments for the app host being run. All arguments after this delimiter are passed to the app host run.
+  Delimits arguments to `aspire run` from arguments for the AppHost being run. All arguments after this delimiter are passed to the AppHost run.
 
 - [!INCLUDE [option-project](includes/option-project.md)]
 

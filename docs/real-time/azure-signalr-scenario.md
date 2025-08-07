@@ -41,7 +41,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Azure SignalR Service resource
 
-To add an Azure SignalR Service resource to your app host project, call the <xref:Aspire.Hosting.AzureSignalRExtensions.AddAzureSignalR*> method:
+To add an Azure SignalR Service resource to your AppHost project, call the <xref:Aspire.Hosting.AzureSignalRExtensions.AddAzureSignalR*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -68,7 +68,7 @@ In the preceding example:
 This architecture allows the `webapp` project to communicate with the `api` project, which in turn communicates with the Azure SignalR Service resource.
 
 > [!IMPORTANT]
-> Calling `AddAzureSignalR` implicitly enables Azure provisioning support. Ensure your app host is configured with the appropriate Azure subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration).
+> Calling `AddAzureSignalR` implicitly enables Azure provisioning support. Ensure your AppHost is configured with the appropriate Azure subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration).
 
 ### Provisioning-generated Bicep
 
@@ -145,7 +145,7 @@ builder.AddProject<Projects.ApiService>("apiService")
 // After adding all resources, run the app...
 ```
 
-In the preceding example, the `RunAsEmulator` method configures the Azure SignalR Service resource to run as an emulator. The emulator is based on the `mcr.microsoft.com/signalr/signalr-emulator:latest` container image. The emulator is started when the app host is run, and is stopped when the app host is stopped.
+In the preceding example, the `RunAsEmulator` method configures the Azure SignalR Service resource to run as an emulator. The emulator is based on the `mcr.microsoft.com/signalr/signalr-emulator:latest` container image. The emulator is started when the AppHost is run, and is stopped when the AppHost is stopped.
 
 #### Azure SignalR Service modes
 
@@ -219,7 +219,7 @@ The `AddNamedAzureSignalR` method configures the project to use the Azure Signal
 
 ### Configure Azure SignalR Service in Serverless mode
 
-If you're app host is using the Azure SignalR emulator, you'll also need to install the [📦 Microsoft.Azure.SignalR.Management](https://www.nuget.org/packages/Microsoft.Azure.SignalR.Management) NuGet package.
+If you're AppHost is using the Azure SignalR emulator, you'll also need to install the [📦 Microsoft.Azure.SignalR.Management](https://www.nuget.org/packages/Microsoft.Azure.SignalR.Management) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

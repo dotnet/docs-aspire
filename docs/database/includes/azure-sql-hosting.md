@@ -25,7 +25,7 @@ The Azure SQL hosting integration takes a dependency on the [📦 Aspire.Hosting
 
 ### Add Azure SQL server resource and database resource
 
-In your app host project, call <xref:Aspire.Hosting.AzureSqlExtensions.AddAzureSqlServer*> to add and return an Azure SQL server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.AzureSqlExtensions.AddDatabase*>, to add an Azure SQL database resource:
+In your AppHost project, call <xref:Aspire.Hosting.AzureSqlExtensions.AddAzureSqlServer*> to add and return an Azure SQL server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.AzureSqlExtensions.AddDatabase*>, to add an Azure SQL database resource:
 
 ```csharp
 var azureSql = builder.AddAzureSqlServer("azuresql")

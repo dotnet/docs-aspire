@@ -6,7 +6,7 @@ ms.date: 04/15/2025
 
 # .NET Aspire and launch profiles
 
-.NET Aspire makes use of _launch profiles_ defined in both the app host and service projects to simplify the process of configuring multiple aspects of the debugging and publishing experience for .NET Aspire-based distributed applications.
+.NET Aspire makes use of _launch profiles_ defined in both the AppHost and service projects to simplify the process of configuring multiple aspects of the debugging and publishing experience for .NET Aspire-based distributed applications.
 
 ## Launch profile basics
 
@@ -92,19 +92,19 @@ In .NET Aspire, the AppHost is just a .NET application. As a result it has a `la
 
 The .NET Aspire templates have a very similar set of _launch profiles_ to a regular ASP.NET Core application. When the .NET Aspire app project launches, it starts a <xref:Aspire.Hosting.DistributedApplication> and hosts a web-server which is used by the .NET Aspire Dashboard to fetch information about resources which are being orchestrated by .NET Aspire.
 
-For information about app host configuration options, see [.NET Aspire app host configuration](../app-host/configuration.md).
+For information about AppHost configuration options, see [.NET Aspire AppHost configuration](../app-host/configuration.md).
 
-## Relationship between app host launch profiles and service projects
+## Relationship between AppHost launch profiles and service projects
 
-In .NET Aspire the app host is responsible for coordinating the launch of multiple service projects. When you run the app host either via the command line or from Visual Studio (or other development environment) a launch profile is selected for the app host. In turn, the app host will attempt to find a matching launch profile in the service projects it is launching and use those options to control the environment and default networking configuration for the service project.
+In .NET Aspire the AppHost is responsible for coordinating the launch of multiple service projects. When you run the AppHost either via the command line or from Visual Studio (or other development environment) a launch profile is selected for the app host. In turn, the AppHost will attempt to find a matching launch profile in the service projects it is launching and use those options to control the environment and default networking configuration for the service project.
 
-When the app host launches a service project it doesn't simply launch the service project using the `--launch-profile` option. Therefore, there will be no `DOTNET_LAUNCH_PROFILE` environment variable set for service projects. This is because .NET Aspire modifies the `ASPNETCORE_URLS` environment variable (derived from the `applicationUrl` field in the launch profile) to use a different port. By default, .NET Aspire inserts a reverse proxy in front of the ASP.NET Core application to allow for multiple instances of the application using the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithReplicas%2A> method.
+When the AppHost launches a service project it doesn't simply launch the service project using the `--launch-profile` option. Therefore, there will be no `DOTNET_LAUNCH_PROFILE` environment variable set for service projects. This is because .NET Aspire modifies the `ASPNETCORE_URLS` environment variable (derived from the `applicationUrl` field in the launch profile) to use a different port. By default, .NET Aspire inserts a reverse proxy in front of the ASP.NET Core application to allow for multiple instances of the application using the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithReplicas%2A> method.
 
 Other settings such as options from the `environmentVariables` field are passed through to the application without modification.
 
 ## Control launch profile selection
 
-Ideally, it's possible to align the launch profile names between the app host and the service projects to make it easy to switch between configuration options on all projects coordinated by the app host at once. However, it may be desirable to control launch profile that a specific project uses. The <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> extension method provides a mechanism to do this.
+Ideally, it's possible to align the launch profile names between the AppHost and the service projects to make it easy to switch between configuration options on all projects coordinated by the AppHost at once. However, it may be desirable to control launch profile that a specific project uses. The <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> extension method provides a mechanism to do this.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

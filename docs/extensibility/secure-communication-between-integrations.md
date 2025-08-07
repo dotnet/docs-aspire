@@ -43,7 +43,7 @@ The preceding code updates the `AddMailDev` extension method to include the `use
 
 ## Update the app host
 
-Now that the resource is updated to include the username and password parameters, you need to update the app host to include these parameters. Update the _:::no-loc text="Program.cs":::_ file in the `MailDevResource.AppHost` project with the following C# code:
+Now that the resource is updated to include the username and password parameters, you need to update the AppHost to include these parameters. Update the _:::no-loc text="Program.cs":::_ file in the `MailDevResource.AppHost` project with the following C# code:
 
 :::code source="snippets/MailDevResourceWithCredentials/MailDevResource.AppHost/Program.cs" highlight="3-4,6-9":::
 

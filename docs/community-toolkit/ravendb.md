@@ -36,7 +36,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add RavenDB server resource and database resource
 
-To set up RavenDB in your app host project, call one of the `AddRavenDB` extension methods on the `builder` instance to add a RavenDB server resource, then call `AddDatabase` on the server resource to add a database. Here’s an example:
+To set up RavenDB in your AppHost project, call one of the `AddRavenDB` extension methods on the `builder` instance to add a RavenDB server resource, then call `AddDatabase` on the server resource to add a database. Here’s an example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -126,7 +126,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.RavenDB](htt
 
 ## Client integration
 
-To get started with the .NET Aspire RavenDB client integration, install the [📦 CommunityToolkit.Aspire.RavenDB.Client](https://nuget.org/packages/CommunityToolkit.Aspire.RavenDB.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the RavenDB client. The RavenDB client integration registers an [IDocumentStore](https://ravendb.net/docs/article-page/6.2/csharp/client-api/what-is-a-document-store) instance, which serves as the entry point for interacting with the RavenDB server resource or an existing RavenDB instance. If your app host includes RavenDB database resources, the associated [IDocumentSession](https://ravendb.net/docs/article-page/6.2/csharp/client-api/session/what-is-a-session-and-how-does-it-work) and [IAsyncDocumentSession](https://ravendb.net/docs/article-page/6.2/csharp/client-api/session/what-is-a-session-and-how-does-it-work) instances are also registered for dependency injection.
+To get started with the .NET Aspire RavenDB client integration, install the [📦 CommunityToolkit.Aspire.RavenDB.Client](https://nuget.org/packages/CommunityToolkit.Aspire.RavenDB.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the RavenDB client. The RavenDB client integration registers an [IDocumentStore](https://ravendb.net/docs/article-page/6.2/csharp/client-api/what-is-a-document-store) instance, which serves as the entry point for interacting with the RavenDB server resource or an existing RavenDB instance. If your AppHost includes RavenDB database resources, the associated [IDocumentSession](https://ravendb.net/docs/article-page/6.2/csharp/client-api/session/what-is-a-session-and-how-does-it-work) and [IAsyncDocumentSession](https://ravendb.net/docs/article-page/6.2/csharp/client-api/session/what-is-a-session-and-how-does-it-work) instances are also registered for dependency injection.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -152,7 +152,7 @@ builder.AddRavenDBClient(connectionName: "ravendb");
 ```
 
 > [!TIP]  
-> The `connectionName` parameter must match the name used when adding the RavenDB server resource (or the database resource, if provided) in the app host project. In other words, when you call `AddDatabase` and provide a name of `ravendb`, that same name should be used when calling `AddRavenDBClient`. For more information, see [Add RavenDB server resource and database resource](#add-ravendb-server-resource-and-database-resource).
+> The `connectionName` parameter must match the name used when adding the RavenDB server resource (or the database resource, if provided) in the AppHost project. In other words, when you call `AddDatabase` and provide a name of `ravendb`, that same name should be used when calling `AddRavenDBClient`. For more information, see [Add RavenDB server resource and database resource](#add-ravendb-server-resource-and-database-resource).
 
 You can then retrieve the `IDocumentStore` instance using dependency injection. For example, to retrieve the client from an example service:
 

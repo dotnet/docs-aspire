@@ -6,7 +6,7 @@ ms.date: 03/11/2025
 
 # .NET Aspire testing overview
 
-.NET Aspire supports automated testing of your application through the [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package. This package provides the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> class, which is used to create a test host for your application. The testing builder launches your app host project in a background thread and manages its lifecycle, allowing you to control and manipulate the application and its resources through <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> or <xref:Aspire.Hosting.DistributedApplication> instances.
+.NET Aspire supports automated testing of your application through the [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package. This package provides the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> class, which is used to create a test host for your application. The testing builder launches your AppHost project in a background thread and manages its lifecycle, allowing you to control and manipulate the application and its resources through <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> or <xref:Aspire.Hosting.DistributedApplication> instances.
 
 By default, the testing builder disables the dashboard and randomizes the ports of proxied resources to enable multiple instances of your application to run concurrently. Once your test completes, disposing of the application or testing builder cleans up your app resources.
 
@@ -14,7 +14,7 @@ To get started writing your first integration test with .NET Aspire, see the [Wr
 
 ## Testing .NET Aspire solutions
 
-.NET Aspire's testing capabilities are designed specifically for closed-box integration testing of your entire distributed application. Unlike unit tests or open-box integration tests, which typically run individual components in isolation, .NET Aspire tests launch your complete solution (the app host and all its resources) as separate processes, closely simulating real-world scenarios.
+.NET Aspire's testing capabilities are designed specifically for closed-box integration testing of your entire distributed application. Unlike unit tests or open-box integration tests, which typically run individual components in isolation, .NET Aspire tests launch your complete solution (the AppHost and all its resources) as separate processes, closely simulating real-world scenarios.
 
 Consider the following diagram that shows how the .NET Aspire testing project starts the app host, which then starts the application and its resources:
 
@@ -70,5 +70,5 @@ var builder = await DistributedApplicationTestingBuilder
 ## See also
 
 - [Write your first .NET Aspire test](./write-your-first-test.md)
-- [Managing the app host in .NET Aspire tests](./manage-app-host.md)
+- [Managing the AppHost in .NET Aspire tests](./manage-app-host.md)
 - [Access resources in .NET Aspire tests](./accessing-resources.md)

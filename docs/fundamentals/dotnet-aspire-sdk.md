@@ -53,8 +53,8 @@ Each `ProjectReference` in the [.NET Aspire app host][app-host] project isn't tr
 
 ### Orchestrator dependencies
 
-The .NET Aspire SDK dynamically adds references to the [.NET Aspire dashboard](dashboard/overview.md) and other app host dependencies, such as the developer control plane (DCP) packages. These dependencies are specific to the platform that the app host is built on.
+The .NET Aspire SDK dynamically adds references to the [.NET Aspire dashboard](dashboard/overview.md) and other AppHost dependencies, such as the developer control plane (DCP) packages. These dependencies are specific to the platform that the AppHost is built on.
 
-When the app host project runs, the orchestrator relies on these dependencies to provide the necessary functionality to the app host. For more information, see [.NET Aspire orchestration overview][app-host].
+When the AppHost project runs, the orchestrator relies on these dependencies to provide the necessary functionality to the app host. For more information, see [.NET Aspire orchestration overview][app-host].
 
 [app-host]: xref:dotnet/aspire/app-host

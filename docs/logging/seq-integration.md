@@ -36,7 +36,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add a Seq resource
 
-In your app host project, call <xref:Aspire.Hosting.SeqBuilderExtensions.AddSeq*> to add and return a Seq resource builder.
+In your AppHost project, call <xref:Aspire.Hosting.SeqBuilderExtensions.AddSeq*> to add and return a Seq resource builder.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -66,7 +66,7 @@ Seq shouldn't be part of the .NET Aspire [deployment manifest](../deployment/man
 
 ### Persistent logs and traces
 
-Register Seq with a data directory in your app host project to retain Seq's data and configuration across application restarts:
+Register Seq with a data directory in your AppHost project to retain Seq's data and configuration across application restarts:
 
 ```csharp
 var seq = builder.AddSeq("seq", seqDataDirectory: "./seqdata")
@@ -145,7 +145,7 @@ builder.AddSeqEndpoint(connectionName: "seq");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Seq resource in the app host project. In other words, when you call `AddSeq` and provide a name of `seq` that same name should be used when calling `AddSeqEndpoint`. For more information, see [Add a Seq resource](#add-a-seq-resource).
+> The `connectionName` parameter must match the name used when adding the Seq resource in the AppHost project. In other words, when you call `AddSeq` and provide a name of `seq` that same name should be used when calling `AddSeqEndpoint`. For more information, see [Add a Seq resource](#add-a-seq-resource).
 
 ### Configuration
 

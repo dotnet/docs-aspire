@@ -35,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Azure Key Vault resource
 
-In your app host project, call <xref:Aspire.Hosting.AzureKeyVaultResourceExtensions.AddAzureKeyVault*> on the builder instance to add an Azure Key Vault resource:
+In your AppHost project, call <xref:Aspire.Hosting.AzureKeyVaultResourceExtensions.AddAzureKeyVault*> on the builder instance to add an Azure Key Vault resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -148,7 +148,7 @@ builder.Configuration.AddAzureKeyVaultSecrets(connectionName: "key-vault");
 > The `AddAzureKeyVaultSecrets` API name has caused a bit of confusion. The method is used to configure the `SecretClient` based on the given connection name, and _it's not used_ to add secrets to the configuration.
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Azure Key Vault resource in the app host project. For more information, see [Add Azure Key Vault resource](#add-azure-key-vault-resource).
+> The `connectionName` parameter must match the name used when adding the Azure Key Vault resource in the AppHost project. For more information, see [Add Azure Key Vault resource](#add-azure-key-vault-resource).
 
 You can then retrieve a secret-based configuration value through the normal <xref:Microsoft.Extensions.Configuration.IConfiguration> APIs, or even by binding to strongly-typed classes with the [options pattern](/dotnet/core/extensions/options). To retrieve a secret from an example service class that's been registered with the dependency injection container, consider the following snippets:
 
@@ -193,7 +193,7 @@ builder.AddAzureKeyVaultClient(connectionName: "key-vault");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Azure Key Vault resource in the app host project. For more information, see [Add Azure Key Vault resource](#add-azure-key-vault-resource).
+> The `connectionName` parameter must match the name used when adding the Azure Key Vault resource in the AppHost project. For more information, see [Add Azure Key Vault resource](#add-azure-key-vault-resource).
 
 After adding the `SecretClient` to the builder, you can get the <xref:Azure.Security.KeyVault.Secrets.SecretClient> instance using dependency injection. For example, to retrieve the client from an example service define it as a constructor parameter and ensure the `ExampleService` class is registered with the dependency injection container:
 

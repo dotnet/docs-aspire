@@ -36,7 +36,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add EventStore resource
 
-In the app host project, register and consume the EventStore integration using the `AddEventStore` extension method to add the EventStore container to the application builder.
+In the AppHost project, register and consume the EventStore integration using the `AddEventStore` extension method to add the EventStore container to the application builder.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -163,7 +163,7 @@ builder.AddEventStoreClient(connectionName: "eventstore");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the EventStore resource in the app host project. For more information, see [Add EventStore resource](#add-eventstore-resource).
+> The `connectionName` parameter must match the name used when adding the EventStore resource in the AppHost project. For more information, see [Add EventStore resource](#add-eventstore-resource).
 
 You can then retrieve the `EventStoreClient` instance using dependency injection. For example, to retrieve the connection from an example service:
 

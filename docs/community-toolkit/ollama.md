@@ -36,7 +36,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Ollama resource
 
-In the app host project, register and consume the Ollama integration using the `AddOllama` extension method to add the Ollama container to the application builder. You can then add models to the container, which downloads and run when the container starts, using the `AddModel` extension method.
+In the AppHost project, register and consume the Ollama integration using the `AddOllama` extension method to add the Ollama container to the application builder. You can then add models to the container, which downloads and run when the container starts, using the `AddModel` extension method.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

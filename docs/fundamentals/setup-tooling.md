@@ -186,7 +186,7 @@ The .NET Aspire dashboard is also available in a standalone mode. For more infor
 
 ## Visual Studio tooling
 
-Visual Studio provides extra features for working with .NET Aspire integrations and the App Host orchestrator project. Not all of these features are currently available in Visual Studio Code or through the CLI.
+Visual Studio provides extra features for working with .NET Aspire integrations and the AppHost orchestrator project. Not all of these features are currently available in Visual Studio Code or through the CLI.
 
 ### Add an integration package
 

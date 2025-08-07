@@ -39,7 +39,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add RabbitMQ server resource
 
-In your app host project, call <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ*> on the `builder` instance to add a RabbitMQ server resource:
+In your AppHost project, call <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ*> on the `builder` instance to add a RabbitMQ server resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -138,7 +138,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The RabbitMQ management plugin provides an HTTP-based API for management and monitoring of your RabbitMQ server. .NET Aspire adds another container image [`docker.io/library/rabbitmq-management`](https://hub.docker.com/_/rabbitmq) to the app host that runs the management plugin. You can access the management plugin from the .NET Aspire dashboard by selecting an endpoint for your RabbitMQ resource:
+The RabbitMQ management plugin provides an HTTP-based API for management and monitoring of your RabbitMQ server. .NET Aspire adds another container image [`docker.io/library/rabbitmq-management`](https://hub.docker.com/_/rabbitmq) to the AppHost that runs the management plugin. You can access the management plugin from the .NET Aspire dashboard by selecting an endpoint for your RabbitMQ resource:
 
 :::image type="content" source="media/dashboard-access-rabbitmq-management.png" alt-text="Screenshot of the .NET Aspire dashboard showing how to connect to the RabbitMQ management plugin.":::
 
@@ -187,7 +187,7 @@ builder.AddRabbitMQClient(connectionName: "messaging");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the RabbitMQ server resource in the app host project. For more information, see [Add RabbitMQ server resource](#add-rabbitmq-server-resource).
+> The `connectionName` parameter must match the name used when adding the RabbitMQ server resource in the AppHost project. For more information, see [Add RabbitMQ server resource](#add-rabbitmq-server-resource).
 
 You can then retrieve the `IConnection` instance using dependency injection. For example, to retrieve the connection from an example service:
 

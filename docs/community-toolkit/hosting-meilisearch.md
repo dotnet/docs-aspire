@@ -36,7 +36,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Meilisearch resource
 
-In the app host project, register and consume the Meilisearch integration using the `AddMeilisearch` extension method to add the Meilisearch container to the application builder.
+In the AppHost project, register and consume the Meilisearch integration using the `AddMeilisearch` extension method to add the Meilisearch container to the application builder.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -138,7 +138,7 @@ builder.AddMeilisearchClient(connectionName: "meilisearch");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Meilisearch resource in the app host project. For more information, see [Add Meilisearch resource](#add-meilisearch-resource).
+> The `connectionName` parameter must match the name used when adding the Meilisearch resource in the AppHost project. For more information, see [Add Meilisearch resource](#add-meilisearch-resource).
 
 You can then retrieve the `MeilisearchClient` instance using dependency injection. For example, to retrieve the connection from an example service:
 

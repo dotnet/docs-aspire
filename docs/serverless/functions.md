@@ -108,7 +108,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Azure Functions resource
 
-In your app host project, call <xref:Aspire.Hosting.AzureFunctionsProjectResourceExtensions.AddAzureFunctionsProject*> on the `builder` instance to add an Azure Functions resource:
+In your AppHost project, call <xref:Aspire.Hosting.AzureFunctionsProjectResourceExtensions.AddAzureFunctionsProject*> on the `builder` instance to add an Azure Functions resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -167,7 +167,7 @@ builder.AddAzureFunctionsProject<Projects.ExampleFunctions>("functions")
 builder.Build().Run();
 ```
 
-The preceding code adds an Azure Storage resource to the app host and references it in the Azure Functions project. The `blobs` resource is added to the `storage` resource and then referenced by the `functions` resource. The connection information required to connect to the `blobs` resource is automatically injected into the Azure Functions project and enables the project to define a `BlobTrigger` that relies on `blobs` resource.
+The preceding code adds an Azure Storage resource to the AppHost and references it in the Azure Functions project. The `blobs` resource is added to the `storage` resource and then referenced by the `functions` resource. The connection information required to connect to the `blobs` resource is automatically injected into the Azure Functions project and enables the project to define a `BlobTrigger` that relies on `blobs` resource.
 
 ## See also
 

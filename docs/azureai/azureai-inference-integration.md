@@ -13,7 +13,7 @@ The .NET Aspire Azure AI Inference integration provides a seamless way to deploy
 
 ## Hosting integration
 
-Although the Azure AI Inference library doesn't currently offer direct hosting integration, you can still integrate it into your app host project. Simply add a connection string to establish a reference to an existing Azure AI Foundry resource.
+Although the Azure AI Inference library doesn't currently offer direct hosting integration, you can still integrate it into your AppHost project. Simply add a connection string to establish a reference to an existing Azure AI Foundry resource.
 
 ### Connect to an existing Azure AI Foundry service
 
@@ -74,7 +74,7 @@ builder.AddChatCompletionsClient(connectionName: "ai-foundry");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Azure AI Inference resource in the app host project. For more information, see [Connect to an existing Azure AI Foundry service](#connect-to-an-existing-azure-ai-foundry-service).
+> The `connectionName` parameter must match the name used when adding the Azure AI Inference resource in the AppHost project. For more information, see [Connect to an existing Azure AI Foundry service](#connect-to-an-existing-azure-ai-foundry-service).
 
 After adding the `ChatCompletionsClient`, you can retrieve the client instance using dependency injection:
 

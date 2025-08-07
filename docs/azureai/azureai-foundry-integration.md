@@ -35,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Azure AI Foundry resource
 
-To add an `AzureAIFoundryResource` to your app host project, call the `AddAzureAIFoundry` method:
+To add an `AzureAIFoundryResource` to your AppHost project, call the `AddAzureAIFoundry` method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -48,7 +48,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The preceding code adds an Azure AI Foundry resource named `foundry` to the app host project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
+The preceding code adds an Azure AI Foundry resource named `foundry` to the AppHost project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
 
 <!-- TODO: Add AddAzureAIFoundry when xref is available. -->
 
@@ -222,7 +222,7 @@ builder.AddAzureChatCompletionsClient(connectionName: "chat");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Azure AI Foundry deployment resource in the app host project. For more information, see Add an Azure AI Foundry deployment resource.
+> The `connectionName` parameter must match the name used when adding the Azure AI Foundry deployment resource in the AppHost project. For more information, see Add an Azure AI Foundry deployment resource.
 
 After adding the `ChatCompletionsClient`, you can retrieve the client instance using dependency injection:
 

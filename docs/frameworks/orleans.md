@@ -1,6 +1,6 @@
 ---
 title: .NET Aspire Orleans integration
-description: Learn how to use the .NET Aspire Orleans hosting integration, which can configure and orchestrate Orleans from a .NET Aspire app host project.
+description: Learn how to use the .NET Aspire Orleans hosting integration, which can configure and orchestrate Orleans from a .NET Aspire AppHost project.
 ms.date: 11/05/2024
 uid: frameworks/orleans
 ---
@@ -9,7 +9,7 @@ uid: frameworks/orleans
 
 [Orleans](https://github.com/dotnet/orleans) has built-in support for .NET Aspire. .NET Aspire's application model lets you describe the services, databases, and other resources and infrastructure in your app and how they relate to each other. Orleans provides a straightforward way to build distributed applications that are elastically scalable and fault-tolerant. You can use .NET Aspire to configure and orchestrate Orleans and its dependencies, such as by providing Orleans with cluster membership and storage.
 
-Orleans is represented as a resource in .NET Aspire. Unlike other integrations, the Orleans integration doesn't create a container and doesn't require a separate client integration package. Instead you complete the Orleans configuration in the .NET Aspire app host project.
+Orleans is represented as a resource in .NET Aspire. Unlike other integrations, the Orleans integration doesn't create a container and doesn't require a separate client integration package. Instead you complete the Orleans configuration in the .NET Aspire AppHost project.
 
 > [!NOTE]
 > This integration requires Orleans version 8.1.0 or later.
@@ -37,7 +37,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Orleans resource
 
-In your app host project, call <xref:Aspire.Hosting.OrleansServiceExtensions.AddOrleans*> to add and return an Orleans service resource builder. The name provided to the Orleans resource is for diagnostic purposes. For most applications, a value of `"default"` suffices.
+In your AppHost project, call <xref:Aspire.Hosting.OrleansServiceExtensions.AddOrleans*> to add and return an Orleans service resource builder. The name provided to the Orleans resource is for diagnostic purposes. For most applications, a value of `"default"` suffices.
 
 :::code language="csharp" source="snippets/Orleans/OrleansAppHost/Program.cs" range="12":::
 
@@ -47,7 +47,7 @@ In an Orleans app, the fundamental building block is a **grain**. Grains can hav
 
 Orleans hosts register themselves in a database and use that database to find each other and form a cluster. They store which servers are members of which silos in a database table. You can use either relational or NoSQL databases to store this information. In a .NET Aspire application, a popular choice to store this table is **Azure Table Storage**.
 
-To configure Orleans with clustering and grain storage in Azure, install the [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package in the app host project:
+To configure Orleans with clustering and grain storage in Azure, install the [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package in the AppHost project:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -64,7 +64,7 @@ dotnet add package Aspire.Hosting.Azure.Storage
 
 ---
 
-In your app host project, after you call <xref:Aspire.Hosting.OrleansServiceExtensions.AddOrleans*>, configure the Orleans resource with clustering and grain storage using the <xref:Aspire.Hosting.OrleansServiceExtensions.WithClustering*> and <xref:Aspire.Hosting.OrleansServiceExtensions.WithGrainStorage*> methods respectively:
+In your AppHost project, after you call <xref:Aspire.Hosting.OrleansServiceExtensions.AddOrleans*>, configure the Orleans resource with clustering and grain storage using the <xref:Aspire.Hosting.OrleansServiceExtensions.WithClustering*> and <xref:Aspire.Hosting.OrleansServiceExtensions.WithGrainStorage*> methods respectively:
 
 :::code language="csharp" source="snippets/Orleans/OrleansAppHost/Program.cs" range="3-14" highlight="4-5,11-12":::
 
@@ -84,7 +84,7 @@ Orleans clients communicate with grains hosted on Orleans servers. In a .NET Asp
 
 ## Create the Orleans server project
 
-Now that the app host project is completed, you can implement the Orleans server project. Let's start by adding the necessary NuGet packages:
+Now that the AppHost project is completed, you can implement the Orleans server project. Let's start by adding the necessary NuGet packages:
 
 ### [.NET CLI](#tab/dotnet-cli)
 

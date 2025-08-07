@@ -28,7 +28,7 @@ To upgrade from earlier versions of .NET Aspire to .NET Aspire 9, follow the ins
 
 ### Tooling improvements
 
-.NET Aspire 9 makes it simpler to configure your environment to develop .NET Aspire applications. You no longer need a .NET workload. Instead, you install the new [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md) into the app host project of your .NET Aspire solutions. For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
+.NET Aspire 9 makes it simpler to configure your environment to develop .NET Aspire applications. You no longer need a .NET workload. Instead, you install the new [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md) into the AppHost project of your .NET Aspire solutions. For more information, see [.NET Aspire setup and tooling](../fundamentals/setup-tooling.md).
 
 ### Templates have moved
 
@@ -101,13 +101,13 @@ For example, a browser-based single page app (SPA) can configure the [JavaScript
 
 For more information on configuring browser telemetry, see [Enable browser telemetry](../fundamentals/dashboard/enable-browser-telemetry.md) documentation.
 
-## App Host (Orchestration)
+## AppHost (Orchestration)
 
 The [.NET Aspire app host](../fundamentals/app-host-overview.md) is one of the **most important** features of .NET Aspire. In .NET Aspire 9, several new features were added specific to the app host.
 
 ### Waiting for dependencies
 
-If you've been following along with .NET Aspire, you already know that your app host project is where you define your app model. You create a distributed application builder, add and configure resources, and express their dependencies. Now, you can specify that a resource should _wait_ for another resource before starting. This can help avoid connection errors during startup by only starting resources when their dependencies are "ready."
+If you've been following along with .NET Aspire, you already know that your AppHost project is where you define your app model. You create a distributed application builder, add and configure resources, and express their dependencies. Now, you can specify that a resource should _wait_ for another resource before starting. This can help avoid connection errors during startup by only starting resources when their dependencies are "ready."
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -121,7 +121,7 @@ builder.AddProject<Projects.WebApplication1>("api")
 builder.Build().Run();
 ```
 
-When the app host starts, it waits for the `rabbit` resource to be ready before starting the `api` resource.
+When the AppHost starts, it waits for the `rabbit` resource to be ready before starting the `api` resource.
 
 There are two methods exposed to wait for a resource:
 
@@ -134,7 +134,7 @@ For more information, see [.NET Aspire app host: Waiting for resources](../funda
 
 The `WaitFor` API uses standard [.NET health checks](../fundamentals/health-checks.md) to determine if a resource is ready. But what does "a resource being ready" mean? The best part is, that's configurable by the consumer beyond their default values.
 
-When a resource doesn't expose any health checks (no health checks registered in the app), the app host waits for the resource to be in the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running> state before starting the dependent resource.
+When a resource doesn't expose any health checks (no health checks registered in the app), the AppHost waits for the resource to be in the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running> state before starting the dependent resource.
 
 For resources that expose HTTP endpoints, you can easily add a health check that polls a specific path for an HTTP 200 response.
 
@@ -152,7 +152,7 @@ builder.AddProject<Projects.WebApplication1>("store")
 builder.Build().Run();
 ```
 
-The preceding example adds a health check to the `catalog-api` resource. The app host waits for the health check to return a healthy status before starting the `store` resource. It determines that the resource is ready when the `/health` endpoint returns an HTTP 200 status code.
+The preceding example adds a health check to the `catalog-api` resource. The AppHost waits for the health check to return a healthy status before starting the `store` resource. It determines that the resource is ready when the `/health` endpoint returns an HTTP 200 status code.
 
 While `store` is waiting for `catalog-api` to become healthy, the resources in the dashboard appear as:
 
@@ -186,15 +186,15 @@ builder.AddProject<Projects.MyApp>("myapp")
        .WaitFor(cache);
 ```
 
-The preceding example adds a health check to the `cache` resource, which reports it as unhealthy for the first 20 seconds after the app host starts. So, the `myapp` resource waits for 20 seconds before starting, ensuring the `cache` resource is healthy.
+The preceding example adds a health check to the `cache` resource, which reports it as unhealthy for the first 20 seconds after the AppHost starts. So, the `myapp` resource waits for 20 seconds before starting, ensuring the `cache` resource is healthy.
 
 The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> and <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHealthCheck*> methods provide a simple mechanism to create health checks and associate them with specific resources.
 
 ### Persistent containers
 
-The app host now supports _persistent_ containers. Persistent containers deviate from the [typical container life cycle of .NET Aspire orchestrated apps](../fundamentals/orchestrate-resources.md#container-resource-lifecycle). While they're _created_ and _started_ (when not already available) by the .NET Aspire orchestrator, they're not destroyed by .NET Aspire.
+The AppHost now supports _persistent_ containers. Persistent containers deviate from the [typical container life cycle of .NET Aspire orchestrated apps](../fundamentals/orchestrate-resources.md#container-resource-lifecycle). While they're _created_ and _started_ (when not already available) by the .NET Aspire orchestrator, they're not destroyed by .NET Aspire.
 
-This is useful when you want to keep the container running even after the app host has stopped.
+This is useful when you want to keep the container running even after the AppHost has stopped.
 
 > [!IMPORTANT]
 > To delete these containers, you must manually stop them using the container runtime.
@@ -218,7 +218,7 @@ The dashboard shows persistent containers with a pin icon:
 
 :::image type="content" source="media/persistent-container.png" lightbox="media/persistent-container.png" alt-text="Persistent containers":::
 
-After the app host is stopped, the container will continue to run:
+After the AppHost is stopped, the container will continue to run:
 
 :::image type="content" source="media/persistent-container-docker-desktop.png" lightbox="media/persistent-container-docker-desktop.png" alt-text="Docker desktop showing RabbitMQ.":::
 
@@ -226,7 +226,7 @@ The container persistence mechanism attempts to identify when you might wish to 
 
 ### Resource commands
 
-The app host supports adding custom commands to resources. This is useful when you want to add custom functionality that is not natively supported by the app host. There's likely many opportunities where exposing custom extension methods on resources will be useful. The [.NET Aspire Community Toolkit](../community-toolkit/overview.md) might be a good place to share these extensions.
+The AppHost supports adding custom commands to resources. This is useful when you want to add custom functionality that is not natively supported by the app host. There's likely many opportunities where exposing custom extension methods on resources will be useful. The [.NET Aspire Community Toolkit](../community-toolkit/overview.md) might be a good place to share these extensions.
 
 When you define a custom command, it's available in the dashboard as a user experience feature.
 
@@ -237,7 +237,7 @@ For more information on creating custom resource commands, see [How-to: Create c
 
 ### Container networking
 
-The app host now adds all containers to a common network named `default-aspire-network`. This is useful when you want to communicate between containers without going through the host network. This also makes it easier to migrate from docker compose to the app host, as containers can communicate with each other using the container name.
+The AppHost now adds all containers to a common network named `default-aspire-network`. This is useful when you want to communicate between containers without going through the host network. This also makes it easier to migrate from docker compose to the app host, as containers can communicate with each other using the container name.
 
 ### Eventing model
 
@@ -249,7 +249,7 @@ The eventing model allows developers to hook into the lifecycle of the applicati
 - <xref:Aspire.Hosting.ApplicationModel.AfterResourcesCreatedEvent>: An event that is triggered after the resources are created. This runs in Run mode only.
 - <xref:Aspire.Hosting.ApplicationModel.AfterEndpointsAllocatedEvent>: An event that is triggered after the endpoints are allocated for all resources. This runs in Run mode only.
 
-The global events are analogous to the app host life cycle events. For more information, see [App host life cycles](../app-host/eventing.md#app-host-life-cycle-events).
+The global events are analogous to the AppHost life cycle events. For more information, see [App host life cycles](../app-host/eventing.md#app-host-life-cycle-events).
 
 **Per-resource events:**
 
@@ -398,7 +398,7 @@ To get started, create a new Azure Functions project using the **Visual Studio N
 
 :::image type="content" source="media/functions-step-1.gif" lightbox="media/functions-step-1.gif" alt-text="Create new .NET Aspire Azure Functions project.":::
 
-In the app host project, observe that there's a `PackageReference` to the new [📦 Aspire.Hosting.Azure.Functions](https://www.nuget.org/packages/Aspire.Hosting.Azure.Functions) NuGet package:
+In the AppHost project, observe that there's a `PackageReference` to the new [📦 Aspire.Hosting.Azure.Functions](https://www.nuget.org/packages/Aspire.Hosting.Azure.Functions) NuGet package:
 
 ```xml
 <ItemGroup>
@@ -407,7 +407,7 @@ In the app host project, observe that there's a `PackageReference` to the new [�
 </ItemGroup>
 ```
 
-This package provides an <xref:Aspire.Hosting.AzureFunctionsProjectResourceExtensions.AddAzureFunctionsProject``1(Aspire.Hosting.IDistributedApplicationBuilder,System.String)> API that can be invoked in the app host to configure Azure Functions projects within an .NET Aspire host:
+This package provides an <xref:Aspire.Hosting.AzureFunctionsProjectResourceExtensions.AddAzureFunctionsProject``1(Aspire.Hosting.IDistributedApplicationBuilder,System.String)> API that can be invoked in the AppHost to configure Azure Functions projects within an .NET Aspire host:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -553,7 +553,7 @@ builder.AddAzureFunctionsProject<Projects.PigLatinApp>("piglatinapp")
 
 To deploy the application with [the `azd` CLI](/azure/developer/azure-developer-cli/install-azd), you need get the latest version first. To install the latest version, you see a warning if your version is out of date. Follow the instructions to update to the latest version.
 
-After it's installed, navigate to the folder containing the app host project and run `azd init`:
+After it's installed, navigate to the folder containing the AppHost project and run `azd init`:
 
 ```azdeveloper
 $ azd init
@@ -653,7 +653,7 @@ For more information, see the official [.NET Aspire Azure Functions integration 
 
 #### Customization of Azure Container Apps
 
-One of the most requested features is the ability to customize the Azure Container Apps that the app host creates without touching Bicep. This is possible by using the <xref:Aspire.Hosting.AzureContainerAppProjectExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})> and <xref:Aspire.Hosting.AzureContainerAppContainerExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})> APIs in the `Aspire.Hosting.Azure.AppContainers` namespace. These methods customizes the Azure Container App definition that the app host creates.
+One of the most requested features is the ability to customize the Azure Container Apps that the AppHost creates without touching Bicep. This is possible by using the <xref:Aspire.Hosting.AzureContainerAppProjectExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})> and <xref:Aspire.Hosting.AzureContainerAppContainerExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})> APIs in the `Aspire.Hosting.Azure.AppContainers` namespace. These methods customizes the Azure Container App definition that the AppHost creates.
 
 Add the package reference to your project file:
 

@@ -79,7 +79,7 @@ In the app host's *AppHost.cs* (or *Program.cs*) file, create the database and m
 
 Starting with .NET Aspire 9.3, you can use the <xref:Aspire.Hosting.MySqlBuilderExtensions.WithCreationScript*> method to ensure a MySQL script is run when the database is created. Add SQL code to this script that creates and populates the database, the necessary tables, and other database objects.
 
-In the following App Host code, the script is created as a string and passed to the `WithCreationScript` method:
+In the following AppHost code, the script is created as a string and passed to the `WithCreationScript` method:
 
 :::code source="snippets/mysql-seed-data/AppHost.cs" :::
 

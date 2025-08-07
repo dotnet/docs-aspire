@@ -35,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add NATS server resource
 
-In your app host project, call <xref:Aspire.Hosting.NatsBuilderExtensions.AddNats*> on the `builder` instance to add a NATS server resource:
+In your AppHost project, call <xref:Aspire.Hosting.NatsBuilderExtensions.AddNats*> on the `builder` instance to add a NATS server resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -171,7 +171,7 @@ builder.AddNatsClient(connectionName: "nats");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the NATS server resource in the app host project. For more information, see [Add NATS server resource](#add-nats-server-resource).
+> The `connectionName` parameter must match the name used when adding the NATS server resource in the AppHost project. For more information, see [Add NATS server resource](#add-nats-server-resource).
 
 You can then retrieve the `INatsConnection` instance using dependency injection. For example, to retrieve the client from a service:
 

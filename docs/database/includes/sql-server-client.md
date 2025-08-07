@@ -28,7 +28,7 @@ builder.AddSqlServerClient(connectionName: "database");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the SQL Server database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `database` that same name should be used when calling `AddSqlServerClient`. For more information, see [Add SQL Server resource and database resource](../sql-server-integration.md#add-sql-server-resource-and-database-resource).
+> The `connectionName` parameter must match the name used when adding the SQL Server database resource in the AppHost project. In other words, when you call `AddDatabase` and provide a name of `database` that same name should be used when calling `AddSqlServerClient`. For more information, see [Add SQL Server resource and database resource](../sql-server-integration.md#add-sql-server-resource-and-database-resource).
 
 You can then retrieve the <xref:Microsoft.Data.SqlClient.SqlConnection> instance using dependency injection. For example, to retrieve the connection from an example service:
 

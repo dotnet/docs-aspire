@@ -1,6 +1,6 @@
 ---
 title: NET Aspire Dapr integration
-description: Learn how to use the .NET Aspire Dapr integration, which can configure and orchestrate Dapr from a .NET Aspire app host project.
+description: Learn how to use the .NET Aspire Dapr integration, which can configure and orchestrate Dapr from a .NET Aspire AppHost project.
 ms.date: 05/12/2025
 uid: frameworks/dapr
 ---
@@ -84,9 +84,9 @@ The `WithDaprSidecar` method offers overloads to configure your Dapr sidecar opt
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="9-20"  highlight="1-7,12":::
 
-### Complete Dapr app host example
+### Complete Dapr AppHost example
 
-Putting everything together, consider the following example of a .NET Aspire app host project that includes:
+Putting everything together, consider the following example of a .NET Aspire AppHost project that includes:
 
 - A backend API service that declares a Dapr sidecar with defaults.
 - A web frontend project that declares a Dapr sidecar with specific options, such as explict ports.

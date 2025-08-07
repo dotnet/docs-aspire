@@ -31,7 +31,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add PostgreSQL server resource
 
-In your app host project, call <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres*> on the `builder` instance to add a PostgreSQL server resource then call <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase*> on the `postgres` instance to add a database resource as shown in the following example:
+In your AppHost project, call <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres*> on the `builder` instance to add a PostgreSQL server resource then call <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase*> on the `postgres` instance to add a database resource as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -202,7 +202,7 @@ The data volume is used to persist the PostgreSQL server data outside the lifecy
 > [!IMPORTANT]
 > Some database integrations, including the .NET Aspire PostgreSQL integration, can't successfully use data volumes after deployment to Azure Container Apps (ACA). This is because ACA uses Server Message Block (SMB) to connect containers to data volumes, and some systems can't use this connection. In the Aspire Dashboard, a database affected by this issue has a status of **Activating** or **Activation Failed** but is never listed as **Running**.
 >
-> You can resolve the problem by using the managed service **Azure Database for PostgreSQL** to host the deployed database instead of a container in ACA, which is the recommended approach regardless of this issue. The following App Host code shows how to deploy a database to Azure Database for PostgreSQL, but run it as a container, with a data volume, during development:
+> You can resolve the problem by using the managed service **Azure Database for PostgreSQL** to host the deployed database instead of a container in ACA, which is the recommended approach regardless of this issue. The following AppHost code shows how to deploy a database to Azure Database for PostgreSQL, but run it as a container, with a data volume, during development:
 > :::code language="csharp" source="../snippets/postgres-data-volume-deploy/AppHost.cs":::
 
 ### Add PostgreSQL server resource with data bind mount

@@ -21,7 +21,7 @@ Start by creating a new .NET Aspire Starter App from the [available templates](a
 
 The preceding code:
 
-- Shares the <xref:Aspire.Hosting> namespace so that it's visible to the app host project.
+- Shares the <xref:Aspire.Hosting> namespace so that it's visible to the AppHost project.
 - Is a `static class` so that it can contain extension methods.
 - It defines a single extension method named `WithClearCommand`, extending the `IResourceBuilder<RedisResource>` interface.
 - The `WithClearCommand` method registers a command named `clear-cache` that clears the cache of the Redis resource.
@@ -109,7 +109,7 @@ The preceding code:
 
 ## Test the custom command
 
-To test the custom command, update your app host project's _Program.cs_ file to include the following code:
+To test the custom command, update your AppHost project's _Program.cs_ file to include the following code:
 
 :::code source="snippets/custom-commands/AspireApp/AspireApp.AppHost/Program.cs" highlight="4":::
 

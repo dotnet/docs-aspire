@@ -26,7 +26,7 @@ git clone https://github.com/MicrosoftDocs/aspire-docs-samples/
 The sample app is in the *SupportTicketApi* folder. Open the solution in Visual Studio or VS Code and take a moment to review the sample app and make sure it runs before proceeding. The sample app is a rudimentary support ticket API, and it contains the following projects:
 
 - **SupportTicketApi.Api**: The ASP.NET Core project that hosts the API.
-- **SupportTicketApi.AppHost**: Contains the .NET Aspire app host and configuration.
+- **SupportTicketApi.AppHost**: Contains the .NET Aspire AppHost and configuration.
 - **SupportTicketApi.Data**: Contains the EF Core contexts and models.
 - **SupportTicketApi.ServiceDefaults**: Contains the default service configurations.
 
@@ -213,7 +213,7 @@ To create a service that applies the migrations:
 
 ## Add the migration service to the orchestrator
 
-The migration service is created, but it needs to be added to the .NET Aspire app host so that it runs when the app starts.
+The migration service is created, but it needs to be added to the .NET Aspire AppHost so that it runs when the app starts.
 
 1. In the *:::no-loc text="SupportTicketApi.AppHost":::* project, open the *:::no-loc text="Program.cs":::* file.
 1. Add the following highlighted code:

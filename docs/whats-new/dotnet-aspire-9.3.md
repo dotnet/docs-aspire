@@ -474,11 +474,11 @@ dotnet tool install --global aspire.cli --prerelease
 > ⚠️ **The Aspire 9.3 CLI is not compatible with Aspire 9.2 projects.**
 > You must upgrade your project to Aspire 9.3+ in order to use the latest CLI features.
 
-#### 🔍 Smarter app host discovery
+#### 🔍 Smarter AppHost discovery
 
-The CLI now **walks upward** from your current directory, **recursively searching each level** for the app host project. Once located, it caches the result in a `.aspire` folder to speed up future commands.
+The CLI now **walks upward** from your current directory, **recursively searching each level** for the AppHost project. Once located, it caches the result in a `.aspire` folder to speed up future commands.
 
-You can now run commands like `aspire run`, `aspire add`, or `aspire publish` from **any directory within your solution**, and the CLI will resolve the app host automatically.
+You can now run commands like `aspire run`, `aspire add`, or `aspire publish` from **any directory within your solution**, and the CLI will resolve the AppHost automatically.
 
 For example:
 
@@ -499,7 +499,7 @@ These updates make the Aspire CLI more reliable, script-friendly, and aligned wi
 
 .NET Aspire 9.3 introduces **preview support for deploying .NET projects to Azure App Service**—one of the most requested features from developers using Aspire with existing Azure environments.
 
-This integration lets you deploy your project as a **containerized Linux Web App**, modeled directly in your Aspire app host using a new `AddAzureAppServiceEnvironment(...)` API.
+This integration lets you deploy your project as a **containerized Linux Web App**, modeled directly in your Aspire AppHost using a new `AddAzureAppServiceEnvironment(...)` API.
 
 #### 🚧 Current limitations (Preview)
 

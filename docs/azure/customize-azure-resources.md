@@ -32,7 +32,7 @@ To avoid conflating terms and to help disambiguate "provisioning," it's importan
 
 - **_Local provisioning:_**
 
-  By default, when you call any of the Azure hosting integration APIs to add Azure resources, the <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)> API is called implicitly. This API registers services in the dependency injection (DI) container that are used to provision Azure resources when the app host starts. This concept is known as _local provisioning_.  For more information, see [Local Azure provisioning](local-provisioning.md).
+  By default, when you call any of the Azure hosting integration APIs to add Azure resources, the <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)> API is called implicitly. This API registers services in the dependency injection (DI) container that are used to provision Azure resources when the AppHost starts. This concept is known as _local provisioning_.  For more information, see [Local Azure provisioning](local-provisioning.md).
 
 - **_`Azure.Provisioning`:_**
 
@@ -64,7 +64,7 @@ This exemplifies flowing an [external parameter](../fundamentals/external-parame
 
 ### Add Azure infrastructure
 
-Not all Azure services are exposed as .NET Aspire integrations. While they might be at a later time, you can still provision services that are available in `Azure.Provisioning.*` libraries. Imagine a scenario where you have worker service that's responsible for managing an Azure Container Registry. Now imagine that an app host project takes a dependency on the [📦 Azure.Provisioning.ContainerRegistry](https://www.nuget.org/packages/Azure.Provisioning.ContainerRegistry) NuGet package.
+Not all Azure services are exposed as .NET Aspire integrations. While they might be at a later time, you can still provision services that are available in `Azure.Provisioning.*` libraries. Imagine a scenario where you have worker service that's responsible for managing an Azure Container Registry. Now imagine that an AppHost project takes a dependency on the [📦 Azure.Provisioning.ContainerRegistry](https://www.nuget.org/packages/Azure.Provisioning.ContainerRegistry) NuGet package.
 
 You can use the `AddAzureInfrastructure` API to add the Azure Container Registry infrastructure to your app host:
 
@@ -81,7 +81,7 @@ The preceding code:
 - Adds a project named `worker` to the builder.
 - Chains a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEnvironment*> to set the `ACR_REGISTRY_NAME` environment variable in the project to the value of the `registryName` output.
 
-The functionality demonstrates how to add Azure infrastructure to your app host project, even if the Azure service isn't directly exposed as a .NET Aspire integration. It further shows how to flow the output of the Azure Container Registry into the environment of a dependent project.
+The functionality demonstrates how to add Azure infrastructure to your AppHost project, even if the Azure service isn't directly exposed as a .NET Aspire integration. It further shows how to flow the output of the Azure Container Registry into the environment of a dependent project.
 
 Consider the resulting Bicep file:
 

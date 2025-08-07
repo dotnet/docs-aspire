@@ -40,7 +40,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Azure Web PubSub resource
 
-To add an Azure Web PubSub resource to your app host project, call the <xref:Aspire.Hosting.AzureWebPubSubExtensions.AddAzureWebPubSub*> method providing a name:
+To add an Azure Web PubSub resource to your AppHost project, call the <xref:Aspire.Hosting.AzureWebPubSubExtensions.AddAzureWebPubSub*> method providing a name:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -53,14 +53,14 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The preceding code adds an Azure Web PubSub resource named `web-pubsub` to the app host project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
+The preceding code adds an Azure Web PubSub resource named `web-pubsub` to the AppHost project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
 
 > [!IMPORTANT]
 > When you call `AddAzureWebPubSub`, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration).
 
 ### Add an Azure Web PubSub hub resource
 
-When you add an Azure Web PubSub resource, you can also add a child hub resource. The hub resource is a logical grouping of connections and event handlers. To add an Azure Web PubSub hub resource to your app host project, chain a call to the <xref:Aspire.Hosting.AzureWebPubSubExtensions.AddHub*> method providing a resource and hub name:
+When you add an Azure Web PubSub resource, you can also add a child hub resource. The hub resource is a logical grouping of connections and event handlers. To add an Azure Web PubSub hub resource to your AppHost project, chain a call to the <xref:Aspire.Hosting.AzureWebPubSubExtensions.AddHub*> method providing a resource and hub name:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -188,7 +188,7 @@ builder.AddAzureWebPubSubServiceClient(
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Web PubSub resource in the app host project. For more information, see [Add an Azure Web PubSub resource](#add-an-azure-web-pubsub-resource).
+> The `connectionName` parameter must match the name used when adding the Web PubSub resource in the AppHost project. For more information, see [Add an Azure Web PubSub resource](#add-an-azure-web-pubsub-resource).
 
 After adding the `WebPubSubServiceClient`, you can retrieve the client instance using dependency injection. For example, to retrieve your data source object from an example service define it as a constructor parameter and ensure the `ExampleService` class is registered with the dependency injection container:
 

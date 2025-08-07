@@ -23,7 +23,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add SQLite resource
 
-In the app host project, register and consume the SQLite integration using the `AddSQLite` extension method to add the SQLite database to the application builder.
+In the AppHost project, register and consume the SQLite integration using the `AddSQLite` extension method to add the SQLite database to the application builder.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

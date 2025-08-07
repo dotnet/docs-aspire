@@ -52,7 +52,7 @@ builder.AddAzureCosmosClient(connectionName: "cosmos-db");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Cosmos DB resource in the app host project. In other words, when you call `AddAzureCosmosDB` and provide a name of `cosmos-db` that same name should be used when calling `AddAzureCosmosClient`. For more information, see [Add Azure Cosmos DB resource](#add-azure-cosmos-db-resource).
+> The `connectionName` parameter must match the name used when adding the Cosmos DB resource in the AppHost project. In other words, when you call `AddAzureCosmosDB` and provide a name of `cosmos-db` that same name should be used when calling `AddAzureCosmosClient`. For more information, see [Add Azure Cosmos DB resource](#add-azure-cosmos-db-resource).
 
 You can then retrieve the <xref:Azure.Cosmos.CosmosClient> instance using dependency injection. For example, to retrieve the client from an example service:
 
@@ -149,7 +149,7 @@ The preceding example code demonstrates how to register two databases, `details`
 
 <!-- TODO: Add xref to AddAzureCosmosContainer when available -->
 
-When you add a Cosmos DB resource in the app host project, you can also add an Azure Cosmos DB container resource as well. The container resource is considered a child resource to the parent `AzureCosmosDBDatabaseResource`. In your client-consuming project, you can deep-link to the container resource by name, registering a <xref:Microsoft.Azure.Cosmos.Container> instance for use with dependency injection. For example, consider the following code that calls `AddAzureCosmosContainer` on an <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> instance:
+When you add a Cosmos DB resource in the AppHost project, you can also add an Azure Cosmos DB container resource as well. The container resource is considered a child resource to the parent `AzureCosmosDBDatabaseResource`. In your client-consuming project, you can deep-link to the container resource by name, registering a <xref:Microsoft.Azure.Cosmos.Container> instance for use with dependency injection. For example, consider the following code that calls `AddAzureCosmosContainer` on an <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> instance:
 
 ```csharp
 builder.AddAzureCosmosContainer(connectionName: "details");

@@ -54,7 +54,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 builder.Build().Run();
 ```
 
-The first code snippet to consider uses the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithVolume%2A?displayProperty=nameWithType> API to configure a volume for a SQL Server resource. The following code demonstrates how to configure a volume for a SQL Server resource in a .NET Aspire app host project:
+The first code snippet to consider uses the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithVolume%2A?displayProperty=nameWithType> API to configure a volume for a SQL Server resource. The following code demonstrates how to configure a volume for a SQL Server resource in a .NET Aspire AppHost project:
 
 :::code language="csharp" source="snippets/volumes/VolumeMounts.AppHost/Program.WithVolume.cs" id="volume":::
 
@@ -64,9 +64,9 @@ All .NET Aspire container resources can utilize volumes, and some provide conven
 
 :::code language="csharp" source="snippets/volumes/VolumeMounts.AppHost/Program.ImplicitVolume.cs" id="implicitvolume":::
 
-With the app host project being named `VolumeMount.AppHost`, the `WithDataVolume` method automatically creates a named volume as `VolumeMount.AppHost-sql-data` and is mounted to the `/var/opt/mssql` path in the SQL Server container. The naming convention is as follows:
+With the AppHost project being named `VolumeMount.AppHost`, the `WithDataVolume` method automatically creates a named volume as `VolumeMount.AppHost-sql-data` and is mounted to the `/var/opt/mssql` path in the SQL Server container. The naming convention is as follows:
 
-- `{appHostProjectName}-{resourceName}-data`: The volume name is derived from the app host project name and the resource name.
+- `{appHostProjectName}-{resourceName}-data`: The volume name is derived from the AppHost project name and the resource name.
 
 ## Use bind mounts
 
@@ -98,9 +98,9 @@ Named volumes require a consistent password between app launches. .NET Aspire co
 Since the `password` parameter isn't provided when calling `AddSqlServer`, .NET Aspire automatically generates a password for the SQL Server resource.
 
 > [!IMPORTANT]
-> This isn't a persistent password! Instead, it changes every time the app host runs.
+> This isn't a persistent password! Instead, it changes every time the AppHost runs.
 
-To create a _persistent_ password, you must override the generated password. To do this, run the following command in your app host project directory to set a local password in your .NET user secrets:
+To create a _persistent_ password, you must override the generated password. To do this, run the following command in your AppHost project directory to set a local password in your .NET user secrets:
 
 ```dotnetcli
 dotnet user-secrets set Parameters:sql-password <password>

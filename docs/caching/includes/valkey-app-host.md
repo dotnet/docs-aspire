@@ -24,7 +24,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Valkey resource
 
-In your app host project, call <xref:Aspire.Hosting.ValkeyBuilderExtensions.AddValkey*> on the `builder` instance to add a Valkey resource:
+In your AppHost project, call <xref:Aspire.Hosting.ValkeyBuilderExtensions.AddValkey*> on the `builder` instance to add a Valkey resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

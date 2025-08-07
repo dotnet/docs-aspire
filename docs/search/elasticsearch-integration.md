@@ -35,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Elasticsearch resource
 
-In your app host project, call <xref:Aspire.Hosting.ElasticsearchBuilderExtensions.AddElasticsearch*> on the `builder` instance to add an Elasticsearch resource:
+In your AppHost project, call <xref:Aspire.Hosting.ElasticsearchBuilderExtensions.AddElasticsearch*> on the `builder` instance to add an Elasticsearch resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -147,7 +147,7 @@ builder.AddElasticsearchClient(connectionName: "elasticsearch");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Elasticsearch resource in the app host project. For more information, see [Add Elasticsearch resource](#add-elasticsearch-resource).
+> The `connectionName` parameter must match the name used when adding the Elasticsearch resource in the AppHost project. For more information, see [Add Elasticsearch resource](#add-elasticsearch-resource).
 
 You can then retrieve the `ElasticsearchClient` instance using dependency injection. For example, to retrieve the connection from an example service:
 

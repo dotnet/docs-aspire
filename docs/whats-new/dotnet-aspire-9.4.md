@@ -1498,13 +1498,13 @@ All .NET Aspire project templates now support .NET 10 with framework selection. 
 # Create a new Aspire project targeting .NET 10
 dotnet new aspire --framework net10.0
 
-# Create an app host project targeting .NET 10  
+# Create an AppHost project targeting .NET 10  
 dotnet new aspire-apphost --framework net10.0
 ```
 
 ### 📝 Improved file naming convention
 
-The `aspire-apphost` template now uses a more descriptive file naming convention making it easier to distinguish app host files in multi-project solutions. Instead of `Program.cs`, the main program file is now named `AppHost.cs`.
+The `aspire-apphost` template now uses a more descriptive file naming convention making it easier to distinguish AppHost files in multi-project solutions. Instead of `Program.cs`, the main program file is now named `AppHost.cs`.
 
 The content and functionality remain unchanged — only the filename has been updated to be more descriptive.
 

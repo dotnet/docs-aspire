@@ -35,11 +35,11 @@ These APIs are designed to integrate seamlessly with the .NET Aspire ecosystem, 
 
 Since HTTP commands are exposed via HTTP endpoints, consider potential security risks. Limit these endpoints to development or staging environments when possible. Always validate incoming requests to ensure they originate from trusted sources. For more information, see [ASP.NET Core security](/aspnet/core/security).
 
-Use the `HttpCommandOptions.PrepareRequest` callback to enhance security by adding authentication headers or other measures. A common approach is to use a shared secret, [external parameter](external-parameters.md), or token known only to the app host and resource. This shared value can be used to validate requests and prevent unauthorized access.
+Use the `HttpCommandOptions.PrepareRequest` callback to enhance security by adding authentication headers or other measures. A common approach is to use a shared secret, [external parameter](external-parameters.md), or token known only to the AppHost and resource. This shared value can be used to validate requests and prevent unauthorized access.
 
 ## Add a custom HTTP command
 
-In your app host _Program.cs_ file, you add a custom HTTP command using the `WithHttpCommand` API on an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is an <xref:Aspire.Hosting.ApplicationModel.IResourceWithEndpoints>. Here's an example of how to do this:
+In your AppHost _Program.cs_ file, you add a custom HTTP command using the `WithHttpCommand` API on an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is an <xref:Aspire.Hosting.ApplicationModel.IResourceWithEndpoints>. Here's an example of how to do this:
 
 :::code source="snippets/http-commands/AspireApp/AspireApp.AppHost/Program.cs":::
 
@@ -64,7 +64,7 @@ The HTTP endpoint is responsible for invalidating the cache. When the command is
 
 ### Example HTTP endpoint
 
-The preceding app host code snippet defined a custom HTTP command that sends a request to the `/cache/invalidate` endpoint. The ASP.NET Core minimal API project defines an HTTP endpoint that handles the cache invalidation request. Consider the following code snippet from the project's _Program.cs_ file:
+The preceding AppHost code snippet defined a custom HTTP command that sends a request to the `/cache/invalidate` endpoint. The ASP.NET Core minimal API project defines an HTTP endpoint that handles the cache invalidation request. Consider the following code snippet from the project's _Program.cs_ file:
 
 :::code source="snippets/http-commands/AspireApp/AspireApp.Api/Program.cs" id="post":::
 
@@ -80,7 +80,7 @@ The preceding code:
 
 ### Example dashboard experiences
 
-The sample app host and corresponding ASP.NET Core minimal API projects demonstrate both sides of the HTTP command implementation. When you run the app host, the dashboard's **Resources** page displays the custom HTTP command as a button. When you specify that the command should be highlighted (`isHighlighted: true`), the button appears on the **Actions** column of the **Resources** page. This allows users to easily trigger the command from the dashboard, as shown in the following screenshot:
+The sample AppHost and corresponding ASP.NET Core minimal API projects demonstrate both sides of the HTTP command implementation. When you run the app host, the dashboard's **Resources** page displays the custom HTTP command as a button. When you specify that the command should be highlighted (`isHighlighted: true`), the button appears on the **Actions** column of the **Resources** page. This allows users to easily trigger the command from the dashboard, as shown in the following screenshot:
 
 :::image type="content" source="media/custom-http-command-highlighted.png" lightbox="media/custom-http-command-highlighted.png" alt-text=".NET Aspire dashboard: Resources page showing a highlighted custom HTTP command.":::
 

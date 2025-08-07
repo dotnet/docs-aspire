@@ -16,7 +16,7 @@ In this tutorial, you create a .NET Aspire solution with an API that connects to
 > [!div class="checklist"]
 >
 > - Create an API microservice that interacts with a database.
-> - Configure the .NET Aspire App Host project with a connection string for the existing database.
+> - Configure the .NET Aspire AppHost project with a connection string for the existing database.
 > - Pass the connection string to the API and use it to connect to the database.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
@@ -170,13 +170,13 @@ You'll use the Scalar UI to test the _AspireExistingDB.ApiService_ project. Let'
     }
     ```
 
-## Configure a connection string in the App Host project
+## Configure a connection string in the AppHost project
 
 :::zone pivot="sql-server-ef"
 
 Usually, when you create a cloud-native solution with .NET Aspire, you call the <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*> method to initiate a container that runs the SQL Server instance. You pass that resource to other projects in your solution that need access to the database.
 
-In this case, however, you want to work with an existing database outside of any container. There are three differences in the App Host project:
+In this case, however, you want to work with an existing database outside of any container. There are three differences in the AppHost project:
 
 - You don't need to install the `Aspire.Hosting.SqlServer` hosting integration.
 - You add a connection string in a configuration file, such as **appsetting.json**.
@@ -220,7 +220,7 @@ Let's implement that configuration:
 
 Usually, when you create a cloud-native solution with .NET Aspire, you call the <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres*> method to initiate a container that runs the PostgreSQL instance. You pass that resource to other projects in your solution that need access to the database.
 
-In this case, however, you want to work with an existing database outside of any container. There are three differences in the App Host project:
+In this case, however, you want to work with an existing database outside of any container. There are three differences in the AppHost project:
 
 - You don't need to install the `Aspire.Hosting.PostgreSQL` hosting integration.
 - You add a connection string in a configuration file, such as **appsetting.json**.
@@ -264,7 +264,7 @@ Let's implement that configuration:
 
 Usually, when you create a cloud-native solution with .NET Aspire, you call the <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddOracle*> method to initiate a container that runs the Oracle Database instance. You pass that resource to other projects in your solution that need access to the database.
 
-In this case, however, you want to work with an existing database outside of any container. There are three differences in the App Host project:
+In this case, however, you want to work with an existing database outside of any container. There are three differences in the AppHost project:
 
 - You don't need to install the `Aspire.Hosting.Oracle` hosting integration.
 - You add a connection string in a configuration file, such as **appsetting.json**.
@@ -308,7 +308,7 @@ Let's implement that configuration:
 
 Usually, when you create a cloud-native solution with .NET Aspire, you call the <xref:Aspire.Hosting.MySqlBuilderExtensions.AddMySql*> method to initiate a container that runs the MySQL instance. You pass that resource to other projects in your solution that need access to the database.
 
-In this case, however, you want to work with an existing database outside of any container. There are three differences in the App Host project:
+In this case, however, you want to work with an existing database outside of any container. There are three differences in the AppHost project:
 
 - You don't need to install the `Aspire.Hosting.MySQL` hosting integration.
 - You add a connection string in a configuration file, such as **appsetting.json**.

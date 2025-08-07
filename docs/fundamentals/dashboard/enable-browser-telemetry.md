@@ -26,7 +26,7 @@ To configure the gPRC or HTTP endpoints, specify the following environment varia
 - `ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL`: The gRPC endpoint to which the dashboard connects for its data.
 - `ASPIRE_DASHBOARD_OTLP_HTTP_ENDPOINT_URL`: The HTTP endpoint to which the dashboard connects for its data.
 
-Configuration of the HTTP OTLP endpoint depends on whether the dashboard is started by the app host or is run standalone.
+Configuration of the HTTP OTLP endpoint depends on whether the dashboard is started by the AppHost or is run standalone.
 
 #### Configure OTLP HTTP with app host
 
@@ -126,9 +126,9 @@ OTLP exporters must be included in the browser app and configured with the SDK. 
 
 When OTLP is added to the SDK, OTLP options must be specified. OTLP options includes:
 
-- `url`: The address that HTTP OTLP requests are made to. The address should be the dashboard HTTP OTLP endpoint and the path to the OTLP HTTP API. For example, `https://localhost:4318/v1/traces` for the trace OTLP exporter. If the browser app is launched by the app host then the HTTP OTLP endpoint is available from the `OTEL_EXPORTER_OTLP_ENDPOINT` environment variable.
+- `url`: The address that HTTP OTLP requests are made to. The address should be the dashboard HTTP OTLP endpoint and the path to the OTLP HTTP API. For example, `https://localhost:4318/v1/traces` for the trace OTLP exporter. If the browser app is launched by the AppHost then the HTTP OTLP endpoint is available from the `OTEL_EXPORTER_OTLP_ENDPOINT` environment variable.
 
-- `headers`: The headers sent with requests. If OTLP endpoint API key authentication is enabled the `x-otlp-api-key` header must be sent with OTLP requests. If the browser app is launched by the app host then the API key is available from the `OTEL_EXPORTER_OTLP_HEADERS` environment variable.
+- `headers`: The headers sent with requests. If OTLP endpoint API key authentication is enabled the `x-otlp-api-key` header must be sent with OTLP requests. If the browser app is launched by the AppHost then the API key is available from the `OTEL_EXPORTER_OTLP_HEADERS` environment variable.
 
 ### Browser metadata
 

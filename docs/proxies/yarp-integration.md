@@ -34,7 +34,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add YARP resource
 
-In your app host project, call `AddYarp` <!-- TODO: Add xref:Aspire.Hosting.YarpResourceExtensions.AddYarp* when available --> on the `builder` instance to add a YARP resource:
+In your AppHost project, call `AddYarp` <!-- TODO: Add xref:Aspire.Hosting.YarpResourceExtensions.AddYarp* when available --> on the `builder` instance to add a YARP resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

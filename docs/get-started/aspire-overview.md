@@ -23,9 +23,9 @@ For the official support information, see the [Aspire Support Policy](https://do
 
 ## The AppHost
 
-Aspire's app host is where you define your app's services and dependencies in code—no complex configuration files required. The app host provides orchestration for your local development environment by simplifying the management of service discovery, environment variables, and container configurations.
+Aspire's AppHost is where you define your app's services and dependencies in code—no complex configuration files required. The AppHost provides orchestration for your local development environment by simplifying the management of service discovery, environment variables, and container configurations.
 
-Picture a common three-tier architecture: a frontend, which depends on an API, which connects to a database. In Aspire, this topology is represented in the app host as shown in the following code:
+Picture a common three-tier architecture: a frontend, which depends on an API, which connects to a database. In Aspire, this topology is represented in the AppHost as shown in the following code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -47,7 +47,7 @@ var frontend = builder.AddProject<Projects.Frontend>("frontend")
 builder.Build().Run();
 ```
 
-The app host assists with the following concerns:
+The AppHost assists with the following concerns:
 
 - **App composition**: Specify the projects, containers, executables, and cloud resources that make up your application.
 - **Service discovery and connection string management**: Automatically inject the right connection strings and network configurations.

@@ -39,7 +39,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Milvus server and database resources
 
-In your app host project, call <xref:Aspire.Hosting.MilvusBuilderExtensions.AddMilvus*> to add and return a Milvus resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.MilvusBuilderExtensions.AddDatabase*>, to add a Milvus database resource.
+In your AppHost project, call <xref:Aspire.Hosting.MilvusBuilderExtensions.AddMilvus*> to add and return a Milvus resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.MilvusBuilderExtensions.AddDatabase*>, to add a Milvus database resource.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -187,7 +187,7 @@ builder.AddMilvusClient("milvusdb");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Milvus database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `milvusdb` that same name should be used when calling `AddMilvusClient`. For more information, see [Add a Milvus server resource and database resource](#add-milvus-server-and-database-resources).
+> The `connectionName` parameter must match the name used when adding the Milvus database resource in the AppHost project. In other words, when you call `AddDatabase` and provide a name of `milvusdb` that same name should be used when calling `AddMilvusClient`. For more information, see [Add a Milvus server resource and database resource](#add-milvus-server-and-database-resources).
 
 You can then retrieve the `MilvusClient` instance using dependency injection. For example, to retrieve the connection from an example service:
 

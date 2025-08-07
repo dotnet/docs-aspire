@@ -65,19 +65,19 @@ builder.AddRedisDistributedCache(connectionName: "cache");
 :::zone pivot="redis"
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Redis resource in the app host project. For more information, see [Add Redis resource](#add-redis-resource).
+> The `connectionName` parameter must match the name used when adding the Redis resource in the AppHost project. For more information, see [Add Redis resource](#add-redis-resource).
 
 :::zone-end
 :::zone pivot="garnet"
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Garnet resource in the app host project. For more information, see [Add Garnet resource](#add-garnet-resource).
+> The `connectionName` parameter must match the name used when adding the Garnet resource in the AppHost project. For more information, see [Add Garnet resource](#add-garnet-resource).
 
 :::zone-end
 :::zone pivot="valkey"
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Valkey resource in the app host project. For more information, see [Add Valkey resource](#add-valkey-resource).
+> The `connectionName` parameter must match the name used when adding the Valkey resource in the AppHost project. For more information, see [Add Valkey resource](#add-valkey-resource).
 
 :::zone-end
 

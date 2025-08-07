@@ -7,7 +7,7 @@ uid: dotnet/aspire/orchestrate-resources
 
 # Orchestrate resources in .NET Aspire
 
-In this article, you learn how to customize the behavior of resources further by writing code in the app host project. In Aspire, a **resource** is a dependent part of a cloud-native application. Resource types include:
+In this article, you learn how to customize the behavior of resources further by writing code in the AppHost project. In Aspire, a **resource** is a dependent part of a cloud-native application. Resource types include:
 
 - **.NET Project**: A custom microservice, responsible for specific functionality in your cloud-native application, and often built by a separate team of developers.
 - **Executable**: If you need to build microservices with tools like Node.js or Orleans, they run as executable resources.
@@ -150,7 +150,7 @@ For more information and additional APIs available, see <xref:Aspire.Hosting.Con
 
 ### Container resource lifecycle
 
-When the app host is run, the <xref:Aspire.Hosting.ApplicationModel.ContainerResource> is used to determine what container image to create and start. Under the hood, Aspire runs the container using the defined container image by delegating calls to the appropriate OCI-compliant container runtime, either Docker or Podman. The following commands are used:
+When the AppHost is run, the <xref:Aspire.Hosting.ApplicationModel.ContainerResource> is used to determine what container image to create and start. Under the hood, Aspire runs the container using the defined container image by delegating calls to the appropriate OCI-compliant container runtime, either Docker or Podman. The following commands are used:
 
 #### [Docker](#tab/docker)
 
@@ -176,7 +176,7 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 
 ### Container resource lifetime
 
-By default, container resources use the _session_ container lifetime. This means that every time the app host process is started, the container is created and started. When the app host stops, the container is stopped and removed. Container resources can opt-in to a _persistent_ lifetime to avoid unnecessary restarts and use persisted container state. To achieve this, chain a call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithLifetime*?displayProperty=nameWithType> API and pass <xref:Aspire.Hosting.ApplicationModel.ContainerLifetime.Persistent?displayProperty=nameWithType>:
+By default, container resources use the _session_ container lifetime. This means that every time the AppHost process is started, the container is created and started. When the AppHost stops, the container is stopped and removed. Container resources can opt-in to a _persistent_ lifetime to avoid unnecessary restarts and use persisted container state. To achieve this, chain a call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithLifetime*?displayProperty=nameWithType> API and pass <xref:Aspire.Hosting.ApplicationModel.ContainerLifetime.Persistent?displayProperty=nameWithType>:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

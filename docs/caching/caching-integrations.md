@@ -42,7 +42,7 @@ Visual Studio creates a new .NET Aspire solution that consists of the following 
 - **AspireRedis.AppHost** - An orchestrator project designed to connect and configure the different projects and services of your app.
 - **AspireRedis.ServiceDefaults** - A .NET Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../telemetry.md).
 
-## Configure the App Host project
+## Configure the AppHost project
 
 1. Add the [📦 Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis) NuGet package to the `AspireRedis.AppHost` project:
 

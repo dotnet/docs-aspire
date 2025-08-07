@@ -37,7 +37,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Usage
 
- In the app host project, register and consume the Data API Builder integration using the `AddDataAPIBuilder` extension method to add the Data API Builder container to the application builder.
+ In the AppHost project, register and consume the Data API Builder integration using the `AddDataAPIBuilder` extension method to add the Data API Builder container to the application builder.
 
 ```csharp
  var builder = DistributedApplication.CreateBuilder(); 
