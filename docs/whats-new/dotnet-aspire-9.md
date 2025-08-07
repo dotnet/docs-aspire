@@ -249,7 +249,7 @@ The eventing model allows developers to hook into the lifecycle of the applicati
 - <xref:Aspire.Hosting.ApplicationModel.AfterResourcesCreatedEvent>: An event that is triggered after the resources are created. This runs in Run mode only.
 - <xref:Aspire.Hosting.ApplicationModel.AfterEndpointsAllocatedEvent>: An event that is triggered after the endpoints are allocated for all resources. This runs in Run mode only.
 
-The global events are analogous to the AppHost life cycle events. For more information, see [App host life cycles](../app-host/eventing.md#app-host-life-cycle-events).
+The global events are analogous to the AppHost life cycle events. For more information, see [App host life cycles](../app-host/eventing.md#apphost-life-cycle-events).
 
 **Per-resource events:**
 

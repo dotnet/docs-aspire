@@ -1,13 +1,13 @@
 ---
 title: .NET Aspire SDK
 description: Learn
-ms.date: 03/19/2025
+ms.date: 08/07/2025
 uid: dotnet/aspire/sdk
 ---
 
 # .NET Aspire SDK
 
-The .NET Aspire SDK is intended for [_*.AppHost_ projects](app-host-overview.md#app-host-project), which serve as the .NET Aspire orchestrator. These projects are designated by their usage of the `Aspire.AppHost.Sdk` in the project file. The SDK provides a set of features that simplify the development of .NET Aspire apps.
+The .NET Aspire SDK is intended for [_*.AppHost_ projects](app-host-overview.md#apphost-project), which serve as the .NET Aspire orchestrator. These projects are designated by their usage of the `Aspire.AppHost.Sdk` in the project file. The SDK provides a set of features that simplify the development of .NET Aspire apps.
 
 ## Overview
 

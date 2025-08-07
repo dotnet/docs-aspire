@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs for adding resources and expressing dependencies.
-ms.date: 04/23/2025
+ms.date: 08/07/2025
 ms.topic: overview
 uid: dotnet/aspire/app-host
 ms.custom:
@@ -18,7 +18,7 @@ ms.custom:
 Before continuing, consider some common terminology used in .NET Aspire:
 
 - **App model**: A collection of resources that make up your distributed application (<xref:Aspire.Hosting.DistributedApplication>), defined within the <xref:Aspire.Hosting.ApplicationModel> namespace. For a more formal definition, see [Define the app model](#define-the-app-model).
-- **App host/Orchestrator project**: The .NET project that orchestrates the _app model_, named with the _*.AppHost_ suffix (by convention).
+- **AppHost/Orchestrator project**: The .NET project that orchestrates the _app model_, named with the _*.AppHost_ suffix (by convention).
 - **Resource**: A [resource](#built-in-resource-types) is a dependent part of an application, such as a .NET project, container, executable, database, cache, or cloud service. It represents any part of the application that can be managed or referenced.
 - **Integration**: An integration is a NuGet package for either the _app host_ that models a _resource_ or a package that configures a client for use in a consuming app. For more information, see [.NET Aspire integrations overview](integrations-overview.md).
 - **Reference**: A reference defines a connection between resources, expressed as a dependency using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> API. For more information, see [Reference resources](#reference-resources) or [Reference existing resources](#reference-existing-resources).
@@ -32,7 +32,7 @@ Before continuing, consider some common terminology used in .NET Aspire:
 
 The app model is more than just a list of resources—it represents the complete topology of your application. This includes the relationships between resources, their dependencies, and their configurations. Resources can include projects, executables, containers, external services, and cloud resources that your application relies on.
 
-In your [.NET Aspire AppHost project](#app-host-project), your `Program` file defines your app model:
+In your [.NET Aspire AppHost project](#apphost-project), your `Program` file defines your app model:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

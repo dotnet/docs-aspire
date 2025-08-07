@@ -1,7 +1,7 @@
 ---
-title: Custom resource commands in .NET Aspire
+title: Custom resource commands
 description: Learn how to create custom resource commands in .NET Aspire.
-ms.date: 11/07/2024
+ms.date: 08/07/2025
 ms.topic: how-to
 ms.custom: sfi-ropc-nochange
 ---
@@ -15,7 +15,7 @@ Each resource in the .NET Aspire [app model](app-host-overview.md#define-the-app
 
 ## Add custom commands to a resource
 
-Start by creating a new .NET Aspire Starter App from the [available templates](aspire-sdk-templates.md). To create the solution from this template, follow the [Quickstart: Build your first .NET Aspire solution](../get-started/build-your-first-aspire-app.md). After creating this solution, add a new class named _RedisResourceBuilderExtensions.cs_ to the [app host project](app-host-overview.md#app-host-project). Replace the contents of the file with the following code:
+Start by creating a new .NET Aspire Starter App from the [available templates](aspire-sdk-templates.md). To create the solution from this template, follow the [Quickstart: Build your first .NET Aspire solution](../get-started/build-your-first-aspire-app.md). After creating this solution, add a new class named _RedisResourceBuilderExtensions.cs_ to the [app host project](app-host-overview.md#apphost-project). Replace the contents of the file with the following code:
 
 :::code source="snippets/custom-commands/AspireApp/AspireApp.AppHost/RedisResourceBuilderExtensions.cs":::
 

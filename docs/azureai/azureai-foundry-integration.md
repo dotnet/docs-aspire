@@ -1,7 +1,7 @@
 ---
 title: ".NET Aspire Azure AI Foundry integration (Preview)"
 description: "Learn how to integrate Azure AI Foundry with .NET Aspire applications, including hosting and client integration."
-ms.date: 07/22/2025
+ms.date: 08/07/2025
 ai-usage: ai-assisted
 titleSuffix: ''
 ---
@@ -78,7 +78,7 @@ builder.AddProject<Projects.ExampleProject>()
 The preceding code:
 
 - Adds an Azure AI Foundry resource named `foundry`.
-- Adds an Azure AI Foundry deployment resource named `chat` with a model name of `Phi-4`. The model name must correspond to an [available model](/azure/ai-foundry/how-to/deploy-models-open) in the Azure AI Foundry service.
+- Adds an Azure AI Foundry deployment resource named `chat` with a model name of `Phi-4`. The model name must correspond to an [available model](/azure/ai-foundry/foundry-models/concepts/models) in the Azure AI Foundry service.
 
 > [!NOTE]
 > The `format` parameter of the `AddDeployment(...)` method can be found in the Azure AI Foundry portal in the details page of the model, right after the `Quick facts` text.
@@ -240,7 +240,7 @@ For more information, see:
 
 ### Add Azure AI Foundry client with registered `IChatClient`
 
-If you're interested in using the [IChatClient](/dotnet/api/microsoft.extensions.ai.ichatclient) interface, with the Azure AI Foundry client, simply chain the [AddChatClient](/dotnet/api/microsoft.extensions.hosting.aspirechatcompletionsclientbuilderchatclientextensions.addchatclient) API to the `AddAzureChatCompletionsClient` method:
+If you're interested in using the [IChatClient](/dotnet/api/microsoft.extensions.ai.ichatclient) interface, with the Azure AI Foundry client, simply chain the <xref:Microsoft.Extensions.Hosting.AspireAzureAIInferenceExtensions.AddChatClient*> API to the `AddAzureChatCompletionsClient` method:
 
 ```csharp
 builder.AddAzureChatCompletionsClient(connectionName: "chat")
@@ -347,7 +347,7 @@ The .NET Aspire Azure AI Foundry integration emits tracing activities using Open
 
 ## See also
 
-- [Azure AI Foundry](https://azure.microsoft.com/products/ai-services/ai-foundry/)
+- [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs)
 - [.NET Aspire integrations overview](/dotnet/aspire/fundamentals/integrations-overview)
 - [.NET Aspire Azure integrations overview](/dotnet/aspire/azure/integrations-overview)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

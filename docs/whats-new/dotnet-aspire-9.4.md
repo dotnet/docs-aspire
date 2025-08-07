@@ -1,7 +1,7 @@
 ---
 title: What's new in .NET Aspire 9.4
 description: Learn what's new in the official general availability release of .NET Aspire 9.4.
-ms.date: 07/29/2025
+ms.date: 08/07/2025
 ---
 
 # What's new in .NET Aspire 9.4
@@ -638,7 +638,7 @@ public async Task Should_ResetCache_WhenTestStarts()
 
 ### 🔄 Resource lifecycle events
 
-.NET Aspire 9.4 introduces convenient extension methods on <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> that make it much easier to subscribe to [lifecycle events](../app-host/eventing.md#app-host-life-cycle-events) directly on resources, providing a cleaner and more intuitive API.
+.NET Aspire 9.4 introduces convenient extension methods on <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> that make it much easier to subscribe to [lifecycle events](../app-host/eventing.md#apphost-life-cycle-events) directly on resources, providing a cleaner and more intuitive API.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
