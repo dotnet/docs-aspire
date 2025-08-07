@@ -64,13 +64,7 @@ By default, when you add a <xref:Aspire.Hosting.ApplicationModel.PostgresDatabas
 CREATE DATABASE "<QUOTED_DATABASE_NAME>"
 ```
 
-<!-- TODO: Use xref here when available
-
-To alter the default script, chain a call to the <xref:Aspire.Hosting.PostgresBuilderExtensions.WithCreationScript*> method on the database resource builder:
-
--->
-
-To alter the default script, chain a call to the `WithCreationScript` method on the database resource builder:
+To alter the default script, chain a call to the <xref:Aspire.Hosting.PostgresBuilderExtensions.WithCreationScript(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.PostgresDatabaseResource},System.String)> method on the database resource builder:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

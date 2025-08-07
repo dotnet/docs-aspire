@@ -1,7 +1,7 @@
 ---
 title: Orchestrate resources in Aspire
 description: Learn techniques to control the behavior of Aspire resources such as project, containers, and executable resources.
-ms.date: 07/25/2025
+ms.date: 08/07/2025
 uid: dotnet/aspire/orchestrate-resources
 ---
 
@@ -189,9 +189,7 @@ The preceding code adds a container resource named "ollama" with the image "olla
 
 ## Express external service resources
 
-<!-- TODO Add <xref:Aspire.Hosting.ExternalServiceResource> -->
-
-External services are third-party APIs and services that your application depends on but that exist outside your Aspire solution. These services are already running elsewhere and aren't managed by Aspire. To express an `ExternalServiceResource` you add it to an <xref:Aspire.Hosting.IDistributedApplicationBuilder> instance by calling the `AddExternalService` method:
+External services are third-party APIs and services that your application depends on but that exist outside your Aspire solution. These services are already running elsewhere and aren't managed by Aspire. To express an <xref:Aspire.Hosting.ExternalServiceResource> you add it to an <xref:Aspire.Hosting.IDistributedApplicationBuilder> instance by calling the <xref:Aspire.Hosting.ExternalServiceBuilderExtensions.AddExternalService*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

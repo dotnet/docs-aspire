@@ -23,8 +23,6 @@ This article guides you through the process of tailoring ACA environments for yo
 
 ## Add an ACA environment
 
-<!-- TODO: Add xref to AddAzureContainerAppEnvironment when available -->
-
 The `AzureContainerAppEnvironmentResource` type models an ACA environment resource. When you call the `AddAzureContainerAppEnvironment` method, it creates an instance of this type (wrapped in the <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1>).
 
 :::code language="csharp" source="snippets/aca/AspireAca.AppHost/AspireApp.AppHost/Program.cs":::
@@ -47,9 +45,7 @@ Using the `acaEnv` variable, you can chain a call to the <xref:Aspire.Hosting.Az
 
 ## Handle naming conventions
 
-<!-- TODO: Add xref to WithAzdResourceNaming when available -->
-
-By default, `AddAzureContainerAppEnvironment` uses a different Azure resource naming scheme than the [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/). If you're upgrading an existing deployment that previously used `azd`, you might see duplicate Azure resources. To avoid this issue, call the `WithAzdResourceNaming` method to revert to the naming convention used by `azd`:
+By default, <xref:Aspire.Hosting.AzureContainerAppExtensions.AddAzureContainerAppEnvironment*> uses a different Azure resource naming scheme than the [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/). If you're upgrading an existing deployment that previously used `azd`, you might see duplicate Azure resources. To avoid this issue, call the <xref:Aspire.Hosting.AzureContainerAppExtensions.WithAzdResourceNaming*> method to revert to the naming convention used by `azd`:
 
 ```csharp
 var builder = DistributionApplicationBuilder.Create(args);

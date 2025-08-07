@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire RabbitMQ integration
 description: Learn how to use the .NET Aspire RabbitMQ message-broker integration, which includes both hosting and client integrations.
-ms.date: 02/19/2025
+ms.date: 08/07/2025
 uid: messaging/rabbitmq-integration
 ms.custom: sfi-ropc-nochange
 ---
@@ -146,9 +146,7 @@ Log into the management plugin using the credentials you configured with paramet
 
 :::image type="content" source="media/rabbitmq-management-plugin.png" alt-text="Screenshot of the RabbitMQ management plugin.":::
 
-<!--
-TODO: Link to Container lifetimes content that doesn't exist yet.
--->
+For more information, see [Container resource lifetimes](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
 ### Hosting integration health checks
 

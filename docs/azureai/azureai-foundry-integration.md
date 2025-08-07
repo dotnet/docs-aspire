@@ -50,16 +50,12 @@ builder.AddProject<Projects.ExampleProject>()
 
 The preceding code adds an Azure AI Foundry resource named `foundry` to the AppHost project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
 
-<!-- TODO: Add AddAzureAIFoundry when xref is available. -->
-
 > [!IMPORTANT]
-> When you call `AddAzureAIFoundry`, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](/dotnet/aspire/azure/local-provisioning#configuration).
+> When you call <xref:Aspire.Hosting.AzureAIFoundryExtensions.AddAzureAIFoundry*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](/dotnet/aspire/azure/local-provisioning#configuration).
 
 ### Add an Azure AI Foundry deployment resource
 
-<!-- TODO: Add AddDeployment when xref is available. -->
-
-To add an Azure AI Foundry deployment resource, call the `AddDeployment` method:
+To add an Azure AI Foundry deployment resource, call the <xref:Aspire.Hosting.AzureAIFoundryExtensions.AddDeployment*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -85,9 +81,7 @@ The preceding code:
 
 ### Configure deployment properties
 
-<!-- TODO: Add WithProperties when xref is available. -->
-
-You can customize deployment properties using the `WithProperties` method:
+You can customize deployment properties using the <xref:Aspire.Hosting.AzureAIFoundryExtensions.WithProperties*> method:
 
 ```csharp
 var chat = foundry.AddDeployment("chat", "Phi-4", "1", "Microsoft")
@@ -174,15 +168,11 @@ builder.AddProject<Projects.ExampleProject>()
 
 When the AppHost starts up, the local foundry service is also started. This requires the local machine to have [Foundry Local](/azure/ai-foundry/foundry-local/get-started) installed and running.
 
-<!-- TODO: Add RunAsFoundryLocal when xref is available. -->
-
-The `RunAsFoundryLocal()` method configures the resource to run as an emulator. It downloads and loads the specified models locally. The method provides health checks for the local service and automatically manages the Foundry Local lifecycle.
+The <xref:Aspire.Hosting.AzureAIFoundryExtensions.RunAsFoundryLocal*> method configures the resource to run as an emulator. It downloads and loads the specified models locally. The method provides health checks for the local service and automatically manages the Foundry Local lifecycle.
 
 ### Assign roles to resources
 
-<!-- TODO: Add WithRoleAssignments when xref is available. -->
-
-You can assign specific roles to resources that need to access the Azure AI Foundry service. Use the `WithRoleAssignments` method:
+You can assign specific roles to resources that need to access the Azure AI Foundry service. Use the <xref:Aspire.Hosting.AzureAIFoundryExtensions.WithRoleAssignments*> method:
 
 ```csharp
 var foundry = builder.AddAzureAIFoundry("foundry");

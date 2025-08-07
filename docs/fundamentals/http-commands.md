@@ -1,7 +1,7 @@
 ---
 title: Custom HTTP commands in .NET Aspire
 description: Learn how to create custom HTTP commands in .NET Aspire.
-ms.date: 03/25/2025
+ms.date: 08/07/2025
 ms.topic: how-to
 ---
 
@@ -15,9 +15,7 @@ To implement custom HTTP commands, you define a command on a resource and a corr
 
 The available APIs provide extensive capabilities with numerous parameters to customize the HTTP command. To add an HTTP command to a resource, use the `WithHttpCommand` extension method on the resource builder. There are two overloads available:
 
-<!-- TODO: Replace with xref when available... -->
-
-The `WithHttpCommand` API provides two overloads to add custom HTTP commands to resources in .NET Aspire. These APIs are designed to offer flexibility and cater to different use cases when defining HTTP commands.
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpCommand*> API provides two overloads to add custom HTTP commands to resources in .NET Aspire. These APIs are designed to offer flexibility and cater to different use cases when defining HTTP commands.
 
 1. **Overload with `endpointName`:**
 

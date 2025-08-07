@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Community Toolkit EventStore integration
 description: Learn how to use the .NET Aspire EventStore hosting and client integration to run the EventStore container and accessing it via the EventStore client.
-ms.date: 11/21/2024
+ms.date: 08/07/2025
 ms.custom: sfi-ropc-nochange
 ---
 
@@ -255,10 +255,5 @@ The .NET Aspire EventStore integration uses the configured client to perform a `
 - [EventStore Client](https://github.com/EventStore/EventStore-Client-Dotnet)
 - [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
 
-<!--
-TODO: Fix these links once NuGet packages are published.
-- https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.EventStore
-- https://nuget.org/packages/CommunityToolkit.Aspire.EventStore
--->
-[hosting-nuget-link]: https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.EventStore
-[client-nuget-link]: https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.EventStore
+[hosting-nuget-link]: https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.EventStore
+[client-nuget-link]: https://nuget.org/packages/CommunityToolkit.Aspire.EventStore
