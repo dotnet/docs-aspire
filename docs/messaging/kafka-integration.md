@@ -161,8 +161,11 @@ dotnet add package Aspire.Confluent.Kafka
 In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireKafkaProducerExtensions.AddKafkaProducer%2A> extension method to register an `IProducer<TKey, TValue>` for use via the dependency injection container. The method takes two generic parameters corresponding to the type of the key and the type of the message to send to the broker. These generic parameters are used by `AddKafkaProducer` to create an instance of `ProducerBuilder<TKey, TValue>`. This method also takes connection name parameter.
 
 ```csharp
-builder.AddKafkaProducer<string, string>("messaging");
+builder.AddKafkaProducer<string, string>("kafka");
 ```
+
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the Kafka resource in the AppHost project. In other words, when you call `AddKafka` and provide a name of `kafka` that same name should be used when calling `AddKafkaProducer`. For more information, see [Add Kafka server resource](#add-kafka-server-resource).
 
 You can then retrieve the `IProducer<TKey, TValue>` instance using dependency injection. For example, to retrieve the producer from an `IHostedService`:
 
@@ -180,8 +183,11 @@ For more information on workers, see [Worker services in .NET](/dotnet/core/exte
 To register an `IConsumer<TKey, TValue>` for use via the dependency injection container, call the <xref:Microsoft.Extensions.Hosting.AspireKafkaConsumerExtensions.AddKafkaConsumer%2A> extension method in the _:::no-loc text="Program.cs":::_ file of your client-consuming project. The method takes two generic parameters corresponding to the type of the key and the type of the message to receive from the broker. These generic parameters are used by `AddKafkaConsumer` to create an instance of `ConsumerBuilder<TKey, TValue>`. This method also takes connection name parameter.
 
 ```csharp
-builder.AddKafkaConsumer<string, string>("messaging");
+builder.AddKafkaConsumer<string, string>("kafka");
 ```
+
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the Kafka resource in the AppHost project. In other words, when you call `AddKafka` and provide a name of `kafka` that same name should be used when calling `AddKafkaComsumer`. For more information, see [Add Kafka server resource](#add-kafka-server-resource).
 
 You can then retrieve the `IConsumer<TKey, TValue>` instance using dependency injection. For example, to retrieve the consumer from an `IHostedService`:
 
@@ -210,7 +216,7 @@ The .NET Aspire Apache Kafka integration provides multiple options to configure 
 When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddKafkaProducer()` or `builder.AddKafkaProducer()`:
 
 ```csharp
-builder.AddKafkaProducer<string, string>("kafka-producer");
+builder.AddKafkaProducer<string, string>("kafka");
 ```
 
 Then the connection string is retrieved from the `ConnectionStrings` configuration section:
@@ -218,7 +224,7 @@ Then the connection string is retrieved from the `ConnectionStrings` configurati
 ```json
 {
   "ConnectionStrings": {
-    "kafka-producer": "broker:9092"
+    "kafka": "broker:9092"
   }
 }
 ```
@@ -300,7 +306,7 @@ You can pass the `Action<KafkaProducerSettings> configureSettings` delegate to s
 
 ```csharp
 builder.AddKafkaProducer<string, string>(
-    "messaging", 
+    "kafka", 
     static settings => settings.DisableHealthChecks = true);
 ```
 
@@ -308,7 +314,7 @@ You can configure inline a consumer from code:
 
 ```csharp
 builder.AddKafkaConsumer<string, string>(
-    "messaging",
+    "kafka",
     static settings => settings.DisableHealthChecks = true);
 ```
 
@@ -318,7 +324,7 @@ To configure `Confluent.Kafka` builders, pass an `Action<ProducerBuilder<TKey, T
 
 ```csharp
 builder.AddKafkaProducer<string, MyMessage>(
-    "messaging",
+    "kafka",
     static producerBuilder => 
     {
         var messageSerializer = new MyMessageSerializer();
@@ -335,7 +341,7 @@ Consider the following producer registration example:
 
 ```csharp
 builder.AddKafkaProducer<string, MyMessage>(
-    "messaging",
+    "kafka",
     static (serviceProvider, producerBuilder) => 
     {
         var messageSerializer = serviceProvider.GetRequiredServices<MyMessageSerializer>();

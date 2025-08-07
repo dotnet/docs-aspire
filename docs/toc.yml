@@ -498,6 +498,9 @@ items:
     href: troubleshooting/name-is-already-in-use.md
   - name: Container runtime appears to be unhealthy
     href: troubleshooting/container-runtime-unhealthy.md
+  - name: Container runtime 'podman' could not be found in WSL
+    displayName: podman,wsl,container runtime,linux
+    href: troubleshooting/podman-wsl-not-found.md
   - name: The connection string is missing
     href: troubleshooting/connection-string-missing.md
   - name: Ask questions on Discord
