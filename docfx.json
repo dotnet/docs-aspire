@@ -90,7 +90,7 @@
       ],
       "zone_pivot_group_filename": "aspire/zones/zone-pivot-groups.json",
       "show_latex": true,
-      "uhfHeaderId": "MSDocsHeader-DotNet",
+      "uhfHeaderId": "MSDocsHeader-DotNetAspire",
       "_displayLangs": [
         "csharp"
       ]
