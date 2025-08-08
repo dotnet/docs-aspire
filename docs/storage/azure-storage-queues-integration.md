@@ -23,11 +23,11 @@ In your app host project, register the Azure Queue Storage integration by chaini
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var queues = builder.AddAzureStorage("storage")
-                    .AddQueues("queues");
+var storage = builder.AddAzureStorage("storage")
+                    .AddQueue("jobs");
 
 builder.AddProject<Projects.ExampleProject>()
-       .WithReference(queues);
+       .WithReference(storage);
 
 // After adding all resources, run the app...
 ```
@@ -35,7 +35,7 @@ builder.AddProject<Projects.ExampleProject>()
 The preceding code:
 
 - Adds an Azure Storage resource named `storage`.
-- Adds a queue named `queues` to the storage resource.
+- Adds a queue named `jobs` to the storage resource.
 - Adds the `storage` resource to the `ExampleProject` and waits for it to be ready before starting the project.
 
 [!INCLUDE [storage-bicep](includes/storage-bicep.md)]
