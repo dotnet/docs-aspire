@@ -93,7 +93,7 @@ The Bicep file reflects the desired configuration of the Azure Container Registr
 
 Another method you can use to customize Azure provisioning is to create an <xref:Azure.Provisioning.Primitives.InfrastructureResolver> and write code in it to implement your requirements. Then add that class to the configuration options for your AppHost.
 
-The custom infrastructure resolver is a class that inherits from `InfrastructureResolver` and overrides the `ResolveProperties` method to make the customizations you need. In this example, the name of a Cosmos DB resource is set:
+A custom infrastructure resolver is a class that inherits from `InfrastructureResolver` and can override one or more of its virtual members to apply the desired customizations. In this example, the `ResolveProperties` method is overridden to set the name of a Cosmos DB resource, but other members can also be overridden depending on your needs.
 
 :::code language="csharp" source="snippets/customize-azure-with-infrastructure-resolver/AppHost.cs" id="infrastructureresolver":::
 
