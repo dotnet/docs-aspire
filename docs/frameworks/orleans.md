@@ -16,7 +16,7 @@ Orleans is represented as a resource in .NET Aspire. Unlike other integrations, 
 
 ## Hosting integration
 
-The Orleans hosting integration models an Orleans service as the <xref:Aspire.Hosting.Orleans.OrleansService> type. To access this type and APIs, add the [📦 Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The Orleans hosting integration models an Orleans service as the <xref:Aspire.Hosting.Orleans.OrleansService> type. To access this type and APIs, add the [📦 Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -70,13 +70,13 @@ In your AppHost project, after you call <xref:Aspire.Hosting.OrleansServiceExten
 
 The preceding code tells Orleans that any service referencing it must also reference the `clusteringTable` resource.
 
-### Add an Orleans server project in the app host
+### Add an Orleans server project in the AppHost
 
 Now you can add a new project, enrolled in .NET Aspire orchestration, to your solution as an Orleans server. It will take part in the Orleans cluster as a silo with constituent grains. Reference the Orleans resource from your server project using `WithReference(orleans)`. When you reference the Orleans resource from your service, those resources are also referenced:
 
 :::code language="csharp" source="snippets/Orleans/OrleansAppHost/Program.cs" range="16-22":::
 
-### Add an Orleans client project in the app host
+### Add an Orleans client project in the AppHost
 
 Orleans clients communicate with grains hosted on Orleans servers. In a .NET Aspire app, for example, you might have a front-end Web site that calls grains in an Orleans cluster. Reference the Orleans resource from your Orleans client using `WithReference(orleans.AsClient())`.
 

@@ -18,7 +18,7 @@ In this article, you learn how to use the .NET Aspire Milvus database integratio
 
 ## Hosting integration
 
-The Milvus database hosting integration models the server as the <xref:Aspire.Hosting.Milvus.MilvusServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.MilvusDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The Milvus database hosting integration models the server as the <xref:Aspire.Hosting.Milvus.MilvusServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.MilvusDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.Milvus](https://www.nuget.org/packages/Aspire.Hosting.Milvus) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

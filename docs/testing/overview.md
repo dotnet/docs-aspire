@@ -20,9 +20,9 @@ Consider the following diagram that shows how the .NET Aspire testing project st
 
 :::image type="content" source="media/testing-diagram-thumb.png" alt-text=".NET Aspire testing diagram" lightbox="media/testing-diagram.png":::
 
-1. The **test project** starts the app host.
-1. The **app host** process starts.
-1. The **app host** runs the `Database`, `API`, and `Frontend` applications.
+1. The **test project** starts the AppHost.
+1. The **AppHost** process starts.
+1. The **AppHost** runs the `Database`, `API`, and `Frontend` applications.
 1. The **test project** sends an HTTP request to the `Frontend` application.
 
 The diagram illustrates that the **test project** starts the AppHost, which then orchestrates all dependent app resources—regardless of their type. The test project is able to send an HTTP request to the `Frontend` app, which depends on an `API` app, and the `API` app depends on a `Database`. A successful request confirms that the `Frontend` app can communicate with the `API` app, and that the `API` app can successfully get data from the `Database`. For more information on seeing this approach in action, see the [Write your first .NET Aspire test](write-your-first-test.md) article.

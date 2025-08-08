@@ -10,7 +10,7 @@ The PostgreSQL hosting integration models various PostgreSQL resources as the fo
 - <xref:Aspire.Hosting.Postgres.PgAdminContainerResource>
 - <xref:Aspire.Hosting.Postgres.PgWebContainerResource>
 
-To access these types and APIs for expressing them as resources in your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL) NuGet package:
+To access these types and APIs for expressing them as resources in your [AppHost](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -47,7 +47,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 
 When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/postgres` image, it creates a new PostgreSQL server instance on your local machine. A reference to your PostgreSQL server and database instance (the `postgresdb` variable) are used to add a dependency to the `ExampleProject`.
 
-When adding a database resource to the app model, the database is created if it doesn't already exist. The creation of the database relies on the [app host eventing APIs](../../app-host/eventing.md), specifically <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent>. In other words, when the `postgres` resource is _ready_, the event is raised and the database resource is created.
+When adding a database resource to the app model, the database is created if it doesn't already exist. The creation of the database relies on the [AppHost eventing APIs](../../app-host/eventing.md), specifically <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent>. In other words, when the `postgres` resource is _ready_, the event is raised and the database resource is created.
 
 The PostgreSQL server resource includes default credentials with a `username` of `"postgres"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 

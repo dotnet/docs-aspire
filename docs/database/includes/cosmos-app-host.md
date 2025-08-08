@@ -9,7 +9,7 @@ The .NET Aspire [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db
 - <xref:Aspire.Hosting.Azure.AzureCosmosDBDatabaseResource>: Represents an Azure Cosmos DB database resource.
 - <xref:Aspire.Hosting.Azure.AzureCosmosDBEmulatorResource>: Represents an Azure Cosmos DB emulator resource.
 
-To access these types and APIs for expressing them, add the [📦 Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+To access these types and APIs for expressing them, add the [📦 Aspire.Hosting.Azure.CosmosDB](https://www.nuget.org/packages/Aspire.Hosting.Azure.CosmosDB) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -98,7 +98,7 @@ builder.AddProject<Projects.WebApplication>("web")
 For more information on treating Azure Cosmos DB resources as existing resources, see [Use existing Azure resources](../../azure/integrations-overview.md#use-existing-azure-resources).
 
 > [!NOTE]
-> Alternatively, instead of representing an Azure Cosmos DB resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> Alternatively, instead of representing an Azure Cosmos DB resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Add Azure Cosmos DB database and container resources
 

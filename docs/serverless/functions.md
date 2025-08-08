@@ -12,7 +12,7 @@ zone_pivot_groups: dev-environment
 > [!IMPORTANT]
 > The .NET Aspire Azure Functions integration is currently in preview and is subject to change.
 
-[Azure Functions](/azure/azure-functions/functions-overview) is a serverless solution that allows you to write less code, maintain less infrastructure, and save on costs. The .NET Aspire Azure Functions integration enables you to develop, debug, and orchestrate an Azure Functions .NET project as part of the app host.
+[Azure Functions](/azure/azure-functions/functions-overview) is a serverless solution that allows you to write less code, maintain less infrastructure, and save on costs. The .NET Aspire Azure Functions integration enables you to develop, debug, and orchestrate an Azure Functions .NET project as part of the AppHost.
 
 It's expected that you've installed the required Azure tooling:
 
@@ -87,7 +87,7 @@ In Visual Studio, try checking for an update on the Azure Functions tooling. Ope
 
 ## Hosting integration
 
-The Azure Functions hosting integration models an Azure Functions resource as the <xref:Aspire.Hosting.Azure.AzureFunctionsProjectResource> (subtype of <xref:Aspire.Hosting.ApplicationModel.ProjectResource>) type. To access this type and APIs that allow you to add it to your [app host](xref:dotnet/aspire/app-host) project install the [📦 Aspire.Hosting.Azure.Functions](https://www.nuget.org/packages/Aspire.Hosting.Azure.Functions) NuGet package.
+The Azure Functions hosting integration models an Azure Functions resource as the <xref:Aspire.Hosting.Azure.AzureFunctionsProjectResource> (subtype of <xref:Aspire.Hosting.ApplicationModel.ProjectResource>) type. To access this type and APIs that allow you to add it to your [AppHost](xref:dotnet/aspire/app-host) project install the [📦 Aspire.Hosting.Azure.Functions](https://www.nuget.org/packages/Aspire.Hosting.Azure.Functions) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

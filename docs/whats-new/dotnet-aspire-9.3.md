@@ -309,7 +309,7 @@ This small change makes logs easier to read and reduces visual noise—especiall
 
 ### 🏗️ Improvements to in-preview publisher model & compute environment support
 
-In 9.2, we shipped our first iteration of "publishers", a flexible way to configure deployments to any cloud in the app host. To ensure more flexibility, .NET Aspire 9.3 includes a **new and improved** publisher model that distributes publishing behavior across your application graph instead of relying on a single top-level publisher.
+In 9.2, we shipped our first iteration of "publishers", a flexible way to configure deployments to any cloud in the AppHost. To ensure more flexibility, .NET Aspire 9.3 includes a **new and improved** publisher model that distributes publishing behavior across your application graph instead of relying on a single top-level publisher.
 
 Rather than selecting a target environment (like Docker or Azure) by calling `AddDockerComposePublisher()` or similar, Aspire now includes a **built-in publisher** that looks for a `PublishingCallbackAnnotation` on each resource. This annotation describes how that resource should be published—for example, as a Docker Compose service, Kubernetes manifest, or Azure Bicep module.
 
@@ -508,7 +508,7 @@ This first release is scoped to the most common use cases:
 - Supports **.NET projects only** (via `AddProject(...)`)
 - Each project must expose a **single public HTTP endpoint**
 - **Projects are published as containers** to Azure Container Registry
-- **Containers within the app host** are not supported
+- **Containers within the AppHost** are not supported
 - **Existing App Service Plans are not supported**
 - The Aspire **dashboard is not hosted** in App Service yet
 

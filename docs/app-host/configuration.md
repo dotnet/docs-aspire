@@ -7,15 +7,15 @@ ms.topic: reference
 
 # AppHost configuration
 
-The AppHost project configures and starts your distributed application (<xref:Aspire.Hosting.DistributedApplication>). When a `DistributedApplication` runs it reads configuration from the app host. Configuration is loaded from environment variables that are set on the AppHost and <xref:Aspire.Hosting.DistributedApplicationOptions>.
+The AppHost project configures and starts your distributed application (<xref:Aspire.Hosting.DistributedApplication>). When a `DistributedApplication` runs it reads configuration from the AppHost. Configuration is loaded from environment variables that are set on the AppHost and <xref:Aspire.Hosting.DistributedApplicationOptions>.
 
 Configuration includes:
 
 - Settings for hosting the resource service, such as the address and authentication options.
 - Settings used to start the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md), such the dashboard's frontend and OpenTelemetry Protocol (OTLP) addresses.
-- Internal settings that .NET Aspire uses to run the app host. These are set internally but can be accessed by integrations that extend .NET Aspire.
+- Internal settings that .NET Aspire uses to run the AppHost. These are set internally but can be accessed by integrations that extend .NET Aspire.
 
-App host configuration is provided by the AppHost launch profile. The AppHost has a launch settings file call _launchSettings.json_ which has a list of launch profiles. Each launch profile is a collection of related options which defines how you would like `dotnet` to start your application.
+AppHost configuration is provided by the AppHost launch profile. The AppHost has a launch settings file call _launchSettings.json_ which has a list of launch profiles. Each launch profile is a collection of related options which defines how you would like `dotnet` to start your application.
 
 ```json
 {
@@ -42,7 +42,7 @@ The preceding launch settings file:
 - Has one launch profile named `https`.
 - Configures an .NET Aspire AppHost project:
   - The `applicationUrl` property configures the dashboard launch address (`ASPNETCORE_URLS`).
-  - Environment variables such as `ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL` and `ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL` are set on the app host.
+  - Environment variables such as `ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL` and `ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL` are set on the AppHost.
 
 For more information, see [.NET Aspire and launch profiles](../fundamentals/launch-profiles.md).
 
@@ -53,22 +53,22 @@ For more information, see [.NET Aspire and launch profiles](../fundamentals/laun
 
 | Option | Default value | Description |
 |--|--|--|
-| `ASPIRE_ALLOW_UNSECURED_TRANSPORT` | `false` | Allows communication with the AppHost without https. `ASPNETCORE_URLS` (dashboard address) and `ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL` (app host resource service address) must be secured with HTTPS unless true. |
+| `ASPIRE_ALLOW_UNSECURED_TRANSPORT` | `false` | Allows communication with the AppHost without https. `ASPNETCORE_URLS` (dashboard address) and `ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL` (AppHost resource service address) must be secured with HTTPS unless true. |
 | `ASPIRE_CONTAINER_RUNTIME` | `docker` | Allows the user of alternative container runtimes for resources backed by containers. Possible values are `docker` (default) or `podman`. See [Setup and tooling overview for more details](../fundamentals/setup-tooling.md).  |
 | `ASPIRE_VERSION_CHECK_DISABLED` | `false` | When set to `true`, .NET Aspire doesn't check for newer versions on startup. |
 
 ## Resource service
 
-A resource service is hosted by the app host. The resource service is used by the dashboard to fetch information about resources which are being orchestrated by .NET Aspire.
+A resource service is hosted by the AppHost. The resource service is used by the dashboard to fetch information about resources which are being orchestrated by .NET Aspire.
 
 | Option | Default value | Description |
 |--|--|--|
-| `ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL` | `null` | Configures the address of the resource service hosted by the app host. Automatically generated with _launchSettings.json_ to have a random port on localhost. For example, `https://localhost:17037`. |
-| `ASPIRE_DASHBOARD_RESOURCESERVICE_APIKEY` | Automatically generated 128-bit entropy token. | The API key used to authenticate requests made to the app host's resource service. The API key is required if the AppHost is in run mode, the dashboard isn't disabled, and the dashboard isn't configured to allow anonymous access with `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS`. |
+| `ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL` | `null` | Configures the address of the resource service hosted by the AppHost. Automatically generated with _launchSettings.json_ to have a random port on localhost. For example, `https://localhost:17037`. |
+| `ASPIRE_DASHBOARD_RESOURCESERVICE_APIKEY` | Automatically generated 128-bit entropy token. | The API key used to authenticate requests made to the AppHost's resource service. The API key is required if the AppHost is in run mode, the dashboard isn't disabled, and the dashboard isn't configured to allow anonymous access with `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS`. |
 
 ## Dashboard
 
-By default, the dashboard is automatically started by the app host. The dashboard supports [its own set of configuration](../fundamentals/dashboard/configuration.md), and some settings can be configured from the app host.
+By default, the dashboard is automatically started by the AppHost. The dashboard supports [its own set of configuration](../fundamentals/dashboard/configuration.md), and some settings can be configured from the AppHost.
 
 | Option | Default value | Description |
 |--|--|--|
@@ -88,9 +88,9 @@ Internal settings are used by the AppHost and integrations. Internal settings ar
 | Option | Default value | Description |
 |--|--|--|
 | `AppHost:Directory` | The content root if there's no project. | Directory of the project where the AppHost is located. Accessible from the <xref:Aspire.Hosting.IDistributedApplicationBuilder.AppHostDirectory?displayProperty=nameWithType>. |
-| `AppHost:Path` | The directory combined with the application name. | The path to the app host. It combines the directory with the application name. |
-| `AppHost:Sha256` | It is created from the AppHost name when the AppHost is in publish mode. Otherwise it is created from the AppHost path. | Hex encoded hash for the current application. The hash is based on the location of the app on the current machine so it is stable between launches of the app host. |
+| `AppHost:Path` | The directory combined with the application name. | The path to the AppHost. It combines the directory with the application name. |
+| `AppHost:Sha256` | It is created from the AppHost name when the AppHost is in publish mode. Otherwise it is created from the AppHost path. | Hex encoded hash for the current application. The hash is based on the location of the app on the current machine so it is stable between launches of the AppHost. |
 | `AppHost:OtlpApiKey` | Automatically generated 128-bit entropy token. | The API key used to authenticate requests sent to the dashboard OTLP service. The value is present if needed: the AppHost is in run mode, the dashboard isn't disabled, and the dashboard isn't configured to allow anonymous access with `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS`. |
-| `AppHost:BrowserToken` | Automatically generated 128-bit entropy token. | The browser token used to authenticate browsing to the dashboard when it is launched by the app host. The browser token can be set by `ASPIRE_DASHBOARD_FRONTEND_BROWSERTOKEN`. The value is present if needed: the AppHost is in run mode, the dashboard isn't disabled, and the dashboard isn't configured to allow anonymous access with `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS`. |
+| `AppHost:BrowserToken` | Automatically generated 128-bit entropy token. | The browser token used to authenticate browsing to the dashboard when it is launched by the AppHost. The browser token can be set by `ASPIRE_DASHBOARD_FRONTEND_BROWSERTOKEN`. The value is present if needed: the AppHost is in run mode, the dashboard isn't disabled, and the dashboard isn't configured to allow anonymous access with `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS`. |
 | `AppHost:ResourceService:AuthMode` | `ApiKey`. If `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` is true then the value is `Unsecured`. | The authentication mode used to access the resource service. The value is present if needed: the AppHost is in run mode and the dashboard isn't disabled. |
-| `AppHost:ResourceService:ApiKey` | Automatically generated 128-bit entropy token. | The API key used to authenticate requests made to the app host's resource service. The API key can be set by `ASPIRE_DASHBOARD_RESOURCESERVICE_APIKEY`. The value is present if needed: the AppHost is in run mode, the dashboard isn't disabled, and the dashboard isn't configured to allow anonymous access with `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS`. |
+| `AppHost:ResourceService:ApiKey` | Automatically generated 128-bit entropy token. | The API key used to authenticate requests made to the AppHost's resource service. The API key can be set by `ASPIRE_DASHBOARD_RESOURCESERVICE_APIKEY`. The value is present if needed: the AppHost is in run mode, the dashboard isn't disabled, and the dashboard isn't configured to allow anonymous access with `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS`. |

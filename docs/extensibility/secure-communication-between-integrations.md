@@ -22,7 +22,7 @@ Since this article continues from previous content, you should have already crea
 The resulting solution from these previous articles contains the following projects:
 
 - _MailDev.Hosting_: Contains the custom resource type for the MailDev container.
-- _MailDevResource.AppHost_: The [app host](../fundamentals/app-host-overview.md) that uses the custom resource and defines it as a dependency for a Newsletter service.
+- _MailDevResource.AppHost_: The [AppHost](../fundamentals/app-host-overview.md) that uses the custom resource and defines it as a dependency for a Newsletter service.
 - _MailDevResource.NewsletterService_: An ASP.NET Core Web API project that sends emails using the MailDev container.
 - _MailDevResource.ServiceDefaults_: Contains the [default service configurations](../fundamentals/service-defaults.md) intended for sharing.
 - _MailKit.Client_: Contains the custom client integration that exposes the MailKit `SmtpClient` through a factory.
@@ -41,7 +41,7 @@ These updates add a `UsernameParameter` and `PasswordParameter` property. These 
 
 The preceding code updates the `AddMailDev` extension method to include the `userName` and `password` parameters. The `WithEnvironment` method is updated to include the `UserEnvVarName` and `PasswordEnvVarName` environment variables. These environment variables are used to set the MailDev username and password.
 
-## Update the app host
+## Update the AppHost
 
 Now that the resource is updated to include the username and password parameters, you need to update the AppHost to include these parameters. Update the _:::no-loc text="Program.cs":::_ file in the `MailDevResource.AppHost` project with the following C# code:
 

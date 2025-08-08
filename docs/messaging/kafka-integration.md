@@ -14,7 +14,7 @@ ms.custom: sfi-ropc-nochange
 
 ## Hosting integration
 
-The Apache Kafka hosting integration models a Kafka server as the <xref:Aspire.Hosting.KafkaServerResource> type. To access this type, install the [📦 Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka) NuGet package in the [app host](xref:dotnet/aspire/app-host) project, then add it with the builder.
+The Apache Kafka hosting integration models a Kafka server as the <xref:Aspire.Hosting.KafkaServerResource> type. To access this type, install the [📦 Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project, then add it with the builder.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

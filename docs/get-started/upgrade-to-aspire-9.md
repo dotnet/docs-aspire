@@ -63,7 +63,7 @@ Previously the **aspire workload** was required to create and run .NET Aspire pr
 
 To upgrade your projects to .NET Aspire 9.0, you need to update your project files. The following steps guide you through the process:
 
-- Edit your [app host](xref:dotnet/aspire/app-host) project file to use the new .NET Aspire 9.0 SDK (`Aspire.AppHost.Sdk`).
+- Edit your [AppHost](xref:dotnet/aspire/app-host) project file to use the new .NET Aspire 9.0 SDK (`Aspire.AppHost.Sdk`).
 - Update the NuGet packages in your project files to the latest versions.
 - Adjust your _Program.cs_ file to use the new APIs and remove any obsolete APIs.
 

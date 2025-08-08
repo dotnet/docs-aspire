@@ -6,7 +6,7 @@ ms.date: 07/23/2024
 
 # Add Dockerfiles to your .NET app model
 
-With .NET Aspire it's possible to specify a _Dockerfile_ to build when the [app host](../fundamentals/app-host-overview.md) is started using either the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile%2A> or <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A> extension methods.
+With .NET Aspire it's possible to specify a _Dockerfile_ to build when the [AppHost](../fundamentals/app-host-overview.md) is started using either the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile%2A> or <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A> extension methods.
 
 These two methods serve different purposes:
 

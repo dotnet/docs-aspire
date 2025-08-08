@@ -15,7 +15,7 @@ Extensibility is a core focus. Aspire's APIs are designed so you can adapt the p
 
 ### Key capabilities
 
-- **App host orchestration:** Define services, dependencies, and configuration in code.
+- **AppHost orchestration:** Define services, dependencies, and configuration in code.
 - **Rich integrations:** NuGet packages for popular services with standardized interfaces.
 - **Consistent tooling:** Project templates and experiences for **Visual Studio, VS Code, and the CLI.**
 
@@ -75,7 +75,7 @@ Resources you can integrate include:
 Integrations are two-fold: "hosting" integrations represent the service you're connecting to, while "client" integrations represent the consumer of that service.
 
 > [!TIP]
-> Under the hood, a _hosting_ [integration](../fundamentals/integrations-overview.md) can represent a container, an executable, or even just C# code that configures resources without running a separate process. You can add any container image, codebase, script, or cloud resource to your app host. Creating reusable Aspire integrations is similar to building reusable components for your apps.
+> Under the hood, a _hosting_ [integration](../fundamentals/integrations-overview.md) can represent a container, an executable, or even just C# code that configures resources without running a separate process. You can add any container image, codebase, script, or cloud resource to your AppHost. Creating reusable Aspire integrations is similar to building reusable components for your apps.
 
 ## Monitor and troubleshoot with the Aspire dashboard
 
@@ -121,7 +121,7 @@ Consider how the three-tier architecture example can be deployed across differen
 > [!TIP]
 > These are just a few examples of how you can deploy Aspire apps.
 
-Aspire's deployment capabilities are flexible and don't interfere with your existing workflows. You can continue using your preferred tools and services while benefiting from the consistent app topology defined in your app host.
+Aspire's deployment capabilities are flexible and don't interfere with your existing workflows. You can continue using your preferred tools and services while benefiting from the consistent app topology defined in your AppHost.
 
 For more information, see [Deploy Aspire apps](../deployment/overview.md).
 

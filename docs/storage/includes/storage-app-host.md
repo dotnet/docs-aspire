@@ -11,7 +11,7 @@ The .NET Aspire [Azure Storage](/azure/storage/) hosting integration models the 
 - <xref:Aspire.Hosting.Azure.AzureQueueStorageResource>: Represents an Azure Queue storage resource.
 - <xref:Aspire.Hosting.Azure.AzureTableStorageResource>: Represents an Azure Table storage resource.
 
-To access these types and APIs for expressing them, add the [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+To access these types and APIs for expressing them, add the [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -80,7 +80,7 @@ builder.AddProject<Projects.ExampleProject>()
 For more information on treating Azure Storage resources as existing resources, see [Use existing Azure resources](../../azure/integrations-overview.md#use-existing-azure-resources).
 
 > [!NOTE]
-> Alternatively, instead of representing an Azure Storage account resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> Alternatively, instead of representing an Azure Storage account resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Add Azure Storage emulator resource
 
@@ -200,7 +200,7 @@ When the .NET Aspire AppHost runs, the storage resources can be accessed by exte
 
 To connect to the storage resource from Azure Storage Explorer, follow these steps:
 
-1. Run the .NET Aspire app host.
+1. Run the .NET Aspire AppHost.
 1. Open the Azure Storage Explorer.
 1. View the **Explorer** pane.
 1. Select the **Refresh all** link to refresh the list of storage accounts.

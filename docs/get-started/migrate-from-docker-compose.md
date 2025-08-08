@@ -289,7 +289,7 @@ Before migrating, inventory your Docker Compose setup:
 - **Environment variables**: List all configuration variables and secrets.
 - **Custom networks**: Identify any custom networking requirements and configurations.
 
-### 2. Create the .NET Aspire app host
+### 2. Create the .NET Aspire AppHost
 
 Start by creating a new .NET Aspire project:
 

@@ -15,11 +15,11 @@ When adding Python resources to your .NET Aspire AppHost, use the `AddPythonApp`
 
 ## Previous behavior
 
-The `AddPythonProject` method added a new `PythonProjectResource` to the app host.
+The `AddPythonProject` method added a new `PythonProjectResource` to the AppHost.
 
 ## New behavior
 
-The `AddPythonApp` method adds a new `PythonAppResource` to the app host.
+The `AddPythonApp` method adds a new `PythonAppResource` to the AppHost.
 
 ## Type of breaking change
 

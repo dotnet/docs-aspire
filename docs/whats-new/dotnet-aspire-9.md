@@ -49,7 +49,7 @@ The [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) continues to 
 
 ### Manage resource lifecycle
 
-The most requested feature for the dashboard is to manage the life-cycles of your orchestrated named resources. Specifically, the ability to stop, start, and restart resources. This feature works for projects, containers, and executables. It enables restarting individual resources without having to restart the entire app host. For project resources, when the debugger is attached, it's reattached on restart. For more information, see [.NET Aspire dashboard: Stop or Start a resource](../fundamentals/dashboard/explore.md#stop-or-start-a-resource).
+The most requested feature for the dashboard is to manage the life-cycles of your orchestrated named resources. Specifically, the ability to stop, start, and restart resources. This feature works for projects, containers, and executables. It enables restarting individual resources without having to restart the entire AppHost. For project resources, when the debugger is attached, it's reattached on restart. For more information, see [.NET Aspire dashboard: Stop or Start a resource](../fundamentals/dashboard/explore.md#stop-or-start-a-resource).
 
 ### Mobile and responsive support
 
@@ -103,7 +103,7 @@ For more information on configuring browser telemetry, see [Enable browser telem
 
 ## AppHost (Orchestration)
 
-The [.NET Aspire app host](../fundamentals/app-host-overview.md) is one of the **most important** features of .NET Aspire. In .NET Aspire 9, several new features were added specific to the app host.
+The [.NET Aspire AppHost](../fundamentals/app-host-overview.md) is one of the **most important** features of .NET Aspire. In .NET Aspire 9, several new features were added specific to the AppHost.
 
 ### Waiting for dependencies
 
@@ -128,7 +128,7 @@ There are two methods exposed to wait for a resource:
 - <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*>: Wait for a resource to be ready before starting another resource.
 - <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitForCompletion*>: Wait for a resource to complete before starting another resource.
 
-For more information, see [.NET Aspire app host: Waiting for resources](../fundamentals/orchestrate-resources.md#waiting-for-resources).
+For more information, see [.NET Aspire AppHost: Waiting for resources](../fundamentals/orchestrate-resources.md#waiting-for-resources).
 
 #### Resource health checks
 
@@ -158,7 +158,7 @@ While `store` is waiting for `catalog-api` to become healthy, the resources in t
 
 :::image type="content" source="media/waiting-for-unhealthy-resource.png" lightbox="media/waiting-for-unhealthy-resource.png" alt-text="Waiting for an unhealthy resource before starting":::
 
-The app host's health check mechanism builds upon the <xref:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder> implementation from the <xref:Microsoft.Extensions.Diagnostics.HealthChecks> namespace.
+The AppHost's health check mechanism builds upon the <xref:Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder> implementation from the <xref:Microsoft.Extensions.Diagnostics.HealthChecks> namespace.
 
 Health checks report data, which is displayed in the dashboard:
 
@@ -226,7 +226,7 @@ The container persistence mechanism attempts to identify when you might wish to 
 
 ### Resource commands
 
-The AppHost supports adding custom commands to resources. This is useful when you want to add custom functionality that is not natively supported by the app host. There's likely many opportunities where exposing custom extension methods on resources will be useful. The [.NET Aspire Community Toolkit](../community-toolkit/overview.md) might be a good place to share these extensions.
+The AppHost supports adding custom commands to resources. This is useful when you want to add custom functionality that is not natively supported by the AppHost. There's likely many opportunities where exposing custom extension methods on resources will be useful. The [.NET Aspire Community Toolkit](../community-toolkit/overview.md) might be a good place to share these extensions.
 
 When you define a custom command, it's available in the dashboard as a user experience feature.
 
@@ -249,7 +249,7 @@ The eventing model allows developers to hook into the lifecycle of the applicati
 - <xref:Aspire.Hosting.ApplicationModel.AfterResourcesCreatedEvent>: An event that is triggered after the resources are created. This runs in Run mode only.
 - <xref:Aspire.Hosting.ApplicationModel.AfterEndpointsAllocatedEvent>: An event that is triggered after the endpoints are allocated for all resources. This runs in Run mode only.
 
-The global events are analogous to the AppHost life cycle events. For more information, see [App host life cycles](../app-host/eventing.md#apphost-life-cycle-events).
+The global events are analogous to the AppHost life cycle events. For more information, see [AppHost life cycles](../app-host/eventing.md#apphost-life-cycle-events).
 
 **Per-resource events:**
 
@@ -689,7 +689,7 @@ builder.AddProject<Projects.WebApplication1>("api")
 builder.Build().Run();
 ```
 
-The preceding code example defers generation of the Azure Container App definition to the app host. This allows you to customize the Azure Container App definition without needing to run `azd infra synth` and unsafely modifying the generated bicep files.
+The preceding code example defers generation of the Azure Container App definition to the AppHost. This allows you to customize the Azure Container App definition without needing to run `azd infra synth` and unsafely modifying the generated bicep files.
 
 ## See also
 

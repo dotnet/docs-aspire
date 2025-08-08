@@ -2,7 +2,7 @@
 ms.topic: include
 ---
 
-The SQLite hosting integration models a SQLite database as the `SQLiteResource` type and will create the database file in the specified location. To access these types and APIs that allow you to add the [📦 CommunityToolkit.Aspire.Hosting.SQLite](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SQLite) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The SQLite hosting integration models a SQLite database as the `SQLiteResource` type and will create the database file in the specified location. To access these types and APIs that allow you to add the [📦 CommunityToolkit.Aspire.Hosting.SQLite](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SQLite) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

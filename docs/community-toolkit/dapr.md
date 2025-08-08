@@ -51,7 +51,7 @@ This integration requires Dapr version 1.13 or later. To install Dapr, see [Inst
 
 ## Hosting integration
 
-In your .NET Aspire solution, to integrate Dapr and access its types and APIs, add the [📦 CommunityToolkit.Aspire.Hosting.Dapr](https://www.nuget.org/packages/CommunityToolkit.Aspire.Hosting.Dapr) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+In your .NET Aspire solution, to integrate Dapr and access its types and APIs, add the [📦 CommunityToolkit.Aspire.Hosting.Dapr](https://www.nuget.org/packages/CommunityToolkit.Aspire.Hosting.Dapr) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

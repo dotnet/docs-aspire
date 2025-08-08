@@ -28,9 +28,9 @@ To configure the gPRC or HTTP endpoints, specify the following environment varia
 
 Configuration of the HTTP OTLP endpoint depends on whether the dashboard is started by the AppHost or is run standalone.
 
-#### Configure OTLP HTTP with app host
+#### Configure OTLP HTTP with AppHost
 
-If the dashboard and your app are started by the AppHost, the dashboard OTLP endpoints are configured in the app host's _launchSettings.json_ file.
+If the dashboard and your app are started by the AppHost, the dashboard OTLP endpoints are configured in the AppHost's _launchSettings.json_ file.
 
 Consider the following example JSON file:
 
@@ -112,7 +112,7 @@ For more information, see [.NET Aspire dashboard configuration: OTLP CORS](confi
 
 Dashboard OTLP endpoints can be secured with API key authentication. When enabled, HTTP OTLP requests to the dashboard must include the API key as the `x-otlp-api-key` header. By default a new  API key is generated each time the dashboard is run.
 
-API key authentication is automatically enabled when the dashboard is run from the app host. Dashboard authentication can be disabled by setting `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` to `true` in the app host's _launchSettings.json_ file.
+API key authentication is automatically enabled when the dashboard is run from the AppHost. Dashboard authentication can be disabled by setting `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` to `true` in the AppHost's _launchSettings.json_ file.
 
 OTLP endpoints are unsecured by default in the standalone dashboard.
 
@@ -154,7 +154,7 @@ The following JavaScript code demonstrates the initialization of the OpenTelemet
 
 :::code language="javascript" source="snippets/BrowserTelemetry/BrowserTelemetry.Web/Scripts/index.js":::
 
-The preceding JavaScript code defines an `initializeTelemetry` function that expects the OTLP endpoint URL, the headers, and the resource attributes. These parameters are provided by the consuming browser app that pulls them from the environment variables set by the app host. Consider the following Razor code:
+The preceding JavaScript code defines an `initializeTelemetry` function that expects the OTLP endpoint URL, the headers, and the resource attributes. These parameters are provided by the consuming browser app that pulls them from the environment variables set by the AppHost. Consider the following Razor code:
 
 :::code language="razor" source="snippets/BrowserTelemetry/BrowserTelemetry.Web/Pages/Shared/_Layout.cshtml" highlight="31-38":::
 

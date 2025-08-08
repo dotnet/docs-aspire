@@ -3,7 +3,7 @@ ms.topic: include
 ms.custom: sfi-ropc-nochange
 ---
 
-The Garnet hosting integration models a Garnet resource as the <xref:Aspire.Hosting.ApplicationModel.GarnetResource> type. To access this type and APIs that allow you to add it to your [📦 Aspire.Hosting.Garnet](https://www.nuget.org/packages/Aspire.Hosting.Garnet) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The Garnet hosting integration models a Garnet resource as the <xref:Aspire.Hosting.ApplicationModel.GarnetResource> type. To access this type and APIs that allow you to add it to your [📦 Aspire.Hosting.Garnet](https://www.nuget.org/packages/Aspire.Hosting.Garnet) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

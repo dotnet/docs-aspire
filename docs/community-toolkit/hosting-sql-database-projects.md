@@ -149,7 +149,7 @@ The preceding code:
 
 ### Redeploy support
 
-If you make changes to your SQL Database project while the AppHost is running, you can use the `Redeploy` custom action on the .NET Aspire dashboard to redeploy your updates without having to restart the app host.
+If you make changes to your SQL Database project while the AppHost is running, you can use the `Redeploy` custom action on the .NET Aspire dashboard to redeploy your updates without having to restart the AppHost.
 
 ## See also
 

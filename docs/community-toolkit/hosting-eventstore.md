@@ -15,7 +15,7 @@ In this article, you learn how to use the .NET Aspire EventStore hosting integra
 
 ## Hosting integration
 
-To run the EventStore container, install the [📦 CommunityToolkit.Aspire.Hosting.EventStore][hosting-nuget-link] NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+To run the EventStore container, install the [📦 CommunityToolkit.Aspire.Hosting.EventStore][hosting-nuget-link] NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

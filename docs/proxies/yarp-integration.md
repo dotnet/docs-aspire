@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 ## Hosting integration
 
-The YARP hosting integration models a containerized YARP reverse proxy as the <xref:Aspire.Hosting.Yarp.YarpResource> type. To access this type and its APIs add the [📦 Aspire.Hosting.Yarp](https://www.nuget.org/packages/Aspire.Hosting.Yarp) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The YARP hosting integration models a containerized YARP reverse proxy as the <xref:Aspire.Hosting.Yarp.YarpResource> type. To access this type and its APIs add the [📦 Aspire.Hosting.Yarp](https://www.nuget.org/packages/Aspire.Hosting.Yarp) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

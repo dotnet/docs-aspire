@@ -63,7 +63,7 @@ Alternatively, these same values could be configured using a JSON configuration 
 > For more information, see [dashboard security](security-considerations.md).
 
 > [!NOTE]
-> Configuration described on this page is for the standalone dashboard. To configure an .NET Aspire AppHost project, see [App host configuration](../../app-host/configuration.md).
+> Configuration described on this page is for the standalone dashboard. To configure an .NET Aspire AppHost project, see [AppHost configuration](../../app-host/configuration.md).
 
 ## Common configuration
 

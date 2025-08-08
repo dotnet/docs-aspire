@@ -15,7 +15,7 @@ ms.custom: sfi-ropc-nochange
 
 ## Hosting integration
 
-The Ollama hosting integration models an Ollama server as the `OllamaResource` type, and provides the ability to add models to the server using the `AddModel` extension method, which represents the model as an `OllamaModelResource` type. To access these types and APIs that allow you to add the [📦 CommunityToolkit.Aspire.Hosting.Ollama](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Ollama) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The Ollama hosting integration models an Ollama server as the `OllamaResource` type, and provides the ability to add models to the server using the `AddModel` extension method, which represents the model as an `OllamaModelResource` type. To access these types and APIs that allow you to add the [📦 CommunityToolkit.Aspire.Hosting.Ollama](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Ollama) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

@@ -12,7 +12,7 @@ In this article, you learn how to access the resources from the .NET Aspire AppH
 
 ## Access HTTP resources
 
-To access an HTTP resource, use the <xref:System.Net.Http.HttpClient> to request and receive responses. The <xref:Aspire.Hosting.DistributedApplication> and the <xref:Aspire.Hosting.Testing.DistributedApplicationFactory> both provide a <xref:Aspire.Hosting.Testing.DistributedApplicationFactory.CreateHttpClient*> method that's used to create an `HttpClient` instance for a specific resource, based on the resource name from the app host. This method also takes an optional `endpointName` parameter, so if the resource has multiple endpoints, you can specify which one to use.
+To access an HTTP resource, use the <xref:System.Net.Http.HttpClient> to request and receive responses. The <xref:Aspire.Hosting.DistributedApplication> and the <xref:Aspire.Hosting.Testing.DistributedApplicationFactory> both provide a <xref:Aspire.Hosting.Testing.DistributedApplicationFactory.CreateHttpClient*> method that's used to create an `HttpClient` instance for a specific resource, based on the resource name from the AppHost. This method also takes an optional `endpointName` parameter, so if the resource has multiple endpoints, you can specify which one to use.
 
 ## Access other resources
 

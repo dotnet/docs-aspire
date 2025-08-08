@@ -194,6 +194,6 @@ You can enhance your application with custom spans, logs, and metrics:
 
 ## Next steps
 
-You have successfully used the .NET Aspire dashboard with a Node.js application. To learn more about the .NET Aspire dashboard, see the [Aspire dashboard overview](overview.md) and how to orchestrate a Node.js application with the [.NET Aspire app host](../../get-started/build-aspire-apps-with-nodejs.md).
+You have successfully used the .NET Aspire dashboard with a Node.js application. To learn more about the .NET Aspire dashboard, see the [Aspire dashboard overview](overview.md) and how to orchestrate a Node.js application with the [.NET Aspire AppHost](../../get-started/build-aspire-apps-with-nodejs.md).
 
 To learn more about OpenTelemetry instrumentation for Node.js applications, see the [OpenTelemetry JavaScript documentation](https://opentelemetry.io/docs/languages/js/).

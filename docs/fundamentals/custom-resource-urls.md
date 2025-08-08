@@ -79,4 +79,4 @@ URL customization callbacks run during the application model lifecycle, specific
 ## See also
 
 - [.NET Aspire dashboard overview](dashboard/overview.md)
-- [.NET Aspire app host](app-host-overview.md)
+- [.NET Aspire AppHost](app-host-overview.md)

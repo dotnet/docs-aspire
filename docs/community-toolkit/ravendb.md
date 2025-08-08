@@ -15,7 +15,7 @@ ms.date: 5/27/2025
 
 ## Hosting integration
 
-The RavenDB hosting integration models the server as the `RavenDBServerResource` type and the database as the `RavenDBDatabaseResource` type. To access these types and APIs, add the [📦 CommunityToolkit.Aspire.Hosting.RavenDB](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.RavenDB) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The RavenDB hosting integration models the server as the `RavenDBServerResource` type and the database as the `RavenDBDatabaseResource` type. To access these types and APIs, add the [📦 CommunityToolkit.Aspire.Hosting.RavenDB](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.RavenDB) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

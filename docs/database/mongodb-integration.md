@@ -14,7 +14,7 @@ ms.custom: sfi-ropc-nochange
 
 ## Hosting integration
 
-The MongoDB server hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.MongoDBServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.MongoDBDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.MongoDB](https://www.nuget.org/packages/Aspire.Hosting.MongoDB) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The MongoDB server hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.MongoDBServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.MongoDBDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.MongoDB](https://www.nuget.org/packages/Aspire.Hosting.MongoDB) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -60,7 +60,7 @@ When .NET Aspire adds a container image to the AppHost, as shown in the precedin
 - `MONGO_INITDB_ROOT_USERNAME`: A value of `admin`.
 - `MONGO_INITDB_ROOT_PASSWORD`: Random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
-When the AppHost runs, the password is stored in the app host's secret store. It's added to the `Parameters` section, for example:
+When the AppHost runs, the password is stored in the AppHost's secret store. It's added to the `Parameters` section, for example:
 
 ```json
 {

@@ -3,7 +3,7 @@ ms.topic: include
 ms.custom: sfi-ropc-nochange
 ---
 
-The Redis hosting integration models a Redis resource as the <xref:Aspire.Hosting.ApplicationModel.RedisResource> type. To access this type and APIs for expressing them as resources in your [app host](xref:dotnet/aspire/app-host) project, add the [📦 Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis) NuGet package:
+The Redis hosting integration models a Redis resource as the <xref:Aspire.Hosting.ApplicationModel.RedisResource> type. To access this type and APIs for expressing them as resources in your [AppHost](xref:dotnet/aspire/app-host) project, add the [📦 Aspire.Hosting.Redis](https://www.nuget.org/packages/Aspire.Hosting.Redis) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 

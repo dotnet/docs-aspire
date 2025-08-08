@@ -15,7 +15,7 @@ During development, .NET Aspire runs and connects to the [`datalust/seq` contain
 
 ## Hosting integration
 
-The Seq hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.SeqResource> type. To access this type and the API, add the [📦 Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The Seq hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.SeqResource> type. To access this type and the API, add the [📦 Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

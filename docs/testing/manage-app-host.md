@@ -7,7 +7,7 @@ zone_pivot_groups: unit-testing-framework
 
 # Manage the AppHost in .NET Aspire tests
 
-When writing functional or integration tests with .NET Aspire, managing the [app host](../fundamentals/app-host-overview.md) instance efficiently is crucial. The AppHost represents the full application environment and can be costly to create and tear down. This article explains how to manage the AppHost instance in your .NET Aspire tests.
+When writing functional or integration tests with .NET Aspire, managing the [AppHost](../fundamentals/app-host-overview.md) instance efficiently is crucial. The AppHost represents the full application environment and can be costly to create and tear down. This article explains how to manage the AppHost instance in your .NET Aspire tests.
 
 For writing tests with .NET Aspire, you use the [📦 `Aspire.Hosting.Testing`](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package which contains some helper classes to manage the AppHost instance in your tests.
 
@@ -114,7 +114,7 @@ public class WebTests
 
 By capturing the AppHost in a field when the test run is started, you can access it in each test without the need to recreate it, decreasing the time it takes to run the tests. Then, when the test run completes, the AppHost is disposed, which cleans up any resources that were created during the test run, such as containers.
 
-## Pass arguments to your app host
+## Pass arguments to your AppHost
 
 You can access the arguments from your AppHost with the `args` parameter. Arguments are also passed to [.NET's configuration system](/dotnet/core/extensions/configuration), so you can override many configuration settings this way. In the following example, you override the [environment](/aspnet/core/fundamentals/environments) by specifying it as a command line option:
 
@@ -126,7 +126,7 @@ var builder = await DistributedApplicationTestingBuilder
     ]);
 ```
 
-Other arguments can be passed to your AppHost `Program` and made available in your app host. In the next example, you pass an argument to the AppHost and use it to control whether you add data volumes to a Postgres instance.
+Other arguments can be passed to your AppHost `Program` and made available in your AppHost. In the next example, you pass an argument to the AppHost and use it to control whether you add data volumes to a Postgres instance.
 
 In the AppHost `Program`, you use configuration to support enabling or disabling volumes:
 
@@ -138,7 +138,7 @@ if (builder.Configuration.GetValue("UseVolumes", true))
 }
 ```
 
-In test code, you pass `"UseVolumes=false"` in the `args` to the app host:
+In test code, you pass `"UseVolumes=false"` in the `args` to the AppHost:
 
 ```csharp
 public async Task DisableVolumesFromTest()
@@ -173,7 +173,7 @@ The constructor requires the type of the AppHost project reference as a paramete
 
 ### Lifecycle methods
 
-The `DistributionApplicationFactory` class provides several lifecycle methods that can be overridden to provide custom behavior throughout the preparation and creation of the app host. The available methods are `OnBuilderCreating`, `OnBuilderCreated`, `OnBuilding`, and `OnBuilt`.
+The `DistributionApplicationFactory` class provides several lifecycle methods that can be overridden to provide custom behavior throughout the preparation and creation of the AppHost. The available methods are `OnBuilderCreating`, `OnBuilderCreated`, `OnBuilding`, and `OnBuilt`.
 
 For example, we can use the `OnBuilderCreating` method to set configuration, such as the subscription and resource group information for Azure, before the AppHost is created and any dependent Azure resources are provisioned, resulting in our tests using the correct Azure environment.
 
@@ -192,7 +192,7 @@ public class TestingAspireAppHost() : DistributedApplicationFactory(typeof(Proje
 
 Because of the order of precedence in the .NET configuration system, the environment variables will be used over anything in the _appsettings.json_ or _secrets.json_ file.
 
-Another scenario you might want to use in the lifecycle is to configure the services used by the app host. In the following example, consider a scenario where you override the `OnBuilderCreated` API to add resilience to the `HttpClient`:
+Another scenario you might want to use in the lifecycle is to configure the services used by the AppHost. In the following example, consider a scenario where you override the `OnBuilderCreated` API to add resilience to the `HttpClient`:
 
 ```csharp
 protected override void OnBuilderCreated(

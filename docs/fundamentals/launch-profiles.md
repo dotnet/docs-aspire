@@ -54,7 +54,7 @@ In Visual Studio it's possible to select the launch profile when launching the a
 
 When a .NET application is launched with a launch profile a special environment variable called `DOTNET_LAUNCH_PROFILE` is populated with the name of the launch profile that was used when launching the process.
 
-## Launch profiles for .NET Aspire app host
+## Launch profiles for .NET Aspire AppHost
 
 In .NET Aspire, the AppHost is just a .NET application. As a result it has a `launchSettings.json` file just like any other application. Here is an example of the `launchSettings.json` file generated when creating a new .NET Aspire project from the starter template (`dotnet new aspire-starter`).
 
@@ -96,7 +96,7 @@ For information about AppHost configuration options, see [.NET Aspire AppHost co
 
 ## Relationship between AppHost launch profiles and service projects
 
-In .NET Aspire the AppHost is responsible for coordinating the launch of multiple service projects. When you run the AppHost either via the command line or from Visual Studio (or other development environment) a launch profile is selected for the app host. In turn, the AppHost will attempt to find a matching launch profile in the service projects it is launching and use those options to control the environment and default networking configuration for the service project.
+In .NET Aspire the AppHost is responsible for coordinating the launch of multiple service projects. When you run the AppHost either via the command line or from Visual Studio (or other development environment) a launch profile is selected for the AppHost. In turn, the AppHost will attempt to find a matching launch profile in the service projects it is launching and use those options to control the environment and default networking configuration for the service project.
 
 When the AppHost launches a service project it doesn't simply launch the service project using the `--launch-profile` option. Therefore, there will be no `DOTNET_LAUNCH_PROFILE` environment variable set for service projects. This is because .NET Aspire modifies the `ASPNETCORE_URLS` environment variable (derived from the `applicationUrl` field in the launch profile) to use a different port. By default, .NET Aspire inserts a reverse proxy in front of the ASP.NET Core application to allow for multiple instances of the application using the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithReplicas%2A> method.
 

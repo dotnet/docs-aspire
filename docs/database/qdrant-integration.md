@@ -18,7 +18,7 @@ In this article, you learn how to use the .NET Aspire Qdrant integration. The .N
 
 ## Hosting integration
 
-The Qdrant hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.QdrantServerResource> type. To access this type and APIs, add the [📦 Aspire.Hosting.Qdrant](https://www.nuget.org/packages/Aspire.Hosting.Qdrant) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The Qdrant hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.QdrantServerResource> type. To access this type and APIs, add the [📦 Aspire.Hosting.Qdrant](https://www.nuget.org/packages/Aspire.Hosting.Qdrant) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

@@ -8,11 +8,11 @@ ms.date: 07/22/2025
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure App Configuration](/azure/azure-app-configuration/overview) provides a service to centrally manage application settings and feature flags. Modern programs, especially programs running in a cloud, generally have many components that are distributed in nature. Spreading configuration settings across these components can lead to hard-to-troubleshoot errors during an application deployment. The .NET Aspire Azure App Configuration integration enables you to connect to existing App Configuration instances or create new instances all from your app host.
+[Azure App Configuration](/azure/azure-app-configuration/overview) provides a service to centrally manage application settings and feature flags. Modern programs, especially programs running in a cloud, generally have many components that are distributed in nature. Spreading configuration settings across these components can lead to hard-to-troubleshoot errors during an application deployment. The .NET Aspire Azure App Configuration integration enables you to connect to existing App Configuration instances or create new instances all from your AppHost.
 
 ## Hosting integration
 
-The .NET Aspire Azure App Configuration hosting integration models the App Configuration resource as the <xref:Aspire.Hosting.Azure.AzureAppConfigurationResource> type. To access this type and APIs fro expressing the resource, add the [📦 Aspire.Hosting.Azure.AppConfiguration](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppConfiguration) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The .NET Aspire Azure App Configuration hosting integration models the App Configuration resource as the <xref:Aspire.Hosting.Azure.AzureAppConfigurationResource> type. To access this type and APIs fro expressing the resource, add the [📦 Aspire.Hosting.Azure.AppConfiguration](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppConfiguration) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -116,7 +116,7 @@ builder.AddProject<Projects.WebApplication>("web")
 
 [!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
 
-The connection string is configured in the app host's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section. The AppHost injects this connection string as an environment variable into all dependent resources, for example:
+The connection string is configured in the AppHost's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section. The AppHost injects this connection string as an environment variable into all dependent resources, for example:
 
 ```json
 {

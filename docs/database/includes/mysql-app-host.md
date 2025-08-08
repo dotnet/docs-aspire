@@ -3,7 +3,7 @@ ms.topic: include
 ms.custom: sfi-ropc-nochange
 ---
 
-The MySQL hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.MySqlServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.MySqlDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The MySQL hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.MySqlServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.MySqlDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -46,7 +46,7 @@ var myService = builder.AddProject<Projects.ExampleProject>()
 
 When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `mysql` image, it creates a new MySQL instance on your local machine. A reference to your MySQL resource builder (the `mysql` variable) is used to add a database. The database is named `mysqldb` and then added to the `ExampleProject`. The MySQL resource includes default credentials with a `username` of `root` and a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
-When the AppHost runs, the password is stored in the app host's secret store. It's added to the `Parameters` section, for example:
+When the AppHost runs, the password is stored in the AppHost's secret store. It's added to the `Parameters` section, for example:
 
 ```json
 {

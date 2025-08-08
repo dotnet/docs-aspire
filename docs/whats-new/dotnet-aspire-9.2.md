@@ -66,7 +66,7 @@ If your AppHost project file doesn't have the `Aspire.AppHost.Sdk` reference, yo
 
 ## 🖥️ AppHost enhancements
 
-The [app host](../fundamentals/app-host-overview.md) is the core of .NET Aspire, providing the local hosting environment for your distributed applications. In .NET Aspire 9.2, we've made several improvements to the app host:
+The [AppHost](../fundamentals/app-host-overview.md) is the core of .NET Aspire, providing the local hosting environment for your distributed applications. In .NET Aspire 9.2, we've made several improvements to the AppHost:
 
 ### 🚧 Project file changes
 
@@ -483,7 +483,7 @@ aspire publish --publisher docker-compose
 - `new <template>` – Create a new Aspire sample project  
 - `run` – Run an Aspire AppHost in development mode  
 - `add <integration>` – Add an integration to your project  
-- `publish` – Generate deployment artifacts from your app host
+- `publish` – Generate deployment artifacts from your AppHost
 
 🧪 The CLI is **preview**. We're exploring how to make it a first-class experience for .NET Aspire users—your feedback is welcome!
 

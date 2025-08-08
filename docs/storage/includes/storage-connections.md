@@ -4,7 +4,7 @@ ms.topic: include
 
 ### Connect to an existing Azure Storage account
 
-You might have an existing Azure Storage account that you want to connect to. Instead of representing a new Azure Storage resource, you can add a connection string to the app host. To add a connection to an existing Azure Storage account, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> method:
+You might have an existing Azure Storage account that you want to connect to. Instead of representing a new Azure Storage resource, you can add a connection string to the AppHost. To add a connection to an existing Azure Storage account, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -19,7 +19,7 @@ builder.AddProject<Projects.WebApplication>("web")
 
 [!INCLUDE [connection-strings-alert](../../includes/connection-strings-alert.md)]
 
-The connection string is configured in the app host's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section. The AppHost injects this connection string as an environment variable into all dependent resources, for example:
+The connection string is configured in the AppHost's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section. The AppHost injects this connection string as an environment variable into all dependent resources, for example:
 
 ```json
 {
@@ -40,7 +40,7 @@ When the .NET Aspire AppHost runs, the storage resources can be accessed by exte
 
 To connect to the storage resource from Azure Storage Explorer, follow these steps:
 
-1. Run the .NET Aspire app host.
+1. Run the .NET Aspire AppHost.
 1. Open the Azure Storage Explorer.
 1. View the **Explorer** pane.
 1. Select the **Refresh all** link to refresh the list of storage accounts.

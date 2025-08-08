@@ -109,7 +109,7 @@ For more information, see [.NET Aspire dashboard: Resources page](../fundamental
 
 You can now set the `ASPIRE_DASHBOARD_CORS_ALLOWED_ORIGINS` environment variable to allow the dashboard to receive telemetry from other browser apps, such as if you have resources running on custom localhost domains.
 
-For more information, see [.NET Aspire app host: Dashboard configuration](../app-host/configuration.md#dashboard).
+For more information, see [.NET Aspire AppHost: Dashboard configuration](../app-host/configuration.md#dashboard).
 
 ### 🪵 Flexibility with console logs
 
@@ -137,7 +137,7 @@ In .NET Aspire 9.1, several improvements to streamline your local development ex
 
 ### ▶️ Start resources on demand
 
-You can now tell resources not to start with the rest of your app by using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> on the resource in your app host. Then, you can start it whenever you're ready from inside the dashboard.
+You can now tell resources not to start with the rest of your app by using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> on the resource in your AppHost. Then, you can start it whenever you're ready from inside the dashboard.
 
 For more information, see [Configure explicit resource start](../fundamentals/orchestrate-resources.md#configure-explicit-resource-start).
 
@@ -199,7 +199,7 @@ Along with support for the new emulator, Cosmos DB added the following features.
 
 Previously, the Cosmos DB integration used access keys and a Key Vault secret to connect to the service. .NET Aspire 9.1 added support for using more secure authentication using managed identities by default. If you need to keep using access key authentication, you can get back to the previous behavior by calling <xref:Aspire.Hosting.AzureCosmosExtensions.WithAccessKeyAuthentication*>.
 
-##### 💽 Support for modeling Database and Containers in the app host
+##### 💽 Support for modeling Database and Containers in the AppHost
 
 You can define a Cosmos DB database and containers in the AppHost and these resources are available when you run the application in both the emulator and in Azure. This allows you to define these resources up front and no longer need to create them from the application, which might not have permission to create them.
 
@@ -302,7 +302,7 @@ The [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS)
 
 .NET Aspire 9.1 simplifies writing cross-functional integration tests with a robust approach. The AppHost allows you to create, evaluate, and manage containerized environments seamlessly within a test run. This functionality supports popular testing frameworks like xUnit, NUnit, and MSTest, enhancing your testing capabilities and efficiency.
 
-Now, you're able to disable port randomization or enable the [dashboard](../fundamentals/dashboard/overview.md). For more information, see [.NET Aspire testing overview](../testing/overview.md). Additionally, you can now [Pass arguments to your app host](../testing/manage-app-host.md#pass-arguments-to-your-app-host).
+Now, you're able to disable port randomization or enable the [dashboard](../fundamentals/dashboard/overview.md). For more information, see [.NET Aspire testing overview](../testing/overview.md). Additionally, you can now [Pass arguments to your AppHost](../testing/manage-app-host.md#pass-arguments-to-your-app-host).
 
 Some of these enhancements were introduced as a result of stability issues that were reported, such as [.NET Aspire GitHub issue #6678](https://github.com/dotnet/aspire/issues/6678)—where some resources failed to start do to "address in use" errors.
 

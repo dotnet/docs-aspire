@@ -12,7 +12,7 @@ Environments provide context for the application to run in. Parameters express t
 
 ## Parameter values
 
-Parameter values are read from the `Parameters` section of the app host's configuration and are used to provide values to the app while running locally. When you run or publish the app, if the value isn't configured you're prompted to provide it.
+Parameter values are read from the `Parameters` section of the AppHost's configuration and are used to provide values to the app while running locally. When you run or publish the app, if the value isn't configured you're prompted to provide it.
 
 Consider the following example AppHost _:::no-loc text="Program.cs":::_ file:
 
@@ -26,7 +26,7 @@ builder.AddProject<Projects.ApiService>("api")
        .WithEnvironment("ENVIRONMENT_VARIABLE_NAME", parameter);
 ```
 
-The preceding code adds a parameter named `example-parameter-name` to the app host. The parameter is then passed to the `Projects.ApiService` project as an environment variable named `ENVIRONMENT_VARIABLE_NAME`.
+The preceding code adds a parameter named `example-parameter-name` to the AppHost. The parameter is then passed to the `Projects.ApiService` project as an environment variable named `ENVIRONMENT_VARIABLE_NAME`.
 
 ### Configure parameter values
 
@@ -52,7 +52,7 @@ var value = builder.Configuration[key]; // value = "local-value"
 ```
 
 > [!IMPORTANT]
-> However, you don't need to access this configuration value yourself in the app host. Instead, the <xref:Aspire.Hosting.ApplicationModel.ParameterResource> is used to pass the parameter value to dependent resources. Most often as an environment variable.
+> However, you don't need to access this configuration value yourself in the AppHost. Instead, the <xref:Aspire.Hosting.ApplicationModel.ParameterResource> is used to pass the parameter value to dependent resources. Most often as an environment variable.
 
 ### Prompt for parameter values in the dashboard
 

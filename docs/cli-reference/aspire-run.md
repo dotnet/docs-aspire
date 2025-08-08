@@ -1,6 +1,6 @@
 ---
 title: aspire run command
-description: Learn about the aspire run command and its usage. This command runs an Aspire app host.
+description: Learn about the aspire run command and its usage. This command runs an Aspire AppHost.
 ms.date: 07/11/2025
 ---
 # aspire run command

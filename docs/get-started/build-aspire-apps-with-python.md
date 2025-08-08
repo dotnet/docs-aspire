@@ -7,7 +7,7 @@ ms.custom: sfi-image-nochange
 
 # Orchestrate Python apps in .NET Aspire
 
-In this article, you learn how to use Python apps in a .NET Aspire app host. The sample app in this article demonstrates launching a Python application. The Python extension for .NET Aspire requires the use of virtual environments.
+In this article, you learn how to use Python apps in a .NET Aspire AppHost. The sample app in this article demonstrates launching a Python application. The Python extension for .NET Aspire requires the use of virtual environments.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
@@ -145,7 +145,7 @@ Replace the AppHost _Program.cs_ code with the following snippet. This code adds
 
 ## Run the app
 
-Now that you've added the Python hosting package, updated the AppHost _Program.cs_ file, and created a Python project, you can run the app host:
+Now that you've added the Python hosting package, updated the AppHost _Program.cs_ file, and created a Python project, you can run the AppHost:
 
 ```dotnetcli
 dotnet run --project ../PythonSample.AppHost/PythonSample.AppHost.csproj
@@ -181,7 +181,7 @@ Update the AppHost project's _launchSettings.json_ file to include the `ASPIRE_A
 
 :::code language="json" source="snippets/PythonSample/PythonSample.AppHost/Properties/launchSettings.json" highlight="26":::
 
-The `ASPIRE_ALLOW_UNSECURED_TRANSPORT` variable is required because when running locally the OpenTelemetry client in Python rejects the local development certificate. Launch the _app host_ again:
+The `ASPIRE_ALLOW_UNSECURED_TRANSPORT` variable is required because when running locally the OpenTelemetry client in Python rejects the local development certificate. Launch the _AppHost_ again:
 
 ```dotnetcli
 dotnet run --project ../PythonSample.AppHost/PythonSample.AppHost.csproj --launch-profile http

@@ -112,7 +112,7 @@ The `weatherapi` service endpoint resolves to a Swagger UI page that documents t
 
 In the same terminal session that you used to run the app, press <kbd>Ctrl</kbd> + <kbd>C</kbd> to stop the app.
 
-## Explore the app host
+## Explore the AppHost
 
 To help understand how each client app resource is orchestrated, look to the AppHost project. The AppHost requires the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package to host Node.js apps:
 
@@ -125,7 +125,7 @@ The project file also defines a build target that ensures that the npm dependenc
 The preceding code:
 
 - Creates a <xref:Aspire.Hosting.DistributedApplicationBuilder>.
-- Adds the "weatherapi" service as a project to the app host.
+- Adds the "weatherapi" service as a project to the AppHost.
   - Marks the HTTP endpoints as external.
 - With a reference to the "weatherapi" service, adds the "angular", "react", and "vue" client apps as npm apps.
   - Each client app is configured to run on a different container port, and uses the `PORT` environment variable to determine the port.
@@ -217,7 +217,7 @@ As the `TheWelcome` integration is `mounted`, it calls the `/api/weatherforecast
 
 :::code language="typescript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Vue/vite.config.ts":::
 
-Additionally, the Vite config specifies the `server.proxy` property to forward requests to the "weatherapi" service. This is achieved by using the `services__weatherapi__http__0` environment variable, which is set by the .NET Aspire app host.
+Additionally, the Vite config specifies the `server.proxy` property to forward requests to the "weatherapi" service. This is achieved by using the `services__weatherapi__http__0` environment variable, which is set by the .NET Aspire AppHost.
 
 The final update from the template is made to the _TheWelcome.vue_ file. This file calls the `/api/WeatherForecast` endpoint to retrieve the weather forecast data, and displays the data in a table. It includes [CSS, HTML, and TypeScript updates](https://github.com/dotnet/aspire-samples/blob/ef6868b0999c6eea3d42a10f2b20433c5ea93720/samples/AspireWithJavaScript/AspireJavaScript.Vue/src/components/TheWelcome.vue).
 
@@ -239,7 +239,7 @@ The client apps are currently configured to run as true SPA apps, and aren't con
 
 ## Node.js server app considerations
 
-While this article focuses on client apps, you might have scenarios where you need to host a Node.js server app. The same semantics are required to host a Node.js server app as a SPA client app. The .NET Aspire AppHost requires a package reference to the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package and the code needs to call either `AddNodeApp` or `AddNpmApp`. These APIs are useful for adding existing JavaScript apps to the .NET Aspire app host.
+While this article focuses on client apps, you might have scenarios where you need to host a Node.js server app. The same semantics are required to host a Node.js server app as a SPA client app. The .NET Aspire AppHost requires a package reference to the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package and the code needs to call either `AddNodeApp` or `AddNpmApp`. These APIs are useful for adding existing JavaScript apps to the .NET Aspire AppHost.
 
 When configuring secrets and passing environment variables to JavaScript-based apps, whether they are client or server apps, use parameters. For more information, see [.NET Aspire: External parameters—secrets](../fundamentals/external-parameters.md#secret-values).
 

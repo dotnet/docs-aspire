@@ -50,7 +50,7 @@ This mechanism ensures that persistent containers stay synchronized with your Ap
 
 By default, persistent containers use a naming pattern that combines:
 
-- The service name you specify in your app host.
+- The service name you specify in your AppHost.
 - A postfix based on a hash of the AppHost project path.
 
 This naming scheme ensures that persistent containers are unique to each AppHost project, preventing conflicts when multiple .NET Aspire projects use the same service names.
@@ -71,12 +71,12 @@ var postgres = builder.AddPostgres("postgres")
 builder.Build().Run();
 ```
 
-When you specify a custom container name, .NET Aspire first checks if a container with that name already exists. If a container with that name exists and was previously created by .NET Aspire, it follows the normal persistent container behavior and can be automatically recreated if the configuration changes. If a container with that name exists but wasn't created by .NET Aspire, it won't be managed or recreated by the app host. If no container with the custom name exists, .NET Aspire creates a new one.
+When you specify a custom container name, .NET Aspire first checks if a container with that name already exists. If a container with that name exists and was previously created by .NET Aspire, it follows the normal persistent container behavior and can be automatically recreated if the configuration changes. If a container with that name exists but wasn't created by .NET Aspire, it won't be managed or recreated by the AppHost. If no container with the custom name exists, .NET Aspire creates a new one.
 
 ## Manual cleanup
 
 > [!IMPORTANT]
-> Persistent containers aren't automatically removed when you stop the app host. To delete these containers, you must manually stop and remove them using your container runtime.
+> Persistent containers aren't automatically removed when you stop the AppHost. To delete these containers, you must manually stop and remove them using your container runtime.
 
 You can clean up persistent containers using Docker CLI commands:
 
@@ -97,7 +97,7 @@ Persistent containers are ideal for:
 - **Database services**: PostgreSQL, SQL Server, MySQL, and other databases that take time to initialize and load data.
 - **Message brokers**: RabbitMQ, Redis, and similar services that benefit from maintaining state between runs.
 - **Development data**: Containers with test data or configurations that you want to preserve during development iterations.
-- **Shared services**: Services that multiple app hosts or development team members can share.
+- **Shared services**: Services that multiple AppHosts or development team members can share.
 
 ## See also
 

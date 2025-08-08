@@ -145,7 +145,7 @@ builder.AddProject<Projects.ExampleProject>()
 For more information on treating Azure AI Foundry resources as existing resources, see [Use existing Azure resources](/dotnet/aspire/azure/integrations-overview#use-existing-azure-resources).
 
 > [!NOTE]
-> Alternatively, instead of representing an Azure AI Foundry resource, you can add a connection string to the app host. This approach is weakly typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](/dotnet/aspire/azure/integrations-overview#add-existing-azure-resources-with-connection-strings).
+> Alternatively, instead of representing an Azure AI Foundry resource, you can add a connection string to the AppHost. This approach is weakly typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](/dotnet/aspire/azure/integrations-overview#add-existing-azure-resources-with-connection-strings).
 
 ### Use Foundry Local for development
 

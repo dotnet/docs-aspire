@@ -17,7 +17,7 @@ Although the Azure AI Inference library doesn't currently offer direct hosting i
 
 ### Connect to an existing Azure AI Foundry service
 
-If you already have an [Azure AI Foundry](https://ai.azure.com/) service, you can easily connect to it by adding a connection string to your app host. This approach uses a simple, string-based configuration. To establish the connection, use the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString%2A> method:
+If you already have an [Azure AI Foundry](https://ai.azure.com/) service, you can easily connect to it by adding a connection string to your AppHost. This approach uses a simple, string-based configuration. To establish the connection, use the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString%2A> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -32,7 +32,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 [!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
 
-The connection string is configured in the app host's configuration, typically under User Secrets, under the `ConnectionStrings` section:
+The connection string is configured in the AppHost's configuration, typically under User Secrets, under the `ConnectionStrings` section:
 
 ```json
 {

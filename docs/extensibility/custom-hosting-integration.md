@@ -59,7 +59,7 @@ dir
 
 Once the project is created, you should see a listing containing the following:
 
-- `MailDevResource.AppHost`: The [app host](../fundamentals/app-host-overview.md) used to test out the custom resource.
+- `MailDevResource.AppHost`: The [AppHost](../fundamentals/app-host-overview.md) used to test out the custom resource.
 - `MailDevResource.ServiceDefaults`: The [service defaults](../fundamentals/service-defaults.md) project for use in service-related projects.
 - `MailDevResource.sln`: The solution file referencing both projects.
 
@@ -155,7 +155,7 @@ Now when you launch the AppHost, there's no warning displayed to the console.
 
 ## Define the resource types
 
-The _MailDev.Hosting_ class library contains the resource type and extension methods for adding the resource to the app host. You should first think about the experience that you want to give developers when using your custom resource. In the case of this custom resource, you would want developers to be able to write code like the following:
+The _MailDev.Hosting_ class library contains the resource type and extension methods for adding the resource to the AppHost. You should first think about the experience that you want to give developers when using your custom resource. In the case of this custom resource, you would want developers to be able to write code like the following:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -184,7 +184,7 @@ Add the following code to a new file named _MailDevResourceBuilderExtensions.cs_
 
 :::code language="csharp" source="snippets/MailDevResource/MailDev.Hosting/MailDevResourceBuilderExtensions.cs":::
 
-## Validate custom integration inside the app host
+## Validate custom integration inside the AppHost
 
 Now that the basic structure for the custom resource is complete it's time to test it in a real AppHost project. Open the _:::no-loc text="Program.cs":::_ file in the _:::no-loc text="MailDevResource.AppHost":::_ project and update it with the following code:
 
