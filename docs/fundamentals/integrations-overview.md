@@ -33,6 +33,9 @@ Client integrations wire up client libraries to [dependency injection (DI)](/dot
 
 These packages configure existing client libraries to connect to hosting integrations. They extend the <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> interface allowing client-consuming projects, such as your web app or API, to use the connected resource. The official [client integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+client+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `client`. In addition to the official client integrations, the [community has created client integrations](../community-toolkit/overview.md) for various services and platforms as part of the Community Toolkit.
 
+> [!IMPORTANT]
+> .NET Aspire integrations require <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> and are **not compatible** with `HostingStartup` implementations, which only provide access to <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. If you're using `HostingStartup` for modular configuration, see [HostingStartup is not supported with .NET Aspire integrations](../troubleshooting/hosting-startup-not-supported.md) for migration guidance.
+
 For more information on creating a custom client integration, see [Create custom .NET Aspire client integrations](../extensibility/custom-client-integration.md).
 
 ### Relationship between hosting and client integrations
