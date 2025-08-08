@@ -30,7 +30,7 @@ Configuration of the HTTP OTLP endpoint depends on whether the dashboard is star
 
 #### Configure OTLP HTTP with app host
 
-If the dashboard and your app are started by the app host, the dashboard OTLP endpoints are configured in the app host's _launchSettings.json_ file.
+If the dashboard and your app are started by the AppHost, the dashboard OTLP endpoints are configured in the app host's _launchSettings.json_ file.
 
 Consider the following example JSON file:
 
@@ -72,7 +72,7 @@ The preceding command runs the dashboard container and maps gRPC OTLP to port `4
 
 By default, browser apps are restricted from making cross domain API calls. This impacts sending telemetry to the dashboard because the dashboard and the browser app are always on different domains. Configuring CORS in the .NET Aspire dashboard removes the restriction.
 
-If the dashboard and your app are started by the app host, no CORS configuration is required. .NET Aspire automatically configures the dashboard to allow all resource origins.
+If the dashboard and your app are started by the AppHost, no CORS configuration is required. .NET Aspire automatically configures the dashboard to allow all resource origins.
 
 If the dashboard is used standlone then CORS must be configured manually. The domain used to view the browser app must be configured as an allowed origin by specifing the `DASHBOARD__OTLP__CORS__ALLOWEDORIGINS` environment variable when the dashboard container is started:
 

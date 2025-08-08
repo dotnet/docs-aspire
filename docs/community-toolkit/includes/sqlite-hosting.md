@@ -34,7 +34,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(sqlite);
 ```
 
-When .NET Aspire adds a SQLite database to the app host, as shown in the preceding example, it creates a new SQLite database file in the users temp directory.
+When .NET Aspire adds a SQLite database to the AppHost, as shown in the preceding example, it creates a new SQLite database file in the users temp directory.
 
 Alternatively, if you want to specify a custom location for the SQLite database file, provide the relevant arguments to the `AddSqlite` method.
 
@@ -51,7 +51,7 @@ var sqlite = builder.AddSQLite("my-database")
                     .WithSqliteWeb();
 ```
 
-This code adds a container based on  `ghcr.io/coleifer/sqlite-web` to the app host, which provides a web interface to interact with the SQLite database it is connected to. Each SQLiteWeb instance is connected to a single SQLite database, meaning that if you add multiple SQLiteWeb instances, there will be multiple SQLiteWeb containers.
+This code adds a container based on  `ghcr.io/coleifer/sqlite-web` to the AppHost, which provides a web interface to interact with the SQLite database it is connected to. Each SQLiteWeb instance is connected to a single SQLite database, meaning that if you add multiple SQLiteWeb instances, there will be multiple SQLiteWeb containers.
 
 ### Adding SQLite extensions
 

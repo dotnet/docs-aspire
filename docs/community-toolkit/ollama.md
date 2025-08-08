@@ -55,7 +55,7 @@ Alternatively, if you want to use a model from the [Hugging Face](https://huggin
 var llama = ollama.AddHuggingFaceModel("llama", "bartowski/Llama-3.2-1B-Instruct-GGUF:IQ4_XS");
 ```
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/ollama/ollama` image, it creates a new Ollama instance on your local machine. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/ollama/ollama` image, it creates a new Ollama instance on your local machine. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 ### Download the LLM
 
@@ -136,7 +136,7 @@ dotnet add package CommunityToolkit.Aspire.OllamaSharp
 
 ### Add Ollama client API
 
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the `AddOllamaClientApi` extension to register an `IOllamaClientApi` for use via the dependency injection container. If the resource provided in the app host, and referenced in the client-consuming project, is an `OllamaModelResource`, then the `AddOllamaClientApi` method will register the model as the default model for the `IOllamaClientApi`.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the `AddOllamaClientApi` extension to register an `IOllamaClientApi` for use via the dependency injection container. If the resource provided in the AppHost, and referenced in the client-consuming project, is an `OllamaModelResource`, then the `AddOllamaClientApi` method will register the model as the default model for the `IOllamaClientApi`.
 
 ```csharp
 builder.AddOllamaClientApi("llama3");

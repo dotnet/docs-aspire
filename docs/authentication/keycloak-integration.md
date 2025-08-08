@@ -58,7 +58,7 @@ builder.AddProject<Projects.Keycloak_Web>("webfrontend")
 > [!TIP]
 > For local development use a stable port for the Keycloak resource (`8080` in the preceding example). It can be any port, but it should be stable to avoid issues with browser cookies that will persist OIDC tokens (which include the authority URL, with port) beyond the lifetime of the _app host_.
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `quay.io/keycloak/keycloak` image, it creates a new Keycloak instance on your local machine. The Keycloak resource includes default credentials:
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `quay.io/keycloak/keycloak` image, it creates a new Keycloak instance on your local machine. The Keycloak resource includes default credentials:
 
 - `KEYCLOAK_ADMIN`: A value of `admin`.
 - `KEYCLOAK_ADMIN_PASSWORD`: Random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.

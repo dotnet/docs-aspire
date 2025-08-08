@@ -19,7 +19,7 @@ aspire run [options] [[--] <additional arguments>...]
 
 ## Description
 
-The `aspire run` command runs the AppHost project in development mode, which configures the Aspire environment, builds and starts resources defined by the app host, launches the web dashboard, and prints a list of endpoints.
+The `aspire run` command runs the AppHost project in development mode, which configures the Aspire environment, builds and starts resources defined by the AppHost, launches the web dashboard, and prints a list of endpoints.
 
 [!INCLUDE [project-search-logic-description](includes/project-search-logic-description.md)]
 

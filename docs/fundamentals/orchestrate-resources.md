@@ -90,7 +90,7 @@ Waiting for a resource can be bypassed using the **Start** command in the dashbo
 
 ## APIs for adding and expressing resources
 
-Aspire [hosting integrations](integrations-overview.md#hosting-integrations) and [client integrations](integrations-overview.md#client-integrations) are both delivered as NuGet packages, but they serve different purposes. While _client integrations_ provide client library configuration for consuming apps outside the scope of the app host, _hosting integrations_ provide APIs for expressing resources and dependencies within the app host. For more information, see [Aspire integrations overview: Integration responsibilities](integrations-overview.md#integration-responsibilities).
+Aspire [hosting integrations](integrations-overview.md#hosting-integrations) and [client integrations](integrations-overview.md#client-integrations) are both delivered as NuGet packages, but they serve different purposes. While _client integrations_ provide client library configuration for consuming apps outside the scope of the AppHost, _hosting integrations_ provide APIs for expressing resources and dependencies within the app host. For more information, see [Aspire integrations overview: Integration responsibilities](integrations-overview.md#integration-responsibilities).
 
 ## Express container resources
 

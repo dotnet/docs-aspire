@@ -51,7 +51,7 @@ builder.AddProject<Projects.ExampleProject>()
  // After adding all resources, run the app... 
 ```
 
-When the .NET Aspire adds a container image to the app host, as shown in the preceding example with the `mcr.microsoft.com/azure-databases/data-api-builder` image, it creates a new Data API Builder instance on your local machin. A reference to the DAB resource (the `dab` variable) is added to the `ExampleProject` project.
+When the .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `mcr.microsoft.com/azure-databases/data-api-builder` image, it creates a new Data API Builder instance on your local machin. A reference to the DAB resource (the `dab` variable) is added to the `ExampleProject` project.
 
 ### Configuration
 

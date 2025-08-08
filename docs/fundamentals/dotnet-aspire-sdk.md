@@ -43,7 +43,7 @@ The .NET Aspire SDK provides several key features.
 Each `ProjectReference` in the [.NET Aspire app host][app-host] project isn't treated as standard project references. Instead, they enable the _app host_ to execute these projects as part of its orchestration. Each project reference triggers a generator to create a `class` that represents the project as an <xref:Aspire.Hosting.IProjectMetadata>. This metadata is used to populate the named projects in the generated `Projects` namespace. When you call the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject*?displayProperty=fullName> API, the `Projects` namespace is used to reference the project—passing the generated class as a generic-type parameter.
 
 > [!TIP]
-> If you need to reference a project in the traditional way within the app host, set the `IsAspireProjectResource` attribute on the `ProjectReference` element to `false`, as shown in the following example:
+> If you need to reference a project in the traditional way within the AppHost, set the `IsAspireProjectResource` attribute on the `ProjectReference` element to `false`, as shown in the following example:
 >
 > ```xml
 > <ProjectReference Include="..\MyProject\MyProject.csproj" IsAspireProjectResource="false" />

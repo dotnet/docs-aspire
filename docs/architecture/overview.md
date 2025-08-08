@@ -124,7 +124,7 @@ The [app model](../fundamentals/app-host-overview.md#define-the-app-model) serve
 
 DCP is a Kubernetes-compatible API server, meaning it uses the same network protocols and conventions as Kubernetes. This compatibility allows the .NET Aspire AppHost to leverage existing Kubernetes libraries for communication. Specifically, the AppHost contains an implementation of the `k8s.KubernetesClient` (from the [📦 KubernetesClient](https://www.nuget.org/packages/KubernetesClient) NuGet package), which is a .NET client for Kubernetes. This client is used to communicate with the DCP API server, enabling the AppHost to delegate orchestration tasks to DCP.
 
-When you run the app host, it performs the first step of "lowering" by translating the general-purpose .NET Aspire app model into a DCP-specific model tailored for local execution in run mode. This DCP model is then handed off to DCP, which evaluates it and orchestrates the resources accordingly. This separation ensures that the AppHost focuses on adapting the .NET Aspire app model for local execution, while DCP specializes in executing the tailored model. The following diagram helps to visualize this orchestration process:
+When you run the AppHost, it performs the first step of "lowering" by translating the general-purpose .NET Aspire app model into a DCP-specific model tailored for local execution in run mode. This DCP model is then handed off to DCP, which evaluates it and orchestrates the resources accordingly. This separation ensures that the AppHost focuses on adapting the .NET Aspire app model for local execution, while DCP specializes in executing the tailored model. The following diagram helps to visualize this orchestration process:
 
 <span id="app-host-dcp-flow"></span>
 
@@ -138,7 +138,7 @@ DCP is at the core of the .NET Aspire AppHost orchestration functionality. It's 
 
 DCP is written in Go, aligning with Kubernetes and its ecosystem, which are also Go-based. This choice enables deep, native integration with Kubernetes APIs, efficient concurrency, and access to mature tooling like Kubebuilder. DCP is delivered as two executables:
 
-- `dcp.exe`: API server that exposes a Kubernetes-like API endpoint for the AppHost to communicate with. Additionally, it exposes log streaming to the app host, which ultimately streams logs to the developer dashboard.
+- `dcp.exe`: API server that exposes a Kubernetes-like API endpoint for the AppHost to communicate with. Additionally, it exposes log streaming to the AppHost, which ultimately streams logs to the developer dashboard.
 - `dcpctrl.exe`: Controller that monitors the API server for new objects and changes, ensuring that the real-world environment matches the specified model.
 
 > [!NOTE]
@@ -165,7 +165,7 @@ Continuing from the [diagram in the previous](#app-host-dcp-flow) section, consi
 
 :::image type="content" source="media/dcp-architecture-thumb.png" alt-text="A diagram depicting the architecture of the Developer Control Plane (DCP)." lightbox="media/dcp-architecture.png":::
 
-DCP logs are streamed back to the app host, which then forwards them to the developer dashboard. While the developer dashboard exposes commands such as start, stop, and restart, these commands are not part of DCP itself. Instead, they are implemented by the app model runtime, specifically within its "dashboard service" component. These commands operate by manipulating DCP objects—creating new ones, deleting old ones, or updating their properties. For example, restarting a .NET project involves stopping and deleting the existing <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> representing the project and creating a new one with the same specifications.
+DCP logs are streamed back to the AppHost, which then forwards them to the developer dashboard. While the developer dashboard exposes commands such as start, stop, and restart, these commands are not part of DCP itself. Instead, they are implemented by the app model runtime, specifically within its "dashboard service" component. These commands operate by manipulating DCP objects—creating new ones, deleting old ones, or updating their properties. For example, restarting a .NET project involves stopping and deleting the existing <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> representing the project and creating a new one with the same specifications.
 
 For more information on container networking, see [How container networks are managed](../fundamentals/networking-overview.md#how-container-networks-are-managed).
 

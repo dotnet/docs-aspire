@@ -53,7 +53,7 @@ var gateway = builder.AddYarp("gateway")
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a YARP resource to the app host, it creates a new containerized YARP instance using the [mcr.microsoft.com/dotnet/nightly/yarp](https://mcr.microsoft.com/product/dotnet/nightly/yarp/about) container image. This official Microsoft container image contains a preconfigured YARP reverse proxy server that can be dynamically configured through Aspire's hosting APIs.
+When .NET Aspire adds a YARP resource to the AppHost, it creates a new containerized YARP instance using the [mcr.microsoft.com/dotnet/nightly/yarp](https://mcr.microsoft.com/product/dotnet/nightly/yarp/about) container image. This official Microsoft container image contains a preconfigured YARP reverse proxy server that can be dynamically configured through Aspire's hosting APIs.
 
 The container image provides:
 

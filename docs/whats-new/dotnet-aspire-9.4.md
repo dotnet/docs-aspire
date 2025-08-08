@@ -1061,7 +1061,7 @@ builder.Build().Run();
 
 #### Client integration
 
-Once you've configured the [Azure AI Foundry resource](../azureai/azureai-foundry-integration.md) in your app host, consume it in your services using the [Azure AI Inference SDK](../azureai/azureai-inference-integration.md) or [OpenAI SDK](../azureai/azureai-openai-integration.md) for compatible models:
+Once you've configured the [Azure AI Foundry resource](../azureai/azureai-foundry-integration.md) in your AppHost, consume it in your services using the [Azure AI Inference SDK](../azureai/azureai-inference-integration.md) or [OpenAI SDK](../azureai/azureai-openai-integration.md) for compatible models:
 
 **Using Azure AI Inference SDK:**
 
@@ -1302,7 +1302,7 @@ var webApi = builder.AddProject<Projects.WebAPI>("webapi")
 
 .NET Aspire 9.4 expands resource deep linking to include Azure Queue Storage queues, building on the model already used for Azure Blob Storage, Cosmos DB, etc.
 
-You can now model individual storage queues directly in your app host, then inject scoped QueueClient instances into your services—making it easy to interact with queues without manually configuring connection strings or access.
+You can now model individual storage queues directly in your AppHost, then inject scoped QueueClient instances into your services—making it easy to interact with queues without manually configuring connection strings or access.
 
 **AppHost:**
 

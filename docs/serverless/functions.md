@@ -123,7 +123,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds an Azure Functions project resource the app host, as shown in the preceding example, the `functions` resource can be referenced by other project resources. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"functions"`. If the Azure Resource was deployed and it exposed an HTTP trigger, its endpoint would be external due to the call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints*>. For more information, see [Reference resources](../fundamentals/app-host-overview.md#reference-resources).
+When .NET Aspire adds an Azure Functions project resource the AppHost, as shown in the preceding example, the `functions` resource can be referenced by other project resources. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"functions"`. If the Azure Resource was deployed and it exposed an HTTP trigger, its endpoint would be external due to the call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints*>. For more information, see [Reference resources](../fundamentals/app-host-overview.md#reference-resources).
 
 ### Add Azure Functions resource with host storage
 

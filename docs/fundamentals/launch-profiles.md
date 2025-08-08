@@ -124,7 +124,7 @@ To force a service project to launch without a launch profile the `launchProfile
 
 ## Launch profiles and endpoints
 
-When adding an ASP.NET Core project to the app host, .NET Aspire will parse the _launchSettings.json_ file selecting the appropriate launch profile and automatically generate endpoints in the application model based on the URL(s) present in the `applicationUrl` field. To modify the endpoints that are automatically injected the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint%2A> extension method.
+When adding an ASP.NET Core project to the AppHost, .NET Aspire will parse the _launchSettings.json_ file selecting the appropriate launch profile and automatically generate endpoints in the application model based on the URL(s) present in the `applicationUrl` field. To modify the endpoints that are automatically injected the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint%2A> extension method.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

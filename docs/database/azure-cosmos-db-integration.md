@@ -92,7 +92,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Add Azure Cosmos DB database
 
-In the app host, the database resource (<xref:Aspire.Hosting.Azure.AzureCosmosDBDatabaseResource>) can be added as a child resource to the parent <xref:Aspire.Hosting.AzureCosmosDBResource>. In your client-consuming project, you can deep-link to the database resource by name, registering a <xref:Microsoft.Azure.Cosmos.Database> instance for use with dependency injection. For example, consider the following code that calls <xref:Microsoft.Extensions.Hosting.AspireMicrosoftAzureCosmosExtensions.AddAzureCosmosDatabase*> on an <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> instance:
+In the AppHost, the database resource (<xref:Aspire.Hosting.Azure.AzureCosmosDBDatabaseResource>) can be added as a child resource to the parent <xref:Aspire.Hosting.AzureCosmosDBResource>. In your client-consuming project, you can deep-link to the database resource by name, registering a <xref:Microsoft.Azure.Cosmos.Database> instance for use with dependency injection. For example, consider the following code that calls <xref:Microsoft.Extensions.Hosting.AspireMicrosoftAzureCosmosExtensions.AddAzureCosmosDatabase*> on an <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> instance:
 
 ```csharp
 builder.AddAzureCosmosDatabase(connectionName: "customers");

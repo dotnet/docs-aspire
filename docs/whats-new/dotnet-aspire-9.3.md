@@ -580,7 +580,7 @@ This gives you consistent control over where images are published, even across d
 
 .NET Aspire 9.3 expands **resource deep linking** to include **Azure Blob Storage containers**, building on the model already used for Cosmos DB, Event Hubs, Service Bus, and Azure OpenAI.
 
-You can now model individual blob containers directly in your app host, then inject scoped `BlobContainerClient` instances into your services—making it easy to read or write blobs without manually configuring connection strings or access.
+You can now model individual blob containers directly in your AppHost, then inject scoped `BlobContainerClient` instances into your services—making it easy to read or write blobs without manually configuring connection strings or access.
 
 **AppHost:**
 

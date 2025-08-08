@@ -44,7 +44,7 @@ var myService = builder.AddProject<Projects.ExampleProject>()
 > [!NOTE]
 > The SQL Server container is slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `mysql` image, it creates a new MySQL instance on your local machine. A reference to your MySQL resource builder (the `mysql` variable) is used to add a database. The database is named `mysqldb` and then added to the `ExampleProject`. The MySQL resource includes default credentials with a `username` of `root` and a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `mysql` image, it creates a new MySQL instance on your local machine. A reference to your MySQL resource builder (the `mysql` variable) is used to add a database. The database is named `mysqldb` and then added to the `ExampleProject`. The MySQL resource includes default credentials with a `username` of `root` and a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
 When the AppHost runs, the password is stored in the app host's secret store. It's added to the `Parameters` section, for example:
 

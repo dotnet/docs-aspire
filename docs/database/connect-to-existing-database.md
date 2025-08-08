@@ -368,7 +368,7 @@ Let's implement that configuration:
 
 ## Use the database in the API project
 
-Returning to the _AspireExistingDB.ApiService_ project, you must obtain the connection string resource from the App Host, and then use it to create the database:
+Returning to the _AspireExistingDB.ApiService_ project, you must obtain the connection string resource from the AppHost, and then use it to create the database:
 
 1. In Visual Studio, in the _AspireExistingDB.ApiService_ project, open the _Program.cs_ file.
 1. Locate the following line of code:

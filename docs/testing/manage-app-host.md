@@ -159,7 +159,7 @@ public async Task DisableVolumesFromTest()
 
 ## Use the `DistributedApplicationFactory` class
 
-While the `DistributedApplicationTestingBuilder` class is useful for many scenarios, there might be situations where you want more control over starting the app host, such as executing code before the builder is created or after the AppHost is built. In these cases, you implement your own version of the <xref:Aspire.Hosting.Testing.DistributedApplicationFactory> class. This is what the `DistributedApplicationTestingBuilder` uses internally.
+While the `DistributedApplicationTestingBuilder` class is useful for many scenarios, there might be situations where you want more control over starting the AppHost, such as executing code before the builder is created or after the AppHost is built. In these cases, you implement your own version of the <xref:Aspire.Hosting.Testing.DistributedApplicationFactory> class. This is what the `DistributedApplicationTestingBuilder` uses internally.
 
 ```csharp
 public class TestingAspireAppHost()

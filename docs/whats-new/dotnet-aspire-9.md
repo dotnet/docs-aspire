@@ -237,7 +237,7 @@ For more information on creating custom resource commands, see [How-to: Create c
 
 ### Container networking
 
-The AppHost now adds all containers to a common network named `default-aspire-network`. This is useful when you want to communicate between containers without going through the host network. This also makes it easier to migrate from docker compose to the app host, as containers can communicate with each other using the container name.
+The AppHost now adds all containers to a common network named `default-aspire-network`. This is useful when you want to communicate between containers without going through the host network. This also makes it easier to migrate from docker compose to the AppHost, as containers can communicate with each other using the container name.
 
 ### Eventing model
 

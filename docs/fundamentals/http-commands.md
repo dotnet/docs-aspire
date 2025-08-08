@@ -78,7 +78,7 @@ The preceding code:
 
 ### Example dashboard experiences
 
-The sample AppHost and corresponding ASP.NET Core minimal API projects demonstrate both sides of the HTTP command implementation. When you run the app host, the dashboard's **Resources** page displays the custom HTTP command as a button. When you specify that the command should be highlighted (`isHighlighted: true`), the button appears on the **Actions** column of the **Resources** page. This allows users to easily trigger the command from the dashboard, as shown in the following screenshot:
+The sample AppHost and corresponding ASP.NET Core minimal API projects demonstrate both sides of the HTTP command implementation. When you run the AppHost, the dashboard's **Resources** page displays the custom HTTP command as a button. When you specify that the command should be highlighted (`isHighlighted: true`), the button appears on the **Actions** column of the **Resources** page. This allows users to easily trigger the command from the dashboard, as shown in the following screenshot:
 
 :::image type="content" source="media/custom-http-command-highlighted.png" lightbox="media/custom-http-command-highlighted.png" alt-text=".NET Aspire dashboard: Resources page showing a highlighted custom HTTP command.":::
 

@@ -45,7 +45,7 @@ var appConfig = builder.AddAzureAppConfiguration("config");
 builder.Build().Run();
 ```
 
-When you add an <xref:Aspire.Hosting.Azure.AzureAppConfigurationResource> to the app host, it exposes other useful APIs.
+When you add an <xref:Aspire.Hosting.Azure.AzureAppConfigurationResource> to the AppHost, it exposes other useful APIs.
 
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureAppConfigurationExtensions.AddAzureAppConfiguration*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](local-provisioning.md#configuration).

@@ -96,7 +96,7 @@ If you want to use EF Core in any of your microservices, .NET Aspire can help by
 To use EF Core in your microservice, you must:
 
 - Define the EF Core model with entity classes and context classes.
-- Create an instance of the data context, using the reference passed from the App Host, and add it to the Dependency Injection (DI) container.
+- Create an instance of the data context, using the reference passed from the AppHost, and add it to the Dependency Injection (DI) container.
 - When you want to interact with the database, obtain the context from DI and use it to execute LINQ queries against the database as normal for any EF Core code.
 
 :::image type="content" source="media/ef-core-aspire-architecture-thumb.png" lightbox="media/ef-core-aspire-architecture-large.png" alt-text="A diagram showing how .NET Aspire utilizes EF Core to interact with a database.." :::

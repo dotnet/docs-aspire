@@ -18,4 +18,4 @@ This diagnostic warning is reported when your project is missing reference to th
 
 ## To correct this warning
 
-Add reference to the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package. For more information about the app host, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
+Add reference to the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package. For more information about the AppHost, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).

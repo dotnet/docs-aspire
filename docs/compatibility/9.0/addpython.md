@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 
 # Python resources and APIs changed
 
-When adding Python resources to your .NET Aspire app host, use the `AddPythonApp` method instead of the `AddPythonProject` method. The `AddPythonProject` method is now obsolete. Additionally, the `PythonProjectResource` class is now obsolete. Use the `PythonAppResource` class instead.
+When adding Python resources to your .NET Aspire AppHost, use the `AddPythonApp` method instead of the `AddPythonProject` method. The `AddPythonProject` method is now obsolete. Additionally, the `PythonProjectResource` class is now obsolete. Use the `PythonAppResource` class instead.
 
 ## Version introduced
 

@@ -22,7 +22,7 @@ The .NET Aspire dashboard also includes **GitHub Copilot**, your AI debugging as
 
 ## Dashboard authentication
 
-When you run a .NET Aspire app host, the orchestrator starts up all the app's dependent resources and then opens a browser window to the dashboard. The .NET Aspire dashboard requires token-based authentication for its users because it displays environment variables and other sensitive information.
+When you run a .NET Aspire AppHost, the orchestrator starts up all the app's dependent resources and then opens a browser window to the dashboard. The .NET Aspire dashboard requires token-based authentication for its users because it displays environment variables and other sensitive information.
 
 When the dashboard is launched from Visual Studio or Visual Studio Code (with the [C# Dev Kit extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)), the browser is automatically logged in, and the dashboard opens directly. This is the typical developer <kbd>F5</kbd> experience, and the authentication login flow is automated by the .NET Aspire tooling.
 

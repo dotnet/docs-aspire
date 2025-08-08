@@ -55,7 +55,7 @@ builder.AddProject<Projects.ExampleProject>()
 > [!NOTE]
 > The MongoDB container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/mongo` image, it creates a new MongoDB instance on your local machine. A reference to your MongoDB server resource builder (the `mongo` variable) is used to add a database. The database is named `mongodb` and then added to the `ExampleProject`. The MongoDB server resource includes default credentials:
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/mongo` image, it creates a new MongoDB instance on your local machine. A reference to your MongoDB server resource builder (the `mongo` variable) is used to add a database. The database is named `mongodb` and then added to the `ExampleProject`. The MongoDB server resource includes default credentials:
 
 - `MONGO_INITDB_ROOT_USERNAME`: A value of `admin`.
 - `MONGO_INITDB_ROOT_PASSWORD`: Random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
@@ -250,7 +250,7 @@ public class ExampleService(IMongoClient client)
 }
 ```
 
-The `IMongoClient` is used to interact with the MongoDB server resource. It can be used to create databases that aren't already known to the AppHost project. When you define a MongoDB database resource in your app host, you could instead require that the dependency injection container provides an `IMongoDatabase` instance. For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
+The `IMongoClient` is used to interact with the MongoDB server resource. It can be used to create databases that aren't already known to the AppHost project. When you define a MongoDB database resource in your AppHost, you could instead require that the dependency injection container provides an `IMongoDatabase` instance. For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
 
 ### Add keyed MongoDB client
 

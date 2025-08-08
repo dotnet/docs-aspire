@@ -151,7 +151,7 @@ This is because .NET Aspire treats project references in the AppHost as if they'
 </ItemGroup>
 ```
 
-Now when you launch the app host, there's no warning displayed to the console.
+Now when you launch the AppHost, there's no warning displayed to the console.
 
 ## Define the resource types
 

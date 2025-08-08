@@ -54,7 +54,7 @@ builder.AddProject<Projects.ExampleProject>()
 > [!IMPORTANT]
 > A valid RavenDB license is required.  If you don’t have one yet, you can request a free Community license [here](https://ravendb.net/license/request/community).
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/ravendb/ravendb` image, it creates a new RavenDB instance on your local machine. A reference to your RavenDB database resource (the `ravendb` variable) is added to the `ExampleProject`.
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/ravendb/ravendb` image, it creates a new RavenDB instance on your local machine. A reference to your RavenDB database resource (the `ravendb` variable) is added to the `ExampleProject`.
 
 For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 

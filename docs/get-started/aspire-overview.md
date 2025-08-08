@@ -94,7 +94,7 @@ Learn more in the [dashboard overview](../fundamentals/dashboard/overview.md), o
 
 ## From development to deployment
 
-When you compose your distributed app in Aspire's app host, you're not just defining services for local development—you're setting up the foundation for deployment. The same composition you use to run and debug locally becomes the blueprint for production deployment, ensuring consistency from development through to production.
+When you compose your distributed app in Aspire's AppHost, you're not just defining services for local development—you're setting up the foundation for deployment. The same composition you use to run and debug locally becomes the blueprint for production deployment, ensuring consistency from development through to production.
 
 Aspire provides project templates and tooling experiences for your favorite development environments. These [templates include opinionated defaults](../fundamentals/aspire-sdk-templates.md) with boilerplate code for health checks, logging, and telemetry. The templates also include service defaults that handle common configurations:
 

@@ -153,9 +153,9 @@ In 9.1, we addressed a persistent issue where Docker networks created by .NET As
 
 ### ✅ Socket address issues fixed
 
-Several users reported issues ([#6693](https://github.com/dotnet/aspire/issues/6693), [#6704](https://github.com/dotnet/aspire/issues/6704), [#7095](https://github.com/dotnet/aspire/issues/7095)) with restarting the .NET Aspire app host, including reconciliation errors and "address already in use" messages.
+Several users reported issues ([#6693](https://github.com/dotnet/aspire/issues/6693), [#6704](https://github.com/dotnet/aspire/issues/6704), [#7095](https://github.com/dotnet/aspire/issues/7095)) with restarting the .NET Aspire AppHost, including reconciliation errors and "address already in use" messages.
 
-This release introduces a more robust approach to managing socket addresses, ensuring only one instance of each address is used at a time. Additionally, improvements were made to ensure proper project restarts and resource releases, preventing hanging issues. These changes enhance the stability and reliability of the app host, especially during development and testing.
+This release introduces a more robust approach to managing socket addresses, ensuring only one instance of each address is used at a time. Additionally, improvements were made to ensure proper project restarts and resource releases, preventing hanging issues. These changes enhance the stability and reliability of the AppHost, especially during development and testing.
 
 ## 🔌 Integration updates
 
