@@ -28,41 +28,36 @@ When attempting to use .NET Aspire integrations within a HostingStartup implemen
 
 The `HostingStartup` feature was designed for the older ASP.NET Core hosting model and only provides access to <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>, which doesn't include these modern hosting capabilities.
 
-## Migration strategies
+## Migrating from HostingStartup
 
-### Option 1: Use IHostApplicationBuilder directly (Recommended)
+The `HostingStartup` feature represents an older ASP.NET Core hosting model that predates the modern <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> pattern that .NET Aspire requires. Migration is necessary to leverage .NET Aspire's integrations and modern hosting capabilities.
 
-Instead of using `HostingStartup`, configure your application directly in the `Program.cs` file using the modern hosting pattern:
+### Understanding the API changes
+
+The fundamental difference lies in the hosting abstractions:
 
 **Before (HostingStartup pattern):**
 
 :::code language="csharp" source="snippets/hosting-startup-not-supported/hosting-startup-before.cs":::
 
-**After (IHostApplicationBuilder pattern):**
+**After (Modern hosting pattern):**
 
 :::code language="csharp" source="snippets/hosting-startup-not-supported/host-application-builder-after.cs":::
 
-### Option 2: Create configuration extensions
+### Key conceptual changes
 
-If you need modular configuration, create extension methods that work with `IHostApplicationBuilder`:
+When migrating from `HostingStartup` to the modern hosting model, you're moving from:
 
-:::code language="csharp" source="snippets/hosting-startup-not-supported/configuration-extensions.cs":::
+- **`IWebHostBuilder`** → **`IHostApplicationBuilder`**: The new builder provides access to modern hosting features and .NET Aspire integrations.
+- **Separate startup classes** → **Program.cs configuration**: Service configuration moves directly into the application's entry point for better clarity and debugging.
+- **Manual service registration** → **Integration packages**: .NET Aspire integrations handle service registration, configuration, health checks, and telemetry automatically.
 
-### Option 3: Use feature flags or configuration-based service registration
+### Migration resources
 
-For conditional service registration based on configuration:
+For detailed migration guidance, see:
 
-:::code language="csharp" source="snippets/hosting-startup-not-supported/feature-flags-configuration.cs":::
-
-## Best practices for modular configuration
-
-1. **Use configuration-based decisions**: Instead of having separate startup classes, use configuration values to determine which services to register.
-
-1. **Create extension methods**: Group related service registrations into extension methods on `IHostApplicationBuilder`.
-
-1. **Leverage service defaults**: Always call `builder.AddServiceDefaults()` to get the full benefits of .NET Aspire's built-in features.
-
-1. **Use the app host for orchestration**: For development scenarios, use the [.NET Aspire app host](../fundamentals/app-host-overview.md) to manage dependencies and configuration.
+- [Migrate from ASP.NET Core 5.0 to 6.0](/aspnet/core/migration/50-to-60?view=aspnetcore-9.0) - Covers the transition to the minimal hosting model
+- [David Fowl's ASP.NET Core 6.0 migration guide](https://gist.github.com/davidfowl/0e0372c3c1d895c3ce195ba983b1e03d) - Provides practical migration patterns and examples
 
 ## Additional considerations
 
