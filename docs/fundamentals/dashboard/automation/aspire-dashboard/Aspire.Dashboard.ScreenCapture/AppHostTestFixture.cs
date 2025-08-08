@@ -10,14 +10,18 @@ public class AppHostTestFixture : IAsyncLifetime
         string[]? args = null,
         Action<IDistributedApplicationTestingBuilder>? configureBuilder = null) where TEntryPoint : class
     {
+        if (App is not null)
+        {
+            return App;
+        }
+
         var builder = await DistributedApplicationTestingBuilder.CreateAsync<TEntryPoint>(
             args: args ?? [],
             configureBuilder: static (options, _) =>
             {
                 options.DisableDashboard = false;
+                options.AllowUnsecuredTransport = true;
             });
-
-        builder.Configuration["ASPIRE_ALLOW_UNSECURED_TRANSPORT"] = "true";
 
         configureBuilder?.Invoke(builder);
 

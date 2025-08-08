@@ -147,7 +147,8 @@ internal static class PageExtensions
 
     public static async Task LoginAsync(this IPage page, string token)
     {
-        var response = await page.GotoAsync($"/login?t={token}");
+        var response = await page.GotoAsync(
+          $"/login?t={token}", new() { WaitUntil = WaitUntilState.NetworkIdle });
 
         Assert.NotNull(response);
         Assert.True(response.Ok, $"Failed to navigate to login page: {response.Status}");

@@ -64,6 +64,6 @@ internal static class DashboardSelectors
         public const string StartResource = """fluent-button[title="Start resource"]""";
         public const string SplitPanel = """fluent-button[title="Split horizontal"]""";
 
-        public const string ResourceDetailsProjectPath = """fluent-accordion-item [title^="C:"]:last-of-type""";
+        public const string ResourceDetailsProjectPath = """fluent-accordion-item [title^="C:"]:last-of-type, fluent-accordion-item [title^="E:"]:last-of-type""";
     }
 }
