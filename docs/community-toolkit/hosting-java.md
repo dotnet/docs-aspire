@@ -84,7 +84,7 @@ The following sections detail various example usage scenarios, from hosting a co
 
 ### [Container hosting](#tab/container-hosting)
 
-In the _:::no-loc text="Program.cs":::_ file of your app host project, call the `AddSpringApp` method to define the containerized Spring app. The `JavaAppContainerResourceOptions` allows you to specify the container image and OpenTelemetry agent configuration.
+In the _:::no-loc text="Program.cs":::_ file of your AppHost project, call the `AddSpringApp` method to define the containerized Spring app. The `JavaAppContainerResourceOptions` allows you to specify the container image and OpenTelemetry agent configuration.
 
 ```csharp
 var containerapp = builder.AddSpringApp(

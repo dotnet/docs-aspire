@@ -14,7 +14,7 @@ ms.custom: sfi-ropc-nochange
 
 ## Hosting integration
 
-The Apache Kafka hosting integration models a Kafka server as the <xref:Aspire.Hosting.KafkaServerResource> type. To access this type, install the [📦 Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka) NuGet package in the [app host](xref:dotnet/aspire/app-host) project, then add it with the builder.
+The Apache Kafka hosting integration models a Kafka server as the <xref:Aspire.Hosting.KafkaServerResource> type. To access this type, install the [📦 Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project, then add it with the builder.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -35,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Kafka server resource
 
-In your app host project, call <xref:Aspire.Hosting.KafkaBuilderExtensions.AddKafka*> on the `builder` instance to add a Kafka server resource:
+In your AppHost project, call <xref:Aspire.Hosting.KafkaBuilderExtensions.AddKafka*> on the `builder` instance to add a Kafka server resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -48,7 +48,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/confluentinc/confluent-local` image, it creates a new Kafka server instance on your local machine. A reference to your Kafka server (the `kafka` variable) is added to the `ExampleProject`. The Kafka server resource includes default ports
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/confluentinc/confluent-local` image, it creates a new Kafka server instance on your local machine. A reference to your Kafka server (the `kafka` variable) is added to the `ExampleProject`. The Kafka server resource includes default ports
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"kafka"`. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -71,7 +71,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The Kafka UI is a free, open-source web UI to monitor and manage Apache Kafka clusters. .NET Aspire adds another container image [`docker.io/kafbat/kafka-ui`](https://hub.docker.com/r/kafbat/kafka-ui) to the app host that runs the Kafka UI.
+The Kafka UI is a free, open-source web UI to monitor and manage Apache Kafka clusters. .NET Aspire adds another container image [`docker.io/kafbat/kafka-ui`](https://hub.docker.com/r/kafbat/kafka-ui) to the AppHost that runs the Kafka UI.
 
 ### Change the Kafka UI host port
 

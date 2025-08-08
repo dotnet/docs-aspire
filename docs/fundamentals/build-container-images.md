@@ -1,7 +1,7 @@
 ---
 title: Build container images
 description: Learn how to build container images from your .NET Aspire resources.
-ms.date: 07/25/2025
+ms.date: 08/07/2025
 ai-usage: ai-assisted
 ---
 
@@ -13,10 +13,8 @@ ai-usage: ai-assisted
 
 During publishing and deployment, the container image builder is available to create images for resources that need them. Aspire uses this builder when a resource requires a container image, such as when publishing with Docker Compose. The process involves two main components:
 
-<!-- TODO: IResourceContainerImageBuilder and PublishingActivityProgressReporter xrefs -->
-
-- `IResourceContainerImageBuilder`: The service that turns resource definitions into runnable container images.
-- `PublishingActivityProgressReporter`: The API that provides structured progress reporting during long-running operations.
+- <xref:Aspire.Hosting.Publishing.IResourceContainerImageBuilder>: The service that turns resource definitions into runnable container images.
+- <xref:Aspire.Hosting.Publishing.IPublishingActivityReporter>: The API that provides structured progress reporting during long-running operations.
 
 These APIs give you fine-grained control over the image building process and provide real-time feedback to users during lengthy build operations.
 
@@ -45,9 +43,7 @@ The `IResourceContainerImageBuilder` is the core service in the <xref:Aspire.Hos
 
 ### Container build options
 
-<!-- TODO: ContainerBuildOptions xref -->
-
-The `ContainerBuildOptions` class provides strongly typed configuration for container builds. This class allows you to specify:
+The <xref:Aspire.Hosting.Publishing.ContainerBuildOptions> class provides strongly typed configuration for container builds. This class allows you to specify:
 
 - **Image format**: Docker or Open Container Initiative (OCI) format.
 - **Target platform**: Linux x64, Windows, ARM64, etc.

@@ -59,7 +59,7 @@ dir
 
 Once the project is created, you should see a listing containing the following:
 
-- `MailDevResource.AppHost`: The [app host](../fundamentals/app-host-overview.md) used to test out the custom resource.
+- `MailDevResource.AppHost`: The [AppHost](../fundamentals/app-host-overview.md) used to test out the custom resource.
 - `MailDevResource.ServiceDefaults`: The [service defaults](../fundamentals/service-defaults.md) project for use in service-related projects.
 - `MailDevResource.sln`: The solution file referencing both projects.
 
@@ -139,7 +139,7 @@ spire Host project, but it is not an executable. Did you mean to set IsAspirePro
 source.AppHost.csproj]
 ```
 
-This is because .NET Aspire treats project references in the app host as if they're service projects. To tell .NET Aspire that the project reference should be treated as a nonservice project modify the _:::no-loc text="MailDevResource.AppHost\MailDevResource.AppHost.csproj":::_ files reference to the `MailDev.Hosting` project to be the following:
+This is because .NET Aspire treats project references in the AppHost as if they're service projects. To tell .NET Aspire that the project reference should be treated as a nonservice project modify the _:::no-loc text="MailDevResource.AppHost\MailDevResource.AppHost.csproj":::_ files reference to the `MailDev.Hosting` project to be the following:
 
 ```xml
 <ItemGroup>
@@ -151,11 +151,11 @@ This is because .NET Aspire treats project references in the app host as if they
 </ItemGroup>
 ```
 
-Now when you launch the app host, there's no warning displayed to the console.
+Now when you launch the AppHost, there's no warning displayed to the console.
 
 ## Define the resource types
 
-The _MailDev.Hosting_ class library contains the resource type and extension methods for adding the resource to the app host. You should first think about the experience that you want to give developers when using your custom resource. In the case of this custom resource, you would want developers to be able to write code like the following:
+The _MailDev.Hosting_ class library contains the resource type and extension methods for adding the resource to the AppHost. You should first think about the experience that you want to give developers when using your custom resource. In the case of this custom resource, you would want developers to be able to write code like the following:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -184,7 +184,7 @@ Add the following code to a new file named _MailDevResourceBuilderExtensions.cs_
 
 :::code language="csharp" source="snippets/MailDevResource/MailDev.Hosting/MailDevResourceBuilderExtensions.cs":::
 
-## Validate custom integration inside the app host
+## Validate custom integration inside the AppHost
 
 Now that the basic structure for the custom resource is complete it's time to test it in a real AppHost project. Open the _:::no-loc text="Program.cs":::_ file in the _:::no-loc text="MailDevResource.AppHost":::_ project and update it with the following code:
 
@@ -196,7 +196,7 @@ var maildev = builder.AddMailDev("maildev");
 builder.Build().Run();
 ```
 
-After updating the _:::no-loc text="Program.cs":::_ file, launch the app host project and open the dashboard:
+After updating the _:::no-loc text="Program.cs":::_ file, launch the AppHost project and open the dashboard:
 
 ```dotnetcli
 dotnet run --project ./MailDevResource.AppHost/MailDevResource.AppHost.csproj
@@ -212,7 +212,7 @@ _The MailDev web app should look similar to the following:_
 
 :::image type="content" source="media/maildev-web-ui.png" lightbox="media/maildev-web-ui.png" alt-text="MailDev web-based user interface running as a container managed by .NET Aspire.":::
 
-## Add a .NET service project to the app host for testing
+## Add a .NET service project to the AppHost for testing
 
 Once .NET Aspire can successfully launch the MailDev integration, it's time to consume the connection information for MailDev within a .NET project. In .NET Aspire it's common for there to be a _hosting package_ and one or more _component packages_. For example consider:
 
@@ -255,7 +255,7 @@ After the project has been added and references have been updated, open the _:::
 
 :::code source="snippets/MailDevResource/MailDevResource.AppHost/Program.cs":::
 
-After updating the _:::no-loc text="Program.cs":::_ file, launch the app host again. Then verify that the Newsletter Service started and that the environment variable `ConnectionStrings__maildev` was added to the process. From the **Resources** page, find the `newsletterservice` row, and select the **View** link on the **Details** column:
+After updating the _:::no-loc text="Program.cs":::_ file, launch the AppHost again. Then verify that the Newsletter Service started and that the environment variable `ConnectionStrings__maildev` was added to the process. From the **Resources** page, find the `newsletterservice` row, and select the **View** link on the **Details** column:
 
 :::image type="content" source="media/maildev-envvar.png" lightbox="media/maildev-envvar.png" alt-text="Environment variables for Newsletter Service in .NET Aspire Dashboard.":::
 
@@ -277,7 +277,7 @@ To test the client, add two simple `subscribe` and `unsubscribe` POST methods to
 > [!TIP]
 > Remember to reference the `System.Net.Mail` and `Microsoft.AspNetCore.Mvc` namespaces in _:::no-loc text="Program.cs":::_ if your code editor doesn't automatically add them.
 
-Once the _:::no-loc text="Program.cs":::_ file is updated, launch the app host and use your browser, or `curl` to hit the following URLs (alternatively if you're using Visual Studio you can use `.http` files):
+Once the _:::no-loc text="Program.cs":::_ file is updated, launch the AppHost and use your browser, or `curl` to hit the following URLs (alternatively if you're using Visual Studio you can use `.http` files):
 
 ```http
 POST /subscribe?email=test@test.com HTTP/1.1
@@ -326,7 +326,7 @@ curl -H @{ ContentType = "application/json" } -Method POST https://localhost:725
 ---
 
 > [!TIP]
-> Make sure that you replace the `https://localhost:7251` with the correct localhost port (the URL of the app host that you are running).
+> Make sure that you replace the `https://localhost:7251` with the correct localhost port (the URL of the AppHost that you are running).
 
 If those API calls return a successful response (HTTP 200, Ok) then you should be able to select on the `maildev` resource the dashboard and the :::no-loc text="MailDev UI"::: will show the emails that have been sent to the SMTP endpoint.
 
@@ -385,7 +385,7 @@ Here's how the flow of execution works:
 
 The <xref:Aspire.Hosting.ApplicationModel.IManifestExpressionProvider> interface is designed to solve the problem of sharing connection information between resources at deployment. The solution for this particular problem is described in the [.NET Aspire inner-loop networking overview](../fundamentals/networking-overview.md). Similarly to local development, many of the values are necessary to configure the app, yet they can't be determined until the app is being deployed via a tool, such as `azd` (Azure Developer CLI).
 
-To solve this problem [.NET Aspire produces a manifest file](../deployment/manifest-format.md) which `azd` and other deployment tools interpret. Rather than specifying concrete values for connection information between resources an expression syntax is used which deployment tools evaluate. Generally the manifest file isn't visible to developers but it's possible to generate one for manual inspection. The command below can be used on the app host to produce a manifest.
+To solve this problem [.NET Aspire produces a manifest file](../deployment/manifest-format.md) which `azd` and other deployment tools interpret. Rather than specifying concrete values for connection information between resources an expression syntax is used which deployment tools evaluate. Generally the manifest file isn't visible to developers but it's possible to generate one for manual inspection. The command below can be used on the AppHost to produce a manifest.
 
 ```dotnetcli
 dotnet run --project MailDevResource.AppHost/MailDevResource.AppHost.csproj -- --publisher manifest --output-path aspire-manifest.json

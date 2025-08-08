@@ -14,7 +14,7 @@ ms.custom: sfi-ropc-nochange
 
 ## Hosting integration
 
-The .NET Aspire Oracle hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.OracleDatabaseServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.OracleDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The .NET Aspire Oracle hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.OracleDatabaseServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.OracleDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -35,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Oracle server and database resources
 
-In your app host project, call <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddOracle*> to add and return an Oracle server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddDatabase*>, to add an Oracle database to the server resource:
+In your AppHost project, call <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddOracle*> to add and return an Oracle server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddDatabase*>, to add an Oracle database to the server resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -55,7 +55,7 @@ builder.AddProject<Projects.ExampleProject>()
 > [!NOTE]
 > The Oracle database container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `container-registry.oracle.com/database/free` image, it creates a new Oracle server on your local machine. A reference to your Oracle resource builder (the `oracle` variable) is used to add a database. The database is named `oracledb` and then added to the `ExampleProject`. The Oracle resource includes a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `container-registry.oracle.com/database/free` image, it creates a new Oracle server on your local machine. A reference to your Oracle resource builder (the `oracle` variable) is used to add a database. The database is named `oracledb` and then added to the `ExampleProject`. The Oracle resource includes a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"oracledb"`. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -173,7 +173,7 @@ builder.AddOracleDatabaseDbContext<ExampleDbContext>(connectionName: "oracledb")
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Oracle database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `oracledb` that same name should be used when calling `AddOracleDatabaseDbContext`. For more information, see [Add Oracle server and database resources](#add-oracle-server-and-database-resources).
+> The `connectionName` parameter must match the name used when adding the Oracle database resource in the AppHost project. In other words, when you call `AddDatabase` and provide a name of `oracledb` that same name should be used when calling `AddOracleDatabaseDbContext`. For more information, see [Add Oracle server and database resources](#add-oracle-server-and-database-resources).
 
 You can then retrieve the <xref:Microsoft.EntityFrameworkCore.DbContext> instance using dependency injection. For example, to retrieve the connection from an example service:
 
@@ -197,7 +197,7 @@ builder.Services.AddDbContext<ExampleDbContext>(options =>
 ```
 
 > [!NOTE]
-> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method must match the name used when adding the Oracle resource in the app host project. For more information, see [Add Oracle server and database resources](#add-oracle-server-and-database-resources).
+> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method must match the name used when adding the Oracle resource in the AppHost project. For more information, see [Add Oracle server and database resources](#add-oracle-server-and-database-resources).
 
 You have more flexibility when you create the database context in this way, for example:
 

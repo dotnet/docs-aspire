@@ -108,7 +108,7 @@ namespace AnnotationsOverview
         public static void Main(string[] args)
         {
             // This is a minimal example showing annotation usage
-            // In a real app host, you would use actual resources
+            // In a real AppHost, you would use actual resources
             Console.WriteLine("Annotations overview examples");
         }
     }

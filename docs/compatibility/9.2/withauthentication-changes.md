@@ -34,7 +34,7 @@ This is a [behavioral change](../categories.md#behavioral-change).
 
 ## Reason for change
 
-This change moves resource management to the app host, making it easier to customize and manage resources. It allows sharing a key vault across multiple resources or using an existing key vault to manage connection strings and secrets.
+This change moves resource management to the AppHost, making it easier to customize and manage resources. It allows sharing a key vault across multiple resources or using an existing key vault to manage connection strings and secrets.
 
 ## Recommended action
 

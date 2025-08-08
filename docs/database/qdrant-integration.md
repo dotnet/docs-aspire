@@ -18,7 +18,7 @@ In this article, you learn how to use the .NET Aspire Qdrant integration. The .N
 
 ## Hosting integration
 
-The Qdrant hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.QdrantServerResource> type. To access this type and APIs, add the [📦 Aspire.Hosting.Qdrant](https://www.nuget.org/packages/Aspire.Hosting.Qdrant) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The Qdrant hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.QdrantServerResource> type. To access this type and APIs, add the [📦 Aspire.Hosting.Qdrant](https://www.nuget.org/packages/Aspire.Hosting.Qdrant) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -39,7 +39,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Qdrant resource
 
-In your app host project, call <xref:Aspire.Hosting.QdrantBuilderExtensions.AddQdrant*> to add and return a Qdrant resource builder.
+In your AppHost project, call <xref:Aspire.Hosting.QdrantBuilderExtensions.AddQdrant*> to add and return a Qdrant resource builder.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -57,7 +57,7 @@ builder.AddProject<Projects.ExampleProject>()
 > [!NOTE]
 > The Qdrant container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `qdrant/qdrant` image, it creates a new Qdrant instance on your local machine. The resource is named `qdrant` and then added to the `ExampleProject`.
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `qdrant/qdrant` image, it creates a new Qdrant instance on your local machine. The resource is named `qdrant` and then added to the `ExampleProject`.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `qdrant`.
 
@@ -168,7 +168,7 @@ builder.AddQdrantClient("qdrant");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Qdrant resource in the app host project. In other words, when you call `AddQdrant` and provide a name of `qdrant` that same name should be used when calling `AddQdrantClient`. For more information, see [Add Qdrant resource](#add-qdrant-resource).
+> The `connectionName` parameter must match the name used when adding the Qdrant resource in the AppHost project. In other words, when you call `AddQdrant` and provide a name of `qdrant` that same name should be used when calling `AddQdrantClient`. For more information, see [Add Qdrant resource](#add-qdrant-resource).
 
 You can then retrieve the `QdrantClient` instance using dependency injection. For example, to retrieve the connection from an example service:
 

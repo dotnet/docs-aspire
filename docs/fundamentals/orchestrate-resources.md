@@ -1,13 +1,13 @@
 ---
 title: Orchestrate resources in Aspire
 description: Learn techniques to control the behavior of Aspire resources such as project, containers, and executable resources.
-ms.date: 07/25/2025
+ms.date: 08/07/2025
 uid: dotnet/aspire/orchestrate-resources
 ---
 
 # Orchestrate resources in .NET Aspire
 
-In this article, you learn how to customize the behavior of resources further by writing code in the app host project. In Aspire, a **resource** is a dependent part of a cloud-native application. Resource types include:
+In this article, you learn how to customize the behavior of resources further by writing code in the AppHost project. In Aspire, a **resource** is a dependent part of a cloud-native application. Resource types include:
 
 - **.NET Project**: A custom microservice, responsible for specific functionality in your cloud-native application, and often built by a separate team of developers.
 - **Executable**: If you need to build microservices with tools like Node.js or Orleans, they run as executable resources.
@@ -90,7 +90,7 @@ Waiting for a resource can be bypassed using the **Start** command in the dashbo
 
 ## APIs for adding and expressing resources
 
-Aspire [hosting integrations](integrations-overview.md#hosting-integrations) and [client integrations](integrations-overview.md#client-integrations) are both delivered as NuGet packages, but they serve different purposes. While _client integrations_ provide client library configuration for consuming apps outside the scope of the app host, _hosting integrations_ provide APIs for expressing resources and dependencies within the app host. For more information, see [Aspire integrations overview: Integration responsibilities](integrations-overview.md#integration-responsibilities).
+Aspire [hosting integrations](integrations-overview.md#hosting-integrations) and [client integrations](integrations-overview.md#client-integrations) are both delivered as NuGet packages, but they serve different purposes. While _client integrations_ provide client library configuration for consuming apps outside the scope of the AppHost, _hosting integrations_ provide APIs for expressing resources and dependencies within the AppHost. For more information, see [Aspire integrations overview: Integration responsibilities](integrations-overview.md#integration-responsibilities).
 
 ## Express container resources
 
@@ -150,7 +150,7 @@ For more information and additional APIs available, see <xref:Aspire.Hosting.Con
 
 ### Container resource lifecycle
 
-When the app host is run, the <xref:Aspire.Hosting.ApplicationModel.ContainerResource> is used to determine what container image to create and start. Under the hood, Aspire runs the container using the defined container image by delegating calls to the appropriate OCI-compliant container runtime, either Docker or Podman. The following commands are used:
+When the AppHost is run, the <xref:Aspire.Hosting.ApplicationModel.ContainerResource> is used to determine what container image to create and start. Under the hood, Aspire runs the container using the defined container image by delegating calls to the appropriate OCI-compliant container runtime, either Docker or Podman. The following commands are used:
 
 #### [Docker](#tab/docker)
 
@@ -176,7 +176,7 @@ Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectRes
 
 ### Container resource lifetime
 
-By default, container resources use the _session_ container lifetime. This means that every time the app host process is started, the container is created and started. When the app host stops, the container is stopped and removed. Container resources can opt-in to a _persistent_ lifetime to avoid unnecessary restarts and use persisted container state. To achieve this, chain a call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithLifetime*?displayProperty=nameWithType> API and pass <xref:Aspire.Hosting.ApplicationModel.ContainerLifetime.Persistent?displayProperty=nameWithType>:
+By default, container resources use the _session_ container lifetime. This means that every time the AppHost process is started, the container is created and started. When the AppHost stops, the container is stopped and removed. Container resources can opt-in to a _persistent_ lifetime to avoid unnecessary restarts and use persisted container state. To achieve this, chain a call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithLifetime*?displayProperty=nameWithType> API and pass <xref:Aspire.Hosting.ApplicationModel.ContainerLifetime.Persistent?displayProperty=nameWithType>:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -189,9 +189,7 @@ The preceding code adds a container resource named "ollama" with the image "olla
 
 ## Express external service resources
 
-<!-- TODO Add <xref:Aspire.Hosting.ExternalServiceResource> -->
-
-External services are third-party APIs and services that your application depends on but that exist outside your Aspire solution. These services are already running elsewhere and aren't managed by Aspire. To express an `ExternalServiceResource` you add it to an <xref:Aspire.Hosting.IDistributedApplicationBuilder> instance by calling the `AddExternalService` method:
+External services are third-party APIs and services that your application depends on but that exist outside your Aspire solution. These services are already running elsewhere and aren't managed by Aspire. To express an <xref:Aspire.Hosting.ExternalServiceResource> you add it to an <xref:Aspire.Hosting.IDistributedApplicationBuilder> instance by calling the <xref:Aspire.Hosting.ExternalServiceBuilderExtensions.AddExternalService*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

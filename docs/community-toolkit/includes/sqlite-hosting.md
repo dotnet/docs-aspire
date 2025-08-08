@@ -2,7 +2,7 @@
 ms.topic: include
 ---
 
-The SQLite hosting integration models a SQLite database as the `SQLiteResource` type and will create the database file in the specified location. To access these types and APIs that allow you to add the [📦 CommunityToolkit.Aspire.Hosting.SQLite](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SQLite) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The SQLite hosting integration models a SQLite database as the `SQLiteResource` type and will create the database file in the specified location. To access these types and APIs that allow you to add the [📦 CommunityToolkit.Aspire.Hosting.SQLite](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SQLite) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -23,7 +23,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add SQLite resource
 
-In the app host project, register and consume the SQLite integration using the `AddSQLite` extension method to add the SQLite database to the application builder.
+In the AppHost project, register and consume the SQLite integration using the `AddSQLite` extension method to add the SQLite database to the application builder.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -34,7 +34,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(sqlite);
 ```
 
-When .NET Aspire adds a SQLite database to the app host, as shown in the preceding example, it creates a new SQLite database file in the users temp directory.
+When .NET Aspire adds a SQLite database to the AppHost, as shown in the preceding example, it creates a new SQLite database file in the users temp directory.
 
 Alternatively, if you want to specify a custom location for the SQLite database file, provide the relevant arguments to the `AddSqlite` method.
 
@@ -51,7 +51,7 @@ var sqlite = builder.AddSQLite("my-database")
                     .WithSqliteWeb();
 ```
 
-This code adds a container based on  `ghcr.io/coleifer/sqlite-web` to the app host, which provides a web interface to interact with the SQLite database it is connected to. Each SQLiteWeb instance is connected to a single SQLite database, meaning that if you add multiple SQLiteWeb instances, there will be multiple SQLiteWeb containers.
+This code adds a container based on  `ghcr.io/coleifer/sqlite-web` to the AppHost, which provides a web interface to interact with the SQLite database it is connected to. Each SQLiteWeb instance is connected to a single SQLite database, meaning that if you add multiple SQLiteWeb instances, there will be multiple SQLiteWeb containers.
 
 ### Adding SQLite extensions
 

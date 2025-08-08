@@ -1,6 +1,6 @@
 ---
 title: aspire run command
-description: Learn about the aspire run command and its usage. This command runs an Aspire app host.
+description: Learn about the aspire run command and its usage. This command runs an Aspire AppHost.
 ms.date: 07/11/2025
 ---
 # aspire run command
@@ -19,7 +19,7 @@ aspire run [options] [[--] <additional arguments>...]
 
 ## Description
 
-The `aspire run` command runs the AppHost project in development mode, which configures the Aspire environment, builds and starts resources defined by the app host, launches the web dashboard, and prints a list of endpoints.
+The `aspire run` command runs the AppHost project in development mode, which configures the Aspire environment, builds and starts resources defined by the AppHost, launches the web dashboard, and prints a list of endpoints.
 
 [!INCLUDE [project-search-logic-description](includes/project-search-logic-description.md)]
 
@@ -45,7 +45,7 @@ The following options are available:
 
 - **`--`**
 
-  Delimits arguments to `aspire run` from arguments for the app host being run. All arguments after this delimiter are passed to the app host run.
+  Delimits arguments to `aspire run` from arguments for the AppHost being run. All arguments after this delimiter are passed to the AppHost run.
 
 - [!INCLUDE [option-project](includes/option-project.md)]
 

@@ -13,7 +13,7 @@ The .NET Aspire Azure AI Search Documents integration enables you to connect to 
 
 ## Hosting integration
 
-The .NET Aspire Azure AI Search hosting integration models the Azure AI Search resource as the <xref:Aspire.Hosting.Azure.AzureSearchResource> type. To access this type and APIs for expressing them within your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.Search](https://www.nuget.org/packages/Aspire.Hosting.Azure.Search) NuGet package:
+The .NET Aspire Azure AI Search hosting integration models the Azure AI Search resource as the <xref:Aspire.Hosting.Azure.AzureSearchResource> type. To access this type and APIs for expressing them within your [AppHost](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.Search](https://www.nuget.org/packages/Aspire.Hosting.Azure.Search) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -34,7 +34,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Azure AI Search resource
 
-To add an <xref:Aspire.Hosting.Azure.AzureSearchResource> to your app host project, call the <xref:Aspire.Hosting.AzureSearchExtensions.AddAzureSearch*> method providing a name:
+To add an <xref:Aspire.Hosting.Azure.AzureSearchResource> to your AppHost project, call the <xref:Aspire.Hosting.AzureSearchExtensions.AddAzureSearch*> method providing a name:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -47,7 +47,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The preceding code adds an Azure AI Search resource named `search` to the app host project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
+The preceding code adds an Azure AI Search resource named `search` to the AppHost project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
 
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureSearchExtensions.AddAzureSearch*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see Local provisioning: Configuration
@@ -107,7 +107,7 @@ builder.AddProject<Projects.ExampleProject>()
 For more information on treating Azure AI Search resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
 > [!NOTE]
-> Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Hosting integration health checks
 
@@ -141,7 +141,7 @@ builder.AddAzureSearchClient(connectionName: "search");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Azure AI Search resource in the app host project. For more information, see [Add an Azure AI Search resource](#add-an-azure-ai-search-resource).
+> The `connectionName` parameter must match the name used when adding the Azure AI Search resource in the AppHost project. For more information, see [Add an Azure AI Search resource](#add-an-azure-ai-search-resource).
 
 After adding the `SearchIndexClient`, you can retrieve the client instance using dependency injection. For example, to retrieve the client instance from an example service:
 

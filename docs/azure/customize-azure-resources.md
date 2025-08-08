@@ -13,7 +13,7 @@ The Azure SDK for .NET provides the [📦 Azure.Provisioning](https://www.nuget.
 
 <!-- TODO: Add link from here to the Azure docs when they're written. -->
 
-While it's possible to provision Azure resources manually, .NET Aspire simplifies the process by providing a set of APIs to express Azure resources. These APIs are available as extension methods in .NET Aspire Azure hosting libraries, extending the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. When you add Azure resources to your app host, they add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
+While it's possible to provision Azure resources manually, .NET Aspire simplifies the process by providing a set of APIs to express Azure resources. These APIs are available as extension methods in .NET Aspire Azure hosting libraries, extending the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. When you add Azure resources to your AppHost, they add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
 
 Since .NET Aspire models Azure resources within Azure hosting integrations, the Azure SDK is used to provision these resources. Bicep files are generated that define the Azure resources you need. The generated Bicep files are output alongside the manifest file when you publish your app.
 
@@ -21,7 +21,7 @@ There are several ways to influence the generated Bicep files:
 
 - [Azure.Provisioning customization](#azureprovisioning-customization):
   - [Configure infrastructure](#configure-infrastructure): Customize Azure resource infrastructure.
-  - [Add Azure infrastructure](#add-azure-infrastructure): Manually add Azure infrastructure to your app host.
+  - [Add Azure infrastructure](#add-azure-infrastructure): Manually add Azure infrastructure to your AppHost.
 - [Use custom Bicep templates](#use-custom-bicep-templates):
   - [Reference Bicep files](#reference-bicep-files): Add a reference to a Bicep file on disk.
   - [Reference Bicep inline](#reference-bicep-inline): Add an inline Bicep template.
@@ -32,7 +32,7 @@ To avoid conflating terms and to help disambiguate "provisioning," it's importan
 
 - **_Local provisioning:_**
 
-  By default, when you call any of the Azure hosting integration APIs to add Azure resources, the <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)> API is called implicitly. This API registers services in the dependency injection (DI) container that are used to provision Azure resources when the app host starts. This concept is known as _local provisioning_.  For more information, see [Local Azure provisioning](local-provisioning.md).
+  By default, when you call any of the Azure hosting integration APIs to add Azure resources, the <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)> API is called implicitly. This API registers services in the dependency injection (DI) container that are used to provision Azure resources when the AppHost starts. This concept is known as _local provisioning_.  For more information, see [Local Azure provisioning](local-provisioning.md).
 
 - **_`Azure.Provisioning`:_**
 
@@ -64,9 +64,9 @@ This exemplifies flowing an [external parameter](../fundamentals/external-parame
 
 ### Add Azure infrastructure
 
-Not all Azure services are exposed as .NET Aspire integrations. While they might be at a later time, you can still provision services that are available in `Azure.Provisioning.*` libraries. Imagine a scenario where you have worker service that's responsible for managing an Azure Container Registry. Now imagine that an app host project takes a dependency on the [📦 Azure.Provisioning.ContainerRegistry](https://www.nuget.org/packages/Azure.Provisioning.ContainerRegistry) NuGet package.
+Not all Azure services are exposed as .NET Aspire integrations. While they might be at a later time, you can still provision services that are available in `Azure.Provisioning.*` libraries. Imagine a scenario where you have worker service that's responsible for managing an Azure Container Registry. Now imagine that an AppHost project takes a dependency on the [📦 Azure.Provisioning.ContainerRegistry](https://www.nuget.org/packages/Azure.Provisioning.ContainerRegistry) NuGet package.
 
-You can use the `AddAzureInfrastructure` API to add the Azure Container Registry infrastructure to your app host:
+You can use the `AddAzureInfrastructure` API to add the Azure Container Registry infrastructure to your AppHost:
 
 :::code language="csharp" source="../snippets/azure/AppHost/Program.AddAzureInfra.cs" id="add":::
 
@@ -81,7 +81,7 @@ The preceding code:
 - Adds a project named `worker` to the builder.
 - Chains a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEnvironment*> to set the `ACR_REGISTRY_NAME` environment variable in the project to the value of the `registryName` output.
 
-The functionality demonstrates how to add Azure infrastructure to your app host project, even if the Azure service isn't directly exposed as a .NET Aspire integration. It further shows how to flow the output of the Azure Container Registry into the environment of a dependent project.
+The functionality demonstrates how to add Azure infrastructure to your AppHost project, even if the Azure service isn't directly exposed as a .NET Aspire integration. It further shows how to flow the output of the Azure Container Registry into the environment of a dependent project.
 
 Consider the resulting Bicep file:
 
@@ -164,7 +164,7 @@ To add a reference to the Bicep file on disk, call the <xref:Aspire.Hosting.Azur
 
 :::code language="csharp" source="snippets/bicep/AppHost.Bicep/Program.ReferenceBicep.cs" id="addfile":::
 
-The preceding code adds a reference to a Bicep file located at `../infra/storage.bicep`. The file paths should be relative to the _app host_ project. This reference results in an <xref:Aspire.Hosting.Azure.AzureBicepResource> being added to the application's resources collection with the `"storage"` name, and the API returns an `IResourceBuilder<AzureBicepResource>` instance that can be used to further customize the resource.
+The preceding code adds a reference to a Bicep file located at `../infra/storage.bicep`. The file paths should be relative to the _AppHost_ project. This reference results in an <xref:Aspire.Hosting.Azure.AzureBicepResource> being added to the application's resources collection with the `"storage"` name, and the API returns an `IResourceBuilder<AzureBicepResource>` instance that can be used to further customize the resource.
 
 ### Reference Bicep inline
 

@@ -21,7 +21,7 @@ The .NET Aspire [Azure Service Bus](https://azure.microsoft.com/services/service
 - <xref:Aspire.Hosting.Azure.AzureServiceBusTopicResource>: Represents an Azure Service Bus topic resource.
 - <xref:Aspire.Hosting.Azure.AzureServiceBusEmulatorResource>: Represents an Azure Service Bus emulator resource.
 
-To access these types and APIs for expressing them, add the [📦 Aspire.Hosting.Azure.ServiceBus](https://www.nuget.org/packages/Aspire.Hosting.Azure.ServiceBus) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+To access these types and APIs for expressing them, add the [📦 Aspire.Hosting.Azure.ServiceBus](https://www.nuget.org/packages/Aspire.Hosting.Azure.ServiceBus) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -42,7 +42,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Azure Service Bus resource
 
-In your app host project, call <xref:Aspire.Hosting.AzureServiceBusExtensions.AddAzureServiceBus*> to add and return an Azure Service Bus resource builder.
+In your AppHost project, call <xref:Aspire.Hosting.AzureServiceBusExtensions.AddAzureServiceBus*> to add and return an Azure Service Bus resource builder.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -52,7 +52,7 @@ var serviceBus = builder.AddAzureServiceBus("messaging");
 // After adding all resources, run the app...
 ```
 
-When you add an <xref:Aspire.Hosting.Azure.AzureServiceBusResource> to the app host, it exposes other useful APIs to add queues and topics. In other words, you must add an `AzureServiceBusResource` before adding any of the other Service Bus resources.
+When you add an <xref:Aspire.Hosting.Azure.AzureServiceBusResource> to the AppHost, it exposes other useful APIs to add queues and topics. In other words, you must add an `AzureServiceBusResource` before adding any of the other Service Bus resources.
 
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureServiceBusExtensions.AddAzureServiceBus*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Configuration](../azure/local-provisioning.md#configuration).
@@ -110,7 +110,7 @@ builder.AddProject<Projects.WebApplication>("web")
 For more information on treating Azure Service Bus resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
 > [!NOTE]
-> Alternatively, instead of representing an Azure Service Bus resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> Alternatively, instead of representing an Azure Service Bus resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Add Azure Service Bus queue
 
@@ -192,7 +192,7 @@ var serviceBus = builder.AddAzureServiceBus("messaging")
 // After adding all resources, run the app...
 ```
 
-When you call `RunAsEmulator`, it configures your Service Bus resources to run locally using an emulator. The emulator in this case is the [Azure Service Bus Emulator](/azure/service-bus-messaging/overview-emulator). The Azure Service Bus Emulator provides a free local environment for testing your Azure Service Bus apps and it's a perfect companion to the .NET Aspire Azure hosting integration. The emulator isn't installed, instead, it's accessible to .NET Aspire as a container. When you add a container to the app host, as shown in the preceding example with the `mcr.microsoft.com/azure-messaging/servicebus-emulator` image (and the companion `mcr.microsoft.com/azure-sql-edge` image), it creates and starts the container when the app host starts. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
+When you call `RunAsEmulator`, it configures your Service Bus resources to run locally using an emulator. The emulator in this case is the [Azure Service Bus Emulator](/azure/service-bus-messaging/overview-emulator). The Azure Service Bus Emulator provides a free local environment for testing your Azure Service Bus apps and it's a perfect companion to the .NET Aspire Azure hosting integration. The emulator isn't installed, instead, it's accessible to .NET Aspire as a container. When you add a container to the AppHost, as shown in the preceding example with the `mcr.microsoft.com/azure-messaging/servicebus-emulator` image (and the companion `mcr.microsoft.com/azure-sql-edge` image), it creates and starts the container when the AppHost starts. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 #### Configure Service Bus emulator container
 
@@ -305,7 +305,7 @@ builder.AddAzureServiceBusClient(connectionName: "messaging");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Service Bus resource in the app host project. In other words, when you call `AddAzureServiceBus` and provide a name of `messaging` that same name should be used when calling `AddAzureServiceBusClient`. For more information, see [Add Azure Service Bus resource](#add-azure-service-bus-resource).
+> The `connectionName` parameter must match the name used when adding the Service Bus resource in the AppHost project. In other words, when you call `AddAzureServiceBus` and provide a name of `messaging` that same name should be used when calling `AddAzureServiceBusClient`. For more information, see [Add Azure Service Bus resource](#add-azure-service-bus-resource).
 
 You can then retrieve the <xref:Azure.Messaging.ServiceBus.ServiceBusClient> instance using dependency injection. For example, to retrieve the connection from an example service:
 

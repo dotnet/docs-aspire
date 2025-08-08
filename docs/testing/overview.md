@@ -6,7 +6,7 @@ ms.date: 03/11/2025
 
 # .NET Aspire testing overview
 
-.NET Aspire supports automated testing of your application through the [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package. This package provides the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> class, which is used to create a test host for your application. The testing builder launches your app host project in a background thread and manages its lifecycle, allowing you to control and manipulate the application and its resources through <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> or <xref:Aspire.Hosting.DistributedApplication> instances.
+.NET Aspire supports automated testing of your application through the [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package. This package provides the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> class, which is used to create a test host for your application. The testing builder launches your AppHost project in a background thread and manages its lifecycle, allowing you to control and manipulate the application and its resources through <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> or <xref:Aspire.Hosting.DistributedApplication> instances.
 
 By default, the testing builder disables the dashboard and randomizes the ports of proxied resources to enable multiple instances of your application to run concurrently. Once your test completes, disposing of the application or testing builder cleans up your app resources.
 
@@ -14,18 +14,18 @@ To get started writing your first integration test with .NET Aspire, see the [Wr
 
 ## Testing .NET Aspire solutions
 
-.NET Aspire's testing capabilities are designed specifically for closed-box integration testing of your entire distributed application. Unlike unit tests or open-box integration tests, which typically run individual components in isolation, .NET Aspire tests launch your complete solution (the app host and all its resources) as separate processes, closely simulating real-world scenarios.
+.NET Aspire's testing capabilities are designed specifically for closed-box integration testing of your entire distributed application. Unlike unit tests or open-box integration tests, which typically run individual components in isolation, .NET Aspire tests launch your complete solution (the AppHost and all its resources) as separate processes, closely simulating real-world scenarios.
 
-Consider the following diagram that shows how the .NET Aspire testing project starts the app host, which then starts the application and its resources:
+Consider the following diagram that shows how the .NET Aspire testing project starts the AppHost, which then starts the application and its resources:
 
 :::image type="content" source="media/testing-diagram-thumb.png" alt-text=".NET Aspire testing diagram" lightbox="media/testing-diagram.png":::
 
-1. The **test project** starts the app host.
-1. The **app host** process starts.
-1. The **app host** runs the `Database`, `API`, and `Frontend` applications.
+1. The **test project** starts the AppHost.
+1. The **AppHost** process starts.
+1. The **AppHost** runs the `Database`, `API`, and `Frontend` applications.
 1. The **test project** sends an HTTP request to the `Frontend` application.
 
-The diagram illustrates that the **test project** starts the app host, which then orchestrates all dependent app resources—regardless of their type. The test project is able to send an HTTP request to the `Frontend` app, which depends on an `API` app, and the `API` app depends on a `Database`. A successful request confirms that the `Frontend` app can communicate with the `API` app, and that the `API` app can successfully get data from the `Database`. For more information on seeing this approach in action, see the [Write your first .NET Aspire test](write-your-first-test.md) article.
+The diagram illustrates that the **test project** starts the AppHost, which then orchestrates all dependent app resources—regardless of their type. The test project is able to send an HTTP request to the `Frontend` app, which depends on an `API` app, and the `API` app depends on a `Database`. A successful request confirms that the `Frontend` app can communicate with the `API` app, and that the `API` app can successfully get data from the `Database`. For more information on seeing this approach in action, see the [Write your first .NET Aspire test](write-your-first-test.md) article.
 
 > [!IMPORTANT]
 > .NET Aspire testing doesn't enable scenarios for mocking, substituting, or replacing services in dependency injection—as the tests run in a separate process.
@@ -70,5 +70,5 @@ var builder = await DistributedApplicationTestingBuilder
 ## See also
 
 - [Write your first .NET Aspire test](./write-your-first-test.md)
-- [Managing the app host in .NET Aspire tests](./manage-app-host.md)
+- [Managing the AppHost in .NET Aspire tests](./manage-app-host.md)
 - [Access resources in .NET Aspire tests](./accessing-resources.md)

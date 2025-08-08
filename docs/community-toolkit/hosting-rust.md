@@ -12,11 +12,11 @@ ms.date: 11/15/2024
 [!INCLUDE [banner](includes/banner.md)]
 
 [Rust](https://www.rust-lang.org/) is a general-purpose programming language emphasizing performance, type safety, and concurrency. It enforces memory safety, meaning that all references point to valid memory.
-The .NET Aspire Rust hosting integration allows you to host Rust applications in your .NET Aspire app host project, and provide it to other resources in your application.
+The .NET Aspire Rust hosting integration allows you to host Rust applications in your .NET Aspire AppHost project, and provide it to other resources in your application.
 
 ## Hosting integration
 
-The Rust hosting integration models a Rust application as the `Aspire.Hosting.ApplicationModel.RustAppExecutableResource` type. To access this type and APIs that allow you to add it to your app host project, install the [📦 CommunityToolkit.Aspire.Hosting.Rust](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Rust) NuGet package in the app host project.
+The Rust hosting integration models a Rust application as the `Aspire.Hosting.ApplicationModel.RustAppExecutableResource` type. To access this type and APIs that allow you to add it to your AppHost project, install the [📦 CommunityToolkit.Aspire.Hosting.Rust](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Rust) NuGet package in the AppHost project.
 
 This integration expects that the Rust programming language has already been installed on the host machine and the Rust package manager [`cargo`](https://doc.rust-lang.org/cargo/getting-started/installation.html) is available in the system path.
 
@@ -39,7 +39,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Add a Rust resource
 
-In the _:::no-loc text="Program.cs":::_ file of your app host project, call the `Aspire.Hosting.RustAppHostingExtension.AddRustApp` on the `builder` instance to add a Rust application resource as shown in the following example:
+In the _:::no-loc text="Program.cs":::_ file of your AppHost project, call the `Aspire.Hosting.RustAppHostingExtension.AddRustApp` on the `builder` instance to add a Rust application resource as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -61,7 +61,7 @@ var rust = builder.AddRustApp("rust-app", workingDirectory: "../rust-service", a
                  .WithHttpEndpoint(env: "PORT");
 ```
 
-The Rust application can be added as a reference to other resources in the app host project.
+The Rust application can be added as a reference to other resources in the AppHost project.
 
 ## See also
 

@@ -12,9 +12,9 @@ Environments provide context for the application to run in. Parameters express t
 
 ## Parameter values
 
-Parameter values are read from the `Parameters` section of the app host's configuration and are used to provide values to the app while running locally. When you run or publish the app, if the value isn't configured you're prompted to provide it.
+Parameter values are read from the `Parameters` section of the AppHost's configuration and are used to provide values to the app while running locally. When you run or publish the app, if the value isn't configured you're prompted to provide it.
 
-Consider the following example app host _:::no-loc text="Program.cs":::_ file:
+Consider the following example AppHost _:::no-loc text="Program.cs":::_ file:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -26,13 +26,13 @@ builder.AddProject<Projects.ApiService>("api")
        .WithEnvironment("ENVIRONMENT_VARIABLE_NAME", parameter);
 ```
 
-The preceding code adds a parameter named `example-parameter-name` to the app host. The parameter is then passed to the `Projects.ApiService` project as an environment variable named `ENVIRONMENT_VARIABLE_NAME`.
+The preceding code adds a parameter named `example-parameter-name` to the AppHost. The parameter is then passed to the `Projects.ApiService` project as an environment variable named `ENVIRONMENT_VARIABLE_NAME`.
 
 ### Configure parameter values
 
-Adding parameters to the builder is only one aspect of the configuration. You must also provide the value for the parameter. The value can be provided in the app host configuration file, set as a user secret, or configured in any [other standard configuration](/dotnet/core/extensions/configuration). When parameter values aren't found, they're prompted for when you run or publish the app.
+Adding parameters to the builder is only one aspect of the configuration. You must also provide the value for the parameter. The value can be provided in the AppHost configuration file, set as a user secret, or configured in any [other standard configuration](/dotnet/core/extensions/configuration). When parameter values aren't found, they're prompted for when you run or publish the app.
 
-Consider the following app host configuration file _:::no-loc text="appsettings.json":::_:
+Consider the following AppHost configuration file _:::no-loc text="appsettings.json":::_:
 
 ```json
 {
@@ -42,7 +42,7 @@ Consider the following app host configuration file _:::no-loc text="appsettings.
 }
 ```
 
-The preceding JSON configures a parameter in the `Parameters` section of the app host configuration. In other words, that app host is able to find the parameter as it's configured. For example, you could walk up to the <xref:Aspire.Hosting.IDistributedApplicationBuilder.Configuration?displayProperty=nameWithType> and access the value using the `Parameters:example-parameter-name` key:
+The preceding JSON configures a parameter in the `Parameters` section of the AppHost configuration. In other words, that AppHost is able to find the parameter as it's configured. For example, you could walk up to the <xref:Aspire.Hosting.IDistributedApplicationBuilder.Configuration?displayProperty=nameWithType> and access the value using the `Parameters:example-parameter-name` key:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -52,7 +52,7 @@ var value = builder.Configuration[key]; // value = "local-value"
 ```
 
 > [!IMPORTANT]
-> However, you don't need to access this configuration value yourself in the app host. Instead, the <xref:Aspire.Hosting.ApplicationModel.ParameterResource> is used to pass the parameter value to dependent resources. Most often as an environment variable.
+> However, you don't need to access this configuration value yourself in the AppHost. Instead, the <xref:Aspire.Hosting.ApplicationModel.ParameterResource> is used to pass the parameter value to dependent resources. Most often as an environment variable.
 
 ### Prompt for parameter values in the dashboard
 
@@ -101,9 +101,9 @@ The code renders this control in the dashboard:
 
 ## Secret values
 
-Parameters can be used to model secrets. When a parameter is marked as a secret, it serves as a hint to the manifest that the value should be treated as a secret. When you publish the app, the value is prompted for and stored in a secure location. When you run the app locally, the value is read from the `Parameters` section of the app host configuration.
+Parameters can be used to model secrets. When a parameter is marked as a secret, it serves as a hint to the manifest that the value should be treated as a secret. When you publish the app, the value is prompted for and stored in a secure location. When you run the app locally, the value is read from the `Parameters` section of the AppHost configuration.
 
-Consider the following example app host _:::no-loc text="Program.cs":::_ file:
+Consider the following example AppHost _:::no-loc text="Program.cs":::_ file:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -117,7 +117,7 @@ builder.AddProject<Projects.ApiService>("api")
 builder.Build().Run();
 ```
 
-Now consider the following app host configuration file _:::no-loc text="appsettings.json":::_:
+Now consider the following AppHost configuration file _:::no-loc text="appsettings.json":::_:
 
 ```json
 {
@@ -148,11 +148,11 @@ The manifest representation is as follows:
 
 ## Connection string values
 
-Parameters can be used to model connection strings. When you publish the app, the value is prompted for and stored in a secure location. When you run the app locally, the value is read from the `ConnectionStrings` section of the app host configuration.
+Parameters can be used to model connection strings. When you publish the app, the value is prompted for and stored in a secure location. When you run the app locally, the value is read from the `ConnectionStrings` section of the AppHost configuration.
 
 [!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
 
-Consider the following example app host _:::no-loc text="Program.cs":::_ file:
+Consider the following example AppHost _:::no-loc text="Program.cs":::_ file:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -169,7 +169,7 @@ builder.Build().Run();
 > [!NOTE]
 > Using <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> with a connection string will implicitly wait for the resource that the connection string connects to.
 
-Now consider the following app host configuration file _:::no-loc text="appsettings.json":::_:
+Now consider the following AppHost configuration file _:::no-loc text="appsettings.json":::_:
 
 ```json
 {
@@ -208,7 +208,7 @@ The following steps are performed:
 - Passes the `insertionRows` parameter to the `api` project.
 - References the `db` database.
 
-The value for the `insertionRows` parameter is read from the `Parameters` section of the app host configuration file _:::no-loc text="appsettings.json":::_:
+The value for the `insertionRows` parameter is read from the `Parameters` section of the AppHost configuration file _:::no-loc text="appsettings.json":::_:
 
 :::code language="json" source="snippets/params/Parameters.AppHost/appsettings.json":::
 

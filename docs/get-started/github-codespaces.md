@@ -51,9 +51,9 @@ To configure GitHub Codespaces for .NET Aspire, use the _.devcontainer/devcontai
 
     :::image source="media/codespaces-explorer-panel.png" lightbox="media/codespaces-explorer-panel.png" alt-text="Codespaces Explorer panel":::
 
-1. Launch the app host via the _HelloAspire.AppHost/Program.cs_ file, by selecting the **Run project** button near the top-right corner of the **Tab bar**.
+1. Launch the AppHost via the _HelloAspire.AppHost/Program.cs_ file, by selecting the **Run project** button near the top-right corner of the **Tab bar**.
 
-    :::image source="media/codespace-launch-apphost.png" lightbox="media/codespace-launch-apphost.png" alt-text="Launch app host in Codespace":::
+    :::image source="media/codespace-launch-apphost.png" lightbox="media/codespace-launch-apphost.png" alt-text="Launch AppHost in Codespace":::
 
     After a few moments the **Debug Console** panel is displayed, and it includes a link to the .NET Aspire dashboard exposed on a GitHub Codespaces endpoint with the authentication token.
 

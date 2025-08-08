@@ -44,7 +44,7 @@ The `PORT` environment variable is used to determine the port the Uvicorn applic
 
 # [Uvicorn](#tab/uvicorn)
 
-In the _:::no-loc text="Program.cs":::_ file of your app host project, call the `AddUvicornApp` method to add a Uvicorn application to the builder.
+In the _:::no-loc text="Program.cs":::_ file of your AppHost project, call the `AddUvicornApp` method to add a Uvicorn application to the builder.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -63,7 +63,7 @@ The Uvicorn application can be added as a reference to other resources in the Ap
 
 # [uv](#tab/uv)
 
-In the _:::no-loc text="Program.cs":::_ file of your app host project, call the `AddUvApp` method to add a uv application to the builder.
+In the _:::no-loc text="Program.cs":::_ file of your AppHost project, call the `AddUvApp` method to add a uv application to the builder.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

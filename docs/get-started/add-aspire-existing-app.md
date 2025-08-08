@@ -204,7 +204,7 @@ Template Name       Short Name              Language  Tags
 .NET Aspire Tes...  aspire-xunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test/xUnit
 ```
 
-In this tutorial, you'll add a App Host project and a Service Defaults project.
+In this tutorial, you'll add a AppHost project and a Service Defaults project.
 
 If the previous command didn't find any templates you must install them. Execute this command:
 
@@ -256,15 +256,15 @@ Also notice that the **eShopLite.AppHost** project, now depends on both the **St
 :::zone-end
 :::zone pivot="vscode,dotnet-cli"
 
-### Create an app host project
+### Create an AppHost project
 
-In order to orchestrate the existing projects, you need to create a new _app host_ project. To create a new [_app host_ project](../fundamentals/app-host-overview.md) from the available .NET Aspire templates, use the following .NET CLI command:
+In order to orchestrate the existing projects, you need to create a new _AppHost_ project. To create a new [_AppHost_ project](../fundamentals/app-host-overview.md) from the available .NET Aspire templates, use the following .NET CLI command:
 
 ```dotnetcli
 dotnet new aspire-apphost -o eShopLite.AppHost
 ```
 
-Add the _app host_ project to existing solution:
+Add the _AppHost_ project to existing solution:
 
 ## [Unix](#tab/unix)
 
@@ -280,7 +280,7 @@ dotnet sln .\eShopLite.sln add .\eShopLite.AppHost\eShopLite.AppHost.csproj
 
 ---
 
-Add the **Store** project as a project reference to the _app host_ project using the following .NET CLI command:
+Add the **Store** project as a project reference to the _AppHost_ project using the following .NET CLI command:
 
 ## [Unix](#tab/unix)
 
@@ -300,7 +300,7 @@ For more information on the available templates, see [.NET Aspire templates](../
 
 ### Create a service defaults project
 
-After the app host project is created, you need to create a new _service defaults_ project. To create a new [_service defaults_ project](../fundamentals/service-defaults.md) from the available .NET Aspire templates, use the following .NET CLI command:
+After the AppHost project is created, you need to create a new _service defaults_ project. To create a new [_service defaults_ project](../fundamentals/service-defaults.md) from the available .NET Aspire templates, use the following .NET CLI command:
 
 ```dotnetcli
 dotnet new aspire-servicedefaults -o eShopLite.ServiceDefaults
@@ -322,7 +322,7 @@ dotnet sln .\eShopLite.sln add .\eShopLite.ServiceDefaults\eShopLite.ServiceDefa
 
 ---
 
-Update the _app host_ project to add a project reference to the **Products** project:
+Update the _AppHost_ project to add a project reference to the **Products** project:
 
 ## [Unix](#tab/unix)
 
@@ -376,9 +376,9 @@ In both the **Store** and **Products** projects, update their _:::no-loc text="P
 builder.AddServiceDefaults();
 ```
 
-### Update the app host project
+### Update the AppHost project
 
-Open the _:::no-loc text="Program.cs":::_ file of the _app host_ project, and replace its contents with the following C# code:
+Open the _:::no-loc text="Program.cs":::_ file of the _AppHost_ project, and replace its contents with the following C# code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -416,7 +416,7 @@ builder.AddProject<Projects.Store>("store")
 builder.Build().Run();
 ```
 
-The preceding code expresses that the _Store_ project depends on the _Products_ project. For more information, see [.NET Aspire app host: Reference resources](../fundamentals/app-host-overview.md#reference-resources). This reference is used to discover the address of the _Products_ project at run time. Additionally, the _Store_ project is configured to use external HTTP endpoints. If you later choose to deploy this app, you'd need the call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints%2A> to ensure that it's public to the outside world. Finally, the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> API ensures that _Store_ app waits for the _Products_ app to be ready to serve requests.
+The preceding code expresses that the _Store_ project depends on the _Products_ project. For more information, see [.NET Aspire AppHost: Reference resources](../fundamentals/app-host-overview.md#reference-resources). This reference is used to discover the address of the _Products_ project at run time. Additionally, the _Store_ project is configured to use external HTTP endpoints. If you later choose to deploy this app, you'd need the call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints%2A> to ensure that it's public to the outside world. Finally, the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> API ensures that _Store_ app waits for the _Products_ app to be ready to serve requests.
 
 Next, update the _:::no-loc text="appsettings.json":::_ in the _Store_ project with the following JSON:
 
@@ -435,7 +435,7 @@ Next, update the _:::no-loc text="appsettings.json":::_ in the _Store_ project w
 }
 ```
 
-The addresses for both the endpoints now uses the "products" name that was added to the orchestrator in the _app host_. These names are used to discover the address of the _Products_ project.
+The addresses for both the endpoints now uses the "products" name that was added to the orchestrator in the _AppHost_. These names are used to discover the address of the _Products_ project.
 
 ## Explore the enrolled app
 
@@ -456,9 +456,9 @@ Let's start the solution and examine the new behavior that .NET Aspire provides.
 :::zone-end
 :::zone pivot="vscode"
 
-Delete the _launch.json_ file that you created earlier, it no longer serves a purpose. Instead, start the _app host_ project, which orchestrates the other projects:
+Delete the _launch.json_ file that you created earlier, it no longer serves a purpose. Instead, start the _AppHost_ project, which orchestrates the other projects:
 
-1. Start the _app host_ project by right-clicking the **eShopLite.AppHost** project in the **Solution Explorer** and selecting **Debug** > **Start New Instance**:
+1. Start the _AppHost_ project by right-clicking the **eShopLite.AppHost** project in the **Solution Explorer** and selecting **Debug** > **Start New Instance**:
 
     :::image type="content" source="media/vscode-run-app-host.png" lightbox="media/vscode-run-app-host.png" alt-text="Visual Studio Code: Solution Explorer selecting Debug > Start New Instance." :::
 
@@ -468,7 +468,7 @@ Delete the _launch.json_ file that you created earlier, it no longer serves a pu
 :::zone-end
 :::zone pivot="dotnet-cli"
 
-1. Start the _app host_ project by running the following command:
+1. Start the _AppHost_ project by running the following command:
 
     ```dotnetcli
     dotnet run --project ./eShopLite.AppHost/eShopLite.AppHost.csproj

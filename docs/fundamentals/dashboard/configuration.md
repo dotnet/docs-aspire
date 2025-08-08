@@ -9,7 +9,7 @@ ms.topic: reference
 
 The dashboard is configured when it starts up. Configuration includes frontend and OpenTelemetry Protocol (OTLP) addresses, the resource service endpoint, authentication, telemetry limits, and more.
 
-When the dashboard is launched with the .NET Aspire app host project, it's automatically configured to display the app's resources and telemetry. Configuration is provided when launching the dashboard in [standalone mode](overview.md#standalone-mode).
+When the dashboard is launched with the .NET Aspire AppHost project, it's automatically configured to display the app's resources and telemetry. Configuration is provided when launching the dashboard in [standalone mode](overview.md#standalone-mode).
 
 There are many ways to provide configuration:
 
@@ -63,15 +63,15 @@ Alternatively, these same values could be configured using a JSON configuration 
 > For more information, see [dashboard security](security-considerations.md).
 
 > [!NOTE]
-> Configuration described on this page is for the standalone dashboard. To configure an .NET Aspire app host project, see [App host configuration](../../app-host/configuration.md).
+> Configuration described on this page is for the standalone dashboard. To configure an .NET Aspire AppHost project, see [AppHost configuration](../../app-host/configuration.md).
 
 ## Common configuration
 
 | Option | Default value | Description |
 |--|--|--|
-| `ASPNETCORE_URLS` | `http://localhost:18888` | One or more HTTP endpoints through which the dashboard frontend is served. The frontend endpoint is used to view the dashboard in a browser. When the dashboard is launched by the .NET Aspire app host this address is secured with HTTPS. Securing the dashboard with HTTPS is recommended. |
-| `ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL` | `http://localhost:18889` | The [OTLP/gRPC](https://opentelemetry.io/docs/specs/otlp/#otlpgrpc) endpoint. This endpoint hosts an OTLP service and receives telemetry using gRPC. When the dashboard is launched by the .NET Aspire app host this address is secured with HTTPS. Securing the dashboard with HTTPS is recommended. |
-| `ASPIRE_DASHBOARD_OTLP_HTTP_ENDPOINT_URL` | `http://localhost:18890` | The [OTLP/HTTP](https://opentelemetry.io/docs/specs/otlp/#otlphttp) endpoint. This endpoint hosts an OTLP service and receives telemetry using Protobuf over HTTP. When the dashboard is launched by the .NET Aspire app host the OTLP/HTTP endpoint isn't configured by default. To configure an OTLP/HTTP endpoint with the app host, set an `ASPIRE_DASHBOARD_OTLP_HTTP_ENDPOINT_URL` env var value in _launchSettings.json_. Securing the dashboard with HTTPS is recommended. |
+| `ASPNETCORE_URLS` | `http://localhost:18888` | One or more HTTP endpoints through which the dashboard frontend is served. The frontend endpoint is used to view the dashboard in a browser. When the dashboard is launched by the .NET Aspire AppHost this address is secured with HTTPS. Securing the dashboard with HTTPS is recommended. |
+| `ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL` | `http://localhost:18889` | The [OTLP/gRPC](https://opentelemetry.io/docs/specs/otlp/#otlpgrpc) endpoint. This endpoint hosts an OTLP service and receives telemetry using gRPC. When the dashboard is launched by the .NET Aspire AppHost this address is secured with HTTPS. Securing the dashboard with HTTPS is recommended. |
+| `ASPIRE_DASHBOARD_OTLP_HTTP_ENDPOINT_URL` | `http://localhost:18890` | The [OTLP/HTTP](https://opentelemetry.io/docs/specs/otlp/#otlphttp) endpoint. This endpoint hosts an OTLP service and receives telemetry using Protobuf over HTTP. When the dashboard is launched by the .NET Aspire AppHost the OTLP/HTTP endpoint isn't configured by default. To configure an OTLP/HTTP endpoint with the AppHost, set an `ASPIRE_DASHBOARD_OTLP_HTTP_ENDPOINT_URL` env var value in _launchSettings.json_. Securing the dashboard with HTTPS is recommended. |
 | `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` | `false` | Configures the dashboard to not use authentication and accepts anonymous access. This setting is a shortcut to configuring `Dashboard:Frontend:AuthMode` and `Dashboard:Otlp:AuthMode` to `Unsecured`. |
 | `ASPIRE_DASHBOARD_CONFIG_FILE_PATH` | `null` | The path for a JSON configuration file. If the dashboard is being run in a Docker container, then this is the path to the configuration file in a mounted volume. This value is optional. |
 | `ASPIRE_DASHBOARD_FILE_CONFIG_DIRECTORY` | `null` | The directory where the dashboard looks for key-per-file configuration. This value is optional. |

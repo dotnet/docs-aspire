@@ -39,7 +39,7 @@ To get started, launch your .NET Aspire solution as usual in your IDE.
 2. Ensure you're logged into the IDE with a GitHub account:
    - For Visual Studio, see [Add your GitHub accounts to your Visual Studio keychain](https://aka.ms/dotnet/aspire/copilot-vs-login).
    - For VS Code and C# Dev Kit, see [Set up GitHub Copilot in VS Code](https://aka.ms/dotnet/aspire/copilot-vscode-login).
-3. Run the .NET Aspire app host.
+3. Run the .NET Aspire AppHost.
 
 A GitHub Copilot button appears in the top-right corner of the dashboard. Selecting the button opens the Copilot UI.
 
@@ -93,7 +93,7 @@ AI models have limits on how much data they can process at once. The .NET Aspire
 
 GitHub Copilot only accesses data when you explicitly interact with it. For example, submitting a chat query or selecting **Ask GitHub Copilot** from a context menu.
 
-If you prefer to disable the feature entirely, set the `ASPIRE_DASHBOARD_AI_DISABLED` environment variable to `true` in your app host's _launchSettings.json_ file. This hides all Copilot UI elements in the dashboard.
+If you prefer to disable the feature entirely, set the `ASPIRE_DASHBOARD_AI_DISABLED` environment variable to `true` in your AppHost's _launchSettings.json_ file. This hides all Copilot UI elements in the dashboard.
 
 :::code language="json" source="snippets/DisableAI/AspireApp/AspireApp.AppHost/Properties/launchSettings.json" highlight="14":::
 

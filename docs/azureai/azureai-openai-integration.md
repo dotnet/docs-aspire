@@ -13,7 +13,7 @@ ms.custom: sfi-ropc-nochange
 
 ## Hosting integration
 
-The .NET Aspire [Azure OpenAI](/azure/ai-services/openai/) hosting integration models Azure OpenAI resources as <xref:Aspire.Hosting.ApplicationModel.AzureOpenAIResource>. To access these types and APIs for expressing them within your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices) NuGet package:
+The .NET Aspire [Azure OpenAI](/azure/ai-services/openai/) hosting integration models Azure OpenAI resources as <xref:Aspire.Hosting.ApplicationModel.AzureOpenAIResource>. To access these types and APIs for expressing them within your [AppHost](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -34,7 +34,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Azure OpenAI resource
 
-To add an <xref:Aspire.Hosting.ApplicationModel.AzureOpenAIResource> to your app host project, call the <xref:Aspire.Hosting.AzureOpenAIExtensions.AddAzureOpenAI%2A> method:
+To add an <xref:Aspire.Hosting.ApplicationModel.AzureOpenAIResource> to your AppHost project, call the <xref:Aspire.Hosting.AzureOpenAIExtensions.AddAzureOpenAI%2A> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -47,7 +47,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The preceding code adds an Azure OpenAI resource named `openai` to the app host project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes the connection information to the `ExampleProject` project.
+The preceding code adds an Azure OpenAI resource named `openai` to the AppHost project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes the connection information to the `ExampleProject` project.
 
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureOpenAIExtensions.AddAzureOpenAI%2A>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration).
@@ -129,7 +129,7 @@ builder.AddProject<Projects.ExampleProject>()
 For more information on treating Azure OpenAI resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
 > [!NOTE]
-> Alternatively, instead of representing an Azure OpenAI resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> Alternatively, instead of representing an Azure OpenAI resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ## Client integration
 
@@ -159,7 +159,7 @@ builder.AddAzureOpenAIClient(connectionName: "openai");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Azure OpenAI resource in the app host project. For more information, see [Add an Azure OpenAI resource](#add-an-azure-openai-resource).
+> The `connectionName` parameter must match the name used when adding the Azure OpenAI resource in the AppHost project. For more information, see [Add an Azure OpenAI resource](#add-an-azure-openai-resource).
 
 After adding the `OpenAIClient`, you can retrieve the client instance using dependency injection:
 

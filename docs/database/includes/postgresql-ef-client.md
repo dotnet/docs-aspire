@@ -28,7 +28,7 @@ builder.AddNpgsqlDbContext<YourDbContext>(connectionName: "postgresdb");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the PostgreSQL server resource in the app host project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
+> The `connectionName` parameter must match the name used when adding the PostgreSQL server resource in the AppHost project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
 
 After adding `YourDbContext` to the builder, you can get the `YourDbContext` instance using dependency injection. For example, to retrieve your data source object from an example service define it as a constructor parameter and ensure the `ExampleService` class is registered with the dependency injection container:
 
@@ -52,7 +52,7 @@ builder.Services.AddDbContext<YourDbContext>(options =>
 ```
 
 > [!NOTE]
-> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method must match the name used when adding the PostgreSQL server resource in the app host project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
+> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method must match the name used when adding the PostgreSQL server resource in the AppHost project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
 
 You have more flexibility when you create the database context in this way, for example:
 

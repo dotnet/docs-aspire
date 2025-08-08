@@ -11,7 +11,7 @@ metadata:
   description: Learn about .NET Aspire, a cloud-ready stack for building distributed applications. Browse API reference, tutorials, and more.
   ms.topic: hub-page
   ms.service: dotnet-aspire
-  ms.date: 05/30/2025
+  ms.date: 08/08/2025
 
 highlightedContent:
   items:
@@ -22,7 +22,7 @@ highlightedContent:
     title: Build your first .NET Aspire solution
     url: get-started/build-your-first-aspire-app.md
   - itemType: concept
-    title: App host orchestration
+    title: AppHost orchestration
     url: fundamentals/app-host-overview.md
   - itemType: concept
     title: .NET Aspire integrations

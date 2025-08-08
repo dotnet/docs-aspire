@@ -1,6 +1,6 @@
 ---
 title: aspire deploy command
-description: Learn about the aspire deploy command and its usage. This command first runs publishing mode, then invokes resource deployments declared by the app host.
+description: Learn about the aspire deploy command and its usage. This command first runs publishing mode, then invokes resource deployments declared by the AppHost.
 ms.date: 07/24/2025
 ---
 # aspire deploy command (Preview)
@@ -49,7 +49,7 @@ The following options are available:
 
 - **`--`**
 
-  Delimits arguments to `aspire publish` from arguments for the app host. All arguments after this delimiter are passed to the apphost.
+  Delimits arguments to `aspire publish` from arguments for the AppHost. All arguments after this delimiter are passed to the apphost.
 
 - [!INCLUDE [option-project](includes/option-project.md)]
 

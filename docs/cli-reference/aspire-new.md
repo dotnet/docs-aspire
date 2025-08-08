@@ -56,7 +56,7 @@ Each command represents a template. Pass the `--help` parameter to the template 
 | Command                  | Template                     |
 |--------------------------|------------------------------|
 | `aspire`                 | Aspire Empty App             |
-| `aspire-apphost`         | Aspire App Host              |
+| `aspire-apphost`         | Aspire AppHost              |
 | `aspire-mstest`          | Aspire Test Project (MSTest) |
 | `aspire-nunit`           | Aspire Test Project (NUnit)  |
 | `aspire-servicedefaults` | Aspire Service Defaults      |

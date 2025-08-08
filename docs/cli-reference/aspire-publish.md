@@ -9,7 +9,7 @@ ms.date: 07/11/2025
 
 ## Name
 
-`aspire publish` - Generates deployment artifacts for an Aspire app host project.
+`aspire publish` - Generates deployment artifacts for an Aspire AppHost project.
 
 [!INCLUDE [mode-preview](includes/mode-preview.md)]
 

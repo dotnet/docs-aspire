@@ -1,6 +1,6 @@
 ---
 title: .NET Aspire CLI Overview and Commands
-description: Learn about the Aspire CLI commands for creating projects, running an app host, and adding integrations. Get started with command-line tools to build and manage distributed applications efficiently.
+description: Learn about the Aspire CLI commands for creating projects, running an AppHost, and adding integrations. Get started with command-line tools to build and manage distributed applications efficiently.
 ms.date: 06/26/2025
 ms.topic: overview
 ms.custom:
@@ -33,7 +33,7 @@ While command line parameters can be used to automate the creation of an Aspire 
 
 [_Command reference: `aspire run`_](../cli-reference/aspire-run.md)
 
-The `aspire run` command runs the AppHost project in development mode, which configures the Aspire environment, builds and starts resources defined by the app host, launches the web dashboard, and prints a list of endpoints.
+The `aspire run` command runs the AppHost project in development mode, which configures the Aspire environment, builds and starts resources defined by the AppHost, launches the web dashboard, and prints a list of endpoints.
 
 When `aspire run` starts, it searches the current directory for an AppHost project. If a project isn't found, the sub directories are searched until one is found. If no AppHost project is found, Aspire stops. Once a project is found, Aspire CLI takes the following steps:
 

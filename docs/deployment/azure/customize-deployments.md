@@ -28,7 +28,7 @@ Infrastructure generation in `azd` transforms your .NET Aspire app model into co
 
 When you run `azd infra gen`, the CLI:
 
-1. Analyzes your .NET Aspire app host project.
+1. Analyzes your .NET Aspire AppHost project.
 1. Identifies all resources and their dependencies.
 1. Generates corresponding Azure resource definitions in Bicep.
 1. Creates supporting configuration files for deployment.
@@ -41,7 +41,7 @@ Call the generate infrastructure command on your .NET Aspire solution:
 azd infra gen
 ```
 
-This command creates an `infra` folder in your app host project directory with the following structure:
+This command creates an `infra` folder in your AppHost project directory with the following structure:
 
 ```Directory
 └───📂 infra

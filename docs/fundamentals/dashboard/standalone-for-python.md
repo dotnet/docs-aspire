@@ -235,4 +235,4 @@ Navigate around the Python application, and you'll see structured logs in the As
 
 ## Next steps
 
-You have successfully used the .NET Aspire dashboard with a Python application. To learn more about the .NET Aspire dashboard, see the [Aspire dashboard overview](overview.md) and how to orchestrate a Python application with the [.NET Aspire app host](../../get-started/build-aspire-apps-with-python.md).
+You have successfully used the .NET Aspire dashboard with a Python application. To learn more about the .NET Aspire dashboard, see the [Aspire dashboard overview](overview.md) and how to orchestrate a Python application with the [.NET Aspire AppHost](../../get-started/build-aspire-apps-with-python.md).

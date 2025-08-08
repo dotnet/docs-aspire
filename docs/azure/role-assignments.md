@@ -1,7 +1,7 @@
 ---
 title: Manage Azure role assignments
 description: Learn how to override Azure role assignments on .NET Aspire resources.
-ms.date: 03/31/2025
+ms.date: 08/07/2025
 ---
 
 # Manage Azure role assignments
@@ -32,9 +32,7 @@ These role assignments allow the API project to read and write data to the Azure
 
 ## Override default role assignments
 
-<!-- TODO: Add xref links when available for the WithRoleAssignments API. -->
-
-To override the default role assignment, use the `WithRoleAssignments` API and assign built-in roles as shown in the following example:
+To override the default role assignment, use the [WithRoleAssignments APIs](/dotnet/api/?preserve-view=true&view=dotnet-aspire-9.0&term=WithRoleAssignments) and assign built-in roles as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

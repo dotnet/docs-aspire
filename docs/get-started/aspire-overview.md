@@ -15,7 +15,7 @@ Extensibility is a core focus. Aspire's APIs are designed so you can adapt the p
 
 ### Key capabilities
 
-- **App host orchestration:** Define services, dependencies, and configuration in code.
+- **AppHost orchestration:** Define services, dependencies, and configuration in code.
 - **Rich integrations:** NuGet packages for popular services with standardized interfaces.
 - **Consistent tooling:** Project templates and experiences for **Visual Studio, VS Code, and the CLI.**
 
@@ -23,9 +23,9 @@ For the official support information, see the [Aspire Support Policy](https://do
 
 ## The AppHost
 
-Aspire's app host is where you define your app's services and dependencies in code—no complex configuration files required. The app host provides orchestration for your local development environment by simplifying the management of service discovery, environment variables, and container configurations.
+Aspire's AppHost is where you define your app's services and dependencies in code—no complex configuration files required. The AppHost provides orchestration for your local development environment by simplifying the management of service discovery, environment variables, and container configurations.
 
-Picture a common three-tier architecture: a frontend, which depends on an API, which connects to a database. In Aspire, this topology is represented in the app host as shown in the following code:
+Picture a common three-tier architecture: a frontend, which depends on an API, which connects to a database. In Aspire, this topology is represented in the AppHost as shown in the following code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -47,7 +47,7 @@ var frontend = builder.AddProject<Projects.Frontend>("frontend")
 builder.Build().Run();
 ```
 
-The app host assists with the following concerns:
+The AppHost assists with the following concerns:
 
 - **App composition**: Specify the projects, containers, executables, and cloud resources that make up your application.
 - **Service discovery and connection string management**: Automatically inject the right connection strings and network configurations.
@@ -75,7 +75,7 @@ Resources you can integrate include:
 Integrations are two-fold: "hosting" integrations represent the service you're connecting to, while "client" integrations represent the consumer of that service.
 
 > [!TIP]
-> Under the hood, a _hosting_ [integration](../fundamentals/integrations-overview.md) can represent a container, an executable, or even just C# code that configures resources without running a separate process. You can add any container image, codebase, script, or cloud resource to your app host. Creating reusable Aspire integrations is similar to building reusable components for your apps.
+> Under the hood, a _hosting_ [integration](../fundamentals/integrations-overview.md) can represent a container, an executable, or even just C# code that configures resources without running a separate process. You can add any container image, codebase, script, or cloud resource to your AppHost. Creating reusable Aspire integrations is similar to building reusable components for your apps.
 
 ## Monitor and troubleshoot with the Aspire dashboard
 
@@ -94,7 +94,7 @@ Learn more in the [dashboard overview](../fundamentals/dashboard/overview.md), o
 
 ## From development to deployment
 
-When you compose your distributed app in Aspire's app host, you're not just defining services for local development—you're setting up the foundation for deployment. The same composition you use to run and debug locally becomes the blueprint for production deployment, ensuring consistency from development through to production.
+When you compose your distributed app in Aspire's AppHost, you're not just defining services for local development—you're setting up the foundation for deployment. The same composition you use to run and debug locally becomes the blueprint for production deployment, ensuring consistency from development through to production.
 
 Aspire provides project templates and tooling experiences for your favorite development environments. These [templates include opinionated defaults](../fundamentals/aspire-sdk-templates.md) with boilerplate code for health checks, logging, and telemetry. The templates also include service defaults that handle common configurations:
 
@@ -121,7 +121,7 @@ Consider how the three-tier architecture example can be deployed across differen
 > [!TIP]
 > These are just a few examples of how you can deploy Aspire apps.
 
-Aspire's deployment capabilities are flexible and don't interfere with your existing workflows. You can continue using your preferred tools and services while benefiting from the consistent app topology defined in your app host.
+Aspire's deployment capabilities are flexible and don't interfere with your existing workflows. You can continue using your preferred tools and services while benefiting from the consistent app topology defined in your AppHost.
 
 For more information, see [Deploy Aspire apps](../deployment/overview.md).
 

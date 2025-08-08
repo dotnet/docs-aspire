@@ -11,11 +11,11 @@ uid: dotnet/aspire/integrations/azure-overview
 
 ## Add Azure resources
 
-All .NET Aspire Azure hosting integrations expose Azure resources and by convention are added using `AddAzure*` APIs. When you add these resources to your .NET Aspire app host, they represent an Azure service. The `AddAzure*` API returns an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is the type of Azure resource. These `IResourceBuilder<T>` (builder) interfaces provide a fluent API that allows you to configure the underlying Azure resource within the [app model](xref:dotnet/aspire/app-host#terminology). There are APIs for adding new Azure resources, marking resources as existing, and configuring how the resources behave in various execution contexts.
+All .NET Aspire Azure hosting integrations expose Azure resources and by convention are added using `AddAzure*` APIs. When you add these resources to your .NET Aspire AppHost, they represent an Azure service. The `AddAzure*` API returns an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is the type of Azure resource. These `IResourceBuilder<T>` (builder) interfaces provide a fluent API that allows you to configure the underlying Azure resource within the [app model](xref:dotnet/aspire/app-host#terminology). There are APIs for adding new Azure resources, marking resources as existing, and configuring how the resources behave in various execution contexts.
 
 ### Typical developer experience
 
-When your .NET Aspire app host contains Azure resources, and you run it locally (typical developer <kbd>F5</kbd> or `dotnet run` experience), the [Azure resources are provisioned](local-provisioning.md) in your Azure subscription. This allows you as the developer to debug against them locally in the context of your app host.
+When your .NET Aspire AppHost contains Azure resources, and you run it locally (typical developer <kbd>F5</kbd> or `dotnet run` experience), the [Azure resources are provisioned](local-provisioning.md) in your Azure subscription. This allows you as the developer to debug against them locally in the context of your AppHost.
 
 .NET Aspire aims to minimize costs by defaulting to _Basic_ or _Standard_ [Stock Keeping Unit (SKU)](/partner-center/developer/product-resources#sku) for its Azure integrations. While these sensible defaults are provided, you can [customize the Azure resources](customize-azure-resources.md#azureprovisioning-customization) to suit your needs. Additionally, some integrations support [emulators](#local-emulators) or [containers](#local-containers), which are useful for local development, testing, and debugging. By default, when you run your app locally, the Azure resources use the actual Azure service. However, you can configure them to use local emulators or containers, avoiding costs associated with the actual Azure service during local development.
 
@@ -74,13 +74,13 @@ The same is true for SQL and PostgreSQL services:
 | [AddAzureSqlServer("sql").RunAsContainer()](xref:Aspire.Hosting.AzureSqlExtensions.RunAsContainer*) | Local SQL Server container | Azure SQL Server |
 | [AddSqlServer("sql")](xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*) | Local SQL Server container | Azure Container App with SQL Server image |
 
-For more information on the difference between run and publish modes, see [.NET Aspire app host: Execution context](xref:dotnet/aspire/app-host#execution-context).
+For more information on the difference between run and publish modes, see [.NET Aspire AppHost: Execution context](xref:dotnet/aspire/app-host#execution-context).
 
 ### APIs for expressing Azure resources in different modes
 
-The distributed application builder, part of the [app host](../fundamentals/app-host-overview.md), uses the builder pattern to `AddAzure*` resources to the [_app model_](../fundamentals/app-host-overview.md#terminology). Developers can configure these resources and define their behavior in different execution contexts. Azure hosting integrations provide APIs to specify how these resources should be "published" and "run."
+The distributed application builder, part of the [AppHost](../fundamentals/app-host-overview.md), uses the builder pattern to `AddAzure*` resources to the [_app model_](../fundamentals/app-host-overview.md#terminology). Developers can configure these resources and define their behavior in different execution contexts. Azure hosting integrations provide APIs to specify how these resources should be "published" and "run."
 
-When the app host executes, the [_execution context_](../fundamentals/app-host-overview.md#execution-context) is used to determine whether the app host is in <xref:Aspire.Hosting.DistributedApplicationOperation.Run> or <xref:Aspire.Hosting.DistributedApplicationOperation.Publish> mode. The naming conventions for these APIs indicate the intended action for the resource.
+When the AppHost executes, the [_execution context_](../fundamentals/app-host-overview.md#execution-context) is used to determine whether the AppHost is in <xref:Aspire.Hosting.DistributedApplicationOperation.Run> or <xref:Aspire.Hosting.DistributedApplicationOperation.Publish> mode. The naming conventions for these APIs indicate the intended action for the resource.
 
 The following table summarizes the naming conventions used to express Azure resources:
 
@@ -164,7 +164,7 @@ The preceding code:
 - Calls the `PublishAsExisting` method on the `serviceBus` resource builder, passing the `existingServiceBusName` parameter—alternatively, you can use the `string` parameter overload.
 - Adds a queue named `queue` to the `serviceBus` resource.
 
-After the app host is executed in publish mode, the generated manifest file will include the `existingResourceName` parameter, which can be used to reference the existing Azure resource. Consider the following generated partial snippet of the manifest file:
+After the AppHost is executed in publish mode, the generated manifest file will include the `existingResourceName` parameter, which can be used to reference the existing Azure resource. Consider the following generated partial snippet of the manifest file:
 
 ```json
 "messaging": {
@@ -252,7 +252,7 @@ The preceding code:
 
 ## Add existing Azure resources with connection strings
 
-.NET Aspire provides the ability to [connect to existing resources](../fundamentals/app-host-overview.md#reference-existing-resources), including Azure resources. Expressing connection strings is useful when you have existing Azure resources that you want to use in your .NET Aspire app. The <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> API is used with the app host's [execution context](../fundamentals/app-host-overview.md#execution-context) to conditionally add a connection string to the app model.
+.NET Aspire provides the ability to [connect to existing resources](../fundamentals/app-host-overview.md#reference-existing-resources), including Azure resources. Expressing connection strings is useful when you have existing Azure resources that you want to use in your .NET Aspire app. The <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> API is used with the AppHost's [execution context](../fundamentals/app-host-overview.md#execution-context) to conditionally add a connection string to the app model.
 
 [!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
 
@@ -279,7 +279,7 @@ The preceding code:
 - Adds a project named `api` to the builder.
 - The `api` project references the `storage` resource regardless of the mode.
 
-The consuming API project uses the connection string information with no knowledge of how the app host configured it. In "publish" mode, the code adds a new Azure Storage resource—which would be reflected in the [deployment manifest](../deployment/manifest-format.md) accordingly. When in "run" mode the connection string corresponds to a configuration value visible to the app host. It's assumed that all role assignments for the target resource are configured. This means, you'd likely configure an environment variable or a user secret to store the connection string. The configuration is resolved from the `ConnectionStrings__storage` (or `ConnectionStrings:storage`) configuration key. These configuration values can be viewed when the app runs. For more information, see [Resource details](../fundamentals/dashboard/explore.md#resource-details).
+The consuming API project uses the connection string information with no knowledge of how the AppHost configured it. In "publish" mode, the code adds a new Azure Storage resource—which would be reflected in the [deployment manifest](../deployment/manifest-format.md) accordingly. When in "run" mode the connection string corresponds to a configuration value visible to the AppHost. It's assumed that all role assignments for the target resource are configured. This means, you'd likely configure an environment variable or a user secret to store the connection string. The configuration is resolved from the `ConnectionStrings__storage` (or `ConnectionStrings:storage`) configuration key. These configuration values can be viewed when the app runs. For more information, see [Resource details](../fundamentals/dashboard/explore.md#resource-details).
 
 Unlike existing resources modeled with [the first-class `AsExisting` API](#use-existing-azure-resources), existing resource modeled as connection strings can't be enhanced with additional role assignments or infrastructure customizations.
 
@@ -297,7 +297,7 @@ To publish these resources, use the following APIs:
 - <xref:Aspire.Hosting.AzureContainerAppExecutableExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})?displayProperty=nameWithType>
 - <xref:Aspire.Hosting.AzureContainerAppProjectExtensions.PublishAsAzureContainerApp``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerApp})?displayProperty=nameWithType>
 
-These APIs configure the resource to be published as an Azure Container App and implicitly call <xref:Aspire.Hosting.AzureContainerAppExtensions.AddAzureContainerAppsInfrastructure(Aspire.Hosting.IDistributedApplicationBuilder)> to add the necessary infrastructure and Bicep files to your app host. As an example, consider the following code:
+These APIs configure the resource to be published as an Azure Container App and implicitly call <xref:Aspire.Hosting.AzureContainerAppExtensions.AddAzureContainerAppsInfrastructure(Aspire.Hosting.IDistributedApplicationBuilder)> to add the necessary infrastructure and Bicep files to your AppHost. As an example, consider the following code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder();

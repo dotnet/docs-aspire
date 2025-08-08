@@ -1,30 +1,30 @@
 ---
-title: Manage the app host in .NET Aspire tests
-description: Learn how to manage the app host in .NET Aspire tests.
+title: Manage the AppHost in .NET Aspire tests
+description: Learn how to manage the AppHost in .NET Aspire tests.
 ms.date: 02/24/2025
 zone_pivot_groups: unit-testing-framework
 ---
 
-# Manage the app host in .NET Aspire tests
+# Manage the AppHost in .NET Aspire tests
 
-When writing functional or integration tests with .NET Aspire, managing the [app host](../fundamentals/app-host-overview.md) instance efficiently is crucial. The app host represents the full application environment and can be costly to create and tear down. This article explains how to manage the app host instance in your .NET Aspire tests.
+When writing functional or integration tests with .NET Aspire, managing the [AppHost](../fundamentals/app-host-overview.md) instance efficiently is crucial. The AppHost represents the full application environment and can be costly to create and tear down. This article explains how to manage the AppHost instance in your .NET Aspire tests.
 
-For writing tests with .NET Aspire, you use the [📦 `Aspire.Hosting.Testing`](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package which contains some helper classes to manage the app host instance in your tests.
+For writing tests with .NET Aspire, you use the [📦 `Aspire.Hosting.Testing`](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package which contains some helper classes to manage the AppHost instance in your tests.
 
 ## Use the `DistributedApplicationTestingBuilder` class
 
-In the [tutorial on writing your first test](./write-your-first-test.md), you were introduced to the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> class which can be used to create the app host instance:
+In the [tutorial on writing your first test](./write-your-first-test.md), you were introduced to the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> class which can be used to create the AppHost instance:
 
 ```csharp
 var appHost = await DistributedApplicationTestingBuilder
     .CreateAsync<Projects.AspireApp_AppHost>();
 ```
 
-The `DistributedApplicationTestingBuilder.CreateAsync<T>` method takes the app host project type as a generic parameter to create the app host instance. While this method is executed at the start of each test, it's more efficient to create the app host instance once and share it across tests as the test suite grows.
+The `DistributedApplicationTestingBuilder.CreateAsync<T>` method takes the AppHost project type as a generic parameter to create the AppHost instance. While this method is executed at the start of each test, it's more efficient to create the AppHost instance once and share it across tests as the test suite grows.
 
 :::zone pivot="xunit"
 
-With xUnit, you implement the [IAsyncLifetime](https://github.com/xunit/xunit/blob/master/src/xunit.core/IAsyncLifetime.cs) interface on the test class to support asynchronous initialization and disposal of the app host instance. The `InitializeAsync` method is used to create the app host instance before the tests are run and the `DisposeAsync` method disposes the app host once the tests are completed.
+With xUnit, you implement the [IAsyncLifetime](https://github.com/xunit/xunit/blob/master/src/xunit.core/IAsyncLifetime.cs) interface on the test class to support asynchronous initialization and disposal of the AppHost instance. The `InitializeAsync` method is used to create the AppHost instance before the tests are run and the `DisposeAsync` method disposes the AppHost once the tests are completed.
 
 ```csharp
 public class WebTests : IAsyncLifetime
@@ -52,7 +52,7 @@ public class WebTests : IAsyncLifetime
 :::zone-end
 :::zone pivot="mstest"
 
-With MSTest, you use the <xref:Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute> and <xref:Microsoft.VisualStudio.TestTools.UnitTesting.ClassCleanupAttribute> on static methods of the test class to provide the initialization and cleanup of the app host instance. The `ClassInitialize` method is used to create the app host instance before the tests are run and the `ClassCleanup` method disposes the app host instance once the tests are completed.
+With MSTest, you use the <xref:Microsoft.VisualStudio.TestTools.UnitTesting.ClassInitializeAttribute> and <xref:Microsoft.VisualStudio.TestTools.UnitTesting.ClassCleanupAttribute> on static methods of the test class to provide the initialization and cleanup of the AppHost instance. The `ClassInitialize` method is used to create the AppHost instance before the tests are run and the `ClassCleanup` method disposes the AppHost instance once the tests are completed.
 
 ```csharp
 [TestClass]
@@ -83,7 +83,7 @@ public class WebTests
 :::zone-end
 :::zone pivot="nunit"
 
-With NUnit, you use the [OneTimeSetUp](https://docs.nunit.org/articles/nunit/writing-tests/attributes/onetimesetup.html) and [OneTimeTearDown](https://docs.nunit.org/articles/nunit/writing-tests/attributes/onetimeteardown.html) attributes on methods of the test class to provide the setup and teardown of the app host instance. The `OneTimeSetUp` method is used to create the app host instance before the tests are run and the `OneTimeTearDown` method disposes the app host instance once the tests are completed.
+With NUnit, you use the [OneTimeSetUp](https://docs.nunit.org/articles/nunit/writing-tests/attributes/onetimesetup.html) and [OneTimeTearDown](https://docs.nunit.org/articles/nunit/writing-tests/attributes/onetimeteardown.html) attributes on methods of the test class to provide the setup and teardown of the AppHost instance. The `OneTimeSetUp` method is used to create the AppHost instance before the tests are run and the `OneTimeTearDown` method disposes the AppHost instance once the tests are completed.
 
 ```csharp
 public class WebTests
@@ -112,11 +112,11 @@ public class WebTests
 
 :::zone-end
 
-By capturing the app host in a field when the test run is started, you can access it in each test without the need to recreate it, decreasing the time it takes to run the tests. Then, when the test run completes, the app host is disposed, which cleans up any resources that were created during the test run, such as containers.
+By capturing the AppHost in a field when the test run is started, you can access it in each test without the need to recreate it, decreasing the time it takes to run the tests. Then, when the test run completes, the AppHost is disposed, which cleans up any resources that were created during the test run, such as containers.
 
-## Pass arguments to your app host
+## Pass arguments to your AppHost
 
-You can access the arguments from your app host with the `args` parameter. Arguments are also passed to [.NET's configuration system](/dotnet/core/extensions/configuration), so you can override many configuration settings this way. In the following example, you override the [environment](/aspnet/core/fundamentals/environments) by specifying it as a command line option:
+You can access the arguments from your AppHost with the `args` parameter. Arguments are also passed to [.NET's configuration system](/dotnet/core/extensions/configuration), so you can override many configuration settings this way. In the following example, you override the [environment](/aspnet/core/fundamentals/environments) by specifying it as a command line option:
 
 ```csharp
 var builder = await DistributedApplicationTestingBuilder
@@ -126,9 +126,9 @@ var builder = await DistributedApplicationTestingBuilder
     ]);
 ```
 
-Other arguments can be passed to your app host `Program` and made available in your app host. In the next example, you pass an argument to the app host and use it to control whether you add data volumes to a Postgres instance.
+Other arguments can be passed to your AppHost `Program` and made available in your AppHost. In the next example, you pass an argument to the AppHost and use it to control whether you add data volumes to a Postgres instance.
 
-In the app host `Program`, you use configuration to support enabling or disabling volumes:
+In the AppHost `Program`, you use configuration to support enabling or disabling volumes:
 
 ```csharp
 var postgres = builder.AddPostgres("postgres1");
@@ -138,7 +138,7 @@ if (builder.Configuration.GetValue("UseVolumes", true))
 }
 ```
 
-In test code, you pass `"UseVolumes=false"` in the `args` to the app host:
+In test code, you pass `"UseVolumes=false"` in the `args` to the AppHost:
 
 ```csharp
 public async Task DisableVolumesFromTest()
@@ -159,7 +159,7 @@ public async Task DisableVolumesFromTest()
 
 ## Use the `DistributedApplicationFactory` class
 
-While the `DistributedApplicationTestingBuilder` class is useful for many scenarios, there might be situations where you want more control over starting the app host, such as executing code before the builder is created or after the app host is built. In these cases, you implement your own version of the <xref:Aspire.Hosting.Testing.DistributedApplicationFactory> class. This is what the `DistributedApplicationTestingBuilder` uses internally.
+While the `DistributedApplicationTestingBuilder` class is useful for many scenarios, there might be situations where you want more control over starting the AppHost, such as executing code before the builder is created or after the AppHost is built. In these cases, you implement your own version of the <xref:Aspire.Hosting.Testing.DistributedApplicationFactory> class. This is what the `DistributedApplicationTestingBuilder` uses internally.
 
 ```csharp
 public class TestingAspireAppHost()
@@ -169,13 +169,13 @@ public class TestingAspireAppHost()
 }
 ```
 
-The constructor requires the type of the app host project reference as a parameter. Optionally, you can provide arguments to the underlying host application builder. These arguments control how the app host starts and provide values to the args variable used by the _Program.cs_ file to start the app host instance.
+The constructor requires the type of the AppHost project reference as a parameter. Optionally, you can provide arguments to the underlying host application builder. These arguments control how the AppHost starts and provide values to the args variable used by the _Program.cs_ file to start the AppHost instance.
 
 ### Lifecycle methods
 
-The `DistributionApplicationFactory` class provides several lifecycle methods that can be overridden to provide custom behavior throughout the preparation and creation of the app host. The available methods are `OnBuilderCreating`, `OnBuilderCreated`, `OnBuilding`, and `OnBuilt`.
+The `DistributionApplicationFactory` class provides several lifecycle methods that can be overridden to provide custom behavior throughout the preparation and creation of the AppHost. The available methods are `OnBuilderCreating`, `OnBuilderCreated`, `OnBuilding`, and `OnBuilt`.
 
-For example, we can use the `OnBuilderCreating` method to set configuration, such as the subscription and resource group information for Azure, before the app host is created and any dependent Azure resources are provisioned, resulting in our tests using the correct Azure environment.
+For example, we can use the `OnBuilderCreating` method to set configuration, such as the subscription and resource group information for Azure, before the AppHost is created and any dependent Azure resources are provisioned, resulting in our tests using the correct Azure environment.
 
 ```csharp
 public class TestingAspireAppHost() : DistributedApplicationFactory(typeof(Projects.AspireApp_AppHost))
@@ -192,7 +192,7 @@ public class TestingAspireAppHost() : DistributedApplicationFactory(typeof(Proje
 
 Because of the order of precedence in the .NET configuration system, the environment variables will be used over anything in the _appsettings.json_ or _secrets.json_ file.
 
-Another scenario you might want to use in the lifecycle is to configure the services used by the app host. In the following example, consider a scenario where you override the `OnBuilderCreated` API to add resilience to the `HttpClient`:
+Another scenario you might want to use in the lifecycle is to configure the services used by the AppHost. In the following example, consider a scenario where you override the `OnBuilderCreated` API to add resilience to the `HttpClient`:
 
 ```csharp
 protected override void OnBuilderCreated(

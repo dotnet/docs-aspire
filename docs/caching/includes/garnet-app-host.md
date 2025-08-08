@@ -3,7 +3,7 @@ ms.topic: include
 ms.custom: sfi-ropc-nochange
 ---
 
-The Garnet hosting integration models a Garnet resource as the <xref:Aspire.Hosting.ApplicationModel.GarnetResource> type. To access this type and APIs that allow you to add it to your [📦 Aspire.Hosting.Garnet](https://www.nuget.org/packages/Aspire.Hosting.Garnet) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The Garnet hosting integration models a Garnet resource as the <xref:Aspire.Hosting.ApplicationModel.GarnetResource> type. To access this type and APIs that allow you to add it to your [📦 Aspire.Hosting.Garnet](https://www.nuget.org/packages/Aspire.Hosting.Garnet) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -24,7 +24,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Garnet resource
 
-In your app host project, call <xref:Aspire.Hosting.GarnetBuilderExtensions.AddGarnet*> on the `builder` instance to add a Garnet resource:
+In your AppHost project, call <xref:Aspire.Hosting.GarnetBuilderExtensions.AddGarnet*> on the `builder` instance to add a Garnet resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -37,7 +37,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `ghcr.io/microsoft/garnet` image, it creates a new Garnet instance on your local machine. A reference to your Garnet resource (the `cache` variable) is added to the `ExampleProject`.
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `ghcr.io/microsoft/garnet` image, it creates a new Garnet instance on your local machine. A reference to your Garnet resource (the `cache` variable) is added to the `ExampleProject`.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"cache"`. For more information, see [Container resource lifecycle](../../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 

@@ -34,7 +34,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add a GitHub Model resource
 
-To add a `GitHubModelResource` to your app host project, call the `AddGitHubModel` method:
+To add a `GitHubModelResource` to your AppHost project, call the `AddGitHubModel` method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
