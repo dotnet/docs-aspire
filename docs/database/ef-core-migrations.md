@@ -84,7 +84,7 @@ If you prefer using Visual Studio's Package Manager Console instead of the comma
 
 1. Modify the model so that it includes a new property. Open *:::no-loc text="SupportTicketApi.Data\\Models\\SupportTicket.cs":::* and add a new property to the `SupportTicket` class:
 
-    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.Data/Models/SupportTicket.cs" range="4-15" highlight="10" :::
+    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.Data/Models/SupportTicket.cs" range="5-13" highlight="8" :::
 
 1. Create another new migration to capture the changes to the model:
 
@@ -164,10 +164,10 @@ To execute migrations, call the EF Core <xref:Microsoft.EntityFrameworkCore.Migr
 
 To create a service that applies the migrations:
 
-1. Add a new Worker Service project to the solution. If using Visual Studio, right-click the solution in Solution Explorer and select **:::no-loc text="Add":::** > **:::no-loc text="New Project":::**. Select **:::no-loc text="Worker Service":::**, name the project *:::no-loc text="SupportTicketApi.MigrationService":::* and target **.NET 8.0**. If using the command line, use the following commands from the solution directory:
+1. Add a new Worker Service project to the solution. If using Visual Studio, right-click the solution in Solution Explorer and select **:::no-loc text="Add":::** > **:::no-loc text="New Project":::**. Select **:::no-loc text="Worker Service":::**, name the project *:::no-loc text="SupportTicketApi.MigrationService":::* and target **.NET 9.0**. If using the command line, use the following commands from the solution directory:
 
     ```dotnetcli
-    dotnet new worker -n SupportTicketApi.MigrationService -f "net8.0"
+    dotnet new worker -n SupportTicketApi.MigrationService -f "net9.0"
     dotnet sln add SupportTicketApi.MigrationService
     ```
 
@@ -190,7 +190,7 @@ To create a service that applies the migrations:
 
 1. Add the highlighted lines to the *:::no-loc text="Program.cs":::* file in the *:::no-loc text="SupportTicketApi.MigrationService":::* project:
 
-    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.MigrationService/Program.cs" highlight="1,7,9-11" :::
+    :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.MigrationService/Program.cs" highlight="1,6-7,9-12" :::
 
     In the preceding code:
 
