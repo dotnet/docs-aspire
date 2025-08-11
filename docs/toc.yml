@@ -493,6 +493,9 @@ items:
   - name: Allow unsecure transport
     displayName: unsecure transport,http,non-tls
     href: troubleshooting/allow-unsecure-transport.md
+  - name: HostingStartup is not supported
+    displayName: hosting startup,IWebHostBuilder,IHostApplicationBuilder,migration
+    href: troubleshooting/hosting-startup-not-supported.md
   - name: Untrusted localhost certificate
     href: troubleshooting/untrusted-localhost-certificate.md
   - name: Unable to install .NET Aspire workload
