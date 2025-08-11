@@ -1,7 +1,7 @@
 ---
 title: ".NET Aspire Azure AI Foundry integration (Preview)"
 description: "Learn how to integrate Azure AI Foundry with .NET Aspire applications, including hosting and client integration."
-ms.date: 07/22/2025
+ms.date: 08/07/2025
 ai-usage: ai-assisted
 titleSuffix: ''
 ---
@@ -35,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Azure AI Foundry resource
 
-To add an `AzureAIFoundryResource` to your app host project, call the `AddAzureAIFoundry` method:
+To add an `AzureAIFoundryResource` to your AppHost project, call the `AddAzureAIFoundry` method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -48,18 +48,14 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The preceding code adds an Azure AI Foundry resource named `foundry` to the app host project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
-
-<!-- TODO: Add AddAzureAIFoundry when xref is available. -->
+The preceding code adds an Azure AI Foundry resource named `foundry` to the AppHost project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
 
 > [!IMPORTANT]
-> When you call `AddAzureAIFoundry`, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](/dotnet/aspire/azure/local-provisioning#configuration).
+> When you call <xref:Aspire.Hosting.AzureAIFoundryExtensions.AddAzureAIFoundry*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](/dotnet/aspire/azure/local-provisioning#configuration).
 
 ### Add an Azure AI Foundry deployment resource
 
-<!-- TODO: Add AddDeployment when xref is available. -->
-
-To add an Azure AI Foundry deployment resource, call the `AddDeployment` method:
+To add an Azure AI Foundry deployment resource, call the <xref:Aspire.Hosting.AzureAIFoundryExtensions.AddDeployment*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -78,16 +74,14 @@ builder.AddProject<Projects.ExampleProject>()
 The preceding code:
 
 - Adds an Azure AI Foundry resource named `foundry`.
-- Adds an Azure AI Foundry deployment resource named `chat` with a model name of `Phi-4`. The model name must correspond to an [available model](/azure/ai-foundry/how-to/deploy-models-open) in the Azure AI Foundry service.
+- Adds an Azure AI Foundry deployment resource named `chat` with a model name of `Phi-4`. The model name must correspond to an [available model](/azure/ai-foundry/foundry-models/concepts/models) in the Azure AI Foundry service.
 
 > [!NOTE]
 > The `format` parameter of the `AddDeployment(...)` method can be found in the Azure AI Foundry portal in the details page of the model, right after the `Quick facts` text.
 
 ### Configure deployment properties
 
-<!-- TODO: Add WithProperties when xref is available. -->
-
-You can customize deployment properties using the `WithProperties` method:
+You can customize deployment properties using the <xref:Aspire.Hosting.AzureAIFoundryExtensions.WithProperties*> method:
 
 ```csharp
 var chat = foundry.AddDeployment("chat", "Phi-4", "1", "Microsoft")
@@ -151,7 +145,7 @@ builder.AddProject<Projects.ExampleProject>()
 For more information on treating Azure AI Foundry resources as existing resources, see [Use existing Azure resources](/dotnet/aspire/azure/integrations-overview#use-existing-azure-resources).
 
 > [!NOTE]
-> Alternatively, instead of representing an Azure AI Foundry resource, you can add a connection string to the app host. This approach is weakly typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](/dotnet/aspire/azure/integrations-overview#add-existing-azure-resources-with-connection-strings).
+> Alternatively, instead of representing an Azure AI Foundry resource, you can add a connection string to the AppHost. This approach is weakly typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](/dotnet/aspire/azure/integrations-overview#add-existing-azure-resources-with-connection-strings).
 
 ### Use Foundry Local for development
 
@@ -174,15 +168,11 @@ builder.AddProject<Projects.ExampleProject>()
 
 When the AppHost starts up, the local foundry service is also started. This requires the local machine to have [Foundry Local](/azure/ai-foundry/foundry-local/get-started) installed and running.
 
-<!-- TODO: Add RunAsFoundryLocal when xref is available. -->
-
-The `RunAsFoundryLocal()` method configures the resource to run as an emulator. It downloads and loads the specified models locally. The method provides health checks for the local service and automatically manages the Foundry Local lifecycle.
+The <xref:Aspire.Hosting.AzureAIFoundryExtensions.RunAsFoundryLocal*> method configures the resource to run as an emulator. It downloads and loads the specified models locally. The method provides health checks for the local service and automatically manages the Foundry Local lifecycle.
 
 ### Assign roles to resources
 
-<!-- TODO: Add WithRoleAssignments when xref is available. -->
-
-You can assign specific roles to resources that need to access the Azure AI Foundry service. Use the `WithRoleAssignments` method:
+You can assign specific roles to resources that need to access the Azure AI Foundry service. Use the <xref:Aspire.Hosting.AzureAIFoundryExtensions.WithRoleAssignments*> method:
 
 ```csharp
 var foundry = builder.AddAzureAIFoundry("foundry");
@@ -222,7 +212,7 @@ builder.AddAzureChatCompletionsClient(connectionName: "chat");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Azure AI Foundry deployment resource in the app host project. For more information, see Add an Azure AI Foundry deployment resource.
+> The `connectionName` parameter must match the name used when adding the Azure AI Foundry deployment resource in the AppHost project. For more information, see Add an Azure AI Foundry deployment resource.
 
 After adding the `ChatCompletionsClient`, you can retrieve the client instance using dependency injection:
 
@@ -240,7 +230,7 @@ For more information, see:
 
 ### Add Azure AI Foundry client with registered `IChatClient`
 
-If you're interested in using the [IChatClient](/dotnet/api/microsoft.extensions.ai.ichatclient) interface, with the Azure AI Foundry client, simply chain the [AddChatClient](/dotnet/api/microsoft.extensions.hosting.aspirechatcompletionsclientbuilderchatclientextensions.addchatclient) API to the `AddAzureChatCompletionsClient` method:
+If you're interested in using the [IChatClient](/dotnet/api/microsoft.extensions.ai.ichatclient) interface, with the Azure AI Foundry client, simply chain the <xref:Microsoft.Extensions.Hosting.AspireAzureAIInferenceExtensions.AddChatClient*> API to the `AddAzureChatCompletionsClient` method:
 
 ```csharp
 builder.AddAzureChatCompletionsClient(connectionName: "chat")
@@ -347,7 +337,7 @@ The .NET Aspire Azure AI Foundry integration emits tracing activities using Open
 
 ## See also
 
-- [Azure AI Foundry](https://azure.microsoft.com/products/ai-services/ai-foundry/)
+- [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs)
 - [.NET Aspire integrations overview](/dotnet/aspire/fundamentals/integrations-overview)
 - [.NET Aspire Azure integrations overview](/dotnet/aspire/azure/integrations-overview)
 - [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)

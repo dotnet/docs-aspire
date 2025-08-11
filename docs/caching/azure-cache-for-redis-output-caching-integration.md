@@ -31,7 +31,7 @@ builder.AddRedisOutputCache(connectionName: "cache");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Azure Cache for Redis resource in the app host project. For more information, see [Add Azure Cache for Redis resource](#add-azure-cache-for-redis-resource).
+> The `connectionName` parameter must match the name used when adding the Azure Cache for Redis resource in the AppHost project. For more information, see [Add Azure Cache for Redis resource](#add-azure-cache-for-redis-resource).
 
 Add the middleware to the request processing pipeline by calling <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache(Microsoft.AspNetCore.Builder.IApplicationBuilder)>:
 

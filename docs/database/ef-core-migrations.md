@@ -26,7 +26,7 @@ git clone https://github.com/MicrosoftDocs/aspire-docs-samples/
 The sample app is in the *SupportTicketApi* folder. Open the solution in Visual Studio or VS Code and take a moment to review the sample app and make sure it runs before proceeding. The sample app is a rudimentary support ticket API, and it contains the following projects:
 
 - **SupportTicketApi.Api**: The ASP.NET Core project that hosts the API.
-- **SupportTicketApi.AppHost**: Contains the .NET Aspire app host and configuration.
+- **SupportTicketApi.AppHost**: Contains the .NET Aspire AppHost and configuration.
 - **SupportTicketApi.Data**: Contains the EF Core contexts and models.
 - **SupportTicketApi.ServiceDefaults**: Contains the default service configurations.
 
@@ -115,7 +115,7 @@ If you get an error like "No database provider has been configured for this DbCo
 **Solution**: Temporarily add a connection string to your project's `appsettings.json` file:
 
 1. In your API project (where the DbContext is registered), open or create an `appsettings.json` file.
-1. Add a connection string with the same name used in your .NET Aspire app host:
+1. Add a connection string with the same name used in your .NET Aspire AppHost:
 
     ```json
     {
@@ -129,7 +129,7 @@ If you get an error like "No database provider has been configured for this DbCo
 1. Remove the connection string from `appsettings.json` when you're done, as .NET Aspire will provide it at runtime.
 
 > [!TIP]
-> The connection string name must match what you use in your app host. For example, if you use `builder.AddProject<Projects.SupportTicketApi_Api>().WithReference(sqlServer.AddDatabase("ticketdb"))`, then use "ticketdb" as the connection string name.
+> The connection string name must match what you use in your AppHost. For example, if you use `builder.AddProject<Projects.SupportTicketApi_Api>().WithReference(sqlServer.AddDatabase("ticketdb"))`, then use "ticketdb" as the connection string name.
 
 ### Multiple databases in one solution
 
@@ -213,14 +213,14 @@ To create a service that applies the migrations:
 
 ## Add the migration service to the orchestrator
 
-The migration service is created, but it needs to be added to the .NET Aspire app host so that it runs when the app starts.
+The migration service is created, but it needs to be added to the .NET Aspire AppHost so that it runs when the app starts.
 
 1. In the *:::no-loc text="SupportTicketApi.AppHost":::* project, open the *:::no-loc text="Program.cs":::* file.
 1. Add the following highlighted code:
 
     :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.AppHost/Program.cs" highlight="7-9, 13-14" :::
 
-    This code enlists the *:::no-loc text="SupportTicketApi.MigrationService":::* project as a service in the .NET Aspire app host. It also ensures that the API resource doesn't run until the migrations are complete.
+    This code enlists the *:::no-loc text="SupportTicketApi.MigrationService":::* project as a service in the .NET Aspire AppHost. It also ensures that the API resource doesn't run until the migrations are complete.
 
     > [!NOTE]
     > In the preceding code, the call to <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*> adds a representation of a SQL Server database to the .NET Aspire application model with a connection string. It *doesn't* create a database in the SQL Server container. To ensure that the database is created, the sample project calls the EF Core <xref:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureCreated*> method from the support ticket API's *:::no-loc text="Program.cs":::* file.
@@ -253,7 +253,7 @@ Create a dedicated migration service for each database. This approach provides b
     ```
 
 1. Configure each migration service to handle its specific database context.
-1. Add both migration services to your app host:
+1. Add both migration services to your AppHost:
 
     ```csharp
     var firstDb = sqlServer.AddDatabase("firstdb");

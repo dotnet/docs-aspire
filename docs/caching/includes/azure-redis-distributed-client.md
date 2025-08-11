@@ -5,7 +5,7 @@ ms.custom: sfi-ropc-nochange
 
 ### Add Azure Cache for Redis authenticated distributed client
 
-By default, when you call <xref:Aspire.Hosting.AzureRedisExtensions.AddAzureRedis*> in your app host project, the Redis hosting integration configures [📦 Microsoft.Azure.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Azure.StackExchangeRedis) NuGet package to enable authentication:
+By default, when you call <xref:Aspire.Hosting.AzureRedisExtensions.AddAzureRedis*> in your AppHost project, the Redis hosting integration configures [📦 Microsoft.Azure.StackExchangeRedis](https://www.nuget.org/packages/Microsoft.Azure.StackExchangeRedis) NuGet package to enable authentication:
 
 ### [.NET CLI](#tab/dotnet-cli)
 

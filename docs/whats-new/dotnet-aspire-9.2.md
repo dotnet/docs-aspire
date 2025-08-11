@@ -25,7 +25,7 @@ It's important to note that .NET Aspire releases out-of-band from .NET releases.
 
 Moving between minor releases of .NET Aspire is simple:
 
-1. In your app host project file (that is, _MyApp.AppHost.csproj_), update the [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk) NuGet package to version `9.2.0`:
+1. In your AppHost project file (that is, _MyApp.AppHost.csproj_), update the [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk) NuGet package to version `9.2.0`:
 
     ```diff
     <Project Sdk="Microsoft.NET.Sdk">
@@ -62,17 +62,17 @@ Moving between minor releases of .NET Aspire is simple:
     > [!IMPORTANT]
     > The `dotnet new update` command updates all of your templates to the latest version.
 
-If your app host project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.0, follow [the upgrade guide](../get-started/upgrade-to-aspire-9.md).
+If your AppHost project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.0, follow [the upgrade guide](../get-started/upgrade-to-aspire-9.md).
 
-## 🖥️ App host enhancements
+## 🖥️ AppHost enhancements
 
-The [app host](../fundamentals/app-host-overview.md) is the core of .NET Aspire, providing the local hosting environment for your distributed applications. In .NET Aspire 9.2, we've made several improvements to the app host:
+The [AppHost](../fundamentals/app-host-overview.md) is the core of .NET Aspire, providing the local hosting environment for your distributed applications. In .NET Aspire 9.2, we've made several improvements to the AppHost:
 
 ### 🚧 Project file changes
 
 <span id="project-file-changes"></span>
 
-The .NET Aspire app host project file no longer requires the `IsAspireHost` property. This property was moved to the `Aspire.AppHost.Sdk` SDK, therefore, you can remove it from your project file. For more information, see [dotnet/aspire issue #8144](https://github.com/dotnet/aspire/pull/8144).
+The .NET Aspire AppHost project file no longer requires the `IsAspireHost` property. This property was moved to the `Aspire.AppHost.Sdk` SDK, therefore, you can remove it from your project file. For more information, see [dotnet/aspire issue #8144](https://github.com/dotnet/aspire/pull/8144).
 
 ### 🔗 Define custom resource URLs
 
@@ -448,7 +448,7 @@ The following NuGet packages expose preview publishers:
 > [!IMPORTANT]
 > The Docker and Kubernetes publishers were contributed by community contributor, [Dave Sekula](https://github.com/Prom3theu5)—a great example of the community stepping up to extend the model. 💜 Thank you, Dave!
 
-To use a publisher, add the corresponding NuGet package to your app host project file and then call the `Add[Name]Publisher()` method in your app host builder.
+To use a publisher, add the corresponding NuGet package to your AppHost project file and then call the `Add[Name]Publisher()` method in your AppHost builder.
 
 ```csharp
 builder.AddDockerComposePublisher();
@@ -481,9 +481,9 @@ aspire publish --publisher docker-compose
 #### Available commands:
 
 - `new <template>` – Create a new Aspire sample project  
-- `run` – Run an Aspire app host in development mode  
+- `run` – Run an Aspire AppHost in development mode  
 - `add <integration>` – Add an integration to your project  
-- `publish` – Generate deployment artifacts from your app host
+- `publish` – Generate deployment artifacts from your AppHost
 
 🧪 The CLI is **preview**. We're exploring how to make it a first-class experience for .NET Aspire users—your feedback is welcome!
 

@@ -14,7 +14,7 @@ ms.custom: sfi-ropc-nochange
 
 ## Hosting integration
 
-NATS hosting integration for .NET Aspire models a NATS server as the <xref:Aspire.Hosting.ApplicationModel.NatsServerResource> type. To access this type, install the [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats) NuGet package in the [app host](xref:dotnet/aspire/app-host) project, then add it with the builder.
+NATS hosting integration for .NET Aspire models a NATS server as the <xref:Aspire.Hosting.ApplicationModel.NatsServerResource> type. To access this type, install the [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project, then add it with the builder.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -35,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add NATS server resource
 
-In your app host project, call <xref:Aspire.Hosting.NatsBuilderExtensions.AddNats*> on the `builder` instance to add a NATS server resource:
+In your AppHost project, call <xref:Aspire.Hosting.NatsBuilderExtensions.AddNats*> on the `builder` instance to add a NATS server resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -48,7 +48,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/nats` image, it creates a new NATS server instance on your local machine. A reference to your NATS server (the `nats` variable) is added to the `ExampleProject`.
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/nats` image, it creates a new NATS server instance on your local machine. A reference to your NATS server (the `nats` variable) is added to the `ExampleProject`.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"nats"`. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -171,7 +171,7 @@ builder.AddNatsClient(connectionName: "nats");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the NATS server resource in the app host project. For more information, see [Add NATS server resource](#add-nats-server-resource).
+> The `connectionName` parameter must match the name used when adding the NATS server resource in the AppHost project. For more information, see [Add NATS server resource](#add-nats-server-resource).
 
 You can then retrieve the `INatsConnection` instance using dependency injection. For example, to retrieve the client from a service:
 

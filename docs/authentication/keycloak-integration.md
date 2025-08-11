@@ -14,7 +14,7 @@ ms.custom: sfi-ropc-nochange
 
 ## Hosting integration
 
-The .NET Aspire Keycloak hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.KeycloakResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.Keycloak](https://www.nuget.org/packages/Aspire.Hosting.Keycloak) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The .NET Aspire Keycloak hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.KeycloakResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.Keycloak](https://www.nuget.org/packages/Aspire.Hosting.Keycloak) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -35,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Keycloak resource
 
-In your app host project, call <xref:Aspire.Hosting.KeycloakResourceBuilderExtensions.AddKeycloak*> to add and return a Keycloak resource builder. Chain a call to the returned resource builder to configure the Keycloak.
+In your AppHost project, call <xref:Aspire.Hosting.KeycloakResourceBuilderExtensions.AddKeycloak*> to add and return a Keycloak resource builder. Chain a call to the returned resource builder to configure the Keycloak.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -56,14 +56,14 @@ builder.AddProject<Projects.Keycloak_Web>("webfrontend")
 ```
 
 > [!TIP]
-> For local development use a stable port for the Keycloak resource (`8080` in the preceding example). It can be any port, but it should be stable to avoid issues with browser cookies that will persist OIDC tokens (which include the authority URL, with port) beyond the lifetime of the _app host_.
+> For local development use a stable port for the Keycloak resource (`8080` in the preceding example). It can be any port, but it should be stable to avoid issues with browser cookies that will persist OIDC tokens (which include the authority URL, with port) beyond the lifetime of the _AppHost_.
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `quay.io/keycloak/keycloak` image, it creates a new Keycloak instance on your local machine. The Keycloak resource includes default credentials:
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `quay.io/keycloak/keycloak` image, it creates a new Keycloak instance on your local machine. The Keycloak resource includes default credentials:
 
 - `KEYCLOAK_ADMIN`: A value of `admin`.
 - `KEYCLOAK_ADMIN_PASSWORD`: Random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
-When the app host runs, the password is stored in the app host's secret store. It's added to the `Parameters` section, for example:
+When the AppHost runs, the password is stored in the AppHost's secret store. It's added to the `Parameters` section, for example:
 
 ```json
 {
@@ -73,7 +73,7 @@ When the app host runs, the password is stored in the app host's secret store. I
 
 The name of the parameter is `keycloak-password`, but really it's just formatting the resource name with a `-password` suffix. For more information, see [Safe storage of app secrets in development in ASP.NET Core](/aspnet/core/security/app-secrets) and [Add Keycloak resource](#add-keycloak-resource).
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `keycloak` and the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> instructs the app host to not start the dependant service until the `keycloak` resource is ready.
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `keycloak` and the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> instructs the AppHost to not start the dependant service until the `keycloak` resource is ready.
 
 > [!TIP]
 > If you'd rather connect to an existing Keycloak instance, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
@@ -164,7 +164,7 @@ To import a realm into Keycloak, call the <xref:Aspire.Hosting.KeycloakResourceB
 
 The realm import files are mounted at `/opt/keycloak/data/import` in the Keycloak container. Realm import files are JSON files that represent the realm configuration. For more information on realm import, see [Keycloak docs: Importing a realm](https://www.keycloak.org/docs/latest/server_admin/index.html#_import).
 
-As an example, the following JSON file could be added to the app host project in a _/Realms_ folder—to serve as a source realm configuration file:
+As an example, the following JSON file could be added to the AppHost project in a _/Realms_ folder—to serve as a source realm configuration file:
 
 <!-- markdownlint-disable MD033 -->
 <details>
@@ -369,7 +369,7 @@ builder.Services.AddAuthentication()
 For production deployments, consider using connection strings instead of the hosting integration:
 
 ```csharp
-// In Program.cs of your app host
+// In Program.cs of your AppHost
 builder.AddConnectionString("keycloak", "https://your-keycloak-server.com");
 ```
 

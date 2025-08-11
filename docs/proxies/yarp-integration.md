@@ -1,7 +1,7 @@
 ---
 title: YARP integration
 description: Learn how to use the .NET Aspire YARP reverse proxy integration, which includes hosting integration for containerized YARP instances.
-ms.date: 07/25/2025
+ms.date: 08/07/2025
 ai-usage: ai-assisted
 ---
 
@@ -13,7 +13,7 @@ ai-usage: ai-assisted
 
 ## Hosting integration
 
-The YARP hosting integration models a containerized YARP reverse proxy as the `YarpResource` type <!-- TODO: Add xref:Aspire.Hosting.Yarp.YarpResource when available -->. To access this type and its APIs add the [📦 Aspire.Hosting.Yarp](https://www.nuget.org/packages/Aspire.Hosting.Yarp) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The YARP hosting integration models a containerized YARP reverse proxy as the <xref:Aspire.Hosting.Yarp.YarpResource> type. To access this type and its APIs add the [📦 Aspire.Hosting.Yarp](https://www.nuget.org/packages/Aspire.Hosting.Yarp) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -34,7 +34,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add YARP resource
 
-In your app host project, call `AddYarp` <!-- TODO: Add xref:Aspire.Hosting.YarpResourceExtensions.AddYarp* when available --> on the `builder` instance to add a YARP resource:
+In your AppHost project, call <xref:Aspire.Hosting.YarpResourceExtensions.AddYarp*> on the `builder` instance to add a YARP resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -53,7 +53,7 @@ var gateway = builder.AddYarp("gateway")
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a YARP resource to the app host, it creates a new containerized YARP instance using the [mcr.microsoft.com/dotnet/nightly/yarp](https://mcr.microsoft.com/product/dotnet/nightly/yarp/about) container image. This official Microsoft container image contains a preconfigured YARP reverse proxy server that can be dynamically configured through Aspire's hosting APIs.
+When .NET Aspire adds a YARP resource to the AppHost, it creates a new containerized YARP instance using the [mcr.microsoft.com/dotnet/nightly/yarp](https://mcr.microsoft.com/product/dotnet/nightly/yarp/about) container image. This official Microsoft container image contains a preconfigured YARP reverse proxy server that can be dynamically configured through Aspire's hosting APIs.
 
 The container image provides:
 
@@ -62,11 +62,11 @@ The container image provides:
 - Integration with .NET service discovery.
 - Built-in health checks and monitoring capabilities.
 
-The YARP resource can be configured programmatically using the `WithConfiguration` <!-- TODO: Add xref:Aspire.Hosting.YarpResourceExtensions.WithConfiguration* when available --> method or through external configuration files.
+The YARP resource can be configured programmatically using the <xref:Aspire.Hosting.YarpResourceExtensions.WithConfiguration*> method or through external configuration files.
 
 ### Add YARP resource with external configuration
 
-To configure the YARP resource using an external JSON configuration file, use the `WithConfigFile` <!-- TODO: Add xref:Aspire.Hosting.YarpServiceExtensions.WithConfigFile* when available --> method:
+To configure the YARP resource using an external JSON configuration file, use the <xref:Aspire.Hosting.Yarp.IYarpJsonConfigGeneratorBuilder.WithConfigFile*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -139,7 +139,7 @@ The `yarp.json` configuration file can reference services using their resource n
 
 ### Programmatic configuration
 
-The YARP integration provides a fluent API for configuring routes, clusters, and transforms programmatically using the `IYarpConfigurationBuilder` <!-- TODO: Add xref:Aspire.Hosting.IYarpConfigurationBuilder when available -->:
+The YARP integration provides a fluent API for configuring routes, clusters, and transforms programmatically using the <xref:Aspire.Hosting.IYarpConfigurationBuilder>:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -229,7 +229,7 @@ yarp.AddRoute("/api/{**catch-all}", basketService)
 
 ### Customize host port
 
-To configure the host port that the YARP resource is exposed on, use the `WithHostPort` <!-- TODO: Add xref:Aspire.Hosting.YarpResourceExtensions.WithHostPort* when available --> method:
+To configure the host port that the YARP resource is exposed on, use the <xref:Aspire.Hosting.YarpResourceExtensions.WithHostPort(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Yarp.YarpResource},System.Nullable{System.Int32})> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -248,9 +248,7 @@ By default, YARP uses a randomly assigned port. Using `WithHostPort` allows you 
 
 ### Service discovery integration
 
-<!-- TODO : Add xref:Aspire.Hosting.ApplicationModel.IResourceWithServiceDiscovery when available -->
-
-The YARP integration automatically works with .NET service discovery when targeting resources that implement `IResourceWithServiceDiscovery`. This enables dynamic endpoint resolution for backend services:
+The YARP integration automatically works with .NET service discovery when targeting resources that implement <xref:Aspire.Hosting.IResourceWithServiceDiscovery>. This enables dynamic endpoint resolution for backend services:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -265,11 +263,7 @@ var gateway = builder.AddYarp("gateway")
                      });
 ```
 
-<!-- TODO
-    Add xref:Aspire.Hosting.DistributedApplicationBuilderExtensions.AddExternalService when available
--->
-
-For external services, use `AddExternalService`:
+For external services, use <xref:Aspire.Hosting.ExternalServiceBuilderExtensions.AddExternalService*>:
 
 ```csharp
 var externalApi = builder.AddExternalService("external-api")

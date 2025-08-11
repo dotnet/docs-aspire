@@ -6,7 +6,7 @@ ms.date: 07/23/2024
 
 # Add Dockerfiles to your .NET app model
 
-With .NET Aspire it's possible to specify a _Dockerfile_ to build when the [app host](../fundamentals/app-host-overview.md) is started using either the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile%2A> or <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A> extension methods.
+With .NET Aspire it's possible to specify a _Dockerfile_ to build when the [AppHost](../fundamentals/app-host-overview.md) is started using either the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile%2A> or <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A> extension methods.
 
 These two methods serve different purposes:
 
@@ -43,11 +43,11 @@ var container = builder.AddDockerfile(
     "mycontainer", "relative/context/path");
 ```
 
-Unless the context path argument is a rooted path the context path is interpreted as being relative to the app host projects directory (where the AppHost `*.csproj` folder is located).
+Unless the context path argument is a rooted path the context path is interpreted as being relative to the AppHost projects directory (where the AppHost `*.csproj` folder is located).
 
 By default the name of the _Dockerfile_ which is used is `Dockerfile` and is expected to be within the context path directory. It's possible to explicitly specify the _Dockerfile_ name either as an absolute path or a relative path to the context path.
 
-This is useful if you wish to modify the specific _Dockerfile_ being used when running locally or when the app host is deploying.
+This is useful if you wish to modify the specific _Dockerfile_ being used when running locally or when the AppHost is deploying.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

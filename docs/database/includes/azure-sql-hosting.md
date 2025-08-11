@@ -2,7 +2,7 @@
 ms.topic: include
 ---
 
-The Azure SQL hosting integration models the Azure SQL server as the <xref:Aspire.Hosting.Azure.AzureSqlServerResource> type and the database as the <xref:Aspire.Hosting.Azure.AzureSqlDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.Azure.Sql](https://www.nuget.org/packages/Aspire.Hosting.Azure.Sql) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The Azure SQL hosting integration models the Azure SQL server as the <xref:Aspire.Hosting.Azure.AzureSqlServerResource> type and the database as the <xref:Aspire.Hosting.Azure.AzureSqlDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.Azure.Sql](https://www.nuget.org/packages/Aspire.Hosting.Azure.Sql) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -25,7 +25,7 @@ The Azure SQL hosting integration takes a dependency on the [📦 Aspire.Hosting
 
 ### Add Azure SQL server resource and database resource
 
-In your app host project, call <xref:Aspire.Hosting.AzureSqlExtensions.AddAzureSqlServer*> to add and return an Azure SQL server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.AzureSqlExtensions.AddDatabase*>, to add an Azure SQL database resource:
+In your AppHost project, call <xref:Aspire.Hosting.AzureSqlExtensions.AddAzureSqlServer*> to add and return an Azure SQL server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.AzureSqlExtensions.AddDatabase*>, to add an Azure SQL database resource:
 
 ```csharp
 var azureSql = builder.AddAzureSqlServer("azuresql")
@@ -68,7 +68,7 @@ builder.AddProject<Projects.ExampleProject>()
 For more information on treating Azure SQL Database resources as existing resources, see [Use existing Azure resources](../../azure/integrations-overview.md#use-existing-azure-resources).
 
 > [!NOTE]
-> Alternatively, instead of representing an Azure SQL Database resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> Alternatively, instead of representing an Azure SQL Database resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Run Azure SQL server resource as a container
 

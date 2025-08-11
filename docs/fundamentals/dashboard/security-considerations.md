@@ -17,7 +17,7 @@ The dashboard can be run in different scenarios, such as being automatically sta
 
 ### .NET Aspire tooling
 
-The dashboard is automatically started when an .NET Aspire app host is run. The dashboard is secure by default when run from .NET Aspire tooling:
+The dashboard is automatically started when an .NET Aspire AppHost is run. The dashboard is secure by default when run from .NET Aspire tooling:
 
 - Transport is secured with HTTPS. Using HTTPS is configured by default in _launchSettings.json_. The launch profile includes `https` addresses in `applicationUrl` and `ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL` values.
 - Browser frontend authenticated with a browser token.
@@ -28,7 +28,7 @@ HTTPS in the dashboard uses the ASP.NET Core development certificate. The certif
 - [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](/aspnet/core/security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos)
 - [Trust HTTPS certificate on Linux](/aspnet/core/security/enforcing-ssl#trust-https-certificate-on-linux)
 
-There are scenarios where you might want to allow an unsecured transport. The dashboard can run without HTTPS from the .NET Aspire app host by configuring the `ASPIRE_ALLOW_UNSECURED_TRANSPORT` setting to `true`. For more information, see [Allow unsecured transport in .NET Aspire](../../troubleshooting/allow-unsecure-transport.md).
+There are scenarios where you might want to allow an unsecured transport. The dashboard can run without HTTPS from the .NET Aspire AppHost by configuring the `ASPIRE_ALLOW_UNSECURED_TRANSPORT` setting to `true`. For more information, see [Allow unsecured transport in .NET Aspire](../../troubleshooting/allow-unsecure-transport.md).
 
 ### Standalone mode
 

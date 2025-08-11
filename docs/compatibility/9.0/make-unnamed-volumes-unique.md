@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 
 # Make unnamed volume names more unique
 
-This change updates the naming scheme for unnamed volumes to use the first 10 characters of the SHA256 of the app host's physical path as the volume name prefix. This ensures more unique volume names.
+This change updates the naming scheme for unnamed volumes to use the first 10 characters of the SHA256 of the AppHost's physical path as the volume name prefix. This ensures more unique volume names.
 
 ## Version introduced
 
@@ -19,7 +19,7 @@ Previously, unnamed volumes did not follow a specific scheme for uniqueness, whi
 
 ## New behavior
 
-The new behavior uses the first 10 characters of the SHA256 of the app host's physical path as the volume name prefix, ensuring more unique volume names.
+The new behavior uses the first 10 characters of the SHA256 of the AppHost's physical path as the volume name prefix, ensuring more unique volume names.
 
 ## Type of breaking change
 

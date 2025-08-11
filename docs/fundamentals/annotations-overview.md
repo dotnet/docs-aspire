@@ -142,7 +142,7 @@ Start by creating a class that implements `IResourceAnnotation`. Focus on captur
 
 ### 2. Create extension methods
 
-Create fluent extension methods that follow .NET Aspire's builder pattern. These methods should make it easy for app host authors to configure your annotation:
+Create fluent extension methods that follow .NET Aspire's builder pattern. These methods should make it easy for AppHost authors to configure your annotation:
 
 :::code source="snippets/annotations-overview/Program.cs" id="ServiceMetricsExtensions":::
 
@@ -155,7 +155,7 @@ The extension methods serve as the primary API surface for your annotation. They
 
 ### 3. Use the custom annotation
 
-Once defined, annotations integrate seamlessly into the app host model:
+Once defined, annotations integrate seamlessly into the AppHost model:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

@@ -20,18 +20,16 @@ dotnet add package Aspire.Azure.Npgsql.EntityFrameworkCore.PostgreSQL
 
 ---
 
-<!-- TODO: Add xref to AddAzureNpgsqlDbContext when available -->
-
-The PostgreSQL connection can be consumed using the client integration by calling the `AddAzureNpgsqlDataSource`:
+The PostgreSQL connection can be consumed using the client integration by calling the `AddAzureNpgsqlDbContext`:
 
 ```csharp
 builder.AddAzureNpgsqlDbContext<YourDbContext>(connectionName: "postgresdb");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the PostgreSQL server resource in the app host project.
+> The `connectionName` parameter must match the name used when adding the PostgreSQL server resource in the AppHost project.
 
-The preceding code snippet demonstrates how to use the `AddAzureNpgsqlDbContext` method to register an `YourDbContext` (that's [pooled for performance](/ef/core/performance/advanced-performance-topics)) instance that uses Azure authentication ([Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication)). This `"postgresdb"` connection name corresponds to a connection string configuration value.
+The preceding code snippet demonstrates how to use the <xref:Microsoft.Extensions.Hosting.AspireAzureEFPostgreSqlExtensions.AddAzureNpgsqlDbContext*> method to register an `YourDbContext` (that's [pooled for performance](/ef/core/performance/advanced-performance-topics)) instance that uses Azure authentication ([Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication)). This `"postgresdb"` connection name corresponds to a connection string configuration value.
 
 After adding `YourDbContext` to the builder, you can get the `YourDbContext` instance using dependency injection. For example, to retrieve your data source object from an example service define it as a constructor parameter and ensure the `ExampleService` class is registered with the dependency injection container:
 
@@ -55,7 +53,7 @@ builder.Services.AddDbContext<YourDbContext>(options =>
 ```
 
 > [!NOTE]
-> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method must match the name used when adding the PostgreSQL server resource in the app host project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
+> The connection string name that you pass to the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method must match the name used when adding the PostgreSQL server resource in the AppHost project. For more information, see [Add PostgreSQL server resource](#add-postgresql-server-resource).
 
 You have more flexibility when you create the database context in this way, for example:
 
@@ -74,11 +72,9 @@ builder.EnrichAzureNpgsqlDbContext<YourDbContext>(
     });
 ```
 
-The `settings` parameter is an instance of the `AzureNpgsqlEntityFrameworkCorePostgreSQLSettings` class.
+The `settings` parameter is an instance of the <xref:Aspire.Azure.Npgsql.EntityFrameworkCore.PostgreSQL.AzureNpgsqlEntityFrameworkCorePostgreSQLSettings> class.
 
-<!-- TODO: Add xref to EnrichAzureNpgsqlDbContext when available -->
-
-You might also need to configure specific options of Npgsql, or register a <xref:System.Data.Entity.DbContext> in other ways. In this case, you do so by calling the `EnrichAzureNpgsqlDbContext` extension method, as shown in the following example:
+You might also need to configure specific options of Npgsql, or register a <xref:System.Data.Entity.DbContext> in other ways. In this case, you do so by calling the <xref:Microsoft.Extensions.Hosting.AspireAzureEFPostgreSqlExtensions.EnrichAzureNpgsqlDbContext*> extension method, as shown in the following example:
 
 ```csharp
 var connectionString = builder.Configuration.GetConnectionString("postgresdb");
@@ -118,9 +114,7 @@ For more information on how to configure the connection string, see the [Npgsql 
 
 ##### Use configuration providers
 
-<!-- TODO: Add xref to AzureNpgsqlEntityFrameworkCorePostgreSQLSettings when available -->
-
-The .NET Aspire Azure PostgreSQL EntityFrameworkCore Npgsql integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `AzureNpgsqlEntityFrameworkCorePostgreSQLSettings` from configuration using the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` key. For example, consider the following _appsettings.json_ file that configures some of the available options:
+The .NET Aspire Azure PostgreSQL EntityFrameworkCore Npgsql integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Azure.Npgsql.EntityFrameworkCore.PostgreSQL.AzureNpgsqlEntityFrameworkCorePostgreSQLSettings> from configuration using the `Aspire:Npgsql:EntityFrameworkCore:PostgreSQL` key. For example, consider the following _appsettings.json_ file that configures some of the available options:
 
 ```json
 {
@@ -154,9 +148,7 @@ builder.EnrichAzureNpgsqlDbContext<YourDbContext>(
     settings => settings.DisableHealthChecks = true);
 ```
 
-<!-- TODO: Add xref to AzureNpgsqlEntityFrameworkCorePostgreSQLSettings.Credential when available -->
-
-Use the `AzureNpgsqlEntityFrameworkCorePostgreSQLSettings.Credential` property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used.
+Use the <xref:Aspire.Azure.Npgsql.EntityFrameworkCore.PostgreSQL.AzureNpgsqlEntityFrameworkCorePostgreSQLSettings.Credential?displayProperty=nameWithType> property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used.
 
 When the connection string contains a username and password, the credential is ignored.
 
