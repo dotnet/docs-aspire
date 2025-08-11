@@ -51,9 +51,9 @@ When migrating from `HostingStartup` to the modern hosting model, you're moving 
 
 | Legacy pattern | Modern pattern | Benefit |
 |---|---|---|
-| `IWebHostBuilder` | `IHostApplicationBuilder` | Access to modern hosting features and .NET Aspire integrations |
-| Separate startup classes | Program.cs configuration | Service configuration moves directly into the application's entry point for better clarity and debugging |
-| Manual service registration | Integration packages | .NET Aspire integrations handle service registration, configuration, health checks, and telemetry automatically |
+| `IWebHostBuilder` | `IHostApplicationBuilder` | Access to modern hosting features and .NET Aspire integrations. |
+| Separate startup classes | Program.cs configuration | Service configuration moves directly into the application's entry point for better clarity and debugging. |
+| Manual service registration | Integration packages | .NET Aspire integrations handle service registration, configuration, health checks, and telemetry automatically. |
 
 ### Migration resources
 
