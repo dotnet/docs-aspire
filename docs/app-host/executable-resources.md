@@ -188,11 +188,11 @@ var app = builder.AddExecutable("frontend", "npm", ".", "start")
 When working with executable resources:
 
 1. **Use explicit paths**: For better reliability, use full paths to executables when possible.
-2. **Handle dependencies**: Use `WithReference` to establish proper dependency relationships.
-3. **Configure explicit start**: Use `WithExplicitStart()` for executables that shouldn't start automatically.
-4. **Prepare for deployment**: Always use `PublishAsDockerfile()` for production scenarios.
-5. **Environment isolation**: Use environment variables rather than command-line arguments for sensitive configuration.
-6. **Resource naming**: Use descriptive names that clearly identify the executable's purpose.
+1. **Handle dependencies**: Use `WithReference` to establish proper dependency relationships.
+1. **Configure explicit start**: Use `WithExplicitStart()` for executables that shouldn't start automatically.
+1. **Prepare for deployment**: Always use `PublishAsDockerfile()` for production scenarios.
+1. **Environment isolation**: Use environment variables rather than command-line arguments for sensitive configuration.
+1. **Resource naming**: Use descriptive names that clearly identify the executable's purpose.
 
 ## See also
 
