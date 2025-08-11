@@ -1,12 +1,12 @@
 ---
 title: Host external executables in .NET Aspire
 description: Learn how to use ExecutableResource and AddExecutable to host external executable applications in your .NET Aspire app host.
-ms.date: 08/04/2025
+ms.date: 08/11/2025
 ---
 
 # Host external executables in .NET Aspire
 
-In .NET Aspire, you can host external executable applications alongside your .NET projects using the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> method. This capability is useful when you need to integrate non-.NET applications or tools into your distributed application, such as Node.js applications, Python scripts, or specialized CLI tools.
+In .NET Aspire, you can host external executable applications alongside your projects using the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> method. This capability is useful when you need to integrate executable applications or tools into your distributed application, such as Node.js applications, Python scripts, or specialized CLI tools.
 
 ## When to use executable resources
 
@@ -35,17 +35,16 @@ var builder = DistributedApplication.CreateBuilder(args);
 var nodeApp = builder.AddExecutable("frontend", "node", ".", "server.js");
 
 // Executable with command-line arguments
-var pythonApp = builder.AddExecutable("api", "python", ".", "-m", "uvicorn")
-    .WithArgs("main:app", "--reload", "--host", "0.0.0.0", "--port", "8000");
+var pythonApp = builder.AddExecutable("api", "python", ".", "-m", "uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8000");
 
 builder.Build().Run();
 ```
 
-This code demonstrates setting up a basic executable resource. The first example runs a Node.js server script, while the second starts a Python application using Uvicorn with specific configuration options.
+This code demonstrates setting up a basic executable resource. The first example runs a Node.js server script, while the second starts a Python application using Uvicorn with specific configuration options passed as arguments directly to the AddExecutable method.
 
-## Configure command-line arguments
+## Resource dependencies and environment configuration
 
-You can provide command-line arguments in several ways:
+You can provide command-line arguments directly in the AddExecutable call and configure environment variables for resource dependencies.
 
 ### Arguments in the AddExecutable call
 
@@ -56,7 +55,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var app = builder.AddExecutable("vercel-dev", "vercel", ".", "dev", "--listen", "3000");
 ```
 
-### Dynamic arguments with WithEnvironment
+### Resource dependencies with environment variables
 
 For arguments that depend on other resources, use environment variables:
 
@@ -199,24 +198,6 @@ var app = builder.AddExecutable("frontend", "npm", ".", "start")
     .PublishAsDockerfile([new DockerfileBuildArg("NODE_ENV", "production")]);
 ```
 
-### Conditional execution
-
-Use explicit start control for executables that should only run under certain conditions:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var database = builder.AddPostgres("postgres").AddDatabase("appdb");
-
-var migrator = builder.AddExecutable("migrator", "dotnet", ".", "ef")
-    .WithArgs("database", "update")
-    .WithReference(database)
-    .WithExplicitStart(); // Only run when manually started
-
-var api = builder.AddProject<Projects.MyApi>("api")
-    .WithReference(database)
-    .WaitFor(migrator); // API waits for migrator to complete
-```
 
 ## Best practices
 
