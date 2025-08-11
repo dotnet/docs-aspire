@@ -19,10 +19,10 @@ Use executable resources when you need to:
 
 Common examples include:
 
-- **Frontend development servers**: Tools like [Vercel CLI](https://vercel.com/docs/cli), Vite, or webpack dev server
-- **Language-specific applications**: Node.js apps, Python scripts, or Go applications
-- **Database tools**: Migration utilities or database seeders
-- **Build tools**: Asset processors or code generators
+- **Frontend development servers**: Tools like [Vercel CLI](https://vercel.com/docs/cli), Vite, or webpack dev server.
+- **Language-specific applications**: Node.js apps, Python scripts, or Go applications.
+- **Database tools**: Migration utilities or database seeders.
+- **Build tools**: Asset processors or code generators.
 
 ## Basic usage
 
@@ -32,23 +32,16 @@ The <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> m
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Basic executable without arguments
-var nodeApp = builder.AddExecutable("frontend", "node", "server.js", ".");
+var nodeApp = builder.AddExecutable("frontend", "node", ".", "server.js");
 
 // Executable with command-line arguments
-var pythonApp = builder.AddExecutable("api", "python", "-m", "uvicorn")
+var pythonApp = builder.AddExecutable("api", "python", ".", "-m", "uvicorn")
     .WithArgs("main:app", "--reload", "--host", "0.0.0.0", "--port", "8000");
 
 builder.Build().Run();
 ```
 
-### Method parameters
-
-The <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> method accepts the following parameters:
-
-- **name**: A unique identifier for the resource.
-- **command**: The executable name or path (for example, `"node"`, `"python"`, or `"/usr/bin/myapp"`).
-- **workingDirectory**: The directory where the executable should run.
-- **args**: Optional command-line arguments passed to the executable.
+This code demonstrates setting up a basic executable resource. The first example runs a Node.js server script, while the second starts a Python application using Uvicorn with specific configuration options.
 
 ## Configure command-line arguments
 
@@ -59,8 +52,8 @@ You can provide command-line arguments in several ways:
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Arguments provided directly
-var app = builder.AddExecutable("vercel-dev", "vercel", "dev", ".")
+// Arguments provided directly in AddExecutable
+var app = builder.AddExecutable("vercel-dev", "vercel", ".", "dev")
     .WithArgs("--listen", "3000");
 ```
 
@@ -72,8 +65,7 @@ Use the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.WithArgs%2A> me
 var builder = DistributedApplication.CreateBuilder(args);
 
 var app = builder.AddExecutable("webpack-dev", "npm", ".", "run")
-    .WithArgs("dev")
-    .WithArgs("--", "--port", "3000");
+    .WithArgs("dev", "--", "--port", "3000");
 ```
 
 ### Dynamic arguments with WithEnvironment
@@ -83,15 +75,10 @@ For arguments that depend on other resources, use environment variables:
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var database = builder.AddPostgres("postgres").AddDatabase("mydb");
+var database = builder.AddPostgres("postgres").AddDatabase("db");
 
 var migrator = builder.AddExecutable("migrator", "dotnet", ".", "run")
-    .WithReference(database)
-    .WithEnvironment(context =>
-    {
-        var connectionString = database.Resource.ConnectionStringExpression;
-        context.EnvironmentVariables["CONNECTION_STRING"] = connectionString;
-    });
+    .WithReference(database);
 ```
 
 ## Work with resource dependencies
@@ -106,7 +93,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 var redis = builder.AddRedis("cache");
 var postgres = builder.AddPostgres("postgres").AddDatabase("appdb");
 
-var app = builder.AddExecutable("worker", "python", "worker.py", ".")
+var app = builder.AddExecutable("worker", "python", ".", "worker.py")
     .WithReference(redis)      // Provides ConnectionStrings__cache
     .WithReference(postgres);  // Provides ConnectionStrings__appdb
 ```
@@ -120,7 +107,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var redis = builder.AddRedis("cache");
 
-var app = builder.AddExecutable("app", "node", "app.js", ".")
+var app = builder.AddExecutable("app", "node", ".", "app.js")
     .WithReference(redis)
     .WithEnvironment(context =>
     {
@@ -143,7 +130,7 @@ var api = builder.AddProject<Projects.MyApi>("api")
     .WithExternalHttpEndpoints();
 
 // Frontend with Vercel CLI
-var frontend = builder.AddExecutable("vercel-dev", "vercel", "dev", ".")
+var frontend = builder.AddExecutable("vercel-dev", "vercel", ".", "dev")
     .WithArgs("--listen", "3000")
     .WithEnvironment("API_URL", api.GetEndpoint("http"))
     .WithHttpEndpoint(port: 3000, name: "http");
@@ -163,8 +150,7 @@ var frontend = builder.AddExecutable("vite-dev", "npm", ".", "run")
     .WithHttpEndpoint(port: 5173, name: "http");
 
 // Another service can reference the frontend
-var e2eTests = builder.AddExecutable("playwright", "npx", ".", "playwright")
-    .WithArgs("test")
+var e2eTests = builder.AddExecutable("playwright", "npx", ".", "playwright", "test")
     .WithEnvironment("BASE_URL", frontend.GetEndpoint("http"));
 ```
 
@@ -205,7 +191,7 @@ When you call `PublishAsDockerfile()`, .NET Aspire generates a Dockerfile during
 Create a `Dockerfile` in your executable's working directory:
 
 ```dockerfile
-FROM node:18-alpine
+FROM node:22-alpine
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci --only=production
