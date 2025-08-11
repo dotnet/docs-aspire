@@ -45,7 +45,7 @@ This code demonstrates setting up a basic executable resource. The first example
 
 ## Resource dependencies and environment configuration
 
-You can provide command-line arguments directly in the AddExecutable call and configure environment variables for resource dependencies.
+You can provide command-line arguments directly in the AddExecutable call and configure environment variables for resource dependencies. Executable resources can reference other resources and access their connection information.
 
 ### Arguments in the AddExecutable call
 
@@ -70,10 +70,6 @@ var migrator = builder.AddExecutable("migrator", "dotnet", ".", "run")
 ```
 
 When one resource depends on another, `WithReference` passes along environment variables containing the dependent resource's connection details. For example, the `migrator` executable's reference to the `database` provides it with the `ConnectionStrings__db` environment variable, which contains the database connection string.
-
-## Work with resource dependencies
-
-Executable resources can reference other resources and access their connection information:
 
 ### Basic resource references
 
