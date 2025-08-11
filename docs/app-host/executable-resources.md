@@ -35,7 +35,8 @@ var builder = DistributedApplication.CreateBuilder(args);
 var nodeApp = builder.AddExecutable("frontend", "node", ".", "server.js");
 
 // Executable with command-line arguments
-var pythonApp = builder.AddExecutable("api", "python", ".", "-m", "uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8000");
+var pythonApp = builder.AddExecutable(
+        "api", "python", ".", "-m", "uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "8000");
 
 builder.Build().Run();
 ```
@@ -103,7 +104,6 @@ var app = builder.AddExecutable("app", "node", ".", "app.js")
         // Provide individual connection details
         context.EnvironmentVariables["REDIS_HOST"] = redis.Resource.PrimaryEndpoint.Property(EndpointProperty.Host);
         context.EnvironmentVariables["REDIS_PORT"] = redis.Resource.PrimaryEndpoint.Property(EndpointProperty.Port);
-        context.EnvironmentVariables["REDIS_URL"] = $"redis://{redis.Resource.PrimaryEndpoint}";
     });
 ```
 
@@ -163,7 +163,7 @@ var app = builder.AddExecutable(
 
 ## Publishing with PublishAsDockerfile
 
-For production deployment, executable resources need to be containerized. Use the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.PublishAsDockerfile%2A> method to specify how the executable should be packaged:
+For production deployment, executable resources need to be containerized. Use the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.PublishAsDockerFile*> method to specify how the executable should be packaged:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
