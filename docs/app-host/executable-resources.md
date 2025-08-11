@@ -53,8 +53,7 @@ You can provide command-line arguments in several ways:
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Arguments provided directly in AddExecutable
-var app = builder.AddExecutable("vercel-dev", "vercel", ".", "dev")
-    .WithArgs("--listen", "3000");
+var app = builder.AddExecutable("vercel-dev", "vercel", ".", "dev", "--listen", "3000");
 ```
 
 ### Arguments using WithArgs
@@ -80,6 +79,8 @@ var database = builder.AddPostgres("postgres").AddDatabase("db");
 var migrator = builder.AddExecutable("migrator", "dotnet", ".", "run")
     .WithReference(database);
 ```
+
+When one resource depends on another, `WithReference` passes along environment variables containing the dependent resource's connection details. For example, the `migrator` executable's reference to the `database` provides it with the `ConnectionStrings__db` environment variable, which contains the database connection string.
 
 ## Work with resource dependencies
 
@@ -126,7 +127,7 @@ Here's a complete example using the [Vercel CLI](https://vercel.com/docs/cli) to
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Backend API
-var api = builder.AddProject<Projects.MyApi>("api")
+var api = builder.AddProject<Projects.Api>("api")
     .WithExternalHttpEndpoints();
 
 // Frontend with Vercel CLI
