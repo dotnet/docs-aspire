@@ -1,13 +1,23 @@
-// Program.cs
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Hosting;
 
-// Add service defaults first
-builder.AddServiceDefaults();
+// Example of modern hosting pattern that works with .NET Aspire
+public class ModernHostingExample
+{
+    public static void ConfigureServices()
+    {
+        // Program.cs equivalent
+        var builder = WebApplication.CreateBuilder();
 
-// Now you can use Aspire integrations
-builder.AddNpgsqlDbContext<MyDbContext>("postgres");
+        // Add service defaults first
+        // builder.AddServiceDefaults();
 
-var app = builder.Build();
+        // Now you can use Aspire integrations
+        // builder.AddNpgsqlDbContext<MyDbContext>("postgres");
 
-app.MapDefaultEndpoints();
-app.Run();
+        var app = builder.Build();
+
+        // app.MapDefaultEndpoints();
+        // app.Run();
+    }
+}
