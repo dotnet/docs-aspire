@@ -63,19 +63,6 @@ For arguments that depend on other resources, use environment variables:
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var database = builder.AddPostgres("postgres").AddDatabase("db");
-
-var migrator = builder.AddExecutable("migrator", "dotnet", ".", "run")
-    .WithReference(database);
-```
-
-When one resource depends on another, `WithReference` passes along environment variables containing the dependent resource's connection details. For example, the `migrator` executable's reference to the `database` provides it with the `ConnectionStrings__db` environment variable, which contains the database connection string.
-
-### Basic resource references
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
 var redis = builder.AddRedis("cache");
 var postgres = builder.AddPostgres("postgres").AddDatabase("appdb");
 
@@ -83,6 +70,8 @@ var app = builder.AddExecutable("worker", "python", ".", "worker.py")
     .WithReference(redis)      // Provides ConnectionStrings__cache
     .WithReference(postgres);  // Provides ConnectionStrings__appdb
 ```
+
+When one resource depends on another, `WithReference` passes along environment variables containing the dependent resource's connection details. For example, the `worker` executable's reference to `redis` and `postgres` provides it with the `ConnectionStrings__cache` and `ConnectionStrings__appdb` environment variables, which contain connection strings to these resources.
 
 ### Access specific endpoint information
 
