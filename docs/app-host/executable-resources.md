@@ -56,17 +56,6 @@ var builder = DistributedApplication.CreateBuilder(args);
 var app = builder.AddExecutable("vercel-dev", "vercel", ".", "dev", "--listen", "3000");
 ```
 
-### Arguments using WithArgs
-
-Use the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.WithArgs%2A> method to add arguments after creating the resource:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var app = builder.AddExecutable("webpack-dev", "npm", ".", "run")
-    .WithArgs("dev", "--", "--port", "3000");
-```
-
 ### Dynamic arguments with WithEnvironment
 
 For arguments that depend on other resources, use environment variables:
@@ -131,8 +120,8 @@ var api = builder.AddProject<Projects.Api>("api")
     .WithExternalHttpEndpoints();
 
 // Frontend with Vercel CLI
-var frontend = builder.AddExecutable("vercel-dev", "vercel", ".", "dev")
-    .WithArgs("--listen", "3000")
+var frontend = builder.AddExecutable(
+        "vercel-dev", "vercel", ".", "dev", "--listen", "3000")
     .WithEnvironment("API_URL", api.GetEndpoint("http"))
     .WithHttpEndpoint(port: 3000, name: "http");
 
@@ -146,8 +135,8 @@ Executable resources can expose HTTP endpoints that other resources can referenc
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var frontend = builder.AddExecutable("vite-dev", "npm", ".", "run")
-    .WithArgs("dev", "--", "--port", "5173", "--host", "0.0.0.0")
+var frontend = builder.AddExecutable(
+        "vite-dev", "npm", ".", "run", "dev", "--", "--port", "5173", "--host", "0.0.0.0")
     .WithHttpEndpoint(port: 5173, name: "http");
 
 // Another service can reference the frontend
@@ -162,8 +151,8 @@ Configure environment variables for your executable:
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var app = builder.AddExecutable("api", "uvicorn", ".", "main:app")
-    .WithArgs("--reload", "--host", "0.0.0.0")
+var app = builder.AddExecutable(
+        "api", "uvicorn", ".", "main:app", "--reload", "--host", "0.0.0.0")
     .WithEnvironment("DEBUG", "true")
     .WithEnvironment("LOG_LEVEL", "info")
     .WithEnvironment(context =>
@@ -180,8 +169,8 @@ For production deployment, executable resources need to be containerized. Use th
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var app = builder.AddExecutable("frontend", "npm", ".", "start")
-    .WithArgs("--port", "3000")
+var app = builder.AddExecutable(
+        "frontend", "npm", ".", "start", "--port", "3000")
     .PublishAsDockerfile();
 ```
 
@@ -208,22 +197,6 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var app = builder.AddExecutable("frontend", "npm", ".", "start")
     .PublishAsDockerfile([new DockerfileBuildArg("NODE_ENV", "production")]);
-```
-
-## Advanced scenarios
-
-### Multiple executable arguments
-
-For complex command lines, you can chain multiple `WithArgs` calls:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var app = builder.AddExecutable("complex-tool", "myapp", ".")
-    .WithArgs("--config", "config.json")
-    .WithArgs("--verbose")
-    .WithArgs("--output", "/tmp/results")
-    .WithArgs("--workers", "4");
 ```
 
 ### Conditional execution
