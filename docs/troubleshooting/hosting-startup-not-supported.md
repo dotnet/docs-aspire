@@ -2,7 +2,7 @@
 title: HostingStartup is not supported with .NET Aspire integrations
 description: Learn how to migrate from HostingStartup to the IHostApplicationBuilder pattern for use with .NET Aspire integrations.
 ms.date: 08/04/2025
-ai-usage: ai-generated
+ai-usage: ai-assisted
 ---
 
 # HostingStartup is not supported with .NET Aspire integrations
