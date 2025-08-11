@@ -20,11 +20,11 @@ When attempting to use .NET Aspire integrations within a HostingStartup implemen
 
 .NET Aspire integrations extend <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to provide:
 
-- Standardized configuration patterns
-- Built-in health checks
-- Telemetry and observability
-- Resilience patterns
-- Service discovery integration
+- Standardized configuration patterns.
+- Built-in health checks.
+- Telemetry and observability.
+- Resilience patterns.
+- Service discovery integration.
 
 The `HostingStartup` feature was designed for the older ASP.NET Core hosting model and only provides access to <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>, which doesn't include these modern hosting capabilities.
 
