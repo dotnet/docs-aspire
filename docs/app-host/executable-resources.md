@@ -197,8 +197,6 @@ var builder = DistributedApplication.CreateBuilder(args);
 var app = builder.AddExecutable("frontend", "npm", ".", "start")
     .PublishAsDockerfile([new DockerfileBuildArg("NODE_ENV", "production")]);
 ```
-
-
 ## Best practices
 
 When working with executable resources:
