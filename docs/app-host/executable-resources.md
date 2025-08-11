@@ -2,7 +2,7 @@
 title: Host external executables in .NET Aspire
 description: Learn how to use ExecutableResource and AddExecutable to host external executable applications in your .NET Aspire app host.
 ms.date: 08/11/2025
-ai-usage: ai-generated
+ai-usage: ai-assisted
 ---
 
 # Host external executables in .NET Aspire
