@@ -194,11 +194,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
             await page.SaveExploreScreenshotAsync("resource-actions.png");
 
             await page.ClickAsync(DashboardSelectors.ResourcePage.ViewDetailsOption);
-            //await page.ClickAsync(DashboardSelectors.ResourcePage.SplitPanel);
 
-            //await page.AdjustSplitPanelsGridTemplateAsync();
-            //await page.ClickAndDragShadowRootElementAsync(
-            //    DashboardSelectors.SplitPanels, DashboardSelectors.MedianId, (0, 20));
             await page.RedactElementTextAsync(DashboardSelectors.ResourcePage.ResourceDetailsProjectPath);
 
             var apiEllipsisButton = FluentDataGridSelector.Grid.Body.Row(3).Cell(4)
@@ -455,7 +451,7 @@ public class CaptureImages(AppHostTestFixture appHostTestFixture) : PlaywrightTe
 
             await page.ClickAsync(DashboardSelectors.Nav.Traces);
 
-            await Task.Delay(1000);
+            await Task.Delay(1_000);
 
             await page.SaveExploreScreenshotAsync("traces.png");
 

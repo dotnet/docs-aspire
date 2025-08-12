@@ -1,9 +1,4 @@
-﻿using Aspire.Hosting.ApplicationModel;
-using Microsoft.AspNetCore.Hosting.Server;
-using Microsoft.AspNetCore.Hosting.Server.Features;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace Aspire.Dashboard.ScreenCapture;
+﻿namespace Aspire.Dashboard.ScreenCapture;
 
 public class PlaywrightTestsBase<TDashboardServerFixture>(AppHostTestFixture appHostTestFixture)
     : IClassFixture<TDashboardServerFixture>, IAsyncDisposable
@@ -37,12 +32,6 @@ public class PlaywrightTestsBase<TDashboardServerFixture>(AppHostTestFixture app
             configureBuilder?.Invoke(builder);
         });
 
-        var server = app.Services.GetRequiredService<IServer>();
-        var addresses = server.Features.Get<IServerAddressesFeature>()?.Addresses;
-        if (addresses is not null)
-        {
-            
-        }
         var hostUrl = app.GetEndpoint("aspire-dashboard");
         DashboardUrl = hostUrl.ToString();
 
