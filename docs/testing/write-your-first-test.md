@@ -132,6 +132,79 @@ The .NET Aspire testing project template makes it easier to create test projects
 
 Finally, when using the `DistributedApplicationTestingBuilder` all resource logs are redirected to the `DistributedApplication` by default. The redirection of resource logs enables scenarios where you want to assert that a resource is logging correctly.
 
+## Capture logs from tests
+
+When writing tests for your .NET Aspire applications, you might want to capture and view logs to help with debugging and monitoring test execution. The `DistributedApplicationTestingBuilder` provides access to the service collection, allowing you to configure logging for your test scenarios.
+
+### Configure logging providers
+
+To capture logs from your tests, use the `AddLogging` method on the `builder.Services` to configure logging providers specific to your testing framework:
+
+:::zone pivot="xunit"
+
+:::code language="csharp" source="snippets/testing/xunit/AspireApp.Tests/LoggingTest.cs":::
+
+:::zone-end
+:::zone pivot="mstest"
+
+:::code language="csharp" source="snippets/testing/mstest/AspireApp.Tests/LoggingTest.cs":::
+
+:::zone-end
+:::zone pivot="nunit"
+
+:::code language="csharp" source="snippets/testing/nunit/AspireApp.Tests/LoggingTest.cs":::
+
+:::zone-end
+
+### Configure log filters
+
+Since the `appsettings.json` configuration from your application under test isn't automatically replicated in test projects, you need to explicitly configure log filters. This is important to avoid excessive logging from infrastructure components that might overwhelm your test output:
+
+```csharp
+builder.Services.AddLogging(logging => logging
+    .AddFilter("Default", LogLevel.Information)
+    .AddFilter("Microsoft.AspNetCore", LogLevel.Warning)
+    .AddFilter("Aspire.Hosting.Dcp", LogLevel.Warning));
+```
+
+The preceding configuration:
+
+- Sets the default log level to `Information` for most application logs.
+- Reduces noise from ASP.NET Core infrastructure by setting it to `Warning` level.
+- Limits Aspire hosting infrastructure logs to `Warning` level to focus on application-specific logs.
+
+### Popular logging packages
+
+Different testing frameworks have different logging provider packages available:
+
+:::zone pivot="xunit"
+
+For xUnit, consider using one of these logging packages:
+
+- [📦 Xunit.DependencyInjection.Logging](https://www.nuget.org/packages/Xunit.DependencyInjection.Logging) - Integrates with xUnit's dependency injection
+- [📦 Serilog.Extensions.Logging.File](https://www.nuget.org/packages/Serilog.Extensions.Logging.File) - Writes logs to files
+- [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console
+
+:::zone-end
+:::zone pivot="mstest"
+
+For MSTest, consider using one of these logging packages:
+
+- [📦 Extensions.Logging.MSTest](https://www.nuget.org/packages/Extensions.Logging.MSTest) - Integrates with MSTest framework
+- [📦 Serilog.Extensions.Logging.File](https://www.nuget.org/packages/Serilog.Extensions.Logging.File) - Writes logs to files  
+- [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console
+
+:::zone-end
+:::zone pivot="nunit"
+
+For NUnit, consider using one of these logging packages:
+
+- [📦 Extensions.Logging.NUnit](https://www.nuget.org/packages/Extensions.Logging.NUnit) - Integrates with NUnit framework
+- [📦 Serilog.Extensions.Logging.File](https://www.nuget.org/packages/Serilog.Extensions.Logging.File) - Writes logs to files
+- [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console
+
+:::zone-end
+
 ## See also
 
 - [Unit testing C# in .NET using dotnet test and xUnit](/dotnet/core/testing/unit-testing-with-dotnet-test)
