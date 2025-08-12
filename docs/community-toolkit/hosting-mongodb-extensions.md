@@ -46,4 +46,4 @@ var MongoDB = builder.AddMongoDB("MongoDB")
     .WithDbGate();
 ```
 
-This will add a new resource to the app host which will be available from the .NET Aspire dashboard.
+This will add a new resource to the AppHost which will be available from the .NET Aspire dashboard.

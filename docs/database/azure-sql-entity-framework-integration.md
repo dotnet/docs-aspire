@@ -9,7 +9,7 @@ uid: database/azure-sql-entity-framework-integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure SQL](https://azure.microsoft.com/products/azure-sql) is a family of relational database management systems that run in the Azure cloud. The database systems are Platform-as-a-Service (PaaS) products that enable database administrators to implement highly scalable and available databases without maintaining complex infrastructures themselves. The .NET Aspire Azure SQL Server Hosting integration provides methods to create a new Azure Database server and databases from code in your .NET Aspire app host project. In a consuming project, you can use the .NET Aspire SQL Server Entity Framework Core client integration as you would for any other SQL Server instance.
+[Azure SQL](https://azure.microsoft.com/products/azure-sql) is a family of relational database management systems that run in the Azure cloud. The database systems are Platform-as-a-Service (PaaS) products that enable database administrators to implement highly scalable and available databases without maintaining complex infrastructures themselves. The .NET Aspire Azure SQL Server Hosting integration provides methods to create a new Azure Database server and databases from code in your .NET Aspire AppHost project. In a consuming project, you can use the .NET Aspire SQL Server Entity Framework Core client integration as you would for any other SQL Server instance.
 
 ## Hosting integration
 

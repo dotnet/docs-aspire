@@ -8,11 +8,11 @@ ms.date: 07/22/2025
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure App Configuration](/azure/azure-app-configuration/overview) provides a service to centrally manage application settings and feature flags. Modern programs, especially programs running in a cloud, generally have many components that are distributed in nature. Spreading configuration settings across these components can lead to hard-to-troubleshoot errors during an application deployment. The .NET Aspire Azure App Configuration integration enables you to connect to existing App Configuration instances or create new instances all from your app host.
+[Azure App Configuration](/azure/azure-app-configuration/overview) provides a service to centrally manage application settings and feature flags. Modern programs, especially programs running in a cloud, generally have many components that are distributed in nature. Spreading configuration settings across these components can lead to hard-to-troubleshoot errors during an application deployment. The .NET Aspire Azure App Configuration integration enables you to connect to existing App Configuration instances or create new instances all from your AppHost.
 
 ## Hosting integration
 
-The .NET Aspire Azure App Configuration hosting integration models the App Configuration resource as the <xref:Aspire.Hosting.Azure.AzureAppConfigurationResource> type. To access this type and APIs fro expressing the resource, add the [📦 Aspire.Hosting.Azure.AppConfiguration](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppConfiguration) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The .NET Aspire Azure App Configuration hosting integration models the App Configuration resource as the <xref:Aspire.Hosting.Azure.AzureAppConfigurationResource> type. To access this type and APIs fro expressing the resource, add the [📦 Aspire.Hosting.Azure.AppConfiguration](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppConfiguration) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -33,7 +33,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Azure App Configuration resource
 
-In your app host project, call <xref:Aspire.Hosting.AzureAppConfigurationExtensions.AddAzureAppConfiguration*> to add and return an Azure App Configuration resource builder.
+In your AppHost project, call <xref:Aspire.Hosting.AzureAppConfigurationExtensions.AddAzureAppConfiguration*> to add and return an Azure App Configuration resource builder.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -45,7 +45,7 @@ var appConfig = builder.AddAzureAppConfiguration("config");
 builder.Build().Run();
 ```
 
-When you add an <xref:Aspire.Hosting.Azure.AzureAppConfigurationResource> to the app host, it exposes other useful APIs.
+When you add an <xref:Aspire.Hosting.Azure.AzureAppConfigurationResource> to the AppHost, it exposes other useful APIs.
 
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureAppConfigurationExtensions.AddAzureAppConfiguration*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](local-provisioning.md#configuration).
@@ -101,7 +101,7 @@ For more information, see [Use existing Azure resources](integrations-overview.m
 
 ### Connect to an existing Azure App Configuration store
 
-An alternative approach to using the `*AsExisting` APIs enables the addition of a connection string instead, where the app host uses configuration to resolve the connection information. To add a connection to an existing Azure App Configuration store, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> method:
+An alternative approach to using the `*AsExisting` APIs enables the addition of a connection string instead, where the AppHost uses configuration to resolve the connection information. To add a connection to an existing Azure App Configuration store, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -116,7 +116,7 @@ builder.AddProject<Projects.WebApplication>("web")
 
 [!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
 
-The connection string is configured in the app host's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section. The app host injects this connection string as an environment variable into all dependent resources, for example:
+The connection string is configured in the AppHost's configuration, typically under [User Secrets](/aspnet/core/security/app-secrets), under the `ConnectionStrings` section. The AppHost injects this connection string as an environment variable into all dependent resources, for example:
 
 ```json
 {
@@ -154,7 +154,7 @@ builder.AddAzureAppConfiguration(connectionName: "config");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the App Configuration resource in the app host project. In other words, when you call `AddAzureAppConfiguration` in the app host and provide a name of `config` that same name should be used when calling `AddAzureAppConfiguration` in the client-consuming project. For more information, see [Add Azure App Configuration resource](#add-azure-app-configuration-resource).
+> The `connectionName` parameter must match the name used when adding the App Configuration resource in the AppHost project. In other words, when you call `AddAzureAppConfiguration` in the AppHost and provide a name of `config` that same name should be used when calling `AddAzureAppConfiguration` in the client-consuming project. For more information, see [Add Azure App Configuration resource](#add-azure-app-configuration-resource).
 
 You can then retrieve the <xref:Microsoft.Extensions.Configuration.IConfiguration> instance using dependency injection. For example, to retrieve the client from an example service:
 

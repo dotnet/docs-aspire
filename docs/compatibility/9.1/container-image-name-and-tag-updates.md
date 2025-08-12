@@ -26,7 +26,7 @@ In .NET Aspire 9.0:
 In .NET Aspire 9.1:
 
 - The default container image name used is now simply the resource name lowercased.
-- The default container tag used is now a hash derived from the app host directory combined with a timestamp of when the method was called.
+- The default container tag used is now a hash derived from the AppHost directory combined with a timestamp of when the method was called.
 
 ## Type of breaking change
 

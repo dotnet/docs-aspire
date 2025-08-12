@@ -170,7 +170,7 @@ Both commands should succeed and return valid results before running your .NET A
 
 ## .NET Aspire dashboard
 
-.NET Aspire templates that expose the [app host](app-host-overview.md) project also include a useful developer [dashboard](dashboard/overview.md) that's used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
+.NET Aspire templates that expose the [AppHost](app-host-overview.md) project also include a useful developer [dashboard](dashboard/overview.md) that's used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
 
 The .NET Aspire dashboard is only visible while the app is running and starts automatically when you start the _*.AppHost_ project. Visual Studio and Visual Studio Code launch both your app and the .NET Aspire dashboard for you automatically in your browser. If you start the app using the .NET CLI, copy and paste the dashboard URL from the output into your browser, or hold <kbd>Ctrl</kbd> and select the link (if your terminal supports hyperlinks).
 
@@ -186,7 +186,7 @@ The .NET Aspire dashboard is also available in a standalone mode. For more infor
 
 ## Visual Studio tooling
 
-Visual Studio provides extra features for working with .NET Aspire integrations and the App Host orchestrator project. Not all of these features are currently available in Visual Studio Code or through the CLI.
+Visual Studio provides extra features for working with .NET Aspire integrations and the AppHost orchestrator project. Not all of these features are currently available in Visual Studio Code or through the CLI.
 
 ### Add an integration package
 

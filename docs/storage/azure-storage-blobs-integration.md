@@ -18,7 +18,7 @@ ms.custom: sfi-ropc-nochange
 
 ### Add Azure Blob Storage resource
 
-In your app host project, register the Azure Blob Storage integration by chaining a call to <xref:Aspire.Hosting.AzureStorageExtensions.AddBlobs*> on the `IResourceBuilder<IAzureStorageResource>` instance returned by <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>. The following example demonstrates how to add an Azure Blob Storage resource named `storage` and a blob container named `blobs`:
+In your AppHost project, register the Azure Blob Storage integration by chaining a call to <xref:Aspire.Hosting.AzureStorageExtensions.AddBlobs*> on the `IResourceBuilder<IAzureStorageResource>` instance returned by <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>. The following example demonstrates how to add an Azure Blob Storage resource named `storage` and a blob container named `blobs`:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

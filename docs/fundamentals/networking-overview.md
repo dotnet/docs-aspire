@@ -36,8 +36,8 @@ When you add one or more container resources, .NET Aspire creates a dedicated co
 
 The network's lifetime depends on the container resources:
 
-- If all containers have a session lifetime, the network is also session-based and is cleaned up when the app host process ends.
-- If any container has a persistent lifetime, the network is persistent and remains running after the app host process terminates. Aspire reuses this network on subsequent runs, allowing persistent containers to keep communicating even when the app host isn't running.
+- If all containers have a session lifetime, the network is also session-based and is cleaned up when the AppHost process ends.
+- If any container has a persistent lifetime, the network is persistent and remains running after the AppHost process terminates. Aspire reuses this network on subsequent runs, allowing persistent containers to keep communicating even when the AppHost isn't running.
 
 For more information on container lifetimes, see [Container resource lifetime](orchestrate-resources.md#container-resource-lifetime).
 
@@ -46,7 +46,7 @@ Here are the naming conventions for container networks:
 - **Session networks**: `aspire-session-network-<unique-id>-<app-host-name>`
 - **Persistent networks**: `aspire-persistent-network-<project-hash>-<app-host-name>`
 
-Each app host instance gets its own network resources. The only differences are the network's lifetime and name; service discovery works the same way for both.
+Each AppHost instance gets its own network resources. The only differences are the network's lifetime and name; service discovery works the same way for both.
 
 Containers register themselves on the network using their resource name. Aspire uses this name for service discovery between containers. For example, a `pgadmin` container can connect to a database resource named `postgres` using `postgres:5432`.
 
@@ -55,7 +55,7 @@ Containers register themselves on the network using their resource name. Aspire 
 
 ## Launch profiles
 
-When you call <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, the app host looks for _Properties/launchSettings.json_ to determine the default set of endpoints. The app host selects a specific launch profile using the following rules:
+When you call <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, the AppHost looks for _Properties/launchSettings.json_ to determine the default set of endpoints. The AppHost selects a specific launch profile using the following rules:
 
 1. An explicit `launchProfileName` argument passed when calling `AddProject`.
 1. The `DOTNET_LAUNCH_PROFILE` environment variable. For more information, see [.NET environment variables](/dotnet/core/tools/dotnet-environment-variables).
@@ -91,7 +91,7 @@ The preceding configuration specifies an `Https` endpoint. The `Url` property is
 With the Kestrel endpoint configured, the project should remove any configured `applicationUrl` from the _launchSettings.json_ file.
 
 > [!NOTE]
-> If the `applicationUrl` is present in the _launchSettings.json_ file and the Kestrel endpoint is configured, the app host will throw an exception.
+> If the `applicationUrl` is present in the _launchSettings.json_ file and the Kestrel endpoint is configured, the AppHost will throw an exception.
 
 When you add a project resource, there's an overload that lets you specify that the Kestrel endpoint should be used instead of the _launchSettings.json_ file:
 

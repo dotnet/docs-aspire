@@ -15,7 +15,7 @@ In this article, you learn how to use the .NET Aspire Meilisearch hosting integr
 
 ## Hosting integration
 
-To run the Meilisearch container, install the [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+To run the Meilisearch container, install the [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -36,7 +36,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Meilisearch resource
 
-In the app host project, register and consume the Meilisearch integration using the `AddMeilisearch` extension method to add the Meilisearch container to the application builder.
+In the AppHost project, register and consume the Meilisearch integration using the `AddMeilisearch` extension method to add the Meilisearch container to the application builder.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -49,7 +49,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/getmeili/meilisearch` image, it creates a new Meilisearch instance on your local machine. A reference to your Meilisearch resource (the `meilisearch` variable) is added to the `ExampleProject`. The Meilisearch resource includes a randomly generated `master key` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method when a master key wasn't provided.
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/getmeili/meilisearch` image, it creates a new Meilisearch instance on your local machine. A reference to your Meilisearch resource (the `meilisearch` variable) is added to the `ExampleProject`. The Meilisearch resource includes a randomly generated `master key` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method when a master key wasn't provided.
 
 For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -138,7 +138,7 @@ builder.AddMeilisearchClient(connectionName: "meilisearch");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Meilisearch resource in the app host project. For more information, see [Add Meilisearch resource](#add-meilisearch-resource).
+> The `connectionName` parameter must match the name used when adding the Meilisearch resource in the AppHost project. For more information, see [Add Meilisearch resource](#add-meilisearch-resource).
 
 You can then retrieve the `MeilisearchClient` instance using dependency injection. For example, to retrieve the connection from an example service:
 

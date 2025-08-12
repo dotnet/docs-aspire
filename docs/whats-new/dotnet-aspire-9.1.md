@@ -27,7 +27,7 @@ Whether you're new to .NET Aspire or have been with us since the preview, it's i
 
 Moving between minor releases of .NET Aspire is simple:
 
-1. In your app host project file (that is, _MyApp.AppHost.csproj_), update the [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk) NuGet package to version `9.1.0`:
+1. In your AppHost project file (that is, _MyApp.AppHost.csproj_), update the [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk) NuGet package to version `9.1.0`:
 
     ```xml
     <Project Sdk="Microsoft.NET.Sdk">
@@ -51,7 +51,7 @@ Moving between minor releases of .NET Aspire is simple:
     > [!NOTE]
     > The `dotnet new update` command updates all of your templates to the latest version.
 
-If your app host project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.0, you can follow [the documentation from last release](../get-started/upgrade-to-aspire-9.md).
+If your AppHost project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using .NET Aspire 8. To upgrade to 9.0, you can follow [the documentation from last release](../get-started/upgrade-to-aspire-9.md).
 
 ## 🌱 Improved onboarding experience
 
@@ -109,7 +109,7 @@ For more information, see [.NET Aspire dashboard: Resources page](../fundamental
 
 You can now set the `ASPIRE_DASHBOARD_CORS_ALLOWED_ORIGINS` environment variable to allow the dashboard to receive telemetry from other browser apps, such as if you have resources running on custom localhost domains.
 
-For more information, see [.NET Aspire app host: Dashboard configuration](../app-host/configuration.md#dashboard).
+For more information, see [.NET Aspire AppHost: Dashboard configuration](../app-host/configuration.md#dashboard).
 
 ### 🪵 Flexibility with console logs
 
@@ -137,7 +137,7 @@ In .NET Aspire 9.1, several improvements to streamline your local development ex
 
 ### ▶️ Start resources on demand
 
-You can now tell resources not to start with the rest of your app by using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> on the resource in your app host. Then, you can start it whenever you're ready from inside the dashboard.
+You can now tell resources not to start with the rest of your app by using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExplicitStart*> on the resource in your AppHost. Then, you can start it whenever you're ready from inside the dashboard.
 
 For more information, see [Configure explicit resource start](../fundamentals/orchestrate-resources.md#configure-explicit-resource-start).
 
@@ -153,9 +153,9 @@ In 9.1, we addressed a persistent issue where Docker networks created by .NET As
 
 ### ✅ Socket address issues fixed
 
-Several users reported issues ([#6693](https://github.com/dotnet/aspire/issues/6693), [#6704](https://github.com/dotnet/aspire/issues/6704), [#7095](https://github.com/dotnet/aspire/issues/7095)) with restarting the .NET Aspire app host, including reconciliation errors and "address already in use" messages.
+Several users reported issues ([#6693](https://github.com/dotnet/aspire/issues/6693), [#6704](https://github.com/dotnet/aspire/issues/6704), [#7095](https://github.com/dotnet/aspire/issues/7095)) with restarting the .NET Aspire AppHost, including reconciliation errors and "address already in use" messages.
 
-This release introduces a more robust approach to managing socket addresses, ensuring only one instance of each address is used at a time. Additionally, improvements were made to ensure proper project restarts and resource releases, preventing hanging issues. These changes enhance the stability and reliability of the app host, especially during development and testing.
+This release introduces a more robust approach to managing socket addresses, ensuring only one instance of each address is used at a time. Additionally, improvements were made to ensure proper project restarts and resource releases, preventing hanging issues. These changes enhance the stability and reliability of the AppHost, especially during development and testing.
 
 ## 🔌 Integration updates
 
@@ -199,9 +199,9 @@ Along with support for the new emulator, Cosmos DB added the following features.
 
 Previously, the Cosmos DB integration used access keys and a Key Vault secret to connect to the service. .NET Aspire 9.1 added support for using more secure authentication using managed identities by default. If you need to keep using access key authentication, you can get back to the previous behavior by calling <xref:Aspire.Hosting.AzureCosmosExtensions.WithAccessKeyAuthentication*>.
 
-##### 💽 Support for modeling Database and Containers in the app host
+##### 💽 Support for modeling Database and Containers in the AppHost
 
-You can define a Cosmos DB database and containers in the app host and these resources are available when you run the application in both the emulator and in Azure. This allows you to define these resources up front and no longer need to create them from the application, which might not have permission to create them.
+You can define a Cosmos DB database and containers in the AppHost and these resources are available when you run the application in both the emulator and in Azure. This allows you to define these resources up front and no longer need to create them from the application, which might not have permission to create them.
 
 For example API usage to add database and containers, see the following related articles:
 
@@ -246,7 +246,7 @@ For more information using Azure Functions with .NET Aspire, see [.NET Aspire Az
 
 #### 🚚 Service Bus and Event Hubs
 
-Similar to Cosmos DB, the Service Bus and Event Hubs integrations now allow you to define Azure Service Bus queues, topics, subscriptions, and Azure Event Hubs instances and consumer groups directly in your app host code. This enhancement simplifies your application logic by enabling the creation and management of these resources outside the application itself.
+Similar to Cosmos DB, the Service Bus and Event Hubs integrations now allow you to define Azure Service Bus queues, topics, subscriptions, and Azure Event Hubs instances and consumer groups directly in your AppHost code. This enhancement simplifies your application logic by enabling the creation and management of these resources outside the application itself.
 
 For more information, see the following updated articles:
 
@@ -300,15 +300,15 @@ The [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS)
 
 ## 🧪 Testing in .NET Aspire
 
-.NET Aspire 9.1 simplifies writing cross-functional integration tests with a robust approach. The app host allows you to create, evaluate, and manage containerized environments seamlessly within a test run. This functionality supports popular testing frameworks like xUnit, NUnit, and MSTest, enhancing your testing capabilities and efficiency.
+.NET Aspire 9.1 simplifies writing cross-functional integration tests with a robust approach. The AppHost allows you to create, evaluate, and manage containerized environments seamlessly within a test run. This functionality supports popular testing frameworks like xUnit, NUnit, and MSTest, enhancing your testing capabilities and efficiency.
 
-Now, you're able to disable port randomization or enable the [dashboard](../fundamentals/dashboard/overview.md). For more information, see [.NET Aspire testing overview](../testing/overview.md). Additionally, you can now [Pass arguments to your app host](../testing/manage-app-host.md#pass-arguments-to-your-app-host).
+Now, you're able to disable port randomization or enable the [dashboard](../fundamentals/dashboard/overview.md). For more information, see [.NET Aspire testing overview](../testing/overview.md). Additionally, you can now [Pass arguments to your AppHost](../testing/manage-app-host.md#pass-arguments-to-your-apphost).
 
 Some of these enhancements were introduced as a result of stability issues that were reported, such as [.NET Aspire GitHub issue #6678](https://github.com/dotnet/aspire/issues/6678)—where some resources failed to start do to "address in use" errors.
 
 ## 🚀 Deployment
 
-Significant improvements to the Azure Container Apps (ACA) deployment process are included in .NET Aspire 9.1, enhancing both the `azd` CLI and app host options. One of the most requested features—support for deploying `npm` applications to ACA—is now implemented. This new capability allows `npm` apps to be deployed to ACA just like other resources, streamlining the deployment process and providing greater flexibility for developers.
+Significant improvements to the Azure Container Apps (ACA) deployment process are included in .NET Aspire 9.1, enhancing both the `azd` CLI and AppHost options. One of the most requested features—support for deploying `npm` applications to ACA—is now implemented. This new capability allows `npm` apps to be deployed to ACA just like other resources, streamlining the deployment process and providing greater flexibility for developers.
 
 We recognize there's more work to be done in the area of deployment. Future releases will continue to address these opportunities for improvement. For more information on deploying .NET Aspire to ACA, see [Deploy a .NET Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md).
 

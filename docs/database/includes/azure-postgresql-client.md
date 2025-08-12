@@ -20,16 +20,14 @@ dotnet add package Aspire.Azure.Npgsql
 
 ---
 
-<!-- TODO: Add xref to AddAzureNpgsqlDataSource when available -->
-
-The PostgreSQL connection can be consumed using the client integration by calling the `AddAzureNpgsqlDataSource`:
+The PostgreSQL connection can be consumed using the client integration by calling the <xref:Microsoft.Extensions.Hosting.AspireAzureNpgsqlExtensions.AddAzureNpgsqlDataSource*>:
 
 ```csharp
 builder.AddAzureNpgsqlDataSource(connectionName: "postgresdb");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the PostgreSQL server resource in the app host project.
+> The `connectionName` parameter must match the name used when adding the PostgreSQL server resource in the AppHost project.
 
 The preceding code snippet demonstrates how to use the `AddAzureNpgsqlDataSource` method to register an `NpgsqlDataSource` instance that uses Azure authentication ([Microsoft Entra ID](/azure/postgresql/flexible-server/concepts-azure-ad-authentication)). This `"postgresdb"` connection name corresponds to a connection string configuration value.
 
@@ -46,9 +44,7 @@ For more information on dependency injection, see [.NET dependency injection](/d
 
 ### Add keyed Azure Npgsql client
 
-<!-- TODO: Add xref to AddKeyedAzureNpgsqlDataSource when available -->
-
-There might be situations where you want to register multiple `NpgsqlDataSource` instances with different connection names. To register keyed Npgsql clients, call the `AddKeyedAzureNpgsqlDataSource` method:
+There might be situations where you want to register multiple `NpgsqlDataSource` instances with different connection names. To register keyed Npgsql clients, call the <xref:Microsoft.Extensions.Hosting.AspireAzureNpgsqlExtensions.AddKeyedAzureNpgsqlDataSource*> method:
 
 ```csharp
 builder.AddKeyedAzureNpgsqlDataSource(name: "sales_db");
@@ -97,9 +93,7 @@ For more information on how to configure the connection string, see the [Npgsql 
 
 ##### Use configuration providers
 
-<!-- TODO: Add xref to AzureNpgsqlSettings when available -->
-
-The .NET Aspire Azure Npgsql integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `AzureNpgsqlSettings` from configuration using the `Aspire:Azure:Npgsql` key. For example, consider the following _appsettings.json_ file that configures some of the available options:
+The .NET Aspire Azure Npgsql integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Azure.Npgsql.AzureNpgsqlSettings> from configuration using the `Aspire:Azure:Npgsql` key. For example, consider the following _appsettings.json_ file that configures some of the available options:
 
 ```json
 {
@@ -122,9 +116,7 @@ builder.AddAzureNpgsqlDataSource(
     settings => settings.DisableHealthChecks = true);
 ```
 
-<!-- TODO: Add xref to AzureNpgsqlSettings.Credential when available -->
-
-Use the `AzureNpgsqlSettings.Credential` property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used. When the connection string contains a username and password, the credential is ignored.
+Use the <xref:Aspire.Azure.Npgsql.AzureNpgsqlSettings.Credential?displayProperty=nameWithType> property to establish a connection. If no credential is configured, the <xref:Azure.Identity.DefaultAzureCredential> is used. When the connection string contains a username and password, the credential is ignored.
 
 [!INCLUDE [client-integration-health-checks](../../includes/client-integration-health-checks.md)]
 

@@ -1,7 +1,7 @@
 ---
 title: What's new in .NET Aspire 9.4
 description: Learn what's new in the official general availability release of .NET Aspire 9.4.
-ms.date: 07/29/2025
+ms.date: 08/07/2025
 ---
 
 # What's new in .NET Aspire 9.4
@@ -638,7 +638,7 @@ public async Task Should_ResetCache_WhenTestStarts()
 
 ### 🔄 Resource lifecycle events
 
-.NET Aspire 9.4 introduces convenient extension methods on <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> that make it much easier to subscribe to [lifecycle events](../app-host/eventing.md#app-host-life-cycle-events) directly on resources, providing a cleaner and more intuitive API.
+.NET Aspire 9.4 introduces convenient extension methods on <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> that make it much easier to subscribe to [lifecycle events](../app-host/eventing.md#apphost-life-cycle-events) directly on resources, providing a cleaner and more intuitive API.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -912,7 +912,7 @@ When a newer version is detected, a friendly notification appears in the Aspire 
 
 :::image type="content" source="media/dashboard-update-notification.png" lightbox="media/dashboard-update-notification.png" alt-text="Screenshot of dashboard showing an update notification.":::
 
-Aspire only shows notifications when a newer version is available, and the checks happen in the background without impacting application startup or performance. The upgrade check system can be disable by setting the `ASPIRE_VERSION_CHECK_DISABLED` environment variable to `true`. For more information, see [App host configuration](/dotnet/aspire/app-host/configuration).
+Aspire only shows notifications when a newer version is available, and the checks happen in the background without impacting application startup or performance. The upgrade check system can be disable by setting the `ASPIRE_VERSION_CHECK_DISABLED` environment variable to `true`. For more information, see [AppHost configuration](/dotnet/aspire/app-host/configuration).
 
 ### 📋 Parameters and connection strings visible in dashboard
 
@@ -1061,7 +1061,7 @@ builder.Build().Run();
 
 #### Client integration
 
-Once you've configured the [Azure AI Foundry resource](../azureai/azureai-foundry-integration.md) in your app host, consume it in your services using the [Azure AI Inference SDK](../azureai/azureai-inference-integration.md) or [OpenAI SDK](../azureai/azureai-openai-integration.md) for compatible models:
+Once you've configured the [Azure AI Foundry resource](../azureai/azureai-foundry-integration.md) in your AppHost, consume it in your services using the [Azure AI Inference SDK](../azureai/azureai-inference-integration.md) or [OpenAI SDK](../azureai/azureai-openai-integration.md) for compatible models:
 
 **Using Azure AI Inference SDK:**
 
@@ -1302,7 +1302,7 @@ var webApi = builder.AddProject<Projects.WebAPI>("webapi")
 
 .NET Aspire 9.4 expands resource deep linking to include Azure Queue Storage queues, building on the model already used for Azure Blob Storage, Cosmos DB, etc.
 
-You can now model individual storage queues directly in your app host, then inject scoped QueueClient instances into your services—making it easy to interact with queues without manually configuring connection strings or access.
+You can now model individual storage queues directly in your AppHost, then inject scoped QueueClient instances into your services—making it easy to interact with queues without manually configuring connection strings or access.
 
 **AppHost:**
 
@@ -1498,13 +1498,13 @@ All .NET Aspire project templates now support .NET 10 with framework selection. 
 # Create a new Aspire project targeting .NET 10
 dotnet new aspire --framework net10.0
 
-# Create an app host project targeting .NET 10  
+# Create an AppHost project targeting .NET 10  
 dotnet new aspire-apphost --framework net10.0
 ```
 
 ### 📝 Improved file naming convention
 
-The `aspire-apphost` template now uses a more descriptive file naming convention making it easier to distinguish app host files in multi-project solutions. Instead of `Program.cs`, the main program file is now named `AppHost.cs`.
+The `aspire-apphost` template now uses a more descriptive file naming convention making it easier to distinguish AppHost files in multi-project solutions. Instead of `Program.cs`, the main program file is now named `AppHost.cs`.
 
 The content and functionality remain unchanged — only the filename has been updated to be more descriptive.
 

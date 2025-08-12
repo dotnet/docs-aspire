@@ -43,7 +43,7 @@ builder.AddSqliteConnection(connectionName: "sqlite");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the SQLite resource in the app host project. For more information, see [Add SQLite resource](#add-sqlite-resource).
+> The `connectionName` parameter must match the name used when adding the SQLite resource in the AppHost project. For more information, see [Add SQLite resource](#add-sqlite-resource).
 
 After adding `SqliteConnection` to the builder, you can get the `SqliteConnection` instance using dependency injection. For example, to retrieve your connection object from an example service define it as a constructor parameter and ensure the `ExampleService` class is registered with the dependency injection container:
 

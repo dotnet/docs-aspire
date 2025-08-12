@@ -9,7 +9,7 @@ The .NET Aspire Azure PostgreSQL hosting integration models a PostgreSQL flexibl
 - <xref:Aspire.Hosting.Postgres.PgAdminContainerResource>
 - <xref:Aspire.Hosting.Postgres.PgWebContainerResource>
 
-To access these types and APIs for expressing them as resources in your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.Azure.PostgreSQL) NuGet package:
+To access these types and APIs for expressing them as resources in your [AppHost](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.Azure.PostgreSQL) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -36,7 +36,7 @@ The Azure PostgreSQL hosting integration takes a dependency on the [📦 Aspire.
 
 <span id="add-postgresql-server-resource"></span>
 
-After you've installed the .NET Aspire Azure PostgreSQL hosting integration, call the <xref:Aspire.Hosting.AzurePostgresExtensions.AddAzurePostgresFlexibleServer*> extension method in your app host project:
+After you've installed the .NET Aspire Azure PostgreSQL hosting integration, call the <xref:Aspire.Hosting.AzurePostgresExtensions.AddAzurePostgresFlexibleServer*> extension method in your AppHost project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -110,7 +110,7 @@ builder.AddProject<Projects.ExampleProject>()
 For more information on treating Azure PostgreSQL flexible server resources as existing resources, see [Use existing Azure resources](../../azure/integrations-overview.md#use-existing-azure-resources).
 
 > [!NOTE]
-> Alternatively, instead of representing an Azure PostgreSQL flexible server resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> Alternatively, instead of representing an Azure PostgreSQL flexible server resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Run Azure PostgreSQL resource as a container
 
@@ -154,4 +154,4 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(postgresdb);
 ```
 
-The preceding code configures the Azure PostgreSQL server to use password authentication. The `username` and `password` parameters are added to the app host as parameters, and the `WithPasswordAuthentication` method is called to configure the Azure PostgreSQL server to use password authentication. For more information, see [External parameters](../../fundamentals/external-parameters.md).
+The preceding code configures the Azure PostgreSQL server to use password authentication. The `username` and `password` parameters are added to the AppHost as parameters, and the `WithPasswordAuthentication` method is called to configure the Azure PostgreSQL server to use password authentication. For more information, see [External parameters](../../fundamentals/external-parameters.md).

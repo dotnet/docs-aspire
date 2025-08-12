@@ -9,7 +9,7 @@ ms.date: 04/10/2025
 This solution contains the following projects:
 
 - **Aspire.Dashboard.ScreenCapture**: This project contains the screen capture tests for the .NET Aspire Dashboard. It uses Playwright to automate the browser and capture images of the dashboard.
-- **AspireSample.AppHost**: This project contains the .NET Aspire app host, which orchestrates the an API and Web frontend.
+- **AspireSample.AppHost**: This project contains the .NET Aspire AppHost, which orchestrates the an API and Web frontend.
 - **AspireSample.ApiService**: This is an ASP.NET Core Minimal API service that provides a REST API for weather forecasts.
 - **AspireSample.Web**: This is a Blazor app that provides a web frontend.
 - **AspireSample.ServiceDefaults**: This project contains the default service settings for the API and Web apps.

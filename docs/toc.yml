@@ -41,7 +41,7 @@ items:
   - name: Architecture overview
     displayName: aspire architecture,aspire app,aspire apphost,aspire app model
     href: architecture/overview.md
-  - name: App host overview
+  - name: AppHost overview
     displayName: orchestration,aspire apphost,aspire app,dev-time,inner-loop
     href: fundamentals/app-host-overview.md
   - name: Locally orchestrate
@@ -55,7 +55,7 @@ items:
     - name: Python apps in .NET Aspire
       displayName: python,flask,fastapi
       href: get-started/build-aspire-apps-with-python.md
-  - name: App host configuration
+  - name: AppHost configuration
     href: app-host/configuration.md
   - name: Customize resources
     items:
@@ -71,6 +71,9 @@ items:
     - name: Custom resource URLs
       displayName: withurl,withurlforendpoint,withurls
       href: fundamentals/custom-resource-urls.md      
+  - name: Host external executables
+    href: app-host/executable-resources.md
+    displayName: executable,addexecutable,external apps,cli tools
   - name: Add Dockerfiles to the app model
     href: app-host/withdockerfile.md
     displayName: dockerfile,docker
@@ -158,7 +161,7 @@ items:
     href: testing/overview.md
   - name: Write your first .NET Aspire test
     href: testing/write-your-first-test.md
-  - name: Managing the app host
+  - name: Managing the AppHost
     href: testing/manage-app-host.md
   - name: Accessing resources in tests
     href: testing/accessing-resources.md
@@ -490,6 +493,9 @@ items:
   - name: Allow unsecure transport
     displayName: unsecure transport,http,non-tls
     href: troubleshooting/allow-unsecure-transport.md
+  - name: HostingStartup is not supported
+    displayName: hosting startup,IWebHostBuilder,IHostApplicationBuilder,migration
+    href: troubleshooting/hosting-startup-not-supported.md
   - name: Untrusted localhost certificate
     href: troubleshooting/untrusted-localhost-certificate.md
   - name: Unable to install .NET Aspire workload

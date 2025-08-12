@@ -13,7 +13,7 @@ ms.date: 07/17/2025
 
 To enable deployment tools from Microsoft and other cloud providers to understand the structure of .NET Aspire projects, specialized targets of the [AppHost project](../fundamentals/app-host-overview.md) can be executed to generate a manifest file describing the projects/services used by the app and the properties necessary for deployment, such as environment variables.
 
-For more information on the schema of the manifest and how to run app host project targets, see [.NET Aspire manifest format for deployment tool builders](manifest-format.md).
+For more information on the schema of the manifest and how to run AppHost project targets, see [.NET Aspire manifest format for deployment tool builders](manifest-format.md).
 
 ## Deploy to Azure
 
@@ -33,10 +33,10 @@ Kubernetes is a popular container orchestration platform that can run .NET Aspir
 
 ### The Aspir8 project
 
-**Aspir8**, an open-source project, handles the generation of deployment YAML based on the .NET Aspire app host manifest. The project outputs a .NET global tool that can be used to perform a series of tasks, resulting in the generation of Kubernetes manifests:
+**Aspir8**, an open-source project, handles the generation of deployment YAML based on the .NET Aspire AppHost manifest. The project outputs a .NET global tool that can be used to perform a series of tasks, resulting in the generation of Kubernetes manifests:
 
 - `aspirate init`: Initializes the **Aspir8** project in the current directory.
-- `aspirate generate`: Generates Kubernetes manifests based on the .NET Aspire app host manifest.
+- `aspirate generate`: Generates Kubernetes manifests based on the .NET Aspire AppHost manifest.
 - `aspirate apply`: Applies the generated Kubernetes manifests to the Kubernetes cluster.
 - `aspirate destroy`: Deletes the resources created by the `apply` command.
 

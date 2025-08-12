@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 
 # Updates to implicitly named volumes to avoid collisions
 
-The `WithDataVolume` methods create container volumes with names implicitly based on the App Host project name and resource name. This can lead to collisions when multiple App Host projects share the same name.
+The `WithDataVolume` methods create container volumes with names implicitly based on the AppHost project name and resource name. This can lead to collisions when multiple AppHost projects share the same name.
 
 ## Version introduced
 
@@ -15,11 +15,11 @@ The `WithDataVolume` methods create container volumes with names implicitly base
 
 ## Previous behavior
 
-The implicit volume name is based on the App Host project name and resource name. For example, if the App Host project is named "TestShop.AppHost" and the resource is named "postgres", the implicit volume name will be "TestShop.AppHost-postgres-data".
+The implicit volume name is based on the AppHost project name and resource name. For example, if the AppHost project is named "TestShop.AppHost" and the resource is named "postgres", the implicit volume name will be "TestShop.AppHost-postgres-data".
 
 ## New behavior
 
-The implicit volume naming logic now includes a hash of the App Host project path or another deterministic, stable value derived from the App Host project. This prevents collisions of implicit volume names across different solutions.
+The implicit volume naming logic now includes a hash of the AppHost project path or another deterministic, stable value derived from the AppHost project. This prevents collisions of implicit volume names across different solutions.
 
 ## Type of breaking change
 

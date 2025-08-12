@@ -18,7 +18,7 @@ ms.custom: sfi-ropc-nochange
 
 ### Add Azure Queue Storage resource
 
-In your app host project, register the Azure Queue Storage integration by chaining a call to <xref:Aspire.Hosting.AzureStorageExtensions.AddQueues*> on the `IResourceBuilder<IAzureStorageResource>` instance returned by <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>. The following example demonstrates how to add an Azure Queue Storage resource named `storage` and a queue resource named `queues`:
+In your AppHost project, register the Azure Queue Storage integration by chaining a call to <xref:Aspire.Hosting.AzureStorageExtensions.AddQueues*> on the `IResourceBuilder<IAzureStorageResource>` instance returned by <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>. The following example demonstrates how to add an Azure Queue Storage resource named `storage` and a queue resource named `queues`:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

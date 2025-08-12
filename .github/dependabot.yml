@@ -53,6 +53,17 @@ updates:
         patterns:
           - "*" # Prefer a single PR per solution update.
   - package-ecosystem: "nuget"
+    directory: "/docs/azure/snippets/customize-azure-with-infrastructure-resolver" #customize-azure-with-infrastructure-resolver.sln
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for solutions.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per solution update.
+  - package-ecosystem: "nuget"
     directory: "/docs/community-toolkit/snippets/Dapr" #Dapr.sln
     schedule:
       interval: "weekly"
