@@ -50,7 +50,7 @@ docker run --rm -it -d \
     -p 4317:18889 \
     -p 4318:18890 \
     --name aspire-dashboard \
-    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.4
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -61,7 +61,7 @@ docker run --rm -it -d `
     -p 4317:18889 `
     -p 4318:18890 `
     --name aspire-dashboard `
-    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.4
 ```
 
 ---
@@ -85,7 +85,7 @@ docker run --rm -it -d \
     -p 4318:18890 \
     -e DASHBOARD__OTLP__CORS__ALLOWEDORIGINS=https://localhost:8080 \
     --name aspire-dashboard \
-    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.4
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -97,7 +97,7 @@ docker run --rm -it -d `
     -p 4318:18890 `
     -e DASHBOARD__OTLP__CORS__ALLOWEDORIGINS=https://localhost:8080 `
     --name aspire-dashboard `
-    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.4
 ```
 
 ---
