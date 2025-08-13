@@ -67,10 +67,10 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Azure AI Inference client
 
-In the _Program.cs_ file of your client-consuming project, use the `AddChatCompletionsClient` method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register an <xref:Azure.AI.Inference.ChatCompletionsClient> for dependency injection (DI).
+In the _Program.cs_ file of your client-consuming project, use the `AddAzureChatCompletionsClient` method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register an <xref:Azure.AI.Inference.ChatCompletionsClient> for dependency injection (DI).
 
 ```csharp
-builder.AddChatCompletionsClient(connectionName: "ai-foundry");
+builder.AddAzureChatCompletionsClient(connectionName: "ai-foundry");
 ```
 
 > [!TIP]
@@ -131,10 +131,10 @@ A connection can be constructed from the `Keys`, `Deployment ID` and `Endpoint` 
 Endpoint={endpoint};Key={key};DeploymentId={deploymentId}`
 ```
 
-You can provide the name of the connection string when calling `builder.AddChatCompletionsClient()`:
+You can provide the name of the connection string when calling `builder.AddAzureChatCompletionsClient()`:
 
 ```csharp
-builder.AddChatCompletionsClient(
+builder.AddAzureChatCompletionsClient(
     connectionName: "connection-string-name");
 ```
 
@@ -190,7 +190,7 @@ The .NET Aspire Azure AI Inference library supports <xref:Microsoft.Extensions.C
 You can also pass the `Action<ChatCompletionsClientSettings> configureSettings` delegate to set up some or all the options inline, for example, to disable tracing from code:
 
 ```csharp
-builder.AddChatCompletionsClient(
+builder.AddAzureChatCompletionsClient(
     connectionName: "connection-string-name",
     static settings => settings.DisableTracing = true);
 ```
