@@ -22,8 +22,8 @@ Aspire provides flexibility in how telemetry is collected and sent to Applicatio
 
 The classic Application Insights SDK is the traditional method for instrumenting .NET applications. It provides features such as:
 
-- Built-in telemetry collection for HTTP requests, dependencies, exceptions, and more
-- Custom telemetry via the `TelemetryClient` API
+- Built-in telemetry collection for HTTP requests, dependencies, exceptions, and more.
+- Custom telemetry via the `TelemetryClient` API.
 
 However, this SDK is not compatible with OpenTelemetry-based configurations used by Aspire's `AddServiceDefaults()` method.
 
@@ -31,17 +31,17 @@ However, this SDK is not compatible with OpenTelemetry-based configurations used
 
 OpenTelemetry is a modern standard for telemetry collection. Aspire uses OpenTelemetry for tracing and metrics through its `AddServiceDefaults()` method. With OpenTelemetry:
 
-- Telemetry is vendor-agnostic, allowing integration with multiple backends
-- You can use the Azure Monitor OpenTelemetry Distro to send telemetry to Application Insights
+- Telemetry is vendor-agnostic, allowing integration with multiple backends.
+- You can use the Azure Monitor OpenTelemetry Distro to send telemetry to Application Insights.
 
 **Key differences:**
 
 | Feature                         | Classic Application Insights SDK        | OpenTelemetry with Azure Monitor         |
 |---------------------------------|-----------------------------------------|------------------------------------------|
-| **Ease of Use**                 | Requires manual setup for advanced features | Offers a more modern, standardized API |
-| **Compatibility**               | Not compatible with OpenTelemetry setups | Fully compatible with Aspire defaults   |
-| **Extensibility**               | Limited to Application Insights features | Open, vendor-neutral, supports other backends |
-| **Instrumentation Standards**   | Application-specific APIs (for example, `TelemetryClient`) | OpenTelemetry standards                 |
+| **Ease of Use**                 | Requires manual setup for advanced features. | Offers a more modern, standardized API. |
+| **Compatibility**               | Not compatible with OpenTelemetry setups. | Fully compatible with Aspire defaults.   |
+| **Extensibility**               | Limited to Application Insights features. | Open, vendor-neutral, supports other backends. |
+| **Instrumentation Standards**   | Application-specific APIs (for example, `TelemetryClient`). | OpenTelemetry standards.                 |
 
 For detailed guidance on each approach, see:
 
