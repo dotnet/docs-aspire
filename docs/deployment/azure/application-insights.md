@@ -45,8 +45,8 @@ OpenTelemetry is a modern standard for telemetry collection. Aspire uses OpenTel
 
 For detailed guidance on each approach, see:
 
-- [Classic Application Insights SDK Documentation](https://learn.microsoft.com/azure/azure-monitor/app/asp-net-core)
-- [OpenTelemetry for Azure Monitor](https://learn.microsoft.com/azure/azure-monitor/app/opentelemetry-add-modify?tabs=aspnetcore)
+- [Classic Application Insights SDK Documentation](/azure/azure-monitor/app/asp-net-core)
+- [OpenTelemetry for Azure Monitor](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=aspnetcore)
 
 ## Choosing how Application Insights is provisioned
 
