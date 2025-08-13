@@ -12,8 +12,8 @@
     <ProjectReference Include="..\AspireSql.Web\AspireSql.Web.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.4.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.Sql" Version="9.4.0" />
-    <PackageReference Include="Aspire.Hosting.SqlServer" Version="9.4.0" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.4.1" />
+    <PackageReference Include="Aspire.Hosting.Azure.Sql" Version="9.4.1" />
+    <PackageReference Include="Aspire.Hosting.SqlServer" Version="9.4.1" />
   </ItemGroup>
 </Project>
