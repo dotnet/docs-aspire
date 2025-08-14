@@ -86,17 +86,17 @@ using (var db = new TicketContext())
 
 If you want to use EF Core in any of your microservices, .NET Aspire can help by:
 
-- Managing the database container, or a connection to an existing database, centrally in the App Host project and passing its reference to any project that uses it.
+- Managing the database container, or a connection to an existing database, centrally in the AppHost project and passing its reference to any project that uses it.
 
     > [!IMPORTANT]
-    > In .NET Aspire, EF Core is implemented by client integrations, not hosting integrations. The centralized management of the database in the App Host doesn't involve EF Core, which runs in consuming microservice projects instead. For more information, see [Cosmos DB Hosting integration](/dotnet/aspire/database/azure-cosmos-db-entity-framework-integration#hosting-integration), [MySQL Pomelo Hosting integration](/dotnet/aspire/database/mysql-entity-framework-integration#hosting-integration), [Oracle Hosting integration](/dotnet/aspire/database/oracle-entity-framework-integration#hosting-integration), [PostgreSQL Hosting integration](/dotnet/aspire/database/postgresql-entity-framework-integration#hosting-integration), or [SQL Server Hosting integration](/dotnet/aspire/database/sql-server-entity-framework-integration#hosting-integration).
+    > In .NET Aspire, EF Core is implemented by client integrations, not hosting integrations. The centralized management of the database in the AppHost doesn't involve EF Core, which runs in consuming microservice projects instead. For more information, see [Cosmos DB Hosting integration](/dotnet/aspire/database/azure-cosmos-db-entity-framework-integration#hosting-integration), [MySQL Pomelo Hosting integration](/dotnet/aspire/database/mysql-entity-framework-integration#hosting-integration), [Oracle Hosting integration](/dotnet/aspire/database/oracle-entity-framework-integration#hosting-integration), [PostgreSQL Hosting integration](/dotnet/aspire/database/postgresql-entity-framework-integration#hosting-integration), or [SQL Server Hosting integration](/dotnet/aspire/database/sql-server-entity-framework-integration#hosting-integration).
 
 - Providing EF Core-aware integrations that make it easy to create contexts in microservice projects. There are EF Core integrations for SQL Server, MySQL, PostgreSQL, Oracle, Cosmos DB, and other popular database systems.
 
 To use EF Core in your microservice, you must:
 
 - Define the EF Core model with entity classes and context classes.
-- Create an instance of the data context, using the reference passed from the App Host, and add it to the Dependency Injection (DI) container.
+- Create an instance of the data context, using the reference passed from the AppHost, and add it to the Dependency Injection (DI) container.
 - When you want to interact with the database, obtain the context from DI and use it to execute LINQ queries against the database as normal for any EF Core code.
 
 :::image type="content" source="media/ef-core-aspire-architecture-thumb.png" lightbox="media/ef-core-aspire-architecture-large.png" alt-text="A diagram showing how .NET Aspire utilizes EF Core to interact with a database.." :::
@@ -112,7 +112,7 @@ The .NET Aspire EF Core client integrations each include extension methods named
 These .NET Aspire add context methods:
 
 - Check that a context of the same type isn't already registered in the dependency injection (DI) container.
-- Use the connection name you pass to the method to get the connection string from the application builder. This connection name must match the name used when adding the corresponding resource to the app host project.
+- Use the connection name you pass to the method to get the connection string from the application builder. This connection name must match the name used when adding the corresponding resource to the AppHost project.
 - Apply the `DbContext` options, if you passed them.
 - Add the specified `DbContext` to the DI container with context pooling enabled.
 - Apply the recommended defaults, unless you've disabled them through the .NET Aspire EF Core settings:

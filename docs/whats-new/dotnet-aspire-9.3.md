@@ -309,7 +309,7 @@ This small change makes logs easier to read and reduces visual noise—especiall
 
 ### 🏗️ Improvements to in-preview publisher model & compute environment support
 
-In 9.2, we shipped our first iteration of "publishers", a flexible way to configure deployments to any cloud in the app host. To ensure more flexibility, .NET Aspire 9.3 includes a **new and improved** publisher model that distributes publishing behavior across your application graph instead of relying on a single top-level publisher.
+In 9.2, we shipped our first iteration of "publishers", a flexible way to configure deployments to any cloud in the AppHost. To ensure more flexibility, .NET Aspire 9.3 includes a **new and improved** publisher model that distributes publishing behavior across your application graph instead of relying on a single top-level publisher.
 
 Rather than selecting a target environment (like Docker or Azure) by calling `AddDockerComposePublisher()` or similar, Aspire now includes a **built-in publisher** that looks for a `PublishingCallbackAnnotation` on each resource. This annotation describes how that resource should be published—for example, as a Docker Compose service, Kubernetes manifest, or Azure Bicep module.
 
@@ -474,11 +474,11 @@ dotnet tool install --global aspire.cli --prerelease
 > ⚠️ **The Aspire 9.3 CLI is not compatible with Aspire 9.2 projects.**
 > You must upgrade your project to Aspire 9.3+ in order to use the latest CLI features.
 
-#### 🔍 Smarter app host discovery
+#### 🔍 Smarter AppHost discovery
 
-The CLI now **walks upward** from your current directory, **recursively searching each level** for the app host project. Once located, it caches the result in a `.aspire` folder to speed up future commands.
+The CLI now **walks upward** from your current directory, **recursively searching each level** for the AppHost project. Once located, it caches the result in a `.aspire` folder to speed up future commands.
 
-You can now run commands like `aspire run`, `aspire add`, or `aspire publish` from **any directory within your solution**, and the CLI will resolve the app host automatically.
+You can now run commands like `aspire run`, `aspire add`, or `aspire publish` from **any directory within your solution**, and the CLI will resolve the AppHost automatically.
 
 For example:
 
@@ -499,7 +499,7 @@ These updates make the Aspire CLI more reliable, script-friendly, and aligned wi
 
 .NET Aspire 9.3 introduces **preview support for deploying .NET projects to Azure App Service**—one of the most requested features from developers using Aspire with existing Azure environments.
 
-This integration lets you deploy your project as a **containerized Linux Web App**, modeled directly in your Aspire app host using a new `AddAzureAppServiceEnvironment(...)` API.
+This integration lets you deploy your project as a **containerized Linux Web App**, modeled directly in your Aspire AppHost using a new `AddAzureAppServiceEnvironment(...)` API.
 
 #### 🚧 Current limitations (Preview)
 
@@ -508,7 +508,7 @@ This first release is scoped to the most common use cases:
 - Supports **.NET projects only** (via `AddProject(...)`)
 - Each project must expose a **single public HTTP endpoint**
 - **Projects are published as containers** to Azure Container Registry
-- **Containers within the app host** are not supported
+- **Containers within the AppHost** are not supported
 - **Existing App Service Plans are not supported**
 - The Aspire **dashboard is not hosted** in App Service yet
 
@@ -580,7 +580,7 @@ This gives you consistent control over where images are published, even across d
 
 .NET Aspire 9.3 expands **resource deep linking** to include **Azure Blob Storage containers**, building on the model already used for Cosmos DB, Event Hubs, Service Bus, and Azure OpenAI.
 
-You can now model individual blob containers directly in your app host, then inject scoped `BlobContainerClient` instances into your services—making it easy to read or write blobs without manually configuring connection strings or access.
+You can now model individual blob containers directly in your AppHost, then inject scoped `BlobContainerClient` instances into your services—making it easy to read or write blobs without manually configuring connection strings or access.
 
 **AppHost:**
 
@@ -737,7 +737,7 @@ app.MapPost("/chat", async (
 });
 ```
 
-This setup integrates seamlessly with frameworks like [Semantic Kernel](https://github.com/dotnet/semantic-kernel), and works well in modular or pluggable AI systems.
+This setup integrates seamlessly with frameworks like [Semantic Kernel](https://github.com/microsoft/semantic-kernel), and works well in modular or pluggable AI systems.
 
 🔗 Learn more about [Microsoft.Extensions.AI](/dotnet/ai/microsoft-extensions-ai) and [ChatCompletionsClient](/dotnet/api/azure.ai.inference.chatcompletionsclient).
 
@@ -815,7 +815,7 @@ If your deployment relied on Aspire setting the managed identity as the SQL Serv
 
 ### 💸 Default Azure SQL SKU now uses the Free Offer (Breaking change)
 
-.NET Aspire 9.3 changes the default SKU used when provisioning **Azure SQL databases** to the **GP_S_Gen5_2** (General Purpose Serverless) tier with the [**Free Offer**](/azure/azure-sql/database/free-offer?view=azuresql). This helps reduce unexpected costs during development and experimentation.
+.NET Aspire 9.3 changes the default SKU used when provisioning **Azure SQL databases** to the **GP_S_Gen5_2** (General Purpose Serverless) tier with the [**Free Offer**](/azure/azure-sql/database/free-offer?view=azuresql&preserve-view=true). This helps reduce unexpected costs during development and experimentation.
 
 Previously, Aspire defaulted to the **General Purpose (GP)** tier *without* the Free Offer, which could incur charges even for small or test apps.
 

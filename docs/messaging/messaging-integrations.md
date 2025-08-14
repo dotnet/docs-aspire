@@ -4,6 +4,9 @@ description: Learn how to connect an ASP.NET Core app to messaging services usin
 ms.date: 03/20/2025
 ms.topic: tutorial
 zone_pivot_groups: dev-environment
+ms.custom:
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # Tutorial: Use .NET Aspire messaging integrations in ASP.NET Core
@@ -230,7 +233,7 @@ Add the [.NET Aspire Azure Service Bus](azure-service-bus-integration.md) integr
     ```xml
     <ItemGroup>
         <PackageReference Include="Aspire.Azure.Messaging.ServiceBus"
-                          Version="9.1.0" />
+                          Version="*" />
     </ItemGroup>
     ```
 

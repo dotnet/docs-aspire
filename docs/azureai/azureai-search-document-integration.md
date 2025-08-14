@@ -1,7 +1,8 @@
 ---
 title: .NET Aspire Azure AI Search integration
 description: Learn how to integrate Azure AI Search with .NET Aspire.
-ms.date: 04/03/2025
+ms.date: 07/22/2025
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Azure AI Search integration
@@ -12,7 +13,7 @@ The .NET Aspire Azure AI Search Documents integration enables you to connect to 
 
 ## Hosting integration
 
-The .NET Aspire Azure AI Search hosting integration models the Azure AI Search resource as the <xref:Aspire.Hosting.Azure.AzureSearchResource> type. To access this type and APIs for expressing them within your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.Search](https://www.nuget.org/packages/Aspire.Hosting.Azure.Search) NuGet package:
+The .NET Aspire Azure AI Search hosting integration models the Azure AI Search resource as the <xref:Aspire.Hosting.Azure.AzureSearchResource> type. To access this type and APIs for expressing them within your [AppHost](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.Search](https://www.nuget.org/packages/Aspire.Hosting.Azure.Search) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -33,7 +34,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Azure AI Search resource
 
-To add an <xref:Aspire.Hosting.Azure.AzureSearchResource> to your app host project, call the <xref:Aspire.Hosting.AzureSearchExtensions.AddAzureSearch*> method providing a name:
+To add an <xref:Aspire.Hosting.Azure.AzureSearchResource> to your AppHost project, call the <xref:Aspire.Hosting.AzureSearchExtensions.AddAzureSearch*> method providing a name:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -46,7 +47,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The preceding code adds an Azure AI Search resource named `search` to the app host project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
+The preceding code adds an Azure AI Search resource named `search` to the AppHost project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
 
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureSearchExtensions.AddAzureSearch*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see Local provisioning: Configuration
@@ -55,11 +56,11 @@ The preceding code adds an Azure AI Search resource named `search` to the app ho
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by hand; instead, the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure AI Search resource, Bicep is generated to provision the search service with appropriate defaults.
 
-:::code language="bicep" source="../snippets/azure/AppHost/search.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/search/search.bicep":::
 
 The preceding Bicep is a module that provisions an Azure AI Search service resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-:::code language="bicep" source="../snippets/azure/AppHost/search-roles.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/search-roles/search-roles.bicep":::
 
 The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
@@ -106,7 +107,7 @@ builder.AddProject<Projects.ExampleProject>()
 For more information on treating Azure AI Search resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
 > [!NOTE]
-> Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Hosting integration health checks
 
@@ -133,14 +134,14 @@ dotnet add package Aspire.Azure.Search.Documents
 
 ### Add an Azure AI Search index client
 
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureSearchExtensions.AddAzureSearchClient*> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a <xref:Microsoft.Azure.Search.SearchIndexClient> for use via the dependency injection container. The method takes a connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireAzureSearchExtensions.AddAzureSearchClient*> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a [SearchIndexClient class](/dotnet/api/microsoft.azure.search.searchindexclient) for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddAzureSearchClient(connectionName: "search");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Azure AI Search resource in the app host project. For more information, see [Add an Azure AI Search resource](#add-an-azure-ai-search-resource).
+> The `connectionName` parameter must match the name used when adding the Azure AI Search resource in the AppHost project. For more information, see [Add an Azure AI Search resource](#add-an-azure-ai-search-resource).
 
 After adding the `SearchIndexClient`, you can retrieve the client instance using dependency injection. For example, to retrieve the client instance from an example service:
 
@@ -257,6 +258,40 @@ The .NET Aspire Azure AI Search library supports <xref:Microsoft.Extensions.Conf
 ```
 
 For the complete Azure AI Search Documents client integration JSON schema, see [Aspire.Azure.Search.Documents/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Search.Documents/ConfigurationSchema.json).
+
+### Use named configuration
+
+The .NET Aspire Azure AI Search library supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "Search": {
+        "Documents": {
+          "search1": {
+            "Endpoint": "https://mysearch1.search.windows.net/",
+            "DisableTracing": false
+          },
+          "search2": {
+            "Endpoint": "https://mysearch2.search.windows.net/",
+            "DisableTracing": true
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `search1` and `search2` connection names can be used when calling `AddAzureSearchClient`:
+
+```csharp
+builder.AddAzureSearchClient("search1");
+builder.AddAzureSearchClient("search2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
 
 ### Use inline delegates
 

@@ -3,6 +3,7 @@ title: .NET Aspire MySQL database integration
 description: Learn how to use the .NET Aspire MySQL database integration, which includes both hosting and client integrations.
 ms.date: 02/07/2025
 uid: storage/mysql-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire MySQL integration
@@ -45,7 +46,7 @@ builder.AddMySqlDataSource(connectionName: "mysqldb");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the MySQL database resource in the app host project. In other words, when you call `AddDatabase` and provide a name of `mysqldb` that same name should be used when calling `AddMySqlDataSource`. For more information, see [Add MySQL server resource and database resource](#add-mysql-server-resource-and-database-resource).
+> The `connectionName` parameter must match the name used when adding the MySQL database resource in the AppHost project. In other words, when you call `AddDatabase` and provide a name of `mysqldb` that same name should be used when calling `AddMySqlDataSource`. For more information, see [Add MySQL server resource and database resource](#add-mysql-server-resource-and-database-resource).
 
 You can then retrieve the `MySqlConnector.MySqlDataSource` instance using dependency injection. For example, to retrieve the data source from an example service:
 

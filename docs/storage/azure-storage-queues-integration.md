@@ -3,6 +3,7 @@ title: .NET Aspire Azure Queue Storage integration
 description: This article describes the .NET Aspire Azure Queue Storage integration features and capabilities.
 ms.date: 05/09/2025
 uid: storage/azure-queue-storage-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Azure Queue Storage integration
@@ -17,16 +18,16 @@ uid: storage/azure-queue-storage-integration
 
 ### Add Azure Queue Storage resource
 
-In your app host project, register the Azure Queue Storage integration by chaining a call to <xref:Aspire.Hosting.AzureStorageExtensions.AddQueues*> on the `IResourceBuilder<IAzureStorageResource>` instance returned by <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>. The following example demonstrates how to add an Azure Queue Storage resource named `storage` and a queue resource named `queues`:
+In your AppHost project, register the Azure Queue Storage integration by chaining a call to <xref:Aspire.Hosting.AzureStorageExtensions.AddQueues*> on the `IResourceBuilder<IAzureStorageResource>` instance returned by <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>. The following example demonstrates how to add an Azure Queue Storage resource named `storage` and a queue resource named `queues`:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var queues = builder.AddAzureStorage("storage")
-                    .AddQueues("queues");
+var storage = builder.AddAzureStorage("storage")
+                    .AddQueue("jobs");
 
 builder.AddProject<Projects.ExampleProject>()
-       .WithReference(queues);
+       .WithReference(storage);
 
 // After adding all resources, run the app...
 ```
@@ -34,7 +35,7 @@ builder.AddProject<Projects.ExampleProject>()
 The preceding code:
 
 - Adds an Azure Storage resource named `storage`.
-- Adds a queue named `queues` to the storage resource.
+- Adds a queue named `jobs` to the storage resource.
 - Adds the `storage` resource to the `ExampleProject` and waits for it to be ready before starting the project.
 
 [!INCLUDE [storage-bicep](includes/storage-bicep.md)]
@@ -146,6 +147,48 @@ The .NET Aspire Azure Queue Storage integration supports <xref:Microsoft.Extensi
 ```
 
 For the complete Azure Storage Queues client integration JSON schema, see [Aspire.Azure.Data.Queues/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/e3d170c14198caf53e62818e1f71a0526449c585/src/Components/Aspire.Azure.Storage.Queues/ConfigurationSchema.json).
+
+#### Use named configuration
+
+The .NET Aspire Azure Queue Storage integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "Storage": {
+        "Queues": {
+          "queue1": {
+            "DisableHealthChecks": true,
+            "ClientOptions": {
+              "Diagnostics": {
+                "ApplicationId": "myapp1"
+              }
+            }
+          },
+          "queue2": {
+            "DisableTracing": true,
+            "ClientOptions": {
+              "Diagnostics": {
+                "ApplicationId": "myapp2"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `queue1` and `queue2` connection names can be used when calling `AddAzureQueueClient`:
+
+```csharp
+builder.AddAzureQueueClient("queue1");
+builder.AddAzureQueueClient("queue2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
 
 #### Use inline delegates
 

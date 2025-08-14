@@ -1,7 +1,8 @@
 ---
 title: .NET Aspire Azure Event Hubs integration
 description: This article describes the .NET Aspire Azure Event Hubs integration features and capabilities.
-ms.date: 04/03/2025
+ms.date: 07/22/2025
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Azure Event Hubs integration
@@ -19,7 +20,7 @@ The .NET Aspire [Azure Event Hubs](https://azure.microsoft.com/products/event-hu
 - <xref:Aspire.Hosting.Azure.AzureEventHubsEmulatorResource>: Represents an Azure Event Hubs emulator as a container resource.
 - <xref:Aspire.Hosting.Azure.AzureEventHubConsumerGroupResource>: Represents a consumer group within an Event Hub resource.
 
-To access these types and APIs for expressing them within your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.EventHubs](https://www.nuget.org/packages/Aspire.Hosting.Azure.EventHubs) NuGet package:
+To access these types and APIs for expressing them within your [AppHost](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.EventHubs](https://www.nuget.org/packages/Aspire.Hosting.Azure.EventHubs) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -40,7 +41,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Azure Event Hubs resource
 
-To add an <xref:Aspire.Hosting.Azure.AzureEventHubsResource> to your app host project, call the <xref:Aspire.Hosting.AzureEventHubsExtensions.AddAzureEventHubs*> method providing a name, and then call <xref:Aspire.Hosting.AzureEventHubsExtensions.AddHub*>:
+To add an <xref:Aspire.Hosting.Azure.AzureEventHubsResource> to your AppHost project, call the <xref:Aspire.Hosting.AzureEventHubsExtensions.AddAzureEventHubs*> method providing a name, and then call <xref:Aspire.Hosting.AzureEventHubsExtensions.AddHub*>:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -54,7 +55,7 @@ builder.AddProject<Projects.ExampleService>()
 // After adding all resources, run the app...
 ```
 
-When you add an Azure Event Hubs resource to the app host, it exposes other useful APIs to add Event Hub resources, consumer groups, express explicit provisioning configuration, and enables the use of the Azure Event Hubs emulator. The preceding code adds an Azure Event Hubs resource named `event-hubs` and an Event Hub named `messages` to the app host project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleService` project.
+When you add an Azure Event Hubs resource to the AppHost, it exposes other useful APIs to add Event Hub resources, consumer groups, express explicit provisioning configuration, and enables the use of the Azure Event Hubs emulator. The preceding code adds an Azure Event Hubs resource named `event-hubs` and an Event Hub named `messages` to the AppHost project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleService` project.
 
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureEventHubsExtensions.AddAzureEventHubs*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration)
@@ -63,11 +64,11 @@ When you add an Azure Event Hubs resource to the app host, it exposes other usef
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Event Hubs resource, the following Bicep is generated:
 
-:::code language="bicep" source="../snippets/azure/AppHost/event-hubs.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/event-hubs/event-hubs.bicep":::
 
 The preceding Bicep is a module that provisions an Azure Event Hubs resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-:::code language="bicep" source="../snippets/azure/AppHost/event-hubs-roles.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/event-hubs-roles/event-hubs-roles.bicep":::
 
 The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
@@ -113,7 +114,7 @@ builder.AddProject<Projects.ExampleProject>()
 For more information on treating Azure Event Hubs resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
 > [!NOTE]
-> Alternatively, instead of representing an Azure Event Hubs resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> Alternatively, instead of representing an Azure Event Hubs resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Add Event Hub consumer group
 
@@ -328,7 +329,7 @@ The following Event Hub clients are supported by the library, along with their c
 | <xref:Azure.Messaging.EventHubs.Producer.EventHubBufferedProducerClient> | <xref:Azure.Messaging.EventHubs.Producer.EventHubBufferedProducerClientOptions> | <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsBufferedProducerSettings> |
 | <xref:Azure.Messaging.EventHubs.Consumer.EventHubConsumerClient> | <xref:Azure.Messaging.EventHubs.Consumer.EventHubConsumerClientOptions> | <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsConsumerSettings> |
 | <xref:Azure.Messaging.EventHubs.EventProcessorClient> | <xref:Azure.Messaging.EventHubs.EventProcessorClientOptions> | <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsProcessorSettings> |
-| <xref:Microsoft.Azure.EventHubs.PartitionReceiver> | <xref:Azure.Messaging.EventHubs.Primitives.PartitionReceiverOptions> | <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsPartitionReceiverSettings> |
+| [PartitionReceiver Class](/dotnet/api/microsoft.azure.eventhubs.partitionreceiver) | <xref:Azure.Messaging.EventHubs.Primitives.PartitionReceiverOptions> | <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsPartitionReceiverSettings> |
 
 The client types are from the Azure SDK for .NET, as are the corresponding options classes. The settings classes are provided by the .NET Aspire. The settings classes are used to configure the client instances.
 
@@ -341,7 +342,7 @@ builder.AddAzureEventHubProducerClient(connectionName: "event-hubs");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Event Hubs resource in the app host project. For more information, see [Add an Azure Event Hubs resource](#add-an-azure-event-hubs-resource).
+> The `connectionName` parameter must match the name used when adding the Event Hubs resource in the AppHost project. For more information, see [Add an Azure Event Hubs resource](#add-an-azure-event-hubs-resource).
 
 After adding the `EventHubProducerClient`, you can retrieve the client instance using dependency injection. For example, to retrieve your data source object from an example service define it as a constructor parameter and ensure the `ExampleService` class is registered with the dependency injection container:
 
@@ -367,7 +368,7 @@ The client integration provides additional APIs to configure client instances. W
 | <xref:Azure.Messaging.EventHubs.Producer.EventHubBufferedProducerClient> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddAzureEventHubBufferedProducerClient*> |
 | <xref:Azure.Messaging.EventHubs.Consumer.EventHubConsumerClient> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddAzureEventHubConsumerClient*> |
 | <xref:Azure.Messaging.EventHubs.EventProcessorClient> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddAzureEventProcessorClient*> |
-| <xref:Microsoft.Azure.EventHubs.PartitionReceiver> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddAzurePartitionReceiverClient*> |
+| [PartitionReceiver class](/dotnet/api/microsoft.azure.eventhubs.partitionreceiver) | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddAzurePartitionReceiverClient*> |
 
 All of the aforementioned APIs include optional parameters to configure the client instances.
 
@@ -406,7 +407,7 @@ The client integration provides additional APIs to configure keyed client instan
 | <xref:Azure.Messaging.EventHubs.Producer.EventHubBufferedProducerClient> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddKeyedAzureEventHubBufferedProducerClient*> |
 | <xref:Azure.Messaging.EventHubs.Consumer.EventHubConsumerClient> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddKeyedAzureEventHubConsumerClient*> |
 | <xref:Azure.Messaging.EventHubs.EventProcessorClient> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddKeyedAzureEventProcessorClient*> |
-| <xref:Microsoft.Azure.EventHubs.PartitionReceiver> | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddKeyedAzurePartitionReceiverClient*> |
+| [PartitionReceiver class](/dotnet/api/microsoft.azure.eventhubs.partitionreceiver) | <xref:Microsoft.Extensions.Hosting.AspireEventHubsExtensions.AddKeyedAzurePartitionReceiverClient*> |
 
 All of the aforementioned APIs include optional parameters to configure the client instances.
 
@@ -477,6 +478,46 @@ The .NET Aspire Azure Event Hubs library supports <xref:Microsoft.Extensions.Con
 ```
 
 For the complete Azure Event Hubs client integration JSON schema, see [Aspire.Azure.Messaging.EventHubs/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Messaging.EventHubs/ConfigurationSchema.json).
+
+### Use named configuration
+
+The .NET Aspire Azure Event Hubs library supports named configuration, which allows you to configure multiple instances of the same client type with different settings. The named configuration uses the connection name as a key under the specific client configuration section.
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "Messaging": {
+        "EventHubs": {
+          "EventProcessorClient": {
+            "processor1": {
+              "EventHubName": "MyHub1",
+              "ClientOptions": {
+                "Identifier": "PROCESSOR_1"
+              }
+            },
+            "processor2": {
+              "EventHubName": "MyHub2",
+              "ClientOptions": {
+                "Identifier": "PROCESSOR_2"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `processor1` and `processor2` connection names can be used when calling `AddAzureEventProcessorClient`:
+
+```csharp
+builder.AddAzureEventProcessorClient("processor1");
+builder.AddAzureEventProcessorClient("processor2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
 
 You can also setup the Options type using the optional `Action<IAzureClientBuilder<EventProcessorClient, EventProcessorClientOptions>> configureClientBuilder` parameter of the `AddAzureEventProcessorClient` method. For example, to set the processor's client ID for this client:
 

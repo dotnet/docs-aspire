@@ -1,12 +1,13 @@
 ---
 title: Orchestrate Python apps in .NET Aspire
-description: Learn how to integrate Python apps into a .NET Aspire app host project.
+description: Learn how to integrate Python apps into a .NET Aspire AppHost project.
 ms.date: 04/15/2025
+ms.custom: sfi-image-nochange
 ---
 
 # Orchestrate Python apps in .NET Aspire
 
-In this article, you learn how to use Python apps in a .NET Aspire app host. The sample app in this article demonstrates launching a Python application. The Python extension for .NET Aspire requires the use of virtual environments.
+In this article, you learn how to use Python apps in a .NET Aspire AppHost. The sample app in this article demonstrates launching a Python application. The Python extension for .NET Aspire requires the use of virtual environments.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
@@ -36,13 +37,13 @@ In the same terminal session, change directories into the newly created project:
 cd PythonSample
 ```
 
-After the template is created, launch the app host with the following command to ensure that the app host and the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) run successfully:
+After the template is created, launch the AppHost with the following command to ensure that the AppHost and the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) run successfully:
 
 ```dotnetcli
 dotnet run --project ./PythonSample.AppHost/PythonSample.AppHost.csproj
 ```
 
-If the .NET Aspire Dashboard doesn't open, open it with the link in the console output. At this point the dashboard won't show any resources. Stop the app host by pressing <kbd>Ctrl + C</kbd> in the terminal.
+If the .NET Aspire Dashboard doesn't open, open it with the link in the console output. At this point the dashboard won't show any resources. Stop the AppHost by pressing <kbd>Ctrl + C</kbd> in the terminal.
 
 ## Prepare a Python app
 
@@ -123,7 +124,7 @@ if __name__ == '__main__':
 
 The preceding code creates a simple Flask app that listens on port 8111 and returns the message `"Hello, World!"` when the root endpoint is accessed.
 
-## Update the app host project
+## Update the AppHost project
 
 Install the Python hosting package by running the following command:
 
@@ -135,7 +136,7 @@ After the package is installed, the project XML should have a new package refere
 
 :::code language="xml" source="snippets/PythonSample/PythonSample.AppHost/PythonSample.AppHost.csproj" highlight="15":::
 
-Replace the app host _Program.cs_ code with the following snippet. This code adds the Python project to .NET Aspire by calling the `AddPythonApp` API and specifying the project name, project path, and the entry point file:
+Replace the AppHost _Program.cs_ code with the following snippet. This code adds the Python project to .NET Aspire by calling the `AddPythonApp` API and specifying the project name, project path, and the entry point file:
 
 :::code source="snippets/PythonSample/PythonSample.AppHost/Program.cs" highlight="6":::
 
@@ -144,7 +145,7 @@ Replace the app host _Program.cs_ code with the following snippet. This code add
 
 ## Run the app
 
-Now that you've added the Python hosting package, updated the app host _Program.cs_ file, and created a Python project, you can run the app host:
+Now that you've added the Python hosting package, updated the AppHost _Program.cs_ file, and created a Python project, you can run the AppHost:
 
 ```dotnetcli
 dotnet run --project ../PythonSample.AppHost/PythonSample.AppHost.csproj
@@ -158,7 +159,7 @@ Select the **Endpoints** link to open the `hello-python` endpoint in a new brows
 
 :::image source="media/python-hello-world.png" lightbox="media/python-hello-world.png" alt-text=".NET Aspire dashboard: Python sample app endpoint.":::
 
-Stop the app host by pressing <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal.
+Stop the AppHost by pressing <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal.
 
 ## Add telemetry support
 
@@ -176,20 +177,20 @@ The preceding command installs the **OpenTelemetry** package and the **OTLP** ex
 
 :::code language="python" source="snippets/PythonSample/hello-python/main.py":::
 
-Update the app host project's _launchSettings.json_ file to include the `ASPIRE_ALLOW_UNSECURED_TRANSPORT` environment variable under the `http` profile:
+Update the AppHost project's _launchSettings.json_ file to include the `ASPIRE_ALLOW_UNSECURED_TRANSPORT` environment variable under the `http` profile:
 
 :::code language="json" source="snippets/PythonSample/PythonSample.AppHost/Properties/launchSettings.json" highlight="26":::
 
-The `ASPIRE_ALLOW_UNSECURED_TRANSPORT` variable is required because when running locally the OpenTelemetry client in Python rejects the local development certificate. Launch the _app host_ again:
+The `ASPIRE_ALLOW_UNSECURED_TRANSPORT` variable is required because when running locally the OpenTelemetry client in Python rejects the local development certificate. Launch the _AppHost_ again:
 
 ```dotnetcli
 dotnet run --project ../PythonSample.AppHost/PythonSample.AppHost.csproj --launch-profile http
 ```
 
 > [!IMPORTANT]
-> The .NET Aspire app host must be run using HTTP instead of HTTPS. The **OpenTelemetry** library requires HTTP when running in a local dev environment.
+> The .NET Aspire AppHost must be run using HTTP instead of HTTPS. The **OpenTelemetry** library requires HTTP when running in a local dev environment.
 
-Once the app host is running, navigate to the dashboard and select the **Structured** logging tab. Notice that it now contains logging events.
+Once the AppHost is running, navigate to the dashboard and select the **Structured** logging tab. Notice that it now contains logging events.
 
 :::image source="media/python-telemetry-in-dashboard.png" lightbox="media/python-telemetry-in-dashboard.png" alt-text=".NET Aspire dashboard: Structured logging from Python process.":::
 

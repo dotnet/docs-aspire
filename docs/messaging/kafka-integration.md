@@ -3,6 +3,7 @@ title: .NET Aspire Apache Kafka integration
 description: Learn how to use the .NET Aspire Apache Kafka client message-broker integration.
 ms.date: 10/11/2024
 uid: messaging/kafka-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Apache Kafka integration
@@ -13,7 +14,7 @@ uid: messaging/kafka-integration
 
 ## Hosting integration
 
-The Apache Kafka hosting integration models a Kafka server as the <xref:Aspire.Hosting.KafkaServerResource> type. To access this type, install the [📦 Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka) NuGet package in the [app host](xref:dotnet/aspire/app-host) project, then add it with the builder.
+The Apache Kafka hosting integration models a Kafka server as the <xref:Aspire.Hosting.KafkaServerResource> type. To access this type, install the [📦 Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project, then add it with the builder.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -34,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Kafka server resource
 
-In your app host project, call <xref:Aspire.Hosting.KafkaBuilderExtensions.AddKafka*> on the `builder` instance to add a Kafka server resource:
+In your AppHost project, call <xref:Aspire.Hosting.KafkaBuilderExtensions.AddKafka*> on the `builder` instance to add a Kafka server resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -47,7 +48,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/confluentinc/confluent-local` image, it creates a new Kafka server instance on your local machine. A reference to your Kafka server (the `kafka` variable) is added to the `ExampleProject`. The Kafka server resource includes default ports
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/confluentinc/confluent-local` image, it creates a new Kafka server instance on your local machine. A reference to your Kafka server (the `kafka` variable) is added to the `ExampleProject`. The Kafka server resource includes default ports
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"kafka"`. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -70,7 +71,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The Kafka UI is a free, open-source web UI to monitor and manage Apache Kafka clusters. .NET Aspire adds another container image [`docker.io/kafbat/kafka-ui`](https://hub.docker.com/r/kafbat/kafka-ui) to the app host that runs the Kafka UI.
+The Kafka UI is a free, open-source web UI to monitor and manage Apache Kafka clusters. .NET Aspire adds another container image [`docker.io/kafbat/kafka-ui`](https://hub.docker.com/r/kafbat/kafka-ui) to the AppHost that runs the Kafka UI.
 
 ### Change the Kafka UI host port
 
@@ -160,8 +161,11 @@ dotnet add package Aspire.Confluent.Kafka
 In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireKafkaProducerExtensions.AddKafkaProducer%2A> extension method to register an `IProducer<TKey, TValue>` for use via the dependency injection container. The method takes two generic parameters corresponding to the type of the key and the type of the message to send to the broker. These generic parameters are used by `AddKafkaProducer` to create an instance of `ProducerBuilder<TKey, TValue>`. This method also takes connection name parameter.
 
 ```csharp
-builder.AddKafkaProducer<string, string>("messaging");
+builder.AddKafkaProducer<string, string>("kafka");
 ```
+
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the Kafka resource in the AppHost project. In other words, when you call `AddKafka` and provide a name of `kafka` that same name should be used when calling `AddKafkaProducer`. For more information, see [Add Kafka server resource](#add-kafka-server-resource).
 
 You can then retrieve the `IProducer<TKey, TValue>` instance using dependency injection. For example, to retrieve the producer from an `IHostedService`:
 
@@ -179,8 +183,11 @@ For more information on workers, see [Worker services in .NET](/dotnet/core/exte
 To register an `IConsumer<TKey, TValue>` for use via the dependency injection container, call the <xref:Microsoft.Extensions.Hosting.AspireKafkaConsumerExtensions.AddKafkaConsumer%2A> extension method in the _:::no-loc text="Program.cs":::_ file of your client-consuming project. The method takes two generic parameters corresponding to the type of the key and the type of the message to receive from the broker. These generic parameters are used by `AddKafkaConsumer` to create an instance of `ConsumerBuilder<TKey, TValue>`. This method also takes connection name parameter.
 
 ```csharp
-builder.AddKafkaConsumer<string, string>("messaging");
+builder.AddKafkaConsumer<string, string>("kafka");
 ```
+
+> [!TIP]
+> The `connectionName` parameter must match the name used when adding the Kafka resource in the AppHost project. In other words, when you call `AddKafka` and provide a name of `kafka` that same name should be used when calling `AddKafkaComsumer`. For more information, see [Add Kafka server resource](#add-kafka-server-resource).
 
 You can then retrieve the `IConsumer<TKey, TValue>` instance using dependency injection. For example, to retrieve the consumer from an `IHostedService`:
 
@@ -209,7 +216,7 @@ The .NET Aspire Apache Kafka integration provides multiple options to configure 
 When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `builder.AddKafkaProducer()` or `builder.AddKafkaProducer()`:
 
 ```csharp
-builder.AddKafkaProducer<string, string>("kafka-producer");
+builder.AddKafkaProducer<string, string>("kafka");
 ```
 
 Then the connection string is retrieved from the `ConnectionStrings` configuration section:
@@ -217,7 +224,7 @@ Then the connection string is retrieved from the `ConnectionStrings` configurati
 ```json
 {
   "ConnectionStrings": {
-    "kafka-producer": "broker:9092"
+    "kafka": "broker:9092"
   }
 }
 ```
@@ -251,6 +258,44 @@ The `Config` properties of both  `Aspire:Confluent:Kafka:Producer` and `Aspire.C
 
 For the complete Kafka client integration JSON schema, see [Aspire.Confluent.Kafka/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Confluent.Kafka/ConfigurationSchema.json).
 
+#### Use named configuration
+
+The .NET Aspire Apache Kafka integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Confluent": {
+      "Kafka": {
+        "Producer": {
+          "kafka1": {
+            "DisableHealthChecks": false,
+            "Config": {
+              "Acks": "All"
+            }
+          },
+          "kafka2": {
+            "DisableHealthChecks": true,
+            "Config": {
+              "Acks": "Leader"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `kafka1` and `kafka2` connection names can be used when calling `AddKafkaProducer` or `AddKafkaConsumer`:
+
+```csharp
+builder.AddKafkaProducer<string, string>("kafka1");
+builder.AddKafkaConsumer<string, string>("kafka2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
+
 #### Use inline delegates
 
 There are several inline delegates available to configure various options.
@@ -261,7 +306,7 @@ You can pass the `Action<KafkaProducerSettings> configureSettings` delegate to s
 
 ```csharp
 builder.AddKafkaProducer<string, string>(
-    "messaging", 
+    "kafka", 
     static settings => settings.DisableHealthChecks = true);
 ```
 
@@ -269,7 +314,7 @@ You can configure inline a consumer from code:
 
 ```csharp
 builder.AddKafkaConsumer<string, string>(
-    "messaging",
+    "kafka",
     static settings => settings.DisableHealthChecks = true);
 ```
 
@@ -279,7 +324,7 @@ To configure `Confluent.Kafka` builders, pass an `Action<ProducerBuilder<TKey, T
 
 ```csharp
 builder.AddKafkaProducer<string, MyMessage>(
-    "messaging",
+    "kafka",
     static producerBuilder => 
     {
         var messageSerializer = new MyMessageSerializer();
@@ -296,7 +341,7 @@ Consider the following producer registration example:
 
 ```csharp
 builder.AddKafkaProducer<string, MyMessage>(
-    "messaging",
+    "kafka",
     static (serviceProvider, producerBuilder) => 
     {
         var messageSerializer = serviceProvider.GetRequiredServices<MyMessageSerializer>();

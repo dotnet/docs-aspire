@@ -1,17 +1,18 @@
 ---
 title: Access resources in .NET Aspire tests
-description: Learn how to access the resources from the .NET Aspire app host in your tests.
+description: Learn how to access the resources from the .NET Aspire AppHost in your tests.
 ms.date: 02/24/2025
 zone_pivot_groups: unit-testing-framework
+ms.custom: sfi-ropc-nochange
 ---
 
 # Access resources in .NET Aspire tests
 
-In this article, you learn how to access the resources from the .NET Aspire app host in your tests. The app host represents the full application environment and contains all the resources that are available to the application. When writing functional or integration tests with .NET Aspire, you might need to access these resources to verify the behavior of your application.
+In this article, you learn how to access the resources from the .NET Aspire AppHost in your tests. The AppHost represents the full application environment and contains all the resources that are available to the application. When writing functional or integration tests with .NET Aspire, you might need to access these resources to verify the behavior of your application.
 
 ## Access HTTP resources
 
-To access an HTTP resource, use the <xref:System.Net.Http.HttpClient> to request and receive responses. The <xref:Aspire.Hosting.DistributedApplication> and the <xref:Aspire.Hosting.Testing.DistributedApplicationFactory> both provide a <xref:Aspire.Hosting.Testing.DistributedApplicationFactory.CreateHttpClient*> method that's used to create an `HttpClient` instance for a specific resource, based on the resource name from the app host. This method also takes an optional `endpointName` parameter, so if the resource has multiple endpoints, you can specify which one to use.
+To access an HTTP resource, use the <xref:System.Net.Http.HttpClient> to request and receive responses. The <xref:Aspire.Hosting.DistributedApplication> and the <xref:Aspire.Hosting.Testing.DistributedApplicationFactory> both provide a <xref:Aspire.Hosting.Testing.DistributedApplicationFactory.CreateHttpClient*> method that's used to create an `HttpClient` instance for a specific resource, based on the resource name from the AppHost. This method also takes an optional `endpointName` parameter, so if the resource has multiple endpoints, you can specify which one to use.
 
 ## Access other resources
 
@@ -47,4 +48,4 @@ This resource-notification pattern ensures that the resources are available befo
 ## See also
 
 - [Write your first .NET Aspire test](./write-your-first-test.md)  
-- [Managing the app host in .NET Aspire tests](./manage-app-host.md)
+- [Managing the AppHost in .NET Aspire tests](./manage-app-host.md)

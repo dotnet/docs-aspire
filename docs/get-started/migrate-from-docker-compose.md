@@ -272,7 +272,7 @@ builder.Build().Run();
 **Related links:**
 
 - [Docker Compose specification](https://docs.docker.com/compose/compose-file/)
-- [.NET Aspire app host overview](../fundamentals/app-host-overview.md)
+- [.NET Aspire AppHost overview](../fundamentals/app-host-overview.md)
 - [Add Dockerfiles to your .NET app model](../app-host/withdockerfile.md)
 
 ## Migration strategy
@@ -289,7 +289,7 @@ Before migrating, inventory your Docker Compose setup:
 - **Environment variables**: List all configuration variables and secrets.
 - **Custom networks**: Identify any custom networking requirements and configurations.
 
-### 2. Create the .NET Aspire app host
+### 2. Create the .NET Aspire AppHost
 
 Start by creating a new .NET Aspire project:
 
@@ -317,7 +317,7 @@ For persistent data:
 
 ### 5. Test and validate
 
-- Start the .NET Aspire app host and verify all services start correctly.
+- Start the .NET Aspire AppHost and verify all services start correctly.
 - Check the dashboard to confirm service health and connectivity status.
 - Validate that inter-service communication works as expected.
 - Test with your existing client applications to ensure compatibility.
@@ -367,6 +367,7 @@ When migrating from Docker Compose to .NET Aspire, you might encounter some comm
 
 - [Docker Compose FAQ](https://docs.docker.com/compose/faq/)
 - [Container runtime unhealthy](../troubleshooting/container-runtime-unhealthy.md)
+- [Container runtime 'podman' could not be found in WSL](../troubleshooting/podman-wsl-not-found.md)
 - [.NET Aspire dashboard overview](../fundamentals/dashboard/overview.md)
 
 ## Next steps

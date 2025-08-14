@@ -3,6 +3,7 @@ title: .NET Aspire NATS integration
 description: Learn how to use the .NET Aspire NATS integration to send logs and traces to a NATS Server.
 ms.date: 02/20/2025
 uid: messaging/nats-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire NATS integration
@@ -13,7 +14,7 @@ uid: messaging/nats-integration
 
 ## Hosting integration
 
-NATS hosting integration for .NET Aspire models a NATS server as the <xref:Aspire.Hosting.ApplicationModel.NatsServerResource> type. To access this type, install the [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats) NuGet package in the [app host](xref:dotnet/aspire/app-host) project, then add it with the builder.
+NATS hosting integration for .NET Aspire models a NATS server as the <xref:Aspire.Hosting.ApplicationModel.NatsServerResource> type. To access this type, install the [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project, then add it with the builder.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -34,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add NATS server resource
 
-In your app host project, call <xref:Aspire.Hosting.NatsBuilderExtensions.AddNats*> on the `builder` instance to add a NATS server resource:
+In your AppHost project, call <xref:Aspire.Hosting.NatsBuilderExtensions.AddNats*> on the `builder` instance to add a NATS server resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -47,7 +48,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/nats` image, it creates a new NATS server instance on your local machine. A reference to your NATS server (the `nats` variable) is added to the `ExampleProject`.
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/nats` image, it creates a new NATS server instance on your local machine. A reference to your NATS server (the `nats` variable) is added to the `ExampleProject`.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"nats"`. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -170,7 +171,7 @@ builder.AddNatsClient(connectionName: "nats");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the NATS server resource in the app host project. For more information, see [Add NATS server resource](#add-nats-server-resource).
+> The `connectionName` parameter must match the name used when adding the NATS server resource in the AppHost project. For more information, see [Add NATS server resource](#add-nats-server-resource).
 
 You can then retrieve the `INatsConnection` instance using dependency injection. For example, to retrieve the client from a service:
 
@@ -248,6 +249,38 @@ The .NET Aspire NATS integration supports <xref:Microsoft.Extensions.Configurati
 ```
 
 For the complete NATS client integration JSON schema, see [Aspire.NATS.Net/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.NATS.Net/ConfigurationSchema.json).
+
+#### Use named configuration
+
+The .NET Aspire NATS integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Nats": {
+      "Client": {
+        "nats1": {
+          "ConnectionString": "nats://nats1:4222",
+          "DisableHealthChecks": true
+        },
+        "nats2": {
+          "ConnectionString": "nats://nats2:4222",
+          "DisableTracing": true
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `nats1` and `nats2` connection names can be used when calling `AddNatsClient`:
+
+```csharp
+builder.AddNatsClient("nats1");
+builder.AddNatsClient("nats2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
 
 #### Use inline delegates
 

@@ -20,7 +20,7 @@ helpviewer_keywords:
 - `Aspire.Hosting.AzureContainerAppContainerExtensions.PublishAsAzureContainerApp`
 - `Aspire.Hosting.AzureContainerAppExecutableExtensions.PublishAsAzureContainerApp`
 
-When you use one of these methods, the Azure Developer CLI (`azd`) can no longer preserve custom domains. Instead use the `Aspire.Hosting.ContainerAppExtensions.ConfigureCustomDomain` method to configure a custom domain within the .NET Aspire app host.
+When you use one of these methods, the Azure Developer CLI (`azd`) can no longer preserve custom domains. Instead use the `Aspire.Hosting.ContainerAppExtensions.ConfigureCustomDomain` method to configure a custom domain within the .NET Aspire AppHost.
 
 However, `app.ConfigureCustomDomain` is an experimental API and you must suppress it to use it.
 

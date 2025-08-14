@@ -4,17 +4,23 @@ ms.topic: include
 
 #### Provisioning-generated Bicep
 
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by hand; instead, the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Storage resource, the following Bicep is generated:
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Storage resource, the following Bicep is generated:
 
-:::code language="bicep" source="../../snippets/azure/AppHost/storage.module.bicep":::
+:::code language="bicep" source="../../snippets/azure/AppHost/storage/storage.bicep":::
 
-The preceding Bicep is a module that provisions an Azure Storage account resource. Additionally, role assignments are created for the Azure resource in a separate module:
+The preceding Bicep is a module that provisions an Azure Storage account with the following defaults:
 
-:::code language="bicep" source="../../snippets/azure/AppHost/storage-roles.module.bicep":::
+- `kind`: The kind of storage account. The default is `StorageV2`.
+- `sku`: The SKU of the storage account. The default is `Standard_GRS`.
+- `properties`: The properties of the storage account:
+  - `accessTier`: The access tier of the storage account. The default is `Hot`.
+  - `allowSharedKeyAccess`: A boolean value that indicates whether the storage account permits requests to be authorized with the account access key. The default is `false`.
+  - `minimumTlsVersion`: The minimum supported TLS version for the storage account. The default is `TLS1_2`.
+  - `networkAcls`: The network ACLs for the storage account. The default is `{ defaultAction: 'Allow' }`.
 
 In addition to the storage account, it also provisions a blob container.
 
-The following role assignments are added to the storage account to grant your application access. For more information, see the [built-in Azure role-based access control (Azure RBAC) roles](/azure/role-based-access-control/built-in-roles#storage).
+The following role assignments are added to the storage account to grant your application access. See the [built-in Azure role-based access control (Azure RBAC) roles](/azure/role-based-access-control/built-in-roles#storage) for more information:
 
 | Role / ID | Description |
 |------|-------------|
@@ -22,7 +28,11 @@ The following role assignments are added to the storage account to grant your ap
 | Storage Table Data Contributor<br/>`0a9a7e1f-b9d0-4cc4-a60d-0319b160aaa3` | Read, write, and delete Azure Storage tables and entities. |
 | Storage Queue Data Contributor<br/>`974c5e8b-45b9-4653-ba55-5f855dd0fb88` | Read, write, and delete Azure Storage queues and queue messages. |
 
-The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. If you make customizations directly to the Bicep file, they'll be overwritten, so make changes through the C# provisioning APIs to ensure they're reflected in the generated files.
+Additionally, role assignments are created for the Azure resource in a separate module:
+
+:::code language="bicep" source="../../snippets/azure/AppHost/storage-roles/storage-roles.bicep":::
+
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
 #### Customize provisioning infrastructure
 

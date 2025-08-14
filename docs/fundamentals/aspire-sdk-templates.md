@@ -43,7 +43,7 @@ The following .NET Aspire project templates are available:
 
 <a name="app-host"></a>
 
-- **.NET Aspire App Host**: A standalone **.AppHost** project that can be used to orchestrate and manage the different projects and services of your app.
+- **.NET Aspire AppHost**: A standalone **.AppHost** project that can be used to orchestrate and manage the different projects and services of your app.
 
 <a name="mstest-project"></a>
 <a name="nunit-project"></a>
@@ -63,6 +63,10 @@ The following .NET Aspire project templates are available:
 
   > [!IMPORTANT]
   > The service defaults project template takes a `FrameworkReference` dependency on `Microsoft.AspNetCore.App`. This may not be ideal for some project types. For more information, see [.NET Aspire service defaults](service-defaults.md).
+
+## Install the .NET Aspire templates
+
+[!INCLUDE [Install templates](includes/install-templates.md)]
 
 ## Create solutions and projects using templates
 
@@ -90,7 +94,7 @@ Select the desired location, enter a name, and select **Create**.
 
 To create a .NET Aspire solution or project using the .NET CLI, use the [dotnet new](/dotnet/core/tools/dotnet-new) command and specify which template you would like to create. Consider the following examples:
 
-To create a basic [.NET Aspire app host](app-host-overview.md) project targeting the latest .NET version:
+To create a basic [.NET Aspire AppHost](app-host-overview.md) project targeting the latest .NET version:
 
 ```dotnetcli
 dotnet new aspire-apphost
@@ -103,7 +107,7 @@ dotnet new aspire-starter
 ```
 
 > [!TIP]
-> .NET Aspire templates default to using the latest .NET version, even when using an earlier version of the .NET CLI. To manually specify the .NET version, use the `--framework <tfm>` option, e.g. to create a basic [.NET Aspire app host](app-host-overview.md) project targeting .NET 8:
+> .NET Aspire templates default to using the latest .NET version, even when using an earlier version of the .NET CLI. To manually specify the .NET version, use the `--framework <tfm>` option, e.g. to create a basic [.NET Aspire AppHost](app-host-overview.md) project targeting .NET 8:
 >
 > ```dotnetcli
 > dotnet new aspire-apphost --framework net8.0

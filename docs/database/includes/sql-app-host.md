@@ -1,8 +1,9 @@
 ---
 ms.topic: include
+ms.custom: sfi-ropc-nochange
 ---
 
-The SQL Server hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.SqlServerServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The SQL Server hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.SqlServerServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.SqlServerDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -23,20 +24,20 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add SQL Server resource and database resource
 
-In your app host project, call <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*> to add and return a SQL Server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*>, to add SQL Server database resource.
+In your AppHost project, call <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*> to add and return a SQL Server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*>, to add SQL Server database resource.
 
 :::code language="csharp" source="../snippets/sql-server-integration/AspireApp.AppHost/AppHost.cs":::
 
 > [!NOTE]
 > The SQL Server container is slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `mcr.microsoft.com/mssql/server` image, it creates a new SQL Server instance on your local machine. A reference to your SQL Server resource builder (the `sql` variable) is used to add a database. The database is named `database` and then added to the `ExampleProject`.
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `mcr.microsoft.com/mssql/server` image, it creates a new SQL Server instance on your local machine. A reference to your SQL Server resource builder (the `sql` variable) is used to add a database. The database is named `database` and then added to the `ExampleProject`.
 
-When adding a database resource to the app model, the database is created if it doesn't already exist. The creation of the database relies on the [app host eventing APIs](../../app-host/eventing.md), specifically <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent>. In other words, when the `sql` resource is _ready_, the event is raised and the database resource is created.
+When adding a database resource to the app model, the database is created if it doesn't already exist. The creation of the database relies on the [AppHost eventing APIs](../../app-host/eventing.md), specifically <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent>. In other words, when the `sql` resource is _ready_, the event is raised and the database resource is created.
 
 The SQL Server resource includes default credentials with a `username` of `sa` and a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
-When the app host runs, the password is stored in the app host's secret store. It's added to the `Parameters` section, for example:
+When the AppHost runs, the password is stored in the AppHost's secret store. It's added to the `Parameters` section, for example:
 
 ```json
 {
@@ -105,7 +106,7 @@ For more information on providing parameters, see [External parameters](../../fu
 
 ### Connect to database resources
 
-When the .NET Aspire app host runs, the server's database resources can be accessed from external tools, such as [SQL Server Management Studio (SSMS)](/sql/ssms/download-sql-server-management-studio-ssms) or [MSSQL for Visual Studio Code](/sql/tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code). The connection string for the database resource is available in the dependent resources environment variables and is accessed using the [.NET Aspire dashboard: Resource details](../../fundamentals/dashboard/explore.md#resource-details) pane. The environment variable is named `ConnectionStrings__{name}` where `{name}` is the name of the database resource, in this example it's `database`. Use the connection string to connect to the database resource from external tools. Imagine that you have a database named `todos` with a single `dbo.Todos` table.
+When the .NET Aspire AppHost runs, the server's database resources can be accessed from external tools, such as [SQL Server Management Studio (SSMS)](/sql/ssms/download-sql-server-management-studio-ssms) or [MSSQL for Visual Studio Code](/sql/tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code). The connection string for the database resource is available in the dependent resources environment variables and is accessed using the [.NET Aspire dashboard: Resource details](../../fundamentals/dashboard/explore.md#resource-details) pane. The environment variable is named `ConnectionStrings__{name}` where `{name}` is the name of the database resource, in this example it's `database`. Use the connection string to connect to the database resource from external tools. Imagine that you have a database named `todos` with a single `dbo.Todos` table.
 
 #### [SQL Server Management Studio](#tab/ssms)
 

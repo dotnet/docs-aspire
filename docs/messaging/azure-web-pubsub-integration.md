@@ -2,7 +2,8 @@
 title: .NET Aspire Azure Web PubSub integration
 description: This article describes the .NET Aspire Azure Web PubSub integration features and capabilities.
 ms.topic: how-to
-ms.date: 04/09/2025
+ms.date: 07/22/2025
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Azure Web PubSub integration
@@ -18,7 +19,7 @@ The .NET Aspire [Azure Web PubSub](https://azure.microsoft.com/products/web-pubs
 - <xref:Aspire.Hosting.ApplicationModel.AzureWebPubSubResource>: Represents an Azure Web PubSub resource, including connection information to the underlying Azure resource.
 - <xref:Aspire.Hosting.ApplicationModel.AzureWebPubSubHubResource>: Represents a Web PubSub hub settings resource, which contains the settings for a hub. For example, you can specify if the hub allows anonymous connections or add event handlers to the hub.
 
-To access these types and APIs for expressing them within your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.WebPubSub](https://www.nuget.org/packages/Aspire.Hosting.Azure.WebPubSub) NuGet package:
+To access these types and APIs for expressing them within your [AppHost](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.WebPubSub](https://www.nuget.org/packages/Aspire.Hosting.Azure.WebPubSub) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -39,7 +40,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Azure Web PubSub resource
 
-To add an Azure Web PubSub resource to your app host project, call the <xref:Aspire.Hosting.AzureWebPubSubExtensions.AddAzureWebPubSub*> method providing a name:
+To add an Azure Web PubSub resource to your AppHost project, call the <xref:Aspire.Hosting.AzureWebPubSubExtensions.AddAzureWebPubSub*> method providing a name:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -52,14 +53,14 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The preceding code adds an Azure Web PubSub resource named `web-pubsub` to the app host project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
+The preceding code adds an Azure Web PubSub resource named `web-pubsub` to the AppHost project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
 
 > [!IMPORTANT]
 > When you call `AddAzureWebPubSub`, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration).
 
 ### Add an Azure Web PubSub hub resource
 
-When you add an Azure Web PubSub resource, you can also add a child hub resource. The hub resource is a logical grouping of connections and event handlers. To add an Azure Web PubSub hub resource to your app host project, chain a call to the <xref:Aspire.Hosting.AzureWebPubSubExtensions.AddHub*> method providing a resource and hub name:
+When you add an Azure Web PubSub resource, you can also add a child hub resource. The hub resource is a logical grouping of connections and event handlers. To add an Azure Web PubSub hub resource to your AppHost project, chain a call to the <xref:Aspire.Hosting.AzureWebPubSubExtensions.AddHub*> method providing a resource and hub name:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -99,11 +100,11 @@ When you publish your app, .NET Aspire provisioning APIs generate Bicep alongsid
 
 When you add an Azure Web PubSub resource, the following Bicep is generated:
 
-:::code language="bicep" source="../snippets/azure/AppHost/web-pubsub.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/web-pubsub/web-pubsub.bicep":::
 
 The preceding Bicep is a module that provisions an Azure Web PubSub resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-:::code language="bicep" source="../snippets/azure/AppHost/web-pubsub-roles.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/web-pubsub-roles/web-pubsub-roles.bicep":::
 
 The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
@@ -148,7 +149,7 @@ builder.AddProject<Projects.ExampleProject>()
 For more information on treating Azure Web PubSub resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
 > [!NOTE]
-> Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ## Client integration
 
@@ -187,7 +188,7 @@ builder.AddAzureWebPubSubServiceClient(
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Web PubSub resource in the app host project. For more information, see [Add an Azure Web PubSub resource](#add-an-azure-web-pubsub-resource).
+> The `connectionName` parameter must match the name used when adding the Web PubSub resource in the AppHost project. For more information, see [Add an Azure Web PubSub resource](#add-an-azure-web-pubsub-resource).
 
 After adding the `WebPubSubServiceClient`, you can retrieve the client instance using dependency injection. For example, to retrieve your data source object from an example service define it as a constructor parameter and ensure the `ExampleService` class is registered with the dependency injection container:
 
@@ -290,6 +291,40 @@ The library supports <xref:Microsoft.Extensions.Configuration>. It loads setting
 ```
 
 For the complete Azure OpenAI client integration JSON schema, see [Aspire.Azure.Messaging.WebPubSub/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/main/src/Components/Aspire.Azure.Messaging.WebPubSub/ConfigurationSchema.json).
+
+#### Use named configuration
+
+The .NET Aspire Azure Web PubSub integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "Messaging": {
+        "WebPubSub": {
+          "webpubsub1": {
+            "HubName": "hub1",
+            "DisableHealthChecks": true
+          },
+          "webpubsub2": {
+            "HubName": "hub2",
+            "DisableHealthChecks": false
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `webpubsub1` and `webpubsub2` connection names can be used when calling `AddAzureWebPubSubServiceClient`:
+
+```csharp
+builder.AddAzureWebPubSubServiceClient("webpubsub1");
+builder.AddAzureWebPubSubServiceClient("webpubsub2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
 
 #### Use inline delegates
 

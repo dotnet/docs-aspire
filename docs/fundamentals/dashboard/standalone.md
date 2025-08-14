@@ -3,6 +3,7 @@ title: Standalone .NET Aspire dashboard
 description: How to use the .NET Aspire dashboard standalone.
 ms.date: 04/15/2025
 ms.topic: reference
+ms.custom: sfi-image-nochange
 ---
 
 # Standalone .NET Aspire dashboard
@@ -42,7 +43,7 @@ docker run --rm -it -d `
 
 The preceding Docker command:
 
-- Starts a container from the `mcr.microsoft.com/dotnet/aspire-dashboard:9.0` image.
+- Starts a container from the `mcr.microsoft.com/dotnet/aspire-dashboard:9.4` image.
 - The container expose two ports:
   - Mapping the dashboard's OTLP port `18889` to the host's port `4317`. Port `4317` receives OpenTelemetry data from apps. Apps send data using [OpenTelemetry Protocol (OTLP)](https://opentelemetry.io/docs/specs/otlp/).
   - Mapping the dashboard's port `18888` to the host's port `18888`. Port `18888` has the dashboard UI. Navigate to `http://localhost:18888` in the browser to view the dashboard.
@@ -51,9 +52,37 @@ The preceding Docker command:
 
 Data displayed in the dashboard can be sensitive. By default, the dashboard is secured with authentication that requires a token to login.
 
-When the dashboard is run from a standalone container, the login token is printed to the container logs. After copying the highlighted token into the login page, select the *Login* button.
+When the dashboard is run from a standalone container, the login token is printed to the container logs. The logs are displayed in the Docker Desktop user interface on the **Logs** tab for the **aspire-dashboard** container:
 
 :::image type="content" source="media/standalone/aspire-dashboard-container-log.png" lightbox="media/standalone/aspire-dashboard-container-log.png" alt-text="Screenshot of the .NET Aspire dashboard container logs.":::
+
+After copying the highlighted token into the login page, select the *Login* button.
+
+Alternatively, you can obtain the token from the logs by using the `docker` command:
+
+## [Bash](#tab/bash)
+
+```bash
+#!/bin/bash
+loginLine=$(docker container logs aspire-dashboard | grep "login?t=")
+match=$(echo "$loginLine" | sed -n 's/.*login?t=\([^[:space:]]*\).*/\1/p')
+echo -n "$match" | xclip -selection clipboard
+echo "$match"
+```
+
+> [!NOTE]
+> This script requires that your system has the `sed` and `xclip` tools installed.
+
+## [PowerShell](#tab/powershell)
+
+```powershell
+$loginLine =  docker container logs aspire-dashboard | Select-String "login\?t="
+$matches = [regex]::Match($loginLine, "(?<=login\?t=)(\S+)")
+$matches.Value | Set-Clipboard
+echo $matches.Value
+```
+
+---
 
 > [!TIP]
 > To avoid the login, you can disable the authentication requirement by setting the `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` environment variable to `true`. Additional configuration is available, see [Dashboard configuration](configuration.md).

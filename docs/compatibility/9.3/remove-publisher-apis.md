@@ -1,7 +1,7 @@
 ---
 title: "Breaking change - Removal of DockerComposePublisher, KubernetesPublisher, and AzurePublisher"
 description: "Learn about the breaking change in .NET Aspire 9.3 where publisher APIs were removed in favor of new resource types."
-ms.date: 5/12/2025
+ms.date: 08/07/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/3373
 ---
@@ -24,9 +24,9 @@ In .NET Aspire 9.2, the publisher API was introduced in preview, allowing the us
 
 These publishers were added using the following methods:
 
-- <xref:Aspire.Hosting.DockerComposePublisherExtensions.AddDockerComposePublisher*>
-- <xref:Aspire.Hosting.KubernetesPublisherExtensions.AddKubernetesPublisher*>
-- <xref:Aspire.Hosting.AzurePublisherExtensions.AddAzurePublisher*>
+- `Aspire.Hosting.DockerComposePublisherExtensions.AddDockerComposePublisher*`
+- `Aspire.Hosting.KubernetesPublisherExtensions.AddKubernetesPublisher*`
+- `Aspire.Hosting.AzurePublisherExtensions.AddAzurePublisher*`
 
 Multiple publishers could be added, and the `aspire publish` CLI command allowed users to select one for publishing.
 
@@ -34,11 +34,9 @@ Multiple publishers could be added, and the `aspire publish` CLI command allowed
 
 In .NET Aspire 9.3, the publishers are now replaced with new resource types:
 
-<!-- TODO: Add xrefs when available. -->
-
-- `DockerComposeEnvironmentResource`
-- `KubernetesEnvironmentResource`
-- `AzureEnvironmentResource` (Automatically added when you use any Azure resource)
+- <xref:Aspire.Hosting.Docker.DockerComposeEnvironmentResource>
+- <xref:Aspire.Hosting.Kubernetes.KubernetesEnvironmentResource>
+- <xref:Aspire.Hosting.Azure.AzureEnvironmentResource> (Automatically added when you use any Azure resource)
 
 These resources include a `PublisherCallbackAnnotation` that defines their publishing behavior. The default publisher now automatically processes all resources with this annotation to generate assets. The `aspire publish` command no longer requires selecting a publisher; it uses the default publisher to handle all annotated resources.
 
@@ -78,6 +76,6 @@ var azure = builder.AddAzureEnvironment("azure");
 
 ## Affected APIs
 
-- <xref:Aspire.Hosting.DockerComposePublisherExtensions.AddDockerComposePublisher*>
-- <xref:Aspire.Hosting.KubernetesPublisherExtensions.AddKubernetesPublisher*>
-- <xref:Aspire.Hosting.AzurePublisherExtensions.AddAzurePublisher*>
+- Aspire.Hosting.DockerComposePublisherExtensions.AddDockerComposePublisher*
+- Aspire.Hosting.KubernetesPublisherExtensions.AddKubernetesPublisher*
+- Aspire.Hosting.AzurePublisherExtensions.AddAzurePublisher*

@@ -3,6 +3,7 @@ title: .NET Aspire MongoDB database integration
 description: Learn how to use the .NET Aspire MongoDB database integration, which includes both hosting and client integrations.
 ms.date: 02/19/2025
 uid: database/mongodb-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire MongoDB database integration
@@ -13,7 +14,7 @@ uid: database/mongodb-integration
 
 ## Hosting integration
 
-The MongoDB server hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.MongoDBServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.MongoDBDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.MongoDB](https://www.nuget.org/packages/Aspire.Hosting.MongoDB) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The MongoDB server hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.MongoDBServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.MongoDBDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.MongoDB](https://www.nuget.org/packages/Aspire.Hosting.MongoDB) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -34,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add MongoDB server resource and database resource
 
-In your app host project, call <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddMongoDB*> to add and return a MongoDB server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddDatabase*>, to add a MongoDB database resource.
+In your AppHost project, call <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddMongoDB*> to add and return a MongoDB server resource builder. Chain a call to the returned resource builder to <xref:Aspire.Hosting.MongoDBBuilderExtensions.AddDatabase*>, to add a MongoDB database resource.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -54,12 +55,12 @@ builder.AddProject<Projects.ExampleProject>()
 > [!NOTE]
 > The MongoDB container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/mongo` image, it creates a new MongoDB instance on your local machine. A reference to your MongoDB server resource builder (the `mongo` variable) is used to add a database. The database is named `mongodb` and then added to the `ExampleProject`. The MongoDB server resource includes default credentials:
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/mongo` image, it creates a new MongoDB instance on your local machine. A reference to your MongoDB server resource builder (the `mongo` variable) is used to add a database. The database is named `mongodb` and then added to the `ExampleProject`. The MongoDB server resource includes default credentials:
 
 - `MONGO_INITDB_ROOT_USERNAME`: A value of `admin`.
 - `MONGO_INITDB_ROOT_PASSWORD`: Random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
-When the app host runs, the password is stored in the app host's secret store. It's added to the `Parameters` section, for example:
+When the AppHost runs, the password is stored in the AppHost's secret store. It's added to the `Parameters` section, for example:
 
 ```json
 {
@@ -69,7 +70,7 @@ When the app host runs, the password is stored in the app host's secret store. I
 
 The name of the parameter is `mongo-password`, but really it's just formatting the resource name with a `-password` suffix. For more information, see [Safe storage of app secrets in development in ASP.NET Core](/aspnet/core/security/app-secrets) and [Add MongoDB server resource with parameters](#add-mongodb-server-resource-with-parameters).
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `mongodb` and the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> instructs the app host to not start the dependant service until the `mongodb` resource is ready.
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `mongodb` and the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> instructs the AppHost to not start the dependant service until the `mongodb` resource is ready.
 
 > [!TIP]
 > If you'd rather connect to an existing MongoDB server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
@@ -209,7 +210,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.MongoDb](htt
 
 ## Client integration
 
-To get started with the .NET Aspire MongoDB client integration, install the [📦 Aspire.MongoDB.Driver](https://www.nuget.org/packages/Aspire.MongoDB.Driver) NuGet package in the client-consuming project, that is, the project for the application that uses the MongoDB client. The MongoDB client integration registers a [IMongoClient](https://mongodb.github.io/mongo-csharp-driver/3.0.0/api/MongoDB.Driver/MongoDB.Driver.IMongoClient.html) instance that you can use to interact with the MongoDB server resource. If your app host adds MongoDB database resources, the [IMongoDatabase](https://mongodb.github.io/mongo-csharp-driver/3.0.0/api/MongoDB.Driver/MongoDB.Driver.IMongoDatabase.html) instance is also registered.
+To get started with the .NET Aspire MongoDB client integration, install the [📦 Aspire.MongoDB.Driver](https://www.nuget.org/packages/Aspire.MongoDB.Driver) NuGet package in the client-consuming project, that is, the project for the application that uses the MongoDB client. The MongoDB client integration registers a [IMongoClient](https://mongodb.github.io/mongo-csharp-driver/3.0.0/api/MongoDB.Driver/MongoDB.Driver.IMongoClient.html) instance that you can use to interact with the MongoDB server resource. If your AppHost adds MongoDB database resources, the [IMongoDatabase](https://mongodb.github.io/mongo-csharp-driver/3.0.0/api/MongoDB.Driver/MongoDB.Driver.IMongoDatabase.html) instance is also registered.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -238,7 +239,7 @@ builder.AddMongoDBClient(connectionName: "mongodb");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the MongoDB server resource (or the database resource when provided) in the app host project. In other words, when you call `AddDatabase` and provide a name of `mongodb` that same name should be used when calling `AddMongoDBClient`. For more information, see [Add MongoDB server resource and database resource](#add-mongodb-server-resource-and-database-resource).
+> The `connectionName` parameter must match the name used when adding the MongoDB server resource (or the database resource when provided) in the AppHost project. In other words, when you call `AddDatabase` and provide a name of `mongodb` that same name should be used when calling `AddMongoDBClient`. For more information, see [Add MongoDB server resource and database resource](#add-mongodb-server-resource-and-database-resource).
 
 You can then retrieve the `IMongoClient` instance using dependency injection. For example, to retrieve the client from an example service:
 
@@ -249,7 +250,7 @@ public class ExampleService(IMongoClient client)
 }
 ```
 
-The `IMongoClient` is used to interact with the MongoDB server resource. It can be used to create databases that aren't already known to the app host project. When you define a MongoDB database resource in your app host, you could instead require that the dependency injection container provides an `IMongoDatabase` instance. For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
+The `IMongoClient` is used to interact with the MongoDB server resource. It can be used to create databases that aren't already known to the AppHost project. When you define a MongoDB database resource in your AppHost, you could instead require that the dependency injection container provides an `IMongoDatabase` instance. For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
 
 ### Add keyed MongoDB client
 
@@ -323,10 +324,45 @@ The .NET Aspire MongoDB integration supports <xref:Microsoft.Extensions.Configur
         "DisableHealthChecks": false,
         "HealthCheckTimeout": 10000,
         "DisableTracing": false
-      },
+      }
     }
   }
+}
 ```
+
+#### Use named configuration
+
+The .NET Aspire MongoDB integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "MongoDB": {
+      "Driver": {
+        "mongo1": {
+          "ConnectionString": "mongodb://server1:port/test",
+          "DisableHealthChecks": false,
+          "HealthCheckTimeout": 10000
+        },
+        "mongo2": {
+          "ConnectionString": "mongodb://server2:port/test",
+          "DisableTracing": true,
+          "HealthCheckTimeout": 5000
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `mongo1` and `mongo2` connection names can be used when calling `AddMongoDBClient`:
+
+```csharp
+builder.AddMongoDBClient("mongo1");
+builder.AddMongoDBClient("mongo2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
 
 #### Use inline configurations
 

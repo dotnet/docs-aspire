@@ -1,5 +1,6 @@
 ---
 ms.topic: include
+ms.custom: sfi-ropc-nochange
 ---
 
 The PostgreSQL hosting integration models various PostgreSQL resources as the following types.
@@ -9,7 +10,7 @@ The PostgreSQL hosting integration models various PostgreSQL resources as the fo
 - <xref:Aspire.Hosting.Postgres.PgAdminContainerResource>
 - <xref:Aspire.Hosting.Postgres.PgWebContainerResource>
 
-To access these types and APIs for expressing them as resources in your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL) NuGet package:
+To access these types and APIs for expressing them as resources in your [AppHost](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -30,7 +31,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add PostgreSQL server resource
 
-In your app host project, call <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres*> on the `builder` instance to add a PostgreSQL server resource then call <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase*> on the `postgres` instance to add a database resource as shown in the following example:
+In your AppHost project, call <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres*> on the `builder` instance to add a PostgreSQL server resource then call <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase*> on the `postgres` instance to add a database resource as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -44,9 +45,9 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/postgres` image, it creates a new PostgreSQL server instance on your local machine. A reference to your PostgreSQL server and database instance (the `postgresdb` variable) are used to add a dependency to the `ExampleProject`.
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/postgres` image, it creates a new PostgreSQL server instance on your local machine. A reference to your PostgreSQL server and database instance (the `postgresdb` variable) are used to add a dependency to the `ExampleProject`.
 
-When adding a database resource to the app model, the database is created if it doesn't already exist. The creation of the database relies on the [app host eventing APIs](../../app-host/eventing.md), specifically <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent>. In other words, when the `postgres` resource is _ready_, the event is raised and the database resource is created.
+When adding a database resource to the app model, the database is created if it doesn't already exist. The creation of the database relies on the [AppHost eventing APIs](../../app-host/eventing.md), specifically <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent>. In other words, when the `postgres` resource is _ready_, the event is raised and the database resource is created.
 
 The PostgreSQL server resource includes default credentials with a `username` of `"postgres"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
@@ -63,13 +64,7 @@ By default, when you add a <xref:Aspire.Hosting.ApplicationModel.PostgresDatabas
 CREATE DATABASE "<QUOTED_DATABASE_NAME>"
 ```
 
-<!-- TODO: Use xref here when available
-
-To alter the default script, chain a call to the <xref:Aspire.Hosting.PostgresBuilderExtensions.WithCreationScript*> method on the database resource builder:
-
--->
-
-To alter the default script, chain a call to the `WithCreationScript` method on the database resource builder:
+To alter the default script, chain a call to the <xref:Aspire.Hosting.PostgresBuilderExtensions.WithCreationScript(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.ApplicationModel.PostgresDatabaseResource},System.String)> method on the database resource builder:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -201,7 +196,7 @@ The data volume is used to persist the PostgreSQL server data outside the lifecy
 > [!IMPORTANT]
 > Some database integrations, including the .NET Aspire PostgreSQL integration, can't successfully use data volumes after deployment to Azure Container Apps (ACA). This is because ACA uses Server Message Block (SMB) to connect containers to data volumes, and some systems can't use this connection. In the Aspire Dashboard, a database affected by this issue has a status of **Activating** or **Activation Failed** but is never listed as **Running**.
 >
-> You can resolve the problem by using the managed service **Azure Database for PostgreSQL** to host the deployed database instead of a container in ACA, which is the recommended approach regardless of this issue. The following App Host code shows how to deploy a database to Azure Database for PostgreSQL, but run it as a container, with a data volume, during development:
+> You can resolve the problem by using the managed service **Azure Database for PostgreSQL** to host the deployed database instead of a container in ACA, which is the recommended approach regardless of this issue. The following AppHost code shows how to deploy a database to Azure Database for PostgreSQL, but run it as a container, with a data volume, during development:
 > :::code language="csharp" source="../snippets/postgres-data-volume-deploy/AppHost.cs":::
 
 ### Add PostgreSQL server resource with data bind mount

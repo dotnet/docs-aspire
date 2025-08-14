@@ -1,8 +1,9 @@
 ---
 title: .NET Aspire Azure Key Vault integration
 description: Learn about the .NET Aspire Azure Key Vault integration.
-ms.date: 02/07/2025
+ms.date: 07/22/2025
 uid: security/azure-security-key-vault-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Azure Key Vault integration
@@ -13,7 +14,7 @@ uid: security/azure-security-key-vault-integration
 
 ## Hosting integration
 
-The Azure Key Vault hosting integration models a Key Vault resource as the <xref:Aspire.Hosting.Azure.AzureKeyVaultResource> type. To access this type and APIs for expressing them within your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.KeyVault](https://www.nuget.org/packages/Aspire.Hosting.Azure.KeyVault) NuGet package:
+The Azure Key Vault hosting integration models a Key Vault resource as the <xref:Aspire.Hosting.Azure.AzureKeyVaultResource> type. To access this type and APIs for expressing them within your [AppHost](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.KeyVault](https://www.nuget.org/packages/Aspire.Hosting.Azure.KeyVault) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -34,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Azure Key Vault resource
 
-In your app host project, call <xref:Aspire.Hosting.AzureKeyVaultResourceExtensions.AddAzureKeyVault*> on the builder instance to add an Azure Key Vault resource:
+In your AppHost project, call <xref:Aspire.Hosting.AzureKeyVaultResourceExtensions.AddAzureKeyVault*> on the builder instance to add an Azure Key Vault resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -59,11 +60,11 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Key Vault resource, the following Bicep is generated:
 
-:::code language="bicep" source="../snippets/azure/AppHost/key-vault.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/key-vault/key-vault.bicep":::
 
 The preceding Bicep is a module that provisions an Azure Key Vault resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-:::code language="bicep" source="../snippets/azure/AppHost/key-vault-roles.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/key-vault-roles/key-vault-roles.bicep":::
 
 The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
@@ -109,7 +110,7 @@ builder.AddProject<Projects.ExampleProject>()
 For more information on treating Azure Key Vault resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
 > [!NOTE]
-> Alternatively, instead of representing an Azure Key Vault resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> Alternatively, instead of representing an Azure Key Vault resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ## Client integration
 
@@ -147,7 +148,7 @@ builder.Configuration.AddAzureKeyVaultSecrets(connectionName: "key-vault");
 > The `AddAzureKeyVaultSecrets` API name has caused a bit of confusion. The method is used to configure the `SecretClient` based on the given connection name, and _it's not used_ to add secrets to the configuration.
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Azure Key Vault resource in the app host project. For more information, see [Add Azure Key Vault resource](#add-azure-key-vault-resource).
+> The `connectionName` parameter must match the name used when adding the Azure Key Vault resource in the AppHost project. For more information, see [Add Azure Key Vault resource](#add-azure-key-vault-resource).
 
 You can then retrieve a secret-based configuration value through the normal <xref:Microsoft.Extensions.Configuration.IConfiguration> APIs, or even by binding to strongly-typed classes with the [options pattern](/dotnet/core/extensions/options). To retrieve a secret from an example service class that's been registered with the dependency injection container, consider the following snippets:
 
@@ -192,7 +193,7 @@ builder.AddAzureKeyVaultClient(connectionName: "key-vault");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Azure Key Vault resource in the app host project. For more information, see [Add Azure Key Vault resource](#add-azure-key-vault-resource).
+> The `connectionName` parameter must match the name used when adding the Azure Key Vault resource in the AppHost project. For more information, see [Add Azure Key Vault resource](#add-azure-key-vault-resource).
 
 After adding the `SecretClient` to the builder, you can get the <xref:Azure.Security.KeyVault.Secrets.SecretClient> instance using dependency injection. For example, to retrieve the client from an example service define it as a constructor parameter and ensure the `ExampleService` class is registered with the dependency injection container:
 
@@ -256,6 +257,50 @@ The .NET Aspire Azure Key Vault integration supports <xref:Microsoft.Extensions.
 ```
 
 For the complete Azure Key Vault client integration JSON schema, see [Aspire.Azure.Security.KeyVault/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.Security.KeyVault/ConfigurationSchema.json).
+
+#### Use named configuration
+
+The .NET Aspire Azure Key Vault integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "Security": {
+        "KeyVault": {
+          "vault1": {
+            "VaultUri": "https://myvault1.vault.azure.net/",
+            "DisableHealthChecks": true,
+            "ClientOptions": {
+              "Diagnostics": {
+                "ApplicationId": "myapp1"
+              }
+            }
+          },
+          "vault2": {
+            "VaultUri": "https://myvault2.vault.azure.net/",
+            "DisableTracing": true,
+            "ClientOptions": {
+              "Diagnostics": {
+                "ApplicationId": "myapp2"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `vault1` and `vault2` connection names can be used when calling `AddAzureKeyVaultSecrets`:
+
+```csharp
+builder.AddAzureKeyVaultSecrets("vault1");
+builder.AddAzureKeyVaultSecrets("vault2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
 
 If you have set up your configurations in the `Aspire:Azure:Security:KeyVault` section of your _:::no-loc text="appsettings.json":::_ file you can just call the method `AddAzureKeyVaultSecrets` without passing any parameters.
 

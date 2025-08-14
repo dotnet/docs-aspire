@@ -4,6 +4,7 @@ description: Learn how to build your first .NET Aspire solution using the .NET A
 ms.date: 11/07/2024
 ms.topic: quickstart
 zone_pivot_groups: dev-environment
+ms.custom: sfi-ropc-nochange
 ---
 
 # Quickstart: Build your first .NET Aspire solution
@@ -181,7 +182,7 @@ Consider the _:::no-loc text="Program.cs":::_ file of the _AspireSample.AppHost_
 
 :::code source="snippets/quickstart/AspireSample/AspireSample.AppHost/Program.cs":::
 
-If you've used either the [.NET Generic Host](/dotnet/core/extensions/generic-host) or the [ASP.NET Core Web Host](/aspnet/core/fundamentals/host/web-host) before, the app host programming model and builder pattern should be familiar to you. The preceding code:
+If you've used either the [.NET Generic Host](/dotnet/core/extensions/generic-host) or the [ASP.NET Core Web Host](/aspnet/core/fundamentals/host/web-host) before, the AppHost programming model and builder pattern should be familiar to you. The preceding code:
 
 - Creates an <xref:Aspire.Hosting.IDistributedApplicationBuilder> instance from calling <xref:Aspire.Hosting.DistributedApplication.CreateBuilder?displayProperty=nameWithType>.
 - Calls <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> with the name `"cache"` to add a Redis server to the app, assigning the returned value to a variable named `cache`, which is of type `IResourceBuilder<RedisResource>`.
@@ -220,6 +221,12 @@ The preceding code:
 - Calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> and configures the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> to be `"https+http://apiservice"`. This is the name that was used when adding the API project to the application model, and with service discovery configured, it automatically resolves to the correct address to the API project.
 
 For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fundamentals/networking/http/httpclient) class.
+
+## 🖥️ Aspire CLI
+
+🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
+
+[!INCLUDE [install-aspire-cli](../includes/install-aspire-cli.md)]
 
 ## See also
 

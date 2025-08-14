@@ -3,6 +3,7 @@ title: Secure communication between hosting and client integrations
 description: Learn how to Secure communication between hosting and client integrations.
 ms.date: 09/12/2024
 ms.topic: how-to
+ms.custom: sfi-ropc-nochange
 ---
 
 # Secure communication between hosting and client integrations
@@ -21,7 +22,7 @@ Since this article continues from previous content, you should have already crea
 The resulting solution from these previous articles contains the following projects:
 
 - _MailDev.Hosting_: Contains the custom resource type for the MailDev container.
-- _MailDevResource.AppHost_: The [app host](../fundamentals/app-host-overview.md) that uses the custom resource and defines it as a dependency for a Newsletter service.
+- _MailDevResource.AppHost_: The [AppHost](../fundamentals/app-host-overview.md) that uses the custom resource and defines it as a dependency for a Newsletter service.
 - _MailDevResource.NewsletterService_: An ASP.NET Core Web API project that sends emails using the MailDev container.
 - _MailDevResource.ServiceDefaults_: Contains the [default service configurations](../fundamentals/service-defaults.md) intended for sharing.
 - _MailKit.Client_: Contains the custom client integration that exposes the MailKit `SmtpClient` through a factory.
@@ -40,9 +41,9 @@ These updates add a `UsernameParameter` and `PasswordParameter` property. These 
 
 The preceding code updates the `AddMailDev` extension method to include the `userName` and `password` parameters. The `WithEnvironment` method is updated to include the `UserEnvVarName` and `PasswordEnvVarName` environment variables. These environment variables are used to set the MailDev username and password.
 
-## Update the app host
+## Update the AppHost
 
-Now that the resource is updated to include the username and password parameters, you need to update the app host to include these parameters. Update the _:::no-loc text="Program.cs":::_ file in the `MailDevResource.AppHost` project with the following C# code:
+Now that the resource is updated to include the username and password parameters, you need to update the AppHost to include these parameters. Update the _:::no-loc text="Program.cs":::_ file in the `MailDevResource.AppHost` project with the following C# code:
 
 :::code source="snippets/MailDevResourceWithCredentials/MailDevResource.AppHost/Program.cs" highlight="3-4,6-9":::
 
@@ -76,7 +77,7 @@ When the factory determines that credentials have been configured, it authentica
 
 ## Run the sample
 
-Now that you've updated the resource, corresponding integration projects, and the app host, you're ready to run the sample app. To run the sample from your IDE, select <kbd>F5</kbd> or use `dotnet run` from the root directory of the solution to start the application—you should see the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md). Navigate to the `maildev` container resource and view the details. You should see the username and password parameters in the resource details, under the **Environment Variables** section:
+Now that you've updated the resource, corresponding integration projects, and the AppHost, you're ready to run the sample app. To run the sample from your IDE, select <kbd>F5</kbd> or use `dotnet run` from the root directory of the solution to start the application—you should see the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md). Navigate to the `maildev` container resource and view the details. You should see the username and password parameters in the resource details, under the **Environment Variables** section:
 
 :::image type="content" source="media/maildev-details.png" lightbox="media/maildev-details.png" alt-text=".NET Aspire Dashboard: MailDev container resource details.":::
 

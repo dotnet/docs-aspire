@@ -9,7 +9,7 @@ The .NET Aspire Azure PostgreSQL hosting integration models a PostgreSQL flexibl
 - <xref:Aspire.Hosting.Postgres.PgAdminContainerResource>
 - <xref:Aspire.Hosting.Postgres.PgWebContainerResource>
 
-To access these types and APIs for expressing them as resources in your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.Azure.PostgreSQL) NuGet package:
+To access these types and APIs for expressing them as resources in your [AppHost](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.Azure.PostgreSQL) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -36,7 +36,7 @@ The Azure PostgreSQL hosting integration takes a dependency on the [📦 Aspire.
 
 <span id="add-postgresql-server-resource"></span>
 
-After you've installed the .NET Aspire Azure PostgreSQL hosting integration, call the <xref:Aspire.Hosting.AzurePostgresExtensions.AddAzurePostgresFlexibleServer*> extension method in your app host project:
+After you've installed the .NET Aspire Azure PostgreSQL hosting integration, call the <xref:Aspire.Hosting.AzurePostgresExtensions.AddAzurePostgresFlexibleServer*> extension method in your AppHost project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -60,11 +60,11 @@ The preceding call to `AddAzurePostgresFlexibleServer` configures the PostgresSQ
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by hand, because the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure PostgreSQL resource, the following Bicep is generated:
 
-:::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible.module.bicep":::
+:::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible/postgres-flexible.bicep":::
 
 The preceding Bicep is a module that provisions an Azure PostgreSQL flexible server resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-:::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible-roles.module.bicep":::
+:::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible-roles/postgres-flexible-roles.bicep":::
 
 In addition to the PostgreSQL flexible server, it also provisions an Azure Firewall rule to allow all Azure IP addresses. Finally, an administrator is created for the PostgreSQL server, and the connection string is outputted as an output variable. The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
@@ -110,7 +110,7 @@ builder.AddProject<Projects.ExampleProject>()
 For more information on treating Azure PostgreSQL flexible server resources as existing resources, see [Use existing Azure resources](../../azure/integrations-overview.md#use-existing-azure-resources).
 
 > [!NOTE]
-> Alternatively, instead of representing an Azure PostgreSQL flexible server resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> Alternatively, instead of representing an Azure PostgreSQL flexible server resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Run Azure PostgreSQL resource as a container
 
@@ -154,4 +154,4 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(postgresdb);
 ```
 
-The preceding code configures the Azure PostgreSQL server to use password authentication. The `username` and `password` parameters are added to the app host as parameters, and the `WithPasswordAuthentication` method is called to configure the Azure PostgreSQL server to use password authentication. For more information, see [External parameters](../../fundamentals/external-parameters.md).
+The preceding code configures the Azure PostgreSQL server to use password authentication. The `username` and `password` parameters are added to the AppHost as parameters, and the `WithPasswordAuthentication` method is called to configure the Azure PostgreSQL server to use password authentication. For more information, see [External parameters](../../fundamentals/external-parameters.md).

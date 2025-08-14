@@ -3,6 +3,7 @@ title: .NET Aspire Redis distributed caching integration
 description: Learn how to use the .NET Aspire Redis distributed caching integration, which includes both hosting and client integrations.
 ms.date: 02/05/2025
 zone_pivot_groups: resp-host
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> distributed caching integration
@@ -64,19 +65,19 @@ builder.AddRedisDistributedCache(connectionName: "cache");
 :::zone pivot="redis"
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Redis resource in the app host project. For more information, see [Add Redis resource](#add-redis-resource).
+> The `connectionName` parameter must match the name used when adding the Redis resource in the AppHost project. For more information, see [Add Redis resource](#add-redis-resource).
 
 :::zone-end
 :::zone pivot="garnet"
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Garnet resource in the app host project. For more information, see [Add Garnet resource](#add-garnet-resource).
+> The `connectionName` parameter must match the name used when adding the Garnet resource in the AppHost project. For more information, see [Add Garnet resource](#add-garnet-resource).
 
 :::zone-end
 :::zone pivot="valkey"
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Valkey resource in the app host project. For more information, see [Add Valkey resource](#add-valkey-resource).
+> The `connectionName` parameter must match the name used when adding the Valkey resource in the AppHost project. For more information, see [Add Valkey resource](#add-valkey-resource).
 
 :::zone-end
 

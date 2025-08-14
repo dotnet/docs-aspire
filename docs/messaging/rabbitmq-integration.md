@@ -1,8 +1,9 @@
 ---
 title: .NET Aspire RabbitMQ integration
 description: Learn how to use the .NET Aspire RabbitMQ message-broker integration, which includes both hosting and client integrations.
-ms.date: 02/19/2025
+ms.date: 08/07/2025
 uid: messaging/rabbitmq-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire RabbitMQ integration
@@ -17,7 +18,7 @@ TODO: Diagram showing the thing we're integrating with and the components of the
 
 ## Hosting integration
 
-The RabbitMQ hosting integration models a RabbitMQ server as the <xref:Aspire.Hosting.ApplicationModel.RabbitMQServerResource> type. To access this type and its APIs add the [📦 Aspire.Hosting.RabbitMQ](https://www.nuget.org/packages/Aspire.Hosting.RabbitMQ) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The RabbitMQ hosting integration models a RabbitMQ server as the <xref:Aspire.Hosting.ApplicationModel.RabbitMQServerResource> type. To access this type and its APIs add the [📦 Aspire.Hosting.RabbitMQ](https://www.nuget.org/packages/Aspire.Hosting.RabbitMQ) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -38,7 +39,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add RabbitMQ server resource
 
-In your app host project, call <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ*> on the `builder` instance to add a RabbitMQ server resource:
+In your AppHost project, call <xref:Aspire.Hosting.RabbitMQBuilderExtensions.AddRabbitMQ*> on the `builder` instance to add a RabbitMQ server resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -51,7 +52,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/rabbitmq` image, it creates a new RabbitMQ server instance on your local machine. A reference to your RabbitMQ server (the `rabbitmq` variable) is added to the `ExampleProject`. The RabbitMQ server resource includes default credentials with a `username` of `"guest"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/rabbitmq` image, it creates a new RabbitMQ server instance on your local machine. A reference to your RabbitMQ server (the `rabbitmq` variable) is added to the `ExampleProject`. The RabbitMQ server resource includes default credentials with a `username` of `"guest"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"messaging"`. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -137,7 +138,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The RabbitMQ management plugin provides an HTTP-based API for management and monitoring of your RabbitMQ server. .NET Aspire adds another container image [`docker.io/library/rabbitmq-management`](https://hub.docker.com/_/rabbitmq) to the app host that runs the management plugin. You can access the management plugin from the .NET Aspire dashboard by selecting an endpoint for your RabbitMQ resource:
+The RabbitMQ management plugin provides an HTTP-based API for management and monitoring of your RabbitMQ server. .NET Aspire adds another container image [`docker.io/library/rabbitmq-management`](https://hub.docker.com/_/rabbitmq) to the AppHost that runs the management plugin. You can access the management plugin from the .NET Aspire dashboard by selecting an endpoint for your RabbitMQ resource:
 
 :::image type="content" source="media/dashboard-access-rabbitmq-management.png" alt-text="Screenshot of the .NET Aspire dashboard showing how to connect to the RabbitMQ management plugin.":::
 
@@ -145,9 +146,7 @@ Log into the management plugin using the credentials you configured with paramet
 
 :::image type="content" source="media/rabbitmq-management-plugin.png" alt-text="Screenshot of the RabbitMQ management plugin.":::
 
-<!--
-TODO: Link to Container lifetimes content that doesn't exist yet.
--->
+For more information, see [Container resource lifetimes](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
 ### Hosting integration health checks
 
@@ -186,7 +185,7 @@ builder.AddRabbitMQClient(connectionName: "messaging");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the RabbitMQ server resource in the app host project. For more information, see [Add RabbitMQ server resource](#add-rabbitmq-server-resource).
+> The `connectionName` parameter must match the name used when adding the RabbitMQ server resource in the AppHost project. For more information, see [Add RabbitMQ server resource](#add-rabbitmq-server-resource).
 
 You can then retrieve the `IConnection` instance using dependency injection. For example, to retrieve the connection from an example service:
 
@@ -265,6 +264,40 @@ The .NET Aspire RabbitMQ integration supports <xref:Microsoft.Extensions.Configu
 ```
 
 For the complete RabbitMQ client integration JSON schema, see [Aspire.RabbitMQ.Client/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.RabbitMQ.Client/ConfigurationSchema.json).
+
+#### Use named configuration
+
+The .NET Aspire RabbitMQ integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "RabbitMQ": {
+      "Client": {
+        "rabbit1": {
+          "ConnectionString": "amqp://username:password@rabbit1:5672",
+          "DisableHealthChecks": true,
+          "MaxConnectRetryCount": 2
+        },
+        "rabbit2": {
+          "ConnectionString": "amqp://username:password@rabbit2:5672",
+          "DisableTracing": true,
+          "MaxConnectRetryCount": 5
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `rabbit1` and `rabbit2` connection names can be used when calling `AddRabbitMQClient`:
+
+```csharp
+builder.AddRabbitMQClient("rabbit1");
+builder.AddRabbitMQClient("rabbit2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
 
 #### Use inline delegates
 

@@ -1,9 +1,10 @@
 ---
 title: .NET Aspire tooling
 description: Learn about essential tooling concepts for .NET Aspire.
-ms.date: 05/30/2025
+ms.date: 07/22/2025
 zone_pivot_groups: dev-environment
 uid: dotnet/aspire/setup-tooling
+ms.custom: sfi-image-nochange
 ---
 
 # .NET Aspire setup and tooling
@@ -22,6 +23,7 @@ uid: dotnet/aspire/setup-tooling
 To work with .NET Aspire, you need the following installed locally:
 
 - [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0) or [.NET 9.0](https://dotnet.microsoft.com/download/dotnet/9.0).
+  - Starting with .NET Aspire 9.4, [.NET 10 Preview 5 or later](https://dotnet.microsoft.com/download/dotnet/10.0) is supported.
 - An OCI compliant container runtime, such as:
   - [Docker Desktop](https://www.docker.com/products/docker-desktop)
   - [Podman](https://podman.io/)
@@ -66,39 +68,7 @@ To install the .NET Aspire workload in Visual Studio 2022, use the Visual Studio
 
 ### Install the .NET Aspire templates
 
-:::zone pivot="visual-studio"
-
-To install the .NET Aspire templates in Visual Studio, you need to manually install them unless you're using Visual Studio 17.12 or later. For Visual Studio 17.9 to 17.11, follow these steps:
-
-1. Open Visual Studio.
-1. Go to **Tools** > **NuGet Package Manager** > **Package Manager Console**.
-1. Run the following command to install the templates:
-
-  ```dotnetcli
-  dotnet new install Aspire.ProjectTemplates
-  ```
-
-For Visual Studio 17.12 or later, the .NET Aspire templates are installed automatically.
-
-:::zone-end
-:::zone pivot="vscode,dotnet-cli"
-
-To install these templates, use the [dotnet new install](/dotnet/core/tools/dotnet-new-install) command, passing in the `Aspire.ProjectTemplates` NuGet identifier.
-
-```dotnetcli
-dotnet new install Aspire.ProjectTemplates
-```
-
-To install a specific version, append the version number to the package name:
-
-```dotnetcli
-dotnet new install Aspire.ProjectTemplates::9.3.0
-```
-
-> [!TIP]
-> If you already have the .NET Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. Feel free to uninstall the .NET Aspire workload.
-
-:::zone-end
+[!INCLUDE [Install templates](includes/install-templates.md)]
 
 ### List the .NET Aspire templates
 
@@ -143,7 +113,7 @@ For more information, see [.NET Aspire templates](aspire-sdk-templates.md).
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) is the most popular container runtime among .NET Aspire developers, offering a familiar and widely supported environment for building and running containers.
 - [Podman](https://podman.io/docs/installation) is an open-source, daemonless alternative to Docker. It supports building and running Open Container Initiative (OCI) containers, making it a flexible choice for developers who prefer a lightweight solution.
 
-If your host environment has a Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `DOTNET_ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
+If your host environment has a Docker and Podman installed, .NET Aspire defaults to using Docker. You can instruct .NET Aspire to use Podman instead, by setting the `ASPIRE_CONTAINER_RUNTIME` environment variable to `podman`:
 
 ## [Linux](#tab/linux)
 
@@ -163,9 +133,44 @@ For more information, see [Install Podman on Windows](https://podman.io/docs/ins
 
 ---
 
+### WSL (Windows Subsystem for Linux) considerations
+
+When using Podman with WSL, ensure that the `podman` executable is available in your `PATH` and not just defined as a shell alias. .NET Aspire resolves container runtimes by searching for the executable in the system PATH, and shell aliases aren't recognized during this process.
+
+**Common issues and solutions:**
+
+- **Podman installed in a separate WSL distribution**: If Podman is installed in a different WSL distribution than your .NET Aspire application, the `podman` command might not be available in your current distribution's PATH.
+
+  **Solution**: Install Podman directly in the WSL distribution where you're running your .NET Aspire application, or create a symbolic link to the Podman executable in a directory that's in your PATH (such as `/usr/local/bin`).
+
+- **Using shell aliases**: If you have a shell alias like `alias podman='podman-remote-static-linux_amd64'` in your `~/.bash_aliases` or similar file, .NET Aspire won't be able to find the container runtime.
+
+  **Solution**: Instead of using an alias, create a symbolic link or add the directory containing the Podman executable to your PATH:
+
+  ```bash
+  # Option 1: Create a symbolic link
+  sudo ln -s /path/to/podman-remote-static-linux_amd64 /usr/local/bin/podman
+  
+  # Option 2: Add to PATH in your shell profile
+  echo 'export PATH="/path/to/podman/directory:$PATH"' >> ~/.bashrc
+  source ~/.bashrc
+  ```
+
+**Verify your setup**: You can verify that Podman is correctly configured by running:
+
+```bash
+which podman
+podman --version
+```
+
+Both commands should succeed and return valid results before running your .NET Aspire application.
+
+> [!TIP]
+> If you encounter issues with Podman in WSL environments, see [Container runtime 'podman' could not be found in WSL](../troubleshooting/podman-wsl-not-found.md) for specific troubleshooting guidance.
+
 ## .NET Aspire dashboard
 
-.NET Aspire templates that expose the [app host](app-host-overview.md) project also include a useful developer [dashboard](dashboard/overview.md) that's used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
+.NET Aspire templates that expose the [AppHost](app-host-overview.md) project also include a useful developer [dashboard](dashboard/overview.md) that's used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
 
 The .NET Aspire dashboard is only visible while the app is running and starts automatically when you start the _*.AppHost_ project. Visual Studio and Visual Studio Code launch both your app and the .NET Aspire dashboard for you automatically in your browser. If you start the app using the .NET CLI, copy and paste the dashboard URL from the output into your browser, or hold <kbd>Ctrl</kbd> and select the link (if your terminal supports hyperlinks).
 
@@ -181,7 +186,7 @@ The .NET Aspire dashboard is also available in a standalone mode. For more infor
 
 ## Visual Studio tooling
 
-Visual Studio provides extra features for working with .NET Aspire integrations and the App Host orchestrator project. Not all of these features are currently available in Visual Studio Code or through the CLI.
+Visual Studio provides extra features for working with .NET Aspire integrations and the AppHost orchestrator project. Not all of these features are currently available in Visual Studio Code or through the CLI.
 
 ### Add an integration package
 
@@ -257,6 +262,12 @@ Once you create a new .NET Aspire project, you run and debug the app, stepping t
 :::image type="content" source="media/setup-tooling/vscode-debugging.png" lightbox="media/setup-tooling/vscode-debugging.png" alt-text="A screenshot showing how to debug a .NET Aspire project in Visual Studio Code.":::
 
 :::zone-end
+
+## 🖥️ Aspire CLI
+
+🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
+
+[!INCLUDE [install-aspire-cli](../includes/install-aspire-cli.md)]
 
 ## See also
 

@@ -15,13 +15,15 @@ uid: dotnet/aspire/integrations
 
 ## Integration responsibilities
 
-Most .NET Aspire integrations are made up of two separate libraries, each with a different responsibility. One type represents resources within the [_app host_](app-host-overview.md) project—known as [hosting integrations](#hosting-integrations). The other type of integration represents client libraries that connect to the resources modeled by hosting integrations, and they're known as [client integrations](#client-integrations).
+Most .NET Aspire integrations are made up of two separate libraries, each with a different responsibility. One type represents resources within the [_AppHost_](app-host-overview.md) project—known as [hosting integrations](#hosting-integrations). The other type of integration represents client libraries that connect to the resources modeled by hosting integrations, and they're known as [client integrations](#client-integrations).
 
 ### Hosting integrations
 
 Hosting integrations configure applications by provisioning resources (like containers or cloud resources) or pointing to existing instances (such as a local SQL server). These packages model various services, platforms, or capabilities, including caches, databases, logging, storage, and messaging systems.
 
-Hosting integrations extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface, enabling the _app host_ project to express resources within its [_app model_](app-host-overview.md#terminology). The official [hosting integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+hosting+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `hosting`. In addition to the official hosting integrations, the [community has created hosting integrations](../community-toolkit/overview.md) for various services and platforms as part of the Community Toolkit.
+Hosting integrations extend the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface, enabling the _AppHost_ project to express resources within its [_app model_](app-host-overview.md#terminology). **Hosting integrations work with any type of application**, not just .NET applications. They provide infrastructure and inject configuration details (such as connection strings, endpoints, and credentials) as environment variables into any project, executable, or container that references them.
+
+The official [hosting integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+hosting+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `hosting`. In addition to the official hosting integrations, the [community has created hosting integrations](../community-toolkit/overview.md) for various services and platforms as part of the Community Toolkit.
 
 For information on creating a custom _hosting integration_, see [Create custom .NET Aspire hosting integration](../extensibility/custom-hosting-integration.md).
 
@@ -31,17 +33,22 @@ Client integrations wire up client libraries to [dependency injection (DI)](/dot
 
 These packages configure existing client libraries to connect to hosting integrations. They extend the <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> interface allowing client-consuming projects, such as your web app or API, to use the connected resource. The official [client integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+client+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `client`. In addition to the official client integrations, the [community has created client integrations](../community-toolkit/overview.md) for various services and platforms as part of the Community Toolkit.
 
+> [!IMPORTANT]
+> .NET Aspire integrations require <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> and are **not compatible** with `HostingStartup` implementations, which only provide access to <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. If you're using `HostingStartup` for modular configuration, see [HostingStartup is not supported with .NET Aspire integrations](../troubleshooting/hosting-startup-not-supported.md) for migration guidance.
+
 For more information on creating a custom client integration, see [Create custom .NET Aspire client integrations](../extensibility/custom-client-integration.md).
 
 ### Relationship between hosting and client integrations
 
 Hosting and client integrations are best when used together, but are **not** coupled and can be used separately. Some hosting integrations don't have a corresponding client integration. Configuration is what makes the hosting integration work with the client integration.
 
+**Client integrations are .NET-specific** and provide convenient, opinionated ways to configure .NET applications. However, **you can use hosting integrations without client integrations** for non-.NET applications or when you prefer to configure connections manually. In these scenarios, the hosting integration still provides the infrastructure and exposes connection information through environment variables that any application technology can consume.
+
 Consider the following diagram that depicts the relationship between hosting and client integrations:
 
 :::image type="content" source="media/integrations-thumb.png" lightbox="media/integrations.png" alt-text="A diagram ":::
 
-The app host project is where hosting integrations are used. Configuration, specifically environment variables, is injected into projects, executables, and containers, allowing client integrations to connect to the hosting integrations.
+The AppHost project is where hosting integrations are used. Configuration, specifically environment variables, is injected into projects, executables, and containers, allowing client integrations to connect to the hosting integrations.
 
 ## Integration features
 
@@ -64,7 +71,7 @@ When major breaking changes happen in dependent resources, integrations may temp
 
 ## Official integrations
 
-.NET Aspire provides many integrations to help you build cloud-native applications. These integrations are designed to work seamlessly with the .NET Aspire app host and client libraries. The following sections detail cloud-agnostic, Azure-specific, Amazon Web Services (AWS), and Community Toolkit integrations.
+.NET Aspire provides many integrations to help you build cloud-native applications. These integrations are designed to work seamlessly with the .NET Aspire AppHost and client libraries. The following sections detail cloud-agnostic, Azure-specific, Amazon Web Services (AWS), and Community Toolkit integrations.
 
 ### Cloud-agnostic integrations
 

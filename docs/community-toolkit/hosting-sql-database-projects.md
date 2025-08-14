@@ -19,7 +19,7 @@ This integration requires a SQL Database Project based on either [MSBuild.Sdk.Sq
 
 ## Hosting integration
 
-To get started with the .NET Aspire SQL Database Projects hosting integration, install the [📦 CommunityToolkit.Aspire.Hosting.SqlDatabaseProjects](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SqlDatabaseProjects) NuGet package in the app host project.
+To get started with the .NET Aspire SQL Database Projects hosting integration, install the [📦 CommunityToolkit.Aspire.Hosting.SqlDatabaseProjects](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SqlDatabaseProjects) NuGet package in the AppHost project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -40,7 +40,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-Add a reference to the [📦 MSBuild.Sdk.SqlProj](https://www.nuget.org/packages/MSBuild.Sdk.SqlProj) or [📦 Microsoft.Build.Sql](https://www.nuget.org/packages/Microsoft.Build.Sql) project you want to publish in your .NET Aspire app host project:
+Add a reference to the [📦 MSBuild.Sdk.SqlProj](https://www.nuget.org/packages/MSBuild.Sdk.SqlProj) or [📦 Microsoft.Build.Sql](https://www.nuget.org/packages/Microsoft.Build.Sql) project you want to publish in your .NET Aspire AppHost project:
 
 ```dotnetcli
 dotnet add reference ../MySqlProj/MySqlProj.csproj
@@ -61,11 +61,11 @@ builder.AddSqlProject<Projects.MySqlProj>("mysqlproj")
        .WithReference(sql);
 ```
 
-Now when you run your .NET Aspire app host project you see the SQL Database Project being published to the specified SQL Server.
+Now when you run your .NET Aspire AppHost project you see the SQL Database Project being published to the specified SQL Server.
 
 ## NuGet Package support
 
-Starting with version 9.2.0, you can deploy databases from referenced NuGet packages, such as those produced by [📦 MSBuild.Sdk.SqlProj](https://www.nuget.org/packages/MSBuild.Sdk.SqlProj) or [📦 Microsoft.Build.Sql](https://www.nuget.org/packages/Microsoft.Build.Sql). To deploy, add the NuGet package to your Aspire app host project, for example:
+Starting with version 9.2.0, you can deploy databases from referenced NuGet packages, such as those produced by [📦 MSBuild.Sdk.SqlProj](https://www.nuget.org/packages/MSBuild.Sdk.SqlProj) or [📦 Microsoft.Build.Sql](https://www.nuget.org/packages/Microsoft.Build.Sql). To deploy, add the NuGet package to your Aspire AppHost project, for example:
 
 ```dotnetcli
 dotnet add package ErikEJ.Dacpac.Chinook
@@ -91,7 +91,7 @@ builder.AddSqlPackage<Packages.ErikEJ_Dacpac_Chinook>("chinook")
 ```
 
 > [!NOTE]
-> By default, the _.dacpac_ is expected to be located under `tools/<package-id>.dacpac`. In the preceding example, the _tools/ErikEJ.Dacpac.Chinook.dacpac_ path is expected. If for whatever reason the _.dacpac_ is under a different path within the package you can use `WithDacpac("relative/path/to/some.dacpac")` API to specify a path relative to the root of app host project directory.
+> By default, the _.dacpac_ is expected to be located under `tools/<package-id>.dacpac`. In the preceding example, the _tools/ErikEJ.Dacpac.Chinook.dacpac_ path is expected. If for whatever reason the _.dacpac_ is under a different path within the package you can use `WithDacpac("relative/path/to/some.dacpac")` API to specify a path relative to the root of AppHost project directory.
 
 ### Local .dacpac file support
 
@@ -149,7 +149,7 @@ The preceding code:
 
 ### Redeploy support
 
-If you make changes to your SQL Database project while the app host is running, you can use the `Redeploy` custom action on the .NET Aspire dashboard to redeploy your updates without having to restart the app host.
+If you make changes to your SQL Database project while the AppHost is running, you can use the `Redeploy` custom action on the .NET Aspire dashboard to redeploy your updates without having to restart the AppHost.
 
 ## See also
 

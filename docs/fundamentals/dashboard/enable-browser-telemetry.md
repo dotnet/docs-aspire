@@ -26,11 +26,11 @@ To configure the gPRC or HTTP endpoints, specify the following environment varia
 - `ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL`: The gRPC endpoint to which the dashboard connects for its data.
 - `ASPIRE_DASHBOARD_OTLP_HTTP_ENDPOINT_URL`: The HTTP endpoint to which the dashboard connects for its data.
 
-Configuration of the HTTP OTLP endpoint depends on whether the dashboard is started by the app host or is run standalone.
+Configuration of the HTTP OTLP endpoint depends on whether the dashboard is started by the AppHost or is run standalone.
 
-#### Configure OTLP HTTP with app host
+#### Configure OTLP HTTP with AppHost
 
-If the dashboard and your app are started by the app host, the dashboard OTLP endpoints are configured in the app host's _launchSettings.json_ file.
+If the dashboard and your app are started by the AppHost, the dashboard OTLP endpoints are configured in the AppHost's _launchSettings.json_ file.
 
 Consider the following example JSON file:
 
@@ -50,7 +50,7 @@ docker run --rm -it -d \
     -p 4317:18889 \
     -p 4318:18890 \
     --name aspire-dashboard \
-    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.4
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -61,7 +61,7 @@ docker run --rm -it -d `
     -p 4317:18889 `
     -p 4318:18890 `
     --name aspire-dashboard `
-    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.4
 ```
 
 ---
@@ -72,7 +72,7 @@ The preceding command runs the dashboard container and maps gRPC OTLP to port `4
 
 By default, browser apps are restricted from making cross domain API calls. This impacts sending telemetry to the dashboard because the dashboard and the browser app are always on different domains. Configuring CORS in the .NET Aspire dashboard removes the restriction.
 
-If the dashboard and your app are started by the app host, no CORS configuration is required. .NET Aspire automatically configures the dashboard to allow all resource origins.
+If the dashboard and your app are started by the AppHost, no CORS configuration is required. .NET Aspire automatically configures the dashboard to allow all resource origins.
 
 If the dashboard is used standlone then CORS must be configured manually. The domain used to view the browser app must be configured as an allowed origin by specifing the `DASHBOARD__OTLP__CORS__ALLOWEDORIGINS` environment variable when the dashboard container is started:
 
@@ -85,7 +85,7 @@ docker run --rm -it -d \
     -p 4318:18890 \
     -e DASHBOARD__OTLP__CORS__ALLOWEDORIGINS=https://localhost:8080 \
     --name aspire-dashboard \
-    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.4
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -97,7 +97,7 @@ docker run --rm -it -d `
     -p 4318:18890 `
     -e DASHBOARD__OTLP__CORS__ALLOWEDORIGINS=https://localhost:8080 `
     --name aspire-dashboard `
-    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.4
 ```
 
 ---
@@ -112,7 +112,7 @@ For more information, see [.NET Aspire dashboard configuration: OTLP CORS](confi
 
 Dashboard OTLP endpoints can be secured with API key authentication. When enabled, HTTP OTLP requests to the dashboard must include the API key as the `x-otlp-api-key` header. By default a new  API key is generated each time the dashboard is run.
 
-API key authentication is automatically enabled when the dashboard is run from the app host. Dashboard authentication can be disabled by setting `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` to `true` in the app host's _launchSettings.json_ file.
+API key authentication is automatically enabled when the dashboard is run from the AppHost. Dashboard authentication can be disabled by setting `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` to `true` in the AppHost's _launchSettings.json_ file.
 
 OTLP endpoints are unsecured by default in the standalone dashboard.
 
@@ -126,9 +126,9 @@ OTLP exporters must be included in the browser app and configured with the SDK. 
 
 When OTLP is added to the SDK, OTLP options must be specified. OTLP options includes:
 
-- `url`: The address that HTTP OTLP requests are made to. The address should be the dashboard HTTP OTLP endpoint and the path to the OTLP HTTP API. For example, `https://localhost:4318/v1/traces` for the trace OTLP exporter. If the browser app is launched by the app host then the HTTP OTLP endpoint is available from the `OTEL_EXPORTER_OTLP_ENDPOINT` environment variable.
+- `url`: The address that HTTP OTLP requests are made to. The address should be the dashboard HTTP OTLP endpoint and the path to the OTLP HTTP API. For example, `https://localhost:4318/v1/traces` for the trace OTLP exporter. If the browser app is launched by the AppHost then the HTTP OTLP endpoint is available from the `OTEL_EXPORTER_OTLP_ENDPOINT` environment variable.
 
-- `headers`: The headers sent with requests. If OTLP endpoint API key authentication is enabled the `x-otlp-api-key` header must be sent with OTLP requests. If the browser app is launched by the app host then the API key is available from the `OTEL_EXPORTER_OTLP_HEADERS` environment variable.
+- `headers`: The headers sent with requests. If OTLP endpoint API key authentication is enabled the `x-otlp-api-key` header must be sent with OTLP requests. If the browser app is launched by the AppHost then the API key is available from the `OTEL_EXPORTER_OTLP_HEADERS` environment variable.
 
 ### Browser metadata
 
@@ -154,7 +154,7 @@ The following JavaScript code demonstrates the initialization of the OpenTelemet
 
 :::code language="javascript" source="snippets/BrowserTelemetry/BrowserTelemetry.Web/Scripts/index.js":::
 
-The preceding JavaScript code defines an `initializeTelemetry` function that expects the OTLP endpoint URL, the headers, and the resource attributes. These parameters are provided by the consuming browser app that pulls them from the environment variables set by the app host. Consider the following Razor code:
+The preceding JavaScript code defines an `initializeTelemetry` function that expects the OTLP endpoint URL, the headers, and the resource attributes. These parameters are provided by the consuming browser app that pulls them from the environment variables set by the AppHost. Consider the following Razor code:
 
 :::code language="razor" source="snippets/BrowserTelemetry/BrowserTelemetry.Web/Pages/Shared/_Layout.cshtml" highlight="31-38":::
 

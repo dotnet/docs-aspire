@@ -1,7 +1,8 @@
 ---
 title: .NET Aspire Community Toolkit EventStore integration
 description: Learn how to use the .NET Aspire EventStore hosting and client integration to run the EventStore container and accessing it via the EventStore client.
-ms.date: 11/21/2024
+ms.date: 08/07/2025
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Community Toolkit EventStore integration
@@ -14,7 +15,7 @@ In this article, you learn how to use the .NET Aspire EventStore hosting integra
 
 ## Hosting integration
 
-To run the EventStore container, install the [📦 CommunityToolkit.Aspire.Hosting.EventStore][hosting-nuget-link] NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+To run the EventStore container, install the [📦 CommunityToolkit.Aspire.Hosting.EventStore][hosting-nuget-link] NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -35,7 +36,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add EventStore resource
 
-In the app host project, register and consume the EventStore integration using the `AddEventStore` extension method to add the EventStore container to the application builder.
+In the AppHost project, register and consume the EventStore integration using the `AddEventStore` extension method to add the EventStore container to the application builder.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -48,7 +49,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/eventstore/eventstore` image, it creates a new EventStore instance on your local machine. A reference to your EventStore resource (the `eventstore` variable) is added to the `ExampleProject`.
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/eventstore/eventstore` image, it creates a new EventStore instance on your local machine. A reference to your EventStore resource (the `eventstore` variable) is added to the `ExampleProject`.
 
 For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -162,7 +163,7 @@ builder.AddEventStoreClient(connectionName: "eventstore");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the EventStore resource in the app host project. For more information, see [Add EventStore resource](#add-eventstore-resource).
+> The `connectionName` parameter must match the name used when adding the EventStore resource in the AppHost project. For more information, see [Add EventStore resource](#add-eventstore-resource).
 
 You can then retrieve the `EventStoreClient` instance using dependency injection. For example, to retrieve the connection from an example service:
 
@@ -254,10 +255,5 @@ The .NET Aspire EventStore integration uses the configured client to perform a `
 - [EventStore Client](https://github.com/EventStore/EventStore-Client-Dotnet)
 - [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
 
-<!--
-TODO: Fix these links once NuGet packages are published.
-- https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.EventStore
-- https://nuget.org/packages/CommunityToolkit.Aspire.EventStore
--->
-[hosting-nuget-link]: https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.EventStore
-[client-nuget-link]: https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.EventStore
+[hosting-nuget-link]: https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.EventStore
+[client-nuget-link]: https://nuget.org/packages/CommunityToolkit.Aspire.EventStore

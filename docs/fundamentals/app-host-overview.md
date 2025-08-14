@@ -1,9 +1,12 @@
 ---
 title: .NET Aspire orchestration overview
 description: Learn the fundamental concepts of .NET Aspire orchestration and explore the various APIs for adding resources and expressing dependencies.
-ms.date: 04/23/2025
+ms.date: 08/07/2025
 ms.topic: overview
 uid: dotnet/aspire/app-host
+ms.custom:
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # .NET Aspire orchestration overview
@@ -15,9 +18,9 @@ uid: dotnet/aspire/app-host
 Before continuing, consider some common terminology used in .NET Aspire:
 
 - **App model**: A collection of resources that make up your distributed application (<xref:Aspire.Hosting.DistributedApplication>), defined within the <xref:Aspire.Hosting.ApplicationModel> namespace. For a more formal definition, see [Define the app model](#define-the-app-model).
-- **App host/Orchestrator project**: The .NET project that orchestrates the _app model_, named with the _*.AppHost_ suffix (by convention).
+- **AppHost/Orchestrator project**: The .NET project that orchestrates the _app model_, named with the _*.AppHost_ suffix (by convention).
 - **Resource**: A [resource](#built-in-resource-types) is a dependent part of an application, such as a .NET project, container, executable, database, cache, or cloud service. It represents any part of the application that can be managed or referenced.
-- **Integration**: An integration is a NuGet package for either the _app host_ that models a _resource_ or a package that configures a client for use in a consuming app. For more information, see [.NET Aspire integrations overview](integrations-overview.md).
+- **Integration**: An integration is a NuGet package for either the _AppHost_ that models a _resource_ or a package that configures a client for use in a consuming app. For more information, see [.NET Aspire integrations overview](integrations-overview.md).
 - **Reference**: A reference defines a connection between resources, expressed as a dependency using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> API. For more information, see [Reference resources](#reference-resources) or [Reference existing resources](#reference-existing-resources).
 
 > [!NOTE]
@@ -29,7 +32,7 @@ Before continuing, consider some common terminology used in .NET Aspire:
 
 The app model is more than just a list of resources—it represents the complete topology of your application. This includes the relationships between resources, their dependencies, and their configurations. Resources can include projects, executables, containers, external services, and cloud resources that your application relies on.
 
-In your [.NET Aspire app host project](#app-host-project), your `Program` file defines your app model:
+In your [.NET Aspire AppHost project](#apphost-project), your `Program` file defines your app model:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -41,14 +44,14 @@ builder.Build().Run();
 
 When you call <xref:Aspire.Hosting.DistributedApplication.CreateBuilder*?displayProperty=nameWithType>, you get an instance of <xref:Aspire.Hosting.IDistributedApplicationBuilder>, which is used to configure your app model. This builder provides methods to add resources, define dependencies, and set up the overall structure of your application. After you've added resources, call `Build` to create the app model. The [templates](../fundamentals/aspire-sdk-templates.md) include code that chains a call to <xref:Aspire.Hosting.IDistributedApplicationBuilder.Build>—which returns an <xref:Aspire.Hosting.DistributedApplication> instance, and then calls <xref:Aspire.Hosting.DistributedApplication.Run>.
 
-## App host project
+## AppHost project
 
-The app host project handles running all of the projects that are part of the .NET Aspire project. In other words, it's responsible for orchestrating all apps within the app model. The project itself is a .NET executable project that references the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package, and uses the [.NET Aspire SDK](dotnet-aspire-sdk.md):
+The AppHost project handles running all of the projects that are part of the .NET Aspire project. In other words, it's responsible for orchestrating all apps within the app model. The project itself is a .NET executable project that references the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package, and uses the [.NET Aspire SDK](dotnet-aspire-sdk.md):
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.1.0" />
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.4.0" />
     
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -57,7 +60,7 @@ The app host project handles running all of the projects that are part of the .N
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
+        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.4.0" />
     </ItemGroup>
 
     <!-- Omitted for brevity -->
@@ -65,7 +68,7 @@ The app host project handles running all of the projects that are part of the .N
 </Project>
 ```
 
-The following code describes an app host `Program` with two project references and a Redis cache:
+The following code describes an AppHost `Program` with two project references and a Redis cache:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -97,7 +100,7 @@ The preceding code:
 
 The example code uses the [.NET Aspire Redis hosting integration](../caching/stackexchange-redis-integration.md#hosting-integration).
 
-To help visualize the relationship between the app host project and the resources it describes, consider the following diagram:
+To help visualize the relationship between the AppHost project and the resources it describes, consider the following diagram:
 
 :::image type="content" source="../media/app-host-resource-diagram.png" lightbox="../media/app-host-resource-diagram.png" alt-text="The relationship between the projects in the .NET Aspire Starter Application template.":::
 
@@ -114,7 +117,7 @@ Each resource must be uniquely named. This diagram shows each resource and the r
 | <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> | <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> | An executable file, such as a [Node.js app](../get-started/build-aspire-apps-with-nodejs.md). |
 | <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddParameter%2A> | <xref:Aspire.Hosting.ApplicationModel.ParameterResource> | A parameter resource that can be used to [express external parameters](external-parameters.md). |
 
-Project resources represent .NET projects that are part of the app model. When you add a project reference to the app host project, the .NET Aspire SDK generates a type in the `Projects` namespace for each referenced project. For more information, see [.NET Aspire SDK: Project references](dotnet-aspire-sdk.md#project-references).
+Project resources represent .NET projects that are part of the app model. When you add a project reference to the AppHost project, the .NET Aspire SDK generates a type in the `Projects` namespace for each referenced project. For more information, see [.NET Aspire SDK: Project references](dotnet-aspire-sdk.md#project-references).
 
 To add a project to the app model, use the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> method:
 
@@ -139,7 +142,7 @@ The preceding code adds three replicas of the "apiservice" project resource to t
 
 ## Reference resources
 
-A reference represents a dependency between resources. For example, you can probably imagine a scenario where a web frontend depends on a Redis cache. Consider the following example app host `Program` C# code:
+A reference represents a dependency between resources. For example, you can probably imagine a scenario where a web frontend depends on a Redis cache. Consider the following example AppHost `Program` C# code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -207,7 +210,7 @@ The `port` parameter is the port that the container is listening on. For more in
 
 In the preceding section, the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method is used to express dependencies between resources. When service endpoints result in environment variables being injected into the dependent resource, the format might not be obvious. This section provides details on this format.
 
-When one resource depends on another resource, the app host injects environment variables into the dependent resource. These environment variables configure the dependent resource to connect to the resource it depends on. The format of the environment variables is specific to .NET Aspire and expresses service endpoints in a way that is compatible with [Service Discovery](../service-discovery/overview.md).
+When one resource depends on another resource, the AppHost injects environment variables into the dependent resource. These environment variables configure the dependent resource to connect to the resource it depends on. The format of the environment variables is specific to .NET Aspire and expresses service endpoints in a way that is compatible with [Service Discovery](../service-discovery/overview.md).
 
 Service endpoint environment variable names are prefixed with `services__` (double underscore), then the service name, the endpoint name, and finally the index. The index supports multiple endpoints for a single service, starting with `0` for the first endpoint and incrementing for each endpoint.
 
@@ -227,13 +230,13 @@ In the preceding example, the `apiservice` service has a named endpoint called `
 
 ## Reference existing resources
 
-Some situations warrant that you reference an existing resource, perhaps one that is deployed to a cloud provider. For example, you might want to reference an Azure database. In this case, you'd rely on the [Execution context](#execution-context) to dynamically determine whether the app host is running in "run" mode or "publish" mode. If you're running locally and want to rely on a cloud resource, you can use the `IsRunMode` property to conditionally add the reference. You might choose to instead create the resource in publish mode. Some [hosting integrations](integrations-overview.md#hosting-integrations) support providing a connection string directly, which can be used to reference an existing resource.
+Some situations warrant that you reference an existing resource, perhaps one that is deployed to a cloud provider. For example, you might want to reference an Azure database. In this case, you'd rely on the [Execution context](#execution-context) to dynamically determine whether the AppHost is running in "run" mode or "publish" mode. If you're running locally and want to rely on a cloud resource, you can use the `IsRunMode` property to conditionally add the reference. You might choose to instead create the resource in publish mode. Some [hosting integrations](integrations-overview.md#hosting-integrations) support providing a connection string directly, which can be used to reference an existing resource.
 
-Likewise, there might be use cases where you want to integrate .NET Aspire into an existing solution. One common approach is to add the .NET Aspire app host project to an existing solution. Within your app host, you express dependencies by adding project references to the app host and [building out the app model](#define-the-app-model). For example, one project might depend on another. These dependencies are expressed using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method. For more information, see [Add .NET Aspire to an existing .NET app](../get-started/add-aspire-existing-app.md).
+Likewise, there might be use cases where you want to integrate .NET Aspire into an existing solution. One common approach is to add the .NET Aspire AppHost project to an existing solution. Within your AppHost, you express dependencies by adding project references to the AppHost and [building out the app model](#define-the-app-model). For example, one project might depend on another. These dependencies are expressed using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method. For more information, see [Add .NET Aspire to an existing .NET app](../get-started/add-aspire-existing-app.md).
 
 ## Execution context
 
-The <xref:Aspire.Hosting.IDistributedApplicationBuilder> exposes an execution context (<xref:Aspire.Hosting.DistributedApplicationExecutionContext>), which provides information about the current execution of the app host. This context can be used to evaluate whether or not the app host is executing as "run" mode, or as part of a publish operation. Consider the following properties:
+The <xref:Aspire.Hosting.IDistributedApplicationBuilder> exposes an execution context (<xref:Aspire.Hosting.DistributedApplicationExecutionContext>), which provides information about the current execution of the AppHost. This context can be used to evaluate whether or not the AppHost is executing as "run" mode, or as part of a publish operation. Consider the following properties:
 
 - <xref:Aspire.Hosting.DistributedApplicationExecutionContext.IsRunMode%2A>: Returns `true` if the current operation is running.
 - <xref:Aspire.Hosting.DistributedApplicationExecutionContext.IsPublishMode%2A>: Returns `true` if the current operation is publishing.
@@ -275,8 +278,8 @@ builder.Build().Run();
 
 In the preceding code:
 
-- If the app host is in "run" mode, a Redis container resource is added.
-- If the app host is in "publish" mode, a connection string is added.
+- If the AppHost is in "run" mode, a Redis container resource is added.
+- If the AppHost is in "publish" mode, a connection string is added.
 
 This logic can easily be inverted to connect to an existing Redis resource when you're running locally, and create a new Redis resource when you're publishing.
 

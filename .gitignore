@@ -1,5 +1,8 @@
 syntax: glob
 
+.aspire/
+**/.aspire/
+
 # Python virtual environments
 .venv
 

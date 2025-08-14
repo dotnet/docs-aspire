@@ -15,7 +15,7 @@ During development, .NET Aspire runs and connects to the [`datalust/seq` contain
 
 ## Hosting integration
 
-The Seq hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.SeqResource> type. To access this type and the API, add the [📦 Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The Seq hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.SeqResource> type. To access this type and the API, add the [📦 Aspire.Hosting.Seq](https://www.nuget.org/packages/Aspire.Hosting.Seq) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -36,7 +36,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add a Seq resource
 
-In your app host project, call <xref:Aspire.Hosting.SeqBuilderExtensions.AddSeq*> to add and return a Seq resource builder.
+In your AppHost project, call <xref:Aspire.Hosting.SeqBuilderExtensions.AddSeq*> to add and return a Seq resource builder.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -66,7 +66,7 @@ Seq shouldn't be part of the .NET Aspire [deployment manifest](../deployment/man
 
 ### Persistent logs and traces
 
-Register Seq with a data directory in your app host project to retain Seq's data and configuration across application restarts:
+Register Seq with a data directory in your AppHost project to retain Seq's data and configuration across application restarts:
 
 ```csharp
 var seq = builder.AddSeq("seq", seqDataDirectory: "./seqdata")
@@ -145,7 +145,7 @@ builder.AddSeqEndpoint(connectionName: "seq");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Seq resource in the app host project. In other words, when you call `AddSeq` and provide a name of `seq` that same name should be used when calling `AddSeqEndpoint`. For more information, see [Add a Seq resource](#add-a-seq-resource).
+> The `connectionName` parameter must match the name used when adding the Seq resource in the AppHost project. In other words, when you call `AddSeq` and provide a name of `seq` that same name should be used when calling `AddSeqEndpoint`. For more information, see [Add a Seq resource](#add-a-seq-resource).
 
 ### Configuration
 
@@ -166,7 +166,37 @@ The .NET Aspire Seq integration supports <xref:Microsoft.Extensions.Configuratio
 }
 ```
 
-For the complete Seq client integration JSON schema, see [Aspire.Seq/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Microsoft.Data.SqlClient/ConfigurationSchema.json).
+For the complete Seq client integration JSON schema, see [Aspire.Seq/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Seq/ConfigurationSchema.json).
+
+#### Use named configuration
+
+The .NET Aspire Seq integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Seq": {
+      "seq1": {
+        "ServerUrl": "http://seq1:5341",
+        "DisableHealthChecks": true
+      },
+      "seq2": {
+        "ServerUrl": "http://seq2:5341",
+        "DisableHealthChecks": false
+      }
+    }
+  }
+}
+```
+
+In this example, the `seq1` and `seq2` connection names can be used when calling `AddSeqEndpoint`:
+
+```csharp
+builder.AddSeqEndpoint("seq1");
+builder.AddSeqEndpoint("seq2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
 
 #### Use inline delegates
 

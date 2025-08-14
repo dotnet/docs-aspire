@@ -4,6 +4,7 @@ description: How to use the Aspire Dashboard in a Python application.
 ms.date: 10/29/2024
 ms.topic: tutorial
 ms.author: aapowell
+ms.custom: sfi-image-nochange
 ---
 
 # Tutorial: Use the .NET Aspire dashboard with Python apps
@@ -221,7 +222,7 @@ To start the Aspire dashboard in standalone mode, run the following Docker comma
 
 ```bash
 docker run --rm -it -p 18888:18888 -p 4317:18889 --name aspire-dashboard \
-    mcr.microsoft.com/dotnet/aspire-dashboard:9.0
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.4
 ```
 
 In the Docker logs, the endpoint and key for the dashboard are displayed. Copy the key and navigate to `http://localhost:18888` in a web browser. Enter the key to log in to the dashboard.
@@ -234,4 +235,4 @@ Navigate around the Python application, and you'll see structured logs in the As
 
 ## Next steps
 
-You have successfully used the .NET Aspire dashboard with a Python application. To learn more about the .NET Aspire dashboard, see the [Aspire dashboard overview](overview.md) and how to orchestrate a Python application with the [.NET Aspire app host](../../get-started/build-aspire-apps-with-python.md).
+You have successfully used the .NET Aspire dashboard with a Python application. To learn more about the .NET Aspire dashboard, see the [Aspire dashboard overview](overview.md) and how to orchestrate a Python application with the [.NET Aspire AppHost](../../get-started/build-aspire-apps-with-python.md).

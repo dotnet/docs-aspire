@@ -3,6 +3,7 @@ title: .NET Aspire Elasticsearch integration (Preview)
 description: Learn how to use the .NET Aspire Elasticsearch integration, which includes both hosting and client integrations.
 ms.date: 02/14/2025
 uid: search/elasticsearch-integration
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Elasticsearch integration (Preview)
@@ -13,7 +14,7 @@ uid: search/elasticsearch-integration
 
 ## Hosting integration
 
-The Elasticsearch hosting integration models an Elasticsearch instance as the <xref:Aspire.Hosting.ApplicationModel.ElasticsearchResource> type. To access this type and APIs that allow you to add it to your [📦 Aspire.Hosting.Elasticsearch](https://www.nuget.org/packages/Aspire.Hosting.Elasticsearch) NuGet package in the [app host](xref:dotnet/aspire/app-host) project.
+The Elasticsearch hosting integration models an Elasticsearch instance as the <xref:Aspire.Hosting.ApplicationModel.ElasticsearchResource> type. To access this type and APIs that allow you to add it to your [📦 Aspire.Hosting.Elasticsearch](https://www.nuget.org/packages/Aspire.Hosting.Elasticsearch) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -34,7 +35,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Elasticsearch resource
 
-In your app host project, call <xref:Aspire.Hosting.ElasticsearchBuilderExtensions.AddElasticsearch*> on the `builder` instance to add an Elasticsearch resource:
+In your AppHost project, call <xref:Aspire.Hosting.ElasticsearchBuilderExtensions.AddElasticsearch*> on the `builder` instance to add an Elasticsearch resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -47,7 +48,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/library/elasticsearch` image, it creates a new Elasticsearch instance on your local machine. A reference to your Elasticsearch resource (the `elasticsearch` variable) is added to the `ExampleProject`. The Elasticsearch resource includes default credentials with a `username` of `"elastic"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method when a password wasn't provided.
+When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/elasticsearch` image, it creates a new Elasticsearch instance on your local machine. A reference to your Elasticsearch resource (the `elasticsearch` variable) is added to the `ExampleProject`. The Elasticsearch resource includes default credentials with a `username` of `"elastic"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method when a password wasn't provided.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"elasticsearch"`. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -146,7 +147,7 @@ builder.AddElasticsearchClient(connectionName: "elasticsearch");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Elasticsearch resource in the app host project. For more information, see [Add Elasticsearch resource](#add-elasticsearch-resource).
+> The `connectionName` parameter must match the name used when adding the Elasticsearch resource in the AppHost project. For more information, see [Add Elasticsearch resource](#add-elasticsearch-resource).
 
 You can then retrieve the `ElasticsearchClient` instance using dependency injection. For example, to retrieve the connection from an example service:
 

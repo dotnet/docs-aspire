@@ -15,15 +15,13 @@ It's easy to [publish resources as Azure Container Apps (ACA)](integrations-over
 
 These APIs automatically create a default ACA environment when you publish your app. While this default setup works well for most scenarios, you might need to customize the ACA environment to meet specific requirements. To achieve this, use the `AddAzureContainerAppEnvironment` method.
 
-The [.NET Aspire app host](../fundamentals/app-host-overview.md) simplifies infrastructure provisioning by generating code to create Azure resources for your applications. This approach enables you to model and configure deployment-related aspects directly in C#, reducing the need to rely on tools like Bicep. These aspects include configuring ACA environments, which provide a serverless platform for running containerized applications.
+The [.NET Aspire AppHost](../fundamentals/app-host-overview.md) simplifies infrastructure provisioning by generating code to create Azure resources for your applications. This approach enables you to model and configure deployment-related aspects directly in C#, reducing the need to rely on tools like Bicep. These aspects include configuring ACA environments, which provide a serverless platform for running containerized applications.
 
 By using the <xref:Azure.Provisioning> APIs (explained in [Customize Azure resources](customize-azure-resources.md)), you can configure and customize ACA environments along with related resources, such as container registries and file share volumes. Any available deployment setting can be configured. For more information on the available settings, see [Microsoft.App managedEnvironments](/azure/templates/microsoft.app/managedenvironments).
 
 This article guides you through the process of tailoring ACA environments for your .NET Aspire solutions.
 
 ## Add an ACA environment
-
-<!-- TODO: Add xref to AddAzureContainerAppEnvironment when available -->
 
 The `AzureContainerAppEnvironmentResource` type models an ACA environment resource. When you call the `AddAzureContainerAppEnvironment` method, it creates an instance of this type (wrapped in the <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1>).
 
@@ -47,9 +45,7 @@ Using the `acaEnv` variable, you can chain a call to the <xref:Aspire.Hosting.Az
 
 ## Handle naming conventions
 
-<!-- TODO: Add xref to WithAzdResourceNaming when available -->
-
-By default, `AddAzureContainerAppEnvironment` uses a different Azure resource naming scheme than the [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/). If you're upgrading an existing deployment that previously used `azd`, you might see duplicate Azure resources. To avoid this issue, call the `WithAzdResourceNaming` method to revert to the naming convention used by `azd`:
+By default, <xref:Aspire.Hosting.AzureContainerAppExtensions.AddAzureContainerAppEnvironment*> uses a different Azure resource naming scheme than the [Azure Developer CLI (`azd`)](/azure/developer/azure-developer-cli/). If you're upgrading an existing deployment that previously used `azd`, you might see duplicate Azure resources. To avoid this issue, call the <xref:Aspire.Hosting.AzureContainerAppExtensions.WithAzdResourceNaming*> method to revert to the naming convention used by `azd`:
 
 ```csharp
 var builder = DistributionApplicationBuilder.Create(args);

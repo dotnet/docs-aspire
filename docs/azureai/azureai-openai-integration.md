@@ -1,7 +1,8 @@
 ---
 title: .NET Aspire Azure OpenAI integration (Preview)
 description: Learn how to use the .NET Aspire Azure OpenAI integration.
-ms.date: 04/15/2025
+ms.date: 07/22/2025
+ms.custom: sfi-ropc-nochange
 ---
 
 # .NET Aspire Azure OpenAI integration (Preview)
@@ -12,7 +13,7 @@ ms.date: 04/15/2025
 
 ## Hosting integration
 
-The .NET Aspire [Azure OpenAI](/azure/ai-services/openai/) hosting integration models Azure OpenAI resources as <xref:Aspire.Hosting.ApplicationModel.AzureOpenAIResource>. To access these types and APIs for expressing them within your [app host](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices) NuGet package:
+The .NET Aspire [Azure OpenAI](/azure/ai-services/openai/) hosting integration models Azure OpenAI resources as <xref:Aspire.Hosting.ApplicationModel.AzureOpenAIResource>. To access these types and APIs for expressing them within your [AppHost](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -33,7 +34,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add an Azure OpenAI resource
 
-To add an <xref:Aspire.Hosting.ApplicationModel.AzureOpenAIResource> to your app host project, call the <xref:Aspire.Hosting.AzureOpenAIExtensions.AddAzureOpenAI%2A> method:
+To add an <xref:Aspire.Hosting.ApplicationModel.AzureOpenAIResource> to your AppHost project, call the <xref:Aspire.Hosting.AzureOpenAIExtensions.AddAzureOpenAI%2A> method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -46,7 +47,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The preceding code adds an Azure OpenAI resource named `openai` to the app host project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes the connection information to the `ExampleProject` project.
+The preceding code adds an Azure OpenAI resource named `openai` to the AppHost project. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method passes the connection information to the `ExampleProject` project.
 
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureOpenAIExtensions.AddAzureOpenAI%2A>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration).
@@ -81,11 +82,11 @@ The preceding code:
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep provisions an Azure OpenAI resource with standard defaults.
 
-:::code language="bicep" source="../snippets/azure/AppHost/openai.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/openai/openai.bicep":::
 
 The preceding Bicep is a module that provisions an Azure Cognitive Services resource. Additionally, role assignments are created for the Azure resource in a separate module:
 
-:::code language="bicep" source="../snippets/azure/AppHost/openai-roles.module.bicep":::
+:::code language="bicep" source="../snippets/azure/AppHost/openai-roles/openai-roles.bicep":::
 
 The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
 
@@ -128,7 +129,7 @@ builder.AddProject<Projects.ExampleProject>()
 For more information on treating Azure OpenAI resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
 
 > [!NOTE]
-> Alternatively, instead of representing an Azure OpenAI resource, you can add a connection string to the app host. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+> Alternatively, instead of representing an Azure OpenAI resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ## Client integration
 
@@ -158,7 +159,7 @@ builder.AddAzureOpenAIClient(connectionName: "openai");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Azure OpenAI resource in the app host project. For more information, see [Add an Azure OpenAI resource](#add-an-azure-openai-resource).
+> The `connectionName` parameter must match the name used when adding the Azure OpenAI resource in the AppHost project. For more information, see [Add an Azure OpenAI resource](#add-an-azure-openai-resource).
 
 After adding the `OpenAIClient`, you can retrieve the client instance using dependency injection:
 
@@ -360,6 +361,40 @@ The .NET Aspire Azure OpenAI integration supports <xref:Microsoft.Extensions.Con
 ```
 
 For the complete Azure OpenAI client integration JSON schema, see [Aspire.Azure.AI.OpenAI/ConfigurationSchema.json](https://github.com/dotnet/aspire/blob/v9.1.0/src/Components/Aspire.Azure.AI.OpenAI/ConfigurationSchema.json).
+
+#### Use named configuration
+
+The .NET Aspire Azure OpenAI integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "AI": {
+        "OpenAI": {
+          "openai1": {
+            "Endpoint": "https://account1.openai.azure.com/",
+            "DisableTracing": false
+          },
+          "openai2": {
+            "Endpoint": "https://account2.openai.azure.com/",
+            "DisableTracing": true
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+In this example, the `openai1` and `openai2` connection names can be used when calling `AddAzureOpenAIClient`:
+
+```csharp
+builder.AddAzureOpenAIClient("openai1");
+builder.AddAzureOpenAIClient("openai2");
+```
+
+Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.
 
 #### Use inline delegates
 

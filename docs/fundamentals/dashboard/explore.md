@@ -1,8 +1,9 @@
 ---
 title: Explore .NET Aspire dashboard
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 04/07/2025
+ms.date: 07/21/2025
 ms.topic: reference
+ai-usage: ai-assisted
 ---
 
 # Explore the .NET Aspire dashboard
@@ -17,13 +18,15 @@ In the upcoming sections, you discover how to create a .NET Aspire project and e
 
 The screenshots featured in this article showcase the dark theme. For more information on theme selection, see [Theme selection](#theme-selection).
 
+The .NET Aspire dashboard also includes **GitHub Copilot**, your AI debugging assistant, which can help you analyze resources, logs, traces, and telemetry data. Copilot is available when you launch your app from VS Code or Visual Studio with a GitHub account that has a Copilot subscription. For complete details, see [GitHub Copilot in the .NET Aspire dashboard](copilot.md).
+
 ## Dashboard authentication
 
-When you run a .NET Aspire app host, the orchestrator starts up all the app's dependent resources and then opens a browser window to the dashboard. The .NET Aspire dashboard requires token-based authentication for its users because it displays environment variables and other sensitive information.
+When you run a .NET Aspire AppHost, the orchestrator starts up all the app's dependent resources and then opens a browser window to the dashboard. The .NET Aspire dashboard requires token-based authentication for its users because it displays environment variables and other sensitive information.
 
 When the dashboard is launched from Visual Studio or Visual Studio Code (with the [C# Dev Kit extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)), the browser is automatically logged in, and the dashboard opens directly. This is the typical developer <kbd>F5</kbd> experience, and the authentication login flow is automated by the .NET Aspire tooling.
 
-However, if you start the app host from the command line, you're presented with the login page. The console window displays a URL that you can select on to open the dashboard in your browser.
+However, if you start the AppHost from the command line, you're presented with the login page. The console window displays a URL that you can select on to open the dashboard in your browser.
 
 :::image type="content" source="media/explore/dotnet-run-login-url.png" lightbox="media/explore/dotnet-run-login-url.png" alt-text=".NET CLI run command output, showing the login URL with token query string.":::
 
@@ -40,6 +43,9 @@ After copying the token from the console and pasting it into the login page, sel
 :::image type="content" source="media/explore/aspire-login-filled.png" lightbox="media/explore/aspire-login-filled.png" alt-text=".NET Aspire dashboard login page with the token pasted into the textbox.":::
 
 The dashboard persists the token as a browser persistent cookie, which remains valid for three days. Persistent cookies have an expiration date and remain valid even after closing the browser. This means that users don't need to log in again if they close and reopen the browser. For more information, see the [Security considerations for running the .NET Aspire dashboard](security-considerations.md) documentation.
+
+> [!TIP]
+> You can also obtain the login token from the container logs. For more information, see [Login to the dashboard](standalone.md#login-to-the-dashboard).
 
 ## Resources page
 
@@ -124,6 +130,8 @@ The following submenu actions are available:
 > There might be resources with disabled submenu actions. They're greyed out when they're disabled. For example, the following screenshot shows the submenu actions disabled:
 >
 > :::image type="content" source="media/explore/resource-submenu-actions.png" lightbox="media/explore/resource-submenu-actions.png" border="true" alt-text=".NET Aspire dashboard disabled submenu actions.":::
+
+When GitHub Copilot is available (when launching from VS Code or Visual Studio with a Copilot subscription), resource context menus also include an **Ask GitHub Copilot** option. This allows you to investigate resources using AI analysis.
 
 #### Copy or Open in text visualizer
 
@@ -234,6 +242,8 @@ Consider the following screenshots showing the structured logs filter dialog:
 
 :::image type="content" source="media/explore/structured-logs-filtered.png" lightbox="media/explore/structured-logs-filtered.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page showing the filter dialog.":::
 
+When GitHub Copilot is available and your app has structured logs with errors, an **Explain errors** button appears on the structured logs page. Selecting it makes all errors available to Copilot for AI-powered investigation. Additionally, structured log entries include an **Ask GitHub Copilot** option in their context menus.
+
 ### Traces page
 
 Navigate to the **Traces** page to view all of the traces for your app. .NET Aspire automatically configures tracing for the different projects in your app. Distributed tracing is a diagnostic technique that helps engineers localize failures and performance issues within applications, especially those that might be distributed across multiple machines or processes. For more information, see [.NET distributed tracing](/dotnet/core/diagnostics/distributed-tracing). This technique tracks requests through an application and correlates work done by different application integrations. Traces also help identify how long different stages of the request took to complete. The traces page displays the following information:
@@ -278,6 +288,8 @@ Each span is represented as a row in the table, and contains a **Name**. Spans a
 Within the trace details page, there's a **View Logs** button that takes you to the structured logs page with a filter applied to show only the logs relevant to the request. Consider an example screenshot depicting the structured logs page with a filter applied to show only the logs relevant to the trace:
 
 :::image type="content" source="media/explore/structured-logs-trace-errors.png" lightbox="media/explore/structured-logs-trace-errors.png" alt-text="A screenshot of the .NET Aspire dashboard Structured logs page, showing a filter applied to show only the logs relevant to the trace.":::
+
+When GitHub Copilot is available, the trace details page also includes an **Explain trace** button that provides a quick way to analyze the currently viewed trace using AI. Additionally, traces and individual spans include **Ask GitHub Copilot** options in their context menus for detailed investigation.
 
 The structured logs page is discussed in more detail in the [Structured logs page](#structured-logs-page) section.
 
@@ -425,6 +437,40 @@ The following shortcuts are available:
 
 - <kbd>?</kbd>: Got to **Help**.
 - <kbd>Shift</kbd> + <kbd>s</kbd>: Go to **<u>S</u>ettings**.
+
+## Interaction prompts
+
+Some resources or commands might prompt you for values when using the dashboard. This interactive functionality is powered by the [interaction service](../../extensibility/interaction-service.md), which allows integrations to display notifications or to request input from users when needed.
+
+For example, Azure resources that are missing required configuration might prompt you for configuration values when the dashboard starts or when you interact with those resources. These prompts help ensure that resources are properly configured and can function correctly within your .NET Aspire application.
+
+In the dashboard, interaction prompts appear as:
+
+- Input dialogs for missing configuration values.
+- Confirmation dialogs for important actions.
+- Notification messages with details about resource status.
+
+These prompts appear directly in the dashboard interface, making it easy to provide the necessary information without switching to external tools or configuration files.
+
+For detailed information about using the interaction service API, including examples and CLI support, see [Interaction Service](../../extensibility/interaction-service.md).
+
+## GitHub Copilot in the dashboard
+
+The .NET Aspire dashboard includes GitHub Copilot as your AI debugging assistant when you launch your app from VS Code or Visual Studio with a GitHub account that has a Copilot subscription. Copilot can help you:
+
+- Review hundreds of log messages with a single click.
+- Investigate the root cause of errors across multiple apps.
+- Highlight performance issues in traces.
+- Explain obscure error codes using AI's vast knowledge repository.
+
+Copilot features appear throughout the dashboard interface:
+
+- **Copilot button**: This button is available in the top-right corner to open the Copilot chat interface.
+- **Context menus**: "Ask GitHub Copilot" options appear in resource, log, trace, and span context menus.
+- **Explain buttons**: "Explain errors" buttons appear on structured logs and "Explain trace" buttons appear on trace details pages.
+- **Suggested questions**: Contextual AI suggestions appear based on the current page.
+
+For comprehensive information about GitHub Copilot features, requirements, troubleshooting, and configuration options, see [GitHub Copilot in the .NET Aspire dashboard](copilot.md).
 
 ## Next steps
 

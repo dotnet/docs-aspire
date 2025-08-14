@@ -9,7 +9,7 @@ zone_pivot_groups: unit-testing-framework
 
 In this article, you learn how to create a test project, write tests, and run them for your .NET Aspire solutions. The tests in this article aren't unit tests, but rather functional or integration tests. .NET Aspire includes several variations of [testing project templates](../fundamentals/setup-tooling.md#net-aspire-templates) that you can use to test your .NET Aspire resource dependencies—and their communications. The testing project templates are available for MSTest, NUnit, and xUnit testing frameworks and include a sample test that you can use as a starting point for your tests.
 
-The .NET Aspire test project templates rely on the [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package. This package exposes the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> class, which is used to create a test host for your distributed application. The distributed application testing builder launches your app host project with instrumentation hooks so that you can access and manipulate the host at various stages of its lifecyle. In particular, <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> provides you access to <xref:Aspire.Hosting.IDistributedApplicationBuilder> and <xref:Aspire.Hosting.DistributedApplication> class to create and start the [app host](../fundamentals/app-host-overview.md).
+The .NET Aspire test project templates rely on the [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package. This package exposes the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> class, which is used to create a test host for your distributed application. The distributed application testing builder launches your AppHost project with instrumentation hooks so that you can access and manipulate the host at various stages of its lifecyle. In particular, <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> provides you access to <xref:Aspire.Hosting.IDistributedApplicationBuilder> and <xref:Aspire.Hosting.DistributedApplication> class to create and start the [AppHost](../fundamentals/app-host-overview.md).
 
 ## Create a test project
 
@@ -41,7 +41,7 @@ For more information, see the .NET CLI [dotnet new](/dotnet/core/tools/dotnet-ne
 
 ## Explore the test project
 
-The following example test project was created as part of the **.NET Aspire Starter Application** template. If you're unfamiliar with it, see [Quickstart: Build your first .NET Aspire project](../get-started/build-your-first-aspire-app.md). The .NET Aspire test project takes a project reference dependency on the target app host. Consider the template project:
+The following example test project was created as part of the **.NET Aspire Starter Application** template. If you're unfamiliar with it, see [Quickstart: Build your first .NET Aspire project](../get-started/build-your-first-aspire-app.md). The .NET Aspire test project takes a project reference dependency on the target AppHost. Consider the template project:
 
 :::zone pivot="xunit"
 
@@ -63,7 +63,7 @@ The preceding project file is fairly standard. There's a `PackageReference` to t
 
 The template test project includes a `IntegrationTest1` class with a single test. The test verifies the following scenario:
 
-- The app host is successfully created and started.
+- The AppHost is successfully created and started.
 - The `webfrontend` resource is available and running.
 - An HTTP request can be made to the `webfrontend` resource and returns a successful response (HTTP 200 OK).
 
@@ -87,8 +87,8 @@ Consider the following test class:
 
 The preceding code:
 
-- Relies on the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder.CreateAsync*?displayProperty=nameWithType> API to asynchronously create the app host.
-  - The `appHost` is an instance of `IDistributedApplicationTestingBuilder` that represents the app host.
+- Relies on the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder.CreateAsync*?displayProperty=nameWithType> API to asynchronously create the AppHost.
+  - The `appHost` is an instance of `IDistributedApplicationTestingBuilder` that represents the AppHost.
   - The `appHost` instance has its service collection configured with the standard HTTP resilience handler. For more information, see [Build resilient HTTP apps: Key development patterns](/dotnet/core/resilience/http-resilience).
 - The `appHost` has its <xref:Aspire.Hosting.Testing.IDistributedApplicationTestingBuilder.BuildAsync(System.Threading.CancellationToken)?displayProperty=nameWithType> method invoked, which returns the `DistributedApplication` instance as the `app`.
   - The `app` has its service provider get the <xref:Aspire.Hosting.ApplicationModel.ResourceNotificationService> instance.
@@ -120,7 +120,7 @@ To further test resources and their expressed dependencies in your .NET Aspire s
 
 The preceding code:
 
-- Relies on the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder.CreateAsync*?displayProperty=nameWithType> API to asynchronously create the app host.
+- Relies on the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder.CreateAsync*?displayProperty=nameWithType> API to asynchronously create the AppHost.
 - The `builder` instance is used to retrieve an <xref:Aspire.Hosting.ApplicationModel.IResourceWithEnvironment> instance named "webfrontend" from the <xref:Aspire.Hosting.Testing.IDistributedApplicationTestingBuilder.Resources%2A?displayProperty=nameWithType>.
 - The `webfrontend` resource is used to call <xref:Aspire.Hosting.ApplicationModel.ResourceExtensions.GetEnvironmentVariableValuesAsync%2A> to retrieve its configured environment variables.
 - The <xref:Aspire.Hosting.DistributedApplicationOperation.Publish?displayProperty=nameWithType> argument is passed when calling `GetEnvironmentVariableValuesAsync` to specify environment variables that are published to the resource as binding expressions.
