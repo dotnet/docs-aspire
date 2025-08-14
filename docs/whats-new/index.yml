@@ -34,6 +34,8 @@ landingContent:
   linkLists:
   - linkListType: whats-new
     links:
+    - text: .NET Aspire 9.4.1
+      url: https://github.com/dotnet/aspire/releases/tag/v9.4.1
     - text: .NET Aspire 9.4
       url: https://github.com/dotnet/aspire/releases/tag/v9.4.0
     - text: .NET Aspire 9.3
@@ -50,8 +52,6 @@ landingContent:
       url: https://github.com/dotnet/aspire/releases/tag/v8.2.1
     - text: .NET Aspire 8.2.0
       url: https://github.com/dotnet/aspire/releases/tag/v8.2.0
-    - text: .NET Aspire 8.1.0
-      url: https://github.com/dotnet/aspire/releases/tag/v8.1.0
     - text: Older releases
       url: https://github.com/dotnet/aspire/releases
 - title: Latest documentation updates
