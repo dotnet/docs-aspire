@@ -5,8 +5,17 @@ items:
   href: ../get-started/aspire-overview.md
 - name: Breaking changes
   href: breaking-changes.md
-- name: .NET Aspire 9.4
+- name: .NET Aspire 9.5
   expanded: true
+  items:
+  - name: Overview
+    href: 9.5/index.md
+  - name: Breaking changes in 9.5
+    expanded: true
+    items:
+    - name: Azure Cosmos DB now provisions serverless accounts by default
+      href: 9.5/cosmosdb-serverless-defaults.md
+- name: .NET Aspire 9.4
   items:
   - name: Overview
     href: 9.4/index.md
