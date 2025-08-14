@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - Azure Cosmos DB now provisions serverless accounts by default"
-description: "Learn about the breaking change in .NET Aspire 9.5 where Azure Cosmos DB resources default to serverless accounts so they can scale to zero."
+description: "Learn about the breaking change in .NET Aspire 9.4 where Azure Cosmos DB resources default to serverless accounts so they can scale to zero."
 ms.date: 08/14/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/4244
@@ -12,7 +12,7 @@ Starting in .NET Aspire 9.4, Azure Cosmos DB resources provision with the `Enabl
 
 ## Version introduced
 
-.NET Aspire 9.5
+.NET Aspire 9.4
 
 ## Previous behavior
 
