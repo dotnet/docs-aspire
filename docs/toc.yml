@@ -31,8 +31,8 @@ items:
       href: get-started/github-codespaces.md
     - name: Dev Containers
       href: get-started/dev-containers.md
-  - name: What's new in .NET Aspire 9.4
-    href: whats-new/dotnet-aspire-9.4.md
+  - name: What's new in .NET Aspire 9.5
+    href: whats-new/dotnet-aspire-9.5.md
   - name: Upgrade to .NET Aspire 9.0
     href: get-started/upgrade-to-aspire-9.md
 
