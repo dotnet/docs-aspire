@@ -1,5 +1,7 @@
-﻿namespace Aspire.Dashboard.ScreenCapture;
+﻿
+namespace Aspire.Dashboard.ScreenCapture;
 
+[DebuggerDisplay($"{{{nameof(GetDebuggerDisplay)}(),nq}}")]
 public class FluentDataGridSelector(string initialSelector)
 {
     private readonly StringBuilder _selector = new(initialSelector);
@@ -46,4 +48,6 @@ public class FluentDataGridSelector(string initialSelector)
 
     public static implicit operator string(FluentDataGridSelector fluentDataGridSelector) =>
         fluentDataGridSelector.ToString();
+
+    private string GetDebuggerDisplay() => ToString();
 }
