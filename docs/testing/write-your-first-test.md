@@ -134,7 +134,7 @@ Finally, when using the `DistributedApplicationTestingBuilder` all resource logs
 
 ## Capture logs from tests
 
-When writing tests for your .NET Aspire applications, you might want to capture and view logs to help with debugging and monitoring test execution. The `DistributedApplicationTestingBuilder` provides access to the service collection, allowing you to configure logging for your test scenarios.
+When writing tests for your Aspire solutions, you might want to capture and view logs to help with debugging and monitoring test execution. The `DistributedApplicationTestingBuilder` provides access to the service collection, allowing you to configure logging for your test scenarios.
 
 ### Configure logging providers
 
@@ -158,7 +158,7 @@ To capture logs from your tests, use the `AddLogging` method on the `builder.Ser
 
 ### Configure log filters
 
-Since the `appsettings.json` configuration from your application under test isn't automatically replicated in test projects, you need to explicitly configure log filters. This is important to avoid excessive logging from infrastructure components that might overwhelm your test output:
+Since the _appsettings.json_ configuration from your application under test isn't automatically replicated in test projects, you need to explicitly configure log filters. This is important to avoid excessive logging from infrastructure components that might overwhelm your test output:
 
 ```csharp
 builder.Services.AddLogging(logging => logging
