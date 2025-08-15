@@ -1,7 +1,7 @@
 ---
 title: Write your first .NET Aspire test
 description: Learn how to test your .NET Aspire solutions using the xUnit, NUnit, and MSTest testing frameworks.
-ms.date: 2/24/2025
+ms.date: 8/15/2025
 zone_pivot_groups: unit-testing-framework
 ---
 
@@ -126,12 +126,6 @@ The preceding code:
 - The <xref:Aspire.Hosting.DistributedApplicationOperation.Publish?displayProperty=nameWithType> argument is passed when calling `GetEnvironmentVariableValuesAsync` to specify environment variables that are published to the resource as binding expressions.
 - With the returned environment variables, the test asserts that the `webfrontend` resource has an HTTPS environment variable that resolves to the `apiservice` resource.
 
-## Summary
-
-The .NET Aspire testing project template makes it easier to create test projects for .NET Aspire solutions. The template project includes a sample test that you can use as a starting point for your tests. The `DistributedApplicationTestingBuilder` follows a familiar pattern to the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1> in ASP.NET Core. It allows you to create a test host for your distributed application and run tests against it.
-
-Finally, when using the `DistributedApplicationTestingBuilder` all resource logs are redirected to the `DistributedApplication` by default. The redirection of resource logs enables scenarios where you want to assert that a resource is logging correctly.
-
 ## Capture logs from tests
 
 When writing tests for your Aspire solutions, you might want to capture and view logs to help with debugging and monitoring test execution. The `DistributedApplicationTestingBuilder` provides access to the service collection, allowing you to configure logging for your test scenarios.
@@ -204,6 +198,12 @@ For NUnit, consider using one of these logging packages:
 - [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console
 
 :::zone-end
+
+## Summary
+
+The .NET Aspire testing project template makes it easier to create test projects for .NET Aspire solutions. The template project includes a sample test that you can use as a starting point for your tests. The `DistributedApplicationTestingBuilder` follows a familiar pattern to the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1> in ASP.NET Core. It allows you to create a test host for your distributed application and run tests against it.
+
+Finally, when using the `DistributedApplicationTestingBuilder` all resource logs are redirected to the `DistributedApplication` by default. The redirection of resource logs enables scenarios where you want to assert that a resource is logging correctly.
 
 ## See also
 
