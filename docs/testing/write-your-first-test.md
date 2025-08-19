@@ -152,7 +152,7 @@ To capture logs from your tests, use the `AddLogging` method on the `builder.Ser
 
 ### Configure log filters
 
-Since the _appsettings.json_ configuration from your application under test isn't automatically replicated in test projects, you need to explicitly configure log filters. This is important to avoid excessive logging from infrastructure components that might overwhelm your test output:
+Since the _appsettings.json_ configuration from your application isn't automatically replicated in test projects, you need to explicitly configure log filters. This is important to avoid excessive logging from infrastructure components that might overwhelm your test output. The following snippet explicitly configures log filters:
 
 ```csharp
 builder.Services.AddLogging(logging => logging
