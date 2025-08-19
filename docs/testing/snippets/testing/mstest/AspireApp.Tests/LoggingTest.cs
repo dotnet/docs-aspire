@@ -1,9 +1,12 @@
-﻿namespace AspireApp.Tests;
+using Microsoft.Extensions.Logging;
 
-public class IntegrationTest1
+namespace AspireApp.Tests;
+
+[TestClass]
+public class LoggingTest
 {
-    [Fact]
-    public async Task GetWebResourceRootReturnsOkStatusCode()
+    [TestMethod]
+    public async Task GetWebResourceRootReturnsOkStatusCodeWithLogging()
     {
         // Arrange
         var builder = await DistributedApplicationTestingBuilder
@@ -14,8 +17,12 @@ public class IntegrationTest1
             clientBuilder.AddStandardResilienceHandler();
         });
 
-        // To capture logs from your tests, see the "Capture logs from tests" section
-        // in the documentation or refer to LoggingTest.cs for a complete example
+        // Configure logging to capture test execution logs
+        builder.Services.AddLogging(logging => logging
+            .AddConsole() // Outputs logs to console
+            .AddFilter("Default", LogLevel.Information)
+            .AddFilter("Microsoft.AspNetCore", LogLevel.Warning)
+            .AddFilter("Aspire.Hosting.Dcp", LogLevel.Warning));
 
         await using var app = await builder.BuildAsync();
 
@@ -28,10 +35,10 @@ public class IntegrationTest1
         await app.ResourceNotifications.WaitForResourceHealthyAsync(
             "webfrontend",
             cts.Token);
-
+        
         var response = await httpClient.GetAsync("/");
 
         // Assert
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
     }
 }
