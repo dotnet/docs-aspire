@@ -23,7 +23,7 @@ string[] summaries = ["Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "
 
 app.MapGet("/weatherforecast", () =>
 {
-    if (builder.Configuration.GetValue<bool>("THROW_EXCEPTION"))
+    if (builder.Configuration.GetValue("THROW_EXCEPTION", false))
     {
         throw new ApplicationException("Error processing request");
     }

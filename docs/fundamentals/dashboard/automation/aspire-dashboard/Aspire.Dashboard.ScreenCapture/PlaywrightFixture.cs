@@ -11,7 +11,7 @@ public class PlaywrightFixture : IAsyncLifetime
 
     public async Task InitializeAsync()
     {
-        Assertions.SetDefaultExpectTimeout(10_000);
+        Assertions.SetDefaultExpectTimeout(30_000);
 
         _playwright = await Playwright.CreateAsync();
 
