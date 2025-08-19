@@ -15,6 +15,8 @@ items:
     items:
     - name: Azure Cosmos DB now provisions serverless accounts by default
       href: 9.5/cosmosdb-serverless-defaults.md
+    - name: Interaction service API changes
+      href: 9.5/interaction-service-api-changes.md
 - name: .NET Aspire 9.4
   items:
   - name: Overview
