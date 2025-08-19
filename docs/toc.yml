@@ -234,6 +234,9 @@ items:
     - name: Azure AI Search
       displayName: azure search,search,azure ai,cognitive search,cognitive services
       href: azureai/azureai-search-document-integration.md
+    - name: AI integrations compatibility matrix
+      displayName: ai compatibility,ai integrations,openai,azure ai,github models
+      href: azureai/ai-integrations-compatibility-matrix.md
     - name: Azure Cache for Redis
       items:
       - name: Azure Cache for Redis
