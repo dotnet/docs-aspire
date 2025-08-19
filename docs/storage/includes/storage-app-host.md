@@ -53,8 +53,6 @@ When you add an `AzureStorageResource` to the AppHost, it exposes other useful A
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureStorageExtensions.AddAzureStorage*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../../azure/local-provisioning.md#configuration).
 
-[!INCLUDE [storage-bicep](storage-bicep.md)]
-
 ### Connect to an existing Azure Storage account
 
 You might have an existing Azure Storage account that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureStorageResource> is an existing resource:
