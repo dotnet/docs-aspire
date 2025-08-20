@@ -60,36 +60,6 @@ When you add an Azure Event Hubs resource to the AppHost, it exposes other usefu
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureEventHubsExtensions.AddAzureEventHubs*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration)
 
-#### Provisioning-generated Bicep
-
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Event Hubs resource, the following Bicep is generated:
-
-:::code language="bicep" source="../snippets/azure/AppHost/event-hubs/event-hubs.bicep":::
-
-The preceding Bicep is a module that provisions an Azure Event Hubs resource. Additionally, role assignments are created for the Azure resource in a separate module:
-
-:::code language="bicep" source="../snippets/azure/AppHost/event-hubs-roles/event-hubs-roles.bicep":::
-
-The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
-
-#### Customize provisioning infrastructure
-
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `kind`, `consistencyPolicy`, `locations`, and more. The following example demonstrates how to customize the Azure Cosmos DB resource:
-
-:::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureEventHubsInfra.cs" id="configure":::
-
-The preceding code:
-
-- Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
-  - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
-  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
-  - The single <xref:Azure.Provisioning.EventHubs.EventHubsNamespace> resource is retrieved.
-  - The <xref:Azure.Provisioning.EventHubs.EventHubsNamespace.Sku?displayProperty=nameWithType> property is assigned to a new instance of <xref:Azure.Provisioning.EventHubs.EventHubsSku> with a `Premium` name and tier, and a `Capacity` of `7`.
-  - The <xref:Azure.Provisioning.EventHubs.EventHubsNamespace.PublicNetworkAccess> property is assigned to `SecuredByPerimeter`.
-  - A tag is added to the Event Hubs resource with a key of `ExampleKey` and a value of `Example value`.
-
-There are many more configuration options available to customize the Event Hubs resource resource. For more information, see <xref:Azure.Provisioning.PostgreSql>. For more information, see [`Azure.Provisioning` customization](../azure/customize-azure-resources.md#azureprovisioning-customization).
-
 ### Connect to an existing Azure Event Hubs namespace
 
 You might have an existing Azure Event Hubs service that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureEventHubsResource> is an existing resource:
@@ -293,6 +263,36 @@ builder.AddProject<Projects.ExampleService>()
 ```
 
 The preceding code retrieves the `UserConfig` node from the default configuration. It then updates the first entity's `PartitionCount` to a `5`.
+
+### Provisioning-generated Bicep
+
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Event Hubs resource, the following Bicep is generated:
+
+:::code language="bicep" source="../snippets/azure/AppHost/event-hubs/event-hubs.bicep":::
+
+The preceding Bicep is a module that provisions an Azure Event Hubs resource. Additionally, role assignments are created for the Azure resource in a separate module:
+
+:::code language="bicep" source="../snippets/azure/AppHost/event-hubs-roles/event-hubs-roles.bicep":::
+
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
+
+#### Customize provisioning infrastructure
+
+All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `kind`, `consistencyPolicy`, `locations`, and more. The following example demonstrates how to customize the Azure Cosmos DB resource:
+
+:::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureEventHubsInfra.cs" id="configure":::
+
+The preceding code:
+
+- Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
+  - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
+  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
+  - The single <xref:Azure.Provisioning.EventHubs.EventHubsNamespace> resource is retrieved.
+  - The <xref:Azure.Provisioning.EventHubs.EventHubsNamespace.Sku?displayProperty=nameWithType> property is assigned to a new instance of <xref:Azure.Provisioning.EventHubs.EventHubsSku> with a `Premium` name and tier, and a `Capacity` of `7`.
+  - The <xref:Azure.Provisioning.EventHubs.EventHubsNamespace.PublicNetworkAccess> property is assigned to `SecuredByPerimeter`.
+  - A tag is added to the Event Hubs resource with a key of `ExampleKey` and a value of `Example value`.
+
+There are many more configuration options available to customize the Event Hubs resource resource. For more information, see <xref:Azure.Provisioning.PostgreSql>. For more information, see [`Azure.Provisioning` customization](../azure/customize-azure-resources.md#azureprovisioning-customization).
 
 ### Hosting integration health checks
 

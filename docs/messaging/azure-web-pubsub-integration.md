@@ -94,7 +94,33 @@ messagesHub.AddEventHandler(
 
 The preceding code adds a worker service project named `worker` with an external HTTP endpoint. The hub named `messages` resource is added to the `web-pubsub` resource, and an event handler is added to the `messagesHub` resource. The event handler URL is set to the worker service's external HTTP endpoint. For more information, see [Azure Web PubSub event handlers](/azure/azure-web-pubsub/howto-develop-eventhandler).
 
-#### Provisioning-generated Bicep
+### Connect to an existing Azure Web PubSub instance
+
+You might have an existing Azure Web PubSub service that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.ApplicationModel.AzureWebPubSubResource> is an existing resource:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var existingPubSubName = builder.AddParameter("existingPubSubName");
+var existingPubSubResourceGroup = builder.AddParameter("existingPubSubResourceGroup");
+
+var webPubSub = builder.AddAzureWebPubSub("web-pubsub")
+                       .AsExisting(existingPubSubName, existingPubSubResourceGroup);
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(webPubSub);
+
+// After adding all resources, run the app...
+```
+
+[!INCLUDE [azure-configuration](../azure/includes/azure-configuration.md)]
+
+For more information on treating Azure Web PubSub resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
+
+> [!NOTE]
+> Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+
+### Provisioning-generated Bicep
 
 When you publish your app, .NET Aspire provisioning APIs generate Bicep alongside the manifest file. Bicep is a domain-specific language for defining Azure resources. For more information, see [Bicep Overview](/azure/azure-resource-manager/bicep/overview).
 
@@ -124,32 +150,6 @@ The preceding code:
   - A tag is added to the Web PubSub resource with a key of `ExampleKey` and a value of `Example value`.
 
 There are many more configuration options available to customize the Web PubSub resource. For more information, see <xref:Azure.Provisioning.WebPubSub>. For more information, see [`Azure.Provisioning` customization](../azure/customize-azure-resources.md#azureprovisioning-customization).
-
-### Connect to an existing Azure Web PubSub instance
-
-You might have an existing Azure Web PubSub service that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.ApplicationModel.AzureWebPubSubResource> is an existing resource:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var existingPubSubName = builder.AddParameter("existingPubSubName");
-var existingPubSubResourceGroup = builder.AddParameter("existingPubSubResourceGroup");
-
-var webPubSub = builder.AddAzureWebPubSub("web-pubsub")
-                       .AsExisting(existingPubSubName, existingPubSubResourceGroup);
-
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(webPubSub);
-
-// After adding all resources, run the app...
-```
-
-[!INCLUDE [azure-configuration](../azure/includes/azure-configuration.md)]
-
-For more information on treating Azure Web PubSub resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
-
-> [!NOTE]
-> Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ## Client integration
 

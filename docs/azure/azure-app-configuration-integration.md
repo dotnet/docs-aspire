@@ -50,35 +50,6 @@ When you add an <xref:Aspire.Hosting.Azure.AzureAppConfigurationResource> to the
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureAppConfigurationExtensions.AddAzureAppConfiguration*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](local-provisioning.md#configuration).
 
-#### Provisioning-generated Bicep
-
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure App Configuration resource, the following Bicep is generated:
-
-:::code language="bicep" source="../snippets/azure/AppHost/config/config.bicep":::
-
-The preceding Bicep is a module that provisions an Azure App Configuration resource. Additionally, role assignments are created for the Azure resource in a separate module:
-
-:::code language="bicep" source="../snippets/azure/AppHost/config-roles/config-roles.bicep":::
-
-The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they're reflected in the generated files.
-
-#### Customize provisioning infrastructure
-
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `sku`, purge protection, and more. The following example demonstrates how to customize the Azure App Configuration resource:
-
-:::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureAppConfigInfra.cs" id="configure":::
-
-The preceding code:
-
-- Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
-  - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
-  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
-  - The single <xref:Azure.Provisioning.AppConfiguration.AppConfigurationStore> is retrieved.
-  - The <xref:Azure.Provisioning.AppConfiguration.AppConfigurationStore.SkuName?displayProperty=nameWithType> is assigned to `Free`.
-  - A tag is added to the App Configuration store with a key of `ExampleKey` and a value of `Example value`.
-
-There are many more configuration options available to customize the Azure App Configuration resource. For more information, see <xref:Azure.Provisioning.AppConfiguration>. For more information, see [Azure.Provisioning customization](customize-azure-resources.md#azureprovisioning-customization).
-
 ### Use existing Azure App Configuration resource
 
 You might have an existing Azure App Configuration store that you want to connect to. If you want to use an existing Azure App Configuration store, you can do so by calling the <xref:Aspire.Hosting.ExistingAzureResourceExtensions.AsExisting*> method. This method accepts the config store and resource group names as parameters, and uses it to connect to the existing Azure App Configuration store resource.
@@ -127,6 +98,35 @@ The connection string is configured in the AppHost's configuration, typically un
 ```
 
 The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"config"`. The `GetConnectionString` API is shorthand for `IConfiguration.GetSection("ConnectionStrings")[name]`.
+
+### Provisioning-generated Bicep
+
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure App Configuration resource, the following Bicep is generated:
+
+:::code language="bicep" source="../snippets/azure/AppHost/config/config.bicep":::
+
+The preceding Bicep is a module that provisions an Azure App Configuration resource. Additionally, role assignments are created for the Azure resource in a separate module:
+
+:::code language="bicep" source="../snippets/azure/AppHost/config-roles/config-roles.bicep":::
+
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they're reflected in the generated files.
+
+#### Customize provisioning infrastructure
+
+All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `sku`, purge protection, and more. The following example demonstrates how to customize the Azure App Configuration resource:
+
+:::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureAppConfigInfra.cs" id="configure":::
+
+The preceding code:
+
+- Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
+  - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
+  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
+  - The single <xref:Azure.Provisioning.AppConfiguration.AppConfigurationStore> is retrieved.
+  - The <xref:Azure.Provisioning.AppConfiguration.AppConfigurationStore.SkuName?displayProperty=nameWithType> is assigned to `Free`.
+  - A tag is added to the App Configuration store with a key of `ExampleKey` and a value of `Example value`.
+
+There are many more configuration options available to customize the Azure App Configuration resource. For more information, see <xref:Azure.Provisioning.AppConfiguration>. For more information, see [Azure.Provisioning customization](customize-azure-resources.md#azureprovisioning-customization).
 
 ## Client integration
 
