@@ -22,10 +22,10 @@ The following table shows the compatibility between Aspire AI hosting and client
 
 ### Legend
 
-- ✅ **Yes**: The client integration is compatible with the hosting integration
-- ⚠️ **Partial**: The client integration might not support all models or APIs
-- ❌ **No**: The client integration does not support the hosting environment
-- **(preferred)**: The recommended client integration for this hosting integration
+- ✅ **Yes**: The client integration is compatible with the hosting integration.
+- ⚠️ **Partial**: The client integration might not support all models or APIs.
+- ❌ **No**: The client integration does not support the hosting environment.
+- **(preferred)**: The recommended client integration for this hosting integration.
 
 ## Recommended pairings
 
