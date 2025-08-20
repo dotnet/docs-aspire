@@ -139,7 +139,7 @@ Each hosting integration generates connection strings in different formats that 
 
 ### Hosting integration connection strings
 
-#### Aspire.Hosting.Azure.AI.Foundry
+#### Aspire.Hosting.Azure.AIFoundry
 
 **Azure:**
 
