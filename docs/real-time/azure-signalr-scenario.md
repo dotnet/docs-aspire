@@ -70,34 +70,6 @@ This architecture allows the `webapp` project to communicate with the `api` proj
 > [!IMPORTANT]
 > Calling `AddAzureSignalR` implicitly enables Azure provisioning support. Ensure your AppHost is configured with the appropriate Azure subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration).
 
-### Provisioning-generated Bicep
-
-When you add an Azure SignalR Service resource, .NET Aspire generates provisioning infrastructure using [Bicep](/azure/azure-resource-manager/bicep/overview). The generated Bicep includes defaults for location, SKU, and role assignments:
-
-:::code language="bicep" source="../snippets/azure/AppHost/signalr/signalr.bicep":::
-
-The preceding Bicep is a module that provisions an Azure SignalR Service resource. Additionally, role assignments are created for the Azure resource in a separate module:
-
-:::code language="bicep" source="../snippets/azure/AppHost/signalr-roles/signalr-roles.bicep":::
-
-The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
-
-### Customize provisioning infrastructure
-
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
-
-:::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureSignalRInfra.cs" id="configure":::
-
-The preceding code:
-
-- Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
-  - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
-  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
-  - The single <xref:Azure.Provisioning.SignalR.SignalRService> resource is retrieved.
-  - The <xref:Azure.Provisioning.SignalR.SignalRService.Sku?displayProperty=nameWithType> property is assigned a name of `Premium_P1` and a capacity of `10`.
-  - The <xref:Azure.Provisioning.SignalR.SignalRService.PublicNetworkAccess?displayProperty=nameWithType> property is set to `Enabled`.
-  - A tag is added to the SignalR service resource with a key of `ExampleKey` and a value of `Example value`.
-
 ### Connect to an existing Azure SignalR Service
 
 You might have an existing Azure SignalR Service that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.ApplicationModel.AzureSignalRResource> is an existing resource:
@@ -158,6 +130,34 @@ The _Default_ mode is the "default" configuration for Azure SignalR Service. Eac
 
 > [!IMPORTANT]
 > The Azure SignalR Service emulator only works in _Serverless_ mode and the `AddNamedAzureSignalR` method doesn't support _Serverless_ mode.
+
+### Provisioning-generated Bicep
+
+When you add an Azure SignalR Service resource, .NET Aspire generates provisioning infrastructure using [Bicep](/azure/azure-resource-manager/bicep/overview). The generated Bicep includes defaults for location, SKU, and role assignments:
+
+:::code language="bicep" source="../snippets/azure/AppHost/signalr/signalr.bicep":::
+
+The preceding Bicep is a module that provisions an Azure SignalR Service resource. Additionally, role assignments are created for the Azure resource in a separate module:
+
+:::code language="bicep" source="../snippets/azure/AppHost/signalr-roles/signalr-roles.bicep":::
+
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
+
+#### Customize provisioning infrastructure
+
+All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
+
+:::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureSignalRInfra.cs" id="configure":::
+
+The preceding code:
+
+- Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
+  - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
+  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
+  - The single <xref:Azure.Provisioning.SignalR.SignalRService> resource is retrieved.
+  - The <xref:Azure.Provisioning.SignalR.SignalRService.Sku?displayProperty=nameWithType> property is assigned a name of `Premium_P1` and a capacity of `10`.
+  - The <xref:Azure.Provisioning.SignalR.SignalRService.PublicNetworkAccess?displayProperty=nameWithType> property is set to `Enabled`.
+  - A tag is added to the SignalR service resource with a key of `ExampleKey` and a value of `Example value`.
 
 ## Hub host integration
 
