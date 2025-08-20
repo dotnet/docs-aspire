@@ -1,7 +1,7 @@
 ---
 title: Aspire AI integrations compatibility matrix
 description: Learn which AI client integrations are compatible with which AI hosting integrations in .NET Aspire.
-ms.date: 01/23/2025
+ms.date: 08/20/2025
 ai-usage: ai-generated
 ---
 
