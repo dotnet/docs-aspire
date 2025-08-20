@@ -35,6 +35,10 @@ In general, use **Aspire.Azure.AI.Inference** to connect to Azure hosted models,
 
 For Azure AI Foundry resources, use the **Aspire.Azure.AI.Inference** client integration. This provides the best compatibility with the diverse range of models available through Azure AI Foundry.
 
+#### Hosting integration
+
+The [Aspire.Hosting.Azure.AI.Foundry](https://www.nuget.org/packages/Aspire.Hosting.Azure.AI.Foundry) package provides the hosting integration. In your app host project:
+
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
@@ -44,7 +48,9 @@ builder.AddProject<Projects.ExampleProject>()
        .WithReference(foundry);
 ```
 
-In your service, use the Azure AI Inference client:
+#### Client integration
+
+The [Aspire.Azure.AI.Inference](https://www.nuget.org/packages/Aspire.Azure.AI.Inference) package provides the client integration. In your service project:
 
 ```csharp
 builder.AddAzureChatCompletionsClient("foundry");
@@ -53,6 +59,10 @@ builder.AddAzureChatCompletionsClient("foundry");
 ### Azure Cognitive Services (Azure OpenAI)
 
 For Azure OpenAI resources, use the **Aspire.Azure.AI.OpenAI** client integration for full Azure-specific features and authentication support.
+
+#### Hosting integration
+
+The [Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices) package provides the hosting integration. In your app host project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -63,7 +73,9 @@ builder.AddProject<Projects.ExampleProject>()
        .WithReference(openai);
 ```
 
-In your service, use the Azure OpenAI client:
+#### Client integration
+
+The [Aspire.Azure.AI.OpenAI](https://www.nuget.org/packages/Aspire.Azure.AI.OpenAI) package provides the client integration. In your service project:
 
 ```csharp
 builder.AddAzureOpenAIClient("openai");
@@ -72,6 +84,10 @@ builder.AddAzureOpenAIClient("openai");
 ### Direct OpenAI
 
 For direct OpenAI API access, use the **Aspire.OpenAI** client integration.
+
+#### Hosting integration
+
+The [Aspire.Hosting.OpenAI](https://www.nuget.org/packages/Aspire.Hosting.OpenAI) package provides the hosting integration. In your app host project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -82,7 +98,9 @@ builder.AddProject<Projects.ExampleProject>()
        .WithReference(openai);
 ```
 
-In your service, use the OpenAI client:
+#### Client integration
+
+The [Aspire.OpenAI](https://www.nuget.org/packages/Aspire.OpenAI) package provides the client integration. In your service project:
 
 ```csharp
 builder.AddOpenAIClient("openai");
@@ -91,6 +109,10 @@ builder.AddOpenAIClient("openai");
 ### GitHub Models
 
 For GitHub Models, use the **Aspire.Azure.AI.Inference** client integration for the best compatibility with the GitHub Models API.
+
+#### Hosting integration
+
+The [Aspire.Hosting.GitHub.Models](https://www.nuget.org/packages/Aspire.Hosting.GitHub.Models) package provides the hosting integration. In your app host project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -101,13 +123,17 @@ builder.AddProject<Projects.ExampleProject>()
        .WithReference(chat);
 ```
 
-In your service, use the Azure AI Inference client:
+#### Client integration
+
+The [Aspire.Azure.AI.Inference](https://www.nuget.org/packages/Aspire.Azure.AI.Inference) package provides the client integration. In your service project:
 
 ```csharp
 builder.AddAzureChatCompletionsClient("chat");
 ```
 
 ## Connection string formats
+
+Understanding how hosting and client integrations communicate through connection strings can help you troubleshoot connectivity issues and understand the underlying mechanics.
 
 Each hosting integration generates connection strings in different formats that are consumed by the client integrations.
 
