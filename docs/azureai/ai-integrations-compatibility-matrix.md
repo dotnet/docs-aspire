@@ -15,7 +15,7 @@ The following table shows the compatibility between Aspire AI hosting and client
 
 | **Hosting Integration**                    | **Aspire.OpenAI**            | **Aspire.Azure.AI.OpenAI**                    | **Aspire.Azure.AI.Inference** |
 |--------------------------------------------|------------------------------|-----------------------------------------------|-------------------------------|
-| `Aspire.Hosting.Azure.AI.Foundry`          | ❌ No                       | ⚠️ Partial                                    | ✅ Yes (preferred)           |
+| `Aspire.Hosting.Azure.AIFoundry`          | ❌ No                       | ⚠️ Partial                                    | ✅ Yes (preferred)           |
 | `Aspire.Hosting.Azure.CognitiveServices`   | ❌ No                       | ✅ Yes (preferred)                            | ❌ No                        |
 | `Aspire.Hosting.OpenAI`                    | ✅ Yes (preferred)          | ✅ Yes                                        | ❌ No                        |
 | `Aspire.Hosting.GitHub.Models`              | ⚠️ Partial                  | ❌ No                                         | ✅ Yes (preferred)           |
@@ -37,7 +37,7 @@ For Azure AI Foundry resources, use the **Aspire.Azure.AI.Inference** client int
 
 #### Hosting integration
 
-The [Aspire.Hosting.Azure.AI.Foundry](https://www.nuget.org/packages/Aspire.Hosting.Azure.AI.Foundry) package provides the hosting integration. In your app host project:
+The [Aspire.Hosting.Azure.AIFoundry](https://www.nuget.org/packages/Aspire.Hosting.Azure.AIFoundry) package provides the hosting integration. In your app host project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
