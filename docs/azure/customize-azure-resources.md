@@ -101,6 +101,9 @@ Having created that class, add it to the configuration options using code like t
 
 :::code language="csharp" source="snippets/customize-azure-with-infrastructure-resolver/AppHost.cs" id="configureazureoptions":::
 
+> [!TIP]
+> Both `InfrastructureResolver` and the `ConfigureInfrastructure` method enable you to customize Azure resources in your AppHost code. The advantage of `InfrastructureResolver` is that you can use it to customize many Azure resources, not just one.
+
 ## Use custom Bicep templates
 
 When you're targeting Azure as your desired cloud provider, you can use Bicep to define your infrastructure as code. It aims to drastically simplify the authoring experience with a cleaner syntax and better support for modularity and code reuse.
