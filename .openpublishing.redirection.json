@@ -287,6 +287,10 @@
     {
       "source_path_from_root": "/docs/frameworks/dapr.md",
       "redirect_url": "/dotnet/aspire/azure/dapr"
+    },
+    {
+      "source_path_from_root": "/docs/troubleshooting/unable-to-install-workload.md",
+      "redirect_url": "/dotnet/aspire/get-started/upgrade-to-aspire-9"
     }
   ]
 }
