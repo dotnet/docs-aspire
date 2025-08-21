@@ -2,13 +2,13 @@
 
 title: .NET Aspire documentation
 # Limit summary to 400 characters
-summary: Learn about .NET Aspire, which provides tools, templates, and packages for building observable, production-ready distributed apps. Features a code-first app model, unified toolchain for local development and deployment anywhere, and extensible APIs.
+summary: .NET Aspire provides tools, templates, and packages for building observable, production-ready distributed apps. Build with a code-first app model, develop locally with unified tooling, and deploy anywhere—cloud, Kubernetes, or your servers.
 brand: dotnet
 
 metadata:
   title: .NET Aspire documentation
   # Limit description to 165 characters
-  description: Learn about .NET Aspire tools, templates, and packages for building observable, production-ready distributed apps with unified development and deployment.
+  description: .NET Aspire provides tools, templates, and packages for building observable, production-ready distributed apps with unified development.
   ms.topic: hub-page
   ms.service: dotnet-aspire
   ms.date: 08/08/2025
