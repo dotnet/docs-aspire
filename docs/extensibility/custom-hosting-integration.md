@@ -111,7 +111,7 @@ Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to shut down the app (you can close the brows
     ```
 
     > [!IMPORTANT]
-    > The version you specify here should match the version of the .NET Aspire workload installed.
+    > The version you specify here should match the .NET Aspire SDK version used in your solution.
 
 1. Add class library reference to the _MailDevResource.AppHost_ project.
 
