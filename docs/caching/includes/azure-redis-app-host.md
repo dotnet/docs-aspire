@@ -44,35 +44,6 @@ The preceding call to `AddAzureRedis` configures the Redis server resource to be
 > [!TIP]
 > When you call <xref:Aspire.Hosting.AzureRedisExtensions.AddAzureRedis*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../../azure/local-provisioning.md#configuration).
 
-#### Provisioning-generated Bicep
-
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Cache for Redis resource, the following Bicep is generated:
-
-:::code language="bicep" source="../../snippets/azure/AppHost/redis/redis.bicep":::
-
-The preceding Bicep is a module that provisions an Azure Cache for Redis resource. Additionally, role assignments are created for the Azure resource in a separate module:
-
-:::code language="bicep" source="../../snippets/azure/AppHost/redis-roles/redis-roles.bicep":::
-
-In addition to the Azure Cache for Redis, it also provisions an access policy assignment to the application access to the cache. The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
-
-#### Customize provisioning infrastructure
-
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `kind`, `consistencyPolicy`, `locations`, and more. The following example demonstrates how to customize the Azure Cache for Redis resource:
-
-:::code language="csharp" source="../../snippets/azure/AppHost/Program.ConfigureRedisInfra.cs" id="configure":::
-
-The preceding code:
-
-- Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
-  - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
-  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
-  - The single <xref:Azure.Provisioning.Redis.RedisResource> is retrieved.
-  - The `Sku` is set with a family of `BasicOrStandard`, a name of `Standard`, and a capacity of `1`.
-  - A tag is added to the Redis resource with a key of `ExampleKey` and a value of `Example value`.
-
-There are many more configuration options available to customize the Azure Cache for Redis resource. For more information, see <xref:Azure.Provisioning.Redis>. For more information, see [Azure.Provisioning customization](../../azure/customize-azure-resources.md#azureprovisioning-customization).
-
 ### Connect to an existing Azure Cache for Redis
 
 You might have an existing Azure Cache for Redis resource that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureRedisCacheResource> is an existing resource:
@@ -139,3 +110,32 @@ builder.AddProject<Projects.ExampleProject>()
 ```
 
 The preceding code configures the Azure Cache for Redis resource to use access key authentication. This alters the generated Bicep to use access key authentication instead of Microsoft Entra ID authentication. In other words, the connection string will contain a password, and will be added to an Azure Key Vault secret.
+
+### Provisioning-generated Bicep
+
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Cache for Redis resource, the following Bicep is generated:
+
+:::code language="bicep" source="../../snippets/azure/AppHost/redis/redis.bicep":::
+
+The preceding Bicep is a module that provisions an Azure Cache for Redis resource. Additionally, role assignments are created for the Azure resource in a separate module:
+
+:::code language="bicep" source="../../snippets/azure/AppHost/redis-roles/redis-roles.bicep":::
+
+In addition to the Azure Cache for Redis, it also provisions an access policy assignment to the application access to the cache. The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
+
+#### Customize provisioning infrastructure
+
+All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `kind`, `consistencyPolicy`, `locations`, and more. The following example demonstrates how to customize the Azure Cache for Redis resource:
+
+:::code language="csharp" source="../../snippets/azure/AppHost/Program.ConfigureRedisInfra.cs" id="configure":::
+
+The preceding code:
+
+- Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
+  - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
+  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
+  - The single <xref:Azure.Provisioning.Redis.RedisResource> is retrieved.
+  - The `Sku` is set with a family of `BasicOrStandard`, a name of `Standard`, and a capacity of `1`.
+  - A tag is added to the Redis resource with a key of `ExampleKey` and a value of `Example value`.
+
+There are many more configuration options available to customize the Azure Cache for Redis resource. For more information, see <xref:Azure.Provisioning.Redis>. For more information, see [Azure.Provisioning customization](../../azure/customize-azure-resources.md#azureprovisioning-customization).

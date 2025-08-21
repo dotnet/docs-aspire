@@ -56,36 +56,6 @@ The preceding call to `AddAzurePostgresFlexibleServer` configures the PostgresSQ
 > [!TIP]
 > When you call <xref:Aspire.Hosting.AzurePostgresExtensions.AddAzurePostgresFlexibleServer*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../../azure/local-provisioning.md#configuration).
 
-#### Provisioning-generated Bicep
-
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by hand, because the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure PostgreSQL resource, the following Bicep is generated:
-
-:::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible/postgres-flexible.bicep":::
-
-The preceding Bicep is a module that provisions an Azure PostgreSQL flexible server resource. Additionally, role assignments are created for the Azure resource in a separate module:
-
-:::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible-roles/postgres-flexible-roles.bicep":::
-
-In addition to the PostgreSQL flexible server, it also provisions an Azure Firewall rule to allow all Azure IP addresses. Finally, an administrator is created for the PostgreSQL server, and the connection string is outputted as an output variable. The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
-
-#### Customize provisioning infrastructure
-
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources by using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `kind`, `consistencyPolicy`, `locations`, and more. The following example demonstrates how to customize the PostgreSQL server resource:
-
-:::code language="csharp" source="../../snippets/azure/AppHost/Program.ConfigurePostgresSQLInfra.cs" id="configure":::
-
-The preceding code:
-
-- Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
-  - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
-  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
-  - The single <xref:Azure.Provisioning.PostgreSql.PostgreSqlFlexibleServer> is retrieved.
-  - The `sku` is set with <xref:Azure.Provisioning.PostgreSql.PostgreSqlFlexibleServerSkuTier.Burstable?displayProperty=nameWithType>.
-  - The high availability properties are set with <xref:Azure.Provisioning.PostgreSql.PostgreSqlFlexibleServerHighAvailabilityMode.ZoneRedundant?displayProperty=nameWithType> in standby availability zone `"2"`.
-  - A tag is added to the flexible server with a key of `ExampleKey` and a value of `Example value`.
-
-There are many more configuration options available to customize the PostgreSQL flexible server resource. For more information, see <xref:Azure.Provisioning.PostgreSql> and [Azure.Provisioning customization](../../azure/customize-azure-resources.md#azureprovisioning-customization).
-
 ### Connect to an existing Azure PostgreSQL flexible server
 
 You might have an existing Azure PostgreSQL flexible server that you want to connect to. Chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzurePostgresFlexibleServerResource> is an existing resource:
@@ -155,3 +125,33 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 ```
 
 The preceding code configures the Azure PostgreSQL server to use password authentication. The `username` and `password` parameters are added to the AppHost as parameters, and the `WithPasswordAuthentication` method is called to configure the Azure PostgreSQL server to use password authentication. For more information, see [External parameters](../../fundamentals/external-parameters.md).
+
+### Provisioning-generated Bicep
+
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by hand, because the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure PostgreSQL resource, the following Bicep is generated:
+
+:::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible/postgres-flexible.bicep":::
+
+The preceding Bicep is a module that provisions an Azure PostgreSQL flexible server resource. Additionally, role assignments are created for the Azure resource in a separate module:
+
+:::code language="bicep" source="../../snippets/azure/AppHost/postgres-flexible-roles/postgres-flexible-roles.bicep":::
+
+In addition to the PostgreSQL flexible server, it also provisions an Azure Firewall rule to allow all Azure IP addresses. Finally, an administrator is created for the PostgreSQL server, and the connection string is outputted as an output variable. The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they are reflected in the generated files.
+
+#### Customize provisioning infrastructure
+
+All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources by using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `kind`, `consistencyPolicy`, `locations`, and more. The following example demonstrates how to customize the PostgreSQL server resource:
+
+:::code language="csharp" source="../../snippets/azure/AppHost/Program.ConfigurePostgresSQLInfra.cs" id="configure":::
+
+The preceding code:
+
+- Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
+  - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
+  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
+  - The single <xref:Azure.Provisioning.PostgreSql.PostgreSqlFlexibleServer> is retrieved.
+  - The `sku` is set with <xref:Azure.Provisioning.PostgreSql.PostgreSqlFlexibleServerSkuTier.Burstable?displayProperty=nameWithType>.
+  - The high availability properties are set with <xref:Azure.Provisioning.PostgreSql.PostgreSqlFlexibleServerHighAvailabilityMode.ZoneRedundant?displayProperty=nameWithType> in standby availability zone `"2"`.
+  - A tag is added to the flexible server with a key of `ExampleKey` and a value of `Example value`.
+
+There are many more configuration options available to customize the PostgreSQL flexible server resource. For more information, see <xref:Azure.Provisioning.PostgreSql> and [Azure.Provisioning customization](../../azure/customize-azure-resources.md#azureprovisioning-customization).

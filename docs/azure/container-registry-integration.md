@@ -68,18 +68,6 @@ For more information, see [Configure Azure Container Apps environments](configur
 > [!IMPORTANT]
 > When you call `AddAzureContainerRegistry` or `AddAzureContainerAppEnvironment`, they implicitly call the idempotent <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](local-provisioning.md#configuration).
 
-#### Provisioning-generated Bicep
-
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Container Registry resource, the following Bicep is generated:
-
-:::code language="bicep" source="snippets/acr/AspireAcr.AppHost/AspireAcr.AppHost/my-acr.module.bicep":::
-
-The preceding Bicep provisions an Azure Container Registry resource. Additionally, the added Azure Container App environment resource is also generated:
-
-:::code language="bicep" source="snippets/acr/AspireAcr.AppHost/AspireAcr.AppHost/env.module.bicep":::
-
-The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly are overwritten, so make changes through the C# provisioning APIs to ensure they're reflected in the generated files.
-
 ### Reference an existing container registry
 
 To reference an existing Azure Container Registry, use the <xref:Aspire.Hosting.ExistingAzureResourceExtensions.PublishAsExisting*> method with the registry name and resource group:
@@ -107,6 +95,18 @@ You can assign specific roles to Azure resources to control access to the contai
 builder.AddProject("api", "../Api/Api.csproj")
        .WithRoleAssignments(acr, ContainerRegistryBuiltInRole.AcrPush);
 ```
+
+### Provisioning-generated Bicep
+
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Container Registry resource, the following Bicep is generated:
+
+:::code language="bicep" source="snippets/acr/AspireAcr.AppHost/AspireAcr.AppHost/my-acr.module.bicep":::
+
+The preceding Bicep provisions an Azure Container Registry resource. Additionally, the added Azure Container App environment resource is also generated:
+
+:::code language="bicep" source="snippets/acr/AspireAcr.AppHost/AspireAcr.AppHost/env.module.bicep":::
+
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly are overwritten, so make changes through the C# provisioning APIs to ensure they're reflected in the generated files.
 
 ## See also
 
