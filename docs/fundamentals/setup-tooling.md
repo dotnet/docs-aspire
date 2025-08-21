@@ -39,17 +39,7 @@ To work with .NET Aspire, you need the following installed locally:
 
 :::zone pivot="visual-studio"
 
-Visual Studio 2022 17.9 or higher includes the latest [.NET Aspire SDK](dotnet-aspire-sdk.md) by default when you install the Web & Cloud workload. If you have an earlier version of Visual Studio 2022, you can either upgrade to Visual Studio 2022 17.9 or you can install the .NET Aspire SDK using the following steps:
-
-To install the .NET Aspire workload in Visual Studio 2022, use the Visual Studio installer.
-
-1. Open the Visual Studio Installer.
-1. Select **Modify** next to Visual Studio 2022.
-1. Select the **ASP.NET and web development** workload.
-1. On the **Installation details** panel, select **.NET Aspire SDK**.
-1. Select **Modify** to install the .NET Aspire integration.
-
-   :::image type="content" loc-scope="visual-studio" source="media/setup-tooling/web-workload-with-aspire.png" lightbox="media/setup-tooling/web-workload-with-aspire.png" alt-text="A screenshot showing how to install the .NET Aspire workload with the Visual Studio installer.":::
+Visual Studio 2022 17.9 or higher includes the latest [.NET Aspire SDK](dotnet-aspire-sdk.md) by default when you install the Web & Cloud workload.
 
 :::zone-end
 :::zone pivot="vscode,dotnet-cli"
@@ -271,5 +261,4 @@ Once you create a new .NET Aspire project, you run and debug the app, stepping t
 
 ## See also
 
-- [Unable to install .NET Aspire workload](../troubleshooting/unable-to-install-workload.md)
 - [Use Dev Proxy with .NET Aspire project](/microsoft-cloud/dev/dev-proxy/how-to/use-dev-proxy-with-dotnet-aspire)
