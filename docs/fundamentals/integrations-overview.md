@@ -13,6 +13,9 @@ uid: dotnet/aspire/integrations
 > [!TIP]
 > Always strive to use the latest version of .NET Aspire integrations to take advantage of the latest features, improvements, and security updates.
 
+> [!WARNING]
+> Integrations execute code in your development environment. Ensure that third-party integrations are properly vetted before use. For more information, see [Best practices for a secure software supply chain](/nuget/concepts/security-best-practices).
+
 ## Integration responsibilities
 
 Most .NET Aspire integrations are made up of two separate libraries, each with a different responsibility. One type represents resources within the [_AppHost_](app-host-overview.md) project—known as [hosting integrations](#hosting-integrations). The other type of integration represents client libraries that connect to the resources modeled by hosting integrations, and they're known as [client integrations](#client-integrations).
