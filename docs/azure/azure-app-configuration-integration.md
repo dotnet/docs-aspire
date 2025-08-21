@@ -99,7 +99,7 @@ builder.Build().Run();
 
 For more information, see [Use existing Azure resources](integrations-overview.md#use-existing-azure-resources).
 
-### Connect to an existing Azure App Configuration store
+### Connect to existing Azure App Configuration store
 
 An alternative approach to using the `*AsExisting` APIs enables the addition of a connection string instead, where the AppHost uses configuration to resolve the connection information. To add a connection to an existing Azure App Configuration store, call the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> method:
 
@@ -127,6 +127,105 @@ The connection string is configured in the AppHost's configuration, typically un
 ```
 
 The dependent resource can access the injected connection string by calling the <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> method, and passing the connection name as the parameter, in this case `"config"`. The `GetConnectionString` API is shorthand for `IConfiguration.GetSection("ConnectionStrings")[name]`.
+
+### Add Azure App Configuration emulator resource
+
+Microsoft provide the Azure App Configuration emulator for developers who want a local, lightweight implementation of the Azure App Configuration service to code and test against. In Aspire, you can use this emulator by calling the <xref:Aspire.Hosting.AzureAppConfigurationExtensions.RunAsEmulator> method when you add your resource:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var appConfig = builder.AddAzureAppConfiguration("config")
+                       .RunAsEmulator();
+
+// After adding all resources, run the app...
+
+builder.Build().Run();
+```
+
+The Azure App Configuration emulator isn't installed on your local computer. Instead, it's accessible to .NET Aspire as a container. The `RunAsEmulator` method creates and starts the container when the AppHost starts using the `azure-app-configuration/app-configuration-emulator` image. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
+
+#### Configure Azure App Configuration emulator container
+
+There are various configurations available to container resources. For example, you can configure the container's port, environment variables, it's [lifetime](../fundamentals/orchestrate-resources.md#container-resource-lifetime), and more.
+
+##### Configure Azure App Configuration emulator host port
+
+By default, Aspire assigns a random host port for the emulator container. If you want to use a specific port, chain calls on the container resource builder provided by the `RunAsEmulator` method as shown in the following example:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var appConfig = builder.AddAzureAppConfiguration("config")
+                     .RunAsEmulator(
+                         emulator =>
+                         {
+                             emulator.WithHostPort(28000);
+                         });
+
+// After adding all resources, run the app...
+```
+
+The preceding code configures the emulator container's endpoint to listen on ports `28000`.
+
+##### Configure Azure App Configuration emulator with persistent lifetime
+
+To configure the emulator container with a persistent lifetime, call the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithLifetime*> method on the emulator container resource and pass <xref:Aspire.Hosting.ApplicationModel.ContainerLifetime.Persistent?displayProperty=nameWithType>:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var appConfig = builder.AddAzureAppConfiguration("config")
+                     .RunAsEmulator(
+                         emulator =>
+                         {
+                             emulator.WithLifetime(ContainerLifetime.Persistent);
+                         });
+
+// After adding all resources, run the app...
+```
+
+For more information, see [Container resource lifetime](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
+
+##### Configure Azure App Configuration emulator with data volume
+
+To add a data volume to the Azure App Configuration emulator resource, call the <xref:Aspire.Hosting.AzureAppConfigurationExtensions.WithDataVolume*> method on the emulator resource:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var appConfig = builder.AddAzureAppConfiguration("config")
+                       .RunAsEmulator(
+                           emulator =>
+                           {
+                               emulator.WithDataVolume();
+                           });
+
+// After adding all resources, run the app...
+```
+
+The data volume is used to persist the emulator data outside the lifecycle of its container. The data volume is mounted at the `/data` path in the emulator container and when a `name` parameter isn't provided, the name is autogenerated from the application and resource names. For more information on data volumes and details on why they're preferred over [bind mounts](#configure-azurite-container-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
+
+##### Configure Azure App Configuration emulator with data bind mount
+
+To add a data bind mount to the Azure App Configuration emulator resource, call the <xref:Aspire.Hosting.AzureAppConfiguarionExtensions.WithDataBindMount*> method:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var appConfig = builder.AddAzureAppConfiguration("config")
+                       .RunAsEmulator(
+                           emulator =>
+                           {
+                               emulator.WithDataBindMount("../Emulator/Data");
+                           });
+
+// After adding all resources, run the app...
+```
+
+[!INCLUDE [data-bind-mount-vs-volumes](../includes/data-bind-mount-vs-volumes.md)]
+
+Data bind mounts rely on the host machine's filesystem to persist the emulator data across container restarts. The data bind mount is mounted at the `../Emulator/Data` path on the host machine relative to the AppHost directory (<xref:Aspire.Hosting.IDistributedApplicationBuilder.AppHostDirectory?displayProperty=nameWithType>) in the emulator container. For more information on data bind mounts, see [Docker docs: Bind mounts](https://docs.docker.com/engine/storage/bind-mounts).
 
 ## Client integration
 
