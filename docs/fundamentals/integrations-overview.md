@@ -14,7 +14,7 @@ uid: dotnet/aspire/integrations
 > Always strive to use the latest version of .NET Aspire integrations to take advantage of the latest features, improvements, and security updates.
 
 > [!WARNING]
-> Integrations execute code in your development environment. Ensure that third-party integrations are properly vetted before use. For more information, see [Best practices for a secure software supply chain](/nuget/concepts/security-best-practices).
+> Integrations execute code in your development environment. Ensure that third-party integrations are trusted before use. For more information, see [Best practices for a secure software supply chain](/nuget/concepts/security-best-practices).
 
 ## Integration responsibilities
 
