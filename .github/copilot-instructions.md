@@ -11,6 +11,7 @@ ai-usage: ai-generated
 ## Terminology
 
 - First mention: ".NET Aspire", subsequent mentions: "Aspire"
+- Instead of "app host", always say "AppHost"
 - All .NET content refers to modern .NET (not .NET Framework)
 
 ## Writing Style
