@@ -1,7 +1,8 @@
 ---
 title: .NET Aspire MailPit hosting integration
 description: Learn how to use the .NET Aspire MailPit hosting integration to add MailPit containers to your distributed application.
-ms.date: 01/22/2025
+ms.date: 08/22/2025
+ai-usage: ai-generated
 ---
 
 # .NET Aspire MailPit hosting integration
