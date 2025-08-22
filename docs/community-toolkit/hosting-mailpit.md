@@ -12,7 +12,7 @@ MailPit is a mail testing tool that provides a fake SMTP server for development 
 
 ## Hosting integration
 
-The MailPit hosting integration models MailPit as the <xref:CommunityToolkit.Aspire.Hosting.MailPit.MailPitResource> type. To access this resource and the extension methods to add it to your app model, add the [📦 CommunityToolkit.Aspire.Hosting.MailPit](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.MailPit) NuGet package in the [app host](/dotnet/aspire/app-host) project.
+The MailPit hosting integration models MailPit as the `MailPitResource` type. To access this resource and the extension methods to add it to your app model, add the [📦 CommunityToolkit.Aspire.Hosting.MailPit](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.MailPit) NuGet package in the [app host](/dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -29,7 +29,7 @@ dotnet add package CommunityToolkit.Aspire.Hosting.MailPit
 
 ---
 
-In your app host project, register a MailPit resource using the <xref:CommunityToolkit.Aspire.Hosting.MailPitResourceBuilderExtensions.AddMailPit*> extension method:
+In your app host project, register a MailPit resource using the `AddMailPit` extension method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
