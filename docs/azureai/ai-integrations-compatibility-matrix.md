@@ -186,7 +186,7 @@ Endpoint=https://models.github.ai/inference;Key={Key};Model={Model};DeploymentId
 Expects connection strings in the format:
 
 ```
-Endpoint={Endpoint};Key={Key};DeploymentId={DeploymentId};Deployment={Deployment};Model={Model}
+Endpoint={Endpoint};Key={Key};Deployment={Deployment};Model={Model}
 ```
 
 Uses either `Deployment` or `Model` (in that order). `Deployment` is set by `Aspire.Hosting.Azure.CognitiveServices` while `Model` is set by `Aspire.Hosting.OpenAI`.
