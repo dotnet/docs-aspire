@@ -52,7 +52,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 When .NET Aspire adds a container image to the app host, as shown in the preceding example with the `docker.io/cloudamqp/lavinmq` image, it creates a new LavinMQ server instance on your local machine. A reference to your LavinMQ server (the `lavinMq` variable) is added to the `ExampleProject`. The LavinMQ server resource includes default credentials with a `username` of `"guest"` and a `password` of `"guest"`.
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"messaging"`. For more information, see [Container resource lifecycle](../fundamentals/app-host-overview.md#container-resource-lifecycle).
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"messaging"`. For more information, see [Built-in resource types](../fundamentals/app-host-overview.md#built-in-resource-types).
 
 > [!TIP]
 > If you'd rather connect to an existing LavinMQ server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
@@ -63,7 +63,7 @@ LavinMQ includes a management interface by default that provides a web-based int
 
 ### Add LavinMQ server resource with data volume
 
-To add a data volume to the LavinMQ container resource, call the <xref:Aspire.Hosting.LavinMQBuilderExtensions.WithDataVolume*> method on the LavinMQ container resource:
+To add a data volume to the LavinMQ container resource, call the `Aspire.Hosting.LavinMQBuilderExtensions.WithDataVolume` method on the LavinMQ container resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -81,7 +81,7 @@ The data volume is used to persist the LavinMQ server data outside the lifecycle
 
 ### Add LavinMQ server resource with data bind mount
 
-To add a data bind mount to the LavinMQ container resource, call the <xref:Aspire.Hosting.LavinMQBuilderExtensions.WithDataBindMount*> method:
+To add a data bind mount to the LavinMQ container resource, call the `Aspire.Hosting.LavinMQBuilderExtensions.WithDataBindMount` method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -111,7 +111,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.RabbitMQ](ht
 
 ## Client integration
 
-LavinMQ is wire compatible with RabbitMQ. This may introduce a bit of confusion at first, but think of LavinMQ as a RabbitMQ server with a different name in terms of the .NET client integration. You can see an example of using the explicit RabbitMQ.Client [here](https://lavinmq.com/documentation/dot-net-sample-code). To get started with the .NET Aspire RabbitMQ client integration, install the [📦 Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the LavinMQ client. The LavinMQ client integration registers an [IConnection](https://www.rabbitmq.com/dotnet-api-guide.html) instance that you can use to interact with LavinMQ.
+LavinMQ is wire compatible with RabbitMQ. This may introduce a bit of confusion at first, but think of LavinMQ as a RabbitMQ server with a different name in terms of the .NET client integration. You can see an example of using the explicit RabbitMQ.Client in the [LavinMQ .NET sample code documentation](https://lavinmq.com/documentation/dot-net-sample-code). To get started with the .NET Aspire RabbitMQ client integration, install the [📦 Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the LavinMQ client. The LavinMQ client integration registers an [IConnection](https://www.rabbitmq.com/dotnet-api-guide.html) instance that you can use to interact with LavinMQ.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
