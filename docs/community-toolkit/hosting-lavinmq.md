@@ -1,7 +1,8 @@
 ---
 title: LavinMQ hosting extensions
 description: Learn about the .NET Aspire Community Toolkit LavinMQ hosting extensions package which provides extra functionality to the .NET Aspire LavinMQ hosting package.
-ms.date: 02/18/2025
+ms.date: 08/22/2025
+ai-usage: ai-generated
 ---
 
 # .NET Aspire LavinMQ integration
