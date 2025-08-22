@@ -42,6 +42,9 @@ The community toolkit is a growing project, publishing a set of NuGet packages. 
 - The [Rust apps](https://www.rust-lang.org/) integration provides support for hosting Rust applications.
   - [📄 .NET Aspire Rust hosting integration](hosting-rust.md#hosting-integration).
   - [📦 CommunityToolkit.Aspire.Hosting.Rust](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Rust).
+- The [LavinMQ](https://www.lavinmq.com) integration enables hosting LavinMQ containers.
+  - [📄 .NET Aspire LavinMQ hosting integration](hosting-lavinmq.md).
+  - [📦 CommunityToolkit.Aspire.Hosting.LavinMQ](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.LavinMQ).
 - The [SQLite](https://www.sqlite.org/index.html) integration provides support for hosting SQLite databases.
   - [📄 .NET Aspire SQLite hosting integration](sqlite.md#hosting-integration)
   - [📦 CommunityToolkit.Aspire.Hosting.SQLite](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SQLite).

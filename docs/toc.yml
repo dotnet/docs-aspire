@@ -401,6 +401,8 @@ items:
       href: community-toolkit/hosting-golang.md
     - name: Java/Spring
       href: community-toolkit/hosting-java.md
+    - name: LavinMQ
+      href: community-toolkit/hosting-lavinmq.md
     - name: Node.js extensions
       href: community-toolkit/hosting-nodejs-extensions.md
     - name: Python extensions
