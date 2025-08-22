@@ -208,9 +208,7 @@ conceptualContent:
     - itemType: how-to-guide
       text: Allow unsecure transport
       url: troubleshooting/allow-unsecure-transport.md
-    - itemType: how-to-guide
-      text: Unable to install workload
-      url: troubleshooting/unable-to-install-workload.md
+
     - itemType: how-to-guide
       text: Untrusted localhost certificate
       url: troubleshooting/untrusted-localhost-certificate.md

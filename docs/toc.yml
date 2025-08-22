@@ -501,8 +501,7 @@ items:
     href: troubleshooting/hosting-startup-not-supported.md
   - name: Untrusted localhost certificate
     href: troubleshooting/untrusted-localhost-certificate.md
-  - name: Unable to install .NET Aspire workload
-    href: troubleshooting/unable-to-install-workload.md
+
   - name: The specified name is already in use
     href: troubleshooting/name-is-already-in-use.md
   - name: Container runtime appears to be unhealthy

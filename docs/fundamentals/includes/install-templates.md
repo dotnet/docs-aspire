@@ -31,7 +31,4 @@ To install a specific version, append the version number to the package name:
 dotnet new install Aspire.ProjectTemplates::9.4.0
 ```
 
-> [!TIP]
-> If you already have the .NET Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. Feel free to uninstall the .NET Aspire workload.
-
 :::zone-end
