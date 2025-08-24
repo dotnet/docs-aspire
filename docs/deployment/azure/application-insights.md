@@ -14,6 +14,40 @@ Azure Application Insights, a feature of Azure Monitor, excels in Application Pe
 
 To use Application insights, you specify its configuration in the AppHost project *and* use the [Azure Monitor distro in the service defaults project](#use-the-azure-monitor-distro).
 
+## Understanding telemetry options
+
+Aspire provides flexibility in how telemetry is collected and sent to Application Insights. There are two primary approaches for integrating with Application Insights:
+
+### Classic Application Insights SDK
+
+The classic Application Insights SDK is the traditional method for instrumenting .NET applications. It provides features such as:
+
+- Built-in telemetry collection for HTTP requests, dependencies, exceptions, and more.
+- Custom telemetry via the `TelemetryClient` API.
+
+However, this SDK is not compatible with OpenTelemetry-based configurations used by Aspire's `AddServiceDefaults()` method.
+
+### OpenTelemetry with Azure Monitor
+
+OpenTelemetry is a modern standard for telemetry collection. Aspire uses OpenTelemetry for tracing and metrics through its `AddServiceDefaults()` method. With OpenTelemetry:
+
+- Telemetry is vendor-agnostic, allowing integration with multiple backends.
+- You can use the Azure Monitor OpenTelemetry Distro to send telemetry to Application Insights.
+
+**Key differences:**
+
+| Feature                         | Classic Application Insights SDK        | OpenTelemetry with Azure Monitor         |
+|---------------------------------|-----------------------------------------|------------------------------------------|
+| **Ease of Use**                 | Requires manual setup for advanced features. | Offers a more modern, standardized API. |
+| **Compatibility**               | Not compatible with OpenTelemetry setups. | Fully compatible with Aspire defaults.   |
+| **Extensibility**               | Limited to Application Insights features. | Open, vendor-neutral, supports other backends. |
+| **Instrumentation Standards**   | Application-specific APIs (for example, `TelemetryClient`). | OpenTelemetry standards.                 |
+
+For detailed guidance on each approach, see:
+
+- [Classic Application Insights SDK Documentation](/azure/azure-monitor/app/asp-net-core)
+- [OpenTelemetry for Azure Monitor](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=aspnetcore)
+
 ## Choosing how Application Insights is provisioned
 
 .NET Aspire has the capability to provision cloud resources as part of cloud deployment, including Application Insights. In your .NET Aspire project, you can decide if you want .NET Aspire to provision an Application Insights resource when deploying to Azure. You can also select to use an existing Application Insights resource by providing its connection string. The connection information is managed by the resource configuration in the AppHost project.

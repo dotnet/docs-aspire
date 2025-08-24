@@ -205,7 +205,7 @@ By default, the Service Bus emulator container when configured by .NET Aspire, e
 | Endpoint | Image | Container port | Host port |
 |--|--|--|--|
 | `emulator` | `mcr.microsoft.com/azure-messaging/servicebus-emulator` | 5672 | dynamic |
-| `tcp` | `mcr.microsoft.com/azure-sql-edge` | 1433 | dynamic |
+| `tcp` | `mcr.microsoft.com/mssql/server` | 1433 | dynamic |
 
 The port that it's listening on is dynamic by default. When the container starts, the port is mapped to a random port on the host machine. To configure the endpoint port, chain calls on the container resource builder provided by the `RunAsEmulator` method and then the <xref:Aspire.Hosting.AzureServiceBusExtensions.WithHostPort(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Azure.AzureServiceBusEmulatorResource},System.Nullable{System.Int32})> as shown in the following example:
 
