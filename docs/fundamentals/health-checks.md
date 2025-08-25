@@ -110,6 +110,74 @@ builder.AddNpgsqlDbContext<MyDbContext>(
     static settings => settings.DisableHealthChecks  = true);
 ```
 
+## AppHost resource health checks
+
+AppHost resource health checks are different from the health check endpoints described earlier. These health checks are configured in the AppHost project and determine the readiness of resources from the orchestrator's perspective. They're particularly important for controlling when dependent resources start via the [`WaitFor`](orchestrate-resources.md#waiting-for-resources) functionality and are displayed in the Aspire dashboard.
+
+### Resource readiness with health checks
+
+When a resource has health checks configured, the AppHost uses them to determine if the resource is ready before starting dependent resources. If no health checks are registered for a resource, the AppHost waits for the resource to be in the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running> state.
+
+### HTTP health checks for resources
+
+For resources that expose HTTP endpoints, you can add health checks that poll specific paths:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var catalogApi = builder.AddContainer("catalog-api", "catalog-api")
+                        .WithHttpEndpoint(targetPort: 8080)
+                        .WithHttpHealthCheck("/health");
+
+builder.AddProject<Projects.WebApp>("webapp")
+       .WithReference(catalogApi)
+       .WaitFor(catalogApi); // Waits for /health to return HTTP 200
+```
+
+The `WithHttpHealthCheck` method can also be applied to project resources:
+
+```csharp
+var backend = builder.AddProject<Projects.Backend>("backend")
+                     .WithHttpHealthCheck("/health");
+                     
+builder.AddProject<Projects.Frontend>("frontend")
+       .WithReference(backend)
+       .WaitFor(backend);
+```
+
+### Custom resource health checks
+
+You can create custom health checks for more complex readiness scenarios. Start by defining the health check in the AppHost's service collection, then associate it with resources:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var startAfter = DateTime.Now.AddSeconds(30);
+
+builder.Services.AddHealthChecks().AddCheck("mycheck", () =>
+    {
+        return DateTime.Now > startAfter 
+            ? HealthCheckResult.Healthy() 
+            : HealthCheckResult.Unhealthy();
+    });
+
+var pg = builder.AddPostgres("pg")
+    .WithHealthCheck("mycheck");
+
+builder.AddProject<Projects.MyApp>("myapp")
+    .WithReference(pg)
+    .WaitFor(pg); // Waits for both the Postgres container to be running
+                  // AND the custom "mycheck" health check to be healthy
+```
+
+The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> method registers the health check, and <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHealthCheck*> associates it with specific resources.
+
+### Dashboard integration
+
+Resource health check status is displayed in the Aspire dashboard, providing real-time visibility into resource readiness. When resources are waiting for health checks to pass, the dashboard shows the current status and any failure details.
+
+For more information about using health checks with resource dependencies, see [Waiting for resources](orchestrate-resources.md#waiting-for-resources).
+
 ## See also
 
 - [.NET app health checks in C#](/dotnet/core/diagnostics/diagnostic-health-checks)
