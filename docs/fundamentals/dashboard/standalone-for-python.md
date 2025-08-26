@@ -166,7 +166,7 @@ To use the .NET Aspire dashboard with your Python app, you need to install the O
 
     ```python
     import logging
-    from otlp_tracing import configure_otel_otlp
+    from otlp_tracing import configure_oltp_grpc_tracing
 
     logging.basicConfig(level=logging.INFO)
     tracer = configure_oltp_grpc_tracing()
