@@ -176,6 +176,8 @@ The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckEx
 
 Resource health check status is displayed in the Aspire dashboard, providing real-time visibility into resource readiness. When resources are waiting for health checks to pass, the dashboard shows the current status and any failure details.
 
+:::image type="content" source="media/health-checks-dashboard-status.png" alt-text="Screenshot of the Aspire dashboard showing health check status for resources" lightbox="media/health-checks-dashboard-status.png":::
+
 For more information about using health checks with resource dependencies, see [Waiting for resources](orchestrate-resources.md#waiting-for-resources).
 
 ## See also
