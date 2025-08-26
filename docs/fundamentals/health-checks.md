@@ -170,7 +170,7 @@ builder.AddProject<Projects.MyApp>("myapp")
                   // AND the custom "mycheck" health check to be healthy
 ```
 
-The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> method registers the health check, and <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHealthCheck*> associates it with specific resources.
+The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> method registers the health check, and <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHealthCheck*> associates it with specific resources. For more details about creating and registering custom health checks, see [Create health checks](/aspnet/core/host-and-deploy/health-checks#create-health-checks).
 
 ### Dashboard integration
 
