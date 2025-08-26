@@ -8,7 +8,14 @@ uid: dotnet/aspire/health-checks
 
 # Health checks in .NET Aspire
 
-Health checks provide availability and state information about an app. Health checks are often exposed as HTTP endpoints, but can also be used internally by the app to write logs or perform other tasks based on the current health. Health checks are typically used in combination with an external monitoring service or container orchestrator to check the status of an app. The data reported by health checks can be used for various scenarios:
+Health checks provide availability and state information about an app. Health checks are often exposed as HTTP endpoints, but can also be used internally by the app to write logs or perform other tasks based on the current health. Health checks are typically used in combination with an external monitoring service or container orchestrator to check the status of an app.
+
+In .NET Aspire, health checks operate in two main contexts:
+
+- **AppHost resource health checks** - Run in the AppHost project to determine resource readiness for orchestration and dependency management. These checks control when dependent resources start and are displayed in the Aspire dashboard.
+- **Application health check endpoints** - Run within individual applications and services to expose `/health` and `/alive` endpoints for monitoring and load balancing decisions.
+
+The data reported by health checks can be used for various scenarios:
 
 - Influence decisions made by container orchestrators, load balancers, API gateways, and other management services. For instance, if the health check for a containerized app fails, it might be skipped by a load balancer routing traffic.
 - Verify that underlying dependencies are available, such as a database or cache, and return an appropriate status message.
