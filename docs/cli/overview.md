@@ -79,7 +79,7 @@ As of Aspire 9.4, Aspire doesn't include any default deployment annotations for 
 > [!TIP]
 > Consider this a good way to deploy your Aspire solution to a staging or testing environment.
 
-## Manage Aspire configuration (preview)
+## Manage Aspire configuration
 
 [_Command reference: `aspire config`_](../cli-reference/aspire-config.md)
 
