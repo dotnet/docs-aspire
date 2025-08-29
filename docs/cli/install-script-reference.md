@@ -1,5 +1,5 @@
 ---
-title: Install .NET Aspire CLI
+title: aspire-install script reference
 description: Learn about the aspire-install scripts to install the .NET Aspire CLI. Use the .NET Aspire CLI to create, run, and manage .NET Aspire projects.
 author: adegeo
 ms.author: adegeo

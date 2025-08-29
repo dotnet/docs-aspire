@@ -40,8 +40,8 @@ The compiled version of the Aspire CLI can be installed using the Aspire CLI ins
     ```Output
     Downloading from: https://aka.ms/dotnet/9/aspire/ga/daily/aspire-cli-win-x64.zip
     Aspire CLI successfully installed to: C:\Users\name\.aspire\bin\aspire.exe
-    Added C:\name\adegeo\.aspire\bin to PATH for current session
-    Added C:\name\adegeo\.aspire\bin to user PATH environment variable
+    Added C:\Users\username\.aspire\bin to PATH for current session
+    Added C:\Users\username\.aspire\bin to user PATH environment variable
     
     The aspire cli is now available for use in this and new sessions.
     ```
