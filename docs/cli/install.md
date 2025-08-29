@@ -4,7 +4,7 @@ description: Learn how to install .NET Aspire CLI, which is a .NET global tool. 
 author: adegeo
 ms.author: adegeo
 ms.topic: install-set-up-deploy
-ms.date: 07/24/2025
+ms.date: 08/29/2025
 
 #customer intent: As a developer, I want to install the .NET Aspire CLI so that I can create, run, and manage .NET Aspire projects.
 
@@ -47,6 +47,21 @@ The compiled version of the Aspire CLI can be installed using the Aspire CLI ins
     ```
 
 For more information about the install script, see [aspire-install script reference](install-script-reference.md).
+
+> [!TIP]
+> You can download and run the script in a single command:
+>
+> Windows:
+>
+> ```powershell
+> Invoke-Expression "& { $(Invoke-RestMethod https://aspire.dev/install.ps1) }"
+> ```
+>
+> macOS/Linux:
+>
+> ```bash
+> curl -sSL https://aspire.dev/install.sh | bash
+> ```
 
 ## Install as a .NET global tool
 
