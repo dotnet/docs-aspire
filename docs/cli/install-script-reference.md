@@ -100,13 +100,13 @@ Unless changed with the `-InstallPath|--install-path` argument, the script insta
   Windows:
 
   ```powershell
-  Invoke-Expression "& { $(Invoke-RestMethod https://aspire.dev/install.ps1) }"
+  .\aspire-install.ps1
   ```
 
   macOS/Linux:
 
   ```bash
-  curl -sSL https://aspire.dev/install.sh | bash
+  ./aspire-install.sh
   ```
 
 - Install to a custom directory:
@@ -114,13 +114,13 @@ Unless changed with the `-InstallPath|--install-path` argument, the script insta
   Windows:
 
   ```powershell
-  Invoke-Expression "& { $(Invoke-RestMethod https://aspire.dev/install.ps1) } -InstallPath 'C:\Tools\Aspire'"
+  .\aspire-install.ps1 -InstallPath 'C:\Tools\Aspire'
   ```
 
   macOS/Linux:
 
   ```bash
-  curl -sSL https://aspire.dev/install.sh | bash -s -- --install-path "/usr/local/bin"
+  ./aspire-install.sh --install-path "/usr/local/bin"
   ```
 
 - Install a specific version:
@@ -128,13 +128,13 @@ Unless changed with the `-InstallPath|--install-path` argument, the script insta
   Windows:
 
   ```powershell
-  Invoke-Expression "& { $(Invoke-RestMethod https://aspire.dev/install.ps1) } -Version '9.4'"
+  .\aspire-install.ps1 -Version '9.4'
   ```
 
   macOS/Linux:
 
   ```bash
-  curl -sSL https://aspire.dev/install.sh | bash -s -- --version "9.4"
+  ./aspire-install.sh --version "9.4"
   ```
 
 - Install development builds:
@@ -142,19 +142,19 @@ Unless changed with the `-InstallPath|--install-path` argument, the script insta
   Windows:
 
   ```powershell
-  Invoke-Expression "& { $(Invoke-RestMethod https://aspire.dev/install.ps1) } -Quality 'dev'"
+  .\aspire-install.ps1 -Quality 'dev'
   ```
 
   macOS/Linux:
 
   ```bash
-  curl -sSL https://aspire.dev/install.sh | bash -s -- --quality "dev"
+  ./aspire-install.sh --quality "dev"
   ```
 
 - Install with verbose output (Linux/macOS only):
 
   ```bash
-  curl -sSL https://aspire.dev/install.sh | bash -s -- --verbose
+  ./aspire-install.sh --verbose
   ```
 
 ## Uninstall
