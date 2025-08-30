@@ -60,6 +60,8 @@ This will install the CLI and put it on your PATH (the binaries are placed in th
 dotnet tool install -g Aspire.Cli
 ```
 
+For more information, see [Install .NET Aspire CLI](../cli/install.md) and [aspire-install script reference](../cli/install-script-reference.md).
+
 > [!NOTE]
 > ⚠️ **The Aspire 9.4 CLI is not compatible with Aspire 9.3 projects.**
 > You must upgrade your project to Aspire 9.4+ in order to use the latest CLI features.

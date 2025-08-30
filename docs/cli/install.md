@@ -4,7 +4,7 @@ description: Learn how to install .NET Aspire CLI, which is a .NET global tool. 
 author: adegeo
 ms.author: adegeo
 ms.topic: install-set-up-deploy
-ms.date: 07/24/2025
+ms.date: 08/29/2025
 
 #customer intent: As a developer, I want to install the .NET Aspire CLI so that I can create, run, and manage .NET Aspire projects.
 
@@ -20,9 +20,48 @@ This article teaches you how to install the Aspire CLI, which is a CLI tool used
 
 ## Install as a native executable
 
-The compiled version of the Aspire CLI can be installed using the Aspire CLI installation script.
+The compiled version of the Aspire CLI can be installed using the Aspire CLI installation script. The script is available for PowerShell and Bash.
 
-[!INCLUDE [install-aspire-cli](../includes/install-aspire-cli.md)]
+01. Open a terminal.
+01. Download the script and save it as a file:
+
+    ```powershell
+    Invoke-RestMethod https://aspire.dev/install.ps1 -OutFile aspire-install.ps1
+    ```
+
+    ```bash
+    curl -sSL https://aspire.dev/install.sh -o aspire-install.sh
+    ```
+
+01. Run the script to install the stable release build of Aspire.
+
+    You should see output similar to the following snippet:
+
+    ```Output
+    Downloading from: https://aka.ms/dotnet/9/aspire/ga/daily/aspire-cli-win-x64.zip
+    Aspire CLI successfully installed to: C:\Users\name\.aspire\bin\aspire.exe
+    Added C:\Users\username\.aspire\bin to PATH for current session
+    Added C:\Users\username\.aspire\bin to user PATH environment variable
+    
+    The aspire cli is now available for use in this and new sessions.
+    ```
+
+For more information about the install script, see [aspire-install script reference](install-script-reference.md).
+
+> [!TIP]
+> You can download and run the script in a single command:
+>
+> Windows:
+>
+> ```powershell
+> Invoke-Expression "& { $(Invoke-RestMethod https://aspire.dev/install.ps1) }"
+> ```
+>
+> macOS/Linux:
+>
+> ```bash
+> curl -sSL https://aspire.dev/install.sh | bash
+> ```
 
 ## Install as a .NET global tool
 
@@ -48,3 +87,7 @@ If that command works, you're presented with the version of the Aspire CLI tool:
 ```Aspire
 9.4.0
 ```
+
+## See also
+
+- [aspire-install script reference](install-script-reference.md).
