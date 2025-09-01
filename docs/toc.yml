@@ -125,6 +125,8 @@ items:
     href: cli/overview.md
   - name: Install
     href: cli/install.md
+  - name: aspire-install script reference
+    href: cli/install-script-reference.md
   - name: aspire command reference
     items:
     - name: aspire
