@@ -56,7 +56,7 @@ Previously the **aspire workload** was required to create and run .NET Aspire pr
       01. Select the **Modify** button to apply the changes.
 
     - If the **Installation Source** starts with _SDK_, run `dotnet workload uninstall aspire` to remove .NET Aspire.
-    
+
 ### Upgrade the .NET Aspire project templates
 
 If you have removed, or never had, the **aspire workload**, you can install the latest .NET Aspire project templates by running this command:
