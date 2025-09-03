@@ -33,7 +33,7 @@ items:
       href: get-started/dev-containers.md
   - name: What's new in .NET Aspire 9.5
     href: whats-new/dotnet-aspire-9.5.md
-  - name: Upgrade to .NET Aspire 9.0
+  - name: Upgrade to .NET Aspire 9.4.1
     href: get-started/upgrade-to-aspire-9.md
 
 - name: Dev-time orchestration
@@ -125,6 +125,8 @@ items:
     href: cli/overview.md
   - name: Install
     href: cli/install.md
+  - name: aspire-install script reference
+    href: cli/install-script-reference.md
   - name: aspire command reference
     items:
     - name: aspire
@@ -234,6 +236,9 @@ items:
     - name: Azure AI Search
       displayName: azure search,search,azure ai,cognitive search,cognitive services
       href: azureai/azureai-search-document-integration.md
+    - name: AI integrations compatibility matrix
+      displayName: ai compatibility,ai integrations,openai,azure ai,github models
+      href: azureai/ai-integrations-compatibility-matrix.md
     - name: Azure Cache for Redis
       items:
       - name: Azure Cache for Redis
@@ -502,8 +507,7 @@ items:
     href: troubleshooting/hosting-startup-not-supported.md
   - name: Untrusted localhost certificate
     href: troubleshooting/untrusted-localhost-certificate.md
-  - name: Unable to install .NET Aspire workload
-    href: troubleshooting/unable-to-install-workload.md
+
   - name: The specified name is already in use
     href: troubleshooting/name-is-already-in-use.md
   - name: Container runtime appears to be unhealthy

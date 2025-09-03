@@ -52,7 +52,33 @@ The preceding code adds an Azure AI Search resource named `search` to the AppHos
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureSearchExtensions.AddAzureSearch*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning(Aspire.Hosting.IDistributedApplicationBuilder)>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see Local provisioning: Configuration
 
-#### Provisioning-generated Bicep
+### Connect to an existing Azure AI Search service
+
+You might have an existing Azure AI Search service that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureSearchResource> is an existing resource:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var existingSearchName = builder.AddParameter("existingSearchName");
+var existingSearchResourceGroup = builder.AddParameter("existingSearchResourceGroup");
+
+var search = builder.AddAzureSearch("search")
+                    .AsExisting(existingSearchName, existingSearchResourceGroup);
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(search);
+
+// After adding all resources, run the app...
+```
+
+[!INCLUDE [azure-configuration](../azure/includes/azure-configuration.md)]
+
+For more information on treating Azure AI Search resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
+
+> [!NOTE]
+> Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+
+### Provisioning-generated Bicep
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by hand; instead, the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure AI Search resource, Bicep is generated to provision the search service with appropriate defaults.
 
@@ -82,32 +108,6 @@ The preceding code:
     - A tag is added to the Cognitive Services resource with a key of `ExampleKey` and a value of `Example value`.
 
 There are many more configuration options available to customize the Azure AI Search resource. For more information, see [`Azure.Provisioning` customization](../azure/customize-azure-resources.md#azureprovisioning-customization).
-
-### Connect to an existing Azure AI Search service
-
-You might have an existing Azure AI Search service that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureSearchResource> is an existing resource:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var existingSearchName = builder.AddParameter("existingSearchName");
-var existingSearchResourceGroup = builder.AddParameter("existingSearchResourceGroup");
-
-var search = builder.AddAzureSearch("search")
-                    .AsExisting(existingSearchName, existingSearchResourceGroup);
-
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(search);
-
-// After adding all resources, run the app...
-```
-
-[!INCLUDE [azure-configuration](../azure/includes/azure-configuration.md)]
-
-For more information on treating Azure AI Search resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
-
-> [!NOTE]
-> Alternatively, instead of representing an Azure AI Search resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ### Hosting integration health checks
 

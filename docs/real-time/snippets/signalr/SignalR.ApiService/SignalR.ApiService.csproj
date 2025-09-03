@@ -11,7 +11,7 @@
     <PackageReference Include="Microsoft.Azure.SignalR" Version="1.31.0" />
     <PackageReference Include="Microsoft.Azure.SignalR.Management" Version="1.31.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.6.8" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.7.2" />
   </ItemGroup>
 
   <ItemGroup>

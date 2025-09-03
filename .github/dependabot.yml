@@ -1779,3 +1779,14 @@ updates:
       dotnet:
         patterns:
           - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/troubleshooting/snippets/hosting-startup-not-supported" #hosting-startup-not-supported.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.

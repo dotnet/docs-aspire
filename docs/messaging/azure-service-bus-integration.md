@@ -57,35 +57,6 @@ When you add an <xref:Aspire.Hosting.Azure.AzureServiceBusResource> to the AppHo
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureServiceBusExtensions.AddAzureServiceBus*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Configuration](../azure/local-provisioning.md#configuration).
 
-#### Provisioning-generated Bicep
-
-If you're new to Bicep, it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Service Bus resource, the following Bicep is generated:
-
-:::code language="bicep" source="../snippets/azure/AppHost/service-bus/service-bus.bicep":::
-
-The preceding Bicep is a module that provisions an Azure Service Bus namespace resource. Additionally, role assignments are created for the Azure resource in a separate module:
-
-:::code language="bicep" source="../snippets/azure/AppHost/service-bus-roles/service-bus-roles.bicep":::
-
-In addition to the Service Bus namespace, it also provisions an Azure role-based access control (Azure RBAC) built-in role of Azure Service Bus Data Owner. The role is assigned to the Service Bus namespace's resource group. For more information, see [Azure Service Bus Data Owner](/azure/role-based-access-control/built-in-roles/integration#azure-service-bus-data-owner).
-
-#### Customize provisioning infrastructure
-
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the sku, location, and more. The following example demonstrates how to customize the Azure Service Bus resource:
-
-:::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureServiceBusInfra.cs" id="configure":::
-
-The preceding code:
-
-- Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
-  - The infra parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
-  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
-  - The single <xref:Azure.Provisioning.ServiceBus.ServiceBusNamespace> is retrieved.
-  - The <xref:Azure.Provisioning.ServiceBus.ServiceBusNamespace.Sku?displayProperty=nameWithType> created with a <xref:Azure.Provisioning.ServiceBus.ServiceBusSkuTier.Premium?displayProperty=nameWithType>
-  - A tag is added to the Service Bus namespace with a key of `ExampleKey` and a value of `Example value`.
-
-There are many more configuration options available to customize the Azure Service Bus resource. For more information, see <xref:Azure.Provisioning.ServiceBus>. For more information, see [Azure.Provisioning customization](../azure/customize-azure-resources.md#azureprovisioning-customization).
-
 ### Connect to an existing Azure Service Bus namespace
 
 You might have an existing Azure Service Bus namespace that you want to connect to. Chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureServiceBusResource> is an existing resource:
@@ -270,6 +241,35 @@ var serviceBus = builder.AddAzureServiceBus("messaging").RunAsEmulator(
 ```
 
 The preceding code retrieves the `UserConfig` node from the default configuration. It then updates the first queue's properties to set the `MaxDeliveryCount` to `5`, `RequiresDuplicateDetection` to `true`, and `DefaultMessageTimeToLive` to `2 hours`.
+
+### Provisioning-generated Bicep
+
+If you're new to Bicep, it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Service Bus resource, the following Bicep is generated:
+
+:::code language="bicep" source="../snippets/azure/AppHost/service-bus/service-bus.bicep":::
+
+The preceding Bicep is a module that provisions an Azure Service Bus namespace resource. Additionally, role assignments are created for the Azure resource in a separate module:
+
+:::code language="bicep" source="../snippets/azure/AppHost/service-bus-roles/service-bus-roles.bicep":::
+
+In addition to the Service Bus namespace, it also provisions an Azure role-based access control (Azure RBAC) built-in role of Azure Service Bus Data Owner. The role is assigned to the Service Bus namespace's resource group. For more information, see [Azure Service Bus Data Owner](/azure/role-based-access-control/built-in-roles/integration#azure-service-bus-data-owner).
+
+#### Customize provisioning infrastructure
+
+All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the sku, location, and more. The following example demonstrates how to customize the Azure Service Bus resource:
+
+:::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureServiceBusInfra.cs" id="configure":::
+
+The preceding code:
+
+- Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
+  - The infra parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
+  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
+  - The single <xref:Azure.Provisioning.ServiceBus.ServiceBusNamespace> is retrieved.
+  - The <xref:Azure.Provisioning.ServiceBus.ServiceBusNamespace.Sku?displayProperty=nameWithType> created with a <xref:Azure.Provisioning.ServiceBus.ServiceBusSkuTier.Premium?displayProperty=nameWithType>
+  - A tag is added to the Service Bus namespace with a key of `ExampleKey` and a value of `Example value`.
+
+There are many more configuration options available to customize the Azure Service Bus resource. For more information, see <xref:Azure.Provisioning.ServiceBus>. For more information, see [Azure.Provisioning customization](../azure/customize-azure-resources.md#azureprovisioning-customization).
 
 ### Hosting integration health checks
 

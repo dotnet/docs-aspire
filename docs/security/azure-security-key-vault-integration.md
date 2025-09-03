@@ -56,7 +56,33 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 > [!TIP]
 > When you call <xref:Aspire.Hosting.AzureKeyVaultResourceExtensions.AddAzureKeyVault*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>, which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration).
 
-#### Provisioning-generated Bicep
+### Connect to an existing Azure Key Vault instance
+
+You might have an existing Azure AI Key Vault instance that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureKeyVaultResource> is an existing resource:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var existingKeyVaultName = builder.AddParameter("existingKeyVaultName");
+var existingKeyVaultResourceGroup = builder.AddParameter("existingKeyVaultResourceGroup");
+
+var keyvault = builder.AddAzureKeyVault("ke-yvault")
+                    .AsExisting(existingKeyVaultName, existingKeyVaultResourceGroup);
+
+builder.AddProject<Projects.ExampleProject>()
+       .WithReference(keyvault);
+
+// After adding all resources, run the app...
+```
+
+[!INCLUDE [azure-configuration](../azure/includes/azure-configuration.md)]
+
+For more information on treating Azure Key Vault resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
+
+> [!NOTE]
+> Alternatively, instead of representing an Azure Key Vault resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+
+### Provisioning-generated Bicep
 
 If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Key Vault resource, the following Bicep is generated:
 
@@ -85,32 +111,6 @@ The preceding code:
   - A tag is added to the resource with a key of `ExampleKey` and a value of `Example value`.
 
 There are many more configuration options available to customize the Key Vault resource. For more information, see <xref:Azure.Provisioning.KeyVault> and [Azure.Provisioning customization](../azure/customize-azure-resources.md#azureprovisioning-customization).
-
-### Connect to an existing Azure Key Vault instance
-
-You might have an existing Azure AI Key Vault instance that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureKeyVaultResource> is an existing resource:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var existingKeyVaultName = builder.AddParameter("existingKeyVaultName");
-var existingKeyVaultResourceGroup = builder.AddParameter("existingKeyVaultResourceGroup");
-
-var keyvault = builder.AddAzureKeyVault("ke-yvault")
-                    .AsExisting(existingKeyVaultName, existingKeyVaultResourceGroup);
-
-builder.AddProject<Projects.ExampleProject>()
-       .WithReference(keyvault);
-
-// After adding all resources, run the app...
-```
-
-[!INCLUDE [azure-configuration](../azure/includes/azure-configuration.md)]
-
-For more information on treating Azure Key Vault resources as existing resources, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
-
-> [!NOTE]
-> Alternatively, instead of representing an Azure Key Vault resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings).
 
 ## Client integration
 

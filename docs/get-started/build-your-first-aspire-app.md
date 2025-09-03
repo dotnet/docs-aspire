@@ -222,11 +222,11 @@ The preceding code:
 
 For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fundamentals/networking/http/httpclient) class.
 
-## 🖥️ Aspire CLI
+## Aspire CLI
 
-🧪 The Aspire CLI is **still in preview** and under active development. Expect more features and polish in future releases.
+The Aspire CLI (`aspire` command) is a cross-platform tool that provides command-line functionality to create, manage, run, and publish polyglot Aspire projects. Use the Aspire CLI to streamline development workflows and coordinate services for distributed applications.
 
-[!INCLUDE [install-aspire-cli](../includes/install-aspire-cli.md)]
+For more information, see [Aspire CLI Overview](../cli/overview.md) and [Install .NET Aspire CLI](../cli/install.md).
 
 ## See also
 

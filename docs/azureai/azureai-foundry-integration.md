@@ -94,33 +94,6 @@ var chat = foundry.AddDeployment("chat", "Phi-4", "1", "Microsoft")
 
 The preceding code sets the SKU name to `Standard` and capacity to `10` for the deployment.
 
-### Provisioning-generated Bicep
-
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep provisions an Azure AI Foundry resource with standard defaults.
-
-:::code language="bicep" source="../snippets/azure/AppHost/ai-foundry/ai-foundry.bicep":::
-
-The preceding Bicep is a module that provisions an Azure Cognitive Services resource configured for AI Services. Additionally, role assignments are created for the Azure resource in a separate module:
-
-:::code language="bicep" source="../snippets/azure/AppHost/ai-foundry-roles/ai-foundry-roles.bicep":::
-
-The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they're reflected in the generated files.
-
-### Customize provisioning infrastructure
-
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
-
-:::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureAIFoundryInfra.cs" id="configure":::
-
-The preceding code:
-
-- Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
-  - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
-  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
-  - The single <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesAccount> resource is retrieved.
-  - The <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesAccount.Sku?displayProperty=nameWithType> property is assigned to a new instance of <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesSku> with an `E0` name and <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesSkuTier.Enterprise?displayProperty=nameWithType> tier.
-  - A tag is added to the Cognitive Services resource with a key of `ExampleKey` and a value of `Example value`.
-
 ### Connect to an existing Azure AI Foundry service
 
 You might have an existing Azure AI Foundry service that you want to connect to. You can chain a call to annotate that your `AzureAIFoundryResource` is an existing resource:
@@ -183,6 +156,33 @@ builder.AddProject<Projects.Api>("api")
 ```
 
 The preceding code assigns the `CognitiveServicesUser` role to the `api` project, granting it the necessary permissions to access the Azure AI Foundry resource.
+
+### Provisioning-generated Bicep
+
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep provisions an Azure AI Foundry resource with standard defaults.
+
+:::code language="bicep" source="../snippets/azure/AppHost/ai-foundry/ai-foundry.bicep":::
+
+The preceding Bicep is a module that provisions an Azure Cognitive Services resource configured for AI Services. Additionally, role assignments are created for the Azure resource in a separate module:
+
+:::code language="bicep" source="../snippets/azure/AppHost/ai-foundry-roles/ai-foundry-roles.bicep":::
+
+The generated Bicep is a starting point and is influenced by changes to the provisioning infrastructure in C#. Customizations to the Bicep file directly will be overwritten, so make changes through the C# provisioning APIs to ensure they're reflected in the generated files.
+
+#### Customize provisioning infrastructure
+
+All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
+
+:::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureAIFoundryInfra.cs" id="configure":::
+
+The preceding code:
+
+- Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
+  - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
+  - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
+  - The single <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesAccount> resource is retrieved.
+  - The <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesAccount.Sku?displayProperty=nameWithType> property is assigned to a new instance of <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesSku> with an `E0` name and <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesSkuTier.Enterprise?displayProperty=nameWithType> tier.
+  - A tag is added to the Cognitive Services resource with a key of `ExampleKey` and a value of `Example value`.
 
 ## Client integration
 

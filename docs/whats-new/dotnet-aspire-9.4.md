@@ -60,6 +60,8 @@ This will install the CLI and put it on your PATH (the binaries are placed in th
 dotnet tool install -g Aspire.Cli
 ```
 
+For more information, see [Install .NET Aspire CLI](../cli/install.md) and [aspire-install script reference](../cli/install-script-reference.md).
+
 > [!NOTE]
 > ⚠️ **The Aspire 9.4 CLI is not compatible with Aspire 9.3 projects.**
 > You must upgrade your project to Aspire 9.4+ in order to use the latest CLI features.
@@ -77,7 +79,7 @@ The Aspire CLI has the following [commands](../cli-reference/aspire.md):
 In addition to these core commands, we have two beta commands behind [feature flags](../cli-reference/aspire-config.md):
 
 - `aspire exec`: Invokes an arbitrary command in the context of an executable resource defined in the apphost (ie, inheriting its environment variables).
-- `aspire deploy`: Extends the capabiltiies of `aspire publish` to actively deploy to a target environment.
+- `aspire deploy`: Extends the capabilities of `aspire publish` to actively deploy to a target environment.
 
 #### `aspire exec`
 

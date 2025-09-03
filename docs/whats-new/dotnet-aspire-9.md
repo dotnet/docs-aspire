@@ -38,9 +38,6 @@ To upgrade from earlier versions of .NET Aspire to .NET Aspire 9, follow the ins
 dotnet new install Aspire.ProjectTemplates::9.0.0
 ```
 
-> [!TIP]
-> If you already have the .NET Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. Feel free to uninstall the .NET Aspire workload.
-
 For more information, see [.NET Aspire templates](../fundamentals/aspire-sdk-templates.md).
 
 ## Dashboard UX enhancements and new interactivity features

@@ -1,13 +1,13 @@
 ---
 title: Write your first .NET Aspire test
-description: Learn how to test your .NET Aspire solutions using the xUnit, NUnit, and MSTest testing frameworks.
-ms.date: 2/24/2025
+description: Learn how to test your .NET Aspire solutions using the xUnit.net, NUnit, and MSTest testing frameworks.
+ms.date: 8/15/2025
 zone_pivot_groups: unit-testing-framework
 ---
 
 # Write your first .NET Aspire test
 
-In this article, you learn how to create a test project, write tests, and run them for your .NET Aspire solutions. The tests in this article aren't unit tests, but rather functional or integration tests. .NET Aspire includes several variations of [testing project templates](../fundamentals/setup-tooling.md#net-aspire-templates) that you can use to test your .NET Aspire resource dependencies—and their communications. The testing project templates are available for MSTest, NUnit, and xUnit testing frameworks and include a sample test that you can use as a starting point for your tests.
+In this article, you learn how to create a test project, write tests, and run them for your .NET Aspire solutions. The tests in this article aren't unit tests, but rather functional or integration tests. .NET Aspire includes several variations of [testing project templates](../fundamentals/setup-tooling.md#net-aspire-templates) that you can use to test your .NET Aspire resource dependencies—and their communications. The testing project templates are available for MSTest, NUnit, and xUnit.net testing frameworks and include a sample test that you can use as a starting point for your tests.
 
 The .NET Aspire test project templates rely on the [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package. This package exposes the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> class, which is used to create a test host for your distributed application. The distributed application testing builder launches your AppHost project with instrumentation hooks so that you can access and manipulate the host at various stages of its lifecyle. In particular, <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> provides you access to <xref:Aspire.Hosting.IDistributedApplicationBuilder> and <xref:Aspire.Hosting.DistributedApplication> class to create and start the [AppHost](../fundamentals/app-host-overview.md).
 
@@ -125,6 +125,82 @@ The preceding code:
 - The `webfrontend` resource is used to call <xref:Aspire.Hosting.ApplicationModel.ResourceExtensions.GetEnvironmentVariableValuesAsync%2A> to retrieve its configured environment variables.
 - The <xref:Aspire.Hosting.DistributedApplicationOperation.Publish?displayProperty=nameWithType> argument is passed when calling `GetEnvironmentVariableValuesAsync` to specify environment variables that are published to the resource as binding expressions.
 - With the returned environment variables, the test asserts that the `webfrontend` resource has an HTTPS environment variable that resolves to the `apiservice` resource.
+
+## Capture logs from tests
+
+When writing tests for your Aspire solutions, you might want to capture and view logs to help with debugging and monitoring test execution. The `DistributedApplicationTestingBuilder` provides access to the service collection, allowing you to configure logging for your test scenarios.
+
+### Configure logging providers
+
+To capture logs from your tests, use the `AddLogging` method on the `builder.Services` to configure logging providers specific to your testing framework:
+
+:::zone pivot="xunit"
+
+:::code language="csharp" source="snippets/testing/xunit/AspireApp.Tests/LoggingTest.cs":::
+
+:::zone-end
+:::zone pivot="mstest"
+
+:::code language="csharp" source="snippets/testing/mstest/AspireApp.Tests/LoggingTest.cs":::
+
+:::zone-end
+:::zone pivot="nunit"
+
+:::code language="csharp" source="snippets/testing/nunit/AspireApp.Tests/LoggingTest.cs":::
+
+:::zone-end
+
+### Configure log filters
+
+Since the _appsettings.json_ configuration from your application isn't automatically replicated in test projects, you need to explicitly configure log filters. This is important to avoid excessive logging from infrastructure components that might overwhelm your test output. The following snippet explicitly configures log filters:
+
+```csharp
+builder.Services.AddLogging(logging => logging
+    .AddFilter("Default", LogLevel.Information)
+    .AddFilter("Microsoft.AspNetCore", LogLevel.Warning)
+    .AddFilter("Aspire.Hosting.Dcp", LogLevel.Warning));
+```
+
+The preceding configuration:
+
+- Sets the default log level to `Information` for most application logs.
+- Reduces noise from ASP.NET Core infrastructure by setting it to `Warning` level.
+- Limits Aspire hosting infrastructure logs to `Warning` level to focus on application-specific logs.
+
+### Popular logging packages
+
+Different testing frameworks have different logging provider packages available to assist with managing logging during test execution:
+
+:::zone pivot="xunit"
+
+xUnit.net doesn't capture log output from tests as test output. Tests must [use the `ITestOutputHelper` interface](https://xunit.net/docs/capturing-output) to achieve this.
+
+For xUnit.net, consider using one of these logging packages:
+
+- [📦 MartinCostello.Logging.XUnit](https://www.nuget.org/packages/MartinCostello.Logging.XUnit) - Outputs `ILogger` logs to `ITestOutputHelper` output.
+- [📦 Xunit.DependencyInjection.Logging](https://www.nuget.org/packages/Xunit.DependencyInjection.Logging) - Integrates with xUnit.net's dependency injection.
+- [📦 Serilog.Extensions.Logging.File](https://www.nuget.org/packages/Serilog.Extensions.Logging.File) - Writes logs to files.
+- [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console.
+
+:::zone-end
+:::zone pivot="mstest"
+
+For MSTest, consider using one of these logging packages:
+
+- [📦 Extensions.Logging.MSTest](https://www.nuget.org/packages/Extensions.Logging.MSTest) - Integrates with MSTest framework.
+- [📦 Serilog.Extensions.Logging.File](https://www.nuget.org/packages/Serilog.Extensions.Logging.File) - Writes logs to files.
+- [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console.
+
+:::zone-end
+:::zone pivot="nunit"
+
+For NUnit, consider using one of these logging packages:
+
+- [📦 Extensions.Logging.NUnit](https://www.nuget.org/packages/Extensions.Logging.NUnit) - Integrates with NUnit framework.
+- [📦 Serilog.Extensions.Logging.File](https://www.nuget.org/packages/Serilog.Extensions.Logging.File) - Writes logs to files.
+- [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console.
+
+:::zone-end
 
 ## Summary
 

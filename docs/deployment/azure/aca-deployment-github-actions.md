@@ -94,7 +94,7 @@ The Azure Developer CLI enables you to automatically create CI/CD pipelines with
 
 1. Navigate to your new GitHub repository using the link output by `azd`.
 
-1. Select the **Actions** tab to view the repository workflows. You should see the new workflow either running or already completed. Select the workflow to view the job steps and details in the logs of the run. For example, you can expand steps such as **Install .NET Aspire Workload** or **Deploy application** to see the details of the completed action.
+1. Select the **Actions** tab to view the repository workflows. You should see the new workflow either running or already completed. Select the workflow to view the job steps and details in the logs of the run. For example, you can expand steps such as **Deploy application** to see the details of the completed action.
 
     :::image type="content" loc-scope="github" source="media/github-action.png" alt-text="A screenshot showing the GitHub Action workflow steps.":::
 
