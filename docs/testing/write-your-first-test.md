@@ -173,32 +173,32 @@ Different testing frameworks have different logging provider packages available 
 
 :::zone pivot="xunit"
 
-xUnit.net does not capture log output from tests as test output. Tests must [use the `ITestOutputHelper` interface](https://xunit.net/docs/capturing-output) to achieve this.
+xUnit.net doesn't capture log output from tests as test output. Tests must [use the `ITestOutputHelper` interface](https://xunit.net/docs/capturing-output) to achieve this.
 
 For xUnit.net, consider using one of these logging packages:
 
-- [📦 MartinCostello.Logging.XUnit](https://www.nuget.org/packages/MartinCostello.Logging.XUnit) - Outputs `ILogger` logs to `ITestOutputHelper` output
-- [📦 Xunit.DependencyInjection.Logging](https://www.nuget.org/packages/Xunit.DependencyInjection.Logging) - Integrates with xUnit.net's dependency injection
-- [📦 Serilog.Extensions.Logging.File](https://www.nuget.org/packages/Serilog.Extensions.Logging.File) - Writes logs to files
-- [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console
+- [📦 MartinCostello.Logging.XUnit](https://www.nuget.org/packages/MartinCostello.Logging.XUnit) - Outputs `ILogger` logs to `ITestOutputHelper` output.
+- [📦 Xunit.DependencyInjection.Logging](https://www.nuget.org/packages/Xunit.DependencyInjection.Logging) - Integrates with xUnit.net's dependency injection.
+- [📦 Serilog.Extensions.Logging.File](https://www.nuget.org/packages/Serilog.Extensions.Logging.File) - Writes logs to files.
+- [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console.
 
 :::zone-end
 :::zone pivot="mstest"
 
 For MSTest, consider using one of these logging packages:
 
-- [📦 Extensions.Logging.MSTest](https://www.nuget.org/packages/Extensions.Logging.MSTest) - Integrates with MSTest framework
-- [📦 Serilog.Extensions.Logging.File](https://www.nuget.org/packages/Serilog.Extensions.Logging.File) - Writes logs to files  
-- [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console
+- [📦 Extensions.Logging.MSTest](https://www.nuget.org/packages/Extensions.Logging.MSTest) - Integrates with MSTest framework.
+- [📦 Serilog.Extensions.Logging.File](https://www.nuget.org/packages/Serilog.Extensions.Logging.File) - Writes logs to files.
+- [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console.
 
 :::zone-end
 :::zone pivot="nunit"
 
 For NUnit, consider using one of these logging packages:
 
-- [📦 Extensions.Logging.NUnit](https://www.nuget.org/packages/Extensions.Logging.NUnit) - Integrates with NUnit framework
-- [📦 Serilog.Extensions.Logging.File](https://www.nuget.org/packages/Serilog.Extensions.Logging.File) - Writes logs to files
-- [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console
+- [📦 Extensions.Logging.NUnit](https://www.nuget.org/packages/Extensions.Logging.NUnit) - Integrates with NUnit framework.
+- [📦 Serilog.Extensions.Logging.File](https://www.nuget.org/packages/Serilog.Extensions.Logging.File) - Writes logs to files.
+- [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console.
 
 :::zone-end
 
