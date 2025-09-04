@@ -12,8 +12,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.4.0" />
-    <PackageReference Include="Aspire.Hosting.Azure.AppContainers" Version="9.4.0" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.4.2" />
+    <PackageReference Include="Aspire.Hosting.Azure.AppContainers" Version="9.4.2" />
     <PackageReference Include="Aspire.Hosting.Azure.ContainerRegistry" Version="9.4.0-preview.1.25378.8" />
   </ItemGroup>
 
