@@ -139,7 +139,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.Kafka](https
 
 ### Working with larger Kafka clusters
 
-The Aspire Kafka integration deploys a container from the [confluentinc/confluent-local image](https://hub.docker.com/r/confluentinc/confluent-local] to your local container host. This image provides a simple Apache Kafka cluster that runs in [KRaft mode](https://developer.confluent.io/learn/kraft/) and requires no further configuration. It's ideal for developing and testing producers and consumers. However, this image is for local experimentation only and isn't supported by Confluent. It isn't recommended for production environments and you may require a more robust Kafka cluster for testing and staging.
+The Aspire Kafka integration deploys a container from the [confluentinc/confluent-local image](https://hub.docker.com/r/confluentinc/confluent-local) to your local container host. This image provides a simple Apache Kafka cluster that runs in [KRaft mode](https://developer.confluent.io/learn/kraft/) and requires no further configuration. It's ideal for developing and testing producers and consumers. However, this image is for local experimentation only and isn't supported by Confluent. It isn't recommended for production environments and you may require a more robust Kafka cluster for testing and staging.
 
 See the [Kafka documentation](https://kafka.apache.org/documentation/) for details of Kafka cluster setup. Once your engineers have created and configured Kafka, you only need to provide it's location to Aspire by using a connection string.
 
