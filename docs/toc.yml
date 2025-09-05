@@ -31,19 +31,19 @@ items:
       href: get-started/github-codespaces.md
     - name: Dev Containers
       href: get-started/dev-containers.md
-  - name: What's new in .NET Aspire 9.4
-    href: whats-new/dotnet-aspire-9.4.md
+  - name: What's new in .NET Aspire 9.5
+    href: whats-new/dotnet-aspire-9.5.md
   - name: Upgrade to .NET Aspire 9.4.1
     href: get-started/upgrade-to-aspire-9.md
 
-- name: Dev-time orchestration
+- name: AppHost
   items:
+  - name: Overview
+    displayName: orchestration,aspire apphost,aspire app,dev-time,inner-loop
+    href: fundamentals/app-host-overview.md
   - name: Architecture overview
     displayName: aspire architecture,aspire app,aspire apphost,aspire app model
     href: architecture/overview.md
-  - name: AppHost overview
-    displayName: orchestration,aspire apphost,aspire app,dev-time,inner-loop
-    href: fundamentals/app-host-overview.md
   - name: Locally orchestrate
     items:
     - name: Resources in .NET Aspire
@@ -406,6 +406,8 @@ items:
       href: community-toolkit/hosting-golang.md
     - name: Java/Spring
       href: community-toolkit/hosting-java.md
+    - name: LavinMQ
+      href: community-toolkit/hosting-lavinmq.md
     - name: Node.js extensions
       href: community-toolkit/hosting-nodejs-extensions.md
     - name: Python extensions
@@ -414,6 +416,8 @@ items:
       href: community-toolkit/ollama.md
     - name: Meilisearch
       href: community-toolkit/hosting-meilisearch.md
+    - name: MailPit
+      href: community-toolkit/hosting-mailpit.md
     - name: Rust apps
       href: community-toolkit/hosting-rust.md
     - name: SQL Database Projects
