@@ -35,6 +35,9 @@ If you have removed, or never had, the **aspire workload**, you can install the 
 dotnet new install Aspire.ProjectTemplates
 ```
 
+> [!TIP]
+> If you already have the .NET Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. For instructions on uninstalling the workload, see [Remove the .NET Aspire workload (first-time upgrades from version 8 only)](#remove-the-net-aspire-workload-first-time-upgrades-from-version-8-only).
+
 ## Manually upgrade a solution to .NET Aspire 9.4.2
 
 To upgrade your projects to .NET Aspire 9.4.2, you need to update your project files. The following steps guide you through the process:
