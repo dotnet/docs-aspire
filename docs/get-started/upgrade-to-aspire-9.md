@@ -1,7 +1,7 @@
 ---
 title: Upgrade to .NET Aspire 9.4.2
 description: Learn how to upgrade all your .NET Aspire projects to .NET Aspire 9.4.2.
-ms.date: 06/02/2025
+ms.date: 09/09/2025
 zone_pivot_groups: dev-environment
 ---
 
@@ -31,9 +31,12 @@ Before you can use .NET Aspire 9 or later versions, you need to upgrade your too
 
 If you have removed, or never had, the **aspire workload**, you can install the latest .NET Aspire project templates by running this command:
 
-```PowerShell
+```dotnetcli
 dotnet new install Aspire.ProjectTemplates
 ```
+
+> [!TIP]
+> If you already have the .NET Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. For instructions on uninstalling the workload, see [Remove the .NET Aspire workload (first-time upgrades from version 8 only)](#remove-the-net-aspire-workload-first-time-upgrades-from-version-8-only).
 
 ## Manually upgrade a solution to .NET Aspire 9.4.2
 
