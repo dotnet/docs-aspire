@@ -137,7 +137,7 @@ The Kafka hosting integration automatically adds a health check for the Kafka se
 
 The hosting integration relies on the [📦 AspNetCore.HealthChecks.Kafka](https://www.nuget.org/packages/AspNetCore.HealthChecks.Kafka) NuGet package.
 
-### Working with larger Kafka clusters
+### Work with larger Kafka clusters
 
 The Aspire Kafka integration deploys a container from the [confluentinc/confluent-local image](https://hub.docker.com/r/confluentinc/confluent-local) to your local container host. This image provides a simple Apache Kafka cluster that runs in [KRaft mode](https://developer.confluent.io/learn/kraft/) and requires no further configuration. It's ideal for developing and testing producers and consumers. However, this image is for local experimentation only and isn't supported by Confluent. It isn't recommended for production environments and you may require a more robust Kafka cluster for testing and staging.
 
@@ -151,7 +151,7 @@ var kafka = builder.ExecutionContext.IsRunMode
     : builder.AddConnectionString("kafka");
 ```
 
-Make sure you have added the right connection string to the **appsettings.json** file:
+Make sure you have added the right connection string to the AppHost's **appsettings.json** file:
 
 ```json
 {
