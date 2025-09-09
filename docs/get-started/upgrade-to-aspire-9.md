@@ -31,7 +31,7 @@ Before you can use .NET Aspire 9 or later versions, you need to upgrade your too
 
 If you have removed, or never had, the **aspire workload**, you can install the latest .NET Aspire project templates by running this command:
 
-```PowerShell
+```dotnetcli
 dotnet new install Aspire.ProjectTemplates
 ```
 
