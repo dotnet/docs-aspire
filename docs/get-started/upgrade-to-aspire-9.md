@@ -1,7 +1,7 @@
 ---
 title: Upgrade to .NET Aspire 9.4.2
 description: Learn how to upgrade all your .NET Aspire projects to .NET Aspire 9.4.2.
-ms.date: 06/02/2025
+ms.date: 09/09/2025
 zone_pivot_groups: dev-environment
 ---
 
