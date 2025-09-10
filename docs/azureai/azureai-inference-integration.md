@@ -246,7 +246,6 @@ The .NET Aspire Azure AI Inference integration uses the following log categories
 The .NET Aspire Azure AI Inference integration will emit the following tracing activities using OpenTelemetry:
 
 - `Experimental.Microsoft.Extensions.AI` - Used by Microsoft.Extensions.AI to record AI operations
-- `Microsoft.Extensions.AI` - Used by Microsoft.Extensions.AI when stable
 
 > [!IMPORTANT]
 > Telemetry is only recorded by default when using the `IChatClient` interface from Microsoft.Extensions.AI. Raw `ChatCompletionsClient` calls do not automatically generate telemetry.
@@ -279,6 +278,12 @@ Or through configuration:
     }
   }
 }
+```
+
+Alternatively, you can enable sensitive data capture by setting the environment variable:
+
+```bash
+OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true
 ```
 
 #### Using underlying library telemetry
