@@ -91,6 +91,42 @@ For more information, see:
 - [Dependency injection in .NET](/dotnet/core/extensions/dependency-injection) for details on dependency injection.
 - [The Azure AI Foundry SDK: C#](/azure/ai-foundry/how-to/develop/sdk-overview?tabs=sync&pivots=programming-language-csharp).
 
+### Add Azure AI Inference client with registered `IChatClient`
+
+If you're interested in using the <xref:Microsoft.Extensions.AI.IChatClient> interface with the Azure AI Inference client, simply chain either of the following APIs to the `AddAzureChatCompletionsClient` method:
+
+- `AddChatClient`: Registers a singleton `IChatClient` in the services.
+- `AddKeyedChatClient`: Registers a keyed singleton `IChatClient` in the services.
+
+For example, consider the following C# code that adds an `IChatClient` to the DI container:
+
+```csharp
+builder.AddAzureChatCompletionsClient(connectionName: "ai-foundry")
+       .AddChatClient("deploymentName");
+```
+
+Similarly, you can add a keyed `IChatClient` with the following C# code:
+
+```csharp
+builder.AddAzureChatCompletionsClient(connectionName: "ai-foundry")
+       .AddKeyedChatClient("serviceKey", "deploymentName");
+```
+
+After adding the `IChatClient`, you can retrieve the client instance using dependency injection:
+
+```csharp
+public class ExampleService(IChatClient chatClient)
+{
+    public async Task<string> GetResponseAsync(string userMessage)
+    {
+        var response = await chatClient.CompleteAsync(userMessage);
+        return response.Message.Text ?? string.Empty;
+    }
+}
+```
+
+For more information on the `IChatClient` and its corresponding library, see [Artificial intelligence in .NET (Preview)](/dotnet/core/extensions/artificial-intelligence).
+
 ### Add keyed Azure AI Inference clients
 
 There might be situations where you want to register multiple `ChatCompletionsClient` instances with different connection names. To register keyed Azure AI Inference clients, call the `AddKeyedAzureChatCompletionsClient` method:
@@ -175,6 +211,7 @@ The .NET Aspire Azure AI Inference library supports <xref:Microsoft.Extensions.C
       "AI": {
         "Inference": {
           "DisableTracing": false,
+          "EnableSensitiveTelemetryData": false,
           "ClientOptions": {
             "UserAgentApplicationId": "myapp"
           }
@@ -206,15 +243,59 @@ The .NET Aspire Azure AI Inference integration uses the following log categories
 
 ### Tracing
 
-The .NET Aspire Azure AI Inference integration emits tracing activities using OpenTelemetry for operations performed with the `OpenAIClient`.
+The .NET Aspire Azure AI Inference integration will emit the following tracing activities using OpenTelemetry:
+
+- `Experimental.Microsoft.Extensions.AI` - Used by Microsoft.Extensions.AI to record AI operations
 
 > [!IMPORTANT]
-> Azure AI Inference telemetry support is experimental, and the shape of traces may change in the future without notice. It can be enabled by invoking:
->
-> ```csharp
-> AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true);
-> ```
->
-> Alternatively, you can set the `AZURE_EXPERIMENTAL_ENABLE_ACTIVITY_SOURCE` environment variable to `"true"`.
+> Telemetry is only recorded by default when using the `IChatClient` interface from Microsoft.Extensions.AI. Raw `ChatCompletionsClient` calls do not automatically generate telemetry.
+
+#### Configuring sensitive data in telemetry
+
+By default, telemetry includes metadata such as token counts, but not raw inputs and outputs like message content. To include potentially sensitive information in telemetry, set the `EnableSensitiveTelemetryData` configuration option:
+
+```csharp
+builder.AddAzureChatCompletionsClient(
+    connectionName: "ai-foundry",
+    configureSettings: settings =>
+    {
+        settings.EnableSensitiveTelemetryData = true;
+    })
+    .AddChatClient("deploymentName");
+```
+
+Or through configuration:
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "AI": {
+        "Inference": {
+          "EnableSensitiveTelemetryData": true
+        }
+      }
+    }
+  }
+}
+```
+
+Alternatively, you can enable sensitive data capture by setting the environment variable:
+
+```bash
+OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true
+```
+
+#### Using underlying library telemetry
+
+If you need to access telemetry from the underlying Azure AI Inference library directly, you can manually add the appropriate activity sources and meters to your OpenTelemetry configuration:
+
+```csharp
+builder.Services.AddOpenTelemetry()
+    .WithTracing(tracing => tracing.AddSource("Azure.AI.Inference.*"))
+    .WithMetrics(metrics => metrics.AddMeter("Azure.AI.Inference.*"));
+```
+
+However, you'll need to enable experimental telemetry support in the Azure AI Inference library by setting the `AZURE_EXPERIMENTAL_ENABLE_ACTIVITY_SOURCE` environment variable to `"true"` or calling `AppContext.SetSwitch("Azure.Experimental.EnableActivitySource", true)` during app startup.
 
 ## See also
