@@ -23,20 +23,16 @@ Before you upgrade your projects to .NET Aspire 9.4.2, ensure that you have the 
 - [Use the .NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md).
 - If you have a version of .NET Aspire older than 9.0, [remove it](#remove-the-net-aspire-workload-first-time-upgrades-from-version-8-only).
 
-## Upgrade your development environment
+## Upgrade the .NET Aspire project templates
 
-Before you can use .NET Aspire 9 or later versions, you need to upgrade your tooling and install the latest project templates.
-
-### Upgrade the .NET Aspire project templates
-
-If you have removed, or never had, the **aspire workload**, you can install the latest .NET Aspire project templates by running this command:
+Install the latest .NET Aspire project templates by running this command:
 
 ```dotnetcli
 dotnet new install Aspire.ProjectTemplates
 ```
 
 > [!TIP]
-> If you already have the .NET Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. For instructions on uninstalling the workload, see [Remove the .NET Aspire workload (first-time upgrades from version 8 only)](#remove-the-net-aspire-workload-first-time-upgrades-from-version-8-only).
+> If you have the legacy .NET Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. For instructions on uninstalling the legacy workload, see [Remove the .NET Aspire workload (first-time upgrades from version 8 only)](#remove-the-net-aspire-workload-first-time-upgrades-from-version-8-only).
 
 ## Manually upgrade a solution to .NET Aspire 9.4.2
 
