@@ -347,6 +347,41 @@ You can also choose to select the count of the displayed metric on the vertical 
 
 For more information about metrics, see [Built-in Metrics in .NET](/dotnet/core/diagnostics/built-in-metrics).
 
+### GenAI telemetry visualization
+
+The .NET Aspire dashboard provides a specialized dialog for viewing GenAI (Generative AI) telemetry data. This feature helps you analyze and understand AI-related operations in your application, including chat completions, embeddings, and other AI interactions.
+
+The GenAI telemetry visualizer works best when message content is recorded to telemetry. Without message content, the dialog displays a note and provides a link to documentation about how to enable this feature.
+
+#### Configure message content recording
+
+To get the most value from the GenAI telemetry visualizer, configure your AI integrations to record message content. This configuration varies depending on which AI client library you're using:
+
+##### Microsoft.Extensions.AI
+
+When using Microsoft.Extensions.AI (`IChatClient` and related abstractions), you can enable sensitive data recording by configuring the chat client options. The exact configuration depends on your specific AI integration, but typically involves setting an `EnableSensitiveData` property or similar configuration.
+
+##### Environment variable configuration
+
+Many OpenTelemetry libraries support the `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT` environment variable to enable message content capture. Set this environment variable to `true`:
+
+```bash
+OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true
+```
+
+You can set this environment variable in your application's configuration, in your development environment, or in your deployment settings.
+
+##### Azure OpenAI and other AI integrations
+
+For specific guidance on configuring message content recording with different AI integrations, see the documentation for each integration:
+
+- [Azure OpenAI integration](../../azureai/azureai-openai-integration.md)
+- [Azure AI Inference integration](../../azureai/azureai-inference-integration.md)
+- [Azure AI Foundry integration](../../azureai/azureai-foundry-integration.md)
+
+> [!TIP]
+> When message content recording is disabled, the GenAI telemetry visualizer still provides valuable information about AI operations, including timing, metadata, and performance metrics. However, enabling message content recording provides the most comprehensive view of your AI interactions.
+
 ### Exemplars
 
 The .NET Aspire dashboard supports and displays OpenTelemetry _Exemplars_. An _exemplar_ links a metric data point to the operation that recorded it, serving as a bridge between metrics and traces.
