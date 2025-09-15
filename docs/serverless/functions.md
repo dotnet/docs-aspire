@@ -155,7 +155,18 @@ The preceding code relies on the [📦 Aspire.Hosting.Azure.Storage](https://www
 > - <xref:Azure.Provisioning.Storage.StorageBuiltInRole.StorageQueueDataContributor?displayProperty=nameWithType>
 > - <xref:Azure.Provisioning.Storage.StorageBuiltInRole.StorageAccountContributor?displayProperty=nameWithType>
 >
-> For production scenarios, it is recommended to register the storage account explicitly with the `WithHostStorage` API and register a more restricted set of resources.
+> For production scenarios, it is recommended to register the storage account explicitly with the `WithHostStorage` and `WithRoleAssignment` APIs and register a more tailored set of roles.
+>
+> ```csharp
+> var builder = DistributedApplication.CreateBuilder(args);
+> 
+> var storage = builder.AddAzureStorage("storage");
+> 
+> builder.AddAzureFunctionsProject<Projects.ExampleFunctions>("functions")
+>        .WithHostStorage(storage)
+>        .WithRoleAssignments(storage, StorageBuiltInRole.StorageBlobDataReader,
+>                                     StorageBuiltInRole.StorageQueueDataReader);
+> ```
 
 ### Reference resources in Azure Functions
 
