@@ -325,7 +325,7 @@ The preceding code:
   - Adds an environment variable named `Hello` to the container app, using the `env` parameter.
   - The `AsProvisioningParameter` method is used to treat `env` as either a new <xref:Azure.Provisioning.ProvisioningParameter> in infrastructure, or reuses an existing bicep parameter if one with the same name already exists.
 
-To configure the Azure Container App environment, see [Configure Azure Container Apps environments](configure-aca-environments.md). For more information, see <xref:Azure.Provisioning.AppContainers.ContainerApp> and <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.AsProvisioningParameter*>.
+To configure the Azure Container App environment, see [Configure Azure Container Apps environments](configure-aca-environments.md). For information about publishing resources as Azure Container App Jobs, see [Azure Container App Jobs](container-app-jobs.md). For more information, see <xref:Azure.Provisioning.AppContainers.ContainerApp> and <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.AsProvisioningParameter*>.
 
 > [!TIP]
 > If you're working with Azure Container Apps, you might also be interested in the [.NET Aspire Azure Container Registry integration](container-registry-integration.md).

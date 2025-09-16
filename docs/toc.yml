@@ -220,6 +220,9 @@ items:
       href: azure/local-provisioning.md
     - name: Configure Azure Container Apps environments
       href: azure/configure-aca-environments.md
+    - name: Azure Container App Jobs
+      displayName: container app jobs,jobs,batch processing,scheduled tasks
+      href: azure/container-app-jobs.md
     - name: User-assigned managed identity
       href: azure/user-assigned-managed-identity.md
     - name: Manage role assignments
