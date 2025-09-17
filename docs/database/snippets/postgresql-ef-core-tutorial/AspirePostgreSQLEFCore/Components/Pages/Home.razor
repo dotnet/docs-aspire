@@ -1,0 +1,199 @@
+@page "/"
+@using AspirePostgreSQLEFCore.Data
+@using AspirePostgreSQLEFCore.Data.Models
+@using Microsoft.EntityFrameworkCore
+@inject TicketContext DbContext
+@inject ILogger<Home> Logger
+
+<PageTitle>PostgreSQL Support Tickets</PageTitle>
+
+<h1>Support Ticket System</h1>
+<p>Create and manage support tickets using PostgreSQL and Entity Framework Core with .NET Aspire.</p>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Create New Ticket</h3>
+        
+        <EditForm Model="@newTicket" OnValidSubmit="@SubmitTicket" FormName="CreateTicketForm">
+            <DataAnnotationsValidator />
+            
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <InputText id="title" @bind-Value="newTicket.Title" class="form-control" />
+                <ValidationMessage For="@(() => newTicket.Title)" />
+            </div>
+            
+            <div class="mb-3">
+                <label for="description" class="form-label">Description:</label>
+                <InputTextArea id="description" @bind-Value="newTicket.Description" class="form-control" rows="4" />
+                <ValidationMessage For="@(() => newTicket.Description)" />
+            </div>
+            
+            <div class="mb-3">
+                <label for="priority" class="form-label">Priority:</label>
+                <InputSelect id="priority" @bind-Value="newTicket.Priority" class="form-select">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                    <option value="Critical">Critical</option>
+                </InputSelect>
+            </div>
+            
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Submit Ticket</button>
+                <button type="button" @onclick="ClearForm" class="btn btn-secondary ms-2">Clear</button>
+            </div>
+        </EditForm>
+        
+        @if (!string.IsNullOrEmpty(message))
+        {
+            <div class="alert alert-info">@message</div>
+        }
+    </div>
+</div>
+
+<hr />
+
+<h3>Existing Tickets</h3>
+
+@if (tickets == null)
+{
+    <p><em>Loading tickets...</em></p>
+}
+else if (!tickets.Any())
+{
+    <p><em>No tickets found. Create your first ticket above!</em></p>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ticket in tickets)
+                {
+                    <tr>
+                        <td>@ticket.Id</td>
+                        <td>@ticket.Title</td>
+                        <td>@(ticket.Description.Length > 50 ? ticket.Description.Substring(0, 50) + "..." : ticket.Description)</td>
+                        <td>
+                            <span class="badge @GetPriorityBadgeClass(ticket.Priority)">@ticket.Priority</span>
+                        </td>
+                        <td>
+                            <span class="badge @GetStatusBadgeClass(ticket.Status)">@ticket.Status</span>
+                        </td>
+                        <td>@ticket.CreatedAt.ToString("MM/dd/yyyy HH:mm")</td>
+                        <td>
+                            @if (ticket.Status != "Closed")
+                            {
+                                <button class="btn btn-sm btn-success" @onclick="() => CloseTicket(ticket.Id)">Close</button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    private SupportTicket newTicket = new();
+    private List<SupportTicket>? tickets;
+    private string message = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadTickets();
+    }
+
+    private async Task LoadTickets()
+    {
+        try
+        {
+            tickets = await DbContext.Tickets
+                .OrderByDescending(t => t.CreatedAt)
+                .ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Error loading tickets");
+            message = "Error loading tickets. Please try again.";
+        }
+    }
+
+    private async Task SubmitTicket()
+    {
+        try
+        {
+            newTicket.CreatedAt = DateTime.UtcNow;
+            newTicket.Status = "Open";
+
+            DbContext.Tickets.Add(newTicket);
+            await DbContext.SaveChangesAsync();
+
+            message = $"Ticket '{newTicket.Title}' has been created successfully!";
+            
+            newTicket = new SupportTicket();
+            await LoadTickets();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Error creating ticket");
+            message = "Error creating ticket. Please try again.";
+        }
+    }
+
+    private async Task CloseTicket(int ticketId)
+    {
+        try
+        {
+            var ticket = await DbContext.Tickets.FindAsync(ticketId);
+            if (ticket != null)
+            {
+                ticket.Status = "Closed";
+                ticket.UpdatedAt = DateTime.UtcNow;
+                await DbContext.SaveChangesAsync();
+                
+                message = $"Ticket #{ticketId} has been closed.";
+                await LoadTickets();
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Error closing ticket {TicketId}", ticketId);
+            message = "Error closing ticket. Please try again.";
+        }
+    }
+
+    private void ClearForm()
+    {
+        newTicket = new SupportTicket();
+        message = string.Empty;
+    }
+
+    private static string GetPriorityBadgeClass(string priority) => priority switch
+    {
+        "Critical" => "bg-danger",
+        "High" => "bg-warning",
+        "Medium" => "bg-info",
+        "Low" => "bg-secondary",
+        _ => "bg-secondary"
+    };
+
+    private static string GetStatusBadgeClass(string status) => status switch
+    {
+        "Open" => "bg-success",
+        "Closed" => "bg-dark",
+        _ => "bg-secondary"
+    };
+}
