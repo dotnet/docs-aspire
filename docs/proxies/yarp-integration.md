@@ -58,41 +58,21 @@ When .NET Aspire adds a YARP resource to the AppHost, it creates a new container
 The container image provides:
 
 - A lightweight YARP reverse proxy server.
-- Support for dynamic configuration through JSON files or programmatic APIs.
+- Support for dynamic configuration through programmatic APIs.
 - Integration with .NET service discovery.
 - Built-in health checks and monitoring capabilities.
 
-The YARP resource can be configured programmatically using the <xref:Aspire.Hosting.YarpResourceExtensions.WithConfiguration*> method or through external configuration files.
+The YARP resource can be configured programmatically using the <xref:Aspire.Hosting.YarpResourceExtensions.WithConfiguration*> method.
 
-### Add YARP resource with external configuration
+### Migration from external configuration files
 
-To configure the YARP resource using an external JSON configuration file, use the <xref:Aspire.Hosting.Yarp.IYarpJsonConfigGeneratorBuilder.WithConfigFile*> method:
+> [!IMPORTANT]
+> Starting with .NET Aspire 9.4, the `WithConfigFile` method has been removed. YARP configuration is now done exclusively through code-based configuration using the `WithConfiguration` method. This provides better IntelliSense support, type safety, and works seamlessly with deployment scenarios.
 
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var catalogService = builder.AddProject<Projects.CatalogService>("catalogservice");
-var basketService = builder.AddProject<Projects.BasketService>("basketservice");
-
-var gateway = builder.AddYarp("gateway")
-                     .WithConfigFile("yarp.json")
-                     .WithReference(catalogService)
-                     .WithReference(basketService);
-
-// After adding all resources, run the app...
-```
-
-The `yarp.json` configuration file can reference services using their resource names:
+If you were previously using external JSON configuration files with `WithConfigFile`, you need to migrate to the programmatic configuration approach. For example, the following JSON configuration:
 
 ```json
 {
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Information"
-    }
-  },
-  "AllowedHosts": "*",
   "ReverseProxy": {
     "Routes": {
       "catalog": {
@@ -103,15 +83,6 @@ The `yarp.json` configuration file can reference services using their resource n
         "Transforms": [
           { "PathRemovePrefix": "/catalog" }
         ]
-      },
-      "basket": {
-        "ClusterId": "basket",
-        "Match": {
-          "Path": "/basket/{**catch-all}"
-        },
-        "Transforms": [
-          { "PathRemovePrefix": "/basket" }
-        ]
       }
     },
     "Clusters": {
@@ -121,21 +92,26 @@ The `yarp.json` configuration file can reference services using their resource n
             "Address": "https://catalogservice"
           }
         }
-      },
-      "basket": {
-        "Destinations": {
-          "basket": {
-            "Address": "https://basketservice"
-          }
-        }
       }
     }
   }
 }
 ```
 
-> [!NOTE]
-> When you use the `WithConfigFile`, programmatic configuration via `WithConfiguration` isn't supported. You must choose one approach or the other.
+Should be migrated to the following programmatic configuration:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var catalogService = builder.AddProject<Projects.CatalogService>("catalogservice");
+
+var gateway = builder.AddYarp("gateway")
+                     .WithConfiguration(yarp =>
+                     {
+                         yarp.AddRoute("/catalog/{**catch-all}", catalogService)
+                             .WithTransformPathRemovePrefix("/catalog");
+                     });
+```
 
 ### Programmatic configuration
 
