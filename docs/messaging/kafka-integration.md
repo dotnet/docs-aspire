@@ -152,7 +152,7 @@ var kafka = builder.ExecutionContext.IsRunMode
 ```
 
 > [!NOTE]
-> For more information about connection strings in Aspire, see [Add existing Azure resources with connection strings](../azure/integrations-overview#add-existing-azure-resources-with-connection-strings)
+> For more information about connection strings in Aspire, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings)
 
 The AppHost resolves the connection string from the `ConnectionStrings__kafka` configuration key. It's possible to set this key by adding the connection string to the AppHost's **appsettings.json** file but this method stores the connection string in plain text and  doesn't protect it. Instead, you can use an environment variable or a user secret to store the connection string:
 
