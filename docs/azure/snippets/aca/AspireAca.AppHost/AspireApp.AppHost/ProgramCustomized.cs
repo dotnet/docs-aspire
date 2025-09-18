@@ -1,13 +1,14 @@
+using Azure.Provisioning;
 using Azure.Provisioning.AppContainers;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
 var acaEnv = builder.AddAzureContainerAppEnvironment("my-container-env");
 
-acaEnv.ConfigureInfrastructure(config =>
+acaEnv.ConfigureInfrastructure(infra =>
 {
-    var resources = config.GetProvisionableResources();
-    var containerEnvironment = resources.OfType<ContainerAppManagedEnvironment>().FirstOrDefault();
+    var resources = infra.GetProvisionableResources();
+    var containerEnvironment = resources.OfType<ContainerAppManagedEnvironment>().Single();
 
     // Set a custom name for the environment
     containerEnvironment.Name = "my-custom-aca-environment";

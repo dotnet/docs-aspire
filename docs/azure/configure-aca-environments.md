@@ -69,12 +69,15 @@ All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure
 The preceding code:
 
 - Chains a call to the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure*> API:
-  - The `config` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
+  - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
   - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
   - The single <xref:Azure.Provisioning.AppContainers.ContainerAppManagedEnvironment> resource is retrieved.
   - The environment name is set to a custom value instead of using the auto-generated name.
   - The location is explicitly set to "East US".
   - Multiple tags are added for environment metadata and organization.
+
+> [!NOTE]
+> You can configure many other properties of the Container Apps environment using this approach. For a complete list of available configuration options, see the [Microsoft.App managedEnvironments template reference](/azure/templates/microsoft.app/managedenvironments).
 
 ## See also
 
