@@ -1,7 +1,7 @@
 ---
 title: Container runtime appears to be unhealthy
 description: Learn how to troubleshoot the error "Container runtime 'docker' was found but appears to be unhealthy" during execution of your app.
-ms.date: 07/03/2024
+ms.date: 09/18/2025
 ---
 
 # Container runtime appears to be unhealthy

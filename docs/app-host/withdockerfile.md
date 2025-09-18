@@ -1,7 +1,7 @@
 ---
 title: Add Dockerfiles to your .NET app model
 description: Learn how to add Dockerfiles to your .NET app model.
-ms.date: 07/23/2024
+ms.date: 09/18/2025
 ---
 
 # Add Dockerfiles to your .NET app model
