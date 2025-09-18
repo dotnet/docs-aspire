@@ -305,7 +305,12 @@ builder.AddAzureServiceBusClient(connectionName: "messaging");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the Service Bus resource in the AppHost project. In other words, when you call `AddAzureServiceBus` and provide a name of `messaging` that same name should be used when calling `AddAzureServiceBusClient`. For more information, see [Add Azure Service Bus resource](#add-azure-service-bus-resource).
+> The correct `connectionName` parameter depends on your AppHost code:
+>
+> - If you subscribed to a topic in the AppHost, then the `connectionString` you pass to `AddAzureServiceBusClient()` must match the name you passed to `AddServiceBusSubscription()`.
+> - Otherwise, the `connectionString` you pass to `AddAzureServiceBusClient()` must match the name you passed to `AddAzureServiceBus()` when you created the Service Bus resource.
+>
+> For more information, see [Add Azure Service Bus resource](#add-azure-service-bus-resource) and [Add Azure Service Bus topic and subscription](#add-azure-service-bus-topic-and-subscription).
 
 You can then retrieve the <xref:Azure.Messaging.ServiceBus.ServiceBusClient> instance using dependency injection. For example, to retrieve the connection from an example service:
 
