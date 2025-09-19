@@ -304,14 +304,6 @@ In the :::no-loc text="Program.cs"::: file of your client-consuming project, cal
 builder.AddAzureServiceBusClient(connectionName: "messaging");
 ```
 
-> [!TIP]
-> The correct `connectionName` parameter depends on your AppHost code:
->
-> - If you subscribed to a topic in the AppHost, then the `connectionString` you pass to `AddAzureServiceBusClient()` must match the name you passed to `AddServiceBusSubscription()`.
-> - Otherwise, the `connectionString` you pass to `AddAzureServiceBusClient()` must match the name you passed to `AddAzureServiceBus()` when you created the Service Bus resource.
->
-> For more information, see [Add Azure Service Bus resource](#add-azure-service-bus-resource) and [Add Azure Service Bus topic and subscription](#add-azure-service-bus-topic-and-subscription).
-
 You can then retrieve the <xref:Azure.Messaging.ServiceBus.ServiceBusClient> instance using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
@@ -322,6 +314,43 @@ public class ExampleService(ServiceBusClient client)
 ```
 
 For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
+
+### Choose the correct connection name
+
+When you call `AddAzureServiceBusClient()`, the correct value depends on the object you passed to the client in the AppHost.
+
+For example, if you use this code in the AppHost:
+
+```csharp
+var serviceBus = builder.AddAzureServiceBus("messaging");
+
+var apiService = builder.AddProject<Projects.Example_ApiService>("apiservice")
+    .WithReference(serviceBus);
+```
+
+Then the correct code to add the Service Bus in your client-consuming program is:
+
+```csharp
+builder.AddAzureServiceBusClient(connectionName: "messaging");
+```
+
+However, if you created and passed a Service Bus topic in the AppHost:
+
+```csharp
+var serviceBus = builder.AddAzureServiceBus("messaging");
+var topic = serviceBus.AddServiceBusTopic("myTopic");
+
+var apiService = builder.AddProject<Projects.Example_ApiService>("apiservice")
+    .WithReference(topic);
+```
+
+Then the correct code to add the Service Bus topic in your client-consuming program is:
+
+```csharp
+builder.AddAzureServiceBusClient(connectionName: "myTopic");
+```
+
+For more information, see [Add Azure Service Bus resource](#add-azure-service-bus-resource) and [Add Azure Service Bus topic and subscription](#add-azure-service-bus-topic-and-subscription).
 
 ### Add keyed Service Bus client
 
