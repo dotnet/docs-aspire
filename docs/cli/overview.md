@@ -23,7 +23,7 @@ The Aspire CLI is an interactive-first experience.
 
 [_Command reference: `aspire new`_](../cli-reference/aspire-new.md)
 
-The `aspire new` command is an interactive-first CLI experience, and is used to create one or more Aspire projects. As part of creating a project, Azure CLI ensures that the latest Aspire project templates are installed into the `dotnet` system.
+The `aspire new` command is an interactive-first CLI experience, and is used to create one or more Aspire projects. As part of creating a project, Aspire CLI ensures that the latest Aspire project templates are installed into the `dotnet` system.
 
 Use the `aspire new` command to create an Aspire project from a list of templates. Once a template is selected, the name of the project is set, and the output folder is chosen, `aspire` downloads the latest templates and generates one or more projects.
 
