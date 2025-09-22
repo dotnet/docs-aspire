@@ -17,11 +17,11 @@ For more information on the schema of the manifest and how to run AppHost projec
 
 ## Deploy to Azure
 
-.NET Aspire enables deployment to Azure Container Apps. The number of environments .NET Aspire can deploy to will grow over time.
+.NET Aspire enables deployment to Azure Container Apps or Azure App Service when using the ASpire CLI. The number of environments .NET Aspire can deploy to will grow over time.
 
 ### Azure Container Apps
 
-.NET Aspire projects are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. The [Azure Container Apps](azure/aca-deployment.md) topic describes how to deploy Aspire apps to ACA manually, using bicep, or using the Azure Developer CLI (azd).
+.NET Aspire projects are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. The [Azure Container Apps](azure/aca-deployment.md) topic describes how to deploy Aspire apps to ACA using the Aspire CLI or Azure Developer CLI (azd).
 
 ### Use Application Insights for .NET Aspire telemetry
 

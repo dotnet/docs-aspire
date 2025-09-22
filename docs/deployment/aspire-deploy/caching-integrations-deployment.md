@@ -17,11 +17,11 @@ In this tutorial, you learn to configure a .NET Aspire project with a Redis Cach
 > [!NOTE]
 > This document focuses specifically on .NET Aspire configurations to provision and deploy Redis Cache resources in Azure. For more information and to learn more about the full .NET Aspire deployment process, see the [Azure Container Apps deployment](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-azd) tutorial.
 
-[!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
+[!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
 ## Create the sample solution
 
-Follow the [Tutorial: Implement caching with .NET Aspire integrations](./caching-integrations.md) to create the sample project.
+Follow the [Tutorial: Implement caching with .NET Aspire integrations](../../caching/caching-integrations.md) to create the sample project.
 
 ## Configure the app for Redis cache deployment
 
@@ -108,53 +108,46 @@ The preceding code adds a Redis Container resource to your app and configures a 
 
 ## Deploy the app
 
-Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) (`azd`) support .NET Aspire Redis integration configurations to streamline deployments. `azd` consumes these settings and provisions properly configured resources for you.
+The `aspire deploy` command supports .NET Aspire Redis integration configurations to streamline deployments. The command consumes these settings and provisions properly configured resources for you.
 
 > [!NOTE]
 > You can also use the [Azure CLI](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-cli) or [Bicep](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-bicep) to provision and deploy .NET Aspire project resources. These options require more manual steps, but provide more granular control over your deployments. .NET Aspire projects can also connect to an existing Redis instance through manual configurations.
 
-1. Open a terminal window in the root of your .NET Aspire project.
+To deploy your app to Azure Container Apps, run the following command from the _AspireRedis.AppHost_ directory:
 
-1. Run the `azd init` command to initialize the project with `azd`.
+```dotnetcli
+aspire deploy
+```
 
-    ```azdeveloper
-    azd init
-    ```
+When you run the `aspire deploy` command for the first time, you'll be prompted to:
 
-1. When prompted for an environment name, enter *docs-aspireredis*.
+1. **Sign in to Azure**: Follow the authentication prompts to sign in to your Azure account.
+1. **Select a subscription**: Choose the Azure subscription you want to use for deployment.
+1. **Select or create a resource group**: Choose an existing resource group or create a new one.
+1. **Select a location**: Choose the Azure region where you want to deploy your resources.
 
-1. Run the `azd up` command to begin the deployment process:
+The deployment process will provision the necessary Azure resources and deploy your .NET Aspire app. The process may take a few minutes to complete.
 
-    ```azdeveloper
-    azd up
-    ```
-
-1. Select the Azure subscription that should host your app resources.
-
-1. Select the Azure location to use.
-
-    The Azure Developer CLI provisions and deploys your app resources. The process may take a few minutes to complete.
-
-1. When the deployment finishes, click the resource group link in the output to view the created resources in the Azure portal.
+When the deployment finishes, the command output will provide information about the deployed resources that you can view in the Azure portal.
 
 ## [Azure Cache for Redis](#tab/azure-redis)
 
 The deployment process provisioned an Azure Cache for Redis resource due to the **.AppHost** configuration you provided.
 
-:::image type="content" loc-scope="azure" source="media/resources-azure-redis.png" alt-text="A screenshot showing the deployed Azure Cache for Redis.":::
+:::image type="content" loc-scope="azure" source="../../caching/media/resources-azure-redis.png" alt-text="A screenshot showing the deployed Azure Cache for Redis.":::
 
 ## [Redis Container](#tab/redis-container)
 
 The deployment process created a Redis app container due to the **.AppHost** configuration you provided.
 
-:::image type="content" loc-scope="azure" source="media/resources-azure-redis-container.png" alt-text="A screenshot showing the containerized Redis.":::
+:::image type="content" loc-scope="azure" source="../../caching/media/resources-azure-redis-container.png" alt-text="A screenshot showing the containerized Redis.":::
 
 ---
 
-[!INCLUDE [clean-up-resources](../includes/clean-up-resources.md)]
+[!INCLUDE [clean-up-resources](../../includes/clean-up-resources.md)]
 
 ## See also
 
-- [.NET Aspire deployment via Azure Container Apps](../deployment/azure/aca-deployment.md)
-- [.NET Aspire Azure Container Apps deployment deep dive](../deployment/azure/aca-deployment-azd-in-depth.md)
-- [Deploy a .NET Aspire project using GitHub Actions](../deployment/azure/aca-deployment-github-actions.md)
+- [.NET Aspire deployment via Azure Container Apps](../azd/aca-deployment.md)
+- [.NET Aspire Azure Container Apps deployment deep dive](../azd/aca-deployment-azd-in-depth.md)
+- [Deploy a .NET Aspire project using GitHub Actions](../azd/aca-deployment-github-actions.md)

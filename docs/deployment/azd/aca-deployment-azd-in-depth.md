@@ -46,7 +46,7 @@ curl -fsSL https://aka.ms/install-azd.sh | bash
 
 The `azd init` workflow provides customized support for .NET Aspire projects. The following diagram illustrates how this flow works conceptually and how `azd` and .NET Aspire are integrated:
 
-:::image type="content" source="media/azd-internals.png" alt-text="Illustration of internal processing of `azd` when deploying .NET Aspire project.":::
+:::image type="content" source="../media/azd-internals.png" alt-text="Illustration of internal processing of `azd` when deploying .NET Aspire project.":::
 
 1. When `azd` targets a .NET Aspire project it starts the AppHost with a special command (`dotnet run --project AppHost.csproj --output-path manifest.json --publisher manifest`), which produces the Aspire [manifest file](../manifest-format.md).
 1. The manifest file is interrogated by the `azd provision` sub-command logic to generate Bicep files in-memory only (by default).
@@ -75,7 +75,7 @@ dotnet run --project AspireSample.AppHost\AspireSample.AppHost.csproj
 
 The previous commands create a new .NET Aspire project based on the `aspire-starter` template which includes a dependency on Redis cache. It runs the .NET Aspire project which verifies that everything is working correctly.
 
-[!INCLUDE [init workflow](includes/init-workflow.md)]
+[!INCLUDE [init workflow](../includes/init-workflow.md)]
 
 The _azure.yaml_ file has the following contents:
 
@@ -116,12 +116,12 @@ services:
 1. When prompted, select the subscription and location the resources should be deployed to. Once these options are selected the .NET Aspire project
 will be deployed.
 
-    [!INCLUDE [azd-up-output](includes/azd-up-output.md)]
+    [!INCLUDE [azd-up-output](../includes/azd-up-output.md)]
 
     The final line of output from the `azd` command is a link to the Azure Portal that shows
     all of the Azure resources that were deployed:
 
-    :::image type="content" loc-scope="azure" source="media/azd-azure-portal-deployed-resources.png" lightbox="media/azd-azure-portal-deployed-resources.png" alt-text="Screenshot of Azure Portal showing deployed resources.":::
+    :::image type="content" loc-scope="azure" source="../media/azd-azure-portal-deployed-resources.png" lightbox="../media/azd-azure-portal-deployed-resources.png" alt-text="Screenshot of Azure Portal showing deployed resources.":::
 
 Three containers are deployed within this application:
 
@@ -131,7 +131,7 @@ Three containers are deployed within this application:
 
 Just like in local development, the configuration of connection strings has been handled automatically. In this case, `azd` was responsible for interpreting the application model and translating it to the appropriate deployment steps. As an example, consider the connection string and service discovery variables that are injected into the `webfrontend` container so that it knows how to connect to the Redis cache and `apiservice`.
 
-:::image type="content" loc-scope="azure" source="media/azd-aca-variables.png" lightbox="media/azd-aca-variables.png" alt-text="A screenshot of environment variables in the webfrontend container app.":::
+:::image type="content" loc-scope="azure" source="../media/azd-aca-variables.png" lightbox="../media/azd-aca-variables.png" alt-text="A screenshot of environment variables in the webfrontend container app.":::
 
 For more information on how .NET Aspire projects handle connection strings and service discovery, see
 [.NET Aspire orchestration overview](../../fundamentals/app-host-overview.md).
@@ -146,7 +146,7 @@ To speed up deployment of code changes, `azd` supports deploying code updates in
 azd deploy
 ```
 
-[!INCLUDE [azd-deploy-output](includes/azd-deploy-output.md)]
+[!INCLUDE [azd-deploy-output](../includes/azd-deploy-output.md)]
 
 It's not necessary to deploy all services each time. `azd` understands the .NET Aspire project model, it's possible to deploy just one of the services specified using the following command:
 
@@ -199,7 +199,7 @@ azd down
 
 The previous command may take some time to execute, but when completed the resource group and all its resources should be deleted.
 
-[!INCLUDE [azd-down-output](includes/azd-down-output.md)]
+[!INCLUDE [azd-down-output](../includes/azd-down-output.md)]
 
 ## Generate Bicep from .NET Aspire project model
 

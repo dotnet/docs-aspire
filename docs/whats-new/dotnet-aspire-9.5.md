@@ -28,7 +28,7 @@ It's important to note that Aspire releases out-of-band from .NET releases. Whil
 Moving between minor releases of Aspire is simple:
 
 1. Get the latest release of the Aspire CLI:
-    
+
     ```bash
     # Bash
     curl -sSL https://aspire.dev/install.sh | bash
@@ -283,6 +283,7 @@ The trace detail page now has Expand/collapse all, clearer exemplars, an added r
 The new `AddOpenAI` integration provides first-class support for modeling OpenAI endpoints and their associated models within your Aspire application graph.
 
 **Features:**
+
 - **Single OpenAI endpoint** resource with child model resources using `AddModel`
 - **Parameter-based API key** provisioning with `ParameterResource` support
 - **Endpoint override** for local gateways, proxies, or self-hosted solutions
@@ -321,6 +322,7 @@ var localModel = localOpenAI.AddModel("local-chat", "llama3.2");
 Version 9.5 introduces a strongly-typed catalog for GitHub-hosted models, providing IntelliSense support and refactoring safety when working with AI models (#10986).
 
 **Benefits over string-based approach:**
+
 - **Type safety**: Compile-time validation of model names
 - **IntelliSense support**: Discover available models and providers  
 - **Refactoring safety**: Rename and find references work correctly
@@ -371,6 +373,7 @@ The typed catalog automatically updates daily, so newly published models on GitH
 Aspire 9.5 introduces first-class support for Azure Dev Tunnels, enabling seamless integration of secure public tunnels for your applications during development and testing scenarios.
 
 **Features:**
+
 - **Secure public tunnels**: Create public HTTPS endpoints for applications running locally
 - **Automatic tunnel management**: Tunnels are created, configured, and cleaned up automatically
 - **Private and anonymous tunnels**: Support for both authenticated private tunnels and public anonymous access
@@ -448,6 +451,7 @@ The Dev Tunnels integration automatically handles Azure authentication, tunnel l
 Aspire 9.5 adds comprehensive static file serving capabilities to the YARP integration, enabling you to serve static assets directly from YARP alongside reverse proxy functionality. This is perfect for single-page applications, frontend assets, and hybrid scenarios where you need both static content and API proxying.
 
 **Features:**
+
 - **Direct static file serving**: Serve HTML, CSS, JS, and other static assets from YARP
 - **Flexible source options**: Bind mount local directories or use Docker multi-stage builds
 - **Automatic configuration**: Simple API enables static files with minimal setup
@@ -544,6 +548,7 @@ This feature enables modern web application architectures where YARP acts as bot
 Redis and RabbitMQ connections now support auto activation to prevent startup deadlocks and improve application reliability.
 
 **Features:**
+
 - **Eliminates blocking threads**: Connections are established proactively at startup rather than on first use
 - **Prevents startup deadlocks**: Avoids synchronous connection establishment in dependency injection scenarios
 - **Improves reliability**: Reduces first-request latency by pre-establishing connections

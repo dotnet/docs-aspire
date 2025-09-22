@@ -37,12 +37,12 @@ As a starting point, this article assumes that you've created a .NET Aspire proj
 
 The process for installing `azd` varies based on your operating system, but it is widely available via `winget`, `brew`, `apt`, or directly via `curl`. To install `azd`, see [Install Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd).
 
-[!INCLUDE [init-workflow](includes/init-workflow.md)]
+[!INCLUDE [init-workflow](../includes/init-workflow.md)]
 
-[!INCLUDE [azd-up-workflow](includes/azd-up-workflow.md)]
+[!INCLUDE [azd-up-workflow](../includes/azd-up-workflow.md)]
 
-[!INCLUDE [test-deployed-app](includes/test-deployed-app.md)]
+[!INCLUDE [test-deployed-app](../includes/test-deployed-app.md)]
 
-[!INCLUDE [azd-dashboard](includes/azd-dashboard.md)]
+[!INCLUDE [azd-dashboard](../includes/azd-dashboard.md)]
 
 [!INCLUDE [clean-up-resources](../../includes/clean-up-resources.md)]

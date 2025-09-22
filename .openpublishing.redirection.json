@@ -282,7 +282,7 @@
     },
     {
       "source_path_from_root": "/docs/deployment/azure/local-provisioning.md",
-      "redirect_url": "/dotnet/aspire/azure/local-provisioning"      
+      "redirect_url": "/dotnet/aspire/azure/local-provisioning"
     },
     {
       "source_path_from_root": "/docs/frameworks/dapr.md",
@@ -291,6 +291,46 @@
     {
       "source_path_from_root": "/docs/troubleshooting/unable-to-install-workload.md",
       "redirect_url": "/dotnet/aspire/get-started/upgrade-to-aspire-9"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/azure/aca-deployment-aspire-cli.md",
+      "redirect_url": "/dotnet/aspire/deployment/aspire-deploy/aca-deployment-aspire-cli"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/azure/aca-deployment-visual-studio.md",
+      "redirect_url": "/dotnet/aspire/deployment/aspire-deploy/aca-deployment-visual-studio"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/azure/azure-security-best-practices.md",
+      "redirect_url": "/dotnet/aspire/deployment/aspire-deploy/azure-security-best-practices"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/azure/application-insights.md",
+      "redirect_url": "/dotnet/aspire/deployment/aspire-deploy/application-insights"
+    },
+    {
+      "source_path_from_root": "/docs/database/sql-server-integration-deployment.md",
+      "redirect_url": "/dotnet/aspire/deployment/aspire-deploy/sql-server-integration-deployment"
+    },
+    {
+      "source_path_from_root": "/docs/caching/caching-integrations-deployment.md",
+      "redirect_url": "/dotnet/aspire/deployment/aspire-deploy/caching-integrations-deployment"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/azure/aca-deployment.md",
+      "redirect_url": "/dotnet/aspire/deployment/azd/aca-deployment"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/azure/aca-deployment-azd-in-depth.md",
+      "redirect_url": "/dotnet/aspire/deployment/azd/aca-deployment-azd-in-depth"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/azure/aca-deployment-github-actions.md",
+      "redirect_url": "/dotnet/aspire/deployment/azd/aca-deployment-github-actions"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/azure/customize-deployments.md",
+      "redirect_url": "/dotnet/aspire/deployment/azd/customize-deployments"
     }
   ]
 }
