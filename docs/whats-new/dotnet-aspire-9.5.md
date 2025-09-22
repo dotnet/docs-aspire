@@ -182,7 +182,6 @@ aspire exec --start-resource my-worker -- npm run build
 - Directory safety check for `aspire new` and consistent template inputs
 - Refactored NuGet prefetch architecture reducing UI lag during `aspire new` on macOS and enabling command-aware caching. Temporary NuGet config improvements ensure wildcard mappings
 - Context-sensitive completion messages for publish/deploy
-- Markdown-to-Spectre converter foundation reuse
 - Interaction answer typing change (`object`) for future extensibility
 - Improved CTRL+C message and experience
 
@@ -192,7 +191,7 @@ aspire exec --start-resource my-worker -- npm run build
 
 ### Deep-linked telemetry navigation
 
-The dashboard now provides seamless navigation between different telemetry views with interactive elements in property grids. Trace IDs, span IDs, resource names, and log levels become clickable buttons for one-click navigation (#10648).
+The dashboard now provides seamless navigation between different telemetry views with interactive elements in property grids. Trace IDs, span IDs, resource names, and log levels become clickable buttons for one-click navigation.
 
 - **Trace IDs**: Click to view the complete distributed trace
 - **Span IDs**: Navigate directly to specific trace spans
@@ -203,26 +202,17 @@ This eliminates the need to manually copy/paste identifiers between different da
 
 ### Multi-resource console logs
 
-A new "All" option in the console logs view streams logs from every running resource simultaneously (#10981).
+A new "All" option in the console logs view streams logs from every running resource simultaneously.
 
 **Features:**
+
 - **Unified log stream**: See logs from all resources in chronological order
-- **Color-coded prefixes**: Each resource gets a deterministic color for easy identification  
+- **Color-coded prefixes**: Each resource gets a deterministic color for easy identification
 - **Configurable timestamps**: Separate timestamp preference to reduce noise
-- **Real-time updates**: Live streaming of log events across your application
-
-**Example log output:**
-
-```text
-[api      INF] Application starting up
-[postgres INF] Database system is ready to accept connections  
-[redis    INF] Server initialized, ready to accept connections
-[api      INF] Connected to database successfully
-```
 
 ### Custom resource icons
 
-Resources can specify custom icons using `WithIconName()` for better visual identification in dashboard views (#10760).
+Resources can now specify custom icons and their variant - Filled (default) or Regular - using `WithIconName()` for better visual identification in dashboard views. Any [Fluent UI system icons](https://github.com/microsoft/fluentui-system-icons/blob/main/icons_filled.md) can be used.
 
 ```csharp
 var postgres = builder.AddPostgres("database")
@@ -232,28 +222,18 @@ var redis = builder.AddRedis("cache")
     .WithIconName("memory");
 
 var api = builder.AddProject<Projects.Api>("api")
-    .WithIconName("web-app");
+    .WithIconName("webAsset", ApplicationModel.IconVariant.Regular);
 ```
-
-**Icon variant options:**
-
-```csharp
-// Available variants: Regular (outline) or Filled (solid, default)
-var database = builder.AddPostgres("db")
-    .WithIconName("database", ApplicationModel.IconVariant.Regular);
-
-var api = builder.AddProject<Projects.Api>("api")
-    .WithIconName("web-app", ApplicationModel.IconVariant.Filled);
-```
-
-> [!NOTE]
-> The default icon variant is `Filled` if not specified.
 
 This helps teams quickly identify different types of resources in complex applications with many services. Custom resource icons now also apply to project & container resources via unified annotation, providing consistent visual identification across all resource types.
 
+### Generative AI insights
+
+New dialog and UI components make GenAI interactions easier to inspect and understand LLM-centric calls within your app. If GenAI-specific telemetry is found in an OTEL span, a sparkle (✨) icon will appear next to it's name in the Traces view. When selected, a new UI modal appears with relevant LLM information including the prompt, response, token usage, and more.
+
 ### Reverse proxy support
 
-The dashboard now properly handles reverse proxy scenarios with explicit forwarded header mapping when enabled. This fixes common issues with authentication redirects and URL generation behind proxies like YARP (#10388).
+The dashboard now properly handles reverse proxy scenarios with explicit forwarded header mapping when enabled. This fixes common issues with authentication redirects and URL generation behind proxies like YARP.
 
 ```bash
 # Enable forwarded headers processing
@@ -261,6 +241,7 @@ export ASPIRE_DASHBOARD_FORWARDEDHEADERS_ENABLED=true
 ```
 
 **Supported scenarios:**
+
 - **OpenID Connect authentication** works correctly behind reverse proxies
 - **URL generation** respects the original client request scheme and host
 - **Limited header processing** for security - only Host and X-Forwarded-Proto are processed
@@ -268,87 +249,32 @@ export ASPIRE_DASHBOARD_FORWARDEDHEADERS_ENABLED=true
 
 This is particularly useful for deployment scenarios where the dashboard is accessed through a load balancer or reverse proxy.
 
-### Improved mobile experience
-
-The mobile and desktop experience has been redesigned with better responsive layouts and improved usability across all dashboard pages (#10407).
-
-- **Responsive toolbars**: Automatically adapt to screen size
-- **Touch-friendly controls**: Larger targets for mobile interaction  
-- **Optimized layouts**: Better use of screen real estate on smaller devices
-- **Consistent navigation**: Unified experience across desktop and mobile
-
-### Enhanced resource management
-
-Several improvements to resource management and debugging capabilities:
-
-**Resource organization:**
-- **Sub-menu organization**: Resource action menus now use sub-menus to prevent overflow on complex applications (#10869)
-- **Launch profile details**: Project resources now show their associated launch profile for easier debugging (#10906)
-- **Improved navigation**: Better resource selection and navigation handling (#10848)
-- **Launch profile localization**: Launch profile localization and model surfaced in dashboard resource details ([#10906](https://github.com/dotnet/aspire/pull/10906))
-
-**Debugging enhancements:**
-- **Direct launch profile access**: Quick access to the launch configuration used for each project
-- **Resource state visibility**: Clearer indication of resource status and health
-- **Action grouping**: Related resource actions are logically grouped for better discoverability
-
 ### Container runtime notifications
 
-Smart notifications appear when Docker/Podman is installed but unhealthy, with automatic dismissal when runtime recovers (#11008). This provides immediate feedback when your container runtime needs attention, helping diagnose startup issues faster.
-
-### UI improvements
-
-- Error spans use consistent error styling (#10742)
-- Better default icons for parameters and services (#10762)
-- Improved navigation reliability (#10848)
-- Enhanced port parsing (#10884)
-- Message truncation for long log entries (#10882)
-- Optional log line wrapping (#10271)
-- Improved text visualizer dialog (#10964)
-
-### Trace performance & integration
-
-- Optimized trace detail page rendering (#10308)
-- Embedded log entries within trace spans (#10281)
-- Better span timing calculations (#10310)
-
-### Localization & deployment
-
-- Comprehensive dashboard localization with consolidated resource files
-- Launch profile support with localized display names (#10906)
-- Forwarded headers support for proxy/container scenarios (#10388)
-
-### GenAI insights
-
-New dialog and UI components make GenAI interactions easier to inspect and understand (#11227, #11286).
-
-### Richer markdown rendering
-
-Enhanced markdown rendering with syntax highlighting and better code block handling improves readability of generated or diagnostic content (#11286).
+More actionable notifications now appear when Docker/Podman is installed but unhealthy, with automatic dismissal when runtime recovers. This provides immediate feedback when your container runtime needs attention, helping diagnose startup issues faster.
 
 ### Trace filtering
 
-New span type filter lets you focus on specific kinds of spans for faster investigation (#11262).
+A new span "type" filter lets you focus on specific kinds of spans for faster investigation.
 
 ### Trace detail improvements
 
-Expand/collapse all, clearer exemplars, added resource column, preserved root span visibility, and more reliable span linking (#9474, #11089, #11085, #11078, #10747).
+The trace detail page now has Expand/collapse all, clearer exemplars, an added resource column, preserved root span visibility, and more reliable span linking.
 
-### Logging usability
+### Other improvements
 
-Cleaner unified All view, removed redundant None option, clearer error log styling (#11087, #10725, #10481).
-
-### Navigation & accessibility
-
-Better toolbar/menu overflow handling, improved keyboard navigation, semantic headings, mobile navigation scroll fixes (#10740, #10708, #10729, #11317, #10893, #9827).
-
-### Resource menus
-
-Streamlined resource action menus and clearer command labeling (#10869, #11328).
-
-### Runtime visibility
-
-Always shows the .NET runtime version and improves framework detection (#11330, #11095).
+- Resource action menus now use sub-menus to prevent overflow on complex apps
+- Projects show their associated launch profiles
+- Error spans use consistent error styling
+- Better default icons for parameters and services
+- Enhanced port parsing
+- Message truncation for long log entries
+- Optional log line wrapping
+- Improved text visualizer dialog
+- Comprehensive dashboard localization improvements including localized Launch Profile names
+- Embedded log entries within trace spans
+- Better span timing calculations
+- Accessibility improvements with better toolbar/menu overflow handling, improved keyboard navigation, semantic headings, and mobile navigation scroll fixes
 
 ## 📦 Integration changes and additions
 
