@@ -19,68 +19,7 @@ It's important to note that Aspire releases out-of-band from .NET releases. Whil
 - [.NET support policy](https://dotnet.microsoft.com/platform/support/policy): Definitions for LTS and STS.
 - [Aspire support policy](https://dotnet.microsoft.com/platform/support/policy/aspire): Important unique product lifecycle details.
 
-## Table of contents
-
-- [Upgrade to Aspire 9.5](#upgrade-to-aspire-95)
-- [CLI and tooling](#️-cli-and-tooling)
-  - [Channel-aware aspire add & templating](#channel-aware-aspire-add--templating)
-  - [New aspire update command (preview)](#new-aspire-update-command-preview)
-  - [Enhanced markdown and styling support](#enhanced-markdown-and-styling-support)
-  - [File-based AppHost support in preview](#file-based-apphost-support-in-preview)
-  - [SSH Remote support for port forwarding](#ssh-remote-support-for-port-forwarding)
-  - [aspire exec command enhancements](#aspire-exec-command-enhancements)
-  - [Other tweaks](#other-tweaks)
-- [Dashboard enhancements](#dashboard-enhancements)
-  - [Deep-linked telemetry navigation](#deep-linked-telemetry-navigation)
-  - [Multi-resource console logs](#multi-resource-console-logs)
-  - [Custom resource icons](#custom-resource-icons)
-  - [Reverse proxy support](#reverse-proxy-support)
-  - [Improved mobile experience](#improved-mobile-experience)
-  - [Enhanced resource management](#enhanced-resource-management)
-  - [Container runtime notifications](#container-runtime-notifications)
-  - [UI improvements](#ui-improvements)
-  - [Trace performance & integration](#trace-performance--integration)
-  - [Localization & deployment](#localization--deployment)
-- [Integration changes and additions](#integration-changes-and-additions)
-  - [OpenAI hosting integration](#openai-hosting-integration)
-  - [GitHub Models typed catalog](#github-models-typed-catalog)
-  - [Dev Tunnels hosting integration](#dev-tunnels-hosting-integration)
-  - [YARP static files support](#yarp-static-files-support)
-  - [Redis and RabbitMQ auto activation](#redis-and-rabbitmq-auto-activation)
-  - [Redis client builder pattern](#redis-client-builder-pattern)
-  - [Azure AI Foundry enhancements](#azure-ai-foundry-enhancements)
-  - [Azure App Configuration emulator APIs](#azure-app-configuration-emulator-apis)
-  - [Azure Storage emulator improvements](#azure-storage-emulator-improvements)
-  - [Broader Azure resource capability surfacing](#broader-azure-resource-capability-surfacing)
-  - [Azure Redis Enterprise support](#azure-redis-enterprise-support)
-  - [Azure resource reference properties](#azure-resource-reference-properties)
-  - [OTLP telemetry protocol selection](#otlp-telemetry-protocol-selection)
-  - [MySQL password improvements](#mysql-password-improvements)
-- [App model enhancements](#app-model-enhancements)
-  - [Resource lifecycle events](#resource-lifecycle-events)
-  - [Context-based endpoint resolution](#context-based-endpoint-resolution)
-  - [HTTP health probes for resources](#http-health-probes-for-resources)
-  - [Enhanced resource waiting patterns](#enhanced-resource-waiting-patterns)
-  - [Enhanced resource lifetime support](#enhanced-resource-lifetime-support)
-  - [Resource lifecycle event APIs](#resource-lifecycle-event-apis)
-- [Publishing and Deployment](#publishing-and-deployment)
-  - [Parameter prompting during deploy](#parameter-prompting-during-deploy)
-  - [Azure Container App Jobs support](#azure-container-app-jobs-support)
-  - [Azure provisioning & deployer](#azure-provisioning--deployer)
-  - [Azure deployer interactive command handling](#azure-deployer-interactive-command-handling)
-  - [Azure resource idempotency & existing resources](#azure-resource-idempotency--existing-resources)
-  - [Compute image deployment](#compute-image-deployment)
-  - [Module-scoped Bicep deployment](#module-scoped-bicep-deployment)
-  - [Publishing progress & activity reporting](#publishing-progress--activity-reporting)
-  - [Parameter & interaction API updates](#parameter--interaction-api-updates)
-  - [InteractionInput API improvements](#interactioninput-api-improvements)
-  - [Executable resource configuration APIs](#executable-resource-configuration-apis)
-  - [Interactive parameter processing APIs](#interactive-parameter-processing-apis)
-  - [Docker Compose Aspire Dashboard forwarding headers](#docker-compose-aspire-dashboard-forwarding-headers)
-  - [Container build customization](#container-build-customization)
-  - [Deployment image tag callbacks](#deployment-image-tag-callbacks)
-
-## Upgrade to Aspire 9.5
+## ⬆️ Upgrade to Aspire 9.5
 
 > [!NOTE] Try out the new update command!
 > Aspire 9.5 brings a new preview CLI command - [aspire update](#new-aspire-update-command-preview) - that can update your AppHost and its packages for you. Get the latest CLI if you want to try and give us feedback about it on [GitHub](https://github.com/dotnet/aspire/issues)!
@@ -246,7 +185,7 @@ aspire exec --start-resource my-worker -- npm run build
 
 > The `aspire exec` and `aspire update` commands remain in preview behind feature flags; behavior may change in a subsequent release.
 
-## Dashboard enhancements
+## 📊 Dashboard enhancements
 
 ### Deep-linked telemetry navigation
 
@@ -408,7 +347,7 @@ Streamlined resource action menus and clearer command labeling (#10869, #11328).
 
 Always shows the .NET runtime version and improves framework detection (#11330, #11095).
 
-## Integration changes and additions
+## 📦 Integration changes and additions
 
 ### OpenAI hosting integration
 
@@ -987,7 +926,7 @@ if (!string.IsNullOrEmpty(devPassword))
 builder.Build().Run();
 ```
 
-## App model enhancements
+## 🧩 App model enhancements
 
 ### Resource lifecycle events
 
@@ -1342,7 +1281,7 @@ var api = builder.AddProject<Projects.Api>("api")
 
 This provides symmetrical lifecycle management for scenarios like service registration/deregistration, resource cleanup, logging, and custom monitoring integration.
 
-## Publishing and Deployment
+## ☁️ Publishing and deployment
 
 ### Parameter prompting during deploy
 
@@ -1760,4 +1699,4 @@ var backend = builder.AddProject<Projects.Backend>("backend")
     .WithDeploymentImageTag(() => $"backend-{sharedVersion}");
 ```
 
-## Breaking Changes
+## 💔 Breaking changes
