@@ -21,7 +21,8 @@ It's important to note that Aspire releases out-of-band from .NET releases. Whil
 
 ## ⬆️ Upgrade to Aspire 9.5
 
-> [!NOTE] Try out the new update command!
+> [!NOTE]
+> Try out `aspire update`!
 > Aspire 9.5 brings a new preview CLI command - [aspire update](#new-aspire-update-command-preview) - that can update your AppHost and its packages for you. Get the latest CLI if you want to try and give us feedback about it on [GitHub](https://github.com/dotnet/aspire/issues)!
 
 Moving between minor releases of Aspire is simple:
@@ -36,7 +37,7 @@ Moving between minor releases of Aspire is simple:
     iex "& { $(irm https://aspire.dev/install.ps1) }"
     ```
 
-1. In your AppHost project file (that is, _MyApp.AppHost.csproj_), update the [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk) NuGet package to version `9.5.0`:
+1. In your AppHost project file (that is, _MyApp.AppHost.csproj_), update the [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk) package to version `9.5.0`:
 
     ```xml
     <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
@@ -61,7 +62,7 @@ If your AppHost project file doesn't have the `Aspire.AppHost.Sdk` reference, yo
 
 ### Channel-aware `aspire add` & templating
 
-You can now pick packages from different channels or versions during `aspire add` (#10801, #10899). Additionally, friendly name generation is now more flexible for searching packages.
+You can now pick packages from different channels or versions during `aspire add`. Additionally, friendly name generation is now more flexible for searching packages.
 
 ### New `aspire update` command (preview)
 
@@ -72,45 +73,53 @@ The new `aspire update` command helps you keep your Aspire projects current by a
 aspire update
 ```
 
-**Features:**
-- **Automated package detection**: Finds outdated Aspire NuGet packages while respecting channel configurations
-- **Diamond dependency resolution**: Intelligently handles complex dependency graphs without duplicate updates (#11145)
-- **Enhanced reporting**: Colorized output with detailed summary of changes (#11148)
-- **Channel awareness**: Respects your configured Aspire channel (preview, stable, etc.)
-- **Safe updates**: Validates package compatibility before applying changes
+This command updates your SDK, AppHost packages, and any Aspire client integrations used in the app. It validates package compatibility and asks for confirmation before applying changes. Like `add`, `update` is channel aware, so you can choose to update to stable, daily, or your own configuration of builds.
 
 > [!IMPORTANT]
 > 🧪 **Preview Feature**: The `aspire update` command is in preview and may change before general availability.
 
 ### Enhanced markdown and styling support
 
-Extended markdown rendering support (#10815) with improved developer experience:
+The CLI now has better markdown rendering support for an improved developer experience:
 
 - **Code fences** with syntax highlighting for better readability
 - **Rich text formatting** including emphasis, bold, and inline code
 - **Structured lists** with bullet points and numbering
-- **Safe markup escaping** to prevent XSS and rendering issues (#10462)
-- Purple styling for default values in prompts (#10474)
+- **Safe markup escaping** to prevent XSS and rendering issues
 
-### File-based AppHost support in preview
+### File-based AppHost support (preview)
 
 Aspire 9.5 introduces infrastructure for .NET 10's new file-based apps feature, meaning you only need 1 file - and no project file! - for your Aspire apphost. The new capabilities are currently behind a feature flag that elevates the minimum .NET SDK requirement to prepare for upcoming file-based app execution scenarios.
 
 ```bash
-# Enable single-file AppHost support (requires .NET 10.0.100 RC1+)
+# Enable file-based AppHost ("apphost.cs") support
 aspire config set features.singlefileAppHostEnabled true
 ```
 
 **SDK version requirements:**
-- **Default (flag disabled)**: Requires .NET SDK 9.0.302 or later
+
 - **Feature enabled**: Requires .NET SDK 10.0.100 RC1 or later
 - **Override support**: Manual SDK version overrides continue to work with highest precedence
 
-### SSH Remote support for port forwarding
+You can use `aspire new` to create a new, blank file-based apphost:
+
+```csharp
+#:sdk Aspire.AppHost.Sdk@9.5.0
+
+var builder = DistributedApplication.CreateBuilder(args);
+
+builder.Build().Run();
+
+```
+
+Then add some resources, use `aspire add` the same as you would with a project-based apphost, and `aspire run` to start!
+
+### SSH Remote support for port forwarding in VS Code
 
 Version 9.5 adds first-class support for SSH Remote development environments, extending automatic port forwarding configuration to VS Code SSH Remote scenarios alongside existing Devcontainer and Codespaces support.
 
 **Features:**
+
 - **Automatic environment detection**: Detects SSH Remote scenarios via `VSCODE_IPC_HOOK_CLI` and `SSH_CONNECTION` environment variables
 - **Seamless port forwarding**: Automatically configures VS Code settings for Aspire application endpoints
 - **Consistent developer experience**: Matches existing behavior for Devcontainers and Codespaces
@@ -119,23 +128,17 @@ Version 9.5 adds first-class support for SSH Remote development environments, ex
 SSH Remote environments are automatically detected when both environment variables are present:
 
 ```bash
-# SSH Remote environment variables (automatically set)
+# SSH Remote environment variables (these are automatically set by VS Code)
 export SSH_CONNECTION="192.168.1.1 12345 192.168.1.2 22"
 export VSCODE_IPC_HOOK_CLI="/path/to/vscode/hook"
 
-# Aspire automatically detects and configures port forwarding
-dotnet run --project MyApp.AppHost
+# Aspire then detects and configures port forwarding
+aspire run
 ```
-
-Perfect for remote development scenarios:
-- **Remote server development**: Working on a remote Linux server via SSH
-- **Cloud development environments**: Using cloud-based development VMs
-- **Team development servers**: Shared development environments accessed via SSH
-- **Cross-platform development**: Developing on remote machines with different OS
 
 The SSH Remote support follows the exact same patterns as existing Devcontainer and Codespaces integration, ensuring a consistent experience across all VS Code remote development scenarios. Port forwarding settings are automatically written to `.vscode-server/data/Machine/settings.json` when SSH Remote environments are detected.
 
-### `aspire exec` command enhancements
+### `aspire exec` command (preview) enhancements
 
 The `aspire exec` command allows you to execute commands within the context of your Aspire application environment, inheriting environment variables and configuration from your app model resources.
 
@@ -174,13 +177,13 @@ aspire exec --start-resource my-worker -- npm run build
 
 ### Other tweaks
 
-- Relative path included in AppHost status messages + TUI dashboard (#11132)
-- Clean Spectre Console debug logging with reduced noise (#11125)
-- Directory safety check for `aspire new` (#10496) and consistent template inputs (#10444, #10508)
-- Refactored NuGet prefetch architecture (#11120) reducing UI lag during `aspire new` on macOS (#11069) and enabling command-aware caching. Temporary NuGet config improvements ensure wildcard mappings (#10894).
-- Context-sensitive completion messages for publish/deploy (#10501)
-- Markdown-to-Spectre converter foundation reuse (#10815)
-- Interaction answer typing change (`object`) for future extensibility (#10480)
+- Relative path included in AppHost status messages
+- Clean CLI debug logging with reduced noise
+- Directory safety check for `aspire new` and consistent template inputs
+- Refactored NuGet prefetch architecture reducing UI lag during `aspire new` on macOS and enabling command-aware caching. Temporary NuGet config improvements ensure wildcard mappings
+- Context-sensitive completion messages for publish/deploy
+- Markdown-to-Spectre converter foundation reuse
+- Interaction answer typing change (`object`) for future extensibility
 - Improved CTRL+C message and experience
 
 > The `aspire exec` and `aspire update` commands remain in preview behind feature flags; behavior may change in a subsequent release.
