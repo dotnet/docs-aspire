@@ -465,7 +465,9 @@ items:
   - name: Overview
     displayName: azure deployment,deployment,Kubernetes,k8s
     href: deployment/overview.md
-  - name: Azure deployment with Aspire CLI
+  - name: Building custom deployment pipelines
+    href: fundamentals/custom-deployments.md
+  - name: Azure deployment with Aspire
     items:
     - name: Deploy to Azure Container Apps using Aspire CLI
       href: deployment/aspire-deploy/aca-deployment-aspire-cli.md
@@ -495,8 +497,6 @@ items:
     - name: Customize .NET Aspire Azure deployments using azd
       href: deployment/azd/customize-deployments.md
       displayName: azd infra synth,azd infra gen,bicep,infrastructure,production
-  - name: Build container images
-    href: fundamentals/build-container-images.md
   - name: Tool-builder manifest schemas
     href: deployment/manifest-format.md
 

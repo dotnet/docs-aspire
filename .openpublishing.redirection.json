@@ -331,6 +331,10 @@
     {
       "source_path_from_root": "/docs/deployment/azure/customize-deployments.md",
       "redirect_url": "/dotnet/aspire/deployment/azd/customize-deployments"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/build-container-images.md",
+      "redirect_url": "/dotnet/aspire/fundamentals/custom-deployments"
     }
   ]
 }
