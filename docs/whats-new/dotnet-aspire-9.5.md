@@ -320,14 +320,16 @@ var localModel = localOpenAI.AddModel("local-chat", "llama3.2");
 Aspire 9.5 introduces a typed catalog for GitHub and Azure-hosted models, providing IntelliSense support and refactoring safety when working with AI models. This brings type safety and IntelliSense support for the ever-increasing AI model catalog, and takes the guesswork out of version and "format" strings. The catalog is updated daily.
 
 ```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
 // Before: String-based approach (error-prone)
-var model = github.AddModel("chat", "gpt-4o-mini"); // Typos not caught
+var model = builder.AddGitHubModel("chat", "gpt-4o-mini"); // Typos not caught
 
 // After: Typed catalog approach  
-var chatModel = github.AddModel("chat", GitHubModel.OpenAI.Gpt4oMini);
+var chatModel = builder.AddGitHubModel("chat", GitHubModel.OpenAI.OpenAIGPT4oMini);
 
 // IntelliSense shows all available models grouped by provider
-var embeddingModel = github.AddModel("embeddings", GitHubModel.OpenAI.TextEmbedding3Large);
+var embeddingModel = builder.AddGitHubModel("embeddings", GitHubModel.OpenAI.OpenAITextEmbedding3Large);
 ```
 
 ### Dev Tunnels hosting integration
@@ -437,11 +439,10 @@ builder.Build().Run();
 
 ### RabbitMQ auto activation
 
-RabbitMQ client connections now support auto activation to prevent startup deadlocks and improve application reliability. Auto activation is disabled by default.
+RabbitMQ client connections now support auto activation to prevent startup deadlocks and improve application reliability. Auto activation is disabled by default in 9.5, but planned to be enabled by default in a future release.
 
 ```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-var messaging = builder.AddRabbitMQ("messaging");
+var builder = WebApplication.CreateBuilder(args);
 
 // Auto activation is disabled by default for RabbitMQ, enable using DisableAutoActivation=false
 builder.AddRabbitMQClient("messaging", o => o.DisableAutoActivation = false);
@@ -451,11 +452,11 @@ builder.AddRabbitMQClient("messaging", o => o.DisableAutoActivation = false);
 
 #### Auto activation
 
-Redis client connections also now support auto activation, and are also disabled by default.
+Redis client connections also now support auto activation, and are also disabled by default, but planned to be enabled by default in a future release.
 
 ```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-var redis = builder.AddRedis("redis");
+var builder = WebApplication.CreateBuilder(args);
+
 // Auto activation is disabled by default for Redis, enable using DisableAutoActivation=false
 var redisClient = builder.AddRedisClient("redis", c => c.DisableAutoActivation = false);
 ```
@@ -467,17 +468,27 @@ Aspire 9.5 introduces a new Redis client builder pattern that provides a fluent,
 Basic usage:
 
 ```csharp
-builder.AddRedisClientBuilder("azure-redis") 
-  .WithAzureAuthentication() // Uses default Azure credentials 
+var builder = WebApplication.CreateBuilder(args);
+
+builder.AddRedisClientBuilder("redis") 
   .WithDistributedCache(options => 
   { 
     options.InstanceName = "MyApp";
   });
 ```
 
+To enable Azure authentication, add a reference to the new `Aspire.Microsoft.Azure.StackExchangeRedis` package, and chain a call to `.WithAzureAuthentication()`:
+
+```csharp
+builder.AddRedisClientBuilder("redis") 
+  .WithAzureAuthentication()
+  .WithDistributedCache(options => 
+  { 
+    options.InstanceName = "MyApp";
+  });
 ### Azure Redis Enterprise support
 
-Aspire 9.5 introduces first-class support for Azure Redis Enterprise, providing a high-performance, fully managed Redis service with enterprise-grade features.
+Aspire 9.5 introduces first-class support for [Azure Redis Enterprise](https://learn.microsoft.com/azure/redis/overview), providing a high-performance, fully managed Redis service with enterprise-grade features. Azure Redis Enterprise provides advanced caching capabilities with clustering, high availability, and enterprise security features while maintaining compatibility with the standard Redis APIs.
 
 The new `AddAzureRedisEnterprise` extension method enables Redis Enterprise resource modeling:
 
@@ -504,6 +515,8 @@ var redisEnterprise = builder.AddAzureRedisEnterprise("redis-enterprise")
 
 **Authentication options:**
 
+Like other Azure integrations, Azure Redis Enterprise uses Microsoft Entra ID authentication by default. This is the recommended authentication strategy since secrets aren't used. To enable access key authentication, you can use the following:
+
 ```csharp
 // With access key authentication (default)
 var redisEnterprise = builder.AddAzureRedisEnterprise("redis-enterprise")
@@ -515,25 +528,13 @@ var redisEnterprise = builder.AddAzureRedisEnterprise("redis-enterprise")
     .WithAccessKeyAuthentication(keyVault);
 ```
 
-Azure Redis Enterprise provides advanced caching capabilities with clustering, high availability, and enterprise security features while maintaining compatibility with the standard Redis APIs.
-
 ### Azure Storage emulator improvements
 
 Aspire now pulls Azurite version 3.35.0 by default, resolving health check issues that previously returned HTTP 400 responses. This improves the reliability of Azure Storage emulator health checks during development.
 
-### Broader Azure resource capability surfacing
-
-Several Azure hosting resource types now implement `IResourceWithEndpoints` enabling uniform endpoint discovery and waiting semantics:
-
-- `AzureAIFoundryResource`
-- `AzureAppConfigurationResource`
-- `AzureKeyVaultResource`
-- `AzurePostgresFlexibleServerResource`
-- `AzureRedisCacheResource`
-
 ### MySQL password improvements
 
-Enhanced and standardized password handling for MySQL resources:
+The MySQL integration added support for specifying a password parameter:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -544,15 +545,6 @@ var password = builder.AddParameter("mysql-password", secret: true);
 var mysql = builder.AddMySql("mysql")
     .WithPassword(password);
 
-// Password can be updated during configuration
-mysql.Resource.PasswordParameter = builder.AddParameter("new-mysql-password", secret: true);
-
-// Environment-specific passwords
-var devPassword = builder.Configuration["ConnectionStrings:MySQL:Password"];
-if (!string.IsNullOrEmpty(devPassword))
-{
-    mysql.WithPassword(devPassword);
-}
 
 builder.Build().Run();
 ```
