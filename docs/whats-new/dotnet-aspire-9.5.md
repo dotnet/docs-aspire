@@ -1,5 +1,5 @@
 ---
-title: What's new in Aspire 9.5
+title: What's new in .NET Aspire 9.5
 description: Learn what's new in Aspire 9.5.
 ms.date: 09/22/2025
 ai-usage: ai-assisted
@@ -7,7 +7,7 @@ ai-usage: ai-assisted
 
 ## What's new in Aspire 9.5
 
-📢 Aspire 9.5 is the next minor version release of Aspire. It supports:
+📢 .NET Aspire 9.5 is the next minor version release of Aspire. It supports:
 
 - .NET 8.0 Long Term Support (LTS)
 - .NET 9.0 Standard Term Support (STS)
@@ -20,13 +20,13 @@ Aspire releases out-of-band from .NET releases. Major versions of Aspire align w
 - [.NET support policy](https://dotnet.microsoft.com/platform/support/policy): Definitions for LTS and STS.
 - [Aspire support policy](https://dotnet.microsoft.com/platform/support/policy/aspire): Important unique product lifecycle details.
 
-## ⬆️ Upgrade to Aspire 9.5
+## ⬆️ Upgrade to .NET Aspire 9.5
 
 > [!NOTE]
 > Try out `aspire update`!
-> Aspire 9.5 brings a new preview CLI command - [aspire update](#new-aspire-update-command-preview) - that can update your AppHost and its packages for you. Get the latest CLI if you want to try and give us feedback about it on [GitHub](https://github.com/dotnet/aspire/issues)!
+> .NET Aspire 9.5 brings a new preview CLI command - [aspire update](#new-aspire-update-command-preview) - that can update your AppHost and its packages for you. Get the latest CLI if you want to try and give us feedback about it on [GitHub](https://github.com/dotnet/aspire/issues)!
 
-Moving between minor releases of Aspire is simple:
+Moving between minor releases of .NET Aspire is simple:
 
 1. Get the latest release of the Aspire CLI:
 
