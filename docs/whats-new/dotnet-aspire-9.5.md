@@ -816,72 +816,11 @@ var dataProcessor = builder.AddProject<Projects.DataProcessor>("data-processor")
 builder.Build().Run();
 ```
 
-### Azure provisioning & deployer
+### Built-in Azure deployment with Aspire CLI
 
-9.5 delivers the first iteration of the Azure provisioning & deployment pipeline that unifies interactive prompting, Bicep compilation, and mode-specific behavior (run vs publish) across Azure resources:
+Aspire 9.5 delivers the first iteration of a unified Azure provisioning and deployment pipeline through the `aspire deploy` command. The deployment experience features graph-based dependency planning through `ResourceDeploymentGraph` for correct resource provisioning order and maximum parallelism, support for interactive prompting to gather values required for deployment, and enhanced error reporting for identifying issues during deployment. The AppHost integrates Azure provisioning prompts into the standard interaction system for consistent UX, providing deployment-time flexibility with automatic infrastructure provisioning, container image building and registry pushing, and compute resource deployment to Azure Container Apps—all orchestrated through a single command with real-time progress monitoring and comprehensive error reporting.
 
-- New provisioning contexts separate run-mode and publish-mode flows ([#11094](https://github.com/dotnet/aspire/pull/11094)).
-- Graph-based dependency planning (`ResourceDeploymentGraph`) ensures correct ordering of resource provisioning.
-- Improved error handling and idempotency for `AddAsExistingResource` across all Azure resources ([#10562](https://github.com/dotnet/aspire/issues/10562)).
-- Support for deploying compute images and resources (custom images referenced in your environment) ([#11030](https://github.com/dotnet/aspire/pull/11030)).
-- Deploy individual Bicep modules instead of a monolithic `main.bicep` for clearer failure isolation and faster iteration ([#11098](https://github.com/dotnet/aspire/pull/11098)).
-- Localized interaction + notification strings across all provisioning prompts (multiple OneLocBuild PRs).
-
-### Azure deployer interactive command handling
-
-The AppHost now wires Azure provisioning prompts into the standard interaction system (initial work in [#10038](https://github.com/dotnet/aspire/pull/10038), extended in [#10792](https://github.com/dotnet/aspire/pull/10792) and [#10845](https://github.com/dotnet/aspire/pull/10845)). This enables:
-
-- Consistent UX for parameter entry (names, descriptions, validation)
-- Localized prompt text
-- Support for non-interactive scenarios via presupplied parameters
-
-### Azure resource idempotency & existing resources
-
-Calling `AddAsExistingResource` is now idempotent across Azure hosting resource builders; repeated calls no longer cause duplicate annotations or inconsistent behavior ([#10562](https://github.com/dotnet/aspire/issues/10562)). This improves reliability when composing reusable extension methods.
-
-### Module-scoped Bicep deployment
-
-Instead of generating a single aggregated template, 9.5 deploys individual Bicep modules ([#11098](https://github.com/dotnet/aspire/pull/11098)). Failures surface with more precise context and partial successes require less rework.
-
-### Publishing progress & activity reporting
-
-`IPublishingActivityProgressReporter` was renamed to `IPublishingActivityReporter` and output formatting was reworked to provide clearer, structured progress (multiple commits culminating in improved messages). Expect more concise status lines and actionable error sections when using `aspire publish` or `aspire deploy`.
-
-#### Parameter prompting during deploy
-
-Aspire 9.5 enhances the deployment experience by automatically prompting for unresolved parameters during `aspire deploy` operations, eliminating the need to manually specify all parameter values upfront.
-
-##### Interactive parameter resolution
-
-When deploying your Aspire application, any parameters without values are now automatically detected and prompted for interactively:
-
-```bash
-# Deploy command detects missing parameters and prompts automatically
-aspire deploy
-
-🔧 Resolving deployment parameters...
-
-Enter value for 'database-password' (secret): ********
-Enter value for 'api-key' (secret): **********************
-Enter value for 'environment-name': production
-
-✅ All parameters resolved, proceeding with deployment...
-```
-
-##### Benefits of interactive parameter prompting
-
-- **Secure credential entry**: Sensitive parameters are masked during input
-- **Deployment-time flexibility**: No need to preconfigure all parameter values
-- **Error prevention**: Missing parameters are caught before deployment begins
-- **Better developer experience**: Clear prompts with parameter descriptions
-
-##### Parameter types supported
-
-- **Secret parameters**: Automatically masked input for sensitive values
-- **Standard parameters**: Regular text input with validation
-- **Optional parameters**: Skipped if no value is provided
-
-This feature builds on the existing parameter infrastructure and makes deployment workflows more intuitive, especially when working with multiple environments or sharing deployment scripts across team members.
+For more information on deploying to Azure with the Aspire CLI, read [the official documentation](../deployment/aspire-deploy/aca-deployment-aspire-cli.md).
 
 ### Executable resource configuration APIs
 
