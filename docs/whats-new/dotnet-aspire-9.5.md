@@ -318,6 +318,7 @@ var localModel = localOpenAI.AddModel("local-chat", "llama3.2");
 ### GitHub Models and Azure AI Foundry typed catalogs
 
 Aspire 9.5 introduces a typed catalog for GitHub and Azure-hosted models, providing IntelliSense support and refactoring safety when working with AI models. This brings type safety and IntelliSense support for the ever-increasing AI model catalog, and takes the guesswork out of version and "format" strings. The catalog is updated daily.
+
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
@@ -846,7 +847,6 @@ Instead of generating a single aggregated template, 9.5 deploys individual Bicep
 
 `IPublishingActivityProgressReporter` was renamed to `IPublishingActivityReporter` and output formatting was reworked to provide clearer, structured progress (multiple commits culminating in improved messages). Expect more concise status lines and actionable error sections when using `aspire publish` or `aspire deploy`.
 
-
 #### Parameter prompting during deploy
 
 Aspire 9.5 enhances the deployment experience by automatically prompting for unresolved parameters during `aspire deploy` operations, eliminating the need to manually specify all parameter values upfront.
@@ -924,7 +924,6 @@ var worker = builder.AddExecutable("worker", "dotnet")
 ```
 
 These APIs provide fine-grained control over executable resource configuration, enabling complex deployment scenarios and dynamic argument construction based on execution context.
-
 
 #### InteractionInputCollection enhancements
 

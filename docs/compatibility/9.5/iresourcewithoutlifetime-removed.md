@@ -71,4 +71,3 @@ Migration guidance (illustrative):
 - <xref:Aspire.Hosting.ParameterResource?displayProperty=fullName>
 - <xref:Aspire.Hosting.ConnectionStringResource?displayProperty=fullName>
 - <xref:Aspire.Hosting.IResourceWithoutLifetime?displayProperty=fullName> (removed from these resources)
-

@@ -55,26 +55,26 @@ As a starting point, this article assumes you've created a .NET Aspire project f
 
 To configure your project for Azure Container Apps deployment, add a package reference to your AppHost project that includes the [`📦Aspire.Hosting.Azure.AppContainers](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppContainers) NuGet package:
 
-    ```xml
-    <Project Sdk="Microsoft.NET.Sdk">
-    
-      <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
-    
-      <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFramework>net9.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <UserSecretsId>7b352f08-305b-4032-9a21-90deb02efc04</UserSecretsId>
-      </PropertyGroup>
-    
-      <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
-        <PackageReference Include="Aspire.Hosting.Azure.AppContainers" Version="9.5.0" />
-      </ItemGroup>
-    
-    </Project>
-    ```
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
+
+    <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>7b352f08-305b-4032-9a21-90deb02efc04</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.AppContainers" Version="9.5.0" />
+    </ItemGroup>
+
+</Project>
+```
 
 In your AppHost project's _AppHost.cs_ file, add the Container Apps environment:
 
@@ -124,7 +124,7 @@ Next, Aspire prompts you for the Azure subscription, location, and resource grou
 
 Next, Aspire analyzes your application model and prompts for any required deployment parameters that don't have values set. You'll see prompts like:
 
-```
+```Output
 There are unresolved parameters that need to be set. Please provide values for them. [y/n] (n): y
 Please provide values for the unresolved parameters. Parameters can be saved to user secrets for future use.
 weatherApiKey: 
