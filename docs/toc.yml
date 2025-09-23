@@ -155,6 +155,8 @@ items:
       href: cli-reference/aspire-publish.md
     - name: aspire run
       href: cli-reference/aspire-run.md
+    - name: aspire update
+      href: cli-reference/aspire-update.md
 
 - name: Testing
   items:
