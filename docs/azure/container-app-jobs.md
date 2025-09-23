@@ -29,14 +29,14 @@ Azure Container Apps jobs enable you to run containerized tasks that execute for
 
 To publish resources as Azure Container App Jobs, use the following APIs:
 
-- `PublishAsAzureContainerAppJob(IResourceBuilder<ContainerResource>, Action<AzureResourceInfrastructure, ContainerAppJob>);`
-- `PublishAsAzureContainerAppJob(IResourceBuilder<ExecutableResource>, Action<AzureResourceInfrastructure, ContainerAppJob>);`
-- `PublishAsAzureContainerAppJob(IResourceBuilder<ProjectResource>, Action<AzureResourceInfrastructure, ContainerAppJob>);`
+- `PublishAsAzureContainerAppJob<T>(IResourceBuilder<T>);`
+- `PublishAsAzureContainerAppJob<T>(IResourceBuilder<T>, Action<AzureResourceInfrastructure, ContainerAppJob>);`
+- `PublishAsScheduledAzureContainerAppJob<T>(IResourceBuilder<T>, string, Action<AzureResourceInfrastructure, ContainerAppJob>);`
 
 <!--
-- <xref:Aspire.Hosting.AzureContainerAppContainerExtensions.PublishAsAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerAppJob})?displayProperty=nameWithType>
-- <xref:Aspire.Hosting.AzureContainerAppExecutableExtensions.PublishAsAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerAppJob})?displayProperty=nameWithType>
-- <xref:Aspire.Hosting.AzureContainerAppProjectExtensions.PublishAsAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerAppJob})?displayProperty=nameWithType>
+- <xref:Aspire.Hosting.ContainerAppExtensions.PublishAsAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0})?displayProperty=nameWithType>
+- <xref:Aspire.Hosting.ContainerAppExtensions.PublishAsAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerAppJob})?displayProperty=nameWithType>
+- <xref:Aspire.Hosting.ContainerAppExtensions.PublishAsScheduledAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.String,System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerAppJob})?displayProperty=nameWithType>
 
 -->
 
@@ -48,18 +48,14 @@ The following example demonstrates how to configure a .NET project as an Azure C
 var builder = DistributedApplication.CreateBuilder();
 
 builder.AddProject<Projects.DataProcessor>("data-processor")
-    .PublishAsAzureContainerAppJob((_, job) =>
-    {
-        job.Configuration.TriggerType = ContainerAppJobTriggerType.Schedule;
-        job.Configuration.ScheduleTriggerConfig.CronExpression = "0 0 * * *"; // Every day at midnight
-    });
+    .PublishAsScheduledAzureContainerAppJob("0 0 * * *"); // Every day at midnight
 ```
 
 This code:
 
 - Creates a new distributed application builder.
 - Adds a project named `data-processor` to the builder.
-- Calls `PublishAsAzureContainerAppJob` to configure the project as a Container App Job.
+- Calls `PublishAsScheduledAzureContainerAppJob` to configure the project as a Container App Job.
 - Sets the trigger type to `Schedule` with a cron expression to run daily at midnight.
 
 ## Job trigger types
@@ -89,7 +85,7 @@ builder.AddProject<Projects.ScheduledTask>("scheduled-task")
         job.Configuration.TriggerType = ContainerAppJobTriggerType.Schedule;
         job.Configuration.ScheduleTriggerConfig.CronExpression = "0 */6 * * *"; // Every 6 hours
         job.Configuration.ScheduleTriggerConfig.Parallelism = 1;
-        job.Configuration.ScheduleTriggerConfig.CompletionCount = 1;
+        job.Configuration.ScheduleTriggerConfig.ReplicaCompletionCount = 1;
     });
 ```
 
@@ -102,10 +98,10 @@ builder.AddProject<Projects.EventDrivenTask>("event-task")
     .PublishAsAzureContainerAppJob((_, job) =>
     {
         job.Configuration.TriggerType = ContainerAppJobTriggerType.Event;
-        job.Configuration.EventTriggerConfig.Scale.MinReplicas = 0;
-        job.Configuration.EventTriggerConfig.Scale.MaxReplicas = 10;
+        job.Configuration.EventTriggerConfig.Scale.MinExecutions = 1;
+        job.Configuration.EventTriggerConfig.Scale.MaxExecutions = 10;
         job.Configuration.EventTriggerConfig.Parallelism = 1;
-        job.Configuration.EventTriggerConfig.CompletionCount = 1;
+        job.Configuration.EventTriggerConfig.ReplicaCompletionCount = 1;
     });
 ```
 
@@ -120,8 +116,8 @@ builder.AddProject<Projects.ResourceIntensiveTask>("intensive-task")
     .PublishAsAzureContainerAppJob((_, job) =>
     {
         job.Configuration.TriggerType = ContainerAppJobTriggerType.Manual;
-        job.Template.InitContainers[0].Resources.Cpu = "1.0";
-        job.Template.InitContainers[0].Resources.Memory = "2Gi";
+        job.Template.Containers[0].Value!.Resources.Cpu = 1.0;
+        job.Template.Containers[0].Value!.Resources.Memory = "2Gi";
     });
 ```
 
@@ -136,7 +132,7 @@ builder.AddProject<Projects.DatabaseTask>("db-task")
     .PublishAsAzureContainerAppJob((infra, job) =>
     {
         job.Configuration.TriggerType = ContainerAppJobTriggerType.Manual;
-        job.Template.InitContainers[0].Env.Add(new ContainerAppEnvironmentVariable
+        job.Template.Containers[0].Value!.Env.Add(new ContainerAppEnvironmentVariable
         {
             Name = "ConnectionString",
             Value = connectionString.AsProvisioningParameter(infra)
@@ -153,9 +149,8 @@ builder.AddProject<Projects.RetryableTask>("retryable-task")
     .PublishAsAzureContainerAppJob((_, job) =>
     {
         job.Configuration.TriggerType = ContainerAppJobTriggerType.Manual;
-        job.Configuration.TimeoutInSeconds = 1800; // 30 minutes
-        job.Configuration.RetryPolicy.RetryLimit = 3;
-        job.Configuration.RetryPolicy.RetryLimitPolicy = ContainerAppJobRetryLimitPolicy.RestartFailedContainers;
+        job.Configuration.ReplicaTimeout = 1800; // 30 minutes
+        job.Configuration.ReplicaRetryLimit = 3;
     });
 ```
 

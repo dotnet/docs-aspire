@@ -798,6 +798,18 @@ var dataProcessor = builder.AddProject<Projects.DataProcessor>("data-processor")
 builder.Build().Run();
 ```
 
+Or use the `PublishAsScheduledAzureContainerAppJob` extension method to publish a resource as a job that runs on a schedule:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Publish a project as a Container App Job
+var dataProcessor = builder.AddProject<Projects.DataProcessor>("data-processor")
+    .PublishAsScheduledAzureContainerAppJob("0 0 * * *"); // Every day at midnight
+
+builder.Build().Run();
+```
+
 #### Job customization and configuration
 
 Use the callback on the `PublishAsAzureContainerAppJob(...)` method to customize the job:
@@ -808,9 +820,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 // Publish a project as a Container App Job
 var dataProcessor = builder.AddProject<Projects.DataProcessor>("data-processor")
     .PublishAsAzureContainerAppJob((infrastructure, job) => {
-        job.Configuration.TriggerType = TriggerType.Schedule;
-        // Runs automatically every 5 minutes.
-        job.Configuration.ScheduleTriggerConfig.CronExpression = "*/5 * * * *";
+        job.Configuration.ReplicaTimeout = 3600; // 1 hour
     });
 
 builder.Build().Run();
