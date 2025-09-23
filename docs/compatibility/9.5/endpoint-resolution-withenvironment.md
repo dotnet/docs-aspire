@@ -93,5 +93,5 @@ If you previously stored the published port for external binding, explicitly ret
 
 ## Affected APIs
 
-- <xref:Aspire.Hosting.EndpointProperty.Host?displayProperty=fullName>
-- <xref:Aspire.Hosting.EndpointProperty.Port?displayProperty=fullName>
+- <xref:Aspire.Hosting.ApplicationModel.EndpointProperty.Host?displayProperty=fullName>
+- <xref:Aspire.Hosting.ApplicationModel.EndpointProperty.Port?displayProperty=fullName>

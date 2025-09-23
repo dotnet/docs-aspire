@@ -20,8 +20,6 @@ The `aspire deploy` CLI command provides a streamlined way to deploy Aspire appl
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
-## Prerequisites
-
 Before using the `aspire deploy` command, ensure you have the following:
 
 - **Azure CLI**: Installed and authenticated with your Azure account.

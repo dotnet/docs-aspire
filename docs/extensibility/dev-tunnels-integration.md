@@ -116,7 +116,7 @@ This lets downstream resources use the tunneled address exactly like any other .
 
 ### Dev tunnel options
 
-The <xref:Aspire.Hosting.DevTunnels.DevTunnelOptions> class provides several configuration options:
+The `DevTunnelOptions` class provides several configuration options:
 
 | Property | Description |
 |--|--|
@@ -126,7 +126,7 @@ The <xref:Aspire.Hosting.DevTunnels.DevTunnelOptions> class provides several con
 
 ### Dev tunnel port options
 
-The <xref:Aspire.Hosting.DevTunnels.DevTunnelPortOptions> class provides configuration for individual tunnel ports:
+The `DevTunnelPortOptions` class provides configuration for individual tunnel ports:
 
 | Property | Description |
 |--|--|
@@ -177,7 +177,7 @@ Verify that:
 
 ## See also
 
-- [Dev tunnels service documentation](https://learn.microsoft.com/azure/developer/dev-tunnels/overview)
-- [Dev tunnels FAQ](https://learn.microsoft.com/azure/developer/dev-tunnels/faq)
+- [Dev tunnels service documentation](/azure/developer/dev-tunnels/overview)
+- [Dev tunnels FAQ](/azure/developer/dev-tunnels/faq)
 - [.NET Aspire service discovery](../service-discovery/overview.md)
 - [.NET Aspire networking overview](../fundamentals/networking-overview.md)

@@ -43,7 +43,7 @@ await parameter.ReadyAsync(); // Now possible (pattern representative; actual AP
 
 ## Type of breaking change
 
-This is a [behavioral](../../categories.md#behavioral-change) and [binary compatibility](../../categories.md#binary-compatibility) change.
+This is a [behavioral](../categories.md#behavioral-change) and [binary compatibility](../categories.md#binary-compatibility) change.
 
 ## Reason for change
 
@@ -68,6 +68,6 @@ Migration guidance (illustrative):
 
 ## Affected APIs
 
-- <xref:Aspire.Hosting.ParameterResource?displayProperty=fullName>
-- <xref:Aspire.Hosting.ConnectionStringResource?displayProperty=fullName>
-- <xref:Aspire.Hosting.IResourceWithoutLifetime?displayProperty=fullName> (removed from these resources)
+- <xref:Aspire.Hosting.ApplicationModel.ParameterResource>
+- <xref:Aspire.Hosting.ApplicationModel.ConnectionStringResource?displayProperty=fullName>
+- <xref:Aspire.Hosting.ApplicationModel.IResourceWithoutLifetime>

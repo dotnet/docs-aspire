@@ -58,7 +58,7 @@ Result: `MyService` is selected; `IISExpress` is ignored.
 
 ## Type of breaking change
 
-This is a [behavioral](../../categories.md#behavioral-change) change.
+This is a [behavioral](../categories.md#behavioral-change) change.
 
 ## Reason for change
 

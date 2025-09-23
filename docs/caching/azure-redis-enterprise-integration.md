@@ -124,7 +124,7 @@ dotnet add package Aspire.Microsoft.Azure.StackExchangeRedis
 
 ### Add Redis client
 
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisExtensions.AddRedisClientBuilder*> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register an `IConnectionMultiplexer` for use via the dependency injection container. The method takes a connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the `AddRedisClientBuilder` extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register an `IConnectionMultiplexer` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddRedisClientBuilder(connectionName: "azredisent");
@@ -157,7 +157,7 @@ This simplified approach automatically configures the Redis client to use Azure 
 
 ### Add keyed Redis client
 
-There might be situations where you want to register multiple `IConnectionMultiplexer` instances with different connection names. To register keyed Redis clients, call the <xref:Microsoft.Extensions.Hosting.AspireRedisExtensions.AddKeyedRedisClientBuilder*> method:
+There might be situations where you want to register multiple `IConnectionMultiplexer` instances with different connection names. To register keyed Redis clients, call the `AddKeyedRedisClientBuilder` method:
 
 ```csharp
 builder.AddKeyedRedisClientBuilder(name: "chat");

@@ -59,7 +59,7 @@ var volumeName = Hash(normalized); // Stable and deterministic
 
 ## Type of breaking change
 
-This is a [behavioral](../../categories.md#behavioral-change) change.
+This is a [behavioral](../categories.md#behavioral-change) change.
 
 ## Reason for change
 

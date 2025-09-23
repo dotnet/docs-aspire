@@ -81,7 +81,5 @@ Migration example (before -> after):
 ## Affected APIs
 
 - <xref:Aspire.Hosting.InteractionInput?displayProperty=fullName>
-- <xref:Aspire.Hosting.InteractionInputCollection?displayProperty=fullName>
 - <xref:Aspire.Hosting.InteractionInput.Name?displayProperty=fullName>
 - <xref:Aspire.Hosting.InteractionInput.Label?displayProperty=fullName>
-- <xref:Aspire.Hosting.InteractionInput.EffectiveLabel?displayProperty=fullName>
