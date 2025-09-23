@@ -876,20 +876,7 @@ Aspire 9.5 enhances the deployment experience by automatically prompting for unr
 
 #### Interactive parameter resolution
 
-When deploying your Aspire application, any parameters without values are now automatically detected and prompted for interactively:
-
-```bash
-# Deploy command detects missing parameters and prompts automatically
-aspire deploy
-
-🔧 Resolving deployment parameters...
-
-Enter value for 'database-password' (secret): ********
-Enter value for 'api-key' (secret): **********************
-Enter value for 'environment-name': production
-
-✅ All parameters resolved, proceeding with deployment...
-```
+When deploying your Aspire application, any parameters without values are now automatically detected and prompted for interactively.
 
 #### Benefits of interactive parameter prompting
 
@@ -898,13 +885,7 @@ Enter value for 'environment-name': production
 - **Error prevention**: Missing parameters are caught before deployment begins
 - **Better developer experience**: Clear prompts with parameter descriptions
 
-#### Parameter types supported
-
-- **Secret parameters**: Automatically masked input for sensitive values
-- **Standard parameters**: Regular text input with validation
-- **Optional parameters**: Skipped if no value is provided
-
-This feature builds on the existing parameter infrastructure and makes deployment workflows more intuitive, especially when working with multiple environments or sharing deployment scripts across team members.
+This feature builds on the existing parameter infrastructure and interaction service, making deployment workflows more intuitive, especially when working with multiple environments or sharing deployment scripts across team members.
 
 ### Azure Container App Jobs support
 
@@ -989,34 +970,26 @@ These overloads provide convenient APIs for the most common job types while main
 
 9.5 delivers the first iteration of the Azure provisioning & deployment pipeline that unifies interactive prompting, Bicep compilation, and mode-specific behavior (run vs publish) across Azure resources:
 
-- New provisioning contexts separate run-mode and publish-mode flows ([#11094](https://github.com/dotnet/aspire/pull/11094)).
-- Graph-based dependency planning (`ResourceDeploymentGraph`) ensures correct ordering of resource provisioning.
-- Improved error handling and idempotency for `AddAsExistingResource` across all Azure resources ([#10562](https://github.com/dotnet/aspire/issues/10562)).
-- Support for deploying compute images and resources (custom images referenced in your environment) ([#11030](https://github.com/dotnet/aspire/pull/11030)).
-- Deploy individual Bicep modules instead of a monolithic `main.bicep` for clearer failure isolation and faster iteration ([#11098](https://github.com/dotnet/aspire/pull/11098)).
-- Localized interaction + notification strings across all provisioning prompts (multiple OneLocBuild PRs).
+- New provisioning contexts separate run-mode and publish-mode flows
+- Graph-based dependency planning (`ResourceDeploymentGraph`) ensures correct ordering of resource provisioning
+- Improved error handling and idempotency for `AddAsExistingResource` across all Azure resources
+- Support for deploying compute images and resources (custom images referenced in your environment)
+- Deploy individual Bicep modules instead of a monolithic `main.bicep` for clearer failure isolation and faster iteration
+- Localized interaction + notification strings across all provisioning prompts
 
 Provisioning automatically prompts for required values only once per run, caches results, and reuses them in publish-mode without re-prompting. This reduces friction when iterating locally while maintaining reproducibility for production publish.
 
-### Azure deployer interactive command handling
-
-The AppHost now wires Azure provisioning prompts into the standard interaction system (initial work in [#10038](https://github.com/dotnet/aspire/pull/10038), extended in [#10792](https://github.com/dotnet/aspire/pull/10792) and [#10845](https://github.com/dotnet/aspire/pull/10845)). This enables:
-
-- Consistent UX for parameter entry (names, descriptions, validation)
-- Localized prompt text
-- Support for non-interactive scenarios via pre-supplied parameters
-
 ### Azure resource idempotency & existing resources
 
-Calling `AddAsExistingResource` is now idempotent across Azure hosting resource builders; repeated calls no longer cause duplicate annotations or inconsistent behavior ([#10562](https://github.com/dotnet/aspire/issues/10562)). This improves reliability when composing reusable extension methods.
+Calling `AddAsExistingResource` is now idempotent across Azure hosting resource builders; repeated calls no longer cause duplicate annotations or inconsistent behavior. This improves reliability when composing reusable extension methods.
 
 ### Compute image deployment
 
-You can now reference and deploy custom compute images as part of Azure environment provisioning ([#11030](https://github.com/dotnet/aspire/pull/11030)). This lays groundwork for richer VM/container hybrid topologies.
+You can now reference and deploy custom compute images as part of Azure environment provisioning. This lays groundwork for richer VM/container hybrid topologies.
 
 ### Module-scoped Bicep deployment
 
-Instead of generating a single aggregated template, 9.5 deploys individual Bicep modules ([#11098](https://github.com/dotnet/aspire/pull/11098)). Failures surface with more precise context and partial successes require less rework.
+Instead of generating a single aggregated template, 9.5 deploys individual Bicep modules, so failures surface with more precise context and partial successes require less rework.
 
 ### Publishing progress & activity reporting
 
@@ -1024,11 +997,9 @@ Instead of generating a single aggregated template, 9.5 deploys individual Bicep
 
 ### Parameter & interaction API updates
 
-- `ParameterResource.Value` is now obsolete: switch to `await parameter.GetValueAsync()` or inject parameter resources directly ([#10363](https://github.com/dotnet/aspire/pull/10363)). This change improves async value acquisition and avoids accidental blocking.
-- Interaction inputs enforce server-side validation and required `Name` property (breaking, [#10835](https://github.com/dotnet/aspire/pull/10835)).
-- New notification terminology (renamed from MessageBar, [#10449](https://github.com/dotnet/aspire/pull/10449)).
-- `ExecuteCommandResult` now includes a `Canceled` property to track whether command execution was canceled by the user or system.
-- Server-side validation of interaction inputs ([#10527](https://github.com/dotnet/aspire/pull/10527)).
+- `ParameterResource.Value` is now obsolete: switch to `await parameter.GetValueAsync()` or inject parameter resources directly. This change improves async value acquisition and avoids accidental blocking
+- Interaction inputs enforce server-side validation and required `Name` property
+- `ExecuteCommandResult` now includes a `Canceled` property to track whether command execution was canceled by the user or system
 
 Migration example:
 
@@ -1038,31 +1009,6 @@ var value = myParam.Value;
 
 // After
 var value = await myParam.GetValueAsync();
-```
-
-### InteractionInput API improvements
-
-**Breaking change**: `InteractionInput` now requires `Name`; `Label` is optional (#10835).
-
-#### Migration example
-
-```csharp
-// Before (9.4 and earlier)
-var input = new InteractionInput
-{
-    Label = "Database Password",
-    InputType = InputType.SecretText,
-    Required = true
-};
-
-// After (9.5+)
-var input = new InteractionInput
-{
-    Name = "database_password", // Required field identifier
-    Label = "Database Password", // Optional (defaults to Name)
-    InputType = InputType.SecretText,
-    Required = true
-};
 ```
 
 This enables better form serialization and integration with interactive parameter processing.
@@ -1173,7 +1119,7 @@ The `InteractionInputCollection` provides indexed access by name and improved ty
 
 ### Docker Compose Aspire Dashboard forwarding headers
 
-`AddDockerComposeEnvironment(...).WithDashboard()` gained `WithForwardedHeaders()` to enable forwarded `Host` and `Proto` handling for dashboard scenarios behind reverse proxies or compose networks ([#11080](https://github.com/dotnet/aspire/pull/11080)). This mirrors the standalone dashboard forwarded header support and fixes auth redirect edge cases.
+`AddDockerComposeEnvironment(...).WithDashboard()` gained `WithForwardedHeaders()` to enable forwarded `Host` and `Proto` handling for dashboard scenarios behind reverse proxies or compose networks. This mirrors the standalone dashboard forwarded header support and fixes auth redirect edge cases.
 
 ```csharp
 builder.AddDockerComposeEnvironment("env")
@@ -1183,7 +1129,7 @@ builder.AddDockerComposeEnvironment("env")
 
 ### Container build customization
 
-`ContainerBuildOptions` support (commit [#10074](https://github.com/dotnet/aspire/pull/10074)) enables customizing the underlying `dotnet publish` invocation when Aspire builds project-sourced container images (for example to change configuration, trimming, or pass additional MSBuild properties). Use the new options hook on the project container image configuration to set MSBuild properties instead of maintaining a custom Dockerfile. (Exact API surface is intentionally summarized here to avoid drift; see API docs for `ContainerBuildOptions` in the hosting namespace for usage.)
+`ContainerBuildOptions` support enables customizing the underlying `dotnet publish` invocation when Aspire builds project-sourced container images (for example to change configuration, trimming, or pass additional MSBuild properties). Use the new options hook on the project container image configuration to set MSBuild properties instead of maintaining a custom Dockerfile. (Exact API surface is intentionally summarized here to avoid drift; see API docs for `ContainerBuildOptions` in the hosting namespace for usage.)
 
 ### Deployment image tag callbacks
 
@@ -1287,3 +1233,36 @@ var backend = builder.AddProject<Projects.Backend>("backend")
 ```
 
 ## 💔 Breaking changes
+
+### InteractionInput API requires Name property
+
+**Breaking change**: `InteractionInput` now requires a `Name` property, while `Label` becomes optional ([#10835](https://github.com/dotnet/aspire/pull/10835)).
+
+#### Migration example
+
+```csharp
+// Before (9.4 and earlier)
+var input = new InteractionInput
+{
+    Label = "Database Password",
+    InputType = InputType.SecretText,
+    Required = true
+};
+
+// After (9.5+)
+var input = new InteractionInput
+{
+    Name = "database_password", // Required field identifier
+    Label = "Database Password", // Optional (defaults to Name)
+    InputType = InputType.SecretText,
+    Required = true
+};
+```
+
+This change enables better form serialization and integration with interactive parameter processing.
+
+### Notification terminology renamed from MessageBar
+
+**Breaking change**: Notification terminology has been updated, with MessageBar renamed to use new notification terminology ([#10449](https://github.com/dotnet/aspire/pull/10449)).
+
+This change affects APIs and terminology used in the notification system, requiring updates to code that references the old MessageBar naming conventions.
