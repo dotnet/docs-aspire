@@ -124,10 +124,10 @@ dotnet add package Aspire.Microsoft.Azure.StackExchangeRedis
 
 ### Add Redis client
 
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisExtensions.AddRedisClient*> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register an `IConnectionMultiplexer` for use via the dependency injection container. The method takes a connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireRedisExtensions.AddRedisClientBuilder*> extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register an `IConnectionMultiplexer` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
-builder.AddRedisClient(connectionName: "azredisent");
+builder.AddRedisClientBuilder(connectionName: "azredisent");
 ```
 
 > [!TIP]
@@ -149,7 +149,7 @@ For more information on dependency injection, see [.NET dependency injection](/d
 By default, when you call `AddAzureRedisEnterprise` in your Azure Managed Redis hosting integration, it configures Microsoft Entra ID. To enable authentication in your client application, use the `WithAzureAuthentication()` method:
 
 ```csharp
-builder.AddRedisClient("azredisent")
+builder.AddRedisClientBuilder("azredisent")
        .WithAzureAuthentication();
 ```
 
@@ -157,11 +157,11 @@ This simplified approach automatically configures the Redis client to use Azure 
 
 ### Add keyed Redis client
 
-There might be situations where you want to register multiple `IConnectionMultiplexer` instances with different connection names. To register keyed Redis clients, call the <xref:Microsoft.Extensions.Hosting.AspireRedisExtensions.AddKeyedRedisClient*> method:
+There might be situations where you want to register multiple `IConnectionMultiplexer` instances with different connection names. To register keyed Redis clients, call the <xref:Microsoft.Extensions.Hosting.AspireRedisExtensions.AddKeyedRedisClientBuilder*> method:
 
 ```csharp
-builder.AddKeyedRedisClient(name: "chat");
-builder.AddKeyedRedisClient(name: "queue");
+builder.AddKeyedRedisClientBuilder(name: "chat");
+builder.AddKeyedRedisClientBuilder(name: "queue");
 ```
 
 Then you can retrieve the `IConnectionMultiplexer` instances using dependency injection. For example, to retrieve the connection from an example service:
@@ -210,7 +210,7 @@ For more information on how to format this connection string, see the [Stack Exc
 You can also pass the `Action<StackExchangeRedisSettings>` delegate to set up some or all the options inline, for example to configure `DisableTracing`:
 
 ```csharp
-builder.AddRedisClient(
+builder.AddRedisClientBuilder(
     "azredisent",
     static settings => settings.DisableTracing = true);
 ```
