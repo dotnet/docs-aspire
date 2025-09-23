@@ -1,7 +1,8 @@
 ---
 title: What's new in Aspire 9.5
 description: Learn what's new in Aspire 9.5.
-ms.date: 09/17/2025
+ms.date: 09/22/2025
+ai-usage: ai-assisted
 ---
 
 ## What's new in Aspire 9.5
@@ -12,9 +13,9 @@ ms.date: 09/17/2025
 - .NET 9.0 Standard Term Support (STS)
 - .NET 10.0 RC (release candidate) 1
 
-If you have feedback, questions, or want to contribute to Aspire, collaborate with us on [:::image type="icon" source="../media/github-mark.svg" border="false"::: GitHub](https://github.com/dotnet/aspire) or join us on [:::image type="icon" source="../media/discord-icon.svg" border="false"::: Discord](https://aka.ms/aspire-discord) to chat with the team and other community members.
+If you have feedback, questions, or want to contribute to Aspire, collaborate on [:::image type="icon" source="../media/github-mark.svg" border="false"::: GitHub](https://github.com/dotnet/aspire) or join the community on [:::image type="icon" source="../media/discord-icon.svg" border="false"::: Discord](https://aka.ms/aspire-discord) to chat with the team and other community members.
 
-It's important to note that Aspire releases out-of-band from .NET releases. While major versions of Aspire align with major .NET versions, minor versions are released more frequently. For more information on .NET and Aspire version support, see:
+Aspire releases out-of-band from .NET releases. Major versions of Aspire align with major .NET versions, while minor versions release more frequently. For information about .NET and Aspire version support, see:
 
 - [.NET support policy](https://dotnet.microsoft.com/platform/support/policy): Definitions for LTS and STS.
 - [Aspire support policy](https://dotnet.microsoft.com/platform/support/policy/aspire): Important unique product lifecycle details.
@@ -28,7 +29,7 @@ It's important to note that Aspire releases out-of-band from .NET releases. Whil
 Moving between minor releases of Aspire is simple:
 
 1. Get the latest release of the Aspire CLI:
-    
+
     ```bash
     # Bash
     curl -sSL https://aspire.dev/install.sh | bash
@@ -54,15 +55,17 @@ Moving between minor releases of Aspire is simple:
     ```
 
   > [!NOTE]
-  > The `dotnet new install` command will update existing Aspire templates to the latest version if they are already installed.
+    > The `dotnet new install` command updates existing Aspire templates to the latest version if they're already installed.
 
-If your AppHost project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using Aspire 8. To upgrade to 9, follow [the upgrade guide](../get-started/upgrade-to-aspire-9.md).
+If your AppHost project file doesn't have the [`Aspire.AppHost.Sdk` reference](../fundamentals/dotnet-aspire-sdk.md), you might still be using Aspire 8. To upgrade to 9, follow [the upgrade guide](../get-started/upgrade-to-aspire-9.md).
 
 ## 🛠️ CLI and tooling
 
+The Aspire CLI has several new features and improvements in 9.5. Learn about them in the following sections.
+
 ### Channel-aware `aspire add` & templating
 
-You can now pick packages from different channels or versions during `aspire add`. Additionally, friendly name generation is now more flexible for searching packages.
+Pick packages from different channels or versions during `aspire add`. Friendly name generation is more flexible for searching packages.
 
 ### New `aspire update` command (preview)
 
@@ -73,23 +76,23 @@ The new `aspire update` command helps you keep your Aspire projects current by a
 aspire update
 ```
 
-This command updates your SDK, AppHost packages, and any Aspire client integrations used in the app. It validates package compatibility and asks for confirmation before applying changes. Like `add`, `update` is channel aware, so you can choose to update to stable, daily, or your own configuration of builds.
+This command updates your SDK, AppHost packages, and any Aspire client integrations used in the app. It validates package compatibility and asks for confirmation before applying changes. Like `add`, `update` is channel aware, so you can choose to update to stable, daily, or a custom configuration of builds.
 
 > [!IMPORTANT]
-> 🧪 **Preview Feature**: The `aspire update` command is in preview and may change before general availability.
+> The `aspire update` command is in preview and may change before general availability. For more information, see [Aspire CLI Overview](../cli/overview.md).
 
 ### Enhanced markdown and styling support
 
 The CLI now has better markdown rendering support for an improved developer experience:
 
-- **Code fences** with syntax highlighting for better readability
-- **Rich text formatting** including emphasis, bold, and inline code
-- **Structured lists** with bullet points and numbering
-- **Safe markup escaping** to prevent XSS and rendering issues
+- **Code fences** with syntax highlighting for better readability.
+- **Rich text formatting** including emphasis, bold, and inline code.
+- **Structured lists** with bullet points and numbering.
+- **Safe markup escaping** to prevent XSS and rendering issues.
 
 ### File-based AppHost support (preview)
 
-Aspire 9.5 introduces infrastructure for .NET 10's new file-based apps feature, meaning you only need 1 file - and no project file! - for your Aspire apphost. The new capabilities are currently behind a feature flag that elevates the minimum .NET SDK requirement to prepare for upcoming file-based app execution scenarios.
+Aspire 9.5 introduces infrastructure for .NET 10's new file-based apps feature, so you need only one file—and no project file—for your Aspire AppHost. The new capabilities are behind a feature flag that elevates the minimum .NET SDK requirement to prepare for upcoming file-based app execution scenarios.
 
 ```bash
 # Enable file-based AppHost ("apphost.cs") support
@@ -98,8 +101,8 @@ aspire config set features.singlefileAppHostEnabled true
 
 **SDK version requirements:**
 
-- **Feature enabled**: Requires .NET SDK 10.0.100 RC1 or later
-- **Override support**: Manual SDK version overrides continue to work with highest precedence
+- **Feature enabled**: Requires .NET SDK 10.0.100 RC1 or later.
+- **Override support**: Manual SDK version overrides continue to work with highest precedence.
 
 You can use `aspire new` to create a new, blank file-based apphost:
 
@@ -112,18 +115,18 @@ builder.Build().Run();
 
 ```
 
-Then add some resources, use `aspire add` the same as you would with a project-based apphost, and `aspire run` to start!
+Then add resources, use `aspire add` the same way you do with a project-based AppHost, and run `aspire run` to start. For more information, see the [`aspire add`](../cli-reference/aspire-add.md) and [`aspire run`](../cli-reference/aspire-run.md) command reference documentation.
 
-### SSH Remote support for port forwarding in VS Code
+### SSH remote support for port forwarding in VS Code
 
 Version 9.5 adds first-class support for SSH Remote development environments, extending automatic port forwarding configuration to VS Code SSH Remote scenarios alongside existing Devcontainer and Codespaces support.
 
 **Features:**
 
-- **Automatic environment detection**: Detects SSH Remote scenarios via `VSCODE_IPC_HOOK_CLI` and `SSH_CONNECTION` environment variables
-- **Seamless port forwarding**: Automatically configures VS Code settings for Aspire application endpoints
-- **Consistent developer experience**: Matches existing behavior for Devcontainers and Codespaces
-- **No configuration required**: Works out-of-the-box when using VS Code SSH Remote extension
+- **Automatic environment detection**: Detects SSH Remote scenarios via `VSCODE_IPC_HOOK_CLI` and `SSH_CONNECTION` environment variables.
+- **Seamless port forwarding**: Automatically configures VS Code settings for Aspire application endpoints.
+- **Consistent developer experience**: Matches existing behavior for Devcontainers and Codespaces.
+- **No configuration required**: Works out-of-the-box when using VS Code SSH Remote extension.
 
 SSH Remote environments are automatically detected when both environment variables are present:
 
@@ -136,7 +139,7 @@ export VSCODE_IPC_HOOK_CLI="/path/to/vscode/hook"
 aspire run
 ```
 
-The SSH Remote support follows the exact same patterns as existing Devcontainer and Codespaces integration, ensuring a consistent experience across all VS Code remote development scenarios. Port forwarding settings are automatically written to `.vscode-server/data/Machine/settings.json` when SSH Remote environments are detected.
+The SSH Remote support follows the exact same patterns as existing Devcontainer and Codespaces integration, ensuring a consistent experience across all VS Code remote development scenarios. Port forwarding settings are automatically written to _.vscode-server/data/Machine/settings.json_ when SSH Remote environments are detected.
 
 ### `aspire exec` command (preview) enhancements
 
@@ -144,9 +147,9 @@ The `aspire exec` command allows you to execute commands within the context of y
 
 Building on the 9.4 preview, version 9.5 adds several key improvements:
 
-- `--workdir` (`-w`) flag to run commands inside a specific working directory (#10912)
-- Fail-fast argument validation with clearer error messages (#10606)
-- Improved help and usage text for better developer experience (#10598)
+- `--workdir` (`-w`) flag to run commands inside a specific working directory (#10912).
+- Fail-fast argument validation with clearer error messages (#10606).
+- Improved help and usage text for better developer experience (#10598).
 
 #### Basic usage examples
 
@@ -163,27 +166,31 @@ aspire exec --start-resource my-worker -- npm run build
 
 #### Command syntax
 
-- Use `--resource` to execute immediately when AppHost starts
-- Use `--start-resource` to wait for the resource to be running first
-- Use `--workdir` to specify the working directory for the command
-- Use `--` to separate aspire options from the command to execute
+- Use `--resource` to execute immediately when AppHost starts.
+- Use `--start-resource` to wait for the resource to be running first.
+- Use `--workdir` to specify the working directory for the command.
+- Use `--` to separate Aspire options from the command to execute.
 
-> [!IMPORTANT]
-> 🧪 **Feature Flag**: The `aspire exec` command requires explicit enablement with:
+> [!NOTE]
+> This command is disabled by default. To use it, turn on the feature toggle by running:
 >
-> ```bash
+> ```Aspire
 > aspire config set features.execCommandEnabled true
 > ```
+>
+> For more information, see [aspire config command](aspire-config.md).
+
+For more information, see the [aspire exec command reference](../cli-reference/aspire-exec.md).
 
 ### Other tweaks
 
-- Relative path included in AppHost status messages
-- Clean CLI debug logging with reduced noise
-- Directory safety check for `aspire new` and consistent template inputs
-- Refactored NuGet prefetch architecture reducing UI lag during `aspire new` on macOS and enabling command-aware caching. Temporary NuGet config improvements ensure wildcard mappings
-- Context-sensitive completion messages for publish/deploy
-- Interaction answer typing change (`object`) for future extensibility
-- Improved CTRL+C message and experience
+- Relative path included in AppHost status messages.
+- Clean CLI debug logging with reduced noise.
+- Directory safety check for `aspire new` and consistent template inputs.
+- Refactored NuGet prefetch architecture reduces UI lag during `aspire new` on macOS and enables command-aware caching. Temporary NuGet config improvements ensure wildcard mappings.
+- Context-sensitive completion messages for publish and deploy.
+- Interaction answer typing change (`object`) for future extensibility.
+- Improved CTRL+C message and experience.
 
 > The `aspire exec` and `aspire update` commands remain in preview behind feature flags; behavior may change in a subsequent release.
 
@@ -197,9 +204,9 @@ Aspire 9.5 introduces the GenAI visualizer, which collates, summarizes, and visu
 🚀 JSON/XML payloads highlighted and indented  
 🖼️ Preview Markdown and multimodal content (e.g., images)  
 
-If GenAI-specific telemetry is found in an OTEL span, a sparkle (✨) icon will appear next to its name in the Traces view. Clicking the icon launches the visualizer dialog.
+If GenAI-specific telemetry is found in an OTEL span, a sparkle (✨) icon appears next to its name in the Traces view. Selecting the icon launches the visualizer dialog.
 
-The [GenAI telemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/) are evolving rapidly. The visualizer supports multiple versions of the telemetry, and we will update it as the conventions move toward a stable release.
+The [GenAI telemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/) are evolving rapidly. The visualizer supports multiple versions of the telemetry and updates as the conventions move toward a stable release.
 
 :::image type="content" source="media/dashboard-geni-visualizer.gif" lightbox="media/dashboard-geni-visualizer.gif" alt-text="Recording of the GenAI visualizer.":::
 
@@ -207,8 +214,8 @@ The [GenAI telemetry semantic conventions](https://opentelemetry.io/docs/specs/s
 
 Icons and clickable buttons have been added to property grids in resource details, log entry details, and span details.
 
-- **Icons** improve visual clarity. For example, quickly see that a resource isn't in a healthy state if the icon is red or yellow.  
-- **Clickable buttons** improve navigation. For example, click on a resource name or telemetry ID to navigate to a different page for more information.
+- **Icons** improve visual clarity. For example, quickly see that a resource isn't in a healthy state if the icon is red or yellow.
+- **Clickable buttons** improve navigation. For example, select a resource name or telemetry ID to navigate to a different page for more information.
 
 :::image type="content" source="media/dashboard-rich-property-grid.png" lightbox="media/dashboard-rich-property-grid.png" alt-text="Screenshot of property grid with icons.":::
 
@@ -216,14 +223,14 @@ Icons and clickable buttons have been added to property grids in resource detail
 
 A new "All" option in the console logs view streams logs from every running resource simultaneously.
 
-- **Unified log stream**: See logs from all resources in chronological order.  
+- **Unified log stream**: View logs from all resources in chronological order.
 - **Color-coded prefixes**: Each resource gets a deterministic color for easy identification.
 
 :::image type="content" source="media/dashboard-console-logs-all.png" lightbox="media/dashboard-console-logs-all.png" alt-text="Screenshot of the console logs page displaying (All) logs.":::
 
 ### Custom resource icons
 
-Resources can now specify custom icons and their variant — Filled (default) or Regular — using `WithIconName()` for better visual identification in dashboard views. Any [Fluent UI system icons](https://github.com/microsoft/fluentui-system-icons/blob/main/icons_filled.md) can be used.
+Resources can specify custom icons and their variant—Filled (default) or Regular—using `WithIconName()` for better visual identification in dashboard views. Any [Fluent UI system icons](https://github.com/microsoft/fluentui-system-icons/blob/main/icons_filled.md) can be used.
 
 ```csharp
 var postgres = builder.AddPostgres("database")
@@ -236,7 +243,7 @@ var api = builder.AddProject<Projects.Api>("api")
     .WithIconName("webAsset", ApplicationModel.IconVariant.Regular);
 ```
 
-This helps teams quickly identify different types of resources in complex applications with many services. Custom resource icons now also apply to project and container resources via unified annotation, providing consistent visual identification across all resource types.
+This capability helps you quickly identify different resource types in complex applications with many services. Custom resource icons also apply to project and container resources via unified annotation, providing consistent visual identification across all resource types.
 
 ### Reverse proxy support
 
@@ -247,11 +254,11 @@ The dashboard now properly handles reverse proxy scenarios with explicit forward
 export ASPIRE_DASHBOARD_FORWARDEDHEADERS_ENABLED=true
 ```
 
-This is particularly useful for deployment scenarios where the dashboard is accessed through a load balancer or reverse proxy.
+This behavior is useful for deployment scenarios where the dashboard is accessed through a load balancer or reverse proxy.
 
 ### Container runtime notifications
 
-Notifications now appear when Docker or Podman is installed but unhealthy, with automatic dismissal when the runtime recovers. This provides immediate feedback when your container runtime needs attention, helping diagnose startup issues faster.
+Notifications appear when Docker or Podman is installed but unhealthy, with automatic dismissal when the runtime recovers. This provides immediate feedback when your container runtime needs attention and helps you diagnose startup issues faster.
 
 :::image type="content" source="media/dashboard-container-warning.png" lightbox="media/dashboard-container-warning.png" alt-text="Screenshot of the dashboard showing the container runtime warning.":::
 
@@ -259,7 +266,7 @@ Notifications now appear when Docker or Podman is installed but unhealthy, with 
 
 The Traces page now has a type filter, a quick way to find traces and spans for the selected operation type.
 
-For example, choose Messaging 📬 to see only traces from your app that interact with RabbitMQ, Azure Service Bus, etc.
+For example, choose Messaging 📬 to see only traces from your app that interact with RabbitMQ or Azure Service Bus.
 
 :::image type="content" source="media/dashboard-trace-type.png" lightbox="media/dashboard-trace-type.png" alt-text="Screenshot of the traces page showing the type filter.":::
 
@@ -275,20 +282,22 @@ The trace detail page includes several quality-of-life improvements:
 
 ### Other improvements
 
-- Resource action menus now use sub-menus to prevent overflow on complex apps
-- Projects show their associated launch profiles
-- Error spans use consistent error styling
-- Better default icons for parameters and services
-- Enhanced port parsing
-- Message truncation for long log entries
-- Optional log line wrapping
-- Improved text visualizer dialog
-- Comprehensive dashboard localization improvements including localized Launch Profile names
-- Embedded log entries within trace spans
-- Better span timing calculations
-- Accessibility improvements with better toolbar/menu overflow handling, improved keyboard navigation, semantic headings, and mobile navigation scroll fixes
+- Resource action menus now use sub-menus to prevent overflow on complex apps.
+- Projects show their associated launch profiles.
+- Error spans use consistent error styling.
+- Better default icons for parameters and services.
+- Enhanced port parsing.
+- Message truncation for long log entries.
+- Optional log line wrapping.
+- Improved text visualizer dialog.
+- Comprehensive dashboard localization improvements including localized launch profile names.
+- Embedded log entries within trace spans.
+- Better span timing calculations.
+- Accessibility improvements with better toolbar and menu overflow handling, improved keyboard navigation, semantic headings, and mobile navigation scroll fixes.
 
 ## 📦 Integration changes and additions
+
+There are a number of new and improved integrations in Aspire 9.5, including:
 
 ### OpenAI hosting integration
 
@@ -344,21 +353,21 @@ var chatModel = github.AddModel("chat", GitHubModel.OpenAI.Gpt4oMini);
 var embeddingModel = github.AddModel("embeddings", GitHubModel.OpenAI.TextEmbedding3Large);
 ```
 
-### Dev Tunnels hosting integration
+### Dev tunnels hosting integration
 
-Aspire 9.5 introduces first-class support for Dev Tunnels, enabling seamless integration of secure public tunnels for your applications during development and testing scenarios.
+Aspire 9.5 introduces first-class support for [Dev tunnels](/azure/developer/dev-tunnels/overview), enabling secure public HTTPS tunnels to your locally running applications for development and testing. This highly requested capability lets you quickly validate webhooks, share in-progress builds, and test mobile or cross-network clients without manual port forwarding or third-party tooling. You gain automatic tunnel lifecycle management, optional anonymous or private access modes, and seamless integration with other Aspire resources.
 
 **Features:**
 
-- **Secure public tunnels**: Create public HTTPS endpoints for applications running locally
-- **Automatic tunnel management**: Tunnels are created, configured, and cleaned up automatically
-- **Private and anonymous tunnels**: Support for both authenticated private tunnels and public anonymous access
-- **Development workflow integration**: Perfect for webhook testing, mobile app development, and external service integration
+- **Secure public tunnels**: Create public HTTPS endpoints for applications running locally.
+- **Automatic tunnel management**: Tunnels are created, configured, and cleaned up automatically.
+- **Private and anonymous tunnels**: Support for both authenticated private tunnels and public anonymous access.
+- **Development workflow integration**: Perfect for webhook testing, mobile app development, and external service integration.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Add a basic Dev Tunnel resource (default: private access)
+// Add a basic Dev tunnel resource (default: private access)
 var tunnel = builder.AddDevTunnel("dev-tunnel");
 
 // Add your web application
@@ -370,7 +379,7 @@ tunnel.WithReference(webApp.GetEndpoint("http"));
 builder.Build().Run();
 ```
 
-The Dev Tunnels integration automatically handles Azure authentication, tunnel lifecycle management, and provides public or private URLs (depending on configuration) to connected resources, making it easy to expose local development services securely to external consumers. Dev Tunnels also improves support for mobile dev, such as .NET MAUI, making it easy to launch both your backend and mobile app at once without complex dev-time config.
+The Dev tunnels integration automatically handles Azure authentication, tunnel lifecycle management, and provides public or private URLs (depending on configuration) to connected resources, making it easy to expose local development services securely to external consumers. Dev tunnels also improves support for mobile dev, such as .NET MAUI, making it easy to launch both your backend and mobile app at once without complex dev-time config.
 
 ### YARP static files support
 
@@ -378,10 +387,10 @@ Aspire 9.5 adds comprehensive static file serving capabilities to the YARP integ
 
 **Features:**
 
-- **Direct static file serving**: Serve HTML, CSS, JS, and other static assets from YARP
-- **Flexible source options**: Bind mount local directories or use Docker multi-stage builds
-- **Automatic configuration**: Simple API enables static files with minimal setup
-- **Production ready**: Works in both development and publish scenarios
+- **Direct static file serving**: Serve HTML, CSS, JS, and other static assets from YARP.
+- **Flexible source options**: Bind mount local directories or use Docker multi-stage builds.
+- **Automatic configuration**: Simple API enables static files with minimal setup.
+- **Production ready**: Works in both development and publish scenarios.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -441,10 +450,10 @@ Redis and RabbitMQ connections now support auto activation to prevent startup de
 
 **Features:**
 
-- **Eliminates blocking threads**: Connections are established proactively at startup rather than on first use
-- **Prevents startup deadlocks**: Avoids synchronous connection establishment in dependency injection scenarios
-- **Improves reliability**: Reduces first-request latency by pre-establishing connections
-- **Configurable behavior**: Can be enabled or disabled per connection as needed
+- **Eliminates blocking threads**: Connections are established proactively at startup rather than on first use.
+- **Prevents startup deadlocks**: Avoids synchronous connection establishment in dependency injection scenarios.
+- **Improves reliability**: Reduces first-request latency by pre-establishing connections.
+- **Configurable behavior**: Can be enabled or disabled per connection as needed.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -484,10 +493,10 @@ Aspire 9.5 introduces a new Redis client builder pattern that provides a fluent,
 
 **Features:**
 
-- **Fluent configuration**: Chain multiple Redis features like distributed caching, output caching, and Azure authentication
-- **Type-safe builders**: `AspireRedisClientBuilder` provides compile-time safety and IntelliSense
-- **Integrated Azure authentication**: Seamless Azure AD/Entra ID authentication with `WithAzureAuthentication`
-- **Service composition**: Build complex Redis configurations with multiple features in a single call chain
+- **Fluent configuration**: Chain multiple Redis features like distributed caching, output caching, and Azure authentication.
+- **Type-safe builders**: `AspireRedisClientBuilder` provides compile-time safety and IntelliSense.
+- **Integrated Azure authentication**: Seamless Azure AD/Entra ID authentication with `WithAzureAuthentication`.
+- **Service composition**: Build complex Redis configurations with multiple features in a single call chain.
 
 #### Basic Redis client builder usage
 
@@ -501,8 +510,6 @@ builder.AddRedisClientBuilder("cache")
 var app = builder.Build();
 app.Run();
 ```
-
-**Advanced Redis builder patterns:**
 
 #### Advanced Redis builder patterns
 
@@ -578,7 +585,7 @@ Azure Redis Enterprise provides advanced caching capabilities with clustering, h
 
 ### Azure Storage emulator improvements
 
-Aspire now pulls Azurite version 3.35.0 by default, resolving health check issues that previously returned HTTP 400 responses. This improves the reliability of Azure Storage emulator health checks during development.
+Aspire now pulls Azurite version 3.35.0 by default, resolving health check issues that previously returned HTTP 400 responses. This change improves the reliability of Azure Storage emulator health checks during development.
 
 ### Broader Azure resource capability surfacing
 
@@ -730,10 +737,10 @@ var rabbitmq = builder.AddContainer("myapp", "mycontainerapp")
 
 **What you need to review:**
 
-- **Container deployments**: Your apps will now receive correct container hostnames
-- **Local development**: Localhost behavior preserved for non-containerized scenarios  
-- **Connection strings**: Automatic connection strings continue to work as expected
-- **Manual environment**: Review custom `WithEnvironment` calls that assume localhost
+- **Container deployments**: Your apps now receive correct container hostnames.
+- **Local development**: Localhost behavior preserved for non-containerized scenarios.
+- **Connection strings**: Automatic connection strings continue to work as expected.
+- **Manual environment**: Review custom `WithEnvironment` calls that assume localhost.
 
 ### HTTP health probes for resources
 
@@ -741,10 +748,10 @@ Aspire 9.5 introduces comprehensive HTTP health probe support that allows you to
 
 **Features:**
 
-- **Multiple probe types**: Configure startup, readiness, and liveness probes independently
-- **Flexible endpoint targeting**: Probe any HTTP endpoint with custom paths and configurations
-- **Configurable timing**: Control probe intervals, timeouts, and failure thresholds
-- **Kubernetes alignment**: Probe semantics align with Kubernetes health check concepts
+- **Multiple probe types**: Configure startup, readiness, and liveness probes independently.
+- **Flexible endpoint targeting**: Probe any HTTP endpoint with custom paths and configurations.
+- **Configurable timing**: Control probe intervals, timeouts, and failure thresholds.
+- **Kubernetes alignment**: Probe semantics align with Kubernetes health check concepts.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -808,7 +815,7 @@ This feature enhances deployment reliability by providing fine-grained health mo
 
 ### Enhanced resource waiting patterns
 
-New `WaitForStart` method provides granular control over startup ordering, complementing existing `WaitFor` semantics. It also pairs with improved `ExternalService` health honoring which ensures dependents truly wait for external resources to be healthy.
+The new `WaitForStart` method provides granular control over startup ordering, complementing existing `WaitFor` semantics. It also pairs with improved `ExternalService` health honoring, which ensures dependents truly wait for external resources to be healthy.
 
 **Understanding wait behaviors:**
 
@@ -878,7 +885,7 @@ var aiService = builder.AddProject<Projects.AIService>("ai-service")
 builder.Build().Run();
 ```
 
-These resources no longer implement `IResourceWithoutLifetime`; they surface as Running and can be waited on just like services.
+These resources no longer implement `IResourceWithoutLifetime`. They surface as  and can be waited on just like services.
 
 ## ☁️ Publishing and deployment
 
@@ -976,9 +983,9 @@ These overloads provide convenient APIs for the most common job types while main
 
 The AppHost now wires Azure provisioning prompts into the standard interaction system (initial work in [#10038](https://github.com/dotnet/aspire/pull/10038), extended in [#10792](https://github.com/dotnet/aspire/pull/10792) and [#10845](https://github.com/dotnet/aspire/pull/10845)). This enables:
 
-- Consistent UX for parameter entry (names, descriptions, validation)
-- Localized prompt text
-- Support for non-interactive scenarios via pre-supplied parameters
+- Consistent UX for parameter entry (names, descriptions, validation).
+- Localized prompt text.
+- Support for non-interactive scenarios via pre-supplied parameters.
 
 ### Azure resource idempotency & existing resources
 
@@ -1033,16 +1040,16 @@ Enter value for 'environment-name': production
 
 ##### Benefits of interactive parameter prompting
 
-- **Secure credential entry**: Sensitive parameters are masked during input
-- **Deployment-time flexibility**: No need to pre-configure all parameter values
-- **Error prevention**: Missing parameters are caught before deployment begins
-- **Better developer experience**: Clear prompts with parameter descriptions
+- **Secure credential entry**: Sensitive parameters are masked during input.
+- **Deployment-time flexibility**: No need to pre-configure all parameter values.
+- **Error prevention**: Missing parameters are caught before deployment begins.
+- **Better developer experience**: Clear prompts with parameter descriptions.
 
 ##### Parameter types supported
 
-- **Secret parameters**: Automatically masked input for sensitive values
-- **Standard parameters**: Regular text input with validation
-- **Optional parameters**: Skipped if no value is provided
+- **Secret parameters**: Automatically masked input for sensitive values.
+- **Standard parameters**: Regular text input with validation.
+- **Optional parameters**: Skipped if no value is provided.
 
 This feature builds on the existing parameter infrastructure and makes deployment workflows more intuitive, especially when working with multiple environments or sharing deployment scripts across team members.
 
@@ -1170,10 +1177,10 @@ Aspire 9.5 introduces powerful deployment image tag callback APIs that allow dyn
 
 #### Deployment tag callback features
 
-- **Dynamic tag generation**: Calculate image tags based on deployment context, git commits, build numbers, or timestamps
-- **Async callback support**: Perform asynchronous operations like API calls or file system access during tag generation
-- **Deployment context access**: Access to deployment environment, resource information, and configuration
-- **Flexible callback types**: Support for simple lambdas, context-aware callbacks, and async operations
+- **Dynamic tag generation**: Calculate image tags based on deployment context, git commits, build numbers, or timestamps.
+- **Async callback support**: Perform asynchronous operations like API calls or file system access during tag generation.
+- **Deployment context access**: Access to deployment environment, resource information, and configuration.
+- **Flexible callback types**: Support for simple lambdas, context-aware callbacks, and async operations.
 
 #### Basic deployment tag examples
 
@@ -1266,6 +1273,10 @@ var backend = builder.AddProject<Projects.Backend>("backend")
 ```
 
 ## 💔 Breaking changes
+
+We do often leverage new APIs, as we evolve the platform, decorating them with <xref:System.Diagnostics.CodeAnalysis.ExperimentalAttribute>. As previews are stabilized, we may promote them to stable status in a future release. Occasionally, we must make breaking changes to improve the overall developer experience. Below are the breaking changes introduced in Aspire 9.5.
+
+For more information on breaking changes, see [Breaking changes in .NET Aspire 9.5](../compatibility/9.5/index.md).
 
 ### InteractionInput API requires Name property
 

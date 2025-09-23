@@ -2,7 +2,7 @@
 title: Breaking changes in .NET Aspire 9.5
 titleSuffix: ""
 description: Navigate to the breaking changes in .NET Aspire 9.5.
-ms.date: 08/19/2025
+ms.date: 09/22/2025
 ---
 
 # Breaking changes in .NET Aspire 9.5
