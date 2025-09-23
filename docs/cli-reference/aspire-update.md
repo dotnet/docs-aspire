@@ -38,7 +38,7 @@ The command performs the following steps:
 
 ## Basic usage
 
-```bash
+```Aspire
 # From the solution/AppHost directory (or a subfolder)
 aspire update
 ```
@@ -51,6 +51,8 @@ You're prompted to choose a channel (for example, `stable`, `preview`, `daily`).
 1. Select a channel when prompted.
 1. The tool analyzes dependencies and applies updates.
 1. Build or run (`aspire run`) to verify.
+
+For more information, see [aspire run](aspire-run.md) command reference.
 
 ## Channel awareness
 
@@ -79,7 +81,7 @@ Choose a channel that matches the stability needs of the branch you're working o
 
 ## Example (Conceptual)
 
-```bash
+```Aspire
 $ aspire update
 Detected AppHost: MyApp.AppHost.csproj
 Select channel: (Use arrows)
