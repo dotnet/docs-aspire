@@ -17,7 +17,7 @@ The .NET Aspire Azure Managed Redis integration enables you to connect to existi
 
 ## Hosting integration
 
-The .NET Aspire Azure Managed Redis hosting integration models an Azure Managed Redis resource as the <xref:Aspire.Hosting.Azure.AzureRedisEnterpriseResource> type. To access this type and APIs for expressing them as resources in your [AppHost](xref:dotnet/aspire/app-host) project, add the [📦 Aspire.Hosting.Azure.Redis](https://www.nuget.org/packages/Aspire.Hosting.Azure.Redis) NuGet package:
+The .NET Aspire Azure Managed Redis hosting integration models an Azure Managed Redis resource as an Azure resource type. To access this type and APIs for expressing them as resources in your [AppHost](xref:dotnet/aspire/app-host) project, add the [📦 Aspire.Hosting.Azure.Redis](https://www.nuget.org/packages/Aspire.Hosting.Azure.Redis) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -38,7 +38,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Azure Managed Redis resource
 
-In your AppHost project, call <xref:Aspire.Hosting.AzureRedisExtensions.AddAzureRedisEnterprise*> on the `builder` instance to add an Azure Managed Redis resource, as shown in the following example:
+In your AppHost project, call `AddAzureRedisEnterprise` on the `builder` instance to add an Azure Managed Redis resource, as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -57,11 +57,11 @@ The preceding call to `AddAzureRedisEnterprise` configures the Redis server reso
 > By default, `AddAzureRedisEnterprise` configures [Microsoft Entra ID](/azure/azure-cache-for-redis/cache-azure-active-directory-for-authentication) authentication. This requires changes to applications that need to connect to these resources, for example, client integrations.
 
 > [!TIP]
-> When you call <xref:Aspire.Hosting.AzureRedisExtensions.AddAzureRedisEnterprise*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration).
+> When you call `AddAzureRedisEnterprise`, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](../azure/local-provisioning.md#configuration).
 
 ### Connect to an existing Azure Managed Redis
 
-You might have an existing Azure Managed Redis resource that you want to connect to. You can chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureRedisEnterpriseResource> is an existing resource:
+You might have an existing Azure Managed Redis resource that you want to connect to. You can chain a call to annotate that your Azure Managed Redis resource is an existing resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -87,7 +87,7 @@ For more information on treating Azure Managed Redis resources as existing resou
 
 ### Configure the Azure Managed Redis resource to use access key authentication
 
-By default, the Azure Managed Redis resource is configured to use [Microsoft Entra ID](/azure/azure-cache-for-redis/cache-azure-active-directory-for-authentication) authentication. If you want to use password authentication (not recommended), you can configure the server to use password authentication by calling the <xref:Aspire.Hosting.AzureRedisExtensions.WithAccessKeyAuthentication*> method:
+By default, the Azure Managed Redis resource is configured to use [Microsoft Entra ID](/azure/azure-cache-for-redis/cache-azure-active-directory-for-authentication) authentication. If you want to use password authentication (not recommended), you can configure the server to use password authentication by calling the `WithAccessKeyAuthentication` method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -146,7 +146,7 @@ For more information on dependency injection, see [.NET dependency injection](/d
 
 ### Add Azure Managed Redis authenticated client
 
-By default, when you call <xref:Aspire.Hosting.AzureRedisExtensions.AddAzureRedisEnterprise*> in your Azure Managed Redis hosting integration, it configures Microsoft Entra ID. To enable authentication in your client application, use the `WithAzureAuthentication()` method:
+By default, when you call `AddAzureRedisEnterprise` in your Azure Managed Redis hosting integration, it configures Microsoft Entra ID. To enable authentication in your client application, use the `WithAzureAuthentication()` method:
 
 ```csharp
 builder.AddRedisClient("azredisent")
@@ -183,7 +183,7 @@ The .NET Aspire Stack Exchange Redis client integration provides multiple option
 
 #### Use a connection string
 
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling <xref:Aspire.Hosting.AzureRedisExtensions.AddAzureRedisEnterprise*>:
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling `AddAzureRedisEnterprise`:
 
 ```csharp
 builder.AddAzureRedisEnterprise("azredisent");
