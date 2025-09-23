@@ -23,7 +23,7 @@ It's important to note that Aspire releases out-of-band from .NET releases. Whil
 
 > [!NOTE]
 > Try out `aspire update`!
-> Aspire 9.5 brings a new preview CLI command - [aspire update](#new-aspire-update-command-preview) - that can update your AppHost and its packages for you. Get the latest CLI if you want to try and give us feedback about it on [GitHub](https://github.com/dotnet/aspire/issues)!
+> Aspire 9.5 brings a new preview CLI command - [aspire update](#new-aspire-update-command-preview) - that can update your AppHost and its packages for you. Get the latest CLI if you want to try to give us feedback about it on [GitHub](https://github.com/dotnet/aspire/issues)!
 
 Moving between minor releases of Aspire is simple:
 
@@ -47,7 +47,7 @@ Moving between minor releases of Aspire is simple:
 
     For more information, see [Aspire SDK](xref:dotnet/aspire/sdk).
 
-1. Check for any NuGet package updates, either using the NuGet Package Manager in Visual Studio or the **Update NuGet Package** command from C# Dev Kit in VS Code.
+1. Check for any NuGet package updates, either using the NuGet Package Manager in Visual Studio or the **Update NuGet Package** command from C# Dev Kit in Visual Studio (VS) Code.
 
 1. Update to the latest [Aspire templates](../fundamentals/aspire-sdk-templates.md) by running the following .NET command line:
 
@@ -56,15 +56,28 @@ Moving between minor releases of Aspire is simple:
     ```
 
   > [!NOTE]
-  > The `dotnet new install` command will update existing Aspire templates to the latest version if they are already installed.
+  > The `dotnet new install` command updates existing Aspire templates to the latest version if they're already installed.
 
 If your AppHost project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using Aspire 8. To upgrade to 9, follow [the upgrade guide](../get-started/upgrade-to-aspire-9.md).
 
 ## 🛠️ CLI and tooling
 
+Aspire 9.5 adds targeted CLI and tooling updates that speed up setup and maintenance.
+
+**Key improvements:**
+
+- Channel-aware package selection in `aspire add` so you can choose stable, daily, or custom builds.
+- Preview `aspire update` command that scans your AppHost, validates versions, and applies safe upgrades.
+- Experimental single-file AppHost (`apphost.cs`) behind a feature flag.
+- SSH Remote port forwarding support in VS Code, matching Dev Container and Codespaces behavior.
+- Enhanced `aspire exec` with `--workdir`, clearer help, and early argument validation.
+- Performance refinements: package search disk cache, cleaner debug output, clearer status messages, and faster repeat package resolution.
+
+Run `aspire update` to upgrade, enable the single-file AppHost to experiment with a minimal setup, and use `aspire exec` to script tasks with inherited environment context.
+
 ### Channel-aware `aspire add` & templating
 
-You can now pick packages from different channels or versions during `aspire add`. Additionally, friendly name generation is now more flexible for searching packages. When adding packages you should use versions which are aligned to the `Aspire.Hosting.AppHost` package that you are using. To update your entire AppHost and its referenced project you can use the `aspire update` command (see below).
+You can now pick packages from different channels or versions during `aspire add`. Additionally, friendly name generation is now more flexible for searching packages. When adding packages, you should use versions, which are aligned to the `Aspire.Hosting.AppHost` package that you're using. To update your entire AppHost and its referenced project, you can use the `aspire update` command (see below).
 
 ### New `aspire update` command (preview)
 
@@ -80,11 +93,11 @@ aspire update
 This command updates your SDK, AppHost packages, and any Aspire client integrations used in the app. It validates package compatibility and asks for confirmation before applying changes. Like `add`, `update` is channel aware, so you can choose to update to stable, daily, or your own configuration of builds.
 
 > [!IMPORTANT]
-> 🧪 **Preview Feature**: The `aspire update` command is in preview and may change before general availability. The `aspire update` command will make changes to project files, central package management, and NuGet.config files. We recommend using version control and inspecting changes after `aspire update` is run to verify the changes.
+> 🧪 **Preview Feature**: The `aspire update` command is in preview and may change before general availability. The `aspire update` command makes changes to project files, central package management, and NuGet.config files. We recommend using version control and inspecting changes after `aspire update` is run to verify the changes.
 
 ### File-based AppHost support (preview)
 
-Aspire 9.5 introduces infrastructure for .NET 10's new file-based apps feature, meaning you only need 1 file - and no project file! - for your Aspire apphost. The new capabilities are currently behind a feature flag that elevates the minimum .NET SDK requirement to prepare for upcoming file-based app execution scenarios.
+Aspire 9.5 introduces infrastructure for .NET 10's new file-based apps feature, meaning you only need one file - and no project file! - for your Aspire Apphost. The new capabilities are currently behind a feature flag that elevates the minimum .NET SDK requirement to prepare for upcoming file-based app execution scenarios.
 
 ```bash
 # Enable file-based AppHost ("apphost.cs") support
@@ -96,7 +109,7 @@ aspire config set features.singlefileAppHostEnabled true
 - **Feature enabled**: Requires .NET SDK 10.0.100 RC1 or later
 - **Override support**: Manual SDK version overrides continue to work with highest precedence
 
-You can use `aspire new` to create a new, blank file-based apphost. Select the _Single-file AppHost (experimental)_ option from the project template list:
+You can use `aspire new` to create a new, blank file-based Apphost. Select the _Single-file AppHost (experimental)_ option from the project template list:
 
 ```csharp
 #:sdk Aspire.AppHost.Sdk@9.5.0
@@ -106,21 +119,23 @@ var builder = DistributedApplication.CreateBuilder(args);
 builder.Build().Run();
 ```
 
-Then add some resources, use `aspire add` the same as you would with a project-based apphost, and `aspire run` to start!
+Then add some resources, use `aspire add` the same as you would with a project-based Apphost, and `aspire run` to start!
 
 ### SSH Remote support for port forwarding in VS Code
 
-Version 9.5 adds first-class support for SSH Remote development environments, extending automatic port forwarding configuration to VS Code SSH Remote scenarios alongside existing Devcontainer and Codespaces support.
+Aspire 9.5 adds SSH Remote support in VS Code. Ports forward automatically in SSH Remote sessions the same way they do in Dev Containers and GitHub Codespaces.
 
 ### `aspire exec` command (preview) enhancements
 
-The `aspire exec` command allows you to execute commands within the context of your Aspire application environment, inheriting environment variables and configuration from your app model resources.
+The `aspire exec` command allows you to execute commands within the context of your Aspire application environment, inheriting environment variables, and configuration from your app model resources.
 
 Building on the 9.4 preview, version 9.5 adds several key improvements:
 
 - `--workdir` (`-w`) flag to run commands inside a specific working directory (#10912)
 - Fail-fast argument validation with clearer error messages (#10606)
 - Improved help and usage text for better developer experience (#10598)
+
+For more information, see [aspire exec command](../cli-reference/aspire-exec.md) reference.
 
 #### Basic usage examples
 
@@ -166,20 +181,20 @@ Aspire 9.5 introduces the GenAI visualizer, which collates, summarizes, and visu
 
 🗃️ Explore input and output messages  
 🚀 JSON/XML payloads highlighted and indented  
-🖼️ Preview Markdown and multimodal content (e.g., images)  
+🖼️ Preview Markdown and multimodal content (for example, images)  
 
-If GenAI-specific telemetry is found in an OTEL span, a sparkle (✨) icon will appear next to its name in the Traces view. Clicking the icon launches the visualizer dialog.
+If GenAI-specific telemetry is found in an OTEL span, a sparkle (✨) icon appears next to its name in the Traces view. Clicking the icon launches the visualizer dialog.
 
-The [GenAI telemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/) are evolving rapidly. The visualizer supports multiple versions of the telemetry, and we will update it as the conventions move toward a stable release.
+The [GenAI telemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/) are evolving rapidly. The visualizer supports multiple versions of the telemetry, and we update it as the conventions move toward a stable release.
 
 :::image type="content" source="media/dashboard-geni-visualizer.gif" lightbox="media/dashboard-geni-visualizer.gif" alt-text="Recording of the GenAI visualizer.":::
 
 ### Rich property grid content
 
-Icons and clickable buttons have been added to property grids in resource details, log entry details, and span details.
+Icons and clickable buttons were added to property grids in resource details, log entry details, and span details.
 
 - **Icons** improve visual clarity. For example, quickly see that a resource isn't in a healthy state if the icon is red or yellow.  
-- **Clickable buttons** improve navigation. For example, click on a resource name or telemetry ID to navigate to a different page for more information.
+- **Clickable buttons** improve navigation. For example, select on a resource name or telemetry ID to navigate to a different page for more information.
 
 :::image type="content" source="media/dashboard-rich-property-grid.png" lightbox="media/dashboard-rich-property-grid.png" alt-text="Screenshot of property grid with icons.":::
 
@@ -194,7 +209,7 @@ A new "All" option in the console logs view streams logs from every running reso
 
 ### Custom resource icons
 
-Resources can now specify custom icons and their variant — Filled (default) or Regular — using `WithIconName()` for better visual identification in dashboard views. Any [Fluent UI system icons](https://github.com/microsoft/fluentui-system-icons/blob/main/icons_filled.md) can be used.
+Resources can now specify custom icons and their variant—Filled (default) or Regular—using `WithIconName()` for better visual identification in dashboard views. Any [Fluent UI system icons](https://github.com/microsoft/fluentui-system-icons/blob/main/icons_filled.md) can be used.
 
 ```csharp
 var postgres = builder.AddPostgres("database")
@@ -218,7 +233,7 @@ The dashboard now properly handles reverse proxy scenarios with explicit forward
 export ASPIRE_DASHBOARD_FORWARDEDHEADERS_ENABLED=true
 ```
 
-This is particularly useful for deployment scenarios where the dashboard is accessed through a load balancer or reverse proxy.
+This is useful for deployment scenarios where the dashboard is accessed through a load balancer or reverse proxy.
 
 ### Container runtime notifications
 
@@ -239,14 +254,14 @@ For example, choose Messaging 📬 to see only traces from your app that interac
 The trace detail page includes several quality-of-life improvements:
 
 🏷️ Span names are clearer, with resources split into their own column
-🪵 Logs are now shown in the waterfall chart — hover for a tooltip, or click for full details
+🪵 Logs are now shown in the waterfall chart—hover for a tooltip, or select for full details
 ↕️ New "Expand all" and "Collapse all" buttons
 
 :::image type="content" source="media/dashboard-trace-detail-logs.png" lightbox="media/dashboard-trace-detail-logs.png" alt-text="Screenshot of trace details showing the new resources column and log tooltips.":::
 
 ### Other improvements
 
-- Resource action menus now use sub-menus to prevent overflow on complex apps
+- Resource action menus now use submenus to prevent overflow on complex apps
 - Projects show their associated launch profiles
 - Error spans use consistent error styling
 - Better default icons for parameters and services
@@ -302,7 +317,7 @@ var localModel = localOpenAI.AddModel("local-chat", "llama3.2");
 
 ### GitHub Models and Azure AI Foundry typed catalogs
 
-Aspire 9.5 introduces a strongly-typed catalog for GitHub and Azure-hosted models, providing IntelliSense support and refactoring safety when working with AI models. This brings type safety and IntelliSense support for the ever-increasing AI model catalog, and takes the guesswork out of version and "format" strings. The catalog is updated daily.
+Aspire 9.5 introduces a typed catalog for GitHub and Azure-hosted models, providing IntelliSense support and refactoring safety when working with AI models. This brings type safety and IntelliSense support for the ever-increasing AI model catalog, and takes the guesswork out of version and "format" strings. The catalog is updated daily.
 
 ```csharp
 // Before: String-based approach (error-prone)
@@ -422,7 +437,7 @@ builder.AddRabbitMQClient("messaging", o => o.DisableAutoActivation = false);
 
 #### Auto activation
 
-Redis client connections also now support auto activation, and is also disabled by default.
+Redis client connections also now support auto activation, and are also disabled by default.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -531,7 +546,7 @@ builder.Build().Run();
 ### Other improvements
 
 - New reference properties have been added to Azure PostgreSQL and Redis resources for custom connection string composition and individual component access
-- OpenTelemetry Protocol (OTLP) support now has protocol selection capabilities, allowing you to choose between gRPC and HTTP protobuf transports for telemetry data
+- OpenTelemetry Protocols (OTLP) support now has protocol selection capabilities, allowing you to choose between gRPC and HTTP protobuf transports for telemetry data
 
 ## 🧩 App model enhancements
 
@@ -580,7 +595,7 @@ var redis = builder.AddRedis("cache")
 
 ### Context-based endpoint resolution
 
-**Breaking change**: Endpoint resolution in `WithEnvironment` callbacks now correctly resolves container hostnames instead of always using "localhost".
+**Breaking change**: Endpoint resolution in `WithEnvironment` callbacks now correctly resolves container hostnames instead of always using "localhost."
 
 ```csharp
 var redis = builder.AddRedis("redis");
@@ -604,7 +619,7 @@ var rabbitmq = builder.AddContainer("myapp", "mycontainerapp")
 **What you need to review:**
 
 - **Container deployments**: Your apps will now receive correct container hostnames
-- **Local development**: Localhost behavior preserved for non-containerized scenarios  
+- **Local development**: Localhost behavior preserved for noncontainerized scenarios  
 - **Connection strings**: Automatic connection strings continue to work as expected
 - **Manual environment**: Review custom `WithEnvironment` calls that assume localhost
 
@@ -832,7 +847,7 @@ The AppHost now wires Azure provisioning prompts into the standard interaction s
 
 - Consistent UX for parameter entry (names, descriptions, validation)
 - Localized prompt text
-- Support for non-interactive scenarios via pre-supplied parameters
+- Support for non-interactive scenarios via presupplied parameters
 
 ### Azure resource idempotency & existing resources
 
@@ -888,7 +903,7 @@ Enter value for 'environment-name': production
 ##### Benefits of interactive parameter prompting
 
 - **Secure credential entry**: Sensitive parameters are masked during input
-- **Deployment-time flexibility**: No need to pre-configure all parameter values
+- **Deployment-time flexibility**: No need to preconfigure all parameter values
 - **Error prevention**: Missing parameters are caught before deployment begins
 - **Better developer experience**: Clear prompts with parameter descriptions
 
@@ -1016,7 +1031,7 @@ builder.AddDockerComposeEnvironment("env")
 
 ### Container build customization
 
-`ContainerBuildOptions` support enables customizing the underlying `dotnet publish` invocation when Aspire builds project-sourced container images (for example to change configuration, trimming, or pass additional MSBuild properties). Use the new options hook on the project container image configuration to set MSBuild properties instead of maintaining a custom Dockerfile. (Exact API surface is intentionally summarized here to avoid drift; see API docs for `ContainerBuildOptions` in the hosting namespace for usage.)
+`ContainerBuildOptions` support enables customizing the underlying `dotnet publish` invocation when Aspire builds project-sourced container images (for example to change configuration, trimming, or pass other MSBuild properties). Use the new options hook on the project container image configuration to set MSBuild properties instead of maintaining a custom Dockerfile. (Exact API surface is intentionally summarized here to avoid drift; see API docs for `ContainerBuildOptions` in the hosting namespace for usage.)
 
 ### Deployment image tag callbacks
 

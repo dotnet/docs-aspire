@@ -33,7 +33,7 @@ To publish resources as Azure Container App Jobs, use the following APIs:
 - `PublishAsAzureContainerAppJob(IResourceBuilder<ExecutableResource>, Action<AzureResourceInfrastructure, ContainerAppJob>);`
 - `PublishAsAzureContainerAppJob(IResourceBuilder<ProjectResource>, Action<AzureResourceInfrastructure, ContainerAppJob>);`
 
-<!-->
+<!--
 - <xref:Aspire.Hosting.AzureContainerAppContainerExtensions.PublishAsAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerAppJob})?displayProperty=nameWithType>
 - <xref:Aspire.Hosting.AzureContainerAppExecutableExtensions.PublishAsAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerAppJob})?displayProperty=nameWithType>
 - <xref:Aspire.Hosting.AzureContainerAppProjectExtensions.PublishAsAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerAppJob})?displayProperty=nameWithType>
