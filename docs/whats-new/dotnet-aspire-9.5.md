@@ -317,7 +317,7 @@ var localOpenAI = builder.AddOpenAI("local-openai")
 var localModel = localOpenAI.AddModel("local-chat", "llama3.2");
 ```
 
-### GitHub Models typed catalog
+### GitHub Models and Azure AI Foundry typed catalogs
 
 Aspire 9.5 introduces a strongly-typed catalog for GitHub and Azure-hosted models, providing IntelliSense support and refactoring safety when working with AI models. This brings type safety and IntelliSense support for the ever-increasing AI model catalog, and takes the guesswork out of version and "format" strings. The catalog is updated daily.
 
