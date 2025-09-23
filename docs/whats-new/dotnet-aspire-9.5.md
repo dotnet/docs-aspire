@@ -770,49 +770,28 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 // Publish a project as a Container App Job
 var dataProcessor = builder.AddProject<Projects.DataProcessor>("data-processor")
-    .PublishAsAzureContainerAppJob((infrastructure, job) => {
-        // Configure job-specific settings using Azure Provisioning APIs
-        job.Configuration.TriggerType = TriggerType.Schedule;
-        // Run daily at 2 AM
-        job.Configuration.ScheduleTriggerConfig.CronExpression = "0 0 2 * * *";
-    });
-
-// Publish a container as a Container App Job  
-var batchJob = builder.AddContainer("batch-job", "my-batch-image")
-    .PublishAsAzureContainerAppJob((infrastructure, job) => {
-        // Configure manual trigger job
-        job.Configuration.TriggerType = TriggerType.Manual;
-        job.Configuration.ReplicaRetryLimit = 3;
-        job.Configuration.ReplicaTimeout = 1800; // 30 minutes
-    });
+    .PublishAsAzureContainerAppJob(); // Deploys as a job which must be manually started.
 
 builder.Build().Run();
 ```
 
 #### Job customization and configuration
 
-The new `AzureContainerAppJobCustomizationAnnotation` enables fine-grained control over job behavior:
+Use the callback on the `PublishAsAzureContainerAppJob(...)` method to customize the job:
 
 ```csharp
-var scheduledJob = builder.AddProject<Projects.ScheduledWorker>("scheduled-worker")
-    .PublishAsAzureContainerAppJob((infrastructure, job) => {
-        // Event-driven job configuration
-        job.Configuration.TriggerType = TriggerType.Event;
-        job.Configuration.EventTriggerConfig = new EventTriggerConfiguration
-        {
-            Scale = new JobScale
-            {
-                MinExecutions = 0,
-                MaxExecutions = 10,
-                PollingInterval = 30 // seconds
-            }
-        };
-        job.Configuration.ReplicaRetryLimit = 3;
-        job.Configuration.ReplicaTimeout = 1800; // 30 minutes
-    });
-```
+var builder = DistributedApplication.CreateBuilder(args);
 
-This feature addresses issue [#4366](https://github.com/dotnet/aspire/issues/4366) and provides a unified development and deployment experience for both long-running services (Container Apps) and finite workloads (Container App Jobs) within your Aspire applications.
+// Publish a project as a Container App Job
+var dataProcessor = builder.AddProject<Projects.DataProcessor>("data-processor")
+    .PublishAsAzureContainerAppJob((infrastructure, job) => {
+        job.Configuration.TriggerType = TriggerType.Schedule;
+        // Runs automatically every 5 minutes.
+        job.Configuration.ScheduleTriggerConfig.CronExpression = "*/5 * * * *";
+    });
+
+builder.Build().Run();
+```
 
 ### Azure provisioning & deployer
 
