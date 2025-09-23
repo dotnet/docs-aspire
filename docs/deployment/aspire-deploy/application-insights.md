@@ -1,7 +1,7 @@
 ---
 title: Use .NET Aspire with Application Insights
 description: Learn how to send .NET Aspire telemetry to Application Insights.
-ms.date: 07/17/2025
+ms.date: 09/23/2025
 ms.topic: how-to
 ms.custom:
   - sfi-image-nochange
@@ -36,12 +36,12 @@ OpenTelemetry is a modern standard for telemetry collection. Aspire uses OpenTel
 
 **Key differences:**
 
-| Feature                         | Classic Application Insights SDK        | OpenTelemetry with Azure Monitor         |
-|---------------------------------|-----------------------------------------|------------------------------------------|
-| **Ease of Use**                 | Requires manual setup for advanced features. | Offers a more modern, standardized API. |
-| **Compatibility**               | Not compatible with OpenTelemetry setups. | Fully compatible with Aspire defaults.   |
-| **Extensibility**               | Limited to Application Insights features. | Open, vendor-neutral, supports other backends. |
-| **Instrumentation Standards**   | Application-specific APIs (for example, `TelemetryClient`). | OpenTelemetry standards.                 |
+| Feature | Classic Application Insights SDK | OpenTelemetry with Azure Monitor |
+|--|--|--|
+| **Ease of Use** | Requires manual setup for advanced features. | Offers a more modern, standardized API. |
+| **Compatibility** | Not compatible with OpenTelemetry setups. | Fully compatible with Aspire defaults. |
+| **Extensibility** | Limited to Application Insights features. | Open, vendor-neutral, supports other backends. |
+| **Instrumentation Standards** | Application-specific APIs (for example, `TelemetryClient`). | OpenTelemetry standards. |
 
 For detailed guidance on each approach, see:
 
@@ -79,7 +79,7 @@ builder.AddProject<Projects.Web>("webfrontend")
 builder.Build().Run();
 ```
 
-Follow the steps in [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](./aca-deployment-azd-in-depth.md) to deploy the application to Azure Container Apps. `azd` will create an Application Insights resource as part of the same resource group, and configure the connection string for each container.
+Follow the steps in [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../azd/aca-deployment-azd-in-depth.md) to deploy the application to Azure Container Apps. `azd` will create an Application Insights resource as part of the same resource group, and configure the connection string for each container.
 
 ### Manual provisioning of Application Insights resource
 
@@ -123,7 +123,7 @@ When running the .NET Aspire project locally, the preceding code reads the conne
 
 #### Resource usage during deployment
 
-When [deploying an Aspire application with Azure Developer CLI (`azd`)](./aca-deployment-azd-in-depth.md), it will recognize the connection string resource and prompt for a value. This enables a different resource to be used for the deployment from the value used for local development.
+When [deploying an Aspire application with Azure Developer CLI (`azd`)](../azd/aca-deployment-azd-in-depth.md), it will recognize the connection string resource and prompt for a value. This enables a different resource to be used for the deployment from the value used for local development.
 
 ### Mixed deployment
 
