@@ -283,6 +283,7 @@ The trace detail page now has Expand/collapse all, clearer exemplars, an added r
 The new `AddOpenAI` integration provides first-class support for modeling OpenAI endpoints and their associated models within your Aspire application graph.
 
 **Features:**
+
 - **Single OpenAI endpoint** resource with child model resources using `AddModel`
 - **Parameter-based API key** provisioning with `ParameterResource` support
 - **Endpoint override** for local gateways, proxies, or self-hosted solutions
@@ -318,13 +319,7 @@ var localModel = localOpenAI.AddModel("local-chat", "llama3.2");
 
 ### GitHub Models typed catalog
 
-Version 9.5 introduces a strongly-typed catalog for GitHub-hosted models, providing IntelliSense support and refactoring safety when working with AI models (#10986).
-
-**Benefits over string-based approach:**
-- **Type safety**: Compile-time validation of model names
-- **IntelliSense support**: Discover available models and providers  
-- **Refactoring safety**: Rename and find references work correctly
-- **Up-to-date catalog**: Daily automation ensures new models are available (#11040)
+Aspire 9.5 introduces a strongly-typed catalog for GitHub and Azure-hosted models, providing IntelliSense support and refactoring safety when working with AI models. This brings type safety and IntelliSense support for the ever-increasing AI model catalog, and takes the guesswork out of version and "format" strings. The catalog is updated daily.
 
 ```csharp
 // Before: String-based approach (error-prone)
@@ -332,45 +327,17 @@ var model = github.AddModel("chat", "gpt-4o-mini"); // Typos not caught
 
 // After: Typed catalog approach  
 var chatModel = github.AddModel("chat", GitHubModel.OpenAI.Gpt4oMini);
-var claudeModel = github.AddModel("claude", GitHubModel.Anthropic.Claude3_5Sonnet);
-var llamaModel = github.AddModel("llama", GitHubModel.Meta.Llama3_1_405B_Instruct);
 
 // IntelliSense shows all available models grouped by provider
 var embeddingModel = github.AddModel("embeddings", GitHubModel.OpenAI.TextEmbedding3Large);
 ```
 
-**Complete GitHub Models integration:**
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Configure GitHub Models with token
-var githubToken = builder.AddParameter("github-token", secret: true);
-
-var github = builder.AddGitHubModels("github-models")
-    .WithToken(githubToken);
-
-// Add multiple model types with strong typing
-var chatModel = github.AddModel("gpt4o", GitHubModel.OpenAI.Gpt4o);
-var fastModel = github.AddModel("gpt4o-mini", GitHubModel.OpenAI.Gpt4oMini);
-var claudeModel = github.AddModel("claude", GitHubModel.Anthropic.Claude3_5Sonnet);
-
-// Use in your applications
-var aiService = builder.AddProject<Projects.AIService>("ai-service")
-    .WithReference(chatModel)
-    .WithReference(fastModel)
-    .WithReference(claudeModel);
-
-builder.Build().Run();
-```
-
-The typed catalog automatically updates daily, so newly published models on GitHub become available without waiting for an Aspire release.
-
 ### Dev Tunnels hosting integration
 
-Aspire 9.5 introduces first-class support for Azure Dev Tunnels, enabling seamless integration of secure public tunnels for your applications during development and testing scenarios.
+Aspire 9.5 introduces first-class support for Dev Tunnels, enabling seamless integration of secure public tunnels for your applications during development and testing scenarios.
 
 **Features:**
+
 - **Secure public tunnels**: Create public HTTPS endpoints for applications running locally
 - **Automatic tunnel management**: Tunnels are created, configured, and cleaned up automatically
 - **Private and anonymous tunnels**: Support for both authenticated private tunnels and public anonymous access
@@ -391,63 +358,14 @@ tunnel.WithReference(webApp.GetEndpoint("http"));
 builder.Build().Run();
 ```
 
-**Advanced tunnel configuration:**
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var api = builder.AddProject<Projects.WebApi>("api");
-
-// Create a tunnel with custom options; choose anonymous OR keep private
-var tunnel = builder.AddDevTunnel("api-tunnel", options: new DevTunnelOptions
-{
-    Description = "API development tunnel",
-    Labels = ["development", "api"]
-});
-
-// Uncomment to allow anonymous (public) access instead of private authenticated access
-// tunnel.WithAnonymousAccess();
-
-// Connect the tunnel to the API endpoint
-tunnel.WithReference(api.GetEndpoint("https"));
-
-// Reference the tunnel from other resources
-var webhookProcessor = builder.AddProject<Projects.WebhookProcessor>("webhook-processor")
-    .WithReference(api, tunnel); // Gets tunneled endpoint information
-
-builder.Build().Run();
-```
-
-**Use cases:**
-
-**Webhook Development**: Test webhooks from external services (GitHub, Stripe, etc.) against your locally running API:
-
-```csharp
-// Webhook API with public tunnel (anonymous access for external service callbacks)
-var webhookApi = builder.AddProject<Projects.WebhookApi>("webhook-api");
-
-var publicTunnel = builder.AddDevTunnel("webhook-tunnel")
-    .WithAnonymousAccess()
-    .WithReference(webhookApi.GetEndpoint("http"));
-```
-
-**Mobile App Testing**: Enable mobile devices to connect to your local development server:
-
-```csharp
-// Mobile backend with private tunnel (authenticated access only)
-var mobileBackend = builder.AddProject<Projects.MobileBackend>("mobile-backend");
-
-var mobileTunnel = builder.AddDevTunnel("mobile-tunnel")
-    .WithReference(mobileBackend.GetEndpoint("http"));
-```
-
-The Dev Tunnels integration automatically handles Azure authentication, tunnel lifecycle management, and provides public or private URLs (depending on configuration) to connected resources, making it easy to expose local development services securely to external consumers.
+The Dev Tunnels integration automatically handles Azure authentication, tunnel lifecycle management, and provides public or private URLs (depending on configuration) to connected resources, making it easy to expose local development services securely to external consumers. Dev Tunnels also improves support for mobile dev, such as .NET MAUI, making it easy to launch both your backend and mobile app at once without complex dev-time config.
 
 ### YARP static files support
 
 Aspire 9.5 adds comprehensive static file serving capabilities to the YARP integration, enabling you to serve static assets directly from YARP alongside reverse proxy functionality. This is perfect for single-page applications, frontend assets, and hybrid scenarios where you need both static content and API proxying.
 
 **Features:**
+
 - **Direct static file serving**: Serve HTML, CSS, JS, and other static assets from YARP
 - **Flexible source options**: Bind mount local directories or use Docker multi-stage builds
 - **Automatic configuration**: Simple API enables static files with minimal setup
@@ -463,24 +381,6 @@ var yarp = builder.AddYarp("gateway")
 builder.Build().Run();
 ```
 
-**Bind mount local directory:**
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Serve static files from local directory
-var yarp = builder.AddYarp("static-gateway")
-    .WithStaticFiles("./static-content")
-    .WithConfiguration(gateway =>
-    {
-        // Add API routes alongside static files
-        gateway.AddRoute("/api/{**catch-all}", backendService)
-               .WithTransformPathRemovePrefix("/api");
-    });
-
-builder.Build().Run();
-```
-
 **Docker multi-stage build scenario:**
 
 ```csharp
@@ -492,22 +392,6 @@ var frontend = builder.AddYarp("frontend")
     .WithDockerFile("../react-app");
 
 builder.Build().Run();
-```
-
-**Example Dockerfile for React app:**
-
-```dockerfile
-# Stage 1: Build React app
-FROM node:20 AS builder
-WORKDIR /app
-COPY . .
-RUN npm install
-RUN npm run build
-
-# Stage 2: Copy static files to YARP container
-FROM mcr.microsoft.com/dotnet/nightly/yarp:2.3.0-preview.4 AS yarp
-WORKDIR /app
-COPY --from=builder /app/dist ./wwwroot
 ```
 
 **Hybrid static + API gateway:**
@@ -544,6 +428,7 @@ This feature enables modern web application architectures where YARP acts as bot
 Redis and RabbitMQ connections now support auto activation to prevent startup deadlocks and improve application reliability.
 
 **Features:**
+
 - **Eliminates blocking threads**: Connections are established proactively at startup rather than on first use
 - **Prevents startup deadlocks**: Avoids synchronous connection establishment in dependency injection scenarios
 - **Improves reliability**: Reduces first-request latency by pre-establishing connections
@@ -605,31 +490,6 @@ var app = builder.Build();
 app.Run();
 ```
 
-**Azure authentication integration:**
-
-#### Azure authentication integration
-
-```csharp
-// Azure authentication integration (application code)
-var builder = Host.CreateApplicationBuilder(args);
-
-builder.AddRedisClientBuilder("azure-redis")
-    .WithAzureAuthentication()  // Uses default Azure credentials
-    .WithDistributedCache(options => 
-    {
-        options.InstanceName = "MyApp";
-    });
-
-// Or with custom credentials
-var credential = new DefaultAzureCredential();
-builder.AddRedisClientBuilder("azure-redis")
-    .WithAzureAuthentication(credential)
-    .WithOutputCache();
-
-var app = builder.Build();
-app.Run();
-```
-
 **Advanced Redis builder patterns:**
 
 #### Advanced Redis builder patterns
@@ -661,49 +521,6 @@ builder.AddKeyedRedisClientBuilder("sessions")
 var app = builder.Build();
 app.Run();
 ```
-
-### Azure AI Foundry enhancements
-
-9.5 adds a generated, strongly-typed model catalog (`AIFoundryModel`) for IntelliSense + ref safety when creating deployments (PR #10986) and a daily automation that refreshes the catalog as new models appear in Azure AI Foundry (PR #11040). Sample apps and end-to-end tests now use these constants (PR #11039) instead of raw strings. The original Foundry hosting integration and local runtime support were introduced earlier (issue #9568); this release focuses on developer ergonomics and keeping model metadata current.
-
-Strongly-typed model catalog with IntelliSense support:
-
-```csharp
-var aiFoundry = builder.AddAzureAIFoundry("ai-foundry");
-
-// Strongly-typed model references
-var gpt4 = aiFoundry.AddDeployment("gpt-4", AIFoundryModel.OpenAI.Gpt4);
-var mistral = aiFoundry.AddDeployment("mistral", AIFoundryModel.MistralAi.MistralLarge2411);
-
-// Local on-device mode
-var localFoundry = builder.AddAzureAIFoundry("local-ai")
-  .RunAsFoundryLocal();
-```
-
-### Azure App Configuration emulator APIs
-
-Run emulators locally with full configuration support:
-
-```csharp
-var appConfig = builder.AddAzureAppConfiguration("config")
-  .RunAsEmulator(emulator => emulator
-    .WithDataVolume("config-data")
-    .WithHostPort(8080));
-```
-
-### Azure Storage emulator improvements
-
-Updated Azurite to version 3.35.0, resolving health check issues that previously returned HTTP 400 responses (#10972). This improves the reliability of Azure Storage emulator health checks during development.
-
-### Broader Azure resource capability surfacing
-
-Several Azure hosting resource types now implement `IResourceWithEndpoints` enabling uniform endpoint discovery and waiting semantics:
-
-- `AzureAIFoundryResource`
-- `AzureAppConfigurationResource`
-- `AzureKeyVaultResource`
-- `AzurePostgresFlexibleServerResource`
-- `AzureRedisCacheResource`
 
 ### Azure Redis Enterprise support
 
@@ -747,87 +564,19 @@ var redisEnterprise = builder.AddAzureRedisEnterprise("redis-enterprise")
 
 Azure Redis Enterprise provides advanced caching capabilities with clustering, high availability, and enterprise security features while maintaining compatibility with the standard Redis APIs.
 
-### Azure resource reference properties
+### Azure Storage emulator improvements
 
-New reference properties have been added to Azure PostgreSQL and Redis resources for custom connection string composition and individual component access (#11051, #11070).
+Aspire now pulls Azurite version 3.35.0 by default, resolving health check issues that previously returned HTTP 400 responses. This improves the reliability of Azure Storage emulator health checks during development.
 
-**AzurePostgresFlexibleServerResource enhancements:**
+### Broader Azure resource capability surfacing
 
-Three new reference properties enable custom connection string composition:
+Several Azure hosting resource types now implement `IResourceWithEndpoints` enabling uniform endpoint discovery and waiting semantics:
 
-- **`HostName`** (`ReferenceExpression`): Returns PostgreSQL server hostname with port
-- **`UserName`** (`ReferenceExpression?`): Returns username for password authentication (null for Entra ID)  
-- **`Password`** (`ReferenceExpression?`): Returns password for password authentication (null for Entra ID)
-
-```csharp
-var postgres = builder.AddAzurePostgresFlexibleServer("database")
-    .WithPasswordAuthentication()
-    .RunAsContainer();
-
-var db = postgres.AddDatabase("appdb");
-
-// Custom JDBC connection string
-var jdbc = ReferenceExpression.Create($"jdbc:postgresql://{postgres.Resource.HostName}/{db.Resource.DatabaseName}");
-
-// Custom PostgreSQL connection string  
-var connectionString = ReferenceExpression.Create(
-    $"Host={postgres.Resource.HostName};Username={postgres.Resource.UserName};Password={postgres.Resource.Password};Database={db.Resource.DatabaseName}");
-```
-
-**AzureRedisCacheResource enhancements:**
-
-Two new reference properties enable custom Redis connection scenarios:
-
-- **`HostName`** (`ReferenceExpression`): Returns Redis server hostname with port
-- **`Password`** (`ReferenceExpression?`): Returns password when running as container (null in Azure mode)
-
-```csharp
-var redis = builder.AddAzureRedis("cache")
-    .RunAsContainer();
-
-// Custom Redis connection string
-var customConnectionString = ReferenceExpression.Create($"{redis.Resource.HostName},password={redis.Resource.Password}");
-
-// Access individual components
-var hostName = redis.Resource.HostName; // e.g., "localhost:6379"
-var password = redis.Resource.Password; // Available in container mode
-```
-
-### OTLP telemetry protocol selection
-
-Enhanced OpenTelemetry Protocol (OTLP) support with protocol selection capabilities, allowing you to choose between gRPC and HTTP protobuf transports for telemetry data.
-
-```csharp
-// Available protocol types
-public enum OtlpProtocol
-{
-    Grpc = 0,           // Default: High performance, binary protocol
-    HttpProtobuf = 1    // Alternative: HTTP-based transport
-}
-```
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Configure OTLP telemetry with specific protocol
-var api = builder.AddProject<Projects.Api>("api")
-    .WithOtlpExporter(OtlpProtocol.HttpProtobuf);
-
-// Use default gRPC protocol (recommended for performance)
-var worker = builder.AddProject<Projects.Worker>("worker")
-    .WithOtlpExporter();
-
-// Configure multiple services with different protocols
-var frontend = builder.AddProject<Projects.Frontend>("frontend")
-    .WithOtlpExporter(OtlpProtocol.Grpc);
-
-builder.Build().Run();
-```
-
-**When to use each protocol:**
-
-- **gRPC (default)**: Best performance, smaller payload size, ideal for production
-- **HTTP Protobuf**: Better firewall compatibility, easier debugging, good for development
+- `AzureAIFoundryResource`
+- `AzureAppConfigurationResource`
+- `AzureKeyVaultResource`
+- `AzurePostgresFlexibleServerResource`
+- `AzureRedisCacheResource`
 
 ### MySQL password improvements
 
@@ -854,6 +603,11 @@ if (!string.IsNullOrEmpty(devPassword))
 
 builder.Build().Run();
 ```
+
+### Other improvements
+
+- New reference properties have been added to Azure PostgreSQL and Redis resources for custom connection string composition and individual component access
+- OpenTelemetry Protocol (OTLP) support now has protocol selection capabilities, allowing you to choose between gRPC and HTTP protobuf transports for telemetry data
 
 ## 🧩 App model enhancements
 
