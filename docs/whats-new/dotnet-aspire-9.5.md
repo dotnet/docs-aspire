@@ -812,27 +812,7 @@ var scheduledJob = builder.AddProject<Projects.ScheduledWorker>("scheduled-worke
     });
 ```
 
-This feature addresses issue #4366 and provides a unified development and deployment experience for both long-running services (Container Apps) and finite workloads (Container App Jobs) within your Aspire applications.
-
-#### Simplified job configuration overloads
-
-For common scenarios, Aspire 9.5 provides simplified overloads that reduce boilerplate code:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Scheduled job with cron expression
-var scheduledJob = builder.AddProject<Projects.DailyProcessor>("daily-processor")
-    .PublishAsAzureContainerAppJob("0 0 2 * * *"); // Run daily at 2 AM
-
-// Manual job (default trigger type)
-var manualJob = builder.AddContainer("batch-processor", "my-batch-image")
-    .PublishAsAzureContainerAppJob(); // Manual trigger, ready for on-demand execution
-
-builder.Build().Run();
-```
-
-These overloads provide convenient APIs for the most common job types while maintaining access to the full configuration API when advanced customization is needed.
+This feature addresses issue [#4366](https://github.com/dotnet/aspire/issues/4366) and provides a unified development and deployment experience for both long-running services (Container Apps) and finite workloads (Container App Jobs) within your Aspire applications.
 
 ### Azure provisioning & deployer
 
