@@ -695,7 +695,7 @@ builder.AddProject<Projects.Api>("api")
 
 ### Context-based endpoint resolution
 
-**Breaking change**: Endpoint resolution in `WithEnvironment` callbacks now correctly resolves container hostnames instead of always using "localhost" (#8574).
+**Breaking change**: Endpoint resolution in `WithEnvironment` callbacks now correctly resolves container hostnames instead of always using "localhost".
 
 ```csharp
 var redis = builder.AddRedis("redis");
