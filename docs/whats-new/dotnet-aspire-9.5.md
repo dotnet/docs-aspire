@@ -28,11 +28,13 @@ It's important to note that Aspire releases out-of-band from .NET releases. Whil
 Moving between minor releases of Aspire is simple:
 
 1. Get the latest release of the Aspire CLI:
-    
+
     ```bash
     # Bash
     curl -sSL https://aspire.dev/install.sh | bash
-    
+    ```
+
+    ```powershell
     # PowerShell
     iex "& { $(irm https://aspire.dev/install.ps1) }"
     ```
@@ -74,7 +76,6 @@ aspire update
 ```
 
 :::image type="content" source="media/aspire-update.gif" lightbox="media/aspire-update.gif" alt-text="Recording of aspire update running on eshop sample.":::
-
 
 This command updates your SDK, AppHost packages, and any Aspire client integrations used in the app. It validates package compatibility and asks for confirmation before applying changes. Like `add`, `update` is channel aware, so you can choose to update to stable, daily, or your own configuration of builds.
 
