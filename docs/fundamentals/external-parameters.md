@@ -64,8 +64,7 @@ When you select **Enter values**, .NET Aspire displays a form that you can use t
 
 You can also control how the dashboard displays these parameters, by using these methods:
 
-- `WithDescription`: Use this method to provide a text description that helps users understand the purpose of the parameter.
-- `WithMarkdownDescription`: Use this method to provide a formatted description in [Markdown](https://www.markdownguide.org/basic-syntax/) that explains the parameter's intent.
+- `WithDescription`: Use this method to provide a text description that helps users understand the purpose of the parameter. To provide a formatted description in [Markdown](https://www.markdownguide.org/basic-syntax/), use the `enableMarkdown: true` parameter.
 - `WithCustomInput`: Use this method to provide a callback method that customizes the parameter dialog. For example, in this callback you can customize the default value, input type, label, and placeholder text.
 
 This code shows how to set a description and use the callback:
