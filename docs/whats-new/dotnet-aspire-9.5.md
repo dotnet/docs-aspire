@@ -1307,6 +1307,6 @@ This change enables better form serialization and integration with interactive p
 
 ### Notification terminology renamed from MessageBar
 
-**Breaking change**: Notification terminology has been updated, with MessageBar renamed to use new notification terminology ([#10449](https://github.com/dotnet/aspire/pull/10449)).
+**Breaking change**: Notification terminology has been updated, with `MessageBar` renamed to use new notification terminology ([#10449](https://github.com/dotnet/aspire/pull/10449)).
 
-This change affects APIs and terminology used in the notification system, requiring updates to code that references the old MessageBar naming conventions.
+This change affects APIs and terminology used in the notification system, requiring updates to code that references the old `MessageBar` naming conventions.
