@@ -13,6 +13,8 @@ ms.date: 2025-09-23
 
 `aspire update` - Update Aspire integration packages to the latest versions for a chosen channel.
 
+[!INCLUDE [mode-preview](includes/mode-preview.md)]
+
 ## Synopsis
 
 ```Command
@@ -20,9 +22,6 @@ aspire update [options]
 ```
 
 ## Description
-
-> [!IMPORTANT]
-> This is a preview feature. Behavior and output may change.
 
 The `aspire update` command updates Aspire integration packages (and related version declarations) in your existing AppHost-based solution to the latest versions published on a selected channel (for example, stable, preview, daily).
 
