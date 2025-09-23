@@ -243,6 +243,8 @@ items:
       items:
       - name: Azure Cache for Redis
         href: caching/azure-cache-for-redis-integration.md
+      - name: Azure Managed Redis
+        href: caching/azure-redis-enterprise-integration.md
       - name: Azure Cache for Redis distributed cache
         href: caching/azure-cache-for-redis-distributed-caching-integration.md
       - name: Azure Cache for Redis output caching
