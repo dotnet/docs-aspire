@@ -69,5 +69,5 @@ Migration guidance (illustrative):
 ## Affected APIs
 
 - <xref:Aspire.Hosting.ApplicationModel.ParameterResource>
-- <xref:Aspire.Hosting.ApplicationModel.ConnectionStringResource?displayProperty=fullName>
+- <xref:Aspire.Hosting.ConnectionStringResource>
 - <xref:Aspire.Hosting.ApplicationModel.IResourceWithoutLifetime>
