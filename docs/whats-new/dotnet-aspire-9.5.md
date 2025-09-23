@@ -1,10 +1,10 @@
 ---
 title: What's new in Aspire 9.5
 description: Learn what's new in Aspire 9.5.
-ms.date: 09/17/2025
+ms.date: 09/23/2025
 ---
 
-## What's new in Aspire 9.5
+# What's new in Aspire 9.5
 
 📢 Aspire 9.5 is the next minor version release of Aspire. It supports:
 
@@ -205,7 +205,7 @@ A new "All" option in the console logs view streams logs from every running reso
 - **Unified log stream**: See logs from all resources in chronological order.  
 - **Color-coded prefixes**: Each resource gets a deterministic color for easy identification.
 
-:::image type="content" source="media/dashboard-console-logs-all.png" lightbox="media/dashboard-console-logs-all.png" alt-text="Screenshot of the console logs page displaying (All) logs.":::
+:::image type="content" source="media/console-logs-all.png" lightbox="media/console-logs-all.png" alt-text="Screenshot of the console logs page displaying (All) logs.":::
 
 ### Custom resource icons
 
