@@ -6,41 +6,6 @@
     },
     "ImportTriggerLabel": ":world_map: reQUEST",
     "ImportedLabel": ":pushpin: seQUESTered",
-    "ParentNodes": [
-        {
-            "Label": "okr-freshness",
-            "Semester": "Selenium",
-            "ParentNodeId": 286034
-        },
-        {
-            "Label": "okr-curation",
-            "Semester": "Selenium",
-            "ParentNodeId": 286038
-        },
-        {
-            "Label": "user-feedback",
-            "Semester": "Selenium",
-            "ParentNodeId": 286039
-        },
-        {
-            "Label": "okr-quality",
-            "Semester": "Selenium",
-            "ParentNodeId": 286038
-        },
-        {
-            "Label": "doc-bug",
-            "Semester": "Selenium",
-            "ParentNodeId": 286039
-        },
-        {
-            "Semester": "Selenium",
-            "ParentNodeId": 308203
-        },
-        {
-            "Semester": "Bromine",
-            "ParentNodeId": 410741
-        }
-    ],
     "DefaultParentNode": 410741,
     "WorkItemTags": [
         {
