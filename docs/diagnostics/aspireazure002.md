@@ -1,7 +1,7 @@
 ---
 title: Compiler Error ASPIREAZURE002
 description: Learn more about compiler Error ASPIREAZURE002. Azure Container App Jobs are for evaluation purposes only and are subject to change or removal in future updates.
-ms.date: 09/16/2025
+ms.date: 09/22/2025
 f1_keywords:
   - "ASPIREAZURE002"
 helpviewer_keywords:
@@ -29,9 +29,9 @@ builder.AddProject<Projects.DataProcessor>("data-processor")
     });
 ```
 
-## To correct this Error
+## To correct this error
 
-Suppress the Error with either of the following methods:
+Suppress the error with either of the following methods:
 
 - Set the severity of the rule in the _.editorconfig_ file.
 

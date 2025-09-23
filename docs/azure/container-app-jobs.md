@@ -1,7 +1,7 @@
 ---
 title: Azure Container App Jobs
 description: Learn how to use Azure Container App Jobs in .NET Aspire to run containerized tasks that execute for a finite duration.
-ms.date: 09/16/2025
+ms.date: 09/22/2025
 ms.topic: how-to
 ---
 
@@ -13,9 +13,9 @@ Azure Container Apps jobs enable you to run containerized tasks that execute for
 
 ## Prerequisites
 
-- Azure subscription
-- .NET Aspire project
-- Understanding of [Azure Container Apps Jobs](/azure/container-apps/jobs)
+- Azure subscription.
+- .NET Aspire project.
+- Understanding of [Azure Container Apps Jobs](/azure/container-apps/jobs).
 
 ## Supported resource types
 
@@ -29,9 +29,16 @@ Azure Container Apps jobs enable you to run containerized tasks that execute for
 
 To publish resources as Azure Container App Jobs, use the following APIs:
 
+- `PublishAsAzureContainerAppJob(IResourceBuilder<ContainerResource>, Action<AzureResourceInfrastructure, ContainerAppJob>);`
+- `PublishAsAzureContainerAppJob(IResourceBuilder<ExecutableResource>, Action<AzureResourceInfrastructure, ContainerAppJob>);`
+- `PublishAsAzureContainerAppJob(IResourceBuilder<ProjectResource>, Action<AzureResourceInfrastructure, ContainerAppJob>);`
+
+<!-->
 - <xref:Aspire.Hosting.AzureContainerAppContainerExtensions.PublishAsAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerAppJob})?displayProperty=nameWithType>
 - <xref:Aspire.Hosting.AzureContainerAppExecutableExtensions.PublishAsAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerAppJob})?displayProperty=nameWithType>
 - <xref:Aspire.Hosting.AzureContainerAppProjectExtensions.PublishAsAzureContainerAppJob``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure,Azure.Provisioning.AppContainers.ContainerAppJob})?displayProperty=nameWithType>
+
+-->
 
 ## Basic usage
 
@@ -184,7 +191,7 @@ builder.AddExecutable("data-script", "python", ".", "process_data.py")
 
 ## Related content
 
-- [Configure Azure Container Apps environments](configure-aca-environments.md)
-- [Azure Container Apps Jobs documentation](/azure/container-apps/jobs)
-- [Deploy a .NET Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md)
-- [Customize Azure resources](customize-azure-resources.md)
+- [Configure Azure Container Apps environments](configure-aca-environments.md).
+- [Azure Container Apps Jobs documentation](/azure/container-apps/jobs).
+- [Deploy a .NET Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md).
+- [Customize Azure resources](customize-azure-resources.md).
