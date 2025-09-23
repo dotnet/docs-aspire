@@ -62,7 +62,7 @@ If your AppHost project file doesn't have the `Aspire.AppHost.Sdk` reference, yo
 
 ### Channel-aware `aspire add` & templating
 
-You can now pick packages from different channels or versions during `aspire add`. Additionally, friendly name generation is now more flexible for searching packages.
+You can now pick packages from different channels or versions during `aspire add`. Additionally, friendly name generation is now more flexible for searching packages. When adding packages you should use versions which are aligned to the `Aspire.Hosting.AppHost` package that you are using. To update your entire AppHost and its referenced project you can use the `aspire update` command (see below).
 
 ### New `aspire update` command (preview)
 
@@ -73,19 +73,13 @@ The new `aspire update` command helps you keep your Aspire projects current by a
 aspire update
 ```
 
+:::image type="content" source="media/aspire-update.gif" lightbox="media/aspire-update.gif" alt-text="Recording of aspire update running on eshop sample.":::
+
+
 This command updates your SDK, AppHost packages, and any Aspire client integrations used in the app. It validates package compatibility and asks for confirmation before applying changes. Like `add`, `update` is channel aware, so you can choose to update to stable, daily, or your own configuration of builds.
 
 > [!IMPORTANT]
-> 🧪 **Preview Feature**: The `aspire update` command is in preview and may change before general availability.
-
-### Enhanced markdown and styling support
-
-The CLI now has better markdown rendering support for an improved developer experience:
-
-- **Code fences** with syntax highlighting for better readability
-- **Rich text formatting** including emphasis, bold, and inline code
-- **Structured lists** with bullet points and numbering
-- **Safe markup escaping** to prevent XSS and rendering issues
+> 🧪 **Preview Feature**: The `aspire update` command is in preview and may change before general availability. The `aspire update` command will make changes to project files, central package management, and NuGet.config files. We recommend using version control and inspecting changes after `aspire update` is run to verify the changes.
 
 ### File-based AppHost support (preview)
 
@@ -101,7 +95,7 @@ aspire config set features.singlefileAppHostEnabled true
 - **Feature enabled**: Requires .NET SDK 10.0.100 RC1 or later
 - **Override support**: Manual SDK version overrides continue to work with highest precedence
 
-You can use `aspire new` to create a new, blank file-based apphost:
+You can use `aspire new` to create a new, blank file-based apphost. Select the _Single-file AppHost (experimental)_ option from the project template list:
 
 ```csharp
 #:sdk Aspire.AppHost.Sdk@9.5.0
@@ -109,7 +103,6 @@ You can use `aspire new` to create a new, blank file-based apphost:
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.Build().Run();
-
 ```
 
 Then add some resources, use `aspire add` the same as you would with a project-based apphost, and `aspire run` to start!
@@ -117,26 +110,6 @@ Then add some resources, use `aspire add` the same as you would with a project-b
 ### SSH Remote support for port forwarding in VS Code
 
 Version 9.5 adds first-class support for SSH Remote development environments, extending automatic port forwarding configuration to VS Code SSH Remote scenarios alongside existing Devcontainer and Codespaces support.
-
-**Features:**
-
-- **Automatic environment detection**: Detects SSH Remote scenarios via `VSCODE_IPC_HOOK_CLI` and `SSH_CONNECTION` environment variables
-- **Seamless port forwarding**: Automatically configures VS Code settings for Aspire application endpoints
-- **Consistent developer experience**: Matches existing behavior for Devcontainers and Codespaces
-- **No configuration required**: Works out-of-the-box when using VS Code SSH Remote extension
-
-SSH Remote environments are automatically detected when both environment variables are present:
-
-```bash
-# SSH Remote environment variables (these are automatically set by VS Code)
-export SSH_CONNECTION="192.168.1.1 12345 192.168.1.2 22"
-export VSCODE_IPC_HOOK_CLI="/path/to/vscode/hook"
-
-# Aspire then detects and configures port forwarding
-aspire run
-```
-
-The SSH Remote support follows the exact same patterns as existing Devcontainer and Codespaces integration, ensuring a consistent experience across all VS Code remote development scenarios. Port forwarding settings are automatically written to `.vscode-server/data/Machine/settings.json` when SSH Remote environments are detected.
 
 ### `aspire exec` command (preview) enhancements
 
@@ -180,12 +153,9 @@ aspire exec --start-resource my-worker -- npm run build
 - Relative path included in AppHost status messages
 - Clean CLI debug logging with reduced noise
 - Directory safety check for `aspire new` and consistent template inputs
-- Refactored NuGet prefetch architecture reducing UI lag during `aspire new` on macOS and enabling command-aware caching. Temporary NuGet config improvements ensure wildcard mappings
+- Refactored NuGet prefetch architecture reducing UI lag during `aspire new`.
+- Package search disk cache to speed up `aspire new | add | update` commands
 - Context-sensitive completion messages for publish/deploy
-- Interaction answer typing change (`object`) for future extensibility
-- Improved CTRL+C message and experience
-
-> The `aspire exec` and `aspire update` commands remain in preview behind feature flags; behavior may change in a subsequent release.
 
 ## 📊 Dashboard enhancements
 
@@ -573,24 +543,17 @@ The new `OnResourceStopped` extension method allows you to register callbacks th
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var database = builder.AddPostgres("postgres", "mypostgres")
-    .OnResourceStopped(async (resource, stoppedEvent, cancellationToken) =>
-    {
-        // Perform cleanup when the database stops
-        Console.WriteLine($"Database {resource.Name} has stopped");
-        
-        // Log final metrics, backup data, etc.
-        await LogFinalMetrics(resource.Name);
-    });
+var invoicing = builder.AddPostgres("postgres", "mypostgres").AddDatabase("invoicing");
 
 var api = builder.AddProject<Projects.Api>("api")
     .OnResourceStopped(async (resource, stoppedEvent, cancellationToken) =>
     {
-        // Graceful API shutdown handling
-        Console.WriteLine($"API service {resource.Name} is shutting down");
-        await FlushPendingRequests();
+        // Use events to clean up the system to allow rapid
+        // inner loop debugging.
+        
+        await ResetSystemState();
     })
-    .WithReference(database);
+    .WithReference(invoicing);
 
 builder.Build().Run();
 ```
@@ -612,38 +575,6 @@ var redis = builder.AddRedis("cache")
         // Perform async cleanup with cancellation support
         await CleanupCacheConnections(cancellationToken);
     });
-```
-
-**Coordination with lifecycle management:**
-
-Resource stopped events work seamlessly with existing lifecycle features:
-
-```csharp
-var database = builder.AddPostgres("postgres")
-    .OnResourceStopped(async (db, evt, ct) => 
-    {
-        await BackupDatabase(db.Name, ct);
-    });
-
-var worker = builder.AddProject<Projects.Worker>("worker")
-    .WaitFor(database)  // Wait for startup
-    .OnResourceStopped(async (svc, evt, ct) => 
-    {
-        await CompleteInFlightJobs(ct);
-    })
-    .WithReference(database);
-```
-
-New `ResourceStoppedEvent` provides lifecycle insight when resources shut down or fail:
-
-```csharp
-builder.AddProject<Projects.Api>("api")
-  .OnResourceStopped(async (resource, evt, ct) =>
-  {
-      // Handle resource stopped event - log cleanup, notify other services, etc.
-      Console.WriteLine($"Resource {resource.Name} stopped with event: {evt.ResourceEvent}");
-      await NotifyDependentServices(resource.Name, ct);
-  });
 ```
 
 ### Context-based endpoint resolution
@@ -755,6 +686,7 @@ New `WaitForStart` method provides granular control over startup ordering, compl
 
 - **`WaitFor`**: Waits for dependency to be Running AND pass all health checks.
 - **`WaitForStart`**: Waits only for dependency to reach Running (ignores health checks).
+- **`WaitForCompletion`**: Waits for dependency to reach a terminal state.
 
 ```csharp
 var postgres = builder.AddPostgres("postgres");
