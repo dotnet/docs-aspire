@@ -7,6 +7,8 @@ ai-usage: ai-generated
 
 # .NET Aspire Azure Managed Redis&reg;<sup>**[*](#registered)**</sup> integration
 
+<a name="heading"></a>
+
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
 Azure Managed Redis is the most advanced Redis offering on Azure to date, supporting both traditional caching and caching for AI apps and workloads. It offers vector data structures and vector search, alongside secondary indexing for full-text search, exact matching, geospatial queries, numeric data handling, and fast data processing.
