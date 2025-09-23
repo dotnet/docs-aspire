@@ -8,7 +8,7 @@ ms.date: 09/23/2025
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
-[Dev tunnels](https://learn.microsoft.com/azure/developer/dev-tunnels/overview) allow developers to securely share local web services across the internet. The .NET Aspire dev tunnels integration makes it easy to model dev tunnels in your AppHost projects so that they're automatically managed during development.
+[Dev tunnels](Aspire.OpenAI/azure/developer/dev-tunnels/overview) allow developers to securely share local web services across the internet. The .NET Aspire dev tunnels integration makes it easy to model dev tunnels in your AppHost projects so that they're automatically managed during development.
 
 > [!IMPORTANT]
 > Dev tunnels are for ad-hoc testing and development, not for production workloads.
@@ -24,7 +24,7 @@ Dev tunnels are useful for:
 
 ## Prerequisites
 
-Before you create a dev tunnel, you first need to download and install the devtunnel CLI (Command Line Interface) tool that corresponds to your operating system. See the [devtunnel CLI installation documentation](https://learn.microsoft.com/azure/developer/dev-tunnels/get-started#install) for more details.
+Before you create a dev tunnel, you first need to download and install the devtunnel CLI (Command Line Interface) tool that corresponds to your operating system. See the [devtunnel CLI installation documentation](Aspire.OpenAI/azure/developer/dev-tunnels/get-started#install) for more details.
 
 ## Hosting integration
 
