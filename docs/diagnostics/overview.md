@@ -20,6 +20,7 @@ The following table lists the possible MSBuild and .NET Analyzer warnings and er
 | [`ASPIRE008`](aspire008.md) | Error | <span id="ASPIRE008"></span> The Aspire workload that this project depends on is now deprecated. |
 | [`ASPIREACADOMAINS001`](aspireacadomains001.md) | (Experimental) Error | <span id="ASPIREACADOMAINS001"></span> `ConfigureCustomDomain` is for evaluation purposes only and is subject to change or removal in future updates. |
 | [`ASPIREAZURE001`](aspireazure001.md) | (Experimental) Error | <span id="ASPIREAZURE001"></span> Publishers are for evaluation purposes only and are subject to change or removal in future updates. |
+| [`ASPIREAZURE002`](aspireazure002.md) | (Experimental) Error | <span id="ASPIREAZURE002"></span> Azure Container App Jobs are for evaluation purposes only and are subject to change or removal in future updates. |
 | [`ASPIRECOMPUTE001`](aspirecompute001.md) | (Experimental) Error | <span id="ASPIRECOMPUTE001"></span> Compute related types and members are for evaluation purposes only and is subject to change or removal in future updates. |
 | [`ASPIRECOSMOSDB001`](aspirecosmosdb001.md) | (Experimental) Error | <span id="ASPIRECOSMOSDB001"></span> `RunAsPreviewEmulator` is for evaluation purposes only and is subject to change or removal in future updates. |
 | [`ASPIREHOSTINGPYTHON001`](aspirehostingpython001.md) | (Experimental) Error | <span id="ASPIREHOSTINGPYTHON001"></span> `AddPythonApp` is for evaluation purposes only and is subject to change or removal in future updates. |
