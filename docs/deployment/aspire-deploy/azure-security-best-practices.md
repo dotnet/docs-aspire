@@ -1,7 +1,7 @@
 ---
 title: Azure security best practices for .NET Aspire deployments
 description: Learn about the default security posture of .NET Aspire deployments to Azure Container Apps and additional steps to enhance security.
-ms.date: 01/15/2025
+ms.date: 09/23/2025
 uid: deployment/azure/azure-security-best-practices
 ---
 
@@ -111,7 +111,7 @@ For comprehensive guidance on Azure security, see [Azure security best practices
 
 ## Next steps
 
-- [Deploy a .NET Aspire project to Azure Container Apps](aca-deployment.md)
+- [Deploy a .NET Aspire project to Azure Container Apps](../azd/aca-deployment.md)
 - [Customize .NET Aspire Azure deployments](customize-deployments.md)
 - [.NET Aspire Azure Key Vault integration](../../security/azure-security-key-vault-integration.md)
 - [User-assigned managed identity](../../azure/user-assigned-managed-identity.md)

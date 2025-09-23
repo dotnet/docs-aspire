@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire manifest format for deployment tool builders
 description: Learn about the .NET Aspire manifest format in this comprehensive deployment tool builder guide.
-ms.date: 03/29/2024
+ms.date: 09/23/2025
 ms.topic: reference
 ms.custom:
   - sfi-image-nochange
