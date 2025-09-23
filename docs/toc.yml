@@ -354,6 +354,9 @@ items:
   - name: NATS
     displayName: nats,messaging
     href: messaging/nats-integration.md
+  - name: OpenAI
+    displayName: openai,chatgpt,gpt,ai,open ai
+    href: openai/openai-integration.md
   - name: Orleans
     items:
     - name: Overview
