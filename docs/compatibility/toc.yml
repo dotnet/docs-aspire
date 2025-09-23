@@ -13,8 +13,18 @@ items:
   - name: Breaking changes in 9.5
     expanded: true
     items:
+    - name: Comprehensive path normalization for volume naming
+      href: 9.5/path-normalization-volume-naming.md
+    - name: Fix endpoint resolution for Host/Port in WithEnvironment
+      href: 9.5/endpoint-resolution-withenvironment.md
     - name: Interaction service API changes
       href: 9.5/interaction-service-api-changes.md
+    - name: Launch profiles now ignore unsupported commandName values
+      href: 9.5/launch-profile-filtered.md
+    - name: InteractionInput.Name required and Label optional
+      href: 9.5/interactioninput-name-required.md
+    - name: IResourceWithoutLifetime removed from parameter and connection string resources
+      href: 9.5/iresourcewithoutlifetime-removed.md
 - name: .NET Aspire 9.4
   expanded: false
   items:

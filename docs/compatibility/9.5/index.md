@@ -2,7 +2,7 @@
 title: Breaking changes in .NET Aspire 9.5
 titleSuffix: ""
 description: Navigate to the breaking changes in .NET Aspire 9.5.
-ms.date: 08/19/2025
+ms.date: 09/23/2025
 ---
 
 # Breaking changes in .NET Aspire 9.5
@@ -18,4 +18,9 @@ If you're migrating an app to .NET Aspire 9.5, the breaking changes listed here 
 
 | Title | Type of change | Introduced version |
 |--|--|--|
+| [Comprehensive path normalization for volume naming](path-normalization-volume-naming.md) | Behavioral change, binary incompatible, source incompatible | 9.5 |
+| [Fix endpoint resolution for Host/Port in WithEnvironment](endpoint-resolution-withenvironment.md) | Behavioral change, binary incompatible, source incompatible | 9.5 |
 | [Interaction service API changes](interaction-service-api-changes.md) | Behavioral change, binary incompatible, source incompatible | 9.5 |
+| [Launch profiles now ignore unsupported commandName values](launch-profile-filtered.md) | Behavioral change, binary incompatible, source incompatible | 9.5 |
+| [InteractionInput.Name required and Label optional](interactioninput-name-required.md) | Behavioral change, binary incompatible, source incompatible | 9.5 |
+| [IResourceWithoutLifetime removed from parameter and connection string resources](iresourcewithoutlifetime-removed.md) | Behavioral change, binary incompatible, source incompatible | 9.5 |

@@ -1,7 +1,7 @@
 ---
 title: "Breaking change - Interaction service API changes"
 description: "Learn about the breaking change in .NET Aspire 9.5 where the interaction service API requires input names, makes labels optional, and enables name-based access to results."
-ms.date: 08/19/2025
+ms.date: 09/23/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/4270
 ---
