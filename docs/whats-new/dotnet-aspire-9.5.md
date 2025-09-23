@@ -435,103 +435,44 @@ builder.Build().Run();
 
 This feature enables modern web application architectures where YARP acts as both a reverse proxy for backend services and a static file server for frontend assets, providing a unified entry point for your distributed application.
 
-### Redis and RabbitMQ auto activation
+### RabbitMQ auto activation
 
-Redis and RabbitMQ connections now support auto activation to prevent startup deadlocks and improve application reliability.
-
-**Features:**
-
-- **Eliminates blocking threads**: Connections are established proactively at startup rather than on first use
-- **Prevents startup deadlocks**: Avoids synchronous connection establishment in dependency injection scenarios
-- **Improves reliability**: Reduces first-request latency by pre-establishing connections
-- **Configurable behavior**: Can be enabled or disabled per connection as needed
+RabbitMQ client connections now support auto activation to prevent startup deadlocks and improve application reliability. Auto activation is disabled by default.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
+var messaging = builder.AddRabbitMQ("messaging");
 
-// Auto activation enabled by default for Redis
-var redis = builder.AddRedis("cache");
-
-// Use in applications - connection is already established
-var api = builder.AddProject<Projects.Api>("api")
-    .WithReference(redis);
-
-builder.Build().Run();
+// Auto activation is disabled by default for RabbitMQ, enable using DisableAutoActivation=false
+builder.AddRabbitMQClient("messaging", o => o.DisableAutoActivation = false);
 ```
 
-#### RabbitMQ auto activation configuration
+### Redis integration improvements
+
+#### Auto activation
+
+Redis client connections also now support auto activation, and is also disabled by default.
 
 ```csharp
-// Application (not AppHost) code
-var builder = Host.CreateApplicationBuilder(args);
-
-// Default: auto activation ENABLED (no extra configuration required)
-builder.AddRabbitMQClient("messaging");
-
-// --- OR --- Opt out of auto activation (connection will be created lazily)
-// builder.AddRabbitMQClient("messaging", settings =>
-// {
-//     settings.DisableAutoActivation = true; // disable auto activation
-// });
-
-var app = builder.Build();
-app.Run();
+var builder = DistributedApplication.CreateBuilder(args);
+var redis = builder.AddRedis("redis");
+// Auto activation is disabled by default for Redis, enable using DisableAutoActivation=false
+var redisClient = builder.AddRedisClient("redis", c => c.DisableAutoActivation = false);
 ```
 
-### Redis client builder pattern
+#### Client builder pattern
 
 Aspire 9.5 introduces a new Redis client builder pattern that provides a fluent, type-safe approach to configuring Redis clients with integrated support for distributed caching, output caching, and Azure authentication.
 
-**Features:**
-
-- **Fluent configuration**: Chain multiple Redis features like distributed caching, output caching, and Azure authentication
-- **Type-safe builders**: `AspireRedisClientBuilder` provides compile-time safety and IntelliSense
-- **Integrated Azure authentication**: Seamless Azure AD/Entra ID authentication with `WithAzureAuthentication`
-- **Service composition**: Build complex Redis configurations with multiple features in a single call chain
-
-#### Basic Redis client builder usage
+Basic usage:
 
 ```csharp
-var builder = Host.CreateApplicationBuilder(args);
-
-builder.AddRedisClientBuilder("cache")
-    .WithDistributedCache()
-    .WithOutputCache();
-
-var app = builder.Build();
-app.Run();
-```
-
-**Advanced Redis builder patterns:**
-
-#### Advanced Redis builder patterns
-
-```csharp
-// Multiple Redis instances with different configurations (application code)
-var builder = Host.CreateApplicationBuilder(args);
-
-// Cache-focused Redis instance
-builder.AddRedisClientBuilder("cache")
-    .WithDistributedCache(options => 
-    {
-        options.InstanceName = "MainCache";
-        options.DefaultSlidingExpiration = TimeSpan.FromMinutes(30);
-    });
-
-// Output cache Redis instance with Azure authentication
-builder.AddKeyedRedisClientBuilder("output-cache")
-    .WithAzureAuthentication()
-    .WithOutputCache();
-
-// Session Redis instance
-builder.AddKeyedRedisClientBuilder("sessions") 
-    .WithDistributedCache(options =>
-    {
-        options.InstanceName = "Sessions";
-    });
-
-var app = builder.Build();
-app.Run();
+builder.AddRedisClientBuilder("azure-redis") 
+  .WithAzureAuthentication() // Uses default Azure credentials 
+  .WithDistributedCache(options => 
+  { 
+    options.InstanceName = "MyApp";
+  });
 ```
 
 ### Azure Redis Enterprise support
