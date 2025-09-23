@@ -302,6 +302,9 @@ items:
       href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.0&preserve-view=true
     - name: Aspire.Azure API reference
       href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.0&preserve-view=true
+  - name: Dev tunnels
+    displayName: dev tunnels,tunnels,development,secure sharing
+    href: extensibility/dev-tunnels-integration.md
   - name: Elasticsearch
     displayName: elasticsearch,search
     href: search/elasticsearch-integration.md
