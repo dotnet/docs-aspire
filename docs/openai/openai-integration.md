@@ -6,6 +6,8 @@ ms.date: 09/23/2025
 
 # .NET Aspire OpenAI integration (Preview)
 
+[!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
+
 [OpenAI](https://openai.com/) provides access to chat/completions, embeddings, image, and audio models via a REST API. The .NET Aspire OpenAI integration lets you:
 
 - Model an OpenAI account (endpoint + API key) once in the AppHost.

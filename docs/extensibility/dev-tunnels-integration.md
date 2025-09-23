@@ -1,10 +1,12 @@
 ---
 title: .NET Aspire dev tunnels integration
 description: Learn how to use the .NET Aspire dev tunnels integration to securely expose local endpoints publicly during development.
-ms.date: 01/17/2025
+ms.date: 09/23/2025
 ---
 
 # .NET Aspire dev tunnels integration
+
+[!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 [Dev tunnels](https://learn.microsoft.com/azure/developer/dev-tunnels/overview) allow developers to securely share local web services across the internet. The .NET Aspire dev tunnels integration makes it easy to model dev tunnels in your AppHost projects so that they're automatically managed during development.
 
@@ -13,7 +15,7 @@ ms.date: 01/17/2025
 
 Dev tunnels are useful for:
 
-- Sharing a running local service (e.g., a Web API) with teammates, mobile devices, or webhooks.
+- Sharing a running local service (for example, a Web API) with teammates, mobile devices, or webhooks.
 - Testing incoming callbacks from external SaaS systems (GitHub / Stripe / etc.) without deploying.
 - Quickly publishing a temporary, TLS‑terminated endpoint during development.
 
@@ -24,7 +26,7 @@ Dev tunnels are useful for:
 
 Before you create a dev tunnel, you first need to download and install the devtunnel CLI (Command Line Interface) tool that corresponds to your operating system. See the [devtunnel CLI installation documentation](https://learn.microsoft.com/azure/developer/dev-tunnels/get-started#install) for more details.
 
-## Get started
+## Hosting integration
 
 To get started with the .NET Aspire dev tunnels integration, install the [📦 Aspire.Hosting.DevTunnels](https://www.nuget.org/packages/Aspire.Hosting.DevTunnels) NuGet package in the AppHost project.
 
@@ -45,84 +47,58 @@ dotnet add package Aspire.Hosting.DevTunnels
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-## Example usage
+### Add a dev tunnel resource
 
 In the AppHost project, add a dev tunnel and configure it to expose specific resources:
 
-:::code source="snippets/dev-tunnels/DevTunnels.AppHost/Program.cs" range="8-11":::
+:::code source="snippets/dev-tunnels/DevTunnels.AppHost/AppHost.cs":::
 
-When you run the AppHost, the dev tunnel will be created and configured to expose the web application endpoints publicly. The tunnel URLs will be shown in the .NET Aspire dashboard.
+When you run the AppHost, the dev tunnel is created to expose the web application endpoints publicly. The tunnel URLs are shown in the .NET Aspire dashboard. By default, the tunnel requires authentication and is available only to the user who created it.
 
-## Configuration
+### Allow anonymous access
 
-### Basic tunnel configuration
+To allow anonymous (public) access to the entire tunnel, chain a call to the `WithAnonymousAccess` method:
 
-The `AddDevTunnel` method creates a dev tunnel resource with the specified name:
+:::code source="snippets/dev-tunnels/DevTunnels.AppHost/AppHost.Anonymous.cs" id="anonymous":::
 
-```csharp
-var tunnel = builder.AddDevTunnel("api-tunnel");
-```
+The preceding code:
 
-You can optionally specify a custom tunnel ID and additional options:
+- Creates a new `IDistributedApplicationBuilder` instance.
+- Adds a project reference to the `web` project.
+- Adds a dev tunnel named `public-api` that exposes the `web` project.
+- Configures the tunnel to allow anonymous access.
 
-:::code source="snippets/dev-tunnels/DevTunnels.AppHost/Program.cs" range="18-29":::
+### Configure dev tunnel options
 
-### Exposing resources through tunnels
+To configure other options for the dev tunnel, provide the `DevTunnelOptions` to the `AddDevTunnel` method:
 
-#### Expose all endpoints on a resource
+:::code source="snippets/dev-tunnels/DevTunnels.AppHost/AppHost.Options.cs" id="options":::
 
-To expose all endpoints of a resource through the tunnel:
+The preceding code:
 
-:::code source="snippets/dev-tunnels/DevTunnels.AppHost/Program.cs" range="8-11":::
+- Creates a new `IDistributedApplicationBuilder` instance.
+- Adds a project reference to the `web` project.
+- Creates a `DevTunnelOptions` instance to configure the tunnel.
+- Adds a dev tunnel named `qa` with a specific `tunnelId` that exposes the `web` project.
+- Configures the tunnel with a description, labels, and disables anonymous access.
 
-#### Expose specific endpoints
+### Configure for mixed access
 
-To expose only specific endpoints:
+To allow anonymous access to specific endpoints, use the appropriate `WithReference` overload as shown in the following code:
 
-```csharp
-var api = builder.AddProject<Projects.ApiService>("api");
+:::code source="snippets/dev-tunnels/DevTunnels.AppHost/AppHost.MixedAccess.cs" id="mixedaccess":::
 
-var tunnel = builder.AddDevTunnel("api-tunnel")
-                    .WithReference(api.GetEndpoint("public"));
-```
+The preceding code:
 
-#### Multiple endpoints with different access levels
+- Creates a new `IDistributedApplicationBuilder` instance.
+- Adds a project reference to the `api` project.
+- Adds a dev tunnel named `mixed-access` that exposes:
+  - The `public` endpoint of the `api` project with anonymous access.
+  - The `admin` endpoint of the `api` project that requires authentication.
 
-You can control anonymous access at the port (endpoint) level:
+### Service discovery integration
 
-:::code source="snippets/dev-tunnels/DevTunnels.AppHost/Program.cs" range="33-36":::
-
-### Anonymous access
-
-#### Entire tunnel anonymous access
-
-To enable anonymous access for the entire tunnel:
-
-:::code source="snippets/dev-tunnels/DevTunnels.AppHost/Program.cs" range="13-16":::
-
-#### Per-endpoint anonymous access
-
-You can control anonymous access at the individual endpoint level:
-
-```csharp
-var tunnel = builder.AddDevTunnel("api-tunnel")
-                    .WithReference(api.GetEndpoint("webhook"), allowAnonymous: true)
-                    .WithReference(api.GetEndpoint("admin"), allowAnonymous: false);
-```
-
-### Multiple tunnels
-
-You can create multiple tunnels for different purposes:
-
-:::code source="snippets/dev-tunnels/DevTunnels.AppHost/Program.cs" range="13-16,38-40":::
-
-## Service discovery integration
-
-When another resource references a dev tunnel, environment variables are injected using the [.NET Aspire service discovery](../service-discovery/overview.md) configuration format:
-
-:::code source="snippets/dev-tunnels/DevTunnels.AppHost/Program.cs" range="42-44":::
-
-This injects environment variables like:
+When another resource references a dev tunnel, environment variables are injected using the [.NET Aspire service discovery](../service-discovery/overview.md) configuration format. Use the `WithReference` overloads that accept the `IResourceBuilder<DevTunnelResource>` parameter to reference a dev tunnel. This injects environment variables like:
 
 ```env
 services__web__https__0=https://myweb-1234.westeurope.devtunnels.ms/
@@ -134,50 +110,52 @@ This lets downstream resources use the tunneled address exactly like any other .
 > Referencing a tunnel delays the consumer resource's start until the tunnel has started and its endpoint is fully allocated.
 
 > [!IMPORTANT]
-> Dev tunnels are a development time concern only and are not included when publishing or deploying an AppHost, including any service discovery information.
+> Dev tunnels are a development time concern only and aren't included when publishing or deploying an AppHost, including any service discovery information.
 
-## Dev tunnel options
+## Configuration
+
+### Dev tunnel options
 
 The <xref:Aspire.Hosting.DevTunnels.DevTunnelOptions> class provides several configuration options:
 
 | Property | Description |
-|----------|-------------|
+|--|--|
 | `Description` | A description for the tunnel that appears in the dev tunnels service. |
 | `Labels` | A list of labels to apply to the tunnel for organization and filtering. |
 | `AllowAnonymous` | Whether to allow anonymous access to the entire tunnel. |
 
-## Dev tunnel port options
+### Dev tunnel port options
 
 The <xref:Aspire.Hosting.DevTunnels.DevTunnelPortOptions> class provides configuration for individual tunnel ports:
 
 | Property | Description |
-|----------|-------------|
+|--|--|
 | `Protocol` | The protocol to use (`http`, `https`, or `auto`). If not specified, uses the endpoint's scheme. |
 | `Description` | A description for this specific port. |
 | `Labels` | Labels to apply to this port. |
 | `AllowAnonymous` | Whether to allow anonymous access to this specific port. |
 
-## Security considerations
+### Security considerations
 
 - Prefer authenticated tunnels during normal development.
 - Only enable anonymous access for endpoints that are safe to expose publicly.
 - Treat public tunnel URLs as temporary & untrusted (rate limit / validate input server-side).
 
-## Tunnel lifecycle
+### Tunnel lifecycle
 
 Dev tunnels automatically:
 
-- Install the devtunnel CLI if not already available
-- Ensure the user is logged in to the dev tunnels service
-- Create and manage tunnel lifecycle
-- Clean up unmodeled ports from previous runs
-- Provide detailed logging and diagnostics
+- Install the devtunnel CLI if not already available.
+- Ensure the user is logged in to the dev tunnels service.
+- Create and manage tunnel lifecycle.
+- Clean up unmodeled ports from previous runs.
+- Provide detailed logging and diagnostics.
 
 Tunnels will expire after not being hosted for 30 days by default, so they won't be forcibly deleted when the resource or AppHost is stopped.
 
-## Troubleshooting
+### Troubleshooting
 
-### Authentication required
+#### Authentication required
 
 If you see authentication errors, ensure you're logged in to the dev tunnels service:
 
@@ -185,17 +163,17 @@ If you see authentication errors, ensure you're logged in to the dev tunnels ser
 devtunnel user login
 ```
 
-### Port conflicts
+#### Port conflicts
 
 If you encounter port binding issues, check that no other processes are using the same ports, or configure different ports for your endpoints.
 
-### Tunnel not accessible
+#### Tunnel not accessible
 
 Verify that:
 
-- The tunnel is running and healthy in the .NET Aspire dashboard
-- You're using the correct tunnel URL
-- Anonymous access is configured correctly if accessing without authentication
+- The tunnel is running and healthy in the .NET Aspire dashboard.
+- You're using the correct tunnel URL.
+- Anonymous access is configured correctly if accessing without authentication.
 
 ## See also
 
