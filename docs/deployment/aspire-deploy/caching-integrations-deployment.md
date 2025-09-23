@@ -115,7 +115,7 @@ The `aspire deploy` command supports .NET Aspire Redis integration configuration
 
 To deploy your app to Azure Container Apps, run the following command from the _AspireRedis.AppHost_ directory:
 
-```dotnetcli
+```Aspire
 aspire deploy
 ```
 

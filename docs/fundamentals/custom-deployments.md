@@ -1,7 +1,7 @@
 ---
 title: Building custom deployment pipelines
 description: Learn how to build container images from your .NET Aspire resources and create custom deployment pipelines.
-ms.date: 08/07/2025
+ms.date: 09/22/2025
 ai-usage: ai-assisted
 ---
 
