@@ -681,7 +681,7 @@ var worker = builder.AddProject<Projects.Worker>("worker")
     .WithReference(database);
 ```
 
-New `ResourceStoppedEvent` provides lifecycle insight when resources shut down or fail ([#11103](https://github.com/dotnet/aspire/pull/11103)):
+New `ResourceStoppedEvent` provides lifecycle insight when resources shut down or fail:
 
 ```csharp
 builder.AddProject<Projects.Api>("api")
@@ -768,51 +768,6 @@ var api = builder.AddProject<Projects.Api>("api")
 builder.Build().Run();
 ```
 
-**Multiple probe types for comprehensive monitoring:**
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var database = builder.AddPostgres("postgres");
-
-// Service with complete probe coverage
-var api = builder.AddProject<Projects.Api>("api")
-    // Startup probe: Ensures service starts successfully
-    .WithHttpProbe(ProbeType.Startup, "/health/startup", 
-        initialDelaySeconds: 15, failureThreshold: 10)
-    
-    // Readiness probe: Determines when ready to receive traffic
-    .WithHttpProbe(ProbeType.Readiness, "/health/ready",
-        periodSeconds: 5, timeoutSeconds: 3)
-    
-    // Liveness probe: Detects if service is still functioning
-    .WithHttpProbe(ProbeType.Liveness, "/health/live",
-        periodSeconds: 30, failureThreshold: 3)
-    
-    .WithReference(database);
-
-builder.Build().Run();
-```
-
-**Custom endpoint targeting:**
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Probe specific endpoint by name
-var api = builder.AddProject<Projects.Api>("api")
-    .WithHttpEndpoint(8080, name: "management")
-    .WithHttpProbe(ProbeType.Readiness, "/actuator/health", 
-        endpointName: "management");
-
-// Probe with endpoint selector function
-var service = builder.AddProject<Projects.Service>("service")
-    .WithHttpProbe(ProbeType.Liveness, "/status",
-        endpointSelector: () => service.GetEndpoint("https"));
-
-builder.Build().Run();
-```
-
 **Integration with resource dependencies:**
 
 ```csharp
@@ -841,7 +796,7 @@ This feature enhances deployment reliability by providing fine-grained health mo
 
 ### Enhanced resource waiting patterns
 
-New `WaitForStart` method provides granular control over startup ordering, complementing existing `WaitFor` semantics (#10948). It also pairs with improved `ExternalService` health honoring (#10827) which ensures dependents truly wait for external resources to be healthy.
+New `WaitForStart` method provides granular control over startup ordering, complementing existing `WaitFor` semantics. It also pairs with improved `ExternalService` health honoring which ensures dependents truly wait for external resources to be healthy.
 
 **Understanding wait behaviors:**
 
@@ -859,24 +814,9 @@ var api = builder.AddProject<Projects.Api>("api")
     .WithReference(redis);
 ```
 
-**Migration scenario (database initialization):**
-
-```csharp
-var database = builder.AddPostgres("postgres");
-
-var migrator = builder.AddProject<Projects.Migrator>("migrator")
-    .WaitForStart(database)  // Start as soon as container is running
-    .WithReference(database);
-
-var api = builder.AddProject<Projects.Api>("api")
-    .WaitFor(database)       // Healthy database
-    .WaitFor(migrator)       // Migration completed
-    .WithReference(database);
-```
-
 **ExternalService health integration:**
 
-`WaitFor` now honors `ExternalService` health checks (#10827). Previously a dependent could start even if the external target failed its readiness probe.
+`WaitFor` now honors `ExternalService` health checks. Previously a dependent could start even if the external target failed its readiness probe.
 
 ```csharp
 var externalApi = builder.AddExternalService("backend-api", "http://api.company.com")
@@ -902,7 +842,7 @@ var frontend2 = builder.AddProject<Projects.Frontend>("frontend2")
 
 ### Enhanced resource lifetime support
 
-**Breaking change**: Resources like `ParameterResource`, `ConnectionStringResource`, and GitHub Model resources now participate in lifecycle operations and support `WaitFor` (#10851, #10842). This section merges prior duplicate "Resource lifetime behavior" content.
+**Breaking change**: Resources like `ParameterResource`, `ConnectionStringResource`, and GitHub Model resources now participate in lifecycle operations and support `WaitFor`.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -927,42 +867,6 @@ builder.Build().Run();
 ```
 
 These resources no longer implement `IResourceWithoutLifetime`; they surface as Running and can be waited on just like services.
-
-### Resource lifecycle event APIs
-
-Aspire 9.5 introduces new resource lifecycle event APIs that allow you to hook into resource state transitions for custom logic execution.
-
-The new `OnResourceStopped` extension method enables you to register callbacks that execute when a resource transitions to the stopped state:
-
-```csharp
-var database = builder.AddSqlServer("sqlserver")
-    .OnResourceStopped(async (resource, stoppedEvent, cancellationToken) =>
-    {
-        // Cleanup logic when database stops
-        logger.LogInformation("Database {ResourceName} stopped", resource.Name);
-        await PerformCleanupAsync(cancellationToken);
-    });
-```
-
-**Complete lifecycle event coverage:**
-
-Combined with existing lifecycle events, you now have full coverage of resource state transitions:
-
-```csharp
-var api = builder.AddProject<Projects.Api>("api")
-    .OnResourceReady(async (resource, readyEvent, cancellationToken) =>
-    {
-        // Resource is running and healthy
-        await RegisterWithServiceDiscoveryAsync(resource, cancellationToken);
-    })
-    .OnResourceStopped(async (resource, stoppedEvent, cancellationToken) =>
-    {
-        // Resource has stopped
-        await UnregisterFromServiceDiscoveryAsync(resource, cancellationToken);
-    });
-```
-
-This provides symmetrical lifecycle management for scenarios like service registration/deregistration, resource cleanup, logging, and custom monitoring integration.
 
 ## ☁️ Publishing and deployment
 
