@@ -486,6 +486,7 @@ builder.AddRedisClientBuilder("redis")
   { 
     options.InstanceName = "MyApp";
   });
+
 ### Azure Redis Enterprise support
 
 Aspire 9.5 introduces first-class support for [Azure Redis Enterprise](https://learn.microsoft.com/azure/redis/overview), providing a high-performance, fully managed Redis service with enterprise-grade features. Azure Redis Enterprise provides advanced caching capabilities with clustering, high availability, and enterprise security features while maintaining compatibility with the standard Redis APIs.
