@@ -28,6 +28,7 @@ The `aspire update` command scans an AppHost-based solution and updates Aspire-r
 - Prompts you to choose a channel sourced from configured NuGet feeds.
 - Detects outdated Aspire packages and computes safe upgrade targets.
 - Updates package versions either inline (`<PackageReference Version="..." />`) or via Central Package Management (`Directory.Packages.props`).
+- Updates `NuGet.config` file if required to make sure that package sources and package source mappings are appropriate for the channel selected.
 - Skips packages already at the latest channel-compatible version.
 
 Typical reasons to run this command include adopting the latest stable servicing fixes, trying preview features, or experimenting with daily builds. After updating, build or run your solution (for example with `aspire run`) to validate changes.
