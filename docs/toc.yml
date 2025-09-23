@@ -33,7 +33,7 @@ items:
       href: get-started/dev-containers.md
   - name: What's new in .NET Aspire 9.5
     href: whats-new/dotnet-aspire-9.5.md
-  - name: Upgrade to .NET Aspire 9.4.1
+  - name: Upgrade to .NET Aspire 9.5.0
     href: get-started/upgrade-to-aspire-9.md
 
 - name: AppHost
@@ -155,6 +155,8 @@ items:
       href: cli-reference/aspire-publish.md
     - name: aspire run
       href: cli-reference/aspire-run.md
+    - name: aspire update
+      href: cli-reference/aspire-update.md
 
 - name: Testing
   items:
@@ -220,6 +222,9 @@ items:
       href: azure/local-provisioning.md
     - name: Configure Azure Container Apps environments
       href: azure/configure-aca-environments.md
+    - name: Azure Container App Jobs
+      displayName: container app jobs,jobs,batch processing,scheduled tasks
+      href: azure/container-app-jobs.md
     - name: User-assigned managed identity
       href: azure/user-assigned-managed-identity.md
     - name: Manage role assignments
@@ -243,6 +248,8 @@ items:
       items:
       - name: Azure Cache for Redis
         href: caching/azure-cache-for-redis-integration.md
+      - name: Azure Managed Redis
+        href: caching/azure-redis-enterprise-integration.md
       - name: Azure Cache for Redis distributed cache
         href: caching/azure-cache-for-redis-distributed-caching-integration.md
       - name: Azure Cache for Redis output caching
@@ -347,6 +354,9 @@ items:
   - name: NATS
     displayName: nats,messaging
     href: messaging/nats-integration.md
+  - name: OpenAI
+    displayName: openai,chatgpt,gpt,ai,open ai
+    href: openai/openai-integration.md
   - name: Orleans
     items:
     - name: Overview

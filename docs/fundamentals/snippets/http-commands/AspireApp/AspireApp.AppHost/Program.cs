@@ -18,7 +18,7 @@ var api = builder.AddProject<Projects.AspireApp_Api>("api")
                 """,
             PrepareRequest = (context) =>
             {
-                var key = apiCacheInvalidationKey.Resource.Value;
+                var key = apiCacheInvalidationKey.Resource.GetValueAsync(context.CancellationToken);
 
                 context.Request.Headers.Add("X-CacheInvalidation-Key", $"Key: {key}");
 

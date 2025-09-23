@@ -12,7 +12,7 @@
     <ProjectReference Include="..\Dapr.Web\Dapr.Web.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.4.1" />
-    <PackageReference Include="CommunityToolkit.Aspire.Hosting.Dapr" Version="9.7.1" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
+    <PackageReference Include="CommunityToolkit.Aspire.Hosting.Dapr" Version="9.7.2" />
   </ItemGroup>
 </Project>

@@ -79,7 +79,7 @@ These approaches help you create interactive, user-friendly experiences for loca
 > builder.AddFakeResource("fake-resource")
 >        .WithCommand("msg-dialog", "Example Message Dialog", async context =>
 > {
->     var interactionService = context.GetRequiredService<IInteractionService>();
+>     var interactionService = context.ServiceProvider.GetRequiredService<IInteractionService>();
 >     
 >     // Use interaction service...
 >

@@ -8,8 +8,8 @@
     <UserSecretsId>5e45e8bd-353b-48d8-ac57-a89e5ee3f8ec</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.4.1" />
-    <PackageReference Include="Aspire.Hosting.Azure" Version="9.4.1" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
+    <PackageReference Include="Aspire.Hosting.Azure" Version="9.5.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebHook.Api\WebHook.Api.csproj" />

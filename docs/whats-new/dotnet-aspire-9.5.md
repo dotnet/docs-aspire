@@ -1,10 +1,10 @@
 ---
 title: What's new in Aspire 9.5
 description: Learn what's new in Aspire 9.5.
-ms.date: 09/17/2025
+ms.date: 09/23/2025
 ---
 
-## What's new in Aspire 9.5
+# What's new in Aspire 9.5
 
 📢 Aspire 9.5 is the next minor version release of Aspire. It supports:
 
@@ -23,7 +23,7 @@ It's important to note that Aspire releases out-of-band from .NET releases. Whil
 
 > [!NOTE]
 > Try out `aspire update`!
-> Aspire 9.5 brings a new preview CLI command - [aspire update](#new-aspire-update-command-preview) - that can update your AppHost and its packages for you. Get the latest CLI if you want to try and give us feedback about it on [GitHub](https://github.com/dotnet/aspire/issues)!
+> Aspire 9.5 brings a new preview CLI command - [aspire update](#new-aspire-update-command-preview) - that can update your AppHost and its packages for you. Get the latest CLI if you want to try to give us feedback about it on [GitHub](https://github.com/dotnet/aspire/issues)!
 
 Moving between minor releases of Aspire is simple:
 
@@ -32,7 +32,9 @@ Moving between minor releases of Aspire is simple:
     ```bash
     # Bash
     curl -sSL https://aspire.dev/install.sh | bash
-    
+    ```
+
+    ```powershell
     # PowerShell
     iex "& { $(irm https://aspire.dev/install.ps1) }"
     ```
@@ -45,7 +47,7 @@ Moving between minor releases of Aspire is simple:
 
     For more information, see [Aspire SDK](xref:dotnet/aspire/sdk).
 
-1. Check for any NuGet package updates, either using the NuGet Package Manager in Visual Studio or the **Update NuGet Package** command from C# Dev Kit in VS Code.
+1. Check for any NuGet package updates, either using the NuGet Package Manager in Visual Studio or the **Update NuGet Package** command from C# Dev Kit in Visual Studio (VS) Code.
 
 1. Update to the latest [Aspire templates](../fundamentals/aspire-sdk-templates.md) by running the following .NET command line:
 
@@ -54,15 +56,28 @@ Moving between minor releases of Aspire is simple:
     ```
 
   > [!NOTE]
-  > The `dotnet new install` command will update existing Aspire templates to the latest version if they are already installed.
+  > The `dotnet new install` command updates existing Aspire templates to the latest version if they're already installed.
 
 If your AppHost project file doesn't have the `Aspire.AppHost.Sdk` reference, you might still be using Aspire 8. To upgrade to 9, follow [the upgrade guide](../get-started/upgrade-to-aspire-9.md).
 
 ## 🛠️ CLI and tooling
 
+Aspire 9.5 adds targeted CLI and tooling updates that speed up setup and maintenance.
+
+**Key improvements:**
+
+- Channel-aware package selection in `aspire add` so you can choose stable, daily, or custom builds.
+- Preview `aspire update` command that scans your AppHost, validates versions, and applies safe upgrades.
+- Experimental single-file AppHost (`apphost.cs`) behind a feature flag.
+- SSH Remote port forwarding support in VS Code, matching Dev Container and Codespaces behavior.
+- Enhanced `aspire exec` with `--workdir`, clearer help, and early argument validation.
+- Performance refinements: package search disk cache, cleaner debug output, clearer status messages, and faster repeat package resolution.
+
+Run `aspire update` to upgrade, enable the single-file AppHost to experiment with a minimal setup, and use `aspire exec` to script tasks with inherited environment context.
+
 ### Channel-aware `aspire add` & templating
 
-You can now pick packages from different channels or versions during `aspire add`. Additionally, friendly name generation is now more flexible for searching packages.
+You can now pick packages from different channels or versions during `aspire add`. Additionally, friendly name generation is now more flexible for searching packages. When adding packages, you should use versions, which are aligned to the `Aspire.Hosting.AppHost` package that you're using. To update your entire AppHost and its referenced project, you can use the `aspire update` command (see below).
 
 ### New `aspire update` command (preview)
 
@@ -73,23 +88,16 @@ The new `aspire update` command helps you keep your Aspire projects current by a
 aspire update
 ```
 
+:::image type="content" source="media/aspire-update.gif" lightbox="media/aspire-update.gif" alt-text="Recording of aspire update running on eshop sample.":::
+
 This command updates your SDK, AppHost packages, and any Aspire client integrations used in the app. It validates package compatibility and asks for confirmation before applying changes. Like `add`, `update` is channel aware, so you can choose to update to stable, daily, or your own configuration of builds.
 
 > [!IMPORTANT]
-> 🧪 **Preview Feature**: The `aspire update` command is in preview and may change before general availability.
-
-### Enhanced markdown and styling support
-
-The CLI now has better markdown rendering support for an improved developer experience:
-
-- **Code fences** with syntax highlighting for better readability
-- **Rich text formatting** including emphasis, bold, and inline code
-- **Structured lists** with bullet points and numbering
-- **Safe markup escaping** to prevent XSS and rendering issues
+> 🧪 **Preview Feature**: The `aspire update` command is in preview and may change before general availability. The `aspire update` command makes changes to project files, central package management, and NuGet.config files. We recommend using version control and inspecting changes after `aspire update` is run to verify the changes.
 
 ### File-based AppHost support (preview)
 
-Aspire 9.5 introduces infrastructure for .NET 10's new file-based apps feature, meaning you only need 1 file - and no project file! - for your Aspire apphost. The new capabilities are currently behind a feature flag that elevates the minimum .NET SDK requirement to prepare for upcoming file-based app execution scenarios.
+Aspire 9.5 introduces infrastructure for .NET 10's new file-based apps feature, meaning you only need one file - and no project file! - for your Aspire Apphost. The new capabilities are currently behind a feature flag that elevates the minimum .NET SDK requirement to prepare for upcoming file-based app execution scenarios.
 
 ```bash
 # Enable file-based AppHost ("apphost.cs") support
@@ -101,7 +109,7 @@ aspire config set features.singlefileAppHostEnabled true
 - **Feature enabled**: Requires .NET SDK 10.0.100 RC1 or later
 - **Override support**: Manual SDK version overrides continue to work with highest precedence
 
-You can use `aspire new` to create a new, blank file-based apphost:
+You can use `aspire new` to create a new, blank file-based Apphost. Select the _Single-file AppHost (experimental)_ option from the project template list:
 
 ```csharp
 #:sdk Aspire.AppHost.Sdk@9.5.0
@@ -109,44 +117,25 @@ You can use `aspire new` to create a new, blank file-based apphost:
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.Build().Run();
-
 ```
 
-Then add some resources, use `aspire add` the same as you would with a project-based apphost, and `aspire run` to start!
+Then add some resources, use `aspire add` the same as you would with a project-based Apphost, and `aspire run` to start!
 
 ### SSH Remote support for port forwarding in VS Code
 
-Version 9.5 adds first-class support for SSH Remote development environments, extending automatic port forwarding configuration to VS Code SSH Remote scenarios alongside existing Devcontainer and Codespaces support.
-
-**Features:**
-
-- **Automatic environment detection**: Detects SSH Remote scenarios via `VSCODE_IPC_HOOK_CLI` and `SSH_CONNECTION` environment variables
-- **Seamless port forwarding**: Automatically configures VS Code settings for Aspire application endpoints
-- **Consistent developer experience**: Matches existing behavior for Devcontainers and Codespaces
-- **No configuration required**: Works out-of-the-box when using VS Code SSH Remote extension
-
-SSH Remote environments are automatically detected when both environment variables are present:
-
-```bash
-# SSH Remote environment variables (these are automatically set by VS Code)
-export SSH_CONNECTION="192.168.1.1 12345 192.168.1.2 22"
-export VSCODE_IPC_HOOK_CLI="/path/to/vscode/hook"
-
-# Aspire then detects and configures port forwarding
-aspire run
-```
-
-The SSH Remote support follows the exact same patterns as existing Devcontainer and Codespaces integration, ensuring a consistent experience across all VS Code remote development scenarios. Port forwarding settings are automatically written to `.vscode-server/data/Machine/settings.json` when SSH Remote environments are detected.
+Aspire 9.5 adds SSH Remote support in VS Code. Ports forward automatically in SSH Remote sessions the same way they do in Dev Containers and GitHub Codespaces.
 
 ### `aspire exec` command (preview) enhancements
 
-The `aspire exec` command allows you to execute commands within the context of your Aspire application environment, inheriting environment variables and configuration from your app model resources.
+The `aspire exec` command allows you to execute commands within the context of your Aspire application environment, inheriting environment variables, and configuration from your app model resources.
 
 Building on the 9.4 preview, version 9.5 adds several key improvements:
 
 - `--workdir` (`-w`) flag to run commands inside a specific working directory (#10912)
 - Fail-fast argument validation with clearer error messages (#10606)
 - Improved help and usage text for better developer experience (#10598)
+
+For more information, see [aspire exec command](../cli-reference/aspire-exec.md) reference.
 
 #### Basic usage examples
 
@@ -180,39 +169,47 @@ aspire exec --start-resource my-worker -- npm run build
 - Relative path included in AppHost status messages
 - Clean CLI debug logging with reduced noise
 - Directory safety check for `aspire new` and consistent template inputs
-- Refactored NuGet prefetch architecture reducing UI lag during `aspire new` on macOS and enabling command-aware caching. Temporary NuGet config improvements ensure wildcard mappings
+- Refactored NuGet prefetch architecture reducing UI lag during `aspire new`.
+- Package search disk cache to speed up `aspire new | add | update` commands
 - Context-sensitive completion messages for publish/deploy
-- Interaction answer typing change (`object`) for future extensibility
-- Improved CTRL+C message and experience
-
-> The `aspire exec` and `aspire update` commands remain in preview behind feature flags; behavior may change in a subsequent release.
 
 ## 📊 Dashboard enhancements
 
-### Deep-linked telemetry navigation
+### Generative AI visualizer
 
-The dashboard now provides seamless navigation between different telemetry views with interactive elements in property grids. Trace IDs, span IDs, resource names, and log levels become clickable buttons for one-click navigation.
+Aspire 9.5 introduces the GenAI visualizer, which collates, summarizes, and visualizes LLM-centric calls within your app:
 
-- **Trace IDs**: Click to view the complete distributed trace
-- **Span IDs**: Navigate directly to specific trace spans
-- **Resource names**: Jump to resource-specific telemetry views  
-- **Log levels**: Filter logs by severity level instantly
+🗃️ Explore input and output messages  
+🚀 JSON/XML payloads highlighted and indented  
+🖼️ Preview Markdown and multimodal content (for example, images)  
 
-This eliminates the need to manually copy/paste identifiers between different dashboard views, making debugging and monitoring much more efficient.
+If GenAI-specific telemetry is found in an OTEL span, a sparkle (✨) icon appears next to its name in the Traces view. Clicking the icon launches the visualizer dialog.
+
+The [GenAI telemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/) are evolving rapidly. The visualizer supports multiple versions of the telemetry, and we update it as the conventions move toward a stable release.
+
+:::image type="content" source="media/dashboard-geni-visualizer.gif" lightbox="media/dashboard-geni-visualizer.gif" alt-text="Recording of the GenAI visualizer.":::
+
+### Rich property grid content
+
+Icons and clickable buttons were added to property grids in resource details, log entry details, and span details.
+
+- **Icons** improve visual clarity. For example, quickly see that a resource isn't in a healthy state if the icon is red or yellow.  
+- **Clickable buttons** improve navigation. For example, select on a resource name or telemetry ID to navigate to a different page for more information.
+
+:::image type="content" source="media/dashboard-rich-property-grid.png" lightbox="media/dashboard-rich-property-grid.png" alt-text="Screenshot of property grid with icons.":::
 
 ### Multi-resource console logs
 
 A new "All" option in the console logs view streams logs from every running resource simultaneously.
 
-**Features:**
+- **Unified log stream**: See logs from all resources in chronological order.  
+- **Color-coded prefixes**: Each resource gets a deterministic color for easy identification.
 
-- **Unified log stream**: See logs from all resources in chronological order
-- **Color-coded prefixes**: Each resource gets a deterministic color for easy identification
-- **Configurable timestamps**: Separate timestamp preference to reduce noise
+:::image type="content" source="media/console-logs-all.png" lightbox="media/console-logs-all.png" alt-text="Screenshot of the console logs page displaying (All) logs.":::
 
 ### Custom resource icons
 
-Resources can now specify custom icons and their variant - Filled (default) or Regular - using `WithIconName()` for better visual identification in dashboard views. Any [Fluent UI system icons](https://github.com/microsoft/fluentui-system-icons/blob/main/icons_filled.md) can be used.
+Resources can now specify custom icons and their variant—Filled (default) or Regular—using `WithIconName()` for better visual identification in dashboard views. Any [Fluent UI system icons](https://github.com/microsoft/fluentui-system-icons/blob/main/icons_filled.md) can be used.
 
 ```csharp
 var postgres = builder.AddPostgres("database")
@@ -225,11 +222,7 @@ var api = builder.AddProject<Projects.Api>("api")
     .WithIconName("webAsset", ApplicationModel.IconVariant.Regular);
 ```
 
-This helps teams quickly identify different types of resources in complex applications with many services. Custom resource icons now also apply to project & container resources via unified annotation, providing consistent visual identification across all resource types.
-
-### Generative AI insights
-
-New dialog and UI components make GenAI interactions easier to inspect and understand LLM-centric calls within your app. If GenAI-specific telemetry is found in an OTEL span, a sparkle (✨) icon will appear next to it's name in the Traces view. When selected, a new UI modal appears with relevant LLM information including the prompt, response, token usage, and more.
+This helps teams quickly identify different types of resources in complex applications with many services. Custom resource icons now also apply to project and container resources via unified annotation, providing consistent visual identification across all resource types.
 
 ### Reverse proxy support
 
@@ -240,30 +233,35 @@ The dashboard now properly handles reverse proxy scenarios with explicit forward
 export ASPIRE_DASHBOARD_FORWARDEDHEADERS_ENABLED=true
 ```
 
-**Supported scenarios:**
-
-- **OpenID Connect authentication** works correctly behind reverse proxies
-- **URL generation** respects the original client request scheme and host
-- **Limited header processing** for security - only Host and X-Forwarded-Proto are processed
-- **YARP integration** and other reverse proxy solutions
-
-This is particularly useful for deployment scenarios where the dashboard is accessed through a load balancer or reverse proxy.
+This is useful for deployment scenarios where the dashboard is accessed through a load balancer or reverse proxy.
 
 ### Container runtime notifications
 
-More actionable notifications now appear when Docker/Podman is installed but unhealthy, with automatic dismissal when runtime recovers. This provides immediate feedback when your container runtime needs attention, helping diagnose startup issues faster.
+Notifications now appear when Docker or Podman is installed but unhealthy, with automatic dismissal when the runtime recovers. This provides immediate feedback when your container runtime needs attention, helping diagnose startup issues faster.
+
+:::image type="content" source="media/dashboard-container-warning.png" lightbox="media/dashboard-container-warning.png" alt-text="Screenshot of the dashboard showing the container runtime warning.":::
 
 ### Trace filtering
 
-A new span "type" filter lets you focus on specific kinds of spans for faster investigation.
+The Traces page now has a type filter, a quick way to find traces and spans for the selected operation type.
+
+For example, choose Messaging 📬 to see only traces from your app that interact with RabbitMQ, Azure Service Bus, etc.
+
+:::image type="content" source="media/dashboard-trace-type.png" lightbox="media/dashboard-trace-type.png" alt-text="Screenshot of the traces page showing the type filter.":::
 
 ### Trace detail improvements
 
-The trace detail page now has Expand/collapse all, clearer exemplars, an added resource column, preserved root span visibility, and more reliable span linking.
+The trace detail page includes several quality-of-life improvements:
+
+🏷️ Span names are clearer, with resources split into their own column
+🪵 Logs are now shown in the waterfall chart—hover for a tooltip, or select for full details
+↕️ New "Expand all" and "Collapse all" buttons
+
+:::image type="content" source="media/dashboard-trace-detail-logs.png" lightbox="media/dashboard-trace-detail-logs.png" alt-text="Screenshot of trace details showing the new resources column and log tooltips.":::
 
 ### Other improvements
 
-- Resource action menus now use sub-menus to prevent overflow on complex apps
+- Resource action menus now use submenus to prevent overflow on complex apps
 - Projects show their associated launch profiles
 - Error spans use consistent error styling
 - Better default icons for parameters and services
@@ -317,60 +315,25 @@ var localOpenAI = builder.AddOpenAI("local-openai")
 var localModel = localOpenAI.AddModel("local-chat", "llama3.2");
 ```
 
-### GitHub Models typed catalog
+### GitHub Models and Azure AI Foundry typed catalogs
 
-Version 9.5 introduces a strongly-typed catalog for GitHub-hosted models, providing IntelliSense support and refactoring safety when working with AI models (#10986).
-
-**Benefits over string-based approach:**
-
-- **Type safety**: Compile-time validation of model names
-- **IntelliSense support**: Discover available models and providers  
-- **Refactoring safety**: Rename and find references work correctly
-- **Up-to-date catalog**: Daily automation ensures new models are available (#11040)
-
-```csharp
-// Before: String-based approach (error-prone)
-var model = github.AddModel("chat", "gpt-4o-mini"); // Typos not caught
-
-// After: Typed catalog approach  
-var chatModel = github.AddModel("chat", GitHubModel.OpenAI.Gpt4oMini);
-var claudeModel = github.AddModel("claude", GitHubModel.Anthropic.Claude3_5Sonnet);
-var llamaModel = github.AddModel("llama", GitHubModel.Meta.Llama3_1_405B_Instruct);
-
-// IntelliSense shows all available models grouped by provider
-var embeddingModel = github.AddModel("embeddings", GitHubModel.OpenAI.TextEmbedding3Large);
-```
-
-**Complete GitHub Models integration:**
-
+Aspire 9.5 introduces a typed catalog for GitHub and Azure-hosted models, providing IntelliSense support and refactoring safety when working with AI models. This brings type safety and IntelliSense support for the ever-increasing AI model catalog, and takes the guesswork out of version and "format" strings. The catalog is updated daily.
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Configure GitHub Models with token
-var githubToken = builder.AddParameter("github-token", secret: true);
+// Before: String-based approach (error-prone)
+var model = builder.AddGitHubModel("chat", "gpt-4o-mini"); // Typos not caught
 
-var github = builder.AddGitHubModels("github-models")
-    .WithToken(githubToken);
+// After: Typed catalog approach  
+var chatModel = builder.AddGitHubModel("chat", GitHubModel.OpenAI.OpenAIGPT4oMini);
 
-// Add multiple model types with strong typing
-var chatModel = github.AddModel("gpt4o", GitHubModel.OpenAI.Gpt4o);
-var fastModel = github.AddModel("gpt4o-mini", GitHubModel.OpenAI.Gpt4oMini);
-var claudeModel = github.AddModel("claude", GitHubModel.Anthropic.Claude3_5Sonnet);
-
-// Use in your applications
-var aiService = builder.AddProject<Projects.AIService>("ai-service")
-    .WithReference(chatModel)
-    .WithReference(fastModel)
-    .WithReference(claudeModel);
-
-builder.Build().Run();
+// IntelliSense shows all available models grouped by provider
+var embeddingModel = builder.AddGitHubModel("embeddings", GitHubModel.OpenAI.OpenAITextEmbedding3Large);
 ```
-
-The typed catalog automatically updates daily, so newly published models on GitHub become available without waiting for an Aspire release.
 
 ### Dev Tunnels hosting integration
 
-Aspire 9.5 introduces first-class support for Azure Dev Tunnels, enabling seamless integration of secure public tunnels for your applications during development and testing scenarios.
+Aspire 9.5 introduces first-class support for Dev Tunnels, enabling seamless integration of secure public tunnels for your applications during development and testing scenarios.
 
 **Features:**
 
@@ -394,57 +357,7 @@ tunnel.WithReference(webApp.GetEndpoint("http"));
 builder.Build().Run();
 ```
 
-**Advanced tunnel configuration:**
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var api = builder.AddProject<Projects.WebApi>("api");
-
-// Create a tunnel with custom options; choose anonymous OR keep private
-var tunnel = builder.AddDevTunnel("api-tunnel", options: new DevTunnelOptions
-{
-    Description = "API development tunnel",
-    Labels = ["development", "api"]
-});
-
-// Uncomment to allow anonymous (public) access instead of private authenticated access
-// tunnel.WithAnonymousAccess();
-
-// Connect the tunnel to the API endpoint
-tunnel.WithReference(api.GetEndpoint("https"));
-
-// Reference the tunnel from other resources
-var webhookProcessor = builder.AddProject<Projects.WebhookProcessor>("webhook-processor")
-    .WithReference(api, tunnel); // Gets tunneled endpoint information
-
-builder.Build().Run();
-```
-
-**Use cases:**
-
-**Webhook Development**: Test webhooks from external services (GitHub, Stripe, etc.) against your locally running API:
-
-```csharp
-// Webhook API with public tunnel (anonymous access for external service callbacks)
-var webhookApi = builder.AddProject<Projects.WebhookApi>("webhook-api");
-
-var publicTunnel = builder.AddDevTunnel("webhook-tunnel")
-    .WithAnonymousAccess()
-    .WithReference(webhookApi.GetEndpoint("http"));
-```
-
-**Mobile App Testing**: Enable mobile devices to connect to your local development server:
-
-```csharp
-// Mobile backend with private tunnel (authenticated access only)
-var mobileBackend = builder.AddProject<Projects.MobileBackend>("mobile-backend");
-
-var mobileTunnel = builder.AddDevTunnel("mobile-tunnel")
-    .WithReference(mobileBackend.GetEndpoint("http"));
-```
-
-The Dev Tunnels integration automatically handles Azure authentication, tunnel lifecycle management, and provides public or private URLs (depending on configuration) to connected resources, making it easy to expose local development services securely to external consumers.
+The Dev Tunnels integration automatically handles Azure authentication, tunnel lifecycle management, and provides public or private URLs (depending on configuration) to connected resources, making it easy to expose local development services securely to external consumers. Dev Tunnels also improves support for mobile dev, such as .NET MAUI, making it easy to launch both your backend and mobile app at once without complex dev-time config.
 
 ### YARP static files support
 
@@ -467,24 +380,6 @@ var yarp = builder.AddYarp("gateway")
 builder.Build().Run();
 ```
 
-**Bind mount local directory:**
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Serve static files from local directory
-var yarp = builder.AddYarp("static-gateway")
-    .WithStaticFiles("./static-content")
-    .WithConfiguration(gateway =>
-    {
-        // Add API routes alongside static files
-        gateway.AddRoute("/api/{**catch-all}", backendService)
-               .WithTransformPathRemovePrefix("/api");
-    });
-
-builder.Build().Run();
-```
-
 **Docker multi-stage build scenario:**
 
 ```csharp
@@ -496,22 +391,6 @@ var frontend = builder.AddYarp("frontend")
     .WithDockerFile("../react-app");
 
 builder.Build().Run();
-```
-
-**Example Dockerfile for React app:**
-
-```dockerfile
-# Stage 1: Build React app
-FROM node:20 AS builder
-WORKDIR /app
-COPY . .
-RUN npm install
-RUN npm run build
-
-# Stage 2: Copy static files to YARP container
-FROM mcr.microsoft.com/dotnet/nightly/yarp:2.3.0-preview.4 AS yarp
-WORKDIR /app
-COPY --from=builder /app/dist ./wwwroot
 ```
 
 **Hybrid static + API gateway:**
@@ -543,176 +422,73 @@ builder.Build().Run();
 
 This feature enables modern web application architectures where YARP acts as both a reverse proxy for backend services and a static file server for frontend assets, providing a unified entry point for your distributed application.
 
-### Redis and RabbitMQ auto activation
+### Azure Kusto / Azure Data Explorer
 
-Redis and RabbitMQ connections now support auto activation to prevent startup deadlocks and improve application reliability.
-
-**Features:**
-
-- **Eliminates blocking threads**: Connections are established proactively at startup rather than on first use
-- **Prevents startup deadlocks**: Avoids synchronous connection establishment in dependency injection scenarios
-- **Improves reliability**: Reduces first-request latency by pre-establishing connections
-- **Configurable behavior**: Can be enabled or disabled per connection as needed
+A new **preview** package `Aspire.Hosting.Azure.Kusto` has been added. Once the package has been added to the AppHost it is possible to start a Kusto emulator with just a few lines of code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Auto activation enabled by default for Redis
-var redis = builder.AddRedis("cache");
-
-// Use in applications - connection is already established
-var api = builder.AddProject<Projects.Api>("api")
-    .WithReference(redis);
+var db = builder.AddAzureKustoCluster("kusto")
+    .RunAsEmulator()
+    .AddReadWriteDatabase("sensorreadings");
 
 builder.Build().Run();
 ```
 
-#### RabbitMQ auto activation configuration
+### RabbitMQ auto activation
+
+RabbitMQ client connections now support auto activation to prevent startup deadlocks and improve application reliability. Auto activation is disabled by default in 9.5, but planned to be enabled by default in a future release.
 
 ```csharp
-// Application (not AppHost) code
-var builder = Host.CreateApplicationBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
-// Default: auto activation ENABLED (no extra configuration required)
-builder.AddRabbitMQClient("messaging");
-
-// --- OR --- Opt out of auto activation (connection will be created lazily)
-// builder.AddRabbitMQClient("messaging", settings =>
-// {
-//     settings.DisableAutoActivation = true; // disable auto activation
-// });
-
-var app = builder.Build();
-app.Run();
+// Auto activation is disabled by default for RabbitMQ, enable using DisableAutoActivation=false
+builder.AddRabbitMQClient("messaging", o => o.DisableAutoActivation = false);
 ```
 
-### Redis client builder pattern
+### Redis integration improvements
+
+#### Auto activation
+
+Redis client connections also now support auto activation, and are also disabled by default, but planned to be enabled by default in a future release.
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+// Auto activation is disabled by default for Redis, enable using DisableAutoActivation=false
+var redisClient = builder.AddRedisClient("redis", c => c.DisableAutoActivation = false);
+```
+
+#### Client builder pattern
 
 Aspire 9.5 introduces a new Redis client builder pattern that provides a fluent, type-safe approach to configuring Redis clients with integrated support for distributed caching, output caching, and Azure authentication.
 
-**Features:**
-
-- **Fluent configuration**: Chain multiple Redis features like distributed caching, output caching, and Azure authentication
-- **Type-safe builders**: `AspireRedisClientBuilder` provides compile-time safety and IntelliSense
-- **Integrated Azure authentication**: Seamless Azure AD/Entra ID authentication with `WithAzureAuthentication`
-- **Service composition**: Build complex Redis configurations with multiple features in a single call chain
-
-#### Basic Redis client builder usage
+Basic usage:
 
 ```csharp
-var builder = Host.CreateApplicationBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
-builder.AddRedisClientBuilder("cache")
-    .WithDistributedCache()
-    .WithOutputCache();
-
-var app = builder.Build();
-app.Run();
+builder.AddRedisClientBuilder("redis") 
+  .WithDistributedCache(options => 
+  { 
+    options.InstanceName = "MyApp";
+  });
 ```
 
-**Azure authentication integration:**
-
-#### Azure authentication integration
+To enable Azure authentication, add a reference to the new `Aspire.Microsoft.Azure.StackExchangeRedis` package, and chain a call to `.WithAzureAuthentication()`:
 
 ```csharp
-// Azure authentication integration (application code)
-var builder = Host.CreateApplicationBuilder(args);
-
-builder.AddRedisClientBuilder("azure-redis")
-    .WithAzureAuthentication()  // Uses default Azure credentials
-    .WithDistributedCache(options => 
-    {
-        options.InstanceName = "MyApp";
-    });
-
-// Or with custom credentials
-var credential = new DefaultAzureCredential();
-builder.AddRedisClientBuilder("azure-redis")
-    .WithAzureAuthentication(credential)
-    .WithOutputCache();
-
-var app = builder.Build();
-app.Run();
-```
-
-**Advanced Redis builder patterns:**
-
-#### Advanced Redis builder patterns
-
-```csharp
-// Multiple Redis instances with different configurations (application code)
-var builder = Host.CreateApplicationBuilder(args);
-
-// Cache-focused Redis instance
-builder.AddRedisClientBuilder("cache")
-    .WithDistributedCache(options => 
-    {
-        options.InstanceName = "MainCache";
-        options.DefaultSlidingExpiration = TimeSpan.FromMinutes(30);
-    });
-
-// Output cache Redis instance with Azure authentication
-builder.AddKeyedRedisClientBuilder("output-cache")
-    .WithAzureAuthentication()
-    .WithOutputCache();
-
-// Session Redis instance
-builder.AddKeyedRedisClientBuilder("sessions") 
-    .WithDistributedCache(options =>
-    {
-        options.InstanceName = "Sessions";
-    });
-
-var app = builder.Build();
-app.Run();
-```
-
-### Azure AI Foundry enhancements
-
-9.5 adds a generated, strongly-typed model catalog (`AIFoundryModel`) for IntelliSense + ref safety when creating deployments (PR #10986) and a daily automation that refreshes the catalog as new models appear in Azure AI Foundry (PR #11040). Sample apps and end-to-end tests now use these constants (PR #11039) instead of raw strings. The original Foundry hosting integration and local runtime support were introduced earlier (issue #9568); this release focuses on developer ergonomics and keeping model metadata current.
-
-Strongly-typed model catalog with IntelliSense support:
-
-```csharp
-var aiFoundry = builder.AddAzureAIFoundry("ai-foundry");
-
-// Strongly-typed model references
-var gpt4 = aiFoundry.AddDeployment("gpt-4", AIFoundryModel.OpenAI.Gpt4);
-var mistral = aiFoundry.AddDeployment("mistral", AIFoundryModel.MistralAi.MistralLarge2411);
-
-// Local on-device mode
-var localFoundry = builder.AddAzureAIFoundry("local-ai")
-  .RunAsFoundryLocal();
-```
-
-### Azure App Configuration emulator APIs
-
-Run emulators locally with full configuration support:
-
-```csharp
-var appConfig = builder.AddAzureAppConfiguration("config")
-  .RunAsEmulator(emulator => emulator
-    .WithDataVolume("config-data")
-    .WithHostPort(8080));
-```
-
-### Azure Storage emulator improvements
-
-Updated Azurite to version 3.35.0, resolving health check issues that previously returned HTTP 400 responses (#10972). This improves the reliability of Azure Storage emulator health checks during development.
-
-### Broader Azure resource capability surfacing
-
-Several Azure hosting resource types now implement `IResourceWithEndpoints` enabling uniform endpoint discovery and waiting semantics:
-
-- `AzureAIFoundryResource`
-- `AzureAppConfigurationResource`
-- `AzureKeyVaultResource`
-- `AzurePostgresFlexibleServerResource`
-- `AzureRedisCacheResource`
+builder.AddRedisClientBuilder("redis") 
+  .WithAzureAuthentication()
+  .WithDistributedCache(options => 
+  { 
+    options.InstanceName = "MyApp";
+  });
 
 ### Azure Redis Enterprise support
 
-Aspire 9.5 introduces first-class support for Azure Redis Enterprise, providing a high-performance, fully managed Redis service with enterprise-grade features.
+Aspire 9.5 introduces first-class support for [Azure Redis Enterprise](https://learn.microsoft.com/azure/redis/overview), providing a high-performance, fully managed Redis service with enterprise-grade features. Azure Redis Enterprise provides advanced caching capabilities with clustering, high availability, and enterprise security features while maintaining compatibility with the standard Redis APIs.
 
 The new `AddAzureRedisEnterprise` extension method enables Redis Enterprise resource modeling:
 
@@ -739,6 +515,8 @@ var redisEnterprise = builder.AddAzureRedisEnterprise("redis-enterprise")
 
 **Authentication options:**
 
+Like other Azure integrations, Azure Redis Enterprise uses Microsoft Entra ID authentication by default. This is the recommended authentication strategy since secrets aren't used. To enable access key authentication, you can use the following:
+
 ```csharp
 // With access key authentication (default)
 var redisEnterprise = builder.AddAzureRedisEnterprise("redis-enterprise")
@@ -750,93 +528,13 @@ var redisEnterprise = builder.AddAzureRedisEnterprise("redis-enterprise")
     .WithAccessKeyAuthentication(keyVault);
 ```
 
-Azure Redis Enterprise provides advanced caching capabilities with clustering, high availability, and enterprise security features while maintaining compatibility with the standard Redis APIs.
+### Azure Storage emulator improvements
 
-### Azure resource reference properties
-
-New reference properties have been added to Azure PostgreSQL and Redis resources for custom connection string composition and individual component access (#11051, #11070).
-
-**AzurePostgresFlexibleServerResource enhancements:**
-
-Three new reference properties enable custom connection string composition:
-
-- **`HostName`** (`ReferenceExpression`): Returns PostgreSQL server hostname with port
-- **`UserName`** (`ReferenceExpression?`): Returns username for password authentication (null for Entra ID)  
-- **`Password`** (`ReferenceExpression?`): Returns password for password authentication (null for Entra ID)
-
-```csharp
-var postgres = builder.AddAzurePostgresFlexibleServer("database")
-    .WithPasswordAuthentication()
-    .RunAsContainer();
-
-var db = postgres.AddDatabase("appdb");
-
-// Custom JDBC connection string
-var jdbc = ReferenceExpression.Create($"jdbc:postgresql://{postgres.Resource.HostName}/{db.Resource.DatabaseName}");
-
-// Custom PostgreSQL connection string  
-var connectionString = ReferenceExpression.Create(
-    $"Host={postgres.Resource.HostName};Username={postgres.Resource.UserName};Password={postgres.Resource.Password};Database={db.Resource.DatabaseName}");
-```
-
-**AzureRedisCacheResource enhancements:**
-
-Two new reference properties enable custom Redis connection scenarios:
-
-- **`HostName`** (`ReferenceExpression`): Returns Redis server hostname with port
-- **`Password`** (`ReferenceExpression?`): Returns password when running as container (null in Azure mode)
-
-```csharp
-var redis = builder.AddAzureRedis("cache")
-    .RunAsContainer();
-
-// Custom Redis connection string
-var customConnectionString = ReferenceExpression.Create($"{redis.Resource.HostName},password={redis.Resource.Password}");
-
-// Access individual components
-var hostName = redis.Resource.HostName; // e.g., "localhost:6379"
-var password = redis.Resource.Password; // Available in container mode
-```
-
-### OTLP telemetry protocol selection
-
-Enhanced OpenTelemetry Protocol (OTLP) support with protocol selection capabilities, allowing you to choose between gRPC and HTTP protobuf transports for telemetry data.
-
-```csharp
-// Available protocol types
-public enum OtlpProtocol
-{
-    Grpc = 0,           // Default: High performance, binary protocol
-    HttpProtobuf = 1    // Alternative: HTTP-based transport
-}
-```
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Configure OTLP telemetry with specific protocol
-var api = builder.AddProject<Projects.Api>("api")
-    .WithOtlpExporter(OtlpProtocol.HttpProtobuf);
-
-// Use default gRPC protocol (recommended for performance)
-var worker = builder.AddProject<Projects.Worker>("worker")
-    .WithOtlpExporter();
-
-// Configure multiple services with different protocols
-var frontend = builder.AddProject<Projects.Frontend>("frontend")
-    .WithOtlpExporter(OtlpProtocol.Grpc);
-
-builder.Build().Run();
-```
-
-**When to use each protocol:**
-
-- **gRPC (default)**: Best performance, smaller payload size, ideal for production
-- **HTTP Protobuf**: Better firewall compatibility, easier debugging, good for development
+Aspire now pulls Azurite version 3.35.0 by default, resolving health check issues that previously returned HTTP 400 responses. This improves the reliability of Azure Storage emulator health checks during development.
 
 ### MySQL password improvements
 
-Enhanced and standardized password handling for MySQL resources:
+The MySQL integration added support for specifying a password parameter:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -847,18 +545,14 @@ var password = builder.AddParameter("mysql-password", secret: true);
 var mysql = builder.AddMySql("mysql")
     .WithPassword(password);
 
-// Password can be updated during configuration
-mysql.Resource.PasswordParameter = builder.AddParameter("new-mysql-password", secret: true);
-
-// Environment-specific passwords
-var devPassword = builder.Configuration["ConnectionStrings:MySQL:Password"];
-if (!string.IsNullOrEmpty(devPassword))
-{
-    mysql.WithPassword(devPassword);
-}
 
 builder.Build().Run();
 ```
+
+### Other improvements
+
+- New reference properties have been added to Azure PostgreSQL and Redis resources for custom connection string composition and individual component access
+- OpenTelemetry Protocols (OTLP) support now has protocol selection capabilities, allowing you to choose between gRPC and HTTP protobuf transports for telemetry data
 
 ## 🧩 App model enhancements
 
@@ -871,24 +565,17 @@ The new `OnResourceStopped` extension method allows you to register callbacks th
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var database = builder.AddPostgres("postgres", "mypostgres")
-    .OnResourceStopped(async (resource, stoppedEvent, cancellationToken) =>
-    {
-        // Perform cleanup when the database stops
-        Console.WriteLine($"Database {resource.Name} has stopped");
-        
-        // Log final metrics, backup data, etc.
-        await LogFinalMetrics(resource.Name);
-    });
+var invoicing = builder.AddPostgres("postgres", "mypostgres").AddDatabase("invoicing");
 
 var api = builder.AddProject<Projects.Api>("api")
     .OnResourceStopped(async (resource, stoppedEvent, cancellationToken) =>
     {
-        // Graceful API shutdown handling
-        Console.WriteLine($"API service {resource.Name} is shutting down");
-        await FlushPendingRequests();
+        // Use events to clean up the system to allow rapid
+        // inner loop debugging.
+        
+        await ResetSystemState();
     })
-    .WithReference(database);
+    .WithReference(invoicing);
 
 builder.Build().Run();
 ```
@@ -912,41 +599,9 @@ var redis = builder.AddRedis("cache")
     });
 ```
 
-**Coordination with lifecycle management:**
-
-Resource stopped events work seamlessly with existing lifecycle features:
-
-```csharp
-var database = builder.AddPostgres("postgres")
-    .OnResourceStopped(async (db, evt, ct) => 
-    {
-        await BackupDatabase(db.Name, ct);
-    });
-
-var worker = builder.AddProject<Projects.Worker>("worker")
-    .WaitFor(database)  // Wait for startup
-    .OnResourceStopped(async (svc, evt, ct) => 
-    {
-        await CompleteInFlightJobs(ct);
-    })
-    .WithReference(database);
-```
-
-New `ResourceStoppedEvent` provides lifecycle insight when resources shut down or fail ([#11103](https://github.com/dotnet/aspire/pull/11103)):
-
-```csharp
-builder.AddProject<Projects.Api>("api")
-  .OnResourceStopped(async (resource, evt, ct) =>
-  {
-      // Handle resource stopped event - log cleanup, notify other services, etc.
-      Console.WriteLine($"Resource {resource.Name} stopped with event: {evt.ResourceEvent}");
-      await NotifyDependentServices(resource.Name, ct);
-  });
-```
-
 ### Context-based endpoint resolution
 
-**Breaking change**: Endpoint resolution in `WithEnvironment` callbacks now correctly resolves container hostnames instead of always using "localhost" (#8574).
+**Breaking change**: Endpoint resolution in `WithEnvironment` callbacks now correctly resolves container hostnames instead of always using "localhost."
 
 ```csharp
 var redis = builder.AddRedis("redis");
@@ -970,7 +625,7 @@ var rabbitmq = builder.AddContainer("myapp", "mycontainerapp")
 **What you need to review:**
 
 - **Container deployments**: Your apps will now receive correct container hostnames
-- **Local development**: Localhost behavior preserved for non-containerized scenarios  
+- **Local development**: Localhost behavior preserved for noncontainerized scenarios  
 - **Connection strings**: Automatic connection strings continue to work as expected
 - **Manual environment**: Review custom `WithEnvironment` calls that assume localhost
 
@@ -1019,51 +674,6 @@ var api = builder.AddProject<Projects.Api>("api")
 builder.Build().Run();
 ```
 
-**Multiple probe types for comprehensive monitoring:**
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-var database = builder.AddPostgres("postgres");
-
-// Service with complete probe coverage
-var api = builder.AddProject<Projects.Api>("api")
-    // Startup probe: Ensures service starts successfully
-    .WithHttpProbe(ProbeType.Startup, "/health/startup", 
-        initialDelaySeconds: 15, failureThreshold: 10)
-    
-    // Readiness probe: Determines when ready to receive traffic
-    .WithHttpProbe(ProbeType.Readiness, "/health/ready",
-        periodSeconds: 5, timeoutSeconds: 3)
-    
-    // Liveness probe: Detects if service is still functioning
-    .WithHttpProbe(ProbeType.Liveness, "/health/live",
-        periodSeconds: 30, failureThreshold: 3)
-    
-    .WithReference(database);
-
-builder.Build().Run();
-```
-
-**Custom endpoint targeting:**
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-// Probe specific endpoint by name
-var api = builder.AddProject<Projects.Api>("api")
-    .WithHttpEndpoint(8080, name: "management")
-    .WithHttpProbe(ProbeType.Readiness, "/actuator/health", 
-        endpointName: "management");
-
-// Probe with endpoint selector function
-var service = builder.AddProject<Projects.Service>("service")
-    .WithHttpProbe(ProbeType.Liveness, "/status",
-        endpointSelector: () => service.GetEndpoint("https"));
-
-builder.Build().Run();
-```
-
 **Integration with resource dependencies:**
 
 ```csharp
@@ -1092,12 +702,13 @@ This feature enhances deployment reliability by providing fine-grained health mo
 
 ### Enhanced resource waiting patterns
 
-New `WaitForStart` method provides granular control over startup ordering, complementing existing `WaitFor` semantics (#10948). It also pairs with improved `ExternalService` health honoring (#10827) which ensures dependents truly wait for external resources to be healthy.
+New `WaitForStart` method provides granular control over startup ordering, complementing existing `WaitFor` semantics. It also pairs with improved `ExternalService` health honoring which ensures dependents truly wait for external resources to be healthy.
 
 **Understanding wait behaviors:**
 
 - **`WaitFor`**: Waits for dependency to be Running AND pass all health checks.
 - **`WaitForStart`**: Waits only for dependency to reach Running (ignores health checks).
+- **`WaitForCompletion`**: Waits for dependency to reach a terminal state.
 
 ```csharp
 var postgres = builder.AddPostgres("postgres");
@@ -1110,24 +721,9 @@ var api = builder.AddProject<Projects.Api>("api")
     .WithReference(redis);
 ```
 
-**Migration scenario (database initialization):**
-
-```csharp
-var database = builder.AddPostgres("postgres");
-
-var migrator = builder.AddProject<Projects.Migrator>("migrator")
-    .WaitForStart(database)  // Start as soon as container is running
-    .WithReference(database);
-
-var api = builder.AddProject<Projects.Api>("api")
-    .WaitFor(database)       // Healthy database
-    .WaitFor(migrator)       // Migration completed
-    .WithReference(database);
-```
-
 **ExternalService health integration:**
 
-`WaitFor` now honors `ExternalService` health checks (#10827). Previously a dependent could start even if the external target failed its readiness probe.
+`WaitFor` now honors `ExternalService` health checks. Previously a dependent could start even if the external target failed its readiness probe.
 
 ```csharp
 var externalApi = builder.AddExternalService("backend-api", "http://api.company.com")
@@ -1153,7 +749,7 @@ var frontend2 = builder.AddProject<Projects.Frontend>("frontend2")
 
 ### Enhanced resource lifetime support
 
-**Breaking change**: Resources like `ParameterResource`, `ConnectionStringResource`, and GitHub Model resources now participate in lifecycle operations and support `WaitFor` (#10851, #10842). This section merges prior duplicate "Resource lifetime behavior" content.
+**Breaking change**: Resources like `ParameterResource`, `ConnectionStringResource`, and GitHub Model resources now participate in lifecycle operations and support `WaitFor`.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -1179,79 +775,7 @@ builder.Build().Run();
 
 These resources no longer implement `IResourceWithoutLifetime`; they surface as Running and can be waited on just like services.
 
-### Resource lifecycle event APIs
-
-Aspire 9.5 introduces new resource lifecycle event APIs that allow you to hook into resource state transitions for custom logic execution.
-
-The new `OnResourceStopped` extension method enables you to register callbacks that execute when a resource transitions to the stopped state:
-
-```csharp
-var database = builder.AddSqlServer("sqlserver")
-    .OnResourceStopped(async (resource, stoppedEvent, cancellationToken) =>
-    {
-        // Cleanup logic when database stops
-        logger.LogInformation("Database {ResourceName} stopped", resource.Name);
-        await PerformCleanupAsync(cancellationToken);
-    });
-```
-
-**Complete lifecycle event coverage:**
-
-Combined with existing lifecycle events, you now have full coverage of resource state transitions:
-
-```csharp
-var api = builder.AddProject<Projects.Api>("api")
-    .OnResourceReady(async (resource, readyEvent, cancellationToken) =>
-    {
-        // Resource is running and healthy
-        await RegisterWithServiceDiscoveryAsync(resource, cancellationToken);
-    })
-    .OnResourceStopped(async (resource, stoppedEvent, cancellationToken) =>
-    {
-        // Resource has stopped
-        await UnregisterFromServiceDiscoveryAsync(resource, cancellationToken);
-    });
-```
-
-This provides symmetrical lifecycle management for scenarios like service registration/deregistration, resource cleanup, logging, and custom monitoring integration.
-
 ## ☁️ Publishing and deployment
-
-### Parameter prompting during deploy
-
-Aspire 9.5 enhances the deployment experience by automatically prompting for unresolved parameters during `aspire deploy` operations, eliminating the need to manually specify all parameter values upfront.
-
-#### Interactive parameter resolution
-
-When deploying your Aspire application, any parameters without values are now automatically detected and prompted for interactively:
-
-```bash
-# Deploy command detects missing parameters and prompts automatically
-aspire deploy
-
-🔧 Resolving deployment parameters...
-
-Enter value for 'database-password' (secret): ********
-Enter value for 'api-key' (secret): **********************
-Enter value for 'environment-name': production
-
-✅ All parameters resolved, proceeding with deployment...
-```
-
-#### Benefits of interactive parameter prompting
-
-- **Secure credential entry**: Sensitive parameters are masked during input
-- **Deployment-time flexibility**: No need to pre-configure all parameter values
-- **Error prevention**: Missing parameters are caught before deployment begins
-- **Better developer experience**: Clear prompts with parameter descriptions
-
-#### Parameter types supported
-
-- **Secret parameters**: Automatically masked input for sensitive values
-- **Standard parameters**: Regular text input with validation
-- **Optional parameters**: Skipped if no value is provided
-
-This feature builds on the existing parameter infrastructure and makes deployment workflows more intuitive, especially when working with multiple environments or sharing deployment scripts across team members.
 
 ### Azure Container App Jobs support
 
@@ -1268,69 +792,28 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 // Publish a project as a Container App Job
 var dataProcessor = builder.AddProject<Projects.DataProcessor>("data-processor")
-    .PublishAsAzureContainerAppJob((infrastructure, job) => {
-        // Configure job-specific settings using Azure Provisioning APIs
-        job.Configuration.TriggerType = TriggerType.Schedule;
-        // Run daily at 2 AM
-        job.Configuration.ScheduleTriggerConfig.CronExpression = "0 0 2 * * *";
-    });
-
-// Publish a container as a Container App Job  
-var batchJob = builder.AddContainer("batch-job", "my-batch-image")
-    .PublishAsAzureContainerAppJob((infrastructure, job) => {
-        // Configure manual trigger job
-        job.Configuration.TriggerType = TriggerType.Manual;
-        job.Configuration.ReplicaRetryLimit = 3;
-        job.Configuration.ReplicaTimeout = 1800; // 30 minutes
-    });
+    .PublishAsAzureContainerAppJob(); // Deploys as a job which must be manually started.
 
 builder.Build().Run();
 ```
 
 #### Job customization and configuration
 
-The new `AzureContainerAppJobCustomizationAnnotation` enables fine-grained control over job behavior:
-
-```csharp
-var scheduledJob = builder.AddProject<Projects.ScheduledWorker>("scheduled-worker")
-    .PublishAsAzureContainerAppJob((infrastructure, job) => {
-        // Event-driven job configuration
-        job.Configuration.TriggerType = TriggerType.Event;
-        job.Configuration.EventTriggerConfig = new EventTriggerConfiguration
-        {
-            Scale = new JobScale
-            {
-                MinExecutions = 0,
-                MaxExecutions = 10,
-                PollingInterval = 30 // seconds
-            }
-        };
-        job.Configuration.ReplicaRetryLimit = 3;
-        job.Configuration.ReplicaTimeout = 1800; // 30 minutes
-    });
-```
-
-This feature addresses issue #4366 and provides a unified development and deployment experience for both long-running services (Container Apps) and finite workloads (Container App Jobs) within your Aspire applications.
-
-#### Simplified job configuration overloads
-
-For common scenarios, Aspire 9.5 provides simplified overloads that reduce boilerplate code:
+Use the callback on the `PublishAsAzureContainerAppJob(...)` method to customize the job:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Scheduled job with cron expression
-var scheduledJob = builder.AddProject<Projects.DailyProcessor>("daily-processor")
-    .PublishAsAzureContainerAppJob("0 0 2 * * *"); // Run daily at 2 AM
-
-// Manual job (default trigger type)
-var manualJob = builder.AddContainer("batch-processor", "my-batch-image")
-    .PublishAsAzureContainerAppJob(); // Manual trigger, ready for on-demand execution
+// Publish a project as a Container App Job
+var dataProcessor = builder.AddProject<Projects.DataProcessor>("data-processor")
+    .PublishAsAzureContainerAppJob((infrastructure, job) => {
+        job.Configuration.TriggerType = TriggerType.Schedule;
+        // Runs automatically every 5 minutes.
+        job.Configuration.ScheduleTriggerConfig.CronExpression = "*/5 * * * *";
+    });
 
 builder.Build().Run();
 ```
-
-These overloads provide convenient APIs for the most common job types while maintaining access to the full configuration API when advanced customization is needed.
 
 ### Azure provisioning & deployer
 
@@ -1343,23 +826,17 @@ These overloads provide convenient APIs for the most common job types while main
 - Deploy individual Bicep modules instead of a monolithic `main.bicep` for clearer failure isolation and faster iteration ([#11098](https://github.com/dotnet/aspire/pull/11098)).
 - Localized interaction + notification strings across all provisioning prompts (multiple OneLocBuild PRs).
 
-Provisioning automatically prompts for required values only once per run, caches results, and reuses them in publish-mode without re-prompting. This reduces friction when iterating locally while maintaining reproducibility for production publish.
-
 ### Azure deployer interactive command handling
 
 The AppHost now wires Azure provisioning prompts into the standard interaction system (initial work in [#10038](https://github.com/dotnet/aspire/pull/10038), extended in [#10792](https://github.com/dotnet/aspire/pull/10792) and [#10845](https://github.com/dotnet/aspire/pull/10845)). This enables:
 
 - Consistent UX for parameter entry (names, descriptions, validation)
 - Localized prompt text
-- Support for non-interactive scenarios via pre-supplied parameters
+- Support for non-interactive scenarios via presupplied parameters
 
 ### Azure resource idempotency & existing resources
 
 Calling `AddAsExistingResource` is now idempotent across Azure hosting resource builders; repeated calls no longer cause duplicate annotations or inconsistent behavior ([#10562](https://github.com/dotnet/aspire/issues/10562)). This improves reliability when composing reusable extension methods.
-
-### Compute image deployment
-
-You can now reference and deploy custom compute images as part of Azure environment provisioning ([#11030](https://github.com/dotnet/aspire/pull/11030)). This lays groundwork for richer VM/container hybrid topologies.
 
 ### Module-scoped Bicep deployment
 
@@ -1367,52 +844,44 @@ Instead of generating a single aggregated template, 9.5 deploys individual Bicep
 
 ### Publishing progress & activity reporting
 
-`IPublishingActivityProgressReporter` was renamed to `IPublishingActivityReporter` and output formatting was reworked to provide clearer, structured progress (multiple commits culminating in improved messages). Expect more concise status lines and actionable error sections when using `aspire publish`.
+`IPublishingActivityProgressReporter` was renamed to `IPublishingActivityReporter` and output formatting was reworked to provide clearer, structured progress (multiple commits culminating in improved messages). Expect more concise status lines and actionable error sections when using `aspire publish` or `aspire deploy`.
 
-### Parameter & interaction API updates
 
-- `ParameterResource.Value` is now obsolete: switch to `await parameter.GetValueAsync()` or inject parameter resources directly ([#10363](https://github.com/dotnet/aspire/pull/10363)). This change improves async value acquisition and avoids accidental blocking.
-- Interaction inputs enforce server-side validation and required `Name` property (breaking, [#10835](https://github.com/dotnet/aspire/pull/10835)).
-- New notification terminology (renamed from MessageBar, [#10449](https://github.com/dotnet/aspire/pull/10449)).
-- `ExecuteCommandResult` now includes a `Canceled` property to track whether command execution was canceled by the user or system.
-- Server-side validation of interaction inputs ([#10527](https://github.com/dotnet/aspire/pull/10527)).
+#### Parameter prompting during deploy
 
-Migration example:
+Aspire 9.5 enhances the deployment experience by automatically prompting for unresolved parameters during `aspire deploy` operations, eliminating the need to manually specify all parameter values upfront.
 
-```csharp
-// Before (deprecated)
-var value = myParam.Value;
+##### Interactive parameter resolution
 
-// After
-var value = await myParam.GetValueAsync();
+When deploying your Aspire application, any parameters without values are now automatically detected and prompted for interactively:
+
+```bash
+# Deploy command detects missing parameters and prompts automatically
+aspire deploy
+
+🔧 Resolving deployment parameters...
+
+Enter value for 'database-password' (secret): ********
+Enter value for 'api-key' (secret): **********************
+Enter value for 'environment-name': production
+
+✅ All parameters resolved, proceeding with deployment...
 ```
 
-### InteractionInput API improvements
+##### Benefits of interactive parameter prompting
 
-**Breaking change**: `InteractionInput` now requires `Name`; `Label` is optional (#10835).
+- **Secure credential entry**: Sensitive parameters are masked during input
+- **Deployment-time flexibility**: No need to preconfigure all parameter values
+- **Error prevention**: Missing parameters are caught before deployment begins
+- **Better developer experience**: Clear prompts with parameter descriptions
 
-#### Migration example
+##### Parameter types supported
 
-```csharp
-// Before (9.4 and earlier)
-var input = new InteractionInput
-{
-    Label = "Database Password",
-    InputType = InputType.SecretText,
-    Required = true
-};
+- **Secret parameters**: Automatically masked input for sensitive values
+- **Standard parameters**: Regular text input with validation
+- **Optional parameters**: Skipped if no value is provided
 
-// After (9.5+)
-var input = new InteractionInput
-{
-    Name = "database_password", // Required field identifier
-    Label = "Database Password", // Optional (defaults to Name)
-    InputType = InputType.SecretText,
-    Required = true
-};
-```
-
-This enables better form serialization and integration with interactive parameter processing.
+This feature builds on the existing parameter infrastructure and makes deployment workflows more intuitive, especially when working with multiple environments or sharing deployment scripts across team members.
 
 ### Executable resource configuration APIs
 
@@ -1456,32 +925,6 @@ var worker = builder.AddExecutable("worker", "dotnet")
 
 These APIs provide fine-grained control over executable resource configuration, enabling complex deployment scenarios and dynamic argument construction based on execution context.
 
-### Interactive parameter processing APIs
-
-Aspire 9.5 introduces the `ParameterProcessor` API for programmatic parameter resolution with interactive prompting capabilities.
-
-#### ParameterProcessor API
-
-The new experimental `ParameterProcessor` class enables applications to handle parameter resolution during runtime:
-
-```csharp
-// In your application startup or configuration
-services.AddSingleton<ParameterProcessor>();
-
-// Use parameter processor to initialize parameters
-public async Task ConfigureAsync(ParameterProcessor processor)
-{
-    var parameters = new[]
-    {
-        builder.AddParameter("database-password", secret: true),
-        builder.AddParameter("api-key", secret: true),
-        builder.AddParameter("environment-name")
-    };
-
-    // Initialize parameters with interactive prompting
-    await processor.InitializeParametersAsync(parameters, waitForResolution: true);
-}
-```
 
 #### InteractionInputCollection enhancements
 
@@ -1520,7 +963,7 @@ The `InteractionInputCollection` provides indexed access by name and improved ty
 
 ### Docker Compose Aspire Dashboard forwarding headers
 
-`AddDockerComposeEnvironment(...).WithDashboard()` gained `WithForwardedHeaders()` to enable forwarded `Host` and `Proto` handling for dashboard scenarios behind reverse proxies or compose networks ([#11080](https://github.com/dotnet/aspire/pull/11080)). This mirrors the standalone dashboard forwarded header support and fixes auth redirect edge cases.
+`AddDockerComposeEnvironment(...).WithDashboard()` gained `WithForwardedHeaders()` to enable forwarded `Host` and `Proto` handling for dashboard scenarios behind reverse proxies or compose networks. This mirrors the standalone dashboard forwarded header support and fixes auth redirect edge cases.
 
 ```csharp
 builder.AddDockerComposeEnvironment("env")
@@ -1530,7 +973,7 @@ builder.AddDockerComposeEnvironment("env")
 
 ### Container build customization
 
-`ContainerBuildOptions` support (commit [#10074](https://github.com/dotnet/aspire/pull/10074)) enables customizing the underlying `dotnet publish` invocation when Aspire builds project-sourced container images (for example to change configuration, trimming, or pass additional MSBuild properties). Use the new options hook on the project container image configuration to set MSBuild properties instead of maintaining a custom Dockerfile. (Exact API surface is intentionally summarized here to avoid drift; see API docs for `ContainerBuildOptions` in the hosting namespace for usage.)
+`ContainerBuildOptions` support enables customizing the underlying `dotnet publish` invocation when Aspire builds project-sourced container images (for example to change configuration, trimming, or pass other MSBuild properties). Use the new options hook on the project container image configuration to set MSBuild properties instead of maintaining a custom Dockerfile. (Exact API surface is intentionally summarized here to avoid drift; see API docs for `ContainerBuildOptions` in the hosting namespace for usage.)
 
 ### Deployment image tag callbacks
 
@@ -1634,3 +1077,36 @@ var backend = builder.AddProject<Projects.Backend>("backend")
 ```
 
 ## 💔 Breaking changes
+
+### InteractionInput API requires Name property
+
+**Breaking change**: `InteractionInput` now requires a `Name` property, while `Label` becomes optional ([#10835](https://github.com/dotnet/aspire/pull/10835)).
+
+#### Migration example
+
+```csharp
+// Before (9.4 and earlier)
+var input = new InteractionInput
+{
+    Label = "Database Password",
+    InputType = InputType.SecretText,
+    Required = true
+};
+
+// After (9.5+)
+var input = new InteractionInput
+{
+    Name = "database_password", // Required field identifier
+    Label = "Database Password", // Optional (defaults to Name)
+    InputType = InputType.SecretText,
+    Required = true
+};
+```
+
+This change enables better form serialization and integration with interactive parameter processing.
+
+### Notification terminology renamed from MessageBar
+
+**Breaking change**: Notification terminology has been updated, with MessageBar renamed to use new notification terminology ([#10449](https://github.com/dotnet/aspire/pull/10449)).
+
+This change affects APIs and terminology used in the notification system, requiring updates to code that references the old MessageBar naming conventions.
