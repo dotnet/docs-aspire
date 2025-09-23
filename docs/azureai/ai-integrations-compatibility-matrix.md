@@ -156,7 +156,7 @@ Endpoint={EmulatorServiceUri};Key={ApiKey}
 **Deployment:**
 
 ```
-{Parent};DeploymentId={DeploymentName};Model={DeploymentName}
+{Parent};Deployment={DeploymentName}
 ```
 
 #### Aspire.Hosting.Azure.CognitiveServices
@@ -164,7 +164,7 @@ Endpoint={EmulatorServiceUri};Key={ApiKey}
 **Deployment:**
 
 ```
-{ConnectionString};Deployment={deploymentName}
+{ConnectionString};Deployment={DeploymentName}
 ```
 
 #### Aspire.Hosting.OpenAI
@@ -176,7 +176,7 @@ Endpoint={Endpoint};Key={Key};Model={Model}
 #### Aspire.Hosting.GitHub.Models
 
 ```
-Endpoint=https://models.github.ai/inference;Key={Key};Model={Model};DeploymentId={Model}
+Endpoint=https://models.github.ai/inference;Key={Key};Model={ModelName}
 ```
 
 ### Client integration connection string requirements
@@ -208,8 +208,10 @@ This integration is a superset of `Aspire.OpenAI` and supports `TokenCredential`
 Expects connection strings in the format:
 
 ```
-Endpoint={Endpoint};EndpointAIInference={EndpointAIInference};Key={Key};DeploymentId={DeploymentId}
+Endpoint={Endpoint};EndpointAIInference={EndpointAIInference};Key={Key};Deployment={DeploymentName};Model={ModelName}
 ```
+
+Uses either `Deployment` or `Model` (in that order). `Deployment` is set by `Aspire.Hosting.Azure.CognitiveServices` while `Model` is set by `Aspire.Hosting.GitHub.Models`.
 
 Uses `EndpointAIInference` if available, otherwise `Endpoint`.
 
