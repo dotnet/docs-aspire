@@ -359,7 +359,7 @@ To get the most value from the GenAI telemetry visualizer, configure your AI int
 
 ##### Microsoft.Extensions.AI
 
-When using Microsoft.Extensions.AI (`IChatClient` and related abstractions), you can enable sensitive data recording by configuring the chat client options. For specific AI integrations that support Microsoft.Extensions.AI, refer to their individual documentation for the exact configuration syntax. The configuration typically involves setting an `EnableSensitiveData` property or similar telemetry-related option.
+When using <xref:Microsoft.Extensions.AI> (<xref:Microsoft.Extensions.AI.IChatClient> and related abstractions), you can enable sensitive data recording by configuring the chat client options. For specific AI integrations that support `Microsoft.Extensions.AI`, refer to their individual documentation for the exact configuration syntax. The configuration typically involves setting an `EnableSensitiveData` property or similar telemetry-related option
 
 ##### Environment variable configuration
 
