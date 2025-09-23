@@ -494,6 +494,9 @@ items:
       href: deployment/aspire-deploy/sql-server-integration-deployment.md
     - name: Deploy .NET Aspire + Redis
       href: deployment/aspire-deploy/caching-integrations-deployment.md
+    - name: Customize .NET Aspire Azure deployments
+      href: deployment/aspire-deploy/customize-deployments.md
+      displayName: azd infra synth,azd infra gen,bicep,infrastructure,production
   - name: Azure Developer CLI (azd)
     items:
     - name: Deploy to Azure Container Apps using azd
