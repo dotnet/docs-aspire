@@ -1,7 +1,7 @@
 ---
 title: Explore .NET Aspire dashboard
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 07/21/2025
+ms.date: 09/22/2025
 ms.topic: reference
 ai-usage: ai-assisted
 ---
@@ -375,9 +375,10 @@ You can set this environment variable in your application's configuration, in yo
 
 For specific guidance on configuring message content recording with different AI integrations, see the documentation for each integration:
 
-- [Azure OpenAI integration](../../azureai/azureai-openai-integration.md)
-- [Azure AI Inference integration](../../azureai/azureai-inference-integration.md)
-- [Azure AI Foundry integration](../../azureai/azureai-foundry-integration.md)
+- [Azure OpenAI integration](../../azureai/azureai-openai-integration.md).
+- [Azure AI Inference integration](../../azureai/azureai-inference-integration.md).
+- [Azure AI Foundry integration](../../azureai/azureai-foundry-integration.md).
+- [Aspire AI integrations compatibility matrix](../../azureai/ai-integrations-compatibility-matrix.md).
 
 > [!TIP]
 > When message content recording is disabled, the GenAI telemetry visualizer still provides valuable information about AI operations, including timing, metadata, and performance metrics. However, enabling message content recording provides the most comprehensive view of your AI interactions.

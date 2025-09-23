@@ -13,12 +13,12 @@ ai-usage: ai-generated
 
 The following table shows the compatibility between Aspire AI hosting and client integrations:
 
-| **Hosting Integration**                    | **Aspire.OpenAI**            | **Aspire.Azure.AI.OpenAI**                    | **Aspire.Azure.AI.Inference** |
-|--------------------------------------------|------------------------------|-----------------------------------------------|-------------------------------|
-| `Aspire.Hosting.Azure.AIFoundry`          | ❌ No                       | ⚠️ Partial                                    | ✅ Yes (preferred)           |
-| `Aspire.Hosting.Azure.CognitiveServices`   | ❌ No                       | ✅ Yes (preferred)                            | ❌ No                        |
-| `Aspire.Hosting.OpenAI`                    | ✅ Yes (preferred)          | ✅ Yes                                        | ❌ No                        |
-| `Aspire.Hosting.GitHub.Models`              | ⚠️ Partial                  | ❌ No                                         | ✅ Yes (preferred)           |
+| **Hosting Integration** | **Aspire.OpenAI** | **Aspire.Azure.AI.OpenAI** | **Aspire.Azure.AI.Inference** |
+|--|--|--|--|
+| `Aspire.Hosting.Azure.AIFoundry` | ❌ No | ⚠️ Partial | ✅ Yes (preferred) |
+| `Aspire.Hosting.Azure.CognitiveServices` | ❌ No | ✅ Yes (preferred) | ❌ No |
+| `Aspire.Hosting.OpenAI` | ✅ Yes (preferred) | ✅ Yes | ❌ No |
+| `Aspire.Hosting.GitHub.Models` | ⚠️ Partial | ❌ No | ✅ Yes (preferred) |
 
 ### Legend
 
