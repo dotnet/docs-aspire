@@ -126,12 +126,12 @@ The changes include the addition of the `Aspire.AppHost.Sdk`, the update of the 
 
 ### Adjust your _Program.cs_ file
 
-With the introduction of .NET Aspire 9.4, there are some _breaking changes_. Some APIs were originally marked as experimental (with the <xref:System.Diagnostics.CodeAnalysis.ExperimentalAttribute>) and are now removed, while other APIs are now attributed as <xref:System.ObsoleteAttribute> with details on new replacement APIs. You need to adjust your _Program.cs_ file (and potentially other affected APIs) to use the new APIs. If you're using the Upgrade Assistant to upgrade your projects, it automatically adjusts your _Program.cs_ file in most cases.
+With the introduction of .NET Aspire 9.5, there are some _breaking changes_. Some APIs were originally marked as experimental (with the <xref:System.Diagnostics.CodeAnalysis.ExperimentalAttribute>) and are now removed, while other APIs are now attributed as <xref:System.ObsoleteAttribute> with details on new replacement APIs. You need to adjust your _Program.cs_ file (and potentially other affected APIs) to use the new APIs. If you're using the Upgrade Assistant to upgrade your projects, it automatically adjusts your _Program.cs_ file in most cases.
 
-For the complete list of breaking changes in .NET Aspire 9.5.0, see [Breaking changes in .NET Aspire 9.4](../compatibility/9.4/index.md).
+For the complete list of breaking changes in .NET Aspire 9.5.0, see [Breaking changes in .NET Aspire 9.5](../compatibility/9.5/index.md).
 
 > [!IMPORTANT]
-> Be sure to review breaking changes for all versions of .NET Aspire after the one you're upgrading from. For example, if you're upgrading from .NET Aspire 9.0, you must address breaking changes for versions [9.1](../compatibility/9.1/index.md), [9.2](../compatibility/9.2/index.md), [9.3](../compatibility/9.3/index.md), and [9.4](../compatibility/9.4/index.md).
+> Be sure to review breaking changes for all versions of .NET Aspire after the one you're upgrading from. For example, if you're upgrading from .NET Aspire 9.0, you must address breaking changes for versions [9.1](../compatibility/9.1/index.md), [9.2](../compatibility/9.2/index.md), [9.3](../compatibility/9.3/index.md), [9.4](../compatibility/9.4/index.md), and [9.5](../compatibility/9.5/index.md).
 
 ## Use the Upgrade Assistant
 
@@ -273,7 +273,7 @@ With the AppHost project updated, your project file should look like this:
 
 ## Remove the .NET Aspire workload (first-time upgrades from version 8 only)
 
-If you're upgrading from .NET Aspire 8 to .NET Aspire 9 for the first time, you need to remove the legacy workload. This step is not needed for upgrades between .NET Aspire 9 versions (such as from 9.4.1 to 9.5.0).
+If you're upgrading from .NET Aspire 8 to .NET Aspire 9 for the first time, you need to remove the legacy workload. This step is not needed for upgrades between .NET Aspire 9 versions (such as from 9.4.0 to 9.5.0).
 
 Previously the **aspire workload** was required to create and run .NET Aspire projects. But, with .NET Aspire 9 the workload is no longer required and should be removed from your .NET environment.
 
