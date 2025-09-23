@@ -847,23 +847,6 @@ Instead of generating a single aggregated template, 9.5 deploys individual Bicep
 
 `IPublishingActivityProgressReporter` was renamed to `IPublishingActivityReporter` and output formatting was reworked to provide clearer, structured progress (multiple commits culminating in improved messages). Expect more concise status lines and actionable error sections when using `aspire publish` or `aspire deploy`.
 
-### Parameter & interaction API updates
-
-- `ParameterResource.Value` is now obsolete: switch to `await parameter.GetValueAsync()` or inject parameter resources directly ([#10363](https://github.com/dotnet/aspire/pull/10363)). This change improves async value acquisition and avoids accidental blocking.
-- Interaction inputs enforce server-side validation and required `Name` property (breaking, [#10835](https://github.com/dotnet/aspire/pull/10835)).
-- New notification terminology (renamed from MessageBar, [#10449](https://github.com/dotnet/aspire/pull/10449)).
-- `ExecuteCommandResult` now includes a `Canceled` property to track whether command execution was canceled by the user or system.
-- Server-side validation of interaction inputs ([#10527](https://github.com/dotnet/aspire/pull/10527)).
-
-Migration example:
-
-```csharp
-// Before (deprecated)
-var value = myParam.Value;
-
-// After
-var value = await myParam.GetValueAsync();
-```
 
 #### Parameter prompting during deploy
 
@@ -943,32 +926,6 @@ var worker = builder.AddExecutable("worker", "dotnet")
 
 These APIs provide fine-grained control over executable resource configuration, enabling complex deployment scenarios and dynamic argument construction based on execution context.
 
-### Interactive parameter processing APIs
-
-Aspire 9.5 introduces the `ParameterProcessor` API for programmatic parameter resolution with interactive prompting capabilities.
-
-#### ParameterProcessor API
-
-The new experimental `ParameterProcessor` class enables applications to handle parameter resolution during runtime:
-
-```csharp
-// In your application startup or configuration
-services.AddSingleton<ParameterProcessor>();
-
-// Use parameter processor to initialize parameters
-public async Task ConfigureAsync(ParameterProcessor processor)
-{
-    var parameters = new[]
-    {
-        builder.AddParameter("database-password", secret: true),
-        builder.AddParameter("api-key", secret: true),
-        builder.AddParameter("environment-name")
-    };
-
-    // Initialize parameters with interactive prompting
-    await processor.InitializeParametersAsync(parameters, waitForResolution: true);
-}
-```
 
 #### InteractionInputCollection enhancements
 
