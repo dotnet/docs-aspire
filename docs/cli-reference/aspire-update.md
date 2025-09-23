@@ -62,16 +62,13 @@ The following options are available:
   $ aspire update
   Detected AppHost: MyApp.AppHost.csproj
   Select channel:
+    default
     stable
-    preview
   > daily
   Updating Aspire.Hosting 9.4.2 -> 9.5.0-daily.20240923.1
-  Updating Aspire.Azure.Cosmos 9.4.1 -> 9.5.0-daily.20240923.1
+  Updating Aspire.Azure.Cosmos 9.4.2 -> 9.5.0-daily.20240923.1
   Done.
   ```
 
 > [!NOTE]
-> Commit your repository before updating so you can easily revert if a preview or daily build introduces breaking changes.
-
-> [!TIP]
-> If no package versions change, you are already on the latest versions for the selected channel.
+> Commit your repository before updating so you can easily revert if a preview or daily build intro
