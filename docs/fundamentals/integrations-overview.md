@@ -66,6 +66,42 @@ When you add a client integration to a project within your .NET Aspire solution,
 - **[Health checks](health-checks.md)**: Exposes HTTP endpoints to provide basic availability and state information about an app. Health checks are used to influence decisions made by container orchestrators, load balancers, API gateways, and other management services.
 - **[Resiliency](/dotnet/core/resilience/http-resilience)**: The ability of your system to react to failure and still remain functional. Resiliency extends beyond preventing failures to include recovering and reconstructing your cloud-native environment back to a healthy state.
 
+## Understand host integration extension methods
+
+Aspire hosting integrations provide extension methods that start with either `Add` or `With`. These methods conform to the following pattern:
+
+- **`Add` methods**: `Add` methods create and register new resources within the AppHost. These methods usually return a new object type that represents the specific resource being added. For example, calling <xref:Aspire.Hosting.AzureServiceBusExtensions.AddAzureServiceBus*> returns an <xref:Aspire.Hosting.Azure.AzureServiceBusResource>, while calling <xref:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusQueue*> on that resource returns an <xref:Aspire.Hosting.Azure.AzureServiceBusQueueResource>. This pattern allows you to model parent-child relationships between resources, such as a Service Bus namespace and its queues or topics.
+- **`With` methods**: Use `With` methods to configure or enhance an existing resource. These methods typically return the same object type as the parent, allowing you to chain additional configuration calls.
+
+> [!IMPORTANT]
+> When using `Add` methods, make sure to pass the correct resource object to your client integration. Passing the wrong object can result in misconfigured connections or runtime errors.
+
+Consider this code:
+
+```csharp
+var serviceBus = builder.AddAzureServiceBus(name: "serviceBus")
+    .AddServiceBusTopic(name: "messagetopic");
+
+var apiService = builder.AddProject<Projects.servicebusexp_ApiService>("apiservice")
+    .WithHttpHealthCheck("/health")
+    .WithReference(serviceBus);
+```
+
+You may expect `serviceBus` to represent the Azure Service Bus resource but in fact, because you called <xref:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusTopic*> on the same line, `serviceBus` is an Azure Service Bus topic resource. To avoid this result, call `AddServiceBusTopic` on a separate line:
+
+```csharp
+var serviceBus = builder.AddAzureServiceBus(name: "serviceBus");
+var topic = serviceBus.AddServiceBusTopic(name: "messagetopic");
+
+var apiService = builder.AddProject<Projects.servicebusexp_ApiService>("apiservice")
+    .WithHttpHealthCheck("/health")
+    .WithReference(serviceBus);
+```
+
+Now, you can choose to pass the resource that consuming project needs. Either, as in the example, the Service Bus resource or the topic resource.
+
+This distinction helps you model your application's infrastructure accurately and ensures that client integrations receive the correct connection information.
+
 ## Versioning considerations
 
 Hosting and client integrations are updated each release to target the latest stable versions of dependent resources. When container images are updated with new image versions, the hosting integrations update to these new versions. Similarly, when a new NuGet version is available for a dependent client library, the corresponding client integration updates to the new version. This ensures the latest features and security updates are available to applications. The .NET Aspire update type (major, minor, patch) doesn't necessarily indicate the type of update in dependent resources. For example, a new major version of a dependent resource may be updated in a .NET Aspire patch release, if necessary.
