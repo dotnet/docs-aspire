@@ -59,7 +59,7 @@ curl -fsSL https://aka.ms/install-azd.sh | bash
 
 As a starting point, this article assumes that you've created a .NET Aspire solution from the **.NET Aspire Starter Application** template. For more information, see [Quickstart: Build your first .NET Aspire app](../../get-started/build-your-first-aspire-app.md).
 
-[!INCLUDE [init workflow](includes/init-workflow.md)]
+[!INCLUDE [init workflow](../includes/init-workflow.md)]
 
 :::zone pivot="github-actions"
 
@@ -86,7 +86,7 @@ The Azure Developer CLI enables you to automatically create CI/CD pipelines with
 
 1. Enter a name of your choice for the new GitHub repository or press enter to use the default name. `azd` creates a new repository in GitHub and configures it with the necessary secrets required to authenticate to Azure.
 
-    :::image type="content" loc-scope="other" source="media/pipeline-configuration.png" alt-text="A screenshot showing the pipeline configuration steps.":::
+    :::image type="content" loc-scope="other" source="../media/pipeline-configuration.png" alt-text="A screenshot showing the pipeline configuration steps.":::
 
 1. Enter <kbd>y</kbd> to proceed when `azd` prompts you to commit and push your local changes to start the configured pipeline.
 
@@ -96,11 +96,11 @@ The Azure Developer CLI enables you to automatically create CI/CD pipelines with
 
 1. Select the **Actions** tab to view the repository workflows. You should see the new workflow either running or already completed. Select the workflow to view the job steps and details in the logs of the run. For example, you can expand steps such as **Deploy application** to see the details of the completed action.
 
-    :::image type="content" loc-scope="github" source="media/github-action.png" alt-text="A screenshot showing the GitHub Action workflow steps.":::
+    :::image type="content" loc-scope="github" source="../media/github-action.png" alt-text="A screenshot showing the GitHub Action workflow steps.":::
 
 1. Select **Deploy Application** to expand the logs for that step. You should see two endpoint urls printed out for the `apiservice` and `webfrontend`. Select either of these links to open them in another browser tab and explore the deployed application.
 
-    :::image type="content" loc-scope="github" source="media/deployment-links.png" alt-text="A screenshot showing the deployed app links.":::
+    :::image type="content" loc-scope="github" source="../media/deployment-links.png" alt-text="A screenshot showing the deployed app links.":::
 
 Congratulations! You successfully deployed a .NET Aspire project using the Azure Developer CLI and GitHub Actions.
 
@@ -213,7 +213,7 @@ The Azure Developer CLI enables you to automatically create pipelines with the c
 
 1. Enter a unique name of your choice for the new repository, such as `aspireazd`. `azd` creates a new repository in Azure Repos and configures it with the necessary secrets required to authenticate to Azure.
 
-    :::image type="content" loc-scope="other" source="media/pipeline-configuration.png" lightbox="media/pipeline-configuration.png" alt-text="A screenshot showing the pipeline configuration steps.":::
+    :::image type="content" loc-scope="other" source="../media/pipeline-configuration.png" lightbox="../media/pipeline-configuration.png" alt-text="A screenshot showing the pipeline configuration steps.":::
 
 1. Enter <kbd>y</kbd> to proceed when `azd` prompts you to commit and push your local changes to start the configured pipeline.
 
@@ -221,21 +221,21 @@ The Azure Developer CLI enables you to automatically create pipelines with the c
 
 1. Navigate to your new Azure Pipeline using the status link output by `azd`.
 
-    :::image type="content" loc-scope="azure" source="media/azure-pipeline-run.png" lightbox="media/azure-pipeline-run.png" alt-text="A screenshot showing the successful Azure Pipelines run.":::
+    :::image type="content" loc-scope="azure" source="../media/azure-pipeline-run.png" lightbox="../media/azure-pipeline-run.png" alt-text="A screenshot showing the successful Azure Pipelines run.":::
 
 1. Select the completed pipeline run to view the summary.
 
-    :::image type="content" source="media/azure-pipeline-summary.png" alt-text="A screenshot showing the summary view of the Azure Pipelines run.":::
+    :::image type="content" source="../media/azure-pipeline-summary.png" alt-text="A screenshot showing the summary view of the Azure Pipelines run.":::
 
 1. Select the job link at the bottom of the view to navigate to the job details.
 
-    :::image type="content" loc-scope="azure" source="media/azure-pipeline-run-details.png" lightbox="media/azure-pipeline-run-details.png" alt-text="A screenshot showing the detailed view of the Azure Pipelines run." :::
+    :::image type="content" loc-scope="azure" source="../media/azure-pipeline-run-details.png" lightbox="../media/azure-pipeline-run-details.png" alt-text="A screenshot showing the detailed view of the Azure Pipelines run." :::
 
 1. The job details page shows the status of all the individual stages. Select **Provision Infrastructure** to view the logs for that stage, which detail all of the provisioning steps completed by `azd`. At the bottom of the logs take note of the final status message and link to the provisioned Azure resource group.
 
 1. Select the link at the bottom of the provisioning output logs to navigate to the new Azure resource group.
 
-    :::image type="content" loc-scope="azure" source="media/azure-pipeline-resource-group.png" lightbox="media/azure-pipeline-resource-group.png" alt-text="A screenshot showing the deployed Azure resources.":::
+    :::image type="content" loc-scope="azure" source="../media/azure-pipeline-resource-group.png" lightbox="../media/azure-pipeline-resource-group.png" alt-text="A screenshot showing the deployed Azure resources.":::
 
     > [!NOTE]
     > You can also navigate directly to your new resource group by searching for it in the Azure Portal. Your resource group name will be the environment name you provided to `azd` prefixed with `rg-`.

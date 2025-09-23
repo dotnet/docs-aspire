@@ -7,7 +7,7 @@ uid: deployment/azure/azure-security-best-practices
 
 # Azure security best practices for .NET Aspire deployments
 
-When you deploy .NET Aspire applications to Azure using the Azure Developer CLI (`azd`), the platform provides several security features by default. This article explains the default security posture and provides guidance on additional steps you can take to enhance the security of your applications.
+When you deploy .NET Aspire applications to Azure using the Aspire CLI or Azure Developer CLI (`azd`), the platform provides several security features by default. This article explains the default security posture and provides guidance on additional steps you can take to enhance the security of your applications.
 
 > [!div class="checklist"]
 >

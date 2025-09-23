@@ -70,7 +70,7 @@ items:
       displayName: withhttpcommand,
     - name: Custom resource URLs
       displayName: withurl,withurlforendpoint,withurls
-      href: fundamentals/custom-resource-urls.md      
+      href: fundamentals/custom-resource-urls.md
   - name: Host external executables
     href: app-host/executable-resources.md
     displayName: executable,addexecutable,external apps,cli tools
@@ -475,34 +475,38 @@ items:
   - name: Overview
     displayName: azure deployment,deployment,Kubernetes,k8s
     href: deployment/overview.md
-  - name: Azure
+  - name: Building custom deployment pipelines
+    href: fundamentals/custom-deployments.md
+  - name: Azure deployment with Aspire
     items:
-    - name: Deploy to Azure Container Apps using azd
-      href: deployment/azure/aca-deployment.md
-      displayName: azure container apps,aca
+    - name: Deploy to Azure Container Apps using Aspire CLI
+      href: deployment/aspire-deploy/aca-deployment-aspire-cli.md
     - name: Deploy to Azure Container Apps using Visual Studio
-      href: deployment/azure/aca-deployment-visual-studio.md
+      href: deployment/aspire-deploy/aca-deployment-visual-studio.md
       displayName: azure container apps,vs
-    - name: Azure Container Apps with azd (In-depth)
-      href: deployment/azure/aca-deployment-azd-in-depth.md
-      displayName: azure container apps,aca,azd
-    - name: Deploy using azd and CI/CD
-      href: deployment/azure/aca-deployment-github-actions.md
-    - name: Customize .NET Aspire Azure deployments
-      href: deployment/azure/customize-deployments.md
-      displayName: azd infra synth,azd infra gen,bicep,infrastructure,production
     - name: Azure security best practices
-      href: deployment/azure/azure-security-best-practices.md
+      href: deployment/aspire-deploy/azure-security-best-practices.md
       displayName: azure security,security best practices,container security,managed identity
     - name: Use .NET Aspire with Application Insights
-      href: deployment/azure/application-insights.md
+      href: deployment/aspire-deploy/application-insights.md
       displayName: app insights
     - name: Deploy .NET Aspire + SQL Database
-      href: database/sql-server-integration-deployment.md
+      href: deployment/aspire-deploy/sql-server-integration-deployment.md
     - name: Deploy .NET Aspire + Redis
-      href: caching/caching-integrations-deployment.md
-  - name: Build container images
-    href: fundamentals/build-container-images.md
+      href: deployment/aspire-deploy/caching-integrations-deployment.md
+  - name: Azure Developer CLI (azd)
+    items:
+    - name: Deploy to Azure Container Apps using azd
+      href: deployment/azd/aca-deployment.md
+      displayName: azure container apps,aca
+    - name: Azure Container Apps with azd (In-depth)
+      href: deployment/azd/aca-deployment-azd-in-depth.md
+      displayName: azure container apps,aca,azd
+    - name: Deploy using azd and CI/CD
+      href: deployment/azd/aca-deployment-github-actions.md
+    - name: Customize .NET Aspire Azure deployments using azd
+      href: deployment/azd/customize-deployments.md
+      displayName: azd infra synth,azd infra gen,bicep,infrastructure,production
   - name: Tool-builder manifest schemas
     href: deployment/manifest-format.md
 

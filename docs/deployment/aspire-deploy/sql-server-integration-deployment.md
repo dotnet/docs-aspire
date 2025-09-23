@@ -18,7 +18,7 @@ In this tutorial, you learn to configure an ASP.NET Core app with a SQL Server D
 > [!NOTE]
 > This document focuses specifically on .NET Aspire configurations to provision and deploy SQL Server resources in Azure. Visit the [Azure Container Apps deployment](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-azd) tutorial to learn more about the full .NET Aspire deployment process.
 
-[!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
+[!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
 ## Create the sample solution
 
@@ -97,7 +97,7 @@ Configure the _AspireSql.AppHost_ project for your desired SQL database service.
 
 Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _AspireSql.AppHost_ project with the following code:
 
-:::code language="csharp" source="snippets/tutorial/aspiresqldeployazure/AspireSql.AppHost/Program.cs":::
+:::code language="csharp" source="../../database/snippets/tutorial/aspiresqldeployazure/AspireSql.AppHost/Program.cs":::
 
 The preceding code adds an Azure SQL Server resource to your app and configures a connection to a database called `sqldb`. The <xref:Aspire.Hosting.AzureSqlExtensions.AddAzureSqlServer*> method ensures that tools such as the Azure Developer CLI or Visual Studio create an Azure SQL Database resource during the deployment process.
 
@@ -105,7 +105,7 @@ The preceding code adds an Azure SQL Server resource to your app and configures 
 
 Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _AspireSql.AppHost_ project with the following code:
 
-:::code language="csharp" source="snippets/tutorial/aspiresqldeploycontainer/AspireSql.AppHost/Program.cs":::
+:::code language="csharp" source="../../database/snippets/tutorial/aspiresqldeploycontainer/AspireSql.AppHost/Program.cs":::
 
 The preceding code adds a SQL Server resource to your app and configures a connection to a database called `sqldb`. This configuration also ensures that tools such as the Azure Developer CLI or Visual Studio create a containerized SQL Server instance during the deployment process.
 
@@ -113,30 +113,41 @@ The preceding code adds a SQL Server resource to your app and configures a conne
 
 ## Deploy the app
 
-Tools such as the [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) (`azd`) support .NET Aspire SQL Server integration configurations to streamline deployments. `azd` consumes these settings and provisions properly configured resources for you.
+The `aspire deploy` command supports .NET Aspire SQL Server integration configurations to streamline deployments. The command consumes these settings and provisions properly configured resources for you.
 
-[!INCLUDE [init-workflow](../deployment/azure/includes/init-workflow.md)]
+To deploy your app to Azure Container Apps, run the following command from the _AspireSql.AppHost_ directory:
 
-[!INCLUDE [azd-up-workflow](../deployment/azure/includes/azd-up-workflow.md)]
+```Aspire
+aspire deploy
+```
+
+When you run the `aspire deploy` command for the first time, you'll be prompted to:
+
+1. **Sign in to Azure**: Follow the authentication prompts to sign in to your Azure account.
+1. **Select a subscription**: Choose the Azure subscription you want to use for deployment.
+1. **Select or create a resource group**: Choose an existing resource group or create a new one.
+1. **Select a location**: Choose the Azure region where you want to deploy your resources.
+
+The deployment process will provision the necessary Azure resources and deploy your .NET Aspire app.
 
 ## [Azure SQL Database](#tab/azure-sql)
 
 The deployment process provisioned an Azure SQL Database resource due to the **.AppHost** configuration you provided.
 
-:::image type="content" loc-scope="azure" source="media/resources-azure-sql-database.png" alt-text="A screenshot showing the deployed Azure SQL Database.":::
+:::image type="content" loc-scope="azure" source="../../database/media/resources-azure-sql-database.png" alt-text="A screenshot showing the deployed Azure SQL Database.":::
 
 ## [SQL Server Container](#tab/sql-container)
 
 The deployment process created a SQL Server app container due to the **.AppHost** configuration you provided.
 
-:::image type="content" loc-scope="azure" source="media/resources-azure-sql-container.png" alt-text="A screenshot showing the containerized SQL Database.":::
+:::image type="content" loc-scope="azure" source="../../database/media/resources-azure-sql-container.png" alt-text="A screenshot showing the containerized SQL Database.":::
 
 ---
 
-[!INCLUDE [clean-up-resources](../includes/clean-up-resources.md)]
+[!INCLUDE [clean-up-resources](../../includes/clean-up-resources.md)]
 
 ## See also
 
-- [Deploy a .NET Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md)
-- [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md)
-- [Tutorial: Deploy a .NET Aspire project using the Azure Developer CLI](../deployment/azure/aca-deployment-github-actions.md)
+- [Deploy a .NET Aspire project to Azure Container Apps](../azd/aca-deployment.md)
+- [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../azd/aca-deployment-azd-in-depth.md)
+- [Tutorial: Deploy a .NET Aspire project using the Azure Developer CLI](../azd/aca-deployment-github-actions.md)

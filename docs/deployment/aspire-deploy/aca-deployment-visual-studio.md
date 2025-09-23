@@ -45,8 +45,8 @@ As a starting point, this article assumes that you've created a .NET Aspire proj
 
     :::image type="content" loc-scope="visual-studio" source="../media/visual-studio-deploy-complete.png" alt-text="A screenshot of the completed publishing process and deployed resources.":::
 
-[!INCLUDE [test-deployed-app](includes/test-deployed-app.md)]
+[!INCLUDE [test-deployed-app](../includes/test-deployed-app.md)]
 
-[!INCLUDE [azd-dashboard](includes/azd-dashboard.md)]
+[!INCLUDE [azd-dashboard](../includes/azd-dashboard.md)]
 
 [!INCLUDE [clean-up-resources](../../includes/clean-up-resources-visual-studio.md)]

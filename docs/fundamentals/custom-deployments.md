@@ -1,11 +1,11 @@
 ---
-title: Build container images
-description: Learn how to build container images from your .NET Aspire resources.
-ms.date: 08/07/2025
+title: Building custom deployment pipelines
+description: Learn how to build container images from your .NET Aspire resources and create custom deployment pipelines.
+ms.date: 09/22/2025
 ai-usage: ai-assisted
 ---
 
-# Build container images (Preview)
+# Building custom deployment pipelines (Preview)
 
 .NET Aspire provides powerful APIs for building container images from your resources during publishing and deployment operations. This article covers the key components that enable programmatic container image creation and progress reporting.
 
