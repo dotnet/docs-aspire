@@ -421,6 +421,20 @@ builder.Build().Run();
 
 This feature enables modern web application architectures where YARP acts as both a reverse proxy for backend services and a static file server for frontend assets, providing a unified entry point for your distributed application.
 
+### Azure Kusto / Azure Data Explorer
+
+A new **preview** package `Aspire.Hosting.Azure.Kusto` has been added. Once the package has been added to the AppHost it is possible to start a Kusto emulator with just a few lines of code:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var db = builder.AddAzureKustoCluster("kusto")
+    .RunAsEmulator()
+    .AddReadWriteDatabase("sensorreadings");
+
+builder.Build().Run();
+```
+
 ### RabbitMQ auto activation
 
 RabbitMQ client connections now support auto activation to prevent startup deadlocks and improve application reliability. Auto activation is disabled by default.
