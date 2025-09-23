@@ -1,7 +1,7 @@
 ---
 title: Upgrade to .NET Aspire 9.5.0
 description: Learn how to upgrade all your .NET Aspire projects to .NET Aspire 9.5.0.
-ms.date: 06/02/2025
+ms.date: 09/09/2025
 zone_pivot_groups: dev-environment
 ---
 
@@ -21,49 +21,18 @@ Before you upgrade your projects to .NET Aspire 9.5.0, ensure that you have the 
 
 - [Install the latest tooling](../fundamentals/setup-tooling.md).
 - [Use the .NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md).
-- If you have a version of .NET Aspire older than 9.0, [remove it](#upgrade-your-development-environment).
+- If you have a version of .NET Aspire older than 9.0, [remove it](#remove-the-net-aspire-workload-first-time-upgrades-from-version-8-only).
 
-## Upgrade your development environment
+## Upgrade the .NET Aspire project templates
 
-Before you can use .NET Aspire 9 or later versions, you need to remove outdated components and upgrade your tooling.
+Install the latest .NET Aspire project templates by running this command:
 
-### Remove the .NET Aspire workload
-
-Previously the **aspire workload** was required to create and run .NET Aspire projects. But, with .NET Aspire 9 the workload is no longer required and should be removed from your .NET environment.
-
-> [!IMPORTANT]
-> You must remove .NET Aspire 8 (the **aspire workload**) to enable the .NET Aspire 9 templates.
-
-01. Find the installation source by opening a terminal and running the `dotnet workload list` command.
-
-    The preceding command lists the workloads installed in the .NET environment. The method used to install .NET Aspire is listed under the **Installation Source** column of the output, and is either _VS_ for Visual Studio or _SDK_ for the .NET SDK. For example, the following snippet indicates that Visual Studio was used to install .NET Aspire:
-
-    ```
-    Installed Workload Id      Manifest Version      Installation Source
-    --------------------------------------------------------------------
-    aspire                     8.2.2/8.0.100         VS 17.14.36109.1
-    ```
-
-01. Remove .NET Aspire 8.
-
-    - If the **Installation Source** starts with _VS_:
-
-      01. Open the **Visual Studio Installer** app.
-      01. **Modify** the installation instance of Visual Studio.
-      01. Select **Individual Components**.
-      01. Search for `aspire`.
-      01. Unselect **.NET Aspire SDK**.
-      01. Select the **Modify** button to apply the changes.
-
-    - If the **Installation Source** starts with _SDK_, run `dotnet workload uninstall aspire` to remove .NET Aspire.
-
-### Upgrade the .NET Aspire project templates
-
-If you have removed, or never had, the **aspire workload**, you can install the latest .NET Aspire project templates by running this command:
-
-```PowerShell
+```dotnetcli
 dotnet new install Aspire.ProjectTemplates
 ```
+
+> [!TIP]
+> If you have the legacy .NET Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. For instructions on uninstalling the legacy workload, see [Remove the .NET Aspire workload (first-time upgrades from version 8 only)](#remove-the-net-aspire-workload-first-time-upgrades-from-version-8-only).
 
 ## Manually upgrade a solution to .NET Aspire 9.5.0
 
@@ -301,6 +270,38 @@ With the AppHost project updated, your project file should look like this:
 
 > [!TIP]
 > You'll want to also update the NuGet packages in your other projects to the latest versions.
+
+## Remove the .NET Aspire workload (first-time upgrades from version 8 only)
+
+If you're upgrading from .NET Aspire 8 to .NET Aspire 9 for the first time, you need to remove the legacy workload. This step is not needed for upgrades between .NET Aspire 9 versions (such as from 9.4.1 to 9.5.0).
+
+Previously the **aspire workload** was required to create and run .NET Aspire projects. But, with .NET Aspire 9 the workload is no longer required and should be removed from your .NET environment.
+
+> [!IMPORTANT]
+> You must remove .NET Aspire 8 (the **aspire workload**) to enable the .NET Aspire 9 templates.
+
+01. Find the installation source by opening a terminal and running the `dotnet workload list` command.
+
+    The preceding command lists the workloads installed in the .NET environment. The method used to install .NET Aspire is listed under the **Installation Source** column of the output, and is either _VS_ for Visual Studio or _SDK_ for the .NET SDK. For example, the following snippet indicates that Visual Studio was used to install .NET Aspire:
+
+    ```
+    Installed Workload Id      Manifest Version      Installation Source
+    --------------------------------------------------------------------
+    aspire                     8.2.2/8.0.100         VS 17.14.36109.1
+    ```
+
+01. Remove .NET Aspire 8.
+
+    - If the **Installation Source** starts with _VS_:
+
+      01. Open the **Visual Studio Installer** app.
+      01. **Modify** the installation instance of Visual Studio.
+      01. Select **Individual Components**.
+      01. Search for `aspire`.
+      01. Unselect **.NET Aspire SDK**.
+      01. Select the **Modify** button to apply the changes.
+
+    - If the **Installation Source** starts with _SDK_, run `dotnet workload uninstall aspire` to remove .NET Aspire.
 
 ## Verify the upgrade
 

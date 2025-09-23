@@ -304,9 +304,6 @@ In the :::no-loc text="Program.cs"::: file of your client-consuming project, cal
 builder.AddAzureServiceBusClient(connectionName: "messaging");
 ```
 
-> [!TIP]
-> The `connectionName` parameter must match the name used when adding the Service Bus resource in the AppHost project. In other words, when you call `AddAzureServiceBus` and provide a name of `messaging` that same name should be used when calling `AddAzureServiceBusClient`. For more information, see [Add Azure Service Bus resource](#add-azure-service-bus-resource).
-
 You can then retrieve the <xref:Azure.Messaging.ServiceBus.ServiceBusClient> instance using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
@@ -317,6 +314,43 @@ public class ExampleService(ServiceBusClient client)
 ```
 
 For more information on dependency injection, see [.NET dependency injection](/dotnet/core/extensions/dependency-injection).
+
+### Choose the correct connection name
+
+When you call `AddAzureServiceBusClient()`, the correct value depends on the object you passed to the client in the AppHost.
+
+For example, if you use this code in the AppHost:
+
+```csharp
+var serviceBus = builder.AddAzureServiceBus("messaging");
+
+var apiService = builder.AddProject<Projects.Example_ApiService>("apiservice")
+    .WithReference(serviceBus);
+```
+
+Then the correct code to add the Service Bus in your client-consuming program is:
+
+```csharp
+builder.AddAzureServiceBusClient(connectionName: "messaging");
+```
+
+However, if you created and passed a Service Bus topic in the AppHost:
+
+```csharp
+var serviceBus = builder.AddAzureServiceBus("messaging");
+var topic = serviceBus.AddServiceBusTopic("myTopic");
+
+var apiService = builder.AddProject<Projects.Example_ApiService>("apiservice")
+    .WithReference(topic);
+```
+
+Then the correct code to add the Service Bus topic in your client-consuming program is:
+
+```csharp
+builder.AddAzureServiceBusClient(connectionName: "myTopic");
+```
+
+For more information, see [Add Azure Service Bus resource](#add-azure-service-bus-resource) and [Add Azure Service Bus topic and subscription](#add-azure-service-bus-topic-and-subscription).
 
 ### Add keyed Service Bus client
 
