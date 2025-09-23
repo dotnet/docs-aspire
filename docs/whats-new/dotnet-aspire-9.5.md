@@ -189,26 +189,37 @@ aspire exec --start-resource my-worker -- npm run build
 
 ## 📊 Dashboard enhancements
 
-### Deep-linked telemetry navigation
+### Generative AI visualizer
 
-The dashboard now provides seamless navigation between different telemetry views with interactive elements in property grids. Trace IDs, span IDs, resource names, and log levels become clickable buttons for one-click navigation.
+Aspire 9.5 adds the GenAI visualizer. The GenAI visualizer collates, summarizes and visualizes LLM-centric calls within your app:
 
-- **Trace IDs**: Click to view the complete distributed trace
-- **Span IDs**: Navigate directly to specific trace spans
-- **Resource names**: Jump to resource-specific telemetry views  
-- **Log levels**: Filter logs by severity level instantly
+🗃️ Explore input and output messages
+🚀 JSON/XML payloads highlighted and indented
+🖼️ Preview Markdown and multimodal content (e.g. images)
 
-This eliminates the need to manually copy/paste identifiers between different dashboard views, making debugging and monitoring much more efficient.
+If GenAI-specific telemetry is found in an OTEL span, a sparkle (✨) icon will appear next to it's name in the Traces view, and clicking on the icon launches the visualizer dialog.
+
+The [GenAI telemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/) are evolving rapidly. The visualizer supports multiple versions of the telemetry, and ongoing we'll update it as the conventions move towards a stable release.
+
+:::image type="content" source="media/dashboard-geni-visualizer.gif" lightbox="media/dashboard-geni-visualizer.gif" alt-text="Recording of the GenAI visualizer.":::
+
+### Rich property grid content
+
+Icons and clickable buttons have been added to property grids in resource details, log entry details and span details.
+
+- Icons improve visual clarity. For example, see at a glance that a resource isn't in a healthy state because the icon is red or yellow.
+- Clickable buttons improve nagivation. For example, click on a resource name or telemetry ID to navigate to a different page for more information.
+
+:::image type="content" source="media/dashboard-rich-property-grid.png" lightbox="media/dashboard-rich-property-grid.png" alt-text="Screenshot of property grid with icons.":::
 
 ### Multi-resource console logs
 
 A new "All" option in the console logs view streams logs from every running resource simultaneously.
 
-**Features:**
-
 - **Unified log stream**: See logs from all resources in chronological order
 - **Color-coded prefixes**: Each resource gets a deterministic color for easy identification
-- **Configurable timestamps**: Separate timestamp preference to reduce noise
+
+:::image type="content" source="media/dashboard-console-logs-all.png" lightbox="media/dashboard-console-logs-all.png" alt-text="Screenshot of the console logs page displaying (All) logs.":::
 
 ### Custom resource icons
 
@@ -227,10 +238,6 @@ var api = builder.AddProject<Projects.Api>("api")
 
 This helps teams quickly identify different types of resources in complex applications with many services. Custom resource icons now also apply to project & container resources via unified annotation, providing consistent visual identification across all resource types.
 
-### Generative AI insights
-
-New dialog and UI components make GenAI interactions easier to inspect and understand LLM-centric calls within your app. If GenAI-specific telemetry is found in an OTEL span, a sparkle (✨) icon will appear next to it's name in the Traces view. When selected, a new UI modal appears with relevant LLM information including the prompt, response, token usage, and more.
-
 ### Reverse proxy support
 
 The dashboard now properly handles reverse proxy scenarios with explicit forwarded header mapping when enabled. This fixes common issues with authentication redirects and URL generation behind proxies like YARP.
@@ -240,26 +247,31 @@ The dashboard now properly handles reverse proxy scenarios with explicit forward
 export ASPIRE_DASHBOARD_FORWARDEDHEADERS_ENABLED=true
 ```
 
-**Supported scenarios:**
-
-- **OpenID Connect authentication** works correctly behind reverse proxies
-- **URL generation** respects the original client request scheme and host
-- **Limited header processing** for security - only Host and X-Forwarded-Proto are processed
-- **YARP integration** and other reverse proxy solutions
-
 This is particularly useful for deployment scenarios where the dashboard is accessed through a load balancer or reverse proxy.
 
 ### Container runtime notifications
 
-More actionable notifications now appear when Docker/Podman is installed but unhealthy, with automatic dismissal when runtime recovers. This provides immediate feedback when your container runtime needs attention, helping diagnose startup issues faster.
+Notifications now appear when Docker/Podman is installed but unhealthy, with automatic dismissal when runtime recovers. This provides immediate feedback when your container runtime needs attention, helping diagnose startup issues faster.
+
+:::image type="content" source="media/dashboard-container-warning.png" lightbox="media/dashboard-container-warning.png" alt-text="Screenshot of the dashboard showing the container runtime warning.":::
 
 ### Trace filtering
 
-A new span "type" filter lets you focus on specific kinds of spans for faster investigation.
+Traces pages now have a type filter, a quick way to find traces and spans for the selected operation type.
+
+For example, choose Messaging 📬 to see only traces from your app that interact with RabbitMQ, Azure Service Bus, etc.
+
+:::image type="content" source="media/dashboard-trace-type.png" lightbox="media/dashboard-trace-type.png" alt-text="Screenshot of the traces page showing the type filter.":::
 
 ### Trace detail improvements
 
-The trace detail page now has Expand/collapse all, clearer exemplars, an added resource column, preserved root span visibility, and more reliable span linking.
+The trace detail page gets some quality-of-life improvements:
+
+🏷️ Span names are clearer, with resources split into their own column
+🪵 Logs are now shown in the waterfall chart. Hover for a tooltip, or click for full details
+↕️ New "Expand all" and "Collapse all" buttons.
+
+:::image type="content" source="media/dashboard-trace-detail-logs.png" lightbox="media/dashboard-trace-detail-logs.png" alt-text="Screenshot of trace details showing the new resources column and log tooltips.":::
 
 ### Other improvements
 
