@@ -1,23 +1,21 @@
 ---
 title: Azure Managed Redis integration
 description: Learn how to integrate Azure Managed Redis with the .NET Aspire stack.
-ms.date: 01/28/2025
+ms.date: 09/23/2025
 ai-usage: ai-generated
 ---
 
 # .NET Aspire Azure Managed Redis&reg;<sup>**[*](#registered)**</sup> integration
 
-<a name="heading"></a>
-
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
 Azure Managed Redis is the most advanced Redis offering on Azure to date, supporting both traditional caching and caching for AI apps and workloads. It offers vector data structures and vector search, alongside secondary indexing for full-text search, exact matching, geospatial queries, numeric data handling, and fast data processing.
 
-The .NET Aspire Azure Managed Redis integration enables you to connect to existing Azure Managed Redis instances, or create new instances from .NET with advanced Redis features.
+The Aspire Azure Managed Redis integration enables you to connect to existing Azure Managed Redis instances, or create new instances from .NET with advanced Redis features.
 
 ## Hosting integration
 
-The .NET Aspire Azure Managed Redis hosting integration models an Azure Managed Redis resource as an Azure resource type. To access this type and APIs for expressing them as resources in your [AppHost](xref:dotnet/aspire/app-host) project, add the [📦 Aspire.Hosting.Azure.Redis](https://www.nuget.org/packages/Aspire.Hosting.Azure.Redis) NuGet package:
+The Aspire Azure Managed Redis hosting integration models an Azure Managed Redis resource as an Azure resource type. To access this type and APIs for expressing them as resources in your [AppHost](xref:dotnet/aspire/app-host) project, add the [📦 Aspire.Hosting.Azure.Redis](https://www.nuget.org/packages/Aspire.Hosting.Azure.Redis) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
