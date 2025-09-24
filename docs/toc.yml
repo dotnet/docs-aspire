@@ -125,6 +125,8 @@ items:
     href: cli/overview.md
   - name: Install
     href: cli/install.md
+  - name: Configuration
+    href: cli/config-settings.md
   - name: aspire-install script reference
     href: cli/install-script-reference.md
   - name: aspire command reference
@@ -135,9 +137,9 @@ items:
       href: cli-reference/aspire-add.md
     - name: aspire deploy
       href: cli-reference/aspire-deploy.md
-    - name: aspire config
+    - name: aspire config [command]
       items:
-      - name: aspire config [command]
+      - name: aspire config
         href: cli-reference/aspire-config.md
       - name: aspire config list
         href: cli-reference/aspire-config-list.md

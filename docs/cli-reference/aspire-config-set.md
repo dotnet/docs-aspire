@@ -52,7 +52,7 @@ The following options are available:
 
 - [!INCLUDE [option-wait](includes/option-wait.md)]
 
-## Settings
+## Available settings
 
 The following config settings are available:
 

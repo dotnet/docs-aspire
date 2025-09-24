@@ -1,6 +1,7 @@
 ---
 title: .NET Aspire CLI Overview and Commands
 description: Learn about the Aspire CLI commands for creating projects, running an AppHost, and adding integrations. Get started with command-line tools to build and manage distributed applications efficiently.
+titleSuffix: ""
 ms.date: 06/26/2025
 ms.topic: overview
 ms.custom:
@@ -84,6 +85,8 @@ As of Aspire 9.4, Aspire doesn't include any default deployment annotations for 
 [_Command reference: `aspire config`_](../cli-reference/aspire-config.md)
 
 The `aspire config` command lets you manage Aspire CLI configuration settings. Use it to `list`, `get`, `set`, or `delete` configuration values that control CLI behavior. This command is also used to toggle features on or off.
+
+For more information about Aspire CLI configuration, see [What is .NET Aspire configuration?](config-settings.md)
 
 ## Run commands in resource context (preview)
 
