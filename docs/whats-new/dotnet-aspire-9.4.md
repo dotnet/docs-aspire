@@ -26,7 +26,7 @@ Moving between minor releases of Aspire is simple:
 1. In your AppHost project file (that is, _MyApp.AppHost.csproj_), update the [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk) NuGet package to version `9.4.0`:
 
     ```xml
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.4.0" />
+    <Sdk Name="Aspire.AppHost.Sdk" Version=" 9.5.0-preview.1.25468.27" />
     ```
 
     For more information, see [.NET Aspire SDK](xref:dotnet/aspire/sdk).
