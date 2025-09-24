@@ -39,7 +39,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Add a Rust resource
 
-In the _:::no-loc text="Program.cs":::_ file of your AppHost project, call the `Aspire.Hosting.RustAppHostingExtension.AddRustApp` on the `builder` instance to add a Rust application resource as shown in the following example:
+In the _:::no-loc text="AppHost.cs":::_ file of your AppHost project, call the `Aspire.Hosting.RustAppHostingExtension.AddRustApp` on the `builder` instance to add a Rust application resource as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

@@ -160,7 +160,7 @@ For more information, see [Azure Developer CLI reference: azd deploy](/azure/dev
 
 Whenever the dependency structure within a .NET Aspire project changes, `azd` must re-provision the underlying Azure resources. The `azd provision` command is used to apply these changes to the infrastructure.
 
-To see this in action, update the _:::no-loc text="Program.cs":::_ file in the AppHost project to the following:
+To see this in action, update the _:::no-loc text="AppHost.cs":::_ file in the AppHost project to the following:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

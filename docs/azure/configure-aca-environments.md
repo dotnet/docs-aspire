@@ -25,7 +25,7 @@ This article guides you through the process of tailoring ACA environments for yo
 
 The `AzureContainerAppEnvironmentResource` type models an ACA environment resource. When you call the `AddAzureContainerAppEnvironment` method, it creates an instance of this type (wrapped in the <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1>).
 
-:::code language="csharp" source="snippets/aca/AspireAca.AppHost/AspireApp.AppHost/Program.cs":::
+:::code language="csharp" source="snippets/aca/AspireAca.AppHost/AspireApp.AppHost/AppHost.cs":::
 
 By default, the calling this API to add an ACA environment generates the following provisioning Bicep module:
 

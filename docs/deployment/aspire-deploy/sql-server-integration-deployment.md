@@ -97,7 +97,7 @@ Configure the _AspireSql.AppHost_ project for your desired SQL database service.
 
 Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _AspireSql.AppHost_ project with the following code:
 
-:::code language="csharp" source="../../database/snippets/tutorial/aspiresqldeployazure/AspireSql.AppHost/Program.cs":::
+:::code language="csharp" source="../../database/snippets/tutorial/aspiresqldeployazure/AspireSql.AppHost/AppHost.cs":::
 
 The preceding code adds an Azure SQL Server resource to your app and configures a connection to a database called `sqldb`. The <xref:Aspire.Hosting.AzureSqlExtensions.AddAzureSqlServer*> method ensures that tools such as the Azure Developer CLI or Visual Studio create an Azure SQL Database resource during the deployment process.
 
@@ -105,7 +105,7 @@ The preceding code adds an Azure SQL Server resource to your app and configures 
 
 Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _AspireSql.AppHost_ project with the following code:
 
-:::code language="csharp" source="../../database/snippets/tutorial/aspiresqldeploycontainer/AspireSql.AppHost/Program.cs":::
+:::code language="csharp" source="../../database/snippets/tutorial/aspiresqldeploycontainer/AspireSql.AppHost/AppHost.cs":::
 
 The preceding code adds a SQL Server resource to your app and configures a connection to a database called `sqldb`. This configuration also ensures that tools such as the Azure Developer CLI or Visual Studio create a containerized SQL Server instance during the deployment process.
 

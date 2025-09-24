@@ -37,9 +37,9 @@ Use the `HttpCommandOptions.PrepareRequest` callback to enhance security by addi
 
 ## Add a custom HTTP command
 
-In your AppHost _Program.cs_ file, you add a custom HTTP command using the `WithHttpCommand` API on an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is an <xref:Aspire.Hosting.ApplicationModel.IResourceWithEndpoints>. Here's an example of how to do this:
+In your _AppHost.cs_ file, you add a custom HTTP command using the `WithHttpCommand` API on an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is an <xref:Aspire.Hosting.ApplicationModel.IResourceWithEndpoints>. Here's an example of how to do this:
 
-:::code source="snippets/http-commands/AspireApp/AspireApp.AppHost/Program.cs":::
+:::code source="snippets/http-commands/AspireApp/AspireApp.AppHost/AppHost.cs":::
 
 The preceding code:
 

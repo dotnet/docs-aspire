@@ -55,7 +55,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 The following example demonstrates how to provision a new Azure Container Registry and attach it to a container app environment:
 
-:::code source="snippets/acr//AspireAcr.AppHost/AspireAcr.AppHost/Program.cs":::
+:::code source="snippets/acr//AspireAcr.AppHost/AspireAcr.AppHost/AppHost.cs":::
 
 The preceding code:
 

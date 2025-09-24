@@ -230,7 +230,7 @@ You should now have two new projects, both added to the solution:
 - **eShopLite.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator is set as the _Startup project_, and it depends on the **eShopLite.Store** project.
 - **eShopLite.ServiceDefaults**: A .NET Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../fundamentals/telemetry.md).
 
-In the **eShopLite.AppHost** project, open the _:::no-loc text="Program.cs":::_ file. Notice this line of code, which registers the **Store** project in the .NET Aspire orchestration:
+In the **eShopLite.AppHost** project, open the _:::no-loc text="AppHost.cs":::_ file. Notice this line of code, which registers the **Store** project in the .NET Aspire orchestration:
 
 ```csharp
 builder.AddProject<Projects.Store>("store");
@@ -245,7 +245,7 @@ To add the **Products** project to .NET Aspire:
 
     :::image type="content" loc-scope="visual-studio" source="media/orchestrator-already-added.png" alt-text="Screenshot indicating that the.NET Aspire Orchestrator was already added.":::
 
-In the **eShopLite.AppHost** project, open the _:::no-loc text="Program.cs":::_ file. Notice this line of code, which registers the **Products** project in the .NET Aspire orchestration:
+In the **eShopLite.AppHost** project, open the _:::no-loc text="AppHost.cs":::_ file. Notice this line of code, which registers the **Products** project in the .NET Aspire orchestration:
 
 ```csharp
 builder.AddProject<Projects.Products>("products");
@@ -378,7 +378,7 @@ builder.AddServiceDefaults();
 
 ### Update the AppHost project
 
-Open the _:::no-loc text="Program.cs":::_ file of the _AppHost_ project, and replace its contents with the following C# code:
+Open the _:::no-loc text="AppHost.cs":::_ file of the _AppHost_ project, and replace its contents with the following C# code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -401,7 +401,7 @@ The preceding code:
 
 ## Service Discovery
 
-At this point, both projects are part of .NET Aspire orchestration, but the **Store** project needs to rely on the **Products** backend address through [.NET Aspire's service discovery](../service-discovery/overview.md). To enable service discovery, open the _:::no-loc text="Program.cs":::_ file in **eShopLite.AppHost** project and update the code so that the `builder` adds a reference to the _Products_ project:
+At this point, both projects are part of .NET Aspire orchestration, but the **Store** project needs to rely on the **Products** backend address through [.NET Aspire's service discovery](../service-discovery/overview.md). To enable service discovery, open the _:::no-loc text="AppHost.cs":::_ file in **eShopLite.AppHost** project and update the code so that the `builder` adds a reference to the _Products_ project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

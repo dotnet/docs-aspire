@@ -160,7 +160,7 @@ The `username` and `password` parameters are usually provided as environment var
 
 To import a realm into Keycloak, call the <xref:Aspire.Hosting.KeycloakResourceBuilderExtensions.WithRealmImport*> method:
 
-:::code language="csharp" source="snippets/AspireApp/AspireApp.AppHost/Program.cs":::
+:::code language="csharp" source="snippets/AspireApp/AspireApp.AppHost/AppHost.cs":::
 
 The realm import files are mounted at `/opt/keycloak/data/import` in the Keycloak container. Realm import files are JSON files that represent the realm configuration. For more information on realm import, see [Keycloak docs: Importing a realm](https://www.keycloak.org/docs/latest/server_admin/index.html#_import).
 
@@ -369,7 +369,7 @@ builder.Services.AddAuthentication()
 For production deployments, consider using connection strings instead of the hosting integration:
 
 ```csharp
-// In Program.cs of your AppHost
+// In AppHost.cs of your AppHost project
 builder.AddConnectionString("keycloak", "https://your-keycloak-server.com");
 ```
 

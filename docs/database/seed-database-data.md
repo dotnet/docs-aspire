@@ -52,7 +52,7 @@ You must ensure that this script is copied to the AppHost's output directory, so
 
 Adjust the `Include` parameter to match the path to your SQL script in the project.
 
-Next, in the AppHost's *AppHost.cs* (or *Program.cs*) file, create the database and run the creation script:
+Next, in the AppHost's *AppHost.cs* file, create the database and run the creation script:
 
 :::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/AppHost.cs" range="40-49" :::
 
@@ -71,7 +71,7 @@ The following code is an example PostgreSQL script that creates and populates a 
 
 :::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.ApiService/data/postgres/init.sql" :::
 
-In the AppHost's *AppHost.cs* (or *Program.cs*) file, create the database and mount the folder that contains the SQL script as a bind mount:
+In the AppHost's *AppHost.cs* file, create the database and mount the folder that contains the SQL script as a bind mount:
 
 :::code source="~/aspire-samples/samples/DatabaseContainers/DatabaseContainers.AppHost/AppHost.cs" range="3-19" :::
 

@@ -186,7 +186,7 @@ Add the following code to a new file named _MailDevResourceBuilderExtensions.cs_
 
 ## Validate custom integration inside the AppHost
 
-Now that the basic structure for the custom resource is complete it's time to test it in a real AppHost project. Open the _:::no-loc text="Program.cs":::_ file in the _:::no-loc text="MailDevResource.AppHost":::_ project and update it with the following code:
+Now that the basic structure for the custom resource is complete it's time to test it in a real AppHost project. Open the _:::no-loc text="AppHost.cs":::_ file in the _:::no-loc text="MailDevResource.AppHost":::_ project and update it with the following code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -196,7 +196,7 @@ var maildev = builder.AddMailDev("maildev");
 builder.Build().Run();
 ```
 
-After updating the _:::no-loc text="Program.cs":::_ file, launch the AppHost project and open the dashboard:
+After updating the _:::no-loc text="AppHost.cs":::_ file, launch the AppHost project and open the dashboard:
 
 ```dotnetcli
 dotnet run --project ./MailDevResource.AppHost/MailDevResource.AppHost.csproj
@@ -251,11 +251,11 @@ In order to test the end-to-end scenario, you need a .NET project which we can i
     dotnet sln ./MailDevResource.sln add ./MailDevResource.NewsletterService/MailDevResource.NewsletterService.csproj
     ```
 
-After the project has been added and references have been updated, open the _:::no-loc text="Program.cs":::_ of the _:::no-loc text="MailDevResource.AppHost.csproj":::_ project, and update the source file to look like the following:
+After the project has been added and references have been updated, open the _:::no-loc text="AppHost.cs":::_ of the _:::no-loc text="MailDevResource.AppHost.csproj":::_ project, and update the source file to look like the following:
 
-:::code source="snippets/MailDevResource/MailDevResource.AppHost/Program.cs":::
+:::code source="snippets/MailDevResource/MailDevResource.AppHost/AppHost.cs":::
 
-After updating the _:::no-loc text="Program.cs":::_ file, launch the AppHost again. Then verify that the Newsletter Service started and that the environment variable `ConnectionStrings__maildev` was added to the process. From the **Resources** page, find the `newsletterservice` row, and select the **View** link on the **Details** column:
+After updating the _:::no-loc text="AppHost.cs":::_ file, launch the AppHost again. Then verify that the Newsletter Service started and that the environment variable `ConnectionStrings__maildev` was added to the process. From the **Resources** page, find the `newsletterservice` row, and select the **View** link on the **Details** column:
 
 :::image type="content" source="media/maildev-envvar.png" lightbox="media/maildev-envvar.png" alt-text="Environment variables for Newsletter Service in .NET Aspire Dashboard.":::
 

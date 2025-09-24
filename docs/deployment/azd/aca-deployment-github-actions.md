@@ -119,7 +119,7 @@ For example, if your repository structure looks like this:
     ├───📂 MyAspireApp.ApiService
     ├───📂 MyAspireApp.AppHost
     │    ├─── MyAspireApp.AppHost.csproj
-    │    └─── Program.cs
+    │    └─── AppHost.cs
     ├───📂 MyAspireApp.Web
     └─── MyAspireApp.sln
 ```

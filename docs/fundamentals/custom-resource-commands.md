@@ -109,9 +109,9 @@ The preceding code:
 
 ## Test the custom command
 
-To test the custom command, update your AppHost project's _Program.cs_ file to include the following code:
+To test the custom command, update your AppHost project's _AppHost.cs_ file to include the following code:
 
-:::code source="snippets/custom-commands/AspireApp/AspireApp.AppHost/Program.cs" highlight="4":::
+:::code source="snippets/custom-commands/AspireApp/AspireApp.AppHost/AppHost.cs" highlight="4":::
 
 The preceding code calls the `WithClearCommand` extension method to add the custom command to the Redis resource. Run the app and navigate to the .NET Aspire dashboard. You should see the custom command listed under the Redis resource. On the **Resources** page of the dashboard, select the ellipsis button under the **Actions** column:
 

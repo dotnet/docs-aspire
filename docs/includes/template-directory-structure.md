@@ -17,7 +17,7 @@ ms.topic: include
      │    ├─── appsettings.Development.json
      │    ├─── appsettings.json
      │    ├─── AspireSample.AppHost.csproj
-     │    └─── Program.cs
+     │    └─── AppHost.cs
      ├───📂 AspireSample.ServiceDefaults
      │    ├─── AspireSample.ServiceDefaults.csproj
      │    └─── Extensions.cs
