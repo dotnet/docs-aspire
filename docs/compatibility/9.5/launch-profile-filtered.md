@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - Launch profiles now ignore unsupported commandName values"
-description: "Learn about the breaking change in .NET Aspire 9.5 where only Project and Executable launch profiles are considered by default and unsupported profiles (for example IISExpress) are skipped."
+description: "Learn about the breaking change in Aspire 9.5 where only Project and Executable launch profiles are considered by default and unsupported profiles (for example IISExpress) are skipped."
 ms.date: 09/23/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/4739
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/4739
 
 # Launch profiles now ignore unsupported commandName values
 
-In .NET Aspire 9.5, launch profile selection filters `launchSettings.json` profiles by an allow list of supported `commandName` values (`Project` and `Executable`). Unsupported profiles such as `IISExpress`, `Docker`, or others are ignored unless explicitly selected. Previously, the first profile in the file could be chosen even if its `commandName` wasn't supported, leading to unexpected startup behavior.
+In Aspire 9.5, launch profile selection filters `launchSettings.json` profiles by an allow list of supported `commandName` values (`Project` and `Executable`). Unsupported profiles such as `IISExpress`, `Docker`, or others are ignored unless explicitly selected. Previously, the first profile in the file could be chosen even if its `commandName` wasn't supported, leading to unexpected startup behavior.
 
 ## Version introduced
 
-.NET Aspire 9.5
+Aspire 9.5
 
 ## Previous behavior
 

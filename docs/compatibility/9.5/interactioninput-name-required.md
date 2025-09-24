@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - InteractionInput.Name required and Label optional"
-description: "Learn about the breaking change in .NET Aspire 9.5 where InteractionInput now requires Name, makes Label optional, and introduces EffectiveLabel."
+description: "Learn about the breaking change in Aspire 9.5 where InteractionInput now requires Name, makes Label optional, and introduces EffectiveLabel."
 ms.date: 09/23/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/4738
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/4738
 
 # `InteractionInput.Name` required and `Label` optional
 
-In .NET Aspire 9.5, the `InteractionInput` API changes its contract: `Name` is now required and `Label` becomes optional. Automatic generation of `Name` from `Label` is removed, and a new `EffectiveLabel` member returns `Label` when specified, otherwise `Name`. This simplifies reasoning about inputs and avoids hidden inference.
+In Aspire 9.5, the `InteractionInput` API changes its contract: `Name` is now required and `Label` becomes optional. Automatic generation of `Name` from `Label` is removed, and a new `EffectiveLabel` member returns `Label` when specified, otherwise `Name`. This simplifies reasoning about inputs and avoids hidden inference.
 
 ## Version introduced
 
-.NET Aspire 9.5
+Aspire 9.5
 
 ## Previous behavior
 

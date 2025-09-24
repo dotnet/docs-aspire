@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - IResourceWithoutLifetime removed from parameter and connection string resources"
-description: "Learn about the breaking change in .NET Aspire 9.5 where ParameterResource and ConnectionStringResource now participate in lifetimes and waiting semantics instead of implementing IResourceWithoutLifetime."
+description: "Learn about the breaking change in Aspire 9.5 where ParameterResource and ConnectionStringResource now participate in lifetimes and waiting semantics instead of implementing IResourceWithoutLifetime."
 ms.date: 09/23/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/4734
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/4734
 
 # IResourceWithoutLifetime removed from parameter and connection string resources
 
-In .NET Aspire 9.5, `ParameterResource` and `ConnectionStringResource` no longer behave as lifetime-less resources. The marker interface (or equivalent classification) `IResourceWithoutLifetime` is removed from these resource types. They now support waiting on readiness, expose a `Running` state, and share a simplified, consolidated initialization path.
+In Aspire 9.5, `ParameterResource` and `ConnectionStringResource` no longer behave as lifetime-less resources. The marker interface (or equivalent classification) `IResourceWithoutLifetime` is removed from these resource types. They now support waiting on readiness, expose a `Running` state, and share a simplified, consolidated initialization path.
 
 ## Version introduced
 
-.NET Aspire 9.5
+Aspire 9.5
 
 ## Previous behavior
 

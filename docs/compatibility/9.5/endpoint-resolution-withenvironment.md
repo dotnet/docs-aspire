@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - Fix endpoint resolution for Host/Port in WithEnvironment"
-description: "Learn about the breaking change in .NET Aspire 9.5 where endpoint Host and Port properties resolve independently inside WithEnvironment."
+description: "Learn about the breaking change in Aspire 9.5 where endpoint Host and Port properties resolve independently inside WithEnvironment."
 ms.date: 09/23/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/4741
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/4741
 
 # Fix endpoint resolution for Host/Port in WithEnvironment
 
-In .NET Aspire 9.5, endpoint property resolution inside `WithEnvironment` delegates is corrected so that `Host` and `Port` each resolve accurately when accessed independently. Previously, accessing only `Host` returned `localhost` and only `Port` returned the host (published) port unless both properties were accessed together.
+In Aspire 9.5, endpoint property resolution inside `WithEnvironment` delegates is corrected so that `Host` and `Port` each resolve accurately when accessed independently. Previously, accessing only `Host` returned `localhost` and only `Port` returned the host (published) port unless both properties were accessed together.
 
 ## Version introduced
 
-.NET Aspire 9.5
+Aspire 9.5
 
 ## Previous behavior
 

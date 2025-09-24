@@ -1,18 +1,18 @@
 ---
-title: Breaking changes in .NET Aspire 9.5
+title: Breaking changes in Aspire 9.5
 titleSuffix: ""
-description: Navigate to the breaking changes in .NET Aspire 9.5.
+description: Navigate to the breaking changes in Aspire 9.5.
 ms.date: 09/24/2025
 ---
 
-# Breaking changes in .NET Aspire 9.5
+# Breaking changes in Aspire 9.5
 
-If you're migrating an app to .NET Aspire 9.5, the breaking changes listed here might affect you.
+If you're migrating an app to Aspire 9.5, the breaking changes listed here might affect you.
 
 [!INCLUDE [binary-source-behavioral](../includes/binary-source-behavioral.md)]
 
 > [!NOTE]
-> This article is a work in progress. It's not a complete list of breaking changes in .NET Aspire 9.5.
+> This article is a work in progress. It's not a complete list of breaking changes in Aspire 9.5.
 
 ## Breaking changes
 

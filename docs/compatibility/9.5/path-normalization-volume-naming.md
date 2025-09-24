@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - Comprehensive path normalization for volume naming"
-description: "Learn about the breaking change in .NET Aspire 9.5 where path normalization and (on Windows) lowercasing produce consistent volume names."
+description: "Learn about the breaking change in Aspire 9.5 where path normalization and (on Windows) lowercasing produce consistent volume names."
 ms.date: 09/23/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/4740
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/4740
 
 # Comprehensive path normalization for volume naming
 
-In .NET Aspire 9.5, all file system paths used for deriving container volume names are first normalized with `Path.GetFullPath()`. On Windows, the normalized path is also lowercased. This ensures consistent deterministic hashing and volume naming regardless of input casing differences or whether a path was relative or absolute. The change affects scenarios where you previously relied on the incidental differences in volume names when launching with different working directories, path spellings, or letter casing.
+In Aspire 9.5, all file system paths used for deriving container volume names are first normalized with `Path.GetFullPath()`. On Windows, the normalized path is also lowercased. This ensures consistent deterministic hashing and volume naming regardless of input casing differences or whether a path was relative or absolute. The change affects scenarios where you previously relied on the incidental differences in volume names when launching with different working directories, path spellings, or letter casing.
 
 ## Version introduced
 
-.NET Aspire 9.5
+Aspire 9.5
 
 ## Previous behavior
 
