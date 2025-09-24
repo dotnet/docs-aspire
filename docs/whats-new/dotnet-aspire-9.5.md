@@ -1,16 +1,16 @@
 ---
 title: What's new in Aspire 9.5
 description: Learn what's new in Aspire 9.5.
-ms.date: 09/23/2025
+ms.date: 09/24/2025
 ---
 
 # What's new in Aspire 9.5
 
 📢 Aspire 9.5 is the next minor version release of Aspire. It supports:
 
-- .NET 8.0 Long Term Support (LTS)
-- .NET 9.0 Standard Term Support (STS)
-- .NET 10.0 RC (release candidate) 1
+- .NET 8.0 Long Term Support (LTS).
+- .NET 9.0 Standard Term Support (STS).
+- .NET 10.0 Release Candidate (RC) 1.
 
 If you have feedback, questions, or want to contribute to Aspire, collaborate with us on [:::image type="icon" source="../media/github-mark.svg" border="false"::: GitHub](https://github.com/dotnet/aspire) or join us on [:::image type="icon" source="../media/discord-icon.svg" border="false"::: Discord](https://aka.ms/aspire-discord) to chat with the team and other community members.
 
@@ -83,7 +83,7 @@ You can now pick packages from different channels or versions during `aspire add
 
 The new `aspire update` command helps you keep your Aspire projects current by automatically detecting and updating outdated packages and templates.
 
-```bash
+```Aspire
 # Analyze and update out-of-date Aspire packages & templates
 aspire update
 ```
@@ -99,7 +99,7 @@ This command updates your SDK, AppHost packages, and any Aspire client integrati
 
 Aspire 9.5 introduces infrastructure for .NET 10's new file-based apps feature, meaning you only need one file - and no project file! - for your Aspire Apphost. The new capabilities are currently behind a feature flag that elevates the minimum .NET SDK requirement to prepare for upcoming file-based app execution scenarios.
 
-```bash
+```Aspire
 # Enable file-based AppHost ("apphost.cs") support
 aspire config set features.singlefileAppHostEnabled true
 ```
@@ -139,7 +139,7 @@ For more information, see [aspire exec command](../cli-reference/aspire-exec.md)
 
 #### Basic usage examples
 
-```bash
+```Aspire
 # Execute database migrations with environment variables from your app model
 aspire exec --resource my-api -- dotnet ef database update
 
@@ -152,26 +152,28 @@ aspire exec --start-resource my-worker -- npm run build
 
 #### Command syntax
 
-- Use `--resource` to execute immediately when AppHost starts
-- Use `--start-resource` to wait for the resource to be running first
-- Use `--workdir` to specify the working directory for the command
-- Use `--` to separate aspire options from the command to execute
+- Use `--resource` to execute immediately when AppHost starts.
+- Use `--start-resource` to wait for the resource to be running first.
+- Use `--workdir` to specify the working directory for the command.
+- Use `--` to separate aspire options from the command to execute.
 
-> [!IMPORTANT]
-> 🧪 **Feature Flag**: The `aspire exec` command requires explicit enablement with:
+> [!NOTE]
+> This command is disabled by default. To use it, turn on the feature toggle by running:
 >
-> ```bash
+> ```Aspire
 > aspire config set features.execCommandEnabled true
 > ```
+>
+> For more information, see [aspire config command](../cli-reference/aspire-config.md).
 
 ### Other tweaks
 
-- Relative path included in AppHost status messages
-- Clean CLI debug logging with reduced noise
-- Directory safety check for `aspire new` and consistent template inputs
+- Relative path included in AppHost status messages.
+- Clean CLI debug logging with reduced noise.
+- Directory safety check for `aspire new` and consistent template inputs.
 - Refactored NuGet prefetch architecture reducing UI lag during `aspire new`.
-- Package search disk cache to speed up `aspire new | add | update` commands
-- Context-sensitive completion messages for publish/deploy
+- Package search disk cache to speed up `aspire new | add | update` commands.
+- Context-sensitive completion messages for publish/deploy.
 
 ## 📊 Dashboard enhancements
 
@@ -179,9 +181,9 @@ aspire exec --start-resource my-worker -- npm run build
 
 Aspire 9.5 introduces the GenAI visualizer, which collates, summarizes, and visualizes LLM-centric calls within your app:
 
-🗃️ Explore input and output messages  
-🚀 JSON/XML payloads highlighted and indented  
-🖼️ Preview Markdown and multimodal content (for example, images)  
+🗃️ Explore input and output messages.
+🚀 JSON/XML payloads highlighted and indented.
+🖼️ Preview Markdown and multimodal content (for example, images).
 
 If GenAI-specific telemetry is found in an OTEL span, a sparkle (✨) icon appears next to its name in the Traces view. Clicking the icon launches the visualizer dialog.
 
@@ -193,7 +195,7 @@ The [GenAI telemetry semantic conventions](https://opentelemetry.io/docs/specs/s
 
 Icons and clickable buttons were added to property grids in resource details, log entry details, and span details.
 
-- **Icons** improve visual clarity. For example, quickly see that a resource isn't in a healthy state if the icon is red or yellow.  
+- **Icons** improve visual clarity. For example, quickly see that a resource isn't in a healthy state if the icon is red or yellow.
 - **Clickable buttons** improve navigation. For example, select on a resource name or telemetry ID to navigate to a different page for more information.
 
 :::image type="content" source="media/dashboard-rich-property-grid.png" lightbox="media/dashboard-rich-property-grid.png" alt-text="Screenshot of property grid with icons.":::
@@ -202,7 +204,7 @@ Icons and clickable buttons were added to property grids in resource details, lo
 
 A new "All" option in the console logs view streams logs from every running resource simultaneously.
 
-- **Unified log stream**: See logs from all resources in chronological order.  
+- **Unified log stream**: See logs from all resources in chronological order.
 - **Color-coded prefixes**: Each resource gets a deterministic color for easy identification.
 
 :::image type="content" source="media/console-logs-all.png" lightbox="media/console-logs-all.png" alt-text="Screenshot of the console logs page displaying (All) logs.":::
@@ -261,18 +263,18 @@ The trace detail page includes several quality-of-life improvements:
 
 ### Other improvements
 
-- Resource action menus now use submenus to prevent overflow on complex apps
-- Projects show their associated launch profiles
-- Error spans use consistent error styling
-- Better default icons for parameters and services
-- Enhanced port parsing
-- Message truncation for long log entries
-- Optional log line wrapping
-- Improved text visualizer dialog
-- Comprehensive dashboard localization improvements including localized Launch Profile names
-- Embedded log entries within trace spans
-- Better span timing calculations
-- Accessibility improvements with better toolbar/menu overflow handling, improved keyboard navigation, semantic headings, and mobile navigation scroll fixes
+- Resource action menus now use submenus to prevent overflow on complex apps.
+- Projects show their associated launch profiles.
+- Error spans use consistent error styling.
+- Better default icons for parameters and services.
+- Enhanced port parsing.
+- Message truncation for long log entries.
+- Optional log line wrapping.
+- Improved text visualizer dialog.
+- Comprehensive dashboard localization improvements including localized Launch Profile names.
+- Embedded log entries within trace spans.
+- Better span timing calculations.
+- Accessibility improvements with better toolbar/menu overflow handling, improved keyboard navigation, semantic headings, and mobile navigation scroll fixes.
 
 ## 📦 Integration changes and additions
 
@@ -284,10 +286,10 @@ The new `AddOpenAI` integration provides first-class support for modeling OpenAI
 
 **Features:**
 
-- **Single OpenAI endpoint** resource with child model resources using `AddModel`
-- **Parameter-based API key** provisioning with `ParameterResource` support
-- **Endpoint override** for local gateways, proxies, or self-hosted solutions
-- **Resource referencing** so other projects automatically receive connection information
+- **Single OpenAI endpoint** resource with child model resources using `AddModel`.
+- **Parameter-based API key** provisioning with `ParameterResource` support.
+- **Endpoint override** for local gateways, proxies, or self-hosted solutions.
+- **Resource referencing** so other projects automatically receive connection information.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -327,7 +329,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 // Before: String-based approach (error-prone)
 var model = builder.AddGitHubModel("chat", "gpt-4o-mini"); // Typos not caught
 
-// After: Typed catalog approach  
+// After: Typed catalog approach
 var chatModel = builder.AddGitHubModel("chat", GitHubModel.OpenAI.OpenAIGPT4oMini);
 
 // IntelliSense shows all available models grouped by provider
@@ -345,10 +347,10 @@ Aspire 9.5 introduces first-class support for Dev Tunnels, enabling seamless int
 
 **Features:**
 
-- **Secure public tunnels**: Create public HTTPS endpoints for applications running locally
-- **Automatic tunnel management**: Tunnels are created, configured, and cleaned up automatically
-- **Private and anonymous tunnels**: Support for both authenticated private tunnels and public anonymous access
-- **Development workflow integration**: Perfect for webhook testing, mobile app development, and external service integration
+- **Secure public tunnels**: Create public HTTPS endpoints for applications running locally.
+- **Automatic tunnel management**: Tunnels are created, configured, and cleaned up automatically.
+- **Private and anonymous tunnels**: Support for both authenticated private tunnels and public anonymous access.
+- **Development workflow integration**: Perfect for webhook testing, mobile app development, and external service integration.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -373,10 +375,10 @@ Aspire 9.5 adds comprehensive static file serving capabilities to the YARP integ
 
 **Features:**
 
-- **Direct static file serving**: Serve HTML, CSS, JS, and other static assets from YARP
-- **Flexible source options**: Bind mount local directories or use Docker multi-stage builds
-- **Automatic configuration**: Simple API enables static files with minimal setup
-- **Production ready**: Works in both development and publish scenarios
+- **Direct static file serving**: Serve HTML, CSS, JS, and other static assets from YARP.
+- **Flexible source options**: Bind mount local directories or use Docker multi-stage builds.
+- **Automatic configuration**: Simple API enables static files with minimal setup.
+- **Production ready**: Works in both development and publish scenarios.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -417,11 +419,11 @@ var gateway = builder.AddYarp("app-gateway")
         // API routes
         yarp.AddRoute("/api/{**catch-all}", backendApi)
             .WithTransformPathRemovePrefix("/api");
-            
+          
         // Auth routes
         yarp.AddRoute("/auth/{**catch-all}", authService)
             .WithTransformPathRemovePrefix("/auth");
-            
+          
         // Static files are served for all other routes
     });
 
@@ -564,8 +566,8 @@ builder.Build().Run();
 
 ### Other improvements
 
-- New reference properties have been added to Azure PostgreSQL and Redis resources for custom connection string composition and individual component access
-- OpenTelemetry Protocols (OTLP) support now has protocol selection capabilities, allowing you to choose between gRPC and HTTP protobuf transports for telemetry data
+- New reference properties have been added to Azure PostgreSQL and Redis resources for custom connection string composition and individual component access.
+- OpenTelemetry Protocols (OTLP) support now has protocol selection capabilities, allowing you to choose between gRPC and HTTP protobuf transports for telemetry data.
 
 ## 🧩 App model enhancements
 
@@ -585,7 +587,7 @@ var api = builder.AddProject<Projects.Api>("api")
     {
         // Use events to clean up the system to allow rapid
         // inner loop debugging.
-        
+      
         await ResetSystemState();
     })
     .WithReference(invoicing);
@@ -606,7 +608,7 @@ var redis = builder.AddRedis("cache")
         Console.WriteLine($"Resource: {resource.Name}");
         Console.WriteLine($"Event timestamp: {stoppedEvent.Timestamp}");
         Console.WriteLine($"Stopping reason: {stoppedEvent.Reason}");
-        
+      
         // Perform async cleanup with cancellation support
         await CleanupCacheConnections(cancellationToken);
     });
@@ -637,10 +639,10 @@ var rabbitmq = builder.AddContainer("myapp", "mycontainerapp")
 
 **What you need to review:**
 
-- **Container deployments**: Your apps will now receive correct container hostnames
-- **Local development**: Localhost behavior preserved for noncontainerized scenarios  
-- **Connection strings**: Automatic connection strings continue to work as expected
-- **Manual environment**: Review custom `WithEnvironment` calls that assume localhost
+- **Container deployments**: Your apps will now receive correct container hostnames.
+- **Local development**: Localhost behavior is preserved for noncontainerized scenarios.
+- **Connection strings**: Automatic connection strings continue to work as expected.
+- **Manual environment**: Review custom `WithEnvironment` calls that assume localhost.
 
 ### HTTP health probes for resources
 
@@ -648,10 +650,10 @@ Aspire 9.5 introduces comprehensive HTTP health probe support that allows you to
 
 **Features:**
 
-- **Multiple probe types**: Configure startup, readiness, and liveness probes independently
-- **Flexible endpoint targeting**: Probe any HTTP endpoint with custom paths and configurations
-- **Configurable timing**: Control probe intervals, timeouts, and failure thresholds
-- **Kubernetes alignment**: Probe semantics align with Kubernetes health check concepts
+- **Multiple probe types**: Configure startup, readiness, and liveness probes independently.
+- **Flexible endpoint targeting**: Probe any HTTP endpoint with custom paths and configurations.
+- **Configurable timing**: Control probe intervals, timeouts, and failure thresholds.
+- **Kubernetes alignment**: Probe semantics align with Kubernetes health check concepts.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -876,7 +878,7 @@ var worker = builder.AddExecutable("worker", "dotnet")
         // Access to the resource instance for dynamic configuration
         var resourceName = context.Resource.Name;
         var environment = context.ExecutionContext.IsRunMode ? "Development" : "Production";
-        
+      
         context.Args.Add("--resource-name");
         context.Args.Add(resourceName);
         context.Args.Add("--environment");
@@ -941,10 +943,10 @@ Aspire 9.5 introduces powerful deployment image tag callback APIs that allow dyn
 
 #### Deployment tag callback features
 
-- **Dynamic tag generation**: Calculate image tags based on deployment context, git commits, build numbers, or timestamps
-- **Async callback support**: Perform asynchronous operations like API calls or file system access during tag generation
-- **Deployment context access**: Access to deployment environment, resource information, and configuration
-- **Flexible callback types**: Support for simple lambdas, context-aware callbacks, and async operations
+- **Dynamic tag generation**: Calculate image tags based on deployment context, git commits, build numbers, or timestamps.
+- **Async callback support**: Perform asynchronous operations like API calls or file system access during tag generation.
+- **Deployment context access**: Access the deployment environment, resource information, and configuration.
+- **Flexible callback types**: Support simple lambdas, context-aware callbacks, and async operations.
 
 #### Basic deployment tag examples
 
@@ -972,7 +974,7 @@ var api = builder.AddProject<Projects.Api>("api")
         // Access resource information
         var resourceName = context.Resource.Name;
         var environment = context.Environment;
-        
+      
         return $"{resourceName}-{environment}-{GetBuildNumber()}";
     });
 
@@ -996,7 +998,7 @@ var database = builder.AddProject<Projects.Database>("database")
         // Perform async operations during deployment
         var buildInfo = await GetBuildInfoFromApi();
         var version = await ReadVersionFromFile();
-        
+      
         return $"db-{version}-build{buildInfo.Number}";
     });
 
