@@ -7,6 +7,15 @@ ms.date: 09/24/2025
 
 **This article applies to:** ✔️ Aspire CLI 9.4.0 and later versions.
 
+> [!NOTE]
+> This command is disabled by default. To use it, turn on the feature toggle by running:
+>
+> ```Aspire
+> aspire config set features.deployCommandEnabled true
+> ```
+>
+> For more information, see [aspire config command](aspire-config.md).
+
 ## Name
 
 `aspire deploy` - Deploy a codebase orchestrated with Aspire to specified targets.
