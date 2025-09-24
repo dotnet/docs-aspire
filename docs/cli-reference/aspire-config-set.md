@@ -1,7 +1,7 @@
 ---
 title: aspire config set command
 description: Learn about the aspire config set command and its usage. This command sets an Aspire CLI config value by key name.
-ms.date: 07/11/2025
+ms.date: 09/24/2025
 ---
 # aspire config set command
 
@@ -29,7 +29,10 @@ The following arguments are available:
 
 - **`key`**
 
-  The configuration key to set.
+  The configuration key to update.
+
+  > [!TIP]
+  > For available keys, see the [Settings](#settings) section. Look for names that start with the `features` prefix. Feature toggles are boolean values that enable or disable specific features in the Aspire CLI.
 
 - **`value`**
 

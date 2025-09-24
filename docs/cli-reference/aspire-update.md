@@ -1,7 +1,7 @@
 ---
 title: aspire update command
 description: Learn about the aspire update command and its usage. This command updates Aspire integration package versions in an AppHost-based solution to the latest versions on a selected channel.
-ms.date: 09/22/2025
+ms.date: 09/24/2025
 ---
 
 # aspire update command (Preview)

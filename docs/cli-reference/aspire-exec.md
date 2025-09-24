@@ -1,7 +1,7 @@
 ---
 title: aspire exec command
 description: Learn about the aspire exec command and its usage. This command builds and runs an Aspire AppHost project, then sends commands to a resource.
-ms.date: 07/25/2025
+ms.date: 09/24/2025
 ---
 # aspire exec command
 

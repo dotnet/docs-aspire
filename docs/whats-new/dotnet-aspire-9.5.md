@@ -104,6 +104,8 @@ Aspire 9.5 introduces infrastructure for .NET 10's new file-based apps feature, 
 aspire config set features.singlefileAppHostEnabled true
 ```
 
+For more information, see [aspire config set command](../cli-reference/aspire-config-set.md).
+
 **SDK version requirements:**
 
 - **Feature enabled**: Requires .NET SDK 10.0.100 RC1 or later
