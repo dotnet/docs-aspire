@@ -276,9 +276,11 @@ The trace detail page includes several quality-of-life improvements:
 
 ## 📦 Integration changes and additions
 
+AI-first integrations accelerate iteration: model endpoints as resources, typed catalogs (no magic strings), secure Dev Tunnels, YARP static and API gateway, fast Kusto spin-up, and improved Redis, RabbitMQ, and storage primitives for reliable startup. You gain typed modeling, automatic secret and endpoint flow, richer lifecycle events, and flexible deployment to move from idea to production faster.
+
 ### OpenAI hosting integration
 
-The new `AddOpenAI` integration provides first-class support for modeling OpenAI endpoints and their associated models within your Aspire application graph.
+The new `AddOpenAI` integration provides first-class support for modeling OpenAI endpoints and their associated models within your Aspire application graph. For more information, see [.NET Aspire OpenAI integration (Preview)](../openai/openai-integration.md).
 
 **Features:**
 
@@ -332,6 +334,11 @@ var chatModel = builder.AddGitHubModel("chat", GitHubModel.OpenAI.OpenAIGPT4oMin
 var embeddingModel = builder.AddGitHubModel("embeddings", GitHubModel.OpenAI.OpenAITextEmbedding3Large);
 ```
 
+For more information, see:
+
+- [.NET Aspire GitHub Models integration (Preview)](../github/github-models-integration.md).
+- [.NET Aspire Azure AI Foundry integration (Preview)](../azureai/azureai-foundry-integration.md).
+
 ### Dev Tunnels hosting integration
 
 Aspire 9.5 introduces first-class support for Dev Tunnels, enabling seamless integration of secure public tunnels for your applications during development and testing scenarios.
@@ -358,7 +365,7 @@ tunnel.WithReference(webApp.GetEndpoint("http"));
 builder.Build().Run();
 ```
 
-The Dev Tunnels integration automatically handles Azure authentication, tunnel lifecycle management, and provides public or private URLs (depending on configuration) to connected resources, making it easy to expose local development services securely to external consumers. Dev Tunnels also improves support for mobile dev, such as .NET MAUI, making it easy to launch both your backend and mobile app at once without complex dev-time config.
+The Dev Tunnels integration automatically handles Azure authentication, tunnel lifecycle management, and provides public or private URLs (depending on configuration) to connected resources, making it easy to expose local development services securely to external consumers. Dev Tunnels also improves support for mobile dev, such as .NET MAUI, making it easy to launch both your backend and mobile app at once without complex dev-time config. For more information, see [.NET Aspire Dev Tunnels integration (Preview)](../extensibility/dev-tunnels-integration.md).
 
 ### YARP static files support
 
@@ -423,6 +430,8 @@ builder.Build().Run();
 
 This feature enables modern web application architectures where YARP acts as both a reverse proxy for backend services and a static file server for frontend assets, providing a unified entry point for your distributed application.
 
+For more information, see [.NET Aspire YARP integration](../proxies/yarp-integration.md).
+
 ### Azure Kusto / Azure Data Explorer
 
 A new **preview** package `Aspire.Hosting.Azure.Kusto` has been added. Once the package has been added to the AppHost it is possible to start a Kusto emulator with just a few lines of code:
@@ -486,10 +495,11 @@ builder.AddRedisClientBuilder("redis")
   { 
     options.InstanceName = "MyApp";
   });
+```
 
 ### Azure Redis Enterprise support
 
-Aspire 9.5 introduces first-class support for [Azure Redis Enterprise](https://learn.microsoft.com/azure/redis/overview), providing a high-performance, fully managed Redis service with enterprise-grade features. Azure Redis Enterprise provides advanced caching capabilities with clustering, high availability, and enterprise security features while maintaining compatibility with the standard Redis APIs.
+Aspire 9.5 introduces first-class support for [Azure Redis Enterprise](/azure/redis/overview), providing a high-performance, fully managed Redis service with enterprise-grade features. Azure Redis Enterprise provides advanced caching capabilities with clustering, high availability, and enterprise security features while maintaining compatibility with the standard Redis APIs.
 
 The new `AddAzureRedisEnterprise` extension method enables Redis Enterprise resource modeling:
 
@@ -528,6 +538,8 @@ var keyVault = builder.AddAzureKeyVault("keyvault");
 var redisEnterprise = builder.AddAzureRedisEnterprise("redis-enterprise")
     .WithAccessKeyAuthentication(keyVault);
 ```
+
+For more information, see [.NET Aspire Azure Managed Redis integration](../caching/azure-redis-enterprise-integration.md).
 
 ### Azure Storage emulator improvements
 
