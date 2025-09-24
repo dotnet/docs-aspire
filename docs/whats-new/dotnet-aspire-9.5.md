@@ -1038,6 +1038,8 @@ var backend = builder.AddProject<Projects.Backend>("backend")
 
 ## 💔 Breaking changes
 
+For the complete listing, see [Breaking changes in .NET Aspire 9.5](../compatibility/9.5/index.md).
+
 ### InteractionInput API requires Name property
 
 **Breaking change**: `InteractionInput` now requires a `Name` property, while `Label` becomes optional ([#10835](https://github.com/dotnet/aspire/pull/10835)).
