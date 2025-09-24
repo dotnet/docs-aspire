@@ -1,56 +1,56 @@
 ### YamlMime:Landing
 
-title: .NET Aspire — what's new?
-summary: Welcome to what's new in .NET Aspire docs. Use this page to quickly find the latest changes.
+title: Aspire — what's new?
+summary: Welcome to what's new in Aspire docs. Use this page to quickly find the latest changes.
 metadata:
-  title: .NET Aspire what's new?
-  description: Learn about new and updated content in .NET Aspire docs.
+  title: Aspire what's new?
+  description: Learn about new and updated content in Aspire docs.
   ms.date: 09/24/2025
   ms.topic: landing-page
 landingContent:
-- title: .NET Aspire release documentation
+- title: Aspire release documentation
   linkLists:
   - linkListType: whats-new
     links:
-    - text: What's new in .NET Aspire 9.5
+    - text: What's new in Aspire 9.5
       url: dotnet-aspire-9.5.md
-    - text: What's new in .NET Aspire 9.4
+    - text: What's new in Aspire 9.4
       url: dotnet-aspire-9.4.md
-    - text: What's new in .NET Aspire 9.3
+    - text: What's new in Aspire 9.3
       url: dotnet-aspire-9.3.md
-    - text: What's new in .NET Aspire 9.2
+    - text: What's new in Aspire 9.2
       url: dotnet-aspire-9.2.md
-    - text: What's new in .NET Aspire 9.1
+    - text: What's new in Aspire 9.1
       url: dotnet-aspire-9.1.md
-    - text: What's new in .NET Aspire 9.0
+    - text: What's new in Aspire 9.0
       url: dotnet-aspire-9.md
-    - text: Announcing .NET Aspire 8.2
+    - text: Announcing Aspire 8.2
       url: https://devblogs.microsoft.com/dotnet/announcing-dotnet-aspire-8-2/
-    - text: What's new in .NET Aspire 8.1
+    - text: What's new in Aspire 8.1
       url: https://devblogs.microsoft.com/dotnet/whats-new-in-aspire-8-1/
-    - text: .NET Aspire 8.0 (General Availability)
+    - text: Aspire 8.0 (General Availability)
       url: https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability/
-- title: .NET Aspire GitHub release notes
+- title: Aspire GitHub release notes
   linkLists:
   - linkListType: whats-new
     links:
-    - text: .NET Aspire 9.4.2
+    - text: Aspire 9.4.2
       url: https://github.com/dotnet/aspire/releases/tag/v9.4.2
-    - text: .NET Aspire 9.4.1
+    - text: Aspire 9.4.1
       url: https://github.com/dotnet/aspire/releases/tag/v9.4.1
-    - text: .NET Aspire 9.4
+    - text: Aspire 9.4
       url: https://github.com/dotnet/aspire/releases/tag/v9.4.0
-    - text: .NET Aspire 9.3
+    - text: Aspire 9.3
       url: https://github.com/dotnet/aspire/releases/tag/v9.3.0
-    - text: .NET Aspire 9.2
+    - text: Aspire 9.2
       url: https://github.com/dotnet/aspire/releases/tag/v9.2.0
-    - text: .NET Aspire 9.1
+    - text: Aspire 9.1
       url: https://github.com/dotnet/aspire/releases/tag/v9.1.0
-    - text: .NET Aspire 9.0
+    - text: Aspire 9.0
       url: https://github.com/dotnet/aspire/releases/tag/v9.0.0
-    - text: .NET Aspire 8.2.2
+    - text: Aspire 8.2.2
       url: https://github.com/dotnet/aspire/releases/tag/v8.2.2
-    - text: .NET Aspire 8.2.1
+    - text: Aspire 8.2.1
       url: https://github.com/dotnet/aspire/releases/tag/v8.2.1
     - text: Older releases
       url: https://github.com/dotnet/aspire/releases
@@ -78,7 +78,7 @@ landingContent:
   linkLists:
   - linkListType: overview
     links:
-    - text: .NET Aspire docs repository
+    - text: Aspire docs repository
       url: https://github.com/dotnet/docs-aspire/blob/main/README.md
     - text: Project structure and labels for issues and pull requests
       url: /contribute/dotnet/labels-projects
@@ -98,7 +98,7 @@ landingContent:
       url: https://dotnet.microsoft.com/download
   - linkListType: sample
     links:
-    - text: .NET Aspire samples browser
+    - text: Aspire samples browser
       url: /samples/browse/?products=dotnet-aspire
   - linkListType: get-started
     links:

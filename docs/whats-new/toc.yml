@@ -1,50 +1,50 @@
 items:
-- name: .NET Aspire
+- name: Aspire
   href: ../index.yml
 - name: What's new
   href: index.yml
 - name: Latest product updates
   expanded: true
   items:
-  - name: What's new in .NET Aspire 9.5
+  - name: What's new in Aspire 9.5
     href: dotnet-aspire-9.5.md
-  - name: What's new in .NET Aspire 9.4
+  - name: What's new in Aspire 9.4
     href: dotnet-aspire-9.4.md
-  - name: What's new in .NET Aspire 9.3
+  - name: What's new in Aspire 9.3
     href: dotnet-aspire-9.3.md
-  - name: What's new in .NET Aspire 9.2
+  - name: What's new in Aspire 9.2
     href: dotnet-aspire-9.2.md
-  - name: What's new in .NET Aspire 9.1
+  - name: What's new in Aspire 9.1
     href: dotnet-aspire-9.1.md
-  - name: What's new in .NET Aspire 9.0
+  - name: What's new in Aspire 9.0
     href: dotnet-aspire-9.md
-  - name: Announcing .NET Aspire 8.2
+  - name: Announcing Aspire 8.2
     href: https://devblogs.microsoft.com/dotnet/announcing-dotnet-aspire-8-2/
-  - name: What's new in .NET Aspire 8.1
+  - name: What's new in Aspire 8.1
     href: https://devblogs.microsoft.com/dotnet/whats-new-in-aspire-8-1/
-  - name: .NET Aspire 8.0 (General Availability)
+  - name: Aspire 8.0 (General Availability)
     href: https://devblogs.microsoft.com/dotnet/dotnet-aspire-general-availability/
 - name: Breaking changes
   href: ../compatibility/breaking-changes.md
 - name: GitHub releases
   items:
-  - name: .NET Aspire 9.4.2
+  - name: Aspire 9.4.2
     href: https://github.com/dotnet/aspire/releases/tag/v9.4.2
-  - name: .NET Aspire 9.4.1
+  - name: Aspire 9.4.1
     href: https://github.com/dotnet/aspire/releases/tag/v9.4.1
-  - name: .NET Aspire 9.4
+  - name: Aspire 9.4
     href: https://github.com/dotnet/aspire/releases/tag/v9.4.0
-  - name: .NET Aspire 9.3
+  - name: Aspire 9.3
     href: https://github.com/dotnet/aspire/releases/tag/v9.3.0
-  - name: .NET Aspire 9.2
+  - name: Aspire 9.2
     href: https://github.com/dotnet/aspire/releases/tag/v9.2.0
-  - name: .NET Aspire 9.1
+  - name: Aspire 9.1
     href: https://github.com/dotnet/aspire/releases/tag/v9.1.0
-  - name: .NET Aspire 9.0
+  - name: Aspire 9.0
     href: https://github.com/dotnet/aspire/releases/tag/v9.0.0
-  - name: .NET Aspire 8.2.1
+  - name: Aspire 8.2.1
     href: https://github.com/dotnet/aspire/releases/tag/v8.2.1
-  - name: .NET Aspire 8.2.0
+  - name: Aspire 8.2.0
     href: https://github.com/dotnet/aspire/releases/tag/v8.2.0
   - name: Older releases
     href: https://github.com/dotnet/aspire/releases
