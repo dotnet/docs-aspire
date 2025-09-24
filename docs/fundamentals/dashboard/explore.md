@@ -1,7 +1,7 @@
 ---
 title: Explore .NET Aspire dashboard
 description: Explore the .NET Aspire dashboard features through the .NET Aspire Starter app.
-ms.date: 09/22/2025
+ms.date: 09/24/2025
 ms.topic: reference
 ai-usage: ai-assisted
 ---
@@ -350,6 +350,10 @@ For more information about metrics, see [Built-in Metrics in .NET](/dotnet/core/
 ### GenAI telemetry visualization
 
 The .NET Aspire dashboard provides a specialized dialog for viewing GenAI (Generative AI) telemetry data. This feature helps you analyze and understand AI-related operations in your application, including chat completions, embeddings, and other AI interactions.
+
+The following is an animation demonstrating the GenAI telemetry visualizer in action:
+
+:::image type="content" source="media/explore/dashboard-geni-visualizer.gif" lightbox="media/explore/dashboard-geni-visualizer.gif" alt-text="An animated screenshot of the .NET Aspire dashboard GenAI telemetry visualizer in action.":::
 
 The GenAI telemetry visualizer works best when message content is recorded to telemetry. Without message content, the dialog displays a note and provides a link to documentation about how to enable this feature.
 
