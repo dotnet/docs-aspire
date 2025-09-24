@@ -245,7 +245,7 @@ To add the **Products** project to .NET Aspire:
 
     :::image type="content" loc-scope="visual-studio" source="media/orchestrator-already-added.png" alt-text="Screenshot indicating that the.NET Aspire Orchestrator was already added.":::
 
-In the **eShopLite.AppHost** project, open the _:::no-loc text="Program.cs":::_ file. Notice this line of code, which registers the **Products** project in the .NET Aspire orchestration:
+In the **eShopLite.AppHost** project, open the _:::no-loc text="AppHost.cs":::_ file. Notice this line of code, which registers the **Products** project in the .NET Aspire orchestration:
 
 ```csharp
 builder.AddProject<Projects.Products>("products");
