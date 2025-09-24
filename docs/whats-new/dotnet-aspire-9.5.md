@@ -183,9 +183,9 @@ aspire exec --start-resource my-worker -- npm run build
 
 Aspire 9.5 introduces the GenAI visualizer, which collates, summarizes, and visualizes LLM-centric calls within your app:
 
-🗃️ Explore input and output messages.
-🚀 JSON/XML payloads highlighted and indented.
-🖼️ Preview Markdown and multimodal content (for example, images).
+- 🗃️ Explore input and output messages.
+- 🚀 JSON/XML payloads highlighted and indented.
+- 🖼️ Preview Markdown and multimodal content (for example, images).
 
 If GenAI-specific telemetry is found in an OpenTelemetry (OTEL) span, a sparkle (✨) icon appears next to its name in the Traces view. Clicking the icon launches the visualizer dialog.
 
