@@ -77,7 +77,7 @@ Run `aspire update` to upgrade, enable the single-file AppHost to experiment wit
 
 ### Channel-aware `aspire add` & templating
 
-You can now pick packages from different channels or versions during `aspire add`. Additionally, friendly name generation is now more flexible for searching packages. When adding packages, you should use versions, which are aligned to the `Aspire.Hosting.AppHost` package that you're using. To update your entire AppHost and its referenced project, you can use the `aspire update` command (see below).
+You can now pick packages from different channels or versions during `aspire add`. Additionally, friendly name generation is now more flexible for searching packages. When adding packages, you should use versions, which are aligned to the `Aspire.Hosting.AppHost` package that you're using. To update your entire AppHost and its referenced project, you can use the `aspire update` command as described in the following section.
 
 ### New `aspire update` command (preview)
 
@@ -88,12 +88,12 @@ The new `aspire update` command helps you keep your Aspire projects current by a
 aspire update
 ```
 
-:::image type="content" source="media/aspire-update.gif" lightbox="media/aspire-update.gif" alt-text="Recording of aspire update running on eshop sample.":::
+:::image type="content" source="media/aspire-update.gif" lightbox="media/aspire-update.gif" alt-text="Recording of aspire update running on eShop sample.":::
 
 This command updates your SDK, AppHost packages, and any Aspire client integrations used in the app. It validates package compatibility and asks for confirmation before applying changes. Like `add`, `update` is channel aware, so you can choose to update to stable, daily, or your own configuration of builds.
 
 > [!IMPORTANT]
-> 🧪 **Preview Feature**: The `aspire update` command is in preview and may change before general availability. The `aspire update` command makes changes to project files, central package management, and NuGet.config files. We recommend using version control and inspecting changes after `aspire update` is run to verify the changes.
+> 🧪 **Preview Feature**: The `aspire update` command is in preview and might change before general availability. The `aspire update` command makes changes to project files, central package management, and NuGet.config files. We recommend using version control and inspecting changes after `aspire update` is run to verify the changes.
 
 ### File-based AppHost support (preview)
 
@@ -129,11 +129,11 @@ Aspire 9.5 adds SSH Remote support in VS Code. Ports forward automatically in SS
 
 The `aspire exec` command allows you to execute commands within the context of your Aspire application environment, inheriting environment variables, and configuration from your app model resources.
 
-Building on the 9.4 preview, version 9.5 adds several key improvements:
+Aspire 9.5 builds on the 9.4 preview and adds several key improvements:
 
-- `--workdir` (`-w`) flag to run commands inside a specific working directory (#10912)
-- Fail-fast argument validation with clearer error messages (#10606)
-- Improved help and usage text for better developer experience (#10598)
+- `--workdir` (`-w`) flag to run commands inside a specific working directory (#10912).
+- Fail-fast argument validation with clearer error messages (#10606).
+- Improved help and usage text for better developer experience (#10598).
 
 For more information, see [aspire exec command](../cli-reference/aspire-exec.md) reference.
 
@@ -185,7 +185,7 @@ Aspire 9.5 introduces the GenAI visualizer, which collates, summarizes, and visu
 🚀 JSON/XML payloads highlighted and indented.
 🖼️ Preview Markdown and multimodal content (for example, images).
 
-If GenAI-specific telemetry is found in an OTEL span, a sparkle (✨) icon appears next to its name in the Traces view. Clicking the icon launches the visualizer dialog.
+If GenAI-specific telemetry is found in an OpenTelemetry (OTEL) span, a sparkle (✨) icon appears next to its name in the Traces view. Clicking the icon launches the visualizer dialog.
 
 The [GenAI telemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/) are evolving rapidly. The visualizer supports multiple versions of the telemetry, and we update it as the conventions move toward a stable release.
 
@@ -224,7 +224,7 @@ var api = builder.AddProject<Projects.Api>("api")
     .WithIconName("webAsset", ApplicationModel.IconVariant.Regular);
 ```
 
-This helps teams quickly identify different types of resources in complex applications with many services. Custom resource icons now also apply to project and container resources via unified annotation, providing consistent visual identification across all resource types.
+This iconography helps teams quickly identify different types of resources in complex applications with many services. Custom resource icons now also apply to project and container resources via unified annotation, providing consistent visual identification across all resource types.
 
 ### Reverse proxy support
 
@@ -436,7 +436,7 @@ For more information, see [.NET Aspire YARP integration](../proxies/yarp-integra
 
 ### Azure Kusto / Azure Data Explorer
 
-A new **preview** package `Aspire.Hosting.Azure.Kusto` has been added. Once the package has been added to the AppHost it is possible to start a Kusto emulator with just a few lines of code:
+A new **preview** package `Aspire.Hosting.Azure.Kusto` has been added. Once the package has been added to the AppHost, it's possible to start a Kusto emulator with just a few lines of code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
