@@ -156,7 +156,7 @@ var kafka = builder.ExecutionContext.IsRunMode
 
 The AppHost resolves the connection string from the `ConnectionStrings__kafka` configuration key. It's possible to set this key by adding the connection string to the AppHost's **appsettings.json** file but this method stores the connection string in plain text and  doesn't protect it. Instead, you can use an environment variable or a user secret to store the connection string:
 
-```cmd
+```dotnetcli
 dotnet user-secrets set "ConnectionStrings:kafka" "kafka-broker-1.contoso.com:9092,kafka-broker-2.contoso.com:9092,kafka-broker-3.contoso.com:9092"
 ```
 
