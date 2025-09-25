@@ -67,19 +67,7 @@ Calling this API ensures your existing Azure resources remain consistent and pre
 
 All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
 
-```csharp
-var builder = DistributionApplicationBuilder.Create(args);
-
-var acaEnv = builder.AddAzureContainerAppEnvironment(Config.ContainEnvironmentName);
-
-acaEnv.ConfigureInfrastructure(config =>
-{
-    var resources = config.GetProvisionableResources();
-    var containerEnvironment = resources.OfType<ContainerAppManagedEnvironment>().FirstOrDefault();
-
-    containerEnvironment.Tags.Add("ExampleKey", "Example value");
-});
-```
+:::code language="csharp" source="snippets/aca/AspireAca.AppHost/AspireApp.AppHost/ProgramCustomized.cs":::
 
 The preceding code:
 
@@ -87,7 +75,12 @@ The preceding code:
   - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
   - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
   - The single <xref:Azure.Provisioning.AppContainers.ContainerAppManagedEnvironment> resource is retrieved.
-  - A tag is added to the Azure Container Apps environment resource with a key of `ExampleKey` and a value of `Example value`.
+  - The environment name is set to a custom value instead of using the auto-generated name.
+  - The location is explicitly set to "East US".
+  - Multiple tags are added for environment metadata and organization.
+
+> [!NOTE]
+> You can configure many other properties of the Container Apps environment using this approach. For a complete list of available configuration options, see the [Microsoft.App managedEnvironments template reference](/azure/templates/microsoft.app/managedenvironments).
 
 ## See also
 
