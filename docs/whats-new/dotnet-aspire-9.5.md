@@ -75,7 +75,7 @@ Run `aspire update` to upgrade, enable the single-file AppHost to experiment wit
 
 ### Channel-aware `aspire add` and templating
 
-You can now pick packages from different channels or versions during `aspire add`. Additionally, friendly name generation is now more flexible for searching packages. When adding packages, you should use versions, which are aligned to the `Aspire.Hosting.AppHost` package that you're using. To update your entire AppHost and its referenced project, you can use the `aspire update` command as described in the following section.
+You can now pick packages from different channels or versions during `aspire add`. Additionally, friendly name generation is now more flexible for searching packages. When adding packages, you should use versions that are aligned to the `Aspire.Hosting.AppHost` package that you're using. To update your entire AppHost and its referenced project, you can use the `aspire update` command as described in the following section.
 
 ### New `aspire update` command (preview)
 
