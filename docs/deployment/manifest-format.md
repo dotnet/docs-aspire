@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire manifest format for deployment tool builders
 description: Learn about the .NET Aspire manifest format in this comprehensive deployment tool builder guide.
-ms.date: 03/29/2024
+ms.date: 09/23/2025
 ms.topic: reference
 ms.custom:
   - sfi-image-nochange
@@ -147,7 +147,7 @@ This dependency is known because the environment variables for the _webfrontend_
 },
 ```
 
-The `apiservice` resource is referenced by `webfrontend` using the call `WithReference(apiservice)` in the AppHost _:::no-loc text="Program.cs":::_ file and `redis` is referenced using the call `WithReference(cache)`:
+The `apiservice` resource is referenced by `webfrontend` using the call `WithReference(apiservice)` in the AppHost _:::no-loc text="AppHost.cs":::_ file and `redis` is referenced using the call `WithReference(cache)`:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

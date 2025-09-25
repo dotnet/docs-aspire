@@ -102,9 +102,9 @@ Add the [.NET Aspire Hosting Sql Server](sql-server-entity-framework-integration
 dotnet add package Aspire.Hosting.SqlServer
 ```
 
-Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _AspireSQLEFCore.AppHost_ project with the following code:
+Replace the contents of the _:::no-loc text="AppHost.cs":::_ file in the _AspireSQLEFCore.AppHost_ project with the following code:
 
-:::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore.AppHost/Program.cs":::
+:::code language="csharp" source="snippets/tutorial/AspireSQLEFCore/AspireSQLEFCore.AppHost/AppHost.cs":::
 
 The preceding code adds a SQL Server Container resource to your app and configures a connection to a database called `sqldata`. The Entity Framework classes you configured earlier will automatically use this connection when migrating and connecting to the database.
 
@@ -132,7 +132,7 @@ The sample app is now ready for testing. Verify that the submitted form data is 
 
 Developers often prefer their data to persist across restarts in the development environment for a more realistic database to run code against. To implement persistence in .NET Aspire, use the <xref:Aspire.Hosting.SqlServerBuilderExtensions.WithDataVolume*> method. This methods adds a Docker volume to your database container, which won't be destroyed every time you restart debugging.
 
-1. In Visual Studio, in the _AspireSQLEFCore.AppHost_ project, double-click the _Program.cs_ code file.
+1. In Visual Studio, in the _AspireSQLEFCore.AppHost_ project, double-click the _AppHost.cs_ code file.
 1. Locate the following code:
 
     ```csharp

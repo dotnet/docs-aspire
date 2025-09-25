@@ -220,7 +220,7 @@ You can add .NET Aspire orchestration projects to an existing app using the foll
 
     - The _*.AppHost_ and _*.ServiceDefaults_ orchestration projects are added to your solution.
     - A call to `builder.AddServiceDefaults` will be added to the _:::no-loc text="Program.cs":::_ file of your original project.
-    - A reference to your original project will be added to the _:::no-loc text="Program.cs":::_ file of the _*.AppHost_ project.
+    - A reference to your original project will be added to the _:::no-loc text="AppHost.cs":::_ file of the _*.AppHost_ project.
 
 For more information on .NET Aspire orchestration, see [.NET Aspire orchestration overview](app-host-overview.md).
 

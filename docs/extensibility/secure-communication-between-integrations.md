@@ -43,9 +43,9 @@ The preceding code updates the `AddMailDev` extension method to include the `use
 
 ## Update the AppHost
 
-Now that the resource is updated to include the username and password parameters, you need to update the AppHost to include these parameters. Update the _:::no-loc text="Program.cs":::_ file in the `MailDevResource.AppHost` project with the following C# code:
+Now that the resource is updated to include the username and password parameters, you need to update the AppHost to include these parameters. Update the _:::no-loc text="AppHost.cs":::_ file in the `MailDevResource.AppHost` project with the following C# code:
 
-:::code source="snippets/MailDevResourceWithCredentials/MailDevResource.AppHost/Program.cs" highlight="3-4,6-9":::
+:::code source="snippets/MailDevResourceWithCredentials/MailDevResource.AppHost/AppHost.cs" highlight="3-4,6-9":::
 
 The preceding code adds two parameters for the MailDev username and password. It assigns these parameters to the `MAILDEV_INCOMING_USER` and `MAILDEV_INCOMING_PASS` environment variables. The `AddMailDev` method has two chained calls to `WithEnvironment` which includes these environment variables. For more information on parameters, see [External parameters](../fundamentals/external-parameters.md).
 

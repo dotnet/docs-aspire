@@ -25,8 +25,9 @@ Some Azure services can be emulated to run locally. Currently, .NET Aspire suppo
 
 | Hosting integration | Description |
 |--|--|
-| [Azure AI Foundry](../azureai/azureai-foundry-integration.md) | Call `RunAsFoundryLocal` on the `IResourceBuilder<AzureAIFoundryResource>` to configure the resource to be [emulated with Foundry Local](/azure/ai-foundry/foundry-local/get-started). |
+| [Azure App Configuration](azure-app-configuration-integration.md) | Call `RunAsEmulator` on the `IResourceBuilder<AzureAppConfigurationResource>` to configure the Azure App Configuration resource to be [emulated with the Azure App Configuration Emulator](/azure/azure-app-configuration/emulator-overview). |
 | [Azure Cosmos DB](../database/azure-cosmos-db-integration.md) | Call <xref:Aspire.Hosting.AzureCosmosExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureCosmosDBResource>` to configure the Cosmos DB resource to be [emulated with the NoSQL API](/azure/cosmos-db/how-to-develop-emulator). |
+| [Azure AI Foundry](../azureai/azureai-foundry-integration.md) | Call `RunAsFoundryLocal` on the `IResourceBuilder<AzureAIFoundryResource>` to configure the resource to be [emulated with Foundry Local](/azure/ai-foundry/foundry-local/get-started). |
 | [Azure Event Hubs](../messaging/azure-event-hubs-integration.md) | Call <xref:Aspire.Hosting.AzureEventHubsExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureEventHubsResource>` to configure the Event Hubs resource to be [emulated](/azure/event-hubs/overview-emulator). |
 | [Azure Service Bus](../messaging/azure-service-bus-integration.md) | Call <xref:Aspire.Hosting.AzureServiceBusExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureServiceBusResource>` to configure the Service Bus resource to be [emulated with Service Bus emulator](/azure/service-bus-messaging/overview-emulator). |
 | [Azure SignalR Service](../real-time/azure-signalr-scenario.md) | Call <xref:Aspire.Hosting.AzureSignalRExtensions.RunAsEmulator*?displayProperty=nameWithType> on the `IResourceBuilder<AzureSignalRResource>` to configure the SignalR resource to be [emulated with Azure SignalR emulator](/azure/azure-signalr/signalr-howto-emulator). |
@@ -324,7 +325,7 @@ The preceding code:
   - Adds an environment variable named `Hello` to the container app, using the `env` parameter.
   - The `AsProvisioningParameter` method is used to treat `env` as either a new <xref:Azure.Provisioning.ProvisioningParameter> in infrastructure, or reuses an existing bicep parameter if one with the same name already exists.
 
-To configure the Azure Container App environment, see [Configure Azure Container Apps environments](configure-aca-environments.md). For more information, see <xref:Azure.Provisioning.AppContainers.ContainerApp> and <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.AsProvisioningParameter*>.
+To configure the Azure Container App environment, see [Configure Azure Container Apps environments](configure-aca-environments.md). For information about publishing resources as Azure Container App Jobs, see [Azure Container App Jobs](container-app-jobs.md). For more information, see <xref:Azure.Provisioning.AppContainers.ContainerApp> and <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.AsProvisioningParameter*>.
 
 > [!TIP]
 > If you're working with Azure Container Apps, you might also be interested in the [.NET Aspire Azure Container Registry integration](container-registry-integration.md).

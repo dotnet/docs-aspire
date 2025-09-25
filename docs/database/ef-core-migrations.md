@@ -1,7 +1,7 @@
 ---
 title: Apply EF Core migrations in .NET Aspire
 description: Learn about how to to apply Entity Framework Core migrations in .NET Aspire
-ms.date: 07/31/2024
+ms.date: 09/25/2025
 ms.topic: how-to
 uid: database/ef-core-migrations
 ms.custom: sfi-image-nochange
@@ -215,7 +215,7 @@ To create a service that applies the migrations:
 
 The migration service is created, but it needs to be added to the .NET Aspire AppHost so that it runs when the app starts.
 
-1. In the *:::no-loc text="SupportTicketApi.AppHost":::* project, open the *:::no-loc text="Program.cs":::* file.
+1. In the *:::no-loc text="SupportTicketApi.AppHost":::* project, open the *:::no-loc text="AppHost.cs":::* file.
 1. Add the following highlighted code:
 
     :::code source="~/aspire-docs-samples-solution/SupportTicketApi/SupportTicketApi.AppHost/Program.cs" highlight="7-9, 13-14" :::

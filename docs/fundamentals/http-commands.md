@@ -1,7 +1,7 @@
 ---
 title: Custom HTTP commands in .NET Aspire
 description: Learn how to create custom HTTP commands in .NET Aspire.
-ms.date: 08/07/2025
+ms.date: 09/23/2025
 ms.topic: how-to
 ---
 
@@ -25,7 +25,7 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpCommand*> API provide
 
     This version provides more dynamic behavior by allowing you to specify a callback (`endpointSelector`) to determine the endpoint at runtime. This is useful when the endpoint might vary based on the resource's state or other contextual factors. It offers greater flexibility for advanced scenarios where the endpoint can't be hardcoded.
 
-Both overloads allow you to customize the HTTP command extensively, providing an `HttpCommandOptions` subclass of the `CommandOptions` type, including specifying the HTTP method, configure the request, handling the response, and define UI-related properties like display name, description, and icons. The choice between the two depends on whether the endpoint is static or dynamic in your use case.
+Both overloads allow you to customize the HTTP command extensively, providing an <xref:Aspire.Hosting.ApplicationModel.HttpCommandOptions> subclass of the <xref:Aspire.Hosting.ApplicationModel.CommandOptions> type, including specifying the HTTP method, configure the request, handling the response, and define UI-related properties like display name, description, and icons. The choice between the two depends on whether the endpoint is static or dynamic in your use case.
 
 These APIs are designed to integrate seamlessly with the .NET Aspire ecosystem, enabling developers to extend resource functionality with minimal effort while maintaining control over the behavior and presentation of the commands.
 
@@ -37,9 +37,9 @@ Use the `HttpCommandOptions.PrepareRequest` callback to enhance security by addi
 
 ## Add a custom HTTP command
 
-In your AppHost _Program.cs_ file, you add a custom HTTP command using the `WithHttpCommand` API on an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is an <xref:Aspire.Hosting.ApplicationModel.IResourceWithEndpoints>. Here's an example of how to do this:
+In your _AppHost.cs_ file, you add a custom HTTP command using the `WithHttpCommand` API on an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is an <xref:Aspire.Hosting.ApplicationModel.IResourceWithEndpoints>. Here's an example of how to do this:
 
-:::code source="snippets/http-commands/AspireApp/AspireApp.AppHost/Program.cs":::
+:::code source="snippets/http-commands/AspireApp/AspireApp.AppHost/AppHost.cs":::
 
 The preceding code:
 

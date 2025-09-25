@@ -84,7 +84,7 @@ The following sections detail various example usage scenarios, from hosting a co
 
 ### [Container hosting](#tab/container-hosting)
 
-In the _:::no-loc text="Program.cs":::_ file of your AppHost project, call the `AddSpringApp` method to define the containerized Spring app. The `JavaAppContainerResourceOptions` allows you to specify the container image and OpenTelemetry agent configuration.
+In the _:::no-loc text="AppHost.cs":::_ file of your AppHost project, call the `AddSpringApp` method to define the containerized Spring app. The `JavaAppContainerResourceOptions` allows you to specify the container image and OpenTelemetry agent configuration.
 
 ```csharp
 var containerapp = builder.AddSpringApp(
@@ -100,7 +100,7 @@ The `ContainerImageName` should point to your Spring Boot application's containe
 
 ### [Executable hosting](#tab/executable-hosting)
 
-In the _:::no-loc text="Program.cs":::_ file of your AppHost project, call the `AddSpringApp` method to define the executable Spring app. The `workingDirectory` parameter specifies the directory containing your Java application, and the `JavaAppExecutableResourceOptions` defines the executable Spring app configuration.
+In the _:::no-loc text="AppHost.cs":::_ file of your AppHost project, call the `AddSpringApp` method to define the executable Spring app. The `workingDirectory` parameter specifies the directory containing your Java application, and the `JavaAppExecutableResourceOptions` defines the executable Spring app configuration.
 
 ```csharp
 var executableapp = builder.AddSpringApp(

@@ -197,6 +197,19 @@ builder.AddAzureOpenAIClient(connectionName: "openai")
        .AddKeyedChatClient("serviceKey", "deploymentName");
 ```
 
+After adding the `IChatClient`, you can retrieve the client instance using dependency injection:
+
+```csharp
+public class ExampleService(IChatClient chatClient)
+{
+    public async Task<string> GetResponseAsync(string userMessage)
+    {
+        var response = await chatClient.CompleteAsync(userMessage);
+        return response.Message.Text ?? string.Empty;
+    }
+}
+```
+
 For more information on the `IChatClient` and its corresponding library, see [Artificial intelligence in .NET (Preview)](/dotnet/core/extensions/artificial-intelligence).
 
 ### Configure Azure OpenAI client settings
@@ -352,7 +365,8 @@ The .NET Aspire Azure OpenAI integration supports <xref:Microsoft.Extensions.Con
     "Azure": {
       "AI": {
         "OpenAI": {
-          "DisableTracing": false
+          "DisableTracing": false,
+          "EnableSensitiveTelemetryData": false
         }
       }
     }
@@ -427,10 +441,60 @@ The .NET Aspire Azure OpenAI integration uses the following log categories:
 
 ### Tracing
 
-The .NET Aspire Azure OpenAI integration emits tracing activities using OpenTelemetry for operations performed with the `OpenAIClient`.
+The .NET Aspire Azure OpenAI integration will emit the following tracing activities using OpenTelemetry:
+
+- `Experimental.Microsoft.Extensions.AI` - Used by Microsoft.Extensions.AI to record AI operations
 
 > [!IMPORTANT]
-> Tracing is currently experimental with this integration. To opt-in to it, set either the `OPENAI_EXPERIMENTAL_ENABLE_OPEN_TELEMETRY` environment variable to `true` or `1`, or call `AppContext.SetSwitch("OpenAI.Experimental.EnableOpenTelemetry", true))` during app startup.
+> Telemetry is only recorded by default when using the `IChatClient` interface from Microsoft.Extensions.AI. Raw `OpenAIClient` calls do not automatically generate telemetry.
+
+#### Configuring sensitive data in telemetry
+
+By default, telemetry includes metadata such as token counts, but not raw inputs and outputs like message content. To include potentially sensitive information in telemetry, set the `EnableSensitiveTelemetryData` configuration option:
+
+```csharp
+builder.AddAzureOpenAIClient(
+    connectionName: "openai",
+    configureSettings: settings =>
+    {
+        settings.EnableSensitiveTelemetryData = true;
+    })
+    .AddChatClient("deploymentName");
+```
+
+Or through configuration:
+
+```json
+{
+  "Aspire": {
+    "Azure": {
+      "AI": {
+        "OpenAI": {
+          "EnableSensitiveTelemetryData": true
+        }
+      }
+    }
+  }
+}
+```
+
+Alternatively, you can enable sensitive data capture by setting the environment variable:
+
+```bash
+OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true
+```
+
+#### Using underlying library telemetry
+
+If you need to access telemetry from the underlying OpenAI library directly, you can manually add the appropriate activity sources and meters to your OpenTelemetry configuration:
+
+```csharp
+builder.Services.AddOpenTelemetry()
+    .WithTracing(tracing => tracing.AddSource("OpenAI.*"))
+    .WithMetrics(metrics => metrics.AddMeter("OpenAI.*"));
+```
+
+However, you'll need to enable experimental telemetry support in the OpenAI library by setting the `OPENAI_EXPERIMENTAL_ENABLE_OPEN_TELEMETRY` environment variable to `true` or calling `AppContext.SetSwitch("OpenAI.Experimental.EnableOpenTelemetry", true)` during app startup.
 
 ## See also
 

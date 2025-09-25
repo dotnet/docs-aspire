@@ -178,9 +178,9 @@ The _*.AppHost_ project is responsible for acting as a local dev-orchestrator:
 
 For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md) and [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md).
 
-Consider the _:::no-loc text="Program.cs":::_ file of the _AspireSample.AppHost_ project:
+Consider the _:::no-loc text="AppHost.cs":::_ file of the _AspireSample.AppHost_ project:
 
-:::code source="snippets/quickstart/AspireSample/AspireSample.AppHost/Program.cs":::
+:::code source="snippets/quickstart/AspireSample/AspireSample.AppHost/AppHost.cs":::
 
 If you've used either the [.NET Generic Host](/dotnet/core/extensions/generic-host) or the [ASP.NET Core Web Host](/aspnet/core/fundamentals/host/web-host) before, the AppHost programming model and builder pattern should be familiar to you. The preceding code:
 
