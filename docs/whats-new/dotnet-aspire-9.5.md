@@ -132,7 +132,7 @@ The `aspire exec` command allows you to execute commands within the context of y
 Aspire 9.5 builds on the 9.4 preview and adds several key improvements:
 
 - `--workdir` (`-w`) flag to run commands inside a specific working directory.
-- Fail-fast argument validation with clearer error messages (#10606).
+- Fail-fast argument validation with clearer error messages.
 - Improved help and usage text for better developer experience (#10598).
 
 For more information, see [aspire exec command](../cli-reference/aspire-exec.md) reference.
