@@ -303,9 +303,9 @@ COPY --from=builder /app/dist ./wwwroot
 
 This approach is useful for:
 
-- Building and serving Single Page Applications (SPAs) like React, Vue, or Angular apps
-- Compiling and serving static site generators
-- Processing assets with build tools before serving
+- Building and serving Single Page Applications (SPAs) like React, Vue, or Angular apps.
+- Compiling and serving static site generators.
+- Processing assets with build tools before serving.
 
 #### Combining static files with routing
 
