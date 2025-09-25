@@ -1,7 +1,7 @@
 ---
 title: YARP integration
 description: Learn how to use the .NET Aspire YARP reverse proxy integration, which includes hosting integration for containerized YARP instances.
-ms.date: 08/07/2025
+ms.date: 09/25/2025
 ai-usage: ai-assisted
 ---
 
@@ -251,6 +251,85 @@ var gateway = builder.AddYarp("gateway")
                          yarp.AddRoute("/external/{**catch-all}", externalApi);
                      });
 ```
+
+### Static file serving
+
+YARP can serve static files alongside proxied routes. This is useful for serving frontend applications, documentation, or other static assets. The YARP integration provides two approaches for serving static files:
+
+#### Copy files locally
+
+Use the <xref:Aspire.Hosting.YarpResourceExtensions.WithStaticFiles*> method to copy files from a local directory into the YARP container:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var staticServer = builder.AddYarp("static")
+                          .WithStaticFiles("../static");
+
+// After adding all resources, run the app...
+```
+
+This approach copies files into the container and uses container files in run mode, and uses a bind mount in publish mode. The static files are served from the root path of the YARP server.
+
+#### Multi-stage Docker builds
+
+For more complex scenarios, such as building a frontend application and serving the compiled assets, you can use a Docker multi-stage build with the <xref:Aspire.Hosting.DockerfileExtensions.WithDockerfile*> method:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var frontend = builder.AddYarp("frontend")
+                      .WithStaticFiles()
+                      .WithDockerfile("../npmapp");
+
+// After adding all resources, run the app...
+```
+
+Create a `Dockerfile` in the specified directory (`../npmapp` in this example) that builds your frontend application and copies the static files to the YARP container:
+
+```dockerfile
+# Stage 1: Build React app
+FROM node:20 AS builder
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
+
+# Stage 2: Copy static files to YARP container  
+FROM mcr.microsoft.com/dotnet/nightly/yarp:2.3.0-preview.4 AS yarp
+WORKDIR /app
+COPY --from=builder /app/dist ./wwwroot
+```
+
+This approach is useful for:
+
+- Building and serving Single Page Applications (SPAs) like React, Vue, or Angular apps
+- Compiling and serving static site generators
+- Processing assets with build tools before serving
+
+#### Combining static files with routing
+
+You can combine static file serving with dynamic routing to create hybrid applications:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var apiService = builder.AddProject<Projects.ApiService>("api");
+
+var gateway = builder.AddYarp("gateway")
+                     .WithStaticFiles("../webapp/dist")
+                     .WithConfiguration(yarp =>
+                     {
+                         // API routes take precedence over static files
+                         yarp.AddRoute("/api/{**catch-all}", apiService);
+                         
+                         // Static files are served for all other routes
+                     });
+
+// After adding all resources, run the app...
+```
+
+In this configuration, requests to `/api/*` are proxied to the backend service, while all other requests serve static files from the specified directory.
 
 ## Client integration
 

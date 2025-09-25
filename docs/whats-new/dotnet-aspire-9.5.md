@@ -397,6 +397,8 @@ var frontend = builder.AddYarp("frontend")
 builder.Build().Run();
 ```
 
+For more information, see [Multi-stage Docker builds](../proxies/yarp-integration.md#multi-stage-docker-builds).
+
 **Hybrid static + API gateway:**
 
 ```csharp
