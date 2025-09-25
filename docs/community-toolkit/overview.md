@@ -1,7 +1,7 @@
 ---
 title: Overview
 description: An overview of the .NET Aspire Community Toolkit project.
-ms.date: 11/05/2024
+ms.date: 01/22/2025
 ---
 
 # .NET Aspire Community Toolkit
@@ -39,9 +39,15 @@ The community toolkit is a growing project, publishing a set of NuGet packages. 
 - The [Meilisearch](https://www.meilisearch.com) integration enables hosting Meilisearch containers.
   - [📄 .NET Aspire Meilisearch hosting integration](hosting-meilisearch.md#hosting-integration).
   - [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch).
+- The [MailPit](https://mailpit.axllent.org/) integration provides a fake SMTP server for mail testing during development:
+  - [📄 .NET Aspire MailPit hosting integration](hosting-mailpit.md).
+  - [📦 CommunityToolkit.Aspire.Hosting.MailPit](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.MailPit).
 - The [Rust apps](https://www.rust-lang.org/) integration provides support for hosting Rust applications.
   - [📄 .NET Aspire Rust hosting integration](hosting-rust.md#hosting-integration).
   - [📦 CommunityToolkit.Aspire.Hosting.Rust](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Rust).
+- The [LavinMQ](https://www.lavinmq.com) integration enables hosting LavinMQ containers.
+  - [📄 .NET Aspire LavinMQ hosting integration](hosting-lavinmq.md).
+  - [📦 CommunityToolkit.Aspire.Hosting.LavinMQ](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.LavinMQ).
 - The [SQLite](https://www.sqlite.org/index.html) integration provides support for hosting SQLite databases.
   - [📄 .NET Aspire SQLite hosting integration](sqlite.md#hosting-integration)
   - [📦 CommunityToolkit.Aspire.Hosting.SQLite](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SQLite).

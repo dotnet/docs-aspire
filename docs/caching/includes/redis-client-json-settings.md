@@ -53,11 +53,11 @@ The .NET Aspire Stack Exchange Redis integration supports named configuration, w
 }
 ```
 
-In this example, the `cache1` and `cache2` connection names can be used when calling `AddRedisClient`:
+In this example, the `cache1` and `cache2` connection names can be used when calling `AddKeyedRedisClient`:
 
 ```csharp
-builder.AddRedisClient("cache1");
-builder.AddRedisClient("cache2");
+builder.AddKeyedRedisClient("cache1");
+builder.AddKeyedRedisClient("cache2");
 ```
 
 Named configuration takes precedence over the top-level configuration. If both are provided, the settings from the named configuration override the top-level settings.

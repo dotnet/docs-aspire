@@ -1,7 +1,7 @@
 ---
 title: aspire command
 description: Learn about the aspire command (the generic driver for the Aspire CLI) and its usage.
-ms.date: 07/11/2025
+ms.date: 09/25/2025
 ---
 # aspire command
 
@@ -39,15 +39,16 @@ The following options are available when `aspire` is used by itself, without spe
 
 The following commands are available:
 
-| Command                                          | Status  | Function                                                                 |
-|--------------------------------------------------|---------|--------------------------------------------------------------------------|
-| [`aspire add`](aspire-add.md)                    | Stable  | Add an integration to the Aspire project.                                |
-| [`aspire config`](aspire-config.md)              | Stable  | Configures the Aspire environment.                                       |
-| [`aspire deploy`](aspire-deploy.md)              | Preview | Deploys the artifacts created by `aspire publish`.                       |
-| [`aspire exec`](aspire-exec.md)                  | Preview | Similar to the `aspire run` command, but passes commands to the apphost. |
-| [`aspire new`](aspire-new.md)                    | Stable  | Create an Aspire sample project from a template.                         |
-| [`aspire publish`](aspire-publish.md)            | Preview | Generates deployment artifacts for an Aspire apphost project.            |
-| [`aspire run`](aspire-run.md)                    | Stable  | Run an Aspire apphost for local development.                             |
+| Command | Status | Function |
+|--|--|--|
+| [`aspire add`](aspire-add.md) | Stable | Add an integration to the Aspire project. |
+| [`aspire config`](aspire-config.md) | Stable | Configures the Aspire environment. |
+| [`aspire deploy`](aspire-deploy.md) | Preview | Deploys the artifacts created by `aspire publish`. |
+| [`aspire exec`](aspire-exec.md) | Preview | Similar to the `aspire run` command, but passes commands to the apphost. |
+| [`aspire new`](aspire-new.md) | Stable | Create an Aspire sample project from a template. |
+| [`aspire publish`](aspire-publish.md) | Preview | Generates deployment artifacts for an Aspire apphost project. |
+| [`aspire run`](aspire-run.md) | Stable | Run an Aspire apphost for local development. |
+| [`aspire update`](aspire-update.md) | Preview | Update Aspire project packages to the latest compatible versions. |
 
 <!-- These commands aren't used yet
 

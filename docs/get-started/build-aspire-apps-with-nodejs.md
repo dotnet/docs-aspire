@@ -118,7 +118,7 @@ To help understand how each client app resource is orchestrated, look to the App
 
 :::code language="xml" highlight="15,22-30" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.AppHost/AspireJavaScript.AppHost.csproj":::
 
-The project file also defines a build target that ensures that the npm dependencies are installed before the AppHost is built. The AppHost code (_Program.cs_) declares the client app resources using the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp(Aspire.Hosting.IDistributedApplicationBuilder,System.String,System.String,System.String,System.String[])> API.
+The project file also defines a build target that ensures that the npm dependencies are installed before the AppHost is built. The AppHost code (AppHost.cs_) declares the client app resources using the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp(Aspire.Hosting.IDistributedApplicationBuilder,System.String,System.String,System.String,System.String[])> API.
 
 :::code source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.AppHost/AppHost.cs":::
 

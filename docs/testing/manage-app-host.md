@@ -169,7 +169,7 @@ public class TestingAspireAppHost()
 }
 ```
 
-The constructor requires the type of the AppHost project reference as a parameter. Optionally, you can provide arguments to the underlying host application builder. These arguments control how the AppHost starts and provide values to the args variable used by the _Program.cs_ file to start the AppHost instance.
+The constructor requires the type of the AppHost project reference as a parameter. Optionally, you can provide arguments to the underlying host application builder. These arguments control how the AppHost starts and provide values to the args variable used by the _AppHost.cs_ file to start the AppHost instance.
 
 ### Lifecycle methods
 

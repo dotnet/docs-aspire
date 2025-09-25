@@ -261,7 +261,7 @@ Consider the following Bicep template as an example the helps to demonstrate thi
 
 The preceding Bicep template expects a `keyVaultName` parameter, among several other parameters. It then defines an Azure Cosmos DB resource and stashes a secret into Azure Key Vault, named `connectionString` which represents the fully qualified connection string to the Cosmos DB instance. To access this secret connection string value, you can use the following code snippet:
 
-:::code language="csharp" source="snippets/bicep/AppHost.Bicep/Program.cs" id="secrets":::
+:::code language="csharp" source="snippets/bicep/AppHost.Bicep/AppHost.cs" id="secrets":::
 
 In the preceding code snippet, the `cosmos` Bicep template is added as a reference to the `builder`. The `connectionString` secret output is retrieved from the Bicep template and stored in a variable. The secret output is then passed as an environment variable (`ConnectionStrings__cosmos`) to the `api` project. This environment variable is used to connect to the Cosmos DB instance.
 

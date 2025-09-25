@@ -76,13 +76,13 @@ Dapr uses the [sidecar pattern](https://docs.dapr.io/concepts/dapr-services/side
 
 To add a sidecar to a .NET Aspire resource, call the `WithDaprSidecar` method on it. The `appId` parameter is the unique identifier for the Dapr application, but it's optional. If you don't provide an `appId`, the parent resource name is used instead.
 
-:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="1-7"  highlight="7":::
+:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/AppHost.cs" range="1-7"  highlight="7":::
 
 ### Configure Dapr sidecars
 
 The `WithDaprSidecar` method offers overloads to configure your Dapr sidecar options like `AppId` and various ports. In the following example, the Dapr sidecar is configured with specific ports for GRPC, HTTP, metrics, and a specific app ID.
 
-:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs" range="9-20"  highlight="1-7,12":::
+:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/AppHost.cs" range="9-20"  highlight="1-7,12":::
 
 ### Complete Dapr AppHost example
 
@@ -91,7 +91,7 @@ Putting everything together, consider the following example of a .NET Aspire App
 - A backend API service that declares a Dapr sidecar with defaults.
 - A web frontend project that declares a Dapr sidecar with specific options, such as explict ports.
 
-:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/Program.cs":::
+:::code language="csharp" source="snippets/Dapr/Dapr.AppHost/AppHost.cs":::
 
 When you start the .NET Aspire solution, the dashboard shows the Dapr sidecar as a resource, with its status and logs.
 

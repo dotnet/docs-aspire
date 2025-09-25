@@ -46,7 +46,7 @@ To configure Dev Containers in Visual Studio Code, use the _.devcontainer/devcon
 
     After a few moments, the project will be created and initial dependencies restored.
 
-1. Open the _ProjectName.AppHost/Program.cs_ file in the editor and select the run button on the top right corner of the editor window.
+1. Open the _ProjectName.AppHost/AppHost.cs_ file in the editor and select the run button on the top right corner of the editor window.
 
     :::image source="media/vscode-run-button.png" lightbox="media/vscode-run-button.png" alt-text="Run button in editor.":::
 
