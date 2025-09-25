@@ -1,7 +1,7 @@
 ---
 title: Configuration settings
 description: Learn about 
-ms.date: 09/24/2025
+ms.date: 09/25/2025
 ms.topic: overview
 ---
 
@@ -24,7 +24,7 @@ The following snippet is an example `.aspire/settings.json` file:
 
 ## Config file locations
 
-A global .NET Aspire CLI settings file is stored at `$HOME/.aspire/settings.json`, and is used as the default settings for the CLI. A local settings file overwrites the settings from the global file. Local settings files are stored at `./.aspire/settings.json`.
+A global Aspire CLI settings file is stored at `$HOME/.aspire/settings.json`, and is used as the default settings for the CLI. A local settings file overwrites the settings from the global file. Local settings files are stored at `./.aspire/settings.json`.
 
 ## Generating a config file
 
@@ -35,7 +35,7 @@ The CLI automatically generates a local settings file when you run a command tha
 
 ## Settings
 
-The .NET Aspire CLI supports two categories of configuration settings:
+The Aspire CLI supports two categories of configuration settings:
 
 - **Feature flags**\
 These settings enable or disable specific CLI features. All feature flag setting names start with `feature.`
@@ -49,10 +49,10 @@ The following table lists the settings that can be set in the config file:
 
 ## CLI commands
 
-| Command                                                                    | Status | Function                                               |
-|----------------------------------------------------------------------------|--------|--------------------------------------------------------|
-| [`aspire config`](../cli-reference/aspire-config-list.md)                  | Stable | Command driver for managing .NET Aspire configuration. |
-| [`aspire config list`](../cli-reference/aspire-config-list.md)             | Stable | List all configuration values.                         |
-| [`aspire config get <key>`](../cli-reference/aspire-config-get.md)         | Stable | Get a configuration value.                             |
-| [`aspire config set <key> <value>`](../cli-reference/aspire-config-set.md) | Stable | Set a configuration value.                             |
-| [`aspire config delete <key>`](../cli-reference/aspire-config-delete.md)   | Stable | Delete a configuration value.                          |
+| Command | Status | Function |
+|--|--|--|
+| [`aspire config`](../cli-reference/aspire-config-list.md) | Stable | Command driver for managing Aspire configuration. |
+| [`aspire config list`](../cli-reference/aspire-config-list.md) | Stable | List all configuration values. |
+| [`aspire config get <key>`](../cli-reference/aspire-config-get.md) | Stable | Get a configuration value. |
+| [`aspire config set <key> <value>`](../cli-reference/aspire-config-set.md) | Stable | Set a configuration value. |
+| [`aspire config delete <key>`](../cli-reference/aspire-config-delete.md) | Stable | Delete a configuration value. |
