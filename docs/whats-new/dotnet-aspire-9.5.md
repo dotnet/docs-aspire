@@ -73,7 +73,7 @@ Aspire 9.5 adds targeted CLI and tooling updates that speed up setup and mainten
 
 Run `aspire update` to upgrade, enable the single-file AppHost to experiment with a minimal setup, and use `aspire exec` to script tasks with inherited environment context.
 
-### Channel-aware `aspire add` & templating
+### Channel-aware `aspire add` and templating
 
 You can now pick packages from different channels or versions during `aspire add`. Additionally, friendly name generation is now more flexible for searching packages. When adding packages, you should use versions, which are aligned to the `Aspire.Hosting.AppHost` package that you're using. To update your entire AppHost and its referenced project, you can use the `aspire update` command as described in the following section.
 
