@@ -35,7 +35,6 @@ Moving between minor releases of Aspire is simple:
     ```
 
     ```powershell
-    # PowerShell
     iex "& { $(irm https://aspire.dev/install.ps1) }"
     ```
 
