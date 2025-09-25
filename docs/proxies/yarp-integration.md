@@ -258,7 +258,7 @@ YARP can serve static files alongside proxied routes. This is useful for serving
 
 #### Copy files locally
 
-Use the <xref:Aspire.Hosting.YarpResourceExtensions.WithStaticFiles*> method to copy files from a local directory into the YARP container:
+Use the `WithStaticFiles` method to copy files from a local directory into the YARP container:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -273,7 +273,7 @@ This approach copies files into the container and uses container files in run mo
 
 #### Multi-stage Docker builds
 
-For more complex scenarios, such as building a frontend application and serving the compiled assets, you can use a Docker multi-stage build with the <xref:Aspire.Hosting.DockerfileExtensions.WithDockerfile*> method:
+For more complex scenarios, such as building a frontend application and serving the compiled assets, you can use a Docker multi-stage build with the `WithDockerfile` method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
