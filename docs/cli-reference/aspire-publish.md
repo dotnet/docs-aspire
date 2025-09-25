@@ -3,7 +3,7 @@ title: aspire publish command
 description: Learn about the aspire publish command and its usage. This command invokes resource publishers declared by the apphost to serialize resources to disk.
 ms.date: 07/11/2025
 ---
-# aspire publish command
+# aspire publish command (Preview)
 
 **This article applies to:** ✔️ Aspire CLI 9.4.0 and later versions.
 
