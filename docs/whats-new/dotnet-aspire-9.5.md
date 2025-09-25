@@ -280,7 +280,6 @@ The trace detail page includes several quality-of-life improvements:
 
 ## 📦 Integration changes and additions
 
-
 ### OpenAI hosting integration
 
 The new `AddOpenAI` integration provides first-class support for modeling OpenAI endpoints and their associated models within your Aspire application model. For more information, see [Aspire OpenAI integration (Preview)](../openai/openai-integration.md).
@@ -789,7 +788,7 @@ These resources no longer implement `IResourceWithoutLifetime`; they surface as 
 
 ### Azure Container App Jobs support
 
-Aspire 9.5 introduces comprehensive support for Azure Container App Jobs, allowing you to deploy both project and container resources as background job workloads that can run on schedules, in response to events, or be triggered manually.
+Aspire 9.5 introduces comprehensive support for Azure Container App Jobs, allowing you to deploy both project and container resources as background job workloads that can run on schedules, in response to events, or be triggered manually. For more information, see [Azure Container App Jobs](../azure/container-app-jobs.md)
 
 Container App Jobs complement the existing Container Apps functionality by providing a dedicated way to run finite workloads like data processing, ETL operations, batch jobs, and scheduled maintenance tasks.
 
