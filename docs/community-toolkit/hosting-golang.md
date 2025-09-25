@@ -36,7 +36,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-In the _:::no-loc text="Program.cs":::_ file of your AppHost project, call the `AddGolangApp` method to add a Go application to the builder.
+In the _:::no-loc text="AppHost.cs":::_ file of your AppHost project, call the `AddGolangApp` method to add a Go application to the builder.
 
 ```csharp
 var golang = builder.AddGolangApp("golang", "../gin-api")

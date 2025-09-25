@@ -1,12 +1,30 @@
 items:
-- name: .NET Aspire
+- name: Aspire
   href: ../index.yml
-- name: .NET Aspire overview
+- name: Aspire overview
   href: ../get-started/aspire-overview.md
 - name: Breaking changes
   href: breaking-changes.md
-- name: .NET Aspire 9.4
+- name: Aspire 9.5
   expanded: true
+  items:
+  - name: Overview
+    href: 9.5/index.md
+  - name: Breaking changes in 9.5
+    expanded: true
+    items:
+    - name: Comprehensive path normalization for volume naming
+      href: 9.5/path-normalization-volume-naming.md
+    - name: Fix endpoint resolution for Host/Port in WithEnvironment
+      href: 9.5/endpoint-resolution-withenvironment.md
+    - name: InteractionInput.Name required and Label optional
+      href: 9.5/interactioninput-name-required.md
+    - name: IResourceWithoutLifetime removed from parameter and connection string resources
+      href: 9.5/iresourcewithoutlifetime-removed.md
+    - name: Launch profiles now ignore unsupported commandName values
+      href: 9.5/launch-profile-filtered.md
+- name: Aspire 9.4
+  expanded: false
   items:
   - name: Overview
     href: 9.4/index.md
@@ -15,6 +33,8 @@ items:
     items:
     - name: AddAzureOpenAI defaults to CognitiveServicesOpenAIUser role
       href: 9.4/add-azure-openai-default-changes.md
+    - name: Azure Cosmos DB now provisions serverless accounts by default
+      href: 9.4/cosmosdb-serverless-defaults.md
     - name: Azure Storage APIs renamed and refactored
       href: 9.4/azure-storage-apis-renamed.md
     - name: BicepSecretOutputReference and GetSecretOutput are now obsolete
@@ -25,7 +45,8 @@ items:
       href: 9.4/hybrid-compute-support-dropped.md
     - name: Local auth disabled by default on Azure resources
       href: 9.4/local-auth-disabled-for-azure-resources.md
-- name: .NET Aspire 9.3
+- name: Aspire 9.3
+  expanded: false
   items:
   - name: Overview
     href: 9.3/index.md
@@ -40,7 +61,7 @@ items:
       href: 9.3/remove-publisher-apis.md
     - name: Azure SQL Server default user-assigned managed identity admin changes
       href: 9.3/azure-sql-server-default-uami-admin.md
-- name: .NET Aspire 9.2
+- name: Aspire 9.2
   expanded: false
   items:
   - name: Overview
@@ -60,7 +81,7 @@ items:
       href: 9.2/withauthentication-changes.md
     - name: WithCommand obsolete, use new overload
       href: 9.2/withcommand-obsolete.md
-- name: .NET Aspire 9.1
+- name: Aspire 9.1
   expanded: false
   items:
   - name: Overview
@@ -80,7 +101,8 @@ items:
       href: 9.1/testing-builder-api-changes.md
     - name: Python hosting integration API changes
       href: 9.1/python-hosting-integration-api-changes.md
-- name: .NET Aspire 9.0
+- name: Aspire 9.0
+  expanded: false
   items:
   - name: Overview
     href: 9.0/index.md
@@ -105,5 +127,5 @@ items:
       href: 9.0/azure-resource-name-scheme.md
     - name: Ollama integration updates
       href: 9.0/ollama-integration-updates.md
-- name: .NET Aspire Support Policy
+- name: Aspire Support Policy
   href: https://dotnet.microsoft.com/platform/support/policy/aspire

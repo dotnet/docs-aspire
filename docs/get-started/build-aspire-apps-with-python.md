@@ -136,16 +136,16 @@ After the package is installed, the project XML should have a new package refere
 
 :::code language="xml" source="snippets/PythonSample/PythonSample.AppHost/PythonSample.AppHost.csproj" highlight="15":::
 
-Replace the AppHost _Program.cs_ code with the following snippet. This code adds the Python project to .NET Aspire by calling the `AddPythonApp` API and specifying the project name, project path, and the entry point file:
+Replace the _AppHost.cs_ code with the following snippet. This code adds the Python project to .NET Aspire by calling the `AddPythonApp` API and specifying the project name, project path, and the entry point file:
 
-:::code source="snippets/PythonSample/PythonSample.AppHost/Program.cs" highlight="6":::
+:::code source="snippets/PythonSample/PythonSample.AppHost/AppHost.cs" highlight="6":::
 
 > [!IMPORTANT]
 > The preceding code suppresses the `ASPIREHOSTINGPYTHON001` diagnostic error. This error is generated because the `AddPythonApp` API is experimental and might change in future release. For more information, see [Compiler Error ASPIREHOSTINGPYTHON001](../diagnostics/aspirehostingpython001.md).
 
 ## Run the app
 
-Now that you've added the Python hosting package, updated the AppHost _Program.cs_ file, and created a Python project, you can run the AppHost:
+Now that you've added the Python hosting package, updated the _AppHost.cs_ file, and created a Python project, you can run the AppHost:
 
 ```dotnetcli
 dotnet run --project ../PythonSample.AppHost/PythonSample.AppHost.csproj

@@ -1,16 +1,16 @@
 items:
-- name: .NET Aspire documentation
+- name: Aspire documentation
   href: index.yml
 
 - name: Get Started
   items:
-  - name: .NET Aspire overview
+  - name: Aspire overview
     displayName: aspire overview,architecture,key concepts,Kubernetes,k8s
     href: get-started/aspire-overview.md
-  - name: Build your first .NET Aspire solution
+  - name: Build your first Aspire solution
     displayName: quickstart,first app,aspire app
     href: get-started/build-your-first-aspire-app.md
-  - name: Add .NET Aspire to an existing solution
+  - name: Add Aspire to an existing solution
     href: get-started/add-aspire-existing-app.md
   - name: Migrate to Aspire
     items:
@@ -23,36 +23,36 @@ items:
     items:
     - name: Overview
       href: fundamentals/setup-tooling.md
-    - name: .NET Aspire SDK
+    - name: Aspire SDK
       href: fundamentals/dotnet-aspire-sdk.md
-    - name: .NET Aspire templates
+    - name: Aspire templates
       href: fundamentals/aspire-sdk-templates.md
     - name: GitHub Codespaces
       href: get-started/github-codespaces.md
     - name: Dev Containers
       href: get-started/dev-containers.md
-  - name: What's new in .NET Aspire 9.4
-    href: whats-new/dotnet-aspire-9.4.md
-  - name: Upgrade to .NET Aspire 9.4.2
+  - name: What's new in Aspire 9.5
+    href: whats-new/dotnet-aspire-9.5.md
+  - name: Upgrade to Aspire 9.5.0
     href: get-started/upgrade-to-aspire-9.md
 
-- name: Dev-time orchestration
+- name: AppHost
   items:
+  - name: Overview
+    displayName: orchestration,aspire apphost,aspire app,dev-time,inner-loop
+    href: fundamentals/app-host-overview.md
   - name: Architecture overview
     displayName: aspire architecture,aspire app,aspire apphost,aspire app model
     href: architecture/overview.md
-  - name: AppHost overview
-    displayName: orchestration,aspire apphost,aspire app,dev-time,inner-loop
-    href: fundamentals/app-host-overview.md
   - name: Locally orchestrate
     items:
-    - name: Resources in .NET Aspire
+    - name: Resources in Aspire
       displayName: orchestration,aspire apphost,aspire app
       href: fundamentals/orchestrate-resources.md
-    - name: Node.js apps in .NET Aspire
+    - name: Node.js apps in Aspire
       href: get-started/build-aspire-apps-with-nodejs.md
       displayName: node.js,node,express,typescript,javascript,spa,client-side,server-side
-    - name: Python apps in .NET Aspire
+    - name: Python apps in Aspire
       displayName: python,flask,fastapi
       href: get-started/build-aspire-apps-with-python.md
   - name: AppHost configuration
@@ -70,7 +70,7 @@ items:
       displayName: withhttpcommand,
     - name: Custom resource URLs
       displayName: withurl,withurlforendpoint,withurls
-      href: fundamentals/custom-resource-urls.md      
+      href: fundamentals/custom-resource-urls.md
   - name: Host external executables
     href: app-host/executable-resources.md
     displayName: executable,addexecutable,external apps,cli tools
@@ -80,7 +80,7 @@ items:
   - name: Networking overview
     displayName: inner loop,local networking,networking
     href: fundamentals/networking-overview.md
-  - name: Eventing in .NET Aspire
+  - name: Eventing in Aspire
     href: app-host/eventing.md
   - name: Prompt user from CLI or Dashboard
     href: extensibility/interaction-service.md
@@ -125,6 +125,8 @@ items:
     href: cli/overview.md
   - name: Install
     href: cli/install.md
+  - name: Configuration
+    href: cli/config-settings.md
   - name: aspire-install script reference
     href: cli/install-script-reference.md
   - name: aspire command reference
@@ -133,11 +135,9 @@ items:
       href: cli-reference/aspire.md
     - name: aspire add
       href: cli-reference/aspire-add.md
-    - name: aspire deploy
-      href: cli-reference/aspire-deploy.md
-    - name: aspire config
+    - name: aspire config [command]
       items:
-      - name: aspire config [command]
+      - name: aspire config
         href: cli-reference/aspire-config.md
       - name: aspire config list
         href: cli-reference/aspire-config-list.md
@@ -147,21 +147,25 @@ items:
         href: cli-reference/aspire-config-set.md
       - name: aspire config delete
         href: cli-reference/aspire-config-delete.md
-    - name: aspire exec
+    - name: aspire deploy (Preview)
+      href: cli-reference/aspire-deploy.md
+    - name: aspire exec (Preview)
       href: cli-reference/aspire-exec.md
     - name: aspire new
       href: cli-reference/aspire-new.md
-    - name: aspire publish
+    - name: aspire publish (Preview)
       href: cli-reference/aspire-publish.md
     - name: aspire run
       href: cli-reference/aspire-run.md
+    - name: aspire update (Preview)
+      href: cli-reference/aspire-update.md
 
 - name: Testing
   items:
   - name: Overview
     displayName: aspire testing,testing
     href: testing/overview.md
-  - name: Write your first .NET Aspire test
+  - name: Write your first Aspire test
     href: testing/write-your-first-test.md
   - name: Managing the AppHost
     href: testing/manage-app-host.md
@@ -204,7 +208,7 @@ items:
       href: database/connect-to-existing-database.md
     - name: Connect to storage
       href: storage/azure-storage-integrations.md
-    - name: Messaging using .NET Aspire integrations
+    - name: Messaging using Aspire integrations
       displayName: messaging
       href: messaging/messaging-integrations.md
   - name: Apache Kafka
@@ -220,6 +224,9 @@ items:
       href: azure/local-provisioning.md
     - name: Configure Azure Container Apps environments
       href: azure/configure-aca-environments.md
+    - name: Azure Container App Jobs
+      displayName: container app jobs,jobs,batch processing,scheduled tasks
+      href: azure/container-app-jobs.md
     - name: User-assigned managed identity
       href: azure/user-assigned-managed-identity.md
     - name: Manage role assignments
@@ -243,6 +250,8 @@ items:
       items:
       - name: Azure Cache for Redis
         href: caching/azure-cache-for-redis-integration.md
+      - name: Azure Managed Redis
+        href: caching/azure-redis-enterprise-integration.md
       - name: Azure Cache for Redis distributed cache
         href: caching/azure-cache-for-redis-distributed-caching-integration.md
       - name: Azure Cache for Redis output caching
@@ -295,6 +304,9 @@ items:
       href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.0&preserve-view=true
     - name: Aspire.Azure API reference
       href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.0&preserve-view=true
+  - name: Dev tunnels
+    displayName: dev tunnels,tunnels,development,secure sharing
+    href: extensibility/dev-tunnels-integration.md
   - name: Elasticsearch
     displayName: elasticsearch,search
     href: search/elasticsearch-integration.md
@@ -347,6 +359,9 @@ items:
   - name: NATS
     displayName: nats,messaging
     href: messaging/nats-integration.md
+  - name: OpenAI
+    displayName: openai,chatgpt,gpt,ai,open ai
+    href: openai/openai-integration.md
   - name: Orleans
     items:
     - name: Overview
@@ -406,6 +421,8 @@ items:
       href: community-toolkit/hosting-golang.md
     - name: Java/Spring
       href: community-toolkit/hosting-java.md
+    - name: LavinMQ
+      href: community-toolkit/hosting-lavinmq.md
     - name: Node.js extensions
       href: community-toolkit/hosting-nodejs-extensions.md
     - name: Python extensions
@@ -414,6 +431,8 @@ items:
       href: community-toolkit/ollama.md
     - name: Meilisearch
       href: community-toolkit/hosting-meilisearch.md
+    - name: MailPit
+      href: community-toolkit/hosting-mailpit.md
     - name: Rust apps
       href: community-toolkit/hosting-rust.md
     - name: SQL Database Projects
@@ -461,34 +480,41 @@ items:
   - name: Overview
     displayName: azure deployment,deployment,Kubernetes,k8s
     href: deployment/overview.md
-  - name: Azure
+  - name: Building custom deployment pipelines
+    href: fundamentals/custom-deployments.md
+  - name: Azure deployment with Aspire
+    items:
+    - name: Deploy to Azure Container Apps using Aspire CLI
+      href: deployment/aspire-deploy/aca-deployment-aspire-cli.md
+    - name: Deploy to Azure Container Apps using Visual Studio
+      href: deployment/aspire-deploy/aca-deployment-visual-studio.md
+      displayName: azure container apps,vs
+    - name: Azure security best practices
+      href: deployment/aspire-deploy/azure-security-best-practices.md
+      displayName: azure security,security best practices,container security,managed identity
+    - name: Use Aspire with Application Insights
+      href: deployment/aspire-deploy/application-insights.md
+      displayName: app insights
+    - name: Deploy Aspire + SQL Database
+      href: deployment/aspire-deploy/sql-server-integration-deployment.md
+    - name: Deploy Aspire + Redis
+      href: deployment/aspire-deploy/caching-integrations-deployment.md
+    - name: Customize Aspire Azure deployments
+      href: deployment/aspire-deploy/customize-deployments.md
+      displayName: azd infra synth,azd infra gen,bicep,infrastructure,production
+  - name: Azure Developer CLI (azd)
     items:
     - name: Deploy to Azure Container Apps using azd
-      href: deployment/azure/aca-deployment.md
+      href: deployment/azd/aca-deployment.md
       displayName: azure container apps,aca
-    - name: Deploy to Azure Container Apps using Visual Studio
-      href: deployment/azure/aca-deployment-visual-studio.md
-      displayName: azure container apps,vs
     - name: Azure Container Apps with azd (In-depth)
-      href: deployment/azure/aca-deployment-azd-in-depth.md
+      href: deployment/azd/aca-deployment-azd-in-depth.md
       displayName: azure container apps,aca,azd
     - name: Deploy using azd and CI/CD
-      href: deployment/azure/aca-deployment-github-actions.md
-    - name: Customize .NET Aspire Azure deployments
-      href: deployment/azure/customize-deployments.md
+      href: deployment/azd/aca-deployment-github-actions.md
+    - name: Customize Aspire Azure deployments using azd
+      href: deployment/azd/customize-deployments.md
       displayName: azd infra synth,azd infra gen,bicep,infrastructure,production
-    - name: Azure security best practices
-      href: deployment/azure/azure-security-best-practices.md
-      displayName: azure security,security best practices,container security,managed identity
-    - name: Use .NET Aspire with Application Insights
-      href: deployment/azure/application-insights.md
-      displayName: app insights
-    - name: Deploy .NET Aspire + SQL Database
-      href: database/sql-server-integration-deployment.md
-    - name: Deploy .NET Aspire + Redis
-      href: caching/caching-integrations-deployment.md
-  - name: Build container images
-    href: fundamentals/build-container-images.md
   - name: Tool-builder manifest schemas
     href: deployment/manifest-format.md
 
@@ -516,7 +542,7 @@ items:
   - name: Ask questions on Discord
     displayName: discord,community
     href: https://aka.ms/aspire/discord
-  - name: Stack Overflow — .NET Aspire
+  - name: Stack Overflow — Aspire
     href: https://stackoverflow.com/questions/tagged/dotnet-aspire
 
 - name: Reference
@@ -595,21 +621,21 @@ items:
           href: diagnostics/aspirepublishers001.md
         - name: Publishing to Azure APIs are experimental
           href: diagnostics/aspireazure001.md
-  - name: .NET Aspire API reference
+  - name: Aspire API reference
     href: /dotnet/api?view=dotnet-aspire-9.0&preserve-view=true
-  - name: .NET Aspire FAQ
+  - name: Aspire FAQ
     displayName: iis,functions,deploy,azure,kubernetes
     href: reference/aspire-faq.yml
-  - name: .NET Aspire NuGet profile
+  - name: Aspire NuGet profile
     href: https://www.nuget.org/profiles/aspire
 
 - name: Resources
   items:
-  - name: .NET Aspire
+  - name: Aspire
     href: https://github.com/dotnet/aspire
-  - name: .NET Aspire samples
+  - name: Aspire samples
     href: https://github.com/dotnet/aspire-samples
-  - name: .NET Aspire samples browser
+  - name: Aspire samples browser
     href: /samples/browse?expanded=dotnet&terms=aspire
   - name: .NET Runtime
     href: https://github.com/dotnet/runtime

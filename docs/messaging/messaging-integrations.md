@@ -97,7 +97,7 @@ Next, add a Worker Service project to the solution to retrieve and process messa
     - Make sure **.NET 9.0** is selected.
     - Make sure **Enlist in .NET Aspire orchestration** is checked and select **Create**.
 
-Visual Studio adds the project to your solution and updates the _:::no-loc text="Program.cs":::_ file of the `AspireSample.AppHost` project with a new line of code:
+Visual Studio adds the project to your solution and updates the _:::no-loc text="AppHost.cs":::_ file of the `AspireSample.AppHost` project with a new line of code:
 
 ```csharp
 builder.AddProject<Projects.AspireSample_WorkerService>(
@@ -124,7 +124,7 @@ Visual Studio tooling added this line of code to register your new project with 
 
     :::image type="content" source="media/vscode-add-project-reference.png" lightbox="media/vscode-add-project-reference.png" alt-text="Visual Studio Code: Add project reference from AspireSample.AppHost to AspireSample.WorkerService.":::
 
-1. Add the following line of code to the _:::no-loc text="Program.cs":::_ file in the **AspireSample.AppHost** project before the call to `builder.Build().Run();`:
+1. Add the following line of code to the _:::no-loc text="AppHost.cs":::_ file in the **AspireSample.AppHost** project before the call to `builder.Build().Run();`:
 
     ```csharp
     builder.AddProject<Projects.AspireSample_WorkerService>(
@@ -152,7 +152,7 @@ Visual Studio tooling added this line of code to register your new project with 
     dotnet add AspireSample.AppHost/AspireSample.AppHost.csproj reference AspireSample.WorkerService/AspireSample.WorkerService.csproj
     ```
 
-1. Add the following line of code to the _:::no-loc text="Program.cs":::_ file in the **AspireSample.AppHost** project before the call to `builder.Build().Run();`:
+1. Add the following line of code to the _:::no-loc text="AppHost.cs":::_ file in the **AspireSample.AppHost** project before the call to `builder.Build().Run();`:
 
     ```csharp
     builder.AddProject<Projects.AspireSample_WorkerService>(
@@ -186,7 +186,7 @@ The completed solution structure should resemble the following, assuming the top
      │    ├─── appsettings.Development.json
      │    ├─── appsettings.json
      │    ├─── AspireSample.AppHost.csproj
-     │    └─── Program.cs
+     │    └─── AppHost.cs
      ├───📂 AspireSample.ServiceDefaults
      │    ├─── AspireSample.ServiceDefaults.csproj
      │    └─── Extensions.cs

@@ -15,14 +15,14 @@ partial class Program
         {
             new()
             {
-                Label = "Application Name",
+                Name = "Application Name",
                 InputType = InputType.Text,
                 Required = true,
                 Placeholder = "my-app"
             },
             new()
             {
-                Label = "Environment",
+                Name = "Environment",
                 InputType = InputType.Choice,
                 Required = true,
                 Options =
@@ -34,14 +34,14 @@ partial class Program
             },
             new()
             {
-                Label = "Instance Count",
+                Name = "Instance Count",
                 InputType = InputType.Number,
                 Required = true,
                 Placeholder = "1"
             },
             new()
             {
-                Label = "Enable Monitoring",
+                Name = "Enable Monitoring",
                 InputType = InputType.Boolean,
                 Required = false
             }

@@ -1,7 +1,7 @@
 ---
 title: Interaction Service (Preview)
 description: Use the interaction service API to prompt users for input, request confirmation, and display messages in the Aspire dashboard or CLI during publish and deploy.
-ms.date: 07/21/2025
+ms.date: 09/24/2025
 ---
 
 # Interaction Service (Preview)
@@ -124,9 +124,7 @@ Notification messages provide non-modal notifications.
 > [!TIP]
 > In the dashboard, notification messages appear stacked at the top, so you can show several messages at once. You can display notifications one after another by awaiting each dismissal before showing the next. Or, you can display multiple notifications at the same time without waiting for each to be dismissed.
 
-<!-- <xref:Aspire.Hosting.IInteractionService.PromptNotificationAsync%2A> -->
-
-The `IInteractionService.PromptNotificationAsync` method displays informational messages with optional action links in the dashboard context. You don't have to await the result of a notification message if you don't need to. This is especially useful for notifications, since you might want to display a notification and continue without waiting for user to dismiss it.
+The <xref:Aspire.Hosting.IInteractionService.PromptNotificationAsync(System.String,System.String,Aspire.Hosting.NotificationInteractionOptions,System.Threading.CancellationToken)?displayProperty=nameWithType> method displays informational messages with optional action links in the dashboard context. You don't have to await the result of a notification message if you don't need to. This is especially useful for notifications, since you might want to display a notification and continue without waiting for user to dismiss it.
 
 :::code source="snippets/InteractionService/AppHost.NotificationExample.cs" id="example":::
 
@@ -142,9 +140,7 @@ The `PromptNotificationAsync` method isn't available in CLI contexts. If you cal
 
 ## Prompt for user confirmation
 
-<!-- <xref:Aspire.Hosting.IInteractionService.PromptConfirmationAsync%2A> -->
-
-Use the interaction service when you need the user to confirm an action before proceeding. The `IInteractionService.PromptConfirmationAsync` method displays a confirmation prompt in the dashboard context. Confirmation prompts are essential for destructive operations or actions that have significant consequences. They help prevent accidental actions and give users a chance to reconsider their decisions.
+Use the interaction service when you need the user to confirm an action before proceeding. The <xref:Aspire.Hosting.IInteractionService.PromptConfirmationAsync(System.String,System.String,Aspire.Hosting.MessageBoxInteractionOptions,System.Threading.CancellationToken)?displayProperty=nameWithType> method displays a confirmation prompt in the dashboard context. Confirmation prompts are essential for destructive operations or actions that have significant consequences. They help prevent accidental actions and give users a chance to reconsider their decisions.
 
 ### Prompt for confirmation before destructive operations
 
@@ -174,9 +170,7 @@ The interaction service API allows you to prompt users for input in various ways
 
 ### Prompt the user for input values
 
-<!-- <xref:Aspire.Hosting.IInteractionService.PromptInputsAsync%2A> -->
-
-You can prompt for a single value using the `IInteractionService.PromptInputAsync` method, or collect multiple pieces of information with `IInteractionService.PromptInputsAsync`. In the dashboard, multiple inputs appear together in a single dialog. In the CLI, each input is requested one after another.
+You can prompt for a single value using the <xref:Aspire.Hosting.IInteractionService.PromptInputAsync*?displayProperty=nameWithType> method, or collect multiple pieces of information with `IInteractionService.PromptInputsAsync`. In the dashboard, multiple inputs appear together in a single dialog. In the CLI, each input is requested one after another.
 
 > [!IMPORTANT]
 > It's possible to create wizard-like flows using the interaction service. By chaining multiple prompts together—handling the results from one prompt before moving to the next—you can guide users through a series of related questions, making it easier to collect all the necessary information.
@@ -239,11 +233,9 @@ Environment:
 
 #### Input validation
 
-<!-- <xref:Aspire.Hosting.InteractionInput> -->
+Basic input validation is available by configuring <xref:Aspire.Hosting.InteractionInput>. It provides options for requiring a value, or the maximum text length of `Text` or `SecretText` fields.
 
-Basic input validation is available by configuring `InteractionInput`. It provides options for requiring a value, or the maximum text length of `Text` or `SecretText` fields.
-
-For complex scenarios, you can provide custom validation logic using the `InputsDialogInteractionOptions.ValidationCallback` property:
+For complex scenarios, you can provide custom validation logic using the <xref:Aspire.Hosting.InputsDialogInteractionOptions.ValidationCallback?displayProperty=nameWithType> property:
 
 ```csharp
 // Multiple inputs with custom validation
@@ -251,28 +243,28 @@ var databaseInputs = new List<InteractionInput>
 {
     new()
     {
-        Label = "Database Name",
+        Name = "Database Name",
         InputType = InputType.Text,
         Required = true,
         Placeholder = "myapp-db"
     },
     new()
     {
-        Label = "Username",
+        Name = "Username",
         InputType = InputType.Text,
         Required = true,
         Placeholder = "admin"
     },
     new()
     {
-        Label = "Password",
+        Name = "Password",
         InputType = InputType.SecretText,
         Required = true,
         Placeholder = "Enter a strong password"
     },
     new()
     {
-        Label = "Confirm password",
+        Name = "Confirm password",
         InputType = InputType.SecretText,
         Required = true,
         Placeholder = "Confirm your password"
@@ -353,7 +345,5 @@ When you run `aspire publish` or `aspire deploy`, interactions are prompted thro
 
 ## See also
 
-<!-- <xref:Aspire.Hosting.IInteractionService> -->
-
-- [Aspire.Hosting.IInteractionService](https://github.com/dotnet/aspire/blob/main/src/Aspire.Hosting/IInteractionService.cs)
+- <xref:Aspire.Hosting.IInteractionService>
 - [.NET Aspire extensibility overview](../extensibility/custom-hosting-integration.md)

@@ -80,6 +80,7 @@ By default, the dashboard is automatically started by the AppHost. The dashboard
 | `ASPIRE_DASHBOARD_FRONTEND_BROWSERTOKEN` | Automatically generated 128-bit entropy token. | Configures the frontend browser token. This is the value that must be entered to access the dashboard when the auth mode is BrowserToken. If no browser token is specified then a new token is generated each time the AppHost is launched. |
 | `ASPIRE_DASHBOARD_TELEMETRY_OPTOUT` | `false` | Configures the dashboard to never send [usage telemetry](../fundamentals/dashboard/microsoft-collected-dashboard-telemetry.md). |
 | `ASPIRE_DASHBOARD_AI_DISABLED` | `false` | [GitHub Copilot in the dashboard](../fundamentals/dashboard/copilot.md) is available when the AppHost is launched by a supported IDE. When set to `true` Copilot is disabled in the dashboard and no Copilot UI is visible. |
+| `ASPIRE_DASHBOARD_FORWARDEDHEADERS_ENABLED` | `false` | Enables the Forwarded headers middleware that replaces the scheme and host values on the Request context with the values coming from the `X-Forwarded-Proto` and `X-Forwarded-Host` headers. |
 
 ## Internal
 

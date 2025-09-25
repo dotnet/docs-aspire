@@ -2,7 +2,7 @@
 title: External parameters
 description: Learn how to express parameters such as secrets, connection strings, and other configuration values that might vary between environments.
 ms.topic: how-to
-ms.date: 12/06/2024
+ms.date: 09/24/2025
 ms.custom: sfi-ropc-nochange
 ---
 
@@ -14,7 +14,7 @@ Environments provide context for the application to run in. Parameters express t
 
 Parameter values are read from the `Parameters` section of the AppHost's configuration and are used to provide values to the app while running locally. When you run or publish the app, if the value isn't configured you're prompted to provide it.
 
-Consider the following example AppHost _:::no-loc text="Program.cs":::_ file:
+Consider the following example AppHost _:::no-loc text="AppHost.cs":::_ file:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -103,7 +103,7 @@ The code renders this control in the dashboard:
 
 Parameters can be used to model secrets. When a parameter is marked as a secret, it serves as a hint to the manifest that the value should be treated as a secret. When you publish the app, the value is prompted for and stored in a secure location. When you run the app locally, the value is read from the `Parameters` section of the AppHost configuration.
 
-Consider the following example AppHost _:::no-loc text="Program.cs":::_ file:
+Consider the following example AppHost _:::no-loc text="AppHost.cs":::_ file:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -152,7 +152,7 @@ Parameters can be used to model connection strings. When you publish the app, th
 
 [!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
 
-Consider the following example AppHost _:::no-loc text="Program.cs":::_ file:
+Consider the following example AppHost _:::no-loc text="AppHost.cs":::_ file:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -187,17 +187,17 @@ If you want to construct a connection string from parameters and ensure that it'
 
 For example, if you have a secret parameter that stores a small part of a connection string, use this code to insert it:
 
-:::code language="csharp" source="snippets/referenceexpressions/AspireReferenceExpressions.AppHost/Program.cs" id="secretkey":::
+:::code language="csharp" source="snippets/referenceexpressions/AspireReferenceExpressions.AppHost/AppHost.cs" id="secretkey":::
 
 You can also use reference expressions to append text to connection strings created by .NET Aspire resources. For example, when you add a PostgreSQL resource to your .NET Aspire solution, the database server runs in a container and a connection string is formulated for it. In the following code, the extra property `Include Error Details` is appended to that connection string before it's passed to consuming projects:
 
-:::code language="csharp" source="snippets/referenceexpressions/AspireReferenceExpressions.AppHost/Program.cs" id="postgresappend":::
+:::code language="csharp" source="snippets/referenceexpressions/AspireReferenceExpressions.AppHost/AppHost.cs" id="postgresappend":::
 
 ## Parameter example
 
 To express a parameter, consider the following example code:
 
-:::code source="snippets/params/Parameters.AppHost/Program.cs":::
+:::code source="snippets/params/Parameters.AppHost/AppHost.cs":::
 
 The following steps are performed:
 

@@ -156,7 +156,7 @@ Next, add a Worker Service project to the solution to retrieve and process messa
     - Make sure **.NET 9.0** is selected.
     - Make sure **Enlist in .NET Aspire orchestration** is checked and select **Create**.
 
-Visual Studio adds the project to your solution and updates the _:::no-loc text="Program.cs":::_ file of the _AspireStorage.AppHost_ project with a new line of code:
+Visual Studio adds the project to your solution and updates the _:::no-loc text="AppHost.cs":::_ file of the _AspireStorage.AppHost_ project with a new line of code:
 
 ```csharp
 builder.AddProject<Projects.AspireStorage_WorkerService>(
@@ -185,7 +185,7 @@ Visual Studio tooling added this line of code to register your new project with 
     dotnet add AspireStorage.AppHost/AspireStorage.AppHost.csproj reference AspireStorage.WorkerService/AspireStorage.WorkerService.csproj
     ```
 
-1. Add the following line of code to the _:::no-loc text="Program.cs":::_ file in the **AspireStorage.AppHost** project:
+1. Add the following line of code to the _:::no-loc text="AppHost.cs":::_ file in the **AspireStorage.AppHost** project:
 
     ```csharp
     builder.AddProject<Projects.AspireStorage_WorkerService>(
@@ -285,18 +285,18 @@ dotnet add package Aspire.Hosting.Azure.Storage
 
 ---
 
-Replace the contents of the _:::no-loc text="Program.cs":::_ file in the _AspireStorage.AppHost_ project with the following code:
+Replace the contents of the _:::no-loc text="AppHost.cs":::_ file in the _AspireStorage.AppHost_ project with the following code:
 
 :::zone pivot="azurite"
 
-:::code source="snippets/tutorial/AspireStorage/AspireStorage.AppHost/Program.cs":::
+:::code source="snippets/tutorial/AspireStorage/AspireStorage.AppHost/AppHost.cs":::
 
 The preceding code adds Azure storage, blobs, and queues, and when in development mode, it uses the emulator. Each project defines references for these resources that they depend on.
 
 :::zone-end
 :::zone pivot="azure-portal,azure-cli"
 
-:::code source="snippets/tutorial/AspireStorage/AspireStorage.AppHost/Program.cs" range="1-6,12-27":::
+:::code source="snippets/tutorial/AspireStorage/AspireStorage.AppHost/AppHost.cs" range="1-6,12-27":::
 
 The preceding code adds Azure storage, blobs, and queues, and defines references for these resources within each project that depend on them.
 

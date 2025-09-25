@@ -26,7 +26,7 @@ docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard \
     -e DASHBOARD__TELEMETRYLIMITS__MAXLOGCOUNT='1000' \
     -e DASHBOARD__TELEMETRYLIMITS__MAXTRACECOUNT='1000' \
     -e DASHBOARD__TELEMETRYLIMITS__MAXMETRICSCOUNT='1000' \
-    mcr.microsoft.com/dotnet/aspire-dashboard:9.4
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.5
 ```
 
 ## [PowerShell](#tab/powershell)
@@ -36,7 +36,7 @@ docker run --rm -it -p 18888:18888 -p 4317:18889 -d --name aspire-dashboard `
     -e DASHBOARD__TELEMETRYLIMITS__MAXLOGCOUNT='1000' `
     -e DASHBOARD__TELEMETRYLIMITS__MAXTRACECOUNT='1000' `
     -e DASHBOARD__TELEMETRYLIMITS__MAXMETRICSCOUNT='1000' `
-    mcr.microsoft.com/dotnet/aspire-dashboard:9.4
+    mcr.microsoft.com/dotnet/aspire-dashboard:9.5
 ```
 
 ---
@@ -97,7 +97,7 @@ Browser token authentication works by the frontend asking for a token. The token
 | Other properties of <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> | `null` | Values inside configuration section `Authentication:Schemes:OpenIdConnect:*` are bound to `OpenIdConnectOptions`, such as `Scope`. |
 
 > [!NOTE]
-> Additional configuration may be required when using `OpenIdConnect` as authentication mode behind a reverse-proxy that terminates SSL. Check if you need `ASPNETCORE_FORWARDEDHEADERS_ENABLED` to be set to `true`.
+> Additional configuration may be required when using `OpenIdConnect` as authentication mode behind a reverse-proxy that terminates SSL. Check if you need `ASPIRE_DASHBOARD_FORWARDEDHEADERS_ENABLED` to be set to `true`.
 >
 > For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](/aspnet/core/host-and-deploy/proxy-load-balancer).
 
