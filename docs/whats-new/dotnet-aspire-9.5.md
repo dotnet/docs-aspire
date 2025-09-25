@@ -211,7 +211,7 @@ A new "All" option in the console logs view streams logs from every running reso
 
 ### Custom resource icons
 
-Resources can now specify custom icons and their variant—Filled (default) or Regular—using `WithIconName()` for better visual identification in dashboard views. Any [Fluent UI system icons](https://github.com/microsoft/fluentui-system-icons/blob/main/icons_filled.md) can be used.
+Resources can now specify custom icons and their variant (Filled, which is the default, or Regular) using `WithIconName()` for better visual identification in dashboard views. Any [Fluent UI system icons](https://github.com/microsoft/fluentui-system-icons/blob/main/icons_filled.md) can be used.
 
 ```csharp
 var postgres = builder.AddPostgres("database")
