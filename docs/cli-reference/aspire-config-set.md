@@ -32,7 +32,7 @@ The following arguments are available:
   The configuration key to update.
 
   > [!TIP]
-  > For available keys, see the [Settings](#settings) section. Look for names that start with the `features` prefix. Feature toggles are boolean values that enable or disable specific features in the Aspire CLI.
+  > For available keys, see the [Settings](#available-settings) section. Look for names that start with the `features` prefix. Feature toggles are boolean values that enable or disable specific features in the Aspire CLI.
 
 - **`value`**
 
