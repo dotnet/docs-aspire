@@ -5,9 +5,9 @@ ms.date: 09/24/2025
 ms.topic: overview
 ---
 
-# What is .NET Aspire configuration?
+# What is Aspire CLI configuration?
 
-The .NET Aspire CLI uses a configuration file to control its behavior. You can configure feature flags to enable or disable CLI features, and specify which AppHost project the CLI should use by default for a .NET Aspire solution.
+The Aspire CLI uses a configuration file to control its behavior. You can configure feature flags to enable or disable CLI features, and specify which AppHost project the CLI should use by default for an Aspire solution.
 
 The settings file is stored in a `.aspire` folder and is named `settings.json`. Settings files can be stored locally or globally.
 

@@ -280,27 +280,20 @@ The trace detail page includes several quality-of-life improvements:
 
 ## 📦 Integration changes and additions
 
-AI-first integrations accelerate iteration: model endpoints as resources, typed catalogs (no magic strings), secure Dev Tunnels, YARP static and API gateway, fast Kusto spin-up, and improved Redis, RabbitMQ, and storage primitives for reliable startup. You gain typed modeling, automatic secret and endpoint flow, richer lifecycle events, and flexible deployment to move from idea to production faster.
 
 ### OpenAI hosting integration
 
-The new `AddOpenAI` integration provides first-class support for modeling OpenAI endpoints and their associated models within your Aspire application graph. For more information, see [.NET Aspire OpenAI integration (Preview)](../openai/openai-integration.md).
+The new `AddOpenAI` integration provides first-class support for modeling OpenAI endpoints and their associated models within your Aspire application model. For more information, see [Aspire OpenAI integration (Preview)](../openai/openai-integration.md).
 
 **Features:**
 
 - **Single OpenAI endpoint** resource with child model resources using `AddModel`.
-- **Parameter-based API key** provisioning with `ParameterResource` support.
-- **Endpoint override** for local gateways, proxies, or self-hosted solutions.
 - **Resource referencing** so other projects automatically receive connection information.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var apiKey = builder.AddParameter("openai-api-key", secret: true);
-
-var openai = builder.AddOpenAI("openai")
-    .WithApiKey(apiKey)
-    .WithEndpoint("https://api.openai.com");
+var openai = builder.AddOpenAI("openai");
 
 var chatModel = openai.AddModel("chat", "gpt-4o-mini");
 
@@ -340,8 +333,8 @@ var embeddingModel = builder.AddGitHubModel("embeddings", GitHubModel.OpenAI.Ope
 
 For more information, see:
 
-- [.NET Aspire GitHub Models integration (Preview)](../github/github-models-integration.md).
-- [.NET Aspire Azure AI Foundry integration (Preview)](../azureai/azureai-foundry-integration.md).
+- [Aspire GitHub Models integration (Preview)](../github/github-models-integration.md).
+- [Aspire Azure AI Foundry integration (Preview)](../azureai/azureai-foundry-integration.md).
 
 ### Dev Tunnels hosting integration
 
@@ -364,12 +357,12 @@ var tunnel = builder.AddDevTunnel("dev-tunnel");
 var webApp = builder.AddProject<Projects.WebApp>("webapp");
 
 // Connect the tunnel to the web application endpoint
-tunnel.WithReference(webApp.GetEndpoint("http"));
+tunnel.WithReference(webApp);
 
 builder.Build().Run();
 ```
 
-The Dev Tunnels integration automatically handles Azure authentication, tunnel lifecycle management, and provides public or private URLs (depending on configuration) to connected resources, making it easy to expose local development services securely to external consumers. Dev Tunnels also improves support for mobile dev, such as .NET MAUI, making it easy to launch both your backend and mobile app at once without complex dev-time config. For more information, see [.NET Aspire Dev Tunnels integration (Preview)](../extensibility/dev-tunnels-integration.md).
+The Dev Tunnels integration automatically handles Azure authentication, tunnel lifecycle management, and provides public or private URLs (depending on configuration) to connected resources, making it easy to expose local development services securely to external consumers. Dev Tunnels also improves support for mobile dev, such as .NET MAUI, making it easy to launch both your backend and mobile app at once without complex dev-time config. For more information, see [Aspire Dev Tunnels integration (Preview)](../extensibility/dev-tunnels-integration.md).
 
 ### YARP static files support
 
@@ -434,7 +427,7 @@ builder.Build().Run();
 
 This feature enables modern web application architectures where YARP acts as both a reverse proxy for backend services and a static file server for frontend assets, providing a unified entry point for your distributed application.
 
-For more information, see [.NET Aspire YARP integration](../proxies/yarp-integration.md).
+For more information, see [Aspire YARP integration](../proxies/yarp-integration.md).
 
 ### Azure Kusto / Azure Data Explorer
 
@@ -608,8 +601,8 @@ var redis = builder.AddRedis("cache")
     {
         // Access event details
         Console.WriteLine($"Resource: {resource.Name}");
-        Console.WriteLine($"Event timestamp: {stoppedEvent.Timestamp}");
-        Console.WriteLine($"Stopping reason: {stoppedEvent.Reason}");
+        Console.WriteLine($"Event timestamp: {stoppedEvent.Snapshot.StopTimeStamp}");
+        Console.WriteLine($"Exit code: {stoppedEvent.Snapshot.ExitCode}");
       
         // Perform async cleanup with cancellation support
         await CleanupCacheConnections(cancellationToken);
