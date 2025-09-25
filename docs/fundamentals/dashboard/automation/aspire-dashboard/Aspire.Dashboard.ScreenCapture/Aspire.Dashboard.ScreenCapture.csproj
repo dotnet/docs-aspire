@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
-    <PackageReference Include="Aspire.Hosting.Testing" Version=" 9.5.0-preview.1.25468.27" />
+    <PackageReference Include="Aspire.Hosting.Testing" Version="9.5.0" />
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="9.0.9" />
     <PackageReference Include="Microsoft.Playwright" Version="1.55.0" />
     <PackageReference Include="xunit" Version="2.9.3" />

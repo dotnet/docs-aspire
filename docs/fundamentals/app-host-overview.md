@@ -51,7 +51,7 @@ The AppHost project handles running all of the projects that are part of the .NE
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Sdk Name="Aspire.AppHost.Sdk" Version=" 9.5.0-preview.1.25468.27" />
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
     
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -60,7 +60,7 @@ The AppHost project handles running all of the projects that are part of the .NE
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" Version=" 9.5.0-preview.1.25468.27" />
+        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
     </ItemGroup>
 
     <!-- Omitted for brevity -->

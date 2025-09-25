@@ -49,7 +49,7 @@ To upgrade your AppHost project to .NET Aspire 9.5.0, you need to update your pr
 ```diff
 <Project Sdk="Microsoft.NET.Sdk">
 
-+  <Sdk Name="Aspire.AppHost.Sdk" Version=" 9.5.0-preview.1.25468.27" />
++  <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -61,7 +61,7 @@ To upgrade your AppHost project to .NET Aspire 9.5.0, you need to update your pr
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version=" 9.5.0-preview.1.25468.27" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
   </ItemGroup>
 
 </Project>
@@ -74,7 +74,7 @@ To upgrade your AppHost project to .NET Aspire 9.5.0, you need to update your pr
 ```diff
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Sdk Name="Aspire.AppHost.Sdk" Version=" 9.5.0-preview.1.25468.27" />
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -87,7 +87,7 @@ To upgrade your AppHost project to .NET Aspire 9.5.0, you need to update your pr
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version=" 9.5.0-preview.1.25468.27" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
   </ItemGroup>
 
 </Project>
@@ -102,7 +102,7 @@ If you followed all of the preceding steps, your AppHost project file should loo
 ```diff
 <Project Sdk="Microsoft.NET.Sdk">
 
-+  <Sdk Name="Aspire.AppHost.Sdk" Version=" 9.5.0-preview.1.25468.27" />
++  <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -116,7 +116,7 @@ If you followed all of the preceding steps, your AppHost project file should loo
 
   <ItemGroup>
 -   <PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.0" />
-+   <PackageReference Include="Aspire.Hosting.AppHost" Version=" 9.5.0-preview.1.25468.27" />
++   <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
   </ItemGroup>
 
 </Project>
@@ -252,7 +252,7 @@ With the AppHost project updated, your project file should look like this:
 ```diff
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Sdk Name="Aspire.AppHost.Sdk" Version=" 9.5.0-preview.1.25468.27" />
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -265,7 +265,7 @@ With the AppHost project updated, your project file should look like this:
 
   <ItemGroup>
 -   <PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.0" />
-+   <PackageReference Include="Aspire.Hosting.AppHost" Version=" 9.5.0-preview.1.25468.27" />
++   <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
   </ItemGroup>
 
 </Project>

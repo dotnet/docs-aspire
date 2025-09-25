@@ -16,7 +16,7 @@ The [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk)
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Sdk Name="Aspire.AppHost.Sdk" Version=" 9.5.0-preview.1.25468.27" />
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
     
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -25,7 +25,7 @@ The [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk)
     </PropertyGroup>
     
     <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" Version=" 9.5.0-preview.1.25468.27" />
+        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
     </ItemGroup>
 
     <!-- Omitted for brevity -->
