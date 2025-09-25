@@ -224,7 +224,7 @@ var api = builder.AddProject<Projects.Api>("api")
     .WithIconName("webAsset", ApplicationModel.IconVariant.Regular);
 ```
 
-This iconography helps teams quickly identify different types of resources in complex applications with many services. Custom resource icons now also apply to project and container resources via unified annotation, providing consistent visual identification across all resource types.
+This iconography helps teams quickly identify different types of resources in complex applications with many services. Custom resource icons now also apply to project and container resources through unified annotation, providing consistent visual identification across all resource types.
 
 ### Reverse proxy support
 
