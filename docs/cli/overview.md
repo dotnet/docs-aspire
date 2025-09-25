@@ -2,7 +2,7 @@
 title: .NET Aspire CLI Overview and Commands
 description: Learn about the Aspire CLI commands for creating projects, running an AppHost, and adding integrations. Get started with command-line tools to build and manage distributed applications efficiently.
 titleSuffix: ""
-ms.date: 06/26/2025
+ms.date: 09/25/2025
 ms.topic: overview
 ms.custom:
   - ai-gen-docs-bap
@@ -19,6 +19,9 @@ The Aspire CLI is an interactive-first experience.
 
 - [Install the Aspire CLI.](install.md)
 - [`aspire` command reference.](../cli-reference/aspire.md)
+
+> [!TIP]
+> For a step-by-step tutorial that uses the `aspire deploy` command, see [Deploy an Aspire project to Azure Container Apps with the Aspire CLI](../deployment/aspire-deploy/aca-deployment-aspire-cli.md).
 
 ## Use templates
 
