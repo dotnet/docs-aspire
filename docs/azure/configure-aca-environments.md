@@ -2,7 +2,7 @@
 title: Configure Azure Container Apps environments
 description: Learn how to configure Azure Container Apps environments in .NET Aspire.
 ms.topic: how-to
-ms.date: 04/09/2025
+ms.date: 09/25/2025
 ---
 
 # Configure Azure Container Apps environments
@@ -27,6 +27,9 @@ The `AzureContainerAppEnvironmentResource` type models an ACA environment resour
 
 :::code language="csharp" source="snippets/aca/AspireAca.AppHost/AspireApp.AppHost/AppHost.cs":::
 
+> [!IMPORTANT]
+> You don't need to use or keep the returned builder variable. Simply calling `AddAzureContainerAppEnvironment` registers that ACA environment as infrastructure the AppHost owns. Any projects or container resources you later publish as Azure Container Apps automatically attach to that environment.
+
 By default, the calling this API to add an ACA environment generates the following provisioning Bicep module:
 
 :::code language="bicep" source="snippets/aca/AspireAca.AppHost/AspireApp.AppHost/aca-env.module.bicep":::
@@ -50,8 +53,8 @@ By default, <xref:Aspire.Hosting.AzureContainerAppExtensions.AddAzureContainerAp
 ```csharp
 var builder = DistributionApplicationBuilder.Create(args);
 
-var acaEnv = builder.AddAzureContainerAppEnvironment("aca-env")
-                    .WithAzdResourceNaming();
+builder.AddAzureContainerAppEnvironment("aca-env")
+       .WithAzdResourceNaming();
 
 // Omitted for brevity...
 

@@ -1,13 +1,13 @@
 ---
 title: Deploy .NET Aspire projects to Azure Container Apps using the Aspire CLI
 description: Learn how to use the Aspire CLI command to deploy .NET Aspire projects to Azure Container Apps.
-ms.date: 09/22/2025
+ms.date: 09/25/2025
 ai-usage: ai-assisted
 ---
 
 # Deploy a .NET Aspire project to Azure Container Apps using Aspire CLI
 
-The `aspire deploy` CLI command provides a streamlined way to deploy Aspire applications directly to Azure Container Apps. This command automates the entire deployment process, from building container images to provisioning Azure infrastructure and deploying your applications. This article walks you through using the `aspire deploy` command to deploy a Aspire solution to Container Apps. You'll learn how to complete the following tasks:
+The [`aspire deploy`](../../cli-reference/aspire-deploy.md) CLI command provides a streamlined way to deploy Aspire applications directly to Azure Container Apps. This command automates the entire deployment process, from building container images to provisioning Azure infrastructure and deploying your applications. This article walks you through using the `aspire deploy` command to deploy a Aspire solution to Container Apps. You'll learn how to complete the following tasks:
 
 > [!div class="checklist"]
 >
@@ -96,6 +96,8 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
 builder.Build().Run();
 ```
 
+For more information, see [Configure Azure Container Apps environments](../../azure/configure-aca-environments.md).
+
 ### Resource naming
 
 [!INCLUDE [azure-container-app-naming](../../includes/azure-container-app-naming.md)]
@@ -107,6 +109,13 @@ Once your project is configured, deploy it using the `aspire deploy` command:
 ```Aspire
 aspire deploy
 ```
+
+> [!TIP]
+> The `aspire deploy` command is interactive by default. To deploy without prompts, set these environment variables first:
+>
+> - `Azure__SubscriptionId`: Target Azure subscription ID.
+> - `Azure__Location`: Azure region (for example, `eastus`).
+> - `Azure__ResourceGroup`: Resource group name to create or reuse.
 
 You can also specify additional options:
 
