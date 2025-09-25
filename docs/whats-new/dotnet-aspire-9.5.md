@@ -30,7 +30,6 @@ Moving between minor releases of Aspire is simple:
 1. Get the latest release of the Aspire CLI:
 
     ```bash
-    # Bash
     curl -sSL https://aspire.dev/install.sh | bash
     ```
 
