@@ -95,7 +95,7 @@ This command updates your SDK, AppHost packages, and any Aspire client integrati
 
 ### File-based AppHost support (preview)
 
-Aspire 9.5 introduces infrastructure for .NET 10's new file-based apps feature, meaning you only need one file - and no project file! - for your Aspire Apphost. The new capabilities are currently behind a feature flag that elevates the minimum .NET SDK requirement to prepare for upcoming file-based app execution scenarios.
+Aspire 9.5 introduces infrastructure for .NET 10's new file-based apps feature, meaning you only need one file &mdash; and no project file &mdash; for your Aspire Apphost. The new capabilities are currently behind a feature flag that elevates the minimum .NET SDK requirement to prepare for upcoming file-based app execution scenarios.
 
 ```Aspire
 # Enable file-based AppHost ("apphost.cs") support
