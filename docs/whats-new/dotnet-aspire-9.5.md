@@ -109,7 +109,7 @@ For more information, see [aspire config set command](../cli-reference/aspire-co
 - **Feature enabled**: Requires .NET SDK 10.0.100 RC1 or later
 - **Override support**: Manual SDK version overrides continue to work with highest precedence
 
-You can use `aspire new` to create a new, blank file-based Apphost. Select the _Single-file AppHost (experimental)_ option from the project template list:
+You can use `aspire new` to create a new, blank file-based AppHost. Select the _Single-file AppHost (experimental)_ option from the project template list:
 
 ```csharp
 #:sdk Aspire.AppHost.Sdk@9.5.0
