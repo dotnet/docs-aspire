@@ -155,7 +155,7 @@ aspire exec --start-resource my-worker -- npm run build
 - Use `--resource` to execute immediately when AppHost starts.
 - Use `--start-resource` to wait for the resource to be running first.
 - Use `--workdir` to specify the working directory for the command.
-- Use `--` to separate aspire options from the command to execute.
+- Use `--` to separate `aspire` options from the command to execute.
 
 > [!NOTE]
 > This command is disabled by default. To use it, turn on the feature toggle by running:
