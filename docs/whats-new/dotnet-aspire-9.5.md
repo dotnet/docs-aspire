@@ -196,7 +196,7 @@ The [GenAI telemetry semantic conventions](https://opentelemetry.io/docs/specs/s
 In the Aspire 9.5 Dashboard, there are icons and clickable buttons in property grids in resource details, log entry details, and span details.
 
 - **Icons** improve visual clarity. For example, quickly see that a resource isn't in a healthy state if the icon is red or yellow.
-- **Clickable buttons** improve navigation. For example, select on a resource name or telemetry ID to navigate to a different page for more information.
+- **Clickable buttons** improve navigation. For example, select a resource name or telemetry ID to navigate to a different page for more information.
 
 :::image type="content" source="media/dashboard-rich-property-grid.png" lightbox="media/dashboard-rich-property-grid.png" alt-text="Screenshot of property grid with icons.":::
 
