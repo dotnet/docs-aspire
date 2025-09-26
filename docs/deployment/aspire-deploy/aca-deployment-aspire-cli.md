@@ -27,7 +27,6 @@ This article focuses on the Azure Container Apps scenario enabled by that Azure 
 
 > [!div class="checklist"]
 >
-> - Enable the (preview) `aspire deploy` feature.
 > - Reference Azure packages or add Azure resources (activates Azure integration).
 > - Define an Azure Container Apps environment.
 > - Run `aspire deploy` to orchestrate provision + build + push + deploy.
