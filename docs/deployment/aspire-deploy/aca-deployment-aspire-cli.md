@@ -136,15 +136,13 @@ aspire deploy
 ```
 
 > [!TIP]
-> To run non-interactively, set:
+> The `aspire deploy` command is interactive by default. To deploy without prompts, set these environment variables first:
 >
-> - `Azure__SubscriptionId`
-> - `Azure__Location` (for example, `eastus`)
-> - `Azure__ResourceGroup`
->
-> The Azure integration consumes these values to skip prompts.
+> - `Azure__SubscriptionId`: Target Azure subscription ID.
+> - `Azure__Location`: Azure region (for example, `eastus`).
+> - `Azure__ResourceGroup`: Resource group name to create or reuse.
 
-Specify a project explicitly if needed:
+You can also specify additional options:
 
 ```Aspire
 aspire deploy --project ./MyApp.AppHost/MyApp.AppHost.csproj
