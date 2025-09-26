@@ -584,8 +584,6 @@ Then browse to `http://localhost:8080` to launch the UI and manage configuration
 > [!IMPORTANT]
 > The Azure App Configuration emulator is in **preview**. Behavior, image tags, and API surface may change before general availability.
 
-> [!TIP]
-> Use the emulator while developing locally, then switch to the real Azure App Configuration service in higher environments by removing `.RunAsEmulator(...)` and providing the production connection/reference.
 
 **Typical project configuration usage:**
 
