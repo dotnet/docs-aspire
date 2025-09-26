@@ -592,23 +592,25 @@ Then browse to `http://localhost:8080` to launch the UI and manage configuration
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
-// Aspire injects the connection string as an environment variable.
-// Standard .NET configuration provider picks it up when you add Azure App Configuration packages
-// (for example: Microsoft.Extensions.Configuration.AzureAppConfiguration)
-
-builder.Configuration.AddAzureAppConfiguration(options =>
+builder.AddAzureAppConfiguration("config", configureOptions: options =>
 {
-    var connection = builder.Configuration["AppConfigurationConnectionString"];
-    options.Connect(connection);
+    options.ConfigureRefresh(refresh =>
+    {
+        refresh.RegisterAll();
+        refresh.SetRefreshInterval(TimeSpan.FromSeconds(10));
+    });
 });
 
 var app = builder.Build();
-app.MapGet("/feature-flags", (IConfiguration config) =>
+
+app.MapGet("/message", (IConfiguration config) =>
 {
-    return Results.Ok(new {
-        SampleSetting = config["Sample:Setting"]
-    });
+    var message = config["Message"];
+    return new { Message = message };
 });
+
+// Use Azure App Configuration middleware for dynamic configuration refresh.
+app.UseAzureAppConfiguration();
 
 app.Run();
 ```
