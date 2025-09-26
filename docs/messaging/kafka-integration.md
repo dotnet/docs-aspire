@@ -137,6 +137,32 @@ The Kafka hosting integration automatically adds a health check for the Kafka se
 
 The hosting integration relies on the [📦 AspNetCore.HealthChecks.Kafka](https://www.nuget.org/packages/AspNetCore.HealthChecks.Kafka) NuGet package.
 
+### Work with larger Kafka clusters
+
+The Aspire Kafka integration deploys a container from the [confluentinc/confluent-local image](https://hub.docker.com/r/confluentinc/confluent-local) to your local container host. This image provides a simple Apache Kafka cluster that runs in [KRaft mode](https://developer.confluent.io/learn/kraft/) and requires no further configuration. It's ideal for developing and testing producers and consumers. However, this image is for local experimentation only and isn't supported by Confluent. It isn't recommended for production environments and you may require a more robust Kafka cluster for testing and staging. For example, you may require more that one message broker in your cluster.
+
+See the [Kafka documentation](https://kafka.apache.org/documentation/) for details of Kafka cluster setup. Once your engineers have created and configured Kafka, you only need to provide it's location to Aspire by using a connection string.
+
+In the following AppHost code, a local container is used in run mode. At other times, a connection string provides URLs and port numbers for the Kafka brokers:
+
+```csharp
+var kafka = builder.ExecutionContext.IsRunMode
+    ? builder.AddKafka("kafka").WithKafkaUI()
+    : builder.AddConnectionString("kafka");
+```
+
+> [!NOTE]
+> For more information about connection strings in Aspire, see [Add existing Azure resources with connection strings](../azure/integrations-overview.md#add-existing-azure-resources-with-connection-strings)
+
+The AppHost resolves the connection string from the `ConnectionStrings__kafka` configuration key. It's possible to set this key by adding the connection string to the AppHost's **appsettings.json** file but this method stores the connection string in plain text and  doesn't protect it. Instead, you can use an environment variable or a user secret to store the connection string:
+
+```dotnetcli
+dotnet user-secrets set "ConnectionStrings:kafka" "kafka-broker-1.contoso.com:9092,kafka-broker-2.contoso.com:9092,kafka-broker-3.contoso.com:9092"
+```
+
+> [!NOTE]
+> For more information about protecting app secrets, see [Safe storage of app secrets in development in ASP.NET Core](/aspnet/core/security/app-secrets)
+
 ## Client integration
 
 To get started with the .NET Aspire Apache Kafka integration, install the [📦 Aspire.Confluent.Kafka](https://www.nuget.org/packages/Aspire.Confluent.Kafka) NuGet package in the client-consuming project, that is, the project for the application that uses the Apache Kafka client.
