@@ -88,19 +88,24 @@ Different integrations may use different placeholder conventions (environment va
 
 ## Publisher model and compute environments
 
-.NET Aspire uses a flexible publisher model that distributes publishing behavior across your application graph rather than relying on a single top-level publisher. Instead of selecting a target environment by calling methods like `AddDockerComposePublisher()`, Aspire includes a built-in publisher that looks for a `PublishingCallbackAnnotation` on each resource. This annotation describes how that resource should be published—for example, as a Docker Compose service, Kubernetes manifest, or Azure Bicep module.
+.NET Aspire uses a flexible publisher model that distributes publishing behavior across your application graph. Resources support publishing and deployment through annotations:
 
-This architectural shift enables hybrid and heterogeneous deployments, where different services within the same app can be deployed to different targets (cloud, edge, local).
+- `PublishingCallbackAnnotation` can be added to a resource to support `aspire publish`
+- `DeployingCallbackAnnotation` can be added to a resource to support `aspire deploy`
 
-### Most apps only need one environment
+This design enables hybrid and heterogeneous deployments, where different services within the same app can be deployed to different targets (cloud, edge, local).
 
-In typical apps, you only need to add a single compute environment, such as:
+### Compute environments
+
+A **compute environment** is a core deployment concept in .NET Aspire that represents a target platform where your application resources will be deployed. Compute environments define how resources should be transformed and what deployment artifacts should be generated.
+
+Most apps only need one compute environment, such as:
 
 ```csharp
 builder.AddAzureContainerAppEnvironment("env");
 ```
 
-Aspire applies the correct publishing behavior to all compute resources in your app model—no extra configuration needed.
+When you add a compute environment, Aspire applies the correct publishing behavior to all compatible compute resources in your app model—no extra configuration needed.
 
 ### Multiple environments require disambiguation
 
@@ -121,24 +126,21 @@ builder.AddProject<Projects.Backend>("backend")
 
 This example shows how you could explicitly map services to different compute targets—modeling, for example, a frontend in Kubernetes and a backend in Docker Compose.
 
-### Supported compute environments
-
-.NET Aspire has preview support for the following environment resources:
-
-- `AddDockerComposeEnvironment(...)`
-- `AddKubernetesEnvironment(...)`
-- `AddAzureContainerAppEnvironment(...)`
-- `AddAzureAppServiceEnvironment(...)`
-
-These represent deployment targets that can transform and emit infrastructure-specific artifacts from your app model.
-
 ## Hosting integration support matrix
 
 | Integration Package | Target | Publish | Deploy | Notes |
 |---------------------|--------|---------|--------|-------|
 | `Aspire.Hosting.Docker` | Docker / Docker Compose | Yes | No | Use generated Compose with your own scripts or tooling. |
 | `Aspire.Hosting.Kubernetes` | Kubernetes | Yes | No | Apply with `kubectl`, GitOps, or other controllers. |
-| `Aspire.Hosting.Azure` | Azure (Container Apps / App Service / related Azure resources) | Yes | Yes (Preview) | Deploy capability is in Preview and may change. |
+| `Aspire.Hosting.Azure` | Azure Container Apps | Yes | Yes (Preview) | Deploy capability is in Preview and may change. |
+| `Aspire.Hosting.Azure` | Azure App Service | Yes | Yes (Preview) | App Service deployment support is in Preview. |
+
+**Compute environments:**
+
+- `AddDockerComposeEnvironment(...)` - Docker Compose deployment target
+- `AddKubernetesEnvironment(...)` - Kubernetes deployment target  
+- `AddAzureContainerAppEnvironment(...)` - Azure Container Apps deployment target
+- `AddAzureAppServiceEnvironment(...)` - Azure App Service deployment target
 
 > Deploy support is integration-specific. Absence of deploy support means you use the published artifacts with external tooling.
 
