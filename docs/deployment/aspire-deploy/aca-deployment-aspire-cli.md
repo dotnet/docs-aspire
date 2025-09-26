@@ -1,6 +1,6 @@
 ---
-title: Deploy a .NET Aspire project (Azure Container Apps example) using the Aspire CLI
-description: Learn how the generic aspire deploy command uses deployment integrations (such as the Azure integration) to deploy .NET Aspire applications—this article shows the Azure Container Apps scenario.
+title: Deploy .NET Aspire projects to Azure Container Apps using the Aspire CLI
+description: Learn how to use the Aspire CLI command to deploy .NET Aspire projects to Azure Container Apps.
 ms.date: 09/25/2025
 ai-usage: ai-assisted
 ---
