@@ -914,7 +914,7 @@ When a newer version is detected, a friendly notification appears in the Aspire 
 
 :::image type="content" source="media/dashboard-update-notification.png" lightbox="media/dashboard-update-notification.png" alt-text="Screenshot of dashboard showing an update notification.":::
 
-Aspire only shows notifications when a newer version is available, and the checks happen in the background without impacting application startup or performance. The upgrade check system can be disable by setting the `ASPIRE_VERSION_CHECK_DISABLED` environment variable to `true`. For more information, see [AppHost configuration](/dotnet/aspire/app-host/configuration).
+Aspire only shows notifications when a newer version is available, and the checks happen in the background without impacting application startup or performance. The upgrade check system can be disabled by setting the `ASPIRE_VERSION_CHECK_DISABLED` environment variable to `true`. For more information, see [Aspire version update notifications](/dotnet/aspire/app-host/configuration#aspire-version-update-notifications).
 
 ### 📋 Parameters and connection strings visible in dashboard
 
