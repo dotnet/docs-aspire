@@ -1,6 +1,6 @@
 ---
 title: .NET Aspire deployments
-description: Understand how to publish and deploy .NET Aspire applications using the Aspire CLI, hosting integrations, and related tooling.
+description: Learn about essential deployment concepts for .NET Aspire.
 ms.topic: overview
 ms.date: 09/26/2025
 ---
@@ -24,6 +24,22 @@ These commands are generic orchestration surfaces. Actual behavior (what gets ge
 | `aspire deploy` | Runs a deployment using one or more integrations (build, parameter resolution, apply). | Real resources / applied changes. | Resolved. | Deploy support |
 
 If an integration does not implement deploy functionality, `aspire deploy` will not deploy that target (it may warn or no-op for it).
+
+When you run `aspire deploy` without any integrations that support deployment, you'll see this error:
+
+```
+FAILED: Analyzing the distributed application model for publishing and deployment capabilities.
+           No resources in the distributed application model support deployment.
+```
+
+Similarly, when you run `aspire publish` without any integrations that support publishing, you'll see:
+
+```
+Analyzing the distributed application model for publishing and deployment capabilities. 00:00:00
+           No resources in the distributed application model support publishing.
+```
+
+These messages indicate that you need to add deployment integrations to your AppHost project. Deployment integrations are NuGet packages (like `Aspire.Hosting.Docker`, `Aspire.Hosting.Kubernetes`, or `Aspire.Hosting.Azure`) that provide the publishing and deployment capabilities for specific target platforms.
 
 ## Parameter placeholders
 
@@ -69,6 +85,52 @@ Key points:
 - This keeps secrets and environment-specific values decoupled from generated structure.
 
 Different integrations may use different placeholder conventions (environment variables, tokens, or parameter metadata), but the principle remains: publish preserves *shape*, deploy injects *values*.
+
+## Publisher model and compute environments
+
+.NET Aspire uses a flexible publisher model that distributes publishing behavior across your application graph rather than relying on a single top-level publisher. Instead of selecting a target environment by calling methods like `AddDockerComposePublisher()`, Aspire includes a built-in publisher that looks for a `PublishingCallbackAnnotation` on each resource. This annotation describes how that resource should be published—for example, as a Docker Compose service, Kubernetes manifest, or Azure Bicep module.
+
+This architectural shift enables hybrid and heterogeneous deployments, where different services within the same app can be deployed to different targets (cloud, edge, local).
+
+### Most apps only need one environment
+
+In typical apps, you only need to add a single compute environment, such as:
+
+```csharp
+builder.AddAzureContainerAppEnvironment("env");
+```
+
+Aspire applies the correct publishing behavior to all compute resources in your app model—no extra configuration needed.
+
+### Multiple environments require disambiguation
+
+If you add multiple compute environments, Aspire needs to know which resource goes where. Compute environments apply their transformations to all applicable compute resources (projects, containers, executables). If more than one environment matches a given resource, Aspire throws an ambiguous environment exception at publish time.
+
+You can resolve this by using `WithComputeEnvironment(...)`:
+
+```csharp
+var k8s = builder.AddKubernetesEnvironment("k8s-env");
+var compose = builder.AddDockerComposeEnvironment("docker-env");
+
+builder.AddProject<Projects.Frontend>("frontend")
+    .WithComputeEnvironment(k8s);
+
+builder.AddProject<Projects.Backend>("backend")
+    .WithComputeEnvironment(compose);
+```
+
+This example shows how you could explicitly map services to different compute targets—modeling, for example, a frontend in Kubernetes and a backend in Docker Compose.
+
+### Supported compute environments
+
+.NET Aspire has preview support for the following environment resources:
+
+- `AddDockerComposeEnvironment(...)`
+- `AddKubernetesEnvironment(...)`
+- `AddAzureContainerAppEnvironment(...)`
+- `AddAzureAppServiceEnvironment(...)`
+
+These represent deployment targets that can transform and emit infrastructure-specific artifacts from your app model.
 
 ## Hosting integration support matrix
 
