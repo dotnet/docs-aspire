@@ -42,14 +42,6 @@ For this Azure Container Apps scenario ensure you have:
 - **Docker**: Installed and running (for building container images).
 - **Azure subscription**: Permissions to create resource groups, Container Apps, ACR, etc.
 
-## Enable the deploy command (preview)
-
-The `aspire deploy` command is currently in preview and disabled by default. To enable it:
-
-```Aspire
-aspire config set features.deployCommandEnabled true
-```
-
 ## How `aspire deploy` discovers deployment integrations
 
 When you run `aspire deploy`, the CLI:
@@ -77,23 +69,42 @@ az login
 - [Sign in with Azure CLI](/cli/azure/authenticate-azure-cli)
 - [`aspire deploy` command reference](/dotnet/aspire/cli-reference/aspire-deploy)
 
-## Create or adapt a .NET Aspire project for Azure Container Apps
+## Create a .NET Aspire project
 
-Start from the **.NET Aspire Starter Application** template (or an existing Aspire AppHost). Then add the Azure AppContainers package so the Azure integration (including ACA support) is available:
+As a starting point, this article assumes you've created a .NET Aspire project from the **.NET Aspire Starter Application** template. For more information, see [Quickstart: Build your first .NET Aspire project](../../get-started/build-your-first-aspire-app.md).
+
+To configure your project for Azure Container Apps deployment, add a package reference to your AppHost project that includes the [`📦Aspire.Hosting.Azure.AppContainers](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppContainers) NuGet package:
 
 ```xml
-<PackageReference Include="Aspire.Hosting.Azure.AppContainers" Version="9.5.0" />
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
+
+    <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>7b352f08-305b-4032-9a21-90deb02efc04</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
+    <PackageReference Include="Aspire.Hosting.Azure.AppContainers" Version="9.5.0" />
+    </ItemGroup>
+
+</Project>
 ```
 
-In your AppHost code, define an Azure Container Apps environment and your services:
+In your AppHost project's _AppHost.cs_ file, add the Container Apps environment:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Registers an ACA environment so the Azure integration deploys compute to Container Apps
+// Add Azure Container Apps environment
 var containerAppEnv = builder.AddAzureContainerAppEnvironment("aspire-env");
 
-// Example service topology
+// Add your services
 var cache = builder.AddRedis("cache");
 
 var apiService = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
@@ -106,9 +117,6 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
 
 builder.Build().Run();
 ```
-
-> [!NOTE]
-> If you omit `AddAzureContainerAppEnvironment`, the Azure integration may still provision supporting Azure resources (like storage) but will not deploy your projects as Azure Container Apps.
 
 For more information, see [Configure Azure Container Apps environments](../../azure/configure-aca-environments.md).
 
