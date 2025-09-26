@@ -36,11 +36,11 @@ This article focuses on the Azure Container Apps scenario enabled by that Azure 
 
 ## Prerequisites
 
-For this Azure Container Apps scenario ensure you have:
+Before using the `aspire deploy` command, ensure you have the following:
 
-- **Azure CLI**: Installed and authenticated.
-- **Docker**: Installed and running (for building container images).
-- **Azure subscription**: Permissions to create resource groups, Container Apps, ACR, etc.
+- **Azure CLI**: Installed and authenticated with your Azure account.
+- **Docker**: Installed for building container images.
+- **Azure subscription**: With appropriate permissions to create resources.
 
 ## How `aspire deploy` discovers deployment integrations
 
