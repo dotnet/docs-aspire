@@ -584,7 +584,6 @@ Then browse to `http://localhost:8080` to launch the UI and manage configuration
 > [!IMPORTANT]
 > The Azure App Configuration emulator is in **preview**. Behavior, image tags, and API surface may change before general availability.
 
-
 **Typical project configuration usage:**
 
 ```csharp
