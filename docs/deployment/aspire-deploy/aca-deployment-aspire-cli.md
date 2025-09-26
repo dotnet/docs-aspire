@@ -118,6 +118,9 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
 builder.Build().Run();
 ```
 
+> [!NOTE]
+> If you omit `AddAzureContainerAppEnvironment`, the Azure integration may still provision supporting Azure resources (like storage) but will not deploy your projects as Azure Container Apps.
+
 For more information, see [Configure Azure Container Apps environments](../../azure/configure-aca-environments.md).
 
 ### Resource naming
