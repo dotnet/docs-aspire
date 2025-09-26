@@ -170,101 +170,128 @@ Save to user secrets: [y/n] (n): n
 > [!NOTE]
 > During preview, user secret persistence may be limited; future releases may streamline reuse.
 
-### Provisioning infrastructure
-
-Provisioning uses generated Bicep templates produced by the Azure deployment integration (not by the generic CLI alone). Example output (truncated):
+Once parameters are collected, Azure infrastructure is provisioned using Bicep templates. This step creates the necessary Azure resources including the Container Apps environment, Container Registry, and any backing services like Redis caches:
 
 ```Output
 Step 3: Deploying Azure resources
+
     ✓ DONE: Deploying aca-env                              00:01:08
-    ...
+        Successfully provisioned aca-env
+    ✓ DONE: Deploying storage                              00:00:04
+        Successfully provisioned storage
+    ✓ DONE: Deploying cosmosdb                             00:01:08
+        Successfully provisioned cosmosdb
+    ✓ DONE: Deploying apiservice-identity                  00:00:03
+        Successfully provisioned apiservice-identity
+    ✓ DONE: Deploying apiservice-roles-storage             00:00:11
+        Successfully provisioned apiservice-roles-storage
+    ✓ DONE: Deploying apiservice-roles-cosmosdb            00:01:10
+        Successfully provisioned apiservice-roles-cosmosdb
 ```
 
-### Building and pushing images
+After infrastructure provisioning, your application projects are built as container images and pushed to Azure Container Registry.
 
-Images are tagged (by convention) with an `aspire-deploy-<timestamp>` suffix before being pushed to ACR.
+```Output
+Step 4: Building container images for resources
 
-### Deploying compute (Container Apps)
+    ✓ DONE: Checking Docker health               00:00:00
+        Docker is healthy.
+    ✓ DONE: Building image: apiservice           00:00:04
+        Building image for apiservice completed
+    ✓ DONE: Building image: webfrontend          00:00:05
+        Building image for webfrontend completed
 
-Each project with external endpoints (or appropriate deployment metadata) becomes a Container App:
+✅ COMPLETED: Building container images completed
+
+Step 5: Authenticating to container registries
+
+    ✓ DONE: Logging in to acrname         00:00:08
+        Successfully logged in to acrname
+
+✅ COMPLETED: Successfully authenticated to 1 container registries
+
+Step 6: Pushing 2 images to container registries
+
+    ✓ DONE: Pushing apiservice to acrname                                                              00:00:04
+        Successfully pushed apiservice to acrname.azurecr.io/apiservice:aspire-deploy-20250922203320
+    ✓ DONE: Pushing webfrontend to acrname                                                             00:00:04
+        Successfully pushed webfrontend to acrname.azurecr.io/webfrontend:aspire-deploy-20250922203320
+
+✅ COMPLETED: Successfully pushed 2 images to container registries
+```
+
+Finally, all .NET projects that were built as container images from the previous step, are pushed to provisioned Azure Container Registry—where they'll live, making them available to Container Apps:
 
 ```Output
 Step 7: Deploying compute resources
-    ✓ DONE: Deploying apiservice ...
-    ✓ DONE: Deploying webfrontend ...
+
+    ✓ DONE: Deploying apiservice                                                                                   00:00:35
+        Successfully deployed apiservice to https://apiservice.proudplant-5c457a5d.westus2.azurecontainerapps.io
+    ✓ DONE: Deploying webfrontend                                                                                  00:00:19
+        Successfully deployed webfrontend to https://webfrontend.proudplant-5c457a5d.westus2.azurecontainerapps.io
+
+✅ COMPLETED: Successfully deployed 2 compute resources
 ```
 
-### Completion
+Upon successful deployment, you'll see the Aspire dashboard URL where you can monitor and manage your deployed application:
 
 ```Output
 ✅ Deployment completed successfully. View Aspire dashboard at https://aspire-env.proudwater-12345678.eastus.azurecontainerapps.io
 ```
 
+For more information on what options are available on the `aspire deploy` command and examples of how to supply them on the CLI, see the [`aspire deploy` command reference](../../cli-reference/aspire-deploy.md).
+
 ## Monitor deployment
 
-You can monitor through:
+During deployment, you can monitor progress through:
 
-1. **Console output** – Integration-provided progress.
-2. **Azure portal** – Resource group activity.
-3. **Azure CLI**:
+1. **Console output**: Real-time progress updates and status messages.
+1. **Azure portal**: View resources being created in your resource group.
+1. **Azure CLI**: Use `az containerapp list` to see deployed applications.
 
-   ```azurecli
-   az containerapp list --resource-group <resource-group>
-   ```
+## Troubleshooting deployment
 
-## Troubleshooting
+When using the `aspire deploy` command, you may encounter various issues during deployment. Use this section to learn common problems and we provide you with tips for troubleshooting, helping you quickly identify and fix errors. With the right approach and understanding of common issues, you can ensure a smoother deployment process.
 
 ### Authentication issues
+
+If you encounter authentication errors:
 
 ```bash
 ❌ Azure CLI authentication failed. Please run 'az login' to authenticate before deploying.
 ```
 
-Run `az login` and ensure you have the necessary permissions.
-
-### Missing Azure integration behavior
-
-If nothing is provisioned for Azure:
-
-- Confirm an Azure hosting package is referenced (for example `Aspire.Hosting.Azure.AppContainers`).
-- Confirm `builder.AddAzureContainerAppEnvironment(...)` is present for ACA compute.
+Run `az login` and ensure you have the necessary permissions in your Azure subscription. For more information, see [Sign in with Azure CLI](/cli/azure/authenticate-azure-cli).
 
 ### Resource naming conflicts
 
-Adjust names in your AppHost code:
+If resource names conflict with existing Azure resources, modify your resource names in the AppHost:
 
 ```csharp
-var containerAppEnv = builder.AddAzureContainerAppEnvironment("my-unique-env-name");
+var containerAppEnv = builder.AddAzureContainerAppEnvironment(
+        "my-unique-env-name"
+    );
 ```
 
 ### Container build failures
 
-Check:
+If container builds fail, ensure:
 
-- Docker is running.
-- Local build succeeds: `dotnet build`.
-- No conflicting Docker daemon permissions.
+- Docker is running and accessible.
+- Your project builds successfully locally: `dotnet build`.
+- Container runtime is properly configured.
 
 ## Access your deployed application
 
-1. **Aspire Dashboard**: URL from deployment output.
-2. **Application endpoints**: Visible in the Container Apps blade per app.
-3. **CLI**:
+After successful deployment:
+
+1. **Aspire Dashboard**: Access the dashboard URL provided in the deployment output.
+1. **Application endpoints**: Find your application URLs in the Azure portal under Container Apps.
+1. **Azure CLI**: List endpoints using:
 
    ```azurecli
    az containerapp show --name <app-name> --resource-group <resource-group> --query properties.configuration.ingress.fqdn
    ```
-
-## Other deployment integrations
-
-`aspire deploy` is designed to orchestrate multiple platform integrations. While this article demonstrates Azure Container Apps, the same model can enable additional targets (for example Kubernetes-based environments) through their own integrations. Each integration is responsible for:
-
-- Describing provisionable infrastructure and dependencies.
-- Building/publishing artifacts needed by its platform.
-- Applying platform-specific deployment operations.
-- Emitting post-deployment outputs (endpoints, dashboards, connection info).
-
-Consult the documentation for any additional integration you add to understand its specific configuration and prerequisites.
 
 ## Clean up resources
 
@@ -276,6 +303,6 @@ az group delete --name <resource-group-name>
 
 ## Next steps
 
-- [`aspire deploy` command reference](../../cli-reference/aspire-deploy.md)
-- [Customize Azure deployments in Aspire](customize-deployments.md)
-- [Azure security best practices for Aspire apps](azure-security-best-practices.md)
+- [aspire deploy command reference](../../cli-reference/aspire-deploy.md).
+- [Customize Azure deployments in Aspire](customize-deployments.md).
+- [Azure security best practices for Aspire apps](azure-security-best-practices.md).
