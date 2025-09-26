@@ -592,14 +592,7 @@ Then browse to `http://localhost:8080` to launch the UI and manage configuration
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddAzureAppConfiguration("config", configureOptions: options =>
-{
-    options.ConfigureRefresh(refresh =>
-    {
-        refresh.RegisterAll();
-        refresh.SetRefreshInterval(TimeSpan.FromSeconds(10));
-    });
-});
+builder.AddAzureAppConfiguration("config");
 
 var app = builder.Build();
 
@@ -608,10 +601,6 @@ app.MapGet("/message", (IConfiguration config) =>
     var message = config["Message"];
     return new { Message = message };
 });
-
-// Use Azure App Configuration middleware for dynamic configuration refresh.
-app.UseAzureAppConfiguration();
-
 app.Run();
 ```
 
