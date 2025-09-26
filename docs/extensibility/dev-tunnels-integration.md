@@ -1,10 +1,10 @@
 ---
-title: .NET Aspire dev tunnels integration
+title: .NET Aspire dev tunnels integration (Preview)
 description: Learn how to use the .NET Aspire dev tunnels integration to securely expose local endpoints publicly during development.
 ms.date: 09/23/2025
 ---
 
-# .NET Aspire dev tunnels integration
+# .NET Aspire dev tunnels integration (Preview)
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
@@ -33,7 +33,7 @@ To get started with the .NET Aspire dev tunnels integration, install the [📦 A
 ### [.NET CLI](#tab/dotnet-cli)
 
 ```dotnetcli
-dotnet add package Aspire.Hosting.DevTunnels
+dotnet add package Aspire.Hosting.DevTunnels --prerelease
 ```
 
 ### [PackageReference](#tab/package-reference)
