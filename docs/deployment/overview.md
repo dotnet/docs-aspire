@@ -250,12 +250,6 @@ internal static class DataSeedJobResourceBuilderExtensions
 
 This custom deployment logic integrates seamlessly with the `aspire deploy` command, providing interactive prompts and progress reporting.
 
-> [!NOTE]
-> While the `DeployingCallbackAnnotation` API is available, there are currently no built-in resources that natively support deployment callbacks. Built-in resource support will be added in future versions.
-
-> [!IMPORTANT]
-> The `aspire deploy` command requires enabling a feature flag: `aspire config set features.deployCommandEnabled true`
-
 ## Diagnostics & auditing
 
 Publishing gives you an immutable snapshot of intended structure before secrets appear. You can:
