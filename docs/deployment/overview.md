@@ -219,7 +219,7 @@ Publishing gives you an immutable snapshot of intended structure before secrets 
 
 ### Aspir8 (Kubernetes YAML generation)
 
-[Aspir8 (Aspirate)](https://prom3theu5.github.io/aspirational) remains a community tool that can transform an Aspire application model into Kubernetes manifests. While the Kubernetes hosting integration covers publish generation, Aspir8 may offer additional transforms or workflow preferences.
+[Aspir8 (Aspirate)](https://prom3theu5.github.io/aspirational) is a community tool that can transform an Aspire application model into Kubernetes manifests. While the Kubernetes hosting integration covers publish generation, Aspir8 may offer additional transforms or workflow preferences.
 
 ## Legacy deployment manifest (footnote)
 
