@@ -182,8 +182,6 @@ If an integration supports deployment, you can run:
 aspire deploy
 ```
 
-(Only use documented flags. Avoid assuming support for flags not present in current tooling.)
-
 This performs build + parameter resolution + application of changes for that integration's targets.
 
 ## Extensibility
