@@ -101,13 +101,7 @@ A **compute environment** is a core deployment concept in .NET Aspire that repre
 
 **Compute resources** are the runnable parts of your application, such as .NET projects, containers, and executables that need to be deployed to a compute environment.
 
-An ACA environment is like a secure container app cluster. Most applications only need one such cluster, since it provides internal networking, scaling, and service discovery. Multiple environments are only required when you need regional separation, strict isolation, or organizational boundaries. For most apps, those cases don't apply. Most often, the following code is sufficient:
-
-```csharp
-builder.AddAzureContainerAppEnvironment("env");
-```
-
-When you add a compute environment, Aspire applies the correct publishing behavior to all compatible compute resources in your app model—no extra configuration needed.
+When you add a compute environment like Docker Compose or Kubernetes, Aspire applies the correct publishing behavior to all compatible compute resources in your app model—no extra configuration needed.
 
 ### Multiple environments require disambiguation
 
@@ -165,20 +159,7 @@ docker compose -f artifacts/docker-compose.yml up --build
 
 Missing variables like `PG_PASSWORD` must be set in the shell, an `.env` file, or injected by your chosen runner.
 
-### 3. CI/CD pipeline pattern
-
-1. Run `aspire publish -o artifacts/` in a build job.
-2. Archive or inspect artifacts (linting, security scanning, image signing).
-3. Inject parameter values (environment variables, secrets store, variable groups).
-4. Execute deployment:
-   - Docker: `docker compose up -d`
-   - Kubernetes: `kubectl apply -f artifacts/`
-   - Azure: Use Azure CLI or deployment scripts with the published artifacts
-   - Custom: your own script or orchestrator.
-
-Alternative for Azure: If using integrations with deploy support, you can use `aspire deploy` instead of publishing and deploying separately.
-
-### 4. Using `aspire deploy`
+### 3. Using `aspire deploy`
 
 If an integration supports deployment, you can run:
 
@@ -190,18 +171,90 @@ This resolves parameters and applies deployment changes for integrations that su
 
 ## Extensibility
 
-The system is designed so you can author new integrations that participate in:
+The `aspire publish` and `aspire deploy` commands support extensible workflows through annotations that you can add to resources. This functionality is in preview and may change in future releases.
 
-- Publish phase: generating artifacts for a target platform (for example, a service mesh config, an infrastructure-as-code definition, or a proprietary orchestrator spec).
-- Deploy phase: applying resources to a new deployment target (for example, a proprietary app hosting environment).
+### Custom publishing and deployment callbacks
 
-A custom integration can:
+Resources support custom publishing and deployment behavior through annotations:
 
-- Transform application resources into platform-specific configurations.
-- Handle parameter resolution and secret management.
-- Implement deployment workflows for custom platforms.
+- **`PublishingCallbackAnnotation`**: Executes custom logic during `aspire publish` operations
+- **`DeployingCallbackAnnotation`**: Executes custom logic during `aspire deploy` operations
 
-Because published assets are parameterized, you can integrate custom secret and configuration resolution without modifying the core publishing logic.
+The following example demonstrates using `DeployingCallbackAnnotation` to register custom deployment behavior:
+
+```csharp
+#pragma warning disable ASPIREPUBLISHERS001
+#pragma warning disable ASPIREINTERACTION001
+
+using Aspire.Hosting.Publishing;
+using Microsoft.Extensions.DependencyInjection;
+
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Custom deployment step defined below
+builder.AddDataSeedJob("SeedInitialData", seedDataPath: "data/seeds");
+
+builder.Build().Run();
+
+internal class DataSeedJobResource(string name, string seedDataPath)
+    : Resource(name)
+{
+    public string SeedDataPath { get; } = seedDataPath;
+}
+
+internal static class DataSeedJobResourceBuilderExtensions
+{
+    public static IResourceBuilder<DataSeedJobResource> AddDataSeedJob(
+        this IDistributedApplicationBuilder builder,
+        string name,
+        string seedDataPath = "data/seeds")
+    {
+        var job = new DataSeedJobResource(name, seedDataPath);
+        var resourceBuilder = builder.AddResource(job);
+
+        // Attach a DeployingCallbackAnnotation that will be invoked on `aspire deploy`
+        job.Annotations.Add(new DeployingCallbackAnnotation(async ctx =>
+        {
+            CancellationToken ct = ctx.CancellationToken;
+
+            // Prompt the user for a confirmation using the interaction service
+            var interactionService = ctx.Services.GetRequiredService<IInteractionService>();
+
+            var envResult = await interactionService.PromptInputAsync(
+                "Environment Configuration",
+                "Please enter the target environment name:",
+                new InteractionInput
+                {
+                    Label = "Environment Name",
+                    InputType = InputType.Text,
+                    Required = true,
+                    Placeholder = "dev, staging, prod"
+                },
+                cancellationToken: ct);
+
+            // Custom deployment logic here
+            var reporter = ctx.ActivityReporter;
+            await using (var deployStep = await reporter.CreateStepAsync(
+                $"Deploying data seed job to {envResult.Value}", ct))
+            {
+                // Simulate deployment work
+                await Task.Delay(2000, ct);
+                await deployStep.SucceedAsync("Data seed job deployed successfully", ct);
+            }
+        }));
+
+        return resourceBuilder;
+    }
+}
+```
+
+This custom deployment logic integrates seamlessly with the `aspire deploy` command, providing interactive prompts and progress reporting.
+
+> [!NOTE]
+> While the `DeployingCallbackAnnotation` API is available, there are currently no built-in resources that natively support deployment callbacks. Built-in resource support will be added in future versions.
+
+> [!IMPORTANT]
+> The `aspire deploy` command requires enabling a feature flag: `aspire config set features.deployCommandEnabled true`
 
 ## Diagnostics & auditing
 
@@ -215,11 +268,11 @@ Publishing gives you an immutable snapshot of intended structure before secrets 
 
 ### Azure Developer CLI (`azd`)
 
-[Azure Developer CLI (azd)](https://learn.microsoft.com/azure/developer/azure-developer-cli/) can provision infrastructure, manage environments, and coordinate secret/value injection. You can incorporate Aspire publish artifacts into `azd` workflows or use the Azure integration (preview) directly.
+[Azure Developer CLI (azd)](https://learn.microsoft.com/azure/developer/azure-developer-cli/) has first-class support for deploying Aspire projects. It can provision infrastructure, manage environments, and coordinate secret/value injection. You can incorporate Aspire publish artifacts into `azd` workflows or use the Azure integration (preview) directly.
 
 ### Aspir8 (Kubernetes YAML generation)
 
-[Aspir8 (Aspirate)](https://prom3theu5.github.io/aspirational) is a community tool that can transform an Aspire application model into Kubernetes manifests. While the Kubernetes hosting integration covers publish generation, Aspir8 may offer additional transforms or workflow preferences.
+<a href="https://prom3theu5.github.io/aspirational">Aspir8 (Aspirate)</a> is a community tool that can transform an Aspire application model into Kubernetes manifests. While the Kubernetes hosting integration covers publish generation, Aspir8 may offer additional transforms or workflow preferences.
 
 ## Legacy deployment manifest (footnote)
 
