@@ -12,7 +12,7 @@ Aspire separates the act of _producing deployment assets_ from _executing a depl
 - `aspire publish`: Generates intermediate, parameterized assets for one or more hosting integrations.
 - `aspire deploy`: Executes a deployment (when an integration implements deploy semantics) by resolving parameters and applying changes to a target environment.
 
-These commands are generic orchestration surfaces. Actual behavior (what gets generated, how deployment happens) comes from **hosting integrations** you reference (for example: Docker, Kubernetes, Azure). The system is **extensible**—you can build your own publishing or deployment integrations that plug into the same model.
+These commands provide direct access to publishing and deployment capabilities. The actual behavior (what gets generated, how deployment happens) comes from **hosting integrations** you reference (for example: Docker, Kubernetes, Azure). The system is **extensible**—you can build your own publishing or deployment integrations that plug into the same model.
 
 The `aspire publish` command produces deployment artifacts that contain unresolved parameters (placeholders). The `aspire deploy` command uses these artifacts, resolves the parameters when supported by the target integration, and then executes the deployment. Some integrations don't support the `deploy` command.
 
@@ -99,6 +99,8 @@ This design enables hybrid and heterogeneous deployments, where different servic
 
 A **compute environment** is a core deployment concept in .NET Aspire that represents a target platform where your application resources will be deployed. Compute environments define how resources should be transformed and what deployment artifacts should be generated.
 
+**Compute resources** are the runnable parts of your application, such as .NET projects, containers, and executables that need to be deployed to a compute environment.
+
 An ACA environment is like a secure container app cluster. Most applications only need one such cluster, since it provides internal networking, scaling, and service discovery. Multiple environments are only required when you need regional separation, strict isolation, or organizational boundaries. For most apps, those cases don't apply. Most often, the following code is sufficient:
 
 ```csharp
@@ -171,8 +173,10 @@ Missing variables like `PG_PASSWORD` must be set in the shell, an `.env` file, o
 4. Execute deployment:
    - Docker: `docker compose up -d`
    - Kubernetes: `kubectl apply -f artifacts/`
-   - Azure (if using deploy-capable integration): `aspire deploy` (invoked in a suitable context)
+   - Azure: Use Azure CLI or deployment scripts with the published artifacts
    - Custom: your own script or orchestrator.
+
+Alternative for Azure: If using integrations with deploy support, you can use `aspire deploy` instead of publishing and deploying separately.
 
 ### 4. Using `aspire deploy`
 
@@ -182,7 +186,7 @@ If an integration supports deployment, you can run:
 aspire deploy
 ```
 
-This performs build + parameter resolution + application of changes for that integration's targets.
+This resolves parameters and applies deployment changes for integrations that support deployment.
 
 ## Extensibility
 
@@ -193,12 +197,11 @@ The system is designed so you can author new integrations that participate in:
 
 A custom integration can:
 
-- Contribute resource translators (map application model elements to platform units).
-- Provide parameter mapping strategies (for example: infer required variables; annotate defaults).
-- Emit diagnostic metadata (for tooling or UX).
-- Implement deployment execution (apply/update/delete, health probing, diffing).
+- Transform application resources into platform-specific configurations.
+- Handle parameter resolution and secret management.
+- Implement deployment workflows for custom platforms.
 
-Because published assets are parameterized, integrators can cleanly plug in secret/value resolution at the final step without modifying the structural generation logic.
+Because published assets are parameterized, you can integrate custom secret and configuration resolution without modifying the core publishing logic.
 
 ## Diagnostics & auditing
 
@@ -242,11 +245,10 @@ This:
 
 ## See also
 
-- Hosting integration reference packages (`Aspire.Hosting.*`)
-- Observability and telemetry guidance
-- Secret and parameter handling recommendations
-- Azure deployment (preview) notes
-- Community tooling (Aspir8)
+- [Hosting integrations overview](../fundamentals/integrations-overview.md)
+- [Azure deployment with Container Apps](azure/aca-deployment.md)
+- [.NET Aspire CLI reference](../cli-reference/overview.md)
+- [Community tooling (Aspir8)](https://prom3theu5.github.io/aspirational)
 
 ---
 *Design for extensibility: treat publish output as an invariant structural contract and keep environment-specific values out until deployment time.*
