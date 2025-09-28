@@ -1,20 +1,20 @@
 ---
-title: .NET Aspire deployments
-description: Learn about essential deployment concepts for .NET Aspire.
+title: Aspire publishing and deployment
+description: Learn how Aspire solutions are published and deployed.
 ms.topic: overview
 ms.date: 09/26/2025
 ---
 
-# .NET Aspire deployment overview
+# Aspire publishing and deployment overview
 
-.NET Aspire separates the act of *producing deployment assets* from *executing a deployment*. The Aspire CLI (`aspire`) provides two high‑level entrypoints:
+Aspire separates the act of _producing deployment assets_ from _executing a deployment_. The Aspire CLI (`aspire`) provides two high‑level entrypoints:
 
-- `aspire publish` – Generates intermediate, parameterized assets for one or more hosting integrations.
-- `aspire deploy` – Executes a deployment (when an integration implements deploy semantics) by resolving parameters and applying changes to a target environment.
+- `aspire publish`: Generates intermediate, parameterized assets for one or more hosting integrations.
+- `aspire deploy`: Executes a deployment (when an integration implements deploy semantics) by resolving parameters and applying changes to a target environment.
 
 These commands are generic orchestration surfaces. Actual behavior (what gets generated, how deployment happens) comes from **hosting integrations** you reference (for example: Docker, Kubernetes, Azure). The system is **extensible**—you can build your own publishing or deployment integrations that plug into the same model.
 
-> Summary: `aspire publish` outputs artifacts with unresolved parameters (placeholders). `aspire deploy` resolves those parameters (when supported) and carries out the deployment. Not every integration supports deploy.
+The `aspire publish` command produces deployment artifacts that contain unresolved parameters (placeholders). The `aspire deploy` command uses these artifacts, resolves the parameters when supported by the target integration, and then executes the deployment. Some integrations don't support the `deploy` command.
 
 ## Aspire CLI commands (conceptual behavior)
 
@@ -27,14 +27,14 @@ If an integration does not implement deploy functionality, `aspire deploy` will 
 
 When you run `aspire deploy` without any integrations that support deployment, you'll see this error:
 
-```
+```Output
 FAILED: Analyzing the distributed application model for publishing and deployment capabilities.
            No resources in the distributed application model support deployment.
 ```
 
 Similarly, when you run `aspire publish` without any integrations that support publishing, you'll see:
 
-```
+```Output
 Analyzing the distributed application model for publishing and deployment capabilities. 00:00:00
            No resources in the distributed application model support publishing.
 ```
@@ -99,7 +99,7 @@ This design enables hybrid and heterogeneous deployments, where different servic
 
 A **compute environment** is a core deployment concept in .NET Aspire that represents a target platform where your application resources will be deployed. Compute environments define how resources should be transformed and what deployment artifacts should be generated.
 
-Most apps only need one compute environment, such as:
+An ACA environment is like a secure container app cluster. Most applications only need one such cluster, since it provides internal networking, scaling, and service discovery. Multiple environments are only required when you need regional separation, strict isolation, or organizational boundaries. For most apps, those cases don't apply. Most often, the following code is sufficient:
 
 ```csharp
 builder.AddAzureContainerAppEnvironment("env");
@@ -124,7 +124,7 @@ builder.AddProject<Projects.Backend>("backend")
     .WithComputeEnvironment(compose);
 ```
 
-This example shows how you could explicitly map services to different compute targets—modeling, for example, a frontend in Kubernetes and a backend in Docker Compose.
+This example shows how you could explicitly map services to different compute environments. For example, a frontend in Kubernetes and a backend in Docker Compose.
 
 ## Hosting integration support matrix
 
@@ -132,8 +132,8 @@ This example shows how you could explicitly map services to different compute ta
 |---------------------|--------|---------|--------|-------|
 | `Aspire.Hosting.Docker` | Docker / Docker Compose | Yes | No | Use generated Compose with your own scripts or tooling. |
 | `Aspire.Hosting.Kubernetes` | Kubernetes | Yes | No | Apply with `kubectl`, GitOps, or other controllers. |
-| `Aspire.Hosting.Azure` | Azure Container Apps | Yes | Yes (Preview) | Deploy capability is in Preview and may change. |
-| `Aspire.Hosting.Azure` | Azure App Service | Yes | Yes (Preview) | App Service deployment support is in Preview. |
+| `Aspire.Hosting.Azure.AppContainers` | Azure Container Apps | Yes | Yes (Preview) | Deploy capability is in Preview and may change. |
+| `Aspire.Hosting.Azure.AppService` | Azure App Service | Yes | Yes (Preview) | Deploy capability is in Preview and may change. |
 
 **Compute environments:**
 
@@ -191,7 +191,7 @@ This performs build + parameter resolution + application of changes for that int
 The system is designed so you can author new integrations that participate in:
 
 - Publish phase: generating artifacts for a target platform (for example, a service mesh config, an infrastructure-as-code definition, or a proprietary orchestrator spec).
-- Deploy phase: resolving parameters and applying those artifacts (if your integration can perform or coordinate deployment actions).
+- Deploy phase: applying resources to a new deployment target (for example, a proprietary app hosting environment).
 
 A custom integration can:
 
