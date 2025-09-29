@@ -2,7 +2,7 @@
 title: Aspire publishing and deployment
 description: Learn how Aspire solutions are published and deployed.
 ms.topic: overview
-ms.date: 09/26/2025
+ms.date: 09/29/2025
 ---
 
 # Aspire publishing and deployment overview
@@ -28,15 +28,23 @@ If an integration does not implement deploy functionality, `aspire deploy` will 
 When you run `aspire publish` without any integrations that support publishing, you'll see:
 
 ```Output
-Analyzing the distributed application model for publishing and deployment capabilities. 00:00:00
+Step 1: Analyzing model.
+
+       ✗ FAILED: Analyzing the distributed application model for publishing and deployment capabilities. 00:00:00
            No resources in the distributed application model support publishing.
+
+❌ FAILED: Analyzing model. completed with errors
 ```
 
 Similarly, when you run `aspire deploy` without any integrations that support deployment, you'll see this error:
 
 ```Output
-FAILED: Analyzing the distributed application model for publishing and deployment capabilities.
+Step 1: Analyzing model.
+
+       ✗ FAILED: Analyzing the distributed application model for publishing and deployment capabilities. 00:00:00
            No resources in the distributed application model support deployment.
+
+❌ FAILED: Analyzing model. completed with errors
 ```
 
 These messages indicate that you need to add hosting integrations to your AppHost project. Hosting integrations are NuGet packages (like `Aspire.Hosting.Docker`, `Aspire.Hosting.Kubernetes`, or `Aspire.Hosting.Azure`) that provide the publishing and deployment capabilities for specific target platforms.
@@ -90,8 +98,8 @@ Different integrations may use different placeholder conventions (environment va
 
 Aspire uses a flexible publisher model that distributes publishing behavior across your application graph. Resources support publishing and deployment through annotations:
 
-- `aspire publish`
-- `aspire deploy`
+- [`aspire publish`](../cli-reference/aspire-publish.md)
+- [`aspire deploy`](../cli-reference/aspire-deploy.md)
 
 This design enables hybrid and heterogeneous deployments, where different services within the same app can be deployed to different targets (cloud, edge, local).
 
@@ -122,6 +130,8 @@ builder.AddProject<Projects.Backend>("backend")
 
 This example shows how you could explicitly map services to different compute environments. For example, a frontend in Kubernetes and a backend in Docker Compose.
 
+<span id="deploy-to-kubernetes"></span>
+
 ## Hosting integration support matrix
 
 | Integration package | Target | Publish | Deploy | Notes |
@@ -129,7 +139,7 @@ This example shows how you could explicitly map services to different compute en
 | [Aspire.Hosting.Docker](https://www.nuget.org/packages/Aspire.Hosting.Docker) | Docker / Docker Compose | ✅ Yes | ❌ No | Use generated Compose with your own scripts or tooling. |
 | [Aspire.Hosting.Kubernetes](https://www.nuget.org/packages/Aspire.Hosting.Docker) | Kubernetes | ✅ Yes | ❌ No | Apply with `kubectl`, GitOps, or other controllers. |
 | [Aspire.Hosting.Azure.AppContainers](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppContainers) | Azure Container Apps | ✅ Yes | ✅ Yes (Preview) | Deploy capability is in Preview and may change. |
-| [Aspire.Hosting.Azure.AppService](Aspire.Hosting.Azure.AppService) | Azure App Service | ✅ Yes | ✅ Yes (Preview) | Deploy capability is in Preview and may change. |
+| [Aspire.Hosting.Azure.AppService](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppService) | Azure App Service | ✅ Yes | ✅ Yes (Preview) | Deploy capability is in Preview and may change. |
 
 > [!TIP]
 > Deploy support is integration-specific. Absence of deploy support means you use the published artifacts with external tooling.
@@ -171,8 +181,8 @@ The `aspire publish` and `aspire deploy` commands support extensible workflows t
 
 Resources support custom publishing and deployment behavior through annotations:
 
-- **`PublishingCallbackAnnotation`**: Executes custom logic during `aspire publish` operations
-- **`DeployingCallbackAnnotation`**: Executes custom logic during `aspire deploy` operations
+- <xref:Aspire.Hosting.ApplicationModel.PublishingCallbackAnnotation>: Executes custom logic during `aspire publish` operations.
+- <xref:Aspire.Hosting.ApplicationModel.DeployingCallbackAnnotation>: Executes custom logic during `aspire deploy` operations.
 
 The following example demonstrates using `DeployingCallbackAnnotation` to register custom deployment behavior:
 
@@ -242,7 +252,7 @@ internal static class DataSeedJobResourceBuilderExtensions
 }
 ```
 
-This custom deployment logic integrates seamlessly with the `aspire deploy` command, providing interactive prompts and progress reporting.
+This custom deployment logic integrates seamlessly with the `aspire deploy` command, providing interactive prompts and progress reporting. For more information, see [Resource annotations in Aspire](../fundamentals/annotations-overview.md).
 
 ## Diagnostics and auditing
 
@@ -258,9 +268,9 @@ Publishing gives you an immutable snapshot of intended structure before secrets 
 
 [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/) has first-class support for deploying Aspire projects. It can provision infrastructure, manage environments, and coordinate secret/value injection. You can incorporate Aspire publish artifacts into `azd` workflows or use the Azure integration (preview) directly.
 
-## Legacy deployment manifest (footnote)
+## Deployment manifest
 
-Earlier workflows emphasized a single "deployment manifest" generated from specialized AppHost targets. The modern approach centers on `aspire publish` + integration extensibility. The legacy manifest format is **not being evolved further**, but you can still generate it for inspection or debugging:
+Starting with Aspire 9.2, the [manifest format](manifest-format.md) is slowly being phased out in favor of Aspire CLI publish and deploy command support and APIs for defining publishing and deploying functionality. Earlier workflows emphasized a single "deployment manifest" generated from specialized AppHost targets. The modern approach centers on `aspire publish` + integration extensibility. The legacy manifest format is **not being evolved further**, but you can still generate it for inspection or debugging:
 
 ```Aspire
 aspire publish --publisher manifest -o diagnostics/
@@ -274,15 +284,10 @@ This:
 
 ## Key takeaways
 
-- Publish first, then deploy (separation of structure and values).
-- Artifacts are parameterized; resolution happens later.
-- Integrations define actual publish/deploy behaviors.
-- The system is extensible—build your own integration to target new platforms or internal tooling.
-- The legacy manifest can still be generated, but it's static and not evolving.
+Publishing comes first, followed by deployment, which separates the structure from the values. The artifacts produced during publishing are parameterized, with resolution occurring later in the process. Specific integrations determine the actual behaviors of publishing and deployment, and the system is designed to be extensible, allowing you to build custom integrations that target new platforms or internal tooling. While the legacy manifest can still be generated, it remains static and is no longer evolving.
 
 ## See also
 
 - [Hosting integrations overview](../fundamentals/integrations-overview.md)
 - [Azure deployment with Container Apps](azure/aca-deployment.md)
 - [Aspire CLI reference](../cli-reference/overview.md)
-
