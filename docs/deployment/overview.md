@@ -25,21 +25,21 @@ The `aspire publish` command produces deployment artifacts that contain unresolv
 
 If an integration does not implement deploy functionality, `aspire deploy` will not deploy that target (it may warn or no-op for it).
 
-When you run `aspire deploy` without any integrations that support deployment, you'll see this error:
-
-```Output
-FAILED: Analyzing the distributed application model for publishing and deployment capabilities.
-           No resources in the distributed application model support deployment.
-```
-
-Similarly, when you run `aspire publish` without any integrations that support publishing, you'll see:
+When you run `aspire publish` without any integrations that support publishing, you'll see:
 
 ```Output
 Analyzing the distributed application model for publishing and deployment capabilities. 00:00:00
            No resources in the distributed application model support publishing.
 ```
 
-These messages indicate that you need to add deployment integrations to your AppHost project. Deployment integrations are NuGet packages (like `Aspire.Hosting.Docker`, `Aspire.Hosting.Kubernetes`, or `Aspire.Hosting.Azure`) that provide the publishing and deployment capabilities for specific target platforms.
+Similarly, when you run `aspire deploy` without any integrations that support deployment, you'll see this error:
+
+```Output
+FAILED: Analyzing the distributed application model for publishing and deployment capabilities.
+           No resources in the distributed application model support deployment.
+```
+
+These messages indicate that you need to add hosting integrations to your AppHost project. Hosting integrations are NuGet packages (like `Aspire.Hosting.Docker`, `Aspire.Hosting.Kubernetes`, or `Aspire.Hosting.Azure`) that provide the publishing and deployment capabilities for specific target platforms.
 
 ## Parameter placeholders
 
@@ -48,7 +48,7 @@ Published assets intentionally contain placeholders instead of concrete values. 
 ```yaml
 services:
   pg:
-    image: "docker.io/library/postgres:17.2"
+    image: "docker.io/library/postgres:17.6"
     environment:
       POSTGRES_HOST_AUTH_METHOD: "scram-sha-256"
       POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256 --auth-local=scram-sha-256"
@@ -88,16 +88,16 @@ Different integrations may use different placeholder conventions (environment va
 
 ## Publisher model and compute environments
 
-.NET Aspire uses a flexible publisher model that distributes publishing behavior across your application graph. Resources support publishing and deployment through annotations:
+Aspire uses a flexible publisher model that distributes publishing behavior across your application graph. Resources support publishing and deployment through annotations:
 
-- `PublishingCallbackAnnotation` can be added to a resource to support `aspire publish`
-- `DeployingCallbackAnnotation` can be added to a resource to support `aspire deploy`
+- `aspire publish`
+- `aspire deploy`
 
 This design enables hybrid and heterogeneous deployments, where different services within the same app can be deployed to different targets (cloud, edge, local).
 
 ### Compute environments
 
-A **compute environment** is a core deployment concept in .NET Aspire that represents a target platform where your application resources will be deployed. Compute environments define how resources should be transformed and what deployment artifacts should be generated.
+A **compute environment** is a core deployment concept in Aspire that represents a target platform where your application resources will be deployed. Compute environments define how resources should be transformed and what deployment artifacts should be generated.
 
 **Compute resources** are the runnable parts of your application, such as .NET projects, containers, and executables that need to be deployed to a compute environment.
 
@@ -126,18 +126,12 @@ This example shows how you could explicitly map services to different compute en
 
 | Integration Package | Target | Publish | Deploy | Notes |
 |---------------------|--------|---------|--------|-------|
-| `Aspire.Hosting.Docker` | Docker / Docker Compose | Yes | No | Use generated Compose with your own scripts or tooling. |
-| `Aspire.Hosting.Kubernetes` | Kubernetes | Yes | No | Apply with `kubectl`, GitOps, or other controllers. |
-| `Aspire.Hosting.Azure.AppContainers` | Azure Container Apps | Yes | Yes (Preview) | Deploy capability is in Preview and may change. |
-| `Aspire.Hosting.Azure.AppService` | Azure App Service | Yes | Yes (Preview) | Deploy capability is in Preview and may change. |
+| `Aspire.Hosting.Docker` | Docker / Docker Compose | ✅ Yes | ❌ No | Use generated Compose with your own scripts or tooling. |
+| `Aspire.Hosting.Kubernetes` | Kubernetes | ✅ Yes | ❌ No | Apply with `kubectl`, GitOps, or other controllers. |
+| `Aspire.Hosting.Azure.AppContainers` | Azure Container Apps | ✅ Yes | ✅ Yes (Preview) | Deploy capability is in Preview and may change. |
+| `Aspire.Hosting.Azure.AppService` | Azure App Service | ✅ Yes | ✅ Yes (Preview) | Deploy capability is in Preview and may change. |
 
-**Compute environments:**
-
-- `AddDockerComposeEnvironment(...)` - Docker Compose deployment target
-- `AddKubernetesEnvironment(...)` - Kubernetes deployment target  
-- `AddAzureContainerAppEnvironment(...)` - Azure Container Apps deployment target
-- `AddAzureAppServiceEnvironment(...)` - Azure App Service deployment target
-
+> [!TIP]
 > Deploy support is integration-specific. Absence of deploy support means you use the published artifacts with external tooling.
 
 ## Typical workflows
@@ -294,7 +288,7 @@ This:
 
 - [Hosting integrations overview](../fundamentals/integrations-overview.md)
 - [Azure deployment with Container Apps](azure/aca-deployment.md)
-- [.NET Aspire CLI reference](../cli-reference/overview.md)
+- [Aspire CLI reference](../cli-reference/overview.md)
 - [Community tooling (Aspir8)](https://prom3theu5.github.io/aspirational)
 
 ---
