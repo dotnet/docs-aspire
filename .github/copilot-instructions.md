@@ -1,4 +1,4 @@
-# .NET Aspire Documentation Guidelines
+# Aspire Documentation Guidelines
 
 ## Documentation rules
 - Add a redirect entry to [.openpublishing.redirection.json](../.openpublishing.redirection.json) when you delete a Markdown file.
@@ -10,13 +10,13 @@ ai-usage: ai-generated
 
 ## Terminology
 
-- First mention: ".NET Aspire", subsequent mentions: "Aspire"
+- The product name is "Aspire", it was formerly ".NET Aspire", future updates of content may drop ".NET"
 - Instead of "app host", always say "AppHost"
 - All .NET content refers to modern .NET (not .NET Framework)
 
 ## Writing Style
 
-Follow [Microsoft Writing Style Guide](https://learn.microsoft.com/en-us/style-guide/welcome/) with these specifics:
+Follow [Microsoft Writing Style Guide](https://learn.microsoft.com/style-guide/welcome/) with these specifics:
 
 ### Voice and Tone
 
@@ -65,6 +65,12 @@ For snippets >6 lines:
 1. Add snippet as separate `.cs` file
 1. Include simple `.csproj` targeting latest .NET
 1. All code should use the latest stable versions/features
+
+Whenever you write a code example that is an Aspire command, use the "Aspire" slug as the language identifier.
+
+```md
+```Aspire
+```
 
 ## File Naming
 
