@@ -10,7 +10,7 @@ ai-usage: ai-generated
 
 ## Terminology
 
-- First mention: ".NET Aspire", subsequent mentions: "Aspire"
+- The product name is "Aspire", it was formerly ".NET Aspire", future updates of content may drop ".NET"
 - Instead of "app host", always say "AppHost"
 - All .NET content refers to modern .NET (not .NET Framework)
 
