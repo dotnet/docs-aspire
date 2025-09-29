@@ -9,7 +9,7 @@ ms.date: 09/26/2025
 
 Aspire separates the act of _producing deployment assets_ from _executing a deployment_. The Aspire CLI (`aspire`) provides two high‑level entrypoints:
 
-- `aspire publish`: Generates intermediate, parameterized assets for one or more hosting integrations.
+- `aspire publish`: Generates intermediate, parameterized assets for one or more hosting integrations that implement publish semantics.
 - `aspire deploy`: Executes a deployment (when an integration implements deploy semantics) by resolving parameters and applying changes to a target environment.
 
 These commands provide direct access to publishing and deployment capabilities. The actual behavior (what gets generated, how deployment happens) comes from **hosting integrations** you reference (for example: Docker, Kubernetes, Azure). The system is **extensible**—you can build your own publishing or deployment integrations that plug into the same model.
@@ -97,7 +97,7 @@ This design enables hybrid and heterogeneous deployments, where different servic
 
 ### Compute environments
 
-A **compute environment** is a core deployment concept in Aspire that represents a target platform where your application resources will be deployed. Compute environments define how resources should be transformed and what deployment artifacts should be generated.
+A **compute environment** is a core deployment concept in Aspire that represents a target platform where your application resources will be deployed. Compute environments define how resources should be transformed and what deployment artifacts should be generated. Examples of built-in comput environments include the Azure Container Apps environment and the Docker Compose environment.
 
 **Compute resources** are the runnable parts of your application, such as .NET projects, containers, and executables that need to be deployed to a compute environment.
 
@@ -258,10 +258,6 @@ Publishing gives you an immutable snapshot of intended structure before secrets 
 
 [Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/) has first-class support for deploying Aspire projects. It can provision infrastructure, manage environments, and coordinate secret/value injection. You can incorporate Aspire publish artifacts into `azd` workflows or use the Azure integration (preview) directly.
 
-### Aspir8 (Kubernetes YAML generation)
-
-<a href="https://prom3theu5.github.io/aspirational">Aspir8 (Aspirate)</a> is a community tool that can transform an Aspire application model into Kubernetes manifests. While the Kubernetes hosting integration covers publish generation, Aspir8 may offer additional transforms or workflow preferences.
-
 ## Legacy deployment manifest (footnote)
 
 Earlier workflows emphasized a single "deployment manifest" generated from specialized AppHost targets. The modern approach centers on `aspire publish` + integration extensibility. The legacy manifest format is **not being evolved further**, but you can still generate it for inspection or debugging:
@@ -289,5 +285,4 @@ This:
 - [Hosting integrations overview](../fundamentals/integrations-overview.md)
 - [Azure deployment with Container Apps](azure/aca-deployment.md)
 - [Aspire CLI reference](../cli-reference/overview.md)
-- [Community tooling (Aspir8)](https://prom3theu5.github.io/aspirational)
 
