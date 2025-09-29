@@ -923,7 +923,6 @@ The `InteractionInputCollection` provides indexed access by name and improved ty
 
 ```csharp
 builder.AddDockerComposeEnvironment("env")
-  .WithComposeFile("docker-compose.yml")
   .WithDashboard(d => d.WithForwardedHeaders());
 ```
 
