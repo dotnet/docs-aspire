@@ -107,7 +107,7 @@ When you add a compute environment like Docker Compose or Kubernetes, Aspire app
 
 If you add multiple compute environments, Aspire needs to know which resource goes where. Compute environments apply their transformations to all applicable compute resources (projects, containers, executables). If more than one environment matches a given resource, Aspire throws an ambiguous environment exception at publish time.
 
-You can resolve this by using `WithComputeEnvironment(...)`:
+You can resolve this by using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithComputeEnvironment*>:
 
 ```csharp
 var k8s = builder.AddKubernetesEnvironment("k8s-env");
@@ -124,12 +124,12 @@ This example shows how you could explicitly map services to different compute en
 
 ## Hosting integration support matrix
 
-| Integration Package | Target | Publish | Deploy | Notes |
+| Integration package | Target | Publish | Deploy | Notes |
 |---------------------|--------|---------|--------|-------|
-| `Aspire.Hosting.Docker` | Docker / Docker Compose | ✅ Yes | ❌ No | Use generated Compose with your own scripts or tooling. |
-| `Aspire.Hosting.Kubernetes` | Kubernetes | ✅ Yes | ❌ No | Apply with `kubectl`, GitOps, or other controllers. |
-| `Aspire.Hosting.Azure.AppContainers` | Azure Container Apps | ✅ Yes | ✅ Yes (Preview) | Deploy capability is in Preview and may change. |
-| `Aspire.Hosting.Azure.AppService` | Azure App Service | ✅ Yes | ✅ Yes (Preview) | Deploy capability is in Preview and may change. |
+| [Aspire.Hosting.Docker](https://www.nuget.org/packages/Aspire.Hosting.Docker) | Docker / Docker Compose | ✅ Yes | ❌ No | Use generated Compose with your own scripts or tooling. |
+| [Aspire.Hosting.Kubernetes](https://www.nuget.org/packages/Aspire.Hosting.Docker) | Kubernetes | ✅ Yes | ❌ No | Apply with `kubectl`, GitOps, or other controllers. |
+| [Aspire.Hosting.Azure.AppContainers](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppContainers) | Azure Container Apps | ✅ Yes | ✅ Yes (Preview) | Deploy capability is in Preview and may change. |
+| [Aspire.Hosting.Azure.AppService](Aspire.Hosting.Azure.AppService) | Azure App Service | ✅ Yes | ✅ Yes (Preview) | Deploy capability is in Preview and may change. |
 
 > [!TIP]
 > Deploy support is integration-specific. Absence of deploy support means you use the published artifacts with external tooling.
@@ -138,11 +138,11 @@ This example shows how you could explicitly map services to different compute en
 
 ### 1. Generate artifacts (any integration)
 
-```bash
+```Aspire
 aspire publish -o artifacts/
 ```
 
-Review the contents of `artifacts/` (for example: Docker Compose files, Kubernetes manifests, Azure specification documents, etc.).
+Review the contents of _artifacts/_ (for example: Docker Compose files, Kubernetes manifests, Azure specification documents, etc.).
 
 ### 2. Run locally (Docker example)
 
@@ -157,7 +157,7 @@ Missing variables like `PG_PASSWORD` must be set in the shell, an `.env` file, o
 
 If an integration supports deployment, you can run:
 
-```bash
+```Aspire
 aspire deploy
 ```
 
@@ -190,7 +190,7 @@ builder.AddDataSeedJob("SeedInitialData", seedDataPath: "data/seeds");
 
 builder.Build().Run();
 
-internal class DataSeedJobResource(string name, string seedDataPath)
+internal class DataSeedJobResource([ResourceName] string name, string seedDataPath)
     : Resource(name)
 {
     public string SeedDataPath { get; } = seedDataPath;
@@ -244,7 +244,7 @@ internal static class DataSeedJobResourceBuilderExtensions
 
 This custom deployment logic integrates seamlessly with the `aspire deploy` command, providing interactive prompts and progress reporting.
 
-## Diagnostics & auditing
+## Diagnostics and auditing
 
 Publishing gives you an immutable snapshot of intended structure before secrets appear. You can:
 
@@ -256,7 +256,7 @@ Publishing gives you an immutable snapshot of intended structure before secrets 
 
 ### Azure Developer CLI (`azd`)
 
-[Azure Developer CLI (azd)](https://learn.microsoft.com/azure/developer/azure-developer-cli/) has first-class support for deploying Aspire projects. It can provision infrastructure, manage environments, and coordinate secret/value injection. You can incorporate Aspire publish artifacts into `azd` workflows or use the Azure integration (preview) directly.
+[Azure Developer CLI (azd)](/azure/developer/azure-developer-cli/) has first-class support for deploying Aspire projects. It can provision infrastructure, manage environments, and coordinate secret/value injection. You can incorporate Aspire publish artifacts into `azd` workflows or use the Azure integration (preview) directly.
 
 ### Aspir8 (Kubernetes YAML generation)
 
@@ -266,7 +266,7 @@ Publishing gives you an immutable snapshot of intended structure before secrets 
 
 Earlier workflows emphasized a single "deployment manifest" generated from specialized AppHost targets. The modern approach centers on `aspire publish` + integration extensibility. The legacy manifest format is **not being evolved further**, but you can still generate it for inspection or debugging:
 
-```bash
+```Aspire
 aspire publish --publisher manifest -o diagnostics/
 ```
 
@@ -291,5 +291,3 @@ This:
 - [Aspire CLI reference](../cli-reference/overview.md)
 - [Community tooling (Aspir8)](https://prom3theu5.github.io/aspirational)
 
----
-*Design for extensibility: treat publish output as an invariant structural contract and keep environment-specific values out until deployment time.*
