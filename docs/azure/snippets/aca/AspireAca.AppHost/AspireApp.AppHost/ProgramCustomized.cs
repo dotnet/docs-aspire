@@ -14,7 +14,7 @@ acaEnv.ConfigureInfrastructure(infra =>
     containerEnvironment.Name = "my-custom-aca-environment";
     
     // Set the location
-    containerEnvironment.Location = "East US";
+    containerEnvironment.Location = AzureLocation.EastUS;
     
     // Add tags for metadata and organization
     containerEnvironment.Tags.Add("Environment", "Production");
