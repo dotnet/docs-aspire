@@ -53,6 +53,17 @@ updates:
         patterns:
           - "*" # Prefer a single PR per solution update.
   - package-ecosystem: "nuget"
+    directory: "/docs/azure/snippets/container-app-jobs/AspireContainerAppJobs.AppHost" #AspireContainerAppJobs.AppHost.sln
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for solutions.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per solution update.
+  - package-ecosystem: "nuget"
     directory: "/docs/azure/snippets/customize-azure-with-infrastructure-resolver" #customize-azure-with-infrastructure-resolver.sln
     schedule:
       interval: "weekly"
@@ -186,6 +197,17 @@ updates:
           - "*" # Prefer a single PR per solution update.
   - package-ecosystem: "nuget"
     directory: "/docs/database/snippets/tutorial/aspiresqlefcore" #AspireSQLEFCore.sln
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for solutions.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per solution update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/extensibility/snippets/dev-tunnels/DevTunnels.AppHost" #DevTunnels.AppHost.sln
     schedule:
       interval: "weekly"
       day: "wednesday"
@@ -626,6 +648,17 @@ updates:
           - "*" # Prefer a single PR per project update.
   - package-ecosystem: "nuget"
     directory: "/docs/azure/snippets/bicep/WebHook.Api" #WebHook.Api.csproj
+    schedule:
+      interval: "weekly"
+      day: "wednesday"
+    open-pull-requests-limit: 5
+    groups:
+      # Group .NET updates together for projects.
+      dotnet:
+        patterns:
+          - "*" # Prefer a single PR per project update.
+  - package-ecosystem: "nuget"
+    directory: "/docs/azure/snippets/container-app-jobs/AspireContainerAppJobs.AppHost/AspireContainerAppJobs.AppHost" #AspireContainerAppJobs.AppHost.csproj
     schedule:
       interval: "weekly"
       day: "wednesday"
