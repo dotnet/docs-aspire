@@ -65,10 +65,10 @@ When an Aspire app starts, it checks if a newer version of Aspire is available o
 
 The version check runs only when:
 
-- The dashboard is enabled (interaction service is available)
-- At least 2 days have passed since the last check
-- The check hasn't been disabled via the `ASPIRE_VERSION_CHECK_DISABLED` configuration setting
-- The app is not running in publish mode
+- The dashboard is enabled (interaction service is available).
+- At least 2 days have passed since the last check.
+- The check hasn't been disabled via the `ASPIRE_VERSION_CHECK_DISABLED` configuration setting.
+- The app is not running in publish mode.
 
 Updates are manual. You need to edit your project file to upgrade the Aspire SDK and package versions.
 
