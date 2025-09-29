@@ -100,6 +100,8 @@ Aspire 9.5 introduces infrastructure for .NET 10's new file-based apps feature, 
 ```Aspire
 # Enable file-based AppHost ("apphost.cs") support
 aspire config set features.singlefileAppHostEnabled true
+# Disable the minimum SDK version check
+aspire config set features.minimumSdkCheckEnabled false
 ```
 
 For more information, see [aspire config set command](../cli-reference/aspire-config-set.md).
