@@ -539,6 +539,72 @@ var redisEnterprise = builder.AddAzureRedisEnterprise("redis-enterprise")
 
 For more information, see [.NET Aspire Azure Managed Redis integration](../caching/azure-redis-enterprise-integration.md).
 
+### Azure App Configuration emulator (preview)
+
+Aspire 9.5 adds preview support for running an Azure App Configuration emulator as part of your distributed application model. The emulator lets you develop locally with full feature parity for key/value configuration data—without provisioning a live Azure resource.
+
+Container image (preview): `mcr.microsoft.com/azure-app-configuration/app-configuration-emulator:1.0.0-preview`
+
+You can use this container **with or without Aspire**—it's just a normal container image. Aspire adds first-class resource modeling, lifecycle management, environment wiring, and (optionally) persistent storage.
+
+**Features:**
+
+- Local development parity for Azure App Configuration scenarios.
+- Built-in browser UI for CRUD (create, read, update, delete) of configuration entries.
+- Persistent data via a mounted volume (optional).
+- Seamless integration with other Aspire resources via `WithReference`.
+- Supports inner-loop testing without network latency or secrets in Azure.
+
+**Add emulator via Aspire:**
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var appConfig = builder.AddAzureAppConfiguration("config")
+  .RunAsEmulator(emulator => emulator
+    .WithDataVolume()); // Persists configuration across restarts
+
+var api = builder.AddProject<Projects.Api>("api")
+    .WithReference(appConfig);
+
+builder.Build().Run();
+```
+
+**Accessing the UI:**
+
+When running under Aspire, the emulator dashboard (configuration explorer) is exposed as a normal endpoint. Open it from the Aspire Dashboard resource details panel to manage key-values interactively.
+
+**Standalone (without Aspire):**
+
+```bash
+docker run --rm -p 8080:8080 \
+  mcr.microsoft.com/azure-app-configuration/app-configuration-emulator:1.0.0-preview
+```
+
+Then browse to `http://localhost:8080` to launch the UI and manage configuration entries.
+
+> [!IMPORTANT]
+> The Azure App Configuration emulator is in **preview**. Behavior, image tags, and API surface may change before general availability.
+
+**Typical project configuration usage:**
+
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+
+builder.AddAzureAppConfiguration("config");
+
+var app = builder.Build();
+
+app.MapGet("/message", (IConfiguration config) =>
+{
+    var message = config["Message"];
+    return new { Message = message };
+});
+app.Run();
+```
+
+This enables fast local iteration with a real UI and no external dependencies, while keeping deployment parity with Azure-hosted configuration.
+
 ### Azure Storage emulator improvements
 
 Aspire now pulls Azurite version 3.35.0 by default, resolving health check issues that previously returned HTTP 400 responses. This improves the reliability of Azure Storage emulator health checks during development.
