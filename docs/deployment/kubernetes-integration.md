@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Kubernetes hosting integration
 description: Learn how to use the .NET Aspire Kubernetes hosting integration to generate Kubernetes deployment manifests.
-ms.date: 09/26/2025
+ms.date: 09/30/2025
 uid: deployment/kubernetes-integration
 ---
 
@@ -38,6 +38,9 @@ After installing the package, add a Kubernetes environment to your AppHost proje
 
 :::code language="csharp" source="snippets/kubernetes-integration/Program.cs":::
 
+> [!TIP]
+> With the `k8s` variable assigned, you can pass that to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithComputeEnvironment*> API to disambiguate compute resources for solutions that define more than one. Otherwise, the `k8s` variable isn't required.
+
 ## Configure Kubernetes environment properties
 
 You can customize the Kubernetes environment using the <xref:Aspire.Hosting.KubernetesEnvironmentExtensions.WithProperties*> method:
@@ -57,9 +60,6 @@ builder.Build().Run();
 ```
 
 The `WithProperties` method allows you to configure various aspects of the Kubernetes deployment, including the Helm chart name that will be used for generating the Kubernetes resources.
-
-> [!TIP]
-> With the `k8s` variable assigned, you can pass that to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithComputeEnvironment*> API to disambiguate compute resources for solutions that define more than one. Otherwise, the `k8s` variable isn't required.
 
 ## Generate Kubernetes manifests
 
