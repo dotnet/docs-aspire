@@ -148,7 +148,25 @@ builder.AddProject<Projects.ExampleProject>()
 The preceding code relies on the [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package to add an Azure Storage resource that runs as an emulator. The `storage` resource is then passed to the `WithHostStorage` API, explicitly setting the host storage to the emulated resource.
 
 > [!NOTE]
-> If you're not using the implicit host storage, you must manually assign the `StorageAccountContributor` role to your resource for deployed instances. This role is automatically assigned for the implicitly generated host storage.
+> If you're not using the implicit host storage, you must manually assign the `StorageAccountContributor` role to your resource for deployed instances. The implicit host storage is automatically configured with the following roles to support maximum interoperability with all scenarios:
+>
+> - <xref:Azure.Provisioning.Storage.StorageBuiltInRole.StorageBlobDataContributor?displayProperty=nameWithType>
+> - <xref:Azure.Provisioning.Storage.StorageBuiltInRole.StorageTableDataContributor?displayProperty=nameWithType>
+> - <xref:Azure.Provisioning.Storage.StorageBuiltInRole.StorageQueueDataContributor?displayProperty=nameWithType>
+> - <xref:Azure.Provisioning.Storage.StorageBuiltInRole.StorageAccountContributor?displayProperty=nameWithType>
+>
+> For production scenarios, it is recommended to register the storage account explicitly with the `WithHostStorage` and `WithRoleAssignment` APIs and register a more tailored set of roles.
+>
+> ```csharp
+> var builder = DistributedApplication.CreateBuilder(args);
+> 
+> var storage = builder.AddAzureStorage("storage");
+> 
+> builder.AddAzureFunctionsProject<Projects.ExampleFunctions>("functions")
+>        .WithHostStorage(storage)
+>        .WithRoleAssignments(storage, StorageBuiltInRole.StorageBlobDataReader,
+>                                     StorageBuiltInRole.StorageQueueDataReader);
+> ```
 
 ### Reference resources in Azure Functions
 
