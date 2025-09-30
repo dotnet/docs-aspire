@@ -1,7 +1,7 @@
 ---
 title: Aspire Docker hosting integration
 description: Learn how to use the Aspire Docker hosting integration to deploy your app with Docker Compose.
-ms.date: 09/26/2025
+ms.date: 09/30/2025
 ai-usage: ai-generated
 ---
 
@@ -93,7 +93,7 @@ var compose = builder.AddDockerComposeEnvironment("compose")
                      .WithDashboard(enabled: false);
 ```
 
-The <xref:Aspire.Hosting.DockerComposeAspireDashboardResourceBuilderExtensions.WithHostPort%2A> method configures the port used to access the Aspire dashboard from a browser. The <xref:Aspire.Hosting.DockerComposeAspireDashboardResourceBuilderExtensions.WithForwardedHeaders%2A> method enables forwarded headers processing when the dashboard is accessed through a reverse proxy or load balancer.
+The <xref:Aspire.Hosting.DockerComposeAspireDashboardResourceBuilderExtensions.WithHostPort%2A> method configures the port used to access the Aspire dashboard from a browser. The <xref:Aspire.Hosting.DockerComposeAspireDashboardResourceBuilderExtensions.WithForwardedHeaders(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Docker.DockerComposeAspireDashboardResource},System.Boolean)> method enables forwarded headers processing when the dashboard is accessed through a reverse proxy or load balancer.
 
 ### Publishing and deployment
 
