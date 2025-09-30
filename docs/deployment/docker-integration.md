@@ -34,7 +34,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add Docker Compose environment resource
 
-The following example demonstrates how to add a Docker Compose environment to your app model:
+The following example demonstrates how to add a Docker Compose environment to your app model using the <xref:Aspire.Hosting.DockerComposeEnvironmentExtensions.AddDockerComposeEnvironment%2A> method:
 
 :::code source="snippets/docker/AppHost.cs":::
 
@@ -44,11 +44,11 @@ The preceding code:
 - Adds a Redis cache service that will be included in the Docker Compose deployment.
 - Adds an API service project that will be containerized and included in the deployment.
 - Adds a web application that references both the cache and API service.
-- Configures all services to be published as Docker Compose services.
+- Configures all services to be published as Docker Compose services using <xref:Aspire.Hosting.DockerComposeServiceExtensions.PublishAsDockerComposeService%2A>.
 
 ### Add Docker Compose environment resource with properties
 
-You can configure various properties of the Docker Compose environment:
+You can configure various properties of the Docker Compose environment using the <xref:Aspire.Hosting.DockerComposeEnvironmentExtensions.WithProperties%2A> method:
 
 ```csharp
 var compose = builder.AddDockerComposeEnvironment("compose")
@@ -62,7 +62,7 @@ var compose = builder.AddDockerComposeEnvironment("compose")
 
 ### Add Docker Compose environment resource with compose file
 
-You can customize the generated Docker Compose file:
+You can customize the generated Docker Compose file using the <xref:Aspire.Hosting.DockerComposeEnvironmentExtensions.ConfigureComposeFile%2A> method:
 
 ```csharp
 var compose = builder.AddDockerComposeEnvironment("compose")
@@ -77,7 +77,7 @@ var compose = builder.AddDockerComposeEnvironment("compose")
 
 ### Add Aspire dashboard resource to environment
 
-The Docker hosting integration includes an Aspire dashboard for telemetry visualization. You can configure or disable it:
+The Docker hosting integration includes an Aspire dashboard for telemetry visualization. You can configure or disable it using the <xref:Aspire.Hosting.DockerComposeEnvironmentExtensions.WithDashboard%2A> method:
 
 ```csharp
 // Enable dashboard with custom configuration
@@ -92,6 +92,8 @@ var compose = builder.AddDockerComposeEnvironment("compose")
 var compose = builder.AddDockerComposeEnvironment("compose")
                      .WithDashboard(enabled: false);
 ```
+
+The <xref:Aspire.Hosting.DockerComposeAspireDashboardResourceBuilderExtensions.WithHostPort%2A> method configures the port used to access the Aspire dashboard from a browser. The <xref:Aspire.Hosting.DockerComposeAspireDashboardResourceBuilderExtensions.WithForwardedHeaders%2A> method enables forwarded headers processing when the dashboard is accessed through a reverse proxy or load balancer.
 
 ### Publishing and deployment
 
