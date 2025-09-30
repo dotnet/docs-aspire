@@ -70,8 +70,8 @@ When you add a client integration to a project within your .NET Aspire solution,
 
 Aspire hosting integrations provide extension methods that start with either `Add` or `With`. These methods conform to the following pattern:
 
-- **`Add` methods**: `Add` methods create and register new resources within the AppHost. These methods usually return a new object type that represents the specific resource being added. For example, calling <xref:Aspire.Hosting.AzureServiceBusExtensions.AddAzureServiceBus*> returns an <xref:Aspire.Hosting.Azure.AzureServiceBusResource>, while calling <xref:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusQueue*> on that resource returns an <xref:Aspire.Hosting.Azure.AzureServiceBusQueueResource>. This pattern allows you to model parent-child relationships between resources, such as a Service Bus namespace and its queues or topics.
-- **`With` methods**: Use `With` methods to configure or enhance an existing resource. These methods typically return the same object type as the parent, allowing you to chain additional configuration calls.
+- **`Add*` methods**: `Add*` methods create and register new resources within the AppHost and return an `IResourceBuilder<TResource>` where `TResource` is the concrete resource type added. This lets you continue fluent configuration on the returned builder. For example, calling <xref:Aspire.Hosting.AzureServiceBusExtensions.AddAzureServiceBus*> returns an `IResourceBuilder<AzureServiceBusResource>`, and then calling <xref:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusQueue*> on that namespace builder returns an `IResourceBuilder<AzureServiceBusQueueResource>`. This pattern models parent-child relationships (for example, a Service Bus namespace and its queues or topics) while preserving a consistent fluent builder API.
+- **`With*` methods**: Use `With*` methods to configure or enhance an existing resource. These methods typically return the same object type as the parent, allowing you to chain additional configuration calls.
 
 > [!IMPORTANT]
 > When using `Add` methods, make sure to pass the correct resource object to your client integration. Passing the wrong object can result in misconfigured connections or runtime errors.
@@ -85,6 +85,8 @@ var serviceBus = builder.AddAzureServiceBus(name: "serviceBus")
 var apiService = builder.AddProject<Projects.servicebusexp_ApiService>("apiservice")
     .WithHttpHealthCheck("/health")
     .WithReference(serviceBus);
+
+// The serviceBus is an IResourceBuilder<AzureServiceBusTopicResource> type
 ```
 
 You may expect `serviceBus` to represent the Azure Service Bus resource but in fact, because you called <xref:Aspire.Hosting.AzureServiceBusExtensions.AddServiceBusTopic*> on the same line, `serviceBus` is an Azure Service Bus topic resource. To avoid this result, call `AddServiceBusTopic` on a separate line:
@@ -96,6 +98,8 @@ var topic = serviceBus.AddServiceBusTopic(name: "messagetopic");
 var apiService = builder.AddProject<Projects.servicebusexp_ApiService>("apiservice")
     .WithHttpHealthCheck("/health")
     .WithReference(serviceBus);
+
+// The serviceBus is an IResourceBuilder<AzureServiceBusResource> type
 ```
 
 Now, you can choose to pass the resource that consuming project needs. Either, as in the example, the Service Bus resource or the topic resource.
