@@ -1,7 +1,7 @@
 ---
 title: Apply EF Core migrations in .NET Aspire
 description: Learn about how to to apply Entity Framework Core migrations in .NET Aspire
-ms.date: 09/25/2025
+ms.date: 09/30/2025
 ms.topic: how-to
 uid: database/ef-core-migrations
 ms.custom: sfi-image-nochange
