@@ -199,7 +199,6 @@ if (app.Environment.IsDevelopment())
 ### [MySQL](#tab/mysql)
 
 ```csharp
-```csharp
 builder.AddMySqlDbContext<TicketContext>("TicketsDB", configureDbContextOptions: options =>
 {
     if (builder.Environment.IsDevelopment())
