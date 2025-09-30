@@ -46,22 +46,22 @@ The preceding code:
 - Adds a web application that references both the cache and API service.
 - Configures all services to be published as Docker Compose services using <xref:Aspire.Hosting.DockerComposeServiceExtensions.PublishAsDockerComposeService%2A>.
 
+> [!TIP]
+> With the `compose` variable assigned, you can pass that to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithComputeEnvironment*> API to disambiguate compute resources for solutions that define more than one. Otherwise, the `compose` variable isn't required.
+
 ### Add Docker Compose environment resource with properties
 
 You can configure various properties of the Docker Compose environment using the <xref:Aspire.Hosting.DockerComposeEnvironmentExtensions.WithProperties%2A> method:
 
 ```csharp
-var compose = builder.AddDockerComposeEnvironment("compose")
-                     .WithProperties(env =>
-                     {
-                         env.DefaultContainerRegistry = "myregistry.azurecr.io";
-                         env.DefaultNetworkName = "my-network";
-                         env.BuildContainerImages = true;
-                     });
+builder.AddDockerComposeEnvironment("compose")
+       .WithProperties(env =>
+       {
+           env.DefaultContainerRegistry = "myregistry.azurecr.io";
+           env.DefaultNetworkName = "my-network";
+           env.BuildContainerImages = true;
+       });
 ```
-
-> [!TIP]
-> With the `compose` variable assigned, you can pass that to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithComputeEnvironment*> API to disambiguate compute resources for solutions that define more than one. Otherwise, the `compose` variable isn't required.
 
 ### Add Docker Compose environment resource with compose file
 
