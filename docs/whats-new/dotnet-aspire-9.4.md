@@ -1,7 +1,7 @@
 ---
 title: What's new in .NET Aspire 9.4
 description: Learn what's new in the official general availability release of .NET Aspire 9.4.
-ms.date: 08/07/2025
+ms.date: 09/30/2025
 ---
 
 # What's new in .NET Aspire 9.4
@@ -706,11 +706,11 @@ builder.Build().Run();
 
 **Available lifecycle events:**
 
-- <xref:Aspire.Hosting.EventingExtensions.OnInitializeResource*> - Called during early resource initialization
-- <xref:Aspire.Hosting.EventingExtensions.OnBeforeResourceStarted*> - Called before the resource starts
-- <xref:Aspire.Hosting.EventingExtensions.OnConnectionStringAvailable*> - Called when connection strings are resolved (requires `IResourceWithConnectionString`)
-- <xref:Aspire.Hosting.EventingExtensions.OnResourceEndpointsAllocated*> - Called when resource endpoints are allocated (requires `IResourceWithEndpoints`)
-- <xref:Aspire.Hosting.EventingExtensions.OnResourceReady*> - Called when the resource is fully ready
+- <xref:Aspire.Hosting.DistributedApplicationEventingExtensions.OnInitializeResource*> - Called during early resource initialization
+- <xref:Aspire.Hosting.DistributedApplicationEventingExtensions.OnBeforeResourceStarted*> - Called before the resource starts
+- <xref:Aspire.Hosting.DistributedApplicationEventingExtensions.OnConnectionStringAvailable*> - Called when connection strings are resolved (requires `IResourceWithConnectionString`)
+- <xref:Aspire.Hosting.DistributedApplicationEventingExtensions.OnResourceEndpointsAllocated*> - Called when resource endpoints are allocated (requires `IResourceWithEndpoints`)
+- <xref:Aspire.Hosting.DistributedApplicationEventingExtensions.OnResourceReady*> - Called when the resource is fully ready
 
 The new chainable fluent API, strongly-typed callbacks, and simplified syntax make it intuitive to hook into your resource lifecycles for interactions, commands, custom scripts, and more.
 
