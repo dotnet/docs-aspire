@@ -97,6 +97,162 @@ If you run this code, you can use the PHP My Admin resource to check that a tabl
 
 ## Seed data using EF Core
 
+Starting with EF Core 9.0, you can use the <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.UseSeeding*> and <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.UseAsyncSeeding*> methods to configure database seeding directly during context configuration. This approach is cleaner than manually running migrations during startup and integrates better with EF Core's lifecycle management.
+
+> [!IMPORTANT]
+> These types of configurations should only be done during development, so make sure to add a conditional that checks your current environment context.
+
+### Seed data with UseSeeding and UseAsyncSeeding methods
+
+Add the following code to the _:::no-loc text="Program.cs":::_ file of your **API Service** project:
+
+### [SQL Server](#tab/sql-server)
+
+```csharp
+builder.AddSqlServerDbContext<TicketContext>("TicketsDB", configureDbContextOptions: options =>
+{
+    if (builder.Environment.IsDevelopment())
+    {
+        options.UseSeeding((context, _) =>
+        {
+            var testTicket = context.Set<SupportTicket>().FirstOrDefault(t => t.Title == "Test Ticket 1");
+            if (testTicket == null)
+            {
+                context.Set<SupportTicket>().Add(new SupportTicket { Title = "Test Ticket 1", Description = "This is a test ticket" });
+                context.SaveChanges();
+            }
+
+        });
+    
+        options.UseAsyncSeeding(async (context, _, cancellationToken) =>
+        {
+            var testTicket = await context.Set<SupportTicket>().FirstOrDefaultAsync(t => t.Title == "Test Ticket 1", cancellationToken);
+            if (testTicket == null)
+            {
+                context.Set<SupportTicket>().Add(new SupportTicket { Title = "Test Ticket 1", Description = "This is a test ticket" });
+                await context.SaveChangesAsync(cancellationToken);
+            }
+        });
+    }
+});
+
+var app = builder.Build();
+
+app.MapDefaultEndpoints();
+
+if (app.Environment.IsDevelopment())
+{
+    // Ensure database is created and seeded
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<TicketContext>();
+        await context.Database.EnsureCreatedAsync();
+    }
+}
+```
+
+### [PostgreSQL](#tab/postgresql)
+
+```csharp
+builder.AddNpgsqlDbContext<TicketContext>("TicketsDB", configureDbContextOptions: options =>
+{
+    if (builder.Environment.IsDevelopment())
+    {
+        options.UseSeeding((context, _) =>
+        {
+            var testTicket = context.Set<SupportTicket>().FirstOrDefault(t => t.Title == "Test Ticket 1");
+            if (testTicket == null)
+            {
+                context.Set<SupportTicket>().Add(new SupportTicket { Title = "Test Ticket 1", Description = "This is a test ticket" });
+                context.SaveChanges();
+            }
+
+        });
+    
+        options.UseAsyncSeeding(async (context, _, cancellationToken) =>
+        {
+            var testTicket = await context.Set<SupportTicket>().FirstOrDefaultAsync(t => t.Title == "Test Ticket 1", cancellationToken);
+            if (testTicket == null)
+            {
+                context.Set<SupportTicket>().Add(new SupportTicket { Title = "Test Ticket 1", Description = "This is a test ticket" });
+                await context.SaveChangesAsync(cancellationToken);
+            }
+        });
+    }
+});
+
+var app = builder.Build();
+
+app.MapDefaultEndpoints();
+
+if (app.Environment.IsDevelopment())
+{
+    // Ensure database is created and seeded
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<TicketContext>();
+        await context.Database.EnsureCreatedAsync();
+    }
+}
+```
+
+### [MySQL](#tab/mysql)
+
+```csharp
+```csharp
+builder.AddMySqlDbContext<TicketContext>("TicketsDB", configureDbContextOptions: options =>
+{
+    if (builder.Environment.IsDevelopment())
+    {
+        options.UseSeeding((context, _) =>
+        {
+            var testTicket = context.Set<SupportTicket>().FirstOrDefault(t => t.Title == "Test Ticket 1");
+            if (testTicket == null)
+            {
+                context.Set<SupportTicket>().Add(new SupportTicket { Title = "Test Ticket 1", Description = "This is a test ticket" });
+                context.SaveChanges();
+            }
+
+        });
+    
+        options.UseAsyncSeeding(async (context, _, cancellationToken) =>
+        {
+            var testTicket = await context.Set<SupportTicket>().FirstOrDefaultAsync(t => t.Title == "Test Ticket 1", cancellationToken);
+            if (testTicket == null)
+            {
+                context.Set<SupportTicket>().Add(new SupportTicket { Title = "Test Ticket 1", Description = "This is a test ticket" });
+                await context.SaveChangesAsync(cancellationToken);
+            }
+        });
+    }
+});
+
+var app = builder.Build();
+
+app.MapDefaultEndpoints();
+
+if (app.Environment.IsDevelopment())
+{
+    // Ensure database is created and seeded
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<TicketContext>();
+        await context.Database.EnsureCreatedAsync();
+    }
+}
+```
+
+---
+
+The `UseSeeding` and `UseAsyncSeeding` methods provide several advantages over manual seeding approaches:
+
+- **Integrated lifecycle**: Seeding is automatically triggered when the database is created or when migrations are applied.
+- **Conditional execution**: The seeding logic only runs when the database is first created, preventing duplicate data on subsequent runs.
+- **Better performance**: The seeding methods are optimized for bulk operations and integrate with EF Core's change tracking.
+- **Cleaner code**: Seeding configuration is co-located with the context configuration, making it easier to maintain.
+
+### Seed data manually
+
 You can also seed data in .NET Aspire projects using EF Core by explicitly running migrations during startup. EF Core handles underlying database connections and schema creation for you, which eliminates the need to use volumes or run SQL scripts during container startup.
 
 > [!IMPORTANT]
@@ -121,6 +277,15 @@ if (app.Environment.IsDevelopment())
     {
         var context = scope.ServiceProvider.GetRequiredService<TicketContext>();
         context.Database.Migrate();
+
+        // Manually seed data
+        if (!context.Tickets.Any())
+        {
+            context.Tickets.AddRange(
+                new Ticket { Title = "Example Ticket", Description = "This is a sample ticket for testing" }
+            );
+            context.SaveChanges();
+        }
     }
 }
 ```
@@ -142,6 +307,15 @@ if (app.Environment.IsDevelopment())
     {
         var context = scope.ServiceProvider.GetRequiredService<TicketContext>();
         context.Database.Migrate();
+
+        // Manually seed data
+        if (!context.Tickets.Any())
+        {
+            context.Tickets.AddRange(
+                new Ticket { Title = "Example Ticket", Description = "This is a sample ticket for testing" }
+            );
+            context.SaveChanges();
+        }
     }
 }
 ```
@@ -163,6 +337,15 @@ if (app.Environment.IsDevelopment())
     {
         var context = scope.ServiceProvider.GetRequiredService<TicketContext>();
         context.Database.Migrate();
+
+        // Manually seed data
+        if (!context.Tickets.Any())
+        {
+            context.Tickets.AddRange(
+                new Ticket { Title = "Example Ticket", Description = "This is a sample ticket for testing" }
+            );
+            context.SaveChanges();
+        }
     }
 }
 ```
