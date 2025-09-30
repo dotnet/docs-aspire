@@ -58,32 +58,35 @@ builder.Build().Run();
 
 The `WithProperties` method allows you to configure various aspects of the Kubernetes deployment, including the Helm chart name that will be used for generating the Kubernetes resources.
 
+> [!TIP]
+> With the `k8s` variable assigned, you can pass that to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithComputeEnvironment*> API to disambiguate compute resources for solutions that define more than one. Otherwise, the `k8s` variable isn't required.
+
 ## Generate Kubernetes manifests
 
 To generate Kubernetes manifests from your Aspire application, use the `aspire publish` command:
 
-```dotnetcli
+```Aspire
 aspire publish -o k8s-artifacts
 ```
 
 This command generates a complete set of Kubernetes YAML manifests in the specified output directory (`k8s-artifacts` in this example). The generated artifacts include:
 
-- **Deployments** or **StatefulSets** for your application services
-- **Services** for network connectivity
-- **ConfigMaps** for application configuration
-- **Secrets** for sensitive data
-- **Helm charts** for easier deployment management
+- **Deployments** or **StatefulSets** for your application services.
+- **Services** for network connectivity.
+- **ConfigMaps** for application configuration.
+- **Secrets** for sensitive data.
+- **Helm charts** for easier deployment management.
 
 ## Supported resources
 
 The Kubernetes hosting integration supports converting various .NET Aspire resources to their Kubernetes equivalents:
 
-- **Project resources** → Deployments or StatefulSets
-- **Container resources** → Deployments or StatefulSets  
-- **Connection strings** → ConfigMaps and Secrets
-- **Environment variables** → ConfigMaps and Secrets
-- **Endpoints** → Services and ingress configuration
-- **Volumes** → PersistentVolumes and PersistentVolumeClaims
+- **Project resources** → Deployments or StatefulSets.
+- **Container resources** → Deployments or StatefulSets.
+- **Connection strings** → ConfigMaps and Secrets.
+- **Environment variables** → ConfigMaps and Secrets.
+- **Endpoints** → Services and ingress configuration.
+- **Volumes** → PersistentVolumes and PersistentVolumeClaims.
 
 ## Deployment considerations
 
@@ -97,9 +100,9 @@ Ensure your application projects are configured to build container images. The K
 
 Resource names in Kubernetes must follow DNS naming conventions. The integration automatically converts .NET Aspire resource names to valid Kubernetes resource names by:
 
-- Converting to lowercase
-- Replacing invalid characters with hyphens
-- Ensuring names don't start or end with hyphens
+- Converting to lowercase.
+- Replacing invalid characters with hyphens.
+- Ensuring names don't start or end with hyphens.
 
 ### Environment-specific configuration
 

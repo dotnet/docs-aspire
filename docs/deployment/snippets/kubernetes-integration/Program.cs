@@ -5,10 +5,10 @@ var builder = DistributedApplication.CreateBuilder(args);
 // Add your application resources
 var cache = builder.AddRedis("cache");
 
-var apiService = builder.AddProject<ApiService>("apiservice")
+var apiService = builder.AddProject<Projects.ApiService>("apiservice")
                         .WithReference(cache);
 
-builder.AddProject<Web>("webfrontend")
+builder.AddProject<Projects.Web>("webfrontend")
        .WithExternalHttpEndpoints()
        .WithReference(cache)
        .WithReference(apiService);
