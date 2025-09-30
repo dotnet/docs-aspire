@@ -60,19 +60,22 @@ var compose = builder.AddDockerComposeEnvironment("compose")
                      });
 ```
 
+> [!TIP]
+> With the `compose` variable assigned, you can pass that to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithComputeEnvironment*> API to disambiguate compute resources for solutions that define more than one. Otherwise, the `compose` variable isn't required.
+
 ### Add Docker Compose environment resource with compose file
 
 You can customize the generated Docker Compose file using the <xref:Aspire.Hosting.DockerComposeEnvironmentExtensions.ConfigureComposeFile%2A> method:
 
 ```csharp
-var compose = builder.AddDockerComposeEnvironment("compose")
-                     .ConfigureComposeFile(composeFile =>
-                     {
-                         composeFile.Networks.Add("custom-network", new()
-                         {
-                             Driver = "bridge"
-                         });
-                     });
+builder.AddDockerComposeEnvironment("compose")
+       .ConfigureComposeFile(composeFile =>
+       {
+           composeFile.Networks.Add("custom-network", new()
+           {
+               Driver = "bridge"
+           });
+       });
 ```
 
 ### Add Aspire dashboard resource to environment
@@ -81,27 +84,29 @@ The Docker hosting integration includes an Aspire dashboard for telemetry visual
 
 ```csharp
 // Enable dashboard with custom configuration
-var compose = builder.AddDockerComposeEnvironment("compose")
-                     .WithDashboard(dashboard =>
-                     {
-                         dashboard.WithHostPort(8080)
-                                  .WithForwardedHeaders(enabled: true);
-                     });
+builder.AddDockerComposeEnvironment("compose")
+       .WithDashboard(dashboard =>
+       {
+           dashboard.WithHostPort(8080)
+                    .WithForwardedHeaders(enabled: true);
+       });
 
 // Disable dashboard
-var compose = builder.AddDockerComposeEnvironment("compose")
-                     .WithDashboard(enabled: false);
+builder.AddDockerComposeEnvironment("compose")
+       .WithDashboard(enabled: false);
 ```
 
 The <xref:Aspire.Hosting.DockerComposeAspireDashboardResourceBuilderExtensions.WithHostPort%2A> method configures the port used to access the Aspire dashboard from a browser. The <xref:Aspire.Hosting.DockerComposeAspireDashboardResourceBuilderExtensions.WithForwardedHeaders(Aspire.Hosting.ApplicationModel.IResourceBuilder{Aspire.Hosting.Docker.DockerComposeAspireDashboardResource},System.Boolean)> method enables forwarded headers processing when the dashboard is accessed through a reverse proxy or load balancer.
 
 ### Publishing and deployment
 
-To deploy your application using Docker Compose, use the <xref:Aspire.Cli.Commands.PublishCommand>:
+To deploy your application using Docker Compose, use the `aspire publish`:
 
-```dotnetcli
+```Aspire
 aspire publish -o docker-compose-artifacts
 ```
+
+For more information, see [aspire publish command reference](../cli-reference/aspire-publish.md).
 
 This command generates Docker Compose files and all necessary artifacts in the specified output directory. The generated files include:
 
