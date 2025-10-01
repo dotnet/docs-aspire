@@ -1,19 +1,19 @@
 ---
-title: .NET Aspire Kubernetes hosting integration
-description: Learn how to use the .NET Aspire Kubernetes hosting integration to generate Kubernetes deployment manifests.
+title: Aspire Kubernetes hosting integration
+description: Learn how to use the Aspire Kubernetes hosting integration to generate Kubernetes deployment manifests.
 ms.date: 10/01/2025
 uid: deployment/kubernetes-integration
 ---
 
-# .NET Aspire Kubernetes hosting integration
+# Aspire Kubernetes hosting integration
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
-The .NET Aspire Kubernetes hosting integration enables you to generate Kubernetes deployment manifests from your .NET Aspire application model. This integration allows you to define your application's infrastructure and deployment configuration using the familiar .NET Aspire AppHost and then publish it as Kubernetes YAML manifests for deployment to any Kubernetes cluster.
+The Aspire Kubernetes hosting integration enables you to generate Kubernetes deployment manifests from your Aspire application model. This integration allows you to define your application's infrastructure and deployment configuration using the familiar Aspire AppHost and then publish it as Kubernetes YAML manifests for deployment to any Kubernetes cluster.
 
 ## Hosting integration
 
-To get started with the .NET Aspire Kubernetes hosting integration, install the [📦 Aspire.Hosting.Kubernetes](https://www.nuget.org/packages/Aspire.Hosting.Kubernetes) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
+To get started with the Aspire Kubernetes hosting integration, install the [📦 Aspire.Hosting.Kubernetes](https://www.nuget.org/packages/Aspire.Hosting.Kubernetes) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -81,7 +81,7 @@ This command generates a complete set of Kubernetes YAML manifests in the specif
 
 ## Supported resources
 
-The Kubernetes hosting integration supports converting various .NET Aspire resources to their Kubernetes equivalents:
+The Kubernetes hosting integration supports converting various Aspire resources to their Kubernetes equivalents:
 
 - **Project resources** → Deployments or StatefulSets.
 - **Container resources** → Deployments or StatefulSets.
@@ -100,7 +100,7 @@ Ensure your application projects are configured to build container images. The K
 
 ### Resource names
 
-Resource names in Kubernetes must follow DNS naming conventions. The integration automatically converts .NET Aspire resource names to valid Kubernetes resource names by:
+Resource names in Kubernetes must follow DNS naming conventions. The integration automatically converts Aspire resource names to valid Kubernetes resource names by:
 
 - Converting to lowercase.
 - Replacing invalid characters with hyphens.
@@ -113,7 +113,7 @@ Use [external parameters](../fundamentals/external-parameters.md) to configure e
 ## See also
 
 - [Deploy to Kubernetes](overview.md#deploy-to-kubernetes)
-- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations overview](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)
 - [Kubernetes documentation](https://kubernetes.io/docs/)
 - [Helm documentation](https://helm.sh/docs/)
