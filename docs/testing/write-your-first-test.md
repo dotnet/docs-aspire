@@ -187,7 +187,6 @@ For xUnit.net, consider using one of these logging packages:
 
 For MSTest, consider using one of these logging packages:
 
-- [📦 fm.Extensions.Logging.MSTest](https://www.nuget.org/packages/fm.Extensions.Logging.MSTest) - Integrates with MSTest framework.
 - [📦 Serilog.Extensions.Logging.File](https://www.nuget.org/packages/Serilog.Extensions.Logging.File) - Writes logs to files.
 - [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console.
 
