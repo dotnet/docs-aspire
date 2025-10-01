@@ -2,6 +2,7 @@
 title: Azure App Service integration (Preview)
 description: Learn how to integrate Azure App Service with .NET Aspire for hosting web applications.
 ms.date: 01/23/2025
+ai-usage: ai-generated
 ---
 
 # .NET Aspire Azure App Service integration (Preview)
