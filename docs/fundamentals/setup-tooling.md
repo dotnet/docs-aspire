@@ -1,7 +1,7 @@
 ---
 title: Aspire tooling
 description: Learn about essential tooling concepts for Aspire.
-ms.date: 07/22/2025
+ms.date: 10/01/2025
 zone_pivot_groups: dev-environment
 uid: dotnet/aspire/setup-tooling
 ms.custom: sfi-image-nochange

@@ -54,7 +54,9 @@
                 "ASP.NET",
                 "PowerShell",
                 "Orleans",
-                "Aspire"
+                "Aspire",
+                "-aspire",
+                "aspire-"
             ]
         },
         "MD046": {
