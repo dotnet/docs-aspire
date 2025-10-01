@@ -55,8 +55,11 @@
                 "PowerShell",
                 "Orleans",
                 "Aspire",
-                "-aspire",
-                "aspire-"
+                "-aspire",   // for file names
+                "aspire-",   // for file names
+                "# aspire ", // for command reference
+                "non-Aspire",
+                "[aspire "   // for reference link text
             ]
         },
         "MD046": {

@@ -61,7 +61,7 @@ You have more flexibility when you create the database context in this way, for 
 - You can use Entity Framework Core interceptors to modify database operations.
 - You can choose not to use Entity Framework Core context pooling, which may perform better in some circumstances.
 
-If you use this method, you can enhance the database context with Aspire-style retries, health checks, logging, and telemetry features by calling the `EnrichAzureNpgsqlDbContext` method:
+If you use this method, you can enhance the database context with Aspire retries, health checks, logging, and telemetry features by calling the `EnrichAzureNpgsqlDbContext` method:
 
 ```csharp
 builder.EnrichAzureNpgsqlDbContext<YourDbContext>(
