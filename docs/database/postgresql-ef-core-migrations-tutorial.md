@@ -1,7 +1,7 @@
 ---
 title: Tutorial - PostgreSQL migrations with Entity Framework Core in .NET Aspire
 description: Learn how to create, apply, and manage PostgreSQL migrations using Entity Framework Core in .NET Aspire applications.
-ms.date: 02/07/2025
+ms.date: 10/01/2025
 ms.topic: tutorial
 ---
 
@@ -11,13 +11,13 @@ In this comprehensive tutorial, you'll learn how to create a .NET Aspire applica
 
 > [!div class="checklist"]
 >
-> - Set up a .NET Aspire project with PostgreSQL and Entity Framework Core
+> - Set up a .NET Aspire solution with PostgreSQL and Entity Framework Core
 > - Create and configure Entity Framework Core models and contexts
 > - Generate PostgreSQL database migrations
 > - Create a migration service to apply migrations automatically
 > - Handle common migration scenarios and troubleshooting
 
-Entity Framework Core [migrations](/ef/core/managing-schemas/migrations) are essential for managing database schema changes over time. Unlike SQL Server examples found elsewhere, this tutorial focuses specifically on PostgreSQL integration patterns and common challenges developers face when working with PostgreSQL in containerized .NET Aspire applications.
+Entity Framework Core [migrations](/ef/core/managing-schemas/migrations) are essential for managing database schema changes over time. Unlike SQL Server examples found elsewhere, this tutorial focuses specifically on PostgreSQL integration patterns and common challenges developers face when working with PostgreSQL in containerized .NET Aspire solutions.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
@@ -86,23 +86,23 @@ This method accomplishes the following tasks:
 - Registers a `TicketContext` with the DI container for connecting to the PostgreSQL database.
 - Automatically enables corresponding health checks, logging, and telemetry.
 
-## Configure the app host
+## Configure the AppHost
 
-The **AspirePostgreSQLEFCore.AppHost** project orchestrates your application. Add the [.NET Aspire PostgreSQL hosting integration](postgresql-integration.md#hosting-integration) to your app host project:
+The **AspirePostgreSQLEFCore.AppHost** project orchestrates your application. Add the [.NET Aspire PostgreSQL hosting integration](postgresql-integration.md#hosting-integration) to your AppHost project:
 
 ```dotnetcli
 dotnet add AspirePostgreSQLEFCore.AppHost package Aspire.Hosting.PostgreSQL
 ```
 
-Update the **Program.cs** file in the **AspirePostgreSQLEFCore.AppHost** project:
+Update the AppHost.cs_ file in the **AspirePostgreSQLEFCore.AppHost** project:
 
-:::code source="snippets/postgresql-ef-core-tutorial/AspirePostgreSQLEFCore.AppHost/Program.cs":::
+:::code source="snippets/postgresql-ef-core-tutorial/AspirePostgreSQLEFCore.AppHost/AppHost.cs":::
 
 The preceding code:
 
-- Adds a PostgreSQL server resource with persistent data storage
-- Creates a database named `ticketdb`
-- Configures the web application to reference the database
+- Adds a PostgreSQL server resource with persistent data storage.
+- Creates a database named `ticketdb`.
+- Configures the web application to reference the database.
 
 ## Create Entity Framework Core migrations
 
