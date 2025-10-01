@@ -1,7 +1,7 @@
 ---
 title: What's new in .NET Aspire 9.4
 description: Learn what's new in the official general availability release of .NET Aspire 9.4.
-ms.date: 08/07/2025
+ms.date: 09/30/2025
 ---
 
 # What's new in .NET Aspire 9.4
@@ -706,11 +706,11 @@ builder.Build().Run();
 
 **Available lifecycle events:**
 
-- <xref:Aspire.Hosting.EventingExtensions.OnInitializeResource*> - Called during early resource initialization
-- <xref:Aspire.Hosting.EventingExtensions.OnBeforeResourceStarted*> - Called before the resource starts
-- <xref:Aspire.Hosting.EventingExtensions.OnConnectionStringAvailable*> - Called when connection strings are resolved (requires `IResourceWithConnectionString`)
-- <xref:Aspire.Hosting.EventingExtensions.OnResourceEndpointsAllocated*> - Called when resource endpoints are allocated (requires `IResourceWithEndpoints`)
-- <xref:Aspire.Hosting.EventingExtensions.OnResourceReady*> - Called when the resource is fully ready
+- <xref:Aspire.Hosting.DistributedApplicationEventingExtensions.OnInitializeResource*> - Called during early resource initialization
+- <xref:Aspire.Hosting.DistributedApplicationEventingExtensions.OnBeforeResourceStarted*> - Called before the resource starts
+- <xref:Aspire.Hosting.DistributedApplicationEventingExtensions.OnConnectionStringAvailable*> - Called when connection strings are resolved (requires `IResourceWithConnectionString`)
+- <xref:Aspire.Hosting.DistributedApplicationEventingExtensions.OnResourceEndpointsAllocated*> - Called when resource endpoints are allocated (requires `IResourceWithEndpoints`)
+- <xref:Aspire.Hosting.DistributedApplicationEventingExtensions.OnResourceReady*> - Called when the resource is fully ready
 
 The new chainable fluent API, strongly-typed callbacks, and simplified syntax make it intuitive to hook into your resource lifecycles for interactions, commands, custom scripts, and more.
 
@@ -914,7 +914,7 @@ When a newer version is detected, a friendly notification appears in the Aspire 
 
 :::image type="content" source="media/dashboard-update-notification.png" lightbox="media/dashboard-update-notification.png" alt-text="Screenshot of dashboard showing an update notification.":::
 
-Aspire only shows notifications when a newer version is available, and the checks happen in the background without impacting application startup or performance. The upgrade check system can be disable by setting the `ASPIRE_VERSION_CHECK_DISABLED` environment variable to `true`. For more information, see [AppHost configuration](/dotnet/aspire/app-host/configuration).
+Aspire only shows notifications when a newer version is available, and the checks happen in the background without impacting application startup or performance. The upgrade check system can be disabled by setting the `ASPIRE_VERSION_CHECK_DISABLED` environment variable to `true`. For more information, see [Aspire version update notifications](/dotnet/aspire/app-host/configuration#aspire-version-update-notifications).
 
 ### 📋 Parameters and connection strings visible in dashboard
 

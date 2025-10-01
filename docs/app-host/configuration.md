@@ -57,6 +57,21 @@ For more information, see [.NET Aspire and launch profiles](../fundamentals/laun
 | `ASPIRE_CONTAINER_RUNTIME` | `docker` | Allows the user of alternative container runtimes for resources backed by containers. Possible values are `docker` (default) or `podman`. See [Setup and tooling overview for more details](../fundamentals/setup-tooling.md).  |
 | `ASPIRE_VERSION_CHECK_DISABLED` | `false` | When set to `true`, .NET Aspire doesn't check for newer versions on startup. |
 
+## Aspire version update notifications
+
+When an Aspire app starts, it checks if a newer version of Aspire is available on NuGet. If a new version is found, a notification appears in the dashboard with the latest version number, [a link to upgrade instructions](https://aka.ms/dotnet/aspire/update-latest), and button to ignore that version in the future.
+
+:::image type="content" source="../whats-new/media/dashboard-update-notification.png" lightbox="../whats-new/media/dashboard-update-notification.png" alt-text="Screenshot of dashboard showing a version update notification with upgrade options.":::
+
+The version check runs only when:
+
+- The dashboard is enabled (interaction service is available).
+- At least 2 days have passed since the last check.
+- The check hasn't been disabled via the `ASPIRE_VERSION_CHECK_DISABLED` configuration setting.
+- The app is not running in publish mode.
+
+Updates are manual. You need to edit your project file to upgrade the Aspire SDK and package versions.
+
 ## Resource service
 
 A resource service is hosted by the AppHost. The resource service is used by the dashboard to fetch information about resources which are being orchestrated by .NET Aspire.
