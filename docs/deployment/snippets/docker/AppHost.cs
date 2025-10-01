@@ -6,15 +6,24 @@ var compose = builder.AddDockerComposeEnvironment("compose");
 
 // Add your services to the Docker Compose environment
 var cache = builder.AddRedis("cache")
-                   .PublishAsDockerComposeService();
+                   .PublishAsDockerComposeService((resource, service) =>
+                   {
+                       service.Name = "cache";
+                   });
 
 var apiService = builder.AddProject<Projects.ApiService>("apiservice")
-                        .PublishAsDockerComposeService();
+                        .PublishAsDockerComposeService((resource, service) =>
+                        {
+                            service.Name = "api";
+                        });
 
 var webApp = builder.AddProject<Projects.WebApp>("webapp")
                     .WithReference(cache)
                     .WithReference(apiService)
-                    .PublishAsDockerComposeService();
+                    .PublishAsDockerComposeService((resource, service) =>
+                    {
+                        service.Name = "web";
+                    });
 
 builder.Build().Run();
 // </apphost>
