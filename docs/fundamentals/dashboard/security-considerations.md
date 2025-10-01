@@ -1,23 +1,23 @@
 ---
-title: .NET Aspire dashboard security considerations
-description: Security considerations for running the .NET Aspire dashboard
+title: Aspire dashboard security considerations
+description: Security considerations for running the Aspire dashboard
 ms.date: 04/15/2025
 ms.topic: reference
 ---
 
-# Security considerations for running the .NET Aspire dashboard
+# Security considerations for running the Aspire dashboard
 
-The [.NET Aspire dashboard](overview.md) offers powerful insights to your apps. The dashboard displays information about resources, including their configuration, console logs and in-depth telemetry.
+The [Aspire dashboard](overview.md) offers powerful insights to your apps. The dashboard displays information about resources, including their configuration, console logs and in-depth telemetry.
 
 Data displayed in the dashboard can be sensitive. For example, configuration can include secrets in environment variables, and telemetry can include sensitive runtime data. Care should be taken to secure access to the dashboard.
 
 ## Scenarios for running the dashboard
 
-The dashboard can be run in different scenarios, such as being automatically starting by .NET Aspire tooling, or as a standalone application that is separate from other .NET Aspire integrations. Steps to secure the dashboard depend on how it's being run.
+The dashboard can be run in different scenarios, such as being automatically starting by Aspire tooling, or as a standalone application that is separate from other Aspire integrations. Steps to secure the dashboard depend on how it's being run.
 
-### .NET Aspire tooling
+### Aspire tooling
 
-The dashboard is automatically started when an .NET Aspire AppHost is run. The dashboard is secure by default when run from .NET Aspire tooling:
+The dashboard is automatically started when an Aspire AppHost is run. The dashboard is secure by default when run from Aspire tooling:
 
 - Transport is secured with HTTPS. Using HTTPS is configured by default in _launchSettings.json_. The launch profile includes `https` addresses in `applicationUrl` and `ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL` values.
 - Browser frontend authenticated with a browser token.
@@ -28,11 +28,11 @@ HTTPS in the dashboard uses the ASP.NET Core development certificate. The certif
 - [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](/aspnet/core/security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos)
 - [Trust HTTPS certificate on Linux](/aspnet/core/security/enforcing-ssl#trust-https-certificate-on-linux)
 
-There are scenarios where you might want to allow an unsecured transport. The dashboard can run without HTTPS from the .NET Aspire AppHost by configuring the `ASPIRE_ALLOW_UNSECURED_TRANSPORT` setting to `true`. For more information, see [Allow unsecured transport in .NET Aspire](../../troubleshooting/allow-unsecure-transport.md).
+There are scenarios where you might want to allow an unsecured transport. The dashboard can run without HTTPS from the Aspire AppHost by configuring the `ASPIRE_ALLOW_UNSECURED_TRANSPORT` setting to `true`. For more information, see [Allow unsecured transport in Aspire](../../troubleshooting/allow-unsecure-transport.md).
 
 ### Standalone mode
 
-The dashboard is shipped as a Docker image and can be used without the rest of .NET Aspire. When the dashboard is launched in standalone mode, it defaults to a mix of secure and unsecured settings.
+The dashboard is shipped as a Docker image and can be used without the rest of Aspire. When the dashboard is launched in standalone mode, it defaults to a mix of secure and unsecured settings.
 
 - Browser frontend authenticated with a browser token.
 - Incoming telemetry is unsecured. Warnings are displayed in the console and dashboard UI.
@@ -43,11 +43,11 @@ For information about securing the telemetry when running the dashboard in stand
 
 ## Secure telemetry endpoint
 
-The .NET Aspire dashboard provides a variety of ways to view logs, traces, and metrics for your app. This information enables you to track the behavior and performance of your app and to diagnose any issues that arise. It's important that you can trust this information, and a warning is displayed in the dashboard UI if telemetry isn't secured.
+The Aspire dashboard provides a variety of ways to view logs, traces, and metrics for your app. This information enables you to track the behavior and performance of your app and to diagnose any issues that arise. It's important that you can trust this information, and a warning is displayed in the dashboard UI if telemetry isn't secured.
 
 The dashboard collects telemetry through an [OTLP (OpenTelemetry protocol)](https://opentelemetry.io/docs/specs/otel/protocol/) endpoint. Apps send telemetry to this endpoint, and the dashboard stores the external information it receives in memory, which is then accessible via the UI.
 
-To prevent untrusted apps from sending telemetry to .NET Aspire, the OTLP endpoint should be secured. The OTLP endpoint is automatically secured with an API key when the dashboard is started by .NET Aspire tooling. Additional configuration is required for standalone mode.
+To prevent untrusted apps from sending telemetry to Aspire, the OTLP endpoint should be secured. The OTLP endpoint is automatically secured with an API key when the dashboard is started by Aspire tooling. Additional configuration is required for standalone mode.
 
 API key authentication can be enabled on the telemetry endpoint with some additional configuration:
 
@@ -73,7 +73,7 @@ docker run --rm -it -d -p 18888:18888 -p 4317:18889 --name aspire-dashboard `
 
 The preceding Docker command:
 
-- Starts the .NET Aspire dashboard image and exposes OTLP endpoint as port 4317
+- Starts the Aspire dashboard image and exposes OTLP endpoint as port 4317
 - Configures the OTLP endpoint to use `ApiKey` authentication. This requires that incoming telemetry has a valid `x-otlp-api-key` header value.
 - Configures the expected API key. `{MY_APIKEY}` in the example value should be replaced with a real API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended.
 

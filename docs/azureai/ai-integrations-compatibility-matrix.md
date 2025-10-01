@@ -1,13 +1,13 @@
 ---
 title: Aspire AI integrations compatibility matrix
-description: Learn which AI client integrations are compatible with which AI hosting integrations in .NET Aspire.
+description: Learn which AI client integrations are compatible with which AI hosting integrations in Aspire.
 ms.date: 09/23/2025
 ai-usage: ai-generated
 ---
 
 # Aspire AI integrations compatibility matrix
 
-.NET Aspire provides several AI hosting and client integrations that enable you to work with different AI services and platforms. This article provides a compatibility matrix showing which client integrations work with which hosting integrations, along with guidance on the recommended pairings.
+Aspire provides several AI hosting and client integrations that enable you to work with different AI services and platforms. This article provides a compatibility matrix showing which client integrations work with which hosting integrations, along with guidance on the recommended pairings.
 
 ## Compatibility matrix
 
@@ -108,7 +108,7 @@ builder.AddOpenAIClient("openai");
 
 ### GitHub Models
 
-For GitHub Models, use the **Aspire.Azure.AI.Inference** client integration for the best compatibility with the GitHub Models API. For more information, see [.NET Aspire GitHub Models integration (Preview)](../github/github-models-integration.md).
+For GitHub Models, use the **Aspire.Azure.AI.Inference** client integration for the best compatibility with the GitHub Models API. For more information, see [Aspire GitHub Models integration (Preview)](../github/github-models-integration.md).
 
 #### Hosting integration
 
@@ -222,4 +222,4 @@ Uses `EndpointAIInference` if available, otherwise `Endpoint`.
 - [Aspire OpenAI integration (Preview)](../openai/openai-integration.md)
 - [Azure AI Inference integration](azureai-inference-integration.md)
 - [GitHub Models integration](../github/github-models-integration.md)
-- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
+- [Aspire integrations overview](../fundamentals/integrations-overview.md)

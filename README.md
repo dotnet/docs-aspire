@@ -1,4 +1,4 @@
-# .NET Aspire docs
+# Aspire docs
 
 [![Discord](https://img.shields.io/discord/732297728826277939?style=flat&logo=discord&logoColor=white&label=join%20our%20discord&labelColor=512bd4&color=cyan)](https://discord.com/invite/h87kDAHQgJ)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/9186/badge)](https://www.bestpractices.dev/projects/9186)
@@ -9,9 +9,9 @@
 [![GitHub pulls-opened](https://img.shields.io/github/issues-pr/dotnet/docs-aspire.svg)](https://GitHub.com/dotnet/docs-aspire/pulls?q=is%3Aissue+is%3Aopened)
 [![GitHub pulls-merged](https://img.shields.io/github/issues-search/dotnet/docs-aspire?label=merged%20pull%20requests&query=is%3Apr%20is%3Aclosed%20is%3Amerged&color=darkviolet)](https://github.com/dotnet/docs-aspire/pulls?q=is%3Apr+is%3Aclosed+is%3Amerged)
 
-This repository contains the conceptual documentation for .NET Aspire. The [.NET Aspire documentation site](https://learn.microsoft.com/dotnet/aspire).
+This repository contains the conceptual documentation for Aspire. The [Aspire documentation site](https://learn.microsoft.com/dotnet/aspire).
 
-![.NET Aspire](assets/dotnet-aspire-color.png)
+![Aspire](assets/dotnet-aspire-color.png)
 
 ## :purple_heart: Contribute
 

@@ -1,17 +1,17 @@
 ---
-title: .NET Aspire Community Toolkit EventStore integration
-description: Learn how to use the .NET Aspire EventStore hosting and client integration to run the EventStore container and accessing it via the EventStore client.
+title: Aspire Community Toolkit EventStore integration
+description: Learn how to use the Aspire EventStore hosting and client integration to run the EventStore container and accessing it via the EventStore client.
 ms.date: 08/07/2025
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Community Toolkit EventStore integration
+# Aspire Community Toolkit EventStore integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you learn how to use the .NET Aspire EventStore hosting integration to run [EventStore](https://eventstore.com) container and accessing it via the [EventStore](https://github.com/EventStore/EventStore-Client-Dotnet) client.
+In this article, you learn how to use the Aspire EventStore hosting integration to run [EventStore](https://eventstore.com) container and accessing it via the [EventStore](https://github.com/EventStore/EventStore-Client-Dotnet) client.
 
 ## Hosting integration
 
@@ -49,7 +49,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/eventstore/eventstore` image, it creates a new EventStore instance on your local machine. A reference to your EventStore resource (the `eventstore` variable) is added to the `ExampleProject`.
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/eventstore/eventstore` image, it creates a new EventStore instance on your local machine. A reference to your EventStore resource (the `eventstore` variable) is added to the `ExampleProject`.
 
 For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -137,7 +137,7 @@ For more information on data bind mounts, see [Docker docs: Bind mounts](https:/
 
 ## Client integration
 
-To get started with the .NET Aspire EventStore client integration, install the [📦 CommunityToolkit.Aspire.EventStore][client-nuget-link] NuGet package in the client-consuming project, that is, the project for the application that uses the EventStore client.
+To get started with the Aspire EventStore client integration, install the [📦 CommunityToolkit.Aspire.EventStore][client-nuget-link] NuGet package in the client-consuming project, that is, the project for the application that uses the EventStore client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -198,7 +198,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire EventStore client integration provides multiple options to configure the server connection based on the requirements and conventions of your project.
+The Aspire EventStore client integration provides multiple options to configure the server connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -220,7 +220,7 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 
 #### Use configuration providers
 
-The .NET Aspire EventStore Client integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `CommunityToolkit.Aspire.EventStore.EventStoreSettings` from configuration by using the `Aspire:EventStore:Client` key. Consider the following example _appsettings.json_ that configures some of the options:
+The Aspire EventStore Client integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `CommunityToolkit.Aspire.EventStore.EventStoreSettings` from configuration by using the `Aspire:EventStore:Client` key. Consider the following example _appsettings.json_ that configures some of the options:
 
 ```json
 {
@@ -247,13 +247,13 @@ builder.AddEventStoreClient(
 
 #### Client integration health checks
 
-The .NET Aspire EventStore integration uses the configured client to perform a `IsHealthyAsync`. If the result is `true`, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
+The Aspire EventStore integration uses the configured client to perform a `IsHealthyAsync`. If the result is `true`, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
 
 ## See also
 
 - [EventStore](https://eventstore.com)
 - [EventStore Client](https://github.com/EventStore/EventStore-Client-Dotnet)
-- [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
+- [Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
 
 [hosting-nuget-link]: https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.EventStore
 [client-nuget-link]: https://nuget.org/packages/CommunityToolkit.Aspire.EventStore

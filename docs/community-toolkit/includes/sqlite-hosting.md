@@ -34,7 +34,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
                             .WithReference(sqlite);
 ```
 
-When .NET Aspire adds a SQLite database to the AppHost, as shown in the preceding example, it creates a new SQLite database file in the users temp directory.
+When Aspire adds a SQLite database to the AppHost, as shown in the preceding example, it creates a new SQLite database file in the users temp directory.
 
 Alternatively, if you want to specify a custom location for the SQLite database file, provide the relevant arguments to the `AddSqlite` method.
 

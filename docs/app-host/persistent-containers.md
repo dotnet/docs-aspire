@@ -1,12 +1,12 @@
 ---
-title: Persistent container lifetimes in .NET Aspire
-description: Learn how to configure containers to persist and be re-used between .NET Aspire AppHost runs.
+title: Persistent container lifetimes in Aspire
+description: Learn how to configure containers to persist and be re-used between Aspire AppHost runs.
 ms.date: 07/15/2025
 ---
 
-# Persistent container lifetimes in .NET Aspire
+# Persistent container lifetimes in Aspire
 
-In .NET Aspire, containers follow a typical lifecycle where they're created when the AppHost starts and destroyed when it stops. However, you can specify that you want to use **persistent containers**, which deviate from this standard lifecycle. Persistent containers are created and started by the .NET Aspire orchestrator but aren't destroyed when the AppHost stops, allowing them to persist between runs.
+In Aspire, containers follow a typical lifecycle where they're created when the AppHost starts and destroyed when it stops. However, you can specify that you want to use **persistent containers**, which deviate from this standard lifecycle. Persistent containers are created and started by the Aspire orchestrator but aren't destroyed when the AppHost stops, allowing them to persist between runs.
 
 This feature is particularly beneficial for containers that have long startup times, such as databases, as it eliminates the need to wait for these services to initialize on every AppHost restart.
 
@@ -32,9 +32,9 @@ In the preceding example, the PostgreSQL container is configured to persist betw
 
 ## Dashboard visualization
 
-The .NET Aspire dashboard shows persistent containers with a distinctive pin icon (📌) to help you identify them:
+The Aspire dashboard shows persistent containers with a distinctive pin icon (📌) to help you identify them:
 
-:::image type="content" source="../whats-new/media/persistent-container.png" lightbox="../whats-new/media/persistent-container.png" alt-text="Screenshot of the .NET Aspire dashboard showing a persistent container with a pin icon.":::
+:::image type="content" source="../whats-new/media/persistent-container.png" lightbox="../whats-new/media/persistent-container.png" alt-text="Screenshot of the Aspire dashboard showing a persistent container with a pin icon.":::
 
 After the AppHost stops, persistent containers continue running and can be seen in your container runtime (such as Docker Desktop):
 
@@ -42,7 +42,7 @@ After the AppHost stops, persistent containers continue running and can be seen 
 
 ## Configuration change detection
 
-Persistent containers are automatically recreated when the AppHost detects meaningful configuration changes. .NET Aspire tracks a hash of the configuration used to create each container and compares it to the current configuration on subsequent runs. If the configuration differs, the container is recreated with the new settings.
+Persistent containers are automatically recreated when the AppHost detects meaningful configuration changes. Aspire tracks a hash of the configuration used to create each container and compares it to the current configuration on subsequent runs. If the configuration differs, the container is recreated with the new settings.
 
 This mechanism ensures that persistent containers stay synchronized with your AppHost configuration without requiring manual intervention.
 
@@ -53,7 +53,7 @@ By default, persistent containers use a naming pattern that combines:
 - The service name you specify in your AppHost.
 - A postfix based on a hash of the AppHost project path.
 
-This naming scheme ensures that persistent containers are unique to each AppHost project, preventing conflicts when multiple .NET Aspire projects use the same service names.
+This naming scheme ensures that persistent containers are unique to each AppHost project, preventing conflicts when multiple Aspire projects use the same service names.
 
 For example, if you have a service named `"postgres"` in an AppHost project located at `/path/to/MyApp.AppHost`, the container name might be `postgres-abc123def` where `abc123def` is derived from the project path hash.
 
@@ -71,7 +71,7 @@ var postgres = builder.AddPostgres("postgres")
 builder.Build().Run();
 ```
 
-When you specify a custom container name, .NET Aspire first checks if a container with that name already exists. If a container with that name exists and was previously created by .NET Aspire, it follows the normal persistent container behavior and can be automatically recreated if the configuration changes. If a container with that name exists but wasn't created by .NET Aspire, it won't be managed or recreated by the AppHost. If no container with the custom name exists, .NET Aspire creates a new one.
+When you specify a custom container name, Aspire first checks if a container with that name already exists. If a container with that name exists and was previously created by Aspire, it follows the normal persistent container behavior and can be automatically recreated if the configuration changes. If a container with that name exists but wasn't created by Aspire, it won't be managed or recreated by the AppHost. If no container with the custom name exists, Aspire creates a new one.
 
 ## Manual cleanup
 
@@ -101,6 +101,6 @@ Persistent containers are ideal for:
 
 ## See also
 
-- [Orchestrate resources in .NET Aspire](../fundamentals/orchestrate-resources.md)
-- [.NET Aspire AppHost overview](../fundamentals/app-host-overview.md)
-- [What's new in .NET Aspire 9.0](../whats-new/dotnet-aspire-9.md#persistent-containers)
+- [Orchestrate resources in Aspire](../fundamentals/orchestrate-resources.md)
+- [Aspire AppHost overview](../fundamentals/app-host-overview.md)
+- [What's new in Aspire 9.0](../whats-new/dotnet-aspire-9.md#persistent-containers)

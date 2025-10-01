@@ -1,25 +1,25 @@
 ---
-title: .NET Aspire and GitHub Codespaces
-description: Learn how to use .NET Aspire with GitHub Codespaces.
+title: Aspire and GitHub Codespaces
+description: Learn how to use Aspire with GitHub Codespaces.
 ms.date: 02/24/2025
 ---
 
-# .NET Aspire and GitHub Codespaces
+# Aspire and GitHub Codespaces
 
-[GitHub Codespaces](https://github.com/features/codespaces) offers a cloud-hosted development environment based on Visual Studio Code. It can be accessed directly from a web browser or through Visual Studio Code locally, where Visual Studio Code acts as a client connecting to a cloud-hosted backend. With .NET Aspire 9.1, comes logic to better support GitHub Codespaces including:
+[GitHub Codespaces](https://github.com/features/codespaces) offers a cloud-hosted development environment based on Visual Studio Code. It can be accessed directly from a web browser or through Visual Studio Code locally, where Visual Studio Code acts as a client connecting to a cloud-hosted backend. With Aspire 9.1, comes logic to better support GitHub Codespaces including:
 
 - Automatically configure port forwarding with the correct protocol.
-- Automatically translate URLs in the .NET Aspire dashboard.
+- Automatically translate URLs in the Aspire dashboard.
 
-Before .NET Aspire 9.1 it was still possible to use .NET Aspire within a GitHub Codespace, however more manual configuration was required.
+Before Aspire 9.1 it was still possible to use Aspire within a GitHub Codespace, however more manual configuration was required.
 
 ## GitHub Codespaces vs. Dev Containers
 
-GitHub Codespaces builds upon Visual Studio Code and the [Dev Containers specification](https://containers.dev/implementors/spec/). In addition to supporting GitHub Codespaces, .NET Aspire 9.1 enhances support for using Visual Studio Code and locally hosted Dev Containers. While the experiences are similar, there are some differences. For more information, see [.NET Aspire and Visual Studio Code Dev Containers](dev-containers.md).
+GitHub Codespaces builds upon Visual Studio Code and the [Dev Containers specification](https://containers.dev/implementors/spec/). In addition to supporting GitHub Codespaces, Aspire 9.1 enhances support for using Visual Studio Code and locally hosted Dev Containers. While the experiences are similar, there are some differences. For more information, see [Aspire and Visual Studio Code Dev Containers](dev-containers.md).
 
 ## Quick start using template repository
 
-To configure GitHub Codespaces for .NET Aspire, use the _.devcontainer/devcontainer.json_ file in your repository. The simplest way to get started is by creating a new repository from our [template repository](https://github.com/dotnet/aspire-devcontainer). Consider the following steps:
+To configure GitHub Codespaces for Aspire, use the _.devcontainer/devcontainer.json_ file in your repository. The simplest way to get started is by creating a new repository from our [template repository](https://github.com/dotnet/aspire-devcontainer). Consider the following steps:
 
 1. [Create a new repository](https://github.com/new?template_name=aspire-devcontainer&template_owner=dotnet) using our template.
 
@@ -39,9 +39,9 @@ To configure GitHub Codespaces for .NET Aspire, use the _.devcontainer/devcontai
 
     :::image source="media/codespace-terminal.png" lightbox="media/codespace-terminal.png" alt-text="Codespace terminal prompt":::
 
-    At this point, the .NET Aspire templates have been installed and the ASP.NET Core developer certificate has been added and accepted.
+    At this point, the Aspire templates have been installed and the ASP.NET Core developer certificate has been added and accepted.
 
-1. Create a new .NET Aspire project using the starter template.
+1. Create a new Aspire project using the starter template.
 
     ```dotnetcli
     dotnet new aspire-starter --name HelloAspire
@@ -55,11 +55,11 @@ To configure GitHub Codespaces for .NET Aspire, use the _.devcontainer/devcontai
 
     :::image source="media/codespace-launch-apphost.png" lightbox="media/codespace-launch-apphost.png" alt-text="Launch AppHost in Codespace":::
 
-    After a few moments the **Debug Console** panel is displayed, and it includes a link to the .NET Aspire dashboard exposed on a GitHub Codespaces endpoint with the authentication token.
+    After a few moments the **Debug Console** panel is displayed, and it includes a link to the Aspire dashboard exposed on a GitHub Codespaces endpoint with the authentication token.
 
     :::image source="media/codespaces-debug-console.png" lightbox="media/codespaces-debug-console.png" alt-text="Codespaces debug console":::
 
-1. Open the .NET Aspire dashboard by selecting the dashboard URL in the **Debug Console**. This opens the .NET Aspire dashboard in a separate tab within your browser.
+1. Open the Aspire dashboard by selecting the dashboard URL in the **Debug Console**. This opens the Aspire dashboard in a separate tab within your browser.
 
     You notice on the dashboard that all HTTP/HTTPS endpoints defined on resources have had their typical `localhost` address translated to a unique fully qualified subdomain on the `app.github.dev` domain.
 
@@ -85,18 +85,18 @@ To configure GitHub Codespaces for .NET Aspire, use the _.devcontainer/devcontai
     GitHub charges for the use of Codespaces. For more information, see [Managing the cost of GitHub Codespaces in your organization](https://docs.github.com/codespaces/managing-codespaces-for-your-organization/choosing-who-owns-and-pays-for-codespaces-in-your-organization).
 
     > [!NOTE]
-    > .NET Aspire supports the use of Dev Containers in Visual Studio Code independent of GitHub Codespaces. For more information on how to use Dev Containers locally, see [.NET Aspire and Dev Containers in Visual Studio Code](dev-containers.md).
+    > Aspire supports the use of Dev Containers in Visual Studio Code independent of GitHub Codespaces. For more information on how to use Dev Containers locally, see [Aspire and Dev Containers in Visual Studio Code](dev-containers.md).
 
 ## Manually configuring _devcontainer.json_
 
-The preceding walkthrough demonstrates the streamlined process of creating a GitHub Codespace using the .NET Aspire Devcontainer template. If you already have an existing repository and wish to utilize Devcontainer functionality with .NET Aspire, add a _devcontainer.json_ file to the _.devcontainer_ folder within your repository:
+The preceding walkthrough demonstrates the streamlined process of creating a GitHub Codespace using the Aspire Devcontainer template. If you already have an existing repository and wish to utilize Devcontainer functionality with Aspire, add a _devcontainer.json_ file to the _.devcontainer_ folder within your repository:
 
 ```Directory
 └───📂 .devcontainer
      └─── devcontainer.json
 ```
 
-The [template repository](https://github.com/dotnet/aspire-devcontainer) contains a copy of the _devcontainer.json_ file that you can use as a starting point, which should be sufficient for .NET Aspire. The following JSON represents the latest version of the _.devcontainer/devcontainer.json_ file from the template:
+The [template repository](https://github.com/dotnet/aspire-devcontainer) contains a copy of the _devcontainer.json_ file that you can use as a starting point, which should be sufficient for Aspire. The following JSON represents the latest version of the _.devcontainer/devcontainer.json_ file from the template:
 
 :::code language="json" source="~/aspire-devcontainer/.devcontainer/devcontainer.json":::
 

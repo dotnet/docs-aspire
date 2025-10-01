@@ -1,25 +1,25 @@
 ---
-title: HostingStartup is not supported with .NET Aspire integrations
-description: Learn how to migrate from HostingStartup to the IHostApplicationBuilder pattern for use with .NET Aspire integrations.
+title: HostingStartup is not supported with Aspire integrations
+description: Learn how to migrate from HostingStartup to the IHostApplicationBuilder pattern for use with Aspire integrations.
 ms.date: 08/04/2025
 ai-usage: ai-assisted
 ---
 
-# HostingStartup is not supported with .NET Aspire integrations
+# HostingStartup is not supported with Aspire integrations
 
-.NET Aspire integrations require the use of <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder>, but `HostingStartup` only provides access to <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. This fundamental incompatibility means that you can't configure .NET Aspire integrations from within a `HostingStartup` implementation.
+Aspire integrations require the use of <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder>, but `HostingStartup` only provides access to <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. This fundamental incompatibility means that you can't configure Aspire integrations from within a `HostingStartup` implementation.
 
 ## Symptoms
 
-When attempting to use .NET Aspire integrations within a HostingStartup implementation, you might encounter:
+When attempting to use Aspire integrations within a HostingStartup implementation, you might encounter:
 
 - **Compilation errors**: Aspire integration extension methods like `AddNpgsqlDbContext` or `AddRedis` are not available on `IWebHostBuilder`.
 - **Runtime configuration issues**: Even if you access the underlying services, the proper configuration and service registration won't occur.
 - **Missing telemetry and resilience**: Aspire's built-in observability, health checks, and resilience patterns won't be applied.
 
-## Why HostingStartup doesn't work with .NET Aspire
+## Why HostingStartup doesn't work with Aspire
 
-.NET Aspire integrations extend <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to provide:
+Aspire integrations extend <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to provide:
 
 - Standardized configuration patterns.
 - Built-in health checks.
@@ -31,7 +31,7 @@ The `HostingStartup` feature was designed for the older ASP.NET Core hosting mod
 
 ## Migrating from HostingStartup
 
-The `HostingStartup` feature represents an older ASP.NET Core hosting model that predates the modern <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> pattern that .NET Aspire requires. Migration is necessary to leverage .NET Aspire's integrations and modern hosting capabilities.
+The `HostingStartup` feature represents an older ASP.NET Core hosting model that predates the modern <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> pattern that Aspire requires. Migration is necessary to leverage Aspire's integrations and modern hosting capabilities.
 
 ### Understanding the API changes
 
@@ -51,9 +51,9 @@ When migrating from `HostingStartup` to the modern hosting model, you're moving 
 
 | Legacy pattern | Modern pattern | Benefit |
 |---|---|---|
-| `IWebHostBuilder` | `IHostApplicationBuilder` | Access to modern hosting features and .NET Aspire integrations. |
+| `IWebHostBuilder` | `IHostApplicationBuilder` | Access to modern hosting features and Aspire integrations. |
 | Separate startup classes | Program.cs configuration | Service configuration moves directly into the application's entry point for better clarity and debugging. |
-| Manual service registration | Integration packages | .NET Aspire integrations handle service registration, configuration, health checks, and telemetry automatically. |
+| Manual service registration | Integration packages | Aspire integrations handle service registration, configuration, health checks, and telemetry automatically. |
 
 ### Migration resources
 
@@ -64,10 +64,10 @@ For detailed migration guidance, see:
 
 ## Additional considerations
 
-- **Service discovery**: .NET Aspire integrations automatically configure service discovery. If you were using HostingStartup for service-to-service communication, consider using Aspire's [service discovery features](../service-discovery/overview.md).
+- **Service discovery**: Aspire integrations automatically configure service discovery. If you were using HostingStartup for service-to-service communication, consider using Aspire's [service discovery features](../service-discovery/overview.md).
 
-- **Configuration management**: Instead of hard-coding connection strings in HostingStartup, use .NET Aspire's configuration patterns with connection string names that map to resources in your app host.
+- **Configuration management**: Instead of hard-coding connection strings in HostingStartup, use Aspire's configuration patterns with connection string names that map to resources in your app host.
 
-- **Testing**: .NET Aspire provides [testing capabilities](../testing/overview.md) that work with the new hosting model.
+- **Testing**: Aspire provides [testing capabilities](../testing/overview.md) that work with the new hosting model.
 
-For more information about .NET Aspire integrations and the hosting model, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
+For more information about Aspire integrations and the hosting model, see [Aspire integrations overview](../fundamentals/integrations-overview.md).

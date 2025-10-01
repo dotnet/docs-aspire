@@ -14,7 +14,7 @@ helpviewer_keywords:
 
 > 'Project' requires a reference to "Aspire.AppHost.Sdk" with version "9.0.0" or greater to work correctly. Please add the following line after the Project declaration `<Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />`.
 
-The .NET Aspire AppHost package references require .NET Aspire SDK version 9.0.0 or greater. The SDK reference is either being omitted or is using a version older than 9.0.0.
+The Aspire AppHost package references require Aspire SDK version 9.0.0 or greater. The SDK reference is either being omitted or is using a version older than 9.0.0.
 
 ## To correct this error
 

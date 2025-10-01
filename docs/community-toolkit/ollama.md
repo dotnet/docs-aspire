@@ -1,17 +1,17 @@
 ---
-title: .NET Aspire Community Toolkit Ollama integration
-description: Learn how to use the .NET Aspire Ollama hosting and client integration to host Ollama models using the Ollama container and accessing it via the OllamaSharp client.
+title: Aspire Community Toolkit Ollama integration
+description: Learn how to use the Aspire Ollama hosting and client integration to host Ollama models using the Ollama container and accessing it via the OllamaSharp client.
 ms.date: 10/24/2024
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Community Toolkit Ollama integration
+# Aspire Community Toolkit Ollama integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
-[Ollama](https://ollama.com) is a powerful, open source language model that can be used to generate text based on a given prompt. The .NET Aspire Ollama integration provides a way to host Ollama models using the [`docker.io/ollama/ollama` container image](https://hub.docker.com/r/ollama/ollama) and access them via the [OllamaSharp](https://www.nuget.org/packages/OllamaSharp) client.
+[Ollama](https://ollama.com) is a powerful, open source language model that can be used to generate text based on a given prompt. The Aspire Ollama integration provides a way to host Ollama models using the [`docker.io/ollama/ollama` container image](https://hub.docker.com/r/ollama/ollama) and access them via the [OllamaSharp](https://www.nuget.org/packages/OllamaSharp) client.
 
 ## Hosting integration
 
@@ -55,14 +55,14 @@ Alternatively, if you want to use a model from the [Hugging Face](https://huggin
 var llama = ollama.AddHuggingFaceModel("llama", "bartowski/Llama-3.2-1B-Instruct-GGUF:IQ4_XS");
 ```
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/ollama/ollama` image, it creates a new Ollama instance on your local machine. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/ollama/ollama` image, it creates a new Ollama instance on your local machine. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 ### Download the LLM
 
-When the Ollama container for this integration first spins up, it downloads the configured LLMs. The progress of this download displays in the **State** column for this integration on the .NET Aspire dashboard.
+When the Ollama container for this integration first spins up, it downloads the configured LLMs. The progress of this download displays in the **State** column for this integration on the Aspire dashboard.
 
 > [!IMPORTANT]
-> Keep the .NET Aspire orchestration app open until the download is complete, otherwise the download will be cancelled.
+> Keep the Aspire orchestration app open until the download is complete, otherwise the download will be cancelled.
 
 ### Cache the LLM
 
@@ -117,7 +117,7 @@ var ollama = builder.AddOllama("ollama")
 
 ## Client integration
 
-To get started with the .NET Aspire OllamaSharp integration, install the [📦 CommunityToolkit.Aspire.OllamaSharp](https://nuget.org/packages/CommunityToolkit.Aspire.OllamaSharp) NuGet package in the client-consuming project, that is, the project for the application that uses the Ollama client.
+To get started with the Aspire OllamaSharp integration, install the [📦 CommunityToolkit.Aspire.OllamaSharp](https://nuget.org/packages/CommunityToolkit.Aspire.OllamaSharp) NuGet package in the client-consuming project, that is, the project for the application that uses the Ollama client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -246,6 +246,6 @@ public class ExampleService(
 
 - [Ollama](https://ollama.com)
 - [Open WebUI](https://openwebui.com)
-- [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
+- [Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
 - [OllamaSharp](https://github.com/awaescher/OllamaSharp)
 - [Microsoft.Extensions.AI](https://devblogs.microsoft.com/dotnet/introducing-microsoft-extensions-ai-preview/)

@@ -1,17 +1,17 @@
 ---
 title: "Python resources and APIs changed"
-description: Learn about the breaking change in .NET Aspire 9.0 where Python resources and APIs updated.
+description: Learn about the breaking change in Aspire 9.0 where Python resources and APIs updated.
 ms.date: 10/24/2024
 ai-usage: ai-assisted
 ---
 
 # Python resources and APIs changed
 
-When adding Python resources to your .NET Aspire AppHost, use the `AddPythonApp` method instead of the `AddPythonProject` method. The `AddPythonProject` method is now obsolete. Additionally, the `PythonProjectResource` class is now obsolete. Use the `PythonAppResource` class instead.
+When adding Python resources to your Aspire AppHost, use the `AddPythonApp` method instead of the `AddPythonProject` method. The `AddPythonProject` method is now obsolete. Additionally, the `PythonProjectResource` class is now obsolete. Use the `PythonAppResource` class instead.
 
 ## Version introduced
 
-.NET Aspire 9.0 RC1
+Aspire 9.0 RC1
 
 ## Previous behavior
 

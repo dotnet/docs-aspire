@@ -1,16 +1,16 @@
 ---
 title: SQL Server hosting extensions
-description: Learn how to use the .NET Aspire SQL Server extensions package which provides extra functionality to the .NET Aspire SQL Server hosting package.
+description: Learn how to use the Aspire SQL Server extensions package which provides extra functionality to the Aspire SQL Server hosting package.
 ms.date: 05/28/2025
 ---
 
-# .NET Aspire Community Toolkit SQL Server hosting extensions
+# Aspire Community Toolkit SQL Server hosting extensions
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you learn about the .NET Aspire Community Toolkit SQL Server hosting extensions package which provides extra functionality to the .NET Aspire [SQL Server hosting package](https://nuget.org/packages/Aspire.Hosting.SQLServer).
+In this article, you learn about the Aspire Community Toolkit SQL Server hosting extensions package which provides extra functionality to the Aspire [SQL Server hosting package](https://nuget.org/packages/Aspire.Hosting.SQLServer).
 
 This package provides the following features:
 
@@ -19,7 +19,7 @@ This package provides the following features:
 
 ## Hosting integration
 
-To get started with the .NET Aspire Community Toolkit SQL Server hosting extensions, install the [📦 CommunityToolkit.Aspire.Hosting.SqlServer.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SqlServer.Extensions) NuGet package in the AppHost project.
+To get started with the Aspire Community Toolkit SQL Server hosting extensions, install the [📦 CommunityToolkit.Aspire.Hosting.SqlServer.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SqlServer.Extensions) NuGet package in the AppHost project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -54,4 +54,4 @@ var sqlserver = builder.AddSqlServer("sqlserver")
     .WithAdminer();
 ```
 
-This will add a new resource to the AppHost which will be available from the .NET Aspire dashboard.
+This will add a new resource to the AppHost which will be available from the Aspire dashboard.

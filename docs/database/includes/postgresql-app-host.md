@@ -45,7 +45,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/postgres` image, it creates a new PostgreSQL server instance on your local machine. A reference to your PostgreSQL server and database instance (the `postgresdb` variable) are used to add a dependency to the `ExampleProject`.
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/postgres` image, it creates a new PostgreSQL server instance on your local machine. A reference to your PostgreSQL server and database instance (the `postgresdb` variable) are used to add a dependency to the `ExampleProject`.
 
 When adding a database resource to the app model, the database is created if it doesn't already exist. The creation of the database relies on the [AppHost eventing APIs](../../app-host/eventing.md), specifically <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent>. In other words, when the `postgres` resource is _ready_, the event is raised and the database resource is created.
 
@@ -194,7 +194,7 @@ var exampleProject = builder.AddProject<Projects.ExampleProject>()
 The data volume is used to persist the PostgreSQL server data outside the lifecycle of its container. The data volume is mounted at the `/var/lib/postgresql/data` path in the PostgreSQL server container and when a `name` parameter isn't provided, the name is generated at random. For more information on data volumes and details on why they're preferred over [bind mounts](#add-postgresql-server-resource-with-data-bind-mount), see [Docker docs: Volumes](https://docs.docker.com/engine/storage/volumes).
 
 > [!IMPORTANT]
-> Some database integrations, including the .NET Aspire PostgreSQL integration, can't successfully use data volumes after deployment to Azure Container Apps (ACA). This is because ACA uses Server Message Block (SMB) to connect containers to data volumes, and some systems can't use this connection. In the Aspire Dashboard, a database affected by this issue has a status of **Activating** or **Activation Failed** but is never listed as **Running**.
+> Some database integrations, including the Aspire PostgreSQL integration, can't successfully use data volumes after deployment to Azure Container Apps (ACA). This is because ACA uses Server Message Block (SMB) to connect containers to data volumes, and some systems can't use this connection. In the Aspire Dashboard, a database affected by this issue has a status of **Activating** or **Activation Failed** but is never listed as **Running**.
 >
 > You can resolve the problem by using the managed service **Azure Database for PostgreSQL** to host the deployed database instead of a container in ACA, which is the recommended approach regardless of this issue. The following AppHost code shows how to deploy a database to Azure Database for PostgreSQL, but run it as a container, with a data volume, during development:
 > :::code language="csharp" source="../snippets/postgres-data-volume-deploy/AppHost.cs":::

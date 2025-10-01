@@ -41,11 +41,11 @@ builder.AddBicepTemplateFile("kv", "keyvault.bicep"); // No parameter assignment
 builder.AddContainer("api", "image");
 ```
 
-.NET Aspire resolved these parameters automatically, allowing templates to deploy without explicit wiring.
+Aspire resolved these parameters automatically, allowing templates to deploy without explicit wiring.
 
 ## New behavior
 
-.NET Aspire no longer pre-populates the deprecated parameters. If a Bicep template declares any of these parameters without explicit assignment, deployment fails with an "undefined parameter" error. Developers must now explicitly model resources and pass their values to templates.
+Aspire no longer pre-populates the deprecated parameters. If a Bicep template declares any of these parameters without explicit assignment, deployment fails with an "undefined parameter" error. Developers must now explicitly model resources and pass their values to templates.
 
 For example:
 
@@ -79,7 +79,7 @@ This is both a [source incompatible](../categories.md#source-compatibility) and 
 
 ## Reason for change
 
-.NET Aspire now supports modeling multiple compute environments in a single application graph. Automatically injecting global parameters created ambiguity, hid dependencies, and complicated debugging. This change enforces explicit wiring, ensuring predictable behavior and enabling future scenarios where resources target specific environments.
+Aspire now supports modeling multiple compute environments in a single application graph. Automatically injecting global parameters created ambiguity, hid dependencies, and complicated debugging. This change enforces explicit wiring, ensuring predictable behavior and enabling future scenarios where resources target specific environments.
 
 ## Recommended action
 

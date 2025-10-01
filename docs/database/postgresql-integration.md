@@ -1,16 +1,16 @@
 ---
-title: .NET Aspire PostgreSQL integration
-description: Learn how to integrate PostgreSQL with .NET Aspire applications, using both hosting and client integrations.
+title: Aspire PostgreSQL integration
+description: Learn how to integrate PostgreSQL with Aspire applications, using both hosting and client integrations.
 ms.date: 07/22/2025
 uid: database/postgresql-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire PostgreSQL integration
+# Aspire PostgreSQL integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[PostgreSQL](https://www.postgresql.org/) is a powerful, open source object-relational database system with many years of active development that has earned it a strong reputation for reliability, feature robustness, and performance. The .NET Aspire PostgreSQL integration provides a way to connect to existing PostgreSQL databases, or create new instances from .NET with the [`docker.io/library/postgres` container image](https://hub.docker.com/_/postgres).
+[PostgreSQL](https://www.postgresql.org/) is a powerful, open source object-relational database system with many years of active development that has earned it a strong reputation for reliability, feature robustness, and performance. The Aspire PostgreSQL integration provides a way to connect to existing PostgreSQL databases, or create new instances from .NET with the [`docker.io/library/postgres` container image](https://hub.docker.com/_/postgres).
 
 ## Hosting integration
 
@@ -70,6 +70,6 @@ Your non-.NET application can then read these environment variables to connect t
 ## See also
 
 - [PostgreSQL docs](https://www.npgsql.org/doc/api/Npgsql.html)
-- [.NET Aspire Azure PostgreSQL integration](azure-postgresql-integration.md)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire Azure PostgreSQL integration](azure-postgresql-integration.md)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

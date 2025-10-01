@@ -1,7 +1,7 @@
 {
   "name": "aspire-nodejs-sample",
   "version": "1.0.0",
-  "description": "Sample Node.js application for .NET Aspire dashboard tutorial",
+  "description": "Sample Node.js application for Aspire dashboard tutorial",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"

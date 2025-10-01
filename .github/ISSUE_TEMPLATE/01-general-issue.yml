@@ -1,5 +1,5 @@
 name: "General feedback"
-description: Provide general feedback about the .NET Aspire docs or a specific article.
+description: Provide general feedback about the Aspire docs or a specific article.
 body:
 - type: markdown
   attributes:
@@ -8,6 +8,6 @@ body:
   id: description
   attributes:
     label: Describe the issue or suggestion
-    description: "Note: If your issue is about a specific article, it's best to submit your feedback by clicking the 'Open a documentation issue' link in the '.NET Aspire feedback' box at the end of the article."
+    description: "Note: If your issue is about a specific article, it's best to submit your feedback by clicking the 'Open a documentation issue' link in the 'Aspire feedback' box at the end of the article."
   validations:
     required: true

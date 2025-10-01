@@ -1,20 +1,20 @@
 ---
-title: .NET Aspire NATS integration
-description: Learn how to use the .NET Aspire NATS integration to send logs and traces to a NATS Server.
+title: Aspire NATS integration
+description: Learn how to use the Aspire NATS integration to send logs and traces to a NATS Server.
 ms.date: 02/20/2025
 uid: messaging/nats-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire NATS integration
+# Aspire NATS integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[NATS](https://nats.io) is a high-performance, secure, distributed messaging system. The .NET Aspire NATS integration enables you to connect to existing NATS instances, or create new instances from .NET with the [`docker.io/library/nats` container image](https://hub.docker.com/_/nats).
+[NATS](https://nats.io) is a high-performance, secure, distributed messaging system. The Aspire NATS integration enables you to connect to existing NATS instances, or create new instances from .NET with the [`docker.io/library/nats` container image](https://hub.docker.com/_/nats).
 
 ## Hosting integration
 
-NATS hosting integration for .NET Aspire models a NATS server as the <xref:Aspire.Hosting.ApplicationModel.NatsServerResource> type. To access this type, install the [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project, then add it with the builder.
+NATS hosting integration for Aspire models a NATS server as the <xref:Aspire.Hosting.ApplicationModel.NatsServerResource> type. To access this type, install the [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project, then add it with the builder.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -48,7 +48,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/nats` image, it creates a new NATS server instance on your local machine. A reference to your NATS server (the `nats` variable) is added to the `ExampleProject`.
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/nats` image, it creates a new NATS server instance on your local machine. A reference to your NATS server (the `nats` variable) is added to the `ExampleProject`.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"nats"`. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -145,7 +145,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.Nats](https:
 
 ## Client integration
 
-To get started with the .NET Aspire NATS client integration, install the [📦 Aspire.NATS.Net](https://www.nuget.org/packages/Aspire.NATS.Net) NuGet package in the client-consuming project, that is, the project for the application that uses the NATS client. The NATS client integration registers an [INatsConnection](https://nats-io.github.io/nats.net/api/NATS.Client.Core.INatsConnection.html) instance that you can use to interact with NATS.
+To get started with the Aspire NATS client integration, install the [📦 Aspire.NATS.Net](https://www.nuget.org/packages/Aspire.NATS.Net) NuGet package in the client-consuming project, that is, the project for the application that uses the NATS client. The NATS client integration registers an [INatsConnection](https://nats-io.github.io/nats.net/api/NATS.Client.Core.INatsConnection.html) instance that you can use to interact with NATS.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -208,7 +208,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire NATS integration provides multiple options to configure the NATS connection based on the requirements and conventions of your project.
+The Aspire NATS integration provides multiple options to configure the NATS connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -232,7 +232,7 @@ See the [ConnectionString documentation](https://docs.nats.io/using-nats/develop
 
 #### Use configuration providers
 
-The .NET Aspire NATS integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.NATS.Net.NatsClientSettings> from configuration by using the `Aspire:Nats:Client` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
+The Aspire NATS integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.NATS.Net.NatsClientSettings> from configuration by using the `Aspire:Nats:Client` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
@@ -252,7 +252,7 @@ For the complete NATS client integration JSON schema, see [Aspire.NATS.Net/Confi
 
 #### Use named configuration
 
-The .NET Aspire NATS integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+The Aspire NATS integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
 
 ```json
 {
@@ -292,36 +292,36 @@ builder.AddNatsClient(
     static settings => settings.DisableHealthChecks  = true);
 ```
 
-### NATS in the .NET Aspire manifest
+### NATS in the Aspire manifest
 
-NATS isn't part of the .NET Aspire [deployment manifest](../deployment/manifest-format.md). It's recommended you set up a secure production NATS server outside of .NET Aspire.
+NATS isn't part of the Aspire [deployment manifest](../deployment/manifest-format.md). It's recommended you set up a secure production NATS server outside of Aspire.
 
 ### Client integration health checks
 
-By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
+By default, Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-The .NET Aspire NATS integration handles the following:
+The Aspire NATS integration handles the following:
 
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 ### Observability and telemetry
 
-.NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations may only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
+Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations may only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
 
 ### Logging
 
-The .NET Aspire NATS integration uses the following log categories:
+The Aspire NATS integration uses the following log categories:
 
 - `NATS`
 
 ### Tracing
 
-The .NET Aspire NATS integration emits the following tracing activities:
+The Aspire NATS integration emits the following tracing activities:
 
 - `NATS.Net`
 
 ## See also
 
 - [NATS.Net quickstart](https://nats-io.github.io/nats.net/documentation/intro.html?tabs=core-nats)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

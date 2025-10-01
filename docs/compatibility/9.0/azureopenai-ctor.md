@@ -1,6 +1,6 @@
 ---
 title: "Remove default values from AzureOpenAIDeployment .ctor"
-description: Learn about the breaking change in .NET Aspire 9.0 where the AzureOpenAIDeployment constructor removed defaults.
+description: Learn about the breaking change in Aspire 9.0 where the AzureOpenAIDeployment constructor removed defaults.
 ms.date: 10/24/2024
 ai-usage: ai-assisted
 ---
@@ -11,7 +11,7 @@ The `AzureOpenAIDeployment` constructor no longer defines non-null default value
 
 ## Version introduced
 
-.NET Aspire 9.0 RC1
+Aspire 9.0 RC1
 
 ## Previous behavior
 

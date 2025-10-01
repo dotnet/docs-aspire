@@ -4,17 +4,17 @@ description: Details pertaining to the capturing of dashboard screens.
 ms.date: 04/10/2025
 ---
 
-# .NET Aspire Dashboard: Screen Capture Automation
+# Aspire Dashboard: Screen Capture Automation
 
 This solution contains the following projects:
 
-- **Aspire.Dashboard.ScreenCapture**: This project contains the screen capture tests for the .NET Aspire Dashboard. It uses Playwright to automate the browser and capture images of the dashboard.
-- **AspireSample.AppHost**: This project contains the .NET Aspire AppHost, which orchestrates the an API and Web frontend.
+- **Aspire.Dashboard.ScreenCapture**: This project contains the screen capture tests for the Aspire Dashboard. It uses Playwright to automate the browser and capture images of the dashboard.
+- **AspireSample.AppHost**: This project contains the Aspire AppHost, which orchestrates the an API and Web frontend.
 - **AspireSample.ApiService**: This is an ASP.NET Core Minimal API service that provides a REST API for weather forecasts.
 - **AspireSample.Web**: This is a Blazor app that provides a web frontend.
 - **AspireSample.ServiceDefaults**: This project contains the default service settings for the API and Web apps.
 
-The _ScreenCapture_ project defines xUnit tests are simply a harness for leveraging Playwright and .NET Aspire together to automate the maintenance of images. Run the following tests individually to generate the corresponding images:
+The _ScreenCapture_ project defines xUnit tests are simply a harness for leveraging Playwright and Aspire together to automate the maintenance of images. Run the following tests individually to generate the corresponding images:
 
 ```
 dotnet test --filter Capture=help-images

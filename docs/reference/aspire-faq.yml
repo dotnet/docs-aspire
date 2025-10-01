@@ -1,160 +1,160 @@
 ### YamlMime:FAQ
 metadata:
-  title: Frequently asked questions about .NET Aspire
-  description: Answers to some of the most common questions and scenarios for .NET Aspire.
+  title: Frequently asked questions about Aspire
+  description: Answers to some of the most common questions and scenarios for Aspire.
   ms.topic: faq
   ms.date: 03/03/2025
-title: Frequently asked questions about .NET Aspire
+title: Frequently asked questions about Aspire
 summary: |
-  This article lists frequently asked questions about .NET Aspire. For a more comprehensive overview, see [.NET Aspire overview](../get-started/aspire-overview.md).
+  This article lists frequently asked questions about Aspire. For a more comprehensive overview, see [Aspire overview](../get-started/aspire-overview.md).
 
 sections:
   - name: Frequently asked questions
     questions:
       - question: |
-          Why choose .NET Aspire over Docker Compose for orchestration?
+          Why choose Aspire over Docker Compose for orchestration?
         answer: |
-          Docker Compose is excellent but is unproductive when all you want to do is run several projects or executables. Docker Compose requires developers to build container images and to run apps inside of containers. That's a barrier when you just want to run your front end, back end, workers, and a database. With .NET Aspire, you don't need to learn anything beyond what you already know.
+          Docker Compose is excellent but is unproductive when all you want to do is run several projects or executables. Docker Compose requires developers to build container images and to run apps inside of containers. That's a barrier when you just want to run your front end, back end, workers, and a database. With Aspire, you don't need to learn anything beyond what you already know.
 
-          Configuration through declarative code is better than through YAML. Docker Compose gets complex once you attempt to do any form of abstraction or composition (for example, see the old [eshopOnContainers app](https://github.com/dotnet-architecture/eShopOnContainers/tree/dev/src)). In addition, there are environment variable replacements (and includes) and no types or IntelliSense, and it's hard to reason about what exactly is running. Debugging is also difficult. .NET Aspire produces a better experience that's easy to get started and scales up to an orchestrator like Compose using a real programming language.
+          Configuration through declarative code is better than through YAML. Docker Compose gets complex once you attempt to do any form of abstraction or composition (for example, see the old [eshopOnContainers app](https://github.com/dotnet-architecture/eShopOnContainers/tree/dev/src)). In addition, there are environment variable replacements (and includes) and no types or IntelliSense, and it's hard to reason about what exactly is running. Debugging is also difficult. Aspire produces a better experience that's easy to get started and scales up to an orchestrator like Compose using a real programming language.
 
       - question: |
-          How to add projects to .NET Aspire?
+          How to add projects to Aspire?
         answer: |
-          You can manually add projects to your .NET Aspire solution by using the `builder.AddProject("<name>", "<path/to/project.csproj>")` API.
+          You can manually add projects to your Aspire solution by using the `builder.AddProject("<name>", "<path/to/project.csproj>")` API.
 
       - question: |
-          How to deploy .NET Aspire without target cloud-provider tooling?
+          How to deploy Aspire without target cloud-provider tooling?
         answer: |
-          .NET Aspire doesn't constrain deployment of any existing project or solution. .NET Aspire exposes a [deployment manifest](../deployment/manifest-format.md) that's used by tool authors to produce artifacts for deployment to any cloud provider. However, unfortunately, not all cloud providers offer tooling for deployments based on this manifest. The manifest is a simple JSON file that describes the resources of your app and the dependencies between them. The manifest is used by the Azure Developer CLI to deploy to Azure. Likewise, Aspir8 uses the manifest to deploy to Kubernetes. You can use the manifest to deploy to any cloud provider that supports the resources you're using.
+          Aspire doesn't constrain deployment of any existing project or solution. Aspire exposes a [deployment manifest](../deployment/manifest-format.md) that's used by tool authors to produce artifacts for deployment to any cloud provider. However, unfortunately, not all cloud providers offer tooling for deployments based on this manifest. The manifest is a simple JSON file that describes the resources of your app and the dependencies between them. The manifest is used by the Azure Developer CLI to deploy to Azure. Likewise, Aspir8 uses the manifest to deploy to Kubernetes. You can use the manifest to deploy to any cloud provider that supports the resources you're using.
 
       - question: |
-          If .NET Aspire is mainly for local development, why are client integrations in my project?
+          If Aspire is mainly for local development, why are client integrations in my project?
         answer: |
-          .NET Aspire's client integrations simplify your development process. They're lightweight wrappers around popular libraries like StackExchange.Redis and Npgsql, adding features such as telemetry, health checks, and resilience.
+          Aspire's client integrations simplify your development process. They're lightweight wrappers around popular libraries like StackExchange.Redis and Npgsql, adding features such as telemetry, health checks, and resilience.
 
-          Even if you use .NET Aspire only for local development, these integrations provide reasonable defaults, seamless dependency injection, and consistent APIs.
+          Even if you use Aspire only for local development, these integrations provide reasonable defaults, seamless dependency injection, and consistent APIs.
 
-          You're not locked into .NET Aspire's ecosystem. These integrations are just libraries, and you can configure them as you would with the underlying libraries, using environment variables or your preferred methods.
+          You're not locked into Aspire's ecosystem. These integrations are just libraries, and you can configure them as you would with the underlying libraries, using environment variables or your preferred methods.
 
       - question: |
-          Can .NET Aspire apps be built without Azure dependencies and deployed elsewhere?
+          Can Aspire apps be built without Azure dependencies and deployed elsewhere?
         answer: |
-          Yes, you can build .NET Aspire apps without using any Azure-proprietary dependencies. While .NET Aspire does offer a first-party solution to deploying to Azure, it's not a requirement. .NET Aspire is a cloud-native stack that can be used to build applications that run anywhere. All Azure-specific offerings are explicitly called out as such.
+          Yes, you can build Aspire apps without using any Azure-proprietary dependencies. While Aspire does offer a first-party solution to deploying to Azure, it's not a requirement. Aspire is a cloud-native stack that can be used to build applications that run anywhere. All Azure-specific offerings are explicitly called out as such.
 
       - question: |
-          Why use .NET Aspire service discovery over Docker Compose with Kubernetes?
+          Why use Aspire service discovery over Docker Compose with Kubernetes?
         answer: |
-          .NET Aspire service discovery APIs are an abstraction that works with various providers (like Kubernetes and Consul). One of the big advantages is that it works locally and is backed by .NET's `IConfiguration` abstraction. This means you can implement service discovery across your compute fabric in a way that doesn't result in code changes. If you have multiple Kubernetes clusters or services on Azure App Service or Azure Functions, you don't have to fundamentally change your application code to make it work locally, either in a single cluster or across multiple clusters. That's the benefit of the abstraction.
+          Aspire service discovery APIs are an abstraction that works with various providers (like Kubernetes and Consul). One of the big advantages is that it works locally and is backed by .NET's `IConfiguration` abstraction. This means you can implement service discovery across your compute fabric in a way that doesn't result in code changes. If you have multiple Kubernetes clusters or services on Azure App Service or Azure Functions, you don't have to fundamentally change your application code to make it work locally, either in a single cluster or across multiple clusters. That's the benefit of the abstraction.
 
       - question: |
-          Why use .NET Aspire if OpenTelemetry is available in .NET?
+          Why use Aspire if OpenTelemetry is available in .NET?
         answer: |
-          .NET Aspire takes a big bet on .NET's integration with OpenTelemetry. The .NET Aspire dashboard is a standard OTLP server that visualizes various telemetry data. Leaning on these open standards makes it easy to build these things without breaking compatibility with the broader ecosystem.
+          Aspire takes a big bet on .NET's integration with OpenTelemetry. The Aspire dashboard is a standard OTLP server that visualizes various telemetry data. Leaning on these open standards makes it easy to build these things without breaking compatibility with the broader ecosystem.
 
       - question: |
-          Why use .NET Aspire if Grafana, Jaeger, and Prometheus work with .NET?
+          Why use Aspire if Grafana, Jaeger, and Prometheus work with .NET?
         answer: |
-          .NET Aspire isn't a replacement for these tools, but rather a complementary technology. .NET Aspire is a set of libraries and tools that make it easy to build applications that are observable. For more information, see the [Metrics example in the .NET Aspire sample repository](https://github.com/dotnet/aspire-samples/tree/main/samples/Metrics) that shows Grafana and Prometheus.
+          Aspire isn't a replacement for these tools, but rather a complementary technology. Aspire is a set of libraries and tools that make it easy to build applications that are observable. For more information, see the [Metrics example in the Aspire sample repository](https://github.com/dotnet/aspire-samples/tree/main/samples/Metrics) that shows Grafana and Prometheus.
 
       - question: |
           Why create another framework when existing ones work well?
         answer: |
-          .NET Aspire isn't a framework, it's an [opinionated stack](../get-started/aspire-overview.md). Perhaps the most controversial parts of it are the `DistributedApplication` APIs that you can use to build up the orchestration model in any .NET-based language. While everything is possible today, it's not easy. Using the Unix philosophy, the entire cloud-native ecosystem is built around tying various pieces of CNCF software together to build a stack. .NET Aspire tries to do the same thing using learnings from the cloud-native space and picks some opinions (in ways that use the same building blocks). One novel thing about how .NET Aspire builds various pieces of the stack is that it doesn't restrict the access or compatibility of other applications, frameworks, or services. As people play with it more, they realize how composable and extensible it is.
+          Aspire isn't a framework, it's an [opinionated stack](../get-started/aspire-overview.md). Perhaps the most controversial parts of it are the `DistributedApplication` APIs that you can use to build up the orchestration model in any .NET-based language. While everything is possible today, it's not easy. Using the Unix philosophy, the entire cloud-native ecosystem is built around tying various pieces of CNCF software together to build a stack. Aspire tries to do the same thing using learnings from the cloud-native space and picks some opinions (in ways that use the same building blocks). One novel thing about how Aspire builds various pieces of the stack is that it doesn't restrict the access or compatibility of other applications, frameworks, or services. As people play with it more, they realize how composable and extensible it is.
 
       - question: |
-          How does .NET Aspire differ from Microsoft Orleans?
+          How does Aspire differ from Microsoft Orleans?
         answer: |
-          Microsoft Orleans and .NET Aspire are complementary technologies.
+          Microsoft Orleans and Aspire are complementary technologies.
 
-          [Orleans](/dotnet/orleans) is a distributed actor-based framework. .NET Aspire is a cloud-ready stack for building observable, production-ready, distributed applications. It includes local orchestration capabilities to simplify the developer inner loop and reusable opinionated components for integrating with commonly used application dependencies. An Orleans-based solution will still have external dependencies such as data stores and caches for which .NET Aspire can be used for orchestration purposes.
+          [Orleans](/dotnet/orleans) is a distributed actor-based framework. Aspire is a cloud-ready stack for building observable, production-ready, distributed applications. It includes local orchestration capabilities to simplify the developer inner loop and reusable opinionated components for integrating with commonly used application dependencies. An Orleans-based solution will still have external dependencies such as data stores and caches for which Aspire can be used for orchestration purposes.
 
-          For more information, see [Use Orleans with .NET Aspire](../frameworks/orleans.md) and the corresponding [Orleans voting app sample](/samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/).
+          For more information, see [Use Orleans with Aspire](../frameworks/orleans.md) and the corresponding [Orleans voting app sample](/samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/).
 
       - question: |
-          How does .NET Aspire differ from Dapr?
+          How does Aspire differ from Dapr?
         answer: |
-          Dapr and .NET Aspire are complementary technologies.
+          Dapr and Aspire are complementary technologies.
 
-          Where Dapr abstracts some of the underlying cloud platform, .NET Aspire provides opinionated configuration around the underlying cloud technologies without abstracting them. A .NET-based application that uses Dapr can use .NET Aspire to orchestrate the local developer inner loop and streamline deployment. .NET Aspire includes extensions that support the launching of Dapr side-car processes during the inner loop.
+          Where Dapr abstracts some of the underlying cloud platform, Aspire provides opinionated configuration around the underlying cloud technologies without abstracting them. A .NET-based application that uses Dapr can use Aspire to orchestrate the local developer inner loop and streamline deployment. Aspire includes extensions that support the launching of Dapr side-car processes during the inner loop.
 
-          For more information, see [Use Dapr with .NET Aspire](../community-toolkit/dapr.md).
+          For more information, see [Use Dapr with Aspire](../community-toolkit/dapr.md).
 
       - question: |
-          How does .NET Aspire differ from Project Tye?
+          How does Aspire differ from Project Tye?
         answer: |
           Project Tye was an experiment which explored the launching and orchestration of micro-services and support
-          deployment into orchestrators such as Kubernetes. .NET Aspire is a superset of Tye which includes the
+          deployment into orchestrators such as Kubernetes. Aspire is a superset of Tye which includes the
           orchestration and deployment capabilities along with opinionated components for integrating common
-          cloud-native dependencies. .NET Aspire can be considered the evolution of the Project Tye experiment.
+          cloud-native dependencies. Aspire can be considered the evolution of the Project Tye experiment.
 
       - question: |
-          How are .NET Aspire and Azure SDK for .NET related?
+          How are Aspire and Azure SDK for .NET related?
         answer: |
-          .NET Aspire provides components that rely on the [Azure SDK for .NET](/dotnet/azure/intro), to expose common functionality for storage ([Azure Blob Storage](../storage/azure-storage-blobs-component.md), [Azure Storage Queues](../storage/azure-storage-queues-component.md), and [Azure Table Storage](../storage/azure-storage-tables-component.md)), databases ([Azure Cosmos DB](../database/azure-cosmos-db-component.md) and [Azure Cosmos DB with Entity Framework Core](../database/azure-cosmos-db-entity-framework-component.md)), [messaging](../messaging/azure-service-bus-component.md), and [security](../security/azure-security-key-vault-component.md).
+          Aspire provides components that rely on the [Azure SDK for .NET](/dotnet/azure/intro), to expose common functionality for storage ([Azure Blob Storage](../storage/azure-storage-blobs-component.md), [Azure Storage Queues](../storage/azure-storage-queues-component.md), and [Azure Table Storage](../storage/azure-storage-tables-component.md)), databases ([Azure Cosmos DB](../database/azure-cosmos-db-component.md) and [Azure Cosmos DB with Entity Framework Core](../database/azure-cosmos-db-entity-framework-component.md)), [messaging](../messaging/azure-service-bus-component.md), and [security](../security/azure-security-key-vault-component.md).
 
       - question: |
-          How are .NET Aspire and Kubernetes related?
+          How are Aspire and Kubernetes related?
         answer: |
-          .NET Aspire makes it easy to develop distributed applications that can be orchestrated on your local development environment as executables and containers. Kubernetes is a technology that orchestrates and manages containers across multiple machines. .NET Aspire projects can produce a [manifest](../deployment/manifest-format.md) that tool authors can use to produce artifacts for deployment to Kubernetes. In essence, Kubernetes is a deployment target for .NET Aspire projects.
+          Aspire makes it easy to develop distributed applications that can be orchestrated on your local development environment as executables and containers. Kubernetes is a technology that orchestrates and manages containers across multiple machines. Aspire projects can produce a [manifest](../deployment/manifest-format.md) that tool authors can use to produce artifacts for deployment to Kubernetes. In essence, Kubernetes is a deployment target for Aspire projects.
 
       - question: |
-          Are worker services supported in .NET Aspire?
+          Are worker services supported in Aspire?
         answer: |
-          Yes, worker services are fully supported and there are docs and samples available to help you get started. Worker services are a great way to run background tasks, scheduled tasks, or long-running tasks in .NET Aspire. For more information, see [Database migrations with Entity Framework Core sample app](/samples/dotnet/aspire-samples/aspire-efcore-migrations/).
+          Yes, worker services are fully supported and there are docs and samples available to help you get started. Worker services are a great way to run background tasks, scheduled tasks, or long-running tasks in Aspire. For more information, see [Database migrations with Entity Framework Core sample app](/samples/dotnet/aspire-samples/aspire-efcore-migrations/).
 
       - question: |
-          Are Azure Functions supported in .NET Aspire?
+          Are Azure Functions supported in Aspire?
         answer: |
-          Yes, .NET Aspire has [preview support for integrating Azure Functions into your app](../serverless/functions.md).
+          Yes, Aspire has [preview support for integrating Azure Functions into your app](../serverless/functions.md).
 
       - question: |
-          Does .NET Aspire support running web apps locally on IIS or IIS Express?
+          Does Aspire support running web apps locally on IIS or IIS Express?
         answer: |
-          No. .NET Aspire doesn't support running web apps on IIS or IIS Express.
+          No. Aspire doesn't support running web apps on IIS or IIS Express.
 
       - question: |
-          Does .NET Aspire support deploying apps to IIS?
+          Does Aspire support deploying apps to IIS?
         answer: |
-          No. .NET Aspire doesn't support deploying apps to IIS. However, it doesn't prevent you from deploying your apps to IIS in the same way that you always have.
+          No. Aspire doesn't support deploying apps to IIS. However, it doesn't prevent you from deploying your apps to IIS in the same way that you always have.
 
       - question: |
-          How to fix integrations and Service Discovery issues when deploying .NET Aspire apps to IIS?
+          How to fix integrations and Service Discovery issues when deploying Aspire apps to IIS?
         answer: |
-          .NET Aspire integrations require specific configuration that must be provided manually. The same is true for [Service Discovery](../service-discovery/overview.md), ideally, you should deploy to something other than IIS.
+          Aspire integrations require specific configuration that must be provided manually. The same is true for [Service Discovery](../service-discovery/overview.md), ideally, you should deploy to something other than IIS.
 
       - question: |
           What is the purpose of the Community Toolkit project?
         answer: |
-          The goal of the project is to be a centralized home for extensions and integrations for [.NET Aspire](/dotnet/aspire), helping to provide consistency in the way that integrations are built and maintained, as well as easier discoverability for users.
+          The goal of the project is to be a centralized home for extensions and integrations for [Aspire](/dotnet/aspire), helping to provide consistency in the way that integrations are built and maintained, as well as easier discoverability for users.
 
       - question: |
-          How is the Community Toolkit project different from the official .NET Aspire project?
+          How is the Community Toolkit project different from the official Aspire project?
         answer: |
-          The .NET Aspire Community Toolkit is a community-driven project that's maintained by the community and isn't officially supported by the .NET Aspire team. The toolkit is a collection of integrations and extensions that are built on top of the .NET Aspire project.
+          The Aspire Community Toolkit is a community-driven project that's maintained by the community and isn't officially supported by the Aspire team. The toolkit is a collection of integrations and extensions that are built on top of the Aspire project.
 
       - question: |
           How can I contribute to the Community Toolkit project?
         answer: |
-          Anyone can contribute to the .NET Aspire Community Toolkit and before you get started, be sure to read the [Contributing Guide](https://github.com/CommunityToolkit/Aspire/blob/main/CONTRIBUTING.md) to learn how to contribute to the project.
+          Anyone can contribute to the Aspire Community Toolkit and before you get started, be sure to read the [Contributing Guide](https://github.com/CommunityToolkit/Aspire/blob/main/CONTRIBUTING.md) to learn how to contribute to the project.
 
       - question: |
           Should I propose a new integration on the Community Toolkit or the `dotnet/aspire` repo?
         answer: |
-          If you have an idea for a new integration, you should propose it on the [.NET Aspire Community Toolkit repository](https://github.com/CommunityToolkit/Aspire), rather than [`dotnet/aspire`](https://github.com/dotnet/aspire), as the official .NET Aspire project is focused on the core functionality of the .NET Aspire project.
+          If you have an idea for a new integration, you should propose it on the [Aspire Community Toolkit repository](https://github.com/CommunityToolkit/Aspire), rather than [`dotnet/aspire`](https://github.com/dotnet/aspire), as the official Aspire project is focused on the core functionality of the Aspire project.
 
           If you've proposed an integration on the `dotnet/aspire` repository, you can still propose it in the Community Toolkit, but link to the existing issue on the `dotnet/aspire` repository to provide context.
 
       - question: |
           How can I find Community Toolkit integrations?
         answer: |
-          Integrations from the .NET Aspire Community Toolkit appear in the **Add Aspire Integration** dialog in Visual Studio under the namespace `CommunityToolkit.Aspire.*`.
+          Integrations from the Aspire Community Toolkit appear in the **Add Aspire Integration** dialog in Visual Studio under the namespace `CommunityToolkit.Aspire.*`.
 
 additionalContent: |
 
   ## Next steps
   To learn more about networking and functions:
 
-  * [.NET Aspire overview](../get-started/aspire-overview.md)
-  * [Build your first .NET Aspire project](../get-started/build-your-first-aspire-app.md)
-  * [.NET Aspire components](../fundamentals/components-overview.md)
+  * [Aspire overview](../get-started/aspire-overview.md)
+  * [Build your first Aspire project](../get-started/build-your-first-aspire-app.md)
+  * [Aspire components](../fundamentals/components-overview.md)

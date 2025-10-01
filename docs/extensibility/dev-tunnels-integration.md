@@ -1,14 +1,14 @@
 ---
-title: .NET Aspire dev tunnels integration (Preview)
-description: Learn how to use the .NET Aspire dev tunnels integration to securely expose local endpoints publicly during development.
+title: Aspire dev tunnels integration (Preview)
+description: Learn how to use the Aspire dev tunnels integration to securely expose local endpoints publicly during development.
 ms.date: 09/23/2025
 ---
 
-# .NET Aspire dev tunnels integration (Preview)
+# Aspire dev tunnels integration (Preview)
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
-[Dev tunnels](/azure/developer/dev-tunnels/overview) allow developers to securely share local web services across the internet. The .NET Aspire dev tunnels integration makes it easy to model dev tunnels in your AppHost projects so that they're automatically managed during development.
+[Dev tunnels](/azure/developer/dev-tunnels/overview) allow developers to securely share local web services across the internet. The Aspire dev tunnels integration makes it easy to model dev tunnels in your AppHost projects so that they're automatically managed during development.
 
 > [!IMPORTANT]
 > Dev tunnels are for ad-hoc testing and development, not for production workloads.
@@ -28,7 +28,7 @@ Before you create a dev tunnel, you first need to download and install the devtu
 
 ## Hosting integration
 
-To get started with the .NET Aspire dev tunnels integration, install the [📦 Aspire.Hosting.DevTunnels](https://www.nuget.org/packages/Aspire.Hosting.DevTunnels) NuGet package in the AppHost project.
+To get started with the Aspire dev tunnels integration, install the [📦 Aspire.Hosting.DevTunnels](https://www.nuget.org/packages/Aspire.Hosting.DevTunnels) NuGet package in the AppHost project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -53,7 +53,7 @@ In the AppHost project, add a dev tunnel and configure it to expose specific res
 
 :::code source="snippets/dev-tunnels/DevTunnels.AppHost/AppHost.cs":::
 
-When you run the AppHost, the dev tunnel is created to expose the web application endpoints publicly. The tunnel URLs are shown in the .NET Aspire dashboard. By default, the tunnel requires authentication and is available only to the user who created it.
+When you run the AppHost, the dev tunnel is created to expose the web application endpoints publicly. The tunnel URLs are shown in the Aspire dashboard. By default, the tunnel requires authentication and is available only to the user who created it.
 
 ### Allow anonymous access
 
@@ -98,13 +98,13 @@ The preceding code:
 
 ### Service discovery integration
 
-When another resource references a dev tunnel, environment variables are injected using the [.NET Aspire service discovery](../service-discovery/overview.md) configuration format. Use the `WithReference` overloads that accept the `IResourceBuilder<DevTunnelResource>` parameter to reference a dev tunnel. This injects environment variables like:
+When another resource references a dev tunnel, environment variables are injected using the [Aspire service discovery](../service-discovery/overview.md) configuration format. Use the `WithReference` overloads that accept the `IResourceBuilder<DevTunnelResource>` parameter to reference a dev tunnel. This injects environment variables like:
 
 ```env
 services__web__https__0=https://myweb-1234.westeurope.devtunnels.ms/
 ```
 
-This lets downstream resources use the tunneled address exactly like any other .NET Aspire service discovery entry.
+This lets downstream resources use the tunneled address exactly like any other Aspire service discovery entry.
 
 > [!NOTE]
 > Referencing a tunnel delays the consumer resource's start until the tunnel has started and its endpoint is fully allocated.
@@ -171,7 +171,7 @@ If you encounter port binding issues, check that no other processes are using th
 
 Verify that:
 
-- The tunnel is running and healthy in the .NET Aspire dashboard.
+- The tunnel is running and healthy in the Aspire dashboard.
 - You're using the correct tunnel URL.
 - Anonymous access is configured correctly if accessing without authentication.
 
@@ -179,5 +179,5 @@ Verify that:
 
 - [Dev tunnels service documentation](/azure/developer/dev-tunnels/overview)
 - [Dev tunnels FAQ](/azure/developer/dev-tunnels/faq)
-- [.NET Aspire service discovery](../service-discovery/overview.md)
-- [.NET Aspire networking overview](../fundamentals/networking-overview.md)
+- [Aspire service discovery](../service-discovery/overview.md)
+- [Aspire networking overview](../fundamentals/networking-overview.md)

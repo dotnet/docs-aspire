@@ -1,16 +1,16 @@
 ---
-title: .NET Aspire Azure Key Vault integration
-description: Learn about the .NET Aspire Azure Key Vault integration.
+title: Aspire Azure Key Vault integration
+description: Learn about the Aspire Azure Key Vault integration.
 ms.date: 07/22/2025
 uid: security/azure-security-key-vault-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Azure Key Vault integration
+# Aspire Azure Key Vault integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure Key Vault](/azure/key-vault/) is a cloud service for securely storing and accessing secrets. The .NET Aspire Azure Key Vault integration enables you to connect to Azure Key Vault instances from your .NET applications.
+[Azure Key Vault](/azure/key-vault/) is a cloud service for securely storing and accessing secrets. The Aspire Azure Key Vault integration enables you to connect to Azure Key Vault instances from your .NET applications.
 
 ## Hosting integration
 
@@ -84,7 +84,7 @@ For more information on treating Azure Key Vault resources as existing resources
 
 ### Provisioning-generated Bicep
 
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Key Vault resource, the following Bicep is generated:
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Key Vault resource, the following Bicep is generated:
 
 :::code language="bicep" source="../snippets/azure/AppHost/key-vault/key-vault.bicep":::
 
@@ -96,7 +96,7 @@ The generated Bicep is a starting point and is influenced by changes to the prov
 
 #### Customize provisioning infrastructure
 
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources by using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `sku`, `RBAC`, `tags`, and more. The following example demonstrates how to customize the Azure Key Vault resource:
+All Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources by using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `sku`, `RBAC`, `tags`, and more. The following example demonstrates how to customize the Azure Key Vault resource:
 
 :::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureKeyVaultInfra.cs" id="configure":::
 
@@ -114,7 +114,7 @@ There are many more configuration options available to customize the Key Vault r
 
 ## Client integration
 
-To get started with the .NET Aspire Azure Key Vault client integration, install the [📦 Aspire.Azure.Security.KeyVault](https://www.nuget.org/packages/Aspire.Azure.Security.KeyVault) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure Key Vault client.
+To get started with the Aspire Azure Key Vault client integration, install the [📦 Aspire.Azure.Security.KeyVault](https://www.nuget.org/packages/Aspire.Azure.Security.KeyVault) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure Key Vault client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -230,11 +230,11 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire Azure Key Vault integration provides multiple options to configure the `SecretClient` based on the requirements and conventions of your project.
+The Aspire Azure Key Vault integration provides multiple options to configure the `SecretClient` based on the requirements and conventions of your project.
 
 #### Use configuration providers
 
-The .NET Aspire Azure Key Vault integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Security.KeyVault.AzureSecurityKeyVaultSettings> from _:::no-loc text="appsettings.json":::_ or other configuration files using `Aspire:Azure:Security:KeyVault` key.
+The Aspire Azure Key Vault integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Security.KeyVault.AzureSecurityKeyVaultSettings> from _:::no-loc text="appsettings.json":::_ or other configuration files using `Aspire:Azure:Security:KeyVault` key.
 
 ```json
 {
@@ -260,7 +260,7 @@ For the complete Azure Key Vault client integration JSON schema, see [Aspire.Azu
 
 #### Use named configuration
 
-The .NET Aspire Azure Key Vault integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+The Aspire Azure Key Vault integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
 
 ```json
 {
@@ -335,7 +335,7 @@ The following configurable options are exposed through the <xref:Aspire.Azure.Se
 
 [!INCLUDE [client-integration-health-checks](../includes/client-integration-health-checks.md)]
 
-The .NET Aspire Azure Key Vault integration includes the following health checks:
+The Aspire Azure Key Vault integration includes the following health checks:
 
 - Adds the `AzureKeyVaultSecretsHealthCheck` health check, which attempts to connect to and query the Key Vault
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
@@ -344,25 +344,25 @@ The .NET Aspire Azure Key Vault integration includes the following health checks
 
 ### Logging
 
-The .NET Aspire Azure Key Vault integration uses the following log categories:
+The Aspire Azure Key Vault integration uses the following log categories:
 
 - `Azure.Core`
 - `Azure.Identity`
 
 ### Tracing
 
-The .NET Aspire Azure Key Vault integration will emit the following tracing activities using OpenTelemetry:
+The Aspire Azure Key Vault integration will emit the following tracing activities using OpenTelemetry:
 
 - `Azure.Security.KeyVault.Secrets.SecretClient`
 
 ### Metrics
 
-The .NET Aspire Azure Key Vault integration currently does not support metrics by default due to limitations with the Azure SDK.
+The Aspire Azure Key Vault integration currently does not support metrics by default due to limitations with the Azure SDK.
 
 ## See also
 
 - [Azure Key Vault docs](/azure/key-vault/general/)
-- [Video: Introduction to Azure Key Vault and .NET Aspire](https://www.youtube.com/watch?v=1K5riRctUIg)
-- [.NET Aspire Azure integrations overview](../azure/integrations-overview.md)
-- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Video: Introduction to Azure Key Vault and Aspire](https://www.youtube.com/watch?v=1K5riRctUIg)
+- [Aspire Azure integrations overview](../azure/integrations-overview.md)
+- [Aspire integrations overview](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

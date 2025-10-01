@@ -1,13 +1,13 @@
 ---
-title: GitHub Copilot in the .NET Aspire dashboard
-description: Learn how to use GitHub Copilot in the .NET Aspire dashboard.
+title: GitHub Copilot in the Aspire dashboard
+description: Learn how to use GitHub Copilot in the Aspire dashboard.
 ms.date: 05/19/2025
 ms.topic: reference
 ---
 
-# GitHub Copilot in the .NET Aspire dashboard
+# GitHub Copilot in the Aspire dashboard
 
-Introducing GitHub Copilot in the .NET Aspire dashboard! GitHub Copilot is your new AI debugging assistant.
+Introducing GitHub Copilot in the Aspire dashboard! GitHub Copilot is your new AI debugging assistant.
 
 GitHub Copilot supercharges the dashboard's OpenTelemetry debugging and diagnostics experience. With AI, you can:
 
@@ -20,26 +20,26 @@ You'll have access to Copilot in the dashboard when you launch your app from VS 
 
 ## Requirements
 
-GitHub Copilot is only available when a .NET Aspire project is run from an IDE.
+GitHub Copilot is only available when a Aspire project is run from an IDE.
 
 > [!div class="checklist"]
 >
 > - VS Code and C# Dev Kit 1.19.63 or later.
 > - Visual Studio 17.14 or later.
 
-You must also be logged into a GitHub account in the IDE that has a GitHub Copilot subscription. Copilot interactions in the .NET Aspire dashboard use the GitHub account associated with your IDE.
+You must also be logged into a GitHub account in the IDE that has a GitHub Copilot subscription. Copilot interactions in the Aspire dashboard use the GitHub account associated with your IDE.
 
 If you don't have a Copilot subscription yet, you can use Copilot for free by signing up for the [Copilot Free plan](https://aka.ms/dotnet/aspire/copilot-free-signup), which includes a monthly limit of chat interactions.
 
 ## Get started
 
-To get started, launch your .NET Aspire solution as usual in your IDE.
+To get started, launch your Aspire solution as usual in your IDE.
 
-1. Open your .NET Aspire solution in a supported version of Visual Studio or VS Code with the [C# Dev Kit extension](/visualstudio/subscriptions/vs-c-sharp-dev-kit) installed.
+1. Open your Aspire solution in a supported version of Visual Studio or VS Code with the [C# Dev Kit extension](/visualstudio/subscriptions/vs-c-sharp-dev-kit) installed.
 2. Ensure you're logged into the IDE with a GitHub account:
    - For Visual Studio, see [Add your GitHub accounts to your Visual Studio keychain](https://aka.ms/dotnet/aspire/copilot-vs-login).
    - For VS Code and C# Dev Kit, see [Set up GitHub Copilot in VS Code](https://aka.ms/dotnet/aspire/copilot-vscode-login).
-3. Run the .NET Aspire AppHost.
+3. Run the Aspire AppHost.
 
 A GitHub Copilot button appears in the top-right corner of the dashboard. Selecting the button opens the Copilot UI.
 
@@ -84,7 +84,7 @@ The GitHub Copilot Free plan includes a monthly limit on chat usage. When this l
 
 ### Data size
 
-AI models have limits on how much data they can process at once. The .NET Aspire dashboard may limit the amount of data sent to GitHub Copilot when necessary.
+AI models have limits on how much data they can process at once. The Aspire dashboard may limit the amount of data sent to GitHub Copilot when necessary.
 
 - Large data fields (e.g., long exception stack traces) may be truncated.
 - Requests involving large collections of telemetry may be shortened by omitting older items.

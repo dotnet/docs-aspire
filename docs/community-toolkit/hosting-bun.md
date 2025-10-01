@@ -1,17 +1,17 @@
 ---
-title: .NET Aspire Bun hosting integration
+title: Aspire Bun hosting integration
 author: aaronpowell
-description: Learn how to use the .NET Aspire Bun hosting integration to host Bun applications.
+description: Learn how to use the Aspire Bun hosting integration to host Bun applications.
 ms.date: 11/15/2024
 ---
 
-# .NET Aspire Bun hosting
+# Aspire Bun hosting
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
-[Bun](https://bun.sh) is a modern, fast, and lightweight framework for building web applications with TypeScript. The .NET Aspire Bun hosting integration allows you to host Bun applications in your .NET Aspire AppHost project, and provide it to other resources in your application.
+[Bun](https://bun.sh) is a modern, fast, and lightweight framework for building web applications with TypeScript. The Aspire Bun hosting integration allows you to host Bun applications in your Aspire AppHost project, and provide it to other resources in your application.
 
 ## Hosting integration
 
@@ -73,5 +73,5 @@ var api = builder.AddBunApp("api")
 
 ## See also
 
-- [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
+- [Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
 - [Sample Bun app](https://github.com/CommunityToolkit/Aspire/tree/main/examples/bun)

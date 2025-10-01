@@ -1,19 +1,19 @@
 ---
-title: Customize .NET Aspire Azure deployments
-description: Learn how to use Azure Developer CLI (azd) infrastructure generation to customize and configure .NET Aspire deployments for production scenarios with Bicep templates, security best practices, and scalable resource configurations.
+title: Customize Aspire Azure deployments
+description: Learn how to use Azure Developer CLI (azd) infrastructure generation to customize and configure Aspire deployments for production scenarios with Bicep templates, security best practices, and scalable resource configurations.
 ms.date: 06/25/2025
 ms.custom: devx-track-extended-azdevcli
 ---
 
-# Customize .NET Aspire Azure deployments
+# Customize Aspire Azure deployments
 
-The Azure Developer CLI (`azd`) provides a powerful feature called infrastructure generation that allows you to generate and customize the underlying infrastructure code for your .NET Aspire applications. This capability is essential for production scenarios where you need fine-grained control over Azure resources, security configurations, and deployment patterns.
+The Azure Developer CLI (`azd`) provides a powerful feature called infrastructure generation that allows you to generate and customize the underlying infrastructure code for your Aspire applications. This capability is essential for production scenarios where you need fine-grained control over Azure resources, security configurations, and deployment patterns.
 
 This article covers how to use `azd infra gen` to:
 
 > [!div class="checklist"]
 >
-> - Generate Bicep infrastructure files from your .NET Aspire app model.
+> - Generate Bicep infrastructure files from your Aspire app model.
 > - Customize generated infrastructure for production requirements.
 > - Apply security best practices to generated resources.
 > - Manage infrastructure as code with proper version control.
@@ -24,18 +24,18 @@ You will also need to have the Azure Developer CLI [installed locally](/azure/de
 
 ## How infrastructure generation works
 
-Infrastructure generation in `azd` transforms your .NET Aspire app model into concrete Azure infrastructure definitions using Bicep templates. This process bridges the gap between the development-time orchestration in .NET Aspire and the production infrastructure required in Azure.
+Infrastructure generation in `azd` transforms your Aspire app model into concrete Azure infrastructure definitions using Bicep templates. This process bridges the gap between the development-time orchestration in Aspire and the production infrastructure required in Azure.
 
 When you run `azd infra gen`, the CLI:
 
-1. Analyzes your .NET Aspire AppHost project.
+1. Analyzes your Aspire AppHost project.
 1. Identifies all resources and their dependencies.
 1. Generates corresponding Azure resource definitions in Bicep.
 1. Creates supporting configuration files for deployment.
 
 ## Use infrastructure generation
 
-Call the generate infrastructure command on your .NET Aspire solution:
+Call the generate infrastructure command on your Aspire solution:
 
 ```azdeveloper
 azd infra gen
@@ -253,6 +253,6 @@ param location string
 
 ## Next steps
 
-- [Deploy a .NET Aspire project to Azure Container Apps using azd](aca-deployment.md)
+- [Deploy a Aspire project to Azure Container Apps using azd](aca-deployment.md)
 - [Azure Container Apps with azd (In-depth)](aca-deployment-azd-in-depth.md)
 - [Deploy using azd and CI/CD](aca-deployment-github-actions.md)

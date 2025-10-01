@@ -7,7 +7,7 @@ ms.custom: sfi-ropc-nochange
 
 # Connection string is missing
 
-In .NET Aspire, code identifies resources with an arbitrary string, such as "database". Code that is consuming the resource elsewhere must use the same string or it will fail to correctly configure their relationships.
+In Aspire, code identifies resources with an arbitrary string, such as "database". Code that is consuming the resource elsewhere must use the same string or it will fail to correctly configure their relationships.
 
 ## Symptoms
 

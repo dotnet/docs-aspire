@@ -537,7 +537,7 @@ var redisEnterprise = builder.AddAzureRedisEnterprise("redis-enterprise")
     .WithAccessKeyAuthentication(keyVault);
 ```
 
-For more information, see [.NET Aspire Azure Managed Redis integration](../caching/azure-redis-enterprise-integration.md).
+For more information, see [Aspire Azure Managed Redis integration](../caching/azure-redis-enterprise-integration.md).
 
 ### Azure App Configuration emulator (preview)
 
@@ -1101,7 +1101,7 @@ var backend = builder.AddProject<Projects.Backend>("backend")
 
 ## 💔 Breaking changes
 
-For the complete listing, see [Breaking changes in .NET Aspire 9.5](../compatibility/9.5/index.md).
+For the complete listing, see [Breaking changes in Aspire 9.5](../compatibility/9.5/index.md).
 
 ### InteractionInput API requires Name property
 

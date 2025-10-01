@@ -1,6 +1,6 @@
 ---
 title: aspire-install script reference
-description: Learn about the aspire-install scripts to install the .NET Aspire CLI. Use the .NET Aspire CLI to create, run, and manage .NET Aspire projects.
+description: Learn about the aspire-install scripts to install the Aspire CLI. Use the Aspire CLI to create, run, and manage Aspire projects.
 author: adegeo
 ms.author: adegeo
 ms.date: 08/28/2025
@@ -163,4 +163,4 @@ There's no uninstall script. Delete the installation directory, such as `%USERPR
 
 ## See also
 
-- [Install .NET Aspire CLI](install.md)
+- [Install Aspire CLI](install.md)

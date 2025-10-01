@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - Role Assignments separated from Azure resource bicep"
-description: "Learn about the breaking change in .NET Aspire 9.2 where role assignments are moved to separate bicep modules."
+description: "Learn about the breaking change in Aspire 9.2 where role assignments are moved to separate bicep modules."
 ms.date: 4/2/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/2911
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/2911
 
 # Role Assignments separated from Azure resource bicep
 
-In .NET Aspire 9.2, role assignments for Azure resources are no longer included in the same bicep file as the resource. Instead, they're moved to separate bicep modules. This change affects how role assignments are customized during infrastructure configuration.
+In Aspire 9.2, role assignments for Azure resources are no longer included in the same bicep file as the resource. Instead, they're moved to separate bicep modules. This change affects how role assignments are customized during infrastructure configuration.
 
 ## Version introduced
 
-.NET Aspire 9.2
+Aspire 9.2
 
 ## Previous behavior
 
@@ -55,7 +55,7 @@ This change was necessary to implement the `WithRoleAssignments` APIs, which pro
 
 ## Recommended action
 
-To customize role assignments in .NET Aspire 9.2, use the `WithRoleAssignments` API instead of relying on the `ConfigureInfrastructure` callback. Update your code as shown in the [preceding example](#new-behavior).
+To customize role assignments in Aspire 9.2, use the `WithRoleAssignments` API instead of relying on the `ConfigureInfrastructure` callback. Update your code as shown in the [preceding example](#new-behavior).
 
 ## Affected APIs
 

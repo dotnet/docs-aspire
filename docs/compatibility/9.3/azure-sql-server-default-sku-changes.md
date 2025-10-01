@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - Change the default SKU used for creating a new Azure SQL database"
-description: "Learn about the breaking change in .NET Aspire 9.3 where the default SKU for Azure SQL database deployment now uses the free offer."
+description: "Learn about the breaking change in Aspire 9.3 where the default SKU for Azure SQL database deployment now uses the free offer."
 ms.date: 7/23/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/3144
@@ -12,7 +12,7 @@ The default SKU for deploying a new Azure SQL database has been updated to take 
 
 ## Version introduced
 
-.NET Aspire 9.3
+Aspire 9.3
 
 ## Previous behavior
 

@@ -1,7 +1,7 @@
 ﻿using Aspire.Hosting.ApplicationModel;
 
 // Put extensions in the Aspire.Hosting namespace to ease discovery as referencing
-// the .NET Aspire hosting package automatically adds this namespace.
+// the Aspire hosting package automatically adds this namespace.
 namespace Aspire.Hosting;
 
 public static class MailDevResourceBuilderExtensions
@@ -24,7 +24,7 @@ public static class MailDevResourceBuilderExtensions
         int? httpPort = null,
         int? smtpPort = null)
     {
-        // The AddResource method is a core API within .NET Aspire and is
+        // The AddResource method is a core API within Aspire and is
         // used by resource developers to wrap a custom resource in an
         // IResourceBuilder<T> instance. Extension methods to customize
         // the resource (if any exist) target the builder interface.

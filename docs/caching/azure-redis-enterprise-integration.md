@@ -1,11 +1,11 @@
 ---
 title: Azure Managed Redis integration
-description: Learn how to integrate Azure Managed Redis with the .NET Aspire stack.
+description: Learn how to integrate Azure Managed Redis with the Aspire stack.
 ms.date: 09/23/2025
 ai-usage: ai-generated
 ---
 
-# .NET Aspire Azure Managed Redis&reg;<sup>**[*](#registered)**</sup> integration
+# Aspire Azure Managed Redis&reg;<sup>**[*](#registered)**</sup> integration
 
 <a name="heading"></a>
 
@@ -105,7 +105,7 @@ The preceding code configures the Azure Managed Redis resource to use access key
 
 ## Client integration
 
-To get started with the .NET Aspire Azure Managed Redis client integration, install the [📦 Aspire.Microsoft.Azure.StackExchangeRedis](https://www.nuget.org/packages/Aspire.Microsoft.Azure.StackExchangeRedis) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure Managed Redis client. The Azure Managed Redis client integration registers an [IConnectionMultiplexer](https://stackexchange.github.io/StackExchange.Redis/Basics) instance that you can use to interact with Azure Managed Redis.
+To get started with the Aspire Azure Managed Redis client integration, install the [📦 Aspire.Microsoft.Azure.StackExchangeRedis](https://www.nuget.org/packages/Aspire.Microsoft.Azure.StackExchangeRedis) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure Managed Redis client. The Azure Managed Redis client integration registers an [IConnectionMultiplexer](https://stackexchange.github.io/StackExchange.Redis/Basics) instance that you can use to interact with Azure Managed Redis.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -179,7 +179,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire Stack Exchange Redis client integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
+The Aspire Stack Exchange Redis client integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -222,7 +222,7 @@ builder.AddRedisClientBuilder(
 - [Azure Cache for Redis docs](/azure/azure-cache-for-redis/)
 - [Azure Managed Redis blog post](https://redis.io/blog/introducing-azure-managed-redis/)
 - [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)
 
 [!INCLUDE [redis-trademark](includes/redis-trademark.md)]

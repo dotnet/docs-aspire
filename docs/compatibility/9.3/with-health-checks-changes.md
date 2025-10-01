@@ -1,6 +1,6 @@
 ---
-title: "Breaking change - WithHttpsHealthCheck and WithHttpHealthCheck changes in .NET Aspire 9.3"
-description: "Learn about the breaking change in .NET Aspire 9.3 where the WithHttpsHealthCheck method is marked obsolete and WithHttpHealthCheck behavior is updated."
+title: "Breaking change - WithHttpsHealthCheck and WithHttpHealthCheck changes in Aspire 9.3"
+description: "Learn about the breaking change in Aspire 9.3 where the WithHttpsHealthCheck method is marked obsolete and WithHttpHealthCheck behavior is updated."
 ms.date: 5/7/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/3326
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/3326
 
 # With HTTP/S health checks changes
 
-In .NET Aspire 9.3, the `WithHttpsHealthCheck` method is marked as obsolete and will be removed in a future update. The `WithHttpHealthCheck` method is updated to default to selecting an endpoint with an `https` scheme, improving usability and aligning with other endpoint selection behaviors.
+In Aspire 9.3, the `WithHttpsHealthCheck` method is marked as obsolete and will be removed in a future update. The `WithHttpHealthCheck` method is updated to default to selecting an endpoint with an `https` scheme, improving usability and aligning with other endpoint selection behaviors.
 
 ## Version introduced
 
-.NET Aspire 9.3
+Aspire 9.3
 
 ## Previous behavior
 

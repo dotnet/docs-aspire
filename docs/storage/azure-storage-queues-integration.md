@@ -1,16 +1,16 @@
 ---
-title: .NET Aspire Azure Queue Storage integration
-description: This article describes the .NET Aspire Azure Queue Storage integration features and capabilities.
+title: Aspire Azure Queue Storage integration
+description: This article describes the Aspire Azure Queue Storage integration features and capabilities.
 ms.date: 05/09/2025
 uid: storage/azure-queue-storage-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Azure Queue Storage integration
+# Aspire Azure Queue Storage integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure Queue Storage](https://azure.microsoft.com/services/storage/queues/) is a service for storing large numbers of messages that can be accessed from anywhere in the world via authenticated calls. The .NET Aspire Azure Queue Storage integration enables you to connect to existing Azure Queue Storage instances or create new instances from .NET applications.
+[Azure Queue Storage](https://azure.microsoft.com/services/storage/queues/) is a service for storing large numbers of messages that can be accessed from anywhere in the world via authenticated calls. The Aspire Azure Queue Storage integration enables you to connect to existing Azure Queue Storage instances or create new instances from .NET applications.
 
 ## Hosting integration
 
@@ -48,7 +48,7 @@ The preceding code:
 
 ## Client integration
 
-To get started with the .NET Aspire Azure Queue Storage client integration, install the [📦 Aspire.Azure.Storage.Queues](https://www.nuget.org/packages/Aspire.Azure.Storage.Queues) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure Queue Storage client. The Azure Queue Storage client integration registers a <xref:Azure.Storage.Queues.QueueServiceClient> instance that you can use to interact with Azure Queue Storage.
+To get started with the Aspire Azure Queue Storage client integration, install the [📦 Aspire.Azure.Storage.Queues](https://www.nuget.org/packages/Aspire.Azure.Storage.Queues) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure Queue Storage client. The Azure Queue Storage client integration registers a <xref:Azure.Storage.Queues.QueueServiceClient> instance that you can use to interact with Azure Queue Storage.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -84,7 +84,7 @@ public class ExampleService(QueueServiceClient client)
 
 ### Configuration
 
-The .NET Aspire Azure Queue Storage integration provides multiple options to configure the `QueueServiceClient` based on the requirements and conventions of your project.
+The Aspire Azure Queue Storage integration provides multiple options to configure the `QueueServiceClient` based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -124,7 +124,7 @@ For more information, see [Configure Azure Storage connection strings](/azure/st
 
 #### Use configuration providers
 
-The .NET Aspire Azure Queue Storage integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Storage.Queues.AzureStorageQueuesSettings> and <xref:Azure.Storage.Queues.QueueClientOptions> from configuration by using the `Aspire:Azure:Storage:Queues` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
+The Aspire Azure Queue Storage integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Storage.Queues.AzureStorageQueuesSettings> and <xref:Azure.Storage.Queues.QueueClientOptions> from configuration by using the `Aspire:Azure:Storage:Queues` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
@@ -150,7 +150,7 @@ For the complete Azure Storage Queues client integration JSON schema, see [Aspir
 
 #### Use named configuration
 
-The .NET Aspire Azure Queue Storage integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+The Aspire Azure Queue Storage integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
 
 ```json
 {
@@ -212,9 +212,9 @@ builder.AddAzureQueueClient(
 
 ### Client integration health checks
 
-By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
+By default, Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-The .NET Aspire Azure Queue Storage integration:
+The Aspire Azure Queue Storage integration:
 
 - Adds the health check when <xref:Aspire.Azure.Storage.Queues.AzureStorageQueuesSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the Azure Queue Storage.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
@@ -223,23 +223,23 @@ The .NET Aspire Azure Queue Storage integration:
 
 ### Logging
 
-The .NET Aspire Azure Queue Storage integration uses the following log categories:
+The Aspire Azure Queue Storage integration uses the following log categories:
 
 - `Azure.Core`
 - `Azure.Identity`
 
 ### Tracing
 
-The .NET Aspire Azure Queue Storage integration emits the following tracing activities using OpenTelemetry:
+The Aspire Azure Queue Storage integration emits the following tracing activities using OpenTelemetry:
 
 - `Azure.Storage.Queues.QueueClient`
 
 ### Metrics
 
-The .NET Aspire Azure Queue Storage integration currently doesn't support metrics by default due to limitations with the Azure SDK.
+The Aspire Azure Queue Storage integration currently doesn't support metrics by default due to limitations with the Azure SDK.
 
 ## See also
 
 - [Azure Queue Storage docs](/azure/storage/queues/)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - Azure Cosmos DB now provisions serverless accounts by default"
-description: "Learn about the breaking change in .NET Aspire 9.4 where Azure Cosmos DB resources default to serverless accounts so they can scale to zero."
+description: "Learn about the breaking change in Aspire 9.4 where Azure Cosmos DB resources default to serverless accounts so they can scale to zero."
 ms.date: 08/14/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/4244
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/4244
 
 # Azure Cosmos DB now provisions serverless accounts by default
 
-Starting in .NET Aspire 9.4, Azure Cosmos DB resources provision with the `EnableServerless` capability by default. New Cosmos DB accounts created by Aspire use the serverless model so they can scale to zero when idle.
+Starting in Aspire 9.4, Azure Cosmos DB resources provision with the `EnableServerless` capability by default. New Cosmos DB accounts created by Aspire use the serverless model so they can scale to zero when idle.
 
 ## Version introduced
 
-.NET Aspire 9.4
+Aspire 9.4
 
 ## Previous behavior
 

@@ -1,5 +1,5 @@
-name: ".NET Aspire new diagnostics"
-description: Report a new diagnostic that should be added to .NET Aspire. Intended mostly for product-team use.
+name: "Aspire new diagnostics"
+description: Report a new diagnostic that should be added to Aspire. Intended mostly for product-team use.
 title: "[Add diagnostics]: "
 labels:
 - Pri1
@@ -35,7 +35,7 @@ body:
   id: version_introduced
   attributes:
     label: Version Introduced
-    description: "What version of .NET Aspire was this introduced with? (ex: 9.2)"
+    description: "What version of Aspire was this introduced with? (ex: 9.2)"
   validations:
     required: true
 

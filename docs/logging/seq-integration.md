@@ -1,17 +1,17 @@
 ---
-title: .NET Aspire Seq integration
-description: Learn how to use the .NET Aspire Seq integration to add OpenTelemetry Protocol (OTLP) exporters that send logs and traces to a Seq Server.
+title: Aspire Seq integration
+description: Learn how to use the Aspire Seq integration to add OpenTelemetry Protocol (OTLP) exporters that send logs and traces to a Seq Server.
 ms.date: 09/30/2025
 uid: logging/seq-integration
 ---
 
-# .NET Aspire Seq integration
+# Aspire Seq integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Seq](https://datalust.co/seq) is a self-hosted search and analysis server that handles structured application logs and trace files. It includes a JSON event store and a simple query language that make it easy to use. You can use the .NET Aspire Seq integration to send OpenTelemetry Protocol (OTLP) data to Seq. The integration supports persistent logs and traces across application restarts.
+[Seq](https://datalust.co/seq) is a self-hosted search and analysis server that handles structured application logs and trace files. It includes a JSON event store and a simple query language that make it easy to use. You can use the Aspire Seq integration to send OpenTelemetry Protocol (OTLP) data to Seq. The integration supports persistent logs and traces across application restarts.
 
-During development, .NET Aspire runs and connects to the [`datalust/seq` container image](https://hub.docker.com/r/datalust/seq).
+During development, Aspire runs and connects to the [`datalust/seq` container image](https://hub.docker.com/r/datalust/seq).
 
 ## Hosting integration
 
@@ -60,9 +60,9 @@ var myService = builder.AddProject<Projects.ExampleProject>()
 
 You must accept the [Seq EULA](https://datalust.co/doc/eula-current.pdf) for Seq to start. To accept the agreement in code, pass the environment variable `ACCEPT_EULA` to the Seq container, and set its value to `Y`. The above code passes this variable in the chained call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEnvironment*>.
 
-#### Seq in the .NET Aspire manifest
+#### Seq in the Aspire manifest
 
-Seq shouldn't be part of the .NET Aspire [deployment manifest](../deployment/manifest-format.md), hence the chained call to  <xref:Aspire.Hosting.ResourceBuilderExtensions.ExcludeFromManifest*>. It's recommended you set up a secure production Seq server outside of .NET Aspire for your production environment.
+Seq shouldn't be part of the Aspire [deployment manifest](../deployment/manifest-format.md), hence the chained call to  <xref:Aspire.Hosting.ResourceBuilderExtensions.ExcludeFromManifest*>. It's recommended you set up a secure production Seq server outside of Aspire for your production environment.
 
 ### Persistent logs and traces
 
@@ -119,7 +119,7 @@ Data bind mounts rely on the host machine's filesystem to persist the Seq data a
 
 ## Client integration
 
-To get started with the .NET Aspire Seq client integration, install the [📦 Aspire.Seq](https://www.nuget.org/packages/Aspire.Seq) NuGet package in the client-consuming project, that is, the project for the application that uses the Seq client.
+To get started with the Aspire Seq client integration, install the [📦 Aspire.Seq](https://www.nuget.org/packages/Aspire.Seq) NuGet package in the client-consuming project, that is, the project for the application that uses the Seq client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -138,7 +138,7 @@ dotnet add package Aspire.Seq
 
 ### Add a Seq client
 
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSeqExtensions.AddSeqEndpoint*> extension method to register OpenTelemetry Protocol exporters to send logs and traces to Seq and the .NET Aspire Dashboard. The method takes a connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the <xref:Microsoft.Extensions.Hosting.AspireSeqExtensions.AddSeqEndpoint*> extension method to register OpenTelemetry Protocol exporters to send logs and traces to Seq and the Aspire Dashboard. The method takes a connection name parameter.
 
 ```csharp
 builder.AddSeqEndpoint(connectionName: "seq");
@@ -149,11 +149,11 @@ builder.AddSeqEndpoint(connectionName: "seq");
 
 ### Configuration
 
-The .NET Aspire Seq integration provides multiple options to configure the connection to Seq based on the requirements and conventions of your project.
+The Aspire Seq integration provides multiple options to configure the connection to Seq based on the requirements and conventions of your project.
 
 #### Use configuration providers
 
-The .NET Aspire Seq integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Seq.SeqSettings> from configuration by using the `Aspire:Seq` key. The following snippet is an example of an _:::no-loc text="appsettings.json":::_ file that configures some of the options:
+The Aspire Seq integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Seq.SeqSettings> from configuration by using the `Aspire:Seq` key. The following snippet is an example of an _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
@@ -170,7 +170,7 @@ For the complete Seq client integration JSON schema, see [Aspire.Seq/Configurati
 
 #### Use named configuration
 
-The .NET Aspire Seq integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+The Aspire Seq integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
 
 ```json
 {
@@ -212,7 +212,7 @@ builder.AddSeqEndpoint("seq", static settings =>
 
 [!INCLUDE [client-integration-health-checks](../includes/client-integration-health-checks.md)]
 
-The .NET Aspire Seq integration handles the following:
+The Aspire Seq integration handles the following:
 
 - Adds the health check when <xref:Aspire.Seq.SeqSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the Seq server's `/health` endpoint.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
@@ -221,17 +221,17 @@ The .NET Aspire Seq integration handles the following:
 
 #### Logging
 
-The .NET Aspire Seq integration uses the following log categories:
+The Aspire Seq integration uses the following log categories:
 
 - `Seq`
 
 #### Tracing and Metrics
 
-The .NET Aspire Seq integration doesn't emit tracing activities and or metrics because it's a telemetry sink, not a telemetry source.
+The Aspire Seq integration doesn't emit tracing activities and or metrics because it's a telemetry sink, not a telemetry source.
 
 ## See also
 
 - [Seq](https://datalust.co/)
 - [Seq Query Language](https://docs.datalust.co/docs/the-seq-query-language)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

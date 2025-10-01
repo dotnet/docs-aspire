@@ -1,15 +1,15 @@
 ---
-title: .NET Aspire Azure AI Inference integration (Preview)
-description: Learn how to use the .NET Aspire Azure AI Inference integration to deploy and manage machine learning models in the cloud.
+title: Aspire Azure AI Inference integration (Preview)
+description: Learn how to use the Aspire Azure AI Inference integration to deploy and manage machine learning models in the cloud.
 ms.date: 05/14/2025
 titleSuffix: ''
 ---
 
-# .NET Aspire Azure AI Inference integration (Preview)
+# Aspire Azure AI Inference integration (Preview)
 
 [!INCLUDE [includes-client](../includes/includes-client.md)]
 
-The .NET Aspire Azure AI Inference integration provides a seamless way to deploy and manage machine learning models in the cloud. This integration allows you to leverage the power of Azure's AI services while maintaining the flexibility and ease of use of the .NET Aspire.
+The Aspire Azure AI Inference integration provides a seamless way to deploy and manage machine learning models in the cloud. This integration allows you to leverage the power of Azure's AI services while maintaining the flexibility and ease of use of the Aspire.
 
 ## Hosting integration
 
@@ -46,7 +46,7 @@ For more information, see [Add existing Azure resources with connection strings]
 
 ## Client integration
 
-To get started with the .NET Aspire Azure AI Inference client integration, install the [📦 Aspire.Azure.AI.Inference](https://www.nuget.org/packages/Aspire.Azure.AI.Inference) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure AI Inference client.
+To get started with the Aspire Azure AI Inference client integration, install the [📦 Aspire.Azure.AI.Inference](https://www.nuget.org/packages/Aspire.Azure.AI.Inference) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure AI Inference client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -154,7 +154,7 @@ For more information, see [Keyed services in .NET](/dotnet/core/extensions/depen
 
 ### Configuration
 
-The .NET Aspire Azure AI Inference library provides multiple options to configure the Azure AI Foundry Service based on the requirements and conventions of your project.
+The Aspire Azure AI Inference library provides multiple options to configure the Azure AI Foundry Service based on the requirements and conventions of your project.
 
 > [!NOTE]
 > Either an `Endpoint` and `DeploymentId`, or a `ConnectionString` is required to be supplied.
@@ -202,7 +202,7 @@ Alternatively, a custom connection string can be used.
 
 #### Use configuration providers
 
-The .NET Aspire Azure AI Inference library supports <xref:Microsoft.Extensions.Configuration>. It loads the `ChatCompletionsClientSettings` and `AzureAIInferenceClientOptions` from configuration by using the `Aspire:Azure:AI:Inference` key. For example, consider an _appsettings.json_ that configures some of the options:
+The Aspire Azure AI Inference library supports <xref:Microsoft.Extensions.Configuration>. It loads the `ChatCompletionsClientSettings` and `AzureAIInferenceClientOptions` from configuration by using the `Aspire:Azure:AI:Inference` key. For example, consider an _appsettings.json_ that configures some of the options:
 
 ```json
 {
@@ -236,14 +236,14 @@ builder.AddAzureChatCompletionsClient(
 
 ### Logging
 
-The .NET Aspire Azure AI Inference integration uses the following log categories:
+The Aspire Azure AI Inference integration uses the following log categories:
 
 - `Azure.Core`
 - `Azure.Identity`
 
 ### Tracing
 
-The .NET Aspire Azure AI Inference integration will emit the following tracing activities using OpenTelemetry:
+The Aspire Azure AI Inference integration will emit the following tracing activities using OpenTelemetry:
 
 - `Experimental.Microsoft.Extensions.AI` - Used by Microsoft.Extensions.AI to record AI operations
 

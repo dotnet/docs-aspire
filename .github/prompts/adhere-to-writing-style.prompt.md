@@ -1,4 +1,4 @@
-The following is a set of guidelines to follow when writing documentation for .NET Aspire. Please ensure that all documentation adheres to these guidelines:
+The following is a set of guidelines to follow when writing documentation for Aspire. Please ensure that all documentation adheres to these guidelines:
 
 ## Voice and tone
 

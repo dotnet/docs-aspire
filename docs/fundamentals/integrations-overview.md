@@ -1,24 +1,24 @@
 ---
-title: .NET Aspire integrations overview
-description: Explore the fundamental concepts of .NET Aspire integrations and learn how to integrate them into your apps.
+title: Aspire integrations overview
+description: Explore the fundamental concepts of Aspire integrations and learn how to integrate them into your apps.
 ms.date: 09/23/2025
 ms.topic: conceptual
 uid: dotnet/aspire/integrations
 ---
 
-# .NET Aspire integrations overview
+# Aspire integrations overview
 
-.NET Aspire integrations are a curated suite of NuGet packages selected to facilitate the integration of cloud-native applications with prominent services and platforms, such as Redis and PostgreSQL. Each integration furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns.
+Aspire integrations are a curated suite of NuGet packages selected to facilitate the integration of cloud-native applications with prominent services and platforms, such as Redis and PostgreSQL. Each integration furnishes essential cloud-native functionalities through either automatic provisioning or standardized configuration patterns.
 
 > [!TIP]
-> Always strive to use the latest version of .NET Aspire integrations to take advantage of the latest features, improvements, and security updates.
+> Always strive to use the latest version of Aspire integrations to take advantage of the latest features, improvements, and security updates.
 
 > [!WARNING]
 > Integrations execute code in your development environment. Ensure that third-party integrations are trusted before use. For more information, see [Best practices for a secure software supply chain](/nuget/concepts/security-best-practices).
 
 ## Integration responsibilities
 
-Most .NET Aspire integrations are made up of two separate libraries, each with a different responsibility. One type represents resources within the [_AppHost_](app-host-overview.md) project—known as [hosting integrations](#hosting-integrations). The other type of integration represents client libraries that connect to the resources modeled by hosting integrations, and they're known as [client integrations](#client-integrations).
+Most Aspire integrations are made up of two separate libraries, each with a different responsibility. One type represents resources within the [_AppHost_](app-host-overview.md) project—known as [hosting integrations](#hosting-integrations). The other type of integration represents client libraries that connect to the resources modeled by hosting integrations, and they're known as [client integrations](#client-integrations).
 
 ### Hosting integrations
 
@@ -28,18 +28,18 @@ Hosting integrations extend the <xref:Aspire.Hosting.IDistributedApplicationBuil
 
 The official [hosting integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+hosting+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `hosting`. In addition to the official hosting integrations, the [community has created hosting integrations](../community-toolkit/overview.md) for various services and platforms as part of the Community Toolkit.
 
-For information on creating a custom _hosting integration_, see [Create custom .NET Aspire hosting integration](../extensibility/custom-hosting-integration.md).
+For information on creating a custom _hosting integration_, see [Create custom Aspire hosting integration](../extensibility/custom-hosting-integration.md).
 
 ### Client integrations
 
-Client integrations wire up client libraries to [dependency injection (DI)](/dotnet/core/extensions/dependency-injection), define configuration schema, and add [health checks](health-checks.md), [resiliency](/dotnet/core/resilience), and [telemetry](telemetry.md) where applicable. .NET Aspire client integration libraries are prefixed with `Aspire.` and then include the full package name that they integrate with, such as `Aspire.StackExchange.Redis`.
+Client integrations wire up client libraries to [dependency injection (DI)](/dotnet/core/extensions/dependency-injection), define configuration schema, and add [health checks](health-checks.md), [resiliency](/dotnet/core/resilience), and [telemetry](telemetry.md) where applicable. Aspire client integration libraries are prefixed with `Aspire.` and then include the full package name that they integrate with, such as `Aspire.StackExchange.Redis`.
 
 These packages configure existing client libraries to connect to hosting integrations. They extend the <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> interface allowing client-consuming projects, such as your web app or API, to use the connected resource. The official [client integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+client+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `client`. In addition to the official client integrations, the [community has created client integrations](../community-toolkit/overview.md) for various services and platforms as part of the Community Toolkit.
 
 > [!IMPORTANT]
-> .NET Aspire integrations require <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> and are **not compatible** with `HostingStartup` implementations, which only provide access to <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. If you're using `HostingStartup` for modular configuration, see [HostingStartup is not supported with .NET Aspire integrations](../troubleshooting/hosting-startup-not-supported.md) for migration guidance.
+> Aspire integrations require <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> and are **not compatible** with `HostingStartup` implementations, which only provide access to <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. If you're using `HostingStartup` for modular configuration, see [HostingStartup is not supported with Aspire integrations](../troubleshooting/hosting-startup-not-supported.md) for migration guidance.
 
-For more information on creating a custom client integration, see [Create custom .NET Aspire client integrations](../extensibility/custom-client-integration.md).
+For more information on creating a custom client integration, see [Create custom Aspire client integrations](../extensibility/custom-client-integration.md).
 
 ### Relationship between hosting and client integrations
 
@@ -55,7 +55,7 @@ The AppHost project is where hosting integrations are used. Configuration, speci
 
 ## Integration features
 
-When you add a client integration to a project within your .NET Aspire solution, [service defaults](service-defaults.md) are automatically applied to that project; meaning the Service Defaults project is referenced and the `AddServiceDefaults` extension method is called. These defaults are designed to work well in most scenarios and can be customized as needed. The following service defaults are applied:
+When you add a client integration to a project within your Aspire solution, [service defaults](service-defaults.md) are automatically applied to that project; meaning the Service Defaults project is referenced and the `AddServiceDefaults` extension method is called. These defaults are designed to work well in most scenarios and can be customized as needed. The following service defaults are applied:
 
 - **Observability and telemetry**: Automatically sets up logging, tracing, and metrics configurations:
 
@@ -108,23 +108,23 @@ This distinction helps you model your application's infrastructure accurately an
 
 ## Versioning considerations
 
-Hosting and client integrations are updated each release to target the latest stable versions of dependent resources. When container images are updated with new image versions, the hosting integrations update to these new versions. Similarly, when a new NuGet version is available for a dependent client library, the corresponding client integration updates to the new version. This ensures the latest features and security updates are available to applications. The .NET Aspire update type (major, minor, patch) doesn't necessarily indicate the type of update in dependent resources. For example, a new major version of a dependent resource may be updated in a .NET Aspire patch release, if necessary.
+Hosting and client integrations are updated each release to target the latest stable versions of dependent resources. When container images are updated with new image versions, the hosting integrations update to these new versions. Similarly, when a new NuGet version is available for a dependent client library, the corresponding client integration updates to the new version. This ensures the latest features and security updates are available to applications. The Aspire update type (major, minor, patch) doesn't necessarily indicate the type of update in dependent resources. For example, a new major version of a dependent resource may be updated in a Aspire patch release, if necessary.
 
 When major breaking changes happen in dependent resources, integrations may temporarily split into version-dependent packages to ease updating across the breaking change. For more information, see the [first example of such a breaking change](https://github.com/dotnet/aspire/issues/3956).
 
 ## Official integrations
 
-.NET Aspire provides many integrations to help you build cloud-native applications. These integrations are designed to work seamlessly with the .NET Aspire AppHost and client libraries. The following sections detail cloud-agnostic, Azure-specific, Amazon Web Services (AWS), and Community Toolkit integrations.
+Aspire provides many integrations to help you build cloud-native applications. These integrations are designed to work seamlessly with the Aspire AppHost and client libraries. The following sections detail cloud-agnostic, Azure-specific, Amazon Web Services (AWS), and Community Toolkit integrations.
 
 ### Cloud-agnostic integrations
 
-The following section details cloud-agnostic .NET Aspire integrations with links to their respective docs and NuGet packages, and provides a brief description of each integration.
+The following section details cloud-agnostic Aspire integrations with links to their respective docs and NuGet packages, and provides a brief description of each integration.
 
 <!-- markdownlint-disable MD033 MD045 -->
 | Integration docs and NuGet packages | Description |
 |--|--|
 | - **Learn more**: [📄 Apache Kafka](../messaging/kafka-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Kafka](https://www.nuget.org/packages/Aspire.Hosting.Kafka)<br>- **Client**: [📦 Aspire.Confluent.Kafka](https://www.nuget.org/packages/Aspire.Confluent.Kafka) | A library for producing and consuming messages from an [Apache Kafka](https://kafka.apache.org/) broker. |
-| - **Learn more**: [📄 Dapr](../frameworks/dapr.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Dapr](https://www.nuget.org/packages/Aspire.Hosting.Dapr)<br>- **Client**: N/A | A library for modeling [Dapr](https://dapr.io/) as a .NET Aspire resource. |
+| - **Learn more**: [📄 Dapr](../frameworks/dapr.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Dapr](https://www.nuget.org/packages/Aspire.Hosting.Dapr)<br>- **Client**: N/A | A library for modeling [Dapr](https://dapr.io/) as a Aspire resource. |
 | - **Learn more**: [📄 Docker](../deployment/docker-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Docker](https://www.nuget.org/packages/Aspire.Hosting.Docker)<br>- **Client**: N/A | A library for deploying Aspire applications using Docker Compose. |
 | - **Learn more**: [📄 Elasticsearch](../search/elasticsearch-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Elasticsearch](https://www.nuget.org/packages/Aspire.Hosting.Elasticsearch)<br>- **Client**: [📦 Aspire.Elastic.Clients.Elasticsearch](https://www.nuget.org/packages/Aspire.Elastic.Clients.Elasticsearch) | A library for accessing [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/client/index.html) databases. |
 | - **Learn more**: [📄 Keycloak](../authentication/keycloak-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Keycloak](https://www.nuget.org/packages/Aspire.Hosting.Keycloak)<br>- **Client**: [📦 Aspire.Keycloak.Authentication](https://www.nuget.org/packages/Aspire.Keycloak.Authentication) | A library for accessing [Keycloak](https://www.keycloak.org/docs/latest/server_admin/index.html) authentication. |
@@ -134,7 +134,7 @@ The following section details cloud-agnostic .NET Aspire integrations with links
 | - **Learn more**: [📄 NATS](../messaging/nats-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Nats](https://www.nuget.org/packages/Aspire.Hosting.Nats)<br>- **Client**: [📦 Aspire.NATS.Net](https://www.nuget.org/packages/Aspire.NATS.Net) | A library for accessing [NATS](https://nats.io/) messaging. |
 | - **Learn more**: [📄 Oracle - EF Core](../database/oracle-entity-framework-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle)<br>- **Client**: [📦 Aspire.Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Aspire.Oracle.EntityFrameworkCore) | A library for accessing Oracle databases with [Entity Framework Core](/ef/core). |
 | - **Learn more**: [📄 OpenAI](../openai/openai-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.OpenAI](https://www.nuget.org/packages/Aspire.Hosting.OpenAI)<br>- **Client**: [📦 Aspire.OpenAI](https://www.nuget.org/packages/Aspire.OpenAI) | A library for accessing [OpenAI](https://platform.openai.com/docs) APIs. |
-| - **Learn more**: [📄 Orleans](../frameworks/Orleans.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans)<br>- **Client**: N/A | A library for modeling [Orleans](/dotnet/Orleans) as a .NET Aspire resource. |
+| - **Learn more**: [📄 Orleans](../frameworks/Orleans.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Orleans](https://www.nuget.org/packages/Aspire.Hosting.Orleans)<br>- **Client**: N/A | A library for modeling [Orleans](/dotnet/Orleans) as a Aspire resource. |
 | - **Learn more**: [📄 Pomelo MySQL - EF Core](../database/mysql-entity-framework-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.MySql](https://www.nuget.org/packages/Aspire.Hosting.MySql)<br>- **Client**: [📦 Aspire.Pomelo.EntityFrameworkCore.MySql](https://www.nuget.org/packages/Aspire.Pomelo.EntityFrameworkCore.MySql) | A library for accessing MySql databases with [Entity Framework Core](/ef/core). |
 | - **Learn more**: [📄 PostgreSQL - EF Core](../database/postgresql-entity-framework-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL)<br>- **Client**: [📦 Aspire.Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Aspire.Npgsql.EntityFrameworkCore.PostgreSQL) | A library for accessing PostgreSQL databases using [Entity Framework Core](https://www.npgsql.org/efcore/index.html). |
 | - **Learn more**: [📄 PostgreSQL](../database/postgresql-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.PostgreSQL](https://www.nuget.org/packages/Aspire.Hosting.PostgreSQL)<br>- **Client**: [📦 Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) | A library for accessing [PostgreSQL](https://www.npgsql.org/doc/index.html) databases. |
@@ -148,7 +148,7 @@ The following section details cloud-agnostic .NET Aspire integrations with links
 | - **Learn more**: [📄 SQL Server](../database/sql-server-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer)<br>- **Client**: [📦 Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) | A library for accessing [SQL Server](/sql/sql-server/) databases. |
 <!-- markdownlint-enable MD033 MD045 -->
 
-For more information on working with .NET Aspire integrations in Visual Studio, see [Visual Studio tooling](setup-tooling.md#visual-studio-tooling).
+For more information on working with Aspire integrations in Visual Studio, see [Visual Studio tooling](setup-tooling.md#visual-studio-tooling).
 
 ### Azure integrations
 
@@ -190,7 +190,7 @@ For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.co
 ### Community Toolkit integrations
 
 > [!NOTE]
-> The Community Toolkit integrations are community-driven and maintained by the .NET Aspire community. These integrations are not officially supported by the .NET Aspire team.
+> The Community Toolkit integrations are community-driven and maintained by the Aspire community. These integrations are not officially supported by the Aspire team.
 
 <!-- markdownlint-disable MD033 MD045 -->
 | Integration docs and NuGet packages | Description |
@@ -198,7 +198,7 @@ For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.co
 | - **Learn More**: [📄 Bun hosting](../community-toolkit/hosting-bun.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Bun](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Bun) <br /> - **Client**: N/A | A hosting integration for Bun apps. |
 | - **Learn More**: [📄 Deno hosting](../community-toolkit/hosting-deno.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Deno](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Deno) <br /> - **Client**: N/A | A hosting integration for Deno apps. |
 | - **Learn More**: [📄 Go hosting](../community-toolkit/hosting-golang.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Golang](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Golang) <br /> - **Client**: N/A | A hosting integration for Go apps. |
-| - **Learn More**: [📄 Java/Spring hosting](../community-toolkit/hosting-java.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Java](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Java) <br /> - **Client**: N/A | A integration for running Java code in .NET Aspire either using the local JDK or using a container. |
+| - **Learn More**: [📄 Java/Spring hosting](../community-toolkit/hosting-java.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Java](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Java) <br /> - **Client**: N/A | A integration for running Java code in Aspire either using the local JDK or using a container. |
 | - **Learn More**: [📄 Node.js hosting extensions](../community-toolkit/hosting-nodejs-extensions.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.NodeJs.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.NodeJS.Extensions) <br /> - **Client**: N/A  | An integration that contains some additional extensions for running Node.js applications |
 | - **Learn More**: [📄 Ollama](../community-toolkit/ollama.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Ollama](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Ollama) <br /> - **Client**: [📦 Aspire.CommunitToolkit.OllamaSharp](https://nuget.org/packages/CommunityToolkit.Aspire.OllamaSharp) | An Aspire component leveraging the [Ollama](https://ollama.com) container with support for downloading a model on startup. |
 | - **Learn More**: [📄 Meilisearch hosting](../community-toolkit/hosting-meilisearch.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Meilisearch) <br /> - **Client**: [📦 Aspire.CommunitToolkit.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Meilisearch) | An Aspire component leveraging the [Meilisearch](https://meilisearch.com) container. |
@@ -207,4 +207,4 @@ For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.co
 | - **Learn More**: [📄 RavenDB](../community-toolkit/ravendb.md) <br /> - **Hosting**: [📦 CommunityToolkit.Aspire.Hosting.RavenDB](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.RavenDB) <br /> - **Client**: [📦 Aspire.CommunityToolkit.RavenDB.Client](https://nuget.org/packages/CommunityToolkit.Aspire.RavenDB.Client) | An Aspire component leveraging the [RavenDB](https://ravendb.net/) container. |
 <!-- markdownlint-enable MD033 MD045 -->
 
-For more information, see [.NET Aspire Community Toolkit](../community-toolkit/overview.md).
+For more information, see [Aspire Community Toolkit](../community-toolkit/overview.md).

@@ -1,15 +1,15 @@
 ---
-title: Manage the AppHost in .NET Aspire tests
-description: Learn how to manage the AppHost in .NET Aspire tests.
+title: Manage the AppHost in Aspire tests
+description: Learn how to manage the AppHost in Aspire tests.
 ms.date: 02/24/2025
 zone_pivot_groups: unit-testing-framework
 ---
 
-# Manage the AppHost in .NET Aspire tests
+# Manage the AppHost in Aspire tests
 
-When writing functional or integration tests with .NET Aspire, managing the [AppHost](../fundamentals/app-host-overview.md) instance efficiently is crucial. The AppHost represents the full application environment and can be costly to create and tear down. This article explains how to manage the AppHost instance in your .NET Aspire tests.
+When writing functional or integration tests with Aspire, managing the [AppHost](../fundamentals/app-host-overview.md) instance efficiently is crucial. The AppHost represents the full application environment and can be costly to create and tear down. This article explains how to manage the AppHost instance in your Aspire tests.
 
-For writing tests with .NET Aspire, you use the [📦 `Aspire.Hosting.Testing`](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package which contains some helper classes to manage the AppHost instance in your tests.
+For writing tests with Aspire, you use the [📦 `Aspire.Hosting.Testing`](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package which contains some helper classes to manage the AppHost instance in your tests.
 
 ## Use the `DistributedApplicationTestingBuilder` class
 
@@ -207,4 +207,4 @@ protected override void OnBuilderCreated(
 
 ## See also
 
-- [Write your first .NET Aspire test](./write-your-first-test.md)
+- [Write your first Aspire test](./write-your-first-test.md)

@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - AzureContainerApps infrastructure creates managed identity per container app"
-description: "Learn about the breaking change in .NET Aspire 9.2 where each ContainerApp now has its own managed identity."
+description: "Learn about the breaking change in Aspire 9.2 where each ContainerApp now has its own managed identity."
 ms.date: 4/2/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/2914
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/2914
 
 # Azure Container Apps managed identity changes
 
-Starting with .NET Aspire 9.2, each Azure Container App created using [📦 Aspire.Hosting.Azure.AppContainers](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppContainers) NuGet package now has its own Azure Managed Identity. This change enables more granular role assignments for Azure resources but might require updates to applications that rely on shared managed identities.
+Starting with Aspire 9.2, each Azure Container App created using [📦 Aspire.Hosting.Azure.AppContainers](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppContainers) NuGet package now has its own Azure Managed Identity. This change enables more granular role assignments for Azure resources but might require updates to applications that rely on shared managed identities.
 
 ## Version introduced
 
-.NET Aspire 9.2
+Aspire 9.2
 
 ## Previous behavior
 

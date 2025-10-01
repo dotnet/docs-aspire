@@ -1,12 +1,12 @@
 ---
-title: .NET Aspire Redis distributed caching integration
-description: Learn how to use the .NET Aspire Redis distributed caching integration, which includes both hosting and client integrations.
+title: Aspire Redis distributed caching integration
+description: Learn how to use the Aspire Redis distributed caching integration, which includes both hosting and client integrations.
 ms.date: 02/05/2025
 zone_pivot_groups: resp-host
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> distributed caching integration
+# Aspire Redis&reg;<sup>**[*](#registered)**</sup> distributed caching integration
 
 <a name="heading"></a>
 
@@ -14,17 +14,17 @@ ms.custom: sfi-ropc-nochange
 
 :::zone pivot="redis"
 
-Learn how to use the .NET Aspire Redis distributed caching integration. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache](https://stackexchange.github.io/StackExchange.Redis/Basics) provider backed by a [Redis](https://redis.io/) server with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
+Learn how to use the Aspire Redis distributed caching integration. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache](https://stackexchange.github.io/StackExchange.Redis/Basics) provider backed by a [Redis](https://redis.io/) server with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
 
 :::zone-end
 :::zone pivot="garnet"
 
-Learn how to use the .NET Aspire Redis distributed caching integration. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache](https://stackexchange.github.io/StackExchange.Redis/Basics) provider backed by a [Garnet](https://microsoft.github.io/garnet/) server with the [`ghcr.io/microsoft/garnet` container image](https://github.com/microsoft/garnet/pkgs/container/garnet).
+Learn how to use the Aspire Redis distributed caching integration. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache](https://stackexchange.github.io/StackExchange.Redis/Basics) provider backed by a [Garnet](https://microsoft.github.io/garnet/) server with the [`ghcr.io/microsoft/garnet` container image](https://github.com/microsoft/garnet/pkgs/container/garnet).
 
 :::zone-end
 :::zone pivot="valkey"
 
-Learn how to use the .NET Aspire Redis distributed caching integration. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache](https://stackexchange.github.io/StackExchange.Redis/Basics) provider backed by a [Valkey](https://valkey.io/) server with the [`docker.io/valkey/valkey` container image](https://hub.docker.com/r/valkey/valkey/).
+Learn how to use the Aspire Redis distributed caching integration. The `Aspire.StackExchange.Redis.DistributedCaching` library is used to register an [IDistributedCache](https://stackexchange.github.io/StackExchange.Redis/Basics) provider backed by a [Valkey](https://valkey.io/) server with the [`docker.io/valkey/valkey` container image](https://hub.docker.com/r/valkey/valkey/).
 
 :::zone-end
 
@@ -116,7 +116,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire Redis distributed caching integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
+The Aspire Redis distributed caching integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -166,7 +166,7 @@ builder.AddRedisDistributedCache(
 ## See also
 
 - [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)
 
 [!INCLUDE [redis-trademark](includes/redis-trademark.md)]

@@ -1,6 +1,6 @@
 ---
 title: "Make unnamed volume names more unique"
-description: "This document describes the breaking change related to the naming scheme for unnamed volumes in .NET Aspire."
+description: "This document describes the breaking change related to the naming scheme for unnamed volumes in Aspire."
 ms.date: 10/28/2024
 ai-usage: ai-assisted
 ---
@@ -11,7 +11,7 @@ This change updates the naming scheme for unnamed volumes to use the first 10 ch
 
 ## Version introduced
 
-.NET Aspire 9.0 GA
+Aspire 9.0 GA
 
 ## Previous behavior
 

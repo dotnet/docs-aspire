@@ -1,18 +1,18 @@
 ---
-title: .NET Aspire Azure Functions integration (Preview)
-description: Learn how to integrate Azure Functions with .NET Aspire.
+title: Aspire Azure Functions integration (Preview)
+description: Learn how to integrate Azure Functions with Aspire.
 ms.date: 11/13/2024
 zone_pivot_groups: dev-environment
 ---
 
-# .NET Aspire Azure Functions integration (Preview)
+# Aspire Azure Functions integration (Preview)
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 > [!IMPORTANT]
-> The .NET Aspire Azure Functions integration is currently in preview and is subject to change.
+> The Aspire Azure Functions integration is currently in preview and is subject to change.
 
-[Azure Functions](/azure/azure-functions/functions-overview) is a serverless solution that allows you to write less code, maintain less infrastructure, and save on costs. The .NET Aspire Azure Functions integration enables you to develop, debug, and orchestrate an Azure Functions .NET project as part of the AppHost.
+[Azure Functions](/azure/azure-functions/functions-overview) is a serverless solution that allows you to write less code, maintain less infrastructure, and save on costs. The Aspire Azure Functions integration enables you to develop, debug, and orchestrate an Azure Functions .NET project as part of the AppHost.
 
 It's expected that you've installed the required Azure tooling:
 
@@ -34,11 +34,11 @@ It's expected that you've installed the required Azure tooling:
 
 ## Supported scenarios
 
-The .NET Aspire Azure Functions integration has several key supported scenarios. This section outlines the scenarios and provides details related to the implementation of each approach.
+The Aspire Azure Functions integration has several key supported scenarios. This section outlines the scenarios and provides details related to the implementation of each approach.
 
 ### Supported triggers
 
-The following table lists the supported triggers for Azure Functions in the .NET Aspire integration:
+The following table lists the supported triggers for Azure Functions in the Aspire integration:
 
 | Trigger | Attribute | Details |
 |--|--|--|
@@ -51,7 +51,7 @@ The following table lists the supported triggers for Azure Functions in the .NET
 | Timer trigger | `TimerTrigger` | Supported without any additional resource dependencies—relies on implicit host storage. |
 
 > [!IMPORTANT]
-> Other Azure Functions triggers and bindings aren't currently supported in the .NET Aspire Azure Functions integration.
+> Other Azure Functions triggers and bindings aren't currently supported in the Aspire Azure Functions integration.
 
 ### Deployment
 
@@ -63,7 +63,7 @@ To make HTTP triggers publicly accessible, call the <xref:Aspire.Hosting.Resourc
 
 ## Azure Function project constraints
 
-The .NET Aspire Azure Functions integration has the following project constraints:
+The Aspire Azure Functions integration has the following project constraints:
 
 - You must target .NET 8.0 or later.
 - You must use a .NET 9 SDK.
@@ -123,7 +123,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds an Azure Functions project resource the AppHost, as shown in the preceding example, the `functions` resource can be referenced by other project resources. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"functions"`. If the Azure Resource was deployed and it exposed an HTTP trigger, its endpoint would be external due to the call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints*>. For more information, see [Reference resources](../fundamentals/app-host-overview.md#reference-resources).
+When Aspire adds an Azure Functions project resource the AppHost, as shown in the preceding example, the `functions` resource can be referenced by other project resources. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"functions"`. If the Azure Resource was deployed and it exposed an HTTP trigger, its endpoint would be external due to the call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints*>. For more information, see [Reference resources](../fundamentals/app-host-overview.md#reference-resources).
 
 ### Add Azure Functions resource with host storage
 
@@ -189,7 +189,7 @@ The preceding code adds an Azure Storage resource to the AppHost and references 
 
 ## See also
 
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)
 - [Azure Functions documentation](/azure/azure-functions/functions-overview)
-- [.NET Aspire and Functions image gallery sample](/samples/dotnet/aspire-samples/aspire-azure-functions-with-blob-triggers)
+- [Aspire and Functions image gallery sample](/samples/dotnet/aspire-samples/aspire-azure-functions-with-blob-triggers)

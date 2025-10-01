@@ -1,21 +1,21 @@
 ---
-title: Add .NET Aspire to an existing .NET app
-description: Learn how to add .NET Aspire integrations, orchestration, and tooling to a microservices app that already exists.
+title: Add Aspire to an existing .NET app
+description: Learn how to add Aspire integrations, orchestration, and tooling to a microservices app that already exists.
 ms.date: 04/16/2025
 ms.topic: how-to
 zone_pivot_groups: dev-environment
 ---
 
-# Tutorial: Add .NET Aspire to an existing .NET app
+# Tutorial: Add Aspire to an existing .NET app
 
-If you have existing microservices and .NET web app, you can add .NET Aspire to it and get all the included features and benefits. In this article, you add .NET Aspire orchestration to a simple, preexisting .NET 9 project. You learn how to:
+If you have existing microservices and .NET web app, you can add Aspire to it and get all the included features and benefits. In this article, you add Aspire orchestration to a simple, preexisting .NET 9 project. You learn how to:
 
 > [!div class="checklist"]
 >
 > - Understand the structure of the existing microservices app.
-> - Enroll existing projects in .NET Aspire orchestration.
+> - Enroll existing projects in Aspire orchestration.
 > - Understand the changes enrollment makes in the projects.
-> - Start the .NET Aspire project.
+> - Start the Aspire project.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
@@ -178,30 +178,30 @@ Open and start debugging the project to examine its default behavior:
 
 :::zone-end
 
-No matter which tool you use—starting multiple projects manually or configuring connections between them is tedious. Additionally, the **Store** project requires explicit endpoint configuration for the **Products** API, which is both cumbersome and prone to errors. This is where .NET Aspire simplifies and streamlines the process!
+No matter which tool you use—starting multiple projects manually or configuring connections between them is tedious. Additionally, the **Store** project requires explicit endpoint configuration for the **Products** API, which is both cumbersome and prone to errors. This is where Aspire simplifies and streamlines the process!
 
-## Ensure .NET Aspire templates are installed
+## Ensure Aspire templates are installed
 
-If you've worked with .NET Aspire on your current computer before, you likely have the necessary .NET project templates already installed. You can check by using the following command:
+If you've worked with Aspire on your current computer before, you likely have the necessary .NET project templates already installed. You can check by using the following command:
 
 ```dotnetcli
 dotnet new list aspire
 ```
 
-If the .NET Aspire templates are installed, the output resembles:
+If the Aspire templates are installed, the output resembles:
 
 ```dotnetcli
-These templates matched your input: '.NET Aspire'
+These templates matched your input: 'Aspire'
 
 Template Name       Short Name              Language  Tags
 ------------------  ----------------------  --------  -------------------------------------------------------------------------------
-.NET Aspire App...  aspire-apphost          [C#]      Common/.NET Aspire/Cloud
-.NET Aspire Emp...  aspire                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
-.NET Aspire Ser...  aspire-servicedefaults  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
-.NET Aspire Sta...  aspire-starter          [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud/Test/MSTest/NUnit/xUnit
-.NET Aspire Tes...  aspire-mstest           [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test/MSTest
-.NET Aspire Tes...  aspire-nunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test/NUnit
-.NET Aspire Tes...  aspire-xunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test/xUnit
+Aspire App...  aspire-apphost          [C#]      Common/Aspire/Cloud
+Aspire Emp...  aspire                  [C#]      Common/Aspire/Cloud/Web/Web API/API/Service
+Aspire Ser...  aspire-servicedefaults  [C#]      Common/Aspire/Cloud/Web/Web API/API/Service
+Aspire Sta...  aspire-starter          [C#]      Common/Aspire/Blazor/Web/Web API/API/Service/Cloud/Test/MSTest/NUnit/xUnit
+Aspire Tes...  aspire-mstest           [C#]      Common/Aspire/Cloud/Web/Web API/API/Service/Test/MSTest
+Aspire Tes...  aspire-nunit            [C#]      Common/Aspire/Cloud/Web/Web API/API/Service/Test/NUnit
+Aspire Tes...  aspire-xunit            [C#]      Common/Aspire/Cloud/Web/Web API/API/Service/Test/xUnit
 ```
 
 In this tutorial, you'll add a AppHost project and a Service Defaults project.
@@ -212,25 +212,25 @@ If the previous command didn't find any templates you must install them. Execute
 dotnet new install Aspire.ProjectTemplates
 ```
 
-For more information about the .NET Aspire templates, see [.NET Aspire templates](../fundamentals/setup-tooling.md#net-aspire-templates)
+For more information about the Aspire templates, see [Aspire templates](../fundamentals/setup-tooling.md#net-aspire-templates)
 
-## Add .NET Aspire to the Store web app
+## Add Aspire to the Store web app
 
-Now, let's enroll the **Store** project, which implements the web user interface, in .NET Aspire orchestration:
+Now, let's enroll the **Store** project, which implements the web user interface, in Aspire orchestration:
 
 :::zone pivot="visual-studio"
 
-1. In Visual Studio, in the **Solution Explorer**, right-click the **Store** project, select **Add**, and then select **.NET Aspire Orchestrator Support**.
-1. In the **Add .NET Aspire Orchestrator Support** dialog, select **OK**.
+1. In Visual Studio, in the **Solution Explorer**, right-click the **Store** project, select **Add**, and then select **Aspire Orchestrator Support**.
+1. In the **Add Aspire Orchestrator Support** dialog, select **OK**.
 
-    :::image type="content" loc-scope="visual-studio" source="media/add-aspire-orchestrator-support.png" alt-text="Screenshot of the Add .NET Aspire Orchestrator Support dialog.":::
+    :::image type="content" loc-scope="visual-studio" source="media/add-aspire-orchestrator-support.png" alt-text="Screenshot of the Add Aspire Orchestrator Support dialog.":::
 
 You should now have two new projects, both added to the solution:
 
 - **eShopLite.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator is set as the _Startup project_, and it depends on the **eShopLite.Store** project.
-- **eShopLite.ServiceDefaults**: A .NET Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../fundamentals/telemetry.md).
+- **eShopLite.ServiceDefaults**: A Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../fundamentals/telemetry.md).
 
-In the **eShopLite.AppHost** project, open the _:::no-loc text="AppHost.cs":::_ file. Notice this line of code, which registers the **Store** project in the .NET Aspire orchestration:
+In the **eShopLite.AppHost** project, open the _:::no-loc text="AppHost.cs":::_ file. Notice this line of code, which registers the **Store** project in the Aspire orchestration:
 
 ```csharp
 builder.AddProject<Projects.Store>("store");
@@ -238,14 +238,14 @@ builder.AddProject<Projects.Store>("store");
 
 For more information, see <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>.
 
-To add the **Products** project to .NET Aspire:
+To add the **Products** project to Aspire:
 
-1. In Visual Studio, in the **Solution Explorer**, right-click the **Products** project, select **Add**, and then select **.NET Aspire Orchestrator Support**.
-1. A dialog indicating that .NET Aspire Orchestrator project already exists, select **OK**.
+1. In Visual Studio, in the **Solution Explorer**, right-click the **Products** project, select **Add**, and then select **Aspire Orchestrator Support**.
+1. A dialog indicating that Aspire Orchestrator project already exists, select **OK**.
 
-    :::image type="content" loc-scope="visual-studio" source="media/orchestrator-already-added.png" alt-text="Screenshot indicating that the.NET Aspire Orchestrator was already added.":::
+    :::image type="content" loc-scope="visual-studio" source="media/orchestrator-already-added.png" alt-text="Screenshot indicating that theAspire Orchestrator was already added.":::
 
-In the **eShopLite.AppHost** project, open the _:::no-loc text="AppHost.cs":::_ file. Notice this line of code, which registers the **Products** project in the .NET Aspire orchestration:
+In the **eShopLite.AppHost** project, open the _:::no-loc text="AppHost.cs":::_ file. Notice this line of code, which registers the **Products** project in the Aspire orchestration:
 
 ```csharp
 builder.AddProject<Projects.Products>("products");
@@ -258,7 +258,7 @@ Also notice that the **eShopLite.AppHost** project, now depends on both the **St
 
 ### Create an AppHost project
 
-In order to orchestrate the existing projects, you need to create a new _AppHost_ project. To create a new [_AppHost_ project](../fundamentals/app-host-overview.md) from the available .NET Aspire templates, use the following .NET CLI command:
+In order to orchestrate the existing projects, you need to create a new _AppHost_ project. To create a new [_AppHost_ project](../fundamentals/app-host-overview.md) from the available Aspire templates, use the following .NET CLI command:
 
 ```dotnetcli
 dotnet new aspire-apphost -o eShopLite.AppHost
@@ -296,11 +296,11 @@ dotnet add .\eShopLite.AppHost\eShopLite.AppHost.csproj reference .\Store\Store.
 
 ---
 
-For more information on the available templates, see [.NET Aspire templates](../fundamentals/aspire-sdk-templates.md).
+For more information on the available templates, see [Aspire templates](../fundamentals/aspire-sdk-templates.md).
 
 ### Create a service defaults project
 
-After the AppHost project is created, you need to create a new _service defaults_ project. To create a new [_service defaults_ project](../fundamentals/service-defaults.md) from the available .NET Aspire templates, use the following .NET CLI command:
+After the AppHost project is created, you need to create a new _service defaults_ project. To create a new [_service defaults_ project](../fundamentals/service-defaults.md) from the available Aspire templates, use the following .NET CLI command:
 
 ```dotnetcli
 dotnet new aspire-servicedefaults -o eShopLite.ServiceDefaults
@@ -401,7 +401,7 @@ The preceding code:
 
 ## Service Discovery
 
-At this point, both projects are part of .NET Aspire orchestration, but the **Store** project needs to rely on the **Products** backend address through [.NET Aspire's service discovery](../service-discovery/overview.md). To enable service discovery, open the _:::no-loc text="AppHost.cs":::_ file in **eShopLite.AppHost** project and update the code so that the `builder` adds a reference to the _Products_ project:
+At this point, both projects are part of Aspire orchestration, but the **Store** project needs to rely on the **Products** backend address through [Aspire's service discovery](../service-discovery/overview.md). To enable service discovery, open the _:::no-loc text="AppHost.cs":::_ file in **eShopLite.AppHost** project and update the code so that the `builder` adds a reference to the _Products_ project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -416,7 +416,7 @@ builder.AddProject<Projects.Store>("store")
 builder.Build().Run();
 ```
 
-The preceding code expresses that the _Store_ project depends on the _Products_ project. For more information, see [.NET Aspire AppHost: Reference resources](../fundamentals/app-host-overview.md#reference-resources). This reference is used to discover the address of the _Products_ project at run time. Additionally, the _Store_ project is configured to use external HTTP endpoints. If you later choose to deploy this app, you'd need the call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints%2A> to ensure that it's public to the outside world. Finally, the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> API ensures that _Store_ app waits for the _Products_ app to be ready to serve requests.
+The preceding code expresses that the _Store_ project depends on the _Products_ project. For more information, see [Aspire AppHost: Reference resources](../fundamentals/app-host-overview.md#reference-resources). This reference is used to discover the address of the _Products_ project at run time. Additionally, the _Store_ project is configured to use external HTTP endpoints. If you later choose to deploy this app, you'd need the call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithExternalHttpEndpoints%2A> to ensure that it's public to the outside world. Finally, the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> API ensures that _Store_ app waits for the _Products_ app to be ready to serve requests.
 
 Next, update the _:::no-loc text="appsettings.json":::_ in the _Store_ project with the following JSON:
 
@@ -439,7 +439,7 @@ The addresses for both the endpoints now uses the "products" name that was added
 
 ## Explore the enrolled app
 
-Let's start the solution and examine the new behavior that .NET Aspire provides.
+Let's start the solution and examine the new behavior that Aspire provides.
 
 :::zone pivot="visual-studio"
 
@@ -447,7 +447,7 @@ Let's start the solution and examine the new behavior that .NET Aspire provides.
 > Notice that the **eShopLite.AppHost** project is the new startup project.
 
 1. In Visual Studio, to start debugging, press <kbd>F5</kbd> Visual Studio builds the projects.
-1. If the **Start Docker Desktop** dialog appears, select **Yes**. Visual Studio starts the Docker engine and creates the necessary containers. When the deployment is complete, the .NET Aspire dashboard is displayed.
+1. If the **Start Docker Desktop** dialog appears, select **Yes**. Visual Studio starts the Docker engine and creates the necessary containers. When the deployment is complete, the Aspire dashboard is displayed.
 1. In the dashboard, select the endpoint for the **products** project. A new browser tab appears and displays the product catalog in JSON format.
 1. In the dashboard, select the endpoint for the **store** project. A new browser tab appears and displays the home page for the web app.
 1. In the menu on the left, select **Products**. The product catalog is displayed.
@@ -492,4 +492,4 @@ Delete the _launch.json_ file that you created earlier, it no longer serves a pu
 
 :::zone-end
 
-Congratulations, you added .NET Aspire orchestration to your preexisting web app. You can now add .NET Aspire integrations and use the .NET Aspire tooling to streamline your cloud-native web app development.
+Congratulations, you added Aspire orchestration to your preexisting web app. You can now add Aspire integrations and use the Aspire tooling to streamline your cloud-native web app development.

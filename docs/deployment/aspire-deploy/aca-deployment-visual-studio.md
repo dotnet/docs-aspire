@@ -1,27 +1,27 @@
 ---
-title: Deploy .NET Aspire projects to Azure Container Apps using Visual Studio
-description: Learn how to deploy .NET Aspire projects to Azure Container Apps using Visual Studio.
+title: Deploy Aspire projects to Azure Container Apps using Visual Studio
+description: Learn how to deploy Aspire projects to Azure Container Apps using Visual Studio.
 ms.date: 09/23/2025
 ms.custom: sfi-image-nochange
 ---
 
-# Deploy a .NET Aspire project to Azure Container Apps using Visual Studio
+# Deploy a Aspire project to Azure Container Apps using Visual Studio
 
-.NET Aspire projects are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. This article will walk you through creating a new .NET Aspire solution and deploying it to Microsoft Azure Container Apps using the Visual Studio. You'll learn how to complete the following tasks:
+Aspire projects are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. This article will walk you through creating a new Aspire solution and deploying it to Microsoft Azure Container Apps using the Visual Studio. You'll learn how to complete the following tasks:
 
 > [!div class="checklist"]
 >
 > - Provision an Azure resource group and Container Registry
-> - Publish the .NET Aspire projects as container images in Azure Container Registry
+> - Publish the Aspire projects as container images in Azure Container Registry
 > - Provision a Redis container in Azure
 > - Deploy the apps to an Azure Container Apps environment
 > - View application console logs to troubleshoot application issues
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
-## Create a .NET Aspire project
+## Create a Aspire project
 
-As a starting point, this article assumes that you've created a .NET Aspire project from the **.NET Aspire Starter Application** template. For more information, see [Quickstart: Build your first .NET Aspire project](../../get-started/build-your-first-aspire-app.md).
+As a starting point, this article assumes that you've created a Aspire project from the **Aspire Starter Application** template. For more information, see [Quickstart: Build your first Aspire project](../../get-started/build-your-first-aspire-app.md).
 
 ### Resource naming
 
@@ -31,7 +31,7 @@ As a starting point, this article assumes that you've created a .NET Aspire proj
 
 1. In the solution explorer, right-click on the **.AppHost** project and select **Publish** to open the **Publish** dialog.
 
-1. Select **Azure Container Apps for .NET Aspire** as the publishing target.
+1. Select **Azure Container Apps for Aspire** as the publishing target.
 
     :::image type="content" loc-scope="visual-studio" source="../media/visual-studio-deploy.png" alt-text="A screenshot of the publishing dialog workflow.":::
 

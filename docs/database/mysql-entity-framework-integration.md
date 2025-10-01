@@ -1,15 +1,15 @@
 ---
-title: .NET Aspire Pomelo MySQL Entity Framework Core integration
-description: Learn how to use the .NET Aspire MySQL Entity Framework integration, which includes both hosting and client integrations.
+title: Aspire Pomelo MySQL Entity Framework Core integration
+description: Learn how to use the Aspire MySQL Entity Framework integration, which includes both hosting and client integrations.
 ms.date: 02/07/2025
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Pomelo MySQL Entity Framework Core integration
+# Aspire Pomelo MySQL Entity Framework Core integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[MySQL](https://www.mysql.com/) is an open-source Relational Database Management System (RDBMS) that uses Structured Query Language (SQL) to manage and manipulate data. It's employed in a many different environments, from small projects to large-scale enterprise systems and it's a popular choice to host data that underpins microservices in a cloud-native application. The .NET Aspire Pomelo MySQL Entity Framework Core integration enables you to connect to existing MySQL databases or create new instances from .NET with the [`mysql` container image](https://hub.docker.com/_/mysql).
+[MySQL](https://www.mysql.com/) is an open-source Relational Database Management System (RDBMS) that uses Structured Query Language (SQL) to manage and manipulate data. It's employed in a many different environments, from small projects to large-scale enterprise systems and it's a popular choice to host data that underpins microservices in a cloud-native application. The Aspire Pomelo MySQL Entity Framework Core integration enables you to connect to existing MySQL databases or create new instances from .NET with the [`mysql` container image](https://hub.docker.com/_/mysql).
 
 ## Hosting integration
 
@@ -17,7 +17,7 @@ ms.custom: sfi-ropc-nochange
 
 ## Client integration
 
-To get started with the .NET Aspire Pomelo MySQL Entity Framework integration, install the [📦 Aspire.Pomelo.EntityFrameworkCore.MySql](https://www.nuget.org/packages/Aspire.Pomelo.EntityFrameworkCore.MySql) NuGet package in the client-consuming project, that is, the project for the application that uses the MySQL Entity Framework Core client.
+To get started with the Aspire Pomelo MySQL Entity Framework integration, install the [📦 Aspire.Pomelo.EntityFrameworkCore.MySql](https://www.nuget.org/packages/Aspire.Pomelo.EntityFrameworkCore.MySql) NuGet package in the client-consuming project, that is, the project for the application that uses the MySQL Entity Framework Core client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -73,11 +73,11 @@ builder.Services.AddDbContext<ExampleDbContext>(options =>
 
 You have more flexibility when you create the database context in this way, for example:
 
-- You can reuse existing configuration code for the database context without rewriting it for .NET Aspire.
+- You can reuse existing configuration code for the database context without rewriting it for Aspire.
 - You can use Entity Framework Core interceptors to modify database operations.
 - You can choose not to use Entity Framework Core context pooling, which may perform better in some circumstances.
 
-If you use this method, you can enhance the database context with .NET Aspire-style retries, health checks, logging, and telemetry features by calling the <xref:Microsoft.Extensions.Hosting.AspireEFMySqlExtensions.EnrichMySqlDbContext*> method:
+If you use this method, you can enhance the database context with Aspire-style retries, health checks, logging, and telemetry features by calling the <xref:Microsoft.Extensions.Hosting.AspireEFMySqlExtensions.EnrichMySqlDbContext*> method:
 
 ```csharp
 builder.EnrichMySqlDbContext<ExampleDbContext>(
@@ -92,7 +92,7 @@ The `settings` parameter is an instance of the <xref:Aspire.Pomelo.EntityFramewo
 
 ### Configuration
 
-The .NET Aspire Pomelo MySQL Entity Framework Core integration provides multiple options to configure the database connection based on the requirements and conventions of your project.
+The Aspire Pomelo MySQL Entity Framework Core integration provides multiple options to configure the database connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -118,7 +118,7 @@ For more information, see the [MySqlConnector: ConnectionString documentation](h
 
 #### Use configuration providers
 
-The .NET Aspire Pomelo MySQL Entity Framework Core integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Pomelo.EntityFrameworkCore.MySql.PomeloEntityFrameworkCoreMySqlSettings> from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:Pomelo:EntityFrameworkCore:MySql` key.
+The Aspire Pomelo MySQL Entity Framework Core integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Pomelo.EntityFrameworkCore.MySql.PomeloEntityFrameworkCoreMySqlSettings> from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:Pomelo:EntityFrameworkCore:MySql` key.
 
 The following example shows an _:::no-loc text="appsettings.json":::_ that configures some of the available options:
 
@@ -159,7 +159,7 @@ builder.EnrichMySqlDbContext<MyDbContext>(
 
 [!INCLUDE [client-integration-health-checks](../includes/client-integration-health-checks.md)]
 
-The .NET Aspire Pomelo MySQL Entity Framework Core integration:
+The Aspire Pomelo MySQL Entity Framework Core integration:
 
 - Adds the health check when <xref:Aspire.Pomelo.EntityFrameworkCore.MySql.PomeloEntityFrameworkCoreMySqlSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which calls EF Core's <xref:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.CanConnectAsync%2A> method.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
@@ -168,7 +168,7 @@ The .NET Aspire Pomelo MySQL Entity Framework Core integration:
 
 #### Logging
 
-The .NET Aspire Pomelo MySQL Entity Framework Core integration uses the following log categories:
+The Aspire Pomelo MySQL Entity Framework Core integration uses the following log categories:
 
 - `Microsoft.EntityFrameworkCore.ChangeTracking`
 - `Microsoft.EntityFrameworkCore.Database.Command`
@@ -183,13 +183,13 @@ The .NET Aspire Pomelo MySQL Entity Framework Core integration uses the followin
 
 ### Tracing
 
-The .NET Aspire Pomelo MySQL Entity Framework Core integration will emit the following tracing activities using OpenTelemetry:
+The Aspire Pomelo MySQL Entity Framework Core integration will emit the following tracing activities using OpenTelemetry:
 
 - `MySqlConnector`
 
 ### Metrics
 
-The .NET Aspire Pomelo MySQL Entity Framework Core integration currently supports the following metrics:
+The Aspire Pomelo MySQL Entity Framework Core integration currently supports the following metrics:
 
 - MySqlConnector:
   - `db.client.connections.create_time`
@@ -206,5 +206,5 @@ The .NET Aspire Pomelo MySQL Entity Framework Core integration currently support
 
 - [MySQL database](https://mysqlconnector.net/)
 - [Entity Framework Core docs](/ef/core)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

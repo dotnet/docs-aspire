@@ -1,14 +1,14 @@
 ---
-title: .NET Aspire OpenAI integration (Preview)
-description: Learn how to integrate OpenAI models into your .NET Aspire applications using the built-in hosting and client support.
+title: Aspire OpenAI integration (Preview)
+description: Learn how to integrate OpenAI models into your Aspire applications using the built-in hosting and client support.
 ms.date: 09/23/2025
 ---
 
-# .NET Aspire OpenAI integration (Preview)
+# Aspire OpenAI integration (Preview)
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[OpenAI](https://openai.com/) provides access to chat/completions, embeddings, image, and audio models via a REST API. The .NET Aspire OpenAI integration lets you:
+[OpenAI](https://openai.com/) provides access to chat/completions, embeddings, image, and audio models via a REST API. The Aspire OpenAI integration lets you:
 
 - Model an OpenAI account (endpoint + API key) once in the AppHost.
 - Add one or more model resources that compose their connection strings from the parent.
@@ -290,5 +290,5 @@ Explore the end-to-end sample that wires up the hosting and client integrations,
 
 - [OpenAI documentation](https://platform.openai.com/docs)
 - [OpenAI .NET SDK](https://github.com/openai/openai-dotnet)
-- [.NET Aspire integrations overview](/dotnet/aspire/fundamentals/integrations-overview)
-- [.NET Aspire GitHub Models integration](/dotnet/aspire/github/github-models-integration)
+- [Aspire integrations overview](/dotnet/aspire/fundamentals/integrations-overview)
+- [Aspire GitHub Models integration](/dotnet/aspire/github/github-models-integration)

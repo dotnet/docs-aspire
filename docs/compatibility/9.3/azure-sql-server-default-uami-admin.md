@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - AddAzureSqlServer assigns a dedicated user-assigned managed identity as the administrator"
-description: "Learn about the breaking change in .NET Aspire 9.3 where Azure SQL Server instances are assigned dedicated user managed identities as administrators."
+description: "Learn about the breaking change in Aspire 9.3 where Azure SQL Server instances are assigned dedicated user managed identities as administrators."
 ms.date: 5/12/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/3386
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/3386
 
 # AddAzureSqlServer assigns a dedicated user-assigned managed identity as the administrator
 
-In .NET Aspire 9.3, Azure SQL Server instances are now assigned dedicated user managed identities as administrators. This change resolves issues with overlapping managed identities when using multiple app containers. Additionally, app containers and local users are granted the `db_owner` role for database access.
+In Aspire 9.3, Azure SQL Server instances are now assigned dedicated user managed identities as administrators. This change resolves issues with overlapping managed identities when using multiple app containers. Additionally, app containers and local users are granted the `db_owner` role for database access.
 
 ## Version introduced
 
-.NET Aspire 9.3
+Aspire 9.3
 
 ## Previous behavior
 

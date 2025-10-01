@@ -1,16 +1,16 @@
 ---
-title: .NET Aspire Apache Kafka integration
-description: Learn how to use the .NET Aspire Apache Kafka client message-broker integration.
+title: Aspire Apache Kafka integration
+description: Learn how to use the Aspire Apache Kafka client message-broker integration.
 ms.date: 10/11/2024
 uid: messaging/kafka-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Apache Kafka integration
+# Aspire Apache Kafka integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Apache Kafka](https://kafka.apache.org/) is an open-source distributed event streaming platform. It's useful for building real-time data pipelines and streaming applications. The .NET Aspire Apache Kafka integration enables you to connect to existing Kafka instances, or create new instances from .NET with the [`docker.io/confluentinc/confluent-local` container image](https://hub.docker.com/r/confluentinc/cp-kafka).
+[Apache Kafka](https://kafka.apache.org/) is an open-source distributed event streaming platform. It's useful for building real-time data pipelines and streaming applications. The Aspire Apache Kafka integration enables you to connect to existing Kafka instances, or create new instances from .NET with the [`docker.io/confluentinc/confluent-local` container image](https://hub.docker.com/r/confluentinc/cp-kafka).
 
 ## Hosting integration
 
@@ -48,7 +48,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/confluentinc/confluent-local` image, it creates a new Kafka server instance on your local machine. A reference to your Kafka server (the `kafka` variable) is added to the `ExampleProject`. The Kafka server resource includes default ports
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/confluentinc/confluent-local` image, it creates a new Kafka server instance on your local machine. A reference to your Kafka server (the `kafka` variable) is added to the `ExampleProject`. The Kafka server resource includes default ports
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"kafka"`. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -71,7 +71,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The Kafka UI is a free, open-source web UI to monitor and manage Apache Kafka clusters. .NET Aspire adds another container image [`docker.io/kafbat/kafka-ui`](https://hub.docker.com/r/kafbat/kafka-ui) to the AppHost that runs the Kafka UI.
+The Kafka UI is a free, open-source web UI to monitor and manage Apache Kafka clusters. Aspire adds another container image [`docker.io/kafbat/kafka-ui`](https://hub.docker.com/r/kafbat/kafka-ui) to the AppHost that runs the Kafka UI.
 
 ### Change the Kafka UI host port
 
@@ -165,7 +165,7 @@ dotnet user-secrets set "ConnectionStrings:kafka" "kafka-broker-1.contoso.com:90
 
 ## Client integration
 
-To get started with the .NET Aspire Apache Kafka integration, install the [📦 Aspire.Confluent.Kafka](https://www.nuget.org/packages/Aspire.Confluent.Kafka) NuGet package in the client-consuming project, that is, the project for the application that uses the Apache Kafka client.
+To get started with the Aspire Apache Kafka integration, install the [📦 Aspire.Confluent.Kafka](https://www.nuget.org/packages/Aspire.Confluent.Kafka) NuGet package in the client-consuming project, that is, the project for the application that uses the Apache Kafka client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -235,7 +235,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire Apache Kafka integration provides multiple options to configure the connection based on the requirements and conventions of your project.
+The Aspire Apache Kafka integration provides multiple options to configure the connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -259,7 +259,7 @@ The connection string value is set to the `BootstrapServers`  property of the pr
 
 #### Use configuration providers
 
-The .NET Aspire Apache Kafka integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Confluent.Kafka.KafkaProducerSettings> or <xref:Aspire.Confluent.Kafka.KafkaConsumerSettings> from configuration by respectively using the `Aspire:Confluent:Kafka:Producer` and `Aspire.Confluent:Kafka:Consumer` keys. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
+The Aspire Apache Kafka integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Confluent.Kafka.KafkaProducerSettings> or <xref:Aspire.Confluent.Kafka.KafkaConsumerSettings> from configuration by respectively using the `Aspire:Confluent:Kafka:Producer` and `Aspire.Confluent:Kafka:Consumer` keys. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
@@ -286,7 +286,7 @@ For the complete Kafka client integration JSON schema, see [Aspire.Confluent.Kaf
 
 #### Use named configuration
 
-The .NET Aspire Apache Kafka integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+The Aspire Apache Kafka integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
 
 ```json
 {
@@ -379,9 +379,9 @@ For more information, see [`ProducerBuilder<TKey, TValue>`](https://docs.conflue
 
 ### Client integration health checks
 
-By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
+By default, Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-The .NET Aspire Apache Kafka integration handles the following health check scenarios:
+The Aspire Apache Kafka integration handles the following health check scenarios:
 
 - Adds the `Aspire.Confluent.Kafka.Producer` health check when <xref:Aspire.Confluent.Kafka.KafkaProducerSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`.
 - Adds the `Aspire.Confluent.Kafka.Consumer` health check when <xref:Aspire.Confluent.Kafka.KafkaConsumerSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`.
@@ -389,21 +389,21 @@ The .NET Aspire Apache Kafka integration handles the following health check scen
 
 ### Observability and telemetry
 
-.NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations may only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
+Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations may only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
 
 #### Logging
 
-The .NET Aspire Apache Kafka integration uses the following log categories:
+The Aspire Apache Kafka integration uses the following log categories:
 
 - `Aspire.Confluent.Kafka`
 
 #### Tracing
 
-The .NET Aspire Apache Kafka integration dos not emit distributed traces.
+The Aspire Apache Kafka integration dos not emit distributed traces.
 
 #### Metrics
 
-The .NET Aspire Apache Kafka integration emits the following metrics using OpenTelemetry:
+The Aspire Apache Kafka integration emits the following metrics using OpenTelemetry:
 
 - `Aspire.Confluent.Kafka`
   - `messaging.kafka.network.tx`
@@ -420,5 +420,5 @@ The .NET Aspire Apache Kafka integration emits the following metrics using OpenT
 - [Apache Kafka](https://kafka.apache.org/)
 - [Confluent](https://www.confluent.io/)
 - [Confluent Kafka .NET client docs](https://docs.confluent.io/platform/current/clients/confluent-kafka-dotnet/_site/api/Confluent.Kafka.html)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

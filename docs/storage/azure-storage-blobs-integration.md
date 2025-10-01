@@ -1,16 +1,16 @@
 ---
-title: .NET Aspire Azure Blob Storage integration
-description: Learn how to use the .NET Aspire Azure Blob Storage integration, which includes both hosting and client integrations.
+title: Aspire Azure Blob Storage integration
+description: Learn how to use the Aspire Azure Blob Storage integration, which includes both hosting and client integrations.
 ms.date: 04/08/2025
 uid: storage/azure-blob-storage-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Azure Blob Storage integration
+# Aspire Azure Blob Storage integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure Blob Storage](https://azure.microsoft.com/services/storage/blobs/) is a service for storing large amounts of unstructured data. The .NET Aspire Azure Blob Storage integration enables you to connect to existing Azure Blob Storage instances or create new instances from .NET applications.
+[Azure Blob Storage](https://azure.microsoft.com/services/storage/blobs/) is a service for storing large amounts of unstructured data. The Aspire Azure Blob Storage integration enables you to connect to existing Azure Blob Storage instances or create new instances from .NET applications.
 
 ## Hosting integration
 
@@ -51,7 +51,7 @@ The preceding code:
 
 ## Client integration
 
-To get started with the .NET Aspire Azure Blob Storage client integration, install the [📦 Aspire.Azure.Storage.Blobs](https://www.nuget.org/packages/Aspire.Azure.Storage.Blobs) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure Blob Storage client. The Azure Blob Storage client integration registers a <xref:Azure.Storage.Blobs.BlobServiceClient> instance that you can use to interact with Azure Blob Storage.
+To get started with the Aspire Azure Blob Storage client integration, install the [📦 Aspire.Azure.Storage.Blobs](https://www.nuget.org/packages/Aspire.Azure.Storage.Blobs) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure Blob Storage client. The Azure Blob Storage client integration registers a <xref:Azure.Storage.Blobs.BlobServiceClient> instance that you can use to interact with Azure Blob Storage.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -87,7 +87,7 @@ public class ExampleService(BlobServiceClient client)
 
 ### Configuration
 
-The .NET Aspire Azure Blob Storage integration provides multiple options to configure the `BlobServiceClient` based on the requirements and conventions of your project.
+The Aspire Azure Blob Storage integration provides multiple options to configure the `BlobServiceClient` based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -127,7 +127,7 @@ For more information, see [Configure Azure Storage connection strings](/azure/st
 
 #### Use configuration providers
 
-The .NET Aspire Azure Blob Storage integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Storage.Blobs.AzureStorageBlobsSettings> and <xref:Azure.Storage.Blobs.BlobClientOptions> from configuration by using the `Aspire:Azure:Storage:Blobs` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
+The Aspire Azure Blob Storage integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Storage.Blobs.AzureStorageBlobsSettings> and <xref:Azure.Storage.Blobs.BlobClientOptions> from configuration by using the `Aspire:Azure:Storage:Blobs` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
@@ -153,7 +153,7 @@ For the complete Azure Blob Storage client integration JSON schema, see [Aspire.
 
 #### Use named configuration
 
-The .NET Aspire Azure Blob Storage integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+The Aspire Azure Blob Storage integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
 
 ```json
 {
@@ -215,9 +215,9 @@ builder.AddAzureBlobClient(
 
 ### Client integration health checks
 
-By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
+By default, Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-The .NET Aspire Azure Blob Storage integration:
+The Aspire Azure Blob Storage integration:
 
 - Adds the health check when <xref:Aspire.Azure.Storage.Blobs.AzureStorageBlobsSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the Azure Blob Storage.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
@@ -226,23 +226,23 @@ The .NET Aspire Azure Blob Storage integration:
 
 ### Logging
 
-The .NET Aspire Azure Blob Storage integration uses the following log categories:
+The Aspire Azure Blob Storage integration uses the following log categories:
 
 - `Azure.Core`
 - `Azure.Identity`
 
 ### Tracing
 
-The .NET Aspire Azure Blob Storage integration emits the following tracing activities using OpenTelemetry:
+The Aspire Azure Blob Storage integration emits the following tracing activities using OpenTelemetry:
 
 - `Azure.Storage.Blobs.BlobContainerClient`
 
 ### Metrics
 
-The .NET Aspire Azure Blob Storage integration currently doesn't support metrics by default due to limitations with the Azure SDK.
+The Aspire Azure Blob Storage integration currently doesn't support metrics by default due to limitations with the Azure SDK.
 
 ## See also
 
 - [Azure Blob Storage docs](/azure/storage/blobs/)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

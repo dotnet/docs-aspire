@@ -1,12 +1,12 @@
 ---
-title: .NET Aspire Redis output caching integration
-description: Learn how to use the .NET Aspire  Redis output caching integration to register an ASP.NET Core Output Caching provider backed by a Redis server.
+title: Aspire Redis output caching integration
+description: Learn how to use the Aspire  Redis output caching integration to register an ASP.NET Core Output Caching provider backed by a Redis server.
 ms.date: 02/05/2025
 zone_pivot_groups: resp-host
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> output caching integration
+# Aspire Redis&reg;<sup>**[*](#registered)**</sup> output caching integration
 
 <a name="heading"></a>
 
@@ -14,17 +14,17 @@ ms.custom: sfi-ropc-nochange
 
 :::zone pivot="redis"
 
-Learn how to use the .NET Aspire Redis output caching integration. The `Aspire.StackExchange.Redis.OutputCaching` client integration is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Redis](https://redis.io/) server with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
+Learn how to use the Aspire Redis output caching integration. The `Aspire.StackExchange.Redis.OutputCaching` client integration is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Redis](https://redis.io/) server with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
 
 :::zone-end
 :::zone pivot="garnet"
 
-Learn how to use the .NET Aspire Redis output caching integration. The `Aspire.StackExchange.Redis.OutputCaching` client integration is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Garnet](https://microsoft.github.io/garnet/) server with the [`ghcr.io/microsoft/garnet` container image](https://github.com/microsoft/garnet/pkgs/container/garnet).
+Learn how to use the Aspire Redis output caching integration. The `Aspire.StackExchange.Redis.OutputCaching` client integration is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Garnet](https://microsoft.github.io/garnet/) server with the [`ghcr.io/microsoft/garnet` container image](https://github.com/microsoft/garnet/pkgs/container/garnet).
 
 :::zone-end
 :::zone pivot="valkey"
 
-Learn how to use the .NET Aspire Redis output caching integration. The `Aspire.StackExchange.Redis.OutputCaching` client integration is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Valkey](https://valkey.io/) server with the [`docker.io/valkey/valkey` container image](https://hub.docker.com/r/valkey/valkey/).
+Learn how to use the Aspire Redis output caching integration. The `Aspire.StackExchange.Redis.OutputCaching` client integration is used to register an [ASP.NET Core Output Caching](/aspnet/core/performance/caching/output) provider backed by a [Valkey](https://valkey.io/) server with the [`docker.io/valkey/valkey` container image](https://hub.docker.com/r/valkey/valkey/).
 
 :::zone-end
 
@@ -104,7 +104,7 @@ For apps with controllers, apply the `[OutputCache]` attribute to the action met
 
 ### Configuration
 
-The .NET Aspire Stack Exchange Redis output caching integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
+The Aspire Stack Exchange Redis output caching integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -153,7 +153,7 @@ builder.AddRedisOutputCache(
 ## See also
 
 - [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)
 
 [!INCLUDE [redis-trademark](includes/redis-trademark.md)]

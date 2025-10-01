@@ -56,11 +56,11 @@ var value = builder.Configuration[key]; // value = "local-value"
 
 ### Prompt for parameter values in the dashboard
 
-If your code adds parameters but doesn't set them, you'll see a prompt to configure their values in the .NET Aspire dashboard. The **Unresolved parameters** message appears, and you can select **Enter values** to resolve the problem:
+If your code adds parameters but doesn't set them, you'll see a prompt to configure their values in the Aspire dashboard. The **Unresolved parameters** message appears, and you can select **Enter values** to resolve the problem:
 
-:::image type="content" source="./media/dashboard-unresolved-parameters-message.png" lightbox="./media/dashboard-unresolved-parameters-message.png" alt-text="Screenshot of the .NET Aspire dashboard warning that appears when there are unresolved parameters.":::
+:::image type="content" source="./media/dashboard-unresolved-parameters-message.png" lightbox="./media/dashboard-unresolved-parameters-message.png" alt-text="Screenshot of the Aspire dashboard warning that appears when there are unresolved parameters.":::
 
-When you select **Enter values**, .NET Aspire displays a form that you can use to configure values for each of the missing parameters.
+When you select **Enter values**, Aspire displays a form that you can use to configure values for each of the missing parameters.
 
 You can also control how the dashboard displays these parameters, by using these methods:
 
@@ -73,14 +73,14 @@ This code shows how to set a description and use the callback:
 
 The code renders this control in the dashboard:
 
-:::image type="content" source="./media/customized-parameter-ui.png" lightbox="./media/customized-parameter-ui.png" alt-text="Screenshot of the .NET Aspire dashboard parameter completion dialog with customizations.":::
+:::image type="content" source="./media/customized-parameter-ui.png" lightbox="./media/customized-parameter-ui.png" alt-text="Screenshot of the Aspire dashboard parameter completion dialog with customizations.":::
 
 > [!NOTE]
 > The dashboard parameter dialog includes a **Save to user secret** checkbox. Select this option to store sensitive values in your AppHost's user secrets for extra protection. For more information about secret parameter values, see [Secret values](#secret-values).
 
 ### Parameter representation in the manifest
 
-.NET Aspire uses a [deployment manifest](../deployment/manifest-format.md) to represent the app's resources and their relationships. Parameters are represented in the manifest as a new primitive called `parameter.v0`:
+Aspire uses a [deployment manifest](../deployment/manifest-format.md) to represent the app's resources and their relationships. Parameters are represented in the manifest as a new primitive called `parameter.v0`:
 
 ```json
 {
@@ -188,7 +188,7 @@ For example, if you have a secret parameter that stores a small part of a connec
 
 :::code language="csharp" source="snippets/referenceexpressions/AspireReferenceExpressions.AppHost/AppHost.cs" id="secretkey":::
 
-You can also use reference expressions to append text to connection strings created by .NET Aspire resources. For example, when you add a PostgreSQL resource to your .NET Aspire solution, the database server runs in a container and a connection string is formulated for it. In the following code, the extra property `Include Error Details` is appended to that connection string before it's passed to consuming projects:
+You can also use reference expressions to append text to connection strings created by Aspire resources. For example, when you add a PostgreSQL resource to your Aspire solution, the database server runs in a container and a connection string is formulated for it. In the following code, the extra property `Include Error Details` is appended to that connection string before it's passed to consuming projects:
 
 :::code language="csharp" source="snippets/referenceexpressions/AspireReferenceExpressions.AppHost/AppHost.cs" id="postgresappend":::
 
@@ -217,5 +217,5 @@ The `Parameters_ApiService` project consumes the `insertionRows` parameter. Cons
 
 ## See also
 
-- [.NET Aspire manifest format for deployment tool builders](../deployment/manifest-format.md)
-- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](../database/sql-server-integrations.md)
+- [Aspire manifest format for deployment tool builders](../deployment/manifest-format.md)
+- [Tutorial: Connect an ASP.NET Core app to SQL Server using Aspire and Entity Framework Core](../database/sql-server-integrations.md)

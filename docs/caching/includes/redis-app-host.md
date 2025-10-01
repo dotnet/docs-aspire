@@ -37,7 +37,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/Redis/Redis` image, it creates a new Redis instance on your local machine. A reference to your Redis resource (the `cache` variable) is added to the `ExampleProject`.
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/Redis/Redis` image, it creates a new Redis instance on your local machine. A reference to your Redis resource (the `cache` variable) is added to the `ExampleProject`.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"cache"`. For more information, see [Container resource lifecycle](../../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -60,7 +60,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-Redis Insights is a free graphical interface for analyzing Redis data across all operating systems and Redis deployments with the help of our AI assistant, Redis Copilot. .NET Aspire adds another container image [`docker.io/redis/redisinsight`](https://hub.docker.com/r/redis/redisinsight) to the AppHost that runs the commander app.
+Redis Insights is a free graphical interface for analyzing Redis data across all operating systems and Redis deployments with the help of our AI assistant, Redis Copilot. Aspire adds another container image [`docker.io/redis/redisinsight`](https://hub.docker.com/r/redis/redisinsight) to the AppHost that runs the commander app.
 
 > [!NOTE]
 > To configure the host port for the `RedisInsightResource` chain a call to the `WithHostPort` API and provide the desired port number.
@@ -81,7 +81,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-Redis Commander is a Node.js web application used to view, edit, and manage a Redis Database. .NET Aspire adds another container image [`docker.io/rediscommander/redis-commander`](https://hub.docker.com/r/rediscommander/redis-commander) to the AppHost that runs the commander app.
+Redis Commander is a Node.js web application used to view, edit, and manage a Redis Database. Aspire adds another container image [`docker.io/rediscommander/redis-commander`](https://hub.docker.com/r/rediscommander/redis-commander) to the AppHost that runs the commander app.
 
 > [!TIP]
 > To configure the host port for the <xref:Aspire.Hosting.Redis.RedisCommanderResource> chain a call to the <xref:Aspire.Hosting.RedisBuilderExtensions.WithHostPort*> API and provide the desired port number.

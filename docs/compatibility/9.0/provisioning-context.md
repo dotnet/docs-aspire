@@ -11,7 +11,7 @@ This change introduces `IOptions<AzureProvisioningOptions>` which contains a `Pr
 
 ## Version introduced
 
-.NET Aspire 9.0 GA
+Aspire 9.0 GA
 
 ## Previous behavior
 

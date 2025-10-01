@@ -58,11 +58,11 @@ Any of the available callback-based extension methods of `IResourceBuilder<T>` c
 
 - **Custom resource types**: Gather input from users or confirm actions when you create custom resource types.
 
-    Resource types are free to define dashboard interactions, such as prompting for user input or displaying messages. The interaction service allows you to create a more interactive experience for users when they manage resources in the Aspire dashboard or CLI. For more information, see [Create custom .NET Aspire hosting integrations](custom-hosting-integration.md).
+    Resource types are free to define dashboard interactions, such as prompting for user input or displaying messages. The interaction service allows you to create a more interactive experience for users when they manage resources in the Aspire dashboard or CLI. For more information, see [Create custom Aspire hosting integrations](custom-hosting-integration.md).
 
 - **Custom resource commands**: Add commands to resources in the Aspire dashboard or CLI. Use the interaction service to prompt users for input or confirmation when these commands run.
 
-    When you chain a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithCommand*> on a target `IResourceBuilder<T>`, for example, your callback can use the interaction service to gather input or confirm actions. For more information, see [Custom resource commands in .NET Aspire](../fundamentals/custom-resource-commands.md).
+    When you chain a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithCommand*> on a target `IResourceBuilder<T>`, for example, your callback can use the interaction service to gather input or confirm actions. For more information, see [Custom resource commands in Aspire](../fundamentals/custom-resource-commands.md).
 
 - **Publish and deploy workflows**: During `aspire publish` or `aspire deploy` operations, use the interaction service to gather deployment-specific configuration and confirm destructive operations through the CLI.
 
@@ -346,4 +346,4 @@ When you run `aspire publish` or `aspire deploy`, interactions are prompted thro
 ## See also
 
 - <xref:Aspire.Hosting.IInteractionService>
-- [.NET Aspire extensibility overview](../extensibility/custom-hosting-integration.md)
+- [Aspire extensibility overview](../extensibility/custom-hosting-integration.md)

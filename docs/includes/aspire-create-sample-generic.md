@@ -11,9 +11,9 @@ Visual Studio provides app templates to get started with Aspire that handle some
     - Make sure **.NET 9.0** is selected.
     - Ensure that **Enlist in Aspire orchestration** is checked and select **Next**.
 
-Visual Studio will create a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:
+Visual Studio will create a new ASP.NET Core solution that is structured to use Aspire. The solution consists of the following projects:
 
-- **AspireSample** - A Razor Pages UI project with default .NET Aspire service configurations.
+- **AspireSample** - A Razor Pages UI project with default Aspire service configurations.
 - **AspireSample.AppHost** - An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
 - **AspireSample.Shared** - A shared class library to hold code that can be reused across the projects in your solution.
 

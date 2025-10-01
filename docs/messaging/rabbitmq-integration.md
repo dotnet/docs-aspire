@@ -1,16 +1,16 @@
 ---
-title: .NET Aspire RabbitMQ integration
-description: Learn how to use the .NET Aspire RabbitMQ message-broker integration, which includes both hosting and client integrations.
+title: Aspire RabbitMQ integration
+description: Learn how to use the Aspire RabbitMQ message-broker integration, which includes both hosting and client integrations.
 ms.date: 08/07/2025
 uid: messaging/rabbitmq-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire RabbitMQ integration
+# Aspire RabbitMQ integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[RabbitMQ](https://www.rabbitmq.com/) is a reliable messaging and streaming broker, which is easy to deploy on cloud environments, on-premises, and on your local machine. The .NET Aspire RabbitMQ integration enables you to connect to existing RabbitMQ instances, or create new instances from .NET with the [`docker.io/library/rabbitmq` container image](https://hub.docker.com/_/rabbitmq).
+[RabbitMQ](https://www.rabbitmq.com/) is a reliable messaging and streaming broker, which is easy to deploy on cloud environments, on-premises, and on your local machine. The Aspire RabbitMQ integration enables you to connect to existing RabbitMQ instances, or create new instances from .NET with the [`docker.io/library/rabbitmq` container image](https://hub.docker.com/_/rabbitmq).
 
 <!-- 
 TODO: Diagram showing the thing we're integrating with and the components of the integration.
@@ -52,7 +52,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/rabbitmq` image, it creates a new RabbitMQ server instance on your local machine. A reference to your RabbitMQ server (the `rabbitmq` variable) is added to the `ExampleProject`. The RabbitMQ server resource includes default credentials with a `username` of `"guest"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/rabbitmq` image, it creates a new RabbitMQ server instance on your local machine. A reference to your RabbitMQ server (the `rabbitmq` variable) is added to the `ExampleProject`. The RabbitMQ server resource includes default credentials with a `username` of `"guest"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"messaging"`. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -138,9 +138,9 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The RabbitMQ management plugin provides an HTTP-based API for management and monitoring of your RabbitMQ server. .NET Aspire adds another container image [`docker.io/library/rabbitmq-management`](https://hub.docker.com/_/rabbitmq) to the AppHost that runs the management plugin. You can access the management plugin from the .NET Aspire dashboard by selecting an endpoint for your RabbitMQ resource:
+The RabbitMQ management plugin provides an HTTP-based API for management and monitoring of your RabbitMQ server. Aspire adds another container image [`docker.io/library/rabbitmq-management`](https://hub.docker.com/_/rabbitmq) to the AppHost that runs the management plugin. You can access the management plugin from the Aspire dashboard by selecting an endpoint for your RabbitMQ resource:
 
-:::image type="content" source="media/dashboard-access-rabbitmq-management.png" alt-text="Screenshot of the .NET Aspire dashboard showing how to connect to the RabbitMQ management plugin.":::
+:::image type="content" source="media/dashboard-access-rabbitmq-management.png" alt-text="Screenshot of the Aspire dashboard showing how to connect to the RabbitMQ management plugin.":::
 
 Log into the management plugin using the credentials you configured with parameters:
 
@@ -156,7 +156,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.Rabbitmq](ht
 
 ## Client integration
 
-To get started with the .NET Aspire RabbitMQ client integration, install the [📦 Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the RabbitMQ client. The RabbitMQ client integration registers an [IConnection](https://rabbitmq.github.io/rabbitmq-dotnet-client/api/RabbitMQ.Client.IConnection.html) instance that you can use to interact with RabbitMQ.
+To get started with the Aspire RabbitMQ client integration, install the [📦 Aspire.RabbitMQ.Client](https://www.nuget.org/packages/Aspire.RabbitMQ.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the RabbitMQ client. The RabbitMQ client integration registers an [IConnection](https://rabbitmq.github.io/rabbitmq-dotnet-client/api/RabbitMQ.Client.IConnection.html) instance that you can use to interact with RabbitMQ.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -174,7 +174,7 @@ dotnet add package Aspire.RabbitMQ.Client
 ---
 
 > [!IMPORTANT]
-> The `Aspire.RabbitMQ.Client` NuGet package depends on the `RabbitMQ.Client` NuGet package. With the release of version 7.0.0 of `RabbitMQ.Client`, a binary breaking change was introduced. To address this, a new client integration package, `Aspire.RabbitMQ.Client.v7`, was created. The original `Aspire.RabbitMQ.Client` package continues to reference `RabbitMQ.Client` version 6.8.1, ensuring compatibility with previous versions of the RabbitMQ client integration. The new `Aspire.RabbitMQ.Client.v7` package references `RabbitMQ.Client` version 7.0.0. In a future version of .NET Aspire, the `Aspire.RabbitMQ.Client` will be updated to version `7.x` and the `Aspire.RabbitMQ.Client.v7` package will be deprecated. For more information, see [Migrating to RabbitMQ .NET Client 7.x](https://github.com/rabbitmq/rabbitmq-dotnet-client/blob/main/v7-MIGRATION.md).
+> The `Aspire.RabbitMQ.Client` NuGet package depends on the `RabbitMQ.Client` NuGet package. With the release of version 7.0.0 of `RabbitMQ.Client`, a binary breaking change was introduced. To address this, a new client integration package, `Aspire.RabbitMQ.Client.v7`, was created. The original `Aspire.RabbitMQ.Client` package continues to reference `RabbitMQ.Client` version 6.8.1, ensuring compatibility with previous versions of the RabbitMQ client integration. The new `Aspire.RabbitMQ.Client.v7` package references `RabbitMQ.Client` version 7.0.0. In a future version of Aspire, the `Aspire.RabbitMQ.Client` will be updated to version `7.x` and the `Aspire.RabbitMQ.Client.v7` package will be deprecated. For more information, see [Migrating to RabbitMQ .NET Client 7.x](https://github.com/rabbitmq/rabbitmq-dotnet-client/blob/main/v7-MIGRATION.md).
 
 ### Add RabbitMQ client
 
@@ -222,7 +222,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire RabbitMQ integration provides multiple options to configure the connection based on the requirements and conventions of your project.
+The Aspire RabbitMQ integration provides multiple options to configure the connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -246,7 +246,7 @@ For more information on how to format this connection string, see the [RabbitMQ 
 
 #### Use configuration providers
 
-The .NET Aspire RabbitMQ integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.RabbitMQ.Client.RabbitMQClientSettings> from configuration by using the `Aspire:RabbitMQ:Client` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
+The Aspire RabbitMQ integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.RabbitMQ.Client.RabbitMQClientSettings> from configuration by using the `Aspire:RabbitMQ:Client` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
@@ -267,7 +267,7 @@ For the complete RabbitMQ client integration JSON schema, see [Aspire.RabbitMQ.C
 
 #### Use named configuration
 
-The .NET Aspire RabbitMQ integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+The Aspire RabbitMQ integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
 
 ```json
 {
@@ -320,36 +320,36 @@ builder.AddRabbitMQClient(
 
 ### Client integration health checks
 
-By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
+By default, Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-The .NET Aspire RabbitMQ integration:
+The Aspire RabbitMQ integration:
 
 - Adds the health check when <xref:Aspire.RabbitMQ.Client.RabbitMQClientSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to and create a channel on the RabbitMQ server.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
 
 ### Observability and telemetry
 
-.NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations might only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
+Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations might only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
 
 #### Logging
 
-The .NET Aspire RabbitMQ integration uses the following log categories:
+The Aspire RabbitMQ integration uses the following log categories:
 
 - `RabbitMQ.Client`
 
 #### Tracing
 
-The .NET Aspire RabbitMQ integration emits the following tracing activities using OpenTelemetry:
+The Aspire RabbitMQ integration emits the following tracing activities using OpenTelemetry:
 
 - `Aspire.RabbitMQ.Client`
 
 #### Metrics
 
-The .NET Aspire RabbitMQ integration currently doesn't support metrics by default.
+The Aspire RabbitMQ integration currently doesn't support metrics by default.
 
 ## See also
 
-- [Send messages with RabbitMQ in .NET Aspire](/training/modules/send-messages-rabbitmq-dotnet-aspire-app)
+- [Send messages with RabbitMQ in Aspire](/training/modules/send-messages-rabbitmq-dotnet-aspire-app)
 - [RabbitMQ .NET Client docs](https://rabbitmq.github.io/rabbitmq-dotnet-client)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

@@ -1,12 +1,12 @@
 ---
 title: Manage Azure role assignments
-description: Learn how to override Azure role assignments on .NET Aspire resources.
+description: Learn how to override Azure role assignments on Aspire resources.
 ms.date: 08/07/2025
 ---
 
 # Manage Azure role assignments
 
-All .NET Aspire Azure hosting integrations define Azure resources. [These resources](integrations-overview.md#add-azure-resources) come with default role assignments. You can replace these default role assignments with built-in role [or custom role assignments](customize-azure-resources.md). In this article, you learn how to manage Azure role assignments on .NET Aspire resources.
+All Aspire Azure hosting integrations define Azure resources. [These resources](integrations-overview.md#add-azure-resources) come with default role assignments. You can replace these default role assignments with built-in role [or custom role assignments](customize-azure-resources.md). In this article, you learn how to manage Azure role assignments on Aspire resources.
 
 ## Default built-in role assignments
 
@@ -52,7 +52,7 @@ For more information, see [Azure built-in roles](/azure/role-based-access-contro
 
 ## Built-in role assignment reference
 
-All built-in roles are defined within the <xref:Azure.Provisioning> namespaces and are included in the corresponding [📦 Azure.Provisioning.*](https://www.nuget.org/packages?q=Azure.Provisioning) NuGet packages. Each .NET Aspire Azure hosting integration automatically depends on the appropriate provisioning package. For more information, see [Customized Azure resources](customize-azure-resources.md).
+All built-in roles are defined within the <xref:Azure.Provisioning> namespaces and are included in the corresponding [📦 Azure.Provisioning.*](https://www.nuget.org/packages?q=Azure.Provisioning) NuGet packages. Each Aspire Azure hosting integration automatically depends on the appropriate provisioning package. For more information, see [Customized Azure resources](customize-azure-resources.md).
 
 The following sections list the built-in roles for each Azure provisioning type that can be used as a parameter to the `WithRoleAssignments` API.
 
@@ -64,7 +64,7 @@ The provisioning resource type is <xref:Azure.Provisioning.AppConfiguration.AppC
 - <xref:Azure.Provisioning.AppConfiguration.AppConfigurationBuiltInRole.AppConfigurationDataReader?displayProperty=nameWithType>
 
 <!--
-For more information, see [.NET Aspire Azure App Configuration integration](../configuration/azure-app-configuration-integration.md).
+For more information, see [Aspire Azure App Configuration integration](../configuration/azure-app-configuration-integration.md).
 -->
 
 ### Azure App Container
@@ -76,7 +76,7 @@ The provisioning resource type is <xref:Azure.Provisioning.AppContainers.Contain
 - <xref:Azure.Provisioning.AppContainers.AppContainersBuiltInRole.Reader?displayProperty=nameWithType>
 
 <!--
-For more information, see [.NET Aspire Azure App Container integration](../hosting/azure-app-container-integration.md).
+For more information, see [Aspire Azure App Container integration](../hosting/azure-app-container-integration.md).
 -->
 
 ### Azure Application Insights
@@ -91,7 +91,7 @@ The provisioning resource type is <xref:Azure.Provisioning.ApplicationInsights.A
 - <xref:Azure.Provisioning.ApplicationInsights.ApplicationInsightsBuiltInRole.WorkbookContributor?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.ApplicationInsights.ApplicationInsightsBuiltInRole.WorkbookReader?displayProperty=nameWithType>
 
-For more information, see [Use Application Insights for .NET Aspire telemetry](../deployment/azure/application-insights.md).
+For more information, see [Use Application Insights for Aspire telemetry](../deployment/azure/application-insights.md).
 
 ### Azure AI (formerly Cognitive Services)
 
@@ -117,7 +117,7 @@ The provisioning resource type is <xref:Azure.Provisioning.CognitiveServices.Cog
 - <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesBuiltInRole.CognitiveServicesUsagesReader?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.CognitiveServices.CognitiveServicesBuiltInRole.CognitiveServicesUser?displayProperty=nameWithType>
 
-For more information, see [.NET Aspire Azure OpenAI integration (Preview)](../azureai/azureai-openai-integration.md).
+For more information, see [Aspire Azure OpenAI integration (Preview)](../azureai/azureai-openai-integration.md).
 
 ### Azure Cosmos DB
 
@@ -129,8 +129,8 @@ The provisioning resource type is <xref:Azure.Provisioning.CosmosDB.CosmosDBAcco
 
 For more information, see:
 
-- [.NET Aspire Azure Cosmos DB integration](../database/azure-cosmos-db-integration.md).
-- [.NET Aspire Cosmos DB Entity Framework Core integration](../database/azure-cosmos-db-entity-framework-integration.md).
+- [Aspire Azure Cosmos DB integration](../database/azure-cosmos-db-integration.md).
+- [Aspire Cosmos DB Entity Framework Core integration](../database/azure-cosmos-db-entity-framework-integration.md).
 
 ### Azure Event Hubs
 
@@ -142,7 +142,7 @@ The provisioning resource type is <xref:Azure.Provisioning.EventHubs.EventHubsNa
 - <xref:Azure.Provisioning.EventHubs.EventHubsBuiltInRole.SchemaRegistryContributor?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.EventHubs.EventHubsBuiltInRole.SchemaRegistryReader?displayProperty=nameWithType>
 
-For more information, see [.NET Aspire Azure Event Hubs integration](../messaging/azure-event-hubs-integration.md).
+For more information, see [Aspire Azure Event Hubs integration](../messaging/azure-event-hubs-integration.md).
 
 ### Azure Key Vault
 
@@ -163,7 +163,7 @@ The provisioning resource type is <xref:Azure.Provisioning.KeyVault.KeyVaultServ
 - <xref:Azure.Provisioning.KeyVault.KeyVaultBuiltInRole.KeyVaultSecretsUser?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.KeyVault.KeyVaultBuiltInRole.ManagedHsmContributor?displayProperty=nameWithType>
 
-For more information, see [.NET Aspire Azure Key Vault integration](../security/azure-security-key-vault-integration.md).
+For more information, see [Aspire Azure Key Vault integration](../security/azure-security-key-vault-integration.md).
 
 ### Azure AI Search
 
@@ -173,7 +173,7 @@ The provisioning resource type is <xref:Azure.Provisioning.Search.SearchService>
 - <xref:Azure.Provisioning.Search.SearchBuiltInRole.SearchIndexDataReader?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.Search.SearchBuiltInRole.SearchServiceContributor?displayProperty=nameWithType>
 
-For more information, see [.NET Aspire Azure AI Search integration](../azureai/azureai-search-document-integration.md).
+For more information, see [Aspire Azure AI Search integration](../azureai/azureai-search-document-integration.md).
 
 ### Azure Service Bus
 
@@ -183,7 +183,7 @@ The provisioning resource type is <xref:Azure.Provisioning.ServiceBus.ServiceBus
 - <xref:Azure.Provisioning.ServiceBus.ServiceBusBuiltInRole.AzureServiceBusDataReceiver?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.ServiceBus.ServiceBusBuiltInRole.AzureServiceBusDataSender?displayProperty=nameWithType>
 
-For more information, see [.NET Aspire Azure Service Bus integration](../messaging/azure-service-bus-integration.md).
+For more information, see [Aspire Azure Service Bus integration](../messaging/azure-service-bus-integration.md).
 
 ### Azure SignalR Service
 
@@ -196,7 +196,7 @@ The provisioning resource type is <xref:Azure.Provisioning.SignalR.SignalRServic
 - <xref:Azure.Provisioning.SignalR.SignalRBuiltInRole.SignalRRestApiReader?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.SignalR.SignalRBuiltInRole.SignalRServiceOwner?displayProperty=nameWithType>
 
-For more information, see [.NET Aspire support for Azure SignalR Service](../real-time/azure-signalr-scenario.md).
+For more information, see [Aspire support for Azure SignalR Service](../real-time/azure-signalr-scenario.md).
 
 ### Azure SQL
 
@@ -209,7 +209,7 @@ The provisioning resource type is <xref:Azure.Provisioning.Sql.SqlServer>, and t
 - <xref:Azure.Provisioning.Sql.SqlBuiltInRole.SqlServerContributor?displayProperty=nameWithType>
 
 <!--
-For more information, see [.NET Aspire Azure SQL integration](../data/azure-sql-integration.md).
+For more information, see [Aspire Azure SQL integration](../data/azure-sql-integration.md).
 -->
 
 ### Azure Storage
@@ -239,9 +239,9 @@ The provisioning resource type is <xref:Azure.Provisioning.Storage.StorageAccoun
 
 For more information, see:
 
-- [.NET Aspire Azure Blob Storage integration](../storage/azure-storage-blobs-integration.md)
-- [.NET Aspire Azure Data Tables integration](../storage/azure-storage-tables-integration.md)
-- [.NET Aspire Azure Queue Storage integration](../storage/azure-storage-queues-integration.md)
+- [Aspire Azure Blob Storage integration](../storage/azure-storage-blobs-integration.md)
+- [Aspire Azure Data Tables integration](../storage/azure-storage-tables-integration.md)
+- [Aspire Azure Queue Storage integration](../storage/azure-storage-queues-integration.md)
 
 ### Azure Web PubSub
 
@@ -251,9 +251,9 @@ The provisioning resource type is <xref:Azure.Provisioning.WebPubSub.WebPubSubSe
 - <xref:Azure.Provisioning.WebPubSub.WebPubSubBuiltInRole.WebPubSubServiceOwner?displayProperty=nameWithType>
 - <xref:Azure.Provisioning.WebPubSub.WebPubSubBuiltInRole.WebPubSubServiceReader?displayProperty=nameWithType>
 
-For more information, see [.NET Aspire Azure Web PubSub integration](../messaging/azure-web-pubsub-integration.md).
+For more information, see [Aspire Azure Web PubSub integration](../messaging/azure-web-pubsub-integration.md).
 
 ## See also
 
-- [.NET Aspire Azure integrations overview](integrations-overview.md)
+- [Aspire Azure integrations overview](integrations-overview.md)
 - [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview)

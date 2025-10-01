@@ -1,18 +1,18 @@
 ---
 title: Azure App Configuration integration
-description: Learn how to use Azure App Configuration with .NET Aspire.
+description: Learn how to use Azure App Configuration with Aspire.
 ms.date: 07/22/2025
 ---
 
-# .NET Aspire Azure App Configuration integration
+# Aspire Azure App Configuration integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure App Configuration](/azure/azure-app-configuration/overview) provides a service to centrally manage application settings and feature flags. Modern programs, especially programs running in a cloud, generally have many components that are distributed in nature. Spreading configuration settings across these components can lead to hard-to-troubleshoot errors during an application deployment. The .NET Aspire Azure App Configuration integration enables you to connect to existing App Configuration instances or create new instances all from your AppHost.
+[Azure App Configuration](/azure/azure-app-configuration/overview) provides a service to centrally manage application settings and feature flags. Modern programs, especially programs running in a cloud, generally have many components that are distributed in nature. Spreading configuration settings across these components can lead to hard-to-troubleshoot errors during an application deployment. The Aspire Azure App Configuration integration enables you to connect to existing App Configuration instances or create new instances all from your AppHost.
 
 ## Hosting integration
 
-The .NET Aspire Azure App Configuration hosting integration models the App Configuration resource as the <xref:Aspire.Hosting.Azure.AzureAppConfigurationResource> type. To access this type and APIs fro expressing the resource, add the [📦 Aspire.Hosting.Azure.AppConfiguration](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppConfiguration) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
+The Aspire Azure App Configuration hosting integration models the App Configuration resource as the <xref:Aspire.Hosting.Azure.AzureAppConfigurationResource> type. To access this type and APIs fro expressing the resource, add the [📦 Aspire.Hosting.Azure.AppConfiguration](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppConfiguration) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -52,7 +52,7 @@ When you add an <xref:Aspire.Hosting.Azure.AzureAppConfigurationResource> to the
 
 #### Provisioning-generated Bicep
 
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure App Configuration resource, the following Bicep is generated:
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure App Configuration resource, the following Bicep is generated:
 
 :::code language="bicep" source="../snippets/azure/AppHost/config/config.bicep":::
 
@@ -64,7 +64,7 @@ The generated Bicep is a starting point and is influenced by changes to the prov
 
 #### Customize provisioning infrastructure
 
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `sku`, purge protection, and more. The following example demonstrates how to customize the Azure App Configuration resource:
+All Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `sku`, purge protection, and more. The following example demonstrates how to customize the Azure App Configuration resource:
 
 :::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureAppConfigInfra.cs" id="configure":::
 
@@ -143,7 +143,7 @@ var appConfig = builder.AddAzureAppConfiguration("config")
 builder.Build().Run();
 ```
 
-The Azure App Configuration emulator isn't installed on your local computer. Instead, it's accessible to .NET Aspire as a container. The `RunAsEmulator` method creates and starts the container when the AppHost starts using the `azure-app-configuration/app-configuration-emulator` image. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
+The Azure App Configuration emulator isn't installed on your local computer. Instead, it's accessible to Aspire as a container. The `RunAsEmulator` method creates and starts the container when the AppHost starts using the `azure-app-configuration/app-configuration-emulator` image. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 #### Configure Azure App Configuration emulator container
 
@@ -229,7 +229,7 @@ Data bind mounts rely on the host machine's filesystem to persist the emulator d
 
 ## Client integration
 
-To get started with the .NET Aspire Azure App Configuration client integration, install the [📦 Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration](https://www.nuget.org/packages/Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration) NuGet package in the client-consuming project, that is, the project for the application that uses the App Configuration client. The App Configuration client integration registers a <xref:Microsoft.Azure.Cosmos.CosmosClient> instance that you can use to interact with App Configuration.
+To get started with the Aspire Azure App Configuration client integration, install the [📦 Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration](https://www.nuget.org/packages/Aspire.Microsoft.Extensions.Configuration.AzureAppConfiguration) NuGet package in the client-consuming project, that is, the project for the application that uses the App Configuration client. The App Configuration client integration registers a <xref:Microsoft.Azure.Cosmos.CosmosClient> instance that you can use to interact with App Configuration.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -328,7 +328,7 @@ For more information, see [.NET Feature Management](/azure/azure-app-configurati
 
 ### Configuration
 
-The .NET Aspire Azure App Configuration library provides multiple options to configure the Azure App Configuration connection based on the requirements and conventions of your project. The App Config endpoint is required to be supplied, either in `AzureAppConfigurationSettings.Endpoint` or using a connection string.
+The Aspire Azure App Configuration library provides multiple options to configure the Azure App Configuration connection based on the requirements and conventions of your project. The App Config endpoint is required to be supplied, either in `AzureAppConfigurationSettings.Endpoint` or using a connection string.
 
 #### Use a connection string
 
@@ -350,7 +350,7 @@ Then the App Configuration endpoint is retrieved from the `ConnectionStrings` co
 
 #### Use configuration providers
 
-The .NET Aspire Azure App Configuration library supports <xref:Microsoft.Extensions.Configuration>. It loads the `AzureAppConfigurationSettings` from configuration by using the `Aspire:Microsoft:Extensions:Configuration:AzureAppConfiguration` key. Example _appsettings.json_ that configures some of the options:
+The Aspire Azure App Configuration library supports <xref:Microsoft.Extensions.Configuration>. It loads the `AzureAppConfigurationSettings` from configuration by using the `Aspire:Microsoft:Extensions:Configuration:AzureAppConfiguration` key. Example _appsettings.json_ that configures some of the options:
 
 ```json
 {
@@ -384,21 +384,21 @@ builder.AddAzureAppConfiguration(
 
 #### Logging
 
-The .NET Aspire Azure App Configuration integration uses the following log categories:
+The Aspire Azure App Configuration integration uses the following log categories:
 
 - `Microsoft.Extensions.Configuration.AzureAppConfiguration.Refresh`
 
 #### Tracing
 
-The .NET Aspire Azure App Configuration integration doesn't make use any activity sources thus no tracing is available.
+The Aspire Azure App Configuration integration doesn't make use any activity sources thus no tracing is available.
 
 #### Metrics
 
-The .NET Aspire Azure App Configuration integration currently doesn't support metrics.
+The Aspire Azure App Configuration integration currently doesn't support metrics.
 
 ## See also
 
 - [Azure App Configuration documentation](/azure/azure-app-configuration/)
-- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
-- [.NET Aspire Azure integrations overview](../azure/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations overview](../fundamentals/integrations-overview.md)
+- [Aspire Azure integrations overview](../azure/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

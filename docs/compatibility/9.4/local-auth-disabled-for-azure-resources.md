@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/3723
 
 # Local authentication is disabled by default on Azure resources
 
-Starting in .NET Aspire 9.4, local authentication is disabled by default for Azure EventHubs and Azure WebPubSub integrations. This change improves security by aligning with Azure environments that reject resources with local authentication enabled.
+Starting in Aspire 9.4, local authentication is disabled by default for Azure EventHubs and Azure WebPubSub integrations. This change improves security by aligning with Azure environments that reject resources with local authentication enabled.
 
 ## Version introduced
 
-.NET Aspire 9.4
+Aspire 9.4
 
 ## Previous behavior
 
@@ -32,7 +32,7 @@ Disabling local authentication by default provides a more secure configuration. 
 
 ## Recommended action
 
-If you are using the .NET Aspire client integrations for these services, no changes are required, and your application will continue to function as expected.
+If you are using the Aspire client integrations for these services, no changes are required, and your application will continue to function as expected.
 
 If you're using a SAS token or other connection string with an access key, you must either:
 
