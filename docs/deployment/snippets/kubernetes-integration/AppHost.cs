@@ -22,4 +22,5 @@ builder.Build().Run();
 namespace Projects
 {
     public class ApiService : IProjectMetadata { string IProjectMetadata.ProjectPath => "."; }
+    public class Web : IProjectMetadata { string IProjectMetadata.ProjectPath => "."; }
 }
