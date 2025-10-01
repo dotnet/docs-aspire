@@ -55,15 +55,7 @@
                 "PowerShell",
                 "Orleans",
                 "Aspire",
-                "-aspire",   // for file names
-                "aspire-",   // for file names
-                "Aspire-",   // for continuity
-                "-Aspire",   // for continuity
-                "# aspire ", // for command reference
-                "non-Aspire",
-                "[aspire ",  // for reference link text
-                "/aspire",   // for paths
-                "aspire]"    // for reference link text
+                "aspire"
             ]
         },
         "MD046": {
