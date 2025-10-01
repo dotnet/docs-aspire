@@ -7,7 +7,7 @@ ms.topic: tutorial
 
 # Tutorial: PostgreSQL migrations with Entity Framework Core in .NET Aspire
 
-In this comprehensive tutorial, you'll learn how to create a .NET Aspire application that uses PostgreSQL with Entity Framework Core migrations. You'll learn how to:
+In this comprehensive tutorial, you learn how to create a .NET Aspire application that uses PostgreSQL with Entity Framework Core migrations. You learn how to:
 
 > [!div class="checklist"]
 >
@@ -77,7 +77,7 @@ dotnet add AspirePostgreSQLEFCore package Aspire.Npgsql.EntityFrameworkCore.Post
 dotnet add AspirePostgreSQLEFCore reference AspirePostgreSQLEFCore.Data
 ```
 
-In the **Program.cs** file of the **AspirePostgreSQLEFCore** project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A> extension method:
+In the *Program.cs* file of the **AspirePostgreSQLEFCore** project, add a call to the <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A> extension method:
 
 :::code source="snippets/postgresql-ef-core-tutorial/AspirePostgreSQLEFCore/Program.cs" range="1-10" highlight="5":::
 
@@ -94,7 +94,7 @@ The **AspirePostgreSQLEFCore.AppHost** project orchestrates your application. Ad
 dotnet add AspirePostgreSQLEFCore.AppHost package Aspire.Hosting.PostgreSQL
 ```
 
-Update the AppHost.cs_ file in the **AspirePostgreSQLEFCore.AppHost** project:
+Update the *AppHost.cs* file in the **AspirePostgreSQLEFCore.AppHost** project:
 
 :::code source="snippets/postgresql-ef-core-tutorial/AspirePostgreSQLEFCore.AppHost/AppHost.cs":::
 
@@ -106,11 +106,11 @@ The preceding code:
 
 ## Create Entity Framework Core migrations
 
-Now you'll create migrations to define your database schema. This is where many developers encounter issues with PostgreSQL and .NET Aspire.
+Now you create migrations to define your database schema. This is where many developers encounter issues with PostgreSQL and .NET Aspire.
 
 ### Configure temporary connection string
 
-Because .NET Aspire uses service discovery that's only available at runtime, you need a temporary connection string for the EF Core tools to work. In the **AspirePostgreSQLEFCore** project, create an `appsettings.json` file (if it doesn't exist) with the following content:
+Because .NET Aspire uses service discovery that's only available at runtime, you need a temporary connection string for the EF Core tools to work. In the **AspirePostgreSQLEFCore** project, create an *appsettings.json* file (if it doesn't exist) with the following content:
 
 :::code source="snippets/postgresql-ef-core-tutorial/AspirePostgreSQLEFCore/appsettings.json":::
 
@@ -144,9 +144,9 @@ Add-Migration InitialCreate
 
 This creates a migration in the **AspirePostgreSQLEFCore.Data/Migrations** folder that defines the initial database schema.
 
-### Add additional model properties
+### Add more model properties
 
-Let's add more fields to demonstrate additional migrations. Update the `SupportTicket` model:
+Let's add more fields to demonstrate more migrations. Update the `SupportTicket` model:
 
 :::code source="snippets/postgresql-ef-core-tutorial/AspirePostgreSQLEFCore.Data/Models/SupportTicket.cs" range="1-25" highlight="20-23":::
 
@@ -168,7 +168,7 @@ Add-Migration AddTicketStatusAndDates
 
 ### Clean up temporary configuration
 
-Remove the temporary connection string from `appsettings.json` since .NET Aspire will provide the connection string at runtime:
+Remove the temporary connection string from *appsettings.json* since .NET Aspire will provide the connection string at runtime:
 
 :::code source="snippets/postgresql-ef-core-tutorial/AspirePostgreSQLEFCore/appsettings-clean.json":::
 
@@ -191,21 +191,21 @@ dotnet add AspirePostgreSQLEFCore.MigrationService reference AspirePostgreSQLEFC
 dotnet add AspirePostgreSQLEFCore.MigrationService package Aspire.Npgsql.EntityFrameworkCore.PostgreSQL
 ```
 
-1. Update the migration service **Program.cs**:
+1. Update the migration service *Program.cs*:
 
 :::code source="snippets/postgresql-ef-core-tutorial/AspirePostgreSQLEFCore.MigrationService/Program.cs":::
 
-1. Replace the **Worker.cs** file content:
+1. Replace the *Worker.cs* file content:
 
 :::code source="snippets/postgresql-ef-core-tutorial/AspirePostgreSQLEFCore.MigrationService/Worker.cs":::
 
-## Update the app host to use the migration service
+## Update the AppHost to use the migration service
 
-Update the app host **Program.cs** to include the migration service and ensure proper startup order:
+Update the *AppHost.cs* file to include the migration service and ensure proper startup order:
 
-:::code source="snippets/postgresql-ef-core-tutorial/AspirePostgreSQLEFCore.AppHost/Program.cs" highlight="8-11,13":::
+:::code source="snippets/postgresql-ef-core-tutorial/AspirePostgreSQLEFCore.AppHost/AppHost.cs" highlight="8-11,13":::
 
-Add the migration service project reference to the app host:
+Add the migration service project reference to the AppHost:
 
 ```dotnetcli
 dotnet add AspirePostgreSQLEFCore.AppHost reference AspirePostgreSQLEFCore.MigrationService
@@ -213,13 +213,13 @@ dotnet add AspirePostgreSQLEFCore.AppHost reference AspirePostgreSQLEFCore.Migra
 
 ## Create the user interface
 
-Create a simple form to test the database integration. Replace the contents of **Components/Pages/Home.razor**:
+Create a simple form to test the database integration. Replace the contents of *Components/Pages/Home.razor*:
 
 :::code source="snippets/postgresql-ef-core-tutorial/AspirePostgreSQLEFCore/Components/Pages/Home.razor":::
 
 ## Test the application
 
-1. Run the application by pressing **F5** in Visual Studio or using:
+1. Run the application by pressing <kbd>F5</kbd> in Visual Studio or using:
 
 ```dotnetcli
 dotnet run --project AspirePostgreSQLEFCore.AppHost
@@ -230,7 +230,7 @@ dotnet run --project AspirePostgreSQLEFCore.AppHost
    - The **migration** service should show as **Finished**
    - The web application should show as **Running**
 
-1. Click the web application endpoint to open the application.
+1. Select the web application endpoint to open the application.
 
 1. Fill out the support ticket form and submit it.
 
@@ -240,42 +240,42 @@ dotnet run --project AspirePostgreSQLEFCore.AppHost
 
 Stop and restart the application to verify that data persists between runs:
 
-1. Stop debugging (**Shift + F5**).
-1. Start debugging again (**F5**).
+1. Stop debugging (<kbd>Shift</kbd>+<kbd>F5</kbd>).
+1. Start debugging again (<kbd>F5</kbd>).
 1. Navigate to the web application.
 1. Verify that previously submitted tickets are still displayed.
 
-This works because the app host uses `WithDataVolume()` on the PostgreSQL resource, which persists data between container restarts.
+This works because the AppHost uses `WithDataVolume()` on the PostgreSQL resource, which persists data between container restarts.
 
 ## Troubleshooting common issues
 
-### "No database provider has been configured" error
+> No database provider has been configured
 
-If you encounter this error when creating migrations, ensure you have a temporary connection string in `appsettings.json` as shown in the [Create Entity Framework Core migrations](#create-entity-framework-core-migrations) section.
+If you encounter this error when creating migrations, ensure you have a temporary connection string in *appsettings.json* as shown in the [Create Entity Framework Core migrations](#create-entity-framework-core-migrations) section.
 
-### Migrations not applying
+> Migrations not applying
 
-If migrations aren't applying, check the following:
+If migrations aren't applying, check the following conditions:
 
-1. Verify the migration service is referenced in the app host
-2. Check that the `WaitFor(migrations)` dependency is properly configured
-3. Review the migration service logs in the .NET Aspire dashboard
+1. Verify the migration service is referenced in the AppHost.
+1. Check that the `WaitFor(migrations)` dependency is properly configured.
+1. Review the migration service logs in the .NET Aspire dashboard.
 
-### PostgreSQL connection issues
+> PostgreSQL connection issues
 
 If you can't connect to PostgreSQL:
 
-1. Ensure the PostgreSQL container is running in the dashboard
-2. Verify the connection string name matches between the app host and client configuration
-3. Check that the database name is consistent across your configuration
+1. Ensure the PostgreSQL container is running in the dashboard.
+1. Verify the connection string name matches between the AppHost and client configuration.
+1. Check that the database name is consistent across your configuration.
 
-### Different behavior than SQL Server
+> Different behavior than SQL Server
 
-PostgreSQL has some differences from SQL Server that may affect your migrations:
+PostgreSQL has some differences from SQL Server that might affect your migrations:
 
-- Case sensitivity: PostgreSQL is case-sensitive by default
-- Data types: PostgreSQL has different data type mappings
-- Naming conventions: PostgreSQL typically uses snake_case for table and column names
+- Case sensitivity: PostgreSQL is case-sensitive by default.
+- Data types: PostgreSQL has different data type mappings.
+- Naming conventions: PostgreSQL typically uses snake_case for table and column names.
 
 To handle these differences, you can configure EF Core conventions in your `TicketContext`:
 
@@ -299,11 +299,11 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 Now that you have a working PostgreSQL + Entity Framework Core + Migrations setup, you can:
 
-- Add more complex entity relationships
-- Implement data seeding in your migration service
-- Add migration rollback capabilities
-- Set up automated migration deployment pipelines
-- Explore PostgreSQL-specific features like JSON columns
+- Add more complex entity relationships.
+- Implement data seeding in your migration service.
+- Add migration rollback capabilities.
+- Set up automated migration deployment pipelines.
+- Explore PostgreSQL-specific features like JSON columns.
 
 ## See also
 
