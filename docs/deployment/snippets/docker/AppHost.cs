@@ -1,3 +1,4 @@
+// <apphost>
 var builder = DistributedApplication.CreateBuilder(args);
 
 // Add a Docker Compose environment
@@ -16,3 +17,10 @@ var webApp = builder.AddProject<Projects.WebApp>("webapp")
                     .PublishAsDockerComposeService();
 
 builder.Build().Run();
+// </apphost>
+
+namespace Projects
+{
+    public class WebApp : IProjectMetadata { string IProjectMetadata.ProjectPath => "."; }
+    public class ApiService : IProjectMetadata { string IProjectMetadata.ProjectPath => "."; }
+}
