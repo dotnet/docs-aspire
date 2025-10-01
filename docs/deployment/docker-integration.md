@@ -36,7 +36,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 The following example demonstrates how to add a Docker Compose environment to your app model using the <xref:Aspire.Hosting.DockerComposeEnvironmentExtensions.AddDockerComposeEnvironment%2A> method:
 
-:::code source="snippets/docker/AppHost.cs":::
+:::code source="snippets/docker/AppHost.cs" id="apphost":::
 
 The preceding code:
 
