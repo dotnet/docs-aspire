@@ -1,7 +1,7 @@
 ---
 title: What's new in Aspire 9.4
 description: Learn what's new in the official general availability release of Aspire 9.4.
-ms.date: 09/30/2025
+ms.date: 10/01/2025
 ---
 
 # What's new in Aspire 9.4
@@ -1868,6 +1868,6 @@ With every release, we strive to make Aspire better. However, some changes may b
 
 ## 🎯 Upgrade today
 
-Follow the directions outlined in the [Upgrade to Aspire 9.4](#-upgrade-to-net-aspire-94) section to make the switch to 9.4 and take advantage of all these new features today! As always, we're listening for your feedback on [GitHub](https://github.com/dotnet/aspire/issues)—and looking out for what you want to see in 9.5 ☺️.
+Follow the directions outlined in the [Upgrade to Aspire 9.4](#-upgrade-to-aspire-94) section to make the switch to 9.4 and take advantage of all these new features today! As always, we're listening for your feedback on [GitHub](https://github.com/dotnet/aspire/issues)—and looking out for what you want to see in 9.5 ☺️.
 
 For a complete list of issues addressed in this release, see [Aspire GitHub repository—9.4 milestone](https://github.com/dotnet/aspire/issues?q=is%3Aissue%20state%3Aclosed%20milestone%3A9.4%20).

@@ -1,7 +1,7 @@
 ---
 title: Upgrade to Aspire 9.5.0
 description: Learn how to upgrade all your Aspire projects to Aspire 9.5.0.
-ms.date: 09/09/2025
+ms.date: 10/01/2025
 zone_pivot_groups: dev-environment
 ---
 
@@ -21,7 +21,7 @@ Before you upgrade your projects to Aspire 9.5.0, ensure that you have the follo
 
 - [Install the latest tooling](../fundamentals/setup-tooling.md).
 - [Use the Aspire SDK](../fundamentals/dotnet-aspire-sdk.md).
-- If you have a version of Aspire older than 9.0, [remove it](#remove-the-net-aspire-workload-first-time-upgrades-from-version-8-only).
+- If you have a version of Aspire older than 9.0, [remove it](#remove-the-aspire-workload-first-time-upgrades-from-version-8-only).
 
 ## Upgrade the Aspire project templates
 
@@ -32,7 +32,7 @@ dotnet new install Aspire.ProjectTemplates
 ```
 
 > [!TIP]
-> If you have the legacy Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. For instructions on uninstalling the legacy workload, see [Remove the Aspire workload (first-time upgrades from version 8 only)](#remove-the-net-aspire-workload-first-time-upgrades-from-version-8-only).
+> If you have the legacy Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. For instructions on uninstalling the legacy workload, see [Remove the Aspire workload (first-time upgrades from version 8 only)](#remove-the-aspire-workload-first-time-upgrades-from-version-8-only).
 
 ## Manually upgrade a solution to Aspire 9.5.0
 

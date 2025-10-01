@@ -1,7 +1,7 @@
 ---
 title: Entity Framework Core overview
 description: Learn how to optimize the performance of Aspire Entity Framework Core integrations using their context objects.
-ms.date: 03/03/2025
+ms.date: 10/01/2025
 uid: database/use-entity-framework-db-contexts
 zone_pivot_groups: entity-framework-client-integration
 ---
@@ -228,10 +228,10 @@ builder.Services.AddDbContextPool<ExampleDbContext>(options =>
 You have more flexibility when you create the context in this way, for example:
 
 - You can reuse existing configuration code for the context without rewriting it for Aspire.
-- You can choose not to use EF Core context pooling, which may be necessary in some circumstances. For more information, see [Use EF Core context pooling in Aspire](#use-ef-core-context-pooling-in-net-aspire)
-- You can use EF Core context factories or change the lifetime for the EF Core services. For more information, see [Use EF Core context factories in Aspire](#use-ef-core-context-factories-in-net-aspire)
-- You can use dynamic connection strings. For more information, see [Use EF Core with dynamic connection strings in Aspire](#use-ef-core-with-dynamic-connection-strings-in-net-aspire)
-- You can use [EF Core interceptors](/ef/core/logging-events-diagnostics/interceptors) that depend on DI services to modify database operations. For more information, see [Use EF Core interceptors in Aspire](#use-ef-core-interceptors-with-net-aspire)
+- You can choose not to use EF Core context pooling, which may be necessary in some circumstances. For more information, see [Use EF Core context pooling in Aspire](#use-ef-core-context-pooling-in-aspire)
+- You can use EF Core context factories or change the lifetime for the EF Core services. For more information, see [Use EF Core context factories in Aspire](#use-ef-core-context-factories-in-aspire)
+- You can use dynamic connection strings. For more information, see [Use EF Core with dynamic connection strings in Aspire](#use-ef-core-with-dynamic-connection-strings-in-aspire)
+- You can use [EF Core interceptors](/ef/core/logging-events-diagnostics/interceptors) that depend on DI services to modify database operations. For more information, see [Use EF Core interceptors in Aspire](#use-ef-core-interceptors-with-aspire)
 
 By default, a context configured this way doesn't include Aspire features, such as telemetry and health checks. To add those features, each Aspire EF Core client integration includes a method named `Enrich\<DatabaseSystem\>DbContext`. These enrich context methods:
 

@@ -1,7 +1,7 @@
 ---
 title: Add Aspire to an existing .NET app
 description: Learn how to add Aspire integrations, orchestration, and tooling to a microservices app that already exists.
-ms.date: 04/16/2025
+ms.date: 10/01/2025
 ms.topic: how-to
 zone_pivot_groups: dev-environment
 ---
@@ -212,7 +212,7 @@ If the previous command didn't find any templates you must install them. Execute
 dotnet new install Aspire.ProjectTemplates
 ```
 
-For more information about the Aspire templates, see [Aspire templates](../fundamentals/setup-tooling.md#net-aspire-templates)
+For more information about the Aspire templates, see [Aspire templates](../fundamentals/setup-tooling.md#aspire-templates)
 
 ## Add Aspire to the Store web app
 

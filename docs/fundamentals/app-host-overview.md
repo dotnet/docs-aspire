@@ -1,7 +1,7 @@
 ---
 title: Aspire orchestration overview
 description: Learn the fundamental concepts of Aspire orchestration and explore the various APIs for adding resources and expressing dependencies.
-ms.date: 08/07/2025
+ms.date: 10/01/2025
 ms.topic: overview
 uid: dotnet/aspire/app-host
 ms.custom:
@@ -11,7 +11,7 @@ ms.custom:
 
 # Aspire orchestration overview
 
-Aspire provides APIs for expressing resources and dependencies within your distributed application. In addition to these APIs, [there's tooling](setup-tooling.md#install-net-aspire-prerequisites) that enables several compelling scenarios. The orchestrator is intended for _local development_ purposes and isn't supported in production environments.
+Aspire provides APIs for expressing resources and dependencies within your distributed application. In addition to these APIs, [there's tooling](setup-tooling.md#install-aspire-prerequisites) that enables several compelling scenarios. The orchestrator is intended for _local development_ purposes and isn't supported in production environments.
 
 <span id="terminology"></span>
 

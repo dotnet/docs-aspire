@@ -1,4 +1,4 @@
-If you haven't already installed the [Aspire templates](../fundamentals/setup-tooling.md#install-the-net-aspire-templates), run the following `dotnet new install` command:
+If you haven't already installed the [Aspire templates](../fundamentals/setup-tooling.md#install-the-aspire-templates), run the following `dotnet new install` command:
 
 ```dotnetcli
 dotnet new install Aspire.ProjectTemplates

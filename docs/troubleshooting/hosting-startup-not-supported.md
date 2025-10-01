@@ -1,7 +1,7 @@
 ---
 title: HostingStartup is not supported with Aspire integrations
 description: Learn how to migrate from HostingStartup to the IHostApplicationBuilder pattern for use with Aspire integrations.
-ms.date: 08/04/2025
+ms.date: 10/01/2025
 ai-usage: ai-assisted
 ---
 
@@ -52,14 +52,17 @@ When migrating from `HostingStartup` to the modern hosting model, you're moving 
 | Legacy pattern | Modern pattern | Benefit |
 |---|---|---|
 | `IWebHostBuilder` | `IHostApplicationBuilder` | Access to modern hosting features and Aspire integrations. |
-| Separate startup classes | Program.cs configuration | Service configuration moves directly into the application's entry point for better clarity and debugging. |
+| Separate startup classes | _Program.cs_ configuration | Service configuration moves directly into the application's entry point for better clarity and debugging. |
 | Manual service registration | Integration packages | Aspire integrations handle service registration, configuration, health checks, and telemetry automatically. |
 
 ### Migration resources
 
 For detailed migration guidance, see:
 
-- [Migrate from ASP.NET Core 5.0 to 6.0](/aspnet/core/migration/50-to-60?view=aspnetcore-9.0) - Covers the transition to the minimal hosting model
+- [Migrate from ASP.NET Core 5.0 to 6.0](/aspnet/core/migration/50-to-60).
+- [Migrate from ASP.NET Core 6.0 to 7.0](/aspnet/core/migration/60-70).
+- [Migrate from ASP.NET Core 7.0 to 8.0](/aspnet/core/migration/70-80).
+- [Migrate from ASP.NET Core 8.0 to 9.0](/aspnet/core/migration/80-90).
 - [David Fowl's ASP.NET Core 6.0 migration guide](https://gist.github.com/davidfowl/0e0372c3c1d895c3ce195ba983b1e03d) - Provides practical migration patterns and examples
 
 ## Additional considerations

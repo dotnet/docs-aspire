@@ -1,7 +1,7 @@
 ---
 title: What's new in Aspire 9.1
 description: Learn what's new in the official general availability release of Aspire 9.1.
-ms.date: 04/15/2025
+ms.date: 10/01/2025
 ---
 
 # What's new in Aspire 9.1
@@ -324,6 +324,6 @@ Typically APIs are decorated with the <xref:System.ObsoleteAttribute> giving you
 
 ## 🎯 Upgrade today
 
-Follow the directions outlined in the [Upgrade to Aspire 9.1](#-upgrade-to-net-aspire-91) section to make the switch to 9.1 and take advantage of all these new features today! As always, we're listening for your feedback on [GitHub](https://github.com/dotnet/aspire/issues)-and looking out for what you want to see in 9.2 ☺️.
+Follow the directions outlined in the [Upgrade to Aspire 9.1](#-upgrade-to-aspire-91) section to make the switch to 9.1 and take advantage of all these new features today! As always, we're listening for your feedback on [GitHub](https://github.com/dotnet/aspire/issues)-and looking out for what you want to see in 9.2 ☺️.
 
 For a complete list of issues addressed in this release, see [Aspire GitHub repository—9.1 milestone](https://github.com/dotnet/aspire/issues?q=is%3Aissue%20state%3Aclosed%20milestone%3A9.1%20).

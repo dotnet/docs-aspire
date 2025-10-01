@@ -1,13 +1,13 @@
 ---
 title: Write your first Aspire test
 description: Learn how to test your Aspire solutions using the xUnit.net, NUnit, and MSTest testing frameworks.
-ms.date: 8/15/2025
+ms.date: 10/01/2025
 zone_pivot_groups: unit-testing-framework
 ---
 
 # Write your first Aspire test
 
-In this article, you learn how to create a test project, write tests, and run them for your Aspire solutions. The tests in this article aren't unit tests, but rather functional or integration tests. Aspire includes several variations of [testing project templates](../fundamentals/setup-tooling.md#net-aspire-templates) that you can use to test your Aspire resource dependencies—and their communications. The testing project templates are available for MSTest, NUnit, and xUnit.net testing frameworks and include a sample test that you can use as a starting point for your tests.
+In this article, you learn how to create a test project, write tests, and run them for your Aspire solutions. The tests in this article aren't unit tests, but rather functional or integration tests. Aspire includes several variations of [testing project templates](../fundamentals/setup-tooling.md#aspire-templates) that you can use to test your Aspire resource dependencies—and their communications. The testing project templates are available for MSTest, NUnit, and xUnit.net testing frameworks and include a sample test that you can use as a starting point for your tests.
 
 The Aspire test project templates rely on the [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package. This package exposes the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> class, which is used to create a test host for your distributed application. The distributed application testing builder launches your AppHost project with instrumentation hooks so that you can access and manipulate the host at various stages of its lifecyle. In particular, <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> provides you access to <xref:Aspire.Hosting.IDistributedApplicationBuilder> and <xref:Aspire.Hosting.DistributedApplication> class to create and start the [AppHost](../fundamentals/app-host-overview.md).
 
@@ -187,7 +187,7 @@ For xUnit.net, consider using one of these logging packages:
 
 For MSTest, consider using one of these logging packages:
 
-- [📦 Extensions.Logging.MSTest](https://www.nuget.org/packages/Extensions.Logging.MSTest) - Integrates with MSTest framework.
+- [📦 fm.Extensions.Logging.MSTest](https://www.nuget.org/packages/fm.Extensions.Logging.MSTest) - Integrates with MSTest framework.
 - [📦 Serilog.Extensions.Logging.File](https://www.nuget.org/packages/Serilog.Extensions.Logging.File) - Writes logs to files.
 - [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console.
 

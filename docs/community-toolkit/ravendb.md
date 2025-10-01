@@ -2,7 +2,7 @@
 title: Aspire Community Toolkit RavenDB integration
 author: shiranshalom
 description: Learn how to use the Aspire RavenDB hosting and client integrations to run a RavenDB container and access it via the RavenDB client.
-ms.date: 5/27/2025
+ms.date: 10/01/2025
 ---
 
 # Aspire Community Toolkit RavenDB integration
@@ -36,7 +36,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add RavenDB server resource and database resource
 
-To set up RavenDB in your AppHost project, call one of the `AddRavenDB` extension methods on the `builder` instance to add a RavenDB server resource, then call `AddDatabase` on the server resource to add a database. Here’s an example:
+To set up RavenDB in your AppHost project, call one of the `AddRavenDB` extension methods on the `builder` instance to add a RavenDB server resource, then call `AddDatabase` on the server resource to add a database. Here's an example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -52,7 +52,7 @@ builder.AddProject<Projects.ExampleProject>()
 ```
 
 > [!IMPORTANT]
-> A valid RavenDB license is required.  If you don’t have one yet, you can request a free Community license [here](https://ravendb.net/license/request/community).
+> A valid RavenDB license is required.  If you don't have one yet, you can request a free Community license [here](https://ravendb.net/license/request/community).
 
 When Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/ravendb/ravendb` image, it creates a new RavenDB instance on your local machine. A reference to your RavenDB database resource (the `ravendb` variable) is added to the `ExampleProject`.
 
@@ -96,8 +96,8 @@ Data bind mounts rely on the host machine's filesystem to persist the RavenDB da
 
 ### Add secured RavenDB server resource  
 
-To create a new secured RavenDB instance using settings from a pre-configured _settings.json_ file or a self-signed certificate, use the `RavenDBServerSettings.Secured` method or `RavenDBServerSettings.SecuredWithLetsEncrypt` for Let’s Encrypt configurations. These methods allow you to specify the domain URL, certificate details, and additional server settings.
-Here’s an example of how to add a secured RavenDB server resource using Let's Encrypt:
+To create a new secured RavenDB instance using settings from a pre-configured _settings.json_ file or a self-signed certificate, use the `RavenDBServerSettings.Secured` method or `RavenDBServerSettings.SecuredWithLetsEncrypt` for Let's Encrypt configurations. These methods allow you to specify the domain URL, certificate details, and additional server settings.
+Here's an example of how to add a secured RavenDB server resource using Let's Encrypt:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -168,7 +168,7 @@ public class ExampleService(IDocumentStore client)
 The `AddRavenDBClient` method provides overloads that accept a `RavenDBClientSettings` object. This allows you to use the client integration independently of the hosting integration.
 The `RavenDBClientSettings` class contains the parameters needed to establish a connection. More details about the available configuration options can be found in the [Configuration options](#configuration-options) section below.
 
-Here’s an example:
+Here's an example:
 
 ```csharp
 var settings = new RavenDBClientSettings
@@ -293,6 +293,6 @@ The Aspire RavenDB client integration uses the configured client to perform a `I
 ## See also
 
 - [RavenDB](https://ravendb.net/)
-- [Running in a Docker Container](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/running-in-docker-container)
+- [RavenDB Dockerfile guide](https://docs.ravendb.net/6.2/start/containers/dockerfile/guide/)
 - [RavenDB Code](https://github.com/ravendb/ravendb)
 - [Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
