@@ -1,6 +1,8 @@
-using Projects;
-
+// <apphost>
 var builder = DistributedApplication.CreateBuilder(args);
+
+// Add Kubernetes environment
+var k8s = builder.AddKubernetesEnvironment("k8s");
 
 // Add your application resources
 var cache = builder.AddRedis("cache");
@@ -13,7 +15,11 @@ builder.AddProject<Projects.Web>("webfrontend")
        .WithReference(cache)
        .WithReference(apiService);
 
-// Add Kubernetes environment
-builder.AddKubernetesEnvironment("k8s");
 
 builder.Build().Run();
+// </apphost>
+
+namespace Projects
+{
+    public class ApiService : IProjectMetadata { string IProjectMetadata.ProjectPath => "."; }
+}

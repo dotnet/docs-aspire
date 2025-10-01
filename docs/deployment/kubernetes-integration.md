@@ -1,7 +1,7 @@
 ---
 title: .NET Aspire Kubernetes hosting integration
 description: Learn how to use the .NET Aspire Kubernetes hosting integration to generate Kubernetes deployment manifests.
-ms.date: 09/30/2025
+ms.date: 10/01/2025
 uid: deployment/kubernetes-integration
 ---
 
@@ -36,7 +36,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 After installing the package, add a Kubernetes environment to your AppHost project using the <xref:Aspire.Hosting.KubernetesEnvironmentExtensions.AddKubernetesEnvironment*> method:
 
-:::code language="csharp" source="snippets/kubernetes-integration/Program.cs":::
+:::code source="snippets/kubernetes-integration/AppHost.cs" id="apphost":::
 
 > [!TIP]
 > With the `k8s` variable assigned, you can pass that to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithComputeEnvironment*> API to disambiguate compute resources for solutions that define more than one. Otherwise, the `k8s` variable isn't required.
@@ -68,6 +68,8 @@ To generate Kubernetes manifests from your Aspire application, use the `aspire p
 ```Aspire
 aspire publish -o k8s-artifacts
 ```
+
+For more information, see [aspire publish command reference](../cli-reference/aspire-publish.md).
 
 This command generates a complete set of Kubernetes YAML manifests in the specified output directory (`k8s-artifacts` in this example). The generated artifacts include:
 
